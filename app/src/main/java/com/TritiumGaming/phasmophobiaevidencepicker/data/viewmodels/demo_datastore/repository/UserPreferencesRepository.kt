@@ -76,7 +76,7 @@ class UserPreferencesRepository(
     }
 
     suspend fun enableSortByDeadline(enable: Boolean) {
-        // edit handles data transactionally, ensuring that if the sort is updated at the same
+        // edit handles transactional data, ensuring that if the sort is updated at the same
         // time from another thread, we won't have conflicts
         dataStore.edit { preferences ->
             // Get the current SortOrder as an enum

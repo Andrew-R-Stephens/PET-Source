@@ -13,67 +13,63 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.start
  * @author TritiumGamingStudios
  */
 class AnimatedFrostModel(
-    screenW: Int, screenH: Int
+    screenWidth: Int, screenHeight: Int
 ) : AAnimatedModel(
-    screenW, screenH
+    screenWidth, screenHeight
 ) {
 
     override val filter: PorterDuffColorFilter
         get() = PorterDuffColorFilter(
-            Color.argb(alpha, 230, 255, 255),
+            Color.argb(currentAlpha, 230, 255, 255),
             PorterDuff.Mode.MULTIPLY
         )
 
     private val scaledWidth: Double
-        get() = scale * width
+        get() = drawScale * drawWidth
 
     private val scaledHeight: Double
-        get() = scale * height
+        get() = drawScale * drawHeight
 
     init {
-        MAX_TICK = 1000
+        tickMax = 1000
 
-        scale = 1.0
+        drawScale = 1.0
 
-        width = SCREENW.toDouble()
-        height = SCREENH.toDouble()
+        drawWidth = this.screenWidth.toDouble()
+        drawHeight = this.screenHeight.toDouble()
 
         setX()
         setY()
 
-        setTickMax(((Math.random() * (MAX_TICK - (MAX_TICK * .5))) + (MAX_TICK * .5)).toInt())
+        tickMax = ((Math.random() * (tickMax - (tickMax * .5))) + (tickMax * .5)).toInt()
 
         fadeTick = .7
     }
 
-    fun setTickMax(tickMax: Int) {
-        this.MAX_TICK = tickMax
-    }
-
     override fun setWidth() {
-        width = SCREENW.toDouble()
+        drawWidth = screenWidth.toDouble()
     }
 
     override fun setHeight() {
-        height = SCREENH.toDouble()
+        drawHeight = screenHeight.toDouble()
     }
 
     fun setX() {
-        this.x = 0.0
-        if (scaledWidth > SCREENW) {
-            this.x -= (scaledHeight / 2.0)
+        this.drawX = 0.0
+        if (scaledWidth > screenWidth) {
+            this.drawX -= (scaledHeight / 2.0)
         }
     }
 
     fun setY() {
-        this.y = 0.0
-        if (scaledHeight > SCREENH) {
-            this.y -= (scaledHeight / 2.0)
+        this.drawY = 0.0
+        if (scaledHeight > screenHeight) {
+            this.drawY -= (scaledHeight / 2.0)
         }
     }
 
     override fun setRect() {
-        rect[x.toInt(), y.toInt(), (x + scaledWidth).toInt()] = (y + scaledHeight).toInt()
+        rect[drawX.toInt(), drawY.toInt(), (drawX + scaledWidth).toInt()] = (drawY + scaledHeight).toInt()
     }
 
     /**
@@ -98,7 +94,7 @@ class AnimatedFrostModel(
         } else {
             isAlive = false
         }
-        if (currentTick >= MAX_TICK) {
+        if (currentTick >= tickMax) {
             tickIncrementDirection *= -1
         }
         setAlpha()

@@ -14,34 +14,34 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.start
  * @author TritiumGamingStudios
  */
 class AnimatedWritingModel(
-    screenW: Int, screenH: Int,
+    screenWidth: Int, screenHeight: Int,
     private val bitmapW: Int, private val bitmapH: Int,
     animationData: AnimationModel
 ) : AAnimatedModel(
-    screenW, screenH
+    screenWidth, screenHeight
 ) {
 
     override val filter: PorterDuffColorFilter
         get() = PorterDuffColorFilter(
-            Color.argb(alpha, 100, 100, 100),
+            Color.argb(currentAlpha, 100, 100, 100),
             PorterDuff.Mode.MULTIPLY
         )
 
     val scaledWidth: Double
-        get() = width
+        get() = drawWidth
 
     val scaledHeight: Double
-        get() = height
+        get() = drawHeight
 
     init {
-        MAX_ALPHA = 200
-        MAX_SIZE = 1
-        MIN_SIZE = 1
-        MAX_ROTATION = 45
-        MAX_TICK = 500
+        alphaMax = 200
+        sizeMax = 1
+        sizeMin = 1
+        rotationMax = 45
+        tickMax = 500
 
-        scale = 1.0
-        rotation = (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION).toFloat()
+        drawScale = 1.0
+        drawRotation = (Math.random() * (rotationMax * 2) - rotationMax).toFloat()
 
         setWidth()
         setHeight()
@@ -49,46 +49,41 @@ class AnimatedWritingModel(
         setX()
         setY()
 
-        setTickMax(
-            ((Math.random() *
-                    (this.MAX_TICK - (this.MAX_TICK * .5))) + (this.MAX_TICK * .5)).toInt()
-        )
+        tickMax =
+            ((Math.random() * (this.tickMax - (this.tickMax * .5))) + (this.tickMax * .5)).toInt()
 
-        animationData.rotWriting = rotation
+        animationData.rotWriting = drawRotation
     }
 
     override fun setWidth() {
-        width = bitmapW.toDouble()
+        drawWidth = bitmapW.toDouble()
     }
 
     override fun setHeight() {
-        height= bitmapH.toDouble()
-    }
-
-    fun setTickMax(tickMax: Int) {
-        this.MAX_TICK = tickMax
+        drawHeight= bitmapH.toDouble()
     }
 
     fun setX() {
-        this.x = Math.random() * SCREENW
-        if (this.x + this.scaledWidth > SCREENW) {
-            this.x -= this.scaledWidth
-        } else if (this.x < this.scaledWidth * -1) {
-            this.x = 0.0
+        this.drawX = Math.random() * screenWidth
+        if (this.drawX + this.scaledWidth > screenWidth) {
+            this.drawX -= this.scaledWidth
+        } else if (this.drawX < this.scaledWidth * -1) {
+            this.drawX = 0.0
         }
     }
 
     fun setY() {
-        this.y = Math.random() * SCREENH
-        if (this.y + this.scaledHeight > SCREENH) {
-            this.y -= this.scaledHeight
-        } else if (this.y < this.scaledHeight * -1) {
-            this.y = 0.0
+        this.drawY = Math.random() * screenHeight
+        if (this.drawY + this.scaledHeight > screenHeight) {
+            this.drawY -= this.scaledHeight
+        } else if (this.drawY < this.scaledHeight * -1) {
+            this.drawY = 0.0
         }
     }
 
     override fun setRect() {
-        rect[x.toInt(), y.toInt(), (x + scaledWidth).toInt()] = (y + scaledHeight).toInt()
+        rect[drawX.toInt(), drawY.toInt(), (drawX + scaledWidth).toInt()] =
+            (drawY + scaledHeight).toInt()
     }
 
     /**
@@ -102,7 +97,7 @@ class AnimatedWritingModel(
         val width = original!!.width
         val height = original.height
         val matrix = Matrix()
-        matrix.preRotate(rotation)
+        matrix.preRotate(drawRotation)
 
         return Bitmap.createBitmap(original, 0, 0, width, height, matrix, true)
     }
@@ -114,7 +109,7 @@ class AnimatedWritingModel(
         } else {
             isAlive = false
         }
-        if (currentTick >= this.MAX_TICK) {
+        if (currentTick >= this.tickMax) {
             tickIncrementDirection *= -1
         }
         setAlpha()

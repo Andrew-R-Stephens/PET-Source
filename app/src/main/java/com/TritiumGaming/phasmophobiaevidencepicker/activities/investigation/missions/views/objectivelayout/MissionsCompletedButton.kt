@@ -3,7 +3,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mi
 import android.content.Context
 import android.util.AttributeSet
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.ObjectivesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.ObjectivesViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 

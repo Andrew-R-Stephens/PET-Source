@@ -5,7 +5,11 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.revi
  *
  * @author TritiumGamingStudios
  */
-class ReviewTrackingModel(wasRequested: Boolean = false, timeActive: Long = 0, timesOpened: Int = 0) {
+class ReviewTrackingModel(
+    wasRequested: Boolean = false,
+    timeActive: Long = 0,
+    timesOpened: Int = 0
+) {
 
     companion object {
         private const val MAX_TIMES_OPENED_TARGET: Int = 5

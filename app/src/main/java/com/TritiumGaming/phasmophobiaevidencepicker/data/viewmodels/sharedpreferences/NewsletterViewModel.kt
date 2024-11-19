@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences
 
 import android.app.Application
 import android.content.Context
@@ -163,7 +163,8 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
     }
 
     private fun saveLastReadDate(
-        editor: SharedPreferences.Editor, localApply: Boolean, inboxType: InboxType) {
+        editor: SharedPreferences.Editor, localApply: Boolean, inboxType: InboxType
+    ) {
 
         val target: String? = when (inboxType) {
             InboxType.PET -> KEY_INBOX_PET

@@ -29,11 +29,11 @@ class AnimatedQueueModel(private val maxSize: Int, private val maxTimeout: Int) 
         return canDequeue
     }
 
-    fun setTimeout(timeout: Int) {
+    private fun setTimeout(timeout: Int) {
         this.timeout = ((Math.random() * timeout) + (timeout * .5)).toInt()
     }
 
-    fun refill() {
+    private fun refill() {
         for (i in 0 until maxSize) {
             enqueueRandomPos(i)
         }
@@ -51,13 +51,13 @@ class AnimatedQueueModel(private val maxSize: Int, private val maxTimeout: Int) 
         }
     }
 
-    fun enqueue(index: Int, num: Int) {
+    private fun enqueue(index: Int, num: Int) {
         if (queue.size < maxSize) {
             queue.add(index, num)
         }
     }
 
-    fun enqueueRandomPos(num: Int) {
+    private fun enqueueRandomPos(num: Int) {
         enqueue((Math.random() * queue.size).toInt(), num)
     }
 

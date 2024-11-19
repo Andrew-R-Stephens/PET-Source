@@ -35,22 +35,22 @@ class AnimationModel {
     private var bitmapHandRot: Bitmap? = null
     private var bitmapWritingRot: Bitmap? = null
     
-    val bitmapUtils = BitmapUtils()
+    private val bitmapUtils = BitmapUtils()
     
-    var queue: AnimatedQueueModel = AnimatedQueueModel(10, 500)
-    val allPool: ArrayList<AAnimatedModel> = ArrayList()
-    val currentPool: ArrayList<AAnimatedModel> = ArrayList()
+    private var queue: AnimatedQueueModel = AnimatedQueueModel(10, 500)
+    private val allPool: ArrayList<AAnimatedModel> = ArrayList()
+    private val currentPool: ArrayList<AAnimatedModel> = ArrayList()
 
-    var selectedWriting: Int = -1
-    var selectedHand: Int = -1
+    private var selectedWriting: Int = -1
+    private var selectedHand: Int = -1
 
     var rotWriting: Float = 0f
     var rotHand: Float = 0f
 
-    val allPoolSize: Int
+    private val allPoolSize: Int
         get() = allPool.size
 
-    val currentPoolSize: Int
+    private val currentPoolSize: Int
         get() = currentPool.size
 
     @get:Throws(IndexOutOfBoundsException::class)

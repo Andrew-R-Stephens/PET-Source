@@ -40,12 +40,12 @@ private val Context.dataStore by preferencesDataStore(
 
 class TasksActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: TasksViewModel
+    private lateinit var tasksViewModel: TasksViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(
+        tasksViewModel = ViewModelProvider(
             this,
             TasksViewModelFactory(
                 TasksRepository,

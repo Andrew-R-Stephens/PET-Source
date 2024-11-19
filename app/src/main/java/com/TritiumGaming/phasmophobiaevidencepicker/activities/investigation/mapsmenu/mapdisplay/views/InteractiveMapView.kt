@@ -27,7 +27,7 @@ import androidx.annotation.DrawableRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.MapMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.MapMenuViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiType
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.RoomModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.InteractiveMapModel

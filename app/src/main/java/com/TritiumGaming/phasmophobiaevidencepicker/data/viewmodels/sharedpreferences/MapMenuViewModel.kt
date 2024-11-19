@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences
 
 import android.annotation.SuppressLint
 import android.app.Application

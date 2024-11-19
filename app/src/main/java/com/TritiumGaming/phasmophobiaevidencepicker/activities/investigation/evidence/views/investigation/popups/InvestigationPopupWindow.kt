@@ -3,10 +3,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
-import android.view.DragEvent
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
@@ -81,26 +79,13 @@ abstract class InvestigationPopupWindow : ConstraintLayout {
             }
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            scroller.setOnScrollChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int ->
-                if (!scroller.canScrollVertically(1)) {
-                    indicatorFadeAnimation(
-                        indicator, resources.getInteger(
-                            android.R.integer.config_longAnimTime
-                        )
+        scroller.setOnScrollChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int ->
+            if (!scroller.canScrollVertically(1)) {
+                indicatorFadeAnimation(
+                    indicator, resources.getInteger(
+                        android.R.integer.config_longAnimTime
                     )
-                }
-            }
-        } else {
-            scroller.setOnDragListener { _: View?, _: DragEvent? ->
-                if (!scroller.canScrollVertically(1)) {
-                    indicatorFadeAnimation(
-                        indicator, resources.getInteger(
-                            android.R.integer.config_longAnimTime
-                        )
-                    )
-                }
-                true
+                )
             }
         }
     }

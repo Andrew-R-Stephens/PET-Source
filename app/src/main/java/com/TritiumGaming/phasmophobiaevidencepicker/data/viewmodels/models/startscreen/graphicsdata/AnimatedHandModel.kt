@@ -14,15 +14,15 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
  * @author TritiumGamingStudios
  */
 class AnimatedHandModel(
-    screenW: Int, screenH: Int,
-    bitmapW: Int, bitmapH: Int
+    screenWidth: Int, screenHeight: Int,
+    bitmapWidth: Int, bitmapHeight: Int
 ) : AAnimatedModel(
-    screenW, screenH
+    screenWidth, screenHeight
 ) {
 
     override val filter: PorterDuffColorFilter
     get() = PorterDuffColorFilter(
-        Color.argb(alpha, 0, 255, 0),
+        Color.argb(currentAlpha, 0, 255, 0),
         PorterDuff.Mode.MULTIPLY
     )
 
@@ -30,61 +30,57 @@ class AnimatedHandModel(
     private var bitmapH = 0
 
     val scaledWidth: Double
-        get() = width
+        get() = drawWidth
 
     val scaledHeight: Double
-        get() = height
+        get() = drawHeight
 
     init {
-        MAX_SIZE = 6
-        MIN_SIZE = 3
-        MAX_ROTATION = 25
-        MAX_TICK = 500
+        sizeMax = 6
+        sizeMin = 3
+        rotationMax = 25
+        tickMax = 500
 
-        scale = 1.0
+        drawScale = 1.0
 
-        width = bitmapW.also { this.bitmapW = it }.toDouble()
-        height = bitmapH.also { this.bitmapH = it }.toDouble()
+        drawWidth = bitmapWidth.also { this.bitmapW = it }.toDouble()
+        drawHeight = bitmapHeight.also { this.bitmapH = it }.toDouble()
 
-        x = Math.random() * SCREENW
-        y = Math.random() * SCREENH
+        drawX = Math.random() * this.screenWidth
+        drawY = Math.random() * this.screenHeight
 
-        rotation = (Math.random() * (MAX_ROTATION * 2) - MAX_ROTATION).toFloat()
-        setTickMax(((Math.random() * (MAX_TICK - (MAX_TICK * .5))) + (MAX_TICK * .5)).toInt())
+        drawRotation = (Math.random() * (rotationMax * 2) - rotationMax).toFloat()
+        tickMax = ((Math.random() * (tickMax - (tickMax * .5))) + (tickMax * .5)).toInt()
     }
 
     fun setX() {
-        this.x = Math.random() * SCREENW
-        if (this.x + this.scaledWidth > SCREENW) {
-            this.x -= this.scaledWidth
-        } else if (this.x < this.scaledWidth * -1) {
-            this.x = 0.0
+        this.drawX = Math.random() * screenWidth
+        if (this.drawX + this.scaledWidth > screenWidth) {
+            this.drawX -= this.scaledWidth
+        } else if (this.drawX < this.scaledWidth * -1) {
+            this.drawX = 0.0
         }
     }
 
     fun setY() {
-        this.y = Math.random() * SCREENH
-        if (this.y + this.scaledHeight > SCREENH) {
-            this.y -= this.scaledHeight
-        } else if (this.y < this.scaledHeight * -1) {
-            this.y = 0.0
+        this.drawY = Math.random() * screenHeight
+        if (this.drawY + this.scaledHeight > screenHeight) {
+            this.drawY -= this.scaledHeight
+        } else if (this.drawY < this.scaledHeight * -1) {
+            this.drawY = 0.0
         }
     }
 
     override fun setWidth() {
-        width = bitmapW.toDouble()
+        drawWidth = bitmapW.toDouble()
     }
 
     override fun setHeight() {
-        height = bitmapH.toDouble()
-    }
-
-    fun setTickMax(tickMax: Int) {
-        MAX_TICK = tickMax
+        drawHeight = bitmapH.toDouble()
     }
 
     override fun setRect() {
-        rect[x.toInt(), y.toInt(), (x + scaledWidth).toInt()] = (y + scaledHeight).toInt()
+        rect[drawX.toInt(), drawY.toInt(), (drawX + scaledWidth).toInt()] = (drawY + scaledHeight).toInt()
     }
 
     @Throws(IllegalStateException::class, NullPointerException::class)
@@ -94,7 +90,7 @@ class AnimatedHandModel(
         val width = original!!.width
         val height = original.height
         val matrix = Matrix()
-        matrix.preRotate(rotation)
+        matrix.preRotate(drawRotation)
 
         return Bitmap.createBitmap(original, 0, 0, width, height, matrix, true)
     }
@@ -106,7 +102,7 @@ class AnimatedHandModel(
         } else {
             isAlive = false
         }
-        if (currentTick >= this.MAX_TICK) {
+        if (currentTick >= this.tickMax) {
             tickIncrementDirection *= -1
         }
         setAlpha()

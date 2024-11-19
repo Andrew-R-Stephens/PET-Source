@@ -34,7 +34,7 @@ data class TasksUiModel(
 )
 
 class TasksViewModel(
-    repository: TasksRepository,
+    tasksRepository: TasksRepository,
     private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModel() {
 
@@ -44,7 +44,7 @@ class TasksViewModel(
     // Every time the sort order, the show completed filter or the list of tasks emit,
     // we should recreate the list of tasks
     private val tasksUiModelFlow = combine(
-        repository.tasks,
+        tasksRepository.tasks,
         userPreferencesFlow
     ) {
         tasks: List<Task>,
@@ -103,14 +103,14 @@ class TasksViewModel(
 }
 
 class TasksViewModelFactory(
-    private val repository: TasksRepository,
+    private val tasksRepository: TasksRepository,
     private val userPreferencesRepository: UserPreferencesRepository
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TasksViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return TasksViewModel(repository, userPreferencesRepository) as T
+            return TasksViewModel(tasksRepository, userPreferencesRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

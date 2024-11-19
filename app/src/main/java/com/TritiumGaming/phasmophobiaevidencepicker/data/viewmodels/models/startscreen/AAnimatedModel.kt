@@ -12,52 +12,36 @@ import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
  *
  * @author TritiumGamingStudios
  */
-abstract class AAnimatedModel(screenW: Int, screenH: Int) {
+abstract class AAnimatedModel(
+    protected var screenWidth: Int = 0,
+    protected var screenHeight: Int = 0,
+) {
 
     abstract val filter: PorterDuffColorFilter?
 
-    @JvmField
     val rect: Rect = Rect()
 
-    protected var SCREENW: Int = 0
-    protected var SCREENH: Int = 0
+    protected var alphaMax: Int = 200
+    protected var sizeMin: Int = 2
+    protected var sizeMax: Int = 3
+    protected var rotationMax: Int = 45
+    protected var tickMax: Int = 100
 
-    @JvmField
-    protected var MAX_ALPHA: Int = 200
-    @JvmField
-    protected var MIN_SIZE: Int = 2
-    @JvmField
-    protected var MAX_SIZE: Int = 3
-    @JvmField
-    protected var MAX_ROTATION: Int = 45
-    @JvmField
-    protected var MAX_TICK: Int = 100
-
-    @JvmField
-    protected var alpha: Int = 0
-    @JvmField
     protected var tickIncrementDirection: Int = 1
-    @JvmField
     protected var currentTick: Int = 0
-    @JvmField
+    protected var currentAlpha: Int = 0
     protected var fadeTick: Double = .2
 
-    protected open var x: Double = 0.0
-    protected open var y: Double = 0.0
+    protected open var drawX: Double = 0.0
+    protected open var drawY: Double = 0.0
 
-    @JvmField
-    protected var width: Double = 0.0
-    protected var height: Double = 0.0
+    protected var drawWidth: Double = 0.0
+    protected var drawHeight: Double = 0.0
 
-    protected var scale: Double = 1.0
-    protected var rotation: Float = 1f
+    protected var drawScale: Double = 1.0
+    protected var drawRotation: Float = 1f
 
     var isAlive: Boolean = true
-
-    init {
-        SCREENW = screenW
-        SCREENH = screenH
-    }
 
     @Throws(IllegalStateException::class, NullPointerException::class)
     open fun rotateBitmap(original: Bitmap?): Bitmap? {
@@ -65,12 +49,12 @@ abstract class AAnimatedModel(screenW: Int, screenH: Int) {
     }
 
     open fun setAlpha() {
-        val alphaMult = currentTick.toDouble() / MAX_TICK.toDouble() / fadeTick * MAX_ALPHA
-        alpha = alphaMult.toInt()
-        if (alpha > MAX_ALPHA) {
-            alpha = MAX_ALPHA
-        } else if (alpha < 0) {
-            alpha = 0
+        val alphaMultiplier = currentTick.toDouble() / tickMax.toDouble() / fadeTick * alphaMax
+        currentAlpha = alphaMultiplier.toInt()
+        if (currentAlpha > alphaMax) {
+            currentAlpha = alphaMax
+        } else if (currentAlpha < 0) {
+            currentAlpha = 0
         }
     }
 
@@ -82,21 +66,19 @@ abstract class AAnimatedModel(screenW: Int, screenH: Int) {
         }
     }
 
-    abstract fun setWidth()
-
-    abstract fun setHeight()
-
-    abstract fun doTick()
-
-    abstract fun setRect()
-
     fun initDims(screenW: Int, screenH: Int) {
-        SCREENW = screenW
-        SCREENH = screenH
+        screenWidth = screenW
+        screenHeight = screenH
 
         setWidth()
         setHeight()
 
         setRect()
     }
+
+    abstract fun setWidth()
+    abstract fun setHeight()
+    abstract fun doTick()
+    abstract fun setRect()
+
 }

@@ -15,7 +15,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel.EvidencePopupRecord
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
@@ -247,75 +247,4 @@ class EvidencePopupWindow : InvestigationPopupWindow {
         }
     }
 
-    /*
-    fun fadeOutIndicatorAnimation(
-        bodyCons: ConstraintLayout?,
-        container: ConstraintLayout?,
-        scroller: ScrollView,
-        indicator: View
-    ) {
-        scroller.post {
-            if (!scroller.canScrollVertically(1)) {
-                indicator.visibility = INVISIBLE
-                indicatorFadeAnimation(indicator, 0)
-            } else {
-                if (container != null) {
-                    if (container.layoutParams is LayoutParams) {
-                        val lParams = container.layoutParams as LayoutParams
-                        Log.d("Scroller", "Should constrain")
-                        lParams.constrainedHeight = true
-                        container.layoutParams = lParams
-                        container.invalidate()
-
-                        if (!scroller.canScrollVertically(1)) {
-                            indicator.visibility = INVISIBLE
-
-                            indicatorFadeAnimation(indicator, 0)
-                        } else {
-                            indicator.visibility = VISIBLE
-                            indicator.alpha = 1f
-                        }
-                    }
-                }
-            }
-            if (bodyCons != null) {
-                //initialize info content scroller
-                bodyCons.visibility = VISIBLE
-            }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            scroller.setOnScrollChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int ->
-                if (!scroller.canScrollVertically(1)) {
-                    indicatorFadeAnimation(
-                        indicator, resources.getInteger(
-                            android.R.integer.config_longAnimTime
-                        )
-                    )
-                }
-            }
-        } else {
-            scroller.setOnDragListener { _: View?, _: DragEvent? ->
-                if (!scroller.canScrollVertically(1)) {
-                    indicatorFadeAnimation(
-                        indicator, resources.getInteger(
-                            android.R.integer.config_longAnimTime
-                        )
-                    )
-                }
-                true
-            }
-        }
-    }
-
-    private fun indicatorFadeAnimation(indicator: View, time: Int) {
-        indicator.animate()
-            .alpha(0f)
-            .setDuration(time.toLong())
-            .setListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    indicator.visibility = INVISIBLE
-                }
-            })
-    }*/
 }

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.shared
+package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences
 
 import android.app.Application
 import android.content.Context

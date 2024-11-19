@@ -11,14 +11,14 @@ import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.start
  * @author TritiumGamingStudios
  */
 class AnimatedOrbModel(
-    screenW: Int, screenH: Int
+    screenWidth: Int = 0, screenHeight: Int = 0
 ) : AAnimatedModel(
-    screenW, screenH
+    screenWidth, screenHeight
 ) {
 
     override val filter: PorterDuffColorFilter
         get() = PorterDuffColorFilter(
-            Color.argb(alpha, 255, 255, 255),
+            Color.argb(currentAlpha, 255, 255, 255),
             PorterDuff.Mode.MULTIPLY)
 
     private val SIZE = 30
@@ -49,16 +49,16 @@ class AnimatedOrbModel(
     override fun setHeight() {}
 
     private fun setX() {
-        x = (Math.random() * SCREENW).toFloat().toDouble()
+        drawX = (Math.random() * screenWidth).toFloat().toDouble()
     }
 
     private fun setY() {
-        y = (Math.random() * SCREENH).toFloat().toDouble()
+        drawY = (Math.random() * screenHeight).toFloat().toDouble()
     }
 
     fun setDest() {
-        destX = Math.random().toFloat() * SCREENW
-        destY = Math.random().toFloat() * SCREENH
+        destX = Math.random().toFloat() * screenWidth
+        destY = Math.random().toFloat() * screenHeight
     }
 
     fun getRandTickMax(min: Int, max: Int): Int {
@@ -85,8 +85,8 @@ class AnimatedOrbModel(
             setDest()
         }
 
-        val slopeX = calcSlope(x.toInt().toFloat(), destX)
-        val slopeY = calcSlope(y.toInt().toFloat(), destY)
+        val slopeX = calcSlope(drawX.toInt().toFloat(), destX)
+        val slopeY = calcSlope(drawY.toInt().toFloat(), destY)
 
         val speed = .1f
         val mult = .001f
@@ -107,41 +107,41 @@ class AnimatedOrbModel(
             velY = minVel
         }
 
-        x += velX.toDouble()
-        y += velY.toDouble()
+        drawX += velX.toDouble()
+        drawY += velY.toDouble()
 
-        if (x > SCREENW * 1.1f) {
-            x = (SCREENW * 1.1f).toDouble()
+        if (drawX > screenWidth * 1.1f) {
+            drawX = (screenWidth * 1.1f).toDouble()
             velX = 0f
             setDest()
-        } else if (x < (SCREENW * -.1f) - SIZE) {
-            x = ((SCREENW * -.1f) - SIZE).toDouble()
+        } else if (drawX < (screenWidth * -.1f) - SIZE) {
+            drawX = ((screenWidth * -.1f) - SIZE).toDouble()
             velX = 0f
             setDest()
         }
 
-        if (y > SCREENH * 1.1f) {
-            y = (SCREENH * 1.1f).toDouble()
+        if (drawY > screenHeight * 1.1f) {
+            drawY = (screenHeight * 1.1f).toDouble()
             velY = 0f
             setDest()
-        } else if (y < (SCREENH * -.1f) - SIZE) {
-            y = ((SCREENH * -.1f) - SIZE).toDouble()
+        } else if (drawY < (screenHeight * -.1f) - SIZE) {
+            drawY = ((screenHeight * -.1f) - SIZE).toDouble()
             velY = 0f
             setDest()
         }
 
-        rect[x.toInt(), y.toInt(), (x + SIZE).toInt()] = (y + SIZE).toInt()
+        rect[drawX.toInt(), drawY.toInt(), (drawX + SIZE).toInt()] = (drawY + SIZE).toInt()
 
         setAlpha()
     }
 
     override fun setAlpha() {
-        val alphaMult = animTick.toDouble() / ANIM_TICK_MAX.toDouble() / fadeTick * MAX_ALPHA
-        alpha = alphaMult.toInt()
-        if (alpha > MAX_ALPHA) {
-            alpha = MAX_ALPHA
-        } else if (alpha < 0) {
-            alpha = 0
+        val alphaMult = animTick.toDouble() / ANIM_TICK_MAX.toDouble() / fadeTick * alphaMax
+        currentAlpha = alphaMult.toInt()
+        if (currentAlpha > alphaMax) {
+            currentAlpha = alphaMax
+        } else if (currentAlpha < 0) {
+            currentAlpha = 0
         }
     }
 

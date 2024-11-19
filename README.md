@@ -49,7 +49,7 @@
 
 <div align='center'><h2>Design and Architecture</h2></div>
 
-<div align='left'><h3>Technologies Used</h2></div>
+<div align='left'><h3>Technologies Used</h3></div>
 <div align='left' style="display:float">
   <img src="https://img.shields.io/badge/-Kotlin-7F52FF?logo=kotlin&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold" alt=""/>
