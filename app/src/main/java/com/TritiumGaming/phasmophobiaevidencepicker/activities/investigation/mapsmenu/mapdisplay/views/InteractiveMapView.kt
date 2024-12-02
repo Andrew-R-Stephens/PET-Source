@@ -27,11 +27,11 @@ import androidx.annotation.DrawableRes
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.MapMenuViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.PoiType
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.RoomModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.InteractiveMapModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.mapviewer.MapViewerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map.PoiType
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map.RoomModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.InteractiveMapModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.MapViewerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MapMenuViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils.Companion.bitmapExists
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
@@ -132,7 +132,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                 }
 
                 override fun onNothingSelected(arg0: AdapterView<*>?) {
-                    // TODO Auto-generated method stub
+                    // Auto-generated method stub
                 }
             }
         roomSpinner.onItemSelectedListener = poiSpinnerListener

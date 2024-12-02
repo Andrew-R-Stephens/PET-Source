@@ -14,13 +14,14 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeControl
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeControl
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeHandler
+import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeHandler
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager
@@ -32,6 +33,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 
 class AppSettingsFragment : MainMenuFirebaseFragment() {
+
     private var googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
 
     private var loadThemes = true
@@ -42,7 +44,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
     private var reOrderGhostListToggle: SettingsToggleItemView? = null
     private var enableLeftHandMode: SettingsToggleItemView? = null
 
-    var seekbar: SeekBar? = null
+    private var seekbar: SeekBar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,6 +54,8 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Log.d("AppSettingsFragment", "Start creating")
+
         super.onViewCreated(view, savedInstanceState)
 
         val navHeaderLayout = view.findViewById<NavHeaderLayout>(R.id.navHeaderLayout)
@@ -94,120 +98,132 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
 
         // SWITCHES
-        // Screen Always On
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            // Always On Mode
-            isAlwaysOnToggle?.isChecked = globalPreferencesViewModel.isAlwaysOn
 
-            // Allow Mobile Data
-            networkToggle?.isChecked = globalPreferencesViewModel.networkPreference
+        // Always On Mode
+        isAlwaysOnToggle?.isChecked = globalPreferencesViewModel.screenSaverPreference.value
+        Log.d("Switches", "screensaver: ${globalPreferencesViewModel.screenSaverPreference.value}")
 
-            // Allow Left Hand Mode
-            enableLeftHandMode?.isChecked = globalPreferencesViewModel.isLeftHandSupportEnabled
+        // Allow Mobile Data
+        networkToggle?.isChecked = globalPreferencesViewModel.networkPreference.value
+        Log.d("Switches", "network: ${globalPreferencesViewModel.networkPreference.value}")
 
-            // Allow Hunt Warning Audio
-            huntWarningAudioToggle?.isChecked = globalPreferencesViewModel.isHuntWarnAudioAllowed.value
+        // Allow Left Hand Mode
+        enableLeftHandMode?.isChecked = globalPreferencesViewModel.rTLPreference.value
+        Log.d("Switches", "rtl: ${globalPreferencesViewModel.rTLPreference.value}")
 
-            // Allow Reorder Ghost Views
-            reOrderGhostListToggle?.isChecked = globalPreferencesViewModel.reorderGhostViews
+        // Allow Hunt Warning Audio
+        huntWarningAudioToggle?.isChecked = globalPreferencesViewModel.huntWarningAudioPreference.value
+        Log.d("Switches", "audio: ${globalPreferencesViewModel.huntWarningAudioPreference.value}")
 
+        // Allow Reorder Ghost Views
+        reOrderGhostListToggle?.isChecked = globalPreferencesViewModel.ghostReorderPreference.value
+        Log.d("Switches", "reorder: ${globalPreferencesViewModel.ghostReorderPreference.value}")
 
-            // COLORBLIND DATA
-            val colorThemesData = globalPreferencesViewModel.colorThemeControl
-            try { colorThemeTextView?.setText(colorThemesData.currentName) }
-            catch (e: Exception) { e.printStackTrace() }
+        view.findViewById<ComposeView>(R.id.tempSwitch)?.setContent {
+            LabeledSwitch(
+                globalPreferencesViewModel,
+                "Temp!",
+                false
+            )
+        }
 
-            // FONT-STYLE DATA
-            val fontThemesData = globalPreferencesViewModel.fontThemeControl
-            try { fontThemeTextView?.setText(fontThemesData.currentName) }
-            catch (e: Exception) { e.printStackTrace() }
+        // COLORBLIND DATA
+        val colorThemesData = globalPreferencesViewModel.colorThemeHandler
+        try { colorThemeTextView?.setText(colorThemesData.currentName) }
+        catch (e: Exception) { e.printStackTrace() }
 
-            val showClockTime: (Boolean) -> Unit = { showTime: Boolean ->
-                when(showTime) {
-                    true -> {
-                        clockTimeTextView.visibility = VISIBLE
-                        clockOtherTextView.visibility = GONE
-                    }
-                    false -> {
-                        clockTimeTextView.visibility = GONE
-                        clockOtherTextView.visibility = VISIBLE
-                    }
+        // FONT-STYLE DATA
+        val fontThemesData = globalPreferencesViewModel.fontThemeHandler
+        try { fontThemeTextView?.setText(fontThemesData.currentName) }
+        catch (e: Exception) { e.printStackTrace() }
+
+        val showClockTime: (Boolean) -> Unit = { showTime: Boolean ->
+            when(showTime) {
+                true -> {
+                    clockTimeTextView.visibility = VISIBLE
+                    clockOtherTextView.visibility = GONE
+                }
+                false -> {
+                    clockTimeTextView.visibility = GONE
+                    clockOtherTextView.visibility = VISIBLE
                 }
             }
+        }
 
-            // Hunt warning timeout setting
-            seekbar?.let { seekbar ->
-                val seconds = 300
-                val millisPerSecond = 1000
-                seekbar.max = (seconds * millisPerSecond) + 1
-                if (globalPreferencesViewModel.huntWarnFlashTimeMax.value < 0) {
+        // Hunt warning timeout setting
+        seekbar?.let { seekbar ->
+            val seconds = 300
+            val millisPerSecond = 1000
+            seekbar.max = (seconds * millisPerSecond) + 1
+            globalPreferencesViewModel.getHuntWarnTimeoutPreference.value.let { value ->
+                if (value < 0) {
                     seekbar.progress = seekbar.max }
-                else { seekbar.progress = globalPreferencesViewModel.huntWarnFlashTimeMax.value.toInt() }
+                else { seekbar.progress = value.toInt() }
+            }
 
-                seekbar.setOnSeekBarChangeListener(
-                    object : OnSeekBarChangeListener {
-                        override fun onProgressChanged(
-                            seekBar: SeekBar, progress: Int, fromUser: Boolean) {
-                            if (fromUser) {
-                                val progressMax =
-                                    (seconds * millisPerSecond) / seekbar.max.toDouble()
+            seekbar.setOnSeekBarChangeListener(
+                object : OnSeekBarChangeListener {
+                    override fun onProgressChanged(
+                        seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                        if (fromUser) {
+                            val progressMax =
+                                (seconds * millisPerSecond) / seekbar.max.toDouble()
 
-                                if (progress < seekbar.max) {
-                                    val breakdown = (progressMax * progress / 1000L).toLong()
-                                    val text = millisToTime("%sm %ss", breakdown)
-                                    clockTimeTextView.text = text
-                                    showClockTime(true)
-                                } else if (progress == seekbar.max) {
-                                    showClockTime(false)
-                                }
+                            if (progress < seekbar.max) {
+                                val breakdown = (progressMax * progress / 1000L).toLong()
+                                val text = millisToTime("%sm %ss", breakdown)
+                                clockTimeTextView.text = text
+                                showClockTime(true)
+                            } else if (progress == seekbar.max) {
+                                showClockTime(false)
                             }
                         }
-                        override fun onStartTrackingTouch(seekBar: SeekBar) { }
-                        override fun onStopTrackingTouch(seekBar: SeekBar) { }
-                    })
+                    }
+                    override fun onStartTrackingTouch(seekBar: SeekBar) { }
+                    override fun onStopTrackingTouch(seekBar: SeekBar) { }
+                })
 
-                val progressMax = 300000 / seekbar.max.toDouble()
+            val progressMax = 300000 / seekbar.max.toDouble()
 
-                if (seekbar.progress >= 0 && seekbar.progress < seekbar.max) {
-                    val breakdown = (progressMax * seekbar.progress / 1000L).toLong()
-                    val text = millisToTime("%sm %ss", breakdown)
-                    showClockTime(true)
-                    clockTimeTextView.text = text
-                } else { showClockTime(false) }
-            }
+            if (seekbar.progress >= 0 && seekbar.progress < seekbar.max) {
+                val breakdown = (progressMax * seekbar.progress / 1000L).toLong()
+                val text = millisToTime("%sm %ss", breakdown)
+                showClockTime(true)
+                clockTimeTextView.text = text
+            } else { showClockTime(false) }
         }
 
         // Screen Always On
         isAlwaysOnToggle?.setSwitchClickListener {
-            globalPreferencesViewModel?.isAlwaysOn =
-                isAlwaysOnToggle?.isChecked == true
+            globalPreferencesViewModel.setScreenSaverPreference(
+                isAlwaysOnToggle?.isChecked == true)
         }
         // Allow Mobile Data
         networkToggle?.setSwitchClickListener {
-            globalPreferencesViewModel?.networkPreference =
-                networkToggle?.isChecked == true
+            globalPreferencesViewModel.setNetworkPreference(
+                networkToggle?.isChecked == true)
 
         }
         // Allow Left Hand Mode
         enableLeftHandMode?.setSwitchClickListener {
-            globalPreferencesViewModel?.isLeftHandSupportEnabled =
-                enableLeftHandMode?.isChecked == true
+            globalPreferencesViewModel.setRTLPreference(
+                enableLeftHandMode?.isChecked == true)
         }
 
         // Allow Hunt Warning Audio
         huntWarningAudioToggle?.setSwitchClickListener {
-            globalPreferencesViewModel?.setHuntWarnAudioAllowed(
+            globalPreferencesViewModel.setHuntWarningAudioPreference(
                 huntWarningAudioToggle?.isChecked == true)
         }
         // Allow Ghost View Reordering
         reOrderGhostListToggle?.setSwitchClickListener {
-            globalPreferencesViewModel?.reorderGhostViews =
-                reOrderGhostListToggle?.isChecked == true
+            globalPreferencesViewModel.setGhostReorderPreference(
+                reOrderGhostListToggle?.isChecked == true)
         }
 
         // COLORBLIND LISTENERS
         colorThemePrevButton.setOnClickListener {
-            globalPreferencesViewModel?.colorThemeControl?.let { themeControl ->
+            globalPreferencesViewModel.colorThemeHandler.let { themeControl ->
                 themeControl.iterateSelectedIndex(-1)
                 try { colorThemeTextView?.text = getString(themeControl.currentName) }
                 catch (e: Exception) { e.printStackTrace() }
@@ -216,7 +232,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
 
         colorThemeNextButton.setOnClickListener {
-            globalPreferencesViewModel?.colorThemeControl?.let { themeControl ->
+            globalPreferencesViewModel.colorThemeHandler.let { themeControl ->
                 themeControl.iterateSelectedIndex(1)
                 try { colorThemeTextView?.text = getString(themeControl.currentName) }
                 catch (e: Exception) { e.printStackTrace() }
@@ -226,7 +242,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         // FONT-STYLE LISTENERS
         fontThemePrevButton.setOnClickListener {
-            globalPreferencesViewModel?.fontThemeControl?.let { themeControl ->
+            globalPreferencesViewModel.fontThemeHandler.let { themeControl ->
                 themeControl.iterateSelectedIndex(-1)
                 try { fontThemeTextView?.text = getString(themeControl.currentName) }
                 catch (e: Exception) { e.printStackTrace() }
@@ -235,7 +251,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
 
         fontThemeNextButton.setOnClickListener {
-            globalPreferencesViewModel?.fontThemeControl?.let { themeControl ->
+            globalPreferencesViewModel.fontThemeHandler.let { themeControl ->
                 themeControl.iterateSelectedIndex(1)
                 try { fontThemeTextView?.text = getString(themeControl.currentName) }
                 catch (e: Exception) { e.printStackTrace() }
@@ -252,6 +268,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         // CONFIRM BUTTON
         confirmButton.setOnClickListener { v: View? ->
+            /*
             val params = Bundle()
             params.putString("event_type", "confirm_settings")
             globalPreferencesViewModel?.dataAsList?.let { settings ->
@@ -261,8 +278,9 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                 }
                 analytics?.logEvent("event_settings", params)
             }
-
+            */
             saveStates()
+
             try { v?.let { view -> findNavController(view).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
@@ -289,6 +307,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             loadThemes = false
         }
 
+        Log.d("AppSettingsFragment", "Finished creating")
     }
 
     private fun loadUserPurchaseHistory() {
@@ -306,8 +325,8 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
                         val uuid = documentReference.id
                         val customTheme =
-                            globalPreferencesViewModel?.colorThemeControl?.getThemeByUUID(uuid)
-                        customTheme?.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
+                            globalPreferencesViewModel.colorThemeHandler.getThemeByUUID(uuid)
+                        customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                     }
                 }
                 .addOnFailureListener { e: Exception ->
@@ -318,31 +337,32 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
     }
 
     private fun revertDemoChanges() {
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            globalPreferencesViewModel.colorThemeControl.revertToSavedIndex()
-            globalPreferencesViewModel.fontThemeControl.revertToSavedIndex()
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
+            globalPreferencesViewModel.colorThemeHandler.revertToSavedIndex()
+            globalPreferencesViewModel.fontThemeHandler.revertToSavedIndex()
 
             try { (requireActivity() as PETActivity).changeTheme(
-                    globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme)
+                    globalPreferencesViewModel.colorThemeHandler.currentTheme,
+                globalPreferencesViewModel.fontThemeHandler.currentTheme)
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    private fun demoColorStyle(colorThemeControl: ColorThemeControl?) {
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+    private fun demoColorStyle(colorThemeHandler: ColorThemeHandler?) {
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             try { (requireActivity() as PETActivity).changeTheme(
-                    colorThemeControl?.getThemeAtIndex(colorThemeControl.selectedIndex),
-                    globalPreferencesViewModel.fontTheme)
+                    colorThemeHandler?.getThemeAtIndex(colorThemeHandler.selectedIndex),
+                    globalPreferencesViewModel.fontThemeHandler.currentTheme)
             } catch (e: IllegalStateException) { e.printStackTrace() }
             refreshFragment()
         }
     }
 
-    private fun demoFontStyle(fontThemeControl: FontThemeControl) {
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+    private fun demoFontStyle(fontThemeHandler: FontThemeHandler) {
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             try { (requireActivity() as PETActivity).changeTheme(
-                    globalPreferencesViewModel.colorTheme,
-                    fontThemeControl.getThemeAtIndex(fontThemeControl.selectedIndex))
+                    globalPreferencesViewModel.colorThemeHandler.currentTheme,
+                    fontThemeHandler.getThemeAtIndex(fontThemeHandler.selectedIndex))
             } catch (e: IllegalStateException) { e.printStackTrace() }
             refreshFragment()
         }
@@ -358,24 +378,28 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    public override fun saveStates() {
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+    fun saveStates() {
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             seekbar?.let{ seekbar ->
-                globalPreferencesViewModel.setHuntWarningFlashTimeMax(seekbar.progress.toLong())
+                globalPreferencesViewModel.setHuntWarnTimeoutPreference(seekbar.progress.toLong())
             }
 
-            globalPreferencesViewModel.fontThemeControl.saveSelectedIndex()
-            globalPreferencesViewModel.colorThemeControl.saveSelectedIndex()
+            globalPreferencesViewModel.fontThemeHandler.saveSelectedIndex()
+            globalPreferencesViewModel.colorThemeHandler.saveSelectedIndex()
+            globalPreferencesViewModel.saveCurrentColorThemeID()
 
-            try { globalPreferencesViewModel.saveToFile(requireContext()) }
-            catch (e: IllegalStateException) { e.printStackTrace() }
+            /*try { globalPreferencesViewModel.saveAll() }
+            catch (e: IllegalStateException) { e.printStackTrace() }*/
+            /*try { globalPreferencesViewModel.saveToFile(requireContext()) }
+            catch (e: IllegalStateException) { e.printStackTrace() }*/
 
             try {
                 val activity = (requireActivity() as PETActivity)
                 activity.changeTheme(
-                    globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme
+                    globalPreferencesViewModel.colorThemeHandler.currentTheme,
+                    globalPreferencesViewModel.fontThemeHandler.currentTheme
                 )
-                if (globalPreferencesViewModel.isAlwaysOn) {
+                if (globalPreferencesViewModel.screenSaverPreference.value) {
                     activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                 }
                 activity.recreate()
@@ -407,15 +431,15 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
     }
 
     override fun onSignOutAccountSuccess() {
-        val themeControl = globalPreferencesViewModel?.colorThemeControl
+        val themeControl = globalPreferencesViewModel.colorThemeHandler
 
-        themeControl?.revertAllUnlockedStatuses()
+        themeControl.revertAllUnlockedStatuses()
 
-        themeControl?.iterateSelectedIndex(0)
-        themeControl?.selectedIndex = 0
-        themeControl?.saveIndex(0)
+        themeControl.iterateSelectedIndex(0)
+        themeControl.selectedIndex = 0
+        themeControl.saveIndex(0)
 
-        globalPreferencesViewModel?.saveColorSpace(requireContext())
+        globalPreferencesViewModel.saveCurrentColorThemeID()
 
         demoColorStyle(themeControl)
 

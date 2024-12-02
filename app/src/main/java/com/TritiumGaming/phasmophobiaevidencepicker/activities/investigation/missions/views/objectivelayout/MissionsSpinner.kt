@@ -8,16 +8,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatSpinner
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.ObjectivesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.missions.MissionsListModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.missions.MissionsListModel.Objective
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.missions.Mission
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.missions.MissionsListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
 
 class MissionsSpinner : AppCompatSpinner {
 
     private var objectivesViewModel: ObjectivesViewModel? = null
 
     private var missionId: Int? = null
-    private var currentMission: Objective? = null
+    private var currentMission: Mission? = null
 
     constructor(context: Context) : super(context) { initView() }
 
@@ -56,7 +56,7 @@ class MissionsSpinner : AppCompatSpinner {
                     currentMission?.let { currentMission ->
                         adapter?.let { adapter ->
                             for(i in 0 ..< adapter.count) {
-                                if((adapter.getItem(i) as AdapterWrapper).objective == currentMission) {
+                                if((adapter.getItem(i) as AdapterWrapper).mission == currentMission) {
                                     setSelection(i)
                                 }
                             }
@@ -64,7 +64,7 @@ class MissionsSpinner : AppCompatSpinner {
                     }
                 } else {
                     currentMission?.deselect()
-                    val newMission = (parent.getItemAtPosition(position) as AdapterWrapper).objective
+                    val newMission = (parent.getItemAtPosition(position) as AdapterWrapper).mission
                     newMission.select(missionId)
                     currentMission = newMission
                 }
@@ -97,7 +97,7 @@ class MissionsSpinner : AppCompatSpinner {
         }
     }
 
-    data class AdapterWrapper(val objective: Objective, val content: String) {
+    data class AdapterWrapper(val mission: Mission, val content: String) {
         override fun toString(): String {
             return content
         }

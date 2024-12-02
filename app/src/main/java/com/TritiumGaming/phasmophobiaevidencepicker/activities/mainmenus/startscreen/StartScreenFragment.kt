@@ -33,6 +33,7 @@ import com.google.android.gms.ads.MobileAds
 import java.util.Locale
 
 class StartScreenFragment : MainMenuFragment() {
+
     private var animationView: StartScreenAnimationView? = null
 
     private var canLoadNewsletter = true
@@ -135,18 +136,14 @@ class StartScreenFragment : MainMenuFragment() {
         closePopup()
     }
 
-    override fun initViewModels() {
-        super.initViewModels()
-        initMainMenuViewModel()
-        initNewsletterViewModel()
-    }
-
+    /*
     private fun loadMessageCenter() {
-        try { newsLetterViewModel?.registerInboxes(requireContext()) }
+        try { newsLetterViewModel.registerInboxes(requireContext()) }
         catch (e: IllegalStateException) {
             Log.d("MessageCenter", "Failed registering inboxes")
             e.printStackTrace() }
     }
+    */
 
     private fun setLanguageName(labelLanguageName: AppCompatTextView) {
         var chosenLanguage = Locale.getDefault().displayLanguage
@@ -163,7 +160,7 @@ class StartScreenFragment : MainMenuFragment() {
 
         val mAdView = view.findViewById<AdView>(R.id.adView)
 
-        mainMenuViewModel?.let { mainMenuViewModel ->
+        mainMenuViewModel.let { mainMenuViewModel ->
             if (!mainMenuViewModel.hasAdRequest()) {
                 mainMenuViewModel.adRequest = AdRequest.Builder().build()
             }
@@ -191,8 +188,8 @@ class StartScreenFragment : MainMenuFragment() {
         }
 
         // REQUEST REVIEW LISTENER
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            if (globalPreferencesViewModel.reviewRequestData.canShowReviewButton()) {
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
+            if (globalPreferencesViewModel.canShowReviewButton) {
                 buttonReview.setOnClickListener {
                     try {
                         showReviewPopup(requireView())
@@ -205,13 +202,13 @@ class StartScreenFragment : MainMenuFragment() {
 
     @Throws(SendIntentException::class)
     fun doReviewRequest() {
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            if (globalPreferencesViewModel.reviewRequestData.canRequestReview()) {
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
+            if (globalPreferencesViewModel.canRequestReview) {
                 Log.d("Review", "Review Request Accepted")
                 Thread {
                     try { Thread.sleep(1000L) }
                     catch (e: InterruptedException) { e.printStackTrace() }
-                    globalPreferencesViewModel.reviewRequestData.wasRequested = true
+                    globalPreferencesViewModel.setWasRequested(true)
                     try {
                         requireActivity().runOnUiThread {
                             try {
@@ -219,7 +216,8 @@ class StartScreenFragment : MainMenuFragment() {
                             }
                             catch (e: IllegalStateException) { e.printStackTrace() }
                         }
-                        globalPreferencesViewModel.saveToFile(requireContext())
+                        //globalPreferencesViewModel.saveAll()
+                        //globalPreferencesViewModel.saveToFile(requireContext())
                     }
                     catch (e: IllegalStateException) { e.printStackTrace() }
                 }.start()
@@ -271,11 +269,12 @@ class StartScreenFragment : MainMenuFragment() {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
+    /*
     private fun startInitNewsletterThread() {
         if (checkInternetConnection()) { startLoadNewsletterThread() }
         else {
             Log.d("MessageCenter", "Could not connect to the internet.")
-            newsLetterViewModel?.let { newsLetterViewModel ->
+            newsLetterViewModel.let { newsLetterViewModel ->
                 newsLetterViewModel.compareAllInboxDates()
                 if (newsLetterViewModel.requiresNotify) {
                     doNewsletterNotification()
@@ -283,14 +282,16 @@ class StartScreenFragment : MainMenuFragment() {
             }
         }
     }
+    */
 
+    /*
     private fun startLoadNewsletterThread() {
         newsletterThread = Thread {
             Log.d("MessageCenter", "Attempting to load inboxes...")
             val maxRetries = 3
             var retries = 0
 
-            newsLetterViewModel?.let { newsLetterViewModel ->
+            newsLetterViewModel.let { newsLetterViewModel ->
                 while (canLoadNewsletter &&
                     (!newsLetterViewModel.isUpToDate && (retries < maxRetries))) {
                     Log.d("MessageCenter", "Attempting to load inboxes...")
@@ -320,6 +321,7 @@ class StartScreenFragment : MainMenuFragment() {
         }
         newsletterThread?.start()
     }
+    */
 
     private fun stopLoadNewsletterThread() {
         newsletterThread?.interrupt()
@@ -334,7 +336,7 @@ class StartScreenFragment : MainMenuFragment() {
     /** onPause method */
     override fun onPause() {
         // SAVE PERSISTENT DATA
-        saveGlobalPreferencesViewModel()
+        //saveGlobalPreferencesViewModel()
 
         // STOP THREADS
         animationView?.let { animationView ->
@@ -350,9 +352,9 @@ class StartScreenFragment : MainMenuFragment() {
     /** onResume method */
     override fun onResume() {
         // START THREADS
-        animationView?.init(mainMenuViewModel)
+        animationView?.init(mainMenuViewModel.animationModel)
 
-        startInitNewsletterThread()
+        //startInitNewsletterThread()
 
         super.onResume()
     }
@@ -360,7 +362,7 @@ class StartScreenFragment : MainMenuFragment() {
     /** onDestroy method */
     override fun onDestroy() {
         // DESTROY AD-REQUEST
-        mainMenuViewModel?.adRequest = null
+        mainMenuViewModel.adRequest = null
 
         super.onDestroy()
     }

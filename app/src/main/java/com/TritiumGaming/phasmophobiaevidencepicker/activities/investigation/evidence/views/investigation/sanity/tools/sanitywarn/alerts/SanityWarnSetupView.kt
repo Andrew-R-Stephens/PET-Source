@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.SanityWarningView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
 
 class SanityWarnSetupView : SanityWarningView {
 

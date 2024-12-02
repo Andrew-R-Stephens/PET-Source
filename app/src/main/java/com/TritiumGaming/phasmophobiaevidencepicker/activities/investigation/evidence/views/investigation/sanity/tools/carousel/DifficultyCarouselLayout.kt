@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -30,7 +30,7 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
                 investigationViewModel.difficultyCarouselModel?.decrementIndex()
                 print("Decrementing Diff")
                 investigationViewModel.sanityModel?.reset()
-                investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
+                investigationViewModel.investigationModel?.ghostScoreModel?.updateOrder()
             }
         }
 
@@ -39,7 +39,7 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
                 investigationViewModel.difficultyCarouselModel?.incrementIndex()
                 print("Incrementing Diff")
                 investigationViewModel.sanityModel?.reset()
-                investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
+                investigationViewModel.investigationModel?.ghostScoreModel?.updateOrder()
             }
         }
         investigationViewModel.difficultyCarouselModel?.currentName?.let { nameRes ->

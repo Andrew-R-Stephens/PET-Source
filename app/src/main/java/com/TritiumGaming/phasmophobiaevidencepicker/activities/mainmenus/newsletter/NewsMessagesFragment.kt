@@ -35,7 +35,7 @@ class NewsMessagesFragment : MainMenuFragment() {
         recyclerViewMessages?.scrollBarFadeDuration = -1
 
         val updateStateOfMarkAsReadButton: () -> Unit = {
-            newsLetterViewModel?.currentInbox?.let { currentInbox ->
+            newsLetterViewModel.currentInbox?.let { currentInbox ->
                 markAsReadButton?.let{ button ->
                     val hasUnreadMessages = currentInbox.compareDates()
                     button.isEnabled = hasUnreadMessages
@@ -45,7 +45,7 @@ class NewsMessagesFragment : MainMenuFragment() {
             }
         }
 
-        newsLetterViewModel?.let { newsLetterViewModel ->
+        newsLetterViewModel.let { newsLetterViewModel ->
             // SET VIEW TEXT
             try {
                 titleTextView.text = newsLetterViewModel.currentInboxType.getName(requireContext())
@@ -53,9 +53,10 @@ class NewsMessagesFragment : MainMenuFragment() {
 
             val inbox = newsLetterViewModel.getInbox(newsLetterViewModel.currentInboxType)
             inbox?.let {
-                try { it.inboxType?.let {  inboxType ->
+                // TODO
+                /*try { it.inboxType?.let {  inboxType ->
                     newsLetterViewModel.saveToFile(requireContext(), inboxType) } }
-                catch (e: IllegalStateException) { e.printStackTrace() }
+                catch (e: IllegalStateException) { e.printStackTrace() }*/
             }
 
             updateStateOfMarkAsReadButton()
@@ -63,7 +64,7 @@ class NewsMessagesFragment : MainMenuFragment() {
         }
 
         markAsReadButton.setOnClickListener {
-            newsLetterViewModel?.currentInbox?.updateLastReadDate()
+            newsLetterViewModel.currentInbox?.updateLastReadDate()
             updateStateOfMarkAsReadButton()
             Thread { requireActivity().runOnUiThread { populateAdapter(view) } }.start()
         }
@@ -75,11 +76,11 @@ class NewsMessagesFragment : MainMenuFragment() {
     }
 
     private fun populateAdapter(view: View) {
-        newsLetterViewModel?.currentInbox?.let { currentInbox ->
+        newsLetterViewModel.currentInbox?.let { currentInbox ->
             val adapter = MessagesAdapterView(
                 currentInbox, object: MessagesAdapterView.OnMessageListener {
                     override fun onNoteClick(position: Int) {
-                        newsLetterViewModel?.let { newsletterViewModel ->
+                        newsLetterViewModel.let { newsletterViewModel ->
                             newsletterViewModel.currentMessageIndex = position
                             newsletterViewModel.currentMessage?.let { message ->
                                 newsletterViewModel.currentInbox?.updateLastReadDate(message)
@@ -95,13 +96,8 @@ class NewsMessagesFragment : MainMenuFragment() {
             catch (e: IllegalStateException) { e.printStackTrace() }
         } ?: try {
             Log.d("MessageCenter", "Inbox does not exist! " +
-                    newsLetterViewModel?.currentInboxType?.getName(requireContext()))
+                    newsLetterViewModel.currentInboxType?.getName(requireContext()))
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    override fun initViewModels() {
-        super.initViewModels()
-        initMainMenuViewModel()
-        initNewsletterViewModel()
-    }
 }

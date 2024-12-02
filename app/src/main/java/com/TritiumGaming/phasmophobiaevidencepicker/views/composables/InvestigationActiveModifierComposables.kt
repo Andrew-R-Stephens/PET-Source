@@ -22,11 +22,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.DifficultyCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.carousels.MapCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.DifficultyCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.MapCarouselModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GhostRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import kotlinx.coroutines.flow.MutableStateFlow
 

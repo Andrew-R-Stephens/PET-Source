@@ -23,8 +23,8 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evi
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.InvestigationSection
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.GhostListView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel.Companion.TOOL_MODIFIER_DETAILS
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel.Companion.TOOL_SANITY
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel.Companion.TOOL_MODIFIER_DETAILS
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel.Companion.TOOL_SANITY
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.CollapseButton
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.InvestigationToolbar
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ModifiersButton
@@ -57,7 +57,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         super.onViewCreated(view, savedInstanceState)
 
         sanityToolsLayout = view.findViewById(R.id.layout_sanity_tool)
-        investigationViewModel?.let { investigationViewModel ->
+        investigationViewModel.let { investigationViewModel ->
             sanityToolsLayout?.init(investigationViewModel)
         }
 
@@ -68,8 +68,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         columnRight?.findViewById<View>(R.id.scrollview)?.verticalScrollbarPosition =
             View.SCROLLBAR_POSITION_RIGHT
 
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            if (!globalPreferencesViewModel.isLeftHandSupportEnabled) {
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
+            if (!globalPreferencesViewModel.rTLPreference.value) {
                 ghostSection = columnLeft?.getChildAt(0) as InvestigationSection
                 evidenceSection = columnRight?.getChildAt(0) as InvestigationSection
             } else {
@@ -85,8 +85,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         evidenceList = EvidenceListView(requireContext())
 
         val setupLists = CoroutineScope(Dispatchers.Main).launch {
-            globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-                investigationViewModel?.let { investigationViewModel ->
+            globalPreferencesViewModel.let { globalPreferencesViewModel ->
+                investigationViewModel.let { investigationViewModel ->
                     evidenceList?.init(globalPreferencesViewModel, investigationViewModel,
                         popupWindow, evidenceSection?.findViewById(R.id.progressbar),
                         adRequest, ghostList)
@@ -117,7 +117,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                 view.findViewById(R.id.sanityToolbarComposable)
             sanityToolbarComposable?.setContent {
                 val collapseButton: @Composable () -> Unit = {
-                    investigationViewModel?.investigationModel?.let { investigationModel ->
+                    investigationViewModel.investigationModel?.let { investigationModel ->
                         CollapseButton(
                             isCollapsedState =
                                 investigationModel.isInvestigationToolsDrawerCollapsed,
@@ -135,7 +135,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                 }
 
                 val sanityDisplayButton: @Composable () -> Unit = {
-                    investigationViewModel?.investigationModel?.let { investigationModel ->
+                    investigationViewModel.investigationModel?.let { investigationModel ->
                         SanityButton(
                             onClick = {
                                 investigationModel.setInvestigationToolsCategory(TOOL_SANITY)
@@ -145,7 +145,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                 }
 
                 val modifierDisplayButton: @Composable () -> Unit = {
-                    investigationViewModel?.investigationModel?.let { investigationModel ->
+                    investigationViewModel.investigationModel?.let { investigationModel ->
                         ModifiersButton(
                             onClick = {
                                 investigationModel.setInvestigationToolsCategory(
@@ -193,7 +193,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     }
 
     private fun initCollapsible(toggleCollapseButton: ComposeView?) {
-        investigationViewModel?.investigationModel?.let { investigationModel ->
+        investigationViewModel.investigationModel.let { investigationModel ->
             toggleCollapseButton?.setContent {
                 CollapseButton(
                     isCollapsedState = investigationModel.isInvestigationToolsDrawerCollapsed,
@@ -203,18 +203,18 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         }
 
         lifecycleScope.launch {
-            investigationViewModel?.investigationModel?.isInvestigationToolsDrawerCollapsed
-                ?.collectLatest { state ->
-                sanityToolsLayout?.visibility = when (state) {
-                    true -> View.GONE
-                    false -> View.VISIBLE
+            investigationViewModel.investigationModel.isInvestigationToolsDrawerCollapsed
+                .collectLatest { state ->
+                    sanityToolsLayout?.visibility = when (state) {
+                        true -> View.GONE
+                        false -> View.VISIBLE
+                    }
                 }
-            }
         }
 
         // SANITY COLLAPSIBLE
         toggleCollapseButton?.setOnClickListener {
-            when (investigationViewModel?.investigationModel?.isInvestigationToolsDrawerCollapsed?.value == true) {
+            when (investigationViewModel.investigationModel.isInvestigationToolsDrawerCollapsed.value) {
                 true ->
                     sanityToolsLayout?.animate()
                         ?.setListener(object : AnimatorListenerAdapter() {
@@ -225,7 +225,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationEnd(animation)
                                 sanityToolsLayout?.visibility = View.VISIBLE
-                                investigationViewModel?.investigationModel?.setInvestigationToolsDrawerState(false)
+                                investigationViewModel.investigationModel.setInvestigationToolsDrawerState(false)
                             }
                         })?.start()
                 false -> {
@@ -239,7 +239,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                             override fun onAnimationEnd(animation: Animator) {
                                 super.onAnimationStart(animation)
                                 sanityToolsLayout?.visibility = View.GONE
-                                investigationViewModel?.investigationModel?.setInvestigationToolsDrawerState(true)
+                                investigationViewModel.investigationModel.setInvestigationToolsDrawerState(true)
                             }
                         })?.start()
                 }
@@ -248,9 +248,9 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     }
 
     override fun reset() {
-        investigationViewModel?.reset()
-        objectivesViewModel?.reset()
-        investigationViewModel?.investigationModel?.ghostOrderModel?.updateOrder()
+        investigationViewModel.reset()
+        objectivesViewModel.reset()
+        investigationViewModel.investigationModel.ghostScoreModel.updateOrder()
         ghostList?.reset()
     }
 
@@ -261,6 +261,6 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         super.onDestroyView()
     }
 
-    override fun saveStates() { }
+    /*override fun saveStates() { }*/
 
 }

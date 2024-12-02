@@ -91,6 +91,17 @@
         <item>@string/evidence_type_box</item>
     </integer-array>
 
+    <!-- Evidence Names -->
+    <integer-array name="evidence_type_ids">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_orbs</item>
+        <item>@integer/evidence_id_book</item>
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+
     <!-- Evidence Descriptions -->
     <string-array name="equipment_tiers_dots_description">
         <item>@string/evidence_info_overview_dots</item>

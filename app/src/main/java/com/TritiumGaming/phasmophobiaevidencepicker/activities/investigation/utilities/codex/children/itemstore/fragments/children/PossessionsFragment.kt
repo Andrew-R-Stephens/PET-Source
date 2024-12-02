@@ -3,12 +3,11 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ut
 import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.drawable.LayerDrawable
+import android.os.Bundle
 import android.text.Html
 import android.view.View
 import android.view.ViewStub
 import android.widget.GridLayout
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
@@ -16,95 +15,16 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.ItemStoreGroupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.possessions.ItemStorePossessionItemModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.possessions.ItemStorePossnsGroupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.possessions.ItemStorePossessionItemModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.possessions.ItemStorePossnsGroupModel
 
 class PossessionsFragment : ItemStoreFragment() {
-    @SuppressLint("ResourceType")
-    override fun buildStoreData() {
-        val shopListTypedArray = resources.obtainTypedArray(R.array.shop_cursedpossessions_array)
 
-        for (i in 0 until shopListTypedArray.length()) {
-            @StringRes var possessionName: Int
-            @DrawableRes var possessionIcon: Int
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            val groupData = ItemStorePossnsGroupModel()
-
-            val shopTypedArray =
-                resources.obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
-
-            possessionName = shopTypedArray.getResourceId(0, 0)
-            possessionIcon = shopTypedArray.getResourceId(1, 0)
-
-            groupData.nameData = possessionName
-            groupData.paginationIcon = possessionIcon
-
-            val possessionImagesTypedArray =
-                resources.obtainTypedArray(shopTypedArray.getResourceId(2, 0))
-            for (j in 0 until possessionImagesTypedArray.length()) {
-                groupData.addItem(ItemStorePossessionItemModel())
-                @DrawableRes val value = possessionImagesTypedArray.getResourceId(j, 0)
-                groupData.getItemDataAt(j).imageData = value
-
-                //tierImages.add(value);
-                groupData.getItemDataAt(j).imageData = value
-            }
-            possessionImagesTypedArray.recycle()
-
-            val flavorTextTypedArray =
-                resources.obtainTypedArray(shopTypedArray.getResourceId(3, 0))
-            for (j in 0 until flavorTextTypedArray.length()) {
-                @StringRes val value = flavorTextTypedArray.getResourceId(j, 0)
-                groupData.getItemDataAt(j).flavorData = value
-            }
-            flavorTextTypedArray.recycle()
-
-            val infoTextTypedArray =
-                resources.obtainTypedArray(shopTypedArray.getResourceId(4, 0))
-            for (j in 0 until infoTextTypedArray.length()) {
-                @StringRes val value = infoTextTypedArray.getResourceId(j, 0)
-                groupData.getItemDataAt(j).infoData = value
-            }
-            infoTextTypedArray.recycle()
-
-            val attributesTypedArray =
-                resources.obtainTypedArray(shopTypedArray.getResourceId(5, 0))
-            for (j in 0 until attributesTypedArray.length()) {
-                @StringRes val value = attributesTypedArray.getResourceId(j, 0)
-                (groupData.getItemDataAt(j) as ItemStorePossessionItemModel).addAttribute(value)
-            }
-            attributesTypedArray.recycle()
-
-            val sanityDrainTypedArray =
-                resources.obtainTypedArray(shopTypedArray.getResourceId(6, 0))
-            for (j in 0 until sanityDrainTypedArray.length()) {
-                @StringRes val value = sanityDrainTypedArray.getResourceId(j, 0)
-                (groupData.getItemDataAt(j) as ItemStorePossessionItemModel).sanityDrainData = value
-            }
-            sanityDrainTypedArray.recycle()
-
-            val drawChanceTypedArray =
-                resources.obtainTypedArray(shopTypedArray.getResourceId(7, 0))
-            for (j in 0 until drawChanceTypedArray.length()) {
-                @StringRes val value = drawChanceTypedArray.getResourceId(j, 0)
-                (groupData.getItemDataAt(j) as ItemStorePossessionItemModel).drawChance = value
-            }
-            drawChanceTypedArray.recycle()
-
-            val altNameTypedArray =
-                resources.obtainTypedArray(shopTypedArray.getResourceId(8, 0))
-            for (j in 0 until altNameTypedArray.length()) {
-                @StringRes val value = altNameTypedArray.getResourceId(j, 0)
-                (groupData.getItemDataAt(j) as ItemStorePossessionItemModel).altName = value
-            }
-            altNameTypedArray.recycle()
-
-            shopTypedArray.recycle()
-
-            storeData.addGroup(groupData)
-        }
-        shopListTypedArray.recycle()
+        storeData = investigationViewModel.possessionsStoreModel
     }
 
     override fun setPageTitle(titleView: AppCompatTextView) {
@@ -193,6 +113,5 @@ class PossessionsFragment : ItemStoreFragment() {
     override fun reset() {
     }
 
-    override fun saveStates() {
-    }
+    /*override fun saveStates() {}*/
 }

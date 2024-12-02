@@ -2,7 +2,7 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.ev
 
 import android.media.MediaPlayer
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.sanity.SanityRunnable
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityRunnable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -20,7 +20,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
     private var sanityJob: Job? = null
 
     private fun createSanityRunnable() {
-        investigationViewModel?.sanityRunnable =
+        investigationViewModel.sanityRunnable =
             object : SanityRunnable(requireContext(), 10f, 10f) {
 
                 override fun runCondition(): Boolean {
@@ -37,7 +37,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                     }
                     */
 
-                    investigationViewModel?.let { investigationViewModel ->
+                    investigationViewModel.let { investigationViewModel ->
                         if (investigationViewModel.timerModel?.paused?.value == false) {
                             investigationViewModel.sanityModel?.tick()
 
@@ -55,7 +55,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
             }
 
         val huntWarningListener: SanityRunnable.HuntWarningAudioListener? = null
-        globalPreferencesViewModel?.currentLanguageCode?.let { language ->
+        globalPreferencesViewModel.currentLanguageCode.value.let { language ->
             object : SanityRunnable.HuntWarningAudioListener() {
                 private fun createMediaPlayer(language: String): MediaPlayer? {
                     var p: MediaPlayer? = null
@@ -77,9 +77,9 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                 }
 
                 override fun play() {
-                    if (investigationViewModel?.phaseWarnModel?.audioAllowed == true) {
+                    if (investigationViewModel.phaseWarnModel?.audioAllowed == true) {
                         mediaPlayer?.start()
-                        investigationViewModel?.phaseWarnModel?.audioWarnTriggered = true
+                        investigationViewModel.phaseWarnModel?.audioWarnTriggered = true
                     }
                 }
 
@@ -88,21 +88,21 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
         }
 
         huntWarningListener?.let { listener ->
-            investigationViewModel?.sanityRunnable?.huntWarningAudioListener = listener }
+            investigationViewModel.sanityRunnable?.huntWarningAudioListener = listener }
 
     }
 
     private fun startSanityJob() {
         sanityJob = sanityScope?.launch {
-            investigationViewModel?.sanityRunnable ?: createSanityRunnable()
-            investigationViewModel?.sanityRunnable?.run()
+            investigationViewModel.sanityRunnable ?: createSanityRunnable()
+            investigationViewModel.sanityRunnable?.run()
         }
         sanityJob?.start()
     }
 
     private fun stopSanityJob() {
         sanityJob?.cancel("Cancelling Sanity Job")
-        investigationViewModel?.sanityRunnable?.huntWarningAudioListener?.stop()
+        investigationViewModel.sanityRunnable?.huntWarningAudioListener?.stop()
     }
 
     override fun reset() {

@@ -17,7 +17,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.MarketBillableView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketMicroTransactionModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.billable.MarketMicroTransactionModel
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables.Companion.getBillablesWhere
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
@@ -83,9 +83,6 @@ class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
         requireActivity().runOnUiThread { Thread { this.initAccountCreditListener() }.start() }
 
         initBillingClient()
-    }
-
-    override fun initViewModels() {
     }
 
     private fun initAccountView() {

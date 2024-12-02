@@ -8,8 +8,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterInboxModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 
 class MessagesAdapterView(

@@ -1,10 +1,9 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.utils
 
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterInboxModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterMessageModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.NewsletterViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.NewsletterViewModel.InboxType
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParser.END_TAG
 import org.xmlpull.v1.XmlPullParser.START_TAG
@@ -19,8 +18,9 @@ class RSSParserUtils(
     factory: XmlPullParserFactory,
     urlStr: String?,
     private val inboxType: InboxType,
-    private val newsLetterViewModel: NewsletterViewModel
+    val addInbox: (NewsletterInboxModel, InboxType) -> Unit
 ) {
+
     init {
         Log.d("MessageCenter", "RSSThread initializing...")
         Thread(RSSThread(factory, urlStr)).start()
@@ -36,14 +36,13 @@ class RSSParserUtils(
     }
 
     inner class RSSThread(
-        private val factory: XmlPullParserFactory, urlStr: String?
-    ) : Runnable {
-
+        private val factory: XmlPullParserFactory,
         private val urlStr: String?
+    ) : Runnable {
 
         init {
             factory.isNamespaceAware = false
-            this.urlStr = urlStr
+            Log.d("RSSThread", "$urlStr")
         }
 
         override fun run() {
@@ -88,7 +87,7 @@ class RSSParserUtils(
                 }
                 inStream.close()
 
-                newsLetterViewModel.addInbox(messageList, inboxType)
+                addInbox(messageList, inboxType)
                 Log.d("MessageCenter", "Adding $inboxType inbox")
             }
             catch (e: XmlPullParserException) { e.printStackTrace() }

@@ -68,8 +68,6 @@
     <attr name="mapRoomFillColor" format="reference|color" />
     <attr name="mapRoomBorderColor" format="reference|color" />
 
-    <attr name="theme_title" format="string" />
-    <attr name="theme_badge" format="reference" />
     <attr name="theme_colorPrimary" format="reference|color" />
 
 
@@ -160,6 +158,9 @@
     <attr name="codex5_header" format="reference|color" />
     <!-- -->
 
+    <!-- Other -->
+    <attr name="theme_title" format="string" />
+    <attr name="theme_badge" format="reference" />
 
     <!--
         Fonts

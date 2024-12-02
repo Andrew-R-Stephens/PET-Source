@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.billable.MarketMicroTransactionModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.billable.MarketMicroTransactionModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView

@@ -1,7 +1,6 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applang
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
 
 class AppLanguageFragment : MainMenuFragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.init()
@@ -34,7 +34,7 @@ class AppLanguageFragment : MainMenuFragment() {
 
         // LISTENERS
         confirmButton.setOnClickListener { v: View? ->
-            mainMenuViewModel?.languageSelectedOriginal = -1
+            mainMenuViewModel.languageSelectedOriginal = -1
             try { v?.let { findNavController(v).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
@@ -42,22 +42,17 @@ class AppLanguageFragment : MainMenuFragment() {
         cancelButton.setOnClickListener { handleDiscardChanges() }
 
         // DATA
-        var selected = 0
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            selected = globalPreferencesViewModel.getCurrentLanguageIndex()
+        val selected = globalPreferencesViewModel.getCurrentLanguageIndex()
+        if (mainMenuViewModel.languageSelectedOriginal == -1) {
+            mainMenuViewModel.languageSelectedOriginal = selected
         }
-        mainMenuViewModel?.let { mainMenuViewModel ->
-            if (mainMenuViewModel.languageSelectedOriginal == -1) {
-                mainMenuViewModel.languageSelectedOriginal = selected
-            }
-        }
-        globalPreferencesViewModel?.languageList?.let { languageList ->
+        globalPreferencesViewModel.languageList.let { languageList ->
             for (i in languageList.indices) {
                 val adapter = LanguagesAdapterView(languageList, selected,
                     object: LanguagesAdapterView.OnLanguageListener {
                         override fun onNoteClick(position: Int) {
-                            globalPreferencesViewModel?.setCurrentLanguage(position)
-                            mainMenuViewModel?.canRefreshFragment = true
+                            globalPreferencesViewModel.setCurrentLanguageCodeByIndex(position)
+                            mainMenuViewModel.canRefreshFragment = true
 
                             this@AppLanguageFragment.configureLanguage()
                             this@AppLanguageFragment.refreshFragment()
@@ -72,60 +67,38 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     private fun handleDiscardChanges() {
-        mainMenuViewModel?.let { mainMenuViewModel ->
-            globalPreferencesViewModel?.setCurrentLanguage(
-                mainMenuViewModel.languageSelectedOriginal)
-            Log.d("Languages",
-                "Set language = ${mainMenuViewModel.languageSelectedOriginal}")
-        }
+        globalPreferencesViewModel.setCurrentLanguageCodeByIndex(
+            mainMenuViewModel.languageSelectedOriginal)
 
-        configureLanguage()
+        configureLanguage(
+            globalPreferencesViewModel
+                .languageList[mainMenuViewModel.languageSelectedOriginal].abbreviation
+        )
 
         try { findNavController(requireView()).popBackStack() }
         catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
-    private fun configureLanguage() {
-        globalPreferencesViewModel?.currentLanguageCode?.let{ currLangAbbr ->
-            try {
-                (requireActivity() as MainMenuActivity).setLanguage(currLangAbbr)
-            }
-            catch (e: IllegalStateException) { e.printStackTrace() }
-        }
-    }
-
-    override fun initViewModels() {
-        super.initViewModels()
-        initMainMenuViewModel()
-    }
-
-    override fun backPressedHandler() {
-        handleDiscardChanges()
 
         val message = getString(R.string.toast_discardchanges)
         try { Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
         catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
+    private fun configureLanguage(
+        langCode: String = globalPreferencesViewModel.currentLanguageCode.value
+    ) {
+        try { (requireActivity() as MainMenuActivity).configureLanguage(langCode) }
+        catch (e: IllegalStateException) { e.printStackTrace() }
+    }
+
+    override fun backPressedHandler() {
+        handleDiscardChanges()
+    }
+
     public override fun refreshFragment() {
-        mainMenuViewModel?.let { mainMenuViewModel ->
-            if (mainMenuViewModel.canRefreshFragment) {
-                super.refreshFragment()
-                mainMenuViewModel.canRefreshFragment = false
-            }
+        if (mainMenuViewModel.canRefreshFragment) {
+            super.refreshFragment()
+            mainMenuViewModel.canRefreshFragment = false
         }
     }
 
-    public override fun saveStates() {
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            try { globalPreferencesViewModel.saveToFile(requireContext())
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
-    }
-
-    override fun onPause() {
-        // SAVE PERSISTENT DATA
-        saveStates()
-        super.onPause()
-    }
 }

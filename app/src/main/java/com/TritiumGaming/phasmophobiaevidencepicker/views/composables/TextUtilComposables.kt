@@ -23,13 +23,13 @@ fun AutoResizedText(
     modifier: Modifier = Modifier,
     text: String = "Test Haha",
     textCase: TextCase = TextCase.Unspecified,
-    maxFontSize: TextUnit = 12.sp,
+    maxFontSize: TextUnit = 900.sp,
     color: Color = Color.White,
     textAlign: TextAlign = TextAlign.Unspecified,
     onUpdateMaxFontSize: () -> Unit = {  }
 ) {
     var resizedTextSize by remember { mutableStateOf(maxFontSize) }
-    var shouldDraw by remember { mutableStateOf(false) }
+    var shouldDraw by remember { mutableStateOf(true) }
 
     val convertedText = TextCase.convertCase(text, textCase)
 
@@ -48,8 +48,9 @@ fun AutoResizedText(
                 if (maxFontSize.isUnspecified) {
                     resizedTextSize = 12.sp
                 }
-                resizedTextSize = (resizedTextSize.value - 1).sp
-                onUpdateMaxFontSize()
+                resizedTextSize = (resizedTextSize.value * .9f).sp
+                //onUpdateMaxFontSize()
+                shouldDraw = false
             } else {
                 shouldDraw = true
             }

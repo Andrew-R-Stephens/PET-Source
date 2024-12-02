@@ -11,9 +11,9 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups.GhostPopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.ghost.GhostView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.GlobalPreferencesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GhostPopupRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import com.google.android.gms.ads.AdRequest
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -42,13 +42,13 @@ class GhostListView : InvestigationListView {
 
     @SuppressLint("ResourceType")
     fun createPopupWindow(popupWindow: PopupWindow?) {
-        super.createPopupWindow(popupWindow, GhostPopupModel(context))
+        super.createPopupWindow(popupWindow, GhostPopupRepository(context))
     }
 
     override fun build() {
         investigationViewModel?.let { investigationViewModel ->
             val newGhostOrder =
-                investigationViewModel.investigationModel?.ghostOrderModel?.currOrder
+                investigationViewModel.investigationModel?.ghostScoreModel?.currOrder
 
             newGhostOrder?.let { ghostOrder ->
                 Log.d("GhostOrder", "Loading New ${newGhostOrder.joinToString()}")
@@ -64,7 +64,7 @@ class GhostListView : InvestigationListView {
                             ghostPopupWindow.popupWindow = popupWindow
                             investigationViewModel.investigationModel?.let { investigationModel ->
                                 ghostPopupWindow.build(
-                                    investigationModel, (popupData as GhostPopupModel),
+                                    investigationModel, (popupData as GhostPopupRepository),
                                     index, adRequest
                                 )
                             }
@@ -80,19 +80,21 @@ class GhostListView : InvestigationListView {
     }
 
     fun attemptInvalidate(canReorder: Boolean) {
-        if (investigationViewModel?.investigationModel?.ghostOrderModel?.hasChanges() == true
+        if (investigationViewModel?.investigationModel?.ghostScoreModel?.hasChanges() == true
             && canReorder) { reorder() } else { updateChildren() }
     }
 
     private fun reorder() {
         investigationViewModel?.let { investigationViewModel ->
-            val ghostOrderData = investigationViewModel.investigationModel?.ghostOrderModel
+            val ghostOrderData = investigationViewModel.investigationModel.ghostScoreModel
 
             ghostOrderData?.currOrder?.let { currOrder ->
                 for (j in currOrder) {
                     val childView = this.findViewById<View>(j)
-                    this.removeView(childView)
-                    this.addView(childView)
+                    childView?.let { view ->
+                        this.removeView(view)
+                        this.addView(view)
+                    }
                 }
             }
         }
@@ -114,7 +116,7 @@ class GhostListView : InvestigationListView {
             investigationViewModel?.difficultyCarouselModel?.currentIndex?.collectLatest {
                 investigationViewModel?.difficultyCarouselModel?.currentName?.let {
                     attemptInvalidate(
-                        globalPreferencesViewModel?.reorderGhostViews ?: false
+                        globalPreferencesViewModel?.ghostReorderPreference?.value ?: false
                     )
                 }
             }

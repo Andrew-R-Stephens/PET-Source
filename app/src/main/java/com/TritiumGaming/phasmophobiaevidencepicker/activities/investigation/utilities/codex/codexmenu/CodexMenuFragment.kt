@@ -12,6 +12,7 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard
 
 class CodexMenuFragment : CodexFragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_utilities_codex, container, false)
@@ -22,22 +23,23 @@ class CodexMenuFragment : CodexFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val gridView = view.findViewById<GridLayout>(R.id.grid_codex)
-        val gotoCodex = gridView.findViewById<CodexGridCard>(R.id.grid_codexmenu_option1)
-        gotoCodex.setOnClickListener { v: View? ->
+
+        val gotoEquipmentFragment = gridView.findViewById<CodexGridCard>(R.id.grid_codexmenu_option1)
+        gotoEquipmentFragment.setOnClickListener { v: View? ->
             v?.let {
                 try {
                     findNavController(v).navigate(R.id.action_codexFragment_to_equipmentStoreFragment)
                 } catch (e: IllegalArgumentException) { e.printStackTrace() }
             }
 
-            val gotoCursedPossessions =
-                gridView.findViewById<CodexGridCard>(R.id.grid_codexmenu_option2)
-            gotoCursedPossessions?.setOnClickListener { v: View? ->
-                v?.let {
-                    try {
-                        findNavController(v).navigate(R.id.action_codexFragment_to_cursedPossessionsFragment)
-                    } catch (e: IllegalArgumentException) { e.printStackTrace() }
-                }
+        }
+
+        val gotoPossessionsFragment = gridView.findViewById<CodexGridCard>(R.id.grid_codexmenu_option2)
+        gotoPossessionsFragment?.setOnClickListener { v: View? ->
+            v?.let {
+                try {
+                    findNavController(v).navigate(R.id.action_codexFragment_to_cursedPossessionsFragment)
+                } catch (e: IllegalArgumentException) { e.printStackTrace() }
             }
         }
 
@@ -54,5 +56,5 @@ class CodexMenuFragment : CodexFragment() {
 
     override fun reset() { }
 
-    override fun saveStates() { }
+    /*override fun saveStates() { }*/
 }

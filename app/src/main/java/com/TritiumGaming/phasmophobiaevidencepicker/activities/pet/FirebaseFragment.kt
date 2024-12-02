@@ -43,7 +43,7 @@ abstract class FirebaseFragment : PETFragment {
         try {
             if (!isNetworkAvailable(
                     requireContext(),
-                    globalPreferencesViewModel!!.networkPreference
+                    globalPreferencesViewModel.networkPreference.value
                 )
             ) {
                 Toast.makeText(
@@ -145,5 +145,5 @@ abstract class FirebaseFragment : PETFragment {
 
     protected abstract fun onDeleteAccountSuccess()
 
-    abstract override fun saveStates()
+    /*override fun saveStates() {}*/
 }

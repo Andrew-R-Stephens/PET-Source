@@ -28,24 +28,25 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.uti
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreVScrollView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.ItemStoreGroupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.ItemStoreListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreListModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import kotlin.math.max
 import kotlin.math.min
 
 abstract class ItemStoreFragment : CodexFragment() {
-    protected val storeData: ItemStoreListModel = ItemStoreListModel()
+
+    protected var viewTreeObserverListener: OnScrollChangedListener? = null
 
     protected var scrollView: FrameLayout? = null
-    protected var viewTreeObserverListener: OnScrollChangedListener? = null
+    protected var dataView: View? = null
 
     protected var itemSelected: ItemStoreItemView? = null
 
-    protected var dataView: View? = null
-
     private var selColor = Color.parseColor("#2D3635")
     private var unselColor = Color.parseColor("#FFB43D")
+
+    protected lateinit var storeData: ItemStoreListModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -73,7 +74,6 @@ abstract class ItemStoreFragment : CodexFragment() {
         val progressBar = view.findViewById<ProgressBar>(R.id.pBar)
 
         Thread {
-            buildStoreData()
             try {
                 requireActivity().runOnUiThread {
                     Log.d("Err", "Building Store Views")
@@ -354,9 +354,6 @@ abstract class ItemStoreFragment : CodexFragment() {
             setIconFilter(icon, Color.parseColor(colorString), alpha)
         }
     }
-
-    @SuppressLint("ResourceType")
-    protected abstract fun buildStoreData()
 
     protected abstract fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroupModel)
 

@@ -7,14 +7,14 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.LanguageRepository.LanguageObject
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class LanguagesAdapterView(
-    languages: ArrayList<GlobalPreferencesViewModel.LanguageObject>, selected: Int,
+    languages: ArrayList<LanguageObject>, selected: Int,
     onLanguageListener: OnLanguageListener
 ) : RecyclerView.Adapter<LanguagesAdapterView.ViewHolder>() {
-    private val languages: ArrayList<GlobalPreferencesViewModel.LanguageObject>
+    private val languages: ArrayList<LanguageObject>
     private val onLanguageListener: OnLanguageListener
 
     companion object {

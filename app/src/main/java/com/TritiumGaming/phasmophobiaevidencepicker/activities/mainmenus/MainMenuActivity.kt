@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.NewsletterViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.OnboardingViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.dataStore
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.OnboardingViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -26,8 +28,9 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 class MainMenuActivity : PETActivity() {
 
-    private var onboardingViewModel: OnboardingViewModel? = null
-    private var newsLetterViewModel: NewsletterViewModel? = null
+    private lateinit var onboardingViewModel: OnboardingViewModel
+    private lateinit var newsLetterViewModel: NewsletterViewModel
+    private lateinit var mainMenuViewModel: MainMenuViewModel
 
     //private val googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
     //private val isMobileAdsInitializeCalled = AtomicBoolean(false)
@@ -55,37 +58,47 @@ class MainMenuActivity : PETActivity() {
         createConsentInformation()
     }
 
-    override fun initViewModels(): AndroidViewModelFactory? {
-        val factory: AndroidViewModelFactory? = super.initViewModels()
+    override fun initViewModels() {
+        super.initViewModels()
 
-        factory?.let {
-            initOnboardingViewModel(factory)
-            initNewsletterViewModel(factory)
-
-        }
-        return factory
+        initOnboardingViewModel()
+        initNewsletterViewModel()
+        initMainMenuViewModel()
     }
 
-    private fun initOnboardingViewModel(factory: AndroidViewModelFactory) {
-        onboardingViewModel = factory.create(OnboardingViewModel::class.java)
-        onboardingViewModel = ViewModelProvider(this)[OnboardingViewModel::class.java]
+    private fun initOnboardingViewModel() {
+        onboardingViewModel = ViewModelProvider(
+            this,
+            OnboardingViewModel.OnboardingFactory(
+                // None
+            )
+        )[OnboardingViewModel::class.java]
     }
 
-    private fun initNewsletterViewModel(factory: AndroidViewModelFactory) {
-        newsLetterViewModel = factory.create(NewsletterViewModel::class.java)
-        newsLetterViewModel = ViewModelProvider(this)[NewsletterViewModel::class.java]
+    private fun initNewsletterViewModel() {
+        newsLetterViewModel = ViewModelProvider(
+            this,
+            NewsletterViewModel.NewsletterFactory(
+                NewsletterRepository(dataStore, application)
+            )
+        )[NewsletterViewModel::class.java]
+    }
+
+    private fun initMainMenuViewModel() {
+        mainMenuViewModel = ViewModelProvider(
+            this,
+            MainMenuViewModel.MainMenuFactory()
+        )[MainMenuViewModel::class.java]
     }
 
     public override fun loadPreferences() {
         super.loadPreferences()
 
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            globalPreferencesViewModel.incrementAppOpenCount(applicationContext)
+        globalPreferencesViewModel.incrementAppTimesOpened()
 
-            //set language
-            if (setLanguage(globalPreferencesViewModel.currentLanguageCode)) {
-                recreate()
-            }
+        //set language
+        if (configureLanguage()) {
+            recreate()
         }
     }
 

@@ -7,9 +7,9 @@ import android.widget.PopupWindow
 import android.widget.ProgressBar
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups.EvidencePopupWindow
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence.EvidenceView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.GlobalPreferencesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.EvidencePopupRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import com.google.android.gms.ads.AdRequest
 
 class EvidenceListView : InvestigationListView {
@@ -41,13 +41,13 @@ class EvidenceListView : InvestigationListView {
 
     @SuppressLint("ResourceType")
     fun createPopupWindow(popupWindow: PopupWindow?) {
-        super.createPopupWindow(popupWindow, EvidencePopupModel(context))
+        super.createPopupWindow(popupWindow, EvidencePopupRepository(context))
     }
 
     override fun build() {
-        for (i in 0 until (popupData as EvidencePopupModel).count) {
+        for (i in 0 until (popupData as EvidencePopupRepository).count) {
             val popupRecord =
-                (popupData as EvidencePopupModel).getEvidencePopupRecordAt(i)
+                (popupData as EvidencePopupRepository).getEvidencePopupRecordAt(i)
 
             investigationViewModel?.let { investigationViewModel ->
                 val evidenceView = EvidenceView(context)
@@ -62,7 +62,7 @@ class EvidenceListView : InvestigationListView {
 
                     override fun onAttemptInvalidate() {
                         ghostList?.attemptInvalidate(
-                            globalPreferencesViewModel?.reorderGhostViews ?: false)
+                            globalPreferencesViewModel?.ghostReorderPreference?.value ?: false)
                     }
                 }
 

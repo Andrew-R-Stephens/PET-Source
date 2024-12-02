@@ -16,8 +16,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.io.MapFileIO
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.maps.map.MapListModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.MapFileIO
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map.MapListModel
 import com.google.common.primitives.Ints
 
 /**
@@ -44,7 +44,7 @@ class MapMenuFragment : InvestigationFragment() {
         val gridView = view.findViewById<GridView>(R.id.grid_maps)
 
         mapListModel?.let { mapListModel ->
-            mapMenuViewModel?.let { mapMenuViewModel ->
+            mapMenuViewModel.let { mapMenuViewModel ->
                 val gridViewAdapter = GridViewAdapter(
                     mapListModel.shortenedMapNames.toTypedArray<String?>(),
                     Ints.toArray(mapMenuViewModel.mapThumbnails)
@@ -62,8 +62,7 @@ class MapMenuFragment : InvestigationFragment() {
                             navigateToMapView(itemView)
                         }
                     }
-            } ?:  Toast.makeText(requireContext(),
-                getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
+            }
         } ?: Toast.makeText(requireContext(),
             getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
     }
@@ -137,6 +136,5 @@ class MapMenuFragment : InvestigationFragment() {
     override fun reset() {
     }
 
-    override fun saveStates() {
-    }
+    /*override fun saveStates() {}*/
 }

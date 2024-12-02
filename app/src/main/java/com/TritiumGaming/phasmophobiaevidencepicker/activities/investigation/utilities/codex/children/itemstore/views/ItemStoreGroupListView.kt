@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreGroupModel
 
 class ItemStoreGroupListView : LinearLayoutCompat {
 

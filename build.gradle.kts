@@ -20,6 +20,7 @@ buildscript {
         classpath (libs.kotlin.gradlePlugin)
         // Performance Monitoring plugin
     }
+
 }
 
 plugins {
@@ -28,6 +29,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform).apply(false)
     alias(libs.plugins.plugin.realmDb.kotlin).apply(false)
     alias(libs.plugins.plugin.kotlin.android).apply(false)
+
+    alias(libs.plugins.plugin.kotlin.compose.compiler).apply(false)
 }
 
 allprojects {

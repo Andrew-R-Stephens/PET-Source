@@ -6,7 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.news.NewsletterInboxModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 
 class NewsletterMessageView : ConstraintLayout {

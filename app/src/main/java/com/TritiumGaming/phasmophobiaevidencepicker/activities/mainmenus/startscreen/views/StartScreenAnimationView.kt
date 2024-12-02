@@ -6,8 +6,8 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.MainMenuViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.jobs.DeltaRunnable
+import com.TritiumGaming.phasmophobiaevidencepicker.data.jobs.DeltaRunnable
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.AnimationModel
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +24,7 @@ class StartScreenAnimationView : View {
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
             super(context, attrs, defStyleAttr)
 
-    private var mainMenuViewModel: MainMenuViewModel? = null
+    private var animationModel: AnimationModel? = null
 
     var canAnimate = true
 
@@ -37,7 +37,7 @@ class StartScreenAnimationView : View {
                 object : DeltaRunnable(context, 24f, 24f) {
                     override fun runCondition(): Boolean { return canAnimate }
                     override fun onTick() {
-                        try { mainMenuViewModel?.animationModel?.tick(context) }
+                        try { animationModel?.tick(context) }
                         catch (e: Exception) { e.printStackTrace() }
                     }
                 }.run()
@@ -57,11 +57,11 @@ class StartScreenAnimationView : View {
             }
         }
 
-    fun init(mainMenuViewModel: MainMenuViewModel?) {
-        this.mainMenuViewModel = mainMenuViewModel
+    fun init(animationModel: AnimationModel) {
+        this.animationModel = animationModel
 
         CoroutineScope(Dispatchers.Default).launch(CoroutineName("InitAnimationModel")) {
-            mainMenuViewModel?.animationModel?.init(context)
+            animationModel.init(context)
         }.start()
 
         startAnimation()
@@ -83,7 +83,7 @@ class StartScreenAnimationView : View {
         super.onDraw(canvas)
 
         paint.style = Paint.Style.FILL
-        mainMenuViewModel?.animationModel?.draw(canvas, paint)
+        animationModel?.draw(canvas, paint)
     }
 
 }

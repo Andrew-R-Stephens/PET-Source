@@ -9,7 +9,7 @@ import androidx.core.view.setPadding
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityMeterView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

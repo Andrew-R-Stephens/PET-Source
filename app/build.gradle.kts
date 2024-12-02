@@ -1,5 +1,8 @@
+import org.gradle.kotlin.dsl.android
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
+
     id("com.android.application")
     id("com.google.gms.google-services")
     id("org.jetbrains.kotlin.android")
@@ -10,14 +13,17 @@ plugins {
     id("com.google.firebase.firebase-perf")
 
     id("io.realm.kotlin")
+    //id("org.jetbrains.kotlin.plugin.compose") version "2.0.2" // this version matches your Kotlin version
+
+    alias(libs.plugins.plugin.kotlin.compose.compiler)
 }
 
 android {
     namespace = "com.TritiumGaming.phasmophobiaevidencepicker"
 
-    compileSdk = 34
+    compileSdk = 35
 
-    buildToolsVersion = "34.0.0"
+    buildToolsVersion = "35.0.0"
 
     /*
      *  Compose Options
@@ -44,10 +50,11 @@ android {
         "G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk"
 
     defaultConfig {
+
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 114
         versionName = "9.0.3"
 
@@ -110,6 +117,12 @@ android {
     packaging {
         resources.excludes.add("lib/arm64-v8a/librealm-jni.so")
     }
+
+}
+
+composeCompiler {
+    reportsDestination = layout.buildDirectory.dir("compose_compiler")
+    stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
 }
 
 dependencies {

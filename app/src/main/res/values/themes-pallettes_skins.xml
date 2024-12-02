@@ -120,7 +120,6 @@
 
     </style>
 
-
     <style name="Investigator" parent="Prestige">
         <item name="a">@color/white_M10</item>
         <item name="b">@color/white_M50</item>
@@ -146,6 +145,7 @@
         <item name="android:colorBackground">@color/purple_M950</item>
         <item name="android:statusBarColor">@color/purple_M950</item>
         <item name="android:navigationBarColor">@color/purple_M950</item>
+
         <item name="foregroundColor">@color/white_M10</item>
         <item name="middlegroundColor">@color/purple_M250</item>
         <item name="backgroundColor">@color/purple_M950</item>
@@ -154,6 +154,7 @@
         <item name="navigationBarColor">?attr/backgroundColor</item>
         <item name="windowBackgroundColor">@color/purple_M950</item>
         <item name="windowStrokeColor">@color/white_M10</item>
+
         <item name="colorPrimary">@color/purple_M950</item>
         <item name="colorPrimaryVariant">@color/purple_M950</item>
         <item name="colorOnPrimary">@color/purple_M950</item>
@@ -192,8 +193,8 @@
         <item name="splashTextColor">@color/purple_M75</item>
 
         <item name="codex1">#390721</item>
-        <item name="codex3">@color/white_M300</item>
         <item name="codex2">#200413</item>
+        <item name="codex3">@color/white_M300</item>
         <item name="codex4">@color/purple_M75</item>
         <item name="codex5">#3C3237</item>
         <item name="codex6_gridBackground">#40390721</item>
@@ -205,7 +206,6 @@
         <item name="navigationFooterIconAlt">@color/purple_M250</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF0B000B</item>
-
 
         <!--
         <item name="textColorPrimary">@color/purple_M250</item>
@@ -245,7 +245,6 @@
         -->
     </style>
 
-
     <style name="PrivateInvestigator" parent="Prestige">
         <item name="a">@color/white</item>
         <item name="b">@color/orange_M85</item>
@@ -269,6 +268,7 @@
         <item name="android:colorBackground">@color/black</item>
         <item name="android:statusBarColor">@color/black</item>
         <item name="android:navigationBarColor">@color/black</item>
+
         <item name="foregroundColor">?attr/a</item>
         <item name="middlegroundColor">?attr/e</item>
         <item name="backgroundColor" >@color/black</item>
@@ -293,7 +293,6 @@
         <item name="light_inactive">@color/orange_M50_A40</item>
         <item name="light_off">@color/orange_M510</item>
         <item name="switchColorOn">@color/orange_M10</item>
-        <item name="buttonFilterOnPrimary">@color/orange_M20</item>
         <item name="strikethroughColor">@color/orange_M510</item>
         <item name="circleColor">@color/orange</item>
         <item name="selectedColor">@color/orange_M10</item>
@@ -311,11 +310,10 @@
         <item name="sanityPieStartColor">@color/orange_M85</item>
         <item name="sanityPieEndColor">@color/orange_M10</item>
 
+        <item name="buttonFilterOnPrimary">@color/orange_M20</item>
         <item name="splashTextColor">@color/orange_M10</item>
 
-        <!--<item name="codex_1">#3E2A17</item>-->
         <item name="codex1">#150F08</item>
-        <!--<item name="codex_2">#CDC0B2</item>-->
         <item name="codex3">@color/orange_M10</item>
         <item name="codex2">#332312</item>
         <item name="codex4">@color/orange_M10</item>
@@ -333,7 +331,6 @@
        <item name="inboxNotification">@color/orange_M10</item>
 
     </style>
-
 
     <style name="Detective" parent="Prestige">
         <item name="a">@color/white_M20</item>
@@ -361,6 +358,7 @@
         <item name="android:colorBackground">@color/green_M875</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/green_M875</item>
+
         <item name="foregroundColor">@color/white_M20</item>
         <item name="middlegroundColor">@color/white_M400</item>
         <item name="backgroundColor" >@color/green_M875</item>
@@ -369,6 +367,7 @@
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">@color/green_M875</item>
         <item name="windowStrokeColor">@color/white_M20</item>
+
         <item name="colorPrimary">@color/green_M875</item>
         <item name="colorPrimaryVariant">@color/green_M875</item>
         <item name="colorOnPrimary">@color/green_M875</item>
@@ -425,7 +424,6 @@
 
     </style>
 
-
     <style name="Technician" parent="Prestige">
         <item name="a">@color/white</item>
         <item name="b">#E0E0E0</item>
@@ -462,6 +460,7 @@
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">#050C04</item>
         <item name="windowStrokeColor">@color/white</item>
+
         <item name="colorPrimary">#050C04</item>
         <item name="colorPrimaryVariant">#050C04</item>
         <item name="colorOnPrimary">#050C04</item>
@@ -519,7 +518,6 @@
 
     </style>
 
-
     <style name="Specialist" parent="Prestige">
         <item name="a">#FEFEFE</item>
         <item name="b">@color/white_M25</item>
@@ -550,6 +548,7 @@
         <item name="android:colorBackground">#070C05</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#070C05</item>
+
         <item name="foregroundColor">#FEFEFE</item>
         <item name="middlegroundColor">#C9CCC8</item>
         <item name="backgroundColor" >#070C05</item>
@@ -558,6 +557,7 @@
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">#070C05</item>
         <item name="windowStrokeColor">#FEFEFE</item>
+
         <item name="colorPrimary">#070C05</item>
         <item name="colorPrimaryVariant">#070C05</item>
         <item name="colorOnPrimary">#070C05</item>
@@ -595,8 +595,8 @@
         <item name="splashTextColor">@color/green_M150</item>
 
         <item name="codex1">#070C05</item>
-        <item name="codex3">#D9ECAF</item>
         <item name="codex2">#24291F</item>
+        <item name="codex3">#D9ECAF</item>
         <item name="codex4">@color/green_M150</item>
         <item name="codex5">#545B4D</item>
         <item name="codex6_gridBackground">#40070C05</item>
@@ -705,7 +705,6 @@
 
     </style>
 
-
     <style name="Agent" parent="Prestige">
         <item name="a" >@color/white</item>
         <item name="b">#858686</item>
@@ -797,7 +796,6 @@
 
     </style>
 
-
     <style name="Operator" parent="Prestige">
         <item name="a">@color/white</item>
         <item name="b">#FEFEFE</item>
@@ -884,9 +882,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF00000E</item>
 
-
     </style>
-
 
     <style name="Commissioner" parent="Prestige">
         <item name="a">@color/white</item>
@@ -974,9 +970,7 @@
 
         <item name="backgroundColor_mapviewOverlay">#BF080808</item>
 
-
     </style>
-
 
     <!-- Events -->
 
@@ -1071,7 +1065,6 @@
         <item name="colorOnButton">?attr/backgroundColor</item>
     </style>
 
-
     <style name="Halloween23" parent="Event">
         <item name="a">@color/white</item>
         <item name="b">#373737</item>
@@ -1163,7 +1156,6 @@
 
     </style>
 
-
     <style name="Holiday22" parent="Event">
         <item name="a">#FEFEFE</item>
         <item name="b">#DDDCDB</item>
@@ -1254,7 +1246,6 @@
        <item name="inboxNotification">#6996E4</item>
 
     </style>
-
 
     <style name="Holiday23" parent="Event">
         <!-- TODO Reveal Badge -->
@@ -1357,7 +1348,6 @@
 
     </style>
 
-
     <!-- Community -->
 
     <style name="Discord" parent="Community">
@@ -1450,7 +1440,6 @@
 
     </style>
 
-
     <style name="ContentCreator" parent="Community">
         <item name="a">@color/white</item>
         <item name="b">#CACACA</item>
@@ -1539,7 +1528,6 @@
        <item name="inboxNotification">@color/red_M225</item>
 
     </style>
-
 
     <style name="Developer" parent="Community">
         <item name="a">@color/white</item>
@@ -1631,7 +1619,6 @@
 
     </style>
 
-
     <style name="Translator" parent="Community">
         <item name="a" >@color/white</item>
         <item name="b">#FCFAFB</item>
@@ -1721,7 +1708,6 @@
         <item name="inboxNotification">#DA7F88</item>
 
     </style>
-
 
     <style name="Winner" parent="Community">
         <item name="a" >@color/white</item>
@@ -1814,7 +1800,6 @@
         <item name="inboxNotification">#DABA80</item>
 
     </style>
-
 
     <style name="Artist" parent="Community">
         <item name="a">@color/white</item>

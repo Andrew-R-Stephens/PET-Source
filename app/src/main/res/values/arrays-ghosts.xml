@@ -201,8 +201,9 @@
     </integer-array>
 
     <!--
-        All NORMAL Ghost Evidence
+        All NORMAL Ghost Evidence [BY NAME]
     -->
+    <!--
     <string-array name="ghost_evidence_banshee">
         <item>@string/evidence_type_dots</item>
         <item>@string/evidence_type_ultraviolet</item>
@@ -324,10 +325,137 @@
         <item>@string/evidence_type_temperatures</item>
         <item>@string/evidence_type_orbs</item>
     </string-array>
+    -->
+    
+    <!--
+        All NORMAL Ghost Evidence [BY ID]
+    -->
+    <integer-array name="ghost_evidence_banshee">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_orbs</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_demon">
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_book</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_deogen">
+        <item>@integer/evidence_id_book</item>
+        <item>@integer/evidence_id_box</item>
+        <item>@integer/evidence_id_dots</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_goryo">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_ultraviolet</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_hantu">
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_orbs</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_jinn">
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_temperatures</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_mare">
+        <item>@integer/evidence_id_orbs</item>
+        <item>@integer/evidence_id_book</item>
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_moroi">
+        <item>@integer/evidence_id_box</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_book</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_myling">
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_book</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_obake">
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_orbs</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_oni">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_temperatures</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_onryo">
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_orbs</item>
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_phantom">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_poltergeist">
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_book</item>
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_raiju">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_orbs</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_revenant">
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_orbs</item>
+        <item>@integer/evidence_id_book</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_shade">
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_book</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_spirit">
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_box</item>
+        <item>@integer/evidence_id_book</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_thaye">
+        <item>@integer/evidence_id_book</item>
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_orbs</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_thetwins">
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_themimic">
+        <item>@integer/evidence_id_ultraviolet</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_box</item>
+        <item>@integer/evidence_id_orbs</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_wraith">
+        <item>@integer/evidence_id_emf</item>
+        <item>@integer/evidence_id_box</item>
+        <item>@integer/evidence_id_dots</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_yokai">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_orbs</item>
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_evidence_yurei">
+        <item>@integer/evidence_id_dots</item>
+        <item>@integer/evidence_id_temperatures</item>
+        <item>@integer/evidence_id_orbs</item>
+    </integer-array>
 
     <!--
-        All NIGHTMARE Ghost Evidence
+        All NIGHTMARE Ghost Evidence [BY NAME]
     -->
+    <!--
     <string-array name="ghost_requiredevidence_banshee">
     </string-array>
     <string-array name="ghost_requiredevidence_demon">
@@ -382,4 +510,63 @@
     </string-array>
     <string-array name="ghost_requiredevidence_yurei">
     </string-array>
+    -->
+    
+    <!--
+        All NIGHTMARE Ghost Evidence [BY ID]
+    -->
+    <integer-array name="ghost_requiredevidence_banshee">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_demon">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_deogen">
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_goryo">
+        <item>@integer/evidence_id_dots</item>
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_hantu">
+        <item>@integer/evidence_id_temperatures</item>
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_jinn">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_mare">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_moroi">
+        <item>@integer/evidence_id_box</item>
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_myling">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_obake">
+        <item>@integer/evidence_id_ultraviolet</item>
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_oni">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_onryo">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_phantom">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_poltergeist">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_raiju">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_revenant">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_shade">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_spirit">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_thaye">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_thetwins">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_themimic">
+        <item>@integer/evidence_id_orbs</item>
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_wraith">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_yokai">
+    </integer-array>
+    <integer-array name="ghost_requiredevidence_yurei">
+    </integer-array>
 </resources>

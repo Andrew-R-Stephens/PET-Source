@@ -15,8 +15,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.EvidencePopupModel.EvidencePopupRecord
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.EvidencePopupRepository.EvidencePopupRecord
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
 import com.google.android.gms.ads.AdRequest

@@ -34,7 +34,7 @@ class NewsMessageFragment : MainMenuFragment() {
         }
 
         // SET CONTENT
-        val message = newsLetterViewModel?.currentMessage
+        val message = newsLetterViewModel.currentMessage
         message?.let {
             labelTitle.text = Html.fromHtml(message.title)
             labelDate.text = Html.fromHtml(message.getDateFormatted())
@@ -48,9 +48,4 @@ class NewsMessageFragment : MainMenuFragment() {
         super.initAdView(view.findViewById(R.id.adView))
     }
 
-    override fun initViewModels() {
-        super.initViewModels()
-        initMainMenuViewModel()
-        initNewsletterViewModel()
-    }
 }

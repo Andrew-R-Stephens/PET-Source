@@ -6,7 +6,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.theme.theme.MarketThemeModel
 
 class MarketThemeView : MarketItemView {
 

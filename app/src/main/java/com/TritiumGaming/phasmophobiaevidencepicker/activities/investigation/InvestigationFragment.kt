@@ -2,35 +2,32 @@ package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.MapMenuViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.ObjectivesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MapMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 
 abstract class InvestigationFragment : PETFragment {
-    protected var investigationViewModel: InvestigationViewModel? = null
+    protected val investigationViewModel: InvestigationViewModel by activityViewModels()
+    protected val objectivesViewModel: ObjectivesViewModel by activityViewModels()
+    protected val mapMenuViewModel: MapMenuViewModel by activityViewModels()
+
+    /*protected var investigationViewModel: InvestigationViewModel? = null
     protected var objectivesViewModel: ObjectivesViewModel? = null
-    protected var mapMenuViewModel: MapMenuViewModel? = null
+    protected var mapMenuViewModel: MapMenuViewModel? = null*/
 
     protected var adRequest: AdRequest? = null
 
     constructor() : super()
 
     constructor(layout: Int) : super(layout)
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,38 +39,16 @@ abstract class InvestigationFragment : PETFragment {
         initAd(view.findViewById(R.id.adView))
     }
 
-    override fun initViewModels() {
-        initGlobalPreferencesViewModel()
+    fun initViewModels() {
         initInvestigationViewModel()
-        initObjectivesViewModel()
-        initMapMenuViewModel()
-    }
-
-    private fun initMapMenuViewModel() {
-        if (mapMenuViewModel == null) {
-            mapMenuViewModel = ViewModelProvider(requireActivity())[MapMenuViewModel::class.java]
-            mapMenuViewModel?.init()
-        }
-    }
-
-    private fun initObjectivesViewModel() {
-        if (objectivesViewModel == null) {
-            objectivesViewModel =
-                ViewModelProvider(requireActivity())[ObjectivesViewModel::class.java]
-            objectivesViewModel?.init()
-        }
     }
 
     private fun initInvestigationViewModel() {
-        if (investigationViewModel == null) {
-            investigationViewModel =
-                ViewModelProvider(requireActivity())[InvestigationViewModel::class.java]
-            investigationViewModel?.init()
-        }
-        investigationViewModel?.phaseWarnModel?.audioAllowed =
-            globalPreferencesViewModel?.isHuntWarnAudioAllowed?.value == true
-        globalPreferencesViewModel?.huntWarnFlashTimeMax?.value?.let { value ->
-            investigationViewModel?.phaseWarnModel?.flashTimeMax = value
+        investigationViewModel.phaseWarnModel?.audioAllowed =
+            globalPreferencesViewModel.huntWarningAudioPreference.value == true
+
+        globalPreferencesViewModel.getHuntWarnTimeoutPreference.value.let { value ->
+            investigationViewModel.phaseWarnModel?.flashTimeMax = value
         }
     }
 

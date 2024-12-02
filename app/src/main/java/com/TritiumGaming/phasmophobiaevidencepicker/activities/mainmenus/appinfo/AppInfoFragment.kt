@@ -123,6 +123,4 @@ class AppInfoFragment : MainMenuFragment() {
         typedArray.recycle()
     }
 
-    override fun initViewModels() {
-    }
 }

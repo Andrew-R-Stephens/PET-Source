@@ -1,3 +1,4 @@
+//project(":PET-Source").projectDir = File(rootDir, "app/")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 pluginManagement {
     repositories {
@@ -13,5 +14,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "PhasmophobiaEvidencePicker"
+rootProject.name = "PET-Source"
 include(":app")

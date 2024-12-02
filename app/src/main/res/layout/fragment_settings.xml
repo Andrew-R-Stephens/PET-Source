@@ -68,6 +68,11 @@
                 android:paddingStart="0dp"
                 android:paddingEnd="8dp">
 
+                <androidx.compose.ui.platform.ComposeView
+                    android:id="@+id/tempSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/settings_generalsettings_title"
                     style="?attr/primaryFont_Bold_Manual"

@@ -23,9 +23,9 @@ import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketp
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketBundleView
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketItemView.MarketItemOnPurchaseListener
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketThemeView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.bundle.MarketBundleModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.firestore.theme.theme.MarketThemeModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.theme.bundle.MarketBundleModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.theme.theme.MarketThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle.Companion.getBundleWhere
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes.Companion.getThemesWhere
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
@@ -228,7 +228,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 .addOnSuccessListener { task: QuerySnapshot ->
                     for (documentSnapshot in task.documents) {
                         val uuid = documentSnapshot.reference.id
-                        globalPreferencesViewModel?.colorThemeControl?.let { control ->
+                        globalPreferencesViewModel.colorThemeHandler.let { control ->
                             val customTheme = control.getThemeByUUID(uuid)
                             customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                         }
@@ -258,7 +258,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                 for (documentSnapshot in value.documents) {
                     val uuid = documentSnapshot.reference.id
-                    globalPreferencesViewModel?.colorThemeControl?.let { control ->
+                    globalPreferencesViewModel.colorThemeHandler.let { control ->
                         val customTheme = control.getThemeByUUID(uuid)
                         customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                     }
@@ -342,8 +342,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             }
 
             try {
-                globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
-                    if (isNetworkAvailable(requireContext(), networkPreference)) {
+                globalPreferencesViewModel.networkPreference.value.let { value ->
+                    if (isNetworkAvailable(requireContext(), value)) {
                         addBundles(list, listener = listener)
                     }
                     else {
@@ -417,7 +417,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             }
 
         try {
-            if (!isNetworkAvailable(requireContext(), globalPreferencesViewModel!!.networkPreference)) {
+            if (!isNetworkAvailable(requireContext(),
+                    globalPreferencesViewModel.networkPreference.value)) {
                 Toast.makeText(requireActivity(),
                     getString(R.string.alert_internet_unavailable),
                     Toast.LENGTH_SHORT).show()
@@ -480,9 +481,9 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                             testToast("Test Success. Created Theme Model")
 
-                            globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+                            globalPreferencesViewModel.let { globalPreferencesViewModel ->
                                 val localThemeModel =
-                                    globalPreferencesViewModel.colorThemeControl.getThemeByUUID(uuid)
+                                    globalPreferencesViewModel.colorThemeHandler.getThemeByUUID(uuid)
 
                                 val marketSingleThemeFinal =
                                     MarketThemeModel(uuid, tempTheme, localThemeModel)
@@ -576,7 +577,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                             val localThemeModels = ArrayList<ThemeModel>()
                             for (themeID in themeIDs) {
-                                globalPreferencesViewModel?.colorThemeControl?.let { control ->
+                                globalPreferencesViewModel.colorThemeHandler.let { control ->
                                     localThemeModels.add(control.getThemeByUUID(themeID)) } }
                             val finalBundle = MarketBundleModel(docId, tempBundle, localThemeModels)
 
@@ -880,8 +881,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             Log.d("RewardedAd", "The rewarded ad wasn't ready yet.")
 
             try {
-                globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
-                    if (isNetworkAvailable(requireContext(), networkPreference)) {
+                globalPreferencesViewModel.networkPreference.value.let { value ->
+                    if (isNetworkAvailable(requireContext(), value)) {
                         loadRewardedAd(object: OnAdLoadedListener{
                             override fun onAdLoaded() { showRewardedAd() } })
                     } else {

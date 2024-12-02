@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
@@ -16,15 +17,15 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.ghost.GhostModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.GhostScoreModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 class GhostView : ConstraintLayout {
 
     private var investigationViewModel: InvestigationViewModel? = null
-    private var ghostModel: GhostModel? = null
+    private var ghostScore: GhostScoreModel.GhostScore? = null
 
     @IntegerRes private var neutralSelColor = 0
     @IntegerRes private var negativeSelColor = 0
@@ -62,19 +63,22 @@ class GhostView : ConstraintLayout {
     @SuppressLint("ClickableViewAccessibility")
     fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int) {
         this.investigationViewModel = investigationViewModel
-        this.ghostModel = investigationViewModel.investigationModel?.ghostRepository?.getAt(groupIndex)
+        this.ghostScore =
+            investigationViewModel.investigationModel?.ghostScoreModel?.getGhostScore(groupIndex)
 
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
 
-        nameView.text = ghostModel?.name?.let { resId -> context.getString(resId) }
+        nameView.text = ghostScore?.ghostModel?.name?.let { resId -> context.getString(resId) }
 
-        ghostModel?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
+        ghostScore?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
 
         if (iconRowLayout != null) {
             var k = 0
-            while (k < (ghostModel?.evidence?.size ?: 0)) {
-                val currentEvidence = ghostModel?.evidence?.get(k) ?: return
+            val evidenceCount = ghostScore?.ghostModel?.normalEvidenceList?.size ?: 0
+            Log.d("Ghost", "Icon count = $evidenceCount")
+            while (k < evidenceCount) {
+                val currentEvidence = ghostScore?.ghostModel?.normalEvidenceList?.get(k) ?: return
 
                 val evidenceIcon =
                     iconRowLayout.getChildAt(k) as AppCompatImageView
@@ -107,9 +111,9 @@ class GhostView : ConstraintLayout {
 
         addOnLayoutChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int,
                                     _: Int, _: Int, _: Int, _: Int ->
-            ghostModel?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
+            ghostScore?.let { redrawGhostRejectionStatus(it, groupIndex, false) }
             if (iconRowLayout != null) {
-                ghostModel?.evidence?.forEachIndexed { index, evidenceModel ->
+                ghostScore?.ghostModel?.normalEvidenceList?.forEachIndexed { index, evidenceModel ->
                     val evidenceIcon = iconRowLayout.getChildAt(index)
                         .findViewById<AppCompatImageView>(R.id.evidence_icon)
                     evidenceModel?.let {
@@ -134,17 +138,17 @@ class GhostView : ConstraintLayout {
     fun forceUpdateComponents() {
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container) ?: return
 
-        ghostModel?.let { ghostData ->
-            ghostData.evidence.forEachIndexed { index, evidence ->
+        ghostScore?.let { ghostScore ->
+            ghostScore.ghostModel.normalEvidenceList.forEachIndexed { index, evidence ->
                 val evidenceIcon =
                     iconRowLayout.getChildAt(index) as AppCompatImageView
 
-                evidence?.ruling?.let { ruling ->
+                evidence.ruling.let { ruling ->
                     evidenceIcon.setColorFilter(getRulingColor(ruling))
                     getRulingColor(ruling)
                 }
             }
-            redrawGhostRejectionStatus(ghostData, ghostData.id, true)
+            redrawGhostRejectionStatus(ghostScore, ghostScore.ghostModel.id, true)
         }
     }
 
@@ -157,13 +161,14 @@ class GhostView : ConstraintLayout {
         }
     }
 
-    private fun redrawGhostRejectionStatus(ghost: GhostModel, index: Int, animate: Boolean) {
+    private fun redrawGhostRejectionStatus(ghostScore: GhostScoreModel.GhostScore, index: Int, animate: Boolean) {
         val statusIcon = findViewById<AppCompatImageView>(R.id.icon_status)
 
         investigationViewModel?.investigationModel?.getRejectionPile()?.get(index)?.let { rejectionStatus ->
             if (rejectionStatus) { statusIcon.setImageLevel(1) }
             else {
-                val score = ghost.evidenceScore
+                val score: Int = investigationViewModel?.investigationModel?.ghostScoreModel
+                    ?.getGhostScore(ghostScore.ghostModel)?.score ?: 0
                 when {
                     score <= -5 -> statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
                     score == 3 -> statusIcon.setImageLevel(5)
@@ -176,15 +181,32 @@ class GhostView : ConstraintLayout {
     inner class OnSwipeListener(private val index: Int) : SimpleOnGestureListener() {
         override fun onFling(
             e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float): Boolean {
+
             investigationViewModel?.let { investigationViewModel ->
                 investigationViewModel.investigationModel?.swapStatusInRejectedPile(index)
-                investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
-                investigationViewModel.investigationModel?.ghostRepository?.getAt(index)?.let { ghostModel ->
-                    redrawGhostRejectionStatus(ghostModel, index, true)
+                investigationViewModel.investigationModel?.ghostScoreModel?.let { ghostScoreModel ->
+                    ghostScoreModel.updateOrder()
+                    redrawGhostRejectionStatus(
+                        ghostScoreModel.getGhostScore(index), index, true)
                 }
             }
             return true
         }
+
+        /*
+        override fun onFling(
+            e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float): Boolean {
+            investigationViewModel?.let { investigationViewModel ->
+                investigationViewModel.investigationModel?.swapStatusInRejectedPile(index)
+                investigationViewModel.investigationModel?.ghostScoreModel?.updateOrder()
+                investigationViewModel.investigationModel?.ghostScoreModel
+                    ?.ghostScores?.get(index)?.let { ghostScore ->
+                        redrawGhostRejectionStatus(ghostScore, index, true)
+                    }
+            }
+            return true
+        }
+        */
 
         override fun onSingleTapUp(e: MotionEvent): Boolean {
             ghostViewListener?.onCreatePopup()

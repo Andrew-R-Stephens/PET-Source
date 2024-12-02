@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatImageView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 import com.google.android.material.card.MaterialCardView
 
 

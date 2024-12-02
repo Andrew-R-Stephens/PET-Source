@@ -16,7 +16,7 @@ import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsItemLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.ObjectivesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 /**
@@ -42,20 +42,20 @@ class MissionsFragment : InvestigationFragment() {
         missionLayouts.add(view.findViewById(R.id.objective2))
         missionLayouts.add(view.findViewById(R.id.objective3))
         for (i in missionLayouts.indices) {
-            objectivesViewModel?.let { missionLayouts[i]?.init(it, i) }
+            objectivesViewModel.let { missionLayouts[i]?.init(it, i) }
         }
 
         // GHOST NAME
         val nameInput = view.findViewById<EditText>(R.id.textInput_ghostName)
         nameInput?.let {
-            nameInput.setText(objectivesViewModel?.ghostName)
+            nameInput.setText(objectivesViewModel.ghostName)
             nameInput.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence, start: Int, count: Int, after: Int) { }
                 override fun onTextChanged(
                     s: CharSequence, start: Int, before: Int, count: Int) { }
                 override fun afterTextChanged(s: Editable) {
-                    objectivesViewModel?.ghostName = s.toString()
+                    objectivesViewModel.ghostName = s.toString()
                 }
             })
         }
@@ -73,10 +73,10 @@ class MissionsFragment : InvestigationFragment() {
                     @ColorInt val selColor =
                         getColorFromAttribute(requireContext(), R.attr.selectedColor)
 
-                    if (investigationViewModel?.difficultyCarouselModel?.responseTypeKnown == true) {
+                    if (investigationViewModel.difficultyCarouselModel?.responseTypeKnown == true) {
                         responseBlocker.visibility = View.GONE
 
-                        when (objectivesViewModel?.responseState) {
+                        when (objectivesViewModel.responseState) {
                             ObjectivesViewModel.ALONE -> {
                                 buttonAlone?.setColorFilter(selColor)
                                 buttonGroup?.setColorFilter(unSelColor)
@@ -98,11 +98,11 @@ class MissionsFragment : InvestigationFragment() {
                 }
             }
         buttonAlone?.setOnClickListener {
-            objectivesViewModel?.responseState = ObjectivesViewModel.ALONE
+            objectivesViewModel.responseState = ObjectivesViewModel.ALONE
             onResponseChangeListener.onChange()
         }
         buttonGroup?.setOnClickListener {
-            objectivesViewModel?.responseState = ObjectivesViewModel.GROUP
+            objectivesViewModel.responseState = ObjectivesViewModel.GROUP
             onResponseChangeListener.onChange()
         }
 
@@ -119,7 +119,7 @@ class MissionsFragment : InvestigationFragment() {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    public override fun saveStates() { }
+    /*override fun saveStates() { }*/
 
     override fun reset() { }
 

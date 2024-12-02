@@ -4,18 +4,17 @@ import android.os.Build
 import android.widget.PopupWindow
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.PermissionsViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.PermissionsViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 import com.google.firebase.analytics.FirebaseAnalytics
 
-
 abstract class PETFragment : Fragment {
 
-    protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
-    protected var permissionsViewModel: PermissionsViewModel? = null
+    protected val globalPreferencesViewModel: GlobalPreferencesViewModel by activityViewModels()
+    protected val permissionsViewModel: PermissionsViewModel by activityViewModels()
 
     protected var analytics: FirebaseAnalytics? = null
     protected var popupWindow: PopupWindow? = null
@@ -27,27 +26,7 @@ abstract class PETFragment : Fragment {
     protected fun init() {
         setOnBackPressed()
 
-        initViewModels()
         initFirebaseAnalytics()
-    }
-
-    protected fun initGlobalPreferencesViewModel() {
-        if (globalPreferencesViewModel == null) {
-            try {
-                globalPreferencesViewModel =
-                    ViewModelProvider(requireActivity())[GlobalPreferencesViewModel::class.java]
-                globalPreferencesViewModel?.init(requireContext())
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
-    }
-
-    private fun initPermissionsViewModel() {
-        if (permissionsViewModel == null) {
-            try {
-                permissionsViewModel =
-                    ViewModelProvider(requireActivity())[PermissionsViewModel::class.java]
-            } catch (e: IllegalStateException) { e.printStackTrace()}
-        }
     }
 
     private fun initFirebaseAnalytics() {
@@ -55,20 +34,18 @@ abstract class PETFragment : Fragment {
         catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    protected fun saveGlobalPreferencesViewModel() {
-        try { globalPreferencesViewModel?.saveToFile(requireContext())
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
-    //@SuppressLint("DetachAndAttachSameFragment")
     protected open fun refreshFragment() {
-        var ft = parentFragmentManager.beginTransaction()
-        if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
-        ft.detach(this@PETFragment).commitNow()
-        //ft = parentFragmentManager.beginTransaction()
-        ft = parentFragmentManager.beginTransaction()
-        if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
-        ft.attach(this@PETFragment).commitNow()
+        try {
+            var ft = parentFragmentManager.beginTransaction()
+            if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
+            ft.detach(this@PETFragment).commitNow()
+
+            ft = parentFragmentManager.beginTransaction()
+            if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
+            ft.attach(this@PETFragment).commitNow()
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+        }
     }
 
     protected fun closePopup(): Boolean {
@@ -83,6 +60,19 @@ abstract class PETFragment : Fragment {
     }
 
     protected fun checkInternetConnection(): Boolean {
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
+            try {
+                return (isNetworkAvailable(
+                    requireContext(), globalPreferencesViewModel.networkPreference.value))
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+                return false
+            }
+        }
+    }
+
+    /*
+    protected fun checkInternetConnection(): Boolean {
         return globalPreferencesViewModel?.let { globalPreferencesViewModel ->
             try {
                 return (isNetworkAvailable(
@@ -93,10 +83,7 @@ abstract class PETFragment : Fragment {
             }
         } ?:  return false
     }
-
-    protected open fun saveStates() {
-        saveGlobalPreferencesViewModel()
-    }
+    */
 
     protected open fun backPressedHandler() {
         if (closePopup()) { return }
@@ -113,7 +100,5 @@ abstract class PETFragment : Fragment {
                 })
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
-
-    protected abstract fun initViewModels()
 
 }

@@ -26,7 +26,7 @@ import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views.WaveformView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.codex.ghostbox.GhostBoxUtilityModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.ghostbox.GhostBoxUtilityModel
 import java.util.Locale
 
 class GhostBoxFragment :
@@ -34,10 +34,6 @@ class GhostBoxFragment :
     private var waveFormView: WaveformView? = null
     private var textToSpeech: TextToSpeech? = null
     private var visualizer: Visualizer? = null
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState) }
 
     @SuppressLint("UseCompatLoadingForDrawables", "ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +56,7 @@ class GhostBoxFragment :
         setScrollListEntries(
             requireContext(), view, R.array.ghostspeaktool_oijaboard_array, promptList3)
 
-        if (permissionsViewModel?.isRecordAudioAllowed == false) {
+        if (!permissionsViewModel.isRecordAudioAllowed) {
             try { requestAudioPermissions(requireContext(), requireActivity()) }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
@@ -99,7 +95,7 @@ class GhostBoxFragment :
 
             text.setOnClickListener {
                 Thread {
-                    permissionsViewModel?.let { permissionsViewModel ->
+                    permissionsViewModel.let { permissionsViewModel ->
                         startTextToSpeech()
                         if (permissionsViewModel.isRecordAudioAllowed) {
                             startVisualizer()
@@ -255,7 +251,7 @@ class GhostBoxFragment :
         // If permission is granted, then go ahead recording audio
         if (ContextCompat.checkSelfPermission(
                 c, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-            permissionsViewModel?.isRecordAudioAllowed = true
+            permissionsViewModel.isRecordAudioAllowed = true
 
             Log.d("RecordAudio", "Accepted3")
         }

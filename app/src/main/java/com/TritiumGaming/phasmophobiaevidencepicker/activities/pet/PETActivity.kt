@@ -1,14 +1,23 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
+import androidx.datastore.preferences.SharedPreferencesMigration
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.PermissionsViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.reviews.ReviewTrackingRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.FontThemeRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.PermissionsViewModel
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.google.android.gms.ads.MobileAds
@@ -24,12 +33,25 @@ import com.google.firebase.auth.FirebaseAuth
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
+private const val USER_PREFERENCES_NAME = "user_preferences"
+
+val Context.dataStore by preferencesDataStore(
+    name = USER_PREFERENCES_NAME,
+    produceMigrations = { context ->
+        // Since we're migrating from SharedPreferences, add a migration based on the
+        // SharedPreferences name
+        // TODO change to real file
+        listOf(SharedPreferencesMigration(context, USER_PREFERENCES_NAME))
+    }
+)
+
 abstract class PETActivity : AppCompatActivity() {
+
     var firebaseAnalytics: FirebaseAnalytics? = null
         protected set
 
-    protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
-    private var permissionsViewModel: PermissionsViewModel? = null
+    protected lateinit var globalPreferencesViewModel: GlobalPreferencesViewModel
+    private lateinit var permissionsViewModel: PermissionsViewModel
 
     private var consentInformation: ConsentInformation? = null
 
@@ -56,36 +78,39 @@ abstract class PETActivity : AppCompatActivity() {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    protected open fun initViewModels(): AndroidViewModelFactory? {
-        val factory: AndroidViewModelFactory =
-            AndroidViewModelFactory.getInstance(this.application)
-
-        initGlobalPreferencesViewModel(factory)
-        initPermissionsViewModel(factory)
-
-        return factory
+    protected open fun initViewModels() {
+        initGlobalPreferencesViewModel()
+        initPermissionsViewModel()
     }
 
-    private fun initGlobalPreferencesViewModel(factory: AndroidViewModelFactory) {
-        globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel::class.java)
-        globalPreferencesViewModel =
-            ViewModelProvider(this)[GlobalPreferencesViewModel::class.java]
-        globalPreferencesViewModel?.init(this@PETActivity)
+    private fun initGlobalPreferencesViewModel() {
+        globalPreferencesViewModel = ViewModelProvider(
+            this,
+            GlobalPreferencesViewModel.GlobalPreferencesFactory(
+                GlobalPreferencesRepository(dataStore, this),
+                ReviewTrackingRepository(dataStore, this),
+                FontThemeRepository(dataStore, this),
+                ColorThemeRepository(dataStore, this),
+                LanguageRepository(dataStore, this)
+            )
+        )[GlobalPreferencesViewModel::class.java]
     }
-
-    private fun initPermissionsViewModel(factory: AndroidViewModelFactory) {
-        permissionsViewModel = factory.create(PermissionsViewModel::class.java)
-        permissionsViewModel = ViewModelProvider(this)[PermissionsViewModel::class.java]
+    private fun initPermissionsViewModel() {
+        permissionsViewModel = ViewModelProvider(
+            this,
+            PermissionsViewModel.PermissionsFactory()
+        )[PermissionsViewModel::class.java]
     }
 
     protected open fun loadPreferences() {
         //set colorSpace
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
-            changeTheme(globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme)
+        changeTheme(
+            globalPreferencesViewModel.colorThemeHandler.currentTheme,
+            globalPreferencesViewModel.fontThemeHandler.currentTheme
+        )
 
-            if (globalPreferencesViewModel.isAlwaysOn) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-            }
+        if (globalPreferencesViewModel.screenSaverPreference.value) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
     }
 
@@ -104,19 +129,27 @@ abstract class PETActivity : AppCompatActivity() {
     }
 
     /** @param language The desired new language */
-    fun setLanguage(language: String): Boolean {
-        val languageLocale = Locale(language)
+    fun configureLanguage(
+        langCode: String = globalPreferencesViewModel.currentLanguageCode.value
+    ): Boolean {
+
+        val newLocale = Locale(langCode)
         val currentLocale = Locale.getDefault()
 
         var isChanged = false
-        if (!(currentLocale.language.equals(languageLocale.language, ignoreCase = true))) {
+        if(!currentLocale.language.equals(newLocale.language, ignoreCase = true)) {
             isChanged = true
         }
 
-        Locale.setDefault(languageLocale)
+        /*Locale.setDefault(languageLocale)
         val config = resources.configuration
         config.setLocale(languageLocale)
-        resources.updateConfiguration(config, resources.displayMetrics)
+        resources.updateConfiguration(config, resources.displayMetrics)*/
+
+        AppCompatDelegate.setApplicationLocales(
+            LocaleListCompat.create(
+                Locale.forLanguageTag(langCode))
+        )
 
         return isChanged
     }

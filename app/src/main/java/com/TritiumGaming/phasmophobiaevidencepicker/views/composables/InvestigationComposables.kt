@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral
@@ -82,10 +82,10 @@ fun RulingSelector(
             investigationModel.setRadioButtonChecked(groupIndex, rulingType.value)
             investigationModel.evidenceRepository.evidenceList[groupIndex].ruling =
                 EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
-            investigationModel.ghostOrderModel.updateOrder()
+            investigationModel.ghostScoreModel.updateOrder()
 
             Log.d("Updated",
-                investigationModel.ghostOrderModel.currOrder
+                investigationModel.ghostScoreModel.currOrder
                     .contentToString())
 
             onSelection()

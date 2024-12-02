@@ -9,8 +9,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.sanity.timer.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashBackground
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashState
@@ -59,7 +59,7 @@ abstract class SanityWarningView : ConstraintLayout {
     open fun init(investigationViewModel: InvestigationViewModel) {
         this.investigationViewModel = investigationViewModel
 
-        investigationViewModel.timerModel?.currentPhase?.value?.let { value ->
+        investigationViewModel.timerModel?.currentPhase?.value.let { value ->
             currentPhase = value
         }
 

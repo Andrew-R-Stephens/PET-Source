@@ -15,7 +15,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.settings.ThemeModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
 import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DeleteAccountDialog
@@ -45,8 +45,8 @@ class AccountFragment : MainMenuFirebaseFragment() {
 
                             val uuid = documentReference.id
                             val customTheme =
-                                globalPreferencesViewModel?.colorThemeControl?.getThemeByUUID(uuid)
-                            customTheme?.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
+                                globalPreferencesViewModel.colorThemeHandler.getThemeByUUID(uuid)
+                            customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                         }
                     }
                     .addOnFailureListener { e: Exception ->

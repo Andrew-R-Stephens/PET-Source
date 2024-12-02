@@ -13,8 +13,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.investigationmodels.InvestigationModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.models.investigation.popups.GhostPopupModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GhostPopupRepository
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
 import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
@@ -43,7 +43,7 @@ class GhostPopupWindow : InvestigationPopupWindow {
         super.initView(R.layout.popup_info_ghost)
     }
 
-    fun build(investigationModel: InvestigationModel, ghostPopupData: GhostPopupModel,
+    fun build(investigationModel: InvestigationModel, ghostPopupData: GhostPopupRepository,
               groupIndex: Int, adRequest: AdRequest?
     ) {
         var adRequest = adRequest
@@ -74,9 +74,9 @@ class GhostPopupWindow : InvestigationPopupWindow {
         )
 
         investigationModel.ghostRepository.getAt(groupIndex).let { ghostModel ->
-            for (i in ghostModel.evidenceArray.indices) {
+            for (i in ghostModel.normalEvidenceList.indices) {
                 val evidenceIcon = evidenceIconContainer.getChildAt(i) as AppCompatImageView
-                ghostModel.evidence[i]?.let { evidenceIcon.setImageResource(it.icon) }
+                ghostModel.normalEvidenceList[i].let { evidenceIcon.setImageResource(it.icon) }
             }
             ghostNameTextView.text = context.getString(ghostModel.name)
         }

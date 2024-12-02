@@ -10,8 +10,8 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout.MissionsCompletedButton
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout.MissionsSpinner
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.ObjectivesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.ObjectivesViewModel.Companion.NOT_COMPLETE
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel.Companion.NOT_COMPLETE
 
 class MissionsItemLayout : LinearLayout {
 

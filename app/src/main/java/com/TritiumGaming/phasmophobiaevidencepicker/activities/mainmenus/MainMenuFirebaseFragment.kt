@@ -1,26 +1,16 @@
 package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus
 
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.FirebaseFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodels.sharedpreferences.MainMenuViewModel
+import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
 
 abstract class MainMenuFirebaseFragment : FirebaseFragment {
 
-    protected var mainMenuViewModel: MainMenuViewModel? = null
+    protected val mainMenuViewModel: MainMenuViewModel by activityViewModels()
 
     constructor() : super()
 
     constructor(layout: Int) : super(layout)
 
-    override fun initViewModels() { super.initGlobalPreferencesViewModel() }
-
-    protected fun initMainMenuViewModel() {
-        if (mainMenuViewModel == null) {
-            try { mainMenuViewModel =
-                    ViewModelProvider(requireActivity())[MainMenuViewModel::class.java]
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
-    }
-
-    override fun saveStates() {}
+    /*override fun saveStates() {}*/
 }
