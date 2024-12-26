@@ -31,6 +31,8 @@ plugins {
     alias(libs.plugins.plugin.kotlin.android).apply(false)
 
     alias(libs.plugins.plugin.kotlin.compose.compiler).apply(false)
+    alias(libs.plugins.plugin.android.library) apply false
+    alias(libs.plugins.plugin.kotlin.android) apply false
 }
 
 allprojects {

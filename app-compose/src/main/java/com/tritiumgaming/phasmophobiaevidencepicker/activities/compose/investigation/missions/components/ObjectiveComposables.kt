@@ -72,6 +72,7 @@ private fun ObjectiveSelectorPreview() {
 
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ObjectiveWrapper(
     modifier: Modifier = Modifier,
@@ -199,7 +200,7 @@ fun ObjectiveDropdownMenu(
         onExpandedChange = { expanded = it },
     ) {
 
-        TextField(
+        /*TextField(
             value = TextFieldValue,
             onValueChange = {},
             modifier = Modifier,
@@ -223,7 +224,7 @@ fun ObjectiveDropdownMenu(
             interactionSource = null,
             shape = TextFieldDefaults.shape,
             colors = TextFieldDefaults.colors()
-        )
+        )*/
 
         ExposedDropdownMenu(
             expanded = expanded,

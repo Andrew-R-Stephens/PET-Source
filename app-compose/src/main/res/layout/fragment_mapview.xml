@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mapview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
+
+    <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+        android:id="@+id/button_back"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:adjustViewBounds="true"
+        app:PETImageButtonBackground="@android:drawable/ic_menu_revert"
+        android:tint="@color/white"
+        android:tintMode="multiply"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout_mapviewbody"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_mapviewbody"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/codex_grid_background"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_back">
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+            android:id="@+id/interactiveMapView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/transparent"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#0AFFFFFF" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout44"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="?attr/backgroundColor_mapviewOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="32dp"
+            app:layout_constraintHeight_percent=".1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textview_title"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="2dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="start|center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/map_name_bleasdale"
+                android:textColor="?attr/textColorBody"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/linearlayout_floorindicators_wrapper"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <HorizontalScrollView
+                android:id="@+id/linearlayout_floorindicators_wrapper"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="16dp"
+                android:fillViewport="false"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:requiresFadingEdge="horizontal"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textview_title"
+                app:layout_constraintTop_toTopOf="@+id/textview_title"
+                app:layout_constraintWidth_percent="0.4">
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_floorindicators"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_controller_floorcontrols"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="?attr/backgroundColor_mapviewOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout44">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageview_flooricon"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="4dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_stairs"
+                android:scaleType="fitCenter"
+                android:tint="?attr/textColorBody"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/constraintLayout89"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout89"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageview_flooricon"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+                    android:id="@+id/controller_prevLayerButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/app_name"
+                    app:PETImageButtonBackground="@drawable/ic_arrow_fill_left"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textview_floorname"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_floorname"
+                    style="?attr/quaternaryFont_Bold_AutoSqueeze"
+                    android:layout_width="0dp"
+                    android:layout_height="26dp"
+                    android:gravity="center"
+                    android:text="@string/map_floor_name_first"
+                    android:textColor="?attr/textColorBody"
+                    app:layout_constraintBottom_toBottomOf="@+id/controller_prevLayerButton"
+                    app:layout_constraintEnd_toStartOf="@+id/controller_nextLayerButton"
+                    app:layout_constraintStart_toEndOf="@+id/controller_prevLayerButton"
+                    app:layout_constraintTop_toTopOf="@+id/controller_prevLayerButton" />
+
+                <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+                    android:id="@+id/controller_nextLayerButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:contentDescription="@string/app_name"
+                    app:PETImageButtonBackground="@drawable/ic_arrow_fill_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/controller_prevLayerButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/textview_floorname"
+                    app:layout_constraintTop_toTopOf="@+id/controller_prevLayerButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout51"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="?attr/backgroundColor_mapviewOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout_controller_floorcontrols">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageview_roomicon"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_room"
+                android:tint="?attr/textColorBody"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/spinner_poiname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner
+                android:id="@+id/spinner_poiname"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:paddingTop="2dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="4dp"
+                android:gravity="start|center"
+                android:spinnerMode="dropdown"
+                android:textColor="?attr/textColorBody"
+                android:popupBackground="?attr/backgroundColorOnBackground"
+                android:backgroundTint="?attr/textColorBody"
+                app:layout_constraintBottom_toBottomOf="@+id/imageview_roomicon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageview_roomicon"
+                app:layout_constraintTop_toTopOf="@+id/imageview_roomicon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+            android:id="@+id/imageview_help"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_help"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
+        android:background="?attr/codex1_adViewBackground"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ad_banner_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

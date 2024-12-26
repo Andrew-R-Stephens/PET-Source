@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_splashscreen"
+    android:background="?attr/backgroundColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
+        android:id="@+id/backgroundanimationView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titlescreen_mainconstraint"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout31"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintHeight_max="48dp">
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/button_settings"
+                tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:maxWidth="48dp"
+                android:maxHeight="48dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_inbox"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/button_inbox"
+                tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.AnimsKt.NewsAlert"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:maxWidth="48dp"
+                android:maxHeight="48dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_review"
+                app:layout_constraintStart_toEndOf="@+id/button_settings"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/button_review"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:padding="4dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_review"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_info"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button_inbox"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/button_info"
+                tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:maxWidth="48dp"
+                android:maxHeight="48dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_review"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout28"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout8"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout31"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_appicon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/app_name"
+                android:cropToPadding="false"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toTopOf="@+id/label_titledescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".75"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/app_icon_sm" />
+
+            <com.tritiumgaming.phasmophobiaevidencepicker.views.global.OutlineTextView
+                android:id="@+id/label_titledescription"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal|top"
+                android:maxLines="1"
+                android:text="@string/titlescreen_description"
+                android:textAllCaps="true"
+                android:textColor="?attr/splashTextColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/icon_appicon"
+                app:outlineColor="@color/black"
+                app:outlineWidth="2dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Start Hunting Solo-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout6"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout31"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout31"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout31">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_start_solo"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_filledsq"
+                android:contentDescription="@string/app_name"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:includeFontPadding="true"
+                android:maxLines="1"
+                android:padding="12dp"
+                android:text="@string/titlescreen_button"
+                android:textAllCaps="true"
+                android:textColor="?attr/textColorBody"
+                app:layout_constraintBottom_toTopOf="@+id/listener_language"
+                app:layout_constraintDimensionRatio="16:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_max="64dp"
+                app:layout_constraintHeight_min="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".75"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/listener_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/button_start_solo"
+                app:layout_constraintStart_toStartOf="@+id/button_start_solo"
+                app:layout_constraintTop_toBottomOf="@+id/button_start_solo">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_languageName"
+                    style="?attr/primaryFont_Regular_Manual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textColor="?attr/textColorBody"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/icon_language"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.compose.ui.platform.ComposeView
+                    android:id="@+id/icon_language"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.CustomImageKt.LanguageIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal|fill_horizontal|fill_vertical"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ad_banner_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

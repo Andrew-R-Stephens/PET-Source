@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Component Styles
+    -->
+    <declare-styleable name="NavHeaderLayout">
+        <attr name="NavHeaderLayoutButtonLeft" format="enum">
+            <enum name="none" value="0" />
+            <enum name="back" value="1" />
+            <enum name="forward" value="2" />
+            <enum name="confirm" value="3" />
+            <enum name="cancel" value="4" />
+            <enum name="play" value="5" />
+            <enum name="pause" value="6" />
+        </attr>
+        <attr name="NavHeaderLayoutButtonRight" format="enum">
+            <enum name="none" value="0" />
+            <enum name="back" value="1" />
+            <enum name="forward" value="2" />
+            <enum name="confirm" value="3" />
+            <enum name="cancel" value="4" />
+            <enum name="play" value="5" />
+            <enum name="pause" value="6" />
+        </attr>
+        <attr name="NavHeaderLayoutCenterTitle" format="reference|string" />
+        <attr name="NavHeaderLayoutLeftTitle" format="reference|string" />
+        <attr name="NavHeaderLayoutRightTitle" format="reference|string" />
+    </declare-styleable>
+
+    <declare-styleable name="PETImageButton">
+        <attr name="PETImageButtonType" format="enum">
+            <enum name="none" value="0" />
+            <enum name="back" value="1" />
+            <enum name="forward" value="2" />
+            <enum name="confirm" value="3" />
+            <enum name="cancel" value="4" />
+            <enum name="play" value="5" />
+            <enum name="pause" value="6" />
+        </attr>
+        <attr name="PETImageButtonBackground" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="SanityCarouselLayout">
+        <attr name="SanityCarouselLayoutTitle" format="reference|string" />
+        <attr name="SanityCarouselLayoutName" format="reference|string" />
+        <attr name="SanityCarouselLayoutImage" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="MissionsItemLayout">
+        <attr name="MissionsItemLayoutTitle" format="reference|string" />
+    </declare-styleable>
+
+    <!--
+    <declare-styleable name="SanityCarouselView">
+        <attr name="SanityCarouselViewTitle" format="reference|string" />
+        <attr name="SanityCarouselViewName" format="reference|string" />
+    </declare-styleable>
+    -->
+
+    <declare-styleable name="OutlineTextView">
+        <attr name="outlineColor" format="color" />
+        <attr name="outlineWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CodexGridCard">
+        <attr name="label_text" format="string"/>
+        <attr name="background_image" format="reference"/>
+
+        <attr name="strokeWidth" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="GhostView">
+        <attr name="showText" format="boolean" />
+        <attr name="labelPosition" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="EvidenceView">
+        <attr name="color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="EquipmentTiers">
+        <attr name="equipment_tier" format="enum">
+            <enum name="TIER_1" value="1"/>
+            <enum name="TIER_2" value="2"/>
+            <enum name="TIER_3" value="3"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="MarketplaceMtxView">
+        <attr name="billingTheme" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="MarketplaceSingleThemeView">
+        <attr name="enforcedTheme" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="MarketplaceBundleThemeView">
+        <attr name="bundleEnforcedTheme" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SettingsToggleItemView">
+        <attr name="settings_toggle_description" format="reference|string" />
+    </declare-styleable>
+
+    <declare-styleable name="NewsletterInboxView">
+        <attr name="inbox_title" format="reference|string" />
+        <attr name="inbox_icon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="NewsletterMessageView">
+        <attr name="inboxMessage_title" format="reference|string" />
+        <attr name="inboxMessage_icon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AccountIconView">
+        <attr name="accountInitials" format="reference|string"/>
+    </declare-styleable>
+
+</resources>
