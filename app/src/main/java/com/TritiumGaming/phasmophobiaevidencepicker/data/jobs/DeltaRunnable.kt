@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.jobs
+package com.tritiumgaming.phasmophobiaevidencepicker.data.jobs
 
 import android.content.Context
 import android.os.Build

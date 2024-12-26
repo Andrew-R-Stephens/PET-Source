@@ -1,7 +1,7 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io
 
 import android.content.res.AssetManager
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint
 import java.io.InputStream
 
 class MapFileIO {

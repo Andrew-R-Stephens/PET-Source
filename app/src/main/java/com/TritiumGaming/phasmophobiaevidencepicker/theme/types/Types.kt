@@ -1,15 +1,39 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.theme.types
+package com.tritiumgaming.phasmophobiaevidencepicker.theme.types
 
+import android.R.attr.fontStyle
+import androidx.annotation.StringRes
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.Typeface
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.unit.sp
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.Type.Companion.DefaultTextStyle
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.Type.Companion.NorseTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.CuyabraTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.DefaultTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.DigitalDreamTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.EastSeaDokdoTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.GeoTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.JetbrainsMonoTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.LazyDogTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.LongCangTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.NeuchaTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.NewTegominTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.NorseTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.RobotoMonoTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.Type.Companion.TypewriterTextStyle
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_android
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_brick
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_classic
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_clean
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_jetbrainsmono
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_journal
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_longcang
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_neucha
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_newtegmon
 
 val DefaultFont = Typography(
     displayLarge = DefaultTextStyle.copy(
@@ -97,9 +121,11 @@ val DefaultFont = Typography(
     )
 )
 
-private val BaseFont = ExtendedTypography()
+private val BaseFont = ExtendedTypography(
+    extrasFamily = ExtrasFamily(
+        title = title_classic
+    ),
 
-val Classic = BaseFont.copy(
     primary = CustomFontFamily(
         regular = NorseTextStyle.copy(
             fontStyle = FontStyle.Normal
@@ -109,444 +135,390 @@ val Classic = BaseFont.copy(
             fontWeight = FontWeight.Bold
         )
     ),
+
     secondary = CustomFontFamily(
-        regular = TextStyle(
-
+        regular = EastSeaDokdoTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
         ),
-        bold = TextStyle(
-
-        ),
-        narrow = TextStyle(
-
-        ),
-        boldNarrow = TextStyle(
-
+        bold = EastSeaDokdoTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
         )
     ),
+
     tertiary = CustomFontFamily(
-        regular = TextStyle(
-
+        regular = DigitalDreamTextStyle.copy(
+            fontStyle = FontStyle.Normal
         ),
-        bold = TextStyle(
-
+        bold = DigitalDreamTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
         ),
-        narrow = TextStyle(
-
-        ),
-        boldNarrow = TextStyle(
-
+        boldNarrow = DigitalDreamTextStyle.copy(
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Bold,
         )
     ),
+
     quaternary = CustomFontFamily(
-        regular = TextStyle(
-
+        regular = TypewriterTextStyle.copy(
+            fontStyle = FontStyle.Normal
         ),
-        bold = TextStyle(
-
-        ),
-        narrow = TextStyle(
-
-        ),
-        boldNarrow = TextStyle(
-
+        bold = TypewriterTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
         )
     )
 )
 
-/*
-<style name="Fonts.Base" parent="Theme.PhasmophobiaEvidenceTool">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/NorseRegular_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/NorseRegular_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/NorseRegular_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/NorseBold_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/NorseBold_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/NorseBold_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/EastRegular_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/EastRegular_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/EastRegular_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/EastRegular_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/EastRegular_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/EastRegular_Manual</item>
-
-<!-- Tertiary -->
-<item name="tertiaryFont_Regular_Auto">@style/TimeRegular_Auto</item>
-<item name="tertiaryFont_Regular_AutoSqueeze">@style/TimeRegular_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/TimeRegular_Manual</item>
-
-<item name="tertiaryFont_Bold_Auto">@style/TimeBold_Auto</item>
-<item name="tertiaryFont_Bold_AutoSqueeze">@style/TimeBold_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/TimeBold_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow_Auto">@style/TimeBoldNarrow_Auto</item>
-<item name="tertiaryFont_BoldNarrow_AutoSqueeze">@style/TimeBoldNarrow_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/TimeBoldNarrow_Manual</item>
-
-<!-- Quaternary -->
-<item name="quaternaryFont_Regular_Auto">@style/TypewriterRegular_Auto</item>
-<item name="quaternaryFont_Regular_AutoSqueeze">@style/TypewriterRegular_SqueezeText</item>
-<item name="quaternaryFont_Regular_Manual">@style/TypewriterRegular_Manual</item>
-
-<item name="quaternaryFont_Bold_Auto">@style/TypewriterBold_Auto</item>
-<item name="quaternaryFont_Bold_AutoSqueeze">@style/TypewriterBold_SqueezeText</item>
-<item name="quaternaryFont_Bold_Manual">@style/TypewriterBold_Manual</item>
-
-</style>
-*/
-
-val AndroidTypography = BaseFont.copy()
-/*
-<style name="Android" parent="Fonts.Base">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/RobotoMono_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/RobotoMono_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/RobotoMono_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/RobotoMonoBold_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/RobotoMonoBold_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/RobotoMonoBold_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/RobotoMono_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/RobotoMono_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/RobotoMono_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/RobotoMonoBold_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/RobotoMonoBold_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/RobotoMonoBold_Manual</item>
-
-<!-- Tertiary -->
-<!--
-<item name="tertiaryFont_Regular">@style/RobotoMono</item>
-<item name="tertiaryFont_Regular_Squeeze">@style/RobotoMono_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/RobotoMono_Manual</item>
-
-<item name="tertiaryFont_Bold">@style/RobotoMonoBold</item>
-<item name="tertiaryFont_Bold_Squeeze">@style/RobotoMonoBold_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/RobotoMonoBold_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow">@style/RobotoMonoBold</item>
-<item name="tertiaryFont_BoldNarrow_Squeeze">@style/RobotoMonoBold_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/RobotoMonoBold_Manual</item>
--->
-</style>
-
-*/
-
-val JournalTypography = BaseFont.copy()
-/*
-<style name="Journal" parent="Fonts.Base">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/LazyDog_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/LazyDog_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/LazyDog_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/LazyDogBold_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/LazyDogBold_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/LazyDog_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/LazyDog_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/LazyDog_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/LazyDogBold_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/LazyDogBold_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
-
-<!-- Tertiary -->
-<!--
-<item name="tertiaryFont_Regular">@style/LazyDog</item>
-<item name="tertiaryFont_Regular_Squeeze">@style/LazyDog_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/LazyDog_Manual</item>
-
-<item name="tertiaryFont_Bold">@style/LazyDogBold</item>
-<item name="tertiaryFont_Bold_Squeeze">@style/LazyDogBold_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/LazyDogBold_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow">@style/LazyDogBold</item>
-<item name="tertiaryFont_BoldNarrow_Squeeze">@style/LazyDogBold_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/LazyDogBold_Manual</item>
--->
-</style>
-*/
-
-val BrickTypography = BaseFont.copy()
-/*
-<style name="Brick" parent="Fonts.Base">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/BrickRegular_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/BrickRegular_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/BrickRegular_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/BrickRegular_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/BrickRegular_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/BrickRegular_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/BrickRegular_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/BrickRegular_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/BrickRegular_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/BrickRegular_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/BrickRegular_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/BrickRegular_Manual</item>
-
-<!-- Tertiary -->
-<!--
-<item name="tertiaryFont_Regular">@style/BrickRegular</item>
-<item name="tertiaryFont_Regular_Squeeze">@style/BrickRegular_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/BrickRegular_Manual</item>
-
-<item name="tertiaryFont_Bold">@style/BrickRegular</item>
-<item name="tertiaryFont_Bold_Squeeze">@style/BrickRegular_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/BrickRegular_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow">@style/BrickRegular</item>
-<item name="tertiaryFont_BoldNarrow_Squeeze">@style/BrickRegular_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/BrickRegular_Manual</item>
--->
-
-</style>
-*/
-
-val CleanTypography = BaseFont.copy()
-/*
-
-<style name="Clean" parent="Fonts.Base">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/CleanRegular_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/CleanRegular_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/CleanRegular_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/CleanRegular_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/CleanRegular_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/CleanRegular_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/CleanRegular_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/CleanRegular_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/CleanRegular_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/CleanRegular_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/CleanRegular_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/CleanRegular_Manual</item>
-
-<!-- Tertiary -->
-<!--
-<item name="tertiaryFont_Regular">@style/CleanRegular</item>
-<item name="tertiaryFont_Regular_Squeeze">@style/CleanRegular_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/CleanRegular_Manual</item>
-
-<item name="tertiaryFont_Bold">@style/CleanRegular</item>
-<item name="tertiaryFont_Bold_Squeeze">@style/CleanRegular_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/CleanRegular_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow">@style/CleanRegular</item>
-<item name="tertiaryFont_BoldNarrow_Squeeze">@style/CleanRegular_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/CleanRegular_Manual</item>
--->
-</style>
-*/
-
-val LongCangTypography = BaseFont.copy()
-/*
-
-<style name="LongCang" parent="Fonts.Base">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/LongCangRegular_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/LongCangRegular_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/LongCangRegular_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/LongCangRegular_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/LongCangRegular_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/LongCangRegular_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/LongCangRegular_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/LongCangRegular_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/LongCangRegular_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/LongCangRegular_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/LongCangRegular_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/LongCangRegular_Manual</item>
-
-<!-- Tertiary -->
-<!--
-<item name="tertiaryFont_Regular">@style/LongCangRegular</item>
-<item name="tertiaryFont_Regular_Squeeze">@style/LongCangRegular_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/LongCangRegular_Manual</item>
-
-<item name="tertiaryFont_Bold">@style/LongCangRegular</item>
-<item name="tertiaryFont_Bold_Squeeze">@style/LongCangRegular_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/LongCangRegular_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow">@style/LongCangRegular</item>
-<item name="tertiaryFont_BoldNarrow_Squeeze">@style/LongCangRegular_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/LongCangRegular_Manual</item>
--->
-
-<!-- Quaternary -->
-<item name="quaternaryFont_Regular_Auto">@style/LongCangRegular_Auto</item>
-<item name="quaternaryFont_Regular_AutoSqueeze">@style/LongCangRegular_SqueezeText</item>
-<item name="quaternaryFont_Regular_Manual">@style/LongCangRegular_Manual</item>
-
-<item name="quaternaryFont_Bold_Auto">@style/LongCangRegular_Auto</item>
-<item name="quaternaryFont_Bold_AutoSqueeze">@style/LongCangRegular_SqueezeText</item>
-<item name="quaternaryFont_Bold_Manual">@style/LongCangRegular_Manual</item>
-
-</style>
-*/
-
-val NewTegominTypography = BaseFont.copy()
-/*
-
-<style name="NewTegomin" parent="Fonts.Base">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/NewTegominRegular_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/NewTegominRegular_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/NewTegominRegular_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/NewTegominRegular_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/NewTegominRegular_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/NewTegominRegular_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/NewTegominRegular_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/NewTegominRegular_Manual</item>
-
-<!-- Tertiary -->
-<!--
-<item name="tertiaryFont_Regular">@style/NewTegominRegular</item>
-<item name="tertiaryFont_Regular_Squeeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/NewTegominRegular_Manual</item>
-
-<item name="tertiaryFont_Bold">@style/NewTegominRegular</item>
-<item name="tertiaryFont_Bold_Squeeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/NewTegominRegular_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow">@style/NewTegominRegular</item>
-<item name="tertiaryFont_BoldNarrow_Squeeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/NewTegominRegular_Manual</item>
--->
-
-<!-- Quaternary -->
-<item name="quaternaryFont_Regular_Auto">@style/NewTegominRegular_Auto</item>
-<item name="quaternaryFont_Regular_AutoSqueeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="quaternaryFont_Regular_Manual">@style/NewTegominRegular_Manual</item>
-
-<item name="quaternaryFont_Bold_Auto">@style/NewTegominRegular_Auto</item>
-<item name="quaternaryFont_Bold_AutoSqueeze">@style/NewTegominRegular_SqueezeText</item>
-<item name="quaternaryFont_Bold_Manual">@style/NewTegominRegular_Manual</item>
-
-</style>
-*/
-
-val NeuchaTypography = BaseFont.copy()
-/*
-<style name="Neucha" parent="Fonts.Base">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/NeuchaRegular_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/NeuchaBold_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/NeuchaBold_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/NeuchaBold_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/NeuchaRegular_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/NeuchaBold_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/NeuchaBold_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/NeuchaBold_Manual</item>
-
-<!-- Tertiary -->
-<!--
-<item name="tertiaryFont_Regular">@style/NeuchaRegular</item>
-<item name="tertiaryFont_Regular_Squeeze">@style/NeuchaRegular_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
-
-<item name="tertiaryFont_Bold">@style/NeuchaRegular</item>
-<item name="tertiaryFont_Bold_Squeeze">@style/NeuchaRegular_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/NeuchaRegular_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow">@style/NeuchaRegular</item>
-<item name="tertiaryFont_BoldNarrow_Squeeze">@style/NeuchaRegular_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/NeuchaRegular_Manual</item>
--->
-
-<!-- Quaternary -->
-<item name="quaternaryFont_Regular_Auto">@style/NeuchaRegular_Auto</item>
-<item name="quaternaryFont_Regular_AutoSqueeze">@style/NeuchaRegular_SqueezeText</item>
-<item name="quaternaryFont_Regular_Manual">@style/NeuchaRegular_Manual</item>
-
-<item name="quaternaryFont_Bold_Auto">@style/NeuchaBold_Auto</item>
-<item name="quaternaryFont_Bold_AutoSqueeze">@style/NeuchaBold_SqueezeText</item>
-<item name="quaternaryFont_Bold_Manual">@style/NeuchaBold_Manual</item>
-</style>
-*/
-
-val JetBrainsMono = BaseFont.copy()
-/*
-<style name="JetBrainsMono" parent="Fonts.Base">
-
-<!-- Primary -->
-<item name="primaryFont_Regular_Auto">@style/JetbrainsMonoRegular_Auto</item>
-<item name="primaryFont_Regular_AutoSqueeze">@style/JetbrainsMonoRegular_SqueezeText</item>
-<item name="primaryFont_Regular_Manual">@style/JetbrainsMonoRegular_Manual</item>
-
-<item name="primaryFont_Bold_Auto">@style/JetbrainsMonoBold_Auto</item>
-<item name="primaryFont_Bold_AutoSqueeze">@style/JetbrainsMonoBold_SqueezeText</item>
-<item name="primaryFont_Bold_Manual">@style/JetbrainsMonoBold_Manual</item>
-
-<!-- Secondary -->
-<item name="secondaryFont_Regular_Auto">@style/JetbrainsMonoRegular_Auto</item>
-<item name="secondaryFont_Regular_AutoSqueeze">@style/JetbrainsMonoRegular_SqueezeText</item>
-<item name="secondaryFont_Regular_Manual">@style/JetbrainsMonoRegular_Manual</item>
-
-<item name="secondaryFont_Bold_Auto">@style/JetbrainsMonoBold_Auto</item>
-<item name="secondaryFont_Bold_AutoSqueeze">@style/JetbrainsMonoBold_SqueezeText</item>
-<item name="secondaryFont_Bold_Manual">@style/JetbrainsMonoBold_Manual</item>
-
-<!-- Tertiary -->
-<!--
-<item name="tertiaryFont_Regular">@style/JetbrainsMonoItalic</item>
-<item name="tertiaryFont_Regular_Squeeze">@style/JetbrainsMonoItalic_SqueezeText</item>
-<item name="tertiaryFont_Regular_Manual">@style/JetbrainsMonoItalic_Manual</item>
-
-<item name="tertiaryFont_Bold">@style/JetbrainsMonoItalic</item>
-<item name="tertiaryFont_Bold_Squeeze">@style/JetbrainsMonoItalic_SqueezeText</item>
-<item name="tertiaryFont_Bold_Manual">@style/JetbrainsMonoItalic_Manual</item>
-
-<item name="tertiaryFont_BoldNarrow">@style/JetbrainsMonoItalic</item>
-<item name="tertiaryFont_BoldNarrow_Squeeze">@style/JetbrainsMonoItalic_SqueezeText</item>
-<item name="tertiaryFont_BoldNarrow_Manual">@style/JetbrainsMonoItalic_Manual</item>
--->
-</style>
-*/
+val Classic = BaseFont.copy(
+    extrasFamily = BaseFont.extrasFamily.copy(),
+
+    primary = BaseFont.primary.copy(),
+    secondary = BaseFont.secondary.copy(),
+    tertiary = BaseFont.tertiary.copy(),
+    quaternary = BaseFont.quaternary.copy()
+)
+
+val AndroidTypography = BaseFont.copy(
+
+    extrasFamily = BaseFont.extrasFamily.copy(
+        title = title_android
+    ),
+
+    primary = BaseFont.primary.copy(
+        regular = RobotoMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = RobotoMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+
+    secondary = BaseFont.secondary.copy(
+        regular = RobotoMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = RobotoMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+
+    tertiary = BaseFont.tertiary.copy(
+        regular = RobotoMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = RobotoMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        ),
+        boldNarrow = RobotoMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    )
+)
+
+val JournalTypography = BaseFont.copy(
+
+    extrasFamily = BaseFont.extrasFamily.copy(
+        title = title_journal
+    ),
+
+    primary = BaseFont.primary.copy(
+        regular = LazyDogTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = LazyDogTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+
+    secondary = BaseFont.secondary.copy(
+        regular = LazyDogTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = LazyDogTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+
+    tertiary = BaseFont.tertiary.copy(
+        regular = LazyDogTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = LazyDogTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        ),
+        boldNarrow = LazyDogTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    )
+)
+
+val BrickTypography = BaseFont.copy(
+
+    extrasFamily = BaseFont.extrasFamily.copy(
+        title = title_brick
+    ),
+
+    primary = BaseFont.primary.copy(
+        regular = GeoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = GeoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    secondary = BaseFont.secondary.copy(
+        regular = GeoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = GeoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    )
+)
+
+val CleanTypography = BaseFont.copy(
+
+    extrasFamily = BaseFont.extrasFamily.copy(
+        title = title_clean
+    ),
+
+    primary = BaseFont.primary.copy(
+        regular = CuyabraTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = CuyabraTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    secondary = BaseFont.secondary.copy(
+        regular = CuyabraTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = CuyabraTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    tertiary = BaseFont.tertiary.copy(
+        regular = CuyabraTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = CuyabraTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        boldNarrow = CuyabraTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    )
+)
+
+val LongCangTypography = BaseFont.copy(
+
+    extrasFamily = BaseFont.extrasFamily.copy(
+        title = title_longcang
+    ),
+
+    primary = BaseFont.primary.copy(
+        regular = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    secondary = BaseFont.secondary.copy(
+        regular = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    tertiary = BaseFont.tertiary.copy(
+        regular = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        boldNarrow = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    quaternary = BaseFont.quaternary.copy(
+        regular = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = LongCangTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+    )
+
+)
+
+val NewTegominTypography = BaseFont.copy(
+
+    extrasFamily = BaseFont.extrasFamily.copy(
+        title = title_newtegmon
+    ),
+
+    primary = BaseFont.primary.copy(
+        regular = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    secondary = BaseFont.secondary.copy(
+        regular = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    tertiary = BaseFont.tertiary.copy(
+        regular = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        boldNarrow = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    quaternary = BaseFont.quaternary.copy(
+        regular = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = NewTegominTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    )
+
+)
+
+val NeuchaTypography = BaseFont.copy(
+
+    extrasFamily = BaseFont.extrasFamily.copy(
+        title = title_neucha
+    ),
+
+    primary = BaseFont.primary.copy(
+        regular = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+
+    secondary = BaseFont.secondary.copy(
+        regular = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+
+    tertiary = BaseFont.tertiary.copy(
+        regular = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        boldNarrow = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        )
+    ),
+
+    quaternary = BaseFont.quaternary.copy(
+        regular = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = NeuchaTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        ),
+    )
+)
+
+val JetBrainsMonoTypography = BaseFont.copy(
+
+    extrasFamily = BaseFont.extrasFamily.copy(
+        title = title_jetbrainsmono
+    ),
+
+    primary = BaseFont.primary.copy(
+        regular = JetbrainsMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = JetbrainsMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+
+    secondary = BaseFont.secondary.copy(
+        regular = JetbrainsMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal
+        ),
+        bold = JetbrainsMonoTextStyle.copy(
+            fontStyle = FontStyle.Normal,
+            fontWeight = FontWeight.Bold
+        )
+    ),
+
+    tertiary = BaseFont.tertiary.copy(
+        regular = JetbrainsMonoTextStyle.copy(
+            fontStyle = FontStyle.Italic
+        ),
+        bold = JetbrainsMonoTextStyle.copy(
+            fontStyle = FontStyle.Italic
+        ),
+        boldNarrow = JetbrainsMonoTextStyle.copy(
+            fontStyle = FontStyle.Italic
+        )
+    )
+)
+
+
+@Immutable
+data class ExtrasFamily(
+    @StringRes val title: Int = title_classic
+)
 
 @Immutable
 data class ExtendedTypography(
+    val extrasFamily: ExtrasFamily = ExtrasFamily(
+        title = title_classic
+    ),
+
     val primary: CustomFontFamily = CustomFontFamily(),
     val secondary: CustomFontFamily = CustomFontFamily(),
     val tertiary: CustomFontFamily = CustomFontFamily(),
@@ -561,4 +533,21 @@ data class CustomFontFamily(
     val boldNarrow: TextStyle = TextStyle()
 )
 
-val LocalCustomFonts = staticCompositionLocalOf { ExtendedTypography() }
+val LocalTypography = staticCompositionLocalOf { ExtendedTypography() }
+
+val LocalTypographys = listOf<TypographyData>(
+    TypographyData("c29cJglM92MLWN1RKRyK8qyAD", Classic),
+    TypographyData("8Jk15N2GB6PBopXvmEluU2eoS", AndroidTypography),
+    TypographyData("7q1Nza1o0Nvt16YyNXNkJ590F", JournalTypography),
+    TypographyData("3a1vXEZveFEWrf5RdVxTJI6pF", BrickTypography),
+    TypographyData("93Ph8a2SLU3YEupV54TKMKJAO", CleanTypography),
+    TypographyData("8UEl0G5HXx119AXh69OeIUPCB", LongCangTypography),
+    TypographyData("8rX9hVOyV8eIZmz3ZQaHgrnan", NewTegominTypography),
+    TypographyData("DPre8Bscm8Tf3pwyQw7HxBznt", NeuchaTypography),
+    TypographyData("3vAD75LdzvZN3zBjab5z19zpc", JetBrainsMonoTypography),
+)
+
+data class TypographyData(
+    val uuid: String = "0",
+    val typography: ExtendedTypography = ExtendedTypography()
+)

@@ -23,6 +23,36 @@
         <item>28yi3LJWYMbA7v87RMAEznISy</item>
         <item>tempWhiteboard</item>
         <item>tempStratHero</item>
+        <!--
+CzjtxSbXRwIpX8SYR0ttngAND
+ey6VbQN5tx0MgR8tw4iJq3J8L
+9Ec5cQIB0Jb73gbQ3a9R5kScX
+44uBEX9ID9131TMG3yH7T2P1Q
+28yi3LJWYMbA7v87RMAEznISy
+9QWud4Mj5C4jYp1hOA91b6G0L
+1UdIWr97JGtOoRszQHpBYfK5U
+1oF0ZF78LqA64zRyn8ozgMqLu
+5T2mB6W1370DEc3cnYN2bI0gT
+9t44qIYH7UU3EPwvgXEO6309E
+9Uo9I6AmpW2XbhHDIxCP4ppds
+E2m4fr5Vp6dv07JnWE5Q3T08D
+6BL0zB7jGGye94j45hq3wtwVq
+8No78zJ6oUSBLS818jH10Seni
+4p77qstew9oX20l4X5O0J010k
+B6xTXIXttQUqW02Skd094BY15
+EOkBD2aJZhOh9V821o20GFLXK
+7RF705OjW3uo39zl0aTktINHd
+0XrEhnlpA9mD9dNxrzCbNfkRe
+Ex00XEBLXbh65Nk9SdYMrMfsP
+2pe8HDVVWRfxhPUw4Xf0rhgwb
+56iV5cnR3lRJ59uZF1mTtEz9X
+e6nDE683SE7Wg9dRPJeN61CD6
+8xkSw89x50Zwgr4tGd6z5X0a7
+88kEPt48wGs0ZxR4n7gtM3OTe
+tempWhiteboard
+tempStratHero
+        -->
+
     </string-array>
     <string-array name="settings_themes_colorblind_name_array">
         <item>@string/settings_colorblindnessmode_normal</item>

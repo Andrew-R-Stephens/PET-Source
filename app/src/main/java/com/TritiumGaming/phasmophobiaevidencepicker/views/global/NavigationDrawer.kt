@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.global
+package com.tritiumgaming.phasmophobiaevidencepicker.views.global
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class NavigationDrawer : ConstraintLayout {
     constructor(context: Context) : super(context)

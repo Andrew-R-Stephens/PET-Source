@@ -1,14 +1,14 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds
 
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
 import kotlinx.coroutines.launch
 
 class NewsletterViewModel(

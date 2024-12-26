@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.mapviewer
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.mapviewer
 
 import androidx.annotation.DrawableRes
 

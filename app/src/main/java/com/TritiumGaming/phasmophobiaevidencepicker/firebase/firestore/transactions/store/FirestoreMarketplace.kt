@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store
+package com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore

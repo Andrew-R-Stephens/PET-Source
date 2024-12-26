@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.PorterDuffColorFilter
 import android.graphics.Rect
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.BitmapUtils
 
 /**
  * Animated class

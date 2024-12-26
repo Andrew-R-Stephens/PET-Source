@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.repository
+package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
 import android.util.Log
@@ -6,10 +6,10 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.RSSParserUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.RSSParserUtils
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import org.xmlpull.v1.XmlPullParserException

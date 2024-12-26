@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus
 
 import androidx.fragment.app.activityViewModels
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
 
 abstract class MainMenuFragment : PETFragment {
 

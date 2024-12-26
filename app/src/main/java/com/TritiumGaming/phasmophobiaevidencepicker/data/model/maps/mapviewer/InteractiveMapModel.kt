@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.mapviewer
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.mapviewer
 
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
 import kotlin.math.max
 import kotlin.math.min
 

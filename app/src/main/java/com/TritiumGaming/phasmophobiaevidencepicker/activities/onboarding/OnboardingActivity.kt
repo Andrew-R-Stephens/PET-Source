@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.onboarding
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.onboarding
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer
 
 import android.os.CountDownTimer
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.DifficultyCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel.SanityConstants.HALF_SANITY
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel.SanityConstants.MIN_SANITY
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel.SanityConstants.SAFE_MIN_BOUNDS
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.DifficultyCarouselModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel.SanityConstants.HALF_SANITY
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel.SanityConstants.MIN_SANITY
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel.SanityConstants.SAFE_MIN_BOUNDS
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,7 +7,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class SettingsToggleItemView : ConstraintLayout {
     private var switchId = 0

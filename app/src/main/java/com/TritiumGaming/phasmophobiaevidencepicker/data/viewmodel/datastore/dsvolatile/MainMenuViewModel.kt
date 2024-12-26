@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.AnimationModel
 import com.google.android.gms.ads.AdRequest
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.AnimationModel
 
 /**
  * TitleScreenViewModel class

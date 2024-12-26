@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.pet
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.pet
 
 import android.content.Context
 import android.os.Bundle
@@ -10,14 +10,6 @@ import androidx.core.os.LocaleListCompat
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.reviews.ReviewTrackingRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.FontThemeRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.PermissionsViewModel
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.google.android.gms.ads.MobileAds
@@ -30,6 +22,14 @@ import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.reviews.ReviewTrackingRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.FontThemeRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.PermissionsViewModel
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -63,6 +63,7 @@ abstract class PETActivity : AppCompatActivity() {
 
         initFirebaseAnalytics()
 
+        Log.d("ViewModels", "PET begin...")
         initViewModels()
         loadPreferences()
 
@@ -79,6 +80,8 @@ abstract class PETActivity : AppCompatActivity() {
     }
 
     protected open fun initViewModels() {
+        Log.d("ViewModels", "PET init")
+
         initGlobalPreferencesViewModel()
         initPermissionsViewModel()
     }
@@ -94,6 +97,7 @@ abstract class PETActivity : AppCompatActivity() {
                 LanguageRepository(dataStore, this)
             )
         )[GlobalPreferencesViewModel::class.java]
+        globalPreferencesViewModel.init()
     }
     private fun initPermissionsViewModel() {
         permissionsViewModel = ViewModelProvider(
@@ -117,15 +121,21 @@ abstract class PETActivity : AppCompatActivity() {
     /** Sets the Skin Theme based on User Preferences.
      * @param colorSpace to be set */
     fun changeTheme(colorSpace: ThemeModel?, fontType: ThemeModel?) {
-        if (fontType != null) {
+        fontType?.let {
+            theme.applyStyle(it.style, true)
+        }
+        colorSpace?.let {
+            theme.applyStyle(it.style, true)
+        }
+
+        /*if (fontType != null) {
             val styleId = fontType.style
             theme.applyStyle(styleId, true)
         }
-
         if (colorSpace != null) {
             val colorSpaceId = colorSpace.style
             theme.applyStyle(colorSpaceId, true)
-        }
+        }*/
     }
 
     /** @param language The desired new language */
@@ -136,19 +146,15 @@ abstract class PETActivity : AppCompatActivity() {
         val newLocale = Locale(langCode)
         val currentLocale = Locale.getDefault()
 
-        var isChanged = false
-        if(!currentLocale.language.equals(newLocale.language, ignoreCase = true)) {
-            isChanged = true
-        }
+        var isChanged = (!currentLocale.language.equals(newLocale.language, ignoreCase = true))
 
-        /*Locale.setDefault(languageLocale)
+        /*Locale.setDefault(newLocale)
         val config = resources.configuration
-        config.setLocale(languageLocale)
+        config.setLocale(newLocale)
         resources.updateConfiguration(config, resources.displayMetrics)*/
 
         AppCompatDelegate.setApplicationLocales(
-            LocaleListCompat.create(
-                Locale.forLanguageTag(langCode))
+            LocaleListCompat.create(Locale.forLanguageTag(langCode))
         )
 
         return isChanged

@@ -1,5 +1,5 @@
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
 import org.junit.Test
 
 class FirebaseTesting {

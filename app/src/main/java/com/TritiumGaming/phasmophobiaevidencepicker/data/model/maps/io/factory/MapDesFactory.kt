@@ -1,17 +1,17 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.POI
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.Room
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.Room.RoomPoints
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.Room.RoomPoints.RoomPoint
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.WorldDimensions
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map.FloorModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map.MapDimensionModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map.MapModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.POI
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.Room
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.Room.RoomPoints
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.Room.RoomPoints.RoomPoint
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.WorldDimensions
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.FloorModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.MapDimensionModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.MapModel
 
 object MapDesFactory {
     fun parseMinified(

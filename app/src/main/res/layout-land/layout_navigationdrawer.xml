@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavigationBar
+    <com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavigationBar
         android:id="@+id/layout_navigation_bar"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -14,18 +14,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--
-    <include
-        android:id="@+id/layout_navigation_bar"
-        layout="@layout/layout_navigationfooter"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:elevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    -->
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/layout_navigation_drawer"

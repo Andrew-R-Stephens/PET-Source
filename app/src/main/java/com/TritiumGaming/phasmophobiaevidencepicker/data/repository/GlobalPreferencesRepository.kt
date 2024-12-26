@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.repository
+package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
 import android.util.Log
@@ -9,8 +9,8 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel.Time.INFINITY
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel.Time.INFINITY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -31,7 +31,7 @@ class GlobalPreferencesRepository(
         val maxHuntWarnFlashTime: Long
     )
 
-    val globalPreferencesFlow: Flow<GlobalPreferences> = dataStore.data
+    val flow: Flow<GlobalPreferences> = dataStore.data
         .catch { exception ->
             if (exception is IOException) { emit(emptyPreferences()) }
             else { throw exception }
@@ -102,12 +102,12 @@ class GlobalPreferencesRepository(
 
     private fun mapGlobalPreferences(preferences: Preferences): GlobalPreferences {
         return GlobalPreferences(
-            preferences[KEY_DISABLE_SCREENSAVER] ?: false,
-            preferences[KEY_ALLOW_CELLULAR_DATA] ?: true,
-            preferences[KEY_ALLOW_HUNT_WARN_AUDIO] ?: true,
-            preferences[KEY_ENABLE_GHOST_REORDER] ?: true,
-            preferences[KEY_ALLOW_INTRODUCTION] ?: true,
-            preferences[KEY_ENABLE_RTL] ?: false,
+            preferences[KEY_DISABLE_SCREENSAVER] == true,
+            preferences[KEY_ALLOW_CELLULAR_DATA] != false,
+            preferences[KEY_ALLOW_HUNT_WARN_AUDIO] != false,
+            preferences[KEY_ENABLE_GHOST_REORDER] != false,
+            preferences[KEY_ALLOW_INTRODUCTION] != false,
+            preferences[KEY_ENABLE_RTL] == true,
             preferences[KEY_HUNT_WARN_MAX_TIMEOUT] ?: INFINITY
         )
     }

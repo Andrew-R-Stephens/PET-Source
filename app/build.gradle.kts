@@ -1,4 +1,4 @@
-import org.gradle.kotlin.dsl.android
+//import org.gradle.kotlin.dsl.android
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
@@ -19,7 +19,7 @@ plugins {
 }
 
 android {
-    namespace = "com.TritiumGaming.phasmophobiaevidencepicker"
+    namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
 
     compileSdk = 35
 
@@ -223,30 +223,30 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     //implementation (libs.androidx.compose.animation)
     androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.composeUi.testJunit4)
-    debugImplementation(libs.androidx.composeUi.testManifest)
+    androidTestImplementation(libs.androidx.compose.ui.testJunit4)
+    debugImplementation(libs.androidx.compose.ui.testManifest)
 
     // Material Design 3
     implementation(libs.androidx.compose.material3)
     // Android Studio Preview support
-    implementation(libs.androidx.composeUi.toolingPreview)
-    debugImplementation(libs.androidx.composeUi.tooling)
+    implementation(libs.androidx.compose.ui.toolingPreview)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     // Optional - Included automatically by material, only add when you need
     // the icons but not the material library (e.g. when using Material3 or a
     // custom design system based on Foundation)
-    implementation(libs.androidx.compose.materialIconsCore)
+    implementation(libs.androidx.compose.material.iconsCore)
     // Optional - Add full set of material icons
-    implementation(libs.androidx.compose.materialIconsExtended)
+    implementation(libs.androidx.compose.material.iconsExtended)
     // Optional - Add window size utils
-    implementation(libs.androidx.compose.material3WindowSizeClass)
+    implementation(libs.androidx.compose.material3.windowSizeClass)
     // Optional - Integration with LiveData
     implementation(libs.androidx.compose.runtime.liveData)
     // Optional - Integration with RxJava
     implementation(libs.androidx.compose.runtime.rxJava2)
 
-    implementation(libs.androidx.composeUi.core)
-    implementation(libs.androidx.composeMaterial.core)
+    implementation(libs.androidx.compose.ui.core)
+    implementation(libs.androidx.compose.material.core)
 
     implementation(libs.androidx.activityCompose)
     implementation(libs.androidx.lifecycle.runtimeKtx)
@@ -255,6 +255,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
 
     implementation(libs.coilKt.compose)
+    implementation(libs.coilKt.network)
 
     // DataStore
     implementation(libs.androidx.datastore.preferences)

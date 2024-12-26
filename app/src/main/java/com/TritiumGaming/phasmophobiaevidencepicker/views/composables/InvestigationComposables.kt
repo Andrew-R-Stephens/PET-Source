@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
+package com.tritiumgaming.phasmophobiaevidencepicker.views.composables
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -14,13 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Positive
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Negative
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Neutral
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.SelectionState.Companion.Positive
 
 @Composable
 fun RulingGroup(

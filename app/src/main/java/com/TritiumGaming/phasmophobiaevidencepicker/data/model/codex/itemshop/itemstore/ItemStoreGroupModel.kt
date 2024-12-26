@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

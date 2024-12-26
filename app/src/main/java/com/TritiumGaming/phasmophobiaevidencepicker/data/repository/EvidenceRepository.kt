@@ -1,10 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.repository
+package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
 import androidx.annotation.IntegerRes
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ResourceUtils.ResourceUtils.intArrayFromTypedArray
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ResourceUtils.ResourceUtils.intArrayFromTypedArray
 
 class EvidenceRepository(
     context: Context

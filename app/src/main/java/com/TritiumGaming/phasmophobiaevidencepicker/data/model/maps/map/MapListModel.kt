@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesFactory
 import com.google.gson.JsonSyntaxException
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesFactory
 
 class MapListModel(
     worldMapDeserializer: MapDesBlueprint

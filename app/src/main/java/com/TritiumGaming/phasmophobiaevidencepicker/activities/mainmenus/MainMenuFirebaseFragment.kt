@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus
 
 import androidx.fragment.app.activityViewModels
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.FirebaseFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.FirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
 
 abstract class MainMenuFirebaseFragment : FirebaseFragment {
 

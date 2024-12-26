@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.possessions
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.possessions
 
 import android.content.Context
 import androidx.annotation.StringRes
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreItemModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreItemModel
 
 class ItemStorePossessionItemModel : ItemStoreItemModel() {
     @StringRes

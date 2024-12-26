@@ -1,16 +1,16 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
 import android.os.Build
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForCubic
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForLine
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForCubic
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForLine
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Line2D.Companion.ptSegDistSq
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DDouble
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.QuadCurve2D.Companion.solveQuadratic
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Rectangle2D.Rectangle2DDouble
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Rectangle2D.Rectangle2DFloat
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForCubic
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForLine
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForCubic
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForLine
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Line2D.Companion.ptSegDistSq
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DDouble
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.QuadCurve2D.Companion.solveQuadratic
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Rectangle2D.Rectangle2DDouble
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Rectangle2D.Rectangle2DFloat
 import java.io.Serial
 import java.io.Serializable
 import java.util.Arrays

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map
 
 enum class FloorLayerType {
     BASEMENT, FIRST_FLOOR, SECOND_FLOOR, THIRD_FLOOR, // BETA RELEASE FLOORS

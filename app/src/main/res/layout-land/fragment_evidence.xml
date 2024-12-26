@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSectionWrapper
+    <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSectionWrapper
         android:id="@+id/layout_evidence_tool_wrapper"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/layout_sanity_tool"
         app:layout_constraintTop_toTopOf="parent"
-        tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.SanityToolComposablesKt.InvestigationToolbar" />
+        tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.SanityToolComposablesKt.InvestigationToolbar" />
 
     <!--
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,7 +58,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:padding="8dp"
-            tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.InvestigationComposablesKt.ResetButton"
+            tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.InvestigationComposablesKt.ResetButton"
             app:layout_constraintBottom_toTopOf="@+id/button_toggleEmpty"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     -->
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
+    <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
         android:id="@+id/layout_sanity_tool"
         android:layout_width="0dp"
         android:layout_height="0dp"

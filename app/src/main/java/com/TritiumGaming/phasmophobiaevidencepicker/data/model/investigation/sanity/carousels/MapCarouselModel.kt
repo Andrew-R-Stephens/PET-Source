@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.MapRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.MapRepository.MapConstraints.MODIFIER_NORMAL
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.MapRepository.MapConstraints.MODIFIER_SETUP
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository.MapConstraints.MODIFIER_NORMAL
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository.MapConstraints.MODIFIER_SETUP
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

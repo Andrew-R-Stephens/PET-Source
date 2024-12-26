@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

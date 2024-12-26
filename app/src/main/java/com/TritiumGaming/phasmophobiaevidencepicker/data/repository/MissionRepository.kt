@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.repository
+package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.missions.Mission
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ResourceUtils.ResourceUtils.intArrayFromTypedArray
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.missions.Mission
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ResourceUtils.ResourceUtils.intArrayFromTypedArray
 
 class MissionRepository(
     context: Context

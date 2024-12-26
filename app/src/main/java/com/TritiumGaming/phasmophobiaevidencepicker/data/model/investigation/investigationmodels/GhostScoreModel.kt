@@ -1,14 +1,14 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.DifficultyCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.MapCarouselModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyTitle
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.DifficultyCarouselModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.MapCarouselModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

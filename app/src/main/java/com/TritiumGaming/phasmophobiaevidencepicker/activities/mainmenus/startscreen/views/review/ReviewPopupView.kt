@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class ReviewPopupView: ConstraintLayout {
 

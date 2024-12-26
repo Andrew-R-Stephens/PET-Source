@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter
 
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +10,10 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.MessagesAdapterView
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.MessagesAdapterView
+import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class NewsMessagesFragment : MainMenuFragment() {
 

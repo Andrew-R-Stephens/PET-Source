@@ -1,18 +1,18 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.GlobalPreferencesHandler
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.LanguageHandler
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeHandler
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeHandler
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.reviews.ReviewTrackingRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.FontThemeRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.GlobalPreferencesHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.LanguageHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.reviews.ReviewTrackingRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.FontThemeRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
 import kotlinx.coroutines.launch
 
 class GlobalPreferencesViewModel(
@@ -23,60 +23,61 @@ class GlobalPreferencesViewModel(
     languageRepository: LanguageRepository
 ) : ViewModel() {
 
-
     private val globalPreferencesHandler: GlobalPreferencesHandler =
         GlobalPreferencesHandler(globalPreferencesRepository)
     private val languageHandler: LanguageHandler = LanguageHandler(languageRepository)
     val fontThemeHandler: FontThemeHandler = FontThemeHandler(fontThemeRepository)
     val colorThemeHandler: ColorThemeHandler = ColorThemeHandler(colorThemeRepository)
 
-    private val initialSetupEvent = {
-        globalPreferencesHandler.initialSetupEvent
-        languageHandler.initialSetupEvent
-        //fontThemeHandler.initialSetupEvent
-        //colorThemeHandler.initialSetupEvent
+    private fun initialSetupEvent() {
+        globalPreferencesHandler.initialSetupEvent()
+        languageHandler.initialSetupEvent()
+        fontThemeHandler.initialSetupEvent()
+        colorThemeHandler.initialSetupEvent()
     }
 
     val languageList = languageRepository.languageList
 
-    private fun init() {
-        viewModelScope.launch { initialSetupEvent }
-
+    fun init() {
         Log.d("GlobalPreferencesViewModel", "Initializing...")
+
+        initialSetupEvent()
+
         viewModelScope.launch {
-            globalPreferencesHandler.initGlobalPreferencesFlow()
+            globalPreferencesHandler.initFlow()
         }
         viewModelScope.launch {
-            fontThemeHandler.initThemeFlow()
+            languageHandler.initFlow()
         }
         viewModelScope.launch {
-            colorThemeHandler.initThemeFlow()
+            fontThemeHandler.initFlow()
         }
         viewModelScope.launch {
-            languageHandler.initLanguageFlow()
+            colorThemeHandler.initFlow()
         }
     }
 
-    val currentFontThemeID = fontThemeHandler.iD
+    val currentFontID = fontThemeHandler.iD
     private fun setCurrentFontID(fontID: String) {
         viewModelScope.launch {
             fontThemeHandler.setThemeID(fontID)
         }
     }
-    fun saveCurrentFontThemeID() {
+    fun saveCurrentFontID() {
         viewModelScope.launch {
             fontThemeHandler.saveTheme()
         }
     }
 
-    val currentColorThemeID = colorThemeHandler.iD
+    val currentColorID = colorThemeHandler.iD
     private fun setCurrentColorID(colorID: String) {
         viewModelScope.launch {
             colorThemeHandler.setThemeID(colorID)
         }
     }
-    fun saveCurrentColorThemeID() {
+    fun saveCurrentColorID() {
         viewModelScope.launch {
+            colorThemeHandler.setID()
             colorThemeHandler.saveTheme()
         }
     }

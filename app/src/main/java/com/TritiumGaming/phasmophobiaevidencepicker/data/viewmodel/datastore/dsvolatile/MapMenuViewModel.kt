@@ -1,10 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map.MapModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.MapViewerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.MapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.MapModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.MapViewerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository
 
 /**
  * MapMenuViewModel class

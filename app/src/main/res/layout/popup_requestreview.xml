@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_main_relativelayout"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupView">
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupView">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"

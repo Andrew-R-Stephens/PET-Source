@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
 import java.util.Vector
 import kotlin.math.abs

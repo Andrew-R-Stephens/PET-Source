@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity
 
 import android.content.Context
 import android.media.MediaPlayer
-import com.TritiumGaming.phasmophobiaevidencepicker.data.jobs.DeltaRunnable
+import com.tritiumgaming.phasmophobiaevidencepicker.data.jobs.DeltaRunnable
 
 /**
  * Contains references to all Views for Sanity-specific UI and updates them via Runnable.

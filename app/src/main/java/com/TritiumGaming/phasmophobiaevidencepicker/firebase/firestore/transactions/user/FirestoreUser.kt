@@ -1,13 +1,13 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user
+package com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user
 
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount
 import org.jetbrains.annotations.TestOnly
 
 class FirestoreUser {

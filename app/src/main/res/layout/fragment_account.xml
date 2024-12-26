@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+        <com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
             android:id="@+id/navHeaderLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/navHeaderLayout" />
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView
+        <com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView
             android:id="@+id/layout_account_requestlogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountDetailsView
+        <com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountDetailsView
             android:id="@+id/layout_account_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                         android:padding="8dp"
                         android:orientation="horizontal">
 
-                        <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+                        <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
                             style="?attr/quaternaryFont_Bold_Manual"
                             android:layout_width="48dp"
                             android:layout_height="match_parent"

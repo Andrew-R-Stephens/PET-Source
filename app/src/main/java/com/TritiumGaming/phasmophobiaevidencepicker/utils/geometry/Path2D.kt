@@ -1,13 +1,13 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForCubic
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForLine
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForPath
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForQuad
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForCubic
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForLine
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForPath
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForQuad
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForCubic
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForLine
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForPath
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.pointCrossingsForQuad
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForCubic
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForLine
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForPath
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.rectCrossingsForQuad
 import java.io.IOException
 import java.io.InvalidObjectException
 import java.io.ObjectInputStream

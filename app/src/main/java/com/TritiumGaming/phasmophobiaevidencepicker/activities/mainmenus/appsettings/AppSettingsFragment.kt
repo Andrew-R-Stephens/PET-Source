@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -16,21 +16,18 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeHandler
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.FontThemeHandler
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import com.google.android.gms.common.SignInButton
 import com.google.android.ump.FormError
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager
 
 class AppSettingsFragment : MainMenuFirebaseFragment() {
 
@@ -38,17 +35,21 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
     private var loadThemes = true
 
+    /*
     private var isAlwaysOnToggle: SettingsToggleItemView? = null
     private var networkToggle: SettingsToggleItemView? = null
     private var huntWarningAudioToggle: SettingsToggleItemView? = null
     private var reOrderGhostListToggle: SettingsToggleItemView? = null
     private var enableLeftHandMode: SettingsToggleItemView? = null
+    */
 
     private var seekbar: SeekBar? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.d("Fragment", "App Settings create")
         super.init()
+
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
@@ -58,6 +59,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         super.onViewCreated(view, savedInstanceState)
 
+        /*
         val navHeaderLayout = view.findViewById<NavHeaderLayout>(R.id.navHeaderLayout)
         val cancelButton = navHeaderLayout.findViewById<View>(R.id.button_left)
         val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_right)
@@ -67,6 +69,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         enableLeftHandMode = view.findViewById(R.id.toggle_leftHandMode)
         reOrderGhostListToggle = view.findViewById(R.id.toggle_reorderGhostViews)
         huntWarningAudioToggle = view.findViewById(R.id.toggle_huntwarningaudio)
+        */
 
         val accountLoginButton =
             view.findViewById<SignInButton>(R.id.settings_account_login_button)
@@ -77,17 +80,20 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             view.findViewById<AppCompatTextView?>(R.id.seekbar_huntwarningtimeout_othertext)
         seekbar = view.findViewById(R.id.settings_huntwarning_seekbar)
 
+        /*
         val colorThemeTextView =
             view.findViewById<AppCompatTextView?>(R.id.colorblindmode_selectedname)
+        */
         val fontThemeTextView = view.findViewById<AppCompatTextView?>(R.id.font_selectedname)
 
+        /*
         val colorThemePrevButton =
             view.findViewById<PETImageButton?>(R.id.colorblindmode_leftbutton)
         val colorThemeNextButton =
             view.findViewById<PETImageButton?>(R.id.colorblindmode_rightbutton)
-
-        val fontThemePrevButton = view.findViewById<PETImageButton?>(R.id.font_leftbutton)
-        val fontThemeNextButton = view.findViewById<PETImageButton?>(R.id.font_rightbutton)
+        */
+        /*val fontThemePrevButton = view.findViewById<PETImageButton?>(R.id.font_leftbutton)
+        val fontThemeNextButton = view.findViewById<PETImageButton?>(R.id.font_rightbutton)*/
 
         try { googleMobileAdsConsentManager = GoogleMobileAdsConsentManager(requireActivity()) }
         catch (e: IllegalStateException) { e.printStackTrace() }
@@ -99,6 +105,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
         // SWITCHES
 
+        /*
         // Always On Mode
         isAlwaysOnToggle?.isChecked = globalPreferencesViewModel.screenSaverPreference.value
         Log.d("Switches", "screensaver: ${globalPreferencesViewModel.screenSaverPreference.value}")
@@ -118,24 +125,59 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         // Allow Reorder Ghost Views
         reOrderGhostListToggle?.isChecked = globalPreferencesViewModel.ghostReorderPreference.value
         Log.d("Switches", "reorder: ${globalPreferencesViewModel.ghostReorderPreference.value}")
+        */
 
         view.findViewById<ComposeView>(R.id.tempSwitch)?.setContent {
-            LabeledSwitch(
+            SettingsFragment(
                 globalPreferencesViewModel,
-                "Temp!",
-                false
+                onSave = {
+                    saveAll()
+
+                    try { view.let { view -> findNavController(view).popBackStack() } }
+                    catch (e: IllegalStateException) { e.printStackTrace() }
+                },
+                onCancel = {
+                    revertDemoChanges()
+
+                    try { view.let { view -> findNavController(view).popBackStack() } }
+                    catch (e: IllegalStateException) { e.printStackTrace() }
+                }
             )
         }
 
+        /*
+        view.findViewById<ComposeView>(R.id.tempSwitch)?.setContent {
+
+            SelectiveTheme(
+                theme =
+                    LocalColorSchemes.first{
+                        it.uuid == globalPreferencesViewModel.colorThemeHandler.currentTheme.iD
+                    }.palette
+            ) {
+                LabeledSwitch(
+                    "screenSaverPreference",
+                    checked = globalPreferencesViewModel.screenSaverPreference,
+                    switchColors = SwitchDefaults.colors(
+                        uncheckedTrackColor = LocalPalette.current.switchTheme.trackInactive,
+                        checkedTrackColor = LocalPalette.current.switchTheme.trackActive,
+                        uncheckedThumbColor = LocalPalette.current.switchTheme.thumbInactive,
+                        checkedThumbColor = LocalPalette.current.switchTheme.thumbActive,
+                    ),
+                    onChange = { it -> globalPreferencesViewModel.setScreenSaverPreference(it) }
+                )
+            }
+        }
+        */
+
         // COLORBLIND DATA
-        val colorThemesData = globalPreferencesViewModel.colorThemeHandler
+        /*val colorThemesData = globalPreferencesViewModel.colorThemeHandler
         try { colorThemeTextView?.setText(colorThemesData.currentName) }
-        catch (e: Exception) { e.printStackTrace() }
+        catch (e: Exception) { e.printStackTrace() }*/
 
         // FONT-STYLE DATA
-        val fontThemesData = globalPreferencesViewModel.fontThemeHandler
+        /*val fontThemesData = globalPreferencesViewModel.fontThemeHandler
         try { fontThemeTextView?.setText(fontThemesData.currentName) }
-        catch (e: Exception) { e.printStackTrace() }
+        catch (e: Exception) { e.printStackTrace() }*/
 
         val showClockTime: (Boolean) -> Unit = { showTime: Boolean ->
             when(showTime) {
@@ -193,10 +235,12 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             } else { showClockTime(false) }
         }
 
+        /*
         // Screen Always On
         isAlwaysOnToggle?.setSwitchClickListener {
             globalPreferencesViewModel.setScreenSaverPreference(
                 isAlwaysOnToggle?.isChecked == true)
+            Log.d("Preference", "Setting! ${isAlwaysOnToggle?.isChecked == true}")
         }
         // Allow Mobile Data
         networkToggle?.setSwitchClickListener {
@@ -220,9 +264,10 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             globalPreferencesViewModel.setGhostReorderPreference(
                 reOrderGhostListToggle?.isChecked == true)
         }
+        */
 
         // COLORBLIND LISTENERS
-        colorThemePrevButton.setOnClickListener {
+        /*colorThemePrevButton.setOnClickListener {
             globalPreferencesViewModel.colorThemeHandler.let { themeControl ->
                 themeControl.iterateSelectedIndex(-1)
                 try { colorThemeTextView?.text = getString(themeControl.currentName) }
@@ -238,10 +283,10 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                 catch (e: Exception) { e.printStackTrace() }
                 demoColorStyle(themeControl)
             }
-        }
+        }*/
 
         // FONT-STYLE LISTENERS
-        fontThemePrevButton.setOnClickListener {
+        /*fontThemePrevButton.setOnClickListener {
             globalPreferencesViewModel.fontThemeHandler.let { themeControl ->
                 themeControl.iterateSelectedIndex(-1)
                 try { fontThemeTextView?.text = getString(themeControl.currentName) }
@@ -257,18 +302,18 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                 catch (e: Exception) { e.printStackTrace() }
                 demoFontStyle(themeControl)
             }
-        }
+        }*/
 
         // CANCEL BUTTON
-        cancelButton.setOnClickListener { v: View? ->
+        /*cancelButton.setOnClickListener { v: View? ->
             revertDemoChanges()
             try { v?.let { view -> findNavController(view).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
-        }
+        }*/
 
         // CONFIRM BUTTON
-        confirmButton.setOnClickListener { v: View? ->
-            /*
+        /*confirmButton.setOnClickListener { v: View? ->
+            *//*
             val params = Bundle()
             params.putString("event_type", "confirm_settings")
             globalPreferencesViewModel?.dataAsList?.let { settings ->
@@ -278,12 +323,12 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                 }
                 analytics?.logEvent("event_settings", params)
             }
-            */
-            saveStates()
+            *//*
+            saveAll()
 
             try { v?.let { view -> findNavController(view).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
-        }
+        }*/
 
         // Include a privacy setting if applicable
         if (googleMobileAdsConsentManager?.isPrivacyOptionsRequired == true) {
@@ -308,6 +353,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
 
         Log.d("AppSettingsFragment", "Finished creating")
+
     }
 
     private fun loadUserPurchaseHistory() {
@@ -348,16 +394,17 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         }
     }
 
-    private fun demoColorStyle(colorThemeHandler: ColorThemeHandler?) {
+    private fun demoColorStyle(colorThemeHandler: ColorThemeHandler) {
         globalPreferencesViewModel.let { globalPreferencesViewModel ->
             try { (requireActivity() as PETActivity).changeTheme(
-                    colorThemeHandler?.getThemeAtIndex(colorThemeHandler.selectedIndex),
+                    colorThemeHandler.getThemeAtIndex(colorThemeHandler.selectedIndex),
                     globalPreferencesViewModel.fontThemeHandler.currentTheme)
             } catch (e: IllegalStateException) { e.printStackTrace() }
             refreshFragment()
         }
     }
 
+    /*
     private fun demoFontStyle(fontThemeHandler: FontThemeHandler) {
         globalPreferencesViewModel.let { globalPreferencesViewModel ->
             try { (requireActivity() as PETActivity).changeTheme(
@@ -367,6 +414,17 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             refreshFragment()
         }
     }
+
+    private fun demoColorAndFontStyles(colorThemeHandler: ColorThemeHandler, fontThemeHandler: FontThemeHandler) {
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
+            try { (requireActivity() as PETActivity).changeTheme(
+                colorThemeHandler.getThemeAtIndex(colorThemeHandler.selectedIndex),
+                fontThemeHandler.getThemeAtIndex(fontThemeHandler.selectedIndex))
+            } catch (e: IllegalStateException) { e.printStackTrace() }
+            refreshFragment()
+        }
+    }
+    */
 
     private fun showAdsConsentForm(context: Context?) {
         // Handle changes to user consent.
@@ -378,7 +436,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    fun saveStates() {
+    fun saveAll() {
         globalPreferencesViewModel.let { globalPreferencesViewModel ->
             seekbar?.let{ seekbar ->
                 globalPreferencesViewModel.setHuntWarnTimeoutPreference(seekbar.progress.toLong())
@@ -386,7 +444,8 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
 
             globalPreferencesViewModel.fontThemeHandler.saveSelectedIndex()
             globalPreferencesViewModel.colorThemeHandler.saveSelectedIndex()
-            globalPreferencesViewModel.saveCurrentColorThemeID()
+            globalPreferencesViewModel.saveCurrentColorID()
+            globalPreferencesViewModel.saveCurrentFontID()
 
             /*try { globalPreferencesViewModel.saveAll() }
             catch (e: IllegalStateException) { e.printStackTrace() }*/
@@ -394,6 +453,22 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
             catch (e: IllegalStateException) { e.printStackTrace() }*/
 
             try {
+                val activity = (requireActivity() as PETActivity)
+
+                activity.changeTheme(
+                    globalPreferencesViewModel.colorThemeHandler.getThemeByUUID(
+                        globalPreferencesViewModel.currentColorID.value),
+                    globalPreferencesViewModel.fontThemeHandler.getThemeByUUID(
+                        globalPreferencesViewModel.currentFontID.value),
+                )
+
+                if (globalPreferencesViewModel.screenSaverPreference.value) {
+                    activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+                }
+                activity.recreate()
+            } catch (e: IllegalStateException) { e.printStackTrace() }
+
+            /*try {
                 val activity = (requireActivity() as PETActivity)
                 activity.changeTheme(
                     globalPreferencesViewModel.colorThemeHandler.currentTheme,
@@ -403,7 +478,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
                     activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
                 }
                 activity.recreate()
-            } catch (e: IllegalStateException) { e.printStackTrace() }
+            } catch (e: IllegalStateException) { e.printStackTrace() }*/
         }
     }
 
@@ -427,6 +502,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         try { buildUserDocument() }
         catch (e: Exception) { throw RuntimeException(e) }
         */
+
         loadUserPurchaseHistory()
     }
 
@@ -439,7 +515,7 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         themeControl.selectedIndex = 0
         themeControl.saveIndex(0)
 
-        globalPreferencesViewModel.saveCurrentColorThemeID()
+        globalPreferencesViewModel.saveCurrentColorID()
 
         demoColorStyle(themeControl)
 
@@ -449,4 +525,5 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
     override fun onDeleteAccountSuccess() {
         refreshFragment()
     }
+
 }

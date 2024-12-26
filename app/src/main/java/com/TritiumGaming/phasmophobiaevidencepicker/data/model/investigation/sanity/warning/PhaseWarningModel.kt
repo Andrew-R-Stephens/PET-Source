@@ -1,7 +1,7 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning
 
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

@@ -8,7 +8,7 @@
     android:background="?attr/backgroundColor"
     android:gravity="center">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+    <com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
         android:id="@+id/navigation_header_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+                <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
                     android:id="@+id/title_left"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -99,7 +99,7 @@
                     app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintWidth_percent=".5" />
 
-                <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+                <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
                     android:id="@+id/title_right"
                     android:layout_width="48dp"
                     android:layout_height="48dp"

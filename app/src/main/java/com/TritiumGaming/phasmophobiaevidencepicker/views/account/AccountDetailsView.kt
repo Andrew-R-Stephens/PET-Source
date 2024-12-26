@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.account
+package com.tritiumgaming.phasmophobiaevidencepicker.views.account
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
 import com.google.firebase.auth.FirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
 
 class AccountDetailsView : ConstraintLayout {
     constructor(context: Context) : super(context) {

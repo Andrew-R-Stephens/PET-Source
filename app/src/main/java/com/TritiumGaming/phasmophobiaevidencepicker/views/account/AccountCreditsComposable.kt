@@ -1,13 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
+package com.tritiumgaming.phasmophobiaevidencepicker.views.account
 
-import android.util.TypedValue
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,37 +16,17 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.LocalPalette
+
 
 @Composable
 @Preview
-fun AccountDetails(
-    modifier: Modifier = Modifier,
-    credits: Int = 100
-) {
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        AccountCredits()
-
-        AccountIcon()
-    }
-
-}
-
-@Composable
-@Preview
-fun AccountCredits(
+fun AccountCreditsComposable(
     modifier: Modifier = Modifier,
     credits: Int = 100
 ) {
@@ -57,18 +34,8 @@ fun AccountCredits(
         mutableIntStateOf(credits)
     }
 
-    val localContext = LocalContext.current
-    val typedValue = TypedValue()
-    localContext.theme.resolveAttribute(
-        R.attr.backgroundColorOnBackground,
-        typedValue,
-        true)
-    val backgroundColorOnBackground = Color(typedValue.data)
-    localContext.theme.resolveAttribute(
-        R.attr.textColorBodyEmphasis,
-        typedValue,
-        true)
-    val textColor = Color(typedValue.data)
+    val backgroundColorOnBackground = LocalPalette.current.surface.onColor
+    val textColor = LocalPalette.current.textFamily.emphasis
 
     Card(
         modifier = modifier
@@ -100,7 +67,7 @@ fun AccountCredits(
             )
 
             Text(
-                text = rememberCredits.value.toString(),
+                text = rememberCredits.intValue.toString(),
                 fontSize = 24.sp,
                 color = textColor,
                 maxLines = 1,

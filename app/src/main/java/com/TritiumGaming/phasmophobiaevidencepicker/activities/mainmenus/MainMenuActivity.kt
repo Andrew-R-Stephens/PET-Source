@@ -1,17 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus
 
 import android.content.IntentSender.SendIntentException
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.dataStore
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.OnboardingViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -19,6 +12,13 @@ import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
 import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.dataStore
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.OnboardingViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -59,6 +59,7 @@ class MainMenuActivity : PETActivity() {
     }
 
     override fun initViewModels() {
+        Log.d("ViewModels", "Main Menu init")
         super.initViewModels()
 
         initOnboardingViewModel()

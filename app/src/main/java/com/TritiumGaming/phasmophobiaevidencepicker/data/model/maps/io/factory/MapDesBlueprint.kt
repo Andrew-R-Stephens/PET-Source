@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory
 
 import android.util.Log
 import androidx.annotation.Keep

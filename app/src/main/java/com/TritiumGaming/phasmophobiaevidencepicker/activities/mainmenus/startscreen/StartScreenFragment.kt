@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen
 
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
@@ -14,22 +14,22 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewLauncher
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
-import com.TritiumGaming.phasmophobiaevidencepicker.views.account.AccountIconView
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DropdownClickPair
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DropdownNavigationPair
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.IconDropdownMenu
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.LanguageIcon
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewLauncher
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
+import com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountIconView
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DropdownClickPair
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DropdownNavigationPair
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.IconDropdownMenu
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.LanguageIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 import java.util.Locale
 
 class StartScreenFragment : MainMenuFragment() {

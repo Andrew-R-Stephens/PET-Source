@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map
 
 import android.os.Build
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor
 
 class FloorModel {
     private var floorId: Int = 0

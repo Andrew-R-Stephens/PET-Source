@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers
+package com.tritiumgaming.phasmophobiaevidencepicker.data.controllers
 
 import android.util.Log
 import androidx.lifecycle.liveData
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,11 +13,14 @@ class GlobalPreferencesHandler(
     private val repository: GlobalPreferencesRepository
 ) {
 
-    val initialSetupEvent = liveData {
-        emit(repository.fetchInitialPreferences())
+    fun initialSetupEvent() {
+        liveData {
+            emit(repository.fetchInitialPreferences())
+        }
     }
-    suspend fun initGlobalPreferencesFlow() {
-        repository.globalPreferencesFlow.collect { globalPreferences ->
+
+    suspend fun initFlow() {
+        repository.flow.collect { globalPreferences ->
             _disableScreensaver.update { globalPreferences.disableScreenSaver }
             _allowCellularData.update { globalPreferences.allowCellularData }
             _allowHuntWarnAudio.update { globalPreferences.allowHuntWarnAudio }

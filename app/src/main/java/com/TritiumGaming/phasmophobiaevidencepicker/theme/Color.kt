@@ -1,10 +1,6 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.theme
+package com.tritiumgaming.phasmophobiaevidencepicker.theme
 
 import androidx.compose.ui.graphics.Color
-
-fun create(hex: Long): Color {
-    return Color(hex)
-}
 
 val md_theme_light_primary = Color(0xFFBF0031)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)

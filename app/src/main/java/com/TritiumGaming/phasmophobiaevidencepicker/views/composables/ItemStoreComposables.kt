@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
+package com.tritiumgaming.phasmophobiaevidencepicker.views.composables
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreType.Companion.Equipment
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.ItemStoreType.Companion.Possession
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.ItemStoreType.Companion.Equipment
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.ItemStoreType.Companion.Possession
 
 @Composable
 @Preview

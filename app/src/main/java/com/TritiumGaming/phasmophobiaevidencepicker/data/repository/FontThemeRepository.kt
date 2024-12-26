@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.repository
+package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,15 +6,34 @@ import android.util.Log
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 
 class FontThemeRepository(
     val dataStore: DataStore<Preferences>,
     context: Context
 ) {
+
+    data class FontPreferences(
+        val fontID: String
+    )
+
+    val flow: Flow<FontPreferences> = dataStore.data
+        .catch { exception ->
+            if (exception is IOException) { emit(emptyPreferences()) }
+            else { throw exception }
+        }
+        .map { preferences ->
+            mapFontPreferences(preferences)
+        }
 
     companion object PreferencesKeys {
         lateinit var KEY_FONT_THEME: Preferences.Key<String>
@@ -67,5 +86,14 @@ class FontThemeRepository(
         }
 
         subThemesArray.recycle()
+    }
+
+    suspend fun fetchInitialPreferences() =
+        mapFontPreferences(dataStore.data.first().toPreferences())
+
+    private fun mapFontPreferences(preferences: Preferences): FontPreferences {
+        return FontPreferences(
+            preferences[KEY_FONT_THEME] ?: "0"
+        )
     }
 }

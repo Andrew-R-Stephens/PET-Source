@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.equipment
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.equipment
 
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreListModel
 
 class EquipmentStoreModel(): ItemStoreListModel() {
 

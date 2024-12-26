@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.missions.MissionsListModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.MissionRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.missions.MissionsListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MissionRepository
 
 class ObjectivesViewModel(
     missionRepository: MissionRepository

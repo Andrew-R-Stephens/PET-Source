@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.model
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.model
 
 import java.util.Date
 

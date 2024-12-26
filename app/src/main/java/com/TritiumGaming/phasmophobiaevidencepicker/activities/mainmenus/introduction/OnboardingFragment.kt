@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.introduction
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.introduction
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.leanback.app.OnboardingSupportFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class OnboardingFragment : OnboardingSupportFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

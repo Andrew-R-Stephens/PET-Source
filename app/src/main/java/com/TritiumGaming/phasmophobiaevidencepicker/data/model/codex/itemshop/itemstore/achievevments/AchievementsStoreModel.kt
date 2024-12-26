@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.achievevments
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.achievevments
 
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreListModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.model.codex.itemshop.itemstore.equipment.ItemStoreAchievementGroupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.model.codex.itemshop.itemstore.equipment.ItemStoreAchievementItemModel
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.model.codex.itemshop.itemstore.equipment.ItemStoreAchievementGroupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.model.codex.itemshop.itemstore.equipment.ItemStoreAchievementItemModel
 
 class AchievementsStoreModel : ItemStoreListModel() {
 

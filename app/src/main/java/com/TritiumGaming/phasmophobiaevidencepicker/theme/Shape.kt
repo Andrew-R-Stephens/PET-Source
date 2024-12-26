@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.theme
+package com.tritiumgaming.phasmophobiaevidencepicker.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

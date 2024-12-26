@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyConstraints.INSANITY_START
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyConstraints.MODIFIER
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyConstraints.INSANITY_START
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyConstraints.MODIFIER
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyTitle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.listeners
+package com.tritiumgaming.phasmophobiaevidencepicker.listeners
 
 import android.view.View
 

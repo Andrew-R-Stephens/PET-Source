@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views
 
 import android.content.Context
 import android.graphics.drawable.LayerDrawable
@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.res.ResourcesCompat
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class ItemStoreItemView : AppCompatImageView {
 

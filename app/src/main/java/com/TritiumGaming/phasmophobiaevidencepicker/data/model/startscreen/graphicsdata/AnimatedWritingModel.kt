@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata
 
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.AAnimatedModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.AnimationModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.AAnimatedModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.AnimationModel
 
 /**
  * GhostWritingData class

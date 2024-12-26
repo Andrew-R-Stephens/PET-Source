@@ -1,10 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables
+package com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.FirestoreMicrotransactions.Companion.microTransactionsDocument
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.FirestoreMicrotransactions.Companion.microTransactionsDocument
 
 class FirestoreMicrotransactionBillables {
 

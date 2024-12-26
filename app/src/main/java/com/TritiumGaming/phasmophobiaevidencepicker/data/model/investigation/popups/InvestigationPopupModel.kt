@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.popups
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.popups
 
 import android.content.res.Resources
 import android.content.res.TypedArray

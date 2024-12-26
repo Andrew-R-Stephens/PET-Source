@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -6,11 +6,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class ReviewLauncher {
     companion object {

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore
 
 /*
  * Copyright 2020 The Android Open Source Project
@@ -22,10 +22,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.TasksRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.UserPreferencesRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.viewmodel.TasksViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.viewmodel.TasksViewModelFactory
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.TasksRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.UserPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.viewmodel.TasksViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.viewmodel.TasksViewModelFactory
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
 

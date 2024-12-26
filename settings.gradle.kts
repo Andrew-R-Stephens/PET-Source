@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "PET-Source"
 include(":app")
+include(":app-compose")

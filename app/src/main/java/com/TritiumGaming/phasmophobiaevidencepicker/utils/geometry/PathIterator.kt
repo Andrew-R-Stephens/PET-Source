@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
 interface PathIterator {
     val windingRule: Int

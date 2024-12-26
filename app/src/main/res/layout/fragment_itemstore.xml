@@ -60,7 +60,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator
+        <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator
             android:id="@+id/item_safehouse_itemstore_paginator"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -104,7 +104,7 @@
             app:layout_constraintStart_toEndOf="@+id/item_safehouse_itemstore_paginator"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout38">
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList
+            <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList
                 android:id="@+id/item_safehouse_itemstore"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatImageView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 import com.google.android.material.card.MaterialCardView
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 
 
 class MarketBundleImageView : MaterialCardView {

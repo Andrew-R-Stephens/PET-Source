@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.subsets
+package com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming.subsets
 
 import android.util.Log
 import androidx.datastore.preferences.core.edit
-import com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming.AThemeHandler
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository.Companion.KEY_COLOR_THEME
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import androidx.lifecycle.liveData
+import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming.AThemeHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository.Companion.KEY_COLOR_THEME
+import kotlinx.coroutines.flow.update
 
 class ColorThemeHandler(
     private val repository: ColorThemeRepository
@@ -14,22 +14,21 @@ class ColorThemeHandler(
     repository.themes, repository.defaultStyle
 ) {
 
-    private val _themeFlow: Flow<String> = repository.dataStore.data
-        .map { preferences ->
-            preferences[KEY_COLOR_THEME] ?: defaultStyle.toString()
+    fun initialSetupEvent() {
+        liveData {
+            emit(repository.fetchInitialPreferences())
         }
-    suspend fun initThemeFlow() {
-        _themeFlow.collect { iD ->
-            setThemeID(iD)
-            Log.d("Theme", "Collected Theme ID: $iD")
+    }
+
+    suspend fun initFlow() {
+        repository.flow.collect { colorPreferences ->
+            _iD.update { colorPreferences.colorID }
+            Log.d("Color", "Collecting from flow:\n\tID -> ${colorPreferences.colorID}")
         }
     }
 
     fun setThemeID(iD: String) {
         setID(iD)
-        /*repository.dataStore.edit { preferences ->
-            preferences[KEY_FONT_THEME] = iD
-        }*/
     }
 
     suspend fun saveTheme() {

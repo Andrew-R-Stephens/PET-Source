@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout.MissionsCompletedButton
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout.MissionsSpinner
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel.Companion.NOT_COMPLETE
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout.MissionsCompletedButton
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout.MissionsSpinner
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel.Companion.NOT_COMPLETE
 
 class MissionsItemLayout : LinearLayout {
 

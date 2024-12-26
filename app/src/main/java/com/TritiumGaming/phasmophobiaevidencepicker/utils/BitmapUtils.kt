@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils
+package com.tritiumgaming.phasmophobiaevidencepicker.utils
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -187,17 +187,19 @@ class BitmapUtils {
     private fun addLayer(baseLayer: Bitmap?, topLayer: Bitmap, mode: PorterDuff.Mode?): Bitmap? {
         var baseLayer = baseLayer
         if (baseLayer == null && bitmapExists(topLayer)) {
-            baseLayer = Bitmap.createBitmap(
-                topLayer.width,
-                topLayer.height,
-                topLayer.config
-            )
+            topLayer.config?.let { config ->
+                baseLayer = Bitmap.createBitmap(
+                    topLayer.width,
+                    topLayer.height,
+                    config
+                )
+            }
         }
         if (baseLayer != null && !baseLayer.isRecycled) {
             val canvas = Canvas(baseLayer)
             if (bitmapExists(topLayer)) {
                 var paint: Paint? = null
-                if (mode != null) {
+                mode?.let { mode ->
                     paint = Paint()
                     paint.setXfermode(PorterDuffXfermode(mode))
                 }

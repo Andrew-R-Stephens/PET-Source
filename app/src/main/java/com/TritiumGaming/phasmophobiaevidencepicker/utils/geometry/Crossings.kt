@@ -1,7 +1,7 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.insertCubic
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.insertQuad
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.insertCubic
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Curve.Companion.insertQuad
 import java.util.Vector
 import kotlin.math.max
 import kotlin.math.min

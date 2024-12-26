@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.listeners.firestore
+package com.tritiumgaming.phasmophobiaevidencepicker.listeners.firestore
 
 abstract class OnFirestoreProcessListener {
     open fun onFailure() { }

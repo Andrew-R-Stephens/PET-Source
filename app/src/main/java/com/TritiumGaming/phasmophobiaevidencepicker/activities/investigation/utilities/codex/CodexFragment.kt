@@ -1,10 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex
 
 import android.text.Html
 import androidx.appcompat.widget.AppCompatTextView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 abstract class CodexFragment : InvestigationFragment() {
     fun stylizeLogo(ghostOSLabel: AppCompatTextView?) {

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewStub
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class InvestigationSection : ConstraintLayout {
     constructor(context: Context) :

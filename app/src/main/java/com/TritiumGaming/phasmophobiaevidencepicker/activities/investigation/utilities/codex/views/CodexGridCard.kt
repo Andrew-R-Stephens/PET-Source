@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views
 
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
 import com.google.android.material.card.MaterialCardView
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class CodexGridCard : MaterialCardView {
 

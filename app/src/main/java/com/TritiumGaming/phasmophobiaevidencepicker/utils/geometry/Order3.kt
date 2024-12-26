@@ -1,6 +1,6 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.QuadCurve2D.Companion.solveQuadratic
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.QuadCurve2D.Companion.solveQuadratic
 import java.util.Vector
 import kotlin.math.abs
 import kotlin.math.acos

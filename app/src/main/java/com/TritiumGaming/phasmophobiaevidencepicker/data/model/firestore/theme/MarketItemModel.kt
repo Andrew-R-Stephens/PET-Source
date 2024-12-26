@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.theme
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.theme
 
 abstract class MarketItemModel {
     var uuid: String? = null

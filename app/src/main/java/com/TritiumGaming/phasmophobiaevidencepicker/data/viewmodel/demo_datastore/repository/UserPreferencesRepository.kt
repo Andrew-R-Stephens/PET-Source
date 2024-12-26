@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository
 /*
  * Copyright 2020 The Android Open Source Project
  *

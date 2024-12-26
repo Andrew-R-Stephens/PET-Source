@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn
 
 import android.content.Context
 import android.graphics.Color
@@ -8,12 +8,12 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashBackground
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.FlashState
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.FlashBackground
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.FlashState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

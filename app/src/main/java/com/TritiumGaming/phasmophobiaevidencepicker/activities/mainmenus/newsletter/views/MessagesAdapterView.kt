@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.NewsAlert
 
 class MessagesAdapterView(
     private val currentInbow: NewsletterInboxModel,

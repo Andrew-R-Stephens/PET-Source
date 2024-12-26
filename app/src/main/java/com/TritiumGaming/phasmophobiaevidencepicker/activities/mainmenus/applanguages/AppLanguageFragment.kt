@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,11 +8,11 @@ import android.widget.Toast
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views.LanguagesAdapterView
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views.LanguagesAdapterView
+import com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
 
 class AppLanguageFragment : MainMenuFragment() {
 

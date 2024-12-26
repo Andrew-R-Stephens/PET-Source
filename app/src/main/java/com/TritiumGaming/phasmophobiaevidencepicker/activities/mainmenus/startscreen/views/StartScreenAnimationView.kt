@@ -1,13 +1,13 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.data.jobs.DeltaRunnable
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.AnimationModel
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.data.jobs.DeltaRunnable
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.AnimationModel
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

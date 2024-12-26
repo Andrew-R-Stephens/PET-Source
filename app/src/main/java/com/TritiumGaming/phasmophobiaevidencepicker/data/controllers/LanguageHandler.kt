@@ -1,9 +1,9 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers
+package com.tritiumgaming.phasmophobiaevidencepicker.data.controllers
 
 import android.util.Log
 import androidx.lifecycle.liveData
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -12,14 +12,16 @@ class LanguageHandler(
     private val repository: LanguageRepository
 ) {
 
-    val initialSetupEvent = liveData {
-        emit(repository.fetchInitialPreferences())
+    fun initialSetupEvent() {
+        liveData {
+            emit(repository.fetchInitialPreferences())
+        }
     }
 
     val languageList = repository.languageList
 
-    suspend fun initLanguageFlow() {
-        repository.languageFlow.collect { languagePreference ->
+    suspend fun initFlow() {
+        repository.flow.collect { languagePreference ->
             _currentLanguageCode.update { languagePreference.languageCode }
             Log.d("Language", "Collected Language Code: ${languagePreference.languageCode}")
         }

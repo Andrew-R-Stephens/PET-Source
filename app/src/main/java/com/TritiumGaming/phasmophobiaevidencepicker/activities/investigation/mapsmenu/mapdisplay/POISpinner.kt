@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay
 
 import android.content.Context
 import android.content.res.Resources.Theme
 import android.util.AttributeSet
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatSpinner
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MapMenuViewModel
 
 class POISpinner : AppCompatSpinner {
     constructor(context: Context) :

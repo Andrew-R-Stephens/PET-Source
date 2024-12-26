@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
+    <com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
         android:id="@+id/backgroundanimationView"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -41,7 +41,7 @@
 
             <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/button_settings"
-                tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
+                tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:maxWidth="48dp"
@@ -56,7 +56,7 @@
 
             <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/button_inbox"
-                tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AnimsKt.NewsAlert"
+                tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.AnimsKt.NewsAlert"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:maxWidth="48dp"
@@ -85,7 +85,7 @@
 
             <androidx.compose.ui.platform.ComposeView
                 android:id="@+id/button_info"
-                tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
+                tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:maxWidth="48dp"
@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/app_icon_sm" />
 
-            <com.TritiumGaming.phasmophobiaevidencepicker.views.global.OutlineTextView
+            <com.tritiumgaming.phasmophobiaevidencepicker.views.global.OutlineTextView
                 android:id="@+id/label_titledescription"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -222,7 +222,7 @@
                     android:id="@+id/icon_language"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    tools:composableName="com.TritiumGaming.phasmophobiaevidencepicker.views.composables.CustomImageKt.LanguageIcon"
+                    tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.CustomImageKt.LanguageIcon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 

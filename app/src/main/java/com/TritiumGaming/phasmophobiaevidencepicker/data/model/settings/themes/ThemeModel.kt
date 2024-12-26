@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes
 
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class ThemeModel(
     val iD: String?,

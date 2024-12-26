@@ -22,13 +22,13 @@
  *
  *
  */
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Path2D.Path2DDouble
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DDouble
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Path2D.Path2DDouble
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DDouble
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream

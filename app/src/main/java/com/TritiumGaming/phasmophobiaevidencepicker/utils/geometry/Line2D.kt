@@ -22,16 +22,16 @@
  *
  *
  */
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Line2D.Line2DDouble
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Line2D.Line2DFloat
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DDouble
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Rectangle2D.Rectangle2DDouble
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Rectangle2D.Rectangle2DFloat
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Line2D.Line2DDouble
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Line2D.Line2DFloat
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DDouble
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Point2D.Point2DFloat
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Rectangle2D.Rectangle2DDouble
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Rectangle2D.Rectangle2DFloat
 import java.io.Serial
 import java.io.Serializable
 import kotlin.math.sqrt

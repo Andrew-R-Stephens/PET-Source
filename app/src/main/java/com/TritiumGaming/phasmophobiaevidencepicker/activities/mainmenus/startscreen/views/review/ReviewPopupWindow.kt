@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
 
 import android.view.Gravity
 import android.view.View

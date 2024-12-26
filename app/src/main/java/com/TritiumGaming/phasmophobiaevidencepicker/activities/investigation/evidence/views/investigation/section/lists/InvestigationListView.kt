@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.ProgressBar
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.popups.InvestigationPopupModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import com.google.android.gms.ads.AdRequest
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.popups.InvestigationPopupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 
 abstract class InvestigationListView : LinearLayout {
 

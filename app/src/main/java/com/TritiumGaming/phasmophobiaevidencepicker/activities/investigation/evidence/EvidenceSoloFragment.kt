@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence
 
 import android.media.MediaPlayer
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityRunnable
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityRunnable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

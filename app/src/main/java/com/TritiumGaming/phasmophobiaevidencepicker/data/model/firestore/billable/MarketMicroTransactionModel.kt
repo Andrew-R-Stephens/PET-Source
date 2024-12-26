@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.billable
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.billable
 
 import com.android.billingclient.api.ProductDetails
 import com.android.billingclient.api.ProductDetails.OneTimePurchaseOfferDetails

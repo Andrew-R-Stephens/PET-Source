@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavigationDrawer
+    <com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavigationDrawer
         android:id="@+id/fragment_navigationdrawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

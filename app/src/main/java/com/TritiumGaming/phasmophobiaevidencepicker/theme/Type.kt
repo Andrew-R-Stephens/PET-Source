@@ -1,12 +1,13 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.theme
+package com.tritiumgaming.phasmophobiaevidencepicker.theme
 
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class Type {
 
@@ -19,9 +20,9 @@ class Type {
 
         private val DigitalDream = FontFamily(
             Font(R.font.digitaldream_regular, FontWeight.W400),
-            Font(R.font.digitaldream_narrow, FontWeight.W400),
-            Font(R.font.digitaldream_fat_narrow, FontWeight.W700),
+            Font(R.font.digitaldream_narrow, FontWeight.W400, FontStyle.Italic),
             Font(R.font.digitaldream_fat, FontWeight.W700),
+            Font(R.font.digitaldream_fat_narrow, FontWeight.W700, FontStyle.Italic),
         )
 
         private val EastSeaDokdo = FontFamily(
@@ -64,6 +65,14 @@ class Type {
             Font(R.font.norse_regular, FontWeight.W400),
             Font(R.font.norse_bold, FontWeight.W700)
         )
+
+        private val RobotoMono = FontFamily(
+            Font(R.font.roboto_mono, FontWeight.W400),
+            Font(R.font.roboto_mono, FontWeight.W500),
+            Font(R.font.roboto_mono, FontWeight.W700)
+        )
+
+        private val SerifMonospace = FontFamily.Monospace
 
         private val YggDrasil = FontFamily(
             Font(R.font.yggdrasil_regular, FontWeight.W400)
@@ -118,6 +127,14 @@ class Type {
 
         val NorseTextStyle = DefaultTextStyle.copy(
             fontFamily = Norse
+        )
+
+        val RobotoMonoTextStyle = DefaultTextStyle.copy(
+            fontFamily = RobotoMono
+        )
+
+        val TypewriterTextStyle = DefaultTextStyle.copy(
+            fontFamily = SerifMonospace
         )
 
         val YggDrasilTextStyle = DefaultTextStyle.copy(

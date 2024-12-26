@@ -1,14 +1,13 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.account
+package com.tritiumgaming.phasmophobiaevidencepicker.views.account
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.compose.ui.platform.ComposeView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.getCurrentFirebaseUserDisplayNameInitials
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.AccountIcon
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.OutlineTextView
 import com.google.android.material.card.MaterialCardView
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.getCurrentFirebaseUserDisplayNameInitials
+import com.tritiumgaming.phasmophobiaevidencepicker.views.global.OutlineTextView
 
 class AccountIconView : MaterialCardView {
     constructor(context: Context) :
@@ -43,7 +42,7 @@ class AccountIconView : MaterialCardView {
         setBackgroundColor(context.resources.getColor(R.color.transparent))
 
         val profileIcon = findViewById<ComposeView>(R.id.profile_icon)
-        profileIcon.setContent { AccountIcon() }
+        profileIcon.setContent { AccountIconComposable(FirestoreUser.currentFirebaseUser) }
 
         val user = FirestoreUser.currentFirebaseUser
         createAccountInitials(user?.displayName)

@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.global
+package com.tritiumgaming.phasmophobiaevidencepicker.views.global
 
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 open class PETImageButton : AppCompatImageButton {
     constructor(context: Context) :

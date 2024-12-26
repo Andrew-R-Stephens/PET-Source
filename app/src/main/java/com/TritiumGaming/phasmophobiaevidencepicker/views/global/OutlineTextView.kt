@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.global
+package com.tritiumgaming.phasmophobiaevidencepicker.views.global
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class OutlineTextView : AppCompatTextView {
 

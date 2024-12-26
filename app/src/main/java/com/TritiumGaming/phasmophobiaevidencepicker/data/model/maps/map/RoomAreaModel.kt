@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.map
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map
 
 import android.graphics.PointF
 import android.util.Log
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint
 
 class RoomAreaModel {
     var points = mutableListOf<PointF>()

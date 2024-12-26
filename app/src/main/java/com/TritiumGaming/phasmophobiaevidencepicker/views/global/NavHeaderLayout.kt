@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.global
+package com.tritiumgaming.phasmophobiaevidencepicker.views.global
 
 import android.content.Context
 import android.content.res.Resources.NotFoundException
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class NavHeaderLayout : ConstraintLayout {
     constructor(context: Context) :

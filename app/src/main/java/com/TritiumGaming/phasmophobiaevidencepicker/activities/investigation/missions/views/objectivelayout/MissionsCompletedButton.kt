@@ -1,11 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout
 
 import android.content.Context
 import android.util.AttributeSet
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 
 class MissionsCompletedButton : PETImageButton {

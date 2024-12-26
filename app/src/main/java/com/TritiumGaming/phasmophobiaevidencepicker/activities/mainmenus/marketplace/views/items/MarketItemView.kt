@@ -1,14 +1,14 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 import com.google.android.material.card.MaterialCardView
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.interpolate
 
 abstract class MarketItemView : MaterialCardView {
 

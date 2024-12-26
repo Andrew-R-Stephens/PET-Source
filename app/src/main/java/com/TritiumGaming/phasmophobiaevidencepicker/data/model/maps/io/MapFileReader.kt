@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.factory.MapDesBlueprint
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream

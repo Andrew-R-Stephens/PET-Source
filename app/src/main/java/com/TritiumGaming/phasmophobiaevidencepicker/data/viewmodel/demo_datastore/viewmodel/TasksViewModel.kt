@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.viewmodel
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.viewmodel
 
 /*
  * Copyright 2020 The Android Open Source Project
@@ -20,10 +20,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.model.Task
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.SortOrder
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.TasksRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.UserPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.model.Task
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.SortOrder
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.TasksRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 

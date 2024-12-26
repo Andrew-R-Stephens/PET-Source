@@ -1,12 +1,12 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.theme.theme.MarketThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.theme.theme.MarketThemeModel
 
 class MarketThemeView : MarketItemView {
 

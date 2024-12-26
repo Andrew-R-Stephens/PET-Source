@@ -1,7 +1,7 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise
+package com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.FirestoreMarketplace.Companion.storeCollection
 import com.google.firebase.firestore.DocumentReference
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.FirestoreMarketplace.Companion.storeCollection
 
 class FirestoreMerchandise {
 

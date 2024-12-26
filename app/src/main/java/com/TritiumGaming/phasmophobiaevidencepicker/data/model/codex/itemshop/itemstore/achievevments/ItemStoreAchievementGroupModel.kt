@@ -1,7 +1,7 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.model.codex.itemshop.itemstore.equipment
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.model.codex.itemshop.itemstore.equipment
 
 import androidx.annotation.IntegerRes
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreGroupModel
 
 class ItemStoreAchievementGroupModel : ItemStoreGroupModel() {
 

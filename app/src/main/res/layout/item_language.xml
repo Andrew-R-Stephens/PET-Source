@@ -6,7 +6,7 @@
     android:layout_height="48dp"
     android:orientation="horizontal">
 
-    <com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+    <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
         android:id="@+id/imageView_languageChoiceIcon"
         android:layout_width="48dp"
         android:layout_height="48dp"

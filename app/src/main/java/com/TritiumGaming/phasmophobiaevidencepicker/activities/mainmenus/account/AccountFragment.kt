@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.account
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.account
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,17 +13,17 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.DeleteAccountDialog
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.LogoutDialog
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import com.google.android.gms.common.SignInButton
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DeleteAccountDialog
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.LogoutDialog
+import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class AccountFragment : MainMenuFirebaseFragment() {
 

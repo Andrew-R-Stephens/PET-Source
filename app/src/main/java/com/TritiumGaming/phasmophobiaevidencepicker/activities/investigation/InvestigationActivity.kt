@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation
 
 import android.os.Bundle
 import android.util.Log
@@ -11,19 +11,19 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.CodexRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GhostRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.MapRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.MissionRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MapMenuViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.CodexRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MissionRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
 
 /**
  * InvestigationActivity class
@@ -105,10 +105,10 @@ open class InvestigationActivity : PETActivity() {
         recreate()
     }
 
-    private fun resetViewModels() {
+    /*private fun resetViewModels() {
         objectivesViewModel.reset()
         investigationViewModel.reset()
-    }
+    }*/
 
     fun initNavigationComponents() {
         val navHostFragment =
@@ -213,15 +213,12 @@ open class InvestigationActivity : PETActivity() {
         return false
     }
 
+    @Deprecated("Deprecated in Android")
     override fun onBackPressed() {
-        //resetViewModels()
-
         super.onBackPressed()
     }
 
     override fun finish() {
-        //resetViewModels()
-
         super.finish()
     }
 }

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils
+package com.tritiumgaming.phasmophobiaevidencepicker.utils
 
 import android.app.Activity
 import com.google.android.ump.ConsentDebugSettings

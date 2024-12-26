@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.account
+package com.tritiumgaming.phasmophobiaevidencepicker.views.account
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -8,12 +8,12 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.intToHex
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.setColor
 import com.google.firebase.auth.FirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.intToHex
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.setColor
 
 class AccountObtainCreditsView : ConstraintLayout {
 

@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen
 
 /**
  * AdnimationQueue class

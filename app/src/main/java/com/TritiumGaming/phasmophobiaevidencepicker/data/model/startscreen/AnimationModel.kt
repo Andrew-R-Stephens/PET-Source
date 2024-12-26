@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen
 
 import android.content.Context
 import android.content.res.Resources
@@ -6,13 +6,13 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.PorterDuff
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedFrostModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedHandModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedMirrorModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedOrbModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedWritingModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.BitmapUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedFrostModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedHandModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedMirrorModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedOrbModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.graphicsdata.AnimatedWritingModel
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.BitmapUtils
 
 class AnimationModel {
     

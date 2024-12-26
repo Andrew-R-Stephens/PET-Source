@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.controller
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.controller
 
 import android.content.Context
 import android.os.Build
@@ -7,7 +7,7 @@ import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatSeekBar
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -29,8 +29,8 @@ class SanitySeekBarView : AppCompatSeekBar {
         setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
-                    investigationViewModel.sanityModel?.progressToStartTime(progress.toFloat())
-                    investigationViewModel.sanityModel?.tick()
+                    investigationViewModel.sanityModel.progressToStartTime(progress.toFloat())
+                    investigationViewModel.sanityModel.tick()
                 }
                 onProgressChangedListener?.onChange()
             }

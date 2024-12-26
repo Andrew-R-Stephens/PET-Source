@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.navigation.Navigation.findNavController
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.NewsletterInboxView
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.NewsletterInboxView
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class NewsInboxesFragment : MainMenuFragment() {
     override fun onCreateView(

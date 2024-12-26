@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:parentTag="com.TritiumGaming.phasmophobiaevidencepicker.views.global.NavigationBar"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavigationBar"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <com.google.android.material.navigationrail.NavigationRailView

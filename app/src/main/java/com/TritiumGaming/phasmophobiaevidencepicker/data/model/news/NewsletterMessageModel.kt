@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.news
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.news
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel.Companion.formatFromEpoch
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel.Companion.formatToEpoch
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel.Companion.formatFromEpoch
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel.Companion.formatToEpoch
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.FontUtils
 
 class NewsletterMessageModel(title: String, description: String, date: String) {
 

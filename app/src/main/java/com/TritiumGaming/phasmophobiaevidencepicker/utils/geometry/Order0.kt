@@ -22,7 +22,7 @@
  *
  *
  */
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
 /**
  * @noinspection CanBeFinal, CanBeFinal

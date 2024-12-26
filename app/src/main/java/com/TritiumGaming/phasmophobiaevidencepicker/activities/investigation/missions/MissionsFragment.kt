@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -13,11 +13,11 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation.findNavController
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
-import com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsItemLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsItemLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 /**
  * ObjectivesFragment class

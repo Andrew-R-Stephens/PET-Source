@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.views.composables
+package com.tritiumgaming.phasmophobiaevidencepicker.views.composables
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -19,13 +19,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.EquipmentTierItemStyle.Companion.Bordered
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.EquipmentTierItemStyle.Companion.Plain
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.TierLevel.Companion.One
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.TierLevel.Companion.Three
-import com.TritiumGaming.phasmophobiaevidencepicker.views.composables.TierLevel.Companion.Two
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.EquipmentTierItemStyle.Companion.Bordered
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.EquipmentTierItemStyle.Companion.Plain
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.TierLevel.Companion.One
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.TierLevel.Companion.Three
+import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.TierLevel.Companion.Two
 
 @Composable
 fun EquipmentSimple(

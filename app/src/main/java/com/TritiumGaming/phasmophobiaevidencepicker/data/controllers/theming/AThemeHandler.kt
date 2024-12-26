@@ -1,10 +1,11 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.controllers.theming
+package com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming
 
 import android.util.Log
 import androidx.annotation.StyleRes
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 abstract class AThemeHandler(
     protected var themes: ArrayList<ThemeModel> = ArrayList(),
@@ -37,13 +38,20 @@ abstract class AThemeHandler(
             return theme
         }
 
+    val savedTheme: ThemeModel
+        get() = getThemeAtIndex(savedIndex)
+
     val currentName: Int
         get() = currentTheme.name
 
-    private val _iD : MutableStateFlow<String> = MutableStateFlow("0")
+    protected val _iD : MutableStateFlow<String> = MutableStateFlow("0")
     val iD = _iD.asStateFlow()
     fun setID(iD: String) {
-        _iD.value = iD
+        _iD.update { iD }
+        Log.d("Theme", this.iD.value)
+    }
+    fun setID() {
+        _iD.update { getThemeAtIndex(savedIndex).iD ?: "" }
         Log.d("Theme", this.iD.value)
     }
 

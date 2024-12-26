@@ -1,8 +1,8 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.theme.theme
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.theme.theme
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.firestore.theme.MarketItemModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel.Companion.defaultTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.theme.MarketItemModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel.Companion.defaultTheme
 
 class MarketThemeModel : MarketItemModel {
 

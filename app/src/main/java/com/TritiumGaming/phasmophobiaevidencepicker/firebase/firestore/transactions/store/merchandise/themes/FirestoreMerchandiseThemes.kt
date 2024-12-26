@@ -1,10 +1,10 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes
+package com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes
 
-import com.TritiumGaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.FirestoreMerchandise.Companion.merchandiseDocument
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.FirestoreMerchandise.Companion.merchandiseDocument
 
 class FirestoreMerchandiseThemes {
 

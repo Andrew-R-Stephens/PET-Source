@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups
 
 import android.content.Context
 import android.content.res.Configuration
@@ -12,15 +12,15 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.GhostPopupRepository
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostPopupRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
+import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import kotlin.math.min
 
 class GhostPopupWindow : InvestigationPopupWindow {

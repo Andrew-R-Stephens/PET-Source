@@ -1,6 +1,6 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.news
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.news
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale

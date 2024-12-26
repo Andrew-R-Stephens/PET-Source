@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout
 
 import android.content.Context
 import android.content.res.Resources.Theme
@@ -7,10 +7,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatSpinner
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.missions.Mission
-import com.TritiumGaming.phasmophobiaevidencepicker.data.model.missions.MissionsListModel
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.missions.Mission
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.missions.MissionsListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
 
 class MissionsSpinner : AppCompatSpinner {
 

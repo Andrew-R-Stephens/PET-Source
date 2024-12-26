@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views
+package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.TritiumGaming.phasmophobiaevidencepicker.R
-import com.TritiumGaming.phasmophobiaevidencepicker.data.repository.LanguageRepository.LanguageObject
-import com.TritiumGaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository.LanguageObject
+import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class LanguagesAdapterView(
     languages: ArrayList<LanguageObject>, selected: Int,

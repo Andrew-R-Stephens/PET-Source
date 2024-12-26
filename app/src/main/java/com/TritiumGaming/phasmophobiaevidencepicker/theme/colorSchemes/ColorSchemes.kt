@@ -1,145 +1,223 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.theme.colorSchemes
+package com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.black
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.black_A75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.black_M50
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M125
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M150
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M175
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M175_A75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M200
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M200_A58
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M250
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M650
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M750
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M850
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M90
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M900
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.blue_M950
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.create
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M150
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M150_A10
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M150_A58
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M150_A75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M25
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M525
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M550
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M650
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M825
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M850
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M875
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.green_M950
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_background
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_error
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_errorContainer
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_inverseOnSurface
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_inversePrimary
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_inverseSurface
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onBackground
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onError
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onErrorContainer
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onPrimary
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onPrimaryContainer
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onSecondary
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onSecondaryContainer
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onSurface
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onSurfaceVariant
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onTertiary
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_onTertiaryContainer
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_outline
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_primary
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_primaryContainer
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_secondary
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_secondaryContainer
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_surface
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_surfaceTint
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_surfaceVariant
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_tertiary
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.md_theme_dark_tertiaryContainer
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M05
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M10
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M150
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M20
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M250
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M300
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M300_A58
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M300_A75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M400
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M50
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M500
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M50_A40
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M510
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M525
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M85
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M900
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.orange_M950
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_A10
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M150
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M250
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M300
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M300_A58
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M300_A75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M450
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M475
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M500
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M50_A40
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M525
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M550
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M825
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M850
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M875
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M900
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.purple_M950
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_A40
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_A75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M150
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M225
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M250
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M300
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M300_A58
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M300_A75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M350
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M375
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M500
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M850
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.red_M950
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_A58
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_A75
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M10
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M100
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M20
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M200
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M25
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M300
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M400
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M50
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M500
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M600
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M750
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.white_M850
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.yellow
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.yellow_A10
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.yellow_A40
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.yellow_M100
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.yellow_M25
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.yellow_M300
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.yellow_M500
-import com.TritiumGaming.phasmophobiaevidencepicker.theme.yellow_M50_A10
+import com.google.android.material.elevation.SurfaceColors
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_10_commissioner
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_1_recruit
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_2_investigator
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_3_pvtinvestigator
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_4_detective
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_5_technician
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_6_specialist
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_7_analyst
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_8_agent
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_9_operator
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_artist
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_cc
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_default
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_dev
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_discord
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_easter
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_halloween23
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_holiday22
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_holiday23
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_strategemhero
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_translator
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.badge_winner
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.black
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.black_A75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.black_M50
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M125
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M150
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M175
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M175_A75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M200
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M200_A58
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M250
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M650
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M750
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M850
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M90
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M900
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.blue_M950
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M150
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M150_A10
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M150_A58
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M150_A75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M25
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M525
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M550
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M650
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M825
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M850
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M875
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.green_M950
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_background
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_error
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_errorContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_inverseOnSurface
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_inversePrimary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_inverseSurface
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onBackground
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onError
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onErrorContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onPrimary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onPrimaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onSecondary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onSecondaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onSurface
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onSurfaceVariant
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onTertiary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_onTertiaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_outline
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_primary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_primaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_secondary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_secondaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_surface
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_surfaceTint
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_surfaceVariant
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_tertiary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_dark_tertiaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_background
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_error
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_errorContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_inverseOnSurface
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_inversePrimary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_inverseSurface
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onBackground
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onError
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onErrorContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onPrimary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onPrimaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onSecondary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onSecondaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onSurface
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onSurfaceVariant
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onTertiary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_onTertiaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_outline
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_primary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_primaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_secondary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_secondaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_surface
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_surfaceTint
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_surfaceVariant
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_tertiary
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.md_theme_light_tertiaryContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M05
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M10
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M150
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M20
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M250
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M300
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M300_A58
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M300_A75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M400
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M50
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M500
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M50_A40
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M510
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M525
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M85
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M900
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.orange_M950
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_A10
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M150
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M250
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M300
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M300_A58
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M300_A75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M450
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M475
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M500
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M50_A40
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M525
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M550
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M825
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M850
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M875
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M900
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.purple_M950
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_A40
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_A75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M150
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M225
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M250
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M300
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M300_A58
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M300_A75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M350
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M375
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M500
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M850
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M950
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_10_commissioner
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_1_recruit
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_2_investigator
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_3_pvtinvestigator
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_4_detective
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_5_technician
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_6_specialist
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_7_analyst
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_8_agent
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_9_operator
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_artist
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_cc
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_default
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_deuteranomaly
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_dev
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_discord
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_easter
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_halloween23
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_holiday22
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_holiday23
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_monochromacy
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_protanomaly
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_strategemhero
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_translator
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_tritanomaly
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_whiteboard
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.title_winner
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_A58
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_A75
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M10
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M100
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M20
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M200
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M25
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M300
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M400
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M50
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M500
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M600
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M750
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.white_M850
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_A10
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_A40
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M100
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M25
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M300
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M500
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M50_A10
 
-val DefaultLightColors = lightColorScheme(/*
+val DefaultLightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
     primaryContainer = md_theme_light_primaryContainer,
@@ -166,7 +244,7 @@ val DefaultLightColors = lightColorScheme(/*
     inverseOnSurface = md_theme_light_inverseOnSurface,
     inverseSurface = md_theme_light_inverseSurface,
     inversePrimary = md_theme_light_inversePrimary,
-    surfaceTint = md_theme_light_surfaceTint*/
+    surfaceTint = md_theme_light_surfaceTint
 )
 
 val DefaultDarkColors = darkColorScheme(
@@ -203,5702 +281,3854 @@ private val ExtendedDefaultLight = ExtendedColorScheme()
 // private val ExtendedDefaultDark = ExtendedColorScheme()
 
 private val PET_Base = ExtendedDefaultLight.copy(
-    foregroundColor = ColorFamily(
-        color = white
+
+    extrasFamily = ExtrasFamily(
+        title = title_default,
+        badge = badge_default,
+        isLightMode = false
     ),
-    middlegroundColor = ColorFamily(
-        color = white_M400
+
+    coreFamily = CoreColorFamily(
+        primary = red_M350,
+        color_1 = white,
+        color_2 = white,
+        color_3 = white,
+        color_4 = white,
+        color_5 = white,
+        color_6 = white,
+        color_7 = white,
+        color_8 = white,
     ),
-    backgroundColor = ColorFamily(
+
+    codexFamily = CodexColorFamily(
+        codex1 = Color(0xFF161C1C),
+        codex2 = Color(0xFF151B1B),
+        codex3 = Color(0xFF99AEB3),
+        codex4 = Color(0xFFFFB43D),
+        codex5 = Color(0xFF2D3635),
+        codex6_gridBackground = Color(0x40161C1C),
+        codex7_gridStroke = Color(0x40FFFFFF),
+    ),
+
+    background = M3ColorFamily(
         color = black
     ),
-    backgroundColorOnBackground = ColorFamily(
-        color = create(0xFF191616)
+    surface = M3ColorFamily(
+        color = black,
+        onColor = Color(0xFF191616),
     ),
-    windowBackgroundColor = ColorFamily(
-        color = black
+
+    switchTheme = SwitchColorFamily(
+        trackInactive = Color(0xFF191616),
+        trackActive = red_M300,
+        thumbInactive = red_M300, // white_M200,
+        thumbActive = Color(0xFF191616)
     ),
-    windowStrokeColor = ColorFamily(
-        color = white
+
+    textFamily = TextColorFamily(
+        primary = red_M250,
+        secondary = red_M300,
+        tertiary = red_M350,
+        body = white,
+        emphasis = red_M250,
     ),
-    navigationFooterIconAlt = ColorFamily(
-        color = white_M200
-    ),
-    theme_colorPrimary = ColorFamily(
-        color = red_M350
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = white
-    ),
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = black_A75
-    ),
-    splashTextColor = ColorFamily(
-        color = red_M350
-    ),
-    textColorPrimary = ColorFamily(
-        color = red_M250
-    ),
-    textColorSecondary = ColorFamily(
-        color = red_M300
-    ),
-    textColorTertiary = ColorFamily(
-        color = red_M350
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = red_M250
-    ),
-    light_active = ColorFamily(
-        color = red
-    ),
-    light_inactive = ColorFamily(
-        color = red_A40
-    ),
-    light_off = ColorFamily(
-        color = white_M600
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = white
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = red
-    ),
-    sanityHeadSkullColor = ColorFamily(
-        color = black
-    ),
-    sanityBorderColor = ColorFamily(
-        color = white
-    ),
-    progressBarColorStart = ColorFamily(
-        color = red_M350
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = red_M350
-    ),
-    progressBarColorThumbGradientStart = ColorFamily(
-        color = white
-    ),
-    progressBarColorThumbGradientEnd = ColorFamily(
-        color = black
-    ),
-    progressBarColorThumbOutline = ColorFamily(
-        color = create(0xFFCCCCCC)
-    ),
-    switchColorOn = ColorFamily(
-        color = red_M300
-    ),
-    switchColorOff = ColorFamily(
-        color = white_M200
-    ),
-    inboxNotification = ColorFamily(
-        color = red_M300
-    ),
-    selectedColor = ColorFamily(
-        color = red
-    ),
-    selectedColor2 = ColorFamily(
-        color = red_A40
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    strikethroughColor = ColorFamily(
-        color = red_M300
-    ),
-    circleColor = ColorFamily(
-        color = green
-    ),
-    positiveSelColor = ColorFamily(
-        color = green
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M100
-    ),
-    negativeSelColor = ColorFamily(
-        color = red_M350
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = red_M300_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = red_M300_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_A10
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = white
-    ),
-    codex1 = ColorFamily(
-        color = create(0xFF161C1C)
-    ),
-    codex2 = ColorFamily(
-        color = create(0xFF151B1B)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xFF99AEB3)
-    ),
-    codex4 = ColorFamily(
-        color = create(0xFFFFB43D)
-    ),
-    codex5 = ColorFamily(
-        color = create(0xFF2D3635)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40161C1C)
-    ),
-    codex7_gridStroke = ColorFamily(
-        color = create(0x40FFFFFF)
-    ),
+
+    //foregroundColor = white,
+    //middlegroundColor = white_M400,
+    windowBackgroundColor = black,
+    windowStrokeColor = white,
+    navigationFooterIconAlt = white_M200,
+    backgroundColor_mapviewOverlay = black_A75,
+    splashTextColor = red_M350,
+    light_active = red,
+    light_inactive = red_A40,
+    light_off = white_M600,
+    sanityPieStartColor = white,
+    sanityPieEndColor = red,
+    sanityHeadSkullColor = black,
+    sanityBorderColor = white,
+
+    progressBarColorStart = red_M350,
+    progressBarColorEnd = red_M350,
+    progressBarColorThumbGradientStart = white,
+    progressBarColorThumbGradientEnd = black,
+    progressBarColorThumbOutline = Color(0xFFCCCCCC),
+
+    inboxNotification = red_M300,
+    selectedColor = red,
+    selectedColor2 = red_A40,
+    unselectedColor = white_M600,
+    strikethroughColor = red_M300,
+    circleColor = green,
+    positiveSelColor = green,
+    neutralSelColor = white_M100,
+    negativeSelColor = red_M350,
+    mapPoiFillColor = red_M300_A75,
+    mapRoomBorderColor = red_M300_A58,
+    mapRoomFillColor = yellow_A10,
+    buttonFilterOnPrimary = white,
 )
 
-private val Colorblind = PET_Base.copy()
+private val Colorblind = PET_Base.copy(
+    extrasFamily = PET_Base.extrasFamily.copy(),
+    themeFamily = PET_Base.themeFamily.copy(),
+    coreFamily = PET_Base.coreFamily.copy(),
+    primary = PET_Base.primary.copy(),
+    secondary = PET_Base.secondary.copy(),
+    tertiary = PET_Base.tertiary.copy(),
+    surface = PET_Base.surface.copy(),
+    codexFamily = PET_Base.codexFamily.copy(),
+    switchTheme = PET_Base.switchTheme.copy(),
+    textFamily = PET_Base.textFamily.copy(),
+)
 
-val Non_Colorblind = Colorblind.copy()
+val Non_Colorblind = Colorblind.copy(
+    extrasFamily = Colorblind.extrasFamily.copy(),
+    themeFamily = Colorblind.themeFamily.copy(),
+    coreFamily = Colorblind.coreFamily.copy(),
+    primary = Colorblind.primary.copy(),
+    secondary = Colorblind.secondary.copy(),
+    tertiary = Colorblind.tertiary.copy(),
+    surface = Colorblind.surface.copy(),
+    codexFamily = Colorblind.codexFamily.copy(),
+    switchTheme = Colorblind.switchTheme.copy(),
+    textFamily = Colorblind.textFamily.copy(),
+)
+
+private val Skin = Non_Colorblind.copy(
+    extrasFamily = Non_Colorblind.extrasFamily.copy(),
+    themeFamily = Non_Colorblind.themeFamily.copy(),
+    coreFamily = Non_Colorblind.coreFamily.copy(),
+    primary = Non_Colorblind.primary.copy(),
+    secondary = Non_Colorblind.secondary.copy(),
+    tertiary = Non_Colorblind.tertiary.copy(),
+    surface = Non_Colorblind.surface.copy(),
+    codexFamily = Non_Colorblind.codexFamily.copy(),
+    switchTheme = Non_Colorblind.switchTheme.copy(),
+    textFamily = Non_Colorblind.textFamily.copy()
+)
+
+private val Prestige = Skin.copy(
+    extrasFamily = Skin.extrasFamily.copy(),
+    themeFamily = Skin.themeFamily.copy(),
+    coreFamily = Skin.coreFamily.copy(),
+    primary = Skin.primary.copy(),
+    secondary = Skin.secondary.copy(),
+    tertiary = Skin.tertiary.copy(),
+    surface = Skin.surface.copy(),
+    codexFamily = Skin.codexFamily.copy(),
+    switchTheme = Skin.switchTheme.copy(),
+    textFamily = Skin.textFamily.copy()
+)
+private val Event = Skin.copy(
+    extrasFamily = Skin.extrasFamily.copy(),
+    themeFamily = Skin.themeFamily.copy(),
+    coreFamily = Skin.coreFamily.copy(),
+    primary = Skin.primary.copy(),
+    secondary = Skin.secondary.copy(),
+    tertiary = Skin.tertiary.copy(),
+    surface = Skin.surface.copy(),
+    codexFamily = Skin.codexFamily.copy(),
+    switchTheme = Skin.switchTheme.copy(),
+    textFamily = Skin.textFamily.copy()
+)
+private val Community = Skin.copy(
+    extrasFamily = Skin.extrasFamily.copy(),
+    themeFamily = Skin.themeFamily.copy(),
+    coreFamily = Skin.coreFamily.copy(),
+    primary = Skin.primary.copy(),
+    secondary = Skin.secondary.copy(),
+    tertiary = Skin.tertiary.copy(),
+    surface = Skin.surface.copy(),
+    codexFamily = Skin.codexFamily.copy(),
+    switchTheme = Skin.switchTheme.copy(),
+    textFamily = Skin.textFamily.copy()
+)
+private val Special = Skin.copy(
+    extrasFamily = Skin.extrasFamily.copy(),
+    themeFamily = Skin.themeFamily.copy(),
+    coreFamily = Skin.coreFamily.copy(),
+    primary = Skin.primary.copy(),
+    secondary = Skin.secondary.copy(),
+    tertiary = Skin.tertiary.copy(),
+    surface = Skin.surface.copy(),
+    codexFamily = Skin.codexFamily.copy(),
+    switchTheme = Skin.switchTheme.copy(),
+    textFamily = Skin.textFamily.copy()
+)
 
 val Monochromacy = Colorblind.copy(
-    textColorPrimary = ColorFamily(
-        color = white
+
+    extrasFamily = Colorblind.extrasFamily.copy(
+        title = title_monochromacy
     ),
-    textColorSecondary = ColorFamily(
-        color = white
+
+    themeFamily = PET_Base.themeFamily.copy(),
+    primary = PET_Base.primary.copy(),
+    secondary = PET_Base.secondary.copy(),
+    tertiary = PET_Base.tertiary.copy(),
+    background = PET_Base.background.copy(),
+    surface = PET_Base.surface.copy(),
+    codexFamily = PET_Base.codexFamily.copy(),
+
+    coreFamily = Colorblind.coreFamily.copy(
+        primary = white_M100
     ),
-    textColorTertiary = ColorFamily(
-        color = white
+
+    textFamily = Colorblind.textFamily.copy(
+        primary = white,
+        secondary = white,
+        tertiary = white,
+        body = white,
+        emphasis = white,
     ),
-    textColorBody = ColorFamily(
-        color = white
+
+    switchTheme = Colorblind.switchTheme.copy(
+        thumbActive = black,
+        trackActive = white_M100,
+        thumbInactive = white_M100,
+        trackInactive = black
     ),
-    textColorBodyEmphasis = ColorFamily(
-        color = white
-    ),
-    light_active = ColorFamily(
-        color = white
-    ),
-    light_inactive = ColorFamily(
-        color = white_M400
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = white
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = white_M500
-    ),
-    progressBarColorStart = ColorFamily(
-        color = white_M500
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = white_M300
-    ),
-    switchColorOn = ColorFamily(
-        color = white_M100
-    ),
-    inboxNotification = ColorFamily(
-        color = white_M600
-    ),
-    strikethroughColor = ColorFamily(
-        color = white_M100
-    ),
-    circleColor = ColorFamily(
-        color = white
-    ),
-    selectedColor = ColorFamily(
-        color = white_M100
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = white
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M400
-    ),
-    negativeSelColor = ColorFamily(
-        color = white_M600
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = white_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = white_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_M50_A10
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = white_M200
-    ),
-    splashTextColor = ColorFamily(
-        color = white_M200
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = white
-    ),
-    theme_colorPrimary = ColorFamily(
-        white_M100
-    )
+
+    light_active = white,
+    light_inactive = white_M400,
+    sanityPieStartColor = white,
+    sanityPieEndColor = white_M500,
+    progressBarColorStart = white_M500,
+    progressBarColorEnd = white_M300,
+
+    inboxNotification = white_M600,
+    strikethroughColor = white_M100,
+    circleColor = white,
+    selectedColor = white_M100,
+    unselectedColor = white_M600,
+    positiveSelColor = white,
+    neutralSelColor = white_M400,
+    negativeSelColor = white_M600,
+    mapPoiFillColor = white_A75,
+    mapRoomBorderColor = white_A58,
+    mapRoomFillColor = yellow_M50_A10,
+    navigationFooterIconAlt = white_M200,
+    splashTextColor = white_M200,
+    buttonFilterOnPrimary = white,
 )
 
 val Deuteranomaly = Colorblind.copy(
-    textColorPrimary = ColorFamily(
-        color = blue_M175
+    extrasFamily = Colorblind.extrasFamily.copy(
+        title = title_deuteranomaly
     ),
-    textColorSecondary = ColorFamily(
-        color = blue_M200
+
+    themeFamily = PET_Base.themeFamily.copy(),
+    coreFamily = PET_Base.coreFamily.copy(
+        primary =  blue_M175
     ),
-    textColorTertiary = ColorFamily(
-        color = blue_M250
+    primary = PET_Base.primary.copy(),
+    secondary = PET_Base.secondary.copy(),
+    tertiary = PET_Base.tertiary.copy(),
+    background = PET_Base.background.copy(),
+    surface = PET_Base.surface.copy(),
+    codexFamily = PET_Base.codexFamily.copy(),
+    switchTheme = SwitchColorFamily(
+        thumbActive = black,
+        trackActive = blue_M175,
+        thumbInactive = blue_M175,
+        trackInactive = black
     ),
-    textColorBody = ColorFamily(
-        color = white
+    textFamily = PET_Base.textFamily.copy(
+        primary = blue_M175,
+        secondary = blue_M200,
+        tertiary = blue_M250,
+        body = white,
+        emphasis = blue_M175,
     ),
-    textColorBodyEmphasis = ColorFamily(
-        color = blue_M175
-    ),
-    light_active = ColorFamily(
-        color = yellow
-    ),
-    light_inactive = ColorFamily(
-        color = yellow_A40
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = white
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = yellow
-    ),
-    progressBarColorStart = ColorFamily(
-        color = yellow_M500
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = yellow_M300
-    ),
-    switchColorOn = ColorFamily(
-        color = yellow_M100
-    ),
-    inboxNotification = ColorFamily(
-        color = blue_M650
-    ),
-    strikethroughColor = ColorFamily(
-        color = blue_M175
-    ),
-    circleColor = ColorFamily(
-        color = yellow
-    ),
-    selectedColor = ColorFamily(
-        color = yellow
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = yellow
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M400
-    ),
-    negativeSelColor = ColorFamily(
-        color = blue_M650
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = blue_M175_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = blue_M200_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_A10
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = yellow_M100
-    ),
-    splashTextColor = ColorFamily(
-        color = white_M200
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = white
-    ),
-    theme_colorPrimary = ColorFamily(
-        blue_M175
-    )
+
+    light_active = yellow,
+    light_inactive = yellow_A40,
+    sanityPieStartColor = white,
+    sanityPieEndColor = yellow,
+    progressBarColorStart = yellow_M500,
+    progressBarColorEnd = yellow_M300,
+
+    inboxNotification = blue_M650,
+    strikethroughColor = blue_M175,
+    circleColor = yellow,
+    selectedColor = yellow,
+    unselectedColor = white_M600,
+    positiveSelColor = yellow,
+    neutralSelColor = white_M400,
+    negativeSelColor = blue_M650,
+    mapPoiFillColor = blue_M175_A75,
+    mapRoomBorderColor = blue_M200_A58,
+    mapRoomFillColor = yellow_A10,
+    navigationFooterIconAlt = yellow_M100,
+    splashTextColor = white_M200,
+    buttonFilterOnPrimary = white,
 )
 
 val Protanomaly = Colorblind.copy(
-    textColorPrimary = ColorFamily(
-        color = blue_M175
+    extrasFamily = Colorblind.extrasFamily.copy(
+        title = title_protanomaly
     ),
-    textColorSecondary = ColorFamily(
-        color = blue_M200
+
+    themeFamily = PET_Base.themeFamily.copy(),
+    coreFamily = PET_Base.coreFamily.copy(
+        primary = blue_M175
     ),
-    textColorTertiary = ColorFamily(
-        color = blue_M250
+    primary = PET_Base.primary.copy(),
+    secondary = PET_Base.secondary.copy(),
+    tertiary = PET_Base.tertiary.copy(),
+    background = PET_Base.background.copy(),
+    surface = PET_Base.surface.copy(),
+    codexFamily = PET_Base.codexFamily.copy(),
+    switchTheme = PET_Base.switchTheme.copy(
+        trackActive = blue_M175,
+        trackInactive = black,
+        thumbActive = black,
+        thumbInactive = blue_M175,
     ),
-    textColorBody = ColorFamily(
-        color = white
+    textFamily = PET_Base.textFamily.copy(
+        primary = blue_M175,
+        secondary = blue_M200,
+        tertiary = blue_M250,
+        body = white,
+        emphasis = blue_M175,
     ),
-    textColorBodyEmphasis = ColorFamily(
-        color = blue_M175
-    ),
-    light_active = ColorFamily(
-        color = yellow
-    ),
-    light_inactive = ColorFamily(
-        color = yellow_A40
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = white
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = yellow
-    ),
-    progressBarColorStart = ColorFamily(
-        color = yellow_M500
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = yellow_M300
-    ),
-    switchColorOn = ColorFamily(
-        color = yellow_M100
-    ),
-    inboxNotification = ColorFamily(
-        color = blue_M650
-    ),
-    strikethroughColor = ColorFamily(
-        color = blue_M175
-    ),
-    circleColor = ColorFamily(
-        color = yellow
-    ),
-    selectedColor = ColorFamily(
-        color = yellow
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = yellow
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M400
-    ),
-    negativeSelColor = ColorFamily(
-        color = blue_M650
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = blue_M175_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = blue_M200_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_A10
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = yellow_M100
-    ),
-    splashTextColor = ColorFamily(
-        color = yellow_M100
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = white
-    ),
-    theme_colorPrimary = ColorFamily(
-        blue_M175
-    )
+    
+    light_active = yellow,
+    light_inactive = yellow_A40,
+    sanityPieStartColor = white,
+    sanityPieEndColor = yellow,
+    progressBarColorStart = yellow_M500,
+    progressBarColorEnd = yellow_M300,
+
+    inboxNotification = blue_M650,
+    strikethroughColor = blue_M175,
+    circleColor = yellow,
+    selectedColor = yellow,
+    unselectedColor = white_M600,
+    positiveSelColor = yellow,
+    neutralSelColor = white_M400,
+    negativeSelColor = blue_M650,
+    mapPoiFillColor = blue_M175_A75,
+    mapRoomBorderColor = blue_M200_A58,
+    mapRoomFillColor = yellow_A10,
+    navigationFooterIconAlt = yellow_M100,
+    splashTextColor = yellow_M100,
+    buttonFilterOnPrimary = white,
 )
 
 val Tritanomaly = Colorblind.copy(
-    sanityPieStartColor = ColorFamily(
-        color = white
+    extrasFamily = Colorblind.extrasFamily.copy(
+        title = title_tritanomaly
     ),
-    sanityPieEndColor = ColorFamily(
-        color = red
+
+    themeFamily = PET_Base.themeFamily.copy(),
+    coreFamily = PET_Base.coreFamily.copy(
+        primary = red
     ),
-    progressBarColorStart = ColorFamily(
-        color = red_M500
+
+    primary = PET_Base.primary.copy(),
+    secondary = PET_Base.secondary.copy(),
+    tertiary = PET_Base.tertiary.copy(),
+    background = PET_Base.background.copy(),
+    surface = PET_Base.surface.copy(),
+    codexFamily = PET_Base.codexFamily.copy(),
+    switchTheme = PET_Base.switchTheme.copy(
+        trackInactive = black,
+        thumbInactive = red,
+        thumbActive = black,
+        trackActive = red,
     ),
-    progressBarColorEnd = ColorFamily(
-        color = red_M300
-    ),
-    switchColorOn = ColorFamily(
-        color = red
-    ),
-    circleColor = ColorFamily(
-        color = green
-    ),
-    neutralSelColor = ColorFamily(
-        color = white
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = red_A75
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = white
-    ),
-    theme_colorPrimary = ColorFamily(
-        red
-    )
+    textFamily = PET_Base.textFamily.copy(),
+
+    sanityPieStartColor = white,
+    sanityPieEndColor = red,
+    progressBarColorStart = red_M500,
+    progressBarColorEnd = red_M300,
+
+    circleColor = green,
+    neutralSelColor = white,
+    mapPoiFillColor = red_A75,
+    buttonFilterOnPrimary = white,
 )
 
-private val Skin = Non_Colorblind.copy()
-
 val Whiteboard = Skin.copy(
+    extrasFamily = Skin.extrasFamily.copy(
+        title = title_whiteboard,
+        isLightMode = true
+    ),
+    themeFamily = Skin.themeFamily.copy(),
+    coreFamily = Skin.coreFamily.copy(
+        primary = black,
+        color_1 = black,
+        color_2 = Color(0xFF383839),
+        color_3 = white_M500,
+        color_4 = Color(0xFFafb7be),
+        color_5 = white_M50,
+        color_6 = Color(0xFFf55656),
+        color_7 = Color(0xFF1cb981),
+        color_8 = Color(0xFF394494),
+    ),
+    primary = Skin.primary.copy(
+        color = white_M50,
+        onColor = white_M50
+    ),
+    secondary = Skin.secondary.copy(
+        color = white_M50,
+        onColor = white_M50
+    ),
+    tertiary = Skin.tertiary.copy(),
+
+    background = Skin.background.copy(
+        color = Color(0xFF383839)
+    ),
+    surface = Skin.surface.copy(
+        color = white_M50,
+        onColor = white_M50,
+    ),
+
+    codexFamily = Skin.codexFamily.copy(
+        codex1 = black_A75,
+        codex3 = white_M50,
+        codex2 = Color(0xFF383839),
+        codex4 = Color(0xFFf55656),
+        codex5 = black_A75,
+        codex6_gridBackground = white_M50,
+    ),
+    switchTheme = Skin.switchTheme.copy(
+        trackActive = black_M50,
+        trackInactive = black_M50,
+        thumbActive = Color(0xFFf55656),
+        thumbInactive = Color(0xFFafb7be)
+    ),
+    textFamily = Skin.textFamily.copy(
+        primary = Color(0xFF383839),
+        secondary = Color(0xFF383839),
+        tertiary = Color(0xFF383839),
+        body = Color(0xFF383839),
+        emphasis = Color(0xFFf55656),
+    ),
+
+    //foregroundColor = white_M50,
+    //middlegroundColor = white_M50,
+    statusBarColor = white_M50,
+    navigationBarColor = white_M50,
+    windowBackgroundColor = white_M50,
+    windowStrokeColor = Color(0xFF383839),
+
+    navigationFooterIcon = white_M500,
+    navigationFooterIconAlt = red_M300,
+
+    backgroundColor_mapviewOverlay = Color(0xFFafb7be),
+
+    splashTextColor = Color(0xFF383839),
+
+    light_active = Color(0xFF383839),
+    light_inactive = Color(0xFF383839),
+    light_off = Color(0xFFafb7be),
+
+    sanityPieStartColor = white_M50,
+    sanityPieEndColor = Color(0xFFf55656),
+
+    progressBarColorStart = Color(0xFF383839),
+    progressBarColorEnd = Color(0xFF383839),
+    sanityHeadBrainColor = black,
+    sanityHeadSkullColor = Color(0xFF383839),
+    sanityBorderColor = black,
+
+
+    inboxNotification = Color(0xFFf55656),
+
+    selectedColor = Color(0xFFf55656),
+    selectedColor2 = Color(0xFFf55656),
+    unselectedColor = Color(0xFFafb7be),
+
+    strikethroughColor = Color(0xFFf55656),
+    circleColor = Color(0xFF383839),
+
+    positiveSelColor = Color(0xFFf55656),
+    neutralSelColor = Color(0xFF383839),
+    negativeSelColor = Color(0xFFafb7be),
+
+    mapPoiFillColor = red_M300_A75,
+    mapRoomBorderColor = red_M300_A58,
+    mapRoomFillColor = red_A75,
+
+    buttonFilterOnPrimary = white_M50,
+    buttonColor = Color(0xFF383839),
+    colorOnButton = Color(0xFF383839),
+
+    actionMenuTextColor = Color(0xFF383839),
+
     /*android:windowLightStatusBar = true),
 
     android:colorBackground = #383839),
-    android:statusBarColor = ColorFamily(
+    android:statusBarColor = M3ColorFamily(
         color = colorOnSecondary),
-    android:navigationBarColor = ColorFamily(
-        color = white_M50),*/
-    foregroundColor = ColorFamily(
+    android:navigationBarColor = M3ColorFamily(
+        color = white_M50),
+    colorSecondary = M3ColorFamily(
         color = white_M50
     ),
-    middlegroundColor = ColorFamily(
+    colorOnSecondary = M3ColorFamily(
+        onColor = white_M50
+    ),
+    colorPrimaryVariant = M3ColorFamily(
         color = white_M50
     ),
-    backgroundColor = ColorFamily(
-        color = white_M50
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = white_M50
-    ),
-    statusBarColor = ColorFamily(
-        color = white_M50
-    ),
-    navigationBarColor = ColorFamily(
-        color = white_M50
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = white_M50
-    ),
-    windowStrokeColor = ColorFamily(
-        color = create(0x383839)
-    ),
-    colorPrimary = ColorFamily(
-        color = white_M50
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = white_M50
-    ),
-    colorOnPrimary = ColorFamily(
-        color = white_M50
-    ),
-    colorSecondary = ColorFamily(
-        color = white_M50
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = white_M50
-    ),
-    colorOnSecondary = ColorFamily(
+    colorSecondaryVariant = M3ColorFamily(
         color = white_M50
     ),
 
-    navigationFooterIcon = ColorFamily(
-        color = white_M500
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = red_M300
-    ),
-
-    theme_colorPrimary = ColorFamily(
-        color = black
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = black
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0x383839)
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = white_M500
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0xafb7be)
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = white_M50
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xf55656)
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x1cb981)
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x394494)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xafb7be)
-    ),
-
-    splashTextColor = ColorFamily(
-        color = create(0x383839)
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = create(0x383839)
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x383839)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x383839)
-    ),
-
-    textColorBody = ColorFamily(
-        color = create(0x383839)
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xf55656)
-    ),
-
-    light_active = ColorFamily(
-        color = create(0x383839)
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x383839)
-    ),
-    light_off = ColorFamily(
-        color = create(0xafb7be)
-    ),
-
-    sanityPieStartColor = ColorFamily(
-        color = white_M50
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = create(0xf55656)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0x383839)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = create(0x383839)
-    ),
-    sanityHeadBrainColor = ColorFamily(
-        color = black
-    ),
-    sanityHeadSkullColor = ColorFamily(
-        color = create(0x383839)
-    ),
-    sanityBorderColor = ColorFamily(
-        color = black),
-
-    switchColorOn = ColorFamily(
-        color = create(0xf55656)
-    ),
-    switchColorOff = ColorFamily(
-        color = create(0xafb7be)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0xf55656)
-    ),
-
-    selectedColor = ColorFamily(
-        color = create(0xf55656)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0xf55656)
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0xafb7be)
-    ),
-
-    strikethroughColor = ColorFamily(
-        color = create(0xf55656)
-    ),
-    circleColor = ColorFamily(
-        color = create(0x383839)
-    ),
-
-    positiveSelColor = ColorFamily(
-        color = create(0xf55656)
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0x383839)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xafb7be)
-    ),
-
-    mapPoiFillColor = ColorFamily(
-        color = red_M300_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = red_M300_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = red_A75
-    ),
-
-    buttonFilterOnPrimary = ColorFamily(
-        color = white_M50
-    ),
-
-    codex1 = ColorFamily(
-        color = black_A75
-    ),
-    codex3 = ColorFamily(
-        color = white_M50
-    ),
-    codex2 = ColorFamily(
-        color = create(0x383839)
-    ),
-    codex4 = ColorFamily(
-        color = create(0xf55656)
-    ),
-    codex5 = ColorFamily(
-        color = black_A75
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = white_M50
-    ),
-
-    buttonColor = ColorFamily(
-        color = create(0x383839)
-    ),
-    colorOnButton = ColorFamily(
-        color = create(0x383839)
-    ),
-
-    actionMenuTextColor = ColorFamily(
-        color = create(0x383839)
-    ),
-    /*
-    android:textColor = ColorFamily(
-        color = textColorPrimary),
-    android:color = ColorFamily(
-        color = textColorPrimary),
-    android:titleTextColor = ColorFamily(
-        color = textColorPrimary),
-    android:subtitleTextColor = ColorFamily(
-        color = textColorBody),
+    android:textColor = M3ColorFamily(
+        color = primary),
+    android:color = M3ColorFamily(
+        color = primary),
+    android:titleTextColor = M3ColorFamily(
+        color = primary),
+    android:subtitleTextColor = M3ColorFamily(
+        color = body),
     */
 )
 
-private val Prestige = Skin.copy()
-private val Event = Skin.copy()
-private val Community = Skin.copy()
-private val Special = Skin.copy()
-
 val Recruit = Prestige.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = white_M50
-    ),
-    c = ColorFamily(
-        color = orange_M150
-    ),
-    d = ColorFamily(
-        color = create(0xB2B1B1)
-    ),
-    e = ColorFamily(
-        color = create(0x818180)
-    ),
-    f = ColorFamily(
-        color = create(0x515151)
-    ),
-    g = ColorFamily(
-        color = create(0x252423)
-    ),
-    h = ColorFamily(
-        color = orange_M950
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_1_recruit,
+        badge = badge_1_recruit
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = orange_M150
+    themeFamily = Prestige.themeFamily.copy(
+        a = white,
+        b = white_M50,
+        c = orange_M150,
+        d = Color(0xFFB2B1B1),
+        e = Color(0xFF818180),
+        f = Color(0xFF515151),
+        g = Color(0xFF252423),
+        h = orange_M950,
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = orange_M150
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF232C2C),
+        codex2 = Color(0xFF252423),
+        codex3 = orange_M150,
+        codex4 = orange_M150,
+        codex5 = Color(0xFF252423),
+        codex6_gridBackground = Color(0x40232C2C),
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = orange_M300
+
+    coreFamily = Prestige.coreFamily.copy(
+        primary = orange_M150,
+        color_1 = orange_M150,
+        color_2 = orange_M300,
+        color_3 = orange_M900,
+        color_4 = orange_M950,
+        color_5 = white,
+        color_6 = white_M100,
+        color_7 = white_M600,
+        color_8 = yellow,
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = orange_M900
+
+    primary = Prestige.primary.copy(
+        color = orange_M950,
+        onColor = orange_M950
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = orange_M950
+    secondary = Prestige.secondary.copy(
+        color = orange_M950,
+        onColor = orange_M950
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+    background = Prestige.background.copy(
+
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = white_M100
+    surface = Prestige.surface.copy(
+        color = orange_M950,
+        onColor = orange_M900,
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = white_M600
+
+    switchTheme = Prestige.switchTheme.copy(
+        trackActive = orange_M500,
+        trackInactive = orange_M900,
+        thumbActive = orange_M150,
+        thumbInactive = white_M100,
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = yellow
+
+    textFamily = Prestige.textFamily.copy(
+        primary = orange_M250,
+        secondary = orange_M300,
+        tertiary = orange_M400,
+        body = white,
+        emphasis = orange_M250,
     ),
+    
+    //foregroundColor = white,
+    //middlegroundColor = Color(0xFF818180),
+    statusBarColor = orange_M950,
+    navigationBarColor = orange_M950,
+    windowBackgroundColor = orange_M950,
+    windowStrokeColor = white,
+    light_active = orange_M150,
+    light_inactive = orange_M50_A40,
+    light_off = white_M600,
+
+    strikethroughColor = orange_M300,
+    circleColor = orange,
+    selectedColor = orange_M150,
+    selectedColor2 = orange_M150,
+    unselectedColor = white_M600,
+    positiveSelColor = yellow,
+    neutralSelColor = white_M100,
+    negativeSelColor = orange_M300,
+    mapPoiFillColor = orange_M300_A75,
+    mapRoomBorderColor = orange_M300_A58,
+    mapRoomFillColor = yellow_A10,
+
+    backgroundColor_mapviewOverlay = Color(0xBF090500),
+
+    progressBarColorStart = orange_M500,
+    progressBarColorEnd = orange_M300,
+    sanityPieStartColor = white,
+    sanityPieEndColor = orange_M150,
+
+    splashTextColor = orange_M150,
+    navigationFooterIcon = Color(0xFF818180),
+    navigationFooterIconAlt = orange_M150,
+
+    buttonFilterOnPrimary = white_M50,
+    inboxNotification = orange_M150
 
     /*
-    colorBackground = ColorFamily(
+    colorBackground = M3ColorFamily(
         color = orange_M950
     ),
-    statusBarColor = ColorFamily(
+    statusBarColor = M3ColorFamily(
         color = orange_M950
     ),
-    navigationBarColor = ColorFamily(
+    navigationBarColor = M3ColorFamily(
         color = orange_M950
     ),
-    */
+    colorprimary = Prestige.primary.copy(
+        color = orange_M950
+    ),
+    colorOnprimary = Prestige.primary.copy(
+        color = orange_M950
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = orange_M950
+    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = orange_M950
+    ),*/
 
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = create(0x818180)
-    ),
-    backgroundColor = ColorFamily(
-        color = orange_M950
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = orange_M900
-    ),
-    statusBarColor = ColorFamily(
-        color = orange_M950
-    ),
-    navigationBarColor = ColorFamily(
-        color = orange_M950
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = orange_M950
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
-        color = orange_M950
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = orange_M950
-    ),
-    colorOnPrimary = ColorFamily(
-        color = orange_M950
-    ),
-    colorSecondary = ColorFamily(
-        color = orange_M950
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = orange_M950
-    ),
-    colorOnSecondary = ColorFamily(
-        color = orange_M950
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = orange_M250
-    ),
-    textColorSecondary = ColorFamily(
-        color = orange_M300
-    ),
-    textColorTertiary = ColorFamily(
-        color = orange_M400
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = orange_M250
-    ),
-    light_active = ColorFamily(
-        color = orange_M150
-    ),
-    light_inactive = ColorFamily(
-        color = orange_M50_A40
-    ),
-    light_off = ColorFamily(
-        color = white_M600
-    ),
-    switchColorOn = ColorFamily(
-        color = orange_M300
-    ),
-    strikethroughColor = ColorFamily(
-        color = orange_M300
-    ),
-    circleColor = ColorFamily(
-        color = orange
-    ),
-    selectedColor = ColorFamily(
-        color = orange_M150
-    ),
-    selectedColor2 = ColorFamily(
-        color = orange_M150
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = yellow
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M100
-    ),
-    negativeSelColor = ColorFamily(
-        color = orange_M300
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = orange_M300_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = orange_M300_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_A10
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF090500)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = orange_M500
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = orange_M300
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = white
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = orange_M150
-    ),
-
-    splashTextColor = ColorFamily(
-        color = orange_M150
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x232C2C)
-    ),
-    codex3 = ColorFamily(
-        color = orange_M150
-    ),
-    codex2 = ColorFamily(
-        color = create(0x252423)
-    ),
-    codex4 = ColorFamily(
-        color = orange_M150
-    ),
-    codex5 = ColorFamily(
-        color = create(0x252423)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40232C2C)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0x818180)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = orange_M150
-    ),
-
-    buttonFilterOnPrimary = ColorFamily(
-        color = white_M50
-    ),
-    inboxNotification = ColorFamily(
-        color = orange_M150
-    )
 )
 
 val Investigator = Prestige.copy(
-    a = ColorFamily(
-        color = white_M10
-    ),
-    b = ColorFamily(
-        color = white_M50
-    ),
-    c = ColorFamily(
-        color = white_M300
-    ),
-    d = ColorFamily(
-        color = purple_M75
-    ),
-    e = ColorFamily(
-        color = purple_M250
-    ),
-    f = ColorFamily(
-        color = purple_M525
-    ),
-    g = ColorFamily(
-        color = purple_M950
-    ),
-    h = ColorFamily(
-        color = black
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_2_investigator,
+        badge = badge_2_investigator
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = purple_M75
+    themeFamily = Prestige.themeFamily.copy(
+        a = white_M10,
+        b = white_M50,
+        c = white_M300,
+        d = purple_M75,
+        e = purple_M250,
+        f = purple_M525,
+        g = purple_M950,
+        h = black,
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = purple_M75
+
+    coreFamily = Prestige.coreFamily.copy(
+        primary = purple_M75,
+        color_1 = purple_M75,
+        color_2 = purple_M75,
+        color_3 = purple_M525,
+        color_4 = purple_M950,
+        color_5 = white,
+        color_6 = white_M300,
+        color_7 = white_M600,
+        color_8 = black,
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = purple_M75
+
+    primary = Prestige.primary.copy(
+        color = orange_M950,
+        onColor = orange_M950
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = purple_M525
+
+    secondary = Prestige.secondary.copy(
+        color = orange_M950,
+        onColor = orange_M950
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = purple_M950
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+    surface = Prestige.surface.copy(
+        color = purple_M950,
+        onColor = purple_M900,
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = white_M300
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF390721),
+        codex2 = Color(0xFF200413),
+        codex3 = white_M300,
+        codex4 = purple_M75,
+        codex5 = Color(0xFF3C3237),
+        codex6_gridBackground = Color(0x40390721),
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = white_M600
+
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = purple_M75,
+        thumbInactive = purple_M525,
+        trackActive = purple_M525,
+        trackInactive = black,
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = black
+
+    textFamily = Prestige.textFamily.copy(
+        primary = purple_M75,
+        secondary = purple_M250,
+        tertiary = purple_M525,
+        body = white_M10,
+        emphasis = purple_M250,
     ),
+
+    //foregroundColor = white_M10,
+    //middlegroundColor = purple_M250,
+    statusBarColor = purple_M950,
+    navigationBarColor = purple_M950,
+    windowBackgroundColor = purple_M950,
+    windowStrokeColor = white_M10,
+
+    light_active = purple_M75,
+    light_inactive = Color(0x6689114F),
+    light_off = white_M600,
+
+    strikethroughColor = purple_M525,
+    circleColor = purple_M75,
+    selectedColor = purple_M75,
+    selectedColor2 = purple_M75,
+    unselectedColor = white_M600,
+    positiveSelColor = purple_M75,
+    neutralSelColor = white_M50,
+    negativeSelColor = purple_M525,
+    mapPoiFillColor = Color(0xBFF11284),
+    mapRoomBorderColor = Color(0x94F11284),
+    mapRoomFillColor = Color(0x1AF11284),
+
+    backgroundColor_mapviewOverlay = Color(0xBF0B000B),
+
+    progressBarColorStart = white_M10,
+    progressBarColorEnd = purple_M75,
+    sanityPieStartColor = white_M10,
+    sanityPieEndColor = purple_M75,
+
+    splashTextColor = purple_M75,
+
+    navigationFooterIcon = Color(0x4DD71472),
+    navigationFooterIconAlt = purple_M250,
+
+    buttonFilterOnPrimary = white_M300,
+    inboxNotification = purple_M75
 
     /*
-    colorBackground = ColorFamily(
+    colorBackground = M3ColorFamily(
         color = orange_M950
     ),
-    statusBarColor = ColorFamily(
+    statusBarColor = M3ColorFamily(
         color = orange_M950
     ),
-    navigationBarColor = ColorFamily(
-        color = orange_M950
-    ),
-    */
-
-    foregroundColor = ColorFamily(
-        color = white_M10
-    ),
-    middlegroundColor = ColorFamily(
-        color = purple_M250
-    ),
-    backgroundColor = ColorFamily(
-        color = purple_M950
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = purple_M900
-    ),
-    statusBarColor = ColorFamily(
-        color = purple_M950
-    ),
-    navigationBarColor = ColorFamily(
-        color = purple_M950
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = purple_M950
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white_M10
-    ),
-
-    colorPrimary = ColorFamily(
-        color = orange_M950
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = orange_M950
-    ),
-    colorOnPrimary = ColorFamily(
-        color = orange_M950
-    ),
-    colorSecondary = ColorFamily(
-        color = orange_M950
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = orange_M950
-    ),
-    colorOnSecondary = ColorFamily(
+    navigationBarColor = M3ColorFamily(
         color = orange_M950
     ),
 
-    textColorPrimary = ColorFamily(
-        color = purple_M75
+    colorprimary = Prestige.primary.copy(
+        color = orange_M950
     ),
-    textColorSecondary = ColorFamily(
-        color = purple_M250
+    colorOnprimary = Prestige.primary.copy(
+        color = orange_M950
     ),
-    textColorTertiary = ColorFamily(
-        color = purple_M525
+    colorsecondary = Prestige.secondary.copy(
+        color = orange_M950
     ),
-    textColorBody = ColorFamily(
-        color = white_M10
+    colorOnsecondary = Prestige.secondary.copy(
+        color = orange_M950
     ),
-    textColorBodyEmphasis = ColorFamily(
-        color = purple_M250
+    colorPrimaryVariant = M3ColorFamily(
+        color = orange_M950
     ),
-    light_active = ColorFamily(
-        color = purple_M75
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x6689114F)
-    ),
-    light_off = ColorFamily(
-        color = white_M600
-    ),
-    switchColorOn = ColorFamily(
-        color = purple_M75
-    ),
-    strikethroughColor = ColorFamily(
-        color = purple_M525
-    ),
-    circleColor = ColorFamily(
-        color = purple_M75
-    ),
-    selectedColor = ColorFamily(
-        color = purple_M75
-    ),
-    selectedColor2 = ColorFamily(
-        color = purple_M75
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = purple_M75
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M50
-    ),
-    negativeSelColor = ColorFamily(
-        color = purple_M525
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBFF11284)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x94F11284)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1AF11284)
-    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = orange_M950
+    ),*/
 
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF0B000B)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = white_M10
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = purple_M75
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = white_M10
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = purple_M75
-    ),
-
-    splashTextColor = ColorFamily(
-        color = purple_M75
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x390721)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x200413)
-    ),
-    codex3 = ColorFamily(
-        color = white_M300
-    ),
-    codex4 = ColorFamily(
-        color = purple_M75
-    ),
-    codex5 = ColorFamily(
-        color = create(0x3C3237)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40390721)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0x4DD71472)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = purple_M250
-    ),
-
-    buttonFilterOnPrimary = ColorFamily(
-        color = white_M300
-    ),
-    inboxNotification = ColorFamily(
-        color = purple_M75
-    )
 )
 
 val PrivateInvestigator = Prestige.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = orange_M85
-    ),
-    c = ColorFamily(
-        color = orange_M20
-    ),
-    d = ColorFamily(
-        color = orange_M10
-    ),
-    e = ColorFamily(
-        color = orange_M510
-    ),
-    f = ColorFamily(
-        color = black
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_3_pvtinvestigator,
+        badge = badge_3_pvtinvestigator
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = orange_M10
+    themeFamily = Prestige.themeFamily.copy(
+        a = white,
+        b = orange_M85,
+        c = orange_M20,
+        d = orange_M10,
+        e = orange_M510,
+        f = black,
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = orange_M20
+
+    coreFamily = Prestige.coreFamily.copy(
+        primary = orange_M10,
+        color_1 = orange_M20,
+        color_2 = orange_M10,
+        color_3 = orange,
+        color_4 = orange_M510,
+        color_5 = white,
+        color_6 = orange_M85,
+        color_7 = white_M600,
+        color_8 = black,
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = orange_M10
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF150F08),
+        codex2 = Color(0xFF332312),
+        codex3 = orange_M10,
+        codex4 = orange_M10,
+        codex5 = Color(0xFF3A3631),
+        codex6_gridBackground = Color(0x403E2A17),
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = orange
+
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = orange_M10,
+        trackActive = orange_M500,
+        thumbInactive = orange_M500,
+        trackInactive = black,
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = orange_M510
+
+    textFamily = Prestige.textFamily.copy(
+        primary = orange_M20,
+        secondary = orange_M10,
+        tertiary = orange_M510,
+        body = white,
+        emphasis = orange_M20,
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+
+    primary = Prestige.primary.copy(
+        color = black,
+        onColor = black
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = orange_M85
+    secondary = Prestige.secondary.copy(
+        color = black,
+        onColor = black
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = white_M600
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = black
+    surface = Prestige.surface.copy(
+        color = black,
+        onColor = black_M50,
     ),
+
+    //foregroundColor = white,
+    //middlegroundColor = orange_M510,
+
+    statusBarColor = black,
+    navigationBarColor = black,
+    windowBackgroundColor = black,
+    windowStrokeColor = white,
+
+    light_active = orange,
+    light_inactive = orange_M50_A40,
+    light_off = orange_M510,
+
+    strikethroughColor = orange_M510,
+    circleColor = orange,
+    selectedColor = orange_M10,
+    selectedColor2 = orange_M50_A40,
+    unselectedColor = white_M600,
+    positiveSelColor = orange_M10,
+    neutralSelColor = orange_M85,
+    negativeSelColor = orange_M510,
+    mapPoiFillColor = orange_M300_A75,
+    mapRoomBorderColor = orange_M300_A58,
+    mapRoomFillColor = yellow_A10,
+
+    backgroundColor_mapviewOverlay = black_A75,
+
+    progressBarColorStart = orange_M85,
+    progressBarColorEnd = orange_M10,
+    sanityPieStartColor = orange_M85,
+    sanityPieEndColor = orange_M10,
+
+    splashTextColor = orange_M10,
+    navigationFooterIcon = Color(0x8078522B),
+    navigationFooterIconAlt = orange_M10,
+
+    buttonFilterOnPrimary = orange_M20,
+    inboxNotification = orange_M10
 
     /*
-    colorBackground = ColorFamily(
+    colorBackground = M3ColorFamily(
         color = black
     ),
-    statusBarColor = ColorFamily(
+    statusBarColor = M3ColorFamily(
         color = black
     ),
-    navigationBarColor = ColorFamily(
+    navigationBarColor = M3ColorFamily(
         color = black
     ),
-    */
+    colorprimary = Prestige.primary.copy(
+        color = black
+    ),
+    colorOnprimary = Prestige.primary.copy(
+        color = black
+    ),
+    colorsecondary = Prestige.secondary.copy(
+        color = black
+    ),
+    colorOnsecondary = Prestige.secondary.copy(
+        color = black
+    ),colorPrimaryVariant = M3ColorFamily(
+        color = black
+    ),colorSecondaryVariant = M3ColorFamily(
+        color = black
+    ),*/
 
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = orange_M510
-    ),
-    backgroundColor = ColorFamily(
-        color = black
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = black_M50
-    ),
-    statusBarColor = ColorFamily(
-        color = black
-    ),
-    navigationBarColor = ColorFamily(
-        color = black
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = black
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-
-    colorPrimary = ColorFamily(
-        color = black
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = black
-    ),
-    colorOnPrimary = ColorFamily(
-        color = black
-    ),
-    colorSecondary = ColorFamily(
-        color = black
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = black
-    ),
-    colorOnSecondary = ColorFamily(
-        color = black
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = orange_M20
-    ),
-    textColorSecondary = ColorFamily(
-        color = orange_M10
-    ),
-    textColorTertiary = ColorFamily(
-        color = orange_M510
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = orange_M20
-    ),
-    light_active = ColorFamily(
-        color = orange
-    ),
-    light_inactive = ColorFamily(
-        color = orange_M50_A40
-    ),
-    light_off = ColorFamily(
-        color = orange_M510
-    ),
-    switchColorOn = ColorFamily(
-        color = orange_M10
-    ),
-    strikethroughColor = ColorFamily(
-        color = orange_M510
-    ),
-    circleColor = ColorFamily(
-        color = orange
-    ),
-    selectedColor = ColorFamily(
-        color = orange_M10
-    ),
-    selectedColor2 = ColorFamily(
-        color = orange_M50_A40
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = orange_M10
-    ),
-    neutralSelColor = ColorFamily(
-        color = orange_M85
-    ),
-    negativeSelColor = ColorFamily(
-        color = orange_M510
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = orange_M300_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = orange_M300_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_A10
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = black_A75
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = orange_M85
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = orange_M10
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = orange_M85
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = orange_M10
-    ),
-
-    splashTextColor = ColorFamily(
-        color = orange_M10
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0xFF150F08)
-    ),
-    codex2 = ColorFamily(
-        color = create(0xFF332312)
-    ),
-    codex3 = ColorFamily(
-        color = orange_M10
-    ),
-    codex4 = ColorFamily(
-        color = orange_M10
-    ),
-    codex5 = ColorFamily(
-        color = create(0xFF3A3631)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x403E2A17)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0x8078522B)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = orange_M10
-    ),
-
-    buttonFilterOnPrimary = ColorFamily(
-        color = orange_M20
-    ),
-    inboxNotification = ColorFamily(
-        color = orange_M10
-    )
 )
 
 val Detective = Prestige.copy(
-    a = ColorFamily(
-        color = white_M20
-    ),
-    b = ColorFamily(
-        color = white_M750
-    ),
-    c = ColorFamily(
-        color = white_M850
-    ),
-    f = ColorFamily(
-        color = green_M25
-    ),
-    g = ColorFamily(
-        color = green_M525
-    ),
-    h = ColorFamily(
-        color = green_M825
-    ),
-    i = ColorFamily(
-        color = green_M875
-    ),
-    j = ColorFamily(
-        color = green_M950
-    ),
-    k = ColorFamily(
-        color = black
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_4_detective,
+        badge = badge_4_detective
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = green_M25
+    themeFamily = Prestige.themeFamily.copy(
+        a = white_M20,
+        b = white_M750,
+        c = white_M850,
+        f = green_M25,
+        g = green_M525,
+        h = green_M825,
+        i = green_M875,
+        j = green_M950,
+        k = black,
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = white_M20
+
+    coreFamily = Prestige.coreFamily.copy(
+        primary = green_M25,
+        color_1 = white_M20,
+        color_2 = green_M25,
+        color_3 = green_M525,
+        color_4 = green_M950,
+        color_5 = white,
+        color_6 = white_M750,
+        color_7 = green_M825,
+        color_8 = black,
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = green_M25
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF1E221F),
+        codex2 = green_M825,
+        codex3 = Color(0xFFB0E3CE),
+        codex4 = green_M25,
+        codex5 = white_M850,
+        codex6_gridBackground = Color(0x401E221F),
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = green_M525
+
+    textFamily = Prestige.textFamily.copy(
+        primary = green_M25,
+        secondary = green_M525,
+        tertiary = Color(0xFF44BF8C),
+        body = white_M20,
+        emphasis = green_M525,
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = green_M950
+
+    primary = Prestige.primary.copy(
+        color = green_M875,
+        onColor = green_M875
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+    secondary = Prestige.secondary.copy(
+        color = green_M875,
+        onColor = green_M875
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = white_M750
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = green_M825
+    surface = Prestige.surface.copy(
+        color = green_M875,
+        onColor = green_M825,
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = black
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = green_M825,
+        trackActive = green_M25,
+        thumbInactive = green_M25,
+        trackInactive = green_M825,
     ),
+
+    //foregroundColor = white_M20,
+    //middlegroundColor = white_M400,
+
+    statusBarColor = green_M875,
+    navigationBarColor = green_M875,
+    windowBackgroundColor = green_M875,
+    windowStrokeColor = white_M20,
+
+    light_active = green_M25,
+    light_inactive = green_M525,
+    light_off = Color(0xFF2E332F),
+
+    strikethroughColor = white_M600,
+    circleColor = green_M25,
+    selectedColor = green_M25,
+    selectedColor2 = green_M525,
+    unselectedColor = white_M600,
+    positiveSelColor = green_M25,
+    neutralSelColor = white_M600,
+    negativeSelColor = white_M300,
+    mapPoiFillColor = Color(0xBF1A9863),
+    mapRoomBorderColor = Color(0x941A9863),
+    mapRoomFillColor = Color(0x1A1A9863),
+
+    backgroundColor_mapviewOverlay = Color(0xBF0F100F),
+
+    progressBarColorStart = white_M20,
+    progressBarColorEnd = green_M25,
+    sanityPieStartColor = white_M20,
+    sanityPieEndColor = green_M25,
+
+    splashTextColor = green_M25,
+    navigationFooterIcon = white_M600,
+    navigationFooterIconAlt = green_M25,
+
+    buttonFilterOnPrimary = white_M20,
+    inboxNotification = green_M25
 
     /*
-    colorBackground = ColorFamily(
-        color = 
+    colorBackground = M3ColorFamily(
+        color =
     ),
-    statusBarColor = ColorFamily(
-        color = 
+    statusBarColor = M3ColorFamily(
+        color =
     ),
-    navigationBarColor = ColorFamily(
-        color = 
-    ),
-    */
-
-    foregroundColor = ColorFamily(
-        color = white_M20
-    ),
-    middlegroundColor = ColorFamily(
-        color = white_M400
-    ),
-    backgroundColor = ColorFamily(
-        color = green_M875
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = green_M825
-    ),
-    statusBarColor = ColorFamily(
-        color = green_M875
-    ),
-    navigationBarColor = ColorFamily(
-        color = green_M875
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = green_M875
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white_M20
+    navigationBarColor = M3ColorFamily(
+        color =
     ),
 
-    colorPrimary = ColorFamily(
+    colorprimary = Prestige.primary.copy(
         color = green_M875
     ),
-    colorPrimaryVariant = ColorFamily(
+    colorOnprimary = Prestige.primary.copy(
         color = green_M875
     ),
-    colorOnPrimary = ColorFamily(
+    colorsecondary = Prestige.secondary.copy(
         color = green_M875
     ),
-    colorSecondary = ColorFamily(
+    colorOnsecondary = Prestige.secondary.copy(
         color = green_M875
     ),
-    colorSecondaryVariant = ColorFamily(
+    colorPrimaryVariant = M3ColorFamily(
         color = green_M875
     ),
-    colorOnSecondary = ColorFamily(
+    colorSecondaryVariant = M3ColorFamily(
         color = green_M875
-    ),
+    ),*/
 
-    textColorPrimary = ColorFamily(
-        color = green_M25
-    ),
-    textColorSecondary = ColorFamily(
-        color = green_M525
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0xFF44BF8C)
-    ),
-    textColorBody = ColorFamily(
-        color = white_M20
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = green_M525
-    ),
-    light_active = ColorFamily(
-        color = green_M25
-    ),
-    light_inactive = ColorFamily(
-        color = green_M525
-    ),
-    light_off = ColorFamily(
-        color = create(0xFF2E332F)
-    ),
-    switchColorOn = ColorFamily(
-        color = green_M25
-    ),
-    strikethroughColor = ColorFamily(
-        color = white_M600
-    ),
-    circleColor = ColorFamily(
-        color = green_M25
-    ),
-    selectedColor = ColorFamily(
-        color = green_M25
-    ),
-    selectedColor2 = ColorFamily(
-        color = green_M525
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = green_M25
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M600
-    ),
-    negativeSelColor = ColorFamily(
-        color = white_M300
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBF1A9863)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x941A9863)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1A1A9863)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF0F100F)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = white_M20
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = green_M25
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = white_M20
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = green_M25
-    ),
-
-    splashTextColor = ColorFamily(
-        color = green_M25
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x1E221F)
-    ),
-    codex2 = ColorFamily(
-        color = green_M825
-    ),
-    codex3 = ColorFamily(
-        color = create(0xFFB0E3CE)
-    ),
-    codex4 = ColorFamily(
-        color = green_M25
-    ),
-    codex5 = ColorFamily(
-        color = white_M850
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x401E221F)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = white_M600
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = green_M25
-    ),
-
-    buttonFilterOnPrimary = ColorFamily(
-        color = white_M20
-    ),
-    inboxNotification = ColorFamily(
-        color = green_M25
-    )
 )
 
 val Technician = Prestige.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xFFE0E0E0)
-    ),
-    c = ColorFamily(
-        color = create(0xFFABABAB)
-    ),
-    d = ColorFamily(
-        color = red_M375
-    ),
-    e = ColorFamily(
-        color = create(0xFF91100C)
-    ),
-    f = ColorFamily(
-        color = create(0xFF5E0D0B)
-    ),
-    g = ColorFamily(
-        color = create(0xFF280A09)
-    ),
-    h = ColorFamily(
-        color = create(0xFF102508)
-    ),
-    i = ColorFamily(
-        color = create(0xFF081204)
-    ),
-    j = ColorFamily(
-        color = create(0xFF050C04)
-    ),
-    k = ColorFamily(
-        color = black
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_5_technician,
+        badge = badge_5_technician
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = red_M375
+    themeFamily = Prestige.themeFamily.copy(
+        a = white,
+        b = Color(0xFFE0E0E0),
+        c = Color(0xFFABABAB),
+        d = red_M375,
+        e = Color(0xFF91100C),
+        f = Color(0xFF5E0D0B),
+        g = Color(0xFF280A09),
+        h = Color(0xFF102508),
+        i = Color(0xFF081204),
+        j = Color(0xFF050C04),
+        k = black,
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = red_M375
+
+    coreFamily = Prestige.coreFamily.copy(
+        primary = red_M375,
+        color_1 = red_M375,
+        color_2 = Color(0xFF91100C),
+        color_3 = Color(0xFF5E0D0B),
+        color_4 = Color(0xFF050C04),
+        color_5 = white,
+        color_6 = Color(0xFFE0E0E0),
+        color_7 = Color(0xFFABABAB),
+        color_8 = black,
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0x91100C)
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF200605),
+        codex2 = Color(0xFF120202),
+        codex3 = Color(0xFFE4DEDE),
+        codex4 = white,
+        codex5 = Color(0xFF575050),
+        codex6_gridBackground = Color(0x403E1312),
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0x5E0D0B)
+
+    textFamily = Prestige.textFamily.copy(
+        primary = red_M375,
+        secondary = Color(0xFF91100C),
+        tertiary = Color(0xFF8E3431),
+        body = white,
+        emphasis = Color(0xFFABABAB),
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x050C04)
+
+    primary = Prestige.primary.copy(
+        color = Color(0xFF050C04),
+        onColor = Color(0xFF050C04)
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+    secondary = Prestige.secondary.copy(
+        color = Color(0xFF050C04),
+        onColor = Color(0xFF050C04)
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xE0E0E0)
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0xABABAB)
+    surface = Prestige.surface.copy(
+        color = Color(0xFF050C04),
+        onColor = Color(0xFF081204),
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = black
+
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = black,
+        trackActive = red_M375,
+        thumbInactive = red_M375,
+        trackInactive = black,
     ),
+
+    //foregroundColor = white,
+    //middlegroundColor = white_M400,
+    statusBarColor = Color(0xFF050C04),
+    navigationBarColor = Color(0xFF081204),
+    windowBackgroundColor = Color(0xFF050C04),
+    windowStrokeColor = white,
+
+
+    light_active = red_M375,
+    light_inactive = Color(0xFF5E0D0B),
+    light_off = white_M600,
+
+    strikethroughColor = Color(0xFF5E0D0B),
+    circleColor = red_M375,
+    selectedColor = red_M375,
+    selectedColor2 = Color(0xFF5E0D0B),
+    unselectedColor = white_M500,
+    positiveSelColor = red_M375,
+    neutralSelColor = white_M600,
+    negativeSelColor = Color(0xFFABABAB),
+
+    mapPoiFillColor = Color(0xBF91100C),
+    mapRoomBorderColor = Color(0x8091100C),
+    mapRoomFillColor = Color(0x1A91100C),
+
+    backgroundColor_mapviewOverlay = Color(0xBF050C04),
+
+    progressBarColorStart = Color(0xFFE0E0E0),
+    progressBarColorEnd = red_M375,
+    sanityPieStartColor = Color(0xFFE0E0E0),
+    sanityPieEndColor = red_M375,
+
+    splashTextColor = red_M375,
+    navigationFooterIcon = white_M600,
+    navigationFooterIconAlt = red_M375,
+
+    buttonFilterOnPrimary = Color(0xFFE0E0E0),
+    inboxNotification = red_M375
 
     /*
-    colorBackground = ColorFamily(
-        color = create(0xFF050C04)
+    colorBackground = M3ColorFamily(
+        color = Color(0xFFFF050C04)
     ),
-    statusBarColor = ColorFamily(
-        color = create(0xFf050C04)
+    statusBarColor = M3ColorFamily(
+        color = Color(0xFFFf050C04)
     ),
-    navigationBarColor = ColorFamily(
-        color = create(0xFF050C04)
-    ),
-    */
-
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = white_M400
-    ),
-    backgroundColor = ColorFamily(
-        color = create(0x050C04)
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = create(0x081204)
-    ),
-    statusBarColor = ColorFamily(
-        color = create(0x050C04)
-    ),
-    navigationBarColor = ColorFamily(
-        color = create(0x081204)
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x050C04)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
+    navigationBarColor = M3ColorFamily(
+        color = Color(0xFFFF050C04)
     ),
 
-    colorPrimary = ColorFamily(
-        color = create(0x050C04)
+    colorprimary = Prestige.primary.copy(
+        color = Color(0xFF050C04)
     ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x050C04)
+    colorOnprimary = Prestige.primary.copy(
+        color = Color(0xFF050C04)
     ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x050C04)
+    colorsecondary = Prestige.secondary.copy(
+        color = Color(0xFF050C04)
     ),
-    colorSecondary = ColorFamily(
-        color = create(0x050C04)
+    colorOnsecondary = Prestige.secondary.copy(
+        color = Color(0xFF050C04)
     ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x050C04)
+    colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF050C04)
     ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x050C04)
-    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF050C04)
+    ),*/
 
-    textColorPrimary = ColorFamily(
-        color = red_M375
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x91100C)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x8E3431)
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xABABAB)
-    ),
-    light_active = ColorFamily(
-        color = red_M375
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x5E0D0B)
-    ),
-    light_off = ColorFamily(
-        color = white_M600
-    ),
-    switchColorOn = ColorFamily(
-        color = red_M375
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0x5E0D0B)
-    ),
-    circleColor = ColorFamily(
-        color = red_M375
-    ),
-    selectedColor = ColorFamily(
-        color = red_M375
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0x5E0D0B)
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M500
-    ),
-    positiveSelColor = ColorFamily(
-        color = red_M375
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M600
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xABABAB)
-    ),
-
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBF91100C)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x8091100C)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1A91100C)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF050C04)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xE0E0E0)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = red_M375
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xE0E0E0)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = red_M375
-    ),
-
-    splashTextColor = ColorFamily(
-        color = red_M375
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x200605)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x120202)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xE4DEDE)
-    ),
-    codex4 = ColorFamily(
-        color = white
-    ),
-    codex5 = ColorFamily(
-        color = create(0x575050)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x403E1312)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = white_M600
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = red_M375
-    ),
-
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xE0E0E0)
-    ),
-    inboxNotification = ColorFamily(
-        color = red_M375
-    )
 )
 val Specialist = Prestige.copy(
-    a = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    b = ColorFamily(
-        color = white_M25
-    ),
-    c = ColorFamily(
-        color = create(0xE7E8E7)
-    ),
-    d = ColorFamily(
-        color = create(0xC9CCC8)
-    ),
-    e = ColorFamily(
-        color = create(0x30362B)
-    ),
-    f = ColorFamily(
-        color = create(0x545B4D)
-    ),
-    g = ColorFamily(
-        color = green_M150
-    ),
-    h = ColorFamily(
-        color = create(0x80994D)
-    ),
-    i = ColorFamily(
-        color = create(0xA0B17B)
-    ),
-    j = ColorFamily(
-        color = green_M850
-    ),
-    k = ColorFamily(
-        color = create(0x0F1B0A)
-    ),
-    l = ColorFamily(
-        color = create(0x070C05)
-    ),
-    m = ColorFamily(
-        color = black
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_6_specialist,
+        badge = badge_6_specialist
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = green_M850
+    themeFamily = Prestige.themeFamily.copy(
+        a = Color(0xFFFEFEFE),
+        b = white_M25,
+        c = Color(0xFFE7E8E7),
+        d = Color(0xFFC9CCC8),
+        e = Color(0xFF30362B),
+        f = Color(0xFF545B4D),
+        g = green_M150,
+        h = Color(0xFF80994D),
+        i = Color(0xFFA0B17B),
+        j = green_M850,
+        k = Color(0xFF0F1B0A),
+        l = Color(0xFF070C05),
+        m = black,
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = green_M150
+
+    coreFamily = Prestige.coreFamily.copy(
+        primary = green_M850,
+        color_1 = green_M150,
+        color_2 = Color(0xFF80994D),
+        color_3 = green_M850,
+        color_4 = Color(0xFF070C05),
+        color_5 = Color(0xFFFEFEFE),
+        color_6 = Color(0xFFE7E8E7),
+        color_7 = Color(0xFFC9CCC8),
+        color_8 = white_M600,
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0x80994D)
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF070C05),
+        codex2 = Color(0xFF24291F),
+        codex3 = Color(0xFFD9ECAF),
+        codex4 = green_M150,
+        codex5 = Color(0xFF545B4D),
+        codex6_gridBackground = Color(0x40070C05),
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = green_M850
+
+    textFamily = Prestige.textFamily.copy(
+        primary = green_M150,
+        secondary = Color(0xFF80994D),
+        tertiary = Color(0xFF545B4D),
+        body = Color(0xFFFEFEFE),
+        emphasis = Color(0xFF80994D),
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x070C05)
+
+    primary = Prestige.primary.copy(
+        color = Color(0xFF070C05),
+        onColor = Color(0xFF070C05)
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = create(0xFEFEFE)
+    secondary = Prestige.secondary.copy(
+        color = Color(0xFF070C05),
+        onColor = Color(0xFF070C05)
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xE7E8E7)
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0xC9CCC8)
+    surface = Prestige.surface.copy(
+        color = Color(0xFF070C05),
+        onColor = Color(0xFF0F1B0A),
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = white_M600
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = black,
+        trackActive = green_M150,
+        thumbInactive = green_M150,
+        trackInactive = black,
     ),
+    
+    //foregroundColor = Color(0xFFFEFEFE),
+    //middlegroundColor = Color(0xFFC9CCC8),
+    statusBarColor = Color(0xFF070C05),
+    navigationBarColor = Color(0xFF070C05),
+    windowBackgroundColor = Color(0xFF070C05),
+    windowStrokeColor = Color(0xFFFEFEFE),
+
+    light_active = green_M150,
+    light_inactive = Color(0xFF80994D),
+    light_off = white_M600,
+    
+    strikethroughColor = Color(0xFFA0B17B),
+    circleColor = green_M150,
+    selectedColor = Color(0xFF80994D),
+    selectedColor2 = Color(0xFF80994D),
+    unselectedColor = white_M600,
+    positiveSelColor = green_M150,
+    neutralSelColor = Color(0xFF545B4D),
+    negativeSelColor = Color(0xFFA0B17B),
+    mapPoiFillColor = green_M150_A75,
+    mapRoomBorderColor = green_M150_A58,
+    mapRoomFillColor = green_M150_A10,
+
+    backgroundColor_mapviewOverlay = Color(0xBF070C05),
+
+    progressBarColorStart = Color(0xFF80994D),
+    progressBarColorEnd = green_M150,
+    sanityPieStartColor = Color(0xFFE7E8E7),
+    sanityPieEndColor = green_M150,
+
+    splashTextColor = green_M150,
+    navigationFooterIcon = Color(0xFF545B4D),
+    navigationFooterIconAlt = green_M150,
+
+    buttonFilterOnPrimary = Color(0xBF070C05),
+    inboxNotification = green_M150
 
     /*
-    colorBackground = ColorFamily(
-        color = create(0x070C05)
+    colorBackground = M3ColorFamily(
+        color = Color(0xFF070C05)
     ),
-    statusBarColor = ColorFamily(
-        color = create(0x070C05)
+    statusBarColor = M3ColorFamily(
+        color = Color(0xFF070C05)
     ),
-    navigationBarColor = ColorFamily(
-        color = create(0x070C05)
+    navigationBarColor = M3ColorFamily(
+        color = Color(0xFF070C05)
     ),
-    */
+    colorprimary = Prestige.primary.copy(
+        color = Color(0xFF070C05)
+    ),
+    colorOnprimary = Prestige.primary.copy(
+        color = Color(0xFF070C05)
+    ),
+    colorsecondary = Prestige.secondary.copy(
+        color = Color(0xFF070C05)
+    ),
+    colorOnsecondary = Prestige.secondary.copy(
+        color = Color(0xFF070C05)
+    ),colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF070C05)
+    ),colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF070C05)
+    ),*/
 
-    foregroundColor = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    middlegroundColor = ColorFamily(
-        color = create(0xC9CCC8)
-    ),
-    backgroundColor = ColorFamily(
-        color = create(0x070C05)
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = create(0x0F1B0A)
-    ),
-    statusBarColor = ColorFamily(
-        color = create(0x070C05)
-    ),
-    navigationBarColor = ColorFamily(
-        color = create(0x070C05)
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x070C05)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-
-    colorPrimary = ColorFamily(
-        color = create(0x070C05)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x070C05)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x070C05)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x070C05)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x070C05)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x070C05)
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = green_M150
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x80994D)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x545B4D)
-    ),
-    textColorBody = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0x80994D)
-    ),
-    light_active = ColorFamily(
-        color = green_M150
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x80994D)
-    ),
-    light_off = ColorFamily(
-        color = white_M600
-    ),
-    switchColorOn = ColorFamily(
-        color = green_M150
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0xA0B17B)
-    ),
-    circleColor = ColorFamily(
-        color = green_M150
-    ),
-    selectedColor = ColorFamily(
-        color = create(0x80994D)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0x80994D)
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = green_M150
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0x545B4D)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xA0B17B)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = green_M150_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = green_M150_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = green_M150_A10
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF070C05)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0x80994D)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = green_M150
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xE7E8E7)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = green_M150
-    ),
-
-    splashTextColor = ColorFamily(
-        color = green_M150
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x070C05)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x24291F)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xD9ECAF)
-    ),
-    codex4 = ColorFamily(
-        color = green_M150
-    ),
-    codex5 = ColorFamily(
-        color = create(0x545B4D)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40070C05)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0x545B4D)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = green_M150
-    ),
-
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xBF070C05)
-    ),
-    inboxNotification = ColorFamily(
-        color = green_M150
-    )
 )
 
 val Analyst = Prestige.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xCD2547)
-    ),
-    c = ColorFamily(
-        color = create(0x7BCD26)
-    ),
-    d = ColorFamily(
-        color = create(0x2667CD)
-    ),
-    e = ColorFamily(
-        color = create(0xA7968C)
-    ),
-    f = ColorFamily(
-        color = create(0x84736A)
-    ),
-    g = ColorFamily(
-        color = orange_M525
-    ),
-    h = ColorFamily(
-        color = red_M850
-    ),
-    i = ColorFamily(
-        color = red_M950
-    ),
-    j = ColorFamily(
-        color = black
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_7_analyst,
+        badge = badge_7_analyst
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = create(0x84736A)
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xCD2547)
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0x2667CD)
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0x7BCD26)
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x101E01)
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xA7968C)
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = orange_M525
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = red_M850
+    themeFamily = Prestige.themeFamily.copy(
+        a = white,
+        b = Color(0xFFCD2547),
+        c = Color(0xFF7BCD26),
+        d = Color(0xFF2667CD),
+        e = Color(0xFFA7968C),
+        f = Color(0xFF84736A),
+        g = orange_M525,
+        h = red_M850,
+        i = red_M950,
+        j = black,
     ),
 
-    /*android:colorBackground = ColorFamily(
+    coreFamily = Prestige.coreFamily.copy(
+        primary = Color(0xFF84736A),
+        color_1 = Color(0xFFCD2547),
+        color_2 = Color(0xFF2667CD),
+        color_3 = Color(0xFF7BCD26),
+        color_4 = Color(0xFF101E01),
+        color_5 = white,
+        color_6 = Color(0xFFA7968C),
+        color_7 = orange_M525,
+        color_8 = red_M850,
+    ),
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF1C1917),
+        codex3 = Color(0xFFEDE5E7),
+        codex2 = Color(0xFF255BAF),
+        codex4 = Color(0xFF7BCD26),
+        codex5 = Color(0xFF101E01),
+        codex6_gridBackground = Color(0x40201B19),
+    ),
+
+    textFamily = Prestige.textFamily.copy(
+        primary = Color(0xFFCD2547),
+        secondary = Color(0xFF7BCD26),
+        tertiary = Color(0xFF2667CD),
+        body = white,
+        emphasis = Color(0xFFA7968C),
+    ),
+
+    primary = Prestige.primary.copy(
+        color = red_M850,
+        onColor = red_M850
+    ),
+    secondary = Prestige.secondary.copy(
+        color = red_M850,
+        onColor = red_M850
+    ),
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
+    ),
+    surface = Prestige.surface.copy(
+        color = red_M850,
+        onColor = orange_M525,
+    ),
+
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = black,
+        trackActive = Color(0xFF2667CD),
+        thumbInactive = Color(0xFF2667CD),
+        trackInactive = black,
+    ),
+    
+    //foregroundColor = Color(0xFFA7968C),
+    //middlegroundColor = Color(0xFF84736A),
+
+    statusBarColor = red_M850,
+    navigationBarColor = red_M850,
+    windowBackgroundColor = red_M850,
+    windowStrokeColor = Color(0xFFA7968C),
+
+    light_active = Color(0xFF2667CD),
+    light_inactive = orange_M525,
+    light_off = red_M850,
+
+    buttonColor = Color(0xFF7BCD26),
+    buttonFilterOnPrimary = Color(0xFFCD2547),
+    strikethroughColor = Color(0xFFCD2547),
+    circleColor = Color(0xFF7BCD26),
+    selectedColor = Color(0xFF2667CD),
+    selectedColor2 = Color(0xFF2667CD),
+    unselectedColor = orange_M525,
+    positiveSelColor = Color(0xFF7BCD26),
+    neutralSelColor = Color(0xFFA7968C),
+    negativeSelColor = Color(0xFFCD2547),
+    mapPoiFillColor = Color(0xBF2667CD),
+    mapRoomBorderColor = Color(0x942667CD),
+    mapRoomFillColor = Color(0x1A2667CD),
+
+    progressBarColorStart = Color(0xFFA7968C),
+    progressBarColorEnd = Color(0xFF2667CD),
+    sanityPieStartColor = Color(0xFFA7968C),
+    sanityPieEndColor = Color(0xFF2667CD),
+
+    splashTextColor = Color(0xFF2667CD),
+    navigationFooterIcon = orange_M525,
+    navigationFooterIconAlt = Color(0xFF2667CD),
+
+    backgroundColor_mapviewOverlay = Color(0xBF1B1516),
+
+    inboxNotification = Color(0xFFD3C9C3),
+
+    /*android:colorBackground = M3ColorFamily(
     color = red_M850
     ),
-    android:statusBarColor = ColorFamily(
+    android:statusBarColor = M3ColorFamily(
             color = colorOnSecondary
     ),
-    android:navigationBarColor = ColorFamily(
+    android:navigationBarColor = M3ColorFamily(
     color = red_M850
+    ),
+    colorprimary = Prestige.primary.copy(
+        color = red_M850
+    ),
+    colorOnprimary = Prestige.primary.copy(
+        color = red_M850
+    ),
+    colorsecondary = Prestige.secondary.copy(
+        color = red_M850
+    ),
+    colorOnsecondary = Prestige.secondary.copy(
+        color = red_M850
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = red_M850
+    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = red_M850
     ),*/
-    foregroundColor = ColorFamily(
-        color = create(0xA7968C)
-    ),
-    middlegroundColor = ColorFamily(
-        color = create(0x84736A)
-    ),
-    backgroundColor = ColorFamily(
-        color = red_M850
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = orange_M525
-    ),
-    statusBarColor = ColorFamily(
-        color = red_M850
-    ),
-    navigationBarColor = ColorFamily(
-        color = red_M850
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = red_M850
-    ),
-    windowStrokeColor = ColorFamily(
-        color = create(0xA7968C)
-    ),
-    colorPrimary = ColorFamily(
-        color = red_M850
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = red_M850
-    ),
-    colorOnPrimary = ColorFamily(
-        color = red_M850
-    ),
-    colorSecondary = ColorFamily(
-        color = red_M850
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = red_M850
-    ),
-    colorOnSecondary = ColorFamily(
-        color = red_M850
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = create(0xCD2547)
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x7BCD26)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x2667CD)
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xA7968C)
-    ),
-    light_active = ColorFamily(
-        color = create(0x2667CD)
-    ),
-    light_inactive = ColorFamily(
-        color = orange_M525
-    ),
-    light_off = ColorFamily(
-        color = red_M850
-    ),
-    switchColorOn = ColorFamily(
-        color = create(0x2667CD)
-    ),
-    buttonColor = ColorFamily(
-        color = create(0x7BCD26)
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xCD2547)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0xCD2547)
-    ),
-    circleColor = ColorFamily(
-        color = create(0x7BCD26)
-    ),
-    selectedColor = ColorFamily(
-        color = create(0x2667CD)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0x2667CD)
-    ),
-    unselectedColor = ColorFamily(
-        color = orange_M525
-    ),
-    positiveSelColor = ColorFamily(
-        color = create(0x7BCD26)
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0xA7968C)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xCD2547)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBF2667CD)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x942667CD)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1A2667CD)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xA7968C)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = create(0x2667CD)
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xA7968C)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = create(0x2667CD)
-    ),
-
-    splashTextColor = ColorFamily(
-        color = create(0x2667CD)
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x1C1917)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xEDE5E7)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x255BAF)
-    ),
-    codex4 = ColorFamily(
-        color = create(0x7BCD26)
-    ),
-    codex5 = ColorFamily(
-        color = create(0x101E01)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40201B19)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = orange_M525
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = create(0x2667CD)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF1B1516)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0xD3C9C3)
-    ),
-
-    )
+)
 val Agent = Prestige.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0x858686)
-    ),
-    c = ColorFamily(
-        color = create(0x5E7E7B)
-    ),
-    d = ColorFamily(
-        color = blue_M90
-    ),
-    e = ColorFamily(
-        color = create(0x117166)
-    ),
-    f = ColorFamily(
-        color = create(0x02A996)
-    ),
-    g = ColorFamily(
-        color = create(0x167467)
-    ),
-    h = ColorFamily(
-        color = create(0x1D4E49)
-    ),
-    i = ColorFamily(
-        color = create(0x202A29)
-    ),
-    j = ColorFamily(
-        color = create(0x101515)
-    ),
-    l = ColorFamily(
-        color = black
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_8_agent,
+        badge = badge_8_agent
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = blue_M90
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = blue_M90
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0x167467)
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x1D4E49)
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = create(0x858686)
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0x5E7E7B)
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x202A29)
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x101515)
+    themeFamily = Prestige.themeFamily.copy(
+        a = white,
+        b = Color(0xFF858686),
+        c = Color(0xFF5E7E7B),
+        d = blue_M90,
+        e = Color(0xFF117166),
+        f = Color(0xFF02A996),
+        g = Color(0xFF167467),
+        h = Color(0xFF1D4E49),
+        i = Color(0xFF202A29),
+        j = Color(0xFF101515),
+        l = black,
     ),
 
-    /*android:colorBackground = ColorFamily(
-    color = create(0x101515)
+    coreFamily = Prestige.coreFamily.copy(
+        primary = blue_M90,
+        color_1 = white,
+        color_2 = blue_M90,
+        color_3 = Color(0xFF167467),
+        color_4 = Color(0xFF1D4E49),
+        color_5 = Color(0xFF858686),
+        color_6 = Color(0xFF5E7E7B),
+        color_7 = Color(0xFF202A29),
+        color_8 = Color(0xFF101515),
     ),
-    android:statusBarColor = ColorFamily(
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF101515),
+        codex3 = Color(0xFFB7CFCC),
+        codex2 = Color(0xFF202A29),
+        codex4 = blue_M90,
+        codex5 = Color(0xFF5E7E7B),
+        codex6_gridBackground = Color(0x40101515),
+    ),
+
+    textFamily = Prestige.textFamily.copy(
+        primary = blue_M90,
+        secondary = Color(0xFF02A996),
+        tertiary = Color(0xFF167467),
+        body = white,
+        emphasis = Color(0xFF167467),
+    ),
+
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = black,
+        trackActive = blue_M90,
+        thumbInactive = blue_M90,
+        trackInactive = black
+    ),
+
+    primary = Prestige.primary.copy(
+        color = Color(0xFF101515),
+        onColor = Color(0xFF101515)
+    ),
+    secondary = Prestige.secondary.copy(
+        color = Color(0xFF101515),
+        onColor = Color(0xFF101515)
+    ),
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
+    ),
+    surface = Prestige.surface.copy(
+        color = Color(0xFF101515),
+        onColor = Color(0xFF131919),
+    ),
+
+    //foregroundColor = white,
+    //middlegroundColor = Color(0xFF868586),
+
+    statusBarColor = Color(0xFF101515),
+    navigationBarColor = Color(0xFF101515),
+    windowBackgroundColor = Color(0xFF0E1212),
+    windowStrokeColor = white,
+
+    light_active = blue_M90,
+    light_inactive = Color(0xFF1D4E49),
+    light_off = Color(0xFF202A29),
+
+    buttonFilterOnPrimary = white,
+    strikethroughColor = Color(0xFF1D4E49),
+    circleColor = blue_M90,
+    selectedColor = Color(0xFF167467),
+    selectedColor2 = Color(0xFF167467),
+    unselectedColor = Color(0xFF858686),
+    positiveSelColor = blue_M90,
+    neutralSelColor = Color(0xFF5E7E7B),
+    negativeSelColor = Color(0xFF1D4E49),
+    mapPoiFillColor = Color(0xBF02A996),
+    mapRoomBorderColor = Color(0x9402A996),
+    mapRoomFillColor = Color(0x1A02A996),
+
+    progressBarColorStart = white,
+    progressBarColorEnd = blue_M90,
+    sanityPieStartColor = white,
+    sanityPieEndColor = blue_M90,
+
+    splashTextColor = blue_M90,
+    navigationFooterIcon = Color(0xFF858686),
+    navigationFooterIconAlt = blue_M90,
+
+    backgroundColor_mapviewOverlay = Color(0xBF101515),
+
+    inboxNotification = blue_M90,
+
+    /*android:colorBackground = M3ColorFamily(
+    color = Color(0xFF101515)
+    ),
+    android:statusBarColor = M3ColorFamily(
             color = colorOnSecondary
     ),
-    android:navigationBarColor = ColorFamily(
-    color = create(0x101515)
+    android:navigationBarColor = M3ColorFamily(
+    color = Color(0xFF101515)
+    ),
+
+    colorprimary = Prestige.primary.copy(
+        color = Color(0xFF101515)
+    ),
+    colorOnprimary = Prestige.primary.copy(
+        color = Color(0xFF101515)
+    ),
+    colorsecondary = Prestige.secondary.copy(
+        color = Color(0xFF101515)
+    ),
+    colorOnsecondary = Prestige.secondary.copy(
+        color = Color(0xFF101515)
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF101515)
+    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF101515)
     ),*/
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = create(0x868586)
-    ),
-    backgroundColor  = ColorFamily(
-        color = create(0x101515)
-    ),
-    backgroundColorOnBackground  = ColorFamily(
-        color = create(0x131919)
-    ),
-    statusBarColor = ColorFamily(
-        color = create(0x101515)
-    ),
-    navigationBarColor = ColorFamily(
-        color = create(0x101515)
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x0E1212)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
-        color = create(0x101515)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x101515)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x101515)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x101515)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x101515)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x101515)
-    ),
 
-    textColorPrimary = ColorFamily(
-        color = blue_M90
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x02A996)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x167467)
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0x167467)
-    ),
-    light_active = ColorFamily(
-        color = blue_M90
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x1D4E49)
-    ),
-    light_off = ColorFamily(
-        color = create(0x202A29)
-    ),
-    switchColorOn = ColorFamily(
-        color = blue_M90
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = white
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0x1D4E49)
-    ),
-    circleColor = ColorFamily(
-        color = blue_M90
-    ),
-    selectedColor = ColorFamily(
-        color = create(0x167467)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0x167467)
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0x858686)
-    ),
-    positiveSelColor = ColorFamily(
-        color = blue_M90
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0x5E7E7B)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0x1D4E49)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBF02A996)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x9402A996)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1A02A996)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = white
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = blue_M90
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = white
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = blue_M90
-    ),
-
-    splashTextColor = ColorFamily(
-        color = blue_M90
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x101515)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xB7CFCC)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x202A29)
-    ),
-    codex4 = ColorFamily(
-        color = blue_M90
-    ),
-    codex5 = ColorFamily(
-        color = create(0x5E7E7B)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40101515)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0x858686)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = blue_M90
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF101515)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = blue_M90
-    ),
 )
 val Operator = Prestige.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    c = ColorFamily(
-        color = create(0xF9F8FA)
-    ),
-    d = ColorFamily(
-        color = purple_M475
-    ),
-    e = ColorFamily(
-        color = blue_M150
-    ),
-    f = ColorFamily(
-        color = purple_M150
-    ),
-    g = ColorFamily(
-        color = purple_M450
-    ),
-    h = ColorFamily(
-        color = purple_M875
-    ),
-    i = ColorFamily(
-        color = blue_M950
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_9_operator,
+        badge = badge_9_operator
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = purple_M450
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = purple_M150
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = purple_M450
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = blue_M150
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = purple_M250
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = create(0xF9F8FA)
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = purple_M475
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = purple_M875
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = blue_M950
+    themeFamily = Prestige.themeFamily.copy(
+        a = white,
+        b = Color(0xFFFEFEFE),
+        c = Color(0xFFF9F8FA),
+        d = purple_M475,
+        e = blue_M150,
+        f = purple_M150,
+        g = purple_M450,
+        h = purple_M875,
+        i = blue_M950,
     ),
 
-    /*android:colorBackground = ColorFamily(
+    coreFamily = Prestige.coreFamily.copy(
+        primary = purple_M450,
+        color_1 = purple_M150,
+        color_2 = purple_M450,
+        color_3 = blue_M150,
+        color_4 = purple_M250,
+        color_5 = Color(0xFFF9F8FA),
+        color_6 = purple_M475,
+        color_7 = purple_M875,
+        color_8 = blue_M950,
+    ),
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF130B29),
+        codex3 = Color(0xFFC5BCCD),
+        codex2 = Color(0xFF370C37),
+        codex4 = purple_M150,
+        codex5 = Color(0xFF53425E),
+        codex6_gridBackground = Color(0x40130B29),
+    ),
+
+    textFamily = Prestige.textFamily.copy(
+        primary = blue_M150,
+        secondary = purple_M300,
+        tertiary = purple_M450,
+        body = Color(0xFFF9F8FA),
+        emphasis = purple_M250,
+    ),
+
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = black,
+        thumbInactive = purple_M300,
+        trackActive = purple_M300,
+        trackInactive = black,
+    ),
+
+    primary = Prestige.primary.copy(
+        color = blue_M950,
+        onColor = blue_M950
+    ),
+    secondary = Prestige.secondary.copy(
+        color = blue_M950,
+        onColor = blue_M950
+    ),
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
+    ),
+    surface = Prestige.surface.copy(
+        color = blue_M950,
+        onColor = blue_M900,
+    ),
+
+    //foregroundColor = white,
+    //middlegroundColor = blue_M150,
+
+    statusBarColor = blue_M950,
+    navigationBarColor = blue_M950,
+    windowBackgroundColor = blue_M950,
+    windowStrokeColor = white,
+
+    circleColor = purple,
+    mapRoomFillColor = purple_A10,
+    light_inactive = purple_M50_A40,
+    light_active = blue_M150,
+
+    inboxNotification = purple_M150,
+    buttonFilterOnPrimary = purple_M475,
+    strikethroughColor = purple_M300,
+    mapRoomBorderColor = purple_M300_A58,
+    mapPoiFillColor = purple_M300_A75,
+    selectedColor = purple_M450,
+    selectedColor2 = purple_M50_A40,
+    unselectedColor = purple_M475,
+    negativeSelColor = blue_M150,
+    positiveSelColor = purple_M150,
+    neutralSelColor = purple_M475,
+    light_off = purple_M875,
+
+    progressBarColorStart = purple_M500,
+    progressBarColorEnd = blue_M150,
+    sanityPieStartColor = Color(0xFFF9F8FA),
+    sanityPieEndColor = purple_M150,
+
+    splashTextColor = purple_M150,
+    navigationFooterIcon = purple_M475,
+    navigationFooterIconAlt = purple_M150,
+
+    backgroundColor_mapviewOverlay = Color(0xBF00000E),
+
+    /*android:colorBackground = M3ColorFamily(
         color = blue_M950
         ),
-android:statusBarColor = ColorFamily(
+android:statusBarColor = M3ColorFamily(
 color = blue_M950
 ),
-android:navigationBarColor = ColorFamily(
+android:navigationBarColor = M3ColorFamily(
 color = blue_M950
-),*/
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = blue_M150
-    ),
-    backgroundColor = ColorFamily(
+),colorprimary = Prestige.primary.copy(
         color = blue_M950
     ),
-    backgroundColorOnBackground = ColorFamily(
-        color = blue_M900
-    ),
-    statusBarColor = ColorFamily(
+    colorOnprimary = Prestige.primary.copy(
         color = blue_M950
     ),
-    navigationBarColor = ColorFamily(
+    colorsecondary = Prestige.secondary.copy(
         color = blue_M950
     ),
-    windowBackgroundColor = ColorFamily(
+    colorOnsecondary = Prestige.secondary.copy(
         color = blue_M950
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
+    ),colorPrimaryVariant = M3ColorFamily(
         color = blue_M950
-    ),
-    colorPrimaryVariant = ColorFamily(
+    ),colorSecondaryVariant = M3ColorFamily(
         color = blue_M950
-    ),
-    colorOnPrimary = ColorFamily(
-        color = blue_M950
-    ),
-    colorSecondary = ColorFamily(
-        color = blue_M950
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = blue_M950
-    ),
-    colorOnSecondary = ColorFamily(
-        color = blue_M950
-    ),
+    ),*/
 
-    textColorBody = ColorFamily(
-        color = create(0xF9F8FA)
-    ),
-    circleColor = ColorFamily(
-        color = purple
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = purple_A10
-    ),
-    light_inactive = ColorFamily(
-        color = purple_M50_A40
-    ),
-    textColorPrimary = ColorFamily(
-        color = blue_M150
-    ),
-    light_active = ColorFamily(
-        color = blue_M150
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = purple_M250
-    ),
-    switchColorOn = ColorFamily(
-        color = purple_M300
-    ),
-    inboxNotification = ColorFamily(
-        color = purple_M150
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = purple_M475
-    ),
-    strikethroughColor = ColorFamily(
-        color = purple_M300
-    ),
-    textColorSecondary = ColorFamily(
-        color = purple_M300
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = purple_M300_A58
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = purple_M300_A75
-    ),
-    selectedColor = ColorFamily(
-        color = purple_M450
-    ),
-    selectedColor2 = ColorFamily(
-        color = purple_M50_A40
-    ),
-    textColorTertiary = ColorFamily(
-        color = purple_M450
-    ),
-    unselectedColor = ColorFamily(
-        color = purple_M475
-    ),
-    negativeSelColor = ColorFamily(
-        color = blue_M150
-    ),
-    positiveSelColor = ColorFamily(
-        color = purple_M150
-    ),
-    neutralSelColor = ColorFamily(
-        color = purple_M475
-    ),
-    light_off = ColorFamily(
-        color = purple_M875
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = purple_M500
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = blue_M150
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xF9F8FA)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = purple_M150
-    ),
-
-    splashTextColor = ColorFamily(
-        color = purple_M150
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x130B29)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xC5BCCD)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x370C37)
-    ),
-    codex4 = ColorFamily(
-        color = purple_M150
-    ),
-    codex5 = ColorFamily(
-        color = create(0x53425E)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40130B29)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = purple_M475
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = purple_M150
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF00000E)
-    ),
 )
 val Commissioner = Prestige.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xACAAAC)
-    ),
-    c = ColorFamily(
-        color = create(0xF8EFD9)
-    ),
-    d = ColorFamily(
-        color = orange_M05
-    ),
-    e = ColorFamily(
-        color = create(0xE5A348)
-    ),
-    f = ColorFamily(
-        color = create(0x765932)
-    ),
-    h = ColorFamily(
-        color = purple_M825
-    ),
-    i = ColorFamily(
-        color = black_M50
-    ),
-    j = ColorFamily(
-        color = black
+    extrasFamily = Prestige.extrasFamily.copy(
+        title = title_10_commissioner,
+        badge = badge_10_commissioner
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = orange_M05
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xF8EFD9)
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = orange_M05
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0xE5A348)
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x765932)
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xACAAAC)
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = purple_M825
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = black_M50
+    themeFamily = Prestige.themeFamily.copy(
+        a = white,
+        b = Color(0xFFACAAAC),
+        c = Color(0xFFF8EFD9),
+        d = orange_M05,
+        e = Color(0xFFE5A348),
+        f = Color(0xFF765932),
+        h = purple_M825,
+        i = black_M50,
+        j = black,
     ),
 
-    /*android:colorBackground = ColorFamily(
+    coreFamily = Prestige.coreFamily.copy(
+        primary = orange_M05,
+        color_1 = Color(0xFFF8EFD9),
+        color_2 = orange_M05,
+        color_3 = Color(0xFFE5A348),
+        color_4 = Color(0xFF765932),
+        color_5 = white,
+        color_6 = Color(0xFFACAAAC),
+        color_7 = purple_M825,
+        color_8 = black_M50,
+    ),
+
+    codexFamily = Prestige.codexFamily.copy(
+        codex1 = Color(0xFF232323),
+        codex3 = Color(0xFFFFF9F0),
+        codex2 = Color(0xFF130B00),
+        codex4 = orange_M05,
+        codex5 = Color(0xFF3C3B3B),
+        codex6_gridBackground = Color(0x40232323),
+    ),
+
+    textFamily = Prestige.textFamily.copy(
+        primary = orange_M05,
+        secondary = Color(0xFFE5A348),
+        tertiary = Color(0xFF765932),
+        body = Color(0xFFF8EFD9),
+        emphasis = Color(0xFFACAAAC),
+    ),
+
+    switchTheme = Prestige.switchTheme.copy(
+        thumbActive = black,
+        trackActive = orange_M10,
+        thumbInactive = orange_M10,
+        trackInactive = black,
+    ),
+
+    primary = Prestige.primary.copy(
+        color = black_M50,
+        onColor = black_M50
+    ),
+    secondary = Prestige.secondary.copy(
+        color = black_M50,
+        onColor = black_M50
+    ),
+    tertiary = Prestige.tertiary.copy(),
+    background = Prestige.background.copy(
+
+    ),
+    surface = Prestige.surface.copy(
+        color = black_M50,
+        onColor = purple_M825,
+    ),
+
+    //foregroundColor = white,
+    //middlegroundColor = white_M400,
+
+    statusBarColor = black_M50,
+    navigationBarColor = black_M50,
+    windowBackgroundColor = black_M50,
+    windowStrokeColor = white,
+
+    light_active = orange_M05,
+    light_inactive = Color(0xFF765932),
+    light_off = purple_M825,
+
+
+    inboxNotification = orange_M05,
+    buttonFilterOnPrimary = Color(0xFFFDF9EE),
+    strikethroughColor = Color(0xFF765932),
+    circleColor = orange_M05,
+    selectedColor = Color(0xFFE5A348),
+    selectedColor2 = Color(0xFFE5A348),
+    unselectedColor = Color(0xFFACAAAC),
+    positiveSelColor = orange_M05,
+    neutralSelColor = Color(0xFFACAAAC),
+    negativeSelColor = Color(0xFF765932),
+    mapPoiFillColor = orange_M300_A75,
+    mapRoomBorderColor = orange_M300_A58,
+    mapRoomFillColor = yellow_A10,
+
+    progressBarColorStart = Color(0xFFF8EFD9),
+    progressBarColorEnd = orange_M05,
+    sanityPieStartColor = Color(0xFFF8EFD9),
+    sanityPieEndColor = orange_M05,
+
+    splashTextColor = orange_M05,
+    navigationFooterIcon = Color(0xFFACAAAC),
+    navigationFooterIconAlt = Color(0xFFE5A348),
+
+    backgroundColor_mapviewOverlay = Color(0xBF080808)
+
+    /*android:colorBackground = M3ColorFamily(
         color = black_M50
         ),
-android:statusBarColor = ColorFamily(
+android:statusBarColor = M3ColorFamily(
         color = colorOnSecondary
 ),
-android:navigationBarColor = ColorFamily(
+android:navigationBarColor = M3ColorFamily(
 color = black_M50
-),*/
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = white_M400
-    ),
-    backgroundColor = ColorFamily(
+),
+colorprimary = Prestige.primary.copy(
         color = black_M50
     ),
-    backgroundColorOnBackground = ColorFamily(
-        color = purple_M825
-    ),
-    statusBarColor = ColorFamily(
+    colorOnprimary = Prestige.primary.copy(
         color = black_M50
     ),
-    navigationBarColor = ColorFamily(
+    colorsecondary = Prestige.secondary.copy(
         color = black_M50
     ),
-    windowBackgroundColor = ColorFamily(
+    colorOnsecondary = Prestige.secondary.copy(
         color = black_M50
     ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
+    colorPrimaryVariant = M3ColorFamily(
         color = black_M50
     ),
-    colorPrimaryVariant = ColorFamily(
+    colorSecondaryVariant = M3ColorFamily(
         color = black_M50
-    ),
-    colorOnPrimary = ColorFamily(
-        color = black_M50
-    ),
-    colorSecondary = ColorFamily(
-        color = black_M50
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = black_M50
-    ),
-    colorOnSecondary = ColorFamily(
-        color = black_M50
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = orange_M05
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0xE5A348)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x765932)
-    ),
-    textColorBody = ColorFamily(
-        color = create(0xF8EFD9)
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xACAAAC)
-    ),
-    light_active = ColorFamily(
-        color = orange_M05
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x765932)
-    ),
-    light_off = ColorFamily(
-        color = purple_M825
-    ),
-    switchColorOn = ColorFamily(
-        color = orange_M10
-    ),
-    inboxNotification = ColorFamily(
-        color = orange_M05
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xFDF9EE)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0x765932)
-    ),
-    circleColor = ColorFamily(
-        color = orange_M05
-    ),
-    selectedColor = ColorFamily(
-        color = create(0xE5A348)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0xE5A348)
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0xACAAAC)
-    ),
-    positiveSelColor = ColorFamily(
-        color = orange_M05
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0xACAAAC)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0x765932)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = orange_M300_A75
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = orange_M300_A58
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_A10
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xF8EFD9)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = orange_M05
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xF8EFD9)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = orange_M05
-    ),
-
-    splashTextColor = ColorFamily(
-        color = orange_M05
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x232323)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xFFF9F0)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x130B00)
-    ),
-    codex4 = ColorFamily(
-        color = orange_M05
-    ),
-    codex5 = ColorFamily(
-        color = create(0x3C3B3B)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40232323)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0xACAAAC)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = create(0xE5A348)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF080808)
-    ),
-
-    )
+    ),*/
+)
 
 val Easter = Event.copy(
-    k = ColorFamily(
-        color = white
-    ),
-    l = ColorFamily(
-        color = create(0xF8E8BD)
-    ),
-    c = ColorFamily(
-        color = orange_M05
-    ),
-    j = ColorFamily(
-        color = create(0xE1EBE5)
-    ),
-    i = ColorFamily(
-        color = create(0x7CAB91)
-    ),
-    b = ColorFamily(
-        color = green_M550
-    ),
-    g = ColorFamily(
-        color = create(0x21654A)
-    ),
-    a = ColorFamily(
-        color = green_M650
-    ),
-    e = ColorFamily(
-        color = create(0x030C0A)
-    ),
-    f = ColorFamily(
-        color = create(0x1C180D)
-    ),
-    d = ColorFamily(
-        color = black
+    extrasFamily = Event.extrasFamily.copy(
+        title = title_easter,
+        badge = badge_easter
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = green_M550
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xF8E8BD)
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = orange_M75
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = white_M600
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = create(0xE1EBE5)
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = green_M550
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x21654A)
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x030C0A)
+    themeFamily = Event.themeFamily.copy(
+        a = green_M650,
+        b = green_M550,
+        c = orange_M05,
+        d = black,
+        e = Color(0xFF030C0A),
+        f = Color(0xFF1C180D),
+        g = Color(0xFF21654A),
+        i = Color(0xFF7CAB91),
+        j = Color(0xFFE1EBE5),
+        k = white,
+        l = Color(0xFFF8E8BD),
     ),
 
-    /*android:colorBackground = ColorFamily(
-        color = create(0x030C0A)
+    coreFamily = Event.coreFamily.copy(
+        primary = green_M550,
+        color_1 = white,
+        color_2 = Color(0xFFF8E8BD),
+        color_3 = orange_M75,
+        color_4 = white_M600,
+        color_5 = Color(0xFFE1EBE5),
+        color_6 = green_M550,
+        color_7 = Color(0xFF21654A),
+        color_8 = Color(0xFF030C0A),
+    ),
+
+    codexFamily = Event.codexFamily.copy(
+        codex1 = Color(0xFF203E36),
+        codex3 = Color(0xFFF8E8BD),
+        codex2 = Color(0xFF09231D),
+        codex4 = orange_M75,
+        codex5 = Color(0xFF2D3332),
+        codex6_gridBackground = Color(0x40203E36),
+    ),
+
+    textFamily = Event.textFamily.copy(
+        primary = green_M550,
+        secondary = orange_M75,
+        tertiary = Color(0xFF21654A),
+        body = Color(0xFFE1EBE5),
+        emphasis = Color(0xFFF8E8BD),
+    ),
+
+    switchTheme = Event.switchTheme.copy(
+        thumbActive = black,
+        thumbInactive = orange_M75,
+        trackActive = orange_M75,
+        trackInactive = black,
+    ),
+
+    primary = Event.primary.copy(
+        color = Color(0xFF030C0A),
+        onColor = Color(0xFF030C0A)
+    ),
+    secondary = Event.secondary.copy(
+        color = Color(0xFF030C0A),
+        onColor = Color(0xFF030C0A)
+    ),
+    tertiary = Event.tertiary.copy(),
+    background = Event.background.copy(
+
+    ),
+    surface = Event.surface.copy(
+        color = Color(0xFF030C0A),
+        onColor = Color(0xFF061915),
+    ),
+
+    //foregroundColor = Color(0xFFE1EBE5),
+    //middlegroundColor = Color(0xFF7CAB91),
+
+    statusBarColor = Color(0xFF030C0A),
+    navigationBarColor = Color(0xFF030C0A),
+    windowBackgroundColor = Color(0xFF030C0A),
+    windowStrokeColor = Color(0xFFE1EBE5),
+    light_active = orange_M75,
+    light_inactive = Color(0xFFF8E8BD),
+    light_off = Color(0xFF1C180D),
+
+    buttonFilterOnPrimary = Color(0xFFE1EBE5),
+    inboxNotification = orange_M05,
+    strikethroughColor = Color(0xFF21654A),
+    circleColor = orange_M75,
+    selectedColor = Color(0xFFF8E8BD),
+    selectedColor2 = green_M550,
+    unselectedColor = white_M600,
+    positiveSelColor = orange_M75,
+    neutralSelColor = Color(0xFFE1EBE5),
+    negativeSelColor = Color(0xFF21654A),
+    mapPoiFillColor = Color(0xBF348662),
+    mapRoomBorderColor = Color(0x94ECC768),
+    mapRoomFillColor = Color(0x1AECC768),
+
+    progressBarColorStart = Color(0xFFE1EBE5),
+    progressBarColorEnd = orange_M75,
+    sanityPieStartColor = Color(0xFFE1EBE5),
+    sanityPieEndColor = orange_M75,
+
+    splashTextColor = green_M550,
+    navigationFooterIcon = white_M600,
+    navigationFooterIconAlt = orange_M75,
+
+    backgroundColor_mapviewOverlay = Color(0xBF030C0A),
+
+    colorOnButton = Color(0xFF030C0A)
+
+    /*android:colorBackground = M3ColorFamily(
+        color = Color(0x030C0A)
         ),
-android:statusBarColor = ColorFamily(
+android:statusBarColor = M3ColorFamily(
         color = colorOnSecondary
 ),
-android:navigationBarColor = ColorFamily(
-color = create(0x030C0A)
-),*/
-    foregroundColor = ColorFamily(
-        color = create(0xE1EBE5)
+android:navigationBarColor = M3ColorFamily(
+color = Color(0x030C0A)
+),
+colorprimary = Event.primary.copy(
+        color = Color(0xFF030C0A)
     ),
-    middlegroundColor = ColorFamily(
-        color = create(0x7CAB91)
+    colorOnprimary = Event.primary.copy(
+        color = Color(0xFF030C0A)
     ),
-    backgroundColor  = ColorFamily(
-        color = create(0x030C0A)
+    colorsecondary = Event.secondary.copy(
+        color = Color(0xFF030C0A)
     ),
-    backgroundColorOnBackground = ColorFamily(
-        color = create(0x061915)
+    colorOnsecondary = Event.secondary.copy(
+        color = Color(0xFF030C0A)
     ),
-    statusBarColor = ColorFamily(
-        color = create(0x030C0A)
+    colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF030C0A)
     ),
-    navigationBarColor = ColorFamily(
-        color = create(0x030C0A)
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x030C0A)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = create(0xE1EBE5)
-    ),
-    colorPrimary = ColorFamily(
-        color = create(0x030C0A)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x030C0A)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x030C0A)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x030C0A)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x030C0A)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x030C0A)
-    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF030C0A)
+    ),*/
 
-    textColorPrimary = ColorFamily(
-        color = green_M550
-    ),
-    textColorSecondary = ColorFamily(
-        color = orange_M75
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x21654A)
-    ),
-    textColorBody = ColorFamily(
-        color = create(0xE1EBE5)
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xF8E8BD)
-    ),
-    light_active = ColorFamily(
-        color = orange_M75
-    ),
-    light_inactive = ColorFamily(
-        color = create(0xF8E8BD)
-    ),
-    light_off = ColorFamily(
-        color = create(0x1C180D)
-    ),
-    switchColorOn = ColorFamily(
-        color = orange_M75
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xE1EBE5)
-    ),
-    inboxNotification = ColorFamily(
-        color = orange_M05
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0x21654A)
-    ),
-    circleColor = ColorFamily(
-        color = orange_M75
-    ),
-    selectedColor = ColorFamily(
-        color = create(0xF8E8BD)
-    ),
-    selectedColor2 = ColorFamily(
-        color = green_M550
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = orange_M75
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0xE1EBE5)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0x21654A)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBF348662)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x94ECC768)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1AECC768)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xE1EBE5)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = orange_M75
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xE1EBE5)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = orange_M75
-    ),
-
-    splashTextColor = ColorFamily(
-        color = green_M550
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x203E36)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xF8E8BD)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x09231D)
-    ),
-    codex4 = ColorFamily(
-        color = orange_M75
-    ),
-    codex5 = ColorFamily(
-        color = create(0x2D3332)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40203E36)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = white_M600
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = orange_M75
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF030C0A)
-    ),
-
-    colorOnButton = ColorFamily(
-        color = create(0x030C0A)
-    ),
 )
 val Halloween23 = Event.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0x373737)
-    ),
-    e = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    f = ColorFamily(
-        color = create(0x9F4B0D)
-    ),
-    g = ColorFamily(
-        color = create(0xB3540A)
-    ),
-    h = ColorFamily(
-        color = create(0xC85E0D)
-    ),
-    i = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    j = ColorFamily(
-        color = create(0x3F1602)
-    ),
-    k = ColorFamily(
-        color = create(0x130700)
-    ),
-    l = ColorFamily(
-        color = create(0x0C0400)
-    ),
-    m = ColorFamily(
-        color = black
+    extrasFamily = Event.extrasFamily.copy(
+        title = title_halloween23,
+        badge = badge_halloween23
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xC85E0D)
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0x9F4B0D)
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x3F1602)
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0x373737)
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x130700)
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x0C0400)
+    themeFamily = Event.themeFamily.copy(
+        a = white,
+        b = Color(0xFF373737),
+        e = Color(0xFFD7CCC3),
+        f = Color(0xFF9F4B0D),
+        g = Color(0xFFB3540A),
+        h = Color(0xFFC85E0D),
+        i = Color(0xFFEC700D),
+        j = Color(0xFF3F1602),
+        k = Color(0xFF130700),
+        l = Color(0xFF0C0400),
+        m = black,
     ),
 
-    /*android:colorBackground = ColorFamily(
-        color = create(0x0C0400)
+    coreFamily = Event.coreFamily.copy(
+        primary = Color(0xFFEC700D),
+        color_1 = Color(0xFFEC700D),
+        color_2 = Color(0xFFC85E0D),
+        color_3 = Color(0xFF9F4B0D),
+        color_4 = Color(0xFF3F1602),
+        color_5 = Color(0xFFD7CCC3),
+        color_6 = Color(0xFF373737),
+        color_7 = Color(0xFF130700),
+        color_8 = Color(0xFF0C0400),
+    ),
+
+    codexFamily = Event.codexFamily.copy(
+        codex1 = Color(0xFF1B0A00),
+        codex3 = Color(0xFFD7CCC3),
+        codex2 = Color(0xFF130700),
+        codex4 = Color(0xFFEC700D),
+        codex5 = Color(0xFF373737),
+        codex6_gridBackground = Color(0x401B0A00),
+    ),
+
+    textFamily = Event.textFamily.copy(
+        primary = Color(0xFFEC700D),
+        secondary = Color(0xFFC85E0D),
+        tertiary = Color(0xFF9F4B0D),
+        body = Color(0xFFD7CCC3),
+        emphasis = Color(0xFFB3540A),
+    ),
+
+    switchTheme = Event.switchTheme.copy(
+        thumbActive = black,
+        trackActive = Color(0xFFEC700D),
+        thumbInactive = Color(0xFFEC700D),
+        trackInactive = black,
+    ),
+
+    primary = Event.primary.copy(
+        color = Color(0xFF0C0400),
+        onColor = Color(0xFF0C0400)
+    ),
+    secondary = Event.secondary.copy(
+        color = Color(0xFF0C0400),
+        onColor = Color(0xFF0C0400)
+    ),
+    tertiary = Event.tertiary.copy(),
+    background = Event.background.copy(
+
+    ),
+    surface = Event.surface.copy(
+        color = Color(0xFF0C0400),
+        onColor = Color(0xFF3F1602),
+    ),
+
+    //foregroundColor = white,
+    //middlegroundColor = Color(0xFFD7CCC3),
+
+    statusBarColor = Color(0xFF0C0400),
+    navigationBarColor = Color(0xFF0C0400),
+    windowBackgroundColor = Color(0xFF0C0400),
+    windowStrokeColor = white,
+    light_active = Color(0xFFEC700D),
+    light_inactive = Color(0xFF9F4B0D),
+    light_off = Color(0xFF3F1602),
+
+    buttonFilterOnPrimary = Color(0xFFD7CCC3),
+    strikethroughColor = Color(0xFFD7CCC3),
+    circleColor = Color(0xFFEC700D),
+    selectedColor = Color(0xFFC85E0D),
+    selectedColor2 = Color(0xFFC85E0D),
+    unselectedColor = Color(0xFF373737),
+    positiveSelColor = Color(0xFFEC700D),
+    neutralSelColor = Color(0xFF373737),
+    negativeSelColor = Color(0xFFD7CCC3),
+    mapPoiFillColor = Color(0xBFEC700D),
+    mapRoomBorderColor = Color(0x94EC700D),
+    mapRoomFillColor = Color(0x1AEC700D),
+
+    progressBarColorStart = Color(0xFFD7CCC3),
+    progressBarColorEnd = Color(0xFFEC700D),
+    sanityPieStartColor = Color(0xFFD7CCC3),
+    sanityPieEndColor = Color(0xFFEC700D),
+
+    splashTextColor = Color(0xFFEC700D),
+    navigationFooterIcon = Color(0xFF373737),
+    navigationFooterIconAlt = Color(0xFFC85E0D),
+
+    backgroundColor_mapviewOverlay = Color(0xBF0C0400),
+
+    inboxNotification = Color(0xFFEC700D),
+
+    /*android:colorBackground = M3ColorFamily(
+        color = Color(0x0C0400)
         ),
-android:statusBarColor = ColorFamily(
-        color = colorOnSecondary
-),
-android:navigationBarColor = ColorFamily(
-color = create(0x0C0400)
-),*/
-    foregroundColor = ColorFamily(
-        color = white
+    android:statusBarColor = M3ColorFamily(
+            color = colorOnSecondary
     ),
-    middlegroundColor = ColorFamily(
-        color = create(0xD7CCC3)
+    android:navigationBarColor = M3ColorFamily(
+    color = Color(0x0C0400)
     ),
-    backgroundColor  = ColorFamily(
-        color = create(0x0C0400)
+    colorprimary = Event.primary.copy(
+        color = Color(0xFF0C0400)
     ),
-    backgroundColorOnBackground = ColorFamily(
-        color = create(0x3F1602)
+    colorOnprimary = Event.primary.copy(
+        color = Color(0xFF0C0400)
     ),
-    statusBarColor = ColorFamily(
-        color = create(0x0C0400)
+    colorsecondary = Event.secondary.copy(
+        color = Color(0xFF0C0400)
     ),
-    navigationBarColor = ColorFamily(
-        color = create(0x0C0400)
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x0C0400)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
-        color = create(0x0C0400)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x0C0400)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x0C0400)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x0C0400)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x0C0400)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x0C0400)
-    ),
+    colorOnsecondary = Event.secondary.copy(
+        color = Color(0xFF0C0400)
+    ),colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF0C0400)
+    ),colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF0C0400)
+    ),*/
 
-    textColorPrimary = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0xC85E0D)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x9F4B0D)
-    ),
-    textColorBody = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xB3540A)
-    ),
-    light_active = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x9F4B0D)
-    ),
-    light_off = ColorFamily(
-        color = create(0x3F1602)
-    ),
-    switchColorOn = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    circleColor = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    selectedColor = ColorFamily(
-        color = create(0xC85E0D)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0xC85E0D)
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0x373737)
-    ),
-    positiveSelColor = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0x373737)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBFEC700D)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x94EC700D)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1AEC700D)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = create(0xEC700D)
-    ),
-
-    splashTextColor = ColorFamily(
-        color = create(0xEC700D)
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x1B0A00)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xD7CCC3)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x130700)
-    ),
-    codex4 = ColorFamily(
-        color = create(0xEC700D)
-    ),
-    codex5 = ColorFamily(
-        color = create(0x373737)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x401B0A00)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0x373737)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = create(0xC85E0D)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF0C0400)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0xEC700D)
-    ),
 )
 val Holiday22 = Event.copy(
-    a = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    b = ColorFamily(
-        color = create(0xDDDCDB)
-    ),
-    c = ColorFamily(
-        color = orange_M50
-    ),
-    d = ColorFamily(
-        color = create(0x645956)
-    ),
-    e = ColorFamily(
-        color = create(0xF1F3F7)
-    ),
-    f = ColorFamily(
-        color = blue_M125
-    ),
-    k = ColorFamily(
-        color = create(0x2E5497)
-    ),
-    g = ColorFamily(
-        color = create(0x2A2E45)
-    ),
-    h = ColorFamily(
-        color = blue_M750
-    ),
-    i = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    j = ColorFamily(
-        color = black
+    extrasFamily = Event.extrasFamily.copy(
+        title = title_holiday22,
+        badge = badge_holiday22
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = blue_M125
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xDDDCDB)
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0xF8BC7F)
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = orange_M50
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = blue_M125
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0x2E5497)
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x2A2E45)
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x0D0E19)
+    themeFamily = Event.themeFamily.copy(
+        a = Color(0xFFFEFEFE),
+        b = Color(0xFFDDDCDB),
+        c = orange_M50,
+        d = Color(0xFF645956),
+        e = Color(0xFFF1F3F7),
+        f = blue_M125,
+        k = Color(0xFF2E5497),
+        g = Color(0xFF2A2E45),
+        h = blue_M750,
+        i = Color(0xFF0D0E19),
+        j = black,
     ),
 
-    /*android:colorBackground = ColorFamily(
-        color = create(0x0D0E19)
+    coreFamily = Event.coreFamily.copy(
+        primary = blue_M125,
+        color_1 = Color(0xFFFEFEFE),
+        color_2 = Color(0xFFDDDCDB),
+        color_3 = Color(0xFFF8BC7F),
+        color_4 = orange_M50,
+        color_5 = blue_M125,
+        color_6 = Color(0xFF2E5497),
+        color_7 = Color(0xFF2A2E45),
+        color_8 = Color(0xFF0D0E19),
+    ),
+
+    codexFamily = Event.codexFamily.copy(
+        codex1 = Color(0xFF293750),
+        codex3 = Color(0xFFF3E8DE),
+        codex2 = blue_M750,
+        codex4 = orange_M50,
+        codex5 = Color(0xFF2A2E45),
+        codex6_gridBackground = Color(0x40293750),
+    ),
+
+    textFamily = Event.textFamily.copy(
+        primary = orange_M50,
+        secondary = blue_M125,
+        tertiary = Color(0xFF2E5497),
+        body = Color(0xFFFEFEFE),
+        emphasis = Color(0xFFF8BC7F),
+    ),
+
+    switchTheme = Event.switchTheme.copy(
+        thumbActive = black,
+        trackActive = blue_M125,
+        thumbInactive = blue_M125,
+        trackInactive = black,
+    ),
+
+    primary = Event.primary.copy(
+        color = Color(0xFF0D0E19),
+        onColor = Color(0xFF0D0E19)
+    ),
+    secondary = Event.secondary.copy(
+        color = Color(0xFF0D0E19),
+        onColor = Color(0xFF0D0E19)
+    ),
+    tertiary = Event.tertiary.copy(),
+    background = Event.background.copy(
+
+    ),
+    surface = Event.surface.copy(
+        color = Color(0xFF0D0E19),
+        onColor = Color(0xFF151529),
+    ),
+
+    //foregroundColor = Color(0xFFFEFEFE),
+    //middlegroundColor = Color(0xFF645956),
+
+    statusBarColor = Color(0xFF0D0E19),
+    navigationBarColor = Color(0xFF0D0E19),
+    windowBackgroundColor = Color(0xFF0D0E19),
+    windowStrokeColor = Color(0xFFFEFEFE),
+    light_active = blue_M125,
+    light_inactive = Color(0xFF2A2E45),
+    light_off = blue_M750,
+
+    buttonFilterOnPrimary = Color(0xFFF8BC7F),
+    strikethroughColor = blue_M125,
+    circleColor = orange_M50,
+    selectedColor = blue_M125,
+    selectedColor2 = blue_M125,
+    unselectedColor = Color(0xFF2A2E45),
+    positiveSelColor = orange_M50,
+    neutralSelColor = Color(0xFFDDDCDB),
+    negativeSelColor = blue_M125,
+    mapPoiFillColor = Color(0xBFF58514),
+    mapRoomBorderColor = Color(0x94447CDD),
+    mapRoomFillColor = Color(0x1A447CDD),
+
+    progressBarColorStart = Color(0xFFFEFEFE),
+    progressBarColorEnd = orange_M50,
+    sanityPieStartColor = Color(0xFFFEFEFE),
+    sanityPieEndColor = orange_M50,
+
+    splashTextColor = blue_M125,
+
+    navigationFooterIcon = Color(0xFF2A2E45),
+    navigationFooterIconAlt = blue_M125,
+
+    backgroundColor_mapviewOverlay = Color(0xBF0D0E19),
+
+    inboxNotification = Color(0xFF6996E4),
+
+    /*android:colorBackground = M3ColorFamily(
+        color = Color(0x0D0E19)
         ),
-android:statusBarColor = ColorFamily(
+android:statusBarColor = M3ColorFamily(
         color = colorOnSecondary
 ),
-android:navigationBarColor = ColorFamily(
-color = create(0x0D0E19)
-),*/
-    foregroundColor = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    middlegroundColor = ColorFamily(
-        color = create(0x645956)
-    ),
-    backgroundColor  = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    backgroundColorOnBackground  = ColorFamily(
-        color = create(0x151529)
-    ),
-    statusBarColor = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    navigationBarColor = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    colorPrimary = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x0D0E19)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x0D0E19)
-    ),
+android:navigationBarColor = M3ColorFamily(
+color = Color(0x0D0E19)
+),
 
-    textColorPrimary = ColorFamily(
-        color = orange_M50
+    colorprimary = Event.primary.copy(
+        color = Color(0xFF0D0E19)
     ),
-    textColorSecondary = ColorFamily(
-        color = blue_M125
+    colorOnprimary = Event.primary.copy(
+        color = Color(0xFF0D0E19)
     ),
-    textColorTertiary = ColorFamily(
-        color = create(0x2E5497)
+    colorsecondary = Event.secondary.copy(
+        color = Color(0xFF0D0E19)
     ),
-    textColorBody = ColorFamily(
-        color = create(0xFEFEFE)
+    colorOnsecondary = Event.secondary.copy(
+        color = Color(0xFF0D0E19)
     ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xF8BC7F)
+    colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF0D0E19)
     ),
-    light_active = ColorFamily(
-        color = blue_M125
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x2A2E45)
-    ),
-    light_off = ColorFamily(
-        color = blue_M750
-    ),
-    switchColorOn = ColorFamily(
-        color = blue_M125
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xF8BC7F)
-    ),
-    strikethroughColor = ColorFamily(
-        color = blue_M125
-    ),
-    circleColor = ColorFamily(
-        color = orange_M50
-    ),
-    selectedColor = ColorFamily(
-        color = blue_M125
-    ),
-    selectedColor2 = ColorFamily(
-        color = blue_M125
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0x2A2E45)
-    ),
-    positiveSelColor = ColorFamily(
-        color = orange_M50
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0xDDDCDB)
-    ),
-    negativeSelColor = ColorFamily(
-        color = blue_M125
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBFF58514)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x94447CDD)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1A447CDD)
-    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF0D0E19)
+    ),*/
 
-    progressBarColorStart = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = orange_M50
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = orange_M50
-    ),
-
-    splashTextColor = ColorFamily(
-        color = blue_M125
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x293750)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xF3E8DE)
-    ),
-    codex2 = ColorFamily(
-        color = blue_M750
-    ),
-    codex4 = ColorFamily(
-        color = orange_M50
-    ),
-    codex5 = ColorFamily(
-        color = create(0x2A2E45)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40293750)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0x2A2E45)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = blue_M125
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF0D0E19)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0x6996E4)
-    ),
-
-    )
+)
 val Holiday23 = Event.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xE4D0AE)
-    ),
-    c = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    d = ColorFamily(
-        color = create(0x447CDE)
-    ),
-    f = ColorFamily(
-        color = create(0x213A67)
-    ),
-    k = ColorFamily(
-        color = create(0x1B1C33)
-    ),
-    j = ColorFamily(
-        color = black
+    extrasFamily = Event.extrasFamily.copy(
+        title = title_holiday23,
+        badge = badge_holiday23
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = create(0x447CDE)
+    themeFamily = Event.themeFamily.copy(
+        a = white,
+        b = Color(0xFFE4D0AE),
+        c = Color(0xFFE9AD4C),
+        d = Color(0xFF447CDE),
+        f = Color(0xFF213A67),
+        k = Color(0xFF1B1C33),
+        j = black,
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = white
+
+    coreFamily = Event.coreFamily.copy(
+        primary = Color(0xFF447CDE),
+        color_1 = white,
+        color_2 = Color(0xFFFEFEFE),
+        color_3 = Color(0xFFE4D0AE),
+        color_4 = Color(0xFFE9AD4C),
+        color_5 = Color(0xFF447CDE),
+        color_6 = Color(0xFF2A487E),
+        color_7 = Color(0xFF344663),
+        color_8 = Color(0xFF1B1C33),
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xFEFEFE)
+
+    codexFamily = Event.codexFamily.copy(
+        codex1 = Color(0xFF2A487E),
+        codex3 = Color(0xFFECDDC5),
+        codex2 = Color(0xFF447CDE),
+        codex4 = Color(0xFFE9AD4C),
+        codex5 = Color(0xFF344663),
+        codex6_gridBackground = Color(0x402A487E),
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0xE4D0AE)
+
+    textFamily = Event.textFamily.copy(
+        primary = Color(0xFFE9AD4C),
+        secondary = Color(0xFF447CDE),
+        tertiary = Color(0xFF2E5497),
+        body = white,
+        emphasis = Color(0xFFE4D0AE),
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0xE9AD4C)
+
+    switchTheme = Event.switchTheme.copy(
+        thumbActive = black,
+        trackActive = Color(0xFF447CDE),
+        thumbInactive = Color(0xFF447CDE),
+        trackInactive = black,
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = create(0x447CDE)
+
+    primary = Event.primary.copy(
+        color = Color(0xFF1B1C33),
+        onColor = Color(0xFF1B1C33)
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0x2A487E)
+    secondary = Event.secondary.copy(
+        color = Color(0xFF1B1C33),
+        onColor = Color(0xFF1B1C33)
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x344663)
+    tertiary = Event.tertiary.copy(),
+    background = Event.background.copy(
+
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x1B1C33)
+    surface = Event.surface.copy(
+        color = Color(0xFF1B1C33),
+        onColor = Color(0xFF131423),
     ),
+
+    //foregroundColor = white,
+    //middlegroundColor = Color(0xFF645956),
+
+    statusBarColor = Color(0xFF1B1C33),
+    navigationBarColor = Color(0xFF1B1C33),
+    windowBackgroundColor = Color(0xFF1B1C33),
+    windowStrokeColor = white,
+    light_active = Color(0xFFE9AD4C),
+    light_inactive = Color(0x40E9AD4C),
+    light_off = Color(0xFF2A2E45),
+
+    buttonFilterOnPrimary = Color(0xFF447CDE),
+    strikethroughColor = Color(0xFF447CDE),
+    circleColor = Color(0xFFE9AD4C),
+    selectedColor = Color(0xFFE9AD4C),
+    selectedColor2 = Color(0xFFE9AD4C),
+    unselectedColor = Color(0xFF213A67),
+    positiveSelColor = Color(0xFFE9AD4C),
+    neutralSelColor = white,
+    negativeSelColor = Color(0xFF447CDE),
+    mapPoiFillColor = Color(0xBFE9AD4C),
+    mapRoomBorderColor = Color(0x94E9AD4C),
+    mapRoomFillColor = Color(0x1AE9AD4C),
+
+    progressBarColorStart = Color(0xFFFEFEFE),
+    progressBarColorEnd = Color(0xFFE9AD4C),
+    sanityPieStartColor = Color(0xFFFEFEFE),
+    sanityPieEndColor = Color(0xFFE9AD4C),
+
+    splashTextColor = Color(0xFF447CDE),
+    navigationFooterIcon = Color(0xFFB1AEA9),
+    navigationFooterIconAlt = Color(0xFFE9AD4C),
+
+    backgroundColor_mapviewOverlay = Color(0xBF1B1C33),
+
+    inboxNotification = Color(0xFFE9AD4C),
+
     /*
-                android:colorBackground = ColorFamily(
-                    color = create(0x1B1C33)
-                    ),
-            android:statusBarColor = ColorFamily(
-                    color = colorOnSecondary
-            ),
-            android:navigationBarColor = ColorFamily(
-            color = create(0x1B1C33)
-            ),*/
-    foregroundColor = ColorFamily(
-        color = white
+    android:colorBackground = M3ColorFamily(
+        color = Color(0x1B1C33)
     ),
-    middlegroundColor = ColorFamily(
-        color = create(0x645956)
+    android:statusBarColor = M3ColorFamily(
+            color = colorOnSecondary
     ),
-    backgroundColor = ColorFamily(
-        color = create(0x1B1C33)
+    android:navigationBarColor = M3ColorFamily(
+        color = Color(0x1B1C33)
     ),
-    backgroundColorOnBackground  = ColorFamily(
-        color = create(0x131423)
+    colorPrimary = M3ColorFamily(
+        color = Color(0xFF1B1C33)
     ),
-    statusBarColor = ColorFamily(
-        color = create(0x1B1C33)
+    colorOnPrimary = M3ColorFamily(
+        color = Color(0xFF1B1C33)
     ),
-    navigationBarColor = ColorFamily(
-        color = create(0x1B1C33)
+    colorSecondary = M3ColorFamily(
+        color = Color(0xFF1B1C33)
     ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x1B1C33)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
-        color = create(0x1B1C33)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x1B1C33)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x1B1C33)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x1B1C33)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x1B1C33)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x1B1C33)
-    ),
+    colorOnSecondary = M3ColorFamily(
+        color = Color(0xFF1B1C33)
+    ),colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF1B1C33)
+    ),colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF1B1C33)
+    ),*/
 
-    textColorPrimary = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x447CDE)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0x2E5497)
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xE4D0AE)
-    ),
-    light_active = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x40E9AD4C)
-    ),
-    light_off = ColorFamily(
-        color = create(0x2A2E45)
-    ),
-    switchColorOn = ColorFamily(
-        color = create(0x447CDE)
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0x447CDE)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0x447CDE)
-    ),
-    circleColor = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    selectedColor = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0x213A67)
-    ),
-    positiveSelColor = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    neutralSelColor = ColorFamily(
-        color = white
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0x447CDE)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBFE9AD4C)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x94E9AD4C)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1AE9AD4C)
-    ),
 
-    progressBarColorStart = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xFEFEFE)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-
-    splashTextColor = ColorFamily(
-        color = create(0x447CDE)
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x2A487E)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xECDDC5)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x447CDE)
-    ),
-    codex4 = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-    codex5 = ColorFamily(
-        color = create(0x344663)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x402A487E)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0xB1AEA9)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF1B1C33)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0xE9AD4C)
-    ),
-
-    )
+)
 
 val Discord = Community.copy(
-    i = ColorFamily(
-        color = white
+    extrasFamily = Community.extrasFamily.copy(
+        title = title_discord,
+        badge = badge_discord
     ),
-    j = ColorFamily(
-        color = create(0xF3F3F7)
-    ),
-    h = ColorFamily(
-        color = create(0xE9E9EA)
-    ),
-    g = ColorFamily(
-        color = create(0xC3C4C6)
-    ),
-    k = ColorFamily(
-        color = create(0xAAB3F3)
-    ),
-    l = ColorFamily(
-        color = create(0x717AF2)
-    ),
-    b = ColorFamily(
-        color = blue_M75
-    ),
-    a = ColorFamily(
-        color = blue_M850
-    ),
-    m = ColorFamily(
-        color = create(0x131517)
-    ),
-    d = ColorFamily(
-        color = black
+    
+    themeFamily = Community.themeFamily.copy(
+        a = blue_M850,
+        b = blue_M75,
+        c = Color.Unspecified,
+        d = black,
+        e = Color.Unspecified,
+        f = Color.Unspecified,
+        g = Color(0xFFC3C4C6),
+        h = Color(0xFFE9E9EA),
+        i = white,
+        j = Color(0xFFF3F3F7),
+        k = Color(0xFFAAB3F3),
+        l = Color(0xFF717AF2),
+        m = Color(0xFF131517),
+        n = Color.Unspecified,
+        o = Color.Unspecified,
+        p = Color.Unspecified,
+        q = Color.Unspecified,
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = create(0x717AF2)
+    coreFamily = Community.coreFamily.copy(
+        primary = Color(0xFF717AF2),
+        color_1 = Color(0xFFAAB3F3),
+        color_2 = blue_M75,
+        color_3 = Color(0xFF5763EC),
+        color_4 = blue_M850,
+        color_5 = white,
+        color_6 = Color(0xFFF3F3F7),
+        color_7 = Color(0xFFC3C4C6),
+        color_8 = Color(0xFF131517),
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xAAB3F3)
+
+    codexFamily = Community.codexFamily.copy(
+        codex1 = Color(0xFF1D2023),
+        codex3 = Color(0xFFAAB3F3),
+        codex2 = Color(0xFF131517),
+        codex4 = blue_M75,
+        codex5 = Color(0xFF2C3032),
+        codex6_gridBackground = Color(0x401D2023),
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = blue_M75
+
+    textFamily = Community.textFamily.copy(
+        primary = blue_M75,
+        secondary = Color(0xFF717AF2),
+        tertiary = Color(0xFFAAB3F3),
+        body = white,
+        emphasis = Color(0xFFAAB3F3),
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0x5763EC)
+
+    switchTheme = Community.switchTheme.copy(
+        thumbActive = black,
+        trackActive = blue_M75,
+        thumbInactive = blue_M75,
+        trackInactive = black,
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = blue_M850
+
+    primary = Community.primary.copy(
+        color = Color(0xFF131517),
+        onColor = Color(0xFF131517)
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+    secondary = Community.secondary.copy(
+        color = Color(0xFF131517),
+        onColor = Color(0xFF131517)
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xF3F3F7)
+    tertiary = Community.tertiary.copy(),
+    background = Community.background.copy(
+
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0xC3C4C6)
+    surface = Community.surface.copy(
+        color = Color(0xFF131517),
+        onColor = blue_M850,
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x131517)
-    ),
+
+    //foregroundColor = Color(0xFFF3F3F7),
+    //middlegroundColor = Color(0xFFC3C4C6),
+
+    statusBarColor = Color(0xFF131517),
+    navigationBarColor = Color(0xFF131517),
+    windowBackgroundColor = Color(0xFF131517),
+    windowStrokeColor = Color(0xFFF3F3F7),
+    light_active = blue_M75,
+    light_inactive = Color(0xFFAAB3F3),
+    light_off = blue_M850,
+
+    buttonFilterOnPrimary = Color(0xFFAAB3F3),
+    strikethroughColor = Color(0xFFC3C4C6),
+    circleColor = blue_M75,
+    selectedColor = Color(0xFFAAB3F3),
+    selectedColor2 = Color(0xFFAAB3F3),
+    unselectedColor = blue_M850,
+    positiveSelColor = blue_M75,
+    neutralSelColor = Color(0xFFF3F3F7),
+    negativeSelColor = Color(0xFFC3C4C6),
+    mapPoiFillColor = Color(0xBF5763EC),
+    mapRoomBorderColor = Color(0x945763EC),
+    mapRoomFillColor = Color(0x1A5763EC),
+
+    progressBarColorStart = Color(0xFFF3F3F7),
+    progressBarColorEnd = blue_M75,
+    sanityPieStartColor = Color(0xFFF3F3F7),
+    sanityPieEndColor = blue_M75,
+
+    splashTextColor = blue_M75,
+
+    navigationFooterIcon = blue_M850,
+    navigationFooterIconAlt = blue_M75,
+
+    backgroundColor_mapviewOverlay = Color(0xBF131517),
+
+    inboxNotification = Color(0xFFF3F3F7),
+
     /*
-                android:colorBackground = ColorFamily(
-                    color = create(0x131517)
-                    ),
-            android:statusBarColor = ColorFamily(
-                    color = colorOnSecondary
-            ),
-            android:navigationBarColor = ColorFamily(
-            color = create(0x131517)
-            ),*/
-    foregroundColor = ColorFamily(
-        color = create(0xF3F3F7)
+    android:colorBackground = M3ColorFamily(
+        color = Color(0x131517)
     ),
-    middlegroundColor = ColorFamily(
-        color = create(0xC3C4C6)
+    android:statusBarColor = M3ColorFamily(
+        color = colorOnSecondary
     ),
-    backgroundColor  = ColorFamily(
-        color = create(0x131517)
+    android:navigationBarColor = M3ColorFamily(
+        color = Color(0x131517)
     ),
-    backgroundColorOnBackground = ColorFamily(
-        color = blue_M850
+    colorprimary = Community.primary.copy(
+        color = Color(0xFF131517)
     ),
-    statusBarColor = ColorFamily(
-        color = create(0x131517)
+    colorOnprimary = Community.primary.copy(
+        color = Color(0xFF131517)
     ),
-    navigationBarColor = ColorFamily(
-        color = create(0x131517)
+    colorsecondary = Community.secondary.copy(
+        color = Color(0xFF131517)
     ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x131517)
+    colorOnsecondary = Community.secondary.copy(
+        color = Color(0xFF131517)
     ),
-    windowStrokeColor = ColorFamily(
-        color = create(0xF3F3F7)
+    colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF131517)
     ),
-    colorPrimary = ColorFamily(
-        color = create(0x131517)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x131517)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x131517)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x131517)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x131517)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x131517)
-    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF131517)
+    ),*/
 
-    textColorPrimary = ColorFamily(
-        color = blue_M75
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x717AF2)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0xAAB3F3)
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xAAB3F3)
-    ),
-    light_active = ColorFamily(
-        color = blue_M75
-    ),
-    light_inactive = ColorFamily(
-        color = create(0xAAB3F3)
-    ),
-    light_off = ColorFamily(
-        color = blue_M850
-    ),
-    switchColorOn = ColorFamily(
-        color = blue_M75
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xAAB3F3)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0xC3C4C6)
-    ),
-    circleColor = ColorFamily(
-        color = blue_M75
-    ),
-    selectedColor = ColorFamily(
-        color = create(0xAAB3F3)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0xAAB3F3)
-    ),
-    unselectedColor = ColorFamily(
-        color = blue_M850
-    ),
-    positiveSelColor = ColorFamily(
-        color = blue_M75
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0xF3F3F7)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xC3C4C6)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBF5763EC)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x945763EC)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1A5763EC)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xF3F3F7)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = blue_M75
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xF3F3F7)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = blue_M75
-    ),
-
-    splashTextColor = ColorFamily(
-        color = blue_M75
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x1D2023)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xAAB3F3)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x131517)
-    ),
-    codex4 = ColorFamily(
-        color = blue_M75
-    ),
-    codex5 = ColorFamily(
-        color = create(0x2C3032)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x401D2023)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = blue_M850
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = blue_M75
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF131517)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0xF3F3F7)
-    ),
 )
 
 val ContentCreator = Community.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xCACACA)
-    ),
-    c = ColorFamily(
-        color = red_M225
-    ),
-    d = ColorFamily(
-        color = create(0x9B1B35)
-    ),
-    e = ColorFamily(
-        color = create(0x510E1B)
-    ),
-    f = ColorFamily(
-        color = create(0x1E1013)
-    ),
-    g = ColorFamily(
-        color = create(0x040303)
-    ),
-    h = ColorFamily(
-        color = black_M50
-    ),
-    i = ColorFamily(
-        color = create(0x010000)
+    extrasFamily = Community.extrasFamily.copy(
+        title = title_cc,
+        badge = badge_cc
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = red_M225
+
+    themeFamily = Community.themeFamily.copy(
+        a = white,
+        b = Color(0xFFCACACA),
+        c = red_M225,
+        d = Color(0xFF9B1B35),
+        e = Color(0xFF510E1B),
+        f = Color(0xFF1E1013),
+        g = Color(0xFF040303),
+        h = black_M50,
+        i = Color(0xFF010000)
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xDF1740)
+
+    coreFamily = Community.coreFamily.copy(
+        primary = red_M225,
+        color_1 = Color(0xFFDF1740),
+        color_2 = red_M225,
+        color_3 = Color(0xFF510E1B),
+        color_4 = Color(0xFF1E1013),
+        color_5 = white,
+        color_6 = Color(0xFFCACACA),
+        color_7 = Color(0xFF99AEB3),
+        color_8 = black_M50,
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = red_M225
+
+    textFamily = Community.textFamily.copy(
+        primary = red_M225,
+        secondary = Color(0xFF9B1B35),
+        tertiary = Color(0xFF510E1B),
+        body = white,
+        emphasis = Color(0xFF9B1B35)
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0x510E1B)
+
+    codexFamily = Community.codexFamily.copy(
+        codex1 = Color(0xFF510E1B),
+        codex3 = Color(0xFF99AEB3),
+        codex2 = Color(0xFF3C0A14),
+        codex4 = red_M225,
+        codex5 = Color(0xFF1E1013),
+        codex6_gridBackground = Color(0x40510E1B),
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x1E1013)
+
+    switchTheme = Community.switchTheme.copy(
+        thumbActive = Color(0xFF1E1013),
+        trackActive = red_M225,
+        thumbInactive = red_M225,
+        trackInactive = Color(0xFF1E1013),
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+
+    primary = Community.primary.copy(
+        color = black_M50,
+        onColor = black_M50
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xCACACA)
+    secondary = Community.secondary.copy(
+        color = black_M50,
+        onColor = black_M50
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x99AEB3)
+    tertiary = Community.tertiary.copy(),
+    background = Community.background.copy(
+
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = black_M50
+    surface = Community.surface.copy(
+        color = black_M50,
+        onColor = Color(0xFF190509),
     ),
+
+    //foregroundColor = white,
+    //middlegroundColor = Color(0xFFCACACA),
+
+    statusBarColor = black_M50,
+    navigationBarColor = black_M50,
+    windowBackgroundColor = black_M50,
+    windowStrokeColor = white,
+
+    light_active = red_M225,
+    light_inactive = Color(0xFF510E1B),
+    light_off = Color(0xFF1E1013),
+
+    buttonFilterOnPrimary = Color(0xFFCACACA),
+    strikethroughColor = Color(0xFF780C0C),
+    circleColor = Color(0xFFDF1740),
+    selectedColor = red_M225,
+    selectedColor2 = red_M225,
+    unselectedColor = Color(0xFF510E1B),
+    positiveSelColor = Color(0xFFDF1740),
+    neutralSelColor = Color(0xFFCACACA),
+    negativeSelColor = Color(0xFF780C0C),
+    mapPoiFillColor = Color(0xBFCD2547),
+    mapRoomBorderColor = Color(0x94CD2547),
+    mapRoomFillColor = Color(0x1ACD2547),
+
+    progressBarColorStart = Color(0xFFCACACA),
+    progressBarColorEnd = red_M225,
+    sanityPieStartColor = Color(0xFFCACACA),
+    sanityPieEndColor = red_M225,
+
+    splashTextColor = red_M225,
+
+    navigationFooterIcon = Color(0xFF510E1B),
+    navigationFooterIconAlt = Color(0xFFDF1740),
+
+    backgroundColor_mapviewOverlay = Color(0xBF080808),
+
+    inboxNotification = red_M225,
+
     /*
-                android:colorBackground = ColorFamily(
-                    color = black_M50
-                    ),
-            android:statusBarColor = ColorFamily(
-                    color = colorOnSecondary
-            ),
-            android:navigationBarColor = ColorFamily(
-            color = black_M50
-            ),*/
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = create(0xCACACA)
-    ),
-    backgroundColor = ColorFamily(
+    android:colorBackground = M3ColorFamily(
         color = black_M50
     ),
-    backgroundColorOnBackground  = ColorFamily(
-        color = create(0x190509)
+    android:statusBarColor = M3ColorFamily(
+        color = colorOnSecondary
     ),
-    statusBarColor = ColorFamily(
+    android:navigationBarColor = M3ColorFamily(
         color = black_M50
-    ),
-    navigationBarColor = ColorFamily(
-        color = black_M50
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = black_M50
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
-        color = black_M50
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = black_M50
-    ),
-    colorOnPrimary = ColorFamily(
-        color = black_M50
-    ),
-    colorSecondary = ColorFamily(
-        color = black_M50
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = black_M50
-    ),
-    colorOnSecondary = ColorFamily(
-        color = black_M50
-    ),
+    )
 
-    textColorPrimary = ColorFamily(
-        color = red_M225
+    colorprimary = Community.primary.copy(
+        color = black_M50
     ),
-    textColorSecondary = ColorFamily(
-        color = create(0x9B1B35)
+    colorOnprimary = Community.primary.copy(
+        color = black_M50
     ),
-    textColorTertiary = ColorFamily(
-        color = create(0x510E1B)
+    colorsecondary = Community.secondary.copy(
+        color = black_M50
     ),
-    textColorBody = ColorFamily(
-        color = white
+    colorOnsecondary = Community.secondary.copy(
+        color = black_M50
     ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0x9B1B35)
+    colorPrimaryVariant = M3ColorFamily(
+        color = black_M50
     ),
-    light_active = ColorFamily(
-        color = red_M225
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x510E1B)
-    ),
-    light_off = ColorFamily(
-        color = create(0x1E1013)
-    ),
-    switchColorOn = ColorFamily(
-        color = red_M225
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xCACACA)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0x780C0C)
-    ),
-    circleColor = ColorFamily(
-        color = create(0xDF1740)
-    ),
-    selectedColor = ColorFamily(
-        color = red_M225
-    ),
-    selectedColor2 = ColorFamily(
-        color = red_M225
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0x510E1B)
-    ),
-    positiveSelColor = ColorFamily(
-        color = create(0xDF1740)
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0xCACACA)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0x780C0C)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBFCD2547)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x94CD2547)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1ACD2547)
-    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = black_M50
+    ),*/
 
-    progressBarColorStart = ColorFamily(
-        color = create(0xCACACA)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = red_M225
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xCACACA)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = red_M225
-    ),
-
-    splashTextColor = ColorFamily(
-        color = red_M225
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x510E1B)
-    ),
-    codex3 = ColorFamily(
-        color = create(0x99AEB3)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x3C0A14)
-    ),
-    codex4 = ColorFamily(
-        color = red_M225
-    ),
-    codex5 = ColorFamily(
-        color = create(0x1E1013)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40510E1B)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0x510E1B)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = create(0xDF1740)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF080808)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = red_M225
-    ),
 )
 val Developer = Community.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    c = ColorFamily(
-        color = create(0xAFA98C)
-    ),
-    d = ColorFamily(
-        color = yellow_M25
-    ),
-    e = ColorFamily(
-        color = create(0x868036)
-    ),
-    f = ColorFamily(
-        color = create(0x4E4507)
-    ),
-    g = ColorFamily(
-        color = create(0x171502)
-    ),
-    h = ColorFamily(
-        color = create(0x020301)
-    ),
-    i = ColorFamily(
-        color = black
+    extrasFamily = Community.extrasFamily.copy(
+        title = title_dev,
+        badge = badge_dev
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = yellow_M25
+
+    themeFamily = Community.themeFamily.copy(
+        a = white,
+        b = Color(0xFFE2E2DF),
+        c = Color(0xFFAFA98C),
+        d = yellow_M25,
+        e = Color(0xFF868036),
+        f = Color(0xFF4E4507),
+        g = Color(0xFF171502),
+        h = Color(0xFF020301),
+        i = black
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xCFCCB4)
+    coreFamily = Community.coreFamily.copy(
+        primary = yellow_M25,
+        color_1 = yellow_M25,
+        color_2 = Color(0xFFCFCCB4),
+        color_3 = Color(0xFFD3C667),
+        color_4 = Color(0xFF4E4507),
+        color_5 = white,
+        color_6 = Color(0xFFE2E2DF),
+        color_7 = Color(0xFF535353),
+        color_8 = black_M50
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0xD3C667)
+    textFamily = Community.textFamily.copy(
+        primary = yellow_M25,
+        secondary = Color(0xFFCDB70B),
+        tertiary = Color(0xFFD3C667),
+        body = Color(0xFFE2E2DF),
+        emphasis = Color(0xFFCFCCB4)
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x4E4507)
+
+    codexFamily = Community.codexFamily.copy(
+        codex1 = Color(0xFF535353),
+        codex3 = yellow_M25,
+        codex2 = Color(0xFF333333),
+        codex4 = yellow_M25,
+        codex5 = Color(0xFF332E09),
+        codex6_gridBackground = Color(0x40535353)
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = yellow_M25
+
+    switchTheme = Community.switchTheme.copy(
+        thumbActive = Color(0xFF4E4507),
+        thumbInactive = yellow_M25,
+        trackActive = yellow_M25,
+        trackInactive = black,
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+
+    primary = Community.primary.copy(
+        color = black_M50,
+        onColor = black_M50
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xE2E2DF)
+    secondary = Community.secondary.copy(
+        color = black_M50,
+        onColor = black_M50
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x535353)
+    tertiary = Community.tertiary.copy(),
+    background = Community.background.copy(
+
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = black_M50
+    surface = Community.surface.copy(
+        color = black_M50,
+        onColor = Color(0xFF171502),
     ),
+
+
+    //foregroundColor = Color(0xFFE2E2DF),
+    //middlegroundColor = white_M400,
+    statusBarColor = black_M50,
+    navigationBarColor = black_M50,
+    windowBackgroundColor = black_M50,
+    windowStrokeColor = Color(0xFFE2E2DF),
+    light_active = yellow_M25,
+    light_inactive = Color(0x66ECD316),
+    light_off = Color(0x1AECD316),
+
+    buttonFilterOnPrimary = Color(0xFFD3C667),
+    strikethroughColor = Color(0xFFE2E2DF),
+    circleColor = yellow_M25,
+    selectedColor = yellow_M25,
+    selectedColor2 = yellow_M25,
+    unselectedColor = Color(0xFFE2E2DF),
+    positiveSelColor = yellow_M25,
+    neutralSelColor = Color(0xFF4E4507),
+    negativeSelColor = Color(0xFFE2E2DF),
+    mapPoiFillColor = Color(0xBFECD316),
+    mapRoomBorderColor = Color(0x94ECD316),
+    mapRoomFillColor = Color(0x1AECD316),
+
+    progressBarColorStart = Color(0xFFE2E2DF),
+    progressBarColorEnd = yellow_M25,
+    sanityPieStartColor = Color(0xFFE2E2DF),
+    sanityPieEndColor = yellow_M25,
+
+    splashTextColor = yellow_M25,
+    navigationFooterIcon = Color(0xFFE2E2DF),
+    navigationFooterIconAlt = yellow_M25,
+
+    backgroundColor_mapviewOverlay = Color(0x40535353),
+
+    inboxNotification = Color(0xFFE2E2DF),
+
     /*
-                android:colorBackground = ColorFamily(
-                    color = black_M50
-                    ),
-            android:statusBarColor = ColorFamily(
-                    color = colorOnSecondary
-            ),
-            android:navigationBarColor = ColorFamily(
-            color = black_M50
-            ),*/
-    foregroundColor = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    middlegroundColor = ColorFamily(
-        color = white_M400
-    ),
-    backgroundColor = ColorFamily(
+    android:colorBackground = M3ColorFamily(
         color = black_M50
     ),
-    backgroundColorOnBackground  = ColorFamily(
-        color = create(0x171502)
-    ),
-    statusBarColor = ColorFamily(
-        color = black_M50
-    ),
-    navigationBarColor = ColorFamily(
-        color = black_M50
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = black_M50
-    ),
-    windowStrokeColor = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    colorPrimary = ColorFamily(
-        color = black_M50
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = black_M50
-    ),
-    colorOnPrimary = ColorFamily(
-        color = black_M50
-    ),
-    colorSecondary = ColorFamily(
-        color = black_M50
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = black_M50
-    ),
-    colorOnSecondary = ColorFamily(
-        color = black_M50
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = yellow_M25
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0xCDB70B)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0xD3C667)
-    ),
-    textColorBody = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xCFCCB4)
-    ),
-    light_active = ColorFamily(
-        color = yellow_M25
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x66ECD316)
-    ),
-    light_off = ColorFamily(
-        color = create(0x1AECD316)
-    ),
-    switchColorOn = ColorFamily(
-        color = yellow_M25
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xD3C667)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    circleColor = ColorFamily(
-        color = yellow_M25
-    ),
-    selectedColor = ColorFamily(
-        color = yellow_M25
-    ),
-    selectedColor2 = ColorFamily(
-        color = yellow_M25
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    positiveSelColor = ColorFamily(
-        color = yellow_M25
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0x4E4507)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBFECD316)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x94ECD316)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1AECD316)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = yellow_M25
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = yellow_M25
-    ),
-
-    splashTextColor = ColorFamily(
-        color = yellow_M25
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x535353)
-    ),
-    codex3 = ColorFamily(
-        color = yellow_M25
-    ),
-    codex2 = ColorFamily(
-        color = create(0x333333)
-    ),
-    codex4 = ColorFamily(
-        color = yellow_M25
-    ),
-    codex5 = ColorFamily(
-        color = create(0x332E09)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40535353)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = yellow_M25
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0x40535353)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0xE2E2DF)
-    ),
-)
-val Translator = Community.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xFCFAFB)
-    ),
-    c = ColorFamily(
-        color = create(0xE1C9CC)
-    ),
-    d = ColorFamily(
-        color = create(0xD99CA5)
-    ),
-    e = ColorFamily(
-        color = create(0xDA7F88)
-    ),
-    f = ColorFamily(
-        color = red_M150
-    ),
-    g = ColorFamily(
-        color = create(0x878887)
-    ),
-    h = ColorFamily(
-        color = create(0x535052)
-    ),
-    i = ColorFamily(
-        color = purple_M850
-    ),
-    j = ColorFamily(
-        color = black
-    ),
-
-    theme_colorPrimary = ColorFamily(
-        color = red_M150
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xFCFAFB)
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xE1C9CC)
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0xD99CA5)
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = red_M150
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = white_M400
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = white_M600
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = purple_M850
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = black
-    ),
-    /*
-            android:colorBackground = ColorFamily(
-            color = black
-            ),
-            android:statusBarColor = ColorFamily(
-                    color = colorOnSecondary
-            ),
-            android:navigationBarColor = ColorFamily(
-            color = black
-            ),*/
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = white_M400
-    ),
-    backgroundColor = ColorFamily(
-        color = black
-    ),
-    backgroundColorOnBackground = ColorFamily(
-        color = black_M50
-    ),
-    statusBarColor = ColorFamily(
-        color = black
-    ),
-    navigationBarColor = ColorFamily(
-        color = black
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = black
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
-        color = black
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = black
-    ),
-    colorOnPrimary = ColorFamily(
-        color = black
-    ),
-    colorSecondary = ColorFamily(
-        color = black
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = black
-    ),
-    colorOnSecondary = ColorFamily(
-        color = black
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = red_M150
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0xDA7F88)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0xD99CA5)
-    ),
-    textColorBody = ColorFamily(
-        color = create(0xFCFAFB)
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xE1C9CC)
-    ),
-    light_active = ColorFamily(
-        color = red_M150
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x535052)
-    ),
-    light_off = ColorFamily(
-        color = purple_M850
-    ),
-    switchColorOn = ColorFamily(
-        color = red_M150
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xFCFAFB)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0xD99CA5)
-    ),
-    circleColor = ColorFamily(
-        color = red_M150
-    ),
-    selectedColor = ColorFamily(
-        color = red_M150
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0x535052)
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = red_M150
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0xE1C9CC)
-    ),
-    negativeSelColor = ColorFamily(
-        color = purple_M850
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBFD66D7B)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x80D66D7B)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1AD99CA5)
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xFCFAFB)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = red_M150
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xFCFAFB)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = red_M150
-    ),
-
-    splashTextColor = ColorFamily(
-        color = red_M150
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x33292B)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xE1C9CC)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x492126)
-    ),
-    codex4 = ColorFamily(
-        color = red_M150
-    ),
-    codex5 = ColorFamily(
-        color = purple_M850
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x4033292B)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = white_M600
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = red_M150
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = black_A75
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0xDA7F88)
-    ),
-
-    )
-val Winner = Community.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0x878D8F)
-    ),
-    c = ColorFamily(
-        color = create(0x3F4346)
-    ),
-    d = ColorFamily(
-        color = create(0xECDFCD)
-    ),
-    e = ColorFamily(
-        color = create(0xDABA80)
-    ),
-    f = ColorFamily(
-        color = orange_M250
-    ),
-    g = ColorFamily(
-        color = create(0x936305)
-    ),
-    h = ColorFamily(
-        color = blue_M850
-    ),
-    i = ColorFamily(
-        color = create(0x090A0B)
-    ),
-    j = ColorFamily(
-        color = black
-    ),
-
-    theme_colorPrimary = ColorFamily(
-        color = orange_M250
-    ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xECDFCD)
-    ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xDABA80)
-    ),
-    theme_coreColor_3 = ColorFamily(
-        color = orange_M250
-    ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x936305)
-    ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
-    ),
-    theme_coreColor_6 = ColorFamily(
-        color = white_M500
-    ),
-    theme_coreColor_7 = ColorFamily(
-        color = blue_M850
-    ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x060C10)
-    ),
-
-    /*android:colorBackground = ColorFamily(
-    color = create(0x060C10)
-    ),
-    android:statusBarColor = ColorFamily(
+    android:statusBarColor = M3ColorFamily(
             color = colorOnSecondary
     ),
-    android:navigationBarColor = ColorFamily(
-    color = create(0x060C10)
+    android:navigationBarColor = M3ColorFamily(
+    color = black_M50
+    ),
+    colorprimary = Community.primary.copy(
+        color = black_M50
+    ),
+    colorOnprimary = Community.primary.copy(
+        color = black_M50
+    ),
+    colorsecondary = Community.secondary.copy(
+        color = black_M50
+    ),
+    colorOnsecondary = Community.secondary.copy(
+        color = black_M50
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = black_M50
+    ),colorSecondaryVariant = M3ColorFamily(
+        color = black_M50
     ),*/
-    foregroundColor = ColorFamily(
-        color = white
-    ),
-    middlegroundColor = ColorFamily(
-        color = white_M400
-    ),
-    backgroundColor = ColorFamily(
-        color = create(0x060C10)
-    ),
-    backgroundColorOnBackground  = ColorFamily(
-        color = create(0x091319)
-    ),
-    statusBarColor = ColorFamily(
-        color = create(0x060C10)
-    ),
-    navigationBarColor = ColorFamily(
-        color = create(0x060C10)
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x060C10)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
-        color = create(0x060C10)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x060C10)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x060C10)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x060C10)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x060C10)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x060C10)
+
+)
+val Translator = Community.copy(
+    extrasFamily = Community.extrasFamily.copy(
+        title = title_translator,
+        badge = badge_translator
     ),
 
-    textColorPrimary = ColorFamily(
-        color = orange_M250
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x936305)
-    ),
-    textColorTertiary = ColorFamily(
-        color = orange_M300
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xDABA80)
-    ),
-    light_active = ColorFamily(
-        color = create(0xDABA80)
-    ),
-    light_inactive = ColorFamily(
-        color = blue_M850
-    ),
-    light_off = ColorFamily(
-        color = white_M600
-    ),
-    switchColorOn = ColorFamily(
-        color = create(0x936305)
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = white
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0x936305)
-    ),
-    circleColor = ColorFamily(
-        color = orange_M250
-    ),
-    selectedColor = ColorFamily(
-        color = create(0xDABA80)
-    ),
-    selectedColor2 = ColorFamily(
-        color = blue_M850
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
+
+    themeFamily = Community.themeFamily.copy(
+        a = white,
+        b = Color(0xFFFCFAFB),
+        c = Color(0xFFE1C9CC),
+        d = Color(0xFFD99CA5),
+        e = Color(0xFFDA7F88),
+        f = red_M150,
+        g = Color(0xFF878887),
+        h = Color(0xFF535052),
+        i = purple_M850,
+        j = black
     ),
 
-    positiveSelColor = ColorFamily(
-        color = orange_M250
-    ),
-    neutralSelColor = ColorFamily(
-        color = white_M500
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xECDFCD)
-    ),
-
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBF936305)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x80936305)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_A10
+    coreFamily = Community.coreFamily.copy(
+        primary = red_M150,
+        color_1 = Color(0xFFFCFAFB),
+        color_2 = Color(0xFFE1C9CC),
+        color_3 = Color(0xFFD99CA5),
+        color_4 = red_M150,
+        color_5 = white_M400,
+        color_6 = white_M600,
+        color_7 = purple_M850,
+        color_8 = black
     ),
 
-    progressBarColorStart = ColorFamily(
-        color = create(0xECDFCD)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = orange_M250
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xECDFCD)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = orange_M250
+    codexFamily = Community.codexFamily.copy(
+        codex1 = Color(0xFF33292B),
+        codex3 = Color(0xFFE1C9CC),
+        codex2 = Color(0xFF492126),
+        codex4 = red_M150,
+        codex5 = purple_M850,
+        codex6_gridBackground = Color(0x4033292B)
     ),
 
-    splashTextColor = ColorFamily(
-        color = orange_M250
+    textFamily = Community.textFamily.copy(
+        primary = red_M150,
+        secondary = Color(0xFFDA7F88),
+        tertiary = Color(0xFFD99CA5),
+        body = Color(0xFFFCFAFB),
+        emphasis = Color(0xFFE1C9CC)
     ),
 
-    codex1 = ColorFamily(
-        color = blue_M850
-    ),
-    codex3 = ColorFamily(
-        color = create(0xBFB5A6)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x0A151C)
-    ),
-    codex4 = ColorFamily(
-        color = orange_M250
-    ),
-    codex5 = ColorFamily(
-        color = create(0x090A0B)
-    ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40161C1C)
+    switchTheme = Community.switchTheme.copy(
+        thumbActive = red_M150,
+        trackActive = Color(0xFFE1C9CC),
+        thumbInactive = red_M150,
+        trackInactive = black,
     ),
 
-    navigationFooterIcon = ColorFamily(
-        color = white_M600
+    primary = Community.primary.copy(
+        color = black,
+        onColor = black
     ),
-    navigationFooterIconAlt = ColorFamily(
-        color = orange_M250
+    secondary = Community.secondary.copy(
+        color = black,
+        onColor = black
+    ),
+    tertiary = Community.tertiary.copy(),
+    background = Community.background.copy(
+
+    ),
+    surface = Community.surface.copy(
+        color = black,
+        onColor = black_M50,
+    ),
+    
+    //foregroundColor = white,
+    //middlegroundColor = white_M400,
+    
+    statusBarColor = black,
+    navigationBarColor = black,
+    windowBackgroundColor = black,
+    windowStrokeColor = white,
+
+    light_active = red_M150,
+    light_inactive = Color(0xFF535052),
+    light_off = purple_M850,
+
+    buttonFilterOnPrimary = Color(0xFFFCFAFB),
+    strikethroughColor = Color(0xFFD99CA5),
+    circleColor = red_M150,
+    selectedColor = red_M150,
+    selectedColor2 = Color(0xFF535052),
+    unselectedColor = white_M600,
+    positiveSelColor = red_M150,
+    neutralSelColor = Color(0xFFE1C9CC),
+    negativeSelColor = purple_M850,
+    mapPoiFillColor = Color(0xBFD66D7B),
+    mapRoomBorderColor = Color(0x80D66D7B),
+    mapRoomFillColor = Color(0x1AD99CA5),
+
+    progressBarColorStart = Color(0xFFFCFAFB),
+    progressBarColorEnd = red_M150,
+    sanityPieStartColor = Color(0xFFFCFAFB),
+    sanityPieEndColor = red_M150,
+
+    splashTextColor = red_M150,
+
+    navigationFooterIcon = white_M600,
+    navigationFooterIconAlt = red_M150,
+
+    backgroundColor_mapviewOverlay = black_A75,
+
+    inboxNotification = Color(0xFFDA7F88),
+
+    /*
+    android:colorBackground = M3ColorFamily(
+    color = black
+    ),
+    android:statusBarColor = M3ColorFamily(
+            color = colorOnSecondary
+    ),
+    android:navigationBarColor = M3ColorFamily(
+    color = black
+
+    colorPrimary = M3ColorFamily(
+        color = black
+    ),
+    colorOnPrimary = M3ColorFamily(
+        color = black
+    ),
+    colorSecondary = M3ColorFamily(
+        color = black
+    ),
+    colorOnSecondary = M3ColorFamily(
+        color = black
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = black
+    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = black
+    ),*/
+
+)
+
+val Winner = Community.copy(
+    extrasFamily = Community.extrasFamily.copy(
+        title = title_winner,
+        badge = badge_winner
     ),
 
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF060C10)
+    themeFamily = Community.themeFamily.copy(
+        a = white,
+        b = Color(0xFF878D8F),
+        c = Color(0xFF3F4346),
+        d = Color(0xFFECDFCD),
+        e = Color(0xFFDABA80),
+        f = orange_M250,
+        g = Color(0xFF936305),
+        h = blue_M850,
+        i = Color(0xFF090A0B),
+        j = black
     ),
+    coreFamily = Community.coreFamily.copy(
+        primary = orange_M250,
+        color_1 = Color(0xFFECDFCD),
+        color_2 = Color(0xFFDABA80),
+        color_3 = orange_M250,
+        color_4 = Color(0xFF936305),
+        color_5 = white,
+        color_6 = white_M500,
+        color_7 = blue_M850,
+        color_8 = Color(0xFF060C10)
+    ),
+    primary = Community.primary.copy(
+        color = Color(0xFF060C10),
+        onColor = Color(0xFF060C10)
+    ),
+    secondary = Community.secondary.copy(
+        color = Color(0xFF060C10),
+        onColor = Color(0xFF060C10)
+    ),
+    tertiary = Community.tertiary.copy(),
+    background = Community.background.copy(
 
-    inboxNotification = ColorFamily(
-        color = create(0xDABA80)
     ),
+    surface = Community.surface.copy(
+        color = Color(0xFF060C10),
+        onColor = Color(0xFF091319)
+    ),
+    
+    codexFamily = Community.codexFamily.copy(
+        codex1 = blue_M850,
+        codex3 = Color(0xFFBFB5A6),
+        codex2 = Color(0xFF0A151C),
+        codex4 = orange_M250,
+        codex5 = Color(0xFF090A0B),
+        codex6_gridBackground = Color(0x40161C1C)
+    ),
+    
+    switchTheme = Community.switchTheme.copy(
+        thumbActive = Color(0xFFECDFCD),
+        trackActive = orange_M250,
+        thumbInactive = orange_M250,
+        trackInactive = Color(0xFF060C10),
+    ),
+    textFamily = Community.textFamily.copy(
+        primary = orange_M250,
+        secondary = Color(0xFF936305),
+        tertiary = orange_M300,
+        body = white,
+        emphasis = Color(0xFFDABA80)
+    ),
+    
+    //foregroundColor = white,
+    //middlegroundColor = white_M400,
+
+    statusBarColor = Color(0xFF060C10),
+    navigationBarColor = Color(0xFF060C10),
+    windowBackgroundColor = Color(0xFF060C10),
+    windowStrokeColor = white,
+
+    light_active = Color(0xFFDABA80),
+    light_inactive = blue_M850,
+    light_off = white_M600,
+
+    buttonFilterOnPrimary = white,
+    strikethroughColor = Color(0xFF936305),
+    circleColor = orange_M250,
+    selectedColor = Color(0xFFDABA80),
+    selectedColor2 = blue_M850,
+    unselectedColor = white_M600,
+
+    positiveSelColor = orange_M250,
+    neutralSelColor = white_M500,
+    negativeSelColor = Color(0xFFECDFCD),
+
+    mapPoiFillColor = Color(0xBF936305),
+    mapRoomBorderColor = Color(0x80936305),
+    mapRoomFillColor = yellow_A10,
+
+    progressBarColorStart = Color(0xFFECDFCD),
+    progressBarColorEnd = orange_M250,
+    sanityPieStartColor = Color(0xFFECDFCD),
+    sanityPieEndColor = orange_M250,
+
+    splashTextColor = orange_M250,
+    navigationFooterIcon = white_M600,
+    navigationFooterIconAlt = orange_M250,
+
+    backgroundColor_mapviewOverlay = Color(0xBF060C10),
+
+    inboxNotification = Color(0xFFDABA80),
+
+    /*android:colorBackground = M3ColorFamily(
+    color = Color(0x060C10)
+    ),
+    android:statusBarColor = M3ColorFamily(
+            color = colorOnSecondary
+    ),
+    android:navigationBarColor = M3ColorFamily(
+    color = Color(0x060C10)
+    ),
+    colorPrimary = M3ColorFamily(
+        color = Color(0xFF060C10)
+    ),
+    colorOnPrimary = M3ColorFamily(
+        color = Color(0xFF060C10)
+    ),
+    colorSecondary = M3ColorFamily(
+        color = Color(0xFF060C10)
+    ),
+    colorOnSecondary = M3ColorFamily(
+        color = Color(0xFF060C10)
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF060C10)
+    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF060C10)
+    ),*/
 )
 val Artist = Community.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
-    c = ColorFamily(
-        color = create(0xAA7FFD)
-    ),
-    d = ColorFamily(
-        color = purple_M550
-    ),
-    e = ColorFamily(
-        color = create(0x432878)
-    ),
-    f = ColorFamily(
-        color = create(0xB0ACBA)
-    ),
-    g = ColorFamily(
-        color = create(0x7E7C7E)
-    ),
-    h = ColorFamily(
-        color = blue_M850
-    ),
-    i = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    j = ColorFamily(
-        color = black
+    extrasFamily = Community.extrasFamily.copy(
+        title = title_artist,
+        badge = badge_artist
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = create(0xAA7FFD)
+    themeFamily = Community.themeFamily.copy(
+        a = white,
+        b = Color(0xFFE3D6F7),
+        c = Color(0xFFAA7FFD),
+        d = purple_M550,
+        e = Color(0xFF432878),
+        f = Color(0xFFB0ACBA),
+        g = Color(0xFF7E7C7E),
+        h = blue_M850,
+        i = Color(0xFF0A0C0C),
+        j = black
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xE3D6F7)
+    coreFamily = Community.coreFamily.copy(
+        primary = Color(0xFFAA7FFD),
+        color_1 = Color(0xFFE3D6F7),
+        color_2 = Color(0xFFAA7FFD),
+        color_3 = purple_M550,
+        color_4 = Color(0xFF432878),
+        color_5 = white,
+        color_6 = Color(0xFFB0ACBA),
+        color_7 = blue_M850,
+        color_8 = black
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xAA7FFD)
+    primary = Community.primary.copy(
+        color = Color(0xFF0A0C0C),
+        onColor = Color(0xFF0A0C0C)
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = purple_M550
+    secondary = Community.secondary.copy(
+        color = Color(0xFF0A0C0C),
+        onColor = Color(0xFF0A0C0C)
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0x432878)
+    tertiary = Community.tertiary.copy(),
+    background = Community.background.copy(
+
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = white
+    surface = Community.surface.copy(
+        color = Color(0xFF0A0C0C),
+        onColor = Color(0xFF131717)
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0xB0ACBA)
+    
+    codexFamily = Community.codexFamily.copy(
+        codex1 = Color(0xFF0A0C0C),
+        codex3 = Color(0xFFE3D6F7),
+        codex2 = Color(0xFF1E1235),
+        codex4 = Color(0xFFAA7FFD),
+        codex5 = blue_M850,
+        codex6_gridBackground = Color(0x400A0C0C)
+        
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = blue_M850
+    
+    switchTheme = Community.switchTheme.copy(
+        thumbActive = Color(0xFFE3D6F7),
+        trackActive = Color(0xFFAA7FFD),
+        thumbInactive = Color(0xFFAA7FFD),
+        trackInactive = Color(0xFF0A0C0C)
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = black
+    textFamily = Community.textFamily.copy(
+        primary = purple_M550,
+        secondary = Color(0xFF5B399E),
+        tertiary = Color(0xFFAA7FFD),
+        body = white,
+        emphasis = Color(0xFFE3D6F7),
     ),
+
+    //foregroundColor = white,
+    //middlegroundColor = white_M400,
+    
+    statusBarColor = Color(0xFF0A0C0C),
+    navigationBarColor = Color(0xFF0A0C0C),
+    windowBackgroundColor = Color(0xFF0A0C0C),
+    windowStrokeColor = white,
+
+    light_active = purple_M550,
+    light_inactive = Color(0xFF5B399E),
+    light_off = white_M600,
+
+    buttonFilterOnPrimary = Color(0xFFE3D6F7),
+    strikethroughColor = Color(0xFF5B399E),
+    circleColor = Color(0xFFE3D6F7),
+    selectedColor = purple_M550,
+    selectedColor2 = Color(0xFF5B399E),
+    unselectedColor = white_M600,
+    positiveSelColor = Color(0xFFE3D6F7),
+    neutralSelColor = Color(0xFF7E7C7E),
+    negativeSelColor = purple_M550,
+    mapPoiFillColor = Color(0xBF5B399E),
+    mapRoomBorderColor = Color(0x805B399E),
+    mapRoomFillColor = yellow_A10,
+
+    progressBarColorStart = Color(0xFFE3D6F7),
+    progressBarColorEnd = Color(0xFFAA7FFD),
+    sanityPieStartColor = Color(0xFFE3D6F7),
+    sanityPieEndColor = purple_M550,
+
+    splashTextColor = Color(0xFFAA7FFD),
+    navigationFooterIcon = white_M600,
+    navigationFooterIconAlt = purple_M550,
+
+    backgroundColor_mapviewOverlay = Color(0xBF0A0C0C),
+
+    inboxNotification = Color(0xFFE3D6F7),
+
     /*
-                android:colorBackground = ColorFamily(
-                    color = create(0x0A0C0C)
-                    ),
-            android:statusBarColor = ColorFamily(
-                    color = colorOnSecondary
-            ),
-            android:navigationBarColor = ColorFamily(
-            color = create(0x0A0C0C)
-            ),*/
-    foregroundColor = ColorFamily(
+    theme_colorPrimary = M3ColorFamily(
+        color = Color(0xFFAA7FFD)
+    ),
+    color_1 = M3ColorFamily(
+        color = Color(0xFFE3D6F7)
+    ),
+    color_2 = M3ColorFamily(
+        color = Color(0xFFAA7FFD)
+    ),
+    color_3 = M3ColorFamily(
+        color = purple_M550
+    ),
+    color_4 = M3ColorFamily(
+        color = Color(0xFF432878)
+    ),
+    color_5 = M3ColorFamily(
         color = white
     ),
-    middlegroundColor = ColorFamily(
-        color = white_M400
+    color_6 = M3ColorFamily(
+        color = Color(0xFFB0ACBA)
     ),
-    backgroundColor  = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    backgroundColorOnBackground  = ColorFamily(
-        color = create(0x131717)
-    ),
-    statusBarColor  = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    navigationBarColor  = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    windowStrokeColor = ColorFamily(
-        color = white
-    ),
-    colorPrimary = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-
-    textColorPrimary = ColorFamily(
-        color = purple_M550
-    ),
-    textColorSecondary = ColorFamily(
-        color = create(0x5B399E)
-    ),
-    textColorTertiary = ColorFamily(
-        color = create(0xAA7FFD)
-    ),
-    textColorBody = ColorFamily(
-        color = white
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
-    light_active = ColorFamily(
-        color = purple_M550
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x5B399E)
-    ),
-    light_off = ColorFamily(
-        color = white_M600
-    ),
-    switchColorOn = ColorFamily(
-        color = purple_M550
-    ),
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0x5B399E)
-    ),
-    circleColor = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
-    selectedColor = ColorFamily(
-        color = purple_M550
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0x5B399E)
-    ),
-    unselectedColor = ColorFamily(
-        color = white_M600
-    ),
-    positiveSelColor = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0x7E7C7E)
-    ),
-    negativeSelColor = ColorFamily(
-        color = purple_M550
-    ),
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBF5B399E)
-    ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x805B399E)
-    ),
-    mapRoomFillColor = ColorFamily(
-        color = yellow_A10
-    ),
-
-    progressBarColorStart = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = create(0xAA7FFD)
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = purple_M550
-    ),
-
-    splashTextColor = ColorFamily(
-        color = create(0xAA7FFD)
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x0A0C0C)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x1E1235)
-    ),
-    codex4 = ColorFamily(
-        color = create(0xAA7FFD)
-    ),
-    codex5 = ColorFamily(
+    color_7 = M3ColorFamily(
         color = blue_M850
     ),
-    codex6_gridBackground = ColorFamily(
-        color = create(0x400A0C0C)
+    color_8 = M3ColorFamily(
+        color = black
     ),
+    android:colorBackground = M3ColorFamily(
+        color = Color(0x0A0C0C)
+    ),
+    android:statusBarColor = M3ColorFamily(
+        color = colorOnSecondary
+    ),
+    android:navigationBarColor = M3ColorFamily(
+    color = Color(0x0A0C0C)),
 
-    navigationFooterIcon = ColorFamily(
-        color = white_M600
+    colorPrimary = M3ColorFamily(
+        color = Color(0xFF0A0C0C)
     ),
-    navigationFooterIconAlt = ColorFamily(
-        color = purple_M550
+    colorOnPrimary = M3ColorFamily(
+        color = Color(0xFF0A0C0C)
     ),
+    colorSecondary = M3ColorFamily(
+        color = Color(0xFF0A0C0C)
+    ),
+    colorOnSecondary = M3ColorFamily(
+        color = Color(0xFF0A0C0C)
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF0A0C0C)
+    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF0A0C0C)
+    ),*/
 
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF0A0C0C)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0xE3D6F7)
-    ),
 )
 
 val StrategemHero = Special.copy(
-    a = ColorFamily(
-        color = white
-    ),
-    b = ColorFamily(
-        color = create(0xA3A3A3)
-    ),
-    c = ColorFamily(
-        color = create(0xFFD608)
-    ),
-    d = ColorFamily(
-        color = create(0xBA9F36)
-    ),
-    e = ColorFamily(
-        color = create(0xA04907)
-    ),
-    f = ColorFamily(
-        color = create(0xDE2C38)
-    ),
-    g = ColorFamily(
-        color = create(0x700000)
-    ),
-    h = ColorFamily(
-        color = create(0x000B17)
-    ),
-    i = ColorFamily(
-        color = create(0x06223B)
-    ),
-    j = ColorFamily(
-        color = create(0x0D3A63)
-    ),
-    k = ColorFamily(
-        color = create(0x2D70A1)
-    ),
-    l = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-    m = ColorFamily(
-        color = create(0xE2EDFB)
-    ),
-    n = ColorFamily(
-        color = create(0x16564A)
-    ),
-    o = ColorFamily(
-        color = create(0x95D2C8)
-    ),
-    p = ColorFamily(
-        color = create(0xBBBFB3)
-    ),
-    q = ColorFamily(
-        color = black
+    extrasFamily = Special.extrasFamily.copy(
+        title = title_strategemhero,
+        badge = badge_strategemhero
     ),
 
-    theme_colorPrimary = ColorFamily(
-        color = white
+    themeFamily = Special.themeFamily.copy(
+        a = white,
+        b = Color(0xFFA3A3A3),
+        c = Color(0xFFFFD608),
+        d = Color(0xFFBA9F36),
+        e = Color(0xFFA04907),
+        f = Color(0xFFDE2C38),
+        g = Color(0xFF700000),
+        h = Color(0xFF000B17),
+        i = Color(0xFF06223B),
+        j = Color(0xFF0D3A63),
+        k = Color(0xFF2D70A1),
+        l = Color(0xFFB7CBDC),
+        m = Color(0xFFE2EDFB),
+        n = Color(0xFF16564A),
+        o = Color(0xFF95D2C8),
+        p = Color(0xFFBBBFB3),
+        q = black
     ),
-    theme_coreColor_1 = ColorFamily(
-        color = create(0xA3A3A3)
+
+    coreFamily = Special.coreFamily.copy(
+        primary = white,
+        color_1 = Color(0xFFA3A3A3),
+        color_2 = Color(0xFFFFD608),
+        color_3 = Color(0xFFA04907),
+        color_4 = Color(0xFFDE2C38),
+        color_5 = Color(0xFFB7CBDC),
+        color_6 = Color(0xFF95D2C8),
+        color_7 = Color(0xFF0D3A63),
+        color_8 = Color(0xFF000B17)
     ),
-    theme_coreColor_2 = ColorFamily(
-        color = create(0xFFD608)
+
+    codexFamily = Special.codexFamily.copy(
+        codex1 = Color(0xFF001021),
+        codex3 = Color(0xFFB7CBDC),
+        codex2 = Color(0xFF001021),
+        codex4 = Color(0xFFFFD608),
+        codex5 = Color(0xFFA3A3A3),
+        codex6_gridBackground = Color(0x40001021)
     ),
-    theme_coreColor_3 = ColorFamily(
-        color = create(0xA04907)
+
+    textFamily = Special.textFamily.copy(
+        primary = Color(0xFFFFD608),
+        secondary = white,
+        tertiary = Color(0xFF2E5497),
+        body = Color(0xFFA3A3A3),
+        emphasis = white
     ),
-    theme_coreColor_4 = ColorFamily(
-        color = create(0xDE2C38)
+
+    switchTheme = Special.switchTheme.copy(
+        thumbActive = Color(0xFF0D3A63),
+        trackActive = Color(0xFFB7CBDC),
+        thumbInactive = Color(0xFFB7CBDC),
+        trackInactive = Color(0xFF000B17)
     ),
-    theme_coreColor_5 = ColorFamily(
-        color = create(0xB7CBDC)
+
+    primary = Special.primary.copy(
+        color = Color(0xFF000B17),
+        onColor = Color(0xFF000B17)
     ),
-    theme_coreColor_6 = ColorFamily(
-        color = create(0x95D2C8)
+    secondary = Special.secondary.copy(
+        color = Color(0xFF000B17),
+        onColor = Color(0xFF000B17)
     ),
-    theme_coreColor_7 = ColorFamily(
-        color = create(0x0D3A63)
+    tertiary = Special.tertiary.copy(),
+    background = Special.background.copy(
+
     ),
-    theme_coreColor_8 = ColorFamily(
-        color = create(0x000B17)
+    surface = Special.surface.copy(
+        color = Color(0xFF000B17),
+        onColor = Color(0xFF000E1E),
     ),
+
+    //foregroundColor = white,
+    //middlegroundColor = Color(0xFF645956),
+
+    statusBarColor = Color(0xFF000B17),
+    navigationBarColor = Color(0xFF000B17),
+    windowBackgroundColor = Color(0xFF000B17),
+    windowStrokeColor = white,
+
+    light_active = Color(0xFFFFD608),
+    light_inactive = Color(0x40FFD608),
+    light_off = Color(0xFFB7CBDC),
+
+    strikethroughColor = Color(0xFFB7CBDC),
+    circleColor = Color(0xFFFFD608),
+    selectedColor = Color(0xFFFFD608),
+    selectedColor2 = Color(0xFFFFD608),
+    unselectedColor = Color(0xFFA3A3A3),
+    positiveSelColor = Color(0xFFFFD608),
+    neutralSelColor = Color(0xFFA3A3A3),
+    negativeSelColor = Color(0xFFB7CBDC),
+
+    mapPoiFillColor = Color(0xBFE9AD4C),
+    mapRoomBorderColor = Color(0x94E9AD4C),
+    mapRoomFillColor = Color(0x1AE9AD4C),
+
+    progressBarColorStart = Color(0xFFB7CBDC),
+    progressBarColorEnd = Color(0xFFDE2C38),
+    sanityPieStartColor = Color(0xFFB7CBDC),
+    sanityPieEndColor = Color(0xFFDE2C38),
+
+    splashTextColor = Color(0xFF447CDE),
+
+    navigationFooterIcon = white,
+    navigationFooterIconAlt = Color(0xFFFFD608),
+
+    backgroundColor_mapviewOverlay = Color(0xBF001021),
+
+    inboxNotification = Color(0xFF95D2C8),
+
+    buttonFilterOnPrimary = Color(0xFFB7CBDC),
+    buttonBorderOnPrimary = white,
+    buttonBackgroundOnPrimary = Color(0xFFB7CBDC),
+
+    colorActionPrimary = Color(0xFFFFD608)
+
     /*
-                android:colorBackground = ColorFamily(
-                    color = create(0x001021)
-                ),
-                android:statusBarColor = ColorFamily(
-                    color = colorOnSecondary
-                ),
-                android:navigationBarColor = ColorFamily(
-                color = create(0x000B17)
-                ),*/
-    foregroundColor = ColorFamily(
+    theme_colorPrimary = M3ColorFamily(
         color = white
     ),
-    middlegroundColor = ColorFamily(
-        color = create(0x645956)
+    color_1 = M3ColorFamily(
+        color = Color(0xFFA3A3A3)
     ),
-    backgroundColor = ColorFamily(
-        color = create(0x000B17)
+    color_2 = M3ColorFamily(
+        color = Color(0xFFFFD608)
     ),
-    backgroundColorOnBackground  = ColorFamily(
-        color = create(0x000E1E)
+    color_3 = M3ColorFamily(
+        color = Color(0xFFA04907)
     ),
-    statusBarColor = ColorFamily(
-        color = create(0x000B17)
+    color_4 = M3ColorFamily(
+        color = Color(0xFFDE2C38)
     ),
-    navigationBarColor = ColorFamily(
-        color = create(0x000B17)
+    color_5 = M3ColorFamily(
+        color = Color(0xFFB7CBDC)
     ),
-    windowBackgroundColor = ColorFamily(
-        color = create(0x000B17)
+    color_6 = M3ColorFamily(
+        color = Color(0xFF95D2C8)
     ),
-    windowStrokeColor = ColorFamily(
-        color = white
+    color_7 = M3ColorFamily(
+        color = Color(0xFF0D3A63)
     ),
-    colorPrimary = ColorFamily(
-        color = create(0x000B17)
-    ),
-    colorPrimaryVariant = ColorFamily(
-        color = create(0x000B17)
-    ),
-    colorOnPrimary = ColorFamily(
-        color = create(0x000B17)
-    ),
-    colorSecondary = ColorFamily(
-        color = create(0x000B17)
-    ),
-    colorSecondaryVariant = ColorFamily(
-        color = create(0x000B17)
-    ),
-    colorOnSecondary = ColorFamily(
-        color = create(0x000B17)
+    color_8 = M3ColorFamily(
+        color = Color(0xFF000B17)
     ),
 
-    textColorPrimary = ColorFamily(
-        color = create(0xFFD608)
+    android:colorBackground = M3ColorFamily(
+        color = Color(0x001021)
     ),
-    textColorSecondary = ColorFamily(
-        color = white
+    android:statusBarColor = M3ColorFamily(
+        color = colorOnSecondary
     ),
-    textColorTertiary = ColorFamily(
-        color = create(0x2E5497)
-    ),
-    textColorBody = ColorFamily(
-        color = create(0xA3A3A3)
-    ),
-    textColorBodyEmphasis = ColorFamily(
-        color = white
-    ),
-    light_active = ColorFamily(
-        color = create(0xFFD608)
-    ),
-    light_inactive = ColorFamily(
-        color = create(0x40FFD608)
-    ),
-    light_off = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-    switchColorOn = ColorFamily(
-        color = create(0xFFD608)
-    ),
-    switchColorOff = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-    strikethroughColor = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-    circleColor = ColorFamily(
-        color = create(0xFFD608)
-    ),
-    selectedColor = ColorFamily(
-        color = create(0xFFD608)
-    ),
-    selectedColor2 = ColorFamily(
-        color = create(0xFFD608)
-    ),
-    unselectedColor = ColorFamily(
-        color = create(0xA3A3A3)
-    ),
-    positiveSelColor = ColorFamily(
-        color = create(0xFFD608)
-    ),
-    neutralSelColor = ColorFamily(
-        color = create(0xA3A3A3)
-    ),
-    negativeSelColor = ColorFamily(
-        color = create(0xB7CBDC)
+    android:navigationBarColor = M3ColorFamily(
+    color = Color(0x000B17)
     ),
 
-    mapPoiFillColor = ColorFamily(
-        color = create(0xBFE9AD4C)
+    colorPrimary = M3ColorFamily(
+        color = Color(0xFF000B17)
     ),
-    mapRoomBorderColor = ColorFamily(
-        color = create(0x94E9AD4C)
+    colorOnPrimary = M3ColorFamily(
+        color = Color(0xFF000B17)
     ),
-    mapRoomFillColor = ColorFamily(
-        color = create(0x1AE9AD4C)
+    colorSecondary = M3ColorFamily(
+        color = Color(0xFF000B17)
     ),
+    colorOnSecondary = M3ColorFamily(
+        color = Color(0xFF000B17)
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = Color(0xFF000B17)
+    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = Color(0xFF000B17)
+    ),*/
 
-    progressBarColorStart = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-    progressBarColorEnd = ColorFamily(
-        color = create(0xDE2C38)
-    ),
-    sanityPieStartColor = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-    sanityPieEndColor = ColorFamily(
-        color = create(0xDE2C38)
-    ),
-
-    splashTextColor = ColorFamily(
-        color = create(0x447CDE)
-    ),
-
-    codex1 = ColorFamily(
-        color = create(0x001021)
-    ),
-    codex3 = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-    codex2 = ColorFamily(
-        color = create(0x001021)
-    ),
-    codex4 = ColorFamily(
-        color = create(0xFFD608)
-    ),
-    codex5 = ColorFamily(
-        color = create(0xA3A3A3)
-    ),
-
-    codex6_gridBackground = ColorFamily(
-        color = create(0x40001021)
-    ),
-
-    navigationFooterIcon = ColorFamily(
-        color = white
-    ),
-    navigationFooterIconAlt = ColorFamily(
-        color = create(0xFFD608)
-    ),
-
-    backgroundColor_mapviewOverlay = ColorFamily(
-        color = create(0xBF001021)
-    ),
-
-    inboxNotification = ColorFamily(
-        color = create(0x95D2C8)
-    ),
-
-    buttonFilterOnPrimary = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-    buttonBorderOnPrimary = ColorFamily(
-        color = white
-    ),
-    buttonBackgroundOnPrimary = ColorFamily(
-        color = create(0xB7CBDC)
-    ),
-
-    colorActionPrimary = ColorFamily(
-        color = create(0xFFD608)
-    ),
 )
 
-@Immutable
+//@Immutable
 data class ExtendedColorScheme(
 
-    val colorPrimary: ColorFamily = ColorFamily(), // colorPrimary
-    val colorPrimaryVariant: ColorFamily = ColorFamily(), // colorPrimaryVariant
-    val colorOnPrimary: ColorFamily = ColorFamily(), // colorOnPrimary
-    val colorSecondary: ColorFamily = ColorFamily(), // colorSecondary
-    val colorSecondaryVariant: ColorFamily = ColorFamily(), // colorSecondaryVariant
-    val colorOnSecondary: ColorFamily = ColorFamily(), // colorOnSecondary
+    val extrasFamily: ExtrasFamily = ExtrasFamily(),
 
-    val textColorPrimary: ColorFamily = ColorFamily(), // textColorPrimary
-    val textColorSecondary: ColorFamily = ColorFamily(), // textColorSecondary
-    val textColorTertiary: ColorFamily = ColorFamily(), // textColorTertiary
-    val textColorBody: ColorFamily = ColorFamily(), // textColorBody
-    val textColorBodyEmphasis: ColorFamily = ColorFamily(), // textColorBodyEmphasis
-    val splashTextColor: ColorFamily = ColorFamily(), // splashTextColor
-    val foregroundColor: ColorFamily = ColorFamily(), // foregroundColor
-    val middlegroundColor: ColorFamily = ColorFamily(), // middlegroundColor
-    val backgroundColor: ColorFamily = ColorFamily(), // backgroundColor
-    val backgroundColor_mapviewOverlay: ColorFamily = ColorFamily(), // backgroundColor_mapviewOverlay
-    val backgroundColorOnBackground: ColorFamily = ColorFamily(), // backgroundColorOnBackground
-    val navigationBarColor: ColorFamily = backgroundColor, // navigationBarColor
-    val statusBarColor: ColorFamily = backgroundColor, // statusBarColor
+    val themeFamily: ThemeColorFamily = ThemeColorFamily(),
+    val coreFamily: CoreColorFamily = CoreColorFamily(),
 
-    val colorActionPrimary: ColorFamily = textColorBody, // colorActionPrimary
-    val colorActionSecondary: ColorFamily = ColorFamily(), // colorActionSecondary
-    val colorActionTertiary: ColorFamily = ColorFamily(), // colorActionTertiary
+    val primary: M3ColorFamily = M3ColorFamily(),
+    val secondary: M3ColorFamily = M3ColorFamily(),
+    val tertiary: M3ColorFamily = M3ColorFamily(),
+    val background: M3ColorFamily = M3ColorFamily(),
+    val surface: M3ColorFamily = M3ColorFamily(),
 
-    val windowStrokeColor: ColorFamily = ColorFamily(), // windowStrokeColor
-    val windowBackgroundColor: ColorFamily = ColorFamily(), // windowBackgroundColor
-    val fragmentBackgroundColor: ColorFamily = ColorFamily(), // fragmentBackgroundColor
+    val codexFamily: CodexColorFamily = CodexColorFamily(),
+    val switchTheme: SwitchColorFamily = SwitchColorFamily(),
+    val textFamily: TextColorFamily = TextColorFamily(),
 
-    val light_active: ColorFamily = ColorFamily(), // light_active
-    val light_inactive: ColorFamily = ColorFamily(), // light_inactive
-    val light_off: ColorFamily = ColorFamily(), // light_off
+    val inverse: M3ColorFamily = M3ColorFamily(),
+    val error: M3ColorFamily = M3ColorFamily(),
 
-    val switchColorOn: ColorFamily = ColorFamily(), // switchColorOn
-    val switchColorOff: ColorFamily = ColorFamily(), // switchColorOff
-    val inboxNotification: ColorFamily = ColorFamily(), // inboxNotification
+    //val background: M3ColorFamily = M3ColorFamily(),
+    val outline: Color = Color.Unspecified,
 
-    val buttonFilterOnPrimary: ColorFamily = ColorFamily(), // buttonFilterOnPrimary
-    val buttonBorderOnPrimary: ColorFamily = ColorFamily(), // buttonBorderOnPrimary
-    val buttonBackgroundOnPrimary: ColorFamily = ColorFamily(), // buttonBackgroundOnPrimary
+    val surfaceTint: Color = Color.Unspecified,
 
-    val progressBarColorStart: ColorFamily = ColorFamily(), // progressBarColorStart
-    val progressBarColorEnd: ColorFamily = ColorFamily(), // progressBarColorEnd
-    val progressBarColorThumbGradientStart: ColorFamily = ColorFamily(), // progressBarColorThumbGradientStart
-    val progressBarColorThumbGradientEnd: ColorFamily = ColorFamily(), // progressBarColorThumbGradientEnd
-    val progressBarColorThumbOutline: ColorFamily = ColorFamily(), // progressBarColorThumbOutline
+    val splashTextColor: Color = Color.Unspecified, // splashTextColor
 
-    val selectedColor: ColorFamily = ColorFamily(), // selectedColor
-    val selectedColor2: ColorFamily = ColorFamily(), // selectedColor2
-    val unselectedColor: ColorFamily = ColorFamily(), // unselectedColor
+    /*val //foregroundColor: Color = Color.Unspecified, // //foregroundColor
+    val //middlegroundColor: Color = Color.Unspecified, // //middlegroundColor*/
+    val backgroundColor_mapviewOverlay: Color = Color.Unspecified, // backgroundColor_mapviewOverlay
 
-    val navigationFooterIcon: ColorFamily = unselectedColor, // navigationFooterIcon
-    val navigationFooterIconAlt: ColorFamily = ColorFamily(), // navigationFooterIconAlt
+    val navigationBarColor: Color = surface.color, // navigationBarColor
+    val statusBarColor: Color = surface.color, // statusBarColor
 
-    val positiveSelColor: ColorFamily = ColorFamily(), // positiveSelColor
-    val negativeSelColor: ColorFamily = ColorFamily(), // negativeSelColor
-    val neutralSelColor: ColorFamily = ColorFamily(), // neutralSelColor
+    val colorActionPrimary: Color = textFamily.body, // colorActionPrimary
+    val colorActionSecondary: Color = Color.Unspecified, // colorActionSecondary
+    val colorActionTertiary: Color = Color.Unspecified, // colorActionTertiary
 
-    val strikethroughColor: ColorFamily = ColorFamily(), // strikethroughColor
-    val circleColor: ColorFamily = ColorFamily(), // circleColor
+    val windowStrokeColor: Color = Color.Unspecified, // windowStrokeColor
+    val windowBackgroundColor: Color = Color.Unspecified, // windowBackgroundColor
+    val fragmentBackgroundColor: Color = Color.Unspecified, // fragmentBackgroundColor
 
-    val mapPoiFillColor: ColorFamily = ColorFamily(), // mapPoiFillColor
-    val mapRoomFillColor: ColorFamily = ColorFamily(), // mapRoomFillColor
-    val mapRoomBorderColor: ColorFamily = ColorFamily(), // mapRoomBorderColor
+    val light_active: Color = Color.Unspecified, // light_active
+    val light_inactive: Color = Color.Unspecified, // light_inactive
+    val light_off: Color = Color.Unspecified, // light_off
 
-    val theme_colorPrimary: ColorFamily = ColorFamily(), // theme_colorPrimary
+    val inboxNotification: Color = Color.Unspecified, // inboxNotification
 
-    val sanityPieStartColor: ColorFamily = ColorFamily(), // sanityPieStartColor
-    val sanityPieEndColor: ColorFamily = ColorFamily(), // sanityPieEndColor
-    val sanityHeadBrainColor: ColorFamily = theme_colorPrimary, // sanityHeadBrainColor
-    val sanityHeadSkullColor: ColorFamily = ColorFamily(), // sanityHeadSkullColor
-    val sanityBorderColor: ColorFamily = ColorFamily(), // sanityBorderColor
+    val buttonFilterOnPrimary: Color = Color.Unspecified, // buttonFilterOnPrimary
+    val buttonBorderOnPrimary: Color = Color.Unspecified, // buttonBorderOnPrimary
+    val buttonBackgroundOnPrimary: Color = Color.Unspecified, // buttonBackgroundOnPrimary
 
-    val a: ColorFamily = ColorFamily(), // a
-    val b: ColorFamily = ColorFamily(), // b
-    val c: ColorFamily = ColorFamily(), // c
-    val d: ColorFamily = ColorFamily(), // d
-    val e: ColorFamily = ColorFamily(), // e
-    val f: ColorFamily = ColorFamily(), // f
-    val g: ColorFamily = ColorFamily(), // g
-    val h: ColorFamily = ColorFamily(), // h
-    val i: ColorFamily = ColorFamily(), // i
-    val j: ColorFamily = ColorFamily(), // j
-    val k: ColorFamily = ColorFamily(), // k
-    val l: ColorFamily = ColorFamily(), // l
-    val m: ColorFamily = ColorFamily(), // m
-    val n: ColorFamily = ColorFamily(), // n
-    val o: ColorFamily = ColorFamily(), // o
-    val p: ColorFamily = ColorFamily(), // p
-    val q: ColorFamily = ColorFamily(), // q
+    val progressBarColorStart: Color = Color.Unspecified, // progressBarColorStart
+    val progressBarColorEnd: Color = Color.Unspecified, // progressBarColorEnd
+    val progressBarColorThumbGradientStart: Color = Color.Unspecified, // progressBarColorThumbGradientStart
+    val progressBarColorThumbGradientEnd: Color = Color.Unspecified, // progressBarColorThumbGradientEnd
+    val progressBarColorThumbOutline: Color = Color.Unspecified, // progressBarColorThumbOutline
 
-    val theme_coreColor_1: ColorFamily = ColorFamily(), //  theme_coreColor_1
-    val theme_coreColor_2: ColorFamily = ColorFamily(), //  theme_coreColor_2
-    val theme_coreColor_3: ColorFamily = ColorFamily(), //  theme_coreColor_3
-    val theme_coreColor_4: ColorFamily = ColorFamily(), //  theme_coreColor_4
-    val theme_coreColor_5: ColorFamily = ColorFamily(), //  theme_coreColor_5
-    val theme_coreColor_6: ColorFamily = ColorFamily(), //  theme_coreColor_6
-    val theme_coreColor_7: ColorFamily = ColorFamily(), //  theme_coreColor_7
-    val theme_coreColor_8: ColorFamily = ColorFamily(), //  theme_coreColor_8
+    val selectedColor: Color = Color.Unspecified, // selectedColor
+    val selectedColor2: Color = Color.Unspecified, // selectedColor2
+    val unselectedColor: Color = Color.Unspecified, // unselectedColor
 
-    val buttonColor: ColorFamily = light_inactive, // buttonColor
-    val colorOnButton: ColorFamily = textColorBody, // colorOnButton
+    val navigationFooterIcon: Color = unselectedColor, // navigationFooterIcon
+    val navigationFooterIconAlt: Color = Color.Unspecified, // navigationFooterIconAlt
 
-    val codex1: ColorFamily = ColorFamily(), // codex1
-    val codex2: ColorFamily = ColorFamily(), // codex2
-    val codex3: ColorFamily = ColorFamily(), // codex3
-    val codex4: ColorFamily = ColorFamily(), // codex4
-    val codex5: ColorFamily = ColorFamily(), // codex5
+    val positiveSelColor: Color = Color.Unspecified, // positiveSelColor
+    val negativeSelColor: Color = Color.Unspecified, // negativeSelColor
+    val neutralSelColor: Color = Color.Unspecified, // neutralSelColor
 
-    val codex2_headerBackground: ColorFamily = ColorFamily(), // codex2_headerBackground
+    val strikethroughColor: Color = Color.Unspecified, // strikethroughColor
+    val circleColor: Color = Color.Unspecified, // circleColor
 
-    val codex1_itemBackground: ColorFamily = codex1, // codex1_itemBackground
-    val codex2_itemBorder: ColorFamily = codex2, // codex2_itemBorder
-    val codex3_itemBorder: ColorFamily = codex3, // codex3_itemBorder
-    val codex2_tierNormal: ColorFamily = codex2, // codex2_tierNormal
-    val codex4_tierAlt: ColorFamily = codex4, // codex4_tierAlt
-    val codex3_tierBackground: ColorFamily = codex3, // codex3_tierBackground
+    val mapPoiFillColor: Color = Color.Unspecified, // mapPoiFillColor
+    val mapRoomFillColor: Color = Color.Unspecified, // mapRoomFillColor
+    val mapRoomBorderColor: Color = Color.Unspecified, // mapRoomBorderColor
 
-    val codex3_groupHeaderText: ColorFamily = codex3, // codex3_groupHeaderText
+    val sanityPieStartColor: Color = Color.Unspecified, // sanityPieStartColor
+    val sanityPieEndColor: Color = Color.Unspecified, // sanityPieEndColor
+    val sanityHeadBrainColor: Color = primary.color, // sanityHeadBrainColor
+    val sanityHeadSkullColor: Color = Color.Unspecified, // sanityHeadSkullColor
+    val sanityBorderColor: Color = Color.Unspecified, // sanityBorderColor
 
-    val codex3_throbber: ColorFamily = codex3, // codex3_throbber
+    val buttonColor: Color = light_inactive, // buttonColor
+    val colorOnButton: Color = textFamily.body, // colorOnButton
 
-    val codex1_gh0stBackground: ColorFamily = codex1, // codex1_gh0stBackground
-    val codex3_gh0stTextNormal: ColorFamily = codex3, // codex3_gh0stTextNormal
-    val codex4_gh0stTextAlt: ColorFamily = codex4, // codex4_gh0stTextAlt
-    val codex1_adViewBackground: ColorFamily = codex1, // codex1_adViewBackground
+    val actionMenuTextColor: Color = Color.Unspecified
 
-    val codex1_cardArrow: ColorFamily = codex1, // codex1_cardArrow
-    val codex3_cardBorder: ColorFamily = codex3, // codex3_cardBorder
+    /*val colorPrimary: M3ColorFamily = M3ColorFamily(), // colorPrimary
+    val colorOnPrimary: M3ColorFamily = M3ColorFamily(), // colorOnPrimary
+    val colorSecondary: M3ColorFamily = M3ColorFamily(), // colorSecondary
+    val colorOnSecondary: M3ColorFamily = M3ColorFamily(), // colorOnSecondary
 
-    val codex3_navHeaderBackground: ColorFamily = codex3, // codex3_navHeaderBackground
-    val codex5_navHeaderText: ColorFamily = codex5, // codex5_navHeaderText
-    val codex2_navBackIcon: ColorFamily = codex2, // codex2_navBackIcon
+    val textColorPrimary: M3ColorFamily = M3ColorFamily(), // textColorPrimary
+    val textColorSecondary: M3ColorFamily = M3ColorFamily(), // textColorSecondary
+    val textColorTertiary: M3ColorFamily = M3ColorFamily(), // textColorTertiary
+    val textColorBody: M3ColorFamily = M3ColorFamily(), // textColorBody
+    val textColorBodyEmphasis: M3ColorFamily = M3ColorFamily(), // textColorBodyEmphasis
 
-    val codex3_popupHeaderText: ColorFamily = codex3, // codex3_popupHeaderText
-    val codex3_popupCloseBackground: ColorFamily = codex3, // codex3_popupCloseBackground
-    val codex2_popupCloseIcon: ColorFamily = codex2, // codex2_popupCloseIcon
-    val codex3_popupAttrIcons: ColorFamily = codex3, // codex3_popupAttrIcons
-    val codex3_popupAttrText: ColorFamily = codex3, // codex3_popupAttrText
+    val theme_colorPrimary: M3ColorFamily = M3ColorFamily(), // theme_colorPrimary
 
-    val codex3_other: ColorFamily = codex3, // codex3_other
 
-    val codex5_sel: ColorFamily = codex5, // codex5_sel
-    val codex4_unsel: ColorFamily = codex4, // codex4_unsel
+    val color_1: M3ColorFamily = M3ColorFamily(), //  color_1
+    val color_2: M3ColorFamily = M3ColorFamily(), //  color_2
+    val color_3: M3ColorFamily = M3ColorFamily(), //  color_3
+    val color_4: M3ColorFamily = M3ColorFamily(), //  color_4
+    val color_5: M3ColorFamily = M3ColorFamily(), //  color_5
+    val color_6: M3ColorFamily = M3ColorFamily(), //  color_6
+    val color_7: M3ColorFamily = M3ColorFamily(), //  color_7
+    val color_8: M3ColorFamily = M3ColorFamily(), //  color_8
 
-    val codex4_border: ColorFamily = codex4, // codex4_border
-    val codex4_background: ColorFamily = codex4, // codex4_background
 
-    val codex6_gridBackground: ColorFamily = ColorFamily(), // codex6_gridBackground
-    val codex7_gridStroke: ColorFamily = ColorFamily(), // codex7_gridStroke
+    val codex1: M3ColorFamily = M3ColorFamily(), // codex1
+    val codex2: M3ColorFamily = M3ColorFamily(), // codex2
+    val codex3: M3ColorFamily = M3ColorFamily(), // codex3
+    val codex4: M3ColorFamily = M3ColorFamily(), // codex4
+    val codex5: M3ColorFamily = M3ColorFamily(), // codex5
 
-    val codex3_buttonBackground: ColorFamily = codex3, // codex3_buttonBackground
-    val codex5_header: ColorFamily = codex5, // codex5_header
+    val codex2_headerBackground: M3ColorFamily = M3ColorFamily(), // codex2_headerBackground
 
-    val actionMenuTextColor: ColorFamily = ColorFamily()
+    val codex1_itemBackground: M3ColorFamily = codex1, // codex1_itemBackground
+    val codex2_itemBorder: M3ColorFamily = codex2, // codex2_itemBorder
+    val codex3_itemBorder: M3ColorFamily = codex3, // codex3_itemBorder
+    val codex2_tierNormal: M3ColorFamily = codex2, // codex2_tierNormal
+    val codex4_tierAlt: M3ColorFamily = codex4, // codex4_tierAlt
+    val codex3_tierBackground: M3ColorFamily = codex3, // codex3_tierBackground
+
+    val codex3_groupHeaderText: M3ColorFamily = codex3, // codex3_groupHeaderText
+
+    val codex3_throbber: M3ColorFamily = codex3, // codex3_throbber
+
+    val codex1_gh0stBackground: M3ColorFamily = codex1, // codex1_gh0stBackground
+    val codex3_gh0stTextNormal: M3ColorFamily = codex3, // codex3_gh0stTextNormal
+    val codex4_gh0stTextAlt: M3ColorFamily = codex4, // codex4_gh0stTextAlt
+    val codex1_adViewBackground: M3ColorFamily = codex1, // codex1_adViewBackground
+
+    val codex1_cardArrow: M3ColorFamily = codex1, // codex1_cardArrow
+    val codex3_cardBorder: M3ColorFamily = codex3, // codex3_cardBorder
+
+    val codex3_navHeaderBackground: M3ColorFamily = codex3, // codex3_navHeaderBackground
+    val codex5_navHeaderText: M3ColorFamily = codex5, // codex5_navHeaderText
+    val codex2_navBackIcon: M3ColorFamily = codex2, // codex2_navBackIcon
+
+    val codex3_popupHeaderText: M3ColorFamily = codex3, // codex3_popupHeaderText
+    val codex3_popupCloseBackground: M3ColorFamily = codex3, // codex3_popupCloseBackground
+    val codex2_popupCloseIcon: M3ColorFamily = codex2, // codex2_popupCloseIcon
+    val codex3_popupAttrIcons: M3ColorFamily = codex3, // codex3_popupAttrIcons
+    val codex3_popupAttrText: M3ColorFamily = codex3, // codex3_popupAttrText
+
+    val codex3_other: M3ColorFamily = codex3, // codex3_other
+
+    val codex5_sel: M3ColorFamily = codex5, // codex5_sel
+    val codex4_unsel: M3ColorFamily = codex4, // codex4_unsel
+
+    val codex4_border: M3ColorFamily = codex4, // codex4_border
+    val codex4_background: M3ColorFamily = codex4, // codex4_background
+
+    val codex6_gridBackground: M3ColorFamily = M3ColorFamily(), // codex6_gridBackground
+    val codex7_gridStroke: M3ColorFamily = M3ColorFamily(), // codex7_gridStroke
+
+    val codex3_buttonBackground: M3ColorFamily = codex3, // codex3_buttonBackground
+    val codex5_header: M3ColorFamily = codex5, // codex5_header
+
+
+    tertiary = md_theme_dark_tertiary,
+    onTertiary = md_theme_dark_onTertiary,
+    tertiaryContainer = md_theme_dark_tertiaryContainer,
+    onTertiaryContainer = md_theme_dark_onTertiaryContainer,
+    error = md_theme_dark_error,
+    errorContainer = md_theme_dark_errorContainer,
+    onError = md_theme_dark_onError,
+    onErrorContainer = md_theme_dark_onErrorContainer,
+    background = md_theme_dark_background,
+    onBackground = md_theme_dark_onBackground,
+    surface = md_theme_dark_surface,
+    onSurface = md_theme_dark_onSurface,
+    surfaceVariant = md_theme_dark_surfaceVariant,
+    onSurfaceVariant = md_theme_dark_onSurfaceVariant,
+    outline = md_theme_dark_outline,
+    inverseOnSurface = md_theme_dark_inverseOnSurface,
+    inverseSurface = md_theme_dark_inverseSurface,
+    inversePrimary = md_theme_dark_inversePrimary,
+    surfaceTint = md_theme_dark_surfaceTint
+    */
 )
 
 @Immutable
-data class ColorFamily(
+data class ExtrasFamily(
+    @StringRes val title: Int = title_default,
+    @DrawableRes val badge: Int = badge_default,
+    val isLightMode: Boolean = false
+)
+
+@Immutable
+data class TextColorFamily(
+    val primary: Color = Color.Unspecified, // textColorPrimary
+    val secondary: Color = primary, // textColorSecondary
+    val tertiary: Color = secondary, // textColorTertiary
+    val body: Color = tertiary, // textColorBody
+    val emphasis: Color = body, // textColorBodyEmphasis
+)
+
+@Immutable
+data class ThemeColorFamily(
+    val a: Color = Color.Unspecified, // a
+    val b: Color = a, // b
+    val c: Color = b, // c
+    val d: Color = c, // d
+    val e: Color = d, // e
+    val f: Color = e, // f
+    val g: Color = f, // g
+    val h: Color = g, // h
+    val i: Color = h, // i
+    val j: Color = i, // j
+    val k: Color = j, // k
+    val l: Color = k, // l
+    val m: Color = l, // m
+    val n: Color = m, // n
+    val o: Color = n, // o
+    val p: Color = o, // p
+    val q: Color = p, // q
+)
+
+@Immutable
+data class CoreColorFamily(
+
+    val primary: Color = Color.Unspecified, // theme_colorPrimary
+
+    val color_1: Color = Color.Unspecified, //  color_1
+    val color_2: Color = color_1, //  color_2
+    val color_3: Color = color_2, //  color_3
+    val color_4: Color = color_3, //  color_4
+    val color_5: Color = color_4, //  color_5
+    val color_6: Color = color_5, //  color_6
+    val color_7: Color = color_6, //  color_7
+    val color_8: Color = color_7, //  color_8
+
+)
+
+@Immutable
+data class CodexColorFamily(
+    val codex1: Color = Color.Unspecified, // codex1
+    val codex2: Color = codex1, // codex2
+    val codex3: Color = codex2, // codex3
+    val codex4: Color = codex3, // codex4
+    val codex5: Color = codex4, // codex5
+
+    val codex2_headerBackground: Color = Color.Unspecified, // codex2_headerBackground
+
+    val codex1_itemBackground: Color = codex1, // codex1_itemBackground
+    val codex2_itemBorder: Color = codex2, // codex2_itemBorder
+    val codex3_itemBorder: Color = codex3, // codex3_itemBorder
+    val codex2_tierNormal: Color = codex2, // codex2_tierNormal
+    val codex4_tierAlt: Color = codex4, // codex4_tierAlt
+    val codex3_tierBackground: Color = codex3, // codex3_tierBackground
+
+    val codex3_groupHeaderText: Color = codex3, // codex3_groupHeaderText
+
+    val codex3_throbber: Color = codex3, // codex3_throbber
+
+    val codex1_gh0stBackground: Color = codex1, // codex1_gh0stBackground
+    val codex3_gh0stTextNormal: Color = codex3, // codex3_gh0stTextNormal
+    val codex4_gh0stTextAlt: Color = codex4, // codex4_gh0stTextAlt
+    val codex1_adViewBackground: Color = codex1, // codex1_adViewBackground
+
+    val codex1_cardArrow: Color = codex1, // codex1_cardArrow
+    val codex3_cardBorder: Color = codex3, // codex3_cardBorder
+
+    val codex3_navHeaderBackground: Color = codex3, // codex3_navHeaderBackground
+    val codex5_navHeaderText: Color = codex5, // codex5_navHeaderText
+    val codex2_navBackIcon: Color = codex2, // codex2_navBackIcon
+
+    val codex3_popupHeaderText: Color = codex3, // codex3_popupHeaderText
+    val codex3_popupCloseBackground: Color = codex3, // codex3_popupCloseBackground
+    val codex2_popupCloseIcon: Color = codex2, // codex2_popupCloseIcon
+    val codex3_popupAttrIcons: Color = codex3, // codex3_popupAttrIcons
+    val codex3_popupAttrText: Color = codex3, // codex3_popupAttrText
+
+    val codex3_other: Color = codex3, // codex3_other
+
+    val codex5_sel: Color = codex5, // codex5_sel
+    val codex4_unsel: Color = codex4, // codex4_unsel
+
+    val codex4_border: Color = codex4, // codex4_border
+    val codex4_background: Color = codex4, // codex4_background
+
+    val codex6_gridBackground: Color = Color.Unspecified, // codex6_gridBackground
+    val codex7_gridStroke: Color = Color.Unspecified, // codex7_gridStroke
+
+    val codex3_buttonBackground: Color = codex3, // codex3_buttonBackground
+    val codex5_header: Color = codex5, // codex5_header
+)
+
+@Immutable
+data class M3ColorFamily(
     val color: Color = Color.Unspecified,
     val onColor: Color = Color.Unspecified,
     val colorContainer: Color = Color.Unspecified,
-    val onColorContainer: Color = Color.Unspecified
+    val onColorContainer: Color = Color.Unspecified,
+
+    val variant: Color = Color.Unspecified,
+    val onColorVariant: Color = Color.Unspecified,
+    val containerVariant: Color = Color.Unspecified,
+    val onContainerVariant: Color = Color.Unspecified
+)
+
+@Immutable
+data class SwitchColorFamily(
+    val trackInactive: Color = Color.Unspecified,
+    val trackActive: Color = trackInactive,
+    val thumbInactive: Color = Color.Unspecified, //switchColorOff
+    val thumbActive: Color = thumbInactive, //switchColorOn
 )
 
 val LocalPalette = staticCompositionLocalOf { ExtendedColorScheme() }
+
+val LocalColorSchemes = listOf<ColorSchemeData>(
+    ColorSchemeData("CzjtxSbXRwIpX8SYR0ttngAND", Non_Colorblind),
+    ColorSchemeData("ey6VbQN5tx0MgR8tw4iJq3J8L", Monochromacy),
+    ColorSchemeData("9Ec5cQIB0Jb73gbQ3a9R5kScX", Deuteranomaly),
+    ColorSchemeData("44uBEX9ID9131TMG3yH7T2P1Q", Protanomaly),
+    ColorSchemeData("28yi3LJWYMbA7v87RMAEznISy", Tritanomaly),
+    ColorSchemeData("9QWud4Mj5C4jYp1hOA91b6G0L", Recruit),
+    ColorSchemeData("1UdIWr97JGtOoRszQHpBYfK5U", Investigator),
+    ColorSchemeData("1oF0ZF78LqA64zRyn8ozgMqLu", PrivateInvestigator),
+    ColorSchemeData("5T2mB6W1370DEc3cnYN2bI0gT", Detective),
+    ColorSchemeData("9t44qIYH7UU3EPwvgXEO6309E", Technician),
+    ColorSchemeData("9Uo9I6AmpW2XbhHDIxCP4ppds", Specialist),
+    ColorSchemeData("E2m4fr5Vp6dv07JnWE5Q3T08D", Analyst),
+    ColorSchemeData("6BL0zB7jGGye94j45hq3wtwVq", Agent),
+    ColorSchemeData("8No78zJ6oUSBLS818jH10Seni", Operator),
+    ColorSchemeData("4p77qstew9oX20l4X5O0J010k", Commissioner),
+    ColorSchemeData("B6xTXIXttQUqW02Skd094BY15", Easter),
+    ColorSchemeData("EOkBD2aJZhOh9V821o20GFLXK", Halloween23),
+    ColorSchemeData("7RF705OjW3uo39zl0aTktINHd", Holiday22),
+    ColorSchemeData("0XrEhnlpA9mD9dNxrzCbNfkRe", Holiday23),
+    ColorSchemeData("Ex00XEBLXbh65Nk9SdYMrMfsP", Discord),
+    ColorSchemeData("2pe8HDVVWRfxhPUw4Xf0rhgwb", ContentCreator),
+    ColorSchemeData("56iV5cnR3lRJ59uZF1mTtEz9X", Developer),
+    ColorSchemeData("e6nDE683SE7Wg9dRPJeN61CD6", Translator),
+    ColorSchemeData("8xkSw89x50Zwgr4tGd6z5X0a7", Winner),
+    ColorSchemeData("88kEPt48wGs0ZxR4n7gtM3OTe", Artist),
+    ColorSchemeData("tempWhiteboard", Whiteboard),
+    ColorSchemeData("tempStratHero", StrategemHero),
+)
+
+data class ColorSchemeData(
+    val uuid: String = "0",
+    val palette: ExtendedColorScheme = ExtendedColorScheme()
+)

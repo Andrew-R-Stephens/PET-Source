@@ -1,6 +1,6 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry
+package com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry
 
-import com.TritiumGaming.phasmophobiaevidencepicker.utils.geometry.Path2D.Path2DFloat
+import com.tritiumgaming.phasmophobiaevidencepicker.utils.geometry.Path2D.Path2DFloat
 import java.io.Serial
 
 class GeneralPath : Path2DFloat {

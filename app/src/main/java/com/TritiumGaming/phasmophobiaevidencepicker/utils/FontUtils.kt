@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.utils
+package com.tritiumgaming.phasmophobiaevidencepicker.utils
 
 import android.text.Html
 import android.text.Spanned

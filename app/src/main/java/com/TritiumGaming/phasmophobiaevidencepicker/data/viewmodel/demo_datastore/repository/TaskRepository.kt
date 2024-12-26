@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.repository
 
 /*
  * Copyright 2020 The Android Open Source Project
@@ -16,8 +16,8 @@ package com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datasto
  * limitations under the License.
  */
 
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.model.Task
-import com.TritiumGaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.model.TaskPriority
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.model.Task
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.demo_datastore.model.TaskPriority
 import kotlinx.coroutines.flow.flowOf
 import java.text.SimpleDateFormat
 import java.util.Date

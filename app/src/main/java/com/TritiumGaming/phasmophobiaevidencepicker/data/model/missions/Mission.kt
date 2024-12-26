@@ -1,4 +1,4 @@
-package com.TritiumGaming.phasmophobiaevidencepicker.data.model.missions
+package com.tritiumgaming.phasmophobiaevidencepicker.data.model.missions
 
 import android.content.Context
 
