@@ -32,3 +32,4 @@ Keystore.jks
 /app-kotlin/libs/processing-core.jar
 /app-kotlin/build/
 /Keystore_old.jks
+/app-compose/build
