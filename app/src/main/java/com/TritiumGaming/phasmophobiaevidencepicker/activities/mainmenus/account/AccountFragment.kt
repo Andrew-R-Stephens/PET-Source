@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.account
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.account
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -17,7 +17,7 @@ import com.google.android.gms.common.SignInButton
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFirebaseFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
 import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory

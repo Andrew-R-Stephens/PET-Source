@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.pet
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.pet
 
 import android.app.Activity
 import android.util.Log

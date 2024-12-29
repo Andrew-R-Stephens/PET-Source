@@ -195,18 +195,22 @@ class BitmapUtils {
                 )
             }
         }
-        if (baseLayer != null && !baseLayer.isRecycled) {
-            val canvas = Canvas(baseLayer)
-            if (bitmapExists(topLayer)) {
-                var paint: Paint? = null
-                mode?.let { mode ->
-                    paint = Paint()
-                    paint.setXfermode(PorterDuffXfermode(mode))
+
+        baseLayer?.let {
+            if (!it.isRecycled) {
+                val canvas = Canvas(it)
+                if (bitmapExists(topLayer)) {
+                    var paint: Paint? = null
+                    mode?.let { mode ->
+                        paint = Paint()
+                        paint?.setXfermode(PorterDuffXfermode(mode))
+                    }
+                    canvas.drawBitmap(topLayer, Matrix(), paint)
+                    topLayer.recycle()
                 }
-                canvas.drawBitmap(topLayer, Matrix(), paint)
-                topLayer.recycle()
             }
         }
+
         System.gc()
 
         return baseLayer

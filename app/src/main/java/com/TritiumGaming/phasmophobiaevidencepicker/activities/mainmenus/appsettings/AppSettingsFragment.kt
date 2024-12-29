@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -21,8 +21,8 @@ import com.google.android.ump.FormError
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory

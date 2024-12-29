@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.review
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke

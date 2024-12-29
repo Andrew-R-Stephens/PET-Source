@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.ghostboxutility.views
 
 import android.content.Context
 import android.graphics.Canvas

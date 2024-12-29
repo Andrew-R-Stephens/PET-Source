@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.billing
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -34,9 +34,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.MarketBillableView
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.billing.view.MarketBillableView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.MarketplaceListLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.billable.MarketMicroTransactionModel
 import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables
 import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables.Companion.getBillablesWhere

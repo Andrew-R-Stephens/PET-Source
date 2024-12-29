@@ -15,7 +15,7 @@
         android:id="@+id/tempSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.AppSettingsComposableKt"
+        tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings.AppSettingsComposableKt"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

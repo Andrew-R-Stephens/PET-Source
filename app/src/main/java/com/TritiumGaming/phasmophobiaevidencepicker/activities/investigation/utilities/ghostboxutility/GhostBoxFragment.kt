@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.ghostboxutility
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -24,8 +24,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views.WaveformView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.ghostboxutility.views.WaveformView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.ghostbox.GhostBoxUtilityModel
 import java.util.Locale
 

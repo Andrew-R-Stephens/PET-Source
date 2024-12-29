@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -16,8 +16,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter

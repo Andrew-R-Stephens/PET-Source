@@ -27,7 +27,7 @@ class LanguageRepository(
         }
 
     private val _languageList: ArrayList<LanguageObject> = ArrayList()
-    val languageList:  ArrayList< LanguageObject>
+    val languageList:  ArrayList<LanguageObject>
         get() = _languageList
 
 

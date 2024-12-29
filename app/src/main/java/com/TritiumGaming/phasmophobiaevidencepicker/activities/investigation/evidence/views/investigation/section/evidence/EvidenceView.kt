@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.evidence
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

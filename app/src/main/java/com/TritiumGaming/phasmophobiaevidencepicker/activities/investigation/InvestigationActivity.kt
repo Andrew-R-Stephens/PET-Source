@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation
 
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +14,7 @@ import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.CodexRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository

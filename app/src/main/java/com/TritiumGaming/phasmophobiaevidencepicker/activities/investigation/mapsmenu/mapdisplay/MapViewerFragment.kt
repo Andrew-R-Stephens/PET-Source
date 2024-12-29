@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.mapsmenu.mapdisplay
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -18,8 +18,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.get
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 

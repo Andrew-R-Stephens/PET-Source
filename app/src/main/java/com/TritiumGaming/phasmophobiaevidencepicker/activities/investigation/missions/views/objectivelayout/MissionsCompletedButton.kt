@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.objectivelayout
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.missions.views.objectivelayout
 
 import android.content.Context
 import android.util.AttributeSet

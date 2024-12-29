@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -17,12 +17,12 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.lifecycleScope
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSectionWrapper
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.InvestigationSection
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists.GhostListView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.InvestigationSectionWrapper
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.sanity.SanityToolsLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.InvestigationSection
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.lists.EvidenceListView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.lists.GhostListView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel.Companion.TOOL_MODIFIER_DETAILS
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel.Companion.TOOL_SANITY
 import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.CollapseButton

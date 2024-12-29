@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.newsletter.views
 
 import android.content.Context
 import android.util.AttributeSet

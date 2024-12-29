@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.newsletter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views.NewsletterInboxView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.newsletter.views.NewsletterInboxView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 

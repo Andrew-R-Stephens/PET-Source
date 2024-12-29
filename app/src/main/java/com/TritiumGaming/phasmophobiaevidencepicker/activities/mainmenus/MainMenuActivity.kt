@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus
 
 import android.content.IntentSender.SendIntentException
 import android.os.Bundle
@@ -13,8 +13,8 @@ import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
 import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.dataStore
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.dataStore
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.OnboardingViewModel

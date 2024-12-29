@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.mapsmenu.mapdisplay
 
 import android.content.Context
 import android.content.res.Resources.Theme

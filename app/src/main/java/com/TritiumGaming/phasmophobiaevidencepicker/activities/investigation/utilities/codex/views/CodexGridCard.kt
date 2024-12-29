@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.views
 
 import android.content.Context
 import android.graphics.drawable.Drawable

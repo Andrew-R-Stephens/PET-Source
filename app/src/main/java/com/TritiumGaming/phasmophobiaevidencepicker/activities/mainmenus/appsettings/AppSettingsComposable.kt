@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings
 
 import android.view.WindowManager
 import android.widget.Toast
@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.LocalColorSchemes

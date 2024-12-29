@@ -37,7 +37,11 @@ class AnimationModel {
     
     private val bitmapUtils = BitmapUtils()
     
-    private var queue: AnimatedQueueModel = AnimatedQueueModel(10, 500)
+    private var queue: com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.model.startscreen.AnimatedQueueModel =
+        com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.model.startscreen.AnimatedQueueModel(
+            10,
+            500
+        )
     private val allPool: ArrayList<AAnimatedModel> = ArrayList()
     private val currentPool: ArrayList<AAnimatedModel> = ArrayList()
 
@@ -158,7 +162,11 @@ class AnimationModel {
         }
 
         //Create Queue
-        queue = AnimatedQueueModel(allPoolSize, 750)
+        queue =
+            com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.model.startscreen.AnimatedQueueModel(
+                allPoolSize,
+                750
+            )
 
     }
 

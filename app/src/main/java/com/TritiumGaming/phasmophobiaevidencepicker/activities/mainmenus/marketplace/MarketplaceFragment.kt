@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -33,11 +33,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFirebaseFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.MarketplaceListLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketBundleView
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketItemView.MarketItemOnPurchaseListener
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketThemeView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.MarketplaceListLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items.MarketBundleView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items.MarketItemView.MarketItemOnPurchaseListener
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items.MarketThemeView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.theme.bundle.MarketBundleModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.theme.theme.MarketThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel

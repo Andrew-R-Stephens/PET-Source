@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings
 
 import android.content.Context
 import android.util.AttributeSet

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="?attr/backgroundColor">
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
+    <com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.StartScreenAnimationView
         android:id="@+id/backgroundanimationView"
         android:layout_width="0dp"
         android:layout_height="0dp"

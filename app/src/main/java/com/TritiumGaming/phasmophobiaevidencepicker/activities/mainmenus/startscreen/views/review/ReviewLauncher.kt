@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.review
 
 import android.app.Activity
 import android.content.ActivityNotFoundException

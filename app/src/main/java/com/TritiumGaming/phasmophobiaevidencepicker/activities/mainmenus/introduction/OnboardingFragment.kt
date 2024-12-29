@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.introduction
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.introduction
 
 import android.animation.Animator
 import android.animation.AnimatorInflater

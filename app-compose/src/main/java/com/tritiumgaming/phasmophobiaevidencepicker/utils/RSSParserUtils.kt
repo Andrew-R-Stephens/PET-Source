@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.utils
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel.InboxType
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParser.END_TAG
 import org.xmlpull.v1.XmlPullParser.START_TAG

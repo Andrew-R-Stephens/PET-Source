@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.views
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.mapsmenu.mapdisplay.views
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -25,8 +25,8 @@ import android.widget.AdapterView
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu.mapdisplay.POISpinner
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.mapsmenu.mapdisplay.POISpinner
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.PoiType
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.RoomModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.InteractiveMapModel

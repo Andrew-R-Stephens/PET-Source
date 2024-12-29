@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.popups
 
 import android.content.Context
 import android.content.res.Configuration

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views
 
 import android.animation.LayoutTransition
 import android.content.Context
@@ -6,8 +6,8 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketBundleView
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items.MarketThemeView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items.MarketBundleView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items.MarketThemeView
 
 class MarketplaceListLayout : LinearLayout {
     constructor(context: Context?) : super(context)

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.mapsmenu
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.mapsmenu
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -16,7 +16,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.Navigation.findNavController
 import com.google.common.primitives.Ints
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.MapFileIO
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.MapListModel
 

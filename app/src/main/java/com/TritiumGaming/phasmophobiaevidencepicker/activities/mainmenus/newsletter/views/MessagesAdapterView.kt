@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter.views
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.newsletter.views
 
 import android.view.LayoutInflater
 import android.view.View

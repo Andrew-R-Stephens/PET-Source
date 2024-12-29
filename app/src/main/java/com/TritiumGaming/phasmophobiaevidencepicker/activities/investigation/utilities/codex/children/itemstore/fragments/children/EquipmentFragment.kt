@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.children
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.children.itemstore.fragments.children
 
 import android.annotation.SuppressLint
 import android.graphics.drawable.LayerDrawable
@@ -11,9 +11,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.equipment.ItemStoreEquipmentGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.equipment.ItemStoreEquipmentItemModel

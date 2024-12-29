@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.lists
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.lists
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,8 +6,8 @@ import android.util.AttributeSet
 import android.widget.PopupWindow
 import android.widget.ProgressBar
 import com.google.android.gms.ads.AdRequest
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.popups.EvidencePopupWindow
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence.EvidenceView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.popups.EvidencePopupWindow
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.evidence.EvidenceView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidencePopupRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel

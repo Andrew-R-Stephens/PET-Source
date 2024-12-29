@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence
 
 import android.media.MediaPlayer
 import com.tritiumgaming.phasmophobiaevidencepicker.R

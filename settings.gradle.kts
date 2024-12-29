@@ -14,6 +14,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "PET-Source"
+rootProject.name = "PhasmophobiaEvidencePicker"
 include(":app")
 include(":app-compose")

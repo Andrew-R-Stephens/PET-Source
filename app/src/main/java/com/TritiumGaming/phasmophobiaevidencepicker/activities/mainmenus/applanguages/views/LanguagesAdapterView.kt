@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.applanguages.views
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.applanguages.views
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater

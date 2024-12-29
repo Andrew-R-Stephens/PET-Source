@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="?attr/billingTheme"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.billing.view.MarketBillableView">
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.billing.view.MarketBillableView">
 
     <LinearLayout
         android:layout_width="0dp"

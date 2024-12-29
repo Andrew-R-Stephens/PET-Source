@@ -68,13 +68,13 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
+                <com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_alwaysOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_screenalwayson" />
 
-                <com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
+                <com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_network"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -92,19 +92,19 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
+                <com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_leftHandMode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_enableLeftHandSupport" />
 
-                <com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
+                <com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_huntwarningaudio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:settings_toggle_description="@string/settings_enablehuntaudioqueue" />
 
-                <com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.appsettings.SettingsToggleItemView
+                <com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.appsettings.SettingsToggleItemView
                     android:id="@+id/toggle_reorderGhostViews"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

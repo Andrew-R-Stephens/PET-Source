@@ -8,7 +8,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.RSSParserUtils
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -108,16 +109,13 @@ class NewsletterRepository(
     }
 
     private fun getInbox(inboxType: InboxType): NewsletterInboxModel? {
-        if (inboxMessageList == null) {
-            return null
-        }
 
-        val list = arrayOfNulls<NewsletterInboxModel>(inboxMessageList?.size ?: 0)
-        inboxMessageList?.toArray(list)
+        val list = arrayOfNulls<NewsletterInboxModel>(inboxMessageList.size)
+        inboxMessageList.toArray(list)
 
         list.forEachIndexed { index, listItem ->
             if (listItem?.inboxType == inboxType) {
-                return inboxMessageList?.get(index)
+                return inboxMessageList[index]
             }
         }
 

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.children.itemstore.views
 
 import android.content.Context
 import android.util.AttributeSet

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.newsletter
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.newsletter
 
 import android.os.Bundle
 import android.text.Html
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class NewsMessageFragment : MainMenuFragment() {

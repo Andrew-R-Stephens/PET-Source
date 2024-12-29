@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.onboarding
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.onboarding
 
 import android.os.Bundle
 import android.util.Log

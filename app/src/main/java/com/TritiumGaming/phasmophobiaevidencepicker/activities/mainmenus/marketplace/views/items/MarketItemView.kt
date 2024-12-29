@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.views.items
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items
 
 import android.content.Context
 import android.util.AttributeSet

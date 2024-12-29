@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen
 
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
@@ -18,12 +18,12 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.InvestigationActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.MainMenuFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.StartScreenAnimationView
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewLauncher
-import com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.StartScreenAnimationView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.review.ReviewLauncher
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.review.ReviewPopupWindow
 import com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountIconView
 import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DropdownClickPair
 import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DropdownNavigationPair
