@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

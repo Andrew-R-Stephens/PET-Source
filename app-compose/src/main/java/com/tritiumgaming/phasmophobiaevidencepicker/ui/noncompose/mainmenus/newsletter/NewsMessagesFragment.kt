@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.newsletter.views.MessagesAdapterView
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.newsletter.views.MessagesAdapterView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 
 class NewsMessagesFragment : MainMenuFragment() {
 

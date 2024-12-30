@@ -17,9 +17,9 @@ import androidx.compose.ui.res.painterResource
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.investigations.SelectionState.Companion.Positive
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.investigations.SelectionState.Companion.Negative
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.investigations.SelectionState.Companion.Neutral
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.investigations.SelectionState.Companion.Positive
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils
 
 @Composable

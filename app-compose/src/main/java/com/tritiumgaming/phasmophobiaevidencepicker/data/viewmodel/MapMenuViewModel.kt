@@ -5,10 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.MapModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.MapViewerModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.MapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.PETApplication
 
 /**
  * MapMenuViewModel class

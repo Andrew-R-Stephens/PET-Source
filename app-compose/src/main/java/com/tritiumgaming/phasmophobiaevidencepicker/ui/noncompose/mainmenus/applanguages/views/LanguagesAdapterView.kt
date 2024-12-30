@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.LanguageRepository.LanguageObject
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository.LanguageObject
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 
 class LanguagesAdapterView(
     languages: ArrayList<LanguageObject>, selected: Int,

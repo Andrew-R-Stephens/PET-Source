@@ -7,8 +7,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 
 abstract class SanityCarouselLayout : ConstraintLayout {
 

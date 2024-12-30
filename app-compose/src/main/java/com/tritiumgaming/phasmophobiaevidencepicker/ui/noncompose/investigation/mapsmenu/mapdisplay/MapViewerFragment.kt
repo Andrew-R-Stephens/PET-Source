@@ -16,13 +16,12 @@ import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.get
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 /**
  * MapViewerFragment class

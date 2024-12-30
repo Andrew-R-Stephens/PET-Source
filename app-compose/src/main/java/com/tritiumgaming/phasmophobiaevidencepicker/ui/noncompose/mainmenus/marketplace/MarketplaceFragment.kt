@@ -16,7 +16,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
@@ -34,35 +33,35 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle.Companion.getBundleWhere
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes.Companion.getThemesWhere
 import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
 import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.removeCredits
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.preferencesDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.setMarketplaceAgreementState
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockedDocuments
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.unlockHistoryCollection
 import com.tritiumgaming.phasmophobiaevidencepicker.data.listeners.firestore.OnFirestoreProcessListener
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.theme.bundle.MarketBundleModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.theme.theme.MarketThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle.Companion.getBundleWhere
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes.Companion.getThemesWhere
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.removeCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.preferencesDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.setMarketplaceAgreementState
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockedDocuments
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.unlockHistoryCollection
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFirebaseFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.MarketplaceListLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items.MarketBundleView
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items.MarketItemView.MarketItemOnPurchaseListener
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.items.MarketThemeView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.EquipConfirmationDialog
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.MarketplaceDialog
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.marketplace.views.MarketplaceListLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.marketplace.views.items.MarketBundleView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.marketplace.views.items.MarketItemView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.marketplace.views.items.MarketThemeView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.NavHeaderLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.views.account.AccountObtainCreditsView
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
-import com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.EquipConfirmationDialog
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.MarketplaceDialog
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -636,7 +635,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         bundleView.bundle = bundleModel
 
-        bundleView.onPurchaseListener = object:MarketItemOnPurchaseListener() {
+        bundleView.onPurchaseListener = object: MarketItemView.MarketItemOnPurchaseListener() {
             override fun onPurchase() {
 
                 val buyButtonCallback: OnFirestoreProcessListener =
@@ -716,7 +715,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
         themeView.themeModel = singleThemeModel
 
-        themeView.onPurchaseListener = object:MarketItemOnPurchaseListener() {
+        themeView.onPurchaseListener = object: MarketItemView.MarketItemOnPurchaseListener() {
             override fun onPurchase() {
                 val buyButtonCallback: OnFirestoreProcessListener =
                     object : OnFirestoreProcessListener() {

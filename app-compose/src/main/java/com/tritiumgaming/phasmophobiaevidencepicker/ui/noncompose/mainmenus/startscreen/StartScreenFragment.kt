@@ -13,25 +13,23 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.Navigation.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.StartScreenAnimationView
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.review.ReviewLauncher
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.startscreen.views.review.ReviewPopupWindow
-import com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountIconView
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DropdownClickPair
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DropdownNavigationPair
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.IconDropdownMenu
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.LanguageIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.DropdownClickPair
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.DropdownNavigationPair
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.IconDropdownMenu
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.LanguageIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.InvestigationActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.startscreen.views.StartScreenAnimationView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.startscreen.views.review.ReviewLauncher
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.startscreen.views.review.ReviewPopupWindow
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.views.account.AccountIconView
 import java.util.Locale
 
 class StartScreenFragment : MainMenuFragment() {
@@ -118,7 +116,7 @@ class StartScreenFragment : MainMenuFragment() {
 
         }
 
-        buttonMsgInbox?.setContent { NewsAlert(false) }
+        buttonMsgInbox?.setContent { NewsAlert(isActive = false) }
 
         //setBackgroundLogo(iconApp)
         setLanguageName(labelLanguageName)
@@ -266,7 +264,7 @@ class StartScreenFragment : MainMenuFragment() {
     private fun doNewsletterNotification() {
         Log.d("MessageCenter", "Starting animation")
         try {
-            buttonMsgInbox?.setContent { NewsAlert(true) }
+            buttonMsgInbox?.setContent { NewsAlert(isActive = true) }
             //newsIcon?.setContent { NewsAlert(true) }
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }

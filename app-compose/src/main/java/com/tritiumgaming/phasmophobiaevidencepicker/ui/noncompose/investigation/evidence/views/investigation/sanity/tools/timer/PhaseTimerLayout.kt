@@ -7,8 +7,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

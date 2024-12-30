@@ -4,9 +4,9 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.MainMenuViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.MainMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.pet.PETFragment
 
 abstract class MainMenuFragment : PETFragment {
 

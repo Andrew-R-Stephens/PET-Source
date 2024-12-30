@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.CodexFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.views.CodexGridCard
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.utilities.codex.CodexFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.utilities.codex.views.CodexGridCard
 
 class CodexMenuFragment : CodexFragment() {
 

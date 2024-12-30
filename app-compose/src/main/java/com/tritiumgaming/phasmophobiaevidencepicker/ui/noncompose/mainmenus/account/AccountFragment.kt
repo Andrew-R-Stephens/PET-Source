@@ -18,12 +18,12 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFirebaseFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DeleteAccountDialog
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.LogoutDialog
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.DeleteAccountDialog
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.LogoutDialog
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 
 class AccountFragment : MainMenuFirebaseFragment() {
 

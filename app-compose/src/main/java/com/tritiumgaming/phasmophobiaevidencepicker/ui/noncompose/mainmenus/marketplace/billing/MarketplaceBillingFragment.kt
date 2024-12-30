@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
@@ -35,19 +34,19 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables.Companion.getBillablesWhere
 import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.transactions.types.FirestorePurchaseHistory.Companion.addPurchaseDocument
 import com.tritiumgaming.phasmophobiaevidencepicker.data.listeners.firestore.OnFirestoreProcessListener
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.model.firestore.billable.MarketMicroTransactionModel
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables.Companion.getBillablesWhere
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestorePurchaseHistory.Companion.addPurchaseDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFirebaseFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.billing.view.MarketBillableView
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.views.MarketplaceListLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.data.model.firestore.billable.MarketMicroTransactionModel
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.marketplace.billing.view.MarketBillableView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.marketplace.views.MarketplaceListLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.NavHeaderLayout
 
 class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
     private var billingClient: BillingClient? = null
@@ -361,7 +360,7 @@ class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
 
         for (productDetails in productDetailsList) {
             val mtxItem =
-                com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.model.firestore.billable.MarketMicroTransactionModel(
+                MarketMicroTransactionModel(
                     productDetails!!
                 )
             Log.d("Billing", "Adding $mtxItem")
@@ -383,7 +382,7 @@ class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
         }
     }
 
-    private fun buildMicroTransactionView(mtxItem: com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.model.firestore.billable.MarketMicroTransactionModel): MarketBillableView {
+    private fun buildMicroTransactionView(mtxItem: MarketMicroTransactionModel): MarketBillableView {
         val microTransationView = MarketBillableView(requireContext(), null)
 
         microTransationView.setBillableItem(mtxItem)

@@ -235,7 +235,7 @@ private fun HeaderNavBar(
     ) { false }
 
     // News Button
-    NewsAlert(rememberNewsUpToDate) {
+    NewsAlert(isActive = rememberNewsUpToDate) {
         navController.navigate(NavRoutes.NAVIGATION_NEWSLETTER.route)
     }
 

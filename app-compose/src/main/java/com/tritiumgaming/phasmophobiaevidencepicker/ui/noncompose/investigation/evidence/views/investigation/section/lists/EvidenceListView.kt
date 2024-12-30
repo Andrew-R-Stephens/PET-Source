@@ -6,10 +6,10 @@ import android.util.AttributeSet
 import android.widget.PopupWindow
 import android.widget.ProgressBar
 import com.google.android.gms.ads.AdRequest
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.EvidencePopupRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.popups.EvidencePopupWindow
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.evidence.EvidenceView
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidencePopupRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.evidence.views.investigation.popups.EvidencePopupWindow
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.evidence.views.investigation.section.evidence.EvidenceView
 
 class EvidenceListView : InvestigationListView {
 

@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.GlobalPreferencesHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.LanguageHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeHandler
@@ -17,6 +16,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ColorThemeRe
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.FontThemeRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.PETApplication
 import kotlinx.coroutines.launch
 
 class GlobalPreferencesViewModel(

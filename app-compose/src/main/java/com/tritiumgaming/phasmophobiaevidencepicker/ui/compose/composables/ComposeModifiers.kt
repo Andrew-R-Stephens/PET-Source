@@ -14,8 +14,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DisplayOrientation.HORIZONTAL
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DisplayOrientation.VERTICAL
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.DisplayOrientation.HORIZONTAL
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.DisplayOrientation.VERTICAL
 
 object DisplayOrientation {
     const val HORIZONTAL: Int = 0

@@ -42,16 +42,19 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.ObjectivesVie
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.OnboardingViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.PermissionsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.RootNavigation
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.Non_Colorblind
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.Classic
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.data.dataStore
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
-abstract class PETActivity : AppCompatActivity() {
+class PETActivity : AppCompatActivity() {
 
     var firebaseAnalytics: FirebaseAnalytics? = null
         protected set
 
-    protected lateinit var globalPreferencesViewModel: GlobalPreferencesViewModel
+    private lateinit var globalPreferencesViewModel: GlobalPreferencesViewModel
     private lateinit var permissionsViewModel: PermissionsViewModel
     private lateinit var onboardingViewModel: OnboardingViewModel
     private lateinit var newsLetterViewModel: NewsletterViewModel
@@ -78,16 +81,12 @@ abstract class PETActivity : AppCompatActivity() {
         automaticSignInAccount()
 
         setContent {
-
-            RootNavigation(
-                /*onboardingViewModel = onboardingViewModel,
-                newsletterViewModel = newsLetterViewModel,
-                mainMenuViewModel = mainMenuViewModel,
-                globalPreferencesViewModel = globalPreferencesViewModel,
-                permissionsViewModel = permissionsViewModel,
-                investigationViewModel = investigationViewModel*/
-            )
-
+            SelectiveTheme(
+                theme = Non_Colorblind,
+                typography = Classic
+            ) {
+                RootNavigation()
+            }
         }
 
     }
@@ -193,7 +192,7 @@ abstract class PETActivity : AppCompatActivity() {
         )[InvestigationViewModel::class.java]
     }
 
-    protected open fun loadPreferences() {
+    private fun loadPreferences() {
         //set colorSpace
         changeTheme(
             globalPreferencesViewModel.colorThemeHandler.currentTheme,

@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.achievevments.AchievementsStoreModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.equipment.EquipmentStoreModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.possessions.PossessionsStoreModel
@@ -16,11 +15,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.san
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityRunnable
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.CodexRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.EvidenceRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.GhostRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.MapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.CodexRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.PETApplication
 
 class InvestigationViewModel(
     evidenceRepository: EvidenceRepository,

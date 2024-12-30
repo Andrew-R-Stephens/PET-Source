@@ -14,7 +14,6 @@ import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
 import com.google.android.gms.common.SignInButton
 import com.google.android.ump.FormError
@@ -22,10 +21,10 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.controllers.theming.subsets.ColorThemeHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFirebaseFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.FormatterUtils.millisToTime
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.GoogleMobileAdsConsentManager
 
@@ -126,24 +125,6 @@ class AppSettingsFragment : MainMenuFirebaseFragment() {
         reOrderGhostListToggle?.isChecked = globalPreferencesViewModel.ghostReorderPreference.value
         Log.d("Switches", "reorder: ${globalPreferencesViewModel.ghostReorderPreference.value}")
         */
-
-        view.findViewById<ComposeView>(R.id.tempSwitch)?.setContent {
-            SettingsFragment(
-                globalPreferencesViewModel,
-                onSave = {
-                    saveAll()
-
-                    try { view.let { view -> findNavController(view).popBackStack() } }
-                    catch (e: IllegalStateException) { e.printStackTrace() }
-                },
-                onCancel = {
-                    revertDemoChanges()
-
-                    try { view.let { view -> findNavController(view).popBackStack() } }
-                    catch (e: IllegalStateException) { e.printStackTrace() }
-                }
-            )
-        }
 
         /*
         view.findViewById<ComposeView>(R.id.tempSwitch)?.setContent {

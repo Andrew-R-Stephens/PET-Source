@@ -65,7 +65,7 @@
 <div align='left' style="display:float">
   <h3>High-Level Design</h3>
   <div align='center'><label>Current Native Android -> Kotlin Multiplatform (Android / iOS) Integration Pattern</label></div>
-  &emsp;<img src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet_migration_flow.png" alt=""/>
+  &emsp;<img src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet_migration_flow_stage3.png" alt=""/>
   <blockquote>P.E.T. has become kotlin-first! Major code migration started in May 2024 and finished in July 2024. Planned migration to KMP will commence after confirmation of build stability and feature refinement.</blockquote>
 </div>
 

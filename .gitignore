@@ -33,3 +33,4 @@ Keystore.jks
 /app-kotlin/build/
 /Keystore_old.jks
 /app-compose/build
+/.kotlin/sessions/kotlin-compiler-3226288834266879898.salive

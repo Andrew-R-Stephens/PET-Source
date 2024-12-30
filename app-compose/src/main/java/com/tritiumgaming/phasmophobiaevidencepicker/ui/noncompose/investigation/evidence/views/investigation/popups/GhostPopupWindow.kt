@@ -17,10 +17,10 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.InvestigationModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.GhostPopupRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostPopupRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 import kotlin.math.min
 
 class GhostPopupWindow : InvestigationPopupWindow {

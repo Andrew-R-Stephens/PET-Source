@@ -8,8 +8,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
 
 class AccountCreditsView : ConstraintLayout {
     constructor(context: Context) : super(context)

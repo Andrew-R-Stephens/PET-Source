@@ -14,9 +14,9 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.missions.views.MissionsItemLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.missions.views.MissionsItemLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 /**

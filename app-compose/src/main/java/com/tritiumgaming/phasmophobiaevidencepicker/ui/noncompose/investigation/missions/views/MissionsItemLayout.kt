@@ -8,10 +8,10 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.ObjectivesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.ObjectivesViewModel.Companion.NOT_COMPLETE
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.missions.views.objectivelayout.MissionsCompletedButton
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.missions.views.objectivelayout.MissionsSpinner
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.ObjectivesViewModel.Companion.NOT_COMPLETE
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.missions.views.objectivelayout.MissionsCompletedButton
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.missions.views.objectivelayout.MissionsSpinner
 
 class MissionsItemLayout : LinearLayout {
 

@@ -6,9 +6,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.inv
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.DifficultyCarouselModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.MapCarouselModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.DifficultyRepository.DifficultyTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.EvidenceRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -57,8 +57,8 @@ class GhostScoreModel(
                 val currentDifficulty =
                     difficultyCarouselModel?.currentDifficulty
 
-                val isNightmare = currentDifficulty == DifficultyTitle.NIGHTMARE
-                val isInsanity = currentDifficulty == DifficultyTitle.INSANITY
+                val isNightmare = currentDifficulty == DifficultyRepository.DifficultyTitle.NIGHTMARE
+                val isInsanity = currentDifficulty == DifficultyRepository.DifficultyTitle.INSANITY
 
                 val maxPosScore = when {
                     isInsanity -> 1

@@ -6,7 +6,7 @@ import androidx.compose.ui.platform.ComposeView
 import com.google.android.material.card.MaterialCardView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.FirestoreUser.Companion.getCurrentFirebaseUserDisplayNameInitials
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.OutlineTextView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.OutlineTextView
 
 class AccountIconView : MaterialCardView {
     constructor(context: Context) :

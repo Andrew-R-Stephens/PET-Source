@@ -24,11 +24,11 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.reviews.ReviewTrackingRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.settings.themes.ThemeModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.ColorThemeRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.FontThemeRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.GlobalPreferencesRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.PermissionsViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ColorThemeRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.FontThemeRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.PermissionsViewModel
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 

@@ -62,7 +62,7 @@
             Activities
         -->
         <activity
-            android:name="com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuActivity"
+            android:name="com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.activities.PETActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation"
             android:exported="true">
@@ -75,11 +75,11 @@
 
         </activity>
 
-        <activity
-            android:name="com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationActivity"
+        <!--<activity
+            android:name="com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.InvestigationActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation">
-        </activity>
+        </activity>-->
 
         <!--
         <activity

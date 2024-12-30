@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.NewsAlert
 
 class MessagesAdapterView(
     private val currentInbow: NewsletterInboxModel,
@@ -52,7 +52,7 @@ class MessagesAdapterView(
         val icon = holder.icon
         if(currentInbow.compareDate(messages[position].date) > 0) {
             icon?.setContent {
-                NewsAlert(true, baseDrawableId = null)
+                NewsAlert(isActive = true, baseDrawableId = null)
             }
         } else { icon?.visibility = GONE }
     }

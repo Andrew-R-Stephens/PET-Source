@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.tritiumgaming.phasmophobiaevidencepicker.data.jobs.DeltaRunnable
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.startscreen.AnimationModel
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.pet.PETActivity
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

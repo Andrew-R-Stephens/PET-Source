@@ -11,12 +11,12 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.ItemStoreGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.model.codex.itemshop.itemstore.equipment.ItemStoreAchievementGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.model.codex.itemshop.itemstore.equipment.ItemStoreAchievementItemModel
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
 
 class AchievementsFragment : ItemStoreFragment() {
 

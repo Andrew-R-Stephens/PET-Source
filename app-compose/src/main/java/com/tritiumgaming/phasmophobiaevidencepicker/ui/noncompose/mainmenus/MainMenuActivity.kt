@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat.recreate
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -14,16 +13,16 @@ import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
 import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.NewsletterRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.MainMenuViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.OnboardingViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.MainMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.OnboardingViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.RootNavigation
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.Non_Colorblind
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.Classic
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.dataStore
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.pet.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.pet.dataStore
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**

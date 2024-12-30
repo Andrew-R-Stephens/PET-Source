@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.evidence
 
 import android.media.MediaPlayer
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.sanity.SanityRunnable
 import kotlinx.coroutines.CoroutineScope

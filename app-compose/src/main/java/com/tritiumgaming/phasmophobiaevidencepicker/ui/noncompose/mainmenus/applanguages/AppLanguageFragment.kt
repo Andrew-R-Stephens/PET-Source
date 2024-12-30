@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.applanguages.views.LanguagesAdapterView
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.applanguages.views.LanguagesAdapterView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.NavHeaderLayout
 
 class AppLanguageFragment : MainMenuFragment() {
 

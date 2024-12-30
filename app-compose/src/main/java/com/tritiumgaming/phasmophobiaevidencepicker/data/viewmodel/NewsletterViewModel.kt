@@ -9,10 +9,10 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterMessageModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.application.PETApplication
 import kotlinx.coroutines.launch
 
 class NewsletterViewModel(

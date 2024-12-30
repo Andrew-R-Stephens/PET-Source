@@ -19,8 +19,8 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.ItemStoreType.Companion.Equipment
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.ItemStoreType.Companion.Possession
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.ItemStoreType.Companion.Equipment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.ItemStoreType.Companion.Possession
 
 @Composable
 @Preview

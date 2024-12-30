@@ -5,7 +5,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.SetOptions
-import com.tritiumgaming.phasmophobiaevidencepicker.firebase.firestore.transactions.user.account.FirestoreAccount.Companion.accountCollection
+import com.tritiumgaming.phasmophobiaevidencepicker.data.firebase.firestore.transactions.user.account.FirestoreAccount.Companion.accountCollection
 
 class FirestoreTransactionHistory {
 
@@ -14,8 +14,7 @@ class FirestoreTransactionHistory {
 
         @get:Throws(Exception::class)
         val transactionHistoryDocument: DocumentReference
-            get() = accountCollection
-                .document(DOCUMENT_TRANSACTION_HISTORY)
+            get() = accountCollection.document(DOCUMENT_TRANSACTION_HISTORY)
 
         @Throws(Exception::class)
         fun init() {

@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation
 import android.text.Html
 import androidx.appcompat.widget.AppCompatTextView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.InvestigationFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 abstract class CodexFragment : InvestigationFragment() {

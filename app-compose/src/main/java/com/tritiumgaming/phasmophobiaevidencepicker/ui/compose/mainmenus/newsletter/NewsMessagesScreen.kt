@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.newsletter
 
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.MainMenuScreen
@@ -8,20 +9,26 @@ import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.MainMen
 @Composable
 @Preview
 private fun NewsMessagesScreenPreview() {
-    NewsMessagesScreen()
+    NewsMessagesScreen(0)
 }
 
 @Composable
-fun NewsMessagesScreen(
-    //content: @Composable () -> Unit
-) {
+fun NewsMessagesScreen(inboxID: Int) {
 
     MainMenuScreen (
-        content = { NewsMessagesContent() }
+        content = { NewsMessagesContent(inboxID) }
     )
 
 }
 
 
 @Composable
-private fun NewsMessagesContent() {}
+private fun NewsMessagesContent(
+    inboxID: Int = 0
+) {
+
+    Text(
+        text = "$inboxID"
+    )
+
+}

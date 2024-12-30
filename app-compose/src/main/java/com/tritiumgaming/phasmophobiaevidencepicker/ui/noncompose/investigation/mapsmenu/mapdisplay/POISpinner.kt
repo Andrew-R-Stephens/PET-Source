@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatSpinner
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.MapMenuViewModel
 
 class POISpinner : AppCompatSpinner {
     constructor(context: Context) :

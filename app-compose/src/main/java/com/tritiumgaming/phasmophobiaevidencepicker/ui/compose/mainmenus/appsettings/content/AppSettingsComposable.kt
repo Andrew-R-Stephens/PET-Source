@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.appsettings
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.appsettings.content
 
 import android.view.WindowManager
 import android.widget.Toast
@@ -32,22 +32,24 @@ import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.Non_Color
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.Classic
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.LocalTypographys
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.NavHeaderComposableParams
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.NavigationHeaderComposable
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.PETImageButtonType
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.navigation.NavHeaderComposableParams
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.navigation.NavigationHeaderComposable
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.navigation.PETImageButtonType
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.pet.activities.PETActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.annotations.TestOnly
 
 @Preview
-@TestOnly
 @Composable
+@TestOnly
 private fun SettingsFragmentPreview() {
     SettingsFragment()
 }
 
 @Composable
-fun SettingsFragment(
+@TestOnly
+@Deprecated(message = "Use SettingsScreen instead.")
+private fun SettingsFragment(
     globalPreferencesViewModel: com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.GlobalPreferencesViewModel? = null,
     onSave: () -> Unit = {},
     onCancel: () -> Unit = {}
@@ -56,10 +58,10 @@ fun SettingsFragment(
     val colorThemeState = globalPreferencesViewModel?.currentColorID?.collectAsState()
     val fontThemeState = globalPreferencesViewModel?.currentFontID?.collectAsState()
 
-    var rememberColorTheme = remember {
+    val rememberColorTheme = remember {
         mutableStateOf(colorThemeState?.value)
     }
-    var rememberFontTheme = remember {
+    val rememberFontTheme = remember {
         mutableStateOf(fontThemeState?.value)
     }
 

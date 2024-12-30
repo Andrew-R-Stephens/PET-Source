@@ -14,7 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+        <com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.NavHeaderLayout
             android:id="@+id/navHeaderLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -1,22 +1,16 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.utils
 
 import android.text.Html
-import android.text.Spannable
 import android.text.Spanned
 import android.util.TypedValue
 import android.view.View
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.LocalPalette
 import okhttp3.internal.toHexString
 import java.util.Locale
 

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.startscreen.views.review
+package com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.review
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
@@ -39,7 +39,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.Non_Color
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.Classic
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.LocalTypographys
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.AutoResizedText
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.AutoResizedText
 import org.jetbrains.annotations.TestOnly
 
 @Preview

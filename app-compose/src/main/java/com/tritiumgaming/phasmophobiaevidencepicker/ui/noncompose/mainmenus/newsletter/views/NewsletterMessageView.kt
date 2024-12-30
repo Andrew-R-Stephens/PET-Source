@@ -7,7 +7,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
-import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.composables.NewsAlert
 
 class NewsletterMessageView : ConstraintLayout {
 
@@ -48,7 +48,7 @@ class NewsletterMessageView : ConstraintLayout {
         notifyView.setContent {
             NewsAlert(
                 isActive = (inboxModel?.compareDate() ?: 0) > 0,
-                null
+                baseDrawableId = null
             )
         }
     }

@@ -13,13 +13,12 @@ import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import com.google.common.primitives.Ints
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.io.MapFileIO
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.MapListModel
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.InvestigationFragment
 
 /**
  * MapMenuFragment class

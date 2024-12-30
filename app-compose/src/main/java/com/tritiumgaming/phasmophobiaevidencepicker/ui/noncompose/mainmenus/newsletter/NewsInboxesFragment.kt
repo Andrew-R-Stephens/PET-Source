@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.viewmodel.NewsletterViewModel.InboxType
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.newsletter.views.NewsletterInboxView
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.newsletter.views.NewsletterInboxView
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 
 class NewsInboxesFragment : MainMenuFragment() {
     override fun onCreateView(
@@ -25,7 +24,7 @@ class NewsInboxesFragment : MainMenuFragment() {
         val inboxList = view.findViewById<ViewGroup>(R.id.list_inboxes)
 
         newsLetterViewModel.let { newsLetterViewModel ->
-            for (inboxType in InboxType.entries.toTypedArray()) {
+            for (inboxType in NewsletterViewModel.InboxType.entries.toTypedArray()) {
                 try {
                     val inboxView = NewsletterInboxView(requireContext(), null)
                     inboxView.setTitle(inboxType.getName(requireContext()))
@@ -34,13 +33,13 @@ class NewsInboxesFragment : MainMenuFragment() {
                         inboxType.getIcon(requireContext()))
 
                     when (inboxType) {
-                        InboxType.GENERAL -> inboxView.setOnClickListener {
+                        NewsletterViewModel.InboxType.GENERAL -> inboxView.setOnClickListener {
                             v: View -> this.gotoGeneralNews(v) }
 
-                        InboxType.PET -> inboxView.setOnClickListener {
+                        NewsletterViewModel.InboxType.PET -> inboxView.setOnClickListener {
                             v: View -> this.gotoPetNews(v) }
 
-                        InboxType.PHASMOPHOBIA -> inboxView.setOnClickListener {
+                        NewsletterViewModel.InboxType.PHASMOPHOBIA -> inboxView.setOnClickListener {
                             v: View -> this.gotoPhasNews(v) }
                     }
                     if (inboxList is GridLayout) {
@@ -70,7 +69,7 @@ class NewsInboxesFragment : MainMenuFragment() {
     /** showExtraNewsPopup method */
     private fun gotoGeneralNews(v: View) {
         try {
-            newsLetterViewModel.currentInboxType = InboxType.GENERAL
+            newsLetterViewModel.currentInboxType = NewsletterViewModel.InboxType.GENERAL
             navigateToInboxFragment(v)
         } catch (e: NullPointerException) { e.printStackTrace() }
     }
@@ -78,7 +77,7 @@ class NewsInboxesFragment : MainMenuFragment() {
     /** showPetNewsPopup method */
     private fun gotoPetNews(v: View) {
         try {
-            newsLetterViewModel.currentInboxType = InboxType.PET
+            newsLetterViewModel.currentInboxType = NewsletterViewModel.InboxType.PET
             navigateToInboxFragment(v)
         } catch (e: NullPointerException) { e.printStackTrace() }
     }
@@ -86,7 +85,7 @@ class NewsInboxesFragment : MainMenuFragment() {
     /** showPhasNewsPopup method */
     private fun gotoPhasNews(v: View) {
         try {
-            newsLetterViewModel.currentInboxType = InboxType.PHASMOPHOBIA
+            newsLetterViewModel.currentInboxType = NewsletterViewModel.InboxType.PHASMOPHOBIA
             navigateToInboxFragment(v)
         } catch (e: NullPointerException) { e.printStackTrace() }
     }

@@ -2,10 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sa
 
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.DifficultyRepository.DifficultyConstraints.INSANITY_START
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.DifficultyRepository.DifficultyConstraints.MODIFIER
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.repository.DifficultyRepository.DifficultyTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyConstraints.INSANITY_START
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyConstraints.MODIFIER
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -19,7 +18,7 @@ class DifficultyCarouselModel(
 
     /* Index */
     private val _currentIndex: MutableStateFlow<Int> =
-        MutableStateFlow(DifficultyTitle.AMATEUR.ordinal)
+        MutableStateFlow(DifficultyRepository.DifficultyTitle.AMATEUR.ordinal)
     val currentIndex = _currentIndex.asStateFlow()
     private fun setIndex(index: Int) {
         _currentIndex.value = index
@@ -45,8 +44,8 @@ class DifficultyCarouselModel(
 
     /* -- */
 
-    val currentDifficulty: DifficultyTitle
-        get() = DifficultyTitle.entries[currentIndex.value]
+    val currentDifficulty: DifficultyRepository.DifficultyTitle
+        get() = DifficultyRepository.DifficultyTitle.entries[currentIndex.value]
 
     val currentName: Int
         get() = difficultyRepository.itemList[currentIndex.value].name
@@ -61,7 +60,7 @@ class DifficultyCarouselModel(
         get() = INSANITY_START[currentIndex.value]
 
     val responseTypeKnown: Boolean
-        get() = currentIndex.value < DifficultyTitle.PROFESSIONAL.ordinal
+        get() = currentIndex.value < DifficultyRepository.DifficultyTitle.PROFESSIONAL.ordinal
 
     /** Defaults if the selected index is out of range of available indexes.
      * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */

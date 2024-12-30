@@ -15,15 +15,13 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.NavHeaderLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.views.global.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.FontUtils.replaceHTMLFontColor
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class AppInfoFragment : MainMenuFragment() {
     override fun onCreateView(

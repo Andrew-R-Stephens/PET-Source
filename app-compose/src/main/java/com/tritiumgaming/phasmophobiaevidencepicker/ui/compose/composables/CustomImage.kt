@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.Non_Colorblind
-import com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.ui.views.account.AccountIcon
 import org.jetbrains.annotations.TestOnly
 
 @Preview

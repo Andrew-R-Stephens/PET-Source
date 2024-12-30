@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,10 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.Agent
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.colorSchemes.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.Classic
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.types.LocalTypography
 import org.jetbrains.annotations.TestOnly
 
