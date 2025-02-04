@@ -754,11 +754,11 @@
     <string name="settings_colorblindnessmode_deuteranomaly">Deutéranopie</string>
     <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopie</string>
-    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
-    <string name="settings_fontstyle_android">Android</string>
-    <string name="settings_fontstyle_journal">Journal</string>
-    <string name="settings_fontstyle_brick">Brique</string>
-    <string name="settings_fontstyle_clean">Faire le Ménage</string>
+    <string name="theme_typography_classic">P.E.T. Classic</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Journal</string>
+    <string name="theme_typography_brick">Brique</string>
+    <string name="theme_typography_clean">Faire le Ménage</string>
     <string name="messagecenter_inboxestitle_label">Centre de Messagerie</string>
     <string name="messagecenter_inbox_pet">Journal des Modifications P.E.T.</string>
     <string name="messagecenter_inbox_phas">Journal des Modifications Phasmophobia</string>

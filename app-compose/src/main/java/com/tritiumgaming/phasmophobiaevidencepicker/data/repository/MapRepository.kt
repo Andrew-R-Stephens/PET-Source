@@ -5,7 +5,7 @@ import android.content.res.Resources
 import android.content.res.TypedArray
 import androidx.annotation.DrawableRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.MapViewerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.MapViewerModel
 
 class MapRepository(
     context: Context

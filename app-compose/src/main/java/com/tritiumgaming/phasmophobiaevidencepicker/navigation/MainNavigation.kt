@@ -3,63 +3,57 @@ package com.tritiumgaming.phasmophobiaevidencepicker.navigation
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.NAVIGATION_CODEX
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.NAVIGATION_INVESTIGATION
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.NAVIGATION_MAIN_MENU
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.NAVIGATION_MAPS
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.NAVIGATION_MARKETPLACE
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.NAVIGATION_NEWSLETTER
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_ACCOUNT_OVERVIEW
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_APP_INFO
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_CODEX_ACHIEVEMENTS
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_CODEX_EQUIPMENT
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_CODEX_MENU
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_CODEX_POSSESSIONS
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_EVIDENCE
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_LANGUAGE
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_MAPS_MENU
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_MAP_VIEWER
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_MARKETPLACE_BILLABLE
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_MARKETPLACE_UNLOCKS
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_MISSIONS
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_NEWSLETTER_INBOX
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_NEWSLETTER_MESSAGE
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_NEWSLETTER_MESSAGES
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_SETTINGS
-import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoutes.SCREEN_START
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.investigation.evidence.EvidenceSoloScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.investigation.mapsmenu.MapMenuScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.investigation.mapsmenu.mapdisplay.MapViewerScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.investigation.missions.MissionsScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.investigation.utilities.codex.children.itemstore.fragments.children.CodexAchievementScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.investigation.utilities.codex.children.itemstore.fragments.children.CodexEquipmentScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.investigation.utilities.codex.children.itemstore.fragments.children.CodexPossessionsScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.investigation.utilities.codex.codexmenu.CodexMenuScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.account.AccountScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.appinfo.InfoScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.applanguages.LanguageScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.appsettings.SettingsScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.marketplace.MarketplaceScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.marketplace.billing.MarketplaceBillingScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.newsletter.NewsInboxesScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.newsletter.NewsMessageScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.newsletter.NewsMessagesScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.ui.compose.mainmenus.startscreen.StartScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.NAVIGATION_CODEX
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.NAVIGATION_INVESTIGATION
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.NAVIGATION_MAIN_MENU
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.NAVIGATION_MAPS
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.NAVIGATION_MARKETPLACE
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.NAVIGATION_NEWSLETTER
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_ACCOUNT_OVERVIEW
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_APP_INFO
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_CODEX_ACHIEVEMENTS
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_CODEX_EQUIPMENT
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_CODEX_MENU
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_CODEX_POSSESSIONS
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_EVIDENCE
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_MAPS_MENU
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_MAP_VIEWER
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_MARKETPLACE_BILLABLE
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_MARKETPLACE_UNLOCKS
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_MISSIONS
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_NEWSLETTER_INBOX
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_NEWSLETTER_MESSAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_NEWSLETTER_MESSAGES
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_SETTINGS
+import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute.SCREEN_START
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.investigation.evidence.EvidenceSoloScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.investigation.mapsmenu.MapMenuScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.investigation.mapsmenu.mapdisplay.MapViewerScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.investigation.missions.MissionsScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.investigation.utilities.codex.children.itemstore.fragments.children.CodexAchievementScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.investigation.utilities.codex.children.itemstore.fragments.children.CodexEquipmentScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.investigation.utilities.codex.children.itemstore.fragments.children.CodexPossessionsScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.investigation.utilities.codex.codexmenu.CodexMenuScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.account.AccountScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.appinfo.InfoScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.applanguages.LanguageScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.appsettings.SettingsScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.marketplace.MarketplaceScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.marketplace.billing.MarketplaceBillingScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.newsletter.NewsInboxesScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.newsletter.NewsMessageScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.newsletter.NewsMessagesScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.startscreen.StartScreen
 
 @Composable
-fun RootNavigation(
-    /*investigationViewModel: InvestigationViewModel,
-    onboardingViewModel: OnboardingViewModel,
-    newsletterViewModel: NewsletterViewModel,
-    mainMenuViewModel: MainMenuViewModel,
-    globalPreferencesViewModel: GlobalPreferencesViewModel,
-    permissionsViewModel: PermissionsViewModel*/
-) {
+fun RootNavigation() {
 
     val navController = rememberNavController()
 
@@ -91,7 +85,9 @@ fun RootNavigation(
             }
 
             composable(route = SCREEN_SETTINGS.route) {
-                SettingsScreen()
+                SettingsScreen(
+                    navController = navController
+                )
             }
 
             navigation(
@@ -102,15 +98,42 @@ fun RootNavigation(
                 composable(route = SCREEN_NEWSLETTER_INBOX.route) {
                     NewsInboxesScreen(navController)
                 }
-                composable(route = "${SCREEN_NEWSLETTER_MESSAGES.route}/{inboxID}") {
-                    val id= it.arguments?.getInt("inboxID")
-                        ?: NewsletterViewModel.InboxType.GENERAL.id
 
-                    NewsMessagesScreen(id)
+                composable(route = "${SCREEN_NEWSLETTER_MESSAGES.route}/{inboxID}",
+                    arguments = listOf(
+                        navArgument("inboxID") { type = NavType.IntType }
+                    )) { navBackStackEntry ->
+                        val inboxID = navBackStackEntry.arguments?.getInt("inboxID")
+
+                    if(inboxID != null) {
+                        NewsMessagesScreen(
+                            navController = navController,
+                            inboxID = inboxID
+                        )
+                    } else {
+                        navController.popBackStack()
+                    }
 
                 }
-                composable(route = SCREEN_NEWSLETTER_MESSAGE.route) {
-                    NewsMessageScreen()
+
+                composable(route = "${SCREEN_NEWSLETTER_MESSAGE.route}/{inboxID}/{messageID}",
+                    arguments = listOf(
+                        navArgument("inboxID") { type = NavType.IntType },
+                        navArgument("messageID") { type = NavType.IntType }
+                    )) { navBackStackEntry ->
+
+                    val inboxID = navBackStackEntry.arguments?.getInt("inboxID")
+                    val messageID = navBackStackEntry.arguments?.getInt("messageID")
+
+                    if(inboxID != null && messageID != null) {
+                        NewsMessageScreen(
+                            navController = navController,
+                            inboxID = inboxID,
+                            messageID = messageID
+                        )
+                    } else {
+                        navController.popBackStack()
+                    }
                 }
 
             }
@@ -190,7 +213,7 @@ fun RootNavigation(
     }
 }
 
-enum class NavRoutes(val route: String) {
+enum class NavRoute(val route: String) {
 
     NAVIGATION_MAIN_MENU("MainMenuNavigation"),
     NAVIGATION_MARKETPLACE("MarketplaceNavigation"),

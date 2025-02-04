@@ -184,15 +184,15 @@ tempStratHero
         <item>3vAD75LdzvZN3zBjab5z19zpc</item>
     </string-array>
     <string-array name="settings_themes_font_name_array">
-        <item>@string/settings_fontstyle_classic</item>
-        <item>@string/settings_fontstyle_android</item>
-        <item>@string/settings_fontstyle_journal</item>
-        <item>@string/settings_fontstyle_brick</item>
-        <item>@string/settings_fontstyle_clean</item>
-        <item>@string/settings_fontstyle_longcang</item>
-        <item>@string/settings_fontstyle_newtegmon</item>
-        <item>@string/settings_fontstyle_neucha</item>
-        <item>@string/settings_fontstyle_jetbrainsmono</item>
+        <item>@string/theme_typography_classic</item>
+        <item>@string/theme_typography_android</item>
+        <item>@string/theme_typography_journal</item>
+        <item>@string/theme_typography_brick</item>
+        <item>@string/theme_typography_clean</item>
+        <item>@string/theme_typography_longcang</item>
+        <item>@string/theme_typography_newtegmon</item>
+        <item>@string/theme_typography_neucha</item>
+        <item>@string/theme_typography_jetbrainsmono</item>
     </string-array>
     <integer-array name="settings_themes_font_style_array">
         <item>@style/Fonts.Base</item>

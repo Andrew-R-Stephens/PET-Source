@@ -67,14 +67,14 @@
 
     <!-- Font-Style Types -->
 
-    <string name="settings_fontstyle_classic">P.E.T. クラシック</string>
+    <string name="theme_typography_classic">P.E.T. クラシック</string>
 
     <!-- Page Details -->
 
-    <string name="settings_fontstyle_android">アンドロイド</string>
-    <string name="settings_fontstyle_journal">ジャーナル</string>
-    <string name="settings_fontstyle_brick">レンガ</string>
-    <string name="settings_fontstyle_clean">清らか</string>
+    <string name="theme_typography_android">アンドロイド</string>
+    <string name="theme_typography_journal">ジャーナル</string>
+    <string name="theme_typography_brick">レンガ</string>
+    <string name="theme_typography_clean">清らか</string>
     <string name="messagecenter_inboxestitle_label">メッセージセンター</string>
     <string name="messagecenter_inbox_general">一般ニュース</string>
     <string name="messagecenter_inbox_pet">ペット。変更履歴</string>

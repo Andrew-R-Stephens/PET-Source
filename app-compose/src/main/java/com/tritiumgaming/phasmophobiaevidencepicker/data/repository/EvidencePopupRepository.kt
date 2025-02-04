@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.popups.InvestigationPopupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.popups.InvestigationPopupModel
 
 class EvidencePopupRepository(
     context: Context

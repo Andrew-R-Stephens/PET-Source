@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.achievevments.AchievementsStoreModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.equipment.EquipmentStoreModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.model.codex.itemshop.itemstore.possessions.PossessionsStoreModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.AchievementsStoreModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.equipment.EquipmentStoreModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.PossessionsStoreModel
 
 class CodexRepository(
     context: Context

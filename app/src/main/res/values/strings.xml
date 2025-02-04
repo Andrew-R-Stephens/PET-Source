@@ -160,15 +160,15 @@
     <string name="settings_colormode_community_artist" translatable="false">Artist</string>
 
     <!-- Font-Style Types -->
-    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
-    <string name="settings_fontstyle_android">Android</string>
-    <string name="settings_fontstyle_journal">Journal</string>
-    <string name="settings_fontstyle_brick">Brick</string>
-    <string name="settings_fontstyle_clean">Clean</string>
-    <string name="settings_fontstyle_longcang" translatable="false">Long Cang</string>
-    <string name="settings_fontstyle_newtegmon" translatable="false">New Tegomin</string>
-    <string name="settings_fontstyle_neucha" translatable="false">Neucha</string>
-    <string name="settings_fontstyle_jetbrainsmono" translatable="false">Jetbrains Mono</string>
+    <string name="theme_typography_classic">P.E.T. Classic</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Journal</string>
+    <string name="theme_typography_brick">Brick</string>
+    <string name="theme_typography_clean">Clean</string>
+    <string name="theme_typography_longcang" translatable="false">Long Cang</string>
+    <string name="theme_typography_newtegmon" translatable="false">New Tegomin</string>
+    <string name="theme_typography_neucha" translatable="false">Neucha</string>
+    <string name="theme_typography_jetbrainsmono" translatable="false">Jetbrains Mono</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS

@@ -105,7 +105,7 @@
         app:destination="@id/titleScreenFragment" />
     <fragment
         android:id="@+id/marketplaceFragment"
-        android:name="com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.marketplace.MarketplaceFragment"
+        android:name="com.tritiumgaming.phasmophobiaevidencepicker.activities.mainmenus.marketplace.MarketplaceFragment"
         android:label="MarketplaceFragment" >
         <action
             android:id="@+id/action_marketplaceFragment_to_titleScreenFragment"

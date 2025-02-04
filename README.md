@@ -23,10 +23,10 @@
 <div align='left'> 
     <h2>Index</h2>
     <div><a href="#demo-screenshots">Demo Screenshots</a></div>
-    <div><a href="#technologies-used">Technologies Used</a></div>
     <div><a href="#design-and-architecture">Design and Architecture</a></div>
-    <div><a href="#features">Features</a></div>
-    <div><a href="#acknowledgements">Acknoledgements</a></div>
+    <div><a href="#technologies-used">Technologies Used</a></div>
+    <div><a href="#app-features">Features</a></div>
+    <div><a href="#acknowledgements">Acknowledgements</a></div>
 </div>
 
 <br>
@@ -65,9 +65,15 @@
 
 <div align='left' style="display:float">
   <h3>High-Level Design</h3>
-  <div align='center'><label>Current Native Android -> Kotlin Multiplatform (Android / iOS) Integration Pattern</label></div>
+  <div align='center'><label>Native Android -> Kotlin Multiplatform (Android / iOS) Integration Pattern</label></div>
   &emsp;<img src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet_migration_flow_stage3.png" alt=""/>
   <blockquote>P.E.T. has become kotlin-first! Major code migration started in May 2024 and finished in July 2024. Planned migration to KMP will commence after confirmation of build stability and feature refinement.</blockquote>
+  <ul>
+    <li><h5>Refactor from Java to Kotlin :heavy_check_mark:</h5></li>
+    <li><h5>Migrate from View to Compose :heavy_check_mark:</h5></li>
+    <li><h5>Implement KMP and build interfaces :heavy_check_mark:</h5></li>
+    <li><h5>Begin fixes for IOS/SwiftUI :heavy_check_mark:</h5></li>
+  </ul>
 </div>
 
 <!--

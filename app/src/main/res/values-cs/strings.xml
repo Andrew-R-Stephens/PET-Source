@@ -29,11 +29,11 @@
     <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopie</string>
     <string name="settings_colorblindnessmode_protanomaly">Protanopie</string>
     <string name="settings_colorblindnessmode_tritanomaly">Tritanopie</string>
-    <string name="settings_fontstyle_classic">P.E.T. Klasický</string>
-    <string name="settings_fontstyle_android">Android</string>
-    <string name="settings_fontstyle_journal">Časopis</string>
-    <string name="settings_fontstyle_brick">Cihlový</string>
-    <string name="settings_fontstyle_clean">Čistý</string>
+    <string name="theme_typography_classic">P.E.T. Klasický</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Časopis</string>
+    <string name="theme_typography_brick">Cihlový</string>
+    <string name="theme_typography_clean">Čistý</string>
     <string name="messagecenter_inboxestitle_label">Centrum Zpráv</string>
     <string name="messagecenter_inbox_general">Obecné zprávy</string>
     <string name="messagecenter_inbox_pet">Protokol změn P.E.T.</string>

@@ -131,44 +131,45 @@
     <string name="settings_colorblindnessmode_normal">None</string>
     <string name="settings_colorblindnessmode_defaultName" translatable="false">Default</string>
     <string name="settings_colorblindnessmode_defaultID" translatable="false">CzjtxSbXRwIpX8SYR0ttngAND</string>
-    <string name="settings_colortheme_normal" translatable="false">P.E.T. Classic</string>
-    <string name="settings_colorblindnessmode_monochromacy">Achromatopsia</string>
-    <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopia</string>
-    <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
-    <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
-    <string name="settings_skin_whiteboard" translatable="false">Whiteboard</string>
-    <string name="settings_skin_strategemHero" translatable="false">Strategem Hero</string>
-    <string name="settings_colormode_prestige_recruit" translatable="false">Recruit</string>
-    <string name="settings_colormode_prestige_investigator" translatable="false">Investigator</string>
-    <string name="settings_colormode_prestige_privateinvestigator" translatable="false">Private Investigator</string>
-    <string name="settings_colormode_prestige_detective" translatable="false">Detective</string>
-    <string name="settings_colormode_prestige_technician" translatable="false">Technician</string>
-    <string name="settings_colormode_prestige_specialist" translatable="false">Specialist</string>
-    <string name="settings_colormode_prestige_analyst" translatable="false">Analyst</string>
-    <string name="settings_colormode_prestige_agent" translatable="false">Agent</string>
-    <string name="settings_colormode_prestige_operator" translatable="false">Operator</string>
-    <string name="settings_colormode_prestige_commissioner" translatable="false">Commissioner</string>
-    <string name="settings_colormode_event_easter" translatable="false">Easter</string>
-    <string name="settings_colormode_event_halloween" translatable="false">Halloween</string>
-    <string name="settings_colormode_event_holiday22" translatable="false">Holiday \'22</string>
-    <string name="settings_colormode_event_holiday23" translatable="false">Holiday \'23</string>
-    <string name="settings_colormode_community_discord" translatable="false">Discord</string>
-    <string name="settings_colormode_community_contentcreator" translatable="false">Content Creator</string>
-    <string name="settings_colormode_community_developer" translatable="false">Developer</string>
-    <string name="settings_colormode_community_translator" translatable="false">Translator</string>
-    <string name="settings_colormode_community_winner" translatable="false">Winner</string>
-    <string name="settings_colormode_community_artist" translatable="false">Artist</string>
+
+    <string name="theme_palette_classic" translatable="false">P.E.T. Classic</string>
+    <string name="theme_palette_colorblind_monochromacy">Achromatopsia</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Deuteranopia</string>
+    <string name="theme_palette_colorblind_protanomaly">Protanopia</string>
+    <string name="theme_palette_colorblind_tritanomaly">Tritanopia</string>
+    <string name="theme_palette_special_whiteboard" translatable="false">Whiteboard</string>
+    <string name="theme_palette_special_strategemHero" translatable="false">Strategem Hero</string>
+    <string name="theme_palette_prestige_recruit" translatable="false">Recruit</string>
+    <string name="theme_palette_prestige_investigator" translatable="false">Investigator</string>
+    <string name="theme_palette_prestige_privateinvestigator" translatable="false">Private Investigator</string>
+    <string name="theme_palette_prestige_detective" translatable="false">Detective</string>
+    <string name="theme_palette_prestige_technician" translatable="false">Technician</string>
+    <string name="theme_palette_prestige_specialist" translatable="false">Specialist</string>
+    <string name="theme_palette_prestige_analyst" translatable="false">Analyst</string>
+    <string name="theme_palette_prestige_agent" translatable="false">Agent</string>
+    <string name="theme_palette_prestige_operator" translatable="false">Operator</string>
+    <string name="theme_palette_prestige_commissioner" translatable="false">Commissioner</string>
+    <string name="theme_palette_event_easter" translatable="false">Easter</string>
+    <string name="theme_palette_event_halloween" translatable="false">Halloween</string>
+    <string name="theme_palette_event_holiday22" translatable="false">Holiday \'22</string>
+    <string name="theme_palette_event_holiday23" translatable="false">Holiday \'23</string>
+    <string name="theme_palette_community_discord" translatable="false">Discord</string>
+    <string name="theme_palette_community_contentcreator" translatable="false">Content Creator</string>
+    <string name="theme_palette_community_developer" translatable="false">Developer</string>
+    <string name="theme_palette_community_translator" translatable="false">Translator</string>
+    <string name="theme_palette_community_winner" translatable="false">Winner</string>
+    <string name="theme_palette_community_artist" translatable="false">Artist</string>
 
     <!-- Font-Style Types -->
-    <string name="settings_fontstyle_classic">P.E.T. Classic</string>
-    <string name="settings_fontstyle_android">Android</string>
-    <string name="settings_fontstyle_journal">Journal</string>
-    <string name="settings_fontstyle_brick">Brick</string>
-    <string name="settings_fontstyle_clean">Clean</string>
-    <string name="settings_fontstyle_longcang" translatable="false">Long Cang</string>
-    <string name="settings_fontstyle_newtegmon" translatable="false">New Tegomin</string>
-    <string name="settings_fontstyle_neucha" translatable="false">Neucha</string>
-    <string name="settings_fontstyle_jetbrainsmono" translatable="false">Jetbrains Mono</string>
+    <string name="theme_typography_classic">P.E.T. Classic</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Journal</string>
+    <string name="theme_typography_brick">Brick</string>
+    <string name="theme_typography_clean">Clean</string>
+    <string name="theme_typography_longcang" translatable="false">Long Cang</string>
+    <string name="theme_typography_newtegmon" translatable="false">New Tegomin</string>
+    <string name="theme_typography_neucha" translatable="false">Neucha</string>
+    <string name="theme_typography_jetbrainsmono" translatable="false">Jetbrains Mono</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS

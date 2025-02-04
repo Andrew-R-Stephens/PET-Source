@@ -2,28 +2,25 @@
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
+    alias(libs.plugins.android.application)
 
-    id("com.android.application")
-    id("com.google.gms.google-services")
-    id("org.jetbrains.kotlin.android")
-    //id 'kotlin-android'
+    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.compose)
+    /*alias(libs.plugins.jetbrains.kotlin.serialization)*/
 
-    // Apply the Crashlytics Gradle plugin
-    id("com.google.firebase.crashlytics")
-    id("com.google.firebase.firebase-perf")
+    /*alias(libs.plugins.io.realm.kotlin)*/
 
-    id("io.realm.kotlin")
-    //id("org.jetbrains.kotlin.plugin.compose") version "2.0.2" // this version matches your Kotlin version
-
-    alias(libs.plugins.plugin.kotlin.compose.compiler)
+    alias(libs.plugins.gms.services)
+    alias(libs.plugins.firebase.crashlytics)
+    alias(libs.plugins.firebase.perf)
 }
 
 android {
-    namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
 
+    namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
     compileSdk = 35
 
-    buildToolsVersion = "35.0.0"
+    //buildToolsVersion = "34.0.0"
 
     /*
      *  Compose Options
@@ -32,12 +29,11 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11"
-    }
-    kotlin {
-        jvmToolchain(17)
-    }
+
+    /*composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.15"
+    }*/
+
     /* ---------------- */
 
     bundle {
@@ -68,6 +64,12 @@ android {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
         }
 
+        proguardFiles(
+            getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        // PLAYCORE
+        proguardFile("$playCoreDirectory/proguard/common.pgcfg")
+        proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")
+
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -75,67 +77,82 @@ android {
     }
 
     buildTypes {
+
         debug {
             isMinifyEnabled = false
             isShrinkResources = false
-            proguardFiles(
+            /*proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // PLAYCORE
             proguardFile("$playCoreDirectory/proguard/common.pgcfg")
-            proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")
+            proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")*/
         }
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(
+            /*proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // PLAYCORE
             proguardFile("$playCoreDirectory/proguard/common.pgcfg")
-            proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")
+            proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")*/
         }
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    buildToolsVersion = "35.0.0"
+    /*kotlin {
+        jvmToolchain(17)
+    }*/
 
-    lint {
+    /*lint {
         disable.add("RestrictedApi")
-    }
+    }*/
 
-    sourceSets {
+    /*sourceSets {
         getByName("main") {
             java.srcDir("src/main/java")
             java.srcDir("src/main/kotlin")
             // Potential fix for librealmc
             jniLibs.srcDir("src/main/jniLibs")
         }
-    }
+    }*/
 
     // Potential fix for librealmc
-    packaging {
+    /*packaging {
         resources.excludes.add("lib/arm64-v8a/librealm-jni.so")
-    }
+    }*/
+
 
 }
 
 composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
-    stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
+    /*stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")*/
+    stabilityConfigurationFiles.addAll(
+        rootProject.layout.projectDirectory.file("stability_config.conf")
+    )
 }
 
 dependencies {
 
-    implementation(libs.firebase.analytics)
-    implementation(libs.androidx.core.ktx)
-
-    implementation(libs.android.support.multidex)
-
-    implementation(libs.kotlin.stdlib)
-    implementation(libs.google.gson)
 
     // PRIMARY
+    implementation(libs.android.support.multidex)
+
+    implementation(libs.firebase.analytics)
+
+    implementation(libs.google.gson)
+
+    implementation(libs.jetbrains.kotlin.stdlib)
+    implementation(libs.jetbrains.kotlinx.coroutines)
+
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.work.runtime)
     implementation(libs.androidx.appcompat.core)
     implementation(libs.androidx.constraintlayout)
@@ -144,17 +161,18 @@ dependencies {
     implementation(libs.androidx.cardview.core)
     implementation(libs.androidx.legacy.supportV4)
     implementation(libs.android.material)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.testExt.junit)
+    testImplementation(libs.jetbrains.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.espresso.core)
 
     // --- Google Credential Manager ----
+    implementation(libs.android.playServices.auth)
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.playServicesAuth)
-    implementation(libs.firebaseUi.auth)
-    // Phillip Lackner suggested for OTC (one-tap client)
+    implementation(libs.firebase.ui.auth)
     implementation(libs.firebase.authKtx)
-    implementation(libs.android.playServices.auth)
     // ----------------------------------
 
     // GOOGLE FIREBASE
@@ -163,15 +181,15 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     // GOOGLE FIREBASE FIRESTORE
     implementation(libs.firebase.firestore)
+    // Declare the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation(libs.firebase.crashlytics.core)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.perfCore)
+
     // GOOGLE BILLING API
     implementation(libs.android.billing.core)
 
-
-    // Declare the dependencies for the Crashlytics and Analytics libraries
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation(libs.firebase.crashlyticsCore)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.perfCore)
     // GOOGLE ADS
     implementation(libs.android.playServices.ads)
     implementation(libs.android.ump.core)
@@ -201,9 +219,6 @@ dependencies {
     // For use with animated gifs
     implementation(libs.droidsonroids.gifDrawable)
 
-    // DO NOT UPDATE THIS -- BREAKING CHANGES
-    //implementation (libs.commonsIo.core)
-
     /*
         ---- START----
         ANDROIDX LEANBACK
@@ -221,53 +236,65 @@ dependencies {
         ANDROID COMPOSE
     */
     implementation(platform(libs.androidx.compose.bom))
-    //implementation (libs.androidx.compose.animation)
+
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.testJunit4)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
-    // Material Design 3
+    /* Material Design 3 */
     implementation(libs.androidx.compose.material3)
-    // Android Studio Preview support
+    // Optional - Add window size utils
+    implementation(libs.androidx.compose.material3.windowSizeClass)
+
+    // Compose UI
+    implementation(libs.androidx.compose.ui.core)
     implementation(libs.androidx.compose.ui.toolingPreview)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    // Optional - Included automatically by material, only add when you need
-    // the icons but not the material library (e.g. when using Material3 or a
-    // custom design system based on Foundation)
-    implementation(libs.androidx.compose.material.iconsCore)
-    // Optional - Add full set of material icons
-    implementation(libs.androidx.compose.material.iconsExtended)
-    // Optional - Add window size utils
-    implementation(libs.androidx.compose.material3.windowSizeClass)
-    // Optional - Integration with LiveData
-    implementation(libs.androidx.compose.runtime.liveData)
-    // Optional - Integration with RxJava
-    implementation(libs.androidx.compose.runtime.rxJava2)
-
-    implementation(libs.androidx.compose.ui.core)
-    implementation(libs.androidx.compose.material.core)
+    /*Optional - Included automatically by material, only add when you need
+    the icons but not the material library (e.g. when using Material3 or a
+    custom design system based on Foundation)*/
+    implementation(libs.androidx.compose.runtime.liveData) // Optional - Integration with LiveData
+    implementation(libs.androidx.compose.runtime.rxJava2) // Optional - Integration with RxJava
 
     implementation(libs.androidx.activityCompose)
-    implementation(libs.androidx.lifecycle.runtimeKtx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodelCompose)
-    implementation(libs.androidx.lifecycle.runtimeCompose)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation.compose)
 
+    // Coil
     implementation(libs.coilKt.compose)
     implementation(libs.coilKt.network)
-
-    // DataStore
-    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.coilKt.gif)
 
     /*
         ----- END -----
     */
 
+    // DataStore
+    implementation(libs.androidx.datastore.preferences)
+
     /*
      * Realms DB
      */
-    implementation(libs.kotlinx.coroutines)
-    implementation(libs.realmDb.kotlin.libraryCore)
-    implementation(libs.realmDb.kotlin.librarySync)
+    implementation(libs.realm.kotlin.library.base)
+    implementation(libs.realm.kotlin.library.sync)
+
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.serialization.kotlinx.xml)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlinx.json)
+    implementation(libs.ktor.serialization.kotlinx.xml)
+    implementation(libs.ktor.serialization.kotlinx.cbor)
+    implementation(libs.ktor.serialization.kotlinx.protobuf)
+    implementation(libs.ktor.client.logging)
+
+
 }

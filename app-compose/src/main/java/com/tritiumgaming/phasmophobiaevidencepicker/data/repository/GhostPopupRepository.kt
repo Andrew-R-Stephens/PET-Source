@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 import android.content.Context
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.popups.InvestigationPopupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.popups.InvestigationPopupModel
 
 class GhostPopupRepository(
     context: Context

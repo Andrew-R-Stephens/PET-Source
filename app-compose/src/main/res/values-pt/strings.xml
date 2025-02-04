@@ -60,21 +60,21 @@
     <string name="settings_colortheme_title">Pele</string>
     <string name="settings_colortheme_note">(A seleção de daltonismo tem precedência)</string>
     <string name="settings_colorblindnessmode_normal">Nenhum</string>
-    <string name="settings_colorblindnessmode_monochromacy">Acromatopsia</string>
-    <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopia</string>
-    <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
-    <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
+    <string name="theme_palette_colorblind_monochromacy">Acromatopsia</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Deuteranopia</string>
+    <string name="theme_palette_colorblind_protanomaly">Protanopia</string>
+    <string name="theme_palette_colorblind_tritanomaly">Tritanopia</string>
 
     <!-- Font-Style Types -->
 
-    <string name="settings_fontstyle_classic">P.E.T. Clássico</string>
+    <string name="theme_typography_classic">P.E.T. Clássico</string>
 
     <!-- Page Details -->
 
-    <string name="settings_fontstyle_android">Android</string>
-    <string name="settings_fontstyle_journal">Diária</string>
-    <string name="settings_fontstyle_brick">Tijolo</string>
-    <string name="settings_fontstyle_clean">Limpo</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Diária</string>
+    <string name="theme_typography_brick">Tijolo</string>
+    <string name="theme_typography_clean">Limpo</string>
     <string name="messagecenter_inboxestitle_label">Centro de mensagens</string>
     <string name="messagecenter_inbox_general">Noticias gerais</string>
     <string name="messagecenter_inbox_pet">BICHO DE ESTIMAÇÃO. Registro de alterações</string>

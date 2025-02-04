@@ -17,10 +17,6 @@ class LanguageRepository(
     context: Context
 ) {
 
-    data class LanguagePreference(
-        val languageCode: String
-    )
-
     val flow: Flow<LanguagePreference> = dataStore.data
         .map { preferences ->
             mapLanguagePreference(preferences)
@@ -76,6 +72,10 @@ class LanguageRepository(
 
         var DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
     }
+
+    data class LanguagePreference(
+        val languageCode: String
+    )
 
     data class LanguageObject(
         val name: String,

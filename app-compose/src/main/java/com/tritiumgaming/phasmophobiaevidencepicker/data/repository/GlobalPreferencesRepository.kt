@@ -10,7 +10,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.warning.PhaseWarningModel.Time.INFINITY
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning.PhaseWarningModel.Time.INFINITY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -37,7 +37,7 @@ class GlobalPreferencesRepository(
             else { throw exception }
         }
         .map { preferences ->
-            mapGlobalPreferences(preferences)
+            mapPreferences(preferences)
         }
 
     init {
@@ -98,9 +98,9 @@ class GlobalPreferencesRepository(
     }
 
     suspend fun fetchInitialPreferences() =
-        mapGlobalPreferences(dataStore.data.first().toPreferences())
+        mapPreferences(dataStore.data.first().toPreferences())
 
-    private fun mapGlobalPreferences(preferences: Preferences): GlobalPreferences {
+    private fun mapPreferences(preferences: Preferences): GlobalPreferences {
         return GlobalPreferences(
             preferences[KEY_DISABLE_SCREENSAVER] == true,
             preferences[KEY_ALLOW_CELLULAR_DATA] != false,
