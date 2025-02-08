@@ -4,12 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.screens.firebase.FirebaseScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MainMenuViewModel
 
 @Composable
 fun MainMenuFirebaseScreen(
     modifier: Modifier = Modifier,
-    mainMenuViewModel: MainMenuViewModel = viewModel(),
+    mainMenuViewModel: MainMenuViewModel = viewModel(factory = MainMenuViewModel.Factory),
     content: @Composable () -> Unit
 ) {
 

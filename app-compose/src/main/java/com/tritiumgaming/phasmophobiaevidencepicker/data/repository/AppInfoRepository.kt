@@ -7,7 +7,7 @@ class AppInfoRepository(
     context: Context
 ) {
 
-    val specialThanksList: ArrayList<String> = ArrayList(0)
+    val specialThanksList = mutableListOf<String>()
 
     init {
 
@@ -16,16 +16,20 @@ class AppInfoRepository(
     }
 
     private fun populateSpecialThanksList(context: Context) {
-        specialThanksList.clear()
 
         val typedArray =
             context.resources.obtainTypedArray(R.array.aboutinfo_specialthanks_list)
 
         for (i in 0 until typedArray.length()) {
-            typedArray.getString(i)
+
+            typedArray.getString(i)?.let { name ->
+                specialThanksList.add(name)
+            }
+
         }
 
         typedArray.recycle()
+
     }
 
 }

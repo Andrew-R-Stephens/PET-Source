@@ -40,6 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.DropdownClickPair
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.DropdownNavPair
@@ -56,6 +57,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MainMenuViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M200
 
 @Composable
 @Preview
@@ -92,7 +94,7 @@ fun StartScreen(
 @Composable
 private fun StartContent(
     navController: NavController,
-    mainMenuViewModel: MainMenuViewModel = viewModel(factory = MainMenuViewModel.MainMenuFactory.Factory),
+    mainMenuViewModel: MainMenuViewModel = viewModel(factory = MainMenuViewModel.Factory),
 ) {
 
     Column(
@@ -136,15 +138,16 @@ private fun StartContent(
                 text = stringResource(R.string.titlescreen_description),
                 textAlign = TextAlign.Center,
                 color = LocalPalette.current.splashTextColor,
-                style = LocalTypography.current.primary.regular.copy(
-                    fontSize = 64.sp,
+                style = LocalTypography.current.primary.regular,
+                borderStyle = LocalTypography.current.primary.regular.copy(
                     drawStyle = Stroke(
                         miter = 1f,
-                        width = .5f,
+                        width = 2f,
                         join = StrokeJoin.Bevel,
                     ),
                     color = LocalPalette.current.surface.onColor
-                )
+                ),
+                autoResizeStyle = AutoResizedStyleType.SQUEEZE
             )
 
             Column(

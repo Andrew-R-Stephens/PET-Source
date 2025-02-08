@@ -38,9 +38,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil3.compose.AsyncImagePainter.State.Empty.painter
+import com.google.common.collect.Multimaps.index
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
@@ -54,6 +56,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palett
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MainMenuViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.discord_color_blurple
 import com.tritiumgaming.phasmophobiaevidencepicker.util.FontUtils
 
@@ -81,7 +84,8 @@ fun InfoScreen(
 
 @Composable
 private fun InfoContent(
-    navController: NavController = rememberNavController()
+    navController: NavController = rememberNavController(),
+    mainMenuViewModel: MainMenuViewModel = viewModel ( factory = MainMenuViewModel.Factory )
 ) {
 
     val context = LocalContext.current
@@ -96,7 +100,7 @@ private fun InfoContent(
     Column(
         modifier = Modifier
             .fillMaxHeight(),
-        verticalArrangement = Arrangement.Top
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
 
         NavigationHeaderComposable(
@@ -107,24 +111,27 @@ private fun InfoContent(
             )
         )
 
-        AutoResizedText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(24.dp),
-            textAlign = TextAlign.Center,
-            autoResizeStyle = AutoResizedStyleType.SQUEEZE,
-            style = LocalTypography.current.secondary.regular,
-            text = "${stringResource(R.string.aboutinfo_version)}: $versionSequence",
-            color = LocalPalette.current.textFamily.body,
-        )
+        Column(
+            verticalArrangement = Arrangement.Top
+        ) {
+            AutoResizedText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(24.dp),
+                textAlign = TextAlign.Center,
+                autoResizeStyle = AutoResizedStyleType.SQUEEZE,
+                style = LocalTypography.current.secondary.regular,
+                text = "${stringResource(R.string.aboutinfo_version)}: $versionSequence",
+                color = LocalPalette.current.textFamily.body,
+            )
 
-        Text(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .weight(.35f, false),
-            style = LocalTypography.current.secondary.regular,
-            fontSize = 24.sp,
-            text =
+            Text(
+                modifier = Modifier
+                    .verticalScroll(rememberScrollState())
+                    .weight(.35f, false),
+                style = LocalTypography.current.secondary.regular,
+                fontSize = 24.sp,
+                text =
                 AnnotatedString.Companion.fromHtml(
                     FontUtils.replaceHTMLFontColor(
                         stringResource(R.string.aboutinfo_aboutapp_info),
@@ -132,9 +139,10 @@ private fun InfoContent(
                         LocalPalette.current.textFamily.emphasis
                     )
                 ),
-            color = LocalPalette.current.textFamily.body,
-            textAlign = TextAlign.Center
-        )
+                color = LocalPalette.current.textFamily.body,
+                textAlign = TextAlign.Center
+            )
+        }
 
         AutoResizedText(
             modifier = Modifier
@@ -225,11 +233,45 @@ private fun InfoContent(
 
         }
 
-        LazyColumn(
-            modifier = Modifier
-                .weight(.2f, fill = true)
-
+        Column(
+            verticalArrangement = Arrangement.Bottom
         ) {
+
+
+            AutoResizedText(
+                modifier = Modifier
+                    .height(36.dp)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
+                autoResizeStyle = AutoResizedStyleType.SQUEEZE,
+                style = LocalTypography.current.primary.regular,
+                color = LocalPalette.current.textFamily.primary,
+                text = stringResource(R.string.aboutinfo_specialthanks_title)
+            )
+
+            val specialThanks = mainMenuViewModel.specialThanksList
+
+            LazyColumn(
+                modifier = Modifier
+                    .weight(.2f, fill = true)
+
+            ) {
+
+                items(specialThanks.size) { index ->
+
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        text = specialThanks[index],
+                        color = LocalPalette.current.textFamily.body,
+                        style = LocalTypography.current.quaternary.regular,
+                        fontSize = 18.sp,
+                        textAlign = TextAlign.Center
+                    )
+
+                }
+
+            }
 
         }
 

@@ -35,3 +35,6 @@ Keystore.jks
 /app-compose/build
 /.kotlin/sessions/kotlin-compiler-3226288834266879898.salive
 /app-compose/build/
+/.kotlin/errors/errors-1733379615285.log
+/.kotlin/errors/errors-1733425995028.log
+/.kotlin/errors/errors-1734464522620.log

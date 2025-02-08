@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.gms.ads.AdRequest
 import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.AppInfoRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.startscreen.AnimationModel
 
 /**
@@ -21,12 +22,14 @@ class MainMenuViewModel(
 
     val animationModel: AnimationModel = AnimationModel()
 
+    var adRequest: AdRequest? = null
+
+    val specialThanksList = appInfoRepository.specialThanksList
+
     @Deprecated("Unused in Composables")
     var canRefreshFragment = true
     @Deprecated("Unused in Composables")
     var languageSelectedOriginal: Int = -1
-
-    var adRequest: AdRequest? = null
 
     fun hasAdRequest(): Boolean {
         return adRequest != null
@@ -54,11 +57,15 @@ class MainMenuViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                //val savedStateHandle = createSavedStateHandle()
-                val appInfoRepository = (this[APPLICATION_KEY] as PETApplication).container.appInfoRepository
+
+                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).container
+
+                val appInfoRepository: AppInfoRepository = appKeyContainer.appInfoRepository
+
                 MainMenuViewModel(
                     appInfoRepository = appInfoRepository
                 )
+
             }
         }
     }
