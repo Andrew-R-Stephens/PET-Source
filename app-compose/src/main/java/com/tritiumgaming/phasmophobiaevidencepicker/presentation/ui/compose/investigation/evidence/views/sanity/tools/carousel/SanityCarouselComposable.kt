@@ -85,7 +85,7 @@ fun SanityCarousel(
                 type = PETImageButtonType.BACK,
             )
             AutoResizedText(
-                modifier = Modifier
+                containerModifier = Modifier
                     .heightIn(0.dp, 48.dp)
                     .weight(1f)
                     .align(Alignment.CenterVertically),

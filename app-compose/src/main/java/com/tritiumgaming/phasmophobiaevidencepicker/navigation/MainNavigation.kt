@@ -77,7 +77,7 @@ fun RootNavigation() {
             }
 
             composable(route = SCREEN_LANGUAGE.route) {
-                LanguageScreen()
+                LanguageScreen(navController = navController)
             }
 
             composable(route = SCREEN_APP_INFO.route) {

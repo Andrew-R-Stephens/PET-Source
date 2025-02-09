@@ -176,7 +176,7 @@ fun RowScope.PrimaryPageButton(
         enabled = rememberActivePage != pageType.pageIndex
     ) {
         AutoResizedText(
-            modifier = Modifier
+            containerModifier = Modifier
                 .fillMaxSize(),
             text = stringResource(textRes),
             color = LocalPalette.current.textFamily.body,

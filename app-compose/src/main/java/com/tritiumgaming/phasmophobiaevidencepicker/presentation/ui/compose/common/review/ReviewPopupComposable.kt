@@ -30,8 +30,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
@@ -92,14 +92,13 @@ fun ReviewPopupComposable() {
         ) {
 
             AutoResizedText(
-                modifier = Modifier
+                containerModifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
                 text = stringResource(R.string.review_requesttitle),
                 style = LocalTypography.current.primary.regular,
-                maxFontSize = 50.sp,
-                stepSize = 1f,
                 color = LocalPalette.current.textFamily.secondary,
+                autoResizeStyle = AutoResizedStyleType.SQUEEZE,
                 textAlign = TextAlign.Center,
                 constrainWidth = true,
                 constrainHeight = true
@@ -174,14 +173,13 @@ private fun OptionContent(
             contentScale = ContentScale.FillBounds
         )
         AutoResizedText(
-            modifier = Modifier
+            containerModifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center)
                 .padding(8.dp),
             text = stringResource(text),
             style = LocalTypography.current.primary.regular,
-            maxFontSize = 50.sp,
-            stepSize = 1f,
+            autoResizeStyle = AutoResizedStyleType.SQUEEZE,
             color = LocalPalette.current.textFamily.body,
             textAlign = TextAlign.Center,
             constrainWidth = true,

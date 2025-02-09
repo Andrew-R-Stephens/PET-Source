@@ -16,12 +16,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,14 +29,12 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.isUnspecified
 import androidx.compose.ui.unit.sp
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.JournalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M100
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.transparent
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M100
 import com.tritiumgaming.phasmophobiaevidencepicker.util.TextCase
 import org.jetbrains.annotations.TestOnly
@@ -73,7 +71,7 @@ private fun AutoResizedTextPreview() {
                     style = LocalTypography.current.primary.regular
                 )
                 AutoResizedText(
-                    modifier = Modifier
+                    containerModifier = Modifier
                         .weight(1f),
                     text = "Hello there",
                     textAlign = TextAlign.Center,
@@ -82,7 +80,7 @@ private fun AutoResizedTextPreview() {
                     style = LocalTypography.current.primary.regular
                 )
                 AutoResizedText(
-                    modifier = Modifier
+                    containerModifier = Modifier
                         .weight(1f),
                     text = "Hello there",
                     textAlign = TextAlign.Center,
@@ -91,7 +89,7 @@ private fun AutoResizedTextPreview() {
                     style = LocalTypography.current.primary.regular
                 )
                 AutoResizedText(
-                    modifier = Modifier
+                    containerModifier = Modifier
                         .weight(1f),
                     text = "Hello there",
                     textAlign = TextAlign.Center,
@@ -100,7 +98,7 @@ private fun AutoResizedTextPreview() {
                 )
 
                 AutoResizedText(
-                    modifier = Modifier
+                    containerModifier = Modifier
                         .weight(1f),
                     text = "Hello there",
                     textAlign = TextAlign.Center,
@@ -123,7 +121,8 @@ private fun AutoResizedTextPreview() {
 
 @Composable
 fun AutoResizedText(
-    modifier: Modifier = Modifier,
+    containerModifier: Modifier = Modifier,
+    contentModifier: Modifier = Modifier,
     text: String = "Test Haha",
     style: TextStyle = MaterialTheme.typography.bodyLarge,
     borderStyle: TextStyle? = null,
@@ -136,13 +135,14 @@ fun AutoResizedText(
 ) {
 
     Box(
-        modifier = modifier
+        modifier = containerModifier,
+        contentAlignment = Alignment.Center
     ) {
         
         borderStyle?.let {
 
             AutoResizedText(
-                modifier = modifier,
+                modifier = contentModifier,
                 text = text,
                 color = it.color,
                 style = it,
@@ -158,7 +158,7 @@ fun AutoResizedText(
         }
 
         AutoResizedText(
-            modifier = modifier,
+            modifier = contentModifier,
             text = text,
             style = style,
             textCase = textCase,
@@ -176,7 +176,7 @@ fun AutoResizedText(
 }
 
 @Composable
-fun AutoResizedText(
+private fun AutoResizedText(
     modifier: Modifier = Modifier
         .fillMaxWidth(),
     text: String = "Test Haha",

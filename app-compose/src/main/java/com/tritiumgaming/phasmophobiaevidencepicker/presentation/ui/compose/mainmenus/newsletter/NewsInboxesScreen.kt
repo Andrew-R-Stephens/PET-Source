@@ -174,7 +174,7 @@ private fun InboxCard(
             ) { onClick() }
 
             AutoResizedText(
-                modifier = Modifier
+                containerModifier = Modifier
                     .weight(1f),
                 text = title,
                 style = LocalTypography.current.primary.regular,

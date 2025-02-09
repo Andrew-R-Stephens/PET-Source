@@ -2,8 +2,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mai
 
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,7 +17,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.Divider
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,9 +66,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palett
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MainMenuViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M200
+import java.util.Locale
 
 @Composable
 @Preview
@@ -94,8 +106,10 @@ fun StartScreen(
 @Composable
 private fun StartContent(
     navController: NavController,
-    mainMenuViewModel: MainMenuViewModel = viewModel(factory = MainMenuViewModel.Factory),
+    globalPreferencesViewModel: GlobalPreferencesViewModel =
+        viewModel(factory = GlobalPreferencesViewModel.Factory)
 ) {
+
 
     Column(
         modifier = Modifier
@@ -104,6 +118,7 @@ private fun StartContent(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -117,7 +132,7 @@ private fun StartContent(
             modifier = Modifier
                 .fillMaxWidth(.75f)
                 .weight(1f)
-                .padding(PaddingValues(top = 16.dp)),
+                .padding(PaddingValues(vertical = 16.dp)),
             verticalArrangement = Arrangement.spacedBy(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -132,7 +147,7 @@ private fun StartContent(
             )
 
             AutoResizedText(
-                modifier = Modifier
+                containerModifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
                 text = stringResource(R.string.titlescreen_description),
@@ -163,15 +178,54 @@ private fun StartContent(
                     navController.navigate(NavRoute.NAVIGATION_INVESTIGATION.route)
                 }
 
-                LanguageIcon {
-                    navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
-                }
+                LanguageButton(
+                    navController = navController
+                )
+
             }
+
         }
 
         AdmobBanner()
     }
 
+}
+
+@Composable
+private fun LanguageButton(
+    navController: NavController = rememberNavController(),
+    globalPreferencesViewModel: GlobalPreferencesViewModel =
+        viewModel(factory = GlobalPreferencesViewModel.Factory)
+) {
+
+    Column {
+
+        LanguageIcon {
+            navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
+        }
+
+        val rememberLocale by remember {
+            mutableStateOf(Locale.getDefault())
+        }
+
+        var currentLanguage = rememberLocale.displayLanguage
+        if (currentLanguage.isNotEmpty()) {
+            currentLanguage = currentLanguage.substring(0, 1)
+                .uppercase(rememberLocale) + currentLanguage.substring(1)
+        }
+
+        Text(
+            modifier = Modifier
+                .wrapContentSize(),
+            text = currentLanguage,
+            style = LocalTypography.current.primary.regular,
+            maxLines = 1,
+            color = LocalPalette.current.textFamily.body,
+            fontSize = 24.sp,
+            textAlign = TextAlign.Center
+        )
+
+    }
 }
 
 @Composable
@@ -184,6 +238,7 @@ private fun StartButton(
             .height(48.dp)
             .clickable { onClick() }
     ) {
+
         Image(
             modifier = Modifier
                 .fillMaxSize(),
@@ -191,15 +246,18 @@ private fun StartButton(
             contentDescription = "",
             contentScale = ContentScale.FillBounds
         )
+
         Column(
             modifier = Modifier
-            .fillMaxSize(),
+                .fillMaxSize()
+                .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+
             AutoResizedText(
-                modifier = Modifier
-                    .fillMaxSize(.9f)
+                containerModifier = Modifier
+                    .fillMaxWidth(.9f)
                     .wrapContentHeight(Alignment.CenterVertically),
                 text = stringResource(R.string.titlescreen_button),
                 textAlign = TextAlign.Center,
@@ -208,8 +266,11 @@ private fun StartButton(
                 color = LocalPalette.current.textFamily.body,
                 style = LocalTypography.current.primary.regular
             )
+
         }
+
     }
+
 }
 
 @Composable
