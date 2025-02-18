@@ -64,6 +64,10 @@ class GlobalPreferencesViewModel(
             paletteRepository.fetchAllThemes()
             paletteRepository.fetchAllBundles()
         }
+        viewModelScope.launch(Dispatchers.IO) {
+            Log.d("Firebase", "Attempting fetch 1")
+            typographyRepository.fetchAllTypographies()
+        }
     }
 
     val languageList = languageHandler.languageList
@@ -74,12 +78,6 @@ class GlobalPreferencesViewModel(
             paletteHandler.setCurrentUUID(uuid)
         }
     }
-    /*fun saveSelectedColorUUID() {
-        viewModelScope.launch {
-            paletteHandler.saveCurrentUUID()
-        }
-    }*/
-
 
     val currentTypographyUUID = typographyHandler.currentUUID
     fun setCurrentTypographyUUID(uuid: String) {

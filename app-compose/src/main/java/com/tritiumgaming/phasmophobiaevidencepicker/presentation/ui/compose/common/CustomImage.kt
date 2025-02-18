@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -20,6 +21,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.account.AccountIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.discord_color_blurple
 import org.jetbrains.annotations.TestOnly
 
@@ -85,7 +87,8 @@ fun LanguageIcon(
 @Composable
 fun DiscordIcon(
     modifier: Modifier = Modifier
-        .size(48.dp)
+        .size(48.dp),
+    tintColor: Color = LocalPalette.current.textFamily.primary
 ) {
 
     Box(
@@ -96,7 +99,10 @@ fun DiscordIcon(
 
         Image(
             painter = painterResource(id = R.drawable.ic_discord),
-            colorFilter = ColorFilter.tint(discord_color_blurple, BlendMode.Modulate),
+            colorFilter = ColorFilter.tint(
+                tintColor,
+                BlendMode.Modulate
+            ),
             contentDescription = contentDescription,
             contentScale = contentScale,
             modifier = Modifier

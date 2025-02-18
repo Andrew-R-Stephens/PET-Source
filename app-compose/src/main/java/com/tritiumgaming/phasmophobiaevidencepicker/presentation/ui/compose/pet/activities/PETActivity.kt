@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.google.android.gms.ads.MobileAds
@@ -19,9 +18,8 @@ import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.RootNavigation
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.appsettings.SelectiveThemeControl
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.appsettings.ConfigurationControl
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -39,6 +37,7 @@ class PETActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
 
         initializeMobileAdsSdk()
@@ -53,13 +52,14 @@ class PETActivity : AppCompatActivity() {
 
         setContent {
 
-            SelectiveThemeControl {
+            ConfigurationControl {
 
                 RootNavigation()
 
             }
 
         }
+
 
     }
 

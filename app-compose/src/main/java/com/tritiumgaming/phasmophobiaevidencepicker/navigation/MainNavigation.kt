@@ -81,7 +81,7 @@ fun RootNavigation() {
             }
 
             composable(route = SCREEN_APP_INFO.route) {
-                InfoScreen()
+                InfoScreen(navController = navController)
             }
 
             composable(route = SCREEN_SETTINGS.route) {

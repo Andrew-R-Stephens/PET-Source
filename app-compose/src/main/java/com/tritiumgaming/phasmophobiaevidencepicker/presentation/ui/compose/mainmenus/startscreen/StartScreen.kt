@@ -198,7 +198,9 @@ private fun LanguageButton(
         viewModel(factory = GlobalPreferencesViewModel.Factory)
 ) {
 
-    Column {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
         LanguageIcon {
             navController.navigate(NavRoute.SCREEN_LANGUAGE.route)

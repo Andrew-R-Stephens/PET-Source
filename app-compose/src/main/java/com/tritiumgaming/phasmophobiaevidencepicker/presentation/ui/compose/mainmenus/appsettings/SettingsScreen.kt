@@ -1,9 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.appsettings
 
+import android.app.ProgressDialog.show
 import android.content.Context
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,7 +25,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -49,11 +49,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.main
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalettesMap
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ClassicTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographyiesMap
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographysMap
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.AThemeHandler
 import kotlinx.coroutines.Dispatchers
@@ -83,7 +85,7 @@ fun SettingsScreen(
         val context = LocalContext.current
         val petActivity = (LocalContext.current) as PETActivity
 
-        SelectiveThemeControl(
+        ConfigurationControl(
             globalPreferencesViewModel = globalPreferencesViewModel,
             onCancel = {
                 navController.popBackStack()
@@ -102,100 +104,6 @@ fun SettingsScreen(
 }
 
 @Composable
-fun SelectiveThemeControl(
-    globalPreferencesViewModel: GlobalPreferencesViewModel =
-        viewModel(factory = GlobalPreferencesViewModel.Factory),
-    content: @Composable () -> Unit = {}
-) {
-    val lifecycleOwner = LocalLifecycleOwner.current
-
-    val initialPaletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsState().value
-    val initialTypographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsState().value
-
-    var rememberPaletteTheme by remember { mutableStateOf(initialPaletteState) }
-    var rememberTypographyTheme by remember { mutableStateOf(initialTypographyState) }
-
-    LaunchedEffect(Unit) {
-        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            withContext(Dispatchers.Main.immediate) {
-                globalPreferencesViewModel.currentPaletteUUID.collect {
-                    rememberPaletteTheme = it
-                }
-                globalPreferencesViewModel.currentTypographyUUID.collect {
-                    rememberTypographyTheme = it
-                }
-            }
-        }
-    }
-
-    val palette = LocalPalettesMap[rememberPaletteTheme] ?: ClassicPalette
-
-    val typography = LocalTypographyiesMap[rememberTypographyTheme] ?: ClassicTypography
-
-
-    SelectiveTheme(
-        palette = palette,
-        typography = typography
-    ) {
-        content()
-    }
-
-}
-
-@Composable
-fun SelectiveThemeControl(
-    onSave: (String, String) -> Unit = { color, typography -> },
-    onCancel: () -> Unit = {},
-    globalPreferencesViewModel: GlobalPreferencesViewModel =
-        viewModel(factory = GlobalPreferencesViewModel.Factory),
-) {
-
-    val lifecycleOwner = LocalLifecycleOwner.current
-
-    val initialPaletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsState().value
-    val initialTypographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsState().value
-
-    var rememberPaletteTheme by remember {
-        mutableStateOf(initialPaletteState)
-    }
-    var rememberTypographyTheme by remember {
-        mutableStateOf(initialTypographyState)
-    }
-
-    LaunchedEffect(Unit) {
-
-        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            withContext(Dispatchers.Main.immediate) {
-                globalPreferencesViewModel.currentPaletteUUID.collect {
-                    rememberPaletteTheme = it
-                }
-                globalPreferencesViewModel.currentTypographyUUID.collect {
-                    rememberTypographyTheme = it
-                }
-            }
-        }
-    }
-
-    val palette = LocalPalettesMap[rememberPaletteTheme] ?: ClassicPalette
-    val typography = LocalTypographyiesMap[rememberTypographyTheme] ?: ClassicTypography
-
-    SelectiveTheme(
-        palette = palette,
-        typography = typography
-    ) {
-        SettingsContent(
-            globalPreferencesViewModel = globalPreferencesViewModel,
-            onChangeColor = { rememberPaletteTheme = it },
-            onChangeFont = { rememberTypographyTheme = it },
-            onSave = { onSave(rememberPaletteTheme, rememberTypographyTheme) },
-            onCancel = onCancel,
-            tempCurrentColor = rememberPaletteTheme,
-            tempCurrentTypography = rememberTypographyTheme
-        )
-    }
-}
-
-@Composable
 private fun SettingsContent(
     globalPreferencesViewModel: GlobalPreferencesViewModel =
         viewModel(factory = GlobalPreferencesViewModel.Factory),
@@ -210,8 +118,8 @@ private fun SettingsContent(
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            /*.fillMaxHeight()*/,
-            //.fillMaxSize(),
+        /*.fillMaxHeight()*/,
+        //.fillMaxSize(),
         color = LocalPalette.current.surface.color
     ) {
 
@@ -304,10 +212,7 @@ private fun SettingsContent(
                             label = stringResource(R.string.settings_enablehuntaudioqueue),
                             checked = globalPreferencesViewModel.huntWarningAudioPreference,
                             onChange = {
-                                globalPreferencesViewModel.setHuntWarningAudioPreference(
-                                    it
-                                )
-                            }
+                                globalPreferencesViewModel.setHuntWarningAudioPreference(it) }
                         )
 
                         LabeledSwitch(
@@ -343,7 +248,7 @@ private fun SettingsContent(
                         leftOnClick = {
                             onChangeColor(
                                 globalPreferencesViewModel.paletteHandler.findNextAvailable(
-                                    AThemeHandler.IncrementDirection.BACK,
+                                    AThemeHandler.IncrementDirection.BACKWARD,
                                     tempCurrentColor
                                 )
                             )
@@ -364,26 +269,146 @@ private fun SettingsContent(
                         colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body),
                         painterResource = painterResource(R.drawable.ic_font_family),
                         leftOnClick = {
-                            globalPreferencesViewModel.let {
-                                /*it.fontThemeHandler.iterateSelectedIndex(-1)
-                                it.fontThemeHandler.getThemeAtIndex(
-                                    it.fontThemeHandler.selectedIndex
-                                ).iD?.let { id -> onChangeFont(id) }*/
-                            }
+                            onChangeFont(
+                                globalPreferencesViewModel.typographyHandler.findNextAvailable(
+                                    AThemeHandler.IncrementDirection.BACKWARD,
+                                    tempCurrentTypography
+                                )
+                            )
                         },
                         rightOnClick = {
-                            globalPreferencesViewModel.let {
-                                /*it.fontThemeHandler.iterateSelectedIndex(1)
-                                it.fontThemeHandler.getThemeAtIndex(
-                                    it.fontThemeHandler.selectedIndex
-                                ).iD?.let { id -> onChangeFont(id) }*/
-                            }
+                            onChangeFont(
+                                globalPreferencesViewModel.typographyHandler.findNextAvailable(
+                                    AThemeHandler.IncrementDirection.FORWARD,
+                                    tempCurrentTypography
+                                )
+                            )
                         }
                     )
 
                 }
             }
         }
+    }
+}
+
+@Composable
+fun ConfigurationControl(
+    globalPreferencesViewModel: GlobalPreferencesViewModel =
+        viewModel(factory = GlobalPreferencesViewModel.Factory),
+    content: @Composable () -> Unit = {}
+) {
+
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsState().value
+    val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsState().value
+
+    var rememberPalette by remember { mutableStateOf(paletteState) }
+    var rememberTypography by remember { mutableStateOf(typographyState) }
+
+    LaunchedEffect(Unit) {
+
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            withContext(Dispatchers.Main.immediate) {
+                globalPreferencesViewModel.currentPaletteUUID.collect {
+                    rememberPalette = it
+                    Log.d("Palette", "Palette init: ${LocalPalettesMap[rememberPalette]?.extrasFamily?.title?.let { context.getString(it) }}")
+                }
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            withContext(Dispatchers.Main.immediate) {
+                globalPreferencesViewModel.currentTypographyUUID.collect {
+                    rememberTypography = it
+                    Log.d("Typography", "Typography init: ${LocalTypographysMap[rememberTypography]?.extrasFamily?.title?.let { context.getString(it) }}")
+                }
+            }
+        }
+    }
+
+    val palette: ExtendedPalette = LocalPalettesMap[rememberPalette] ?: ClassicPalette
+    val typography: ExtendedTypography = LocalTypographysMap[rememberTypography] ?: ClassicTypography
+
+    Log.d("Palette", stringResource(palette.extrasFamily.title))
+    Log.d("Typography", stringResource(typography.extrasFamily.title))
+
+    SelectiveTheme(
+        palette = palette,
+        typography = typography
+    ) {
+        content()
+    }
+}
+
+@Composable
+fun ConfigurationControl(
+    onSave: (String, String) -> Unit = { color, typography -> },
+    onCancel: () -> Unit = {},
+    globalPreferencesViewModel: GlobalPreferencesViewModel =
+        viewModel(factory = GlobalPreferencesViewModel.Factory),
+) {
+
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsState().value
+    val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsState().value
+
+    var rememberPalette by remember {
+        mutableStateOf(paletteState)
+    }
+    var rememberTypography by remember {
+        mutableStateOf(typographyState)
+    }
+
+    LaunchedEffect(Unit) {
+
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            withContext(Dispatchers.Main.immediate) {
+                globalPreferencesViewModel.currentPaletteUUID.collect {
+                    rememberPalette = it
+                    Log.d("Palette", "Palette init: ${LocalPalettesMap[rememberPalette]?.extrasFamily?.title?.let { context.getString(it) }}")
+                }
+            }
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            withContext(Dispatchers.Main.immediate) {
+                globalPreferencesViewModel.currentTypographyUUID.collect {
+                    rememberTypography = it
+                    Log.d("Typography", "Typography init: ${LocalTypographysMap[rememberTypography]?.extrasFamily?.title?.let { context.getString(it) }}")
+                }
+            }
+        }
+    }
+
+    val palette: ExtendedPalette = LocalPalettesMap[rememberPalette] ?: ClassicPalette
+    val typography: ExtendedTypography = LocalTypographysMap[rememberTypography] ?: ClassicTypography
+
+    Log.d("Palette", stringResource(palette.extrasFamily.title))
+    Log.d("Typography", stringResource(typography.extrasFamily.title))
+
+    SelectiveTheme(
+        palette = palette,
+        typography = typography
+    ) {
+
+        SettingsContent(
+            globalPreferencesViewModel = globalPreferencesViewModel,
+            onChangeColor = { rememberPalette = it },
+            onChangeFont = { rememberTypography = it },
+            onSave = { onSave(rememberPalette, rememberTypography) },
+            onCancel = onCancel,
+            tempCurrentColor = rememberPalette,
+            tempCurrentTypography = rememberTypography
+        )
     }
 }
 
@@ -420,5 +445,5 @@ private fun saveAllPreferences(
     activity.recreate()*/
 
     val message = "Changes Saved"
-    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    //Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }

@@ -64,11 +64,11 @@ private fun InfoScreenPreview() {
 
 @Composable
 fun InfoScreen(
-    //content: @Composable () -> Unit
+    navController: NavController = rememberNavController()
 ) {
 
     MainMenuScreen (
-        content = { InfoContent() }
+        content = { InfoContent(navController) }
     )
 
 }

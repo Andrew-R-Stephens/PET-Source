@@ -41,6 +41,21 @@
 
 # Credential Manager directives
 -if class androidx.credentials.CredentialManager
--keep class androidx.credentials.playservices.** {
-  *;
-}
+-keep class androidx.credentials.playservices.** { *; }
+
+-dontwarn com.google.android.gms.auth.api.credentials.Credential$Builder
+-dontwarn com.google.android.gms.auth.api.credentials.Credential
+-dontwarn com.google.android.gms.auth.api.credentials.CredentialRequest$Builder
+-dontwarn com.google.android.gms.auth.api.credentials.CredentialRequest
+-dontwarn com.google.android.gms.auth.api.credentials.CredentialRequestResponse
+-dontwarn com.google.android.gms.auth.api.credentials.Credentials
+-dontwarn com.google.android.gms.auth.api.credentials.CredentialsClient
+-dontwarn com.google.android.gms.auth.api.credentials.CredentialsOptions$Builder
+-dontwarn com.google.android.gms.auth.api.credentials.CredentialsOptions
+-dontwarn com.google.android.gms.auth.api.credentials.HintRequest$Builder
+-dontwarn com.google.android.gms.auth.api.credentials.HintRequest
+-dontwarn io.ktor.client.network.sockets.SocketTimeoutException
+-dontwarn io.ktor.client.plugins.HttpTimeout$HttpTimeoutCapabilityConfiguration
+-dontwarn io.ktor.client.plugins.HttpTimeout$Plugin
+-dontwarn io.ktor.client.plugins.HttpTimeout
+-dontwarn io.ktor.utils.io.CoroutinesKt

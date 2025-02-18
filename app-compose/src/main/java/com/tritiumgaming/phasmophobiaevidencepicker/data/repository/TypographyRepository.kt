@@ -11,14 +11,10 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.network.NetworkMarketDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketBundle
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketBundleEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketPaletteEntity
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketTypographyEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ExtendedTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographyiesMap
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographysMap
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,7 +26,7 @@ class TypographyRepository(
     val dataStore: DataStore<Preferences>,
     context: Context,
     private val networkSource: NetworkMarketDataSource = NetworkMarketDataSource(),
-    private val localSource: Map<String, ExtendedTypography> = LocalTypographyiesMap,
+    private val localSource: Map<String, ExtendedTypography> = LocalTypographysMap,
 ) {
 
     val flow: Flow<FontPreferences> = dataStore.data
@@ -41,14 +37,6 @@ class TypographyRepository(
         .map { preferences ->
             mapFontPreferences(preferences)
         }
-
-    suspend fun saveTypography(uuid: String) {
-        Log.d("ColorThemeHandler", "Saving")
-        dataStore.edit { preferences ->
-            preferences[KEY_TYPOGRAPHY] = uuid
-        }
-        Log.d("ColorThemeHandler", "Finalizing Save")
-    }
 
     val defaultTypography = MarketTypographyEntity(
         uuid = "0",
@@ -117,6 +105,14 @@ class TypographyRepository(
 
     private fun fetchAllLocalTypographies(): List<Pair<String, ExtendedTypography>> = localSource.toList()
 
+    suspend fun saveTypography(uuid: String) {
+        dataStore.edit { preferences ->
+            Log.d("Typography", "Saving ${preferences[KEY_TYPOGRAPHY]} -> $uuid")
+            preferences[KEY_TYPOGRAPHY] = uuid
+            Log.d("Typography", "Finalizing $uuid == ${preferences[KEY_TYPOGRAPHY]} : ${uuid == preferences[KEY_TYPOGRAPHY]}")
+        }
+    }
+
     init {
         Log.d("FontTheme Repository", "Initializing")
 
@@ -129,7 +125,7 @@ class TypographyRepository(
 
     private fun mapFontPreferences(preferences: Preferences): FontPreferences {
         return FontPreferences(
-            preferences[KEY_TYPOGRAPHY] ?: "0"
+            preferences[KEY_TYPOGRAPHY] ?: ""
         )
     }
 

@@ -12,7 +12,9 @@ abstract class AThemeHandler(
     protected val _currentUUID : MutableStateFlow<String> = MutableStateFlow(defaultUUID)
     val currentUUID = _currentUUID.asStateFlow()
     suspend fun setCurrentUUID(uuid: String) {
-        _currentUUID.update { uuid }.also { saveCurrentUUID() }
+        /*_currentUUID.update { uuid }.also { saveCurrentUUID() }*/
+        _currentUUID.value = uuid
+        saveCurrentUUID()
         Log.d("Settings", "$uuid -> ${_currentUUID.value} == ${this.currentUUID.value}")
     }
 
@@ -25,6 +27,6 @@ abstract class AThemeHandler(
 
     enum class IncrementDirection(val value: Int) {
         FORWARD(1),
-        BACK(-1)
+        BACKWARD(-1)
     }
 }

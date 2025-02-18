@@ -20,8 +20,10 @@ class TypographyHandler(
 
     suspend fun initFlow() {
         repository.flow.collect { preferences ->
-            _currentUUID.update { preferences.uuid }
-            Log.d("Font", "Collecting from flow:\n\tID -> ${preferences.uuid}")
+            _currentUUID.update {
+                preferences.uuid.ifBlank { defaultUUID }
+            }
+            Log.d("Color", "Collecting from flow:\n\tID -> ${currentUUID.value}")
         }
     }
 
@@ -56,7 +58,8 @@ class TypographyHandler(
     }
 
     override suspend fun saveCurrentUUID() {
-        repository.saveTypography(currentUUID.value)
+        Log.d("Settings", "Attempting save typography.")
+        repository.saveTypography(_currentUUID.value)
     }
 
 }

@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.applanguages
 
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -34,6 +36,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.main
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
+import java.util.Locale
 
 
 @Composable
@@ -98,8 +101,15 @@ private fun LanguageContent(
                 Row(
                     modifier = Modifier
                         .clickable(true, onClick = {
+
                             rememberLanguage = globalPreferencesViewModel.languageList[it].abbreviation
+
                             Toast.makeText(context, rememberLanguage, Toast.LENGTH_SHORT).show()
+
+                            AppCompatDelegate.setApplicationLocales(
+                                LocaleListCompat.create(Locale.forLanguageTag(rememberLanguage))
+                            )
+
                         })
                 ) {
                     AutoResizedText(

@@ -545,7 +545,7 @@ val LocalTypographys = listOf(
     TypographyData("3vAD75LdzvZN3zBjab5z19zpc", JetBrainsMonoTypography),
 )
 
-val LocalTypographyiesMap = mapOf(
+val LocalTypographysMap = mapOf(
     Pair("c29cJglM92MLWN1RKRyK8qyAD", ClassicTypography),
     Pair("8Jk15N2GB6PBopXvmEluU2eoS", AndroidTypography),
     Pair("7q1Nza1o0Nvt16YyNXNkJ590F", JournalTypography),
