@@ -37,5 +37,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "PhasmophobiaEvidencePicker"
-include(":app")
-include(":app-compose")
+include(":app-view", ":app-compose")
