@@ -16,7 +16,7 @@ import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.InvestigationFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.missions.views.MissionsItemLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.ObjectivesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 /**

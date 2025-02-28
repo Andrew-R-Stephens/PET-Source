@@ -10,7 +10,7 @@ class NewsletterTesting {
 
         val pet = NewsletterRepository.NewsletterInboxType(
             id = 0,
-            title = "Changelog",
+            title = 0,
             url = "https://raw.githubusercontent.com/Andrew-R-Stephens/PET-MessageCenter/refs/heads/master/Changelog",
             icon = 0,
         )
@@ -24,7 +24,7 @@ class NewsletterTesting {
 
         val general = NewsletterRepository.NewsletterInboxType(
             id = 1,
-            title = "General News",
+            title = 0,
             url = "https://raw.githubusercontent.com/Andrew-R-Stephens/PET-MessageCenter/refs/heads/master/GeneralNews",
             icon = 0,
         )
@@ -38,7 +38,7 @@ class NewsletterTesting {
 
         val phas = NewsletterRepository.NewsletterInboxType(
             id = 2,
-            title = "Phas",
+            title = 0,
             url = "https://steamcommunity.com/games/739630/rss/",
             icon = 0,
         )

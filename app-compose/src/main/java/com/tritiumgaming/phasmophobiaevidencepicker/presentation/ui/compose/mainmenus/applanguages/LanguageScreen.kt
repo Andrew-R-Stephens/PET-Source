@@ -1,7 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.applanguages
 
+import android.content.Context
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,13 +14,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,6 +35,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.navigation.NavHeaderComposableParams
@@ -51,9 +60,13 @@ fun LanguageScreen(
 ) {
 
     MainMenuScreen (
-        content = { LanguageContent(
-            navController = navController
-        ) }
+        content = {
+
+            LanguageContent(
+                navController = navController
+            )
+
+        }
     )
 
 }
@@ -66,10 +79,10 @@ private fun LanguageContent(
         viewModel( factory = GlobalPreferencesViewModel.Factory )
 ) {
 
-    val savedLanguageState = globalPreferencesViewModel.currentLanguageCode.collectAsState()
-    var rememberLanguage by remember {
-        mutableStateOf(savedLanguageState.value)
-    }
+    val languageState by globalPreferencesViewModel.currentLanguageCode.collectAsState()
+    val tempLanguageState by globalPreferencesViewModel.tempLanguageCode.collectAsState()
+
+    var rememberLanguage by remember { mutableStateOf(tempLanguageState) }
 
     Column(
         modifier = Modifier
@@ -81,52 +94,86 @@ private fun LanguageContent(
             params = NavHeaderComposableParams(
                 centerTitleRes = R.string.titlescreen_languages_label,
                 leftType = PETImageButtonType.CANCEL,
-                leftOnClick = { navController.popBackStack() },
+                leftOnClick = {
+
+                    AppCompatDelegate.setApplicationLocales(
+                        LocaleListCompat.create(Locale.forLanguageTag(languageState))
+                    )
+
+                    navController.popBackStack()
+
+                },
                 rightType = PETImageButtonType.CONFIRM,
-                rightOnClick = { navController.popBackStack() }
+                rightOnClick = {
+
+                    globalPreferencesViewModel.setCurrentLanguageCode(rememberLanguage)
+
+                    AppCompatDelegate.setApplicationLocales(
+                        LocaleListCompat.create(Locale.forLanguageTag(rememberLanguage))
+                    )
+
+                    navController.popBackStack()
+
+                }
             )
         )
-
-        val context = LocalContext.current
 
         LazyColumn(
             modifier = Modifier
                 .padding(all = 8.dp)
                 .weight(1f),
-            verticalArrangement = Arrangement.Top
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
         ){
-
             items(globalPreferencesViewModel.languageList.size) {
 
-                Row(
-                    modifier = Modifier
-                        .clickable(true, onClick = {
+                val language = globalPreferencesViewModel.languageList[it]
 
-                            rememberLanguage = globalPreferencesViewModel.languageList[it].abbreviation
-
-                            Toast.makeText(context, rememberLanguage, Toast.LENGTH_SHORT).show()
-
-                            AppCompatDelegate.setApplicationLocales(
-                                LocaleListCompat.create(Locale.forLanguageTag(rememberLanguage))
-                            )
-
-                        })
+                LanguageItem(
+                    language = language
                 ) {
-                    AutoResizedText(
-                        containerModifier = Modifier
-                            .fillMaxWidth()
-                            .height(24.dp),
-                        textAlign = TextAlign.Center,
-                        autoResizeStyle = AutoResizedStyleType.SQUEEZE,
-                        style = LocalTypography.current.secondary.regular,
-                        text = globalPreferencesViewModel.languageList[it].name,
-                        color = LocalPalette.current.textFamily.body,
+
+                    globalPreferencesViewModel.setTempLanguageCode(language.abbreviation)
+                    rememberLanguage = language.abbreviation
+
+                    AppCompatDelegate.setApplicationLocales(
+                        LocaleListCompat.create(Locale.forLanguageTag(rememberLanguage))
                     )
+
                 }
 
             }
 
         }
+
+    }
+
+}
+
+@Composable
+private fun LanguageItem(
+    language: LanguageRepository.LanguageObject,
+    onClick: () -> Unit
+) {
+
+    Row(
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable(true, onClick = {
+                onClick()
+            })
+    ) {
+
+        AutoResizedText(
+            containerModifier = Modifier
+                .fillMaxWidth()
+                .height(24.dp),
+            textAlign = TextAlign.Center,
+            autoResizeStyle = AutoResizedStyleType.SQUEEZE,
+            style = LocalTypography.current.secondary.regular,
+            text = language.name,
+            color = LocalPalette.current.textFamily.body,
+        )
 
     }
 

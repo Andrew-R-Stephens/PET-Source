@@ -31,7 +31,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.PoiType
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.map.RoomModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.InteractiveMapModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.maps.mapviewer.MapViewerModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.MapMenuViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.BitmapUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.BitmapUtils.Companion.bitmapExists
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute

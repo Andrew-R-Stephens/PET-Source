@@ -9,8 +9,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commitNow
 import androidx.navigation.Navigation.findNavController
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.PermissionsViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.PermissionsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.NetworkUtils.isNetworkAvailable
 
 abstract class PETFragment : Fragment {

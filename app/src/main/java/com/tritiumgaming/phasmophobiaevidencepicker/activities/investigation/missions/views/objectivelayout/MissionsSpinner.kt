@@ -10,7 +10,7 @@ import androidx.appcompat.widget.AppCompatSpinner
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.missions.Mission
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.missions.MissionsListModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.ObjectivesViewModel
 
 class MissionsSpinner : AppCompatSpinner {
 

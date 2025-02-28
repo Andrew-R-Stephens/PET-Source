@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
 import android.util.Log
+import androidx.compose.ui.res.stringResource
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
@@ -43,7 +44,7 @@ class PaletteRepository(
     //val marketPalettes = mutableListOf<MarketPalette>()
     val defaultPalette = MarketPaletteEntity(
         uuid = LocalDefaultPalette.uuid,
-        name = "Default",
+        name = context.getString(LocalDefaultPalette.palette.extrasFamily.title),
         group = "Default",
         unlocked = true
     )

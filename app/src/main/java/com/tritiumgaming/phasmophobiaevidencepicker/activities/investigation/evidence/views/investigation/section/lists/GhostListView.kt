@@ -13,8 +13,8 @@ import com.google.android.gms.ads.AdRequest
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.popups.GhostPopupWindow
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.ghost.GhostView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostPopupRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

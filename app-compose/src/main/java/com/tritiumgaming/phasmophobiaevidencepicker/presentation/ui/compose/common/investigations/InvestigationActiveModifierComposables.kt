@@ -72,6 +72,7 @@ fun PhaseModifierDetails(phase: PhaseTimerModel) {
 
 @Composable
 fun MapModifierDetails(mapCarouselModel: MapCarouselModel) {
+
     val mapName = MutableStateFlow("current-name").collectAsState()
 
     CategoryColumn {

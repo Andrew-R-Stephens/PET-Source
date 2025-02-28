@@ -21,9 +21,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepo
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MissionRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MapMenuViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.ObjectivesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.ObjectivesViewModel
 
 /**
  * InvestigationActivity class

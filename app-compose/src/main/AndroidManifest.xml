@@ -65,11 +65,12 @@
             android:name=".presentation.ui.compose.pet.activities.PETActivity"
             android:theme="@style/NonColorblind.Base"
             android:configChanges="locale|orientation"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
 

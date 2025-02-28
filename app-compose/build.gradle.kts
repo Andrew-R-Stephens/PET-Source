@@ -51,8 +51,9 @@ android {
 
         minSdk = 23
         targetSdk = 35
+        //versionCode = 115
         versionCode = 115
-        versionName = "10.0.0.0"
+        versionName = "10.0.0.1"
 
         @Suppress("UnstableApiUsage")
         externalNativeBuild {
@@ -159,6 +160,7 @@ dependencies {
     implementation(libs.androidx.cardview.core)
     implementation(libs.androidx.legacy.supportV4)
     implementation(libs.android.material)
+    implementation(libs.googleid)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.testExt.junit)
@@ -170,7 +172,7 @@ dependencies {
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.playServicesAuth)
     implementation(libs.firebase.ui.auth)
-    implementation(libs.firebase.authKtx)
+    //implementation(libs.firebase.authKtx)
     // ----------------------------------
 
     // GOOGLE FIREBASE

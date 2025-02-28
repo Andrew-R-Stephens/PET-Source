@@ -9,7 +9,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.vi
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.sanity.tools.controller.SanityTrackerLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.sanity.tools.sanitywarn.SanityWarningLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.sanity.tools.timer.PhaseTimerLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 
 class SanityToolsLayout : ConstraintLayout {
 

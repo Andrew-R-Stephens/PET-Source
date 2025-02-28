@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.newsletter
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,11 +17,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -84,11 +87,12 @@ private fun NewsInboxesContent(
     onBack: () -> Unit = {}
 ) {
 
-    val rememberInboxes by remember {
+    /*val rememberInboxes by remember {
         mutableStateOf(
             newsletterViewModel.inboxes.value
         )
-    }
+    }*/
+    val rememberInboxes by newsletterViewModel.inboxes.collectAsState()
 
     Column(
         modifier = Modifier
@@ -120,6 +124,7 @@ private fun NewsInboxesContent(
                 val inbox = rememberInboxes[key]
 
                 inbox?.inboxType?.let {
+
                     InboxCard(
                         title = it.title,
                         icon = it.icon,
@@ -129,6 +134,7 @@ private fun NewsInboxesContent(
                                 route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${it.id}")
                         }
                     )
+
                 }
             }
 
@@ -144,7 +150,7 @@ private fun NewsInboxesContent(
 @Composable
 private fun InboxCard(
     modifier: Modifier = Modifier,
-    title: String = "temp",
+    title: Int = R.string.preference_general_news_link,
     @DrawableRes icon: Int = R.drawable.ic_notify,
     isActive: Boolean = true,
     onClick: () -> Unit = {}
@@ -152,7 +158,10 @@ private fun InboxCard(
 
     Surface(
         modifier = modifier
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable {
+                onClick()
+            },
         color = LocalPalette.current.surface.onColor,
         shape = RoundedCornerShape(CornerSize(16.dp)),
         onClick = { onClick() }
@@ -171,12 +180,12 @@ private fun InboxCard(
                     .size(98.dp),
                 isActive = isActive,
                 icon
-            ) { onClick() }
+            ) { }
 
             AutoResizedText(
                 containerModifier = Modifier
                     .weight(1f),
-                text = title,
+                text = stringResource(title),
                 style = LocalTypography.current.primary.regular,
                 color = LocalPalette.current.textFamily.primary,
                 textAlign = TextAlign.Center,
@@ -199,17 +208,17 @@ private fun InboxButtonPreview() {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             InboxCard(
-                title = "test",
+                title = R.string.preference_general_news_link,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )
             InboxCard(
-                title = "test",
+                title = R.string.preference_phasmophobia_changelog_link,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )
             InboxCard(
-                title = "test",
+                title = R.string.preference_pet_changelog_link,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )

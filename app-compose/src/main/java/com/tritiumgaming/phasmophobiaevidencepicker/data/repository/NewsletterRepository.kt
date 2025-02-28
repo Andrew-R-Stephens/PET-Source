@@ -147,7 +147,7 @@ class NewsletterRepository(
 
     class NewsletterInboxType(
         val id: Int,
-        val title: String,
+        val title: Int,
         val url: String,
         @DrawableRes val icon: Int
     ) {
@@ -184,12 +184,14 @@ class NewsletterRepository(
                 context: Context,
                 inboxType: InboxType
             ): NewsletterInboxType {
+
                 return NewsletterInboxType(
                     id = inboxType.id,
-                    title = context.getString(inboxType.title),
+                    title = inboxType.title,
                     url = context.getString(inboxType.url),
                     icon = inboxType.icon,
                 )
+
             }
 
         }

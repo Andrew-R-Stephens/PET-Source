@@ -8,7 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.news.NewsletterInboxModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.RSSParserUtils
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map

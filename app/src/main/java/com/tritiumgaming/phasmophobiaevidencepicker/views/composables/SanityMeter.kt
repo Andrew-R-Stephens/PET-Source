@@ -23,7 +23,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils
 
 @Composable

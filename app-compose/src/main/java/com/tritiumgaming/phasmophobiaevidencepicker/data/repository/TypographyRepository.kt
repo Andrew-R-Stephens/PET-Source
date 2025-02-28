@@ -13,8 +13,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.network.Netw
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketBundle
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketTypographyEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalDefaultPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ExtendedTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographysMap
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalDefaultTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographiesMap
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,7 +28,7 @@ class TypographyRepository(
     val dataStore: DataStore<Preferences>,
     context: Context,
     private val networkSource: NetworkMarketDataSource = NetworkMarketDataSource(),
-    private val localSource: Map<String, ExtendedTypography> = LocalTypographysMap,
+    private val localSource: Map<String, ExtendedTypography> = LocalTypographiesMap,
 ) {
 
     val flow: Flow<FontPreferences> = dataStore.data
@@ -39,8 +41,8 @@ class TypographyRepository(
         }
 
     val defaultTypography = MarketTypographyEntity(
-        uuid = "0",
-        name = "Default",
+        uuid = LocalDefaultTypography.uuid,
+        name = context.getString(LocalDefaultTypography.typography.extrasFamily.title),
         group = "Default",
         unlocked = true
     )

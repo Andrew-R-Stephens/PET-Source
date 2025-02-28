@@ -7,7 +7,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
@@ -33,10 +36,13 @@ fun SelectiveTheme(
         )
     }
 
-    val view = LocalView.current
+    /*val view = LocalView.current
     if (!view.isInEditMode) {
+
         SideEffect {
+
             val window = (view.context as Activity).window
+
             window.statusBarColor = palette.statusBarColor.toArgb()
             window.navigationBarColor = palette.navigationBarColor.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
@@ -44,7 +50,8 @@ fun SelectiveTheme(
             WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars =
                 palette.extrasFamily.isLightMode
         }
-    }
+
+    }*/
 
 }
 

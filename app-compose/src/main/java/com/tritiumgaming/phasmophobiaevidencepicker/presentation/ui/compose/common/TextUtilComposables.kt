@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common
 
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -131,7 +132,7 @@ fun AutoResizedText(
     color: Color = Color.Black,
     textAlign: TextAlign = TextAlign.Unspecified,
     constrainWidth: Boolean = true,
-    constrainHeight: Boolean = true,
+    constrainHeight: Boolean = true
 ) {
 
     Box(
@@ -200,8 +201,10 @@ private fun AutoResizedText(
             .wrapContentHeight(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ){
+        var textModifier = modifier
+
         Text(
-            modifier = modifier
+            modifier = textModifier
                 .drawWithContent {
                     if (shouldDraw) drawContent()
                 },
@@ -213,8 +216,10 @@ private fun AutoResizedText(
             maxLines = 1,
             softWrap = false,
             onTextLayout = { result ->
-                if (((constrainWidth && result.didOverflowWidth)
-                            || (constrainHeight && result.didOverflowHeight))) {
+                if (!shouldDraw && (
+                        ((constrainWidth && result.didOverflowWidth)
+                            || (constrainHeight && result.didOverflowHeight))
+                    )) {
 
                     if (maxFontSize.isUnspecified) {
                         currentTextSize = 12.sp
@@ -228,6 +233,10 @@ private fun AutoResizedText(
                     }
 
                 } else {
+                    if(!constrainWidth && currentTextSize.value < minFontSize.value) {
+                        textModifier = modifier.basicMarquee(Int.MAX_VALUE)
+                    }
+
                     shouldDraw = true
                 }
             }
@@ -240,6 +249,6 @@ enum class AutoResizedStyleType(
     val max: TextUnit = 50.sp,
     val step: Float = 1f,
 ) {
-    CONSTRAIN(18.sp, 50.sp, 1f),
+    CONSTRAIN(18.sp, 50.sp, 5f),
     SQUEEZE(1.sp, 200.sp, 5f),
 }

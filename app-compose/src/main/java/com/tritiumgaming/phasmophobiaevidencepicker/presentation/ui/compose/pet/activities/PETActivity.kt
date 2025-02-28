@@ -1,58 +1,82 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
-import com.google.android.gms.tasks.Task
-import com.google.android.ump.ConsentDebugSettings
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.ui.Modifier
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigation.NavigationView
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.ump.ConsentInformation
-import com.google.android.ump.ConsentRequestParameters
-import com.google.android.ump.FormError
-import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.RootNavigation
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.appsettings.ConfigurationControl
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import java.util.concurrent.atomic.AtomicBoolean
 
-class PETActivity : AppCompatActivity() {
 
-    private var firebaseAnalytics: FirebaseAnalytics? = null
+class PETActivity : AppCompatActivity(),
+    AppUpdateManagerService, FirebaseAnalyticsService,
+    ConsentManagementService, AccountManagementService {
 
-    private var consentInformation: ConsentInformation? = null
+    private val globalPreferencesViewModel: GlobalPreferencesViewModel by viewModels { GlobalPreferencesViewModel.Factory }
 
+    /* Firebase Analytics */
+    private lateinit var auth: FirebaseAuth
+    override var firebaseAnalytics: FirebaseAnalytics? = null
+
+    /* Consent */
+    override var consentInformation: ConsentInformation? = null
     // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
-    private val isMobileAdsInitializeCalled = AtomicBoolean(false)
+    override val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
-    private val globalPreferencesViewModel: GlobalPreferencesViewModel
-        by viewModels { GlobalPreferencesViewModel.Factory }
+    /* Update */
+    override var appUpdateManager: AppUpdateManager? = null
+    override var updateType: Int = IMMEDIATE
+    override var activityUpdateResultLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartIntentSenderForResult()) {
+                result: androidx.activity.result.ActivityResult ->
+            // handle callback
+            if (result.resultCode != RESULT_OK) {
+                print("Update flow failed! Result code: " + result.resultCode);
+            }
+        }
 
+    /* Navigation Components */
+    private var drawerLayout: DrawerLayout? = null
+    private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
+    private var navigationBarView: NavigationBarView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        /*window.decorView*/
+        enableEdgeToEdge()
+
+        auth = Firebase.auth
+
+        initializeMobileAdsSdk(this)
+        createConsentInformation(this)
+        initFirebaseAnalytics(this)
+
         super.onCreate(savedInstanceState)
-
-        initializeMobileAdsSdk()
-        createConsentInformation()
-        initFirebaseAnalytics()
-
-        Log.d("ViewModels", "PET begin...")
-        //initViewModels()
-        //loadPreferences()
-
-        //automaticSignInAccount()
 
         setContent {
 
-            ConfigurationControl {
+            ConfigurationControl(
+                modifier = Modifier.safeDrawingPadding()
+            ) {
 
                 RootNavigation()
 
@@ -60,147 +84,135 @@ class PETActivity : AppCompatActivity() {
 
         }
 
+        checkForAppUpdate(this@PETActivity)
 
     }
 
-    /** Set FirebaseAnalytics consent types to
-     * [Consent V2](https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2). */
-    private fun initFirebaseAnalytics() {
-        //Obtain FirebaseAnalytics instance
-        try { firebaseAnalytics = FirebaseAnalytics.getInstance(this)
-            Log.d("Firebase", "Obtained instance.")
-        } catch (e: IllegalStateException) { e.printStackTrace() }
+    @Deprecated("Deprecated with Jetpack Compose")
+    //TODO "Replace with Jetpack Compose components"
+    fun initNavigationComponents() {
+        /*val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment?
+
+        Log.d("NavHostFragment", if (navHostFragment == null) "null" else "not null")
+
+        navHostFragment?.navController?.let { navController ->
+            val navBarView = findViewById<NavigationBarView>(R.id.item_navigation_bar)
+            Log.d("Bar", if (navBarView == null) "null" else "not null")
+            setNavigationBarBehavior(navBarView, navController)
+
+            val navDrawerView = findViewById<NavigationView>(R.id.layout_navigation_drawer_view)
+            Log.d("Drawer", if (navDrawerView == null) "null" else "not null")
+            buildNavigationDrawer(navDrawerView, navController)
+        }*/
+
     }
 
-    private fun loadPreferences() {
-        //set colorSpace
-        /*changeTheme(
-            globalPreferencesViewModel.colorThemeHandler.currentTheme,
-            globalPreferencesViewModel.fontThemeHandler.currentTheme
-        )
+    @Deprecated("Deprecated with Jetpack Compose")
+    //TODO "Replace with Jetpack Compose components"
+    private fun buildNavigationDrawer(navView: NavigationView?, navController: NavController) {
+        /*drawerLayout = findViewById(R.id.layout_navigation_drawer)
 
-        if (globalPreferencesViewModel.screenSaverPreference.value) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        drawerLayout?.let { drawerLayout ->
+            actionBarDrawerToggle = ActionBarDrawerToggle(
+                this, drawerLayout,
+                R.string.navigation_open_state,
+                R.string.navigation_closed_state
+            )
+
+            // pass the Open and Close toggle for the drawer layout listener
+            // to toggle the button
+            actionBarDrawerToggle?.let { actionBarDrawerToggle ->
+                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                drawerLayout.addDrawerListener(actionBarDrawerToggle)
+                actionBarDrawerToggle.syncState()
+            }
+
+            // to make the Navigation drawer icon always appear on the action bar
+            //getActivity().getSupportFragmentManager().setDisplayHomeAsUpEnabled(true);
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+
+        setNavigationDrawerBehavior(navView, navController)*/
+    }
+
+    @Deprecated("Deprecated with Jetpack Compose")
+    //TODO "Replace with Jetpack Compose components"
+    private fun setNavigationDrawerBehavior(
+        navView: NavigationView?, navController: NavController
+    ) {
+        /*navView?.let {
+            setupWithNavController(navView, navController)
+            navView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item: MenuItem ->
+                drawerLayout?.let { drawerLayout ->
+                    if (onNavDestinationSelected(item, navController)) {
+                        drawerLayout.closeDrawer(GravityCompat.START)
+                        return@OnNavigationItemSelectedListener true
+                    }
+                    if (item.itemId == (R.id.action_home)) {
+                        finish()
+                    }
+                }
+                true
+            })
         }*/
     }
 
-    /** Sets the Skin Theme based on User Preferences.
-     * @param colorSpace to be set */
-    /*fun changeTheme(colorSpace: ThemeModel?, fontType: ThemeModel?) {
-        fontType?.let {
-            theme.applyStyle(it.style, true)
-        }
-        colorSpace?.let {
-            theme.applyStyle(it.style, true)
-        }
-    }*/
+    @Deprecated("Deprecated with Jetpack Compose")
+    //TODO "Replace with Jetpack Compose components"
+    private fun setNavigationBarBehavior(navView: NavigationBarView?, navController: NavController) {
+        /*navView?.let {
+            this.navigationBarView = navView
 
-    /** @param language The desired new language */
-    /*fun configureLanguage(
-        langCode: String = globalPreferencesViewModel.currentLanguageCode.value
-    ): Boolean {
+            setupWithNavController(navView, navController)
 
-        val newLocale = Locale(langCode)
-        val currentLocale = Locale.getDefault()
+            navView.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item: MenuItem ->
+                if (onNavDestinationSelected(item, navController)) {
+                    if (drawerLayout != null) {
+                        drawerLayout!!.closeDrawer(GravityCompat.START)
+                    }
 
-        val isChanged = (!currentLocale.language.equals(newLocale.language, ignoreCase = true))
-
-        Locale.setDefault(newLocale)
-        val config = resources.configuration
-        config.setLocale(newLocale)
-        resources.updateConfiguration(config, resources.displayMetrics)
-
-        AppCompatDelegate.setApplicationLocales(
-            LocaleListCompat.create(Locale.forLanguageTag(langCode))
-        )
-
-        return isChanged
-    }*/
-
-    private fun automaticSignInAccount() {
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            Log.d("AutoLogin", "User not null!")
-            return
-        }
-        Log.d("AutoLogin", "User is null. Attempting silent log in.")
-
-        val providers = listOf(GoogleBuilder().build())
-
-        AuthUI.getInstance()
-            .silentSignIn(this, providers)
-            .continueWithTask { task: Task<AuthResult?> ->
-                if (task.isSuccessful) {
-                    return@continueWithTask task
-                } else {
-                    // Ignore any exceptions since we don't care about credential fetch errors.
-                    return@continueWithTask FirebaseAuth.getInstance().signInAnonymously()
+                    return@OnItemSelectedListener true
                 }
-            }
-            .addOnCompleteListener(this) { task: Task<AuthResult?> ->
-                if (task.isSuccessful) {
-                    Log.d("AuthUI", "Silent Anonymous login successful")
-                } else {
-                    Log.d("AuthUI", "Silent Anonymous login failed! [ User = ${task.result?.user} ]")
-                }
-            }
-    }
-
-    val isPrivacyOptionsRequired: Boolean
-        // Show a privacy options button if required.
-        get() = (consentInformation!!.privacyOptionsRequirementStatus
-                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED)
-
-    protected fun createConsentInformation() {
-        val debugSettings = ConsentDebugSettings.Builder(this)
-            .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA)
-            .addTestDeviceHashedId("00E2BE3BE3FB3298734CA8B92655E237")
-            .addTestDeviceHashedId("B3C272DE5AEAB81CA9CBBCB2A928A38E")
-            .build()
-
-        // Create a ConsentRequestParameters object.
-        val params = ConsentRequestParameters.Builder()
-            .setConsentDebugSettings(debugSettings)
-            .setTagForUnderAgeOfConsent(false)
-            .build()
-
-
-        consentInformation = UserMessagingPlatform.getConsentInformation(this)
-        consentInformation?.let { consentInformation ->
-            consentInformation.requestConsentInfoUpdate(this, params, {
-                UserMessagingPlatform.loadAndShowConsentFormIfRequired(this) {
-                    // Consent gathering failed.
-                    loadAndShowError: FormError? ->
-                        loadAndShowError?.let {
-                            Log.w("ConsentManagerV2", String.format("%s: %s",
-                                loadAndShowError.errorCode, loadAndShowError.message))
+                if (item.itemId == (R.id.open_menu)) {
+                    drawerLayout?.let { drawerLayout ->
+                        when (drawerLayout.isOpen) {
+                            true -> drawerLayout.closeDrawer(GravityCompat.START)
+                            false -> drawerLayout.openDrawer(GravityCompat.START)
                         }
                     }
-                },
-                // Consent gathering failed.
-                { requestConsentError: FormError ->
-                    Log.w("ConsentManagerV2", String.format("%s: %s",
-                            requestConsentError.errorCode, requestConsentError.message))
-                })
-            // Check if you can initialize the Google Mobile Ads SDK in parallel
-            // while checking for new consent information. Consent obtained in
-            // the previous session can be used to request ads.
-            if (consentInformation.canRequestAds()) { initializeMobileAdsSdk() }
-        }
+                }
+                true
+            })
 
+            navView.itemIconTintList = null
+        }*/
     }
 
-    private fun initializeMobileAdsSdk() {
-        if (isMobileAdsInitializeCalled.getAndSet(true)) { return }
+    @Deprecated("Deprecated with Jetpack Compose")
+    //TODO "Replace with Jetpack Compose components"
+    fun closeNavigationDrawer(): Boolean {
+        /*drawerLayout?.let { drawerLayout ->
+            if (drawerLayout.isOpen) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                return true
+            }
+        }
+        return false*/
+        return false
+    }
 
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.initialize(this)
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        // TODO: Request an ad.
-        // InterstitialAd.load(...);
+        recreate()
+    }
 
-        val testDeviceIds = listOf("00E2BE3BE3FB3298734CA8B92655E237", "B3C272DE5AEAB81CA9CBBCB2A928A38E")
-        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
-        MobileAds.setRequestConfiguration(configuration)
+    override fun onResume() {
+        super.onResume()
+
+        completePendingAppUpdate()
     }
 
 }

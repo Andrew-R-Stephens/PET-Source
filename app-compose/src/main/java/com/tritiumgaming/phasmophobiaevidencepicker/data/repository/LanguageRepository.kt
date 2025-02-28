@@ -2,6 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit

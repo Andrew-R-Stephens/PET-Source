@@ -21,4 +21,8 @@ fun EvidenceSoloScreen(
 }
 
 @Composable
-private fun EvidenceSoloContent() {}
+private fun EvidenceSoloContent() {
+
+
+
+}

@@ -71,9 +71,7 @@ fun RootNavigation() {
         ) {
 
             composable(route = SCREEN_START.route) {
-                StartScreen(
-                    navController = navController
-                )
+                StartScreen(navController = navController)
             }
 
             composable(route = SCREEN_LANGUAGE.route) {
@@ -85,9 +83,7 @@ fun RootNavigation() {
             }
 
             composable(route = SCREEN_SETTINGS.route) {
-                SettingsScreen(
-                    navController = navController
-                )
+                SettingsScreen(navController = navController)
             }
 
             navigation(

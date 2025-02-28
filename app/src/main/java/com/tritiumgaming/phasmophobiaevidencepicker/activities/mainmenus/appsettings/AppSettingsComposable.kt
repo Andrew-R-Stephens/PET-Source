@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.palettes.LocalColorSchemes
 import com.tritiumgaming.phasmophobiaevidencepicker.theme.palettes.LocalPalette

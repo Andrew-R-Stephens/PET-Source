@@ -16,9 +16,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.pet.dataStore
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.OnboardingViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.MainMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.OnboardingViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.MainMenuViewModel
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**

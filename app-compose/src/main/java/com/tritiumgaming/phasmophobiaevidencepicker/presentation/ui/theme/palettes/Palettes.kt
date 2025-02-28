@@ -4114,8 +4114,6 @@ data class SwitchColorFamily(
 
 val LocalPalette = staticCompositionLocalOf { ExtendedPalette() }
 
-val LocalDefaultPalette = SimpleUniquePalette("CzjtxSbXRwIpX8SYR0ttngAND", ClassicPalette)
-
 val LocalPalettesMap = mapOf(
     Pair("CzjtxSbXRwIpX8SYR0ttngAND", ClassicPalette),
     Pair("ey6VbQN5tx0MgR8tw4iJq3J8L", Monochromacy),
@@ -4144,6 +4142,13 @@ val LocalPalettesMap = mapOf(
     Pair("88kEPt48wGs0ZxR4n7gtM3OTe", Artist),
     Pair("tempWhiteboard", Whiteboard),
     Pair("tempStratHero", StrategemHero),
+)
+
+private val LocalPalettesList = LocalPalettesMap.toList()
+
+val LocalDefaultPalette = SimpleUniquePalette(
+    LocalPalettesList[0].first,
+    LocalPalettesList[0].second
 )
 
 data class SimpleUniquePalette(val uuid: String, val palette: ExtendedPalette)

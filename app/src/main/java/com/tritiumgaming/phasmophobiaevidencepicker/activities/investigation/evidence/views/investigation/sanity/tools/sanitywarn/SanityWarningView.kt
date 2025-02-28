@@ -10,7 +10,7 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.FlashBackground
 import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.FlashState

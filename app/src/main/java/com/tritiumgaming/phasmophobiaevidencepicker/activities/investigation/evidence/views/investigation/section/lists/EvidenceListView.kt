@@ -9,8 +9,8 @@ import com.google.android.gms.ads.AdRequest
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.popups.EvidencePopupWindow
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.section.evidence.EvidenceView
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidencePopupRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 
 class EvidenceListView : InvestigationListView {
 

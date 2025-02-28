@@ -326,5 +326,7 @@
     <string name="alert_marketplace_purchase_success_skin">Skin purchased!</string>
     <string name="alert_marketplace_purchase_success_generic">Purchase successful!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Not enough credits for purchase!</string>
+    <string name="alert_gui_palette_error" translatable="false">Palette not set!</string>
+    <string name="alert_gui_typography_error" translatable="false">Typography not set!</string>
 
 </resources>

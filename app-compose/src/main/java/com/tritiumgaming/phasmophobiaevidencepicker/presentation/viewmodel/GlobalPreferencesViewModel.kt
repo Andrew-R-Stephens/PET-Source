@@ -60,12 +60,10 @@ class GlobalPreferencesViewModel(
         }
 
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("Firebase", "Attempting fetch 1")
             paletteRepository.fetchAllThemes()
             paletteRepository.fetchAllBundles()
         }
         viewModelScope.launch(Dispatchers.IO) {
-            Log.d("Firebase", "Attempting fetch 1")
             typographyRepository.fetchAllTypographies()
         }
     }
@@ -87,9 +85,16 @@ class GlobalPreferencesViewModel(
     }
 
     val currentLanguageCode = languageHandler.currentLanguageCode
-    private fun setCurrentLanguageCode(languageCode: String) {
+    fun setCurrentLanguageCode(languageCode: String) {
         viewModelScope.launch {
             languageHandler.setCurrentLanguageCode(languageCode)
+        }
+    }
+
+    val tempLanguageCode = languageHandler.tempLanguageCode
+    fun setTempLanguageCode(languageCode: String) {
+        viewModelScope.launch {
+            languageHandler.setTempLanguageCode(languageCode)
         }
     }
 

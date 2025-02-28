@@ -16,7 +16,7 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.views.composables.RulingGroup
 
 class EvidenceView : ConstraintLayout {

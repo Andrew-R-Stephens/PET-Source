@@ -533,19 +533,7 @@ data class CustomFontFamily(
 
 val LocalTypography = staticCompositionLocalOf { ExtendedTypography() }
 
-val LocalTypographys = listOf(
-    TypographyData("c29cJglM92MLWN1RKRyK8qyAD", ClassicTypography),
-    TypographyData("8Jk15N2GB6PBopXvmEluU2eoS", AndroidTypography),
-    TypographyData("7q1Nza1o0Nvt16YyNXNkJ590F", JournalTypography),
-    TypographyData("3a1vXEZveFEWrf5RdVxTJI6pF", BrickTypography),
-    TypographyData("93Ph8a2SLU3YEupV54TKMKJAO", CleanTypography),
-    TypographyData("8UEl0G5HXx119AXh69OeIUPCB", LongCangTypography),
-    TypographyData("8rX9hVOyV8eIZmz3ZQaHgrnan", NewTegominTypography),
-    TypographyData("DPre8Bscm8Tf3pwyQw7HxBznt", NeuchaTypography),
-    TypographyData("3vAD75LdzvZN3zBjab5z19zpc", JetBrainsMonoTypography),
-)
-
-val LocalTypographysMap = mapOf(
+val LocalTypographiesMap = mapOf(
     Pair("c29cJglM92MLWN1RKRyK8qyAD", ClassicTypography),
     Pair("8Jk15N2GB6PBopXvmEluU2eoS", AndroidTypography),
     Pair("7q1Nza1o0Nvt16YyNXNkJ590F", JournalTypography),
@@ -557,7 +545,11 @@ val LocalTypographysMap = mapOf(
     Pair("3vAD75LdzvZN3zBjab5z19zpc", JetBrainsMonoTypography),
 )
 
-data class TypographyData(
-    val uuid: String = "0",
-    val typography: ExtendedTypography = ExtendedTypography()
+val LocalTypographiesList = LocalTypographiesMap.toList()
+
+val LocalDefaultTypography = SimpleUniqueTypography(
+    LocalTypographiesList[0].first,
+    LocalTypographiesList[0].second
 )
+
+data class SimpleUniqueTypography(val uuid: String, val typography: ExtendedTypography)

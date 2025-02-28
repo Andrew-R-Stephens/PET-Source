@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel
 
 import android.content.Context
 import androidx.annotation.DrawableRes

@@ -13,8 +13,8 @@ import android.widget.PopupWindow
 import android.widget.ProgressBar
 import com.google.android.gms.ads.AdRequest
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.popups.InvestigationPopupModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 
 abstract class InvestigationListView : LinearLayout {
 

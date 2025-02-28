@@ -1,15 +1,15 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.appsettings
 
-import android.app.ProgressDialog.show
 import android.content.Context
 import android.util.Log
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -55,7 +55,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palett
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographysMap
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographiesMap
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.AThemeHandler
 import kotlinx.coroutines.Dispatchers
@@ -117,9 +117,7 @@ private fun SettingsContent(
 
     Surface(
         modifier = Modifier
-            .fillMaxWidth()
-        /*.fillMaxHeight()*/,
-        //.fillMaxSize(),
+            .fillMaxWidth(),
         color = LocalPalette.current.surface.color
     ) {
 
@@ -294,6 +292,7 @@ private fun SettingsContent(
 
 @Composable
 fun ConfigurationControl(
+    modifier: Modifier = Modifier,
     globalPreferencesViewModel: GlobalPreferencesViewModel =
         viewModel(factory = GlobalPreferencesViewModel.Factory),
     content: @Composable () -> Unit = {}
@@ -325,14 +324,14 @@ fun ConfigurationControl(
             withContext(Dispatchers.Main.immediate) {
                 globalPreferencesViewModel.currentTypographyUUID.collect {
                     rememberTypography = it
-                    Log.d("Typography", "Typography init: ${LocalTypographysMap[rememberTypography]?.extrasFamily?.title?.let { context.getString(it) }}")
+                    Log.d("Typography", "Typography init: ${LocalTypographiesMap[rememberTypography]?.extrasFamily?.title?.let { context.getString(it) }}")
                 }
             }
         }
     }
 
     val palette: ExtendedPalette = LocalPalettesMap[rememberPalette] ?: ClassicPalette
-    val typography: ExtendedTypography = LocalTypographysMap[rememberTypography] ?: ClassicTypography
+    val typography: ExtendedTypography = LocalTypographiesMap[rememberTypography] ?: ClassicTypography
 
     Log.d("Palette", stringResource(palette.extrasFamily.title))
     Log.d("Typography", stringResource(typography.extrasFamily.title))
@@ -341,8 +340,13 @@ fun ConfigurationControl(
         palette = palette,
         typography = typography
     ) {
-        content()
+        Box(
+            modifier = modifier
+        ) {
+            content()
+        }
     }
+
 }
 
 @Composable
@@ -383,17 +387,18 @@ fun ConfigurationControl(
             withContext(Dispatchers.Main.immediate) {
                 globalPreferencesViewModel.currentTypographyUUID.collect {
                     rememberTypography = it
-                    Log.d("Typography", "Typography init: ${LocalTypographysMap[rememberTypography]?.extrasFamily?.title?.let { context.getString(it) }}")
+                    Log.d("Typography", "Typography init: ${LocalTypographiesMap[rememberTypography]?.extrasFamily?.title?.let { context.getString(it) }}")
                 }
             }
         }
     }
 
-    val palette: ExtendedPalette = LocalPalettesMap[rememberPalette] ?: ClassicPalette
-    val typography: ExtendedTypography = LocalTypographysMap[rememberTypography] ?: ClassicTypography
 
-    Log.d("Palette", stringResource(palette.extrasFamily.title))
-    Log.d("Typography", stringResource(typography.extrasFamily.title))
+    val palette: ExtendedPalette = LocalPalettesMap[rememberPalette] ?: ClassicPalette
+    val typography: ExtendedTypography = LocalTypographiesMap[rememberTypography] ?: ClassicTypography
+
+    Log.d("Palette", stringResource(palette?.extrasFamily?.title ?: R.string.alert_gui_palette_error))
+    Log.d("Typography", stringResource(typography?.extrasFamily?.title ?: R.string.alert_gui_typography_error))
 
     SelectiveTheme(
         palette = palette,
@@ -410,6 +415,7 @@ fun ConfigurationControl(
             tempCurrentTypography = rememberTypography
         )
     }
+
 }
 
 private fun saveAllPreferences(

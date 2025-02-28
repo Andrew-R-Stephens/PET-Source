@@ -172,7 +172,7 @@ dependencies {
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.playServicesAuth)
     implementation(libs.firebase.ui.auth)
-    implementation(libs.firebase.authKtx)
+    // implementation(libs.firebase.authKtx)
     // ----------------------------------
 
     // GOOGLE FIREBASE

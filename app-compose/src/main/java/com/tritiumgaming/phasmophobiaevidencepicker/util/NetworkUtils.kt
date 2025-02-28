@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.util.Log
 
 object NetworkUtils {
+
     @JvmStatic
     fun isNetworkAvailable(context: Context, isMeteredNetworkAllowed: Boolean): Boolean {
         val connectivityManager =

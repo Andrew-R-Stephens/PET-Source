@@ -14,16 +14,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.auth.FirebaseUser
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ClassicTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
 
 @Composable
 @Preview
@@ -51,6 +57,13 @@ fun AccountIcon(
 
     val rememberAuthUser by remember{ mutableStateOf(authUser) }
 
+    val name: List<String?> = (rememberAuthUser?.displayName)?.split(" ") ?: listOf()
+
+    val firstNameInitial: String =
+        try { name[0]?.get(0).toString() } catch (e: Exception) { e.printStackTrace(); "" }
+    val lastNameInitial: String =
+        try { name[1]?.get(0).toString() } catch (e: Exception) { e.printStackTrace(); "" }
+
     Box(
         modifier = Modifier
             .size(size)
@@ -73,11 +86,34 @@ fun AccountIcon(
                 )
             }
         } else {
-            Image(
-                painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
-                contentDescription = "",
-                contentScale = contentScale
-            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                Image(
+                    painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
+                    contentDescription = "",
+                    contentScale = contentScale
+                )
+
+                AutoResizedText(
+                    containerModifier =
+                        Modifier.fillMaxSize(),
+                    text = "$firstNameInitial$lastNameInitial",
+                    textAlign = TextAlign.Center,
+                    color = LocalPalette.current.splashTextColor,
+                    style = LocalTypography.current.primary.regular,
+                    borderStyle = LocalTypography.current.primary.regular.copy(
+                        drawStyle = Stroke(
+                            miter = 1f,
+                            width = 2f,
+                            join = StrokeJoin.Bevel,
+                        ),
+                        color = LocalPalette.current.surface.onColor
+                    ),
+                    autoResizeStyle = AutoResizedStyleType.SQUEEZE
+                )
+            }
         }
     }
 }

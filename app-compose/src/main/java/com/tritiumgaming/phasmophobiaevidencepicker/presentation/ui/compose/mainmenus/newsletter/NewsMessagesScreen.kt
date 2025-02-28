@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.newsletter
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,12 +26,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.integerArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -115,8 +118,8 @@ private fun NewsMessagesContent(
         )
     }
 
-    var rememberDateComparison by remember {
-        mutableStateOf(rememberInbox?.compareDates() ?: false)
+    var rememberLastReadDate by remember {
+        mutableLongStateOf(rememberInbox?.lastReadDate ?: 0L)
     }
 
     Column(
@@ -137,6 +140,10 @@ private fun NewsMessagesContent(
 
         HorizontalDivider()
 
+        var rememberUpToDate by remember {
+            mutableStateOf(rememberInbox?.compareDates() == true)
+        }
+
         Box(
             modifier = Modifier
                 .padding(PaddingValues(top = 8.dp, bottom = 8.dp, start = 16.dp, end = 16.dp))
@@ -147,16 +154,19 @@ private fun NewsMessagesContent(
                 modifier = Modifier
                     .height(48.dp)
                     .wrapContentWidth()
-                    .alpha(if(rememberDateComparison) 1f else .4f),
+                    .alpha(if (rememberUpToDate) 1f else .4f),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = LocalPalette.current.buttonColor,
                 ),
                 contentPadding = PaddingValues(top = 4.dp, bottom = 4.dp, start = 16.dp, end = 16.dp),
                 shape = RoundedCornerShape(size = 8.dp),
-                enabled = rememberDateComparison,
+                enabled = rememberUpToDate,
                 onClick = {
-                    rememberInbox?.updateLastReadDate()
-                    rememberDateComparison = rememberInbox?.compareDates() ?: false
+                    rememberInbox?.let{
+                        it.updateLastReadDate()
+                        rememberLastReadDate = it.lastReadDate
+                        rememberUpToDate = it.compareDates() == true
+                    }
                 }
             ) {
 
@@ -170,10 +180,6 @@ private fun NewsMessagesContent(
 
             }
 
-        }
-
-        val rememberLastReadDate = remember {
-            mutableStateOf(rememberInbox?.lastReadDate)
         }
 
         LazyColumn(
@@ -193,11 +199,17 @@ private fun NewsMessagesContent(
                     mutableIntStateOf(messageIndex)
                 }
 
+                val rememberDateDifference by remember {
+                    mutableStateOf(
+                        (rememberInbox?.compareDate(rememberMessages[rememberMessageID].date) ?: 0) > 0
+                    )
+                }
+
+                Toast.makeText(LocalContext.current, "$rememberDateDifference", Toast.LENGTH_SHORT).show()
 
                 MessageCard(
                     title = rememberMessage.title,
-                    isActive = (rememberInbox?.compareDate(rememberMessages[rememberMessageID].date) ?: 0) > 0,
-                    date = rememberLastReadDate,
+                    isActive = rememberDateDifference,
                     onClick = {
                         navController.navigate(
                             route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/${rememberInboxID}/${rememberMessageID}")
@@ -217,15 +229,13 @@ private fun NewsMessagesContent(
 @Composable
 private fun MessageCard(
     title: String = "temp",
-    isActive: Boolean = true,
-    onClick: () -> Unit = {},
-    date: MutableState<Long?>
+    isActive: Boolean = false,
+    onClick: () -> Unit = {}
 ) {
-    val rememberDate by remember{
-        mutableStateOf(date)
-    }
 
-    val rememberIsActive = isActive && ((rememberDate.value ?: 0L) > 0L)
+    val rememberIsActive by remember {
+        mutableStateOf(isActive)
+    }
 
     Surface(
         modifier = Modifier

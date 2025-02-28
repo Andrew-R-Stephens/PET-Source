@@ -9,7 +9,7 @@ import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.mainmenus.newsletter.views.NewsletterInboxView
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.NewsletterViewModel.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.NewsletterViewModel.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
 
 class NewsInboxesFragment : MainMenuFragment() {

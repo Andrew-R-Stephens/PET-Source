@@ -26,7 +26,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.san
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.carousels.MapCarouselModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.sanity.timer.PhaseTimerModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 import kotlinx.coroutines.flow.MutableStateFlow
 

@@ -37,7 +37,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.Select
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographys
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographiesList
 import org.jetbrains.annotations.TestOnly
 
 @Preview
@@ -59,11 +59,11 @@ private fun ReviewPopupComposablePreview() {
         }*/
 
 
-        items(count = LocalTypographys.size) { index ->
+        items(count = LocalTypographiesList.size) { index ->
 
             SelectiveTheme(
                 palette = ClassicPalette,
-                typography = LocalTypographys[index].typography
+                typography = LocalTypographiesList[index].second
             ) {
                 ReviewPopupComposable()
             }

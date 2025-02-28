@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.investigations
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -46,6 +47,7 @@ fun Test() {
     InvestigationFootstepComposable(1f)
 }
 
+@SuppressLint("DefaultLocale")
 @Composable
 fun InvestigationFootstepComposable(
     metersPerSecond: Float = 0f

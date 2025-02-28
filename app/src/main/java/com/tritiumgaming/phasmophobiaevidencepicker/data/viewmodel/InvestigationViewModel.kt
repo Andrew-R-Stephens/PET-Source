@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile
+package com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

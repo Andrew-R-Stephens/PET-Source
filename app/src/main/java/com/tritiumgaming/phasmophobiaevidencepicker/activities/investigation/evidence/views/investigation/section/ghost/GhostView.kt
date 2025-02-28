@@ -19,7 +19,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.GhostScoreModel
 import com.tritiumgaming.phasmophobiaevidencepicker.data.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.utils.ColorUtils.getColorFromAttribute
 
 class GhostView : ConstraintLayout {

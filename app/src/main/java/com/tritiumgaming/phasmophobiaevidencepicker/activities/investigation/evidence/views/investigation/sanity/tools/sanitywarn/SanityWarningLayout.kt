@@ -7,7 +7,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnActionView
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnHuntView
 import com.tritiumgaming.phasmophobiaevidencepicker.ui.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnSetupView
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.InvestigationViewModel
 
 class SanityWarningLayout : ConstraintLayout {
 

@@ -28,8 +28,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ColorThemeRe
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.FontThemeRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.ds.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.datastore.dsvolatile.PermissionsViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.viewmodel.PermissionsViewModel
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
