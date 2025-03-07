@@ -46,9 +46,7 @@ fun AccountDetails(
             )
         }
 
-        AccountIcon(
-            authUser = firebaseUser
-        )
+        AccountIcon()
     }
 
 }

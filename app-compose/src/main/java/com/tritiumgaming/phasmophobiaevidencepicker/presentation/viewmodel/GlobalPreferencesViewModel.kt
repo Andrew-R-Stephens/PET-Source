@@ -59,6 +59,7 @@ class GlobalPreferencesViewModel(
             typographyHandler.initFlow()
         }
 
+        /*
         viewModelScope.launch(Dispatchers.IO) {
             paletteRepository.fetchAllThemes()
             paletteRepository.fetchAllBundles()
@@ -66,6 +67,7 @@ class GlobalPreferencesViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             typographyRepository.fetchAllTypographies()
         }
+        */
     }
 
     val languageList = languageHandler.languageList

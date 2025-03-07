@@ -7,27 +7,29 @@
     <!-- Language Data -->
     <string-array name="language_names">
         <item>@string/language_fullName_chinese_s</item>
+        <item>@string/language_fullName_czech</item>
         <item>@string/language_fullName_german</item>
         <item>@string/language_fullName_english</item>
         <item>@string/language_fullName_spanish</item>
         <item>@string/language_fullName_french</item>
-        <item>@string/language_fullName_czech</item>
-        <item>@string/language_fullName_russian</item>
         <item>@string/language_fullName_italian</item>
         <item>@string/language_fullName_japanese</item>
         <item>@string/language_fullName_portuguese</item>
+        <item>@string/language_fullName_russian</item>
+        <item>@string/language_fullName_ukrainian</item>
     </string-array>
     <string-array name="language_codes">
         <item>@string/language_abbrName_chinese_simplified</item>
+        <item>@string/language_abbrName_czech</item>
         <item>@string/language_abbrName_german</item>
         <item>@string/language_abbrName_english</item>
         <item>@string/language_abbrName_spanish</item>
         <item>@string/language_abbrName_french</item>
-        <item>@string/language_abbrName_czech</item>
-        <item>@string/language_abbrName_russian</item>
         <item>@string/language_abbrName_italian</item>
         <item>@string/language_abbrName_japanese</item>
         <item>@string/language_abbrName_portuguese</item>
+        <item>@string/language_abbrName_russian</item>
+        <item>@string/language_abbrName_ukrainian</item>
     </string-array>
 
     <!-- Book Writing Images -->

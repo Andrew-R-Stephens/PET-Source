@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedBehavior
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
@@ -124,7 +125,8 @@ fun NavigationHeaderComposable(
                 style = LocalTypography.current.primary.regular,
                 color = LocalPalette.current.textFamily.primary,
                 textAlign = TextAlign.Center,
-                autoResizeStyle = AutoResizedStyleType.CONSTRAIN
+                autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
+                behavior = AutoResizedBehavior.MARQUEE
             )
 
         }

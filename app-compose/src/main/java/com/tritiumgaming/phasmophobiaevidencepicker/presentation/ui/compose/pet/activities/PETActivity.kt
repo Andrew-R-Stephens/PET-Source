@@ -1,15 +1,14 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.ui.Modifier
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
@@ -30,7 +29,8 @@ class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService,
     ConsentManagementService, AccountManagementService {
 
-    private val globalPreferencesViewModel: GlobalPreferencesViewModel by viewModels { GlobalPreferencesViewModel.Factory }
+    private val globalPreferencesViewModel: GlobalPreferencesViewModel
+        by viewModels { GlobalPreferencesViewModel.Factory }
 
     /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth
@@ -55,9 +55,9 @@ class PETActivity : AppCompatActivity(),
         }
 
     /* Navigation Components */
-    private var drawerLayout: DrawerLayout? = null
+    /*private var drawerLayout: DrawerLayout? = null
     private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
-    private var navigationBarView: NavigationBarView? = null
+    private var navigationBarView: NavigationBarView? = null*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -65,6 +65,14 @@ class PETActivity : AppCompatActivity(),
         enableEdgeToEdge()
 
         auth = Firebase.auth
+
+        //signOut(activity = this@PETActivity)
+        signIn(
+            option = SignInCredentialManager.SignInOptions.SILENT,
+            onSuccess = {
+                Log.d("Firebase",
+                    "Signed in as: ${Firebase.auth.currentUser?.displayName}")
+            })
 
         initializeMobileAdsSdk(this)
         createConsentInformation(this)

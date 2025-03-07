@@ -17,12 +17,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palett
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographiesMap
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class TypographyRepository(
     val dataStore: DataStore<Preferences>,
@@ -55,7 +58,13 @@ class TypographyRepository(
 
     val marketBundles: MutableMap<String, MarketBundle> = mutableMapOf()
 
-    suspend fun fetchAllTypographies() {
+    init {
+        CoroutineScope(Dispatchers.IO).launch {
+            fetchAllTypographies()
+        }
+    }
+
+    private suspend fun fetchAllTypographies() {
         populateTypographiesLocal()
         populateTypographiesRemote()
 

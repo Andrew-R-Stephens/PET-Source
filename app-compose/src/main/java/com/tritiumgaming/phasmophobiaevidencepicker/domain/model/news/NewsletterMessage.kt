@@ -5,6 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.Newsletter
 import com.tritiumgaming.phasmophobiaevidencepicker.util.FontUtils
 
 class NewsletterMessage(
+    val id: String,
     title: String? = "",
     description: String? = "",
     date: String? = ""

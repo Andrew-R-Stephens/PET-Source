@@ -13,6 +13,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +29,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInbox
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessage
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.navigation.NavigationHeaderComposable
@@ -93,11 +96,11 @@ private fun NewsMessageContent(
         mutableIntStateOf(messageID)
     }
 
+    val messages = newsletterViewModel.inboxes.collectAsState()
+    val i: NewsletterInbox = messages.value.values.toList()[inboxID]
+    val m: NewsletterMessage? = i.messages["$messageID"]
     val rememberMessage by remember {
-        mutableStateOf(
-            newsletterViewModel.inboxes.value.values.toList()
-                [rememberInboxID].messages[messageID]
-        )
+        mutableStateOf(m)
     }
 
     Column(
@@ -139,7 +142,7 @@ private fun NewsMessageContent(
                         .fillMaxWidth()
                         .wrapContentHeight(),
                     text = AnnotatedString.Companion.fromHtml(
-                        rememberMessage.title
+                        rememberMessage?.title ?: ""
                     ),
                     style = LocalTypography.current.quaternary.regular,
                     color = LocalPalette.current.textFamily.emphasis,
@@ -152,7 +155,7 @@ private fun NewsMessageContent(
                         .fillMaxWidth()
                         .wrapContentHeight(),
                     text = AnnotatedString.Companion.fromHtml(
-                        rememberMessage.getDateFormatted()
+                        rememberMessage?.getDateFormatted() ?: ""
                     ),
                     style = LocalTypography.current.quaternary.regular,
                     color = LocalPalette.current.textFamily.body,
@@ -171,7 +174,7 @@ private fun NewsMessageContent(
                 .padding(8.dp)
                 .verticalScroll(rememberScrollState()),
             text = AnnotatedString.Companion.fromHtml(
-                rememberMessage.description
+                rememberMessage?.description ?: ""
             ),
             style = LocalTypography.current.quaternary.bold,
             color = LocalPalette.current.textFamily.body,

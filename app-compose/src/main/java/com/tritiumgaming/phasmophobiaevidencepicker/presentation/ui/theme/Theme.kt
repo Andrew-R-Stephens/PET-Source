@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme
 
 import android.app.Activity
+import android.view.ViewGroup
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -10,6 +11,8 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ExtendedPalette
@@ -36,7 +39,7 @@ fun SelectiveTheme(
         )
     }
 
-    /*val view = LocalView.current
+    val view = LocalView.current
     if (!view.isInEditMode) {
 
         SideEffect {
@@ -49,9 +52,10 @@ fun SelectiveTheme(
                 palette.extrasFamily.isLightMode
             WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars =
                 palette.extrasFamily.isLightMode
+
         }
 
-    }*/
+    }
 
 }
 

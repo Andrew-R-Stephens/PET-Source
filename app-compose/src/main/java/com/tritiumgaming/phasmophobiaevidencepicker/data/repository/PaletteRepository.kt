@@ -18,12 +18,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketPa
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalDefaultPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalettesMap
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class PaletteRepository(
     val dataStore: DataStore<Preferences>,
@@ -57,14 +60,21 @@ class PaletteRepository(
 
     val marketBundles: MutableMap<String, MarketBundle> = mutableMapOf()
 
-    suspend fun fetchAllThemes() {
+    init {
+        CoroutineScope(Dispatchers.IO).launch {
+            fetchAllThemes()
+            fetchAllBundles()
+        }
+    }
+
+    private suspend fun fetchAllThemes() {
         populatePalettesLocal()
         populatePalettesRemote()
 
         unifyRemoteWithLocalPalettes()
     }
 
-    suspend fun fetchAllBundles() {
+    private suspend fun fetchAllBundles() {
         populateBundlesRemote()
 
         marketBundles.toList()

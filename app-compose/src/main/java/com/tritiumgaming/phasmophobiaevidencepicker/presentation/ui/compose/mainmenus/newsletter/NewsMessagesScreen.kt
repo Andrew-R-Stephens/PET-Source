@@ -14,7 +14,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -23,22 +24,29 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.integerArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.FontScaling
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -46,6 +54,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessage
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedBehavior
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.NewsAlert
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.admob.AdmobBanner
@@ -112,14 +122,13 @@ private fun NewsMessagesContent(
         )
     }
 
-    val rememberMessages by remember {
-        mutableStateOf(
-            rememberInbox?.messages ?: listOf()
-        )
+    var rememberMessages by remember {
+        mutableStateOf(rememberInbox.messages.entries.toList())
     }
 
+    val lastReadDateState by rememberInbox.lastReadDate.collectAsState()
     var rememberLastReadDate by remember {
-        mutableLongStateOf(rememberInbox?.lastReadDate ?: 0L)
+        mutableLongStateOf(lastReadDateState)
     }
 
     Column(
@@ -141,7 +150,7 @@ private fun NewsMessagesContent(
         HorizontalDivider()
 
         var rememberUpToDate by remember {
-            mutableStateOf(rememberInbox?.compareDates() == true)
+            mutableStateOf(rememberInbox.compareDates())
         }
 
         Box(
@@ -162,9 +171,9 @@ private fun NewsMessagesContent(
                 shape = RoundedCornerShape(size = 8.dp),
                 enabled = rememberUpToDate,
                 onClick = {
-                    rememberInbox?.let{
+                    rememberInbox.let{
                         it.updateLastReadDate()
-                        rememberLastReadDate = it.lastReadDate
+                        rememberLastReadDate = it.lastReadDate.value
                         rememberUpToDate = it.compareDates() == true
                     }
                 }
@@ -182,38 +191,46 @@ private fun NewsMessagesContent(
 
         }
 
+        val rememberListState = rememberLazyListState()
+
         LazyColumn(
             modifier = Modifier
                 .weight(1f),
             verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+            state = rememberListState
         ) {
 
-            itemsIndexed(rememberMessages) {
-                messageIndex: Int, message: NewsletterMessage ->
+            items(rememberMessages) {
+
+                var rememberSharedFontSize by remember {
+                    mutableStateOf(AutoResizedStyleType.CONSTRAIN.max)
+                }
 
                 val rememberMessage by remember {
-                    mutableStateOf(message)
+                    mutableStateOf(it)
                 }
 
-                val rememberMessageID by remember {
-                    mutableIntStateOf(messageIndex)
-                }
-
-                val rememberDateDifference by remember {
-                    mutableStateOf(
-                        (rememberInbox?.compareDate(rememberMessages[rememberMessageID].date) ?: 0) > 0
+                val rememberDate by remember {
+                    mutableIntStateOf(
+                        rememberInbox.compareDate(rememberMessage.value.date)
                     )
                 }
 
-                Toast.makeText(LocalContext.current, "$rememberDateDifference", Toast.LENGTH_SHORT).show()
+                Toast.makeText(LocalContext.current, "$rememberDate", Toast.LENGTH_SHORT).show()
 
                 MessageCard(
-                    title = rememberMessage.title,
-                    isActive = rememberDateDifference,
+                    title = rememberMessage.value.title,
+                    isActive = rememberDate == 1,
                     onClick = {
                         navController.navigate(
-                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/${rememberInboxID}/${rememberMessageID}")
-                        rememberInbox?.updateLastReadDate(rememberMessage)
+                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/${rememberInboxID}/${rememberMessage.value.id}")
+                        rememberInbox.updateLastReadDate(rememberMessage.value)
+                    },
+                    textSize = rememberSharedFontSize,
+                    onFontSizeChanged = {
+                        if(it.value < rememberSharedFontSize.value) {
+                            rememberSharedFontSize = it
+                        }
                     }
                 )
 
@@ -230,7 +247,9 @@ private fun NewsMessagesContent(
 private fun MessageCard(
     title: String = "temp",
     isActive: Boolean = false,
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    textSize: TextUnit = 12.sp,
+    onFontSizeChanged: (TextUnit) -> Unit = {}
 ) {
 
     val rememberIsActive by remember {
@@ -265,8 +284,14 @@ private fun MessageCard(
                     .weight(1f),
                 text = title,
                 style = LocalTypography.current.primary.regular,
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center
+                color = if(rememberIsActive) {
+                    LocalPalette.current.textFamily.primary
+                } else { Color.Green },
+                textAlign = TextAlign.Center,
+                autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
+                maxFontSize = textSize,
+                behavior = AutoResizedBehavior.MARQUEE,
+                onFontSizeChanged = onFontSizeChanged
             )
 
         }

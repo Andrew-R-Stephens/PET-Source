@@ -1,14 +1,10 @@
-//import org.gradle.kotlin.dsl.android
 
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.android.application)
 
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.compose)
     alias(libs.plugins.jetbrains.kotlin.serialization)
-
-    /*alias(libs.plugins.io.realm.kotlin)*/
 
     alias(libs.plugins.gms.services)
     alias(libs.plugins.firebase.crashlytics)
@@ -20,8 +16,6 @@ android {
     namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
     compileSdk = 35
 
-    //buildToolsVersion = "34.0.0"
-
     /*
      *  Compose Options
      *  ----------------
@@ -29,10 +23,6 @@ android {
     buildFeatures {
         compose = true
     }
-
-    /*composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.15"
-    }*/
 
     /* ---------------- */
 
@@ -82,20 +72,10 @@ android {
         debug {
             isMinifyEnabled = false
             isShrinkResources = false
-            /*proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            // PLAYCORE
-            proguardFile("$playCoreDirectory/proguard/common.pgcfg")
-            proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")*/
         }
         getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
-            /*proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            // PLAYCORE
-            proguardFile("$playCoreDirectory/proguard/common.pgcfg")
-            proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")*/
         }
     }
 
@@ -107,25 +87,6 @@ android {
         jvmTarget = "17"
     }
     buildToolsVersion = "35.0.0"
-
-    /*lint {
-        disable.add("RestrictedApi")
-    }*/
-
-    /*sourceSets {
-        getByName("main") {
-            java.srcDir("src/main/java")
-            java.srcDir("src/main/kotlin")
-            // Potential fix for librealmc
-            jniLibs.srcDir("src/main/jniLibs")
-        }
-    }*/
-
-    // Potential fix for librealmc
-    /*packaging {
-        resources.excludes.add("lib/arm64-v8a/librealm-jni.so")
-    }*/
-
 
 }
 
@@ -171,7 +132,7 @@ dependencies {
     implementation(libs.android.playServices.auth)
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.playServicesAuth)
-    implementation(libs.firebase.ui.auth)
+    //implementation(libs.firebase.ui.auth)
     //implementation(libs.firebase.authKtx)
     // ----------------------------------
 

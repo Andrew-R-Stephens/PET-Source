@@ -54,25 +54,27 @@
     <!-- Languages -->
     <string name="language_fullName_chinese_s" translatable="false">Chinese (Simplified)</string>
     <string name="language_fullName_czech" translatable="false">Czech</string>
-    <string name="language_fullName_english" translatable="false">English</string>
-    <string name="language_fullName_french" translatable="false">Français</string>
     <string name="language_fullName_german" translatable="false">Deutsch</string>
+    <string name="language_fullName_english" translatable="false">English</string>
+    <string name="language_fullName_spanish" translatable="false">Español</string>
+    <string name="language_fullName_french" translatable="false">Français</string>
     <string name="language_fullName_italian" translatable="false">Italian</string>
     <string name="language_fullName_japanese" translatable="false">Japanese</string>
     <string name="language_fullName_portuguese" translatable="false">Portuguese</string>
     <string name="language_fullName_russian" translatable="false">Russian</string>
-    <string name="language_fullName_spanish" translatable="false">Español</string>
+    <string name="language_fullName_ukrainian" translatable="false">Ukrainian</string>
 
     <string name="language_abbrName_chinese_simplified" translatable="false">zh</string>
     <string name="language_abbrName_czech" translatable="false">cs</string>
     <string name="language_abbrName_english" translatable="false">en</string>
+    <string name="language_abbrName_spanish" translatable="false">es</string>
     <string name="language_abbrName_french" translatable="false">fr</string>
     <string name="language_abbrName_german" translatable="false">de</string>
     <string name="language_abbrName_italian" translatable="false">it</string>
     <string name="language_abbrName_japanese" translatable="false">ja</string>
     <string name="language_abbrName_portuguese" translatable="false">pt</string>
     <string name="language_abbrName_russian" translatable="false">ru</string>
-    <string name="language_abbrName_spanish" translatable="false">es</string>
+    <string name="language_abbrName_ukrainian" translatable="false">uk</string>
 
     <!--
         ABOUT FRAGMENT

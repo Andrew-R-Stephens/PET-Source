@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -14,6 +15,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -28,7 +30,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.isUnspecified
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
@@ -128,18 +129,28 @@ fun AutoResizedText(
     style: TextStyle = MaterialTheme.typography.bodyLarge,
     borderStyle: TextStyle? = null,
     autoResizeStyle: AutoResizedStyleType = AutoResizedStyleType.CONSTRAIN,
+    minFontSize: TextUnit = autoResizeStyle.min,
+    maxFontSize: TextUnit = autoResizeStyle.max,
+    stepSize: Float = autoResizeStyle.step,
     textCase: TextCase = TextCase.Unspecified,
     color: Color = Color.Black,
     textAlign: TextAlign = TextAlign.Unspecified,
-    constrainWidth: Boolean = true,
-    constrainHeight: Boolean = true
+    behavior: AutoResizedBehavior = AutoResizedBehavior.DEFAULT,
+    constrainWidth: Boolean = behavior != AutoResizedBehavior.MARQUEE,
+    constrainHeight: Boolean = true,
+    onFontSizeChanged: (TextUnit) -> Unit = {}
 ) {
+
+    val rememberMaxFontSize by remember { mutableStateOf(maxFontSize) }
 
     Box(
         modifier = containerModifier,
         contentAlignment = Alignment.Center
     ) {
-        
+
+        val contentModifier = contentModifier
+            .align(Alignment.Center)
+
         borderStyle?.let {
 
             AutoResizedText(
@@ -149,11 +160,13 @@ fun AutoResizedText(
                 style = it,
                 textCase = textCase,
                 textAlign = textAlign,
-                minFontSize = autoResizeStyle.min,
-                maxFontSize = autoResizeStyle.max,
-                stepSize = autoResizeStyle.step,
+                minFontSize = minFontSize,
+                maxFontSize = rememberMaxFontSize,
+                stepSize = stepSize,
+                behavior = behavior,
                 constrainWidth = constrainWidth,
-                constrainHeight = constrainHeight
+                constrainHeight = constrainHeight,
+                onFontSizeChanged = onFontSizeChanged
             )
 
         }
@@ -165,11 +178,13 @@ fun AutoResizedText(
             textCase = textCase,
             color = color,
             textAlign = textAlign,
-            minFontSize = autoResizeStyle.min,
-            maxFontSize = autoResizeStyle.max,
-            stepSize = autoResizeStyle.step,
+            minFontSize = minFontSize,
+            maxFontSize = rememberMaxFontSize,
+            stepSize = stepSize,
+            behavior = behavior,
             constrainWidth = constrainWidth,
-            constrainHeight = constrainHeight
+            constrainHeight = constrainHeight,
+            onFontSizeChanged = onFontSizeChanged
         )
 
     }
@@ -188,11 +203,18 @@ private fun AutoResizedText(
     minFontSize: TextUnit = 1.sp,
     maxFontSize: TextUnit = style.fontSize,
     stepSize: Float = 5f,
-    constrainWidth: Boolean = true,
-    constrainHeight: Boolean = true
+    behavior: AutoResizedBehavior = AutoResizedBehavior.DEFAULT,
+    constrainWidth: Boolean = behavior != AutoResizedBehavior.MARQUEE,
+    constrainHeight: Boolean = true,
+    onFontSizeChanged: (TextUnit) -> Unit = {}
 ) {
+    val minFontSize =
+        if( minFontSize.value > maxFontSize.value) { maxFontSize } else { minFontSize }
+
     var currentTextSize by remember { mutableStateOf(maxFontSize) }
     var shouldDraw by remember { mutableStateOf(false) }
+    var shouldMarquee by remember { mutableStateOf(false) }
+    var maxLines by remember { mutableIntStateOf(1) }
 
     val convertedText = TextCase.convertCase(text, textCase)
 
@@ -201,7 +223,11 @@ private fun AutoResizedText(
             .wrapContentHeight(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ){
-        var textModifier = modifier
+        val textModifier = if(shouldMarquee) {
+            modifier.basicMarquee(Int.MAX_VALUE)
+        } else {
+            modifier
+        }
 
         Text(
             modifier = textModifier
@@ -213,28 +239,42 @@ private fun AutoResizedText(
             textAlign = textAlign,
             style = style,
             color = color,
-            maxLines = 1,
+            maxLines = maxLines,
             softWrap = false,
             onTextLayout = { result ->
-                if (!shouldDraw && (
-                        ((constrainWidth && result.didOverflowWidth)
-                            || (constrainHeight && result.didOverflowHeight))
-                    )) {
 
-                    if (maxFontSize.isUnspecified) {
-                        currentTextSize = 12.sp
-                    }
+                val requiresWidth = constrainWidth && result.didOverflowWidth
+                val requiresHeight = constrainHeight && result.didOverflowHeight
+
+                if (requiresWidth || requiresHeight ||
+                    (result.didOverflowWidth && currentTextSize.value >= minFontSize.value)) {
 
                     val decrement = (currentTextSize.value * .25f).coerceAtLeast(stepSize)
-                    currentTextSize = (currentTextSize.value - decrement).sp
+                    var textSize = (currentTextSize.value - decrement).sp
 
                     if(currentTextSize.value < minFontSize.value) {
-                        currentTextSize = minFontSize
+                        textSize = minFontSize
                     }
 
+                    currentTextSize = textSize
+
+                    onFontSizeChanged(currentTextSize)
+
                 } else {
-                    if(!constrainWidth && currentTextSize.value < minFontSize.value) {
-                        textModifier = modifier.basicMarquee(Int.MAX_VALUE)
+
+                    if(result.didOverflowWidth) {
+
+                        if(currentTextSize.value >= minFontSize.value) {
+                            currentTextSize = minFontSize
+
+                            onFontSizeChanged(currentTextSize)
+                        }
+
+                        when(behavior) {
+                            AutoResizedBehavior.DEFAULT -> {}
+                            AutoResizedBehavior.MARQUEE -> shouldMarquee = true
+                            AutoResizedBehavior.MULTI_LINE -> maxLines += 1
+                        }
                     }
 
                     shouldDraw = true
@@ -250,5 +290,11 @@ enum class AutoResizedStyleType(
     val step: Float = 1f,
 ) {
     CONSTRAIN(18.sp, 50.sp, 5f),
-    SQUEEZE(1.sp, 200.sp, 5f),
+    SQUEEZE(10.sp, 200.sp, 5f),
+}
+
+enum class AutoResizedBehavior {
+    DEFAULT,
+    MARQUEE,
+    MULTI_LINE,
 }

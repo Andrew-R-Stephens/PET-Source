@@ -1,8 +1,5 @@
 
-
 <img width="100%" height="100%" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet-repo-profile_thin.png" alt=""/>
-
-
 
 <div align='center'><h1>Phasmophobia Evidence Tool</h1></div>
 
@@ -69,10 +66,12 @@
   &emsp;<img src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet_migration_flow_stage3.png" alt=""/>
   <blockquote>P.E.T. has become kotlin-first! Major code migration started in May 2024 and finished in July 2024. Planned migration to KMP will commence after confirmation of build stability and feature refinement.</blockquote>
   <ul>
-    <li><h5>Refactor from Java to Kotlin :heavy_check_mark:</h5></li>
-    <li><h5>Migrate from View to Compose :heavy_check_mark:</h5></li>
-    <li><h5>Implement KMP and build interfaces :heavy_check_mark:</h5></li>
-    <li><h5>Begin fixes for IOS/SwiftUI :heavy_check_mark:</h5></li>
+    <li><h5>Refactor from Java to Kotlin ✔️</h5></li>
+    <li><h5>Migrate from View to Compose ♻️</h5></li>
+    <li><h5>Implement KMP and build shared interfaces 🔳</h5></li>
+    <li><h5>Begin fixes for IOS/SwiftUI 🔳</h5></li>
+    <li><h5>Test for iOS 🔳</h5></li>
+    <li><h5>Publish on iOS App Store 🔳</h5></li>
   </ul>
 </div>
 
@@ -87,6 +86,8 @@
 <div align='left' style="display:float">
   <h3>Internal Software Solutions</h3>
     <a href="https://github.com/Andrew-R-Stephens/PET-MapMaker">P.E.T. Map Maker</a>
+    <blockquote>Assists with the development of interactive maps.</blockquote>
+    <div><a href="https://github.com/Andrew-R-Stephens/PET-MapMaker"><img width=480 title="PET Map Maker Demo" src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/PET_Map_Maker_Demo.png" alt="screenshot" /></a></div>
 </div>
 
 <br>

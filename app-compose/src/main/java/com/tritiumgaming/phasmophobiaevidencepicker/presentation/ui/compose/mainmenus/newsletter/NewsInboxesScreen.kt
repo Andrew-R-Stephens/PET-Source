@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -33,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedBehavior
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.NewsAlert
@@ -184,12 +186,14 @@ private fun InboxCard(
 
             AutoResizedText(
                 containerModifier = Modifier
-                    .weight(1f),
+                    .weight(1f)
+                    .height(36.dp),
                 text = stringResource(title),
                 style = LocalTypography.current.primary.regular,
                 color = LocalPalette.current.textFamily.primary,
                 textAlign = TextAlign.Center,
-                autoResizeStyle = AutoResizedStyleType.CONSTRAIN
+                autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
+                behavior = AutoResizedBehavior.MARQUEE
             )
 
         }

@@ -36,8 +36,9 @@ class NewsletterHandler(
     }
 
     private var inboxes = repository.inboxes
-    fun getInbox(inboxType: NewsletterInboxType.InboxType): NewsletterInbox? {
-        return inboxes.value[inboxType]
+    fun getInbox(inboxType: NewsletterInboxType.InboxType): NewsletterInbox {
+        return inboxes.value[inboxType] ?:
+            NewsletterInbox(NewsletterInboxType.NewsletterInboxDefaultType.Default.asInboxType())
     }
 
     private var _lastReadDateGeneral = MutableStateFlow(0L)

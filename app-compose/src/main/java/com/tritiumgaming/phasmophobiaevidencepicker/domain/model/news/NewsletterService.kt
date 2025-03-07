@@ -43,12 +43,14 @@ class NewsletterService(
         try {
             val dao = client.get(inbox.inboxType.url).body<NewsletterInboxDAO>()
 
-            dao.channel.items?.forEach {
+            dao.channel.items?.forEachIndexed {
+                index: Int, item: NewsletterInboxDAO.NewsletterChannel.NewsletterMessage ->
                 inbox.addMessage(
                     NewsletterMessage(
-                        title = it.title,
-                        description = it.description,
-                        date = it.pubDate
+                        id = item.id ?: "$index",
+                        title = item.title,
+                        description = item.description,
+                        date = item.pubDate
                     )
                 )
             }
@@ -82,6 +84,8 @@ class NewsletterService(
             @Serializable
             data class NewsletterMessage(
 
+                @XmlSerialName("id") @XmlElement
+                val id: String? = null,
                 @XmlSerialName("title") @XmlElement
                 val title: String? = null,
                 @XmlSerialName("pubDate") @XmlElement
@@ -92,7 +96,7 @@ class NewsletterService(
             ) {
 
                 override fun toString(): String {
-                    return "\n$title | $pubDate\n$description"
+                    return "\n$title | $id | $pubDate\n$description"
                 }
 
             }

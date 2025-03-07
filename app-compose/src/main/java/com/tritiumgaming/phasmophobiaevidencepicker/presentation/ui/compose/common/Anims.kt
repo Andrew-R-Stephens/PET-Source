@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.tritiumgaming.phasmophobiaevidencepicker.R
@@ -46,7 +47,8 @@ fun NewsAlert(
 
         baseDrawableId?.let {
             Image(
-                painterResource(id = baseDrawableId),
+                modifier = Modifier.fillMaxSize(),
+                painter = painterResource(id = baseDrawableId),
                 contentDescription = "Background Image"
             )
         }

@@ -104,11 +104,11 @@ class NewsletterRepository(
     }
 
     private fun setInboxLastReadDate(inboxType: InboxType, time: Long) {
-        getInbox(inboxType)?.lastReadDate = time
+        getInbox(inboxType)?.setLastReadDate(time)
     }
 
     private fun setInboxLastReadDate(inboxType: InboxType): Long? {
-        return getInbox(inboxType)?.lastReadDate
+        return getInbox(inboxType)?.lastReadDate?.value
     }
 
     fun compareAllInboxDates() {
@@ -194,6 +194,20 @@ class NewsletterRepository(
 
             }
 
+
+        }
+
+        enum class NewsletterInboxDefaultType(
+            val id: Int,
+            val title: Int,
+            val url: String,
+            @DrawableRes val icon: Int
+        ) {
+            Default(0, 0, "", 0);
+
+            fun asInboxType(): NewsletterInboxType {
+                return NewsletterInboxType(id, title, url, icon)
+            }
         }
 
     }

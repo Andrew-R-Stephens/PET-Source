@@ -2,10 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mai
 
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,15 +16,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.material3.Divider
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,8 +40,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedBehavior
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.DropdownClickPair
@@ -61,13 +52,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.comm
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.account.AccountIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.MainMenuScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.SignInCredentialManager
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MainMenuViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel
 import java.util.Locale
 
@@ -162,7 +154,8 @@ private fun StartContent(
                     ),
                     color = LocalPalette.current.surface.onColor
                 ),
-                autoResizeStyle = AutoResizedStyleType.SQUEEZE
+                autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
+                behavior = AutoResizedBehavior.MARQUEE
             )
 
             Column(
@@ -171,11 +164,20 @@ private fun StartContent(
                 verticalArrangement = Arrangement.spacedBy(32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                val activity = (LocalContext.current) as PETActivity
+
                 StartButton(
                     modifier = Modifier
                         .fillMaxWidth(.75f)
                 ) {
-                    navController.navigate(NavRoute.NAVIGATION_INVESTIGATION.route)
+
+                    activity.signIn(
+                        activity,
+                        SignInCredentialManager.SignInOptions.GOOGLE,
+                        onSuccess = {
+                            //activity.recreate()
+                        }
+                    )
                 }
 
                 LanguageButton(
@@ -238,7 +240,8 @@ private fun StartButton(
     Box(
         modifier = modifier
             .height(48.dp)
-            .clickable { onClick() }
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
     ) {
 
         Image(
@@ -249,27 +252,18 @@ private fun StartButton(
             contentScale = ContentScale.FillBounds
         )
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-
-            AutoResizedText(
-                containerModifier = Modifier
-                    .fillMaxWidth(.9f)
-                    .wrapContentHeight(Alignment.CenterVertically),
-                text = stringResource(R.string.titlescreen_button),
-                textAlign = TextAlign.Center,
-                constrainWidth = true,
-                constrainHeight = true,
-                color = LocalPalette.current.textFamily.body,
-                style = LocalTypography.current.primary.regular
-            )
-
-        }
+        AutoResizedText(
+            containerModifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(Alignment.CenterVertically),
+            contentModifier = Modifier
+                .padding(4.dp),
+            text = stringResource(R.string.titlescreen_button),
+            textAlign = TextAlign.Center,
+            color = LocalPalette.current.textFamily.body,
+            style = LocalTypography.current.primary.regular,
+            autoResizeStyle = AutoResizedStyleType.SQUEEZE
+        )
 
     }
 
@@ -318,9 +312,7 @@ private fun HeaderNavBar(
     )
 
     val accountIcon: @Composable () -> Unit = {
-        AccountIcon(
-            authUser = FirestoreUser.currentFirebaseUser
-        )
+        AccountIcon()
     }
 
     IconDropdownMenu(

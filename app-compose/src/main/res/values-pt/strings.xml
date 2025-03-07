@@ -77,7 +77,7 @@
     <string name="theme_typography_clean">Limpo</string>
     <string name="messagecenter_inboxestitle_label">Centro de mensagens</string>
     <string name="messagecenter_inbox_general">Noticias gerais</string>
-    <string name="messagecenter_inbox_pet">BICHO DE ESTIMAÇÃO. Registro de alterações</string>
+    <string name="messagecenter_inbox_pet">Registo de alterações de P.E.T.</string>
     <string name="messagecenter_inbox_phas">Log de alterações da Fasmofobia</string>
 
     <!-- Solo/Team Data -->
