@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Page Details -->
+
+    <string name="toast_discardchanges">Alterações descartadas</string>
+    <string name="general_evidence_button">Evidência</string>
+    <string name="general_maps_button">Mapas</string>
+    <string name="general_tasks_button">Tarefas</string>
+    <string name="general_codex_button">Códice</string>
+    <string name="general_evidence_reset_button">Reiniciar</string>
+
+    <!-- Page Details -->
+
+    <string name="titlescreen_beta_label">Beta</string>
+    <string name="titlescreen_description">A melhor ferramenta de evidência</string>
+    <string name="titlescreen_button">Comece a caçar</string>
+    <string name="titlescreen_languages_label">Selecione o idioma</string>
+
+    <!-- Page Details -->
+
+    <string name="review_requesttitle">Por favor, considere a classificação do PET!</string>
+    <string name="review_accept">Claro!</string>
+    <string name="review_decline">Não, obrigado</string>
+
+    <!-- Page Details -->
+
+    <string name="aboutinfo_title_about">Sobre</string>
+    <string name="aboutinfo_version">Versão</string>
+    <string name="aboutinfo_aboutapp_info"><![CDATA[<a><font color=#CC3C3C>Phasmophobia</font> é um jogo de terror exclusivo desenvolvido pela <font color=#CC3C3C>Kinetic Games</font>.</a><br><br><a><font color=#CC3C3C>P.E.T.</font> é uma ferramenta complementar não oficial. atuando tanto como guia para novos jogadores quanto como assistente para os veteranos.</a><br><br><a><font color=#CC3C3C>Muito obrigado por usar o P.E.T.!</font></a>]]></string>
+    <string name="aboutinfo_developerinfo_title">Informações do desenvolvedor</string>
+    <string name="aboutinfo_developerinfo_developer">Desenvolvedor</string>
+    <string name="aboutinfo_developerinfo_contact">Contato</string>
+    <string name="aboutinfo_joindiscord">Junte-se à discórdia</string>
+    <string name="aboutinfo_specialthanks_title">Agradecimentos especiais</string>
+
+    <!-- Page Details -->
+
+    <string name="settings_title">Configurações</string>
+    <string name="settings_confirm">confirme</string>
+    <string name="settings_cancel">Cancelar</string>
+    <string name="settings_generalsettings">Em geral</string>
+    <string name="settings_extrasettings">Configurações extras</string>
+    <string name="settings_appearancesettings">Aparência</string>
+    <string name="settings_fontstylesettings">Estilo de fonte</string>
+    <string name="settings_adsconsentcontrolsettings">Configurações do GDPR</string>
+    <string name="settings_adsconsentcontrolsettings_button">Editar</string>
+    <string name="settings_screenalwayson">Mantenha sempre a tela ligada</string>
+    <string name="settings_networktitle">Permitir que o Message Center use dados móveis</string>
+    <string name="settings_huntwarningflashtimeout">Tempo limite do flash de aviso de caça</string>
+    <string name="settings_huntwarningflashtimeout_never">Nunca limite de tempo</string>
+    <string name="settings_enableLeftHandSupport">Ativar modo canhoto</string>
+    <string name="settings_enablehuntaudioqueue">Ativar aviso de áudio de busca</string>
+    <string name="settings_enableGhostReorder">Habilitar reordenação da lista fantasma</string>
+    <string name="settings_colorblindnessmode_title">Modo daltônico</string>
+    <string name="settings_colorblindnessmode_note">(Entrará em vigor após sair das configurações)</string>
+
+    <!-- Colorblindness Types -->
+
+    <string name="settings_colortheme_title">Pele</string>
+    <string name="settings_colortheme_note">(A seleção de daltonismo tem precedência)</string>
+    <string name="settings_colorblindnessmode_normal">Nenhum</string>
+    <string name="settings_colorblindnessmode_monochromacy">Acromatopsia</string>
+    <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopia</string>
+    <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
+    <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
+
+    <!-- Font-Style Types -->
+
+    <string name="settings_fontstyle_classic">P.E.T. Clássico</string>
+
+    <!-- Page Details -->
+
+    <string name="settings_fontstyle_android">Android</string>
+    <string name="settings_fontstyle_journal">Diária</string>
+    <string name="settings_fontstyle_brick">Tijolo</string>
+    <string name="settings_fontstyle_clean">Limpo</string>
+    <string name="messagecenter_inboxestitle_label">Centro de mensagens</string>
+    <string name="messagecenter_inbox_general">Noticias gerais</string>
+    <string name="messagecenter_inbox_pet">BICHO DE ESTIMAÇÃO. Registro de alterações</string>
+    <string name="messagecenter_inbox_phas">Log de alterações da Fasmofobia</string>
+
+    <!-- Solo/Team Data -->
+
+    <string name="investigation_your_sanity_level_title">Seu nível de sanidade</string>
+    <string name="investigation_timer_label">Tempo de preparação:</string>
+    <string name="investigation_timer_difficulty_default">Nenhum</string>
+    <string name="investigation_timer_difficulty_1">Amador</string>
+    <string name="investigation_timer_difficulty_2">Intermediário</string>
+    <string name="investigation_timer_difficulty_3">Profissional</string>
+    <string name="investigation_timer_difficulty_4">Pesadelo</string>
+    <string name="investigation_timer_difficulty_5">Insanidade</string>
+    <string name="investigation_timer_difficulty_label">Dificuldade:</string>
+    <string name="investigation_timer_maplabel">Mapa:</string>
+    <string name="investigation_timer_actionlabel">AÇÃO</string>
+    <string name="investigation_timer_setuplabel">CONFIGURAR</string>
+    <string name="investigation_sanity_huntwarn">AVISO DE CAÇA</string>
+    <string name="investigation_sanitymeter_title">Nível máximo de sanidade</string>
+    <string name="investigation_section_title_ghosts">Fantasmas</string>
+    <string name="investigation_section_title_evidence">Evidência</string>
+
+    <!-- Page Details -->
+
+    <string name="mapview_instruction_zoom">Zoom: aperte dois dedos</string>
+    <string name="mapview_instruction_pan">Pan: arraste um dedo</string>
+
+    <!-- Building Floor Names -->
+
+    <string name="map_floor_name_ground">o Rés-do-chão</string>
+    <string name="map_floor_name_first">Primeiro andar</string>
+    <string name="map_floor_name_second">Segundo andar</string>
+    <string name="map_floor_name_third">Terceiro andar</string>
+    <string name="map_floor_name_fifth">Quinto andar</string>
+    <string name="map_floor_name_sixth">Sexto andar</string>
+    <string name="map_floor_name_seventh">Sétimo andar</string>
+    <string name="map_floor_name_eighth">Oito andares</string>
+    <string name="map_floor_name_ninth">Nono andar</string>
+    <string name="map_floor_name_tenth">Décimo andar</string>
+    <string name="map_floor_name_attic">Sótão</string>
+    <string name="map_floor_name_basement">Porão</string>
+
+    <!-- Page Details -->
+
+    <string name="map_info_help_title">Ajuda do mapa interativo</string>
+    <string name="map_info_help_pan">Desloque um mapa com um dedo.</string>
+    <string name="map_info_help_zoom">Aumente e diminua o zoom de um mapa apertando ou afastando dois dedos.</string>
+    <string name="map_info_help_click">Toque com um dedo em qualquer mapa para obter o nome e o limite de qualquer sala.</string>
+    <string name="map_info_help_rooms">Selecione uma sala no menu suspenso Salas para mostrar a localização e os limites dessa sala.</string>
+    <string name="map_info_help_floors">Itere entre andares para visualizar e interagir com ele.</string>
+    <string name="map_info_help_pois">As posições das caixas de fusíveis e dos itens amaldiçoados são indicadas por ícones relevantes.</string>
+    <string name="objectives_title_optional_objectives">Objetivos Opcionais</string>
+    <string name="objectives_title_investigation_debrief">Resumo da investigação</string>
+    <string name="objectives_title_ghost_name">Nome do Fantasma:</string>
+    <string name="objectives_ghostname_note">Digite o nome do fantasma aqui</string>
+    <string name="objectives_title_response">Responde a pessoas que são:</string>
+    <string name="objectives_title_optional_objective_1">- OBJETIVO 1</string>
+    <string name="objectives_title_optional_objective_2">- OBJETIVO 2</string>
+    <string name="objectives_title_optional_objective_3">- OBJETIVO 3</string>
+    <string name="objectives_title_response_alone">Sozinho</string>
+    <string name="objectives_title_response_everyone">Agrupado</string>
+
+    <!-- Objective Description -->
+
+    <string name="objective_info_ghostevent">Testemunhe um evento fantasma</string>
+    <string name="objective_info_ghostphotograph">Fotografe o Fantasma</string>
+    <string name="objective_info_emfreader">Obtenha qualquer atividade do EMF Reader</string>
+    <string name="objective_info_motionsensor">Obtenha atividade do sensor de movimento</string>
+    <string name="objective_info_smudgestick">Smudge Stick a localização do Fantasma</string>
+    <string name="objective_info_crucifix">Evite uma caçada com o Crucifixo</string>
+    <string name="objective_info_salt">Faça o Fantasma caminhar pelo Sal</string>
+    <string name="objective_info_escapehunt">Fuja do fantasma enquanto ele caça</string>
+    <string name="objective_info_repelwithsmudge">Repelir o fantasma caçador com um bastão de manchas </string>
+    <string name="objective_info_extinguishcandle">Faça o fantasma apagar uma vela</string>
+    <string name="objective_info_lowsanity">Obtenha uma sanidade média da equipe de 25\% oou menos</string>
+
+    <!-- All Entries -->
+
+    <!-- Personal Statements -->
+
+    <string name="spiritbox_entry_q0_3">Maria Sangrenta.</string>
+    <string name="spiritbox_entry_q0_5">Estou com medo!</string>
+    <string name="spiritbox_entry_q0_6">Esconder!</string>
+    <string name="spiritbox_entry_q0_8">Pânico!</string>
+    <string name="spiritbox_entry_q0_9">Correr!</string>
+
+    <!-- Preferential Questions -->
+
+    <string name="spiritbox_entry_q1_1">Você está com raiva?</string>
+    <string name="spiritbox_entry_q1_2">Você está feliz?</string>
+    <string name="spiritbox_entry_q1_3">Você é amigável?</string>
+    <string name="spiritbox_entry_q1_6">Você quer nos machucar?</string>
+    <string name="spiritbox_entry_q1_7">Você nos quer aqui?</string>
+
+    <!-- Name Questions -->
+
+    <string name="spiritbox_entry_q2_1">Qual o seu nome?</string>
+
+    <!-- Age Questions -->
+
+    <string name="spiritbox_entry_q3_5">Quantos anos você tem?</string>
+
+    <!-- Location Questions -->
+
+    <string name="spiritbox_entry_q5_8">Onde você está?</string>
+    <string name="spiritbox_entry_q5_1">Você está aqui?</string>
+    <string name="spiritbox_entry_q5_4">Você é o único aqui?</string>
+    <string name="spiritbox_entry_q5_7">Onde você está?</string>
+
+    <!-- Interaction Questions -->
+
+    <string name="spiritbox_entry_q0_2">Ataque-nos!</string>
+    <string name="spiritbox_entry_q6_5">Você pode falar conosco?</string>
+    <string name="spiritbox_entry_q6_7">Faça alguma coisa.</string>
+    <string name="spiritbox_entry_q6_8">Dê-nos um sinal!</string>
+    <string name="spiritbox_entry_q0_7">Cace-nos!</string>
+    <string name="spiritbox_entry_q6_16">Por quê você está aqui?</string>
+    <string name="spiritbox_entry_q6_17">Fazer barulho.</string>
+    <string name="spiritbox_entry_q6_18">Abra a porta.</string>
+    <string name="spiritbox_entry_q6_9">Mostre-se!</string>
+    <string name="spiritbox_entry_q6_12">Jogue alguma coisa.</string>
+    <string name="spiritbox_entry_q6_13">Apague a luz.</string>
+    <string name="spiritbox_entry_q6_14">Acenda a luz.</string>
+
+    <!-- General Questions -->
+
+    <string name="spiritbox_entry_q7_2">Olá?</string>
+    <string name="spiritbox_entry_q7_3">o que nós podemos fazer para ajudar?</string>
+    <string name="spiritbox_entry_q7_9">O que você quer?</string>
+    <string name="spiritbox_entry_q7_11">Por quê você está aqui?</string>
+
+    <!-- Sanity Questions -->
+
+    <string name="spiritbox_entry_q8_1">Qual é a minha sanidade?</string>
+    <string name="spiritbox_entry_q8_2">Quão louco eu sou?</string>
+    <string name="spiritbox_entry_q8_3">Quão louco eu sou?</string>
+    <string name="spiritbox_entry_q8_4">Eu sou insano?</string>
+    <string name="evidence_section_overview">Visão geral</string>
+    <string name="store_title_equipment">Loja de Equipamentos</string>
+    <string name="equipment_section_tiers">Níveis</string>
+    <string name="evidence_requirement_level_title">Nível de desbloqueio:</string>
+    <string name="evidence_requirement_cost_title">Custo:</string>
+
+    <!-- Equipment Tiers -->
+
+    <string name="equipment_tiers_1">Camada 1</string>
+    <string name="equipment_tiers_2">Camada 2</string>
+    <string name="equipment_tiers_3">Nível 3</string>
+
+    <!-- Evidence Names -->
+
+    <string name="evidence_type_dots">D.O.T.S.</string>
+    <string name="evidence_type_emf">EMF 5</string>
+    <string name="evidence_type_ultraviolet">Ultravioleta</string>
+    <string name="evidence_type_temperatures">Temperaturas Baixas</string>
+    <string name="evidence_type_orbs">Orbes Fantasma</string>
+    <string name="evidence_type_book">Escrita Fantasma</string>
+    <string name="evidence_type_box">Spirit Box</string>
+
+
+
+    <!-- Ghost information Popup Labels -->
+
+    <string name="popup_ghost_strength">Forças</string>
+    <string name="popup_ghost_weakness">Fraquezas</string>
+    <string name="popup_ghost_info">Informação</string>
+    <string name="popup_ghost_huntdata">Dados de caça</string>
+
+    <!-- Ghost Names -->
+
+    <string name="ghost_type_banshee">Banshee</string>
+    <string name="ghost_type_demon">Demon</string>
+    <string name="ghost_type_deogen">Deogen</string>
+    <string name="ghost_type_goryo">Goryo</string>
+    <string name="ghost_type_hantu">Hantu</string>
+    <string name="ghost_type_jinn">Jinn</string>
+    <string name="ghost_type_mare">Mare</string>
+    <string name="ghost_type_moroi">Moroi</string>
+    <string name="ghost_type_myling">Myling</string>
+    <string name="ghost_type_obake">Obake</string>
+    <string name="ghost_type_oni">Oni</string>
+    <string name="ghost_type_onryo">Onryo</string>
+    <string name="ghost_type_phantom">Fantasma</string>
+    <string name="ghost_type_poltergeist">Poltergeist</string>
+    <string name="ghost_type_raiju">Raiju</string>
+    <string name="ghost_type_revenant">Revenant</string>
+    <string name="ghost_type_shade">Shade</string>
+    <string name="ghost_type_spirit">Spirit</string>
+    <string name="ghost_type_thaye">Thaye</string>
+    <string name="ghost_type_thetwins">The Twins</string>
+    <string name="ghost_type_themimic">Mimico</string>
+    <string name="ghost_type_wraith">Wraith</string>
+    <string name="ghost_type_yokai">Youkai</string>
+    <string name="ghost_type_yurei">Yurei</string>
+
+    <!-- Ghost description -->
+
+    <string name="ghost_info_banshee"><![CDATA[<a>As banshees são descritas como caçadoras naturais. Eles tentarão perseguir e abater lentamente os caçadores de fantasmas, um por um, <font color=#ff6161>alvejando seletivamente um investigador por vez</font>.</a>]]></string>
+    <string name="ghost_info_demon"><![CDATA[<a>Um demônio é um dos piores fantasmas que você pode encontrar. Por ser altamente agressivo, ele <font color=#ff6161>atacará com mais frequência do que qualquer outro Ghost</font>, por isso é recomendável usar um crucifixo para evitar caçadas. No entanto, fazer perguntas bem-sucedidas ao demônio no tabuleiro Ouija não esgotará a sanidade do jogador.</a>]]></string>
+    <string name="ghost_info_deogen"><![CDATA[<a>O Deogen é um caçador nato. Os métodos convencionais de ocultação não funcionarão, pois ele tem um senso apurado para farejar presas. Você pode correr\… mas não pode se esconder. Repita: NÃO TENTE SE ESCONDER. Se você ouvir passos extremamente rápidos, como o rufar de tambores, saia do esconderijo IMEDIATAMENTE.</a>]]></string>
+    <string name="ghost_info_goryo"><![CDATA[<a>Um Goryo raramente será visto fora do quarto de sua preferência. Um Goryo também <font color=#ff6161>não gosta de se mostrar quando há pessoas por perto</font>. Isso faz com que ver D.O.T.S. impossível sem visualizá-lo remotamente por meio de uma câmera de vídeo.</a>]]></string>
+    <string name="ghost_info_hantu"><![CDATA[<a>O Hantu <font color=#ff6161>favorece temperaturas mais frias</font>, o que aumentará sua capacidade de se mover rapidamente durante uma caçada. Isso significa que o disjuntor deve estar ativado para aumentar a temperatura geral fora da área assombrada, prejudicando assim a velocidade de movimento do Hantu.</a>]]></string>
+    <string name="ghost_info_jinn"><![CDATA[<a>Um Jinn obtém suas habilidades quando a energia está ligada. Ele pode se mover muito rapidamente durante caçadas e pode drenar a sanidade absurdamente rápido. Jinns eram os predadores máximos nas versões anteriores de Phasmophobia, e há uma boa razão para isso. Ele se move a 2,5 m/s se estiver perseguindo um jogador distante e o gerador estiver ligado, e a 1,7 m/s se o gerador estiver desligado e não estiver perseguindo ninguém.</a>]]></string>
+    <string name="ghost_info_mare"><![CDATA[<a>A Égua é um fantasma que fica <font color=#ff6161>mais agressivo no escuro</font>.</a>]]></string>
+    <string name="ghost_info_moroi"><![CDATA[<a>Os Moroi eliminam a sanidade dos vivos. À medida que a sanidade de suas vítimas diminui, os Moroi ficam mais fortes. Mantenha sua sanidade o mais alta possível para evitar agressividade indesejada.</a>]]></string>
+    <string name="ghost_info_myling"><![CDATA[<a>O Myling emitirá ruídos estranhos que podem ser captados pelo microfone parabólico. Seus passos também só podem ser ouvidos dentro do alcance de interferência eletrônica (que é de cerca de 10 metros) durante uma caçada.</a>]]></string>
+    <string name="ghost_info_obake"><![CDATA[<a>Um Obake é um metamorfo que às vezes promove algumas evidências incomuns. Um Obake tem a chance de não produzir nenhuma impressão digital, o que pode causar problemas na coleta de evidências se negar as impressões digitais muito cedo.</a>]]></string>
+    <string name="ghost_info_oni"><![CDATA[<a>O Oni é um fantasma agressivo que <font color=#ff6161> aumenta seu nível de atividade de acordo com o número de investigadores próximos</font>. Também é provável que ele ande perto da Sala Fantasma.</a>]]></string>
+    <string name="ghost_info_onryo"><![CDATA[<a>O Onryo não gosta e é altamente <font color=#ff6161>ameaçado por qualquer forma de chama</font> (incluindo velas, isqueiros etc.). Ele não caçará se tentar chegar a até quatro metros de uma fonte de chama.</a>]]></string>
+    <string name="ghost_info_phantom"><![CDATA[<a>Um Fantasma é um fantasma que provoca medo, <font color=#ff6161>drenando rapidamente a sanidade de quem olha para ele</font>.</a>]]></string>
+    <string name="ghost_info_poltergeist"><![CDATA[<a>Um dos fantasmas mais famosos, um Poltergeist, também conhecido como fantasma barulhento, <font color=#ff6161>pode manipular vários objetos ao seu redor</font> para espalhar o medo nas vítimas.</a>]]></string>
+    <string name="ghost_info_raiju"><![CDATA[<a>Um Raiju é um fantasma que <font color=#ff6161>drena energia elétrica</font> dos dispositivos ao seu redor. Muita estimulação elétrica por perto fará com que ele fique agitado e cace com mais frequência.</a>]]></string>
+    <string name="ghost_info_revenant"><![CDATA[<a>Um Revenant é mais conhecido por seu comportamento lento de caça enquanto procura investigadores. A pesquisa é metodicamente lenta, o que fornece sons de caça distintos que ajudam a determinar esse tipo de fantasma.</a>]]></string>
+    <string name="ghost_info_shade"><![CDATA[<a>Uma Sombra é considerada um <font color=#ff6161>\"fantasma tímido”</font>. Embora seja mais difícil encontrar evidências enquanto os investigadores permanecem em grupos, <font color=#ff6161>é muito menos provável que um Shade ataque se houver várias pessoas por perto</font>.</a>]]></string>
+    <string name="ghost_info_spirit"><![CDATA[<a>Um Espírito não tem forças especiais, mas ainda assim é tão perigoso quanto qualquer outro fantasma.</a>]]></string>
+    <string name="ghost_info_thaye"><![CDATA[<a>O Thaye é um fantasma que envelhece rapidamente na presença dos vivos. A representação terrena deste envelhecimento apresentar-se-á como uma força nas fases iniciais de uma missão, mas como uma fraqueza nas fases posteriores. Perguntar a um Thaye quantos anos ele tem no tabuleiro Ouija produzirá uma resposta proporcional à sua idade progredida. A cada estágio avançado de envelhecimento, o Thaye diminuirá sua velocidade efetiva em uma taxa de 0,175 m/s.</a>]]></string>
+    <string name="ghost_info_thetwins"><![CDATA[<a>Os Gêmeos são dois Fantasmas que têm a capacidade de manipular separadamente o ambiente ao seu redor. Um dos Gêmeos é incapaz de manipular sensores de movimento e não deixará evidências determinísticas. Qualquer um dos gêmeos pode iniciar e participar de uma busca, mas <font color=#ff6161>não</font> os dois ao mesmo tempo.</a>]]></string>
+    <string name="ghost_info_themimic"><![CDATA[<a>O Mímico é um fantasma imitador esquivo e misterioso que reflete características e comportamentos de outros tipos de fantasmas. Fique atento à mudança de comportamento. Ghost Orbs são uma quarta evidência oculta que deve estar presente para esse fantasma.</a>]]></string>
+    <string name="ghost_info_wraith"><![CDATA[<a>Um Wraith é o único Fantasma conhecido que <font color=#ff6161>mantém a capacidade de voar</font>. Assim como qualquer outro fantasma, um Wraith não pode atravessar paredes, mesmo que se diga que ele tem essa habilidade.</a>]]></string>
+    <string name="ghost_info_yokai"><![CDATA[<a>O Yokai é altamente <font color=#ff6161>sensível a vozes</font>, o que o torna extremamente perigoso. No entanto, falar por perto também pode desencadear atividade, facilitando a localização da sala do Fantasma.</a>]]></string>
+    <string name="ghost_info_yurei"><![CDATA[<a>Um Yurei é um fantasma cuja habilidade <font color=#ff6161>aumenta a drenagem passiva da sanidade de um jogador</font> (embora a maioria dos fantasmas drene sua sanidade rapidamente). Sujar o ambiente onde o Yurei foi encontrado impedirá que ele se afaste do local por muito tempo.</a>]]></string>
+
+    <!-- Strength Data -->
+
+    <string name="ghost_strengths_banshee"><![CDATA[<a>O Banshee se concentrará em um jogador e trocará para um novo alvo se o alvo selecionado não estiver na área de jogo.</a>]]></string>
+    <string name="ghost_strengths_demon"><![CDATA[<a>Pode ser difícil coletar pistas porque atacam os jogadores com muita frequência. O Demônio pode caçar antecipadamente com qualquer sanidade, mas seu alvo mínimo normalmente fica em torno de 70 \% ade sanidade média. O tempo de espera da caça, ou o tempo entre as caçadas, é de 20 segundos, o que é 5 segundos mais rápido do que qualquer outro fantasma. Os bastões de manchas também têm um período de proteção mais curto, garantindo 60 segundos de segurança em vez dos 90 segundos normais para fantasmas que não sejam Espíritos.</a>]]></string>
+    <string name="ghost_strengths_deogen"><![CDATA[<a>O Deogen sentirá qualquer ser vivo, não importa quão bem escondido esteja. Escolher ficar parado contra um Deogen fará com que você morra. Não confie em quebrar a linha de visão, pois isso não interromperá a perseguição e apenas permitirá que o Deogen se mova muito mais rápido.</a>]]></string>
+    <string name="ghost_strengths_goryo"><![CDATA[<a>Um Goryo geralmente só aparece na câmera quando não há ninguém por perto. Isso pode causar problemas na coleta de evidências apropriadas, pois pode levar à negação do D.O.T.S. muito cedo.</a>]]></string>
+    <string name="ghost_strengths_hantu"><![CDATA[<a>Temperaturas mais baixas permitem que o Hantu se mova em velocidades mais rápidas. A linha de visão não afeta a velocidade do Hantu.</a>]]></string>
+    <string name="ghost_strengths_jinn"><![CDATA[<a>A velocidade de um Jinn faz dele um fantasma extremamente difícil de escapar quando ele começa a caçar. Assim que o Jinn alcançar um jogador, ele desacelerará gradualmente e mudará para velocidades normais de caça. Um Jinn pode remover instantaneamente 25 \% sanidade de um jogador próximo se o poder estiver ligado.</a>]]></string>
+    <string name="ghost_strengths_mare"><![CDATA[<a>Uma égua tentará apagar as luzes para se fortalecer e caçará aos 60 \% scaso a energia seja desligada. Ele também irá vagar por outras salas ou áreas escuras de sua sala preferida e pode iniciar uma caçada nesses locais. Uma Mare tem maior probabilidade de destruir a fonte de luz de uma sala durante um evento.</a>]]></string>
+    <string name="ghost_strengths_moroi"><![CDATA[<a>Os Moroi aproveitarão ao máximo cada pedaço de Sanidade perdido. Menos Sanidade da equipe produzirá níveis mais altos de agressividade. Com 0 \% aSanidade média, o fantasma se tornará extremamente rápido durante uma caçada. Com base na sanidade média da equipe, sua velocidade varia entre 1,5 m/s, no ponto mais lento, e 2,25 m/s, no ponto mais rápido.</a><br><br><a>O fantasma tem uma habilidade oculta: um maldição - que faz com que qualquer jogador drene Sanidade a uma taxa de 0,03\%/seg, desde que o jogador afetado esteja dentro da área de jogo. Este efeito é causado se o jogador usar e obtiver uma resposta da Spirit Box. O efeito se acumula acima da taxa normal de drenagem da Sanidade dos jogadores. As velas não interrompem os efeitos, mas a maldição pode ser eliminada com o uso de Pílulas de Sanidade.</a>]]></string>
+    <string name="ghost_strengths_myling"><![CDATA[<a>Um Myling não é tão vocal quanto outros Fantasmas durante a caça. Você só detectará os passos e os ruídos vocais quando estiver próximo de interferência eletrônica.</a>]]></string>
+    <string name="ghost_strengths_obake"><![CDATA[<a>Um Obake não pode deixar rastros ao manipular o ambiente. Isso significa que ele tem a chance de não deixar evidências de impressões digitais. O Obake também pode reduzir a vida útil das impressões digitais pela metade.</a>]]></string>
+    <string name="ghost_strengths_oni"><![CDATA[<a>Os Oni possuem a habilidade de mover objetos físicos como um Poltergeist, ao mesmo tempo em que exibem a agressão de um Demônio. Isso os torna um desafio para reunir evidências sem irritá-los. Esta é a sua maior fraqueza, pois provavelmente se revelará logo no início da jornada. Se um jogador for tocado por um Oni durante um evento fantasma, a sanidade do jogador será drenada duas vezes mais.</a>]]></string>
+    <string name="ghost_strengths_onryo"><![CDATA[<a>O Onryo mirará na fonte da chama e a extinguirá. Caso o Onryo extinga 3 chamas, o Onryo pode iniciar uma Caçada, independentemente do nível de Sanidade, se não houver outra chama ou Crucifixo próximo. Quando um jogador morre, as chances de as velas se apagarem a partir de então aumentam.</a>]]></string>
+    <string name="ghost_strengths_phantom"><![CDATA[<a>Os fantasmas causarão um grande impacto nas vidas dos jogadores. sanidade. Evite ficar na presença ou olhar diretamente para um Fantasma por muito tempo. Ele também tende a seguir passivamente os jogadores, o que o ajuda a sair da sala escolhida, dificultando a coleta de evidências.</a>]]></string>
+    <string name="ghost_strengths_poltergeist"><![CDATA[<a>Os poltergeists podem ter uma forte influência no espaço em que os jogadores estão, sendo capazes de lançar vários objetos e produzir ruídos altos. Há um dreno imediato de 2 \% sanidade em qualquer jogador próximo por item lançado. Isso pode ocorrer fora e durante uma caçada.</a>]]></string>
+    <string name="ghost_strengths_raiju"><![CDATA[<a>Raiju se tornou muito mais rápido quando estiver próximo de dispositivos elétricos, mas não da energia do mapa ou das luzes da sala, e aumentará seu nível de sanidade de caça preferido para 65 \% wquando estiver próximo de tais dispositivos elétricos. Se estiver próximo de um equipamento eletrônico, ele se deslocará a 2,5 m/s; Caso contrário, ele viajará a 1,7 m/s.</a>]]></string>
+    <string name="ghost_strengths_revenant"><![CDATA[<a>Um Revenant viajará a 1 m/s enquanto caça jogadores e viajará instantaneamente a 3 m/s se a localização de um jogador for conhecida (via linha de visão, bate-papo de proximidade ou uso de dispositivo eletrônico). A velocidade diminuirá gradualmente para 1 m/s, a menos que a localização do jogador seja readquirida depois de chegar à última localização conhecida do jogador.</a>]]></string>
+    <string name="ghost_strengths_shade"><![CDATA[<a>As sombras podem ser difíceis de encontrar e, portanto, pode ser difícil coletar evidências ou até mesmo encontrar a localização delas. Tem uma atividade geral mais baixa; no entanto, níveis mais baixos de sanidade do jogador proporcionarão mais eventos fantasmas. Ele não interagirá nem lançará objetos enquanto o jogador estiver na sala de sua preferência.</a>]]></string>
+    <string name="ghost_strengths_spirit"><![CDATA[<a>Os Spirits não têm pontos fortes específicos, pois são voltados para novos jogadores. Não se deixe enganar, no entanto. A falta de especialidade faz com que seja uma combinação equilibrada.</a>]]></string>
+    <string name="ghost_strengths_thaye"><![CDATA[<a>O Thaye será mais ativo e perigoso no início de uma missão. Isso o torna extremamente ameaçador desde o início. O Thaye caçará a 75 \% at no início de uma investigação, eventualmente aumentando para um mínimo de 15 \% adepois que terminar de envelhecer. Um jovem Thaye será muito rápido a 2,7 m/s, enquanto um velho Thaye se moverá mais devagar do que um jogador a 1,0 m/s.</a>]]></string>
+    <string name="ghost_strengths_thetwins"><![CDATA[<a>Qualquer um dos Gêmeos pode ficar irritado e, portanto, qualquer um dos Gêmeos pode iniciar uma Caçada. Isso significa que uma busca pode começar em dois locais diferentes.</a>]]></string>
+    <string name="ghost_strengths_themimic"><![CDATA[<a>O Mimic pode copiar rapidamente qualquer tipo de fantasma diversas vezes durante uma investigação, o que o torna extremamente perigoso e totalmente imprevisível. O comportamento que ele copia pode estar presente durante ou fora de uma caçada. O Mimic não pode trocar para copiar um fantasma diferente no meio da caça.</a>]]></string>
+    <string name="ghost_strengths_wraith"><![CDATA[<a>O Wraith possui a capacidade de piscar para localizar qualquer jogador próximo a uma pequena distância da sala escolhida. Isto pode ocorrer fora do quarto, mesmo entre andares. Esta atividade pode passar despercebida, pois pode ser silenciosa, mas irá gerar uma leitura de EMF no local de pouso. Após esta atividade, o Wraith voltará para sua sala e poderá interagir com objetos durante esse tempo. Dizem que um Wraith pode caçar logo após se teletransportar, mas isso pode ser impreciso.</a>]]></string>
+    <string name="ghost_strengths_yokai"><![CDATA[<a>Falar perto de um Yokai irá irritá-lo, aumentando a probabilidade de ataque, aumentando o nível mínimo de sanidade preferencial para caçar para 80\%.</a>]]></string>
+    <string name="ghost_strengths_yurei"><![CDATA[<a>Yurie vai eliminar jogadores\' sanidade, enquanto eles estão olhando para ele, muito mais rápido do que qualquer outro fantasma - mas também pode diminuir a sanidade mesmo quando um jogador é afastado. Um Yurei também pode roubar instantaneamente 15 \% sanidade de qualquer jogador próximo; e quando isso acontece, as portas da sala sempre fecham sozinhas (qualquer fantasma pode fazer isso, mas o Yurei tem uma probabilidade maior).</a>]]></string>
+
+    <!-- Weakness Data -->
+
+    <string name="ghost_weaknesses_banshee"><![CDATA[<a>Um Banshee se afastará do quarto apenas para perseguir o alvo. Banshees nunca matará seu jogador não-alvo e, durante uma caçada, passará direto por qualquer investigador em quem não esteja interessado. Ele também baseia sua caça na Sanidade do alvo, em vez da Sanidade média da equipe. O Banshee tem uma interação especial com o microfone parabólico, pois tem a chance de emitir um gemido fraco e agudo.</a>]]></string>
+    <string name="ghost_weaknesses_demon"><![CDATA[<a>Ao contrário de outros fantasmas, fazer uma pergunta bem-sucedida a um Demônio por meio do tabuleiro Ouija não diminuirá a capacidade dos jogadores. sanidade. Isto faz do tabuleiro Ouija uma ferramenta muito útil contra Demônios. Os demônios <font color=#ff6161>temem o crucifixo</font>, aumentando a eficácia dele contra eles ao ampliar o alcance efetivo do crucifixo para 5 metros, em vez dos 3 metros normais de outros fantasmas.</a>]]></string>
+    <string name="ghost_weaknesses_deogen"><![CDATA[<a>O Deogen persegue a presa até a exaustão, mas nunca a ultrapassa. Fique em movimento contra esse fantasma e planeje suas rotas com antecedência. Fique na linha de visão com este fantasma e você ficará bem, pois ele só poderá se mover a 0,4 m/s enquanto estiver próximo do jogador mais próximo na linha de visão. Enquanto você estiver dentro da linha de visão, ele nunca será capaz de alcançá-lo, mesmo se você estiver andando. O Deogen só caçará com 40 \% sanidade.</a>]]></string>
+    <string name="ghost_weaknesses_goryo"><![CDATA[<a>Os Goryos normalmente ficam dentro ou muito perto do local que estão assombrando. Isso facilita a coleta de evidências.</a>]]></string>
+    <string name="ghost_weaknesses_hantu"><![CDATA[<a>O movimento de um Hantu será mais lento que o normal em áreas mais quentes. Durante a caça, e se o disjuntor estiver desligado, o Hantu produzirá um hálito gelado, assim como um jogador, mas esse efeito não se limita à sala fantasma ou à temperatura de uma sala.</a>]]></string>
+    <string name="ghost_weaknesses_jinn"><![CDATA[<a>Os Jinns dependem da fonte de energia do mapa para atingir altas velocidades, então os jogadores devem procurar o disjuntor do prédio para remover a habilidade dos Jinn. Um Jinn não conseguirá ligar a energia sozinho.</a>]]></string>
+    <string name="ghost_weaknesses_mare"><![CDATA[<a>Manter as luzes acesas na área de uma égua reduzirá sua preferência de sanidade para caçar de 60 \% to para 40 \% asanidade média. Portanto, permaneça em áreas iluminadas para limitar a sua agressividade. Uma Mare não pode desligar o disjuntor, mas tem a capacidade de desligar instantaneamente os interruptores de luz quando eles são ativados por um jogador, um evento que pode ser reconhecido facilmente.</a>]]></string>
+    <string name="ghost_weaknesses_moroi"><![CDATA[<a>Os Moroi são hipersensíveis ao Smudge Stick. Acender um objeto próximo cegará o Moroi por 12 segundos.</a>]]></string>
+    <string name="ghost_weaknesses_myling"><![CDATA[<a>Mylings emitem sons paranormais com mais frequência no microfone parabólico.</a>]]></string>
+    <string name="ghost_weaknesses_obake"><![CDATA[<a>Por acaso, um Obake às vezes pode deixar <font color=#ff6161>impressões de mãos com seis dedos</font> em vez dos cinco normais. Impressões de mãos com cinco dedos não devem ser usadas para descartar o Obake. O Obake também pode mudar seu modelo fantasma por um breve segundo a qualquer momento durante uma caçada. Se o Obake tocar uma superfície, há uma chance de que as impressões digitais não apareçam; Isso pode ser usado como prova do fantasma se alguma interação subsequente produzir impressões digitais.</a>]]></string>
+    <string name="ghost_weaknesses_oni"><![CDATA[<a>Os onis são fáceis de encontrar, pois não resistem a causar confusão quando os jogadores estão por perto. O Oni não pode fazer uma \"Névoa Fantasma\" ou \"Bola Fantasma\" evento. Favorecerá manifestações plenas em detrimento de manifestações sombrias ou manifestações invisíveis durante eventos fantasmas. Esse comportamento se estende às caçadas, o que faz com que o Oni se manifeste por períodos mais longos e desapareça por intervalos muito curtos durante as caçadas.</a>]]></string>
+    <string name="ghost_weaknesses_onryo"><![CDATA[<a>Uma fonte de chama agirá para acabar com a chance de ataque de um Onryo. Ele primeiro extinguirá todas as chamas (como usar uma carga de crucifixo) antes de usar um crucifixo.</a>]]></string>
+    <string name="ghost_weaknesses_phantom"><![CDATA[<a><font color=#ff6161>Tirar uma foto de um Fantasma fará com que ele desapareça temporariamente</font> e nunca aparecerá na fotografia. Um Fantasma também se revela durante caçadas, pois se manifesta fisicamente por curtos períodos e desaparece por períodos mais longos.</a>]]></string>
+    <string name="ghost_weaknesses_poltergeist"><![CDATA[<a>Os jogadores podem remover objetos físicos da sala, tornando o Poltergeist ineficaz. Um Polgergeist pode interagir violentamente com itens, sendo capaz de lançar um item com muito mais força do que um fantasma normal. Ele pode interagir com vários itens ao mesmo tempo, o que é conhecido como evento de explosão Poltergeist, e pode ser facilmente testado acumulando um grande número de itens em uma pilha e observando seu comportamento quanto à atividade. Durante uma caçada, os itens têm uma chance muito maior de serem manipulados, então verifique se há vários itens agitados no caminho de caça.</a>]]></string>
+    <string name="ghost_weaknesses_raiju"><![CDATA[<a>É mais fácil rastrear um Raiju porque ele manipula constantemente dispositivos elétricos enquanto caça.</a>]]></string>
+    <string name="ghost_weaknesses_revenant"><![CDATA[<a>Um Revenant será muito lento quando a localização do jogador for desconhecida, e passos lentos e distintos poderão ser ouvidos. A melhor maneira de determinar se você tem um revenant é através da caça.</a>]]></string>
+    <string name="ghost_weaknesses_shade"><![CDATA[<a>Os números são fortes contra uma Sombra, já que eles não atacam um grupo de pessoas. Se você quiser evitar uma caçada, pelo menos um jogador deve estar próximo do fantasma. Uma sombra também terá maior probabilidade de mostrar modelos em forma de sombra e, por outro lado, terá menos probabilidade de mostrar seu modelo completo.</a>]]></string>
+    <string name="ghost_weaknesses_spirit"><![CDATA[<a>Quando um Espírito é borrado, ele não caçará por 180 segundos completos. Por outro lado, qualquer outro fantasma caçará em 90 segundos (exceto o Demônio, que pode caçar em até 60 segundos).</a>]]></string>
+    <string name="ghost_weaknesses_thaye"><![CDATA[<a>Quanto mais tempo o fantasma estiver na presença dos vivos, sua agressividade, velocidade e força diminuirão. Cada idade reduz a velocidade em 0,175 m/s. O Thaye também não tem aceleração de linha de visão.</a>]]></string>
+    <string name="ghost_weaknesses_thetwins"><![CDATA[<a>Devido às atividades combinadas, localizar os gêmeos será muito mais fácil. Os Gêmeos têm uma velocidade de caça variada que alterna aleatoriamente entre as caçadas. Um Twin caça a 90 \% nvelocidade normal (1,5 m/s), enquanto o outro Twin caça a 110 \% nvelocidade normal (1,9 m/s).</a>]]></string>
+    <string name="ghost_weaknesses_themimic"><![CDATA[<a>Um Ghost Orb aparecerá junto com a Evidência determinística de The Mimic, o que torna The Mimic o único tipo de fantasma que (tecnicamente) tem uma quarta evidência. O Ghost Orb também se comporta de maneira diferente do normal. Ele segue The Mimic enquanto ele vagueia, então fique atento a um Ghost Orb enquanto estiver com Sanidade de equipe alta.</a>]]></string>
+    <string name="ghost_weaknesses_wraith"><![CDATA[<a><font color=#ff6161>O sal é tóxico para um Wraith</font>, portanto ele nunca passará por nenhum deles. Para confirmar um Wraith, coloque um sensor de movimento sobre as pilhas de sal. Se o sensor de movimento detectar movimento sem perturbar o Sal, o fantasma pode ser um Wraith!</a>]]></string>
+    <string name="ghost_weaknesses_yokai"><![CDATA[<a>Durante a caça, um Yokai só ouvirá vozes próximas a ele. Ele só pode ouvir conversas de proximidade ou detectar equipamentos eletrônicos a até 2,5 metros de si mesmo. A possessão amaldiçoada da Caixa de Música também não faz com que o Yokai se mova até que o jogador esteja muito mais próximo do que qualquer outro fantasma exigiria.</a>]]></string>
+    <string name="ghost_weaknesses_yurei"><![CDATA[<a>Yureis são vulneráveis a Smudge Sticks, e borrar o ambiente fará com que o Yurei permaneça no lugar por algum tempo.</a>]]></string>
+
+    <!-- Hunting Data -->
+
+    <string name="ghost_huntingdata_banshee"><![CDATA[<a>Caça a 50 \% Squalidade do jogador que está almejando.</a><br><br><a>Ignora completamente a sanidade média.</a>]]></string>
+    <string name="ghost_huntingdata_demon"><![CDATA[<a>Normalmente caça com 70\% de sanidade.</a><br><br><a>Pode caçar em qualquer nível de sanidade após a ativação da habilidade.</a>\% S]]></string>
+    <string name="ghost_huntingdata_deogen"><![CDATA[<a>Caça a 40\%\% S.</a><ul><li>3,0 m/s enquanto corre para o local de um jogador escondido.</li><li>0,4 m/s ou mais enquanto segue um investigador de perto.</li><li>3,0 m/s ou menos para manter a proximidade do investigador.</ul>]]></string>
+    <string name="ghost_huntingdata_goryo"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="ghost_huntingdata_hantu"><![CDATA[<a>Caça a 50°C.</a><ul><li>15°C+ = 1,40 m/s</li><li>12°C  = 1,75 m/s</li><li> 9°C  = 2,10 m/s</li><li> 6°C  = 2,30 m/s</li><li> 3°C  = 2,50 m/s</li><li> 0° C  = 2,70 m/s</li></ul>\% S]]></string>
+    <string name="ghost_huntingdata_jinn"><![CDATA[<a>Caça a 50\%\% S de distância.</a><ul><li>Move-se a 2,5 m/s enquanto ambos perseguem um investigador que está a mais de 3 metros de distância e a caixa de fusíveis está ligada.</li><li>Move-se 1,7 m/s se não estiver perseguindo ninguém.</li></ul>]]></string>
+    <string name="ghost_huntingdata_mare"><![CDATA[<a>Caça a 40 \% Sidade se a energia estiver ligada.</a><br><br><a>Caça a 60 \% Sidade se a energia estiver desligada.</a>]]></string>
+    <string name="ghost_huntingdata_moroi"><![CDATA[<a>Caça a 50 \% Ssanidade.</a><ul><li>Sanidade 0\% - 5\% : 2,25 m/s</li><li>Sanidade 5\% - 10\% : 2,164 m/s</li><li>Sanidade 10\% - 15\% : 2,081 m/s</li><li>Sanidade 15\% - 20\% : 1,998 m/s</li><li>Sanidade 20\% - 25\% : 1,915 m/s</li><li>Sanidade 25\% - 30\% : 1,832 m/s</li><li>Sanidade 30\% - 35\% : 1,749 m/s</li><li>Sanidade 35\% - 40\% : 1,66 m/s</li><li>Sanidade 40\% - 45\% : 1,583 m/s</li><li>Sanidade 45\% - 100\% : 1,5 m/s</li></ul>]]></string>
+    <string name="ghost_huntingdata_myling"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="ghost_huntingdata_obake"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="ghost_huntingdata_oni"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="ghost_huntingdata_onryo"><![CDATA[<a>Normalmente caça com 60\% de sanidade.</a><br><br><a>Pode caçar com qualquer sanidade se o fogo for extinto.</a>\% S]]></string>
+    <string name="ghost_huntingdata_phantom"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="ghost_huntingdata_poltergeist"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="ghost_huntingdata_raiju"><![CDATA[<a>Normalmente caça a 50 \% Sanidade.</a><br><br><a>Caça a 65 \% Sanidade se estiver próximo de aparelhos eletrônicos ligados.</a><ul><li>Move-se 2,5 m. /s se houver equipamento eletrônico próximo</li><li>Move-se 1,7 m/s se não houver equipamento eletrônico próximo</li></ul>]]></string>
+    <string name="ghost_huntingdata_revenant"><![CDATA[<a>Caça a 50\%\% S de agilidade.</a><br><br><a>Velocidade de movimento: 1 m/s se não estiver perseguindo; 3,0 m/s se estiver perseguindo.</a>]]></string>
+    <string name="ghost_huntingdata_shade"><![CDATA[<a>Caça aos 35 \% Sanidade.</a>]]></string>
+    <string name="ghost_huntingdata_spirit"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="ghost_huntingdata_thaye"><![CDATA[<a>Envelhece gradativamente em 10 estágios e perde 0,175 m/s de velocidade de movimento por estágio.</a><br><br><a>Caça aos 75 anos na idade mais jovem.\% S Movimento máximo: 2,7 m/s</a><br><br><a>Caça aos 15 \% Sanidade nisso\'idade mais avançada. Movimento máximo: 1,0 m/s</a>]]></string>
+    <string name="ghost_huntingdata_thetwins"><![CDATA[<a>Caça com 50 \% Sidade.</a><br><br><a>50 \% cde chance de ser um dos gêmeos durante a caça</a><ul><li>Gêmeo A: 1,5 m/s mínimo</li><li>Gêmeo B: mínimo de 1,9 m/s</li></ul>]]></string>
+    <string name="ghost_huntingdata_themimic"><![CDATA[<a>As preferências de caça são baseadas no fantasma imitado. Portanto, The Mimic pode caçar em qualquer lugar entre 15 \% ae 100 \% Sidade.</a>]]></string>
+    <string name="ghost_huntingdata_wraith"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="ghost_huntingdata_yokai"><![CDATA[<a>Caça com 50\%\% Sidade.</a><br><br><a>Não consegue ouvir os investigadores nem detectar equipamentos eletrônicos.</a>]]></string>
+    <string name="ghost_huntingdata_yurei"><![CDATA[<a>Caça aos 50 anos\% S.</a>]]></string>
+    <string name="equipment_section_equipment">Equipamento</string>
+
+
+    <!-- Evidence Description -->
+
+    <string name="evidence_info_overview_dots"><![CDATA[<a>O D.O.T.S. Projetor é um dispositivo que pode ser segurado, colocado nas paredes ou no chão. Ele projeta uma matriz de pontos brilhantes, projetando os pontos em superfícies próximas ao seu redor.</a><a>Para identificar positivamente essa evidência, <font color=#ff6161>uma silhueta do fantasma será vista correndo ou rastejando rapidamente pela projeção\'s vigas</font>. A silhueta pode ser vista a olho nu ou por uma câmera de vídeo, mas é mais fácil de ser vista <font color=#ff6161>remotamente pelas térmicas da câmera de vídeo</font>. É melhor tentar encontrar essa evidência remotamente, pois de outra forma o comportamento de um Goryo pode causar conflitos de evidência. A localização real do Fantasma não determinará quando as animações da silhueta ocorrerão.</a><a>O D.O.T.S. os visuais agora são o fantasma real, o que significa que você precisará direcionar suas luzes infravermelhas perto da posição real do fantasma. Isso cria uma jogabilidade muito mais envolvente para os jogadores. Você pode usar D.O.T.S. para ver onde está o seu fantasma, ou se você estiver lutando para obter evidências, use sal, sensores de movimento ou outro equipamento para encontrar um local melhor para o seu projetor. Fantasmas com D.O.T.S. evidência agora pode inserir um pequeno “D.O.T.S. estado” ao vagar; Durante esse período, eles ficam temporariamente visíveis com luz infravermelha. Durante esse período, eles vagarão em direção ao jogador mais próximo (ou a um local aleatório na sala, se ela estiver vazia) antes de desaparecer.</a>]]></string>
+    <string name="evidence_info_overview_emf"><![CDATA[<a>EMF-5 é a leitura de nível mais alto de um <font color=#ff6161>leitor de EMF</font>.</a><a>Um fantasma produz emissões de EMF dos níveis 1 a 5 quando interage de alguma forma com a sala ou o tabuleiro Ouija. Cintilação de luz, passos e outras interações passivas menores normalmente proporcionam uma leitura mais baixa. Interações mais pesadas, como uma aparição ou um telefone tocando, quase sempre darão uma leitura mais alta. Os fantasmas que carregam essa evidência fornecerão EMF nível 5 apenas por acaso, portanto, essa evidência <font color=#ff6161>pode levar algum tempo para ser adquirida</font>.</a>]]></string>
+    <string name="evidence_info_overview_ultraviolet"><![CDATA[<a>As evidências ultravioleta só podem ser <font color=#ff6161>vistas ao direcionar a luz UV ou um bastão luminoso nas superfícies afetadas</font>. Pedaços de evidências ultravioleta brilharão em verde enquanto carregados pela luz UV e desaparecerão com o tempo.</a><a>Deixadas em objetos e superfícies por fantasmas, as evidências ultravioleta podem ser difíceis de ver em itens menores ou grandes. quartos. Pegadas rastreadas por pilhas de sal também contam como evidência ultravioleta.</a><a>Ao iluminar impressões digitais ou pegadas com luz ultravioleta, você ainda as verá imediatamente, mas, além disso, a luz carregará a impressão. Depois de guardar a luz ultravioleta, a impressão ficará visível por um curto período (dependendo de quanto tempo você a carregou), permitindo que você tire uma foto.</a><a>Uma impressão de mão de seis dedos pode ser encontrada, o que pode ser encontrado. identificará o tipo de Ghost imediatamente como Obake.</a>]]></string>
+    <string name="evidence_info_overview_thermometer"><![CDATA[<a>As temperaturas congelantes estão <font color=#ff6161>abaixo de 0 Celsius</font>. A temperatura pode ser determinada usando o <font color=#ff6161>Termômetro</font>.</a><a>À medida que os fantasmas extraem calor da área ao redor, as temperaturas diminuem na sala ou nos corredores onde o <font color=#ff6161>fantasma passa a maior parte de seu tempo. horário</font>. Todos os fantasmas eventualmente causarão temperaturas abaixo de 13 graus Celsius, mas apenas alguns tipos de fantasmas reduzirão as temperaturas abaixo de 0 C.</a><a>Cold Breath foi reformulado. A 5°C ou menos, qualquer pessoa na área assombrada poderá <font color=#ff6161>ver a própria respiração</font>. Se estiver nevando e a caixa de fusíveis começar a funcionar, você encontrará Cold Breath instantaneamente em todos os lugares, até mesmo no caminhão. Como alternativa, se a caixa de fusíveis estiver ligada, para que a casa fique agradável e quentinha, você verá o hálito frio aparecendo apenas em cômodos onde o fantasma ficou tempo suficiente para baixar a temperatura.</a><a>O o resfriamento de uma sala, mesmo que seja apenas um pouco, pode levar mais tempo do que os primeiros minutos durante uma investigação. Observar as temperaturas estranhamente baixas nas primeiras salas e depois voltar a elas é uma boa ideia.</a>]]></string>
+    <string name="evidence_info_overview_book"><![CDATA[<a>Determinado usando o livro de escrita fantasma.</a><a>Os fantasmas podem escrever no livro <font color=#ff6161>independentemente de o livro estar guardado ou segurado na mão</font>. Se o fantasma escreve no livro, esta é uma evidência desse tipo de fantasma. Se símbolos demoníacos forem escritos, isso pode ser uma evidência de um Demônio, mas não é absolutamente definitivo, já que os estilos de escrita fantasma tendem a divergir aleatoriamente.</a>]]></string>
+    <string name="evidence_info_overview_vcam"><![CDATA[<a>Um pequeno orbe flutuante que está presente apenas na sala que um fantasma está assombrando. Ele pode ser <font color=#ff6161>visto apenas por visão noturna por meio da câmera de vídeo ou da imagem térmica da câmera montada na cabeça <font> usando a transmissão ao vivo da câmera do caminhão.</a><a>Os orbes fantasmas podem ser detectados rapidamente, mas excluí-los muito rapidamente pode significar problemas no futuro.</a>]]></string>
+    <string name="evidence_info_overview_sbox"><![CDATA[<a>A Spirit Box é um item usado para <font color=#ff6161>se comunicar com o fantasma</font>.</a><a>O jogador precisa <font color=#ff6161>fazer perguntas no Vicinity Chat para uma Spirit Box ativa, ambos enquanto estiver próximo do fantasma. fantasma e enquanto as luzes estão apagadas</font>. Antes de tentar fazer isso, verifique os parâmetros de resposta do fantasma, como \"Responde a pessoas que estão sozinhas\" ou \"Responde a todos\" listado no quadro branco do caminhão.</a><a>Se o fantasma responder, a Spirit Box é uma evidência confirmada.</a><a>Perguntas pontuais como \"Quantos anos você tem?\" ou “Onde você está?” são perguntas plausíveis. Tenha em mente que o fantasma está sempre ouvindo, independentemente de o jogador estar falando em uma Spirit Box ou não, então os jogadores devem ter cuidado ao falar no chat do Vicinity. Desenhar um fantasma pode ser feito dizendo seu nome inúmeras vezes (irritando-o) e dando-lhe comandos como \"Mostre-se\" ou \"Dê-nos um sinal\" parecem ser comandos plausíveis.</a>]]></string>
+
+    <!-- Equipment Tiers -->
+
+    <string name="shop_equipment_dots_data_info_1"><![CDATA[<a>Uma Laser Grid Pen semelhante a uma lanterna. Você pode caminhar pelo local e procurar evidências rapidamente. A única desvantagem é o curto alcance e a baixa intensidade de luz.</a>]]></string>
+    <string name="shop_equipment_dots_data_info_2"><![CDATA[<a>Este é o D.O.T.S. original. projetor. É um projetor posicionável que emite uma esfera de luz de tamanho médio, só que agora você pode incentivar o fantasma a entrar nele ficando por perto.</a><a>Ideal para salas de pequeno a médio porte.</a>]]></string>
+    <string name="shop_equipment_dots_data_info_3"><![CDATA[<a>Esse projetor posicionável examina a sala a uma distância muito maior com um feixe de luz amplo e abrangente, tornando muito mais fácil encontrar fantasmas em salas maiores. Para obter a melhor cobertura, coloque o projetor em uma parede ou superfície plana, fique próximo e observe silhuetas de fantasmas.</a>]]></string>
+
+    <string name="shop_equipment_emf_data_info_1"><![CDATA[<a>Um medidor analógico antigo com pequeno alcance de detecção, baixa precisão e baixas emissões de áudio. A agulha irá acelerar, ultrapassando o nível 5 quando o EMF de nível 5 for detectado.</a>]]></string>
+    <string name="shop_equipment_emf_data_info_2"><![CDATA[<a>O medidor K2 confiável tem um alcance maior e cinco luzes LED para detectar leituras de campos eletromagnéticos, além de um módulo de alto-falante adicional. Uma luz acenderá quando você ativar o dispositivo. Ao se mover dentro do alcance de detecção de pontos EMF do K2, ele exibirá um valor preciso de dois a cinco e emitirá um som nítido e audível.</a>]]></string>
+    <string name="shop_equipment_emf_data_info_3"><![CDATA[<a>Um ParaReader de alta tecnologia. Este dispositivo pode rastrear até três pontos EMF de uma só vez e tem o maior alcance de detecção.</a><a>Ele mostrará a direção, o alcance e o valor de cada leitura ao mesmo tempo. Ele reproduz sons para cada detecção de EMF para que você possa ouvir, à distância, quantas e quão fortes são as leituras.</a><a>Se um ponto de EMF desaparecer, um ponto de EMF mais recente será colocado na parte inferior da lista.</a>]]></string>
+
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>O bastão luminoso UV clássico. Depois de encaixá-lo para ligá-lo, ele projeta uma luz de área de curto alcance que dura cerca de um minuto antes de diminuir. Você pode agitá-lo novamente para revigorar a luz.</a><a>Este dispositivo carregará um ponto UV 10 segundos após a exposição.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>A lanterna UV clássica que emite um feixe estreito e mais brilhante com um alcance maior, apresentando um tempo de carga UV muito mais rápido!</a><a>Este dispositivo carregará um ponto UV dentro de 5 segundos após a exposição.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>A UV Light Pro é uma lanterna robusta que tem um cone de luz muito mais brilhante e amplo, além de um tempo de carregamento ainda mais rápido. Ele é perfeito para localizar evidências ultravioleta rapidamente em uma escala maior.</a><br><br><a>Este dispositivo carrega um ponto UV 1,5 segundos após a exposição.</a>]]></string>
+
+    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>Um termômetro doméstico antigo, arrancado da parede da sala do seu investigador. Este termômetro tem uma taxa de amostragem lenta, o que significa que você terá que esperar mais para obter uma leitura precisa. Você pode trazer um e verificar mais tarde no contrato.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<a>Uma versão atualizada do leitor de temperatura clássico, mas muito mais ágil. Em vez de ligá-lo e obter uma leitura a cada dois segundos, mantenha pressionado o botão \'Usar\' botão para verificar as temperaturas. Isso faz com que correr e verificar a temperatura de cada ambiente seja muito mais rápido do que o nível I permite.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<a>Um upgrade direto para o Nível II, concluindo verificações de temperatura com o dobro da velocidade do seu antecessor. Além disso, este termômetro mais moderno é mais preciso em cada leitura, permitindo aos jogadores examinar salas de forma rápida e eficiente para encontrar o fantasma ou obter \"Temperaturas de congelamento\" marcado no Diário.</a>]]></string>
+
+    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<a>Este bloco de notas de papel pode ser colocado perto de um fantasma para incentivar a escrita paranormal. Certifique-se de colocá-lo próximo a qualquer atividade que você ver. Alguns fantasmas podem não notar o pequeno bloco de notas e o lápis, então pode levar algum tempo até que algo aconteça.<p/>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<a>Com páginas mais bonitas e uma caneta, os fantasmas parecem notar este livro com um pouco mais de frequência do que na versão anterior. diminuindo um pouco o tempo de espera para que as evidências ocorram.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<a>Com seu perfil grande, uma mistura de materiais de alta qualidade e uma caneta ornamentada, este livro tem as maiores alterações já escritas por fantasmas. Ele tem um alcance maior do que os dois níveis anteriores, então colocar este livro dentro do alcance de interação de um fantasma é muito mais fácil.</a>]]></string>
+
+    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<a>Uma filmadora antiga que o Ghost Huntin\' Distribuição encontrada no sótão do antigo escritório. É pequeno e um pouco desgastado, mas faz o trabalho perfeitamente.</a><a>Analisar o feed de vídeo é um desafio devido à péssima qualidade e às pequenas dimensões da tela, então aproveite seu tempo com isso!</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<a>A câmera de vídeo Parasonic é um vídeo HD que torna muito mais fácil encontrar orbes. Ele ainda recebe muita interferência de um fantasma ativo, mas muito menos do que o Nível 1.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<a>A câmera de vídeo de qualidade cinematográfica da Bony, com corpo grande, suporta uma tela muito maior. Ele apresenta um feed de vídeo muito mais nítido e recebe menos interferência de aparições de fantasmas.</a>]]></string>
+
+
+    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<a>Ao ligar esta Spirit Box, ela começará a varrer diferentes frequências de rádio. Fique perto de qualquer atividade paranormal, apague todas as luzes da sala e faça algumas perguntas na esperança de obter uma resposta.</a><a>Se a pergunta for ouvida, uma luz vermelha piscará no Caixa Espiritual. Se piscar em branco, você recebeu uma resposta do fantasma.</a><a>Tente perguntar Onde você está? ou Você é amigável? Esteja avisado: você pode não gostar da resposta que receberá.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<a>Esta Spirit Box mais moderna tem um alto-falante de qualidade superior que é muito mais eficiente na varredura de frequências, facilitando a decifração de respostas paranormais.</a><a>Se uma pergunta for ouvida, um &amp;#39 preto será exibido. ;X\' piscará na tela. Se você receber uma resposta, o pequeno ícone fantasma piscará.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<a>Quando ativada, esta Spirit Box verifica ambas as frequências, duas ao mesmo tempo, aumentando a chance de captar uma resposta paranormal ao fazer perguntas. Ele também tem um filtro integrado para reduzir a quantidade de estática que você ouve entre as interações.</a><a>Se uma pergunta for ouvida e nenhuma resposta for dada, os LEDs de RESPOSTA piscarão em vermelho. Se uma resposta for dada, os LEDs piscarão em branco junto com o som.</a>]]></string>
+
+    <!-- Equipment -->
+
+    <string name="shop_equipment_flashlight_data_info_1"><![CDATA[<a>Uma lanterna metálica retrô que fornece uma pequena quantidade de luz. apenas o suficiente para se locomover.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_2"><![CDATA[<a>Esta lanterna emite um feixe de luz muito mais brilhante.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_3"><![CDATA[<a>Projetando um cone de luz muito mais amplo, esta lanterna é perfeita para salas grandes e espaços abertos.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_1"><![CDATA[<a>Você pode usar esta câmera para tirar fotos de qualquer evidência que encontrar. Isso só interferirá no fantasma durante o processo de tirar fotos, por isso tome cuidado ao decidir tirar uma foto.</a><a>Para mais informações sobre como tirar fotos, consulte a seção \'Fotos\' seção do seu diário.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_2"><![CDATA[<a>Com esta câmera fotográfica digital, você pode tirar fotos de evidências e entidades paranormais com muito mais rapidez do que no nível anterior.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_3"><![CDATA[<a>Essa câmera de última geração oferece o menor tempo de atraso entre as fotos, permitindo uma rápida coleta de evidências.</a><a>Além disso, ela foi modificada para ser menos suscetível a entidades paranormais que causam interferência. com a tela durante as manifestações.</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_1"><![CDATA[<a>Esses fósforos são perfeitos para acender fogueiras e incensos, mas lembre-se: com apenas dez utilizações você acabará rapidamente!</a><a>Eles também podem ser usados ​​como uma pequena fonte de luz, mas certifique-se de que para não queimar os dedos.</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_2"><![CDATA[<a>Um isqueiro a gás. Ele fornece um pouco mais de luz do que os fósforos e dura muito mais tempo.</a><a>Você pode ver o líquido dentro dele escorrendo à medida que você o usa. Certifique-se de ter sobra suficiente quando estiver em apuros!</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_3"><![CDATA[<a>Este isqueiro pode durar um contrato inteiro, desde que você não o desperdice!</a><a>Com uma chama maior, a luz que ele fornece é mais brilhante e tem um alcance maior, perfeito para aquelas fugas escuras durante um ataque.</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_1"><![CDATA[<a>Esta pequena vela fornecerá luz e alguma prevenção contra a perda de sanidade, mas apenas por um tempo, a cera queima rapidamente!</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_2"><![CDATA[<a>Com três velas em vez de uma, a luz fornecida é muito mais brilhante, tem maior alcance e dura mais.</a><a>Além disso, esta luz de fogo não precisa ser segurada para obter seus efeitos, então você pode colocá-lo e ficar por perto para ainda receber os benefícios de sanidade!</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_3"><![CDATA[<a>Essa lanterna durará todo o contrato, então não se preocupe se ela apagar quando você mais precisar dela. Assim como seu antecessor, você pode ficar por perto para aproveitar os efeitos.</a><a>Por último, é à prova d\'água, por isso funciona até mesmo na chuva!</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_1"><![CDATA[<a>Este crucifixo pode ser segurado ou colocado para impedir que o fantasma inicie um único ataque.</a><a>Mantenha-o próximo a qualquer atividade que encontrar.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_2"><![CDATA[<a>Um crucifixo de metal que pode ser usado para bloquear dois ataques, com um alcance maior.</a><a>Lembre-se de mantê-lo perto de qualquer atividade que encontrar.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_3"><![CDATA[<a>Este crucifixo tem um alcance ainda maior que a versão anterior. Além disso, um crucifixo não utilizado pode impedir uma caçada amaldiçoada, consumindo ambos os usos.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_1"><![CDATA[<a>Ao segurar este recipiente, você pode colocar pilhas de sal no chão na esperança de rastrear o fantasma. Recomendamos colocá-los em portas e perto de curvas em corredores ou salas para aumentar a chance de obter uma reação.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_2"><![CDATA[<a>Esse recipiente maior contém mais sal do que seu antecessor, permitindo que você coloque longas linhas de sal para bloquear facilmente passagens mais largas.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_3"><![CDATA[<a>Esse sal é tão poderoso que pode afetar a mobilidade de um fantasma de duas maneiras.</a><a>Enquanto um fantasma estiver agindo passivamente, essas linhas agirão como uma barreira, forçando o fantasma a se virar ao entrar em um. Ótimo para prender fantasmas errantes em uma sala para que você possa encontrar evidências.</a><a>Se for durante um ataque, o fantasma ficará lento, dando a você mais tempo para escapar.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_1"><![CDATA[<a>Você pode acender o incenso com qualquer acendedor para impedir que um fantasma inicie uma caçada por um longo período. Além disso, você pode usá-lo durante uma caçada quando estiver perto de um fantasma para desorientá-lo por alguns segundos.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_2"><![CDATA[<a>Muito mais sálvia foi usada para criar este pacote de incenso, permitindo um tempo de queima mais longo e mantendo você mais seguro durante os ataques.</a><a>Além disso, ele retardará o movimento do fantasma durante parte do ataque. a duração do efeito.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_3"><![CDATA[<a>Com um alcance muito maior e um tempo de queima mais longo, você pode afastar fantasmas com muito mais segurança quando for atacado. Quando o fantasma é inicialmente repelido, ele fica atordoado, interrompendo seu movimento por um curto período.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_1"><![CDATA[<a>Conecte uma câmera de vídeo a este tripé colocando-a em cima. Você pode então carregar o tripé e colocá-lo em locais que podem não ter uma boa superfície para visualizar atividades paranormais.</a><a>Fantasmas podem interferir nas câmeras posicionadas e tentar derrubá-las. Certifique-se de reiniciá-las. se forem empurrados para o chão.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_2"><![CDATA[<a>Este tripé foi atualizado com um motor rotacional. Ao visualizar a câmera de vídeo do caminhão, você pode usar os controles na tela para girar o motor do tripé, proporcionando um novo ângulo.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_3"><![CDATA[<a>Assim como as versões anteriores, este tripé é semelhante, exceto que é muito mais resistente. Aqueles fantasmas irritantes devem derrubá-lo com muito menos frequência.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>Coloque este sensor de movimento nas paredes ou no chão e ele piscará sempre que algo se mover na frente dele, mesmo coisas que você não consegue ver.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Com dois modos diferentes, um alcance maior e um indicador sonoro, este sensor é perfeito para rastreamento paranormal.</a><a>Você pode alternar o formato do laser interagindo com o sensor depois que ele for colocado.{ /3}</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>Coloque esta câmera com sensor de movimento no chão, perto de qualquer atividade fantasma que você encontrar. Quando ativado, ele gira e pisca uma luz brilhante sempre que um fantasma entra ou sai do alcance de detecção.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Coloque esses sensores de som em locais onde você deseja monitorar qualquer interação de áudio.</a><a>Depois de colocados, retorne ao caminhão, você pode ouvir a reprodução remota enquanto verifica a tela do sensor de som para ver se qualquer um dos sensores recebe alguma leitura.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>Este sensor de som foi aprimorado para apresentar três configurações de tamanho diferentes, que podem ser alternadas com um botão de tamanho na tela do sensor de som no caminhão.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>O tripé tem juntas rotacionais, permitindo que você interaja com ele para alterar o formato do sensor de som.</a><a>Cada formato é representado pelas direções para as quais os microfones estão voltados:</a><a>Para frente: Cone / Para fora: Lados / Para dentro: Esfera</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_1"><![CDATA[<a>Beba esta garrafa de óleo de cobra vintage para restaurar um pouco da sua sanidade. A restauração levará alguns segundos, e o valor restaurado dependerá da dificuldade que você está jogando.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_2"><![CDATA[<a>Tomar essas pílulas restaurará sua sanidade mais rapidamente. Você pode pegar vários potes para aumentar a quantidade de Sanidade restaurada ao longo da duração.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_3"><![CDATA[<a>Este Adrenaline Shot restaurará sua sanidade muito mais rápido do que as duas versões anteriores. Além disso, você não perderá resistência durante toda a duração dos efeitos.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_1"><![CDATA[<a>Ao usar o microfone parabólico e os fones de ouvido conectados, você poderá ouvir sons mais distantes do que o normal, dependendo da direção em que direcionar o microfone.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_2"><![CDATA[<a>Melhoramos este microfone parabólico com algumas melhorias: um sensor melhor e uma tela pequena.</a><a>Ativá-lo permitirá que você ouça sons distantes, além de obter uma visão visual leitura do volume do som.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_3"><![CDATA[<a>Este microfone parabólico foi aprimorado com um indicador visual de som.</a><a>Cada vez que um som for detectado dentro do alcance do microfone, um indicador visual será mostrado na tela, incluindo distância e distância. volume, permitindo rastrear facilmente de onde vem o som.</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_1"><![CDATA[<a>Prender esta pequena câmera na sua cabeça permite que seus colegas de equipe assistam a um vídeo ao vivo da sua visão na segurança do caminhão, o que é ótimo para realizar várias tarefas ao mesmo tempo e capturar coisas que você pode perder!</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_2"><![CDATA[<a>Uma pequena lanterna montada na cabeça que não ocupa espaço no inventário. A única desvantagem é que a luz não é muito brilhante ou ampla.</a><a>Você pode ligá-la e desligá-la mantendo pressionada a tecla especial.</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_3"><![CDATA[<a>Um par de óculos de visão noturna, que permite ver no escuro sem a necessidade de lanterna.</a><a>Mas esteja avisado: sua visão pode ficar distorcida se estiver ao alcance de um fantasma ativo, tornando o óculos inúteis.</a>]]></string>
+
+    <!--
+          Flavor Text
+      -->
+    <string name="shop_equipment_dots_data_flavortext_1"><![CDATA[<a>Uma pequena caneta laser que projeta pequenos feixes de luz no ambiente.</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_2"><![CDATA[<a>Este sensor de movimento infravermelho foi fortemente adaptado para projetar luz. Ele é pequeno e compacto e pode aderir à maioria das superfícies.</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_3"><![CDATA[<a>Um projetor motorizado com três lentes para ampla cobertura de luz.</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_1"><![CDATA[<a>Um medidor de EMF com vários modos para verificar diferentes interferências no ar. Infelizmente, é antigo e apenas um deles funciona. Felizmente, é o que precisamos para leituras paranormais!</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_2"><![CDATA[<a>O confiável K2 tem sido usado por investigadores paranormais em todo o mundo com resultados consistentes.</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_3"><![CDATA[<a>Um dispositivo personalizado da Ghost Huntin\' Distribuição. Capaz de fazer muito mais do que apenas exibir valores de campos eletromagnéticos em uma tela grande.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_1"><![CDATA[<a>Transmitido de geração em geração, estamos surpresos que seja um trabalho árduo.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_2"><![CDATA[<a>É compacto e leve, com um botão traseiro para uma pegada mais tática.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_3"><![CDATA[<a>Uma lanterna muito maior, com até alça para transporte!</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_1"><![CDATA[<a>Uma câmera Polteroid antiga, um pouco empoeirada e arranhada. Você terá que esperar a foto ser impressa antes de tirar outra.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_2"><![CDATA[<a>A Bony GhostShot é uma câmera digital compacta e fácil de usar, perfeita para tirar fotos de fantasmas em pânico no escuro.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_3"><![CDATA[<a>Uma das melhores câmeras SLR da Bony, completa com lentes mais amplas, maior qualidade de imagem e poder de processamento rápido.</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_1"><![CDATA[<a>Caça aos fantasmas\' A própria caixa de fósforos da distribuição, completa com um fantasma assustador como mascote. Adorável!</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_2"><![CDATA[<a>Um isqueiro DiK; Pequeno, compacto e prático!</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_3"><![CDATA[<a>Desde o lançamento, os isqueiros Zippy têm sido essenciais para os militares e agora,\' Investigadores Fantasmas.</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>Um castiçal velho e enferrujado sustentando uma vela pequena. Espero que dure o suficiente se não houver outra luz. Não se esqueça de algo para iluminá-lo!</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>Candelabros com três velas altas anexadas. O metal ornamentado e a cera de vela de alta qualidade proporcionam um protetor de sanidade muito mais confiável!</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>Pode parecer antiga, mas esta lanterna movida a gasolina é a luz de fogo mais confiável que encontramos e pode durar horas a fio.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Um pequeno bastão luminoso cheio de um líquido transparente e oleoso, misturado com corante fluorescente. Quebrar o bastão causa uma reação que ilumina a área ao redor com uma cor brilhante.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Uma pequena lanterna UV tática com um prático prendedor para cinto.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>A lanterna UV Light Pro possui quase 80 lâmpadas individuais, iluminando áreas enormes com luz.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>Apenas dois pedaços de madeira amarrados. A forma por si só parece ser suficiente para afastar algumas entidades paranormais.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>Atualizada de madeira para ferro fundido, esta cruz oferece uma defesa muito mais confiável.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_3"><![CDATA[<a>Este crucifixo ornamentado foi adornado com detalhes dourados e prateados. Foi comprovado que esses designs complexos aumentam a defesa contra seres de outro mundo.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_1"><![CDATA[<a>Encontramos várias dessas filmadoras antigas em uma caixa no antigo escritório. Esperamos que elas façam o trabalho bem o suficiente.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_2"><![CDATA[<a>A Parasonic lançou esta câmera de vídeo na esperança de substituir todas as filmadoras Bony. Parece que a maior parte funcionou.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>Bony está de volta com uma câmera de última geração, modificada exclusivamente para caçadores de fantasmas. Também seria uma ótima câmera de cinema.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>Um antigo rádio FM/AM. É pequeno e compacto, mas o alto-falante não é da melhor qualidade.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>A Spirit Box P-SB7T foi criada exclusivamente para conversas com o desconhecido. A tela retroiluminada ajuda nas investigações no escuro.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3" tools:ignore="Typos"><![CDATA[<a>O SB11-Z é uma Spirit Box muito maior, capaz de varrer dois canais de frequência ao mesmo tempo.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>Um termômetro de parede antigo, normalmente usado para medir a temperatura ambiente durante todo o ano, pendurado na parede. Ele também funciona perfeitamente quando você o carrega!</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>Normalmente usado por profissionais médicos para leituras rápidas de temperatura, este termômetro infravermelho é ótimo para leituras rápidas e rápidas. Parece fornecer leituras um pouco imprecisas, embora talvez seja apenas antigo.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>Mais moderno, mais técnico e mais preciso. Você simplesmente não consegue vencer.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_1"><![CDATA[<a>Caça aos fantasmas\' A marca própria de sal da distribuição provavelmente não tem o melhor sabor, mas é ótima para fantasmas.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_2"><![CDATA[<a>Descobrimos que o sal rosa do Himalaia finamente moído é ótimo para revelar aquelas pegadas incômodas.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_3"><![CDATA[<a>Uma garrafa de vidro com sal preto abençoado, combinada com outros minerais para efeitos de limpeza extras. Parece mais bonito também, brilhante!</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_1"><![CDATA[<a>Um pequeno ramo de sálvia negra. Parece que quase todas as folhas caíram. Espero que ainda funcione.</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_2"><![CDATA[<a>Grande pacote de sálvia branca, bem amarrado com barbante para uma queima compacta e eficiente quando acesa. Tem um aroma doce e amargo.</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_3"><![CDATA[<a>Um queimador de incenso sagrado preenchido com uma mistura personalizada projetada especificamente para afastar entidades paranormais. Balançar quando aceso emitirá uma grande quantidade de fumaça dissuasora.</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_1"><![CDATA[<a>Barato e alegre, basta ser independente. É melhor tomar cuidado para que não caia.</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_2"><![CDATA[<a>É muito mais moderno, limpo e resistente. Tem até um motor eletrônico conectado!</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_3"><![CDATA[<a>Pernas de metal reforçadas com pernas extensíveis, perfeitas para transportar câmeras de perfil maiores.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>Anteriormente uma câmera de vida selvagem, o sensor foi modificado para rastrear entidades paranormais que se movem na frente dele.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>Pelo que aprendemos ao modificar a versão anterior, conseguimos melhorar uma câmera mais avançada para nossas necessidades de rastreamento paranormal.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>Uma câmera de segurança que foi desmontada e reconstruída do zero, garantindo visão do reino paranormal.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>Um pequeno microfone conectado a um minitripé, barato e eficiente.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>Dois microfones de alta qualidade são conectados em um tripé personalizado. Eles gastaram algum tempo e dinheiro extra para criar este.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>Microfones shotgun caros são conectados a um pequeno receptor, permitindo transmissões de áudio de alta qualidade para o caminhão.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_1"><![CDATA[<a>Não temos certeza de quão segura é essa fórmula Insane Away, mas ela parece ajudar durante aquelas sessões de pânico de caça aos fantasmas.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_2"><![CDATA[<a>Produto muito mais regulamentado e produzido em massa. Caça Fantasma\' A distribuição deve ter contratado alguns especialistas para isso.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_3"><![CDATA[<a>Uma nova fórmula criada por especialistas de todo o mundo, contida em uma pequena injeção.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_1"><![CDATA[<a>Pode não ser a coisa mais glamorosa do mundo, mas dá conta do recado.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_2"><![CDATA[<a>As páginas em pergaminho são protegidas por um estojo de couro. Mantenha seus segredos ainda mais seguros amarrando a corda do lado de fora.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_3"><![CDATA[<a>Um grimório que parece ter muita história. Os detalhes metálicos tornam este livro pesado muito mais elegante.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_1"><![CDATA[<a>O microfone parabólico 8X21 pode amplificar sons muito mais longe do que o ouvido nu consegue ouvir.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_2"><![CDATA[<a>Atualizado e aprimorado, este microfone parabólico é perfeito para ouvir conversas paranormais!</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_3"><![CDATA[<a>Um microfone de alta qualidade acompanhado de uma tela com interface personalizada.</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_1"><![CDATA[<a>Uma câmera GhostPro montada em um conjunto de tiras de cabeça, não é a mais moderna, mas é útil.</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_2"><![CDATA[<a>As alças são mais fortes e a câmera foi substituída por uma pequena lanterna LED</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_3"><![CDATA[<a>Usados pelos militares, esses óculos permitem ver coisas que o olho nu não consegue.</a>]]></string>
+
+    <string name="equipment_info_name_dots">Proyector D.O.T.S.</string>
+    <string name="equipment_info_name_emf">Leitor EMF</string>
+    <string name="equipment_info_name_flashlight">Lanterna</string>
+    <string name="equipment_info_name_photocamera">Câmera Fotográfica</string>
+    <string name="equipment_info_name_igniter">Fósforos</string>
+    <string name="equipment_info_name_firelight">Chama</string>
+    <string name="equipment_info_name_uvlight">Lanterna Ultravioleta</string>
+    <string name="equipment_info_name_motionsensor">Sensor de movimento</string>
+    <string name="equipment_info_name_soundsensor">Sensor de Som</string>
+    <string name="equipment_info_name_sanitymedication">Medicamentos para sanidade</string>
+    <string name="equipment_info_name_parabolicmicrophone">Microfone Parabólico</string>
+    <string name="equipment_info_name_headgear">Equipamento de Cabeça</string>
+    <string name="equipment_info_name_videocamera">Câmera de Vídeo</string>
+    <string name="equipment_info_name_spiritbox">Caixa de Espírito</string>
+    <string name="equipment_info_name_thermometer">Termômetro</string>
+    <string name="equipment_info_name_salt">Sal</string>
+    <string name="equipment_info_name_incense">Incenso</string>
+    <string name="equipment_info_name_tripod">Tripé</string>
+    <string name="equipment_info_name_ghostwritingbook">Livro de Escrita Fantasma</string>
+    <string name="equipment_info_name_crucifix">Crucifixo</string>
+
+
+    <string name="shop_equipment_attribute_spotight_narrow" >Destaque: Estreito</string>
+    <string name="shop_equipment_attribute_spotight_wide" >Destaque: Amplo</string>
+    <string name="shop_equipment_attribute_spotight_area" >Área Light</string>
+
+    <string name="shop_equipment_attribute_intensity_low" >Intensidade: Baixa</string>
+    <string name="shop_equipment_attribute_intensity_med" >Intensidade: Média</string>
+    <string name="shop_equipment_attribute_intensity_high" >Intensidade: Alta</string>
+
+    <string name="shop_equipment_attribute_interactionrate_low" >Taxa de interação: baixa</string>
+    <string name="shop_equipment_attribute_interactionrate_med" >Taxa de interação: Média</string>
+    <string name="shop_equipment_attribute_interactionrate_high" >Taxa de interação: Alta</string>
+
+    <string name="shop_equipment_attribute_audioquality_low" >Qualidade de áudio: baixa</string>
+    <string name="shop_equipment_attribute_audioquality_med" >Qualidade de áudio: média</string>
+    <string name="shop_equipment_attribute_audioquality_high" >Qualidade de áudio: alta</string>
+
+    <string name="shop_equipment_attribute_responserate_low" >Taxa de resposta: baixa</string>
+    <string name="shop_equipment_attribute_responserate_med" >Taxa de resposta: Média</string>
+    <string name="shop_equipment_attribute_responserate_high" >Taxa de resposta: alta</string>
+
+    <string name="shop_equipment_attribute_samplespeed_low" >Velocidade da amostra: Baixa</string>
+    <string name="shop_equipment_attribute_samplespeed_med" >Velocidade da amostra: Média</string>
+    <string name="shop_equipment_attribute_samplespeed_high" >Velocidade da amostra: Alta</string>
+
+    <string name="shop_equipment_attribute_imagequality_low" >Qualidade da imagem: Baixa</string>
+    <string name="shop_equipment_attribute_imagequality_med" >Qualidade da imagem: Média</string>
+    <string name="shop_equipment_attribute_imagequality_high" >Qualidade da imagem: Alta</string>
+
+    <string name="shop_equipment_attribute_interference_low" >Interferência Paranormal: Baixa</string>
+    <string name="shop_equipment_attribute_interference_med" >Interferência Paranormal: Média</string>
+    <string name="shop_equipment_attribute_interference_high" >Interferência Paranormal: Alta</string>
+
+    <string name="shop_equipment_attribute_knockdownchance_low" >Chance de nocaute: baixa</string>
+    <string name="shop_equipment_attribute_knockdownchance_med" >Chance de nocaute: Média</string>
+    <string name="shop_equipment_attribute_knockdownchance_high" >Chance de queda: alta</string>
+
+    <string name="shop_equipment_attribute_accuracy_low" >Precisão: Baixa</string>
+    <string name="shop_equipment_attribute_accuracy_med" >Precisão: Média</string>
+    <string name="shop_equipment_attribute_accuracy_high" >Precisão: Alta</string>
+
+    <string name="shop_equipment_attribute_indicator_audio" >Indicador de áudio</string>
+    <string name="shop_equipment_attribute_indicator_light" >Indicador luminoso</string>
+    <string name="shop_equipment_attribute_indicator_distance" >Indicador de distância</string>
+    <string name="shop_equipment_attribute_indicator_directional" >Indicador direcional</string>
+
+    <string name="shop_equipment_attribute_range_1_7" >Faixa (M): 1,7</string>
+    <string name="shop_equipment_attribute_range_2" >Faixa (M): 2</string>
+    <string name="shop_equipment_attribute_range_2_5" >Faixa (M): 2,5</string>
+    <string name="shop_equipment_attribute_range_3" >Faixa (M): 3</string>
+    <string name="shop_equipment_attribute_range_3_5" >Faixa (M): 3,5</string>
+    <string name="shop_equipment_attribute_range_4" >Faixa (M): 4</string>
+    <string name="shop_equipment_attribute_range_5" >Faixa (M): 5</string>
+    <string name="shop_equipment_attribute_range_7" >Faixa (M): 7</string>
+    <string name="shop_equipment_attribute_range_20" >Faixa (M): 20</string>
+    <string name="shop_equipment_attribute_range_30" >Faixa (M): 30</string>
+    <string name="shop_equipment_attribute_range_5_10" >Faixa (M): 5, 10</string>
+    <string name="shop_equipment_attribute_range_5_10_15" >Faixa (M): 5, 10, 15</string>
+
+    <string name="shop_equipment_attribute_uvchargetime_1_5" >Tempo de carga UV: 1,5</string>
+    <string name="shop_equipment_attribute_uvchargetime_5" >Tempo de carga UV: 5</string>
+    <string name="shop_equipment_attribute_uvchargetime_10" >Tempo de carga UV: 10</string>
+
+    <string name="shop_equipment_attribute_phototime_low" >Tempo entre fotos: baixo</string>
+    <string name="shop_equipment_attribute_phototime_med" >Tempo entre fotos: Médio</string>
+    <string name="shop_equipment_attribute_phototime_high" >Tempo entre fotos: alto</string>
+
+    <string name="shop_equipment_attribute_sanitydrainreduction_33" >Redução de drenagem de sanidade (%): 33</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_50" >Redução de drenagem de sanidade (%): 50</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_66" >Redução de drenagem de sanidade (%): 66</string>
+
+    <string name="shop_equipment_attribute_sanityrestoration_10" >Sono de Restauração de Sanidade (S): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >Sono de Restauração de Sanidade (S): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >Sono de Restauração de Sanidade (S): 30</string>
+
+    <string name="shop_equipment_attribute_sensorshape_line" >Forma do sensor: Linha</string>
+    <string name="shop_equipment_attribute_sensorshape_line_cone" >Forma do sensor: Cone</string>
+    <string name="shop_equipment_attribute_sensorshape_circle" >Forma do sensor: Círculo</string>
+    <string name="shop_equipment_attribute_sensorshape_circle_cone_sides" >Forma do sensor: círculo, cone, lados</string>
+
+    <string name="shop_equipment_attribute_duration_3_s" >Duração (S): 7</string>
+    <string name="shop_equipment_attribute_duration_5_s" >Duração (S): 5</string>
+    <string name="shop_equipment_attribute_duration_6_s" >Duração (S): 6</string>
+    <string name="shop_equipment_attribute_duration_7_s" >Duração (S): 7</string>
+    <string name="shop_equipment_attribute_duration_10_s" >Duração (S): 10</string>
+    <string name="shop_equipment_attribute_duration_60_s" >Duração (S): 60</string>
+    <string name="shop_equipment_attribute_duration_3_m" >Duração (M): 3</string>
+    <string name="shop_equipment_attribute_duration_5_m" >Duração (M): 5</string>
+    <string name="shop_equipment_attribute_duration_10_m" >Duração (M): 10</string>
+
+    <string name="shop_equipment_attribute_uses_1" >Usos: 1</string>
+    <string name="shop_equipment_attribute_uses_2" >Usos: 2</string>
+    <string name="shop_equipment_attribute_uses_3" >Usos: 3</string>
+    <string name="shop_equipment_attribute_uses_10" >Usos: 10</string>
+
+    <string name="shop_equipment_attribute_placeable" >Colocável</string>
+    <string name="shop_equipment_attribute_handheld" >Portátil</string>
+
+    <string name="shop_equipment_attribute_property_ghosteffect_slows" >Retarda o Ghost durante caças</string>
+    <string name="shop_equipment_attribute_property_ghosteffect_halts" >Interrompe o Ghost durante as caçadas</string>
+
+    <string name="shop_equipment_attribute_property_displayscreen" >Tela de exibição</string>
+    <string name="shop_equipment_attribute_property_preventscursedhunt" >Evita uma caçada amaldiçoada</string>
+    <string name="shop_equipment_attribute_property_electronic" >Eletrônico</string>
+    <string name="shop_equipment_attribute_property_consumable" >Consumível</string>
+    <string name="shop_equipment_attribute_property_waterproof" >À prova d\'água</string>
+    <string name="shop_equipment_attribute_property_headslot" >Slot da cabeça</string>
+    <string name="shop_equipment_attribute_property_nightvision" >Visão Noturna</string>
+    <string name="shop_equipment_attribute_property_sprintboost" >Sprint Boost (S): 10</string>
+    <string name="shop_equipment_attribute_property_rotationcontrol" >Controle de rotação</string>
+    <string name="shop_equipment_attribute_property_scanning" >Digitalização</string>
+    <string name="general_navigation_secondary">Secundário</string>
+    <string name="general_navigation_alternative">Alternativa</string>
+    <string name="general_navigation_tools">Ferramentas</string>
+    <string name="general_navigation_home">Página inicial</string>
+    <string name="general_navigation_primary">Primário</string>
+    <string name="general_navigation_menu">cardápio</string>
+    <string name="codex_section_equipment">Equipamento</string>
+    <string name="codex_section_more">Mais em breve</string>
+    <string name="navigation_open_state">Gaveta de navegação aberta.</string>
+    <string name="navigation_closed_state">Gaveta de navegação fechada.</string>
+    <string name="map_floor_name_fourth">Quarto Andar</string>
+
+
+    <string name="account_title">Minha conta</string>
+
+    <string name="account_label_information">Informação da conta</string>
+
+    <string name="account_label_name">Nome</string>
+
+    <string name="account_label_email">E-mail</string>
+
+    <string name="account_button_login">Conecte-se</string>
+
+    <string name="account_button_logout">Sair</string>
+
+    <string name="account_button_deactivate">Desativar conta</string>
+
+    <!-- Deactivate -->
+
+    <string name="account_deactivate_title">Desativação de conta</string>
+
+    <string name="account_deactivate_warning">Ao optar por desativar sua conta, você concorda com o seguinte:</string>
+
+    <string name="account_deactivate_warning_list_1">Todos os P.E.T. os dados da conta se tornarão irrecuperáveis.</string>
+
+    <string name="account_deactivate_warning_list_2">Você perderá o acesso a compras, desbloqueios e todos os outros itens associados.</string>
+
+    <string name="account_deactivate_warning_list_3">Se você entrar novamente com o mesmo login, os dados da conta anterior não serão transferidos.</string>
+
+    <string name="account_deactivate_button_confirm">Confirmar desativação</string>
+
+    <string name="account_deactivate_button_cancel">Deixa para lá</string>
+
+    <!-- Logout -->
+
+    <string name="account_logout_title">Sair</string>
+
+    <string name="account_logout_warning">Tem certeza que deseja sair?</string>
+
+    <string name="account_logout_button_confirm">Sair</string>
+
+    <string name="account_logout_button_cancel">Cancelar</string>
+
+
+    <string name="marketplace_title">Mercado</string>
+
+    <string name="marketplace_connection_error">Ah, ah! Ocorreu um erro ao conectar-se ao mercado.</string>
+
+    <string name="marketplace_error_login_required">Faça login para reivindicar o conteúdo do Marketplace.</string>
+
+    <string name="marketplace_button_watch_ad">Ganhe créditos</string>
+
+    <string name="marketplace_button_purchase_credits">Comprar créditos</string>
+
+    <string name="marketplace_label_purchased">Desbloqueado</string>
+    <string name="marketplace_label_bundle_includes">Inclui</string>
+    <string name="marketplace_description_watch_ad">Assista a um anúncio para ganhar %s %s.</string>
+
+    <string name="marketplace_description_purchase_credits">Compre créditos diretamente.</string>
+
+
+
+    <!--
+          Sanity Drain Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_sanitydrain"><![CDATA[<a>7%/s</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain"><![CDATA[<a>0 – 25%</a>]]></string>
+
+    <string name="shop_cursedpossessions_musicbox_data_sanitydrain"><![CDATA[<a>2,5%/s em aproximadamente 2,5 milhões</a>]]></string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain"><![CDATA[<a>0 – 50%</a>]]></string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain"><![CDATA[<a>16% p velas acesas</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman"><![CDATA[<a>Morte instantânea</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune"><![CDATA[<a>+25% oou -25%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon"><![CDATA[<a>0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun"><![CDATA[<a>Definir como 100%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower"><![CDATA[<a>Definir como 0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain"><![CDATA[<a>5% pusados</a>]]></string>
+
+    <!--
+          Alt Name Text
+      -->
+
+    <string name="shop_cursedpossessions_monkeypaw_data_altname"><![CDATA[<a>Mão básica</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_altname"><![CDATA[<a>Desejo colecionável</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman"><![CDATA[<a>O Enforcado</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess"><![CDATA[<a>A Suma Sacerdotisa</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_death"><![CDATA[<a>Morte</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_devil"><![CDATA[<a>O Diabo</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune"><![CDATA[<a>A roda da fortuna</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit"><![CDATA[<a>O Eremita</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_joker"><![CDATA[<a>O tolo</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_moon"><![CDATA[<a>A Lua</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_sun"><![CDATA[<a>O Sol</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_altname_tower"><![CDATA[<a>A Torre</a>]]></string>
+
+    <!--
+          Attributes Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_musicbox_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower"><![CDATA[<a></a>]]></string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute"><![CDATA[<a></a>]]></string>
+
+    <!--
+          Draw Chance Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_drawchance"><![CDATA[<a>-</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance"><![CDATA[<a>11 – 55%</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance"><![CDATA[<a>11 – 55%</a>]]></string>
+
+    <string name="shop_cursedpossessions_musicbox_data_drawchance"><![CDATA[<a>-</a>]]></string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance"><![CDATA[<a>-</a>]]></string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance"><![CDATA[<a>-</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman"><![CDATA[<a>1%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess"><![CDATA[<a>2%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death"><![CDATA[<a>10%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil"><![CDATA[<a>10%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune"><![CDATA[<a>20%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit"><![CDATA[<a>10%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker"><![CDATA[<a>17% / 100%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon"><![CDATA[<a>5%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun"><![CDATA[<a>5%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower"><![CDATA[<a>20%</a>]]></string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_drawchance"><![CDATA[<a>10%</a>]]></string>
+
+
+    <string name="store_title_cursedpossessions"><![CDATA[Bens Amaldiçoados]]></string>
+
+    <string name="cursedpossessions_info_name_mirror"><![CDATA[Espelho Assombrado]]></string>
+
+    <string name="cursedpossessions_info_name_monkeypaw"><![CDATA[Pata de Macaco]]></string>
+
+    <string name="cursedpossessions_info_name_musicbox"><![CDATA[Caixa de música]]></string>
+
+    <string name="cursedpossessions_info_name_ouijaboard"><![CDATA[Tabuleiro Ouija]]></string>
+
+    <string name="cursedpossessions_info_name_summoningcircle"><![CDATA[Círculo de Invocação]]></string>
+
+    <string name="cursedpossessions_info_name_tarotcards"><![CDATA[Cartas de tarô]]></string>
+
+    <string name="cursedpossessions_info_name_voodoodoll"><![CDATA[Boneca vodu]]></string>
+
+    <!--
+          Flavor Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_flavortext"><![CDATA[<a>Um espelho grande e redondo. Quando segurado, o usuário é levado a investigá-lo… mas isso tem um custo.</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_flavortext"><![CDATA[<a>Um objeto retirado diretamente do folclore, este item é a manifestação física de um desejo que deu errado.</a>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext"><![CDATA[<a>Não se sabe como a Pata do Macaco é capaz de compreender desejos, mas este é um deles. Eles foram escritos pelo criador do Monkey Paw ou por uma vítima?</a>]]></string>
+
+    <string name="shop_cursedpossessions_musicbox_data_flavortext"><![CDATA[<a>Uma caixa de madeira com mecanismos internos que permitem tocar uma melodia. Este toca uma melodia chamada \"Adrift\".</a>]]></string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_flavortext"><![CDATA[<a>Uma placa de madeira com inscrições combinada com uma prancheta correspondente. Por algum motivo, você tem a sensação de que não se deve mexer com isso.</a>]]></string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_flavortext"><![CDATA[<a>Um pentagrama pintado no chão com o que parece ser sangue. Ele é completado com cinco velas vermelhas que parecem ter sido usadas anteriormente.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman"><![CDATA[<a>Uma carta de tarô marcada com a imagem de um homem pendurado pelos pés em um grande galho de árvore.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess"><![CDATA[<a>Uma carta de tarô marcada com a imagem das asas de um anjo.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death"><![CDATA[<a>Uma carta de tarô marcada com a imagem de uma pessoa aterrorizada e em perigo.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil"><![CDATA[<a>Uma carta de tarô marcada com a imagem de uma figura sombria e escondida.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune"><![CDATA[<a>Uma carta de tarô marcada com a imagem do sol e da lua em justaposição.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit"><![CDATA[<a>Uma carta de tarô marcada com a imagem de uma pessoa envolta em uma camisa de força.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker"><![CDATA[<a>Uma carta de tarô marcada com a imagem de um tolo medieval.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon"><![CDATA[<a>Uma carta de tarô marcada com a imagem da Lua.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun"><![CDATA[<a>Uma carta de tarô marcada com a imagem do Sol.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower"><![CDATA[<a>Uma carta de tarô marcada com a imagem de uma Torre do Castelo.</a>]]></string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_flavortext"><![CDATA[<a>Um pequeno boneco que foi imbuído da essência do fantasma, unindo para sempre as duas entidades.</a>]]></string>
+
+    <!--
+          Info Text
+      -->
+
+    <string name="shop_cursedpossessions_mirror_data_info"><![CDATA[<p>O espelho assombrado mostra qual é o quarto fantasma/quarto favorito! Também ajuda a confirmar se o fantasma muda de quarto favorito durante uma investigação.</p><p>NÃO mostra onde o fantasma está atualmente.</p><p>Ao olhar no espelho, ele drena 7% sanidade por segundo e uma mínimo de 20% per use.</p><p>Se você ficar sem sanidade, o o espelho quebrará e uma caçada amaldiçoada começará.</p>]]></string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_info"><![CDATA[<h2>O número de desejos que você terá dependerá da sua dificuldade ou do multiplicador de recompensa da seguinte forma…</h2>Desejo ver o fantasma:</h4><a><br>0x - 1,9x Multiplicador = 5 desejos<br>Multiplicador 2x - 2,9x = 4 desejos<br>Multiplicador 3x ou maior = 3 desejos</a><h2>TODOS OS DESEJOS</h2><h4>Desejo ver o fantasma:</h4><a>+ Aciona um evento fantasma no local do fantasma.<br>- Tranca instantaneamente as portas de saída.<br>- Inicia uma caçada imediatamente após o evento fantasma.<br>- Reduz a visão do jogador durante o restante da caça com um névoa negra.</a><h4>Desejo atividade.</h4><a>+ Duplica todas as atividades fantasmas por 2 minutos, incluindo interações, roaming e habilidades.<br>- Quebra a caixa de fusíveis e tranca a saída. portas por 2 minutos.</a><h4>Desejo sanidade.</h4><a>~ A média de sanidade da equipe é de 50%<br>- Define a sala favorita dos fantasmas para uma nova sala aleatória<br>- Aumenta o consumo de sanidade em +50\\% oda taxa atual para todo o grupo.<br>- Observação: este desejo substituirá a fraqueza de Goryo. O que significa que, apesar de o Goryo não poder mudar de quarto sozinho, ele PODE se o desejo de sanidade for usado.</a><h4>Eu gostaria que o fantasma estivesse preso.</h4><a>+ Teleportes. o fantasma para seu quarto e tranca todas as portas por 1 minuto.<br>+ O fantasma não pode caçar, vagar ou executar habilidades enquanto estiver trancado em seu quarto.<br>- Tranca todas as portas do quarto que o jogador que fez o o desejo dura 1 minuto.<br>- O fantasma irá destravar todas as portas após 1 minuto e iniciar uma caçada.<br>~ 25\\% cde chance de as portas serem destravadas APÓS o período de carência.</a><h4>Desejo vida. / Desejo reviver meu amigo.</h4><a>+ Revive um jogador morto.<br>- 50\\% cchance de matar o jogador que usa o desejo.</a><h4>Desejo para estar seguro</h4><a>+ Abre o esconderijo mais próximo.<br>- Acende as luzes da sala.<br>- O fantasma pode ouvir e sentir o equipamento do jogador que fez o desejo durante as caçadas de qualquer lugar no mapa pelo restante da corrida.<br>+ Observação: isso pode ser usado a seu favor para atrair um fantasma intencionalmente para uma área mais segura para completar objetivos de caça.</a><h4>Desejo ir embora. .</h4><a>+ Destranca todas as portas de saída a qualquer momento, inclusive durante caçadas.<br>- Impede que você se mova instantaneamente e retorna lentamente a velocidade de movimento ao longo de 5 segundos.<br>- Reduz a visão por 5 segundos por a pessoa que fez o desejo.</a><h4>Desejo conhecimento.</h4><a>+ Remove 1 evidência incorreta e tipos de fantasmas correspondentes do seu diário, restringindo suas escolhas.<br>- Inicia uma caçada. perto do jogador.<br>- Pelo resto da rodada, o jogador que fez o desejo terá visão reduzida e áudio abafado.<br>- Observação: morrer redefinirá as reduções de áudio e visuais de volta ao normal e permanecerá normal se revivido.</a><h4>Desejo [clima].</h4><a>+ Se o tempo não estiver do seu agrado, altere-o para Chuva (x2), Neve, Céu limpo, Nevoeiro , ou Nascer do sol.<br>- Reduz em 25\\% fa Sanidade da pessoa que faz o desejo.<br>~ Observação: desejar chuva lhe dará 50\\% cde chance de obter luz ou chuva forte.</a><h4>Desejo qualquer coisa.</h4><a>+ Não consegue decidir o que deseja? Deixe a pata decidir por você. Desejar qualquer coisa concederá a você um dos desejos restantes (não utilizados) daquela rodada.<br>~ Observação: embora você possa usar Qualquer coisa desejar mais de uma vez, ele não concederá um desejo que já tenha sido usado naquela rodada.</a>]]></string>
+
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_info"><![CDATA[<a>Há tags escondidas em Sunny Meadows que darão ideias do que você pode desejar ao usar o bem amaldiçoado Monkey Paw. Para encontrá-los, basta entrar em Sunny Meadows e dar uma olhada. Depois de encontrado, ele será adicionado permanentemente à página 12 do seu diário.</a><ul><li>Desejo ver o fantasma.</li><li>Desejo atividade.</li><li>Desejo sanidade.</li><li>Desejo que o fantasma esteja preso.</li><li>Desejo vida.</li><li>Desejo estar seguro.</li><li>Desejo ir embora.</li><li>Desejo conhecimento.</li><li>Desejo (clima).</li><li>Desejo qualquer coisa.</li>{ /22}<a>Observação: você não precisa encontrar as tags para usar os desejos.</ul> Eles estão lá apenas para orientar você com uma lista de possibilidades.</a>]]></string>
+
+    <string name="shop_cursedpossessions_musicbox_data_info"><![CDATA[<p>A caixa de música atrai o fantasma! Durante o jogo, o fantasma procurará a caixa de música. Ótimo para tirar fotos e controlar/forçar uma caçada.</p><p>Ficar perto da caixa de música enquanto ela está tocando esgotará sua sanidade.</p><p>Se você jogar a caixa de música em vez de colocá-la, ele quebrará e iniciará uma caçada amaldiçoada.</p>]]></string>
+
+    <string name="shop_cursedpossessions_ouijaboard_data_info"><![CDATA[<p>O tabuleiro Ouija pode ser usado para forçar uma caçada, encontrar a sala dos fantasmas, tirar fotos de interações na fazenda etc.</p><p>Ative o tabuleiro e faça perguntas ou solicitações. O quadro estará ativo quando a prancheta estiver presente. Diga adeus para desativar o quadro e a prancheta será recuperada.</p><p>DIGA SEMPRE ADEUS! Se a pessoa que invocou a prancheta se afastar muito de um tabuleiro ouija ativo, ela se destruirá e iniciará uma caçada amaldiçoada.</p><p>Qualquer pessoa nas proximidades poderá falar com o tabuleiro.</p><p>Perguntas ou solicitações diferentes exigirão mais sanidade do que outras.</p><a>Algumas perguntas que você pode fazer</a><ul><li>Onde você está?</li><li>Onde\' é o osso?</li><li>Como você morreu?</li><li>Estou louco?</li><li>Quantas pessoas estão na sala?</li><li>Como você tem idade?</li><li>Qual é a minha sanidade?</li></ul><p>Você pode acionar uma Caçada Amaldiçoada dizendo Esconde-esconde. Você terá cinco segundos para fugir antes que o fantasma tenha a chance de caçar.</p>]]></string>
+
+    <string name="shop_cursedpossessions_summoningcircle_data_info"><![CDATA[<p>Qualquer pessoa perto do círculo de invocação quando as velas estiverem acesas também perderá a sanidade</p><p>Quando todas as velas estiverem acesas, uma Caçada Amaldiçoada será acionada. O fantasma ficará preso no círculo por um ou mais segundos antes de começar a vagar.</p><p>É recomendável tirar fotos do fantasma durante o período de armadilha.</p><p>A Caçada Amaldiçoada pode. ser cancelado por um Crucifixo de Nível 3.</p>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman"><![CDATA[<a>Mata você instantaneamente</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_priestess"><![CDATA[<a>Ressuscita um jogador morto. Se houver mais de um jogador morto, a carta ressuscitará um jogador morto aleatório. Se não houver jogadores mortos, a carta ressuscitará o próximo jogador a morrer.]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_death"><![CDATA[<a>Força uma caça aos fantasmas.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_devil"><![CDATA[<a>Força um evento fantasma.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_fortune"><![CDATA[<a>Ganhe 25\\% sanidade [Green Burn], perca 25\\% sanity [Red Burn]</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hermit"><![CDATA[<a>Teletransporta e prende o fantasma em seu cômodo favorito por um minuto.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_joker"><![CDATA[<a>Não faz nada. O Louco já está tecnicamente desenhado e o jogo rola 1/9 aleatoriamente para ver qual carta será exibida antes de revelar o Louco.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_moon"><![CDATA[<a>Reduz sua sanidade para 0%</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_sun"><![CDATA[<a>Restaure sua sanidade para 100%.</a>]]></string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_tower"><![CDATA[<a>Força uma interação e duplica a atividade fantasma por 20 segundos.</a>]]></string>
+
+    <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>Picar o boneco vodu força uma interação!</p><p>Você pode picar o boneco vodu até 10 vezes. Cada picada tem a chance de picar o coração, o que iniciará uma caçada amaldiçoada.</p><p>Reduzir sua sanidade a 0\\% by usando a boneca ativará todos os alfinetes e iniciará uma caçada amaldiçoada.</p>]]></string>
+
+    <plurals name="marketplace_description_watch_ad">
+        <item quantity="one">%d Crédito de acompanhante</item>
+        <item quantity="many">Créditos de acompanhante</item>
+        <item quantity="other">Créditos de acompanhante</item>
+    </plurals>
+
+    <string name="general_navigation_settings">Configurações</string>
+    <string name="general_navigation_system">Sistema</string>
+
+    <string name="newsletter_markallread">Marcar todas como lidas</string>
+    <string name="alert_error_generic">Erro!</string>
+    <string name="alert_success_generic">Sucesso!</string>
+    <string name="alert_account_welcome">Bem-vindo</string>
+    <string name="alert_account_data_failure">Não foi possível adquirir os dados.</string>
+    <string name="alert_account_remove_success">Conta removida com sucesso.</string>
+    <string name="alert_account_remove_failure">Falha na remoção da conta.</string>
+    <string name="alert_account_logout_success">Usuário desconectado.</string>
+    <string name="alert_account_login_failure">Erro de login.</string>
+    <string name="alert_internet_unavailable">Internet não disponível.</string>
+    <string name="alert_marketplace_access_failure">Não foi possível acessar o mercado.</string>
+    <string name="alert_marketplace_transaction_failure">Erro na transação do marketplace.</string>
+    <string name="alert_marketplace_purchase_success_skin">Skin comprado!</string>
+    <string name="alert_marketplace_purchase_success_generic">Compra bem-sucedida!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Créditos insuficientes para compra!</string>
+
+    <!-- Acknowledgement -->
+
+    <string name="marketplace_acknowledgement_title">Acordo de Mercado</string>
+
+    <string name="marketplace_acknowledgement_warning">Ao usar o \"Mercado\" da Phasmophobia Evidence Tool, você concorda implicitamente com o seguinte:</string>
+
+    <string name="marketplace_acknowledgement_warning_list_1">Os termos “conteúdo”, “itens” e “desbloqueios” referem-se a imagens, nomes e outros ativos. O termo \"desenvolvedor\" refere-se ao Tritium Studios. O termo \"P.E.T.\" ou \"este aplicativo\" refere-se ao aplicativo \"Phasmophobia Evidence Tool\".</string>
+
+    <string name="marketplace_acknowledgement_warning_list_2">\"P.E.T.\" não é afiliado a nenhuma outra entidade que possa ou não compartilhar o conteúdo fornecido.</string>
+
+    <string name="marketplace_acknowledgement_warning_list_3">Todo o conteúdo, passado ou presente, existe apenas para fins cosméticos em \"P.E.T.\". O conteúdo não pode ser resgatado ou transferido fora do \"P.E.T.\" e não tem impacto sobre quaisquer entidades externas, como, mas não se limitando a, jogos como \"Phasmophobia\".</string>
+
+    <string name="marketplace_acknowledgement_warning_list_4">Todas as transações são finais. O conteúdo pode estar parcialmente completo, quebrado ou com erros. O conteúdo pode ser desativado, removido ou modificado no futuro pelo desenvolvedor. O credenciamento para perda de acesso ao conteúdo da sua conta ou para qualquer alteração no conteúdo fica a critério do desenvolvedor.</string>
+
+    <string name="marketplace_acknowledgement_button_confirm">Entendi!</string>
+    <string name="marketplace_list_bundles">Pacotes temáticos</string>
+    <string name="marketplace_list_prestige">Temas de prestígio</string>
+    <string name="marketplace_list_event">Temas de eventos</string>
+    <string name="marketplace_list_community">Temas da comunidade</string>
+    <string name="marketplace_button_item_get">Pegar</string>
+    <string name="marketplace_purchase_equip">Equipar o tema %1$s?</string>
+</resources>

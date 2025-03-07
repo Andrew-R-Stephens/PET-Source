@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup_main_relativelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
+    android:gravity="center">
+
+    <com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+        android:id="@+id/navigation_header_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:NavHeaderLayoutButtonLeft="none"
+        app:NavHeaderLayoutButtonRight="cancel"
+        app:NavHeaderLayoutCenterTitle=""
+        app:layout_constraintBottom_toTopOf="@+id/popup_contentbody_constraintlayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/popup_contentbody_constraintlayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:paddingBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
+        app:layout_constraintEnd_toEndOf="@+id/navigation_header_container"
+        app:layout_constraintStart_toStartOf="@+id/navigation_header_container"
+        app:layout_constraintTop_toBottomOf="@+id/navigation_header_container">
+
+        <include
+            android:id="@+id/icon_container"
+            layout="@layout/item_investigation_ghost_icons"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="32dp"
+            app:layout_constraintHeight_percent=".04"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".5" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_contentbody"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_container">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout42"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="48dp"
+                android:padding="5sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+                    android:id="@+id/title_left"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:PETImageButtonType="back"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
+                    app:layout_constraintEnd_toStartOf="@+id/label_infoTitle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/label_infoTitle" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_infoTitle"
+                    style="?attr/secondaryFont_Regular_Auto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="center"
+                    android:text="@string/popup_ghost_info"
+                    android:textColor="?attr/textColorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/title_right"
+                    app:layout_constraintHeight_min="32dp"
+                    app:layout_constraintStart_toEndOf="@+id/title_left"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintWidth_percent=".5" />
+
+                <com.tritiumgaming.phasmophobiaevidencepicker.views.global.PETImageButton
+                    android:id="@+id/title_right"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    app:PETImageButtonType="forward"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_infoTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/label_infoTitle"
+                    app:layout_constraintTop_toTopOf="@+id/label_infoTitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                android:id="@+id/scrollView_swapping"
+                layout="@layout/item_scrollview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constrainedHeight="false"
+                app:layout_constraintBottom_toTopOf="@+id/dividerA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout42"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/dividerA"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/icon_strikethrough_1"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout43"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView_swapping"
+                app:layout_constraintWidth_percent=".9" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout43"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:padding="5sp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".05"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_huntTitle"
+                    style="?attr/secondaryFont_Regular_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/popup_ghost_huntdata"
+                    android:textColor="?attr/textColorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_min="32dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintWidth_percent=".5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_default="percent"
+                app:layout_constraintHeight_percent=".4"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <include
+                    android:id="@+id/scrollView_huntdata"
+                    layout="@layout/item_scrollview_huntdata" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center_horizontal|fill"
+        android:background="#00FFFFFF"
+        app:adSize="BANNER"
+        app:adUnitId="@string/ad_banner_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

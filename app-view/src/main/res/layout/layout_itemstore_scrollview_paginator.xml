@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator"
+    android:layout_width="48dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:maxWidth="48dp"
+    app:layout_constraintWidth_max="48dp"
+    android:columnCount="1">
+
+</merge>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        MAPS PAGE
+    -->
+    <!-- Page Details -->
+    <string name="mapview_instruction_zoom">Zoom: Pinch two fingers</string>
+    <string name="mapview_instruction_pan">Pan: Drag one finger</string>
+
+    <!-- Map Names -->
+    <!--<string name="map_name_asylum" translatable="false">Asylum</string>-->
+    <string name="map_name_meadows" translatable="false">Sunny Meadows</string>
+    <string name="map_name_meadows_r" translatable="false">Sunny(R)</string>
+    <string name="map_name_pointhope" translatable="false">Point Hope Lighthouse</string>
+    <string name="map_name_campmaple" translatable="false">Maple Lodge</string>
+    <string name="map_name_campwoodwind" translatable="false">Woodwind</string>
+    <string name="map_name_bleasdale" translatable="false">Bleasdale Farmhouse</string>
+    <string name="map_name_grafton" translatable="false">Grafton Farmhouse</string>
+    <string name="map_name_brownstone" translatable="false">Brownstone Highschool</string>
+    <string name="map_name_edgefield" translatable="false">Edgefield Streethouse</string>
+    <string name="map_name_tanglewood" translatable="false">Tanglewood Streethouse</string>
+    <string name="map_name_willow" translatable="false">Willow Streethouse</string>
+    <string name="map_name_ridgeview" translatable="false">Ridgeview Roadhouse</string>
+    <string name="map_name_prison" translatable="false">Prison</string>
+
+    <!-- Building Floor Names -->
+    <string name="map_floor_name_ground">Ground Floor</string>
+    <string name="map_floor_name_first">First Floor</string>
+    <string name="map_floor_name_second">Second Floor</string>
+    <string name="map_floor_name_third">Third Floor</string>
+    <string name="map_floor_name_fourth">Fourth Floor</string>
+    <string name="map_floor_name_fifth">Fifth Floor</string>
+    <string name="map_floor_name_sixth">Sixth Floor</string>
+    <string name="map_floor_name_seventh">Seventh Floor</string>
+    <string name="map_floor_name_eighth">Eighth Floor</string>
+    <string name="map_floor_name_ninth">Ninth Floor</string>
+    <string name="map_floor_name_tenth">Tenth Floor</string>
+    <string name="map_floor_name_attic">Attic</string>
+    <string name="map_floor_name_basement">Basement</string>
+
+    <!-- Map Interaction Help -->
+    <string name="map_info_help_title">Interactive Map Help</string>
+    <string name="map_info_help_pan">Pan a Map with one finger.</string>
+    <string name="map_info_help_zoom">Zoom in and out of a Map by pinching or spreading two fingers.</string>
+    <string name="map_info_help_click">Tap with one finger on any Map to obtain any Room\'s name and boundary.</string>
+    <string name="map_info_help_rooms">Select a Room in the Rooms drop-down menu to show the location and boundary of that Room.</string>
+    <string name="map_info_help_floors">Iterate between Floors to view and interact with it.</string>
+    <string name="map_info_help_pois">The positions of Fuse Boxes and Cursed Items are indicated by relevant icons.</string>
+
+</resources>

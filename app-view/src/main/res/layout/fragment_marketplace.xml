@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true"
+    android:id="@+id/popup_main_relativelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
+    android:statusBarColor="?attr/statusBarColor"
+    android:navigationBarColor="?attr/navigationBarColor"
+    android:gravity="center_horizontal|center_vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+            android:id="@+id/navHeaderLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:NavHeaderLayoutButtonLeft="back"
+            app:NavHeaderLayoutCenterTitle="@string/marketplace_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:background="@drawable/icon_strikethrough_1"
+            android:backgroundTint="@color/white_M600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/navHeaderLayout" />
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountLoginRequestView
+            android:id="@+id/layout_account_requestlogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_account_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountDetailsView
+            android:id="@+id/layout_account_details"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_account_obtainCredits"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_account_requestlogin" />
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.views.account.AccountObtainCreditsView
+            android:id="@+id/layout_account_obtainCredits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_account_details" />
+
+        <ProgressBar
+            android:id="@+id/market_progressbar"
+            style="@android:style/Widget.Material.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:indeterminateTint="?attr/textColorPrimary"
+            android:indeterminateTintMode="multiply"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scrollview_marketplace_items" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/market_loaderror"
+            style="?attr/quaternaryFont_Bold_Manual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/marketplace_connection_error"
+            android:textColor="?attr/textColorTertiary"
+            android:textSize="18sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/scrollview_marketplace_items" />
+
+        <ScrollView
+            android:id="@+id/scrollview_marketplace_items"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:fadeScrollbars="false"
+            android:fadingEdge="vertical"
+            android:fadingEdgeLength="8dp"
+            android:fillViewport="true"
+            android:measureAllChildren="true"
+            android:requiresFadingEdge="vertical"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:scrollbarStyle="outsideInset"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_account_obtainCredits">
+
+            <LinearLayout
+                android:id="@+id/list_marketplace_items"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@drawable/divider_invisible"
+                android:orientation="vertical"
+                android:showDividers="middle" />
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/equipDialog"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DialogComposablesKt.EquipConfirmationDialog" />
+
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/confirmationDialog"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.DialogComposablesKt.MarketplaceDialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

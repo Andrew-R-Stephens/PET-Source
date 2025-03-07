@@ -1,0 +1,12 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?attr/quaternaryFont_Regular_Auto"
+    android:textAlignment="inherit"
+    android:layout_width="match_parent"
+    android:layout_height="48sp"
+    android:ellipsize="marquee"
+    android:singleLine="false"
+    android:padding="8dp"
+    android:maxLines="2"
+    android:overlapAnchor="false"
+    android:textColor="?attr/textColorBody" />

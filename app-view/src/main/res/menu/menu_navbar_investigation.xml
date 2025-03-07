@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/open_menu"
+            android:title="@string/general_navigation_menu"
+            android:icon="@drawable/ic_nav_hambmenu_selector"/>
+        <item
+            android:id="@+id/evidenceFragment"
+            android:title="@string/investigation_section_title_evidence"
+            android:icon="@drawable/icon_nav_evidence_selector" />
+        <item
+            android:id="@+id/objectivesFragment"
+            android:title="@string/general_tasks_button"
+            android:icon="@drawable/icon_nav_tasks_selector"/>
+        <item
+            android:id="@+id/mapMenuFragment"
+            android:title="@string/general_maps_button"
+            android:icon="@drawable/icon_nav_mapmenu2_selector"/>
+    </group>
+
+</menu>
