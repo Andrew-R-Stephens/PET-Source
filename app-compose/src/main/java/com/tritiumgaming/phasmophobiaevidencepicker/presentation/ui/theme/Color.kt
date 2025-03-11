@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.theme
+package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

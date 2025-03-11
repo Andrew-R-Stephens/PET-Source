@@ -22,12 +22,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.tr
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.SignInCredentialManager
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFirebaseFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.DeleteAccountDialog
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.LogoutDialog
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.ColorThemeControl
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.FontThemeControl
 
 class AccountFragment : MainMenuFirebaseFragment() {
 
@@ -108,6 +105,9 @@ class AccountFragment : MainMenuFirebaseFragment() {
                             } catch (e: Exception) {
                                 e.printStackTrace()
                             }
+
+                        },
+                        onComplete = {
                             refreshFragment()
                         }
                     )
@@ -123,6 +123,8 @@ class AccountFragment : MainMenuFirebaseFragment() {
                         signOut(
                             onSuccess = {
                                 confirmationDialog?.visibility = GONE
+
+                                refreshFragment()
                             }
                         )
 
@@ -145,6 +147,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
                             onSuccess = {
                                 confirmationDialog?.visibility = GONE
 
+                                refreshFragment()
                             }
                         )
 

@@ -36,8 +36,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palett
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.JournalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.red_M100
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.yellow_M100
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.red_M100
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.yellow_M100
 import com.tritiumgaming.phasmophobiaevidencepicker.util.TextCase
 import org.jetbrains.annotations.TestOnly
 

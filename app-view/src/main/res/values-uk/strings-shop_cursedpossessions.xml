@@ -272,6 +272,92 @@
     <!--
         Attributes Text
     -->
+    <string name="shop_cursedpossessions_mirror_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_musicbox_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+
     <!--
         Draw Chance Text
     -->
@@ -279,6 +365,26 @@
         ]]></string>
     <string name="shop_cursedpossessions_monkeypawwish_data_drawchance"><![CDATA[<a>11 - 55%</a>
         ]]></string>
+    <string name="shop_cursedpossessions_mirror_data_drawchance">
+        <![CDATA[
+            <a>-</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_musicbox_data_drawchance">
+        <![CDATA[
+            <a>-</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance">
+        <![CDATA[
+            <a>-</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance">
+        <![CDATA[
+            <a>-</a>
+        ]]>
+    </string>
     <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman"><![CDATA[<a>1%</a>
         ]]></string>
     <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess"><![CDATA[<a>2%</a>

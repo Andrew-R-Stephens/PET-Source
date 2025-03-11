@@ -22,7 +22,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.comm
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.theme.discord_color_blurple
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.discord_color_blurple
 import org.jetbrains.annotations.TestOnly
 
 @Preview
