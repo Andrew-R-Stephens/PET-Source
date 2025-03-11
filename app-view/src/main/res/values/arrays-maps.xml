@@ -338,9 +338,9 @@
         <item>@drawable/map_maple_secondfloor</item>
     </integer-array>
     <integer-array name= "map_bleasdale_image_array">
-        <item>@drawable/map_bleasedale_firstfloor</item>
-        <item>@drawable/map_bleasedale_secondfloor</item>
-        <item>@drawable/map_bleasedale_thirdfloor</item>
+        <item>@drawable/map_bleasdale_firstfloor</item>
+        <item>@drawable/map_bleasdale_secondfloor</item>
+        <item>@drawable/map_bleasdale_thirdfloor</item>
     </integer-array>
     <integer-array name= "map_grafton_image_array">
         <item>@drawable/map_grafton_firstfloor</item>

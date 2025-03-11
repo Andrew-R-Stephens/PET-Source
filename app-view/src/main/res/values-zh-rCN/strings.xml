@@ -61,21 +61,21 @@
     <string name="settings_colortheme_title">皮肤</string>
     <string name="settings_colortheme_note">（色盲选择优先）</string>
     <string name="settings_colorblindnessmode_normal">没有任何</string>
-    <string name="settings_colorblindnessmode_monochromacy">色盲</string>
-    <string name="settings_colorblindnessmode_deuteranomaly">绿盲</string>
-    <string name="settings_colorblindnessmode_protanomaly">红色盲</string>
-    <string name="settings_colorblindnessmode_tritanomaly">蓝色盲</string>
+    <string name="theme_palette_colorblind_monochromacy">色盲</string>
+    <string name="theme_palette_colorblind_deuteranomaly">绿盲</string>
+    <string name="theme_palette_colorblind_protanomaly">红色盲</string>
+    <string name="theme_palette_colorblind_tritanomaly">蓝色盲</string>
 
     <!-- Font-Style Types -->
 
-    <string name="settings_fontstyle_classic">P.E.T. 经典的</string>
+    <string name="theme_typography_classic">P.E.T. 经典的</string>
 
     <!-- Page Details -->
 
-    <string name="settings_fontstyle_android">安卓</string>
-    <string name="settings_fontstyle_journal">杂志</string>
-    <string name="settings_fontstyle_brick">砖</string>
-    <string name="settings_fontstyle_clean">干净</string>
+    <string name="theme_typography_android">安卓</string>
+    <string name="theme_typography_journal">杂志</string>
+    <string name="theme_typography_brick">砖</string>
+    <string name="theme_typography_clean">干净</string>
     <string name="messagecenter_inboxestitle_label">留言中心</string>
     <string name="messagecenter_inbox_general">一般新闻</string>
     <string name="messagecenter_inbox_pet">宠物。变更日志</string>

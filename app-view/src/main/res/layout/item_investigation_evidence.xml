@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginVertical="4dp"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.section.evidence.EvidenceView">
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.section.evidence.EvidenceView">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/label_name"

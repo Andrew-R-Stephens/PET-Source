@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="marketplace_title">Ринок</string>
+    <string name="marketplace_list_bundles">Тематичні пакети</string>
+    <string name="marketplace_list_prestige">Престижні теми</string>
+    <string name="marketplace_list_event">Теми подій</string>
+    <string name="marketplace_list_community">Теми спільноти</string>
+    <string name="marketplace_connection_error">Ох, ох! Виникла помилка при підключенні до маркетплейсу.</string>
+    <string name="marketplace_error_login_required">Будь ласка, увійдіть, щоб отримати доступ до контенту Маркетплейсу.</string>
+    <string name="marketplace_button_watch_ad">Заробляйте кредити</string>
+    <string name="marketplace_button_item_get">Отримати</string>
+    <string name="marketplace_button_purchase_credits">Купити кредити</string>
+    <string name="marketplace_label_purchased">Розблоковано</string>
+    <string name="marketplace_label_bundle_includes">Мати в собі</string>
+    <string name="marketplace_purchase_equip">Встановити тему %1$s?</string>
+    <plurals name="marketplace_description_watch_ad">
+        <item quantity="one">%d Супутній кредит</item>
+        <item quantity="few">Супутні кредити</item>
+        <item quantity="many">Супутні кредити</item>
+    </plurals>
+    <string name="marketplace_description_watch_ad">Подивіться рекламу і заробіть %s %s.</string>
+    <string name="marketplace_description_purchase_credits">Купуйте кредити напряму.</string>
+    <!-- Acknowledgement -->
+    <string name="marketplace_acknowledgement_title">Угода про ринок</string>
+    <string name="marketplace_acknowledgement_warning">Використовуючи \"Ринок\" Інструменту доказів фазмофобії
+        \"Ринок\", ви неявно погоджуєтеся з наступним:</string>
+    <string name="marketplace_acknowledgement_warning_list_1">Терміни \"контент\", \"елементи\" та \"розблокування\" стосуються зображень, імен та інших активів.
+        Термін \"розробник\" означає Tritium Studios. Термін \"P.E.T.\" або \"цей додаток\" стосується
+        додаток \"Phasmophobia Evidence Tool\".
+    </string>
+    <string name="marketplace_acknowledgement_warning_list_2">\"P.E.T.\" не пов\'язаний з будь-якою іншою організацією, яка може поділяти або не поділяти подібний
+        наданий контент.
+    </string>
+    <string name="marketplace_acknowledgement_warning_list_3">Весь контент, минулий або теперішній, існує виключно в косметичних цілях в рамках \"P.E.T.\".
+        Вміст не може бути викуплений або переданий за межі \"P.E.T.\" і не має жодного впливу на будь-які
+        зовнішні об\'єкти, такі як, але не обмежуючись ними, ігри на подобі \"Phasmophobia\".
+    </string>
+    <string name="marketplace_acknowledgement_warning_list_4">Всі транзакції є остаточними. Вміст може бути неповним, несправним або містити помилки.
+        Вміст може бути відключений, видалений або змінений в майбутньому розробником.
+        Акредитація вашого акаунту для втрати доступу до контенту або для будь-яких змін у контенті залишається на розсуд розробника.
+        залишається на розсуд розробника.
+    </string>
+    <string name="marketplace_acknowledgement_button_confirm">Зрозумів!</string>
+</resources>

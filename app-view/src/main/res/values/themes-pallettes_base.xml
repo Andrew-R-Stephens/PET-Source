@@ -139,7 +139,7 @@
         <item name="buttonColor">?attr/light_inactive</item>
         <item name="colorOnButton">?attr/textColorBody</item>
 
-        <item name="colorActionPrimary">?attr/textColorBody</item>
+        <item name="colorActionPrimary">?attr/textColorBody</item> <!-- DONE -->
     </style>
 
     <style name="Colorblind.Base" parent="Theme.PhasmophobiaEvidenceTool">

@@ -5,29 +5,31 @@
         TITLESCREEN PAGE
     -->
     <!-- Language Data -->
-    <string-array name="languages_name">
+    <string-array name="language_names">
         <item>@string/language_fullName_chinese_s</item>
+        <item>@string/language_fullName_czech</item>
         <item>@string/language_fullName_german</item>
         <item>@string/language_fullName_english</item>
         <item>@string/language_fullName_spanish</item>
         <item>@string/language_fullName_french</item>
-        <item>@string/language_fullName_czech</item>
-        <item>@string/language_fullName_russian</item>
         <item>@string/language_fullName_italian</item>
         <item>@string/language_fullName_japanese</item>
         <item>@string/language_fullName_portuguese</item>
+        <item>@string/language_fullName_russian</item>
+        <item>@string/language_fullName_ukrainian</item>
     </string-array>
-    <string-array name="languages_abbreviation">
+    <string-array name="language_codes">
         <item>@string/language_abbrName_chinese_simplified</item>
+        <item>@string/language_abbrName_czech</item>
         <item>@string/language_abbrName_german</item>
         <item>@string/language_abbrName_english</item>
         <item>@string/language_abbrName_spanish</item>
         <item>@string/language_abbrName_french</item>
-        <item>@string/language_abbrName_czech</item>
-        <item>@string/language_abbrName_russian</item>
         <item>@string/language_abbrName_italian</item>
         <item>@string/language_abbrName_japanese</item>
         <item>@string/language_abbrName_portuguese</item>
+        <item>@string/language_abbrName_russian</item>
+        <item>@string/language_abbrName_ukrainian</item>
     </string-array>
 
     <!-- Book Writing Images -->
@@ -125,16 +127,16 @@
     -->
 
     <!-- Font-Style Data -->
-    <string-array name="settings_fontstyle_array">
-        <item>@string/settings_fontstyle_classic</item>
-        <item>@string/settings_fontstyle_android</item>
-        <item>@string/settings_fontstyle_journal</item>
-        <item>@string/settings_fontstyle_brick</item>
-        <item>@string/settings_fontstyle_clean</item>
-        <item>@string/settings_fontstyle_longcang</item>
-        <item>@string/settings_fontstyle_newtegmon</item>
-        <item>@string/settings_fontstyle_neucha</item>
-        <item>@string/settings_fontstyle_jetbrainsmono</item>
+    <string-array name="theme_typography_array">
+        <item>@string/theme_typography_classic</item>
+        <item>@string/theme_typography_android</item>
+        <item>@string/theme_typography_journal</item>
+        <item>@string/theme_typography_brick</item>
+        <item>@string/theme_typography_clean</item>
+        <item>@string/theme_typography_longcang</item>
+        <item>@string/theme_typography_newtegmon</item>
+        <item>@string/theme_typography_neucha</item>
+        <item>@string/theme_typography_jetbrainsmono</item>
     </string-array>
 
     <!-- Timer Data -->

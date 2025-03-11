@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.SanityWarningLayout">
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.SanityWarningLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout54"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside">
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnSetupView
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnSetupView
             android:id="@+id/evidence_sanitymeter_phase_setup"
             style="?attr/tertiaryFont_BoldNarrow_AutoSqueeze"
             android:layout_width="0dp"
@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnActionView
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnActionView
             android:id="@+id/evidence_sanitymeter_phase_action"
             style="?attr/tertiaryFont_BoldNarrow_AutoSqueeze"
             android:layout_width="0dp"
@@ -42,7 +42,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnHuntView
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.alerts.SanityWarnHuntView
         android:id="@+id/evidence_sanitymeter_huntwarning"
         style="?attr/tertiaryFont_BoldNarrow_AutoSqueeze"
         android:layout_width="0dp"

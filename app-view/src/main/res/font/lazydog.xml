@@ -6,9 +6,9 @@
     <font
         app:fontStyle="normal"
         app:fontWeight="400"
-        app:font="@font/lazy_dog"/>
+        app:font="@font/lazydog_regular"/>
     <font
         app:fontStyle="normal"
         app:fontWeight="700"
-        app:font="@font/lazy_dog"/>
+        app:font="@font/lazydog_regular"/>
 </font-family>

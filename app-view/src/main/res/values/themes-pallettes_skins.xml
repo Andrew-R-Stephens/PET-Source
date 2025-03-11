@@ -110,7 +110,7 @@
         <item name="codex6_gridBackground">#40232C2C</item>
 
         <item name="theme_badge">@drawable/theme_badge_1_recruit</item>
-        <item name="theme_title">@string/settings_colormode_prestige_recruit</item>
+        <item name="theme_title">@string/theme_palette_prestige_recruit</item>
 
         <item name="navigationFooterIcon">#818180</item>
         <item name="navigationFooterIconAlt">@color/orange_M150</item>
@@ -119,7 +119,6 @@
         <item name="inboxNotification">@color/orange_M150</item>
 
     </style>
-
 
     <style name="Investigator" parent="Prestige">
         <item name="a">@color/white_M10</item>
@@ -146,6 +145,7 @@
         <item name="android:colorBackground">@color/purple_M950</item>
         <item name="android:statusBarColor">@color/purple_M950</item>
         <item name="android:navigationBarColor">@color/purple_M950</item>
+
         <item name="foregroundColor">@color/white_M10</item>
         <item name="middlegroundColor">@color/purple_M250</item>
         <item name="backgroundColor">@color/purple_M950</item>
@@ -154,6 +154,7 @@
         <item name="navigationBarColor">?attr/backgroundColor</item>
         <item name="windowBackgroundColor">@color/purple_M950</item>
         <item name="windowStrokeColor">@color/white_M10</item>
+
         <item name="colorPrimary">@color/purple_M950</item>
         <item name="colorPrimaryVariant">@color/purple_M950</item>
         <item name="colorOnPrimary">@color/purple_M950</item>
@@ -192,20 +193,19 @@
         <item name="splashTextColor">@color/purple_M75</item>
 
         <item name="codex1">#390721</item>
-        <item name="codex3">@color/white_M300</item>
         <item name="codex2">#200413</item>
+        <item name="codex3">@color/white_M300</item>
         <item name="codex4">@color/purple_M75</item>
         <item name="codex5">#3C3237</item>
         <item name="codex6_gridBackground">#40390721</item>
 
         <item name="theme_badge">@drawable/theme_badge_2_investigator</item>
-        <item name="theme_title">@string/settings_colormode_prestige_investigator</item>
+        <item name="theme_title">@string/theme_palette_prestige_investigator</item>
 
         <item name="navigationFooterIcon">#4DD71472</item>
         <item name="navigationFooterIconAlt">@color/purple_M250</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF0B000B</item>
-
 
         <!--
         <item name="textColorPrimary">@color/purple_M250</item>
@@ -245,7 +245,6 @@
         -->
     </style>
 
-
     <style name="PrivateInvestigator" parent="Prestige">
         <item name="a">@color/white</item>
         <item name="b">@color/orange_M85</item>
@@ -269,6 +268,7 @@
         <item name="android:colorBackground">@color/black</item>
         <item name="android:statusBarColor">@color/black</item>
         <item name="android:navigationBarColor">@color/black</item>
+
         <item name="foregroundColor">?attr/a</item>
         <item name="middlegroundColor">?attr/e</item>
         <item name="backgroundColor" >@color/black</item>
@@ -293,7 +293,6 @@
         <item name="light_inactive">@color/orange_M50_A40</item>
         <item name="light_off">@color/orange_M510</item>
         <item name="switchColorOn">@color/orange_M10</item>
-        <item name="buttonFilterOnPrimary">@color/orange_M20</item>
         <item name="strikethroughColor">@color/orange_M510</item>
         <item name="circleColor">@color/orange</item>
         <item name="selectedColor">@color/orange_M10</item>
@@ -311,11 +310,10 @@
         <item name="sanityPieStartColor">@color/orange_M85</item>
         <item name="sanityPieEndColor">@color/orange_M10</item>
 
+        <item name="buttonFilterOnPrimary">@color/orange_M20</item>
         <item name="splashTextColor">@color/orange_M10</item>
 
-        <!--<item name="codex_1">#3E2A17</item>-->
         <item name="codex1">#150F08</item>
-        <!--<item name="codex_2">#CDC0B2</item>-->
         <item name="codex3">@color/orange_M10</item>
         <item name="codex2">#332312</item>
         <item name="codex4">@color/orange_M10</item>
@@ -323,7 +321,7 @@
         <item name="codex6_gridBackground">#403E2A17</item>
 
         <item name="theme_badge">@drawable/theme_badge_3_pvtinvestigator</item>
-        <item name="theme_title">@string/settings_colormode_prestige_privateinvestigator</item>
+        <item name="theme_title">@string/theme_palette_prestige_privateinvestigator</item>
 
         <item name="navigationFooterIcon">#8078522B</item>
         <item name="navigationFooterIconAlt">@color/orange_M10</item>
@@ -333,7 +331,6 @@
        <item name="inboxNotification">@color/orange_M10</item>
 
     </style>
-
 
     <style name="Detective" parent="Prestige">
         <item name="a">@color/white_M20</item>
@@ -361,6 +358,7 @@
         <item name="android:colorBackground">@color/green_M875</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">@color/green_M875</item>
+
         <item name="foregroundColor">@color/white_M20</item>
         <item name="middlegroundColor">@color/white_M400</item>
         <item name="backgroundColor" >@color/green_M875</item>
@@ -369,6 +367,7 @@
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">@color/green_M875</item>
         <item name="windowStrokeColor">@color/white_M20</item>
+
         <item name="colorPrimary">@color/green_M875</item>
         <item name="colorPrimaryVariant">@color/green_M875</item>
         <item name="colorOnPrimary">@color/green_M875</item>
@@ -414,7 +413,7 @@
         <item name="codex6_gridBackground">#401E221F</item>
 
         <item name="theme_badge">@drawable/theme_badge_4_detective</item>
-        <item name="theme_title">@string/settings_colormode_prestige_detective</item>
+        <item name="theme_title">@string/theme_palette_prestige_detective</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/green_M25</item>
@@ -424,7 +423,6 @@
        <item name="inboxNotification">@color/green_M25</item>
 
     </style>
-
 
     <style name="Technician" parent="Prestige">
         <item name="a">@color/white</item>
@@ -462,6 +460,7 @@
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">#050C04</item>
         <item name="windowStrokeColor">@color/white</item>
+
         <item name="colorPrimary">#050C04</item>
         <item name="colorPrimaryVariant">#050C04</item>
         <item name="colorOnPrimary">#050C04</item>
@@ -508,7 +507,7 @@
         <item name="codex6_gridBackground">#403E1312</item>
 
         <item name="theme_badge">@drawable/theme_badge_5_technician</item>
-        <item name="theme_title">@string/settings_colormode_prestige_technician</item>
+        <item name="theme_title">@string/theme_palette_prestige_technician</item>
 
         <item name="navigationFooterIcon">@color/white_M600</item>
         <item name="navigationFooterIconAlt">@color/red_M375</item>
@@ -518,7 +517,6 @@
        <item name="inboxNotification">@color/red_M375</item>
 
     </style>
-
 
     <style name="Specialist" parent="Prestige">
         <item name="a">#FEFEFE</item>
@@ -550,6 +548,7 @@
         <item name="android:colorBackground">#070C05</item>
         <item name="android:statusBarColor">?attr/colorOnSecondary</item>
         <item name="android:navigationBarColor">#070C05</item>
+
         <item name="foregroundColor">#FEFEFE</item>
         <item name="middlegroundColor">#C9CCC8</item>
         <item name="backgroundColor" >#070C05</item>
@@ -558,6 +557,7 @@
         <item name="navigationBarColor" >?attr/backgroundColor</item>
         <item name="windowBackgroundColor">#070C05</item>
         <item name="windowStrokeColor">#FEFEFE</item>
+
         <item name="colorPrimary">#070C05</item>
         <item name="colorPrimaryVariant">#070C05</item>
         <item name="colorOnPrimary">#070C05</item>
@@ -595,14 +595,14 @@
         <item name="splashTextColor">@color/green_M150</item>
 
         <item name="codex1">#070C05</item>
-        <item name="codex3">#D9ECAF</item>
         <item name="codex2">#24291F</item>
+        <item name="codex3">#D9ECAF</item>
         <item name="codex4">@color/green_M150</item>
         <item name="codex5">#545B4D</item>
         <item name="codex6_gridBackground">#40070C05</item>
 
         <item name="theme_badge">@drawable/theme_badge_6_specialist</item>
-        <item name="theme_title">@string/settings_colormode_prestige_specialist</item>
+        <item name="theme_title">@string/theme_palette_prestige_specialist</item>
 
         <item name="navigationFooterIcon">#545B4D</item>
         <item name="navigationFooterIconAlt">@color/green_M150</item>
@@ -694,7 +694,7 @@
         <item name="codex6_gridBackground">#40201B19</item>
 
         <item name="theme_badge">@drawable/theme_badge_7_analyst</item>
-        <item name="theme_title">@string/settings_colormode_prestige_analyst</item>
+        <item name="theme_title">@string/theme_palette_prestige_analyst</item>
 
         <item name="navigationFooterIcon">@color/orange_M525</item>
         <item name="navigationFooterIconAlt">#2667CD</item>
@@ -704,7 +704,6 @@
        <item name="inboxNotification">#D3C9C3</item>
 
     </style>
-
 
     <style name="Agent" parent="Prestige">
         <item name="a" >@color/white</item>
@@ -786,7 +785,7 @@
         <item name="codex6_gridBackground">#40101515</item>
 
         <item name="theme_badge">@drawable/theme_badge_8_agent</item>
-        <item name="theme_title">@string/settings_colormode_prestige_agent</item>
+        <item name="theme_title">@string/theme_palette_prestige_agent</item>
 
         <item name="navigationFooterIcon">#858686</item>
         <item name="navigationFooterIconAlt">@color/blue_M90</item>
@@ -796,7 +795,6 @@
        <item name="inboxNotification">@color/blue_M90</item>
 
     </style>
-
 
     <style name="Operator" parent="Prestige">
         <item name="a">@color/white</item>
@@ -877,16 +875,14 @@
         <item name="codex6_gridBackground">#40130B29</item>
 
         <item name="theme_badge">@drawable/theme_badge_9_operator</item>
-        <item name="theme_title">@string/settings_colormode_prestige_operator</item>
+        <item name="theme_title">@string/theme_palette_prestige_operator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/purple_M150</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF00000E</item>
 
-
     </style>
-
 
     <style name="Commissioner" parent="Prestige">
         <item name="a">@color/white</item>
@@ -967,16 +963,14 @@
         <item name="codex6_gridBackground">#40232323</item>
 
         <item name="theme_badge">@drawable/theme_badge_10_commissioner</item>
-        <item name="theme_title">@string/settings_colormode_prestige_commissioner</item>
+        <item name="theme_title">@string/theme_palette_prestige_commissioner</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#E5A348</item>
 
         <item name="backgroundColor_mapviewOverlay">#BF080808</item>
 
-
     </style>
-
 
     <!-- Events -->
 
@@ -1061,7 +1055,7 @@
         <item name="codex6_gridBackground">#40203E36</item>
 
         <item name="theme_badge">@drawable/theme_badge_easter</item>
-        <item name="theme_title">@string/settings_colormode_event_easter</item>
+        <item name="theme_title">@string/theme_palette_event_easter</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/orange_M75</item>
@@ -1070,7 +1064,6 @@
 
         <item name="colorOnButton">?attr/backgroundColor</item>
     </style>
-
 
     <style name="Halloween23" parent="Event">
         <item name="a">@color/white</item>
@@ -1152,7 +1145,7 @@
         <item name="codex6_gridBackground">#401B0A00</item>
 
         <item name="theme_badge">@drawable/theme_badge_halloween23</item>
-        <item name="theme_title">@string/settings_colormode_event_halloween</item>
+        <item name="theme_title">@string/theme_palette_event_halloween</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#C85E0D</item>
@@ -1162,7 +1155,6 @@
        <item name="inboxNotification">#EC700D</item>
 
     </style>
-
 
     <style name="Holiday22" parent="Event">
         <item name="a">#FEFEFE</item>
@@ -1244,7 +1236,7 @@
         <item name="codex6_gridBackground">#40293750</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday22</item>
-        <item name="theme_title">@string/settings_colormode_event_holiday22</item>
+        <item name="theme_title">@string/theme_palette_event_holiday22</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/blue_M125</item>
@@ -1254,7 +1246,6 @@
        <item name="inboxNotification">#6996E4</item>
 
     </style>
-
 
     <style name="Holiday23" parent="Event">
         <!-- TODO Reveal Badge -->
@@ -1346,7 +1337,7 @@
         <item name="codex6_gridBackground">#402A487E</item>
 
         <item name="theme_badge">@drawable/theme_badge_holiday23</item>
-        <item name="theme_title">@string/settings_colormode_event_holiday23</item>
+        <item name="theme_title">@string/theme_palette_event_holiday23</item>
 
         <item name="navigationFooterIcon">#B1AEA9</item>
         <item name="navigationFooterIconAlt">#E9AD4C</item>
@@ -1356,7 +1347,6 @@
        <item name="inboxNotification">#E9AD4C</item>
 
     </style>
-
 
     <!-- Community -->
 
@@ -1439,7 +1429,7 @@
         <item name="codex6_gridBackground">#401D2023</item>
 
         <item name="theme_badge">@drawable/theme_badge_discord</item>
-        <item name="theme_title">@string/settings_colormode_community_discord</item>
+        <item name="theme_title">@string/theme_palette_community_discord</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/blue_M75</item>
@@ -1449,7 +1439,6 @@
        <item name="inboxNotification">#F3F3F7</item>
 
     </style>
-
 
     <style name="ContentCreator" parent="Community">
         <item name="a">@color/white</item>
@@ -1529,7 +1518,7 @@
         <item name="codex6_gridBackground">#40510E1B</item>
 
         <item name="theme_badge">@drawable/theme_badge_cc</item>
-        <item name="theme_title">@string/settings_colormode_community_contentcreator</item>
+        <item name="theme_title">@string/theme_palette_community_contentcreator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">#DF1740</item>
@@ -1539,7 +1528,6 @@
        <item name="inboxNotification">@color/red_M225</item>
 
     </style>
-
 
     <style name="Developer" parent="Community">
         <item name="a">@color/white</item>
@@ -1620,7 +1608,7 @@
         <item name="codex6_gridBackground">#40535353</item>
 
         <item name="theme_badge">@drawable/theme_badge_dev</item>
-        <item name="theme_title">@string/settings_colormode_community_developer</item>
+        <item name="theme_title">@string/theme_palette_community_developer</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/yellow_M25</item>
@@ -1630,7 +1618,6 @@
         <item name="inboxNotification">#E2E2DF</item>
 
     </style>
-
 
     <style name="Translator" parent="Community">
         <item name="a" >@color/white</item>
@@ -1711,7 +1698,7 @@
         <item name="codex6_gridBackground">#4033292B</item>
 
         <item name="theme_badge">@drawable/theme_badge_translator</item>
-        <item name="theme_title">@string/settings_colormode_community_translator</item>
+        <item name="theme_title">@string/theme_palette_community_translator</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/red_M150</item>
@@ -1721,7 +1708,6 @@
         <item name="inboxNotification">#DA7F88</item>
 
     </style>
-
 
     <style name="Winner" parent="Community">
         <item name="a" >@color/white</item>
@@ -1804,7 +1790,7 @@
         <item name="codex6_gridBackground">#40161C1C</item>
 
         <item name="theme_badge">@drawable/theme_badge_winner</item>
-        <item name="theme_title">@string/settings_colormode_community_winner</item>
+        <item name="theme_title">@string/theme_palette_community_winner</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/orange_M250</item>
@@ -1814,7 +1800,6 @@
         <item name="inboxNotification">#DABA80</item>
 
     </style>
-
 
     <style name="Artist" parent="Community">
         <item name="a">@color/white</item>
@@ -1895,7 +1880,7 @@
         <item name="codex6_gridBackground">#400A0C0C</item>
 
         <item name="theme_badge">@drawable/theme_badge_artist</item>
-        <item name="theme_title">@string/settings_colormode_community_artist</item>
+        <item name="theme_title">@string/theme_palette_community_artist</item>
 
         <item name="navigationFooterIcon">?attr/unselectedColor</item>
         <item name="navigationFooterIconAlt">@color/purple_M550</item>
@@ -2193,7 +2178,7 @@
         <item name="codex6_gridBackground">#40001021</item>
 
         <item name="theme_badge">@drawable/theme_badge_strategemhero</item>
-        <item name="theme_title">@string/settings_skin_strategemHero</item>
+        <item name="theme_title">@string/theme_palette_special_strategemHero</item>
 
         <item name="navigationFooterIcon">@color/white</item>
         <item name="navigationFooterIconAlt">#FFD608</item>

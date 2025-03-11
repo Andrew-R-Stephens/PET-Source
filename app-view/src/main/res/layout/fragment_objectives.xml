@@ -54,7 +54,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/objectives_title">
 
-                    <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsItemLayout
+                    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.MissionsItemLayout
                         android:id="@+id/objective1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsItemLayout
+                    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.MissionsItemLayout
                         android:id="@+id/objective2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/objective1" />
 
-                    <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.missions.views.MissionsItemLayout
+                    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.MissionsItemLayout
                         android:id="@+id/objective3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

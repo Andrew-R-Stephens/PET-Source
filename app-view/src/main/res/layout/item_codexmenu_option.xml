@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.codex.views.CodexGridCard"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.views.CodexGridCard"
     android:theme="@style/PET.MaterialCardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.views.global.OutlineTextView
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.OutlineTextView
             android:id="@+id/label_itemName"
             style="?attr/primaryFont_Regular_AutoSqueeze"
             android:layout_width="0dp"

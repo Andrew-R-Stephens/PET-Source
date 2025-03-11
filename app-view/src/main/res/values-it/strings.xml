@@ -59,21 +59,21 @@
     <string name="settings_colortheme_title">Pelle</string>
     <string name="settings_colortheme_note">(La selezione del daltonismo ha la precedenza)</string>
     <string name="settings_colorblindnessmode_normal">Nessuno</string>
-    <string name="settings_colorblindnessmode_monochromacy">Acromatopsia</string>
-    <string name="settings_colorblindnessmode_deuteranomaly">Deuteranopia</string>
-    <string name="settings_colorblindnessmode_protanomaly">Protanopia</string>
-    <string name="settings_colorblindnessmode_tritanomaly">Tritanopia</string>
+    <string name="theme_palette_colorblind_monochromacy">Acromatopsia</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Deuteranopia</string>
+    <string name="theme_palette_colorblind_protanomaly">Protanopia</string>
+    <string name="theme_palette_colorblind_tritanomaly">Tritanopia</string>
 
     <!-- Font-Style Types -->
 
-    <string name="settings_fontstyle_classic">P.E.T.. Classico</string>
+    <string name="theme_typography_classic">P.E.T.. Classico</string>
 
     <!-- Page Details -->
 
-    <string name="settings_fontstyle_android">Androide</string>
-    <string name="settings_fontstyle_journal">Rivista</string>
-    <string name="settings_fontstyle_brick">Mattone</string>
-    <string name="settings_fontstyle_clean">Pulita</string>
+    <string name="theme_typography_android">Androide</string>
+    <string name="theme_typography_journal">Rivista</string>
+    <string name="theme_typography_brick">Mattone</string>
+    <string name="theme_typography_clean">Pulita</string>
     <string name="messagecenter_inboxestitle_label">Centro messaggi</string>
     <string name="messagecenter_inbox_general">Notizie generali</string>
     <string name="messagecenter_inbox_pet">ANIMALE DOMESTICO. Registro delle modifiche</string>

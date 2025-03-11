@@ -143,4 +143,5 @@
         <item name="strokeColor">?attr/backgroundColorOnBackground</item>
         <item name="strokeWidth">1dp</item>
     </style>
+
 </resources>

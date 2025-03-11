@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.views.global.NavHeaderLayout
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout
         android:id="@+id/navHeaderLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.utilities.ghostboxutility.views.WaveformView
+            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.ghostboxutility.views.WaveformView
                 android:id="@+id/waveFormView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"

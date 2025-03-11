@@ -76,15 +76,15 @@
         MESSAGE CENTER FRAGMENTS
     -->
     <!-- Page Details -->
-    <string name="settings_colorblindnessmode_monochromacy">Ахроматопсия</string>
-    <string name="settings_colorblindnessmode_deuteranomaly">Дейтеранопия</string>
-    <string name="settings_colorblindnessmode_protanomaly">протанопия</string>
-    <string name="settings_colorblindnessmode_tritanomaly">Тританопия</string>
-    <string name="settings_fontstyle_classic">P.E.T. Классический</string>
-    <string name="settings_fontstyle_android">Андроид</string>
-    <string name="settings_fontstyle_journal">Журнал</string>
-    <string name="settings_fontstyle_brick">Кирпич</string>
-    <string name="settings_fontstyle_clean">Чистый</string>
+    <string name="theme_palette_colorblind_monochromacy">Ахроматопсия</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Дейтеранопия</string>
+    <string name="theme_palette_colorblind_protanomaly">протанопия</string>
+    <string name="theme_palette_colorblind_tritanomaly">Тританопия</string>
+    <string name="theme_typography_classic">P.E.T. Классический</string>
+    <string name="theme_typography_android">Андроид</string>
+    <string name="theme_typography_journal">Журнал</string>
+    <string name="theme_typography_brick">Кирпич</string>
+    <string name="theme_typography_clean">Чистый</string>
     <string name="messagecenter_inboxestitle_label">Центр сообщений</string>
     <string name="messagecenter_inbox_general">Общие новости</string>
     <string name="messagecenter_inbox_pet">P.E.T. Журнал изменений</string>

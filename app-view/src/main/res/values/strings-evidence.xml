@@ -12,6 +12,15 @@
     <string name="evidence_type_book">Ghost Writing</string>
     <string name="evidence_type_box">Spirit Box</string>
 
+    <!-- Evidence IDs -->
+    <integer name="evidence_id_dots">0</integer>
+    <integer name="evidence_id_emf">1</integer>
+    <integer name="evidence_id_ultraviolet">2</integer>
+    <integer name="evidence_id_temperatures">3</integer>
+    <integer name="evidence_id_orbs">4</integer>
+    <integer name="evidence_id_book">5</integer>
+    <integer name="evidence_id_box">6</integer>
+
     <!-- Evidence Description -->
     <string name="evidence_info_overview_dots">
         <![CDATA[

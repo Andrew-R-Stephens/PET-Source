@@ -23,15 +23,16 @@
         <item>28yi3LJWYMbA7v87RMAEznISy</item>
         <item>tempWhiteboard</item>
         <item>tempStratHero</item>
+
     </string-array>
     <string-array name="settings_themes_colorblind_name_array">
         <item>@string/settings_colorblindnessmode_normal</item>
-        <item>@string/settings_colorblindnessmode_monochromacy</item>
-        <item>@string/settings_colorblindnessmode_deuteranomaly</item>
-        <item>@string/settings_colorblindnessmode_protanomaly</item>
-        <item>@string/settings_colorblindnessmode_tritanomaly</item>
-        <item>@string/settings_skin_whiteboard</item>
-        <item>@string/settings_skin_strategemHero</item>
+        <item>@string/theme_palette_colorblind_monochromacy</item>
+        <item>@string/theme_palette_colorblind_deuteranomaly</item>
+        <item>@string/theme_palette_colorblind_protanomaly</item>
+        <item>@string/theme_palette_colorblind_tritanomaly</item>
+        <item>@string/theme_palette_special_whiteboard</item>
+        <item>@string/theme_palette_special_strategemHero</item>
     </string-array>
     <integer-array name="settings_themes_colorblind_style_array">
         <item>@style/NonColorblind.Base</item>
@@ -76,28 +77,28 @@
         <item>88kEPt48wGs0ZxR4n7gtM3OTe</item>
     </string-array>
     <string-array name="settings_themes_primary_name_array">
-        <item>@string/settings_colormode_prestige_recruit</item>
-        <item>@string/settings_colormode_prestige_investigator</item>
-        <item>@string/settings_colormode_prestige_privateinvestigator</item>
-        <item>@string/settings_colormode_prestige_detective</item>
-        <item>@string/settings_colormode_prestige_technician</item>
-        <item>@string/settings_colormode_prestige_specialist</item>
-        <item>@string/settings_colormode_prestige_analyst</item>
-        <item>@string/settings_colormode_prestige_agent</item>
-        <item>@string/settings_colormode_prestige_operator</item>
-        <item>@string/settings_colormode_prestige_commissioner</item>
+        <item>@string/theme_palette_prestige_recruit</item>
+        <item>@string/theme_palette_prestige_investigator</item>
+        <item>@string/theme_palette_prestige_privateinvestigator</item>
+        <item>@string/theme_palette_prestige_detective</item>
+        <item>@string/theme_palette_prestige_technician</item>
+        <item>@string/theme_palette_prestige_specialist</item>
+        <item>@string/theme_palette_prestige_analyst</item>
+        <item>@string/theme_palette_prestige_agent</item>
+        <item>@string/theme_palette_prestige_operator</item>
+        <item>@string/theme_palette_prestige_commissioner</item>
 
-        <item>@string/settings_colormode_event_easter</item>
-        <item>@string/settings_colormode_event_halloween</item>
-        <item>@string/settings_colormode_event_holiday22</item>
-        <item>@string/settings_colormode_event_holiday23</item>
+        <item>@string/theme_palette_event_easter</item>
+        <item>@string/theme_palette_event_halloween</item>
+        <item>@string/theme_palette_event_holiday22</item>
+        <item>@string/theme_palette_event_holiday23</item>
         
-        <item>@string/settings_colormode_community_discord</item>
-        <item>@string/settings_colormode_community_contentcreator</item>
-        <item>@string/settings_colormode_community_developer</item>
-        <item>@string/settings_colormode_community_translator</item>
-        <item>@string/settings_colormode_community_winner</item>
-        <item>@string/settings_colormode_community_artist</item>
+        <item>@string/theme_palette_community_discord</item>
+        <item>@string/theme_palette_community_contentcreator</item>
+        <item>@string/theme_palette_community_developer</item>
+        <item>@string/theme_palette_community_translator</item>
+        <item>@string/theme_palette_community_winner</item>
+        <item>@string/theme_palette_community_artist</item>
     </string-array>
 
     <integer-array name="settings_themes_primary_style_array">
@@ -154,15 +155,15 @@
         <item>3vAD75LdzvZN3zBjab5z19zpc</item>
     </string-array>
     <string-array name="settings_themes_font_name_array">
-        <item>@string/settings_fontstyle_classic</item>
-        <item>@string/settings_fontstyle_android</item>
-        <item>@string/settings_fontstyle_journal</item>
-        <item>@string/settings_fontstyle_brick</item>
-        <item>@string/settings_fontstyle_clean</item>
-        <item>@string/settings_fontstyle_longcang</item>
-        <item>@string/settings_fontstyle_newtegmon</item>
-        <item>@string/settings_fontstyle_neucha</item>
-        <item>@string/settings_fontstyle_jetbrainsmono</item>
+        <item>@string/theme_typography_classic</item>
+        <item>@string/theme_typography_android</item>
+        <item>@string/theme_typography_journal</item>
+        <item>@string/theme_typography_brick</item>
+        <item>@string/theme_typography_clean</item>
+        <item>@string/theme_typography_longcang</item>
+        <item>@string/theme_typography_newtegmon</item>
+        <item>@string/theme_typography_neucha</item>
+        <item>@string/theme_typography_jetbrainsmono</item>
     </string-array>
     <integer-array name="settings_themes_font_style_array">
         <item>@style/Fonts.Base</item>

@@ -43,7 +43,7 @@ android {
         targetSdk = 35
         //versionCode = 115
         versionCode = 115
-        versionName = "10.0.0.1"
+        versionName = "10.0.0.1-Compose"
 
         @Suppress("UnstableApiUsage")
         externalNativeBuild {
@@ -100,7 +100,6 @@ composeCompiler {
 
 dependencies {
 
-
     // PRIMARY
     implementation(libs.android.support.multidex)
 
@@ -132,8 +131,6 @@ dependencies {
     implementation(libs.android.playServices.auth)
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.playServicesAuth)
-    //implementation(libs.firebase.ui.auth)
-    //implementation(libs.firebase.authKtx)
     // ----------------------------------
 
     // GOOGLE FIREBASE

@@ -31,33 +31,21 @@ android {
         }
     }
 
-    val playCoreDirectory =
-        "G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk"
-
     defaultConfig {
 
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
         minSdk = 23
         targetSdk = 35
-        versionCode = 114
-        versionName = "9.0.3"
+        versionCode = 115
+        versionName = "10.0.0.1-View"
 
-        @Suppress("UnstableApiUsage")
-        externalNativeBuild {
-            cmake {
-                arguments("-DANDROID_STL=c++_static", "-DPLAYCORE_LOCATION=$playCoreDirectory")
-            }
-        }
         ndk {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
         }
 
         proguardFiles(
             getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        // PLAYCORE
-        proguardFile("$playCoreDirectory/proguard/common.pgcfg")
-        proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")
 
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -90,14 +78,12 @@ android {
 
 composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
-    /*stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")*/
     stabilityConfigurationFiles.addAll(
         rootProject.layout.projectDirectory.file("stability_config.conf")
     )
 }
 
 dependencies {
-
 
     // PRIMARY
     implementation(libs.android.support.multidex)
@@ -108,6 +94,7 @@ dependencies {
 
     implementation(libs.jetbrains.kotlin.stdlib)
     implementation(libs.jetbrains.kotlinx.coroutines)
+    //implementation(libs.jetbrains.kotlinx.serialization.json)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.work.runtime)
@@ -118,6 +105,7 @@ dependencies {
     implementation(libs.androidx.cardview.core)
     implementation(libs.androidx.legacy.supportV4)
     implementation(libs.android.material)
+    implementation(libs.googleid)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.testExt.junit)
@@ -128,8 +116,8 @@ dependencies {
     implementation(libs.android.playServices.auth)
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.playServicesAuth)
-    implementation(libs.firebase.ui.auth)
-    // implementation(libs.firebase.authKtx)
+    //implementation(libs.firebase.ui.auth)
+    //implementation(libs.firebase.authKtx)
     // ----------------------------------
 
     // GOOGLE FIREBASE
@@ -253,5 +241,8 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.protobuf)
     implementation(libs.ktor.client.logging)
 
+    /* New */
+
+    implementation(libs.androidx.ui.graphics)
 
 }

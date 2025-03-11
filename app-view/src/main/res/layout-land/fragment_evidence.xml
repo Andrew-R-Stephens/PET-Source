@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.InvestigationSectionWrapper
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.InvestigationSectionWrapper
         android:id="@+id/layout_evidence_tool_wrapper"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -79,7 +79,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
         android:id="@+id/layout_sanity_tool"
         android:layout_width="0dp"
         android:layout_height="0dp"
