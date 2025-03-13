@@ -1,22 +1,20 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MissionRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.missions.MissionsListModel
 
-class ObjectivesViewModel(application: Application): AndroidViewModel(application) {
-
-    companion object {
-        const val UNKNOWN: Response = 0
-        const val ALONE: Response = 1
-        const val GROUP: Response = 2
-
-        const val NOT_COMPLETE: MissionStatus = false
-        const val COMPLETE: MissionStatus = true
-    }
+class ObjectivesViewModel(
+    missionRepository: MissionRepository
+): ViewModel() {
 
     /* All possible objectives */
-    var missionsListModel: MissionsListModel? = null
+    var missionsListModel: MissionsListModel? = MissionsListModel(missionRepository.objectivesList)
     /* Objective Completed Buttons */
     var spinnerCompletionStatus: BooleanArray = BooleanArray(3) { NOT_COMPLETE }
 
@@ -26,10 +24,6 @@ class ObjectivesViewModel(application: Application): AndroidViewModel(applicatio
 
     /* Response */
     var responseState: Response = UNKNOWN // alone , group
-
-    fun init() {
-        missionsListModel = missionsListModel ?: MissionsListModel(getApplication())
-    }
 
     fun toggleCompletionStatus(spinnerIndex: Int) {
         spinnerCompletionStatus[spinnerIndex] = !spinnerCompletionStatus[spinnerIndex]
@@ -42,6 +36,43 @@ class ObjectivesViewModel(application: Application): AndroidViewModel(applicatio
         responseState = UNKNOWN
     }
 
+    class ObjectivesFactory(
+        private val missionRepository: MissionRepository
+    ) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(ObjectivesViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return ObjectivesViewModel(
+                    missionRepository
+                ) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
+
+    companion object {
+
+        const val UNKNOWN: Response = 0
+        const val ALONE: Response = 1
+        const val GROUP: Response = 2
+
+        const val NOT_COMPLETE: MissionStatus = false
+        const val COMPLETE: MissionStatus = true
+
+
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).container
+
+                val missionRepository: MissionRepository = appKeyContainer.missionRepository
+
+                ObjectivesViewModel(
+                    missionRepository = missionRepository
+                )
+            }
+        }
+    }
 }
 
 typealias Response = Int

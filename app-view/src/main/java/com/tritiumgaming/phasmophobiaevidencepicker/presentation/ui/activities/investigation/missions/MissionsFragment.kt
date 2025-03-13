@@ -18,6 +18,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.MissionsItemLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
 
 /**
  * ObjectivesFragment class
@@ -41,21 +45,22 @@ class MissionsFragment : InvestigationFragment() {
         missionLayouts.add(view.findViewById(R.id.objective1))
         missionLayouts.add(view.findViewById(R.id.objective2))
         missionLayouts.add(view.findViewById(R.id.objective3))
+
         for (i in missionLayouts.indices) {
-            objectivesViewModel?.let { missionLayouts[i]?.init(it, i) }
+            objectivesViewModel.let { missionLayouts[i]?.init(it, i) }
         }
 
         // GHOST NAME
         val nameInput = view.findViewById<EditText>(R.id.textInput_ghostName)
         nameInput?.let {
-            nameInput.setText(objectivesViewModel?.ghostName)
+            nameInput.setText(objectivesViewModel.ghostName)
             nameInput.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence, start: Int, count: Int, after: Int) { }
                 override fun onTextChanged(
                     s: CharSequence, start: Int, before: Int, count: Int) { }
                 override fun afterTextChanged(s: Editable) {
-                    objectivesViewModel?.ghostName = s.toString()
+                    objectivesViewModel.ghostName = s.toString()
                 }
             })
         }
@@ -73,10 +78,10 @@ class MissionsFragment : InvestigationFragment() {
                     @ColorInt val selColor =
                         getColorFromAttribute(requireContext(), R.attr.selectedColor)
 
-                    if (investigationViewModel?.difficultyCarouselModel?.responseTypeKnown == true) {
+                    if (investigationViewModel.difficultyCarouselModel.responseTypeKnown == true) {
                         responseBlocker.visibility = View.GONE
 
-                        when (objectivesViewModel?.responseState) {
+                        when (objectivesViewModel.responseState) {
                             ObjectivesViewModel.ALONE -> {
                                 buttonAlone?.setColorFilter(selColor)
                                 buttonGroup?.setColorFilter(unSelColor)
@@ -98,11 +103,11 @@ class MissionsFragment : InvestigationFragment() {
                 }
             }
         buttonAlone?.setOnClickListener {
-            objectivesViewModel?.responseState = ObjectivesViewModel.ALONE
+            objectivesViewModel.responseState = ObjectivesViewModel.ALONE
             onResponseChangeListener.onChange()
         }
         buttonGroup?.setOnClickListener {
-            objectivesViewModel?.responseState = ObjectivesViewModel.GROUP
+            objectivesViewModel.responseState = ObjectivesViewModel.GROUP
             onResponseChangeListener.onChange()
         }
 

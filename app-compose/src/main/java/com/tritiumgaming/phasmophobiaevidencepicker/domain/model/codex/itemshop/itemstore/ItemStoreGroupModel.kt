@@ -7,17 +7,17 @@ abstract class ItemStoreGroupModel {
 
     @StringRes
     var nameData: Int = 0
-    private val itemData = ArrayList<com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItemModel>()
+    private val itemData = ArrayList<ItemStoreItemModel>()
 
     @get:DrawableRes
     @DrawableRes
     var paginationIcon: Int = 0
 
-    fun addItem(item: com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItemModel) {
+    fun addItem(item: ItemStoreItemModel) {
         itemData.add(item)
     }
 
-    fun getItemDataAt(itemIndex: Int): com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItemModel {
+    fun getItemDataAt(itemIndex: Int): ItemStoreItemModel {
         return itemData[itemIndex]
     }
 

@@ -1,12 +1,13 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning
 
 import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class PhaseWarningModel(
-    val investigationViewModel: InvestigationViewModel
+    private val sanityModel: SanityModel?
 ) {
     companion object Time {
         const val DEFAULT = -1L
@@ -36,7 +37,7 @@ class PhaseWarningModel(
     private val _canFlash: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val canFlash = _canFlash.asStateFlow()
     private fun updateCanFlash() {
-        val isInsane = investigationViewModel.sanityModel?.isInsane == true
+        val isInsane = sanityModel?.isInsane == true
 
         if (flashTimeMax == INFINITY) {
             _canFlash.value = isInsane
@@ -53,10 +54,10 @@ class PhaseWarningModel(
         _canFlash.value = timeElapsed.value <= flashTimeMax
     }
 
-
     fun reset() {
         flashTimeStart = DEFAULT
         updateTimeElapsed()
     }
+
 
 }

@@ -1,15 +1,23 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost
+package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
 import androidx.annotation.IntegerRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ResourceUtils.ResourceUtils.intArrayFromTypedArray
 
-@Deprecated("Replaced by InvestigationModel scoped subprocesses.")
-class GhostListModel {
-/*
-    fun init(context: Context, investigationData: InvestigationModel) {
+
+class GhostRepository(
+    evidenceRepository: EvidenceRepository,
+    context: Context
+) {
+
+    var ghostList: ArrayList<GhostModel> = ArrayList()
+
+    val count: Int
+        get() = ghostList.size
+
+    init {
 
         ghostList = ArrayList()
 
@@ -22,7 +30,7 @@ class GhostListModel {
             context.resources.obtainTypedArray(R.array.ghost_requiredevidence_arrays)
 
         for (i in namesArray.indices) {
-            val ghost = GhostModel(investigationData, i, namesArray[i])
+            val ghost = GhostModel(i, namesArray[i])
 
             // Set Normal Evidence
             val normalEvidenceIdTypedArray =
@@ -31,7 +39,7 @@ class GhostListModel {
                 @IntegerRes val evidenceIdRes = normalEvidenceIdTypedArray.getResourceId(j, 0)
                 val evidenceID = context.resources.getInteger(evidenceIdRes)
                 ghost.addEvidence(
-                    investigationData.evidenceListModel.evidenceList,
+                    evidenceRepository.evidenceList,
                     evidenceID
                 )
             }
@@ -44,7 +52,7 @@ class GhostListModel {
                 @IntegerRes val evidenceIdRes = requiredEvidenceIdTypedArray.getResourceId(j, 0)
                 val evidenceID = context.resources.getInteger(evidenceIdRes)
                 ghost.addNightmareEvidence(
-                    investigationData.evidenceListModel.evidenceList,
+                    evidenceRepository.evidenceList,
                     evidenceID
                 )
             }
@@ -54,26 +62,10 @@ class GhostListModel {
         }
         typedArrayEvidence.recycle()
         typedArrayRequiredEvidence.recycle()
-
     }
 
     fun getAt(index: Int): GhostModel {
         return ghostList[index]
     }
 
-    *//** Resets the Ruling for each Evidence type  *//*
-    fun reset() {
-        val ghostList: ArrayList<GhostModel> = ghostList
-
-        for (g in ghostList) { g.forcefullyRejected = false }
-    }
-
-    companion object {
-        var ghostList: ArrayList<GhostModel> = ArrayList()
-
-        val count: Int
-            get() {
-                return ghostList.size
-            }
-    }*/
 }

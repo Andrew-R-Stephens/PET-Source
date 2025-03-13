@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatSpinner
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
 
 class POISpinner : AppCompatSpinner {
     constructor(context: Context) :
@@ -31,7 +31,7 @@ class POISpinner : AppCompatSpinner {
         // --
     }
 
-    fun populateAdapter(mapMenuViewModel: MapMenuViewModel?) {
+    fun populateAdapter(mapMenuViewModel: MapViewModel?) {
         if (mapMenuViewModel?.currentMapModel != null) {
             // Creating adapter for spinner
             val dataAdapter = ArrayAdapter(

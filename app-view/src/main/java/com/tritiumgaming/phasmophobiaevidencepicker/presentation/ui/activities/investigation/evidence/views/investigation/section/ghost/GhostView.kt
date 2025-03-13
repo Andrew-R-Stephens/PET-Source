@@ -63,7 +63,8 @@ class GhostView : ConstraintLayout {
     @SuppressLint("ClickableViewAccessibility")
     fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int) {
         this.investigationViewModel = investigationViewModel
-        this.ghostModel = investigationViewModel.investigationModel?.ghostListModel?.getAt(groupIndex)
+        this.ghostModel = investigationViewModel.investigationModel.ghostScoreModel
+            .ghostScores.value[groupIndex].ghostModel
 
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
@@ -77,8 +78,8 @@ class GhostView : ConstraintLayout {
             iconRowLayout?.let { layout ->
 
                 var k = 0
-                while (k < ghost.evidence.size) {
-                    val currentEvidence = ghost.evidence[k] ?: return
+                while (k < ghost.normalEvidenceList.size) {
+                    val currentEvidence = ghost.normalEvidenceList[k]
 
                     val evidenceIcon = layout.getChildAt(k) as AppCompatImageView
 
@@ -116,10 +117,10 @@ class GhostView : ConstraintLayout {
                 redrawGhostRejectionStatus(ghost, groupIndex, false)
 
                 iconRowLayout?.let { layout ->
-                    ghost.evidence.forEachIndexed { index, evidenceModel ->
+                    ghost.normalEvidenceList.forEachIndexed { index, evidenceModel ->
                         val evidenceIcon = iconRowLayout.getChildAt(index)
                             .findViewById<AppCompatImageView>(R.id.evidence_icon)
-                        evidenceModel?.let {
+                        evidenceModel.let {
                             evidenceIcon.setColorFilter(getRulingColor(it.ruling))
                         }
                     }
@@ -145,11 +146,11 @@ class GhostView : ConstraintLayout {
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container) ?: return
 
         ghostModel?.let { ghostData ->
-            ghostData.evidence.forEachIndexed { index, evidence ->
+            ghostData.normalEvidenceList.forEachIndexed { index, evidence ->
                 val evidenceIcon =
                     iconRowLayout.getChildAt(index) as AppCompatImageView
 
-                evidence?.ruling?.let { ruling ->
+                evidence.ruling.let { ruling ->
                     evidenceIcon.setColorFilter(getRulingColor(ruling))
                     getRulingColor(ruling)
                 }
@@ -170,26 +171,30 @@ class GhostView : ConstraintLayout {
     private fun redrawGhostRejectionStatus(ghost: GhostModel, index: Int, animate: Boolean) {
         val statusIcon = findViewById<AppCompatImageView>(R.id.icon_status)
 
-        investigationViewModel?.investigationModel?.getRejectionPile()?.get(index)?.let { rejectionStatus ->
-            if (rejectionStatus) { statusIcon.setImageLevel(1) }
-            else {
-                val score = ghost.evidenceScore
-                when {
-                    score <= -5 -> statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
-                    score == 3 -> statusIcon.setImageLevel(5)
-                    else -> statusIcon.setImageLevel(0)
+        investigationViewModel?.investigationModel?.let { investigationModel ->
+            investigationModel.getRejectionPile()?.get(index)?.let { rejectionStatus ->
+                if (rejectionStatus) { statusIcon.setImageLevel(1) }
+                else {
+                    val score = investigationModel.ghostScoreModel.ghostScores.value[index].score
+                    when {
+                        (score <= -5) -> statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
+                        score == 3 -> statusIcon.setImageLevel(5)
+                        else -> statusIcon.setImageLevel(0)
+                    }
                 }
             }
+
         }
+
     }
 
     inner class OnSwipeListener(private val index: Int) : SimpleOnGestureListener() {
         override fun onFling(
             e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float): Boolean {
-            investigationViewModel?.let { investigationViewModel ->
-                investigationViewModel.investigationModel?.swapStatusInRejectedPile(index)
-                investigationViewModel.investigationModel?.ghostOrderModel?.updateOrder()
-                investigationViewModel.investigationModel?.ghostListModel?.getAt(index)?.let { ghostModel ->
+            investigationViewModel?.investigationModel.let { investigationModel ->
+                investigationModel?.swapStatusInRejectedPile(index)
+                investigationModel?.ghostScoreModel?.updateOrder()
+                investigationModel?.ghostRepository?.getAt(index)?.let { ghostModel ->
                     redrawGhostRejectionStatus(ghostModel, index, true)
                 }
             }

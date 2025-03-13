@@ -1,12 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels
 
-import android.content.Context
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.MapCarouselModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -16,12 +16,20 @@ import kotlinx.coroutines.flow.asStateFlow
  * @author TritiumGamingStudios
  */
 class InvestigationModel(
-    context: Context,
-    var investigationViewModel: InvestigationViewModel?
+    val ghostRepository: GhostRepository,
+    val evidenceRepository: EvidenceRepository,
+    val mapCarouselModel: MapCarouselModel?,
+    val difficultyCarouselModel: DifficultyCarouselModel?
 ) {
-    val ghostListModel: GhostListModel = GhostListModel()
-    val evidenceListModel: EvidenceListModel = EvidenceListModel()
-    val ghostOrderModel: GhostOrderModel = GhostOrderModel(ghostListModel)
+
+    companion object {
+        const val TOOL_SANITY = 0
+        const val TOOL_MODIFIER_DETAILS = 1
+    }
+
+    val ghostScoreModel: GhostScoreModel = GhostScoreModel(
+        evidenceRepository, ghostRepository, mapCarouselModel, difficultyCarouselModel
+    )
 
     private val _radioButtonsChecked : MutableStateFlow<SnapshotStateList<Int>> =
         MutableStateFlow(mutableStateListOf())
@@ -32,7 +40,8 @@ class InvestigationModel(
     }
     private fun createRadioButtonsChecked() {
         _radioButtonsChecked.value.clear()
-        evidenceListModel.evidenceList.forEach { _ ->
+
+        evidenceRepository.evidenceList.forEach { _ ->
             _radioButtonsChecked.value.add(EvidenceModel.Ruling.NEUTRAL.ordinal)
         }
     }
@@ -42,7 +51,7 @@ class InvestigationModel(
 
     private var rejectionPile: BooleanArray? = null
     private fun createRejectionPile() {
-        rejectionPile = BooleanArray(GhostListModel.count)
+        rejectionPile = BooleanArray(ghostScoreModel.ghostScores.value.size)
     }
     fun swapStatusInRejectedPile(index: Int): Boolean {
         val pile = getRejectionPile()
@@ -50,12 +59,11 @@ class InvestigationModel(
         return pile[index]
     }
     private fun updateRejectionPile() {
-        rejectionPile = BooleanArray(GhostListModel.count)
+        rejectionPile = BooleanArray(ghostScoreModel.ghostScores.value.size)
         rejectionPile?.let { rejectionPile ->
             for (i in rejectionPile.indices) {
                 rejectionPile[i] =
-                    investigationViewModel?.investigationModel?.ghostListModel
-                        ?.getAt(i)?.forcefullyRejected == true
+                    ghostScoreModel.getGhostScore(i).forcefullyRejected == true
             }
         }
     }
@@ -64,28 +72,33 @@ class InvestigationModel(
         return rejectionPile
     }
 
-    private val _isSanityDrawerCollapsed: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val isSanityDrawerCollapsed = _isSanityDrawerCollapsed.asStateFlow()
-    fun setDrawerState(isCollapsed: Boolean) {
-        _isSanityDrawerCollapsed.value = isCollapsed
+    private val _isInvestigationToolsDrawerCollapsed: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isInvestigationToolsDrawerCollapsed = _isInvestigationToolsDrawerCollapsed.asStateFlow()
+    fun setInvestigationToolsDrawerState(isCollapsed: Boolean) {
+        _isInvestigationToolsDrawerCollapsed.value = isCollapsed
     }
-    fun toggleDrawerState() {
-        _isSanityDrawerCollapsed.value = !isSanityDrawerCollapsed.value
+    fun toggleInvestigationToolsDrawerState() {
+        _isInvestigationToolsDrawerCollapsed.value = !isInvestigationToolsDrawerCollapsed.value
+    }
+
+    private val _investigationToolsCategory: MutableStateFlow<Int> = MutableStateFlow(TOOL_SANITY)
+    val investigationToolsCategory = _investigationToolsCategory.asStateFlow()
+    fun setInvestigationToolsCategory(categoryIndex: Int) {
+        _investigationToolsCategory.value = categoryIndex
     }
 
     init {
-        evidenceListModel.init(context)
-        ghostListModel.init(context, this)
         if(radioButtonsChecked.value.isEmpty()) createRadioButtonsChecked()
     }
 
     /** Resets the Ruling for each Evidence type */
     fun reset() {
         resetRadioButtonsChecked()
-        evidenceListModel.reset()
-        ghostListModel.reset()
-        ghostOrderModel.reset()
+        evidenceRepository.reset()
+        ghostScoreModel.reset()
+        ghostScoreModel.reset()
         createRejectionPile()
     }
+
 
 }

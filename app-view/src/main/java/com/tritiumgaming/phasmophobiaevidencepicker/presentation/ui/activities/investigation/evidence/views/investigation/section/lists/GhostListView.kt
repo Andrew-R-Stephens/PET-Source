@@ -44,7 +44,7 @@ class GhostListView : InvestigationListView {
     override fun build() {
         investigationViewModel?.let { investigationViewModel ->
             val newGhostOrder =
-                investigationViewModel.investigationModel?.ghostOrderModel?.currOrder
+                investigationViewModel.investigationModel?.ghostScoreModel?.currOrder
 
             newGhostOrder?.let { ghostOrder ->
                 Log.d("GhostOrder", "Loading New ${newGhostOrder.joinToString()}")
@@ -76,15 +76,15 @@ class GhostListView : InvestigationListView {
     }
 
     fun attemptInvalidate(canReorder: Boolean) {
-        if (investigationViewModel?.investigationModel?.ghostOrderModel?.hasChanges() == true
+        if (investigationViewModel?.investigationModel?.ghostScoreModel?.hasChanges() == true
             && canReorder) { reorder() } else { updateChildren() }
     }
 
     private fun reorder() {
         investigationViewModel?.let { investigationViewModel ->
-            val ghostOrderData = investigationViewModel.investigationModel?.ghostOrderModel
+            val ghostOrderData = investigationViewModel.investigationModel.ghostScoreModel
 
-            ghostOrderData?.currOrder?.let { currOrder ->
+            ghostOrderData.currOrder?.let { currOrder ->
                 for (j in currOrder) {
                     val childView = this.findViewById<View>(j)
                     this.removeView(childView)

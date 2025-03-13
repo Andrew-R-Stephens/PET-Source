@@ -1,6 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.timer
 
 import android.os.CountDownTimer
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel.SanityConstants.HALF_SANITY
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel.SanityConstants.MIN_SANITY
@@ -10,7 +12,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class PhaseTimerModel(
-    val investigationViewModel: InvestigationViewModel
+    private val sanityModel: SanityModel?,
+    private val difficultyCarouselModel: DifficultyCarouselModel?
 ) {
 
     enum class Phase {
@@ -29,13 +32,12 @@ class PhaseTimerModel(
         _currentPhase.value =
             if (timeRemaining.value > TIME_MIN) {
                 Phase.SETUP
-            }
-            else {
-                if((investigationViewModel.sanityModel?.sanityLevel?.value ?: MIN_SANITY) <
-                    SAFE_MIN_BOUNDS) {
+            } else {
+                if ((sanityModel?.sanityLevel?.value ?: MIN_SANITY) <
+                    SAFE_MIN_BOUNDS
+                ) {
                     Phase.HUNT
-                }
-                else {
+                } else {
                     Phase.ACTION
                 }
             }
@@ -44,7 +46,9 @@ class PhaseTimerModel(
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
     var startTime: Long = TIME_DEFAULT
-    private fun resetStartTime() { startTime = TIME_DEFAULT }
+    private fun resetStartTime() {
+        startTime = TIME_DEFAULT
+    }
 
     private val _timeRemaining: MutableStateFlow<Long> = MutableStateFlow(TIME_DEFAULT)
     val timeRemaining = _timeRemaining.asStateFlow()
@@ -60,10 +64,15 @@ class PhaseTimerModel(
 
     private var liveTimer: CountDownTimer? = null
     private fun setLiveTimer(
-        millisInFuture: Long = timeRemaining.value, countDownInterval: Long = 100L) {
-        liveTimer = object: CountDownTimer(millisInFuture, countDownInterval) {
-            override fun onTick(millis: Long) { setTimeRemaining(millis) }
-            override fun onFinish() { /* TODO not needed */ }
+        millisInFuture: Long = timeRemaining.value, countDownInterval: Long = 100L
+    ) {
+        liveTimer = object : CountDownTimer(millisInFuture, countDownInterval) {
+            override fun onTick(millis: Long) {
+                setTimeRemaining(millis)
+            }
+
+            override fun onFinish() { /* TODO not needed */
+            }
         }
     }
 
@@ -73,29 +82,35 @@ class PhaseTimerModel(
         _paused.value = true
         liveTimer?.cancel()
     }
+
     fun playTimer() {
         _paused.value = false
         setLiveTimer()
         liveTimer?.start()
     }
+
     fun toggleTimer() {
-        if(paused.value) { playTimer()
-            investigationViewModel.sanityModel?.progressToStartTime()
+        if (paused.value) {
+            playTimer()
+            sanityModel?.progressToStartTime()
+        } else {
+            pauseTimer()
         }
-        else { pauseTimer() }
     }
+
     fun resetTimer() {
         pauseTimer()
         resetStartTime()
-        investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
+        sanityModel?.timeRemainingToInsanityLevel()
         setLiveTimer()
     }
-    fun fastForwardTimer(time: Long){
+
+    fun fastForwardTimer(time: Long) {
         pauseTimer()
         setTimeRemaining(time)
         setLiveTimer()
         //investigationViewModel.sanityModel?.timeRemainingToInsanityLevel()
-        investigationViewModel.sanityModel?.skipInsanity(HALF_SANITY)
+        sanityModel?.skipInsanity(HALF_SANITY)
         playTimer()
     }
 
@@ -105,8 +120,7 @@ class PhaseTimerModel(
 
     fun reset() {
         resetTimer()
-        setTimeRemaining(investigationViewModel.difficultyCarouselModel?.currentTime ?: TIME_MIN)
+        difficultyCarouselModel?.currentTime?.let { setTimeRemaining(it) }
         resetStartTime()
     }
-
 }

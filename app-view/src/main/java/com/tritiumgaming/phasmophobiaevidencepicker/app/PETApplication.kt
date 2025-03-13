@@ -20,7 +20,6 @@ class PETApplication : Application(), AccountManagementService {
 
         container = AppContainer(applicationContext, dataStore)
 
-        //TODO Implement silent sign-in
         signIn(
             option = SignInCredentialManager.SignInOptions.SILENT,
             onSuccess = {

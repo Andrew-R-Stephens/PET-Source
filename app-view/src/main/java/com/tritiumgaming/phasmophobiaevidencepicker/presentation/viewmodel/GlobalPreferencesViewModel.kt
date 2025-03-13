@@ -3,7 +3,13 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.ColorThemeControl
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.FontThemeControl
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning.PhaseWarningModel
@@ -15,10 +21,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import java.util.Locale
 
 class GlobalPreferencesViewModel(application: Application): SharedViewModel(application) {
-
-    companion object Language {
-        var DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
-    }
 
     data class LanguageObject(val name: String, val abbreviation: String)
 
@@ -219,4 +221,58 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
             return settings
         }
 
+    class GlobalPreferencesFactory(
+        private val application: Application
+        /*private val globalPreferencesRepository: GlobalPreferencesRepository,
+        private val reviewTrackingRepository: ReviewTrackingRepository,
+        private val fontThemeRepository: TypographyRepository,
+        private val colorThemeRepository: PaletteRepository,
+        private val languageRepository: LanguageRepository*/
+    ) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(GlobalPreferencesViewModel::class.java)) {
+                val viewModel =
+                    GlobalPreferencesViewModel(
+                        application = application
+                        /*globalPreferencesRepository,
+                        reviewTrackingRepository,
+                        fontThemeRepository,
+                        colorThemeRepository,
+                        languageRepository*/
+                    )
+                /*viewModel.init()*/
+                @Suppress("UNCHECKED_CAST")
+                return (viewModel)as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
+
+    companion object {
+
+        var DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
+
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val application: PETApplication = this[APPLICATION_KEY] as PETApplication
+                val appKeyContainer = application.container
+
+                /*val globalPreferencesRepository = appKeyContainer.globalPreferencesRepository
+                val reviewTrackingRepository: ReviewTrackingRepository = appKeyContainer.reviewTrackingRepository
+                val fontThemeRepository: TypographyRepository = appKeyContainer.typographyRepository
+                val colorThemeRepository: PaletteRepository = appKeyContainer.paletteRepository
+                val languageRepository: LanguageRepository = appKeyContainer.languageRepository*/
+
+                GlobalPreferencesViewModel(
+                    application = application,
+                    /*globalPreferencesRepository = globalPreferencesRepository,
+                    reviewTrackingRepository = reviewTrackingRepository,
+                    typographyRepository = fontThemeRepository,
+                    paletteRepository = colorThemeRepository,
+                    languageRepository = languageRepository*/
+                )
+            }
+        }
+    }
 }

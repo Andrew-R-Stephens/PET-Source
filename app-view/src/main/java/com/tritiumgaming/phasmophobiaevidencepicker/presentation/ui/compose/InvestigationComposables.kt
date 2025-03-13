@@ -202,12 +202,12 @@ fun RulingSelector(
         modifier = modifier,
         onClick = {
             investigationModel.setRadioButtonChecked(groupIndex, rulingType.value)
-            investigationModel.evidenceListModel.evidenceList[groupIndex].ruling =
+            investigationModel.evidenceRepository.evidenceList[groupIndex].ruling =
                 EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
-            investigationModel.ghostOrderModel.updateOrder()
+            investigationModel.ghostScoreModel.updateOrder()
 
             Log.d("Updated",
-                investigationModel.ghostOrderModel.currOrder
+                investigationModel.ghostScoreModel.currOrder
                     .contentToString())
 
             onSelection()

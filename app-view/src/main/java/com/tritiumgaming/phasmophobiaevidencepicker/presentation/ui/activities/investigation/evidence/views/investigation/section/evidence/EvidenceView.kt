@@ -49,20 +49,24 @@ class EvidenceView : ConstraintLayout {
 
     fun build(investigationViewModel: InvestigationViewModel, groupIndex: Int, ghostList: LinearLayout) {
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
-        investigationViewModel.investigationModel?.evidenceListModel?.evidenceList
-            ?.get(groupIndex)?.name?.let{ resId ->
-            nameView?.text = context.getString(resId)
-        }
-        investigationViewModel.investigationModel?.let {
-            val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
-            radioGroupComposable?.setContent {
-                RulingGroup(
-                    investigationModel = it,
-                    groupIndex = groupIndex,
-                    onClick = { onSelectEvidenceIcon(ghostList) }
-                )
+
+        investigationViewModel.investigationModel.let{ investigationModel ->
+            investigationModel.evidenceRepository.evidenceList[groupIndex]
+                .name.let{ resId ->
+                    nameView?.text = context.getString(resId)
+                }
+            investigationModel.let {
+                val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
+                radioGroupComposable?.setContent {
+                    RulingGroup(
+                        investigationModel = it,
+                        groupIndex = groupIndex,
+                        onClick = { onSelectEvidenceIcon(ghostList) }
+                    )
+                }
             }
         }
+
 
         visibility = INVISIBLE
         alpha = 0f

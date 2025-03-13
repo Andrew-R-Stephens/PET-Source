@@ -5,11 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -17,9 +17,10 @@ import com.google.android.gms.ads.MobileAds
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.PETFragment
 
 abstract class InvestigationFragment : PETFragment {
-    protected var investigationViewModel: InvestigationViewModel? = null
-    protected var objectivesViewModel: ObjectivesViewModel? = null
-    protected var mapMenuViewModel: MapMenuViewModel? = null
+
+    protected val investigationViewModel: InvestigationViewModel by activityViewModels { InvestigationViewModel.Factory }
+    protected val objectivesViewModel: ObjectivesViewModel by activityViewModels { ObjectivesViewModel.Factory }
+    protected val mapViewModel: MapViewModel by activityViewModels { MapViewModel.Factory }
 
     protected var adRequest: AdRequest? = null
 
@@ -45,35 +46,13 @@ abstract class InvestigationFragment : PETFragment {
     override fun initViewModels() {
         initGlobalPreferencesViewModel()
         initInvestigationViewModel()
-        initObjectivesViewModel()
-        initMapMenuViewModel()
-    }
-
-    private fun initMapMenuViewModel() {
-        if (mapMenuViewModel == null) {
-            mapMenuViewModel = ViewModelProvider(requireActivity())[MapMenuViewModel::class.java]
-            mapMenuViewModel?.init()
-        }
-    }
-
-    private fun initObjectivesViewModel() {
-        if (objectivesViewModel == null) {
-            objectivesViewModel =
-                ViewModelProvider(requireActivity())[ObjectivesViewModel::class.java]
-            objectivesViewModel?.init()
-        }
     }
 
     private fun initInvestigationViewModel() {
-        if (investigationViewModel == null) {
-            investigationViewModel =
-                ViewModelProvider(requireActivity())[InvestigationViewModel::class.java]
-            investigationViewModel?.init()
-        }
-        investigationViewModel?.phaseWarnModel?.audioAllowed =
-            globalPreferencesViewModel?.isHuntWarnAudioAllowed?.value == true
-        globalPreferencesViewModel?.huntWarnFlashTimeMax?.value?.let { value ->
-            investigationViewModel?.phaseWarnModel?.flashTimeMax = value
+        investigationViewModel.phaseWarnModel?.audioAllowed =
+            globalPreferencesViewModel.isHuntWarnAudioAllowed.value == true
+        globalPreferencesViewModel.huntWarnFlashTimeMax.value.let { value ->
+            investigationViewModel.phaseWarnModel?.flashTimeMax = value
         }
     }
 

@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity
 
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.MapCarouselModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.timer.PhaseTimerModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +17,9 @@ import kotlin.math.min
  * @author TritiumGamingStudios
  */
 class SanityModel(
-    private val investigationViewModel: InvestigationViewModel?
+    private val difficultyCarouselModel: DifficultyCarouselModel,
+    private val mapCarouselModel: MapCarouselModel,
+    private val timerModel: PhaseTimerModel?
 ) {
 
     companion object SanityConstants {
@@ -30,14 +33,14 @@ class SanityModel(
     private val currentMaxSanity: Float
         get() {
             val value = (
-                if((investigationViewModel?.difficultyCarouselModel?.currentIndex ?: 0) == 4) 75f
-                else MAX_SANITY )
+                    if(difficultyCarouselModel.currentIndex.value == 4) 75f
+                    else MAX_SANITY )
             return value
         }
 
     /** The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual. */
-    var insanityLevel: Float = 0f
+    private var insanityLevel: Float = 0f
         set(value) {
             field = max(min(MAX_SANITY, value), MIN_SANITY)
             updateSanityLevel()
@@ -45,7 +48,7 @@ class SanityModel(
     fun timeRemainingToInsanityLevel() {
         val tickMultiplier = .001f
         val startTime = max(
-            investigationViewModel?.timerModel?.startTime ?: PhaseTimerModel.TIME_DEFAULT,
+            timerModel?.startTime ?: PhaseTimerModel.TIME_DEFAULT,
             PhaseTimerModel.TIME_MIN)
 
         val drainMultiplier = drainModifier * tickMultiplier
@@ -64,15 +67,13 @@ class SanityModel(
         val level = (MAX_SANITY - insanityLevel)
         _sanityLevel.value = max(min(MAX_SANITY, level), MIN_SANITY)
 
-        investigationViewModel?.timerModel?.updateCurrentPhase()
+        timerModel?.updateCurrentPhase()
     }
 
     private val drainModifier: Float
         get() {
-            val difficultyModifier =
-                investigationViewModel?.difficultyCarouselModel?.currentModifier ?: 1f
-            val mapModifier =
-                investigationViewModel?.mapCarouselModel?.currentModifier ?: 1f
+            val difficultyModifier = difficultyCarouselModel.currentModifier
+            val mapModifier = mapCarouselModel.currentModifier
             return difficultyModifier * mapModifier
         }
 
@@ -89,7 +90,7 @@ class SanityModel(
      */
     fun tick() {
         timeRemainingToInsanityLevel()
-        investigationViewModel?.timerModel?.updateCurrentPhase()
+        timerModel?.updateCurrentPhase()
     }
 
     /** @param progress specify the progress 0 - 100
@@ -97,7 +98,7 @@ class SanityModel(
      * Sets the Start Time of the Sanity Drain, based on remaining time,
      * sanity, difficulty and map size. */
     fun progressToStartTime(progress: Float = insanityLevel) {
-        investigationViewModel?.timerModel?.let { timerModel ->
+        timerModel.let { timerModel ->
             val progressOverride =
                 MAX_SANITY - max(MIN_SANITY, min(MAX_SANITY, progress))
 
@@ -106,7 +107,7 @@ class SanityModel(
             val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
             val newStartTime = (System.currentTimeMillis() + timeAddition)
 
-            timerModel.startTime = newStartTime
+            timerModel?.startTime = newStartTime
 
             // TODO resetFlashTimeoutStart()
         }
@@ -151,8 +152,7 @@ class SanityModel(
     fun reset() {
         //TODO warnTriggered = false
         progressToStartTime(
-            MAX_SANITY -
-                (investigationViewModel?.difficultyCarouselModel?.currentStartSanity ?: 0f))
+            MAX_SANITY - (difficultyCarouselModel.currentStartSanity))
         tick()
     }
 

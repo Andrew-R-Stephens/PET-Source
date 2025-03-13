@@ -4,6 +4,7 @@ import android.content.IntentSender.SendIntentException
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.R
@@ -26,11 +27,8 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 class MainMenuActivity : PETActivity() {
 
-    private var onboardingViewModel: OnboardingViewModel? = null
-    private var newsLetterViewModel: NewsletterViewModel? = null
-
-    //private val googleMobileAdsConsentManager: GoogleMobileAdsConsentManager? = null
-    //private val isMobileAdsInitializeCalled = AtomicBoolean(false)
+    private val onboardingViewModel: OnboardingViewModel by viewModels()
+    private val newsLetterViewModel: NewsletterViewModel by viewModels()
 
     private var appUpdateManager: AppUpdateManager? = null
     private var updateType: Int = IMMEDIATE
@@ -55,31 +53,10 @@ class MainMenuActivity : PETActivity() {
         createConsentInformation()
     }
 
-    override fun initViewModels(): AndroidViewModelFactory? {
-        val factory: AndroidViewModelFactory? = super.initViewModels()
-
-        factory?.let {
-            initOnboardingViewModel(factory)
-            initNewsletterViewModel(factory)
-
-        }
-        return factory
-    }
-
-    private fun initOnboardingViewModel(factory: AndroidViewModelFactory) {
-        onboardingViewModel = factory.create(OnboardingViewModel::class.java)
-        onboardingViewModel = ViewModelProvider(this)[OnboardingViewModel::class.java]
-    }
-
-    private fun initNewsletterViewModel(factory: AndroidViewModelFactory) {
-        newsLetterViewModel = factory.create(NewsletterViewModel::class.java)
-        newsLetterViewModel = ViewModelProvider(this)[NewsletterViewModel::class.java]
-    }
-
     public override fun loadPreferences() {
         super.loadPreferences()
 
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             globalPreferencesViewModel.incrementAppOpenCount(applicationContext)
 
             //set language

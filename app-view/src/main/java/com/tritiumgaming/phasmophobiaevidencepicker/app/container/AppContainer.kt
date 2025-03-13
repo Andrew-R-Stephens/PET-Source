@@ -5,6 +5,13 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.CodexRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ComplexMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MissionRepository
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
 
@@ -22,44 +29,45 @@ class AppContainer(context: Context, dataStore: DataStore<Preferences>) {
         AppInfoRepository(
             context = context
         )
+    */
 
-    val newsletterRepository: NewsletterRepository =
+    /*val newsletterRepository: NewsletterRepository =
         NewsletterRepository(
             context = context,
             dataStore = dataStore
-        )
+        )*/
 
-    val globalPreferencesRepository: GlobalPreferencesRepository =
+    /*val globalPreferencesRepository: GlobalPreferencesRepository =
         GlobalPreferencesRepository(
             context = context,
             dataStore = dataStore
-        )
+        )*/
 
-    val reviewTrackingRepository: ReviewTrackingRepository =
+    /*val reviewTrackingRepository: ReviewTrackingRepository =
         ReviewTrackingRepository(
             context = context,
             dataStore = dataStore
-        )
+        )*/
 
-    val typographyRepository: TypographyRepository =
+    /*val typographyRepository: TypographyRepository =
         TypographyRepository(
             context = context,
             dataStore = dataStore
-        )
+        )*/
 
-    val paletteRepository: PaletteRepository =
+    /*val paletteRepository: PaletteRepository =
         PaletteRepository(
             networkSource = NetworkMarketDataSource(),
             localSource = LocalPalettesMap,
             context = context,
             dataStore = dataStore
-        )
+        )*/
 
-    val languageRepository: LanguageRepository =
+    /*val languageRepository: LanguageRepository =
         LanguageRepository(
             context = context,
             dataStore = dataStore
-        )
+        )*/
 
     val evidenceRepository: EvidenceRepository =
         EvidenceRepository(
@@ -77,8 +85,13 @@ class AppContainer(context: Context, dataStore: DataStore<Preferences>) {
             context = context
         )
 
-    val mapRepository: MapRepository =
-        MapRepository(
+    val simpleMapRepository: SimpleMapRepository =
+        SimpleMapRepository(
+            context = context
+        )
+
+    val complexMapRepository: ComplexMapRepository =
+        ComplexMapRepository(
             context = context
         )
 
@@ -91,6 +104,5 @@ class AppContainer(context: Context, dataStore: DataStore<Preferences>) {
         MissionRepository(
             context = context
         )
-    */
 
 }

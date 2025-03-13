@@ -19,9 +19,8 @@ import kotlin.math.min
 class SanityModel(
     private val difficultyCarouselModel: DifficultyCarouselModel,
     private val mapCarouselModel: MapCarouselModel,
-    private val timerModel: PhaseTimerModel?,
-
-    ) {
+    private val timerModel: PhaseTimerModel?
+) {
 
     companion object SanityConstants {
         const val MIN_SANITY = 0f

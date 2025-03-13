@@ -23,7 +23,7 @@ class NewsInboxesFragment : MainMenuFragment() {
         val backButton = view.findViewById<PETImageButton>(R.id.button_left)
         val inboxList = view.findViewById<ViewGroup>(R.id.list_inboxes)
 
-        newsLetterViewModel?.let { newsLetterViewModel ->
+        newsLetterViewModel.let { newsLetterViewModel ->
             for (inboxType in InboxType.entries.toTypedArray()) {
                 try {
                     val inboxView = NewsletterInboxView(requireContext(), null)
@@ -67,7 +67,7 @@ class NewsInboxesFragment : MainMenuFragment() {
     /** showExtraNewsPopup method */
     private fun gotoGeneralNews(v: View) {
         try {
-            newsLetterViewModel?.currentInboxType = InboxType.GENERAL
+            newsLetterViewModel.currentInboxType = InboxType.GENERAL
             navigateToInboxFragment(v)
         } catch (e: NullPointerException) { e.printStackTrace() }
     }
@@ -75,7 +75,7 @@ class NewsInboxesFragment : MainMenuFragment() {
     /** showPetNewsPopup method */
     private fun gotoPetNews(v: View) {
         try {
-            newsLetterViewModel?.currentInboxType = InboxType.PET
+            newsLetterViewModel.currentInboxType = InboxType.PET
             navigateToInboxFragment(v)
         } catch (e: NullPointerException) { e.printStackTrace() }
     }
@@ -83,14 +83,13 @@ class NewsInboxesFragment : MainMenuFragment() {
     /** showPhasNewsPopup method */
     private fun gotoPhasNews(v: View) {
         try {
-            newsLetterViewModel?.currentInboxType = InboxType.PHASMOPHOBIA
+            newsLetterViewModel.currentInboxType = InboxType.PHASMOPHOBIA
             navigateToInboxFragment(v)
         } catch (e: NullPointerException) { e.printStackTrace() }
     }
 
     override fun initViewModels() {
         super.initViewModels()
-        initMainMenuViewModel()
         initNewsletterViewModel()
     }
 

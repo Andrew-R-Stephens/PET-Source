@@ -4,6 +4,8 @@ import android.os.Build
 import android.widget.PopupWindow
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.PermissionsViewModel
@@ -15,8 +17,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 
 abstract class PETFragment : Fragment, AccountManagementService {
 
-    protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
-    protected var permissionsViewModel: PermissionsViewModel? = null
+    /*protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
+    protected var permissionsViewModel: PermissionsViewModel? = null*/
+
+    protected val globalPreferencesViewModel: GlobalPreferencesViewModel by activityViewModels { GlobalPreferencesViewModel.Factory }
+    protected val permissionsViewModel: PermissionsViewModel by activityViewModels()
 
     protected var analytics: FirebaseAnalytics? = null
     protected var popupWindow: PopupWindow? = null
@@ -33,22 +38,7 @@ abstract class PETFragment : Fragment, AccountManagementService {
     }
 
     protected fun initGlobalPreferencesViewModel() {
-        if (globalPreferencesViewModel == null) {
-            try {
-                globalPreferencesViewModel =
-                    ViewModelProvider(requireActivity())[GlobalPreferencesViewModel::class.java]
-                globalPreferencesViewModel?.init(requireContext())
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
-    }
-
-    private fun initPermissionsViewModel() {
-        if (permissionsViewModel == null) {
-            try {
-                permissionsViewModel =
-                    ViewModelProvider(requireActivity())[PermissionsViewModel::class.java]
-            } catch (e: IllegalStateException) { e.printStackTrace()}
-        }
+        globalPreferencesViewModel.init(requireContext())
     }
 
     private fun initFirebaseAnalytics() {

@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,7 +14,7 @@ import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
@@ -25,9 +26,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.p
  * @author TritiumGamingStudios
  */
 open class InvestigationActivity : PETActivity() {
-    protected var investigationViewModel: InvestigationViewModel? = null
-    protected var objectivesViewModel: ObjectivesViewModel? = null
-    protected var mapMenuViewModel: MapMenuViewModel? = null
+
+    protected val investigationViewModel: InvestigationViewModel by viewModels{ InvestigationViewModel.Factory }
+    protected val objectivesViewModel: ObjectivesViewModel by viewModels{ ObjectivesViewModel.Factory }
+    protected val mapViewModel: MapViewModel by viewModels{ MapViewModel.Factory }
 
     private var drawerLayout: DrawerLayout? = null
     private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
@@ -40,34 +42,9 @@ open class InvestigationActivity : PETActivity() {
         setContentView(R.layout.activity_investigation)
     }
 
-    override fun initViewModels(): AndroidViewModelFactory? {
-        val factory: AndroidViewModelFactory? = super.initViewModels()
-        factory?.let {
-            initInvestigationViewModel(factory)
-            initObjectivesViewModel(factory)
-            initMapMenuViewModel(factory)
-        }
-
-        return factory
-    }
-
-    private fun initMapMenuViewModel(factory: AndroidViewModelFactory) {
-        mapMenuViewModel = factory.create(MapMenuViewModel::class.java)
-    }
-
-    private fun initObjectivesViewModel(factory: AndroidViewModelFactory) {
-        objectivesViewModel = factory.create(ObjectivesViewModel::class.java)
-    }
-
-    private fun initInvestigationViewModel(factory: AndroidViewModelFactory) {
-        investigationViewModel = factory.create(InvestigationViewModel::class.java)
-    }
-
     override fun loadPreferences() {
         super.loadPreferences()
-        globalPreferencesViewModel?.currentLanguageAbbr?.let { currentLangAbbr ->
-            setLanguage(currentLangAbbr)
-        }
+        setLanguage(globalPreferencesViewModel.currentLanguageAbbr)
     }
 
     override fun onRequestPermissionsResult(
@@ -78,8 +55,8 @@ open class InvestigationActivity : PETActivity() {
     }
 
     private fun resetViewModels() {
-        objectivesViewModel?.reset()
-        investigationViewModel?.reset()
+        objectivesViewModel.reset()
+        investigationViewModel.reset()
     }
 
     fun initNavigationComponents() {

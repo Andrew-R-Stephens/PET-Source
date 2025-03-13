@@ -31,6 +31,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.Icon
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.LanguageIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
 import java.util.Locale
+import androidx.core.net.toUri
 
 class StartScreenFragment : MainMenuFragment() {
     private var animationView: StartScreenAnimationView? = null
@@ -91,9 +92,9 @@ class StartScreenFragment : MainMenuFragment() {
                     DropdownClickPair(R.drawable.ic_discord) {
                         startActivity(
                             Intent(
-                                Intent.ACTION_VIEW, Uri.parse(
-                                    "https://discord.gg/ ${getString(R.string.aboutinfo_discordInvite)}"
-                                )
+                                Intent.ACTION_VIEW,
+                                "https://discord.gg/ ${getString(R.string.aboutinfo_discordInvite)}"
+                                    .toUri()
                             )
                         )
                     }
@@ -137,12 +138,11 @@ class StartScreenFragment : MainMenuFragment() {
 
     override fun initViewModels() {
         super.initViewModels()
-        initMainMenuViewModel()
         initNewsletterViewModel()
     }
 
     private fun loadMessageCenter() {
-        try { newsLetterViewModel?.registerInboxes(requireContext()) }
+        try { newsLetterViewModel.registerInboxes(requireContext()) }
         catch (e: IllegalStateException) {
             Log.d("MessageCenter", "Failed registering inboxes")
             e.printStackTrace() }
@@ -163,7 +163,7 @@ class StartScreenFragment : MainMenuFragment() {
 
         val mAdView = view.findViewById<AdView>(R.id.adView)
 
-        mainMenuViewModel?.let { mainMenuViewModel ->
+        mainMenuViewModel.let { mainMenuViewModel ->
             if (!mainMenuViewModel.hasAdRequest()) {
                 mainMenuViewModel.adRequest = AdRequest.Builder().build()
             }
@@ -187,7 +187,7 @@ class StartScreenFragment : MainMenuFragment() {
         }
 
         // REQUEST REVIEW LISTENER
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             if (globalPreferencesViewModel.reviewRequestData.canShowReviewButton()) {
                 buttonReview.setOnClickListener {
                     try {
@@ -196,12 +196,12 @@ class StartScreenFragment : MainMenuFragment() {
                     catch (e: IllegalStateException) { e.printStackTrace() }
                 }
             } else { disableButton() }
-        } ?: disableButton()
+        }
     }
 
     @Throws(SendIntentException::class)
     fun doReviewRequest() {
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             if (globalPreferencesViewModel.reviewRequestData.canRequestReview()) {
                 Log.d("Review", "Review Request Accepted")
                 Thread {
@@ -271,7 +271,7 @@ class StartScreenFragment : MainMenuFragment() {
         if (checkInternetConnection()) { startLoadNewsletterThread() }
         else {
             Log.d("MessageCenter", "Could not connect to the internet.")
-            newsLetterViewModel?.let { newsLetterViewModel ->
+            newsLetterViewModel.let { newsLetterViewModel ->
                 newsLetterViewModel.compareAllInboxDates()
                 if (newsLetterViewModel.requiresNotify) {
                     doNewsletterNotification()
@@ -286,7 +286,7 @@ class StartScreenFragment : MainMenuFragment() {
             val maxRetries = 3
             var retries = 0
 
-            newsLetterViewModel?.let { newsLetterViewModel ->
+            newsLetterViewModel.let { newsLetterViewModel ->
                 while (canLoadNewsletter &&
                     (!newsLetterViewModel.isUpToDate && (retries < maxRetries))) {
                     Log.d("MessageCenter", "Attempting to load inboxes...")
@@ -321,7 +321,7 @@ class StartScreenFragment : MainMenuFragment() {
         newsletterThread?.interrupt()
         newsletterThread = null
 
-        if (newsLetterViewModel?.isUpToDate == true) {
+        if (newsLetterViewModel.isUpToDate == true) {
             canLoadNewsletter = false
             Log.d("MessageCenter", "IS up to date") }
         else { Log.d("MessageCenter", "IS NOT up to date") }
@@ -356,7 +356,7 @@ class StartScreenFragment : MainMenuFragment() {
     /** onDestroy method */
     override fun onDestroy() {
         // DESTROY AD-REQUEST
-        mainMenuViewModel?.adRequest = null
+        mainMenuViewModel.adRequest = null
 
         super.onDestroy()
     }

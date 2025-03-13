@@ -8,16 +8,16 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatSpinner
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.missions.Mission
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.missions.MissionsListModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.missions.MissionsListModel.Objective
 
 class MissionsSpinner : AppCompatSpinner {
 
     private var objectivesViewModel: ObjectivesViewModel? = null
 
     private var missionId: Int? = null
-    private var currentMission: Objective? = null
+    private var currentMission: Mission? = null
 
     constructor(context: Context) : super(context) { initView() }
 
@@ -97,7 +97,7 @@ class MissionsSpinner : AppCompatSpinner {
         }
     }
 
-    data class AdapterWrapper(val objective: Objective, val content: String) {
+    data class AdapterWrapper(val objective: Mission, val content: String) {
         override fun toString(): String {
             return content
         }

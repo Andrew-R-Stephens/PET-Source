@@ -94,7 +94,6 @@ dependencies {
 
     implementation(libs.jetbrains.kotlin.stdlib)
     implementation(libs.jetbrains.kotlinx.coroutines)
-    //implementation(libs.jetbrains.kotlinx.serialization.json)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.work.runtime)

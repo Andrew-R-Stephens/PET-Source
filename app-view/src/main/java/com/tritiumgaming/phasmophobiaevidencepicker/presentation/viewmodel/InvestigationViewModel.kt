@@ -1,7 +1,19 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.CodexRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.AchievementsStoreModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.equipment.EquipmentStoreModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.PossessionsStoreModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.MapCarouselModel
@@ -10,45 +22,95 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.s
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.timer.PhaseTimerModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning.PhaseWarningModel
 
-class InvestigationViewModel(application: Application): AndroidViewModel(application) {
+class InvestigationViewModel(
+    evidenceRepository: EvidenceRepository,
+    ghostRepository: GhostRepository,
+    difficultyRepository: DifficultyRepository,
+    mapRepository: SimpleMapRepository,
+    private val codexRepository: CodexRepository
+): ViewModel() {
 
-    var investigationModel: InvestigationModel? = null
-
-    var sanityModel: SanityModel? = null
-        private set
+    var mapCarouselModel: MapCarouselModel
+    var difficultyCarouselModel: DifficultyCarouselModel
+    var investigationModel: InvestigationModel
+    var sanityModel: SanityModel
 
     var timerModel: PhaseTimerModel? = null
-        private set
     var phaseWarnModel: PhaseWarningModel? = null
-        private set
 
-    var mapCarouselModel: MapCarouselModel? = null
-        private set
-    var difficultyCarouselModel: DifficultyCarouselModel? = null
-        private set
+    val equipmentStoreModel: EquipmentStoreModel
+        get() = codexRepository.equipmentStore
+    val possessionsStoreModel: PossessionsStoreModel
+        get() = codexRepository.possessionsStore
+    val achievementsStoreModel: AchievementsStoreModel
+        get() = codexRepository.achievementsStore
 
     var sanityRunnable: SanityRunnable? = null
 
-    fun init() {
-        investigationModel =
-            investigationModel ?: InvestigationModel(getApplication(), this)
-
-        mapCarouselModel = mapCarouselModel
-            ?: MapCarouselModel(getApplication(), this)
-        difficultyCarouselModel = difficultyCarouselModel
-            ?: DifficultyCarouselModel(getApplication(), this)
-
-        timerModel = timerModel ?: PhaseTimerModel(this)
-        phaseWarnModel = phaseWarnModel ?: PhaseWarningModel(this)
-
-        sanityModel = sanityModel ?: SanityModel(this)
-    }
-
     fun reset() {
         timerModel?.reset()
-        investigationModel?.reset()
-        sanityModel?.reset()
+        investigationModel.reset()
+        sanityModel.reset()
         phaseWarnModel?.reset()
+    }
+
+    init {
+        mapCarouselModel = MapCarouselModel(mapRepository, timerModel)
+        difficultyCarouselModel = DifficultyCarouselModel(difficultyRepository, timerModel, phaseWarnModel)
+
+        investigationModel = InvestigationModel(
+            ghostRepository, evidenceRepository, mapCarouselModel, difficultyCarouselModel)
+
+        sanityModel = SanityModel(difficultyCarouselModel, mapCarouselModel, timerModel)
+
+        timerModel = PhaseTimerModel(sanityModel, difficultyCarouselModel)
+        phaseWarnModel = PhaseWarningModel(sanityModel)
+    }
+
+    class InvestigationFactory(
+        private val evidenceRepository: EvidenceRepository,
+        private val ghostRepository: GhostRepository,
+        private val difficultyRepository: DifficultyRepository,
+        private val mapRepository: SimpleMapRepository,
+        private val codexRepository: CodexRepository
+    ) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(InvestigationViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return InvestigationViewModel(
+                    evidenceRepository,
+                    ghostRepository,
+                    difficultyRepository,
+                    mapRepository,
+                    codexRepository
+                ) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
+
+    companion object {
+
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).container
+
+                val evidenceRepository: EvidenceRepository = appKeyContainer.evidenceRepository
+                val ghostRepository: GhostRepository = appKeyContainer.ghostRepository
+                val difficultyRepository: DifficultyRepository = appKeyContainer.difficultyRepository
+                val mapRepository: SimpleMapRepository = appKeyContainer.simpleMapRepository
+                val codexRepository: CodexRepository = appKeyContainer.codexRepository
+
+                InvestigationViewModel(
+                    evidenceRepository = evidenceRepository,
+                    ghostRepository = ghostRepository,
+                    difficultyRepository = difficultyRepository,
+                    mapRepository = mapRepository,
+                    codexRepository = codexRepository,
+                )
+            }
+        }
     }
 
 }

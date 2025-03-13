@@ -34,7 +34,7 @@ class AppLanguageFragment : MainMenuFragment() {
 
         // LISTENERS
         confirmButton.setOnClickListener { v: View? ->
-            mainMenuViewModel?.languageSelectedOriginal = -1
+            mainMenuViewModel.languageSelectedOriginal = -1
             try { v?.let { findNavController(v).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
@@ -43,21 +43,21 @@ class AppLanguageFragment : MainMenuFragment() {
 
         // DATA
         var selected = 0
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             selected = globalPreferencesViewModel.getCurrentLanguageIndex()
         }
-        mainMenuViewModel?.let { mainMenuViewModel ->
+        mainMenuViewModel.let { mainMenuViewModel ->
             if (mainMenuViewModel.languageSelectedOriginal == -1) {
                 mainMenuViewModel.languageSelectedOriginal = selected
             }
         }
-        globalPreferencesViewModel?.languageList?.let { languageList ->
+        globalPreferencesViewModel.languageList.let { languageList ->
             for (i in languageList.indices) {
                 val adapter = LanguagesAdapterView(languageList, selected,
                     object: LanguagesAdapterView.OnLanguageListener {
                         override fun onNoteClick(position: Int) {
-                            globalPreferencesViewModel?.setCurrentLanguage(position)
-                            mainMenuViewModel?.canRefreshFragment = true
+                            globalPreferencesViewModel.setCurrentLanguage(position)
+                            mainMenuViewModel.canRefreshFragment = true
 
                             this@AppLanguageFragment.configureLanguage()
                             this@AppLanguageFragment.refreshFragment()
@@ -72,8 +72,8 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     private fun handleDiscardChanges() {
-        mainMenuViewModel?.let { mainMenuViewModel ->
-            globalPreferencesViewModel?.setCurrentLanguage(
+        mainMenuViewModel.let { mainMenuViewModel ->
+            globalPreferencesViewModel.setCurrentLanguage(
                 mainMenuViewModel.languageSelectedOriginal)
             Log.d("Languages",
                 "Set language = ${mainMenuViewModel.languageSelectedOriginal}")
@@ -86,7 +86,7 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     private fun configureLanguage() {
-        globalPreferencesViewModel?.currentLanguageAbbr?.let{ currLangAbbr ->
+        globalPreferencesViewModel.currentLanguageAbbr.let{ currLangAbbr ->
             try {
                 (requireActivity() as MainMenuActivity).setLanguage(currLangAbbr)
             }
@@ -96,7 +96,6 @@ class AppLanguageFragment : MainMenuFragment() {
 
     override fun initViewModels() {
         super.initViewModels()
-        initMainMenuViewModel()
     }
 
     override fun backPressedHandler() {
@@ -108,7 +107,7 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     public override fun refreshFragment() {
-        mainMenuViewModel?.let { mainMenuViewModel ->
+        mainMenuViewModel.let { mainMenuViewModel ->
             if (mainMenuViewModel.canRefreshFragment) {
                 super.refreshFragment()
                 mainMenuViewModel.canRefreshFragment = false
@@ -117,7 +116,7 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     public override fun saveStates() {
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             try { globalPreferencesViewModel.saveToFile(requireContext())
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }

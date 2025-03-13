@@ -64,38 +64,38 @@ class MapViewerFragment : InvestigationFragment() {
         poiSpinner = view.findViewById(R.id.spinner_poiname)
         layerName = view.findViewById(R.id.textview_floorname)
 
-        mapMenuViewModel?.let { mapMenuViewModel ->
-            val floor = mapMenuViewModel.currentMapViewerModel.currentFloor
-            mapMenuViewModel.currentMapModel?.let { currentMap ->
+        mapViewModel.let { mapViewModel ->
+            val floor = mapViewModel.currentMapViewerModel.currentFloor
+            mapViewModel.currentMapModel?.let { currentMap ->
                 currentMap.currentLayer = currentMap.getFloor(floor).floorLayer
             }
 
             buttonLayerNext.setOnClickListener {
-                mapMenuViewModel.incrementFloorIndex()
-                setMapLayer(mapMenuViewModel.currentMapViewerModel.currentFloor)
+                mapViewModel.incrementFloorIndex()
+                setMapLayer(mapViewModel.currentMapViewerModel.currentFloor)
                 updateComponents()
             }
 
             buttonLayerPrev.setOnClickListener {
-                mapMenuViewModel.decrementFloorIndex()
-                setMapLayer(mapMenuViewModel.currentMapViewerModel.currentFloor)
+                mapViewModel.decrementFloorIndex()
+                setMapLayer(mapViewModel.currentMapViewerModel.currentFloor)
                 updateComponents()
             }
 
             buttonHelp.setOnClickListener { showHelpPopup() }
             buttonBack.setOnClickListener { handleBackAction() }
 
-            Log.d("MapName", mapMenuViewModel.currentMapViewerModel.mapName)
-            mapName.text = mapMenuViewModel.currentMapViewerModel.mapName
+            Log.d("MapName", requireContext().getString(mapViewModel.currentMapViewerModel.mapName))
+            mapName.text = requireContext().getString(mapViewModel.currentMapViewerModel.mapName)
 
             poiSpinner?.let { spinner ->
                 imageDisplay?.let { mapView ->
-                    mapView.init(mapMenuViewModel, spinner)
-                    mapView.setMapData(mapMenuViewModel.currentMapViewerModel)
+                    mapView.init(mapViewModel, spinner)
+                    mapView.setMapData(mapViewModel.currentMapViewerModel)
                 }
             }
 
-            val tempData = mapMenuViewModel.currentMapViewerModel
+            val tempData = mapViewModel.currentMapViewerModel
 
             selectorGroup = MapLayerSelectorGroup(tempData.floorCount)
             for (i in 0 until (selectorGroup?.size ?: 0)) {
@@ -109,8 +109,8 @@ class MapViewerFragment : InvestigationFragment() {
                 }
             }
 
-            var mapNameStr: String? = tempData.mapName
-            val name = mapMenuViewModel.currentMapModel?.mapName
+            var mapNameStr: String? = requireContext().getString(tempData.mapName)
+            val name = mapViewModel.currentMapModel?.mapName
             mapNameStr = if (name?.isNotEmpty() == true) name else mapNameStr
 
             mapName.text = mapNameStr
@@ -130,7 +130,7 @@ class MapViewerFragment : InvestigationFragment() {
     private fun setMapLayer(index: Int) {
         imageDisplay?.resetRoomSelection()
 
-        mapMenuViewModel?.currentMapModel?.let { currentMap ->
+        mapViewModel.currentMapModel?.let { currentMap ->
             val floor = currentMap.getFloor(index)
             currentMap.currentLayer = floor.floorLayer
             Log.d("Maps", currentMap.currentFloor.floorName + " ")
@@ -164,7 +164,7 @@ class MapViewerFragment : InvestigationFragment() {
     private fun startThreads() {
         stopThreads()
 
-        mapMenuViewModel?.let { mapMenuViewModel ->
+        mapViewModel.let { mapMenuViewModel ->
             mapMenuViewModel.imageDisplayThread = Thread {
                 try {
                     imageDisplay?.setMapImages(requireActivity())
@@ -179,25 +179,25 @@ class MapViewerFragment : InvestigationFragment() {
     }
 
     private fun stopThreads() {
-        mapMenuViewModel?.let { mapMenuViewModel ->
+        mapViewModel.let { mapMenuViewModel ->
             mapMenuViewModel.imageDisplayThread?.interrupt()
             mapMenuViewModel.imageDisplayThread = null
         }
     }
 
     private fun updateComponents() {
-        mapMenuViewModel?.currentMapViewerModel?.let { currentMapViewerModel ->
+        mapViewModel.currentMapViewerModel.let { currentMapViewerModel ->
             selectorGroup?.setSelected(currentMapViewerModel.currentFloor)
 
             layerName?.text = resources.getString(currentMapViewerModel.floorName)
             imageDisplay?.invalidate()
-            poiSpinner?.populateAdapter(mapMenuViewModel)
+            poiSpinner?.populateAdapter(mapViewModel)
         }
     }
 
     /** Saves states of the MapViewer to the MapViewModel */
     public override fun saveStates() {
-        mapMenuViewModel?.let { mapMenuViewModel ->
+        mapViewModel.let { mapMenuViewModel ->
             mapMenuViewModel.currentMapViewerModel.defaultFloor =
                 mapMenuViewModel.currentMapViewerModel.currentFloor
         }
@@ -235,7 +235,7 @@ class MapViewerFragment : InvestigationFragment() {
             for (i in selectors.indices) {
                 selectors[i] = MapLayerSelector(requireContext())
             }
-            mapMenuViewModel?.let { mapMenuViewModel ->
+            mapViewModel?.let { mapMenuViewModel ->
                 setSelected(mapMenuViewModel.currentMapViewerModel.currentFloor)
             }
         }

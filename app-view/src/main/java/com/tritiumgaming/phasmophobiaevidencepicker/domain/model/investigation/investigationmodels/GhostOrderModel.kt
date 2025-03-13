@@ -2,30 +2,31 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.
 
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostListModel
 
+@Deprecated("Use GhostScoreModel instead.")
 class GhostOrderModel(
     private val ghostListModel: GhostListModel
 ) {
 
-    private var prevOrder: IntArray? = null
+    /*private var prevOrder: IntArray? = null
     var currOrder: IntArray? = null
         get() {
             field ?: createCurrOrder()
             return field
         }
 
-    /**
+    *//**
      * createOrder
      * Initializes both current and previous order of ghosts to default order
-     */
+     *//*
     fun createOrder() {
         createPrevOrder()
         createCurrOrder()
     }
 
-    /**
+    *//**
      * createPrevOrder
      * Initializes both current and previous order of ghosts to default order
-     */
+     *//*
     private fun createPrevOrder() {
         prevOrder = IntArray(GhostListModel.count)
 
@@ -37,10 +38,10 @@ class GhostOrderModel(
 
     }
 
-    /**
+    *//**
      * createCurrOrder
      * Initializes both current and previous order of ghosts to default order
-     */
+     *//*
     private fun createCurrOrder() {
         currOrder = IntArray(GhostListModel.count)
 
@@ -113,5 +114,5 @@ class GhostOrderModel(
 
     fun reset() {
         createOrder()
-    }
+    }*/
 }

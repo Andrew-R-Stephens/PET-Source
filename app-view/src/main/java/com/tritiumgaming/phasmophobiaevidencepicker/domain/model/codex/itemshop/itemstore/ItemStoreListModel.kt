@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore
 
-class ItemStoreListModel {
+open class ItemStoreListModel {
+
     val groups: ArrayList<ItemStoreGroupModel> = ArrayList()
 
     fun addGroup(groupItems: ItemStoreGroupModel) {

@@ -13,12 +13,14 @@ import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.MapFileIO
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.MapListModel
 import com.google.common.primitives.Ints
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
 
 /**
  * MapMenuFragment class
@@ -26,8 +28,6 @@ import com.google.common.primitives.Ints
  * @author TritiumGamingStudios
  */
 class MapMenuFragment : InvestigationFragment() {
-
-    private var mapListModel: MapListModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -38,16 +38,13 @@ class MapMenuFragment : InvestigationFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        try { mapListModel = readMapsDataFromFile() }
-        catch (e: Exception) { e.printStackTrace() }
-
         val gridView = view.findViewById<GridView>(R.id.grid_maps)
 
-        mapListModel?.let { mapListModel ->
-            mapMenuViewModel?.let { mapMenuViewModel ->
+        mapViewModel.complexMapRepository.mapListModel?.let { mapListModel ->
+            mapViewModel.let { mapViewModel ->
                 val gridViewAdapter = GridViewAdapter(
                     mapListModel.shortenedMapNames.toTypedArray<String?>(),
-                    Ints.toArray(mapMenuViewModel.mapThumbnails)
+                    Ints.toArray(mapViewModel.mapThumbnails)
                 )
                 gridView.adapter = gridViewAdapter
                 gridView.onItemClickListener =
@@ -56,8 +53,8 @@ class MapMenuFragment : InvestigationFragment() {
                         mapListModel.let { mapListModel ->
                             System.gc()
 
-                            mapMenuViewModel.currentMapIndex = position
-                            mapMenuViewModel.currentMapModel = mapListModel.getMapById(position)
+                            mapViewModel.currentMapIndex = position
+                            mapViewModel.currentMapModel = mapListModel.getMapById(position)
 
                             navigateToMapView(itemView)
                         }
@@ -68,7 +65,7 @@ class MapMenuFragment : InvestigationFragment() {
             getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
     }
 
-    @Throws(Exception::class)
+    /*@Throws(Exception::class)
     private fun readMapsDataFromFile(): MapListModel? {
         val mapFileIO = MapFileIO()
         val reader = mapFileIO.mapFileReader
@@ -78,7 +75,7 @@ class MapMenuFragment : InvestigationFragment() {
         mapListModel?.orderRooms()
 
         return mapListModel
-    }
+    }*/
 
     private fun navigateToMapView(view: View) {
         //findNavController(view).navigate(R.id.mapViewerFragment)

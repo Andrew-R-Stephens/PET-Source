@@ -1,5 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus
 
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AccountManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.FirebaseFragment
@@ -7,21 +9,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MainM
 
 abstract class MainMenuFirebaseFragment : FirebaseFragment {
 
-    protected var mainMenuViewModel: MainMenuViewModel? = null
+    protected val mainMenuViewModel: MainMenuViewModel by activityViewModels()
 
     constructor() : super()
 
     constructor(layout: Int) : super(layout)
 
     override fun initViewModels() { super.initGlobalPreferencesViewModel() }
-
-    protected fun initMainMenuViewModel() {
-        if (mainMenuViewModel == null) {
-            try { mainMenuViewModel =
-                    ViewModelProvider(requireActivity())[MainMenuViewModel::class.java]
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
-    }
 
     override fun saveStates() {}
 }

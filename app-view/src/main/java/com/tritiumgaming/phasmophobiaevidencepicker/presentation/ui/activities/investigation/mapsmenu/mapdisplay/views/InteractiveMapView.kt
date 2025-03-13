@@ -27,7 +27,7 @@ import androidx.annotation.DrawableRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.mapsmenu.mapdisplay.POISpinner
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.PoiType
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.RoomModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.InteractiveMapModel
@@ -49,7 +49,7 @@ import kotlin.math.sqrt
  * @author TritiumGamingStudios
  */
 class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
-    private var mapMenuViewModel: MapMenuViewModel? = null
+    private var mapMenuViewModel: MapViewModel? = null
 
     private var interactiveMapModel: InteractiveMapModel? = null
     private val interactivePoiModel = InteractiveMapModel()
@@ -110,7 +110,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         )
     }
 
-    fun init(mapMenuViewModel: MapMenuViewModel, roomSpinner: POISpinner) {
+    fun init(mapMenuViewModel: MapViewModel, roomSpinner: POISpinner) {
         this.mapMenuViewModel = mapMenuViewModel
 
         interactiveMapModel = InteractiveMapModel()

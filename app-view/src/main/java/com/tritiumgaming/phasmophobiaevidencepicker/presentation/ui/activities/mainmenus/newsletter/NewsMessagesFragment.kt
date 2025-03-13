@@ -100,7 +100,6 @@ class NewsMessagesFragment : MainMenuFragment() {
 
     override fun initViewModels() {
         super.initViewModels()
-        initMainMenuViewModel()
         initNewsletterViewModel()
     }
 }

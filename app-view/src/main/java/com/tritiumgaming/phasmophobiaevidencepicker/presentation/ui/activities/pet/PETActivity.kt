@@ -3,9 +3,11 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.PermissionsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
@@ -25,11 +27,15 @@ import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class PETActivity : AppCompatActivity(), AccountManagementService {
+
+    protected val globalPreferencesViewModel: GlobalPreferencesViewModel by viewModels()
+    private val permissionsViewModel: PermissionsViewModel by viewModels()
+
     var firebaseAnalytics: FirebaseAnalytics? = null
         protected set
 
-    protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
-    private var permissionsViewModel: PermissionsViewModel? = null
+    /*protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
+    private var permissionsViewModel: PermissionsViewModel? = null*/
 
     private var consentInformation: ConsentInformation? = null
 
@@ -62,31 +68,17 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    protected open fun initViewModels(): AndroidViewModelFactory? {
-        val factory: AndroidViewModelFactory =
-            AndroidViewModelFactory.getInstance(this.application)
-
-        initGlobalPreferencesViewModel(factory)
-        initPermissionsViewModel(factory)
-
-        return factory
+    protected open fun initViewModels() {
+        initGlobalPreferencesViewModel()
     }
 
-    private fun initGlobalPreferencesViewModel(factory: AndroidViewModelFactory) {
-        globalPreferencesViewModel = factory.create(GlobalPreferencesViewModel::class.java)
-        globalPreferencesViewModel =
-            ViewModelProvider(this)[GlobalPreferencesViewModel::class.java]
-        globalPreferencesViewModel?.init(this@PETActivity)
-    }
-
-    private fun initPermissionsViewModel(factory: AndroidViewModelFactory) {
-        permissionsViewModel = factory.create(PermissionsViewModel::class.java)
-        permissionsViewModel = ViewModelProvider(this)[PermissionsViewModel::class.java]
+    private fun initGlobalPreferencesViewModel() {
+        globalPreferencesViewModel.init(this@PETActivity)
     }
 
     protected open fun loadPreferences() {
         //set colorSpace
-        globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+        globalPreferencesViewModel.let { globalPreferencesViewModel ->
             changeTheme(globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme)
 
             if (globalPreferencesViewModel.isAlwaysOn) {

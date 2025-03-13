@@ -12,6 +12,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.objectivelayout.MissionsSpinner
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel.Companion.NOT_COMPLETE
+import androidx.core.content.withStyledAttributes
 
 class MissionsItemLayout : LinearLayout {
 
@@ -43,20 +44,19 @@ class MissionsItemLayout : LinearLayout {
 
         val titleTextView = findViewById<AppCompatTextView>(R.id.label_objectivetitle)
         attrs?.let {
-            val typedArray: TypedArray =
-                context.obtainStyledAttributes(attrs, R.styleable.MissionsItemLayout)
+            context.withStyledAttributes(attrs, R.styleable.MissionsItemLayout) {
 
-            val title =
-                typedArray.getString(R.styleable.MissionsItemLayout_MissionsItemLayoutTitle)
-            titleTextView?.text = title
+                val title =
+                    getString(R.styleable.MissionsItemLayout_MissionsItemLayoutTitle)
+                titleTextView?.text = title
 
-            typedArray.recycle()
+            }
         }
     }
 
     private fun setDefaults() {
         val params = LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+            LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1f)
         layoutParams = params
         orientation = VERTICAL
     }

@@ -34,7 +34,7 @@ class NewsMessageFragment : MainMenuFragment() {
         }
 
         // SET CONTENT
-        val message = newsLetterViewModel?.currentMessage
+        val message = newsLetterViewModel.currentMessage
         message?.let {
             labelTitle.text = Html.fromHtml(message.title)
             labelDate.text = Html.fromHtml(message.getDateFormatted())
@@ -50,7 +50,6 @@ class NewsMessageFragment : MainMenuFragment() {
 
     override fun initViewModels() {
         super.initViewModels()
-        initMainMenuViewModel()
         initNewsletterViewModel()
     }
 }

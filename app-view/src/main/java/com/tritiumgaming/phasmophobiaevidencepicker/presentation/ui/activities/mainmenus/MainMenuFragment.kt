@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MainMenuViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel
@@ -14,8 +16,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.p
 
 abstract class MainMenuFragment : PETFragment {
 
-    protected var mainMenuViewModel: MainMenuViewModel? = null
-    protected var newsLetterViewModel: NewsletterViewModel? = null
+    protected val mainMenuViewModel: MainMenuViewModel by activityViewModels()
+    protected val newsLetterViewModel: NewsletterViewModel by activityViewModels()
 
     constructor() : super()
 
@@ -26,31 +28,17 @@ abstract class MainMenuFragment : PETFragment {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    protected fun initMainMenuViewModel() {
-        try { mainMenuViewModel = mainMenuViewModel ?:
-                ViewModelProvider(requireActivity())[MainMenuViewModel::class.java]
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
     protected fun initNewsletterViewModel() {
-        if(newsLetterViewModel == null) {
-            try {
-                newsLetterViewModel =
-                    ViewModelProvider(requireActivity())[NewsletterViewModel::class.java]
-                newsLetterViewModel?.init(requireContext())
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-            }
-        }
+        newsLetterViewModel.init(requireContext())
     }
 
     private fun saveNewsletterViewModel() {
-        try { newsLetterViewModel?.saveToFile(requireActivity()) }
+        try { newsLetterViewModel.saveToFile(requireActivity()) }
         catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     protected fun initAdView(adView: AdView) {
-        mainMenuViewModel?.let { mainMenuViewModel ->
+        mainMenuViewModel.let { mainMenuViewModel ->
             try {
                 MobileAds.initialize(requireActivity()) { }
                 if (!mainMenuViewModel.hasAdRequest()) {
