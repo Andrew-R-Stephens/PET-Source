@@ -42,8 +42,8 @@ android {
         minSdk = 23
         targetSdk = 35
         //versionCode = 115
-        versionCode = 115
-        versionName = "10.0.0.1-Compose"
+        versionCode = 118
+        versionName = "10.0.1-compose.a.1"
 
         @Suppress("UnstableApiUsage")
         externalNativeBuild {
