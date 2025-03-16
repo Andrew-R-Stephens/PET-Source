@@ -17,9 +17,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 
 abstract class PETFragment : Fragment, AccountManagementService {
 
-    /*protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
-    protected var permissionsViewModel: PermissionsViewModel? = null*/
-
     protected val globalPreferencesViewModel: GlobalPreferencesViewModel by activityViewModels { GlobalPreferencesViewModel.Factory }
     protected val permissionsViewModel: PermissionsViewModel by activityViewModels()
 
@@ -47,16 +44,15 @@ abstract class PETFragment : Fragment, AccountManagementService {
     }
 
     protected fun saveGlobalPreferencesViewModel() {
-        try { globalPreferencesViewModel?.saveToFile(requireContext())
+        try { globalPreferencesViewModel.saveToFile(requireContext())
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    //@SuppressLint("DetachAndAttachSameFragment")
     protected open fun refreshFragment() {
         var ft = parentFragmentManager.beginTransaction()
         if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
         ft.detach(this@PETFragment).commitNow()
-        //ft = parentFragmentManager.beginTransaction()
+
         ft = parentFragmentManager.beginTransaction()
         if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
         ft.attach(this@PETFragment).commitNow()
@@ -74,7 +70,7 @@ abstract class PETFragment : Fragment, AccountManagementService {
     }
 
     protected fun checkInternetConnection(): Boolean {
-        return globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+        return globalPreferencesViewModel.let { globalPreferencesViewModel ->
             try {
                 return (isNetworkAvailable(
                     requireContext(), globalPreferencesViewModel.networkPreference))
@@ -82,7 +78,7 @@ abstract class PETFragment : Fragment, AccountManagementService {
                 e.printStackTrace()
                 return false
             }
-        } ?:  return false
+        }
     }
 
     protected open fun saveStates() {

@@ -4,6 +4,7 @@ plugins {
 
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 
     alias(libs.plugins.gms.services)
     alias(libs.plugins.firebase.crashlytics)

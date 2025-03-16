@@ -75,7 +75,7 @@ class StartScreenFragment : MainMenuFragment() {
         }
 
         newsIcon = ComposeView(requireContext())
-        newsIcon?.setContent { NewsAlert(false) }
+        newsIcon?.setContent { NewsAlert() }
 
         languageIcon?.setContent { LanguageIcon() }
 
@@ -116,14 +116,15 @@ class StartScreenFragment : MainMenuFragment() {
 
         }
 
-        buttonMsgInbox?.setContent { NewsAlert(false) }
+        buttonMsgInbox?.setContent { NewsAlert() }
 
         //setBackgroundLogo(iconApp)
         setLanguageName(labelLanguageName)
 
         super.initAdView(view.findViewById(R.id.adView))
 
-        try { if (!(requireActivity() as MainMenuActivity).checkForAppUpdate()) {
+        try {
+            if (!(requireActivity() as MainMenuActivity).checkForAppUpdate(requireActivity())) {
                 initReviewRequest(buttonReview) } }
         catch (e: IllegalStateException) { e.printStackTrace() }
         catch (e: SendIntentException) { e.printStackTrace() }
@@ -134,18 +135,6 @@ class StartScreenFragment : MainMenuFragment() {
 
     override fun backPressedHandler() {
         closePopup()
-    }
-
-    override fun initViewModels() {
-        super.initViewModels()
-        initNewsletterViewModel()
-    }
-
-    private fun loadMessageCenter() {
-        try { newsLetterViewModel.registerInboxes(requireContext()) }
-        catch (e: IllegalStateException) {
-            Log.d("MessageCenter", "Failed registering inboxes")
-            e.printStackTrace() }
     }
 
     private fun setLanguageName(labelLanguageName: AppCompatTextView) {
@@ -259,74 +248,6 @@ class StartScreenFragment : MainMenuFragment() {
             }
     }
 
-    private fun doNewsletterNotification() {
-        Log.d("MessageCenter", "Starting animation")
-        try {
-            buttonMsgInbox?.setContent { NewsAlert(true) }
-            newsIcon?.setContent { NewsAlert(true) }
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
-    private fun startInitNewsletterThread() {
-        if (checkInternetConnection()) { startLoadNewsletterThread() }
-        else {
-            Log.d("MessageCenter", "Could not connect to the internet.")
-            newsLetterViewModel.let { newsLetterViewModel ->
-                newsLetterViewModel.compareAllInboxDates()
-                if (newsLetterViewModel.requiresNotify) {
-                    doNewsletterNotification()
-                }
-            }
-        }
-    }
-
-    private fun startLoadNewsletterThread() {
-        newsletterThread = Thread {
-            Log.d("MessageCenter", "Attempting to load inboxes...")
-            val maxRetries = 3
-            var retries = 0
-
-            newsLetterViewModel.let { newsLetterViewModel ->
-                while (canLoadNewsletter &&
-                    (!newsLetterViewModel.isUpToDate && (retries < maxRetries))) {
-                    Log.d("MessageCenter", "Attempting to load inboxes...")
-
-                    loadMessageCenter()
-
-                    if (!newsLetterViewModel.isUpToDate) {
-                        Log.d("MessageCenter", "[Attempt $retries / $maxRetries ] " +
-                                    "Inboxes are not up to date yet! Retrying...\n")
-                        try { Thread.sleep(1000) }
-                        catch (e: InterruptedException) { e.printStackTrace() }
-                    }
-                    retries++
-                }
-
-                Log.d("MessageCenter",
-                    "Inboxes ${if (newsLetterViewModel.isUpToDate) "are now up to date."
-                    else "could not be updated in time." } Loading completed.")
-
-                try {
-                    newsLetterViewModel.compareAllInboxDates()
-                    if (newsLetterViewModel.requiresNotify) {
-                        requireActivity().runOnUiThread { this.doNewsletterNotification() }
-                    }
-                } catch (e: IllegalStateException) { e.printStackTrace() }
-            }
-        }
-        newsletterThread?.start()
-    }
-
-    private fun stopLoadNewsletterThread() {
-        newsletterThread?.interrupt()
-        newsletterThread = null
-
-        if (newsLetterViewModel.isUpToDate == true) {
-            canLoadNewsletter = false
-            Log.d("MessageCenter", "IS up to date") }
-        else { Log.d("MessageCenter", "IS NOT up to date") }
-    }
-
     /** onPause method */
     override fun onPause() {
         // SAVE PERSISTENT DATA
@@ -338,8 +259,6 @@ class StartScreenFragment : MainMenuFragment() {
             animationView.canAnimate = false
         }
 
-        stopLoadNewsletterThread()
-
         super.onPause()
     }
 
@@ -347,8 +266,6 @@ class StartScreenFragment : MainMenuFragment() {
     override fun onResume() {
         // START THREADS
         animationView?.init(mainMenuViewModel)
-
-        startInitNewsletterThread()
 
         super.onResume()
     }

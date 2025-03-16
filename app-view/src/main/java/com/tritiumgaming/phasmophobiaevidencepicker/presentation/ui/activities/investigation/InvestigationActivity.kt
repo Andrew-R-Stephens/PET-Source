@@ -7,18 +7,17 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.google.android.material.navigation.NavigationBarView
+import com.google.android.material.navigation.NavigationView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
-import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.navigation.NavigationView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.PETActivity
 
 /**
  * InvestigationActivity class

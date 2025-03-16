@@ -3,11 +3,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.withStyledAttributes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
 
 class NewsletterMessageView : ConstraintLayout {
 
@@ -25,9 +23,9 @@ class NewsletterMessageView : ConstraintLayout {
 
         var title: String? = null
         attrs?.let {
-            val a = context.obtainStyledAttributes(it, R.styleable.NewsletterMessageView)
-            title = a.getString(R.styleable.NewsletterMessageView_inboxMessage_title)
-            a.recycle()
+            context.withStyledAttributes(it, R.styleable.NewsletterMessageView) {
+                title = getString(R.styleable.NewsletterMessageView_inboxMessage_title)
+            }
         }
         title?.let { setTitle(it) }
 
@@ -43,14 +41,14 @@ class NewsletterMessageView : ConstraintLayout {
         }
     }
 
-    fun notify(inboxModel: NewsletterInboxModel?) {
+    /*fun notify(inboxModel: NewsletterInbox?) {
         val notifyView = findViewById<ComposeView>(R.id.notificationComposable)
         notifyView.setContent {
             NewsAlert(
-                isActive = (inboxModel?.compareDate() ?: 0) > 0,
-                null
+                *//*isActive = (inboxModel?.compareDate() ?: 0) > 0,*//*
+                baseDrawableId = null
             )
         }
-    }
+    }*/
 }
 

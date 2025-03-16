@@ -12,21 +12,34 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel
 
 @Composable
 @Preview
 fun NewsAlert(
-    isActive: Boolean = false,
+    newsletterViewModel: NewsletterViewModel =
+        viewModel( factory = NewsletterViewModel.Factory ),
+    inboxType: InboxType? = null,
     @DrawableRes baseDrawableId: Int? = R.drawable.ic_news,
     @DrawableRes alertDrawableRes: Int = R.drawable.ic_notify
 ) {
+
+    val activeAsState = newsletterViewModel.requiresNotify(inboxType)?.collectAsState()
+    val rememberIsActive by remember { mutableStateOf(activeAsState) }
+
     val infiniteTransition = rememberInfiniteTransition(label = "")
 
     baseDrawableId?.let {
@@ -39,7 +52,7 @@ fun NewsAlert(
     Box(
         modifier = Modifier.size(48.dp)
     ) {
-        val opacity = if (isActive) {
+        val opacity = if (rememberIsActive?.value == true) {
             infiniteTransition.animateFloat(
                 initialValue = .4f,
                 targetValue = .9f,

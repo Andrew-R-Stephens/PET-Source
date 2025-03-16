@@ -22,20 +22,18 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AccountManagementService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AppUpdateManagerService
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.SignInCredentialManager
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class PETActivity : AppCompatActivity(), AccountManagementService {
 
-    protected val globalPreferencesViewModel: GlobalPreferencesViewModel by viewModels()
+    protected val globalPreferencesViewModel: GlobalPreferencesViewModel by viewModels { GlobalPreferencesViewModel.Factory }
     private val permissionsViewModel: PermissionsViewModel by viewModels()
 
     var firebaseAnalytics: FirebaseAnalytics? = null
         protected set
-
-    /*protected var globalPreferencesViewModel: GlobalPreferencesViewModel? = null
-    private var permissionsViewModel: PermissionsViewModel? = null*/
 
     private var consentInformation: ConsentInformation? = null
 
@@ -50,13 +48,6 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
         initViewModels()
         loadPreferences()
 
-        /*signIn(
-            this@PETActivity,
-            SignInCredentialManager.SignInOptions.SILENT,
-            onSuccess = {
-                recreate()
-            }
-        )*/
     }
 
     /** Set FirebaseAnalytics consent types to
@@ -130,43 +121,6 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
 
         return isChanged
     }
-
-    /*
-    private fun automaticSignInAccount() {
-        signIn(
-            this@PETActivity,
-            SignInCredentialManager.SignInOptions.SILENT
-        )
-    }
-
-    private fun automaticSignInAccount() {
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            Log.d("AutoLogin", "User not null!")
-            return
-        }
-        Log.d("AutoLogin", "User is null. Attempting silent log in.")
-
-        val providers = listOf(GoogleBuilder().build())
-
-        AuthUI.getInstance()
-            .silentSignIn(this, providers)
-            .continueWithTask { task: Task<AuthResult?> ->
-                if (task.isSuccessful) {
-                    return@continueWithTask task
-                } else {
-                    // Ignore any exceptions since we don't care about credential fetch errors.
-                    return@continueWithTask FirebaseAuth.getInstance().signInAnonymously()
-                }
-            }
-            .addOnCompleteListener(this) { task: Task<AuthResult?> ->
-                if (task.isSuccessful) {
-                    Log.d("AuthUI", "Silent Anonymous login successful")
-                } else {
-                    Log.d("AuthUI", "Silent Anonymous login failed!")
-                }
-            }
-    }
-    */
 
     val isPrivacyOptionsRequired: Boolean
         // Show a privacy options button if required.

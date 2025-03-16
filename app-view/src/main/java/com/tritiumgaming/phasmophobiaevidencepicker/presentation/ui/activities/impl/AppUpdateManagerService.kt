@@ -25,39 +25,40 @@ interface AppUpdateManagerService {
 
         val hasUpdate = AtomicBoolean(false)
 
-        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
-            val isUpdateAvailable =
-                appUpdateInfo.updateAvailability() == UPDATE_AVAILABLE
-            val isUpdateAllowed = updateType == IMMEDIATE
+        appUpdateManager?.appUpdateInfo
+            ?.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
+                val isUpdateAvailable =
+                    appUpdateInfo.updateAvailability() == UPDATE_AVAILABLE
+                val isUpdateAllowed = updateType == IMMEDIATE
 
-            if (isUpdateAvailable && isUpdateAllowed) {
-                try {
-                    requestAppUpdate(appUpdateInfo)
-                    hasUpdate.set(true)
-                } catch (e: SendIntentException) { throw RuntimeException(e) }
+                if (isUpdateAvailable && isUpdateAllowed) {
+                    try {
+                        requestAppUpdate(appUpdateInfo)
+                        hasUpdate.set(true)
+                    } catch (e: SendIntentException) { throw RuntimeException(e) }
+                }
             }
-        }
 
         return hasUpdate.get()
     }
 
     fun requestAppUpdate(appUpdateInfo: AppUpdateInfo) {
         appUpdateManager?.startUpdateFlowForResult(
-            appUpdateInfo, activityUpdateResultLauncher,
+            appUpdateInfo,
+            activityUpdateResultLauncher,
             AppUpdateOptions.newBuilder(IMMEDIATE).build())
     }
 
     fun completePendingAppUpdate() {
-        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
-            val isUpdateInProgress =
-                appUpdateInfo.updateAvailability() == DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
-            if (isUpdateInProgress) {
-                appUpdateManager?.startUpdateFlowForResult(
-                    appUpdateInfo, activityUpdateResultLauncher,
-                    AppUpdateOptions.newBuilder(IMMEDIATE).build()
-                )
+        appUpdateManager?.appUpdateInfo
+            ?.addOnSuccessListener { appUpdateInfo ->
+                if (appUpdateInfo.updateAvailability() == DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                    appUpdateManager?.startUpdateFlowForResult(
+                        appUpdateInfo,
+                        activityUpdateResultLauncher,
+                        AppUpdateOptions.newBuilder(IMMEDIATE).build())
+                }
             }
-        }
     }
 
 

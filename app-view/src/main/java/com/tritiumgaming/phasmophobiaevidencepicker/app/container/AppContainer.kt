@@ -12,6 +12,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepo
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MissionRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
 
@@ -31,11 +32,11 @@ class AppContainer(context: Context, dataStore: DataStore<Preferences>) {
         )
     */
 
-    /*val newsletterRepository: NewsletterRepository =
+    val newsletterRepository: NewsletterRepository =
         NewsletterRepository(
             context = context,
             dataStore = dataStore
-        )*/
+        )
 
     /*val globalPreferencesRepository: GlobalPreferencesRepository =
         GlobalPreferencesRepository(

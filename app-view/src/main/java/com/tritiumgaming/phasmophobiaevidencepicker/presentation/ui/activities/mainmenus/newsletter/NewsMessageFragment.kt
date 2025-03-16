@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
 
@@ -22,6 +23,15 @@ class NewsMessageFragment : MainMenuFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val inboxID: Int? = arguments?.getInt("inboxType")
+        val inbox = inboxID?.let { NewsletterRepository.NewsletterInboxType.getInbox(it) }
+
+        val messageID: String? = arguments?.getString("messageID")
+        val message = inbox?.let {
+            newsLetterViewModel.getInbox(it)?.messages[messageID]
+        }
+
         val buttonBack = view.findViewById<PETImageButton>(R.id.button_left)
         // INITIALIZE VIEWS
         val labelTitle = view.findViewById<AppCompatTextView>(R.id.textview_messageTitle)
@@ -34,8 +44,7 @@ class NewsMessageFragment : MainMenuFragment() {
         }
 
         // SET CONTENT
-        val message = newsLetterViewModel.currentMessage
-        message?.let {
+        message?.let { message ->
             labelTitle.text = Html.fromHtml(message.title)
             labelDate.text = Html.fromHtml(message.getDateFormatted())
             labelContent.text = Html.fromHtml(message.description)
@@ -45,11 +54,13 @@ class NewsMessageFragment : MainMenuFragment() {
             labelContent.text = Html.fromHtml("Data unavailable")
         }
 
+        inbox?.let { inbox ->
+            message?.let { message ->
+                newsLetterViewModel.setLastReadDate(inbox, message.date)
+            }
+        }
+
         super.initAdView(view.findViewById(R.id.adView))
     }
 
-    override fun initViewModels() {
-        super.initViewModels()
-        initNewsletterViewModel()
-    }
 }

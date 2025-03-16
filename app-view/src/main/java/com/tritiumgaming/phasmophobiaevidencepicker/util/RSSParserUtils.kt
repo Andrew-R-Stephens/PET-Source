@@ -1,10 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.util
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessageModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel.InboxType
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParser.END_TAG
 import org.xmlpull.v1.XmlPullParser.START_TAG
@@ -15,13 +13,14 @@ import java.io.InputStream
 import java.net.URL
 import java.util.Locale
 
+@Deprecated("Use NewsletterService instead.")
 class RSSParserUtils(
     factory: XmlPullParserFactory,
     urlStr: String?,
     private val inboxType: InboxType,
     private val newsLetterViewModel: NewsletterViewModel
 ) {
-    init {
+    /*init {
         Log.d("MessageCenter", "RSSThread initializing...")
         Thread(RSSThread(factory, urlStr)).start()
     }
@@ -94,5 +93,5 @@ class RSSParserUtils(
             catch (e: XmlPullParserException) { e.printStackTrace() }
             catch (e: IOException) { e.printStackTrace() }
         }
-    }
+    }*/
 }

@@ -26,7 +26,7 @@ class NewsletterHandler(
             _lastReadDatePET.update { preferences.lastReadDatePET }
             _lastReadDatePhasmophobia.update { preferences.lastReadDatePhasmophobia }
 
-            Log.d("GlobalPreferences", "Collecting from flow: \n" +
+            Log.d("Newsletter", "Collecting from flow: \n" +
                     "\tlastReadDateGeneral -> ${lastReadDateGeneral.value}\n" +
                     "\tlastReadDatePET -> ${lastReadDatePET.value}\n" +
                     "\tlastReadDatePhasmophobia -> ${lastReadDatePhasmophobia.value}\n"

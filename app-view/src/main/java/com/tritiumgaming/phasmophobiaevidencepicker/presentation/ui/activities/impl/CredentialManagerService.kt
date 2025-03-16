@@ -123,13 +123,13 @@ interface SignInCredentialManager {
         onComplete: () -> Unit = {}
     ) {
 
-
         if(activity == null) {
             onFailure()
             Log.e("FirebaseAuth", "Auth failed. Activity cannot be null.")
 
             return
         }
+
         if(Firebase.auth.currentUser != null) {
             onFailure()
             Log.e("FirebaseAuth", "Auth failed. User already signed in.")
@@ -332,12 +332,15 @@ interface SignInCredentialManager {
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            val credentialResponse = credentialManager.getCredential(
-                request = request,
-                context = activity
-            )
 
-            handleSignIn(credentialResponse, onSuccess, onFailure, onComplete)
+            try{
+                val credentialResponse = credentialManager.getCredential(
+                    request = request,
+                    context = activity
+                )
+                handleSignIn(credentialResponse, onSuccess, onFailure, onComplete)
+
+            } catch (e: Exception) { e.printStackTrace() }
         }
 
     }

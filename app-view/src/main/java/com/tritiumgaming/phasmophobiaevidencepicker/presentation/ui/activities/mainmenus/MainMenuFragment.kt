@@ -17,7 +17,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.p
 abstract class MainMenuFragment : PETFragment {
 
     protected val mainMenuViewModel: MainMenuViewModel by activityViewModels()
-    protected val newsLetterViewModel: NewsletterViewModel by activityViewModels()
+    protected val newsLetterViewModel: NewsletterViewModel by activityViewModels { NewsletterViewModel.Factory }
 
     constructor() : super()
 
@@ -26,15 +26,6 @@ abstract class MainMenuFragment : PETFragment {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    protected fun initNewsletterViewModel() {
-        newsLetterViewModel.init(requireContext())
-    }
-
-    private fun saveNewsletterViewModel() {
-        try { newsLetterViewModel.saveToFile(requireActivity()) }
-        catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     protected fun initAdView(adView: AdView) {
@@ -54,6 +45,5 @@ abstract class MainMenuFragment : PETFragment {
 
     override fun saveStates() {
         super.saveStates()
-        saveNewsletterViewModel()
     }
 }

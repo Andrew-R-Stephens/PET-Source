@@ -32,34 +32,21 @@ android {
         }
     }
 
-    val playCoreDirectory =
-        "G:\\Programs\\AndroidStudioRepositories\\play-core-native-sdk-1.10.0\\play-core-native-sdk"
-
     defaultConfig {
 
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
         minSdk = 23
         targetSdk = 35
-        //versionCode = 115
         versionCode = 118
         versionName = "10.0.1-compose.a.1"
 
-        @Suppress("UnstableApiUsage")
-        externalNativeBuild {
-            cmake {
-                arguments("-DANDROID_STL=c++_static", "-DPLAYCORE_LOCATION=$playCoreDirectory")
-            }
-        }
         ndk {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
         }
 
         proguardFiles(
             getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        // PLAYCORE
-        proguardFile("$playCoreDirectory/proguard/common.pgcfg")
-        proguardFile("$playCoreDirectory/proguard/per-feature-proguard-files")
 
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -92,7 +79,6 @@ android {
 
 composeCompiler {
     reportsDestination = layout.buildDirectory.dir("compose_compiler")
-    /*stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")*/
     stabilityConfigurationFiles.addAll(
         rootProject.layout.projectDirectory.file("stability_config.conf")
     )
@@ -109,7 +95,6 @@ dependencies {
 
     implementation(libs.jetbrains.kotlin.stdlib)
     implementation(libs.jetbrains.kotlinx.coroutines)
-    //implementation(libs.jetbrains.kotlinx.serialization.json)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.work.runtime)
@@ -227,7 +212,7 @@ dependencies {
     implementation(libs.coilKt.gif)
 
     /*
-        ----- END -----
+        ----- END OF COMPOSE -----
     */
 
     // DataStore

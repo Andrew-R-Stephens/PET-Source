@@ -8,16 +8,17 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessageModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInbox
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessage
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
 
 class MessagesAdapterView(
-    private val currentInbow: NewsletterInboxModel,
+    private val currentInbox: NewsletterInbox?,
     private val onMessageListener: OnMessageListener)
     : RecyclerView.Adapter<MessagesAdapterView.ViewHolder>() {
 
-    private val messages: ArrayList<NewsletterMessageModel> = currentInbow.messages
+    private val messages: List<Pair<String, NewsletterMessage>> =
+        currentInbox?.messages?.toList() ?: listOf()
 
     class ViewHolder(view: View, onMessageListener: OnMessageListener)
         : RecyclerView.ViewHolder(view), View.OnClickListener {
@@ -46,15 +47,19 @@ class MessagesAdapterView(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val message = messages[position].second
+
         val textView = holder.messageTitleTextView
-        textView.text = messages[position].title
+        textView.text = message.title
         textView.isSelected = true
         val icon = holder.icon
-        if(currentInbow.compareDate(messages[position].date) > 0) {
-            icon?.setContent {
-                NewsAlert(true, baseDrawableId = null)
-            }
-        } else { icon?.visibility = GONE }
+        currentInbox?.compareDate(message.date)?.let {
+            if(it > 0) {
+                icon?.setContent {
+                    NewsAlert(baseDrawableId = null)
+                }
+            } else { icon?.visibility = GONE }
+        }
     }
 
     override fun getItemCount(): Int {
