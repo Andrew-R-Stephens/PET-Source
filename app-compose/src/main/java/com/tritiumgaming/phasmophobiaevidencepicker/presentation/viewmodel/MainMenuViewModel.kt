@@ -8,7 +8,6 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.gms.ads.AdRequest
 import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.AppInfoRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.startscreen.AnimationModel
 
 /**

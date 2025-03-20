@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout
         android:id="@+id/navHeaderLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

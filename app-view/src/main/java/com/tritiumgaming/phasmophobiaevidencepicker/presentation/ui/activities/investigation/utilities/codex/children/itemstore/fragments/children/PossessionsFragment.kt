@@ -13,14 +13,15 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.ItemStorePossessionItemModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.ItemStorePossnsGroupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
 
 class PossessionsFragment : ItemStoreFragment() {
+
     @SuppressLint("ResourceType")
     override fun buildStoreData() {
         val shopListTypedArray = resources.obtainTypedArray(R.array.shop_cursedpossessions_array)
@@ -193,6 +194,5 @@ class PossessionsFragment : ItemStoreFragment() {
     override fun reset() {
     }
 
-    override fun saveStates() {
-    }
+    /*override fun saveStates() { }*/
 }

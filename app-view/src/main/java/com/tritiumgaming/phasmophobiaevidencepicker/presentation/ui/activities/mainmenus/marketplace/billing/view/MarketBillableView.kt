@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
+import com.google.android.material.card.MaterialCardView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.dto.billable.MarketMicroTransactionModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.interpolate
-import com.google.android.material.card.MaterialCardView
 
 class MarketBillableView : MaterialCardView {
 

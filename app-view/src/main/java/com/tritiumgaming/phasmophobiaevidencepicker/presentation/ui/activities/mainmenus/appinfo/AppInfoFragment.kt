@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.text.Spannable
@@ -15,13 +14,14 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.net.toUri
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.FontUtils.replaceHTMLFontColor
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
 
 class AppInfoFragment : MainMenuFragment() {
     override fun onCreateView(
@@ -33,8 +33,10 @@ class AppInfoFragment : MainMenuFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val typedArray =
-            resources.obtainTypedArray(R.array.aboutinfo_specialthanks_list)
+        /*val typedArray =
+            resources.obtainTypedArray(R.array.aboutinfo_specialthanks_list)*/
+
+        val specialThanksList = mainMenuViewModel.specialThanksList
 
         // INITIALIZE VIEWS
         val navHeaderLayout = view.findViewById<NavHeaderLayout>(R.id.navHeaderLayout)
@@ -55,7 +57,11 @@ class AppInfoFragment : MainMenuFragment() {
         }
         discordButton.setOnClickListener { v: View? ->
             startActivity(
-                Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite))))
+                Intent(
+                    Intent.ACTION_VIEW,
+                    ("https://discord.gg/ ${getString(R.string.aboutinfo_discordInvite)}").toUri()
+                )
+            )
         }
 
         // INITIALIZE FONT EMPHASIS COLOR
@@ -97,7 +103,7 @@ class AppInfoFragment : MainMenuFragment() {
 
         // SPECIAL THANKS
         //AppCompatTextView[] names = new AppCompatTextView[typedArray.length()];
-        val nameCount = typedArray.length()
+        val nameCount = specialThanksList.size
         for (i in 0 until nameCount) {
             try {
                 val inflater =
@@ -105,24 +111,19 @@ class AppInfoFragment : MainMenuFragment() {
                         Context.LAYOUT_INFLATER_SERVICE
                     ) as LayoutInflater
 
-                val specialThanksItem_layout =
-                    inflater.inflate(
-                        R.layout.item_special_thanks_label,
-                        null
-                    ) as ConstraintLayout
-                val textView_username =
-                    specialThanksItem_layout.findViewById<AppCompatTextView>(R.id.specialThanks_username)
-                textView_username.text = typedArray.getString(i)
+                val specialThanksItemLayout =
+                    inflater.inflate(R.layout.item_special_thanks_label, null) as ConstraintLayout
+                val usernameTextView =
+                    specialThanksItemLayout.findViewById<AppCompatTextView>(R.id.specialThanks_username)
+                usernameTextView.text = specialThanksList[i].toString()
 
-                specialThanksLayout.addView(specialThanksItem_layout)
+                specialThanksLayout.addView(specialThanksItemLayout)
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
             }
         }
-
-        typedArray.recycle()
     }
 
-    override fun initViewModels() {
-    }
+    /*override fun initViewModels() {
+    }*/
 }

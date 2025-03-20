@@ -127,7 +127,7 @@
     </fragment>
     <fragment
         android:id="@+id/accountOverviewFragment"
-        android:name="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.account.AccountFragment"
+        android:name="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountFragment"
         android:label="AccountOverviewFragment" >
         <action
             android:id="@+id/action_accountOverviewFragment_to_marketplaceFragment"

@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,25 +12,25 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
+import androidx.core.net.toUri
 import androidx.navigation.Navigation.findNavController
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountIconView
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.NewsAlert
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.StartScreenAnimationView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewLauncher
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountIconView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.DropdownClickPair
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.DropdownNavigationPair
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.IconDropdownMenu
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.LanguageIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.DropdownClickPair
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.DropdownNavigationPair
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.IconDropdownMenu
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.LanguageIcon
 import java.util.Locale
-import androidx.core.net.toUri
 
 class StartScreenFragment : MainMenuFragment() {
     private var animationView: StartScreenAnimationView? = null
@@ -177,7 +176,7 @@ class StartScreenFragment : MainMenuFragment() {
 
         // REQUEST REVIEW LISTENER
         globalPreferencesViewModel.let { globalPreferencesViewModel ->
-            if (globalPreferencesViewModel.reviewRequestData.canShowReviewButton()) {
+            if (globalPreferencesViewModel.canShowReviewButton) {
                 buttonReview.setOnClickListener {
                     try {
                         showReviewPopup(requireView())
@@ -191,12 +190,12 @@ class StartScreenFragment : MainMenuFragment() {
     @Throws(SendIntentException::class)
     fun doReviewRequest() {
         globalPreferencesViewModel.let { globalPreferencesViewModel ->
-            if (globalPreferencesViewModel.reviewRequestData.canRequestReview()) {
+            if (globalPreferencesViewModel.canRequestReview) {
                 Log.d("Review", "Review Request Accepted")
                 Thread {
                     try { Thread.sleep(1000L) }
                     catch (e: InterruptedException) { e.printStackTrace() }
-                    globalPreferencesViewModel.reviewRequestData.wasRequested = true
+                    globalPreferencesViewModel.setWasRequested(true)
                     try {
                         requireActivity().runOnUiThread {
                             try {

@@ -7,20 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.PETFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 
 abstract class InvestigationFragment : PETFragment {
 
     protected val investigationViewModel: InvestigationViewModel by activityViewModels { InvestigationViewModel.Factory }
     protected val objectivesViewModel: ObjectivesViewModel by activityViewModels { ObjectivesViewModel.Factory }
-    protected val mapViewModel: MapViewModel by activityViewModels { MapViewModel.Factory }
 
     protected var adRequest: AdRequest? = null
 
@@ -41,19 +39,6 @@ abstract class InvestigationFragment : PETFragment {
         } catch (e: IllegalStateException) { e.printStackTrace() }
 
         initAd(view.findViewById(R.id.adView))
-    }
-
-    override fun initViewModels() {
-        initGlobalPreferencesViewModel()
-        initInvestigationViewModel()
-    }
-
-    private fun initInvestigationViewModel() {
-        investigationViewModel.phaseWarnModel?.audioAllowed =
-            globalPreferencesViewModel.isHuntWarnAudioAllowed.value == true
-        globalPreferencesViewModel.huntWarnFlashTimeMax.value.let { value ->
-            investigationViewModel.phaseWarnModel?.flashTimeMax = value
-        }
     }
 
     protected fun initAd(mAdView: AdView?) {

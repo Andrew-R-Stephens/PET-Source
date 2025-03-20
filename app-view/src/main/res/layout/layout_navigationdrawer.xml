@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavigationDrawer"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavigationDrawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -38,7 +38,7 @@
 
     </androidx.drawerlayout.widget.DrawerLayout>
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavigationBar
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavigationBar
         android:id="@+id/layout_navigation_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

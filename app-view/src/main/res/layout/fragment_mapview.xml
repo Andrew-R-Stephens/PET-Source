@@ -8,7 +8,7 @@
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp">
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
         android:id="@+id/button_back"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -151,7 +151,7 @@
                 app:layout_constraintStart_toEndOf="@+id/imageview_flooricon"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
                     android:id="@+id/controller_prevLayerButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -176,7 +176,7 @@
                     app:layout_constraintStart_toEndOf="@+id/controller_prevLayerButton"
                     app:layout_constraintTop_toTopOf="@+id/controller_prevLayerButton" />
 
-                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
                     android:id="@+id/controller_nextLayerButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -242,7 +242,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
             android:id="@+id/imageview_help"
             android:layout_width="48dp"
             android:layout_height="48dp"

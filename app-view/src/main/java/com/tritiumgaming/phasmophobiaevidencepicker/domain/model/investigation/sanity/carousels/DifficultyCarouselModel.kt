@@ -1,14 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels
 
-import android.content.Context
-import android.content.res.TypedArray
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyConstraints.INSANITY_START
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository.DifficultyConstraints.MODIFIER
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.timer.PhaseTimerModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning.PhaseWarningModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

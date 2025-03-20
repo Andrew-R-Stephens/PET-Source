@@ -13,17 +13,6 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation.findNavController
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.dto.billable.MarketMicroTransactionModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables.Companion.getBillablesWhere
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestorePurchaseHistory.Companion.addPurchaseDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.OnFirestoreProcessListener
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
@@ -44,11 +33,22 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.OnFirestoreProcessListener
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.microtransactions.billables.FirestoreMicrotransactionBillables.Companion.getBillablesWhere
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestorePurchaseHistory.Companion.addPurchaseDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.dto.billable.MarketMicroTransactionModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.marketplace.billing.view.MarketBillableView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.marketplace.views.MarketplaceListLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout
 
-class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
+class MarketplaceBillingFragment : MainMenuFragment() {
     private var billingClient: BillingClient? = null
 
     private var accountCreditsTextView: AppCompatTextView? = null
@@ -85,8 +85,8 @@ class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
         initBillingClient()
     }
 
-    override fun initViewModels() {
-    }
+    /*override fun initViewModels() {
+    }*/
 
     private fun initAccountView() {
         try {

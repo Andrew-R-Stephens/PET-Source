@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatImageView
+import com.google.android.material.card.MaterialCardView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
-import com.google.android.material.card.MaterialCardView
 
 
 class MarketBundleImageView : MaterialCardView {

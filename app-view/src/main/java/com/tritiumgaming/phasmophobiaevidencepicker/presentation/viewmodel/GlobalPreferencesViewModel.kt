@@ -6,59 +6,41 @@ import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ReviewTrackingRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.GlobalPreferencesHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.LanguageHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.ColorThemeControl
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.FontThemeControl
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning.PhaseWarningModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.reviews.ReviewTrackingModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import java.util.Locale
+import kotlinx.coroutines.launch
 
-class GlobalPreferencesViewModel(application: Application): SharedViewModel(application) {
+class GlobalPreferencesViewModel(
+    application: Application,
+    globalPreferencesRepository: GlobalPreferencesRepository,
+    private val reviewTrackingRepository: ReviewTrackingRepository,
+    /*typographyRepository: TypographyRepository,
+    private val paletteRepository: PaletteRepository,*/
+    languageRepository: LanguageRepository
+): SharedViewModel(application) {
 
-    data class LanguageObject(val name: String, val abbreviation: String)
-
-    // Review Tracker
-    var reviewRequestData: ReviewTrackingModel = ReviewTrackingModel()
-        private set
+    private val globalPreferencesHandler: GlobalPreferencesHandler =
+        GlobalPreferencesHandler(globalPreferencesRepository)
+    private val languageHandler: LanguageHandler = LanguageHandler(languageRepository)
+    /*val typographyHandler: TypographyHandler = TypographyHandler(typographyRepository)
+    val paletteHandler: PaletteHandler = PaletteHandler(paletteRepository)*/
 
     // Persistent Styles
     var fontThemeControl: FontThemeControl = FontThemeControl(application)
         private set
     var colorThemeControl: ColorThemeControl = ColorThemeControl(application)
         private set
-
-    // Language
-    var languageList: ArrayList<LanguageObject> = ArrayList()
-    var currentLanguageAbbr: String = DEFAULT_LANGUAGE
-
-    // Generic settings
-    var isAlwaysOn: Boolean = false
-    var networkPreference: Boolean = true
-
-    // Investigation Behaviors
-    private val _huntWarnFlashTimeMax = MutableStateFlow(PhaseWarningModel.INFINITY)
-    val huntWarnFlashTimeMax: StateFlow<Long> = _huntWarnFlashTimeMax.asStateFlow()
-    fun setHuntWarningFlashTimeMax(maxTime: Long) {
-        _huntWarnFlashTimeMax.value = maxTime
-    }
-    private var _isHuntWarnAudioAllowed = MutableStateFlow(true)
-    val isHuntWarnAudioAllowed: StateFlow<Boolean> = _isHuntWarnAudioAllowed.asStateFlow()
-    fun setHuntWarnAudioAllowed(isAllowed: Boolean) {
-        _isHuntWarnAudioAllowed.value = isAllowed
-    }
-
-    var isLeftHandSupportEnabled: Boolean = false
-    var reorderGhostViews = true
-
-    // Title screen increments
-    private var canShowIntroduction: Boolean = true
 
     private val colorThemeID: String
         get() = colorThemeControl.iD
@@ -74,63 +56,28 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         fileName = R.string.preferences_globalFile_name
     }
 
+    private fun initialSetupEvent() {
+        globalPreferencesHandler.initialSetupEvent()
+        languageHandler.initialSetupEvent()
+        /*paletteHandler.initialSetupEvent()
+        typographyHandler.initialSetupEvent()*/
+    }
+
+    init {
+        initialSetupEvent()
+
+        viewModelScope.launch {
+            globalPreferencesHandler.initFlow()
+        }
+        viewModelScope.launch {
+            languageHandler.initFlow()
+        }
+    }
+
     fun init(context: Context) {
         setFileName()
 
-        val languageNames = ArrayList(
-            listOf(*context.resources.getStringArray(R.array.language_names)))
-        val languageAbbrs = ArrayList(
-            listOf(*context.resources.getStringArray(R.array.language_codes)))
-
-        languageList = ArrayList()
-        if(languageNames.size == languageAbbrs.size) {
-            languageNames.forEachIndexed { index: Int, name: String ->
-                languageList.add(LanguageObject(name, languageAbbrs[index]))
-            }
-        }
-
-        // OVERRIDE DEFAULT LANGUAGE
-        languageList.forEach { language ->
-            if(language.abbreviation.equals(Locale.getDefault().language, ignoreCase = true)) {
-                DEFAULT_LANGUAGE = Locale.getDefault().language
-            }
-        }
-
         val sharedPref = getSharedPreferences(context)
-
-        currentLanguageAbbr = sharedPref.getString(
-            context.resources.getString(R.string.preference_language), DEFAULT_LANGUAGE
-        ) ?: DEFAULT_LANGUAGE
-
-
-        networkPreference =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_network), networkPreference)
-
-        isAlwaysOn =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
-
-        setHuntWarnAudioAllowed(
-            sharedPref.getBoolean(
-                context.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
-                isHuntWarnAudioAllowed.value))
-        setHuntWarningFlashTimeMax(
-            sharedPref.getLong(
-                context.resources.getString(R.string.preference_huntWarningFlashTimeout),
-                huntWarnFlashTimeMax.value))
-
-        isLeftHandSupportEnabled =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled)
-        canShowIntroduction =
-            sharedPref.getBoolean(context.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction)
-
-        reorderGhostViews =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews)
-
-        reviewRequestData = ReviewTrackingModel(
-            sharedPref.getBoolean(context.resources.getString(R.string.reviewtracking_canRequestReview), false),
-            sharedPref.getLong(context.resources.getString(R.string.reviewtracking_appTimeAlive), 0),
-            sharedPref.getInt(context.resources.getString(R.string.reviewtracking_appTimesOpened), 0)
-        )
 
         fontThemeControl = FontThemeControl(context)
         fontThemeControl.init(sharedPref.getString(
@@ -145,31 +92,83 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         saveToFile(context)
     }
 
-    fun incrementAppOpenCount(context: Context) {
-        reviewRequestData.incrementTimesOpened()
+    val languageList = languageHandler.languageList
 
-        try {
-            save(
-                context.resources.getString(R.string.reviewtracking_appTimesOpened),
-                reviewRequestData.timesOpened,
-                getEditor(context))
-        } catch (e: NullPointerException) {
-            e.printStackTrace()
+    val currentLanguageCode = languageHandler.currentLanguageCode
+    fun setCurrentLanguageCode(languageCode: String) {
+        viewModelScope.launch {
+            languageHandler.setCurrentLanguageCode(languageCode)
         }
     }
 
-    fun getCurrentLanguageIndex(): Int {
-        for (i in languageList.indices) {
-            if (currentLanguageAbbr.equals(languageList[i].abbreviation, ignoreCase = true))
-            { return i } }
-        return 0
+    val tempLanguageCode = languageHandler.tempLanguageCode
+    fun setTempLanguageCode(languageCode: String) {
+        viewModelScope.launch {
+            languageHandler.setTempLanguageCode(languageCode)
+        }
     }
 
-    fun setCurrentLanguage(position: Int) {
-        if (position < 0 || position >= languageList.size) { return }
-
-        currentLanguageAbbr = languageList[position].abbreviation
+    val screenSaverPreference = globalPreferencesHandler.disableScreensaver
+    fun setScreenSaverPreference(disable: Boolean) {
+        viewModelScope.launch {
+            globalPreferencesHandler.setDisableScreenSaver(disable)
+        }
     }
+
+    val networkPreference = globalPreferencesHandler.allowCellularData
+    fun setNetworkPreference(allow: Boolean) {
+        viewModelScope.launch {
+            globalPreferencesHandler.setAllowCellularData(allow)
+        }
+    }
+
+    val rTLPreference = globalPreferencesHandler.enableRTL
+    fun setRTLPreference(enable: Boolean) {
+        viewModelScope.launch {
+            globalPreferencesHandler.setEnableRTL(enable)
+        }
+    }
+
+    val huntWarningAudioPreference = globalPreferencesHandler.allowHuntWarnAudio
+    fun setHuntWarningAudioPreference(enable: Boolean) {
+        viewModelScope.launch {
+            globalPreferencesHandler.setAllowHuntWarnAudio(enable)
+        }
+    }
+
+    val huntWarnTimeoutPreference = globalPreferencesHandler.maxHuntWarnFlashTime
+    fun setHuntWarnTimeoutPreference(timeout: Long) {
+        viewModelScope.launch {
+            globalPreferencesHandler.setHuntWarnFlashTimeMax(timeout)
+        }
+    }
+
+    val ghostReorderPreference = globalPreferencesHandler.enableGhostReorder
+    fun setGhostReorderPreference(allow: Boolean) {
+        viewModelScope.launch {
+            globalPreferencesHandler.setEnableGhostReorder(allow)
+        }
+    }
+
+    val appTimesOpened = reviewTrackingRepository.timesOpened
+    fun incrementAppTimesOpened() {
+        viewModelScope.launch {
+            reviewTrackingRepository.incrementTimesOpened()
+        }
+    }
+
+    val wasRequested = reviewTrackingRepository.wasRequested
+    fun setWasRequested(status: Boolean) {
+        viewModelScope.launch {
+            reviewTrackingRepository.setWasRequested(status)
+        }
+    }
+
+    val canRequestReview: Boolean
+        get() { return reviewTrackingRepository.canRequestReview() }
+
+    val canShowReviewButton: Boolean
+        get() { return reviewTrackingRepository.canShowReviewButton() }
 
     fun saveColorSpace(c: Context) {
         saveColorSpace(c, getEditor(c), true)
@@ -185,61 +184,31 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
     override fun saveToFile(context: Context) {
         val editor = getEditor(context)
 
-        save(context.resources.getString(R.string.preference_network), networkPreference, editor)
-        save(context.resources.getString(R.string.preference_language), currentLanguageAbbr, editor)
-        save(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn, editor)
-        save(context.resources.getString(R.string.preference_isHuntAudioWarningAllowed), isHuntWarnAudioAllowed.value, editor)
-        save(context.resources.getString(R.string.preference_huntWarningFlashTimeout), huntWarnFlashTimeMax.value, editor)
         save(context.resources.getString(R.string.preference_savedTheme), colorThemeID, editor)
         save(context.resources.getString(R.string.preference_savedFont), fontThemeID, editor)
-        save(context.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled, editor)
-        save(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews, editor)
-        save(context.resources.getString(R.string.reviewtracking_canRequestReview),reviewRequestData.wasRequested, editor)
-        save(context.resources.getString(R.string.reviewtracking_appTimesOpened), reviewRequestData.timesOpened, editor)
-        save(context.resources.getString(R.string.reviewtracking_appTimeAlive), reviewRequestData.timeActive, editor)
-        save(context.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction, editor)
 
         editor.apply()
     }
 
-    val dataAsList: HashMap<String, String?>
-        get() {
-            val settings = HashMap<String, String?>()
-            settings["network_pref"] = networkPreference.toString()
-            settings["language"] = currentLanguageAbbr
-            settings["always_on"] = isAlwaysOn.toString()
-            settings["warning_enabled"] = isHuntWarnAudioAllowed.value.toString()
-            settings["warning_timeout"] = huntWarnFlashTimeMax.value.toString()
-            settings["color_theme"] = colorThemeID
-            settings["font_type"] = fontThemeID
-            settings["left_support"] = isLeftHandSupportEnabled.toString()
-            settings["can_show_intro"] = canShowIntroduction.toString()
-            settings["review_request"] = reviewRequestData.canRequestReview().toString()
-            settings["times_opened"] = reviewRequestData.timesOpened.toString()
-            settings["active_time"] = reviewRequestData.timeActive.toString()
-
-            return settings
-        }
-
     class GlobalPreferencesFactory(
-        private val application: Application
-        /*private val globalPreferencesRepository: GlobalPreferencesRepository,
+        private val application: Application,
+        private val globalPreferencesRepository: GlobalPreferencesRepository,
         private val reviewTrackingRepository: ReviewTrackingRepository,
-        private val fontThemeRepository: TypographyRepository,
-        private val colorThemeRepository: PaletteRepository,
-        private val languageRepository: LanguageRepository*/
+        /*private val fontThemeRepository: TypographyRepository,
+        private val colorThemeRepository: PaletteRepository,*/
+        private val languageRepository: LanguageRepository
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(GlobalPreferencesViewModel::class.java)) {
                 val viewModel =
                     GlobalPreferencesViewModel(
-                        application = application
-                        /*globalPreferencesRepository,
+                        application = application,
+                        globalPreferencesRepository,
                         reviewTrackingRepository,
-                        fontThemeRepository,
-                        colorThemeRepository,
-                        languageRepository*/
+                        /*fontThemeRepository,
+                        colorThemeRepository,*/
+                        languageRepository
                     )
                 /*viewModel.init()*/
                 @Suppress("UNCHECKED_CAST")
@@ -251,26 +220,24 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
 
     companion object {
 
-        var DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
-
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application: PETApplication = this[APPLICATION_KEY] as PETApplication
                 val appKeyContainer = application.container
 
-                /*val globalPreferencesRepository = appKeyContainer.globalPreferencesRepository
+                val globalPreferencesRepository = appKeyContainer.globalPreferencesRepository
                 val reviewTrackingRepository: ReviewTrackingRepository = appKeyContainer.reviewTrackingRepository
-                val fontThemeRepository: TypographyRepository = appKeyContainer.typographyRepository
-                val colorThemeRepository: PaletteRepository = appKeyContainer.paletteRepository
-                val languageRepository: LanguageRepository = appKeyContainer.languageRepository*/
+                /*val fontThemeRepository: TypographyRepository = appKeyContainer.typographyRepository
+                val colorThemeRepository: PaletteRepository = appKeyContainer.paletteRepository*/
+                val languageRepository: LanguageRepository = appKeyContainer.languageRepository
 
                 GlobalPreferencesViewModel(
                     application = application,
-                    /*globalPreferencesRepository = globalPreferencesRepository,
+                    globalPreferencesRepository = globalPreferencesRepository,
                     reviewTrackingRepository = reviewTrackingRepository,
-                    typographyRepository = fontThemeRepository,
-                    paletteRepository = colorThemeRepository,
-                    languageRepository = languageRepository*/
+                    /*typographyRepository = fontThemeRepository,
+                    paletteRepository = colorThemeRepository,*/
+                    languageRepository = languageRepository
                 )
             }
         }

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.tools.timer.PhaseTimerLayout">
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.investigation.sanity.tools.timer.PhaseTimerLayout">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/setup_title"
@@ -56,7 +56,7 @@
             app:layout_constraintStart_toEndOf="@+id/evidence_timer_text"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
                 android:id="@+id/timer_play_pause"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -67,7 +67,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
                 android:id="@+id/timer_skip"
                 android:layout_width="48dp"
                 android:layout_height="48dp"

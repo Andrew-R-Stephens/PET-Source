@@ -11,7 +11,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.newsletter.views.NewsletterInboxView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
 
 class NewsInboxesFragment : MainMenuFragment() {
 
@@ -72,7 +72,7 @@ class NewsInboxesFragment : MainMenuFragment() {
     }
 
     override fun onPause() {
-        saveStates()
+        //saveStates()
         super.onPause()
     }
 }

@@ -1,5 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory.MapDesBlueprint.WorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory.MapDesBlueprint.WorldMap.Floor.POI
@@ -10,8 +12,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.FloorModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.MapDimensionModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.MapModel
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 object MapDesFactory {
     fun parseMinified(

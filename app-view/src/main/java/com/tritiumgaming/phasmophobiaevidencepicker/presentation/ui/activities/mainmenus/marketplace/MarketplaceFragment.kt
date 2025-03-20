@@ -17,26 +17,6 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.navigation.Navigation.findNavController
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.dto.theming.bundle.MarketBundleModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.dto.theming.theme.MarketThemeModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle.Companion.getBundleWhere
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes.Companion.getThemesWhere
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser.Companion.buildUserDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.removeCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountPreferences
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.preferencesDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.setMarketplaceAgreementState
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockedDocuments
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.unlockHistoryCollection
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.OnFirestoreProcessListener
-import com.tritiumgaming.phasmophobiaevidencepicker.util.NetworkUtils.isNetworkAvailable
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.rewarded.RewardItem
@@ -52,17 +32,36 @@ import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.OnFirestoreProcessListener
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.merchandise.bundles.FirestoreMerchandiseBundle.Companion.getBundleWhere
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.merchandise.themes.FirestoreMerchandiseThemes.Companion.getThemesWhere
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.addCredits
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.creditsDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit.Companion.removeCredits
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountPreferences
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.preferencesDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountPreferences.Companion.setMarketplaceAgreementState
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockDocument
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.addUnlockedDocuments
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory.Companion.unlockHistoryCollection
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.dto.theming.bundle.MarketBundleModel
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.dto.theming.theme.MarketThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.SignInCredentialManager
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFirebaseFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountObtainCreditsView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.marketplace.views.MarketplaceListLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.marketplace.views.items.MarketBundleView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.marketplace.views.items.MarketItemView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.marketplace.views.items.MarketThemeView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountObtainCreditsView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.EquipConfirmationDialog
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.MarketplaceDialog
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.EquipConfirmationDialog
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.MarketplaceDialog
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.util.NetworkUtils.isNetworkAvailable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -70,7 +69,7 @@ import kotlinx.coroutines.launch
 import java.util.Locale
 
 
-class MarketplaceFragment : MainMenuFirebaseFragment() {
+class MarketplaceFragment : MainMenuFragment() {
 
     private var masterItemsList: LinearLayout? = null
 
@@ -132,22 +131,39 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         marketProgressBar = view.findViewById(R.id.market_progressbar)
 
         accountLoginButton.setOnClickListener {
+            signIn(
+                requireActivity(),
+                SignInCredentialManager.SignInOptions.GOOGLE,
+                onSuccess = {
 
-            currentFirebaseUser?.let { user ->
-                val message = "${requireActivity().getString(R.string.alert_account_welcome)} ${user.displayName}"
-                val toast = Toast.makeText(activity, message, Toast.LENGTH_LONG)
-                toast.show()
+                    createUserDocument(
 
-                createUserDocument(
-                    onSuccess = {
-                        initAccountCreditListener()
-                    }
-                )
+                        onSuccess = {
+                            try {
+                                currentFirebaseUser?.let { user ->
+                                    val message =
+                                        "${requireActivity().getString(R.string.alert_account_welcome)} ${user.displayName}"
+                                    val toast = Toast.makeText(activity, message, Toast.LENGTH_LONG)
+                                    toast.show()
+                                }
 
-                view.invalidate()
+                                initAccountCreditListener()
 
-            }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
 
+                        },
+                        onComplete = {
+                            refreshFragment()
+                        }
+                    )
+
+                    view.invalidate()
+                    launchAgreementDialogJob?.start()
+
+                }
+            )
 
         }
 
@@ -249,7 +265,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 .addOnSuccessListener { task: QuerySnapshot ->
                     for (documentSnapshot in task.documents) {
                         val uuid = documentSnapshot.reference.id
-                        globalPreferencesViewModel?.colorThemeControl?.let { control ->
+                        globalPreferencesViewModel.colorThemeControl.let { control ->
                             val customTheme = control.getThemeByUUID(uuid)
                             customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                         }
@@ -279,7 +295,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                 for (documentSnapshot in value.documents) {
                     val uuid = documentSnapshot.reference.id
-                    globalPreferencesViewModel?.colorThemeControl?.let { control ->
+                    globalPreferencesViewModel.colorThemeControl.let { control ->
                         val customTheme = control.getThemeByUUID(uuid)
                         customTheme.setUnlocked(ThemeModel.Availability.UNLOCKED_PURCHASE)
                     }
@@ -367,16 +383,15 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             }
 
             try {
-                globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
-                    if (isNetworkAvailable(requireContext(), networkPreference)) {
-                        addBundles(list, listener = listener)
-                    }
-                    else {
-                        listener.onFailure()
+                if (isNetworkAvailable(requireContext(),
+                        globalPreferencesViewModel.networkPreference.value)) {
+                    addBundles(list, listener = listener)
+                }
+                else {
+                    listener.onFailure()
 
-                        Toast.makeText(requireActivity(),
-                            getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
-                    }
+                    Toast.makeText(requireActivity(),
+                        getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
                 }
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
@@ -442,7 +457,8 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             }
 
         try {
-            if (!isNetworkAvailable(requireContext(), globalPreferencesViewModel!!.networkPreference)) {
+            if (!isNetworkAvailable(requireContext(),
+                    globalPreferencesViewModel.networkPreference.value)) {
                 Toast.makeText(requireActivity(),
                     getString(R.string.alert_internet_unavailable),
                     Toast.LENGTH_SHORT).show()
@@ -505,7 +521,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                             testToast("Test Success. Created Theme Model")
 
-                            globalPreferencesViewModel?.let { globalPreferencesViewModel ->
+                            globalPreferencesViewModel.let { globalPreferencesViewModel ->
                                 val customTheme =
                                     globalPreferencesViewModel.colorThemeControl.getThemeByUUID(uuid)
 
@@ -825,25 +841,6 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         }
     }
 
-    /*
-    override fun onSignInAccountSuccess() {
-        refreshFragment()
-
-        // Generate a Firestore document for the User with default data if needed
-        try { buildUserDocument().get().addOnCompleteListener {
-            initAccountCreditListener() } }
-        catch (e: Exception) { e.printStackTrace() }
-    }
-    */
-
-    /*override fun onSignOutAccountSuccess() {
-        refreshFragment()
-    }*/
-
-    /*override fun onDeleteAccountSuccess() {
-        TODO("Not yet implemented")
-    }*/
-
     interface OnAdLoadedListener {
         fun onAdLoaded()
     }
@@ -898,15 +895,16 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
             Log.d("RewardedAd", "The rewarded ad wasn't ready yet.")
 
             try {
-                globalPreferencesViewModel?.networkPreference?.let { networkPreference ->
-                    if (isNetworkAvailable(requireContext(), networkPreference)) {
+                    if (isNetworkAvailable(requireContext(),
+                            globalPreferencesViewModel.networkPreference.value)) {
                         loadRewardedAd(object: OnAdLoadedListener{
                             override fun onAdLoaded() { showRewardedAd() } })
                     } else {
                         Toast.makeText(
-                            requireActivity(), getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
+                            requireActivity(),
+                            getString(R.string.alert_internet_unavailable),
+                            Toast.LENGTH_SHORT).show()
                     }
-                }
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }

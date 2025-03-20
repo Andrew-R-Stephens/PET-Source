@@ -1,14 +1,14 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.FirestoreTransactionHistory.Companion.transactionHistoryDocument
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.OnFirestoreProcessListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.SetOptions
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.OnFirestoreProcessListener
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.FirestoreTransactionHistory.Companion.transactionHistoryDocument
 
 class FirestoreUnlockHistory {
 

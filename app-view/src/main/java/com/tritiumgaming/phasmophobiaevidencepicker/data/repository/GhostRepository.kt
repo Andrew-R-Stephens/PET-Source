@@ -3,69 +3,102 @@ package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 import android.content.Context
 import androidx.annotation.IntegerRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostEvidenceModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.popups.GhostPopupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ResourceUtils.ResourceUtils.intArrayFromTypedArray
-
 
 class GhostRepository(
     evidenceRepository: EvidenceRepository,
     context: Context
 ) {
 
-    var ghostList: ArrayList<GhostModel> = ArrayList()
+    var ghosts: ArrayList<GhostModel> = ArrayList()
 
     val count: Int
-        get() = ghostList.size
+        get() = ghosts.size
 
     init {
 
-        ghostList = ArrayList()
+        val resources = context.resources
 
-        val namesTypedArray = context.resources.obtainTypedArray(R.array.ghost_names)
-        val namesArray = intArrayFromTypedArray(context.resources, namesTypedArray)
+        // Populate Ghosts
+
+        ghosts.clear()
+
+        val namesTypedArray = resources.obtainTypedArray(R.array.ghost_names)
+        val namesArray = intArrayFromTypedArray(resources, namesTypedArray)
 
         val typedArrayEvidence =
-            context.resources.obtainTypedArray(R.array.ghost_evidence_arrays)
+            resources.obtainTypedArray(R.array.ghost_evidence_arrays)
         val typedArrayRequiredEvidence =
-            context.resources.obtainTypedArray(R.array.ghost_requiredevidence_arrays)
+            resources.obtainTypedArray(R.array.ghost_requiredevidence_arrays)
+
+        val infoTypedArray = resources.obtainTypedArray(R.array.ghost_info_array)
+        val strengthsTypedArray = resources.obtainTypedArray(R.array.ghost_strengths_array)
+        val weaknessesTypedArray = resources.obtainTypedArray(R.array.ghost_weaknesses_array)
+        val huntDataTypedArray = resources.obtainTypedArray(R.array.ghost_huntdata_array)
 
         for (i in namesArray.indices) {
-            val ghost = GhostModel(i, namesArray[i])
 
-            // Set Normal Evidence
+            // Set Popup
+
+            val ghostPopupModel = GhostPopupModel(
+                info = infoTypedArray.getResourceId(i, 0),
+                strength = strengthsTypedArray.getResourceId(i, 0),
+                weakness = weaknessesTypedArray.getResourceId(i, 0),
+                huntInfo = huntDataTypedArray.getResourceId(i, 0)
+            )
+
+            // Set Evidence
+
+            val ghostEvidenceModel = GhostEvidenceModel()
             val normalEvidenceIdTypedArray =
-                context.resources.obtainTypedArray(typedArrayEvidence.getResourceId(i, 0))
+                resources.obtainTypedArray(typedArrayEvidence.getResourceId(i, 0))
             for (j in 0 until normalEvidenceIdTypedArray.length()) {
                 @IntegerRes val evidenceIdRes = normalEvidenceIdTypedArray.getResourceId(j, 0)
-                val evidenceID = context.resources.getInteger(evidenceIdRes)
-                ghost.addEvidence(
+                val evidenceID = resources.getInteger(evidenceIdRes)
+                ghostEvidenceModel.addEvidence(
                     evidenceRepository.evidenceList,
                     evidenceID
                 )
             }
             normalEvidenceIdTypedArray.recycle()
 
-            // Set Required Evidence
             val requiredEvidenceIdTypedArray =
-                context.resources.obtainTypedArray(typedArrayRequiredEvidence.getResourceId(i, 0))
+                resources.obtainTypedArray(typedArrayRequiredEvidence.getResourceId(i, 0))
             for (j in 0 until requiredEvidenceIdTypedArray.length()) {
                 @IntegerRes val evidenceIdRes = requiredEvidenceIdTypedArray.getResourceId(j, 0)
-                val evidenceID = context.resources.getInteger(evidenceIdRes)
-                ghost.addNightmareEvidence(
+                val evidenceID = resources.getInteger(evidenceIdRes)
+                ghostEvidenceModel.addNightmareEvidence(
                     evidenceRepository.evidenceList,
                     evidenceID
                 )
             }
             requiredEvidenceIdTypedArray.recycle()
 
-            ghostList.add(ghost)
+            // Finalize Ghost
+
+            val ghost = GhostModel(
+                id= i,
+                name = namesArray[i],
+                popupModel = ghostPopupModel,
+                evidence = ghostEvidenceModel
+            )
+
+            ghosts.add(ghost)
         }
+
         typedArrayEvidence.recycle()
         typedArrayRequiredEvidence.recycle()
+        infoTypedArray.recycle()
+        strengthsTypedArray.recycle()
+        weaknessesTypedArray.recycle()
+        huntDataTypedArray.recycle()
     }
 
     fun getAt(index: Int): GhostModel {
-        return ghostList[index]
+        return ghosts[index]
     }
 
 }

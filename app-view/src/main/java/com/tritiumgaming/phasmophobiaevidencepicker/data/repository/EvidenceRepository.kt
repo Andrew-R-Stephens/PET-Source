@@ -1,9 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
+import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
+import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.popups.EvidencePopupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ResourceUtils.ResourceUtils.intArrayFromTypedArray
 
 class EvidenceRepository(
@@ -16,27 +19,57 @@ class EvidenceRepository(
         get() = evidenceList.size
 
     init {
+        val resources = context.resources
+
+        // Populate Evidence
+
         evidenceList.clear()
 
-        val namesTypedArray = context.resources.obtainTypedArray(R.array.evidence_type_names)
-        val namesArray = intArrayFromTypedArray(context.resources, namesTypedArray)
+        val idsTypedArray = resources.obtainTypedArray(R.array.evidence_type_ids)
+        val idsArray = intArrayFromTypedArray(resources, idsTypedArray)
 
-        val idsTypedArray = context.resources.obtainTypedArray(R.array.evidence_type_ids)
-        val idsArray = intArrayFromTypedArray(context.resources, idsTypedArray)
+        val typedArray = resources.obtainTypedArray(R.array.evidence_icon_array)
 
-        val typedArray = context.resources.obtainTypedArray(R.array.evidence_icon_array)
+        val keyEvidenceName = 0
+        val keyDescriptions = 1
+        val keyAnimationResources = 2
+        val keyEvidenceCost = 3
+        val keyUnlockLevels = 4
 
-        for (i in namesArray.indices) {
+        val evidenceTypes = resources.obtainTypedArray(R.array.equipment_tiers_arrays)
+        for (i in 0 until evidenceTypes.length()) {
 
-            val name = namesArray[i]
-            @IntegerRes val idRes = if(i <= idsArray.size) idsArray[i] else 0
-            val id = context.resources.getInteger(idRes)
+            val evidenceType = resources.obtainTypedArray(evidenceTypes.getResourceId(i, 0))
 
-            val evidence = EvidenceModel(id, name)
-            evidence.icon = typedArray.getResourceId(i, 0)
+            // Set Popup
+
+            @StringRes val evidenceName = evidenceType.getResourceId(keyEvidenceName, 0)
+            @StringRes val descriptions = intArrayFromTypedArray(resources, evidenceType, keyDescriptions)
+            @DrawableRes val animationResources = intArrayFromTypedArray(resources, evidenceType, keyAnimationResources)
+            @IntegerRes val evidenceCost = evidenceType.getResourceId(keyEvidenceCost, 0)
+            @IntegerRes val unlockLevels = intArrayFromTypedArray(resources, evidenceType, keyUnlockLevels)
+
+            val evidencePopupModel = EvidencePopupModel(
+                evidenceCost,
+                unlockLevels,
+                descriptions,
+                animationResources
+            )
+
+            val evidence = EvidenceModel(
+                id = resources.getInteger(if(i <= idsArray.size) idsArray[i] else 0),
+                name = evidenceName,
+                icon = typedArray.getResourceId(i, 0),
+                popupModel = evidencePopupModel
+            )
+
             evidenceList.add(evidence)
+
+            evidenceType.recycle()
+
         }
 
+        evidenceTypes.recycle()
         typedArray.recycle()
 
     }

@@ -5,14 +5,18 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.AppInfoRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.CodexRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.EvidenceRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MissionRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ReviewTrackingRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
 
@@ -25,12 +29,10 @@ val Context.dataStore by preferencesDataStore(
 
 class AppContainer(context: Context, dataStore: DataStore<Preferences>) {
 
-    /*
     val appInfoRepository: AppInfoRepository =
         AppInfoRepository(
             context = context
         )
-    */
 
     val newsletterRepository: NewsletterRepository =
         NewsletterRepository(
@@ -38,17 +40,17 @@ class AppContainer(context: Context, dataStore: DataStore<Preferences>) {
             dataStore = dataStore
         )
 
-    /*val globalPreferencesRepository: GlobalPreferencesRepository =
+    val globalPreferencesRepository: GlobalPreferencesRepository =
         GlobalPreferencesRepository(
             context = context,
             dataStore = dataStore
-        )*/
+        )
 
-    /*val reviewTrackingRepository: ReviewTrackingRepository =
+    val reviewTrackingRepository: ReviewTrackingRepository =
         ReviewTrackingRepository(
             context = context,
             dataStore = dataStore
-        )*/
+        )
 
     /*val typographyRepository: TypographyRepository =
         TypographyRepository(
@@ -64,11 +66,11 @@ class AppContainer(context: Context, dataStore: DataStore<Preferences>) {
             dataStore = dataStore
         )*/
 
-    /*val languageRepository: LanguageRepository =
+    val languageRepository: LanguageRepository =
         LanguageRepository(
             context = context,
             dataStore = dataStore
-        )*/
+        )
 
     val evidenceRepository: EvidenceRepository =
         EvidenceRepository(

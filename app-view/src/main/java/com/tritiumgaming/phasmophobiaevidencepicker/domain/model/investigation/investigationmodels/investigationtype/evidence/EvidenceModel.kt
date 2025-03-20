@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.
 
 import androidx.annotation.DrawableRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.popups.EvidencePopupModel
 
 /**
  * Evidence enums
@@ -9,7 +10,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 class EvidenceModel(
     var id: Int = 0,
     var name: Int = 0,
-    @DrawableRes var icon: Int = R.drawable.ic_ev_dots
+    @DrawableRes var icon: Int = R.drawable.ic_ev_dots,
+    val popupModel: EvidencePopupModel = EvidencePopupModel()
 ) {
 
     var ruling: Ruling = Ruling.NEUTRAL

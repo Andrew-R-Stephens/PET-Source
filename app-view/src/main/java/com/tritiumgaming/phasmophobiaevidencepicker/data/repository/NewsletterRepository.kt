@@ -11,7 +11,13 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType.GENERAL
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType.PET
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType.PHASMOPHOBIA
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInbox
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInbox.Companion.formatToEpoch
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -20,14 +26,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
-import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
-import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType.GENERAL
-import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType.PET
-import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType.PHASMOPHOBIA
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInbox.Companion.formatToEpoch
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterService
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class NewsletterRepository(
     val dataStore: DataStore<Preferences>,

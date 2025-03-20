@@ -18,17 +18,17 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.get
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.mapsmenu.MapFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.mapsmenu.mapdisplay.views.InteractiveMapView
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
 
 /**
  * MapViewerFragment class
  *
  * @author TritiumGamingStudios
  */
-class MapViewerFragment : InvestigationFragment() {
+class MapViewerFragment : MapFragment() {
     private var imageDisplay: InteractiveMapView? = null
     private var selectorList: LinearLayout? = null
     private var selectorListWrapper: FrameLayout? = null
@@ -196,12 +196,12 @@ class MapViewerFragment : InvestigationFragment() {
     }
 
     /** Saves states of the MapViewer to the MapViewModel */
-    public override fun saveStates() {
+    /*public override fun saveStates() {
         mapViewModel.let { mapMenuViewModel ->
             mapMenuViewModel.currentMapViewerModel.defaultFloor =
                 mapMenuViewModel.currentMapViewerModel.currentFloor
         }
-    }
+    }*/
 
     /** Destroys all threads and releases resource memory  */
     override fun onPause() {

@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.applanguages
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +12,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.applanguages.views.LanguagesAdapterView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout
 
 class AppLanguageFragment : MainMenuFragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.init()
@@ -42,21 +42,18 @@ class AppLanguageFragment : MainMenuFragment() {
         cancelButton.setOnClickListener { handleDiscardChanges() }
 
         // DATA
-        var selected = 0
-        globalPreferencesViewModel.let { globalPreferencesViewModel ->
-            selected = globalPreferencesViewModel.getCurrentLanguageIndex()
-        }
-        mainMenuViewModel.let { mainMenuViewModel ->
-            if (mainMenuViewModel.languageSelectedOriginal == -1) {
-                mainMenuViewModel.languageSelectedOriginal = selected
-            }
-        }
+        globalPreferencesViewModel.setTempLanguageCode(
+            globalPreferencesViewModel.currentLanguageCode.value
+        )
         globalPreferencesViewModel.languageList.let { languageList ->
             for (i in languageList.indices) {
-                val adapter = LanguagesAdapterView(languageList, selected,
+                val adapter = LanguagesAdapterView(
+                    languageList,
                     object: LanguagesAdapterView.OnLanguageListener {
                         override fun onNoteClick(position: Int) {
-                            globalPreferencesViewModel.setCurrentLanguage(position)
+                            globalPreferencesViewModel.setTempLanguageCode(
+                                languageList[position].abbreviation
+                            )
                             mainMenuViewModel.canRefreshFragment = true
 
                             this@AppLanguageFragment.configureLanguage()
@@ -72,13 +69,6 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     private fun handleDiscardChanges() {
-        mainMenuViewModel.let { mainMenuViewModel ->
-            globalPreferencesViewModel.setCurrentLanguage(
-                mainMenuViewModel.languageSelectedOriginal)
-            Log.d("Languages",
-                "Set language = ${mainMenuViewModel.languageSelectedOriginal}")
-        }
-
         configureLanguage()
 
         try { findNavController(requireView()).popBackStack() }
@@ -86,16 +76,15 @@ class AppLanguageFragment : MainMenuFragment() {
     }
 
     private fun configureLanguage() {
-        globalPreferencesViewModel.currentLanguageAbbr.let{ currLangAbbr ->
+        globalPreferencesViewModel.setCurrentLanguageCode(
+            globalPreferencesViewModel.tempLanguageCode.value
+        )
+        globalPreferencesViewModel.currentLanguageCode.value.let{ currLangAbbr ->
             try {
                 (requireActivity() as MainMenuActivity).setLanguage(currLangAbbr)
             }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
-    }
-
-    override fun initViewModels() {
-        super.initViewModels()
     }
 
     override fun backPressedHandler() {
@@ -115,16 +104,16 @@ class AppLanguageFragment : MainMenuFragment() {
         }
     }
 
-    public override fun saveStates() {
+    /*private fun saveStates() {
         globalPreferencesViewModel.let { globalPreferencesViewModel ->
             try { globalPreferencesViewModel.saveToFile(requireContext())
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
-    }
+    }*/
 
     override fun onPause() {
         // SAVE PERSISTENT DATA
-        saveStates()
+        //saveStates()
         super.onPause()
     }
 }

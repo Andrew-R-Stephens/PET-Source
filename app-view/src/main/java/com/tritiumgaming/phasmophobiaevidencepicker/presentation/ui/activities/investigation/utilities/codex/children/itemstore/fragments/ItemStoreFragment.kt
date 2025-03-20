@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,7 +19,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.graphics.toColorInt
+import androidx.core.view.isVisible
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreListModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.CodexFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView
@@ -28,8 +31,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreVScrollView
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreListModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import kotlin.math.max
 import kotlin.math.min
@@ -44,8 +45,8 @@ abstract class ItemStoreFragment : CodexFragment() {
 
     protected var dataView: View? = null
 
-    private var selColor = Color.parseColor("#2D3635")
-    private var unselColor = Color.parseColor("#FFB43D")
+    private var selColor = "#2D3635".toColorInt()
+    private var unselColor = "#FFB43D".toColorInt()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -299,7 +300,7 @@ abstract class ItemStoreFragment : CodexFragment() {
         }
 
         protected fun openItemDataView(dataView: View) {
-            if (dataView.visibility == View.VISIBLE) { return }
+            if (dataView.isVisible) { return }
 
             val isPortrait = dataView.context.resources.configuration.orientation ==
                     Configuration.ORIENTATION_PORTRAIT
@@ -351,7 +352,7 @@ abstract class ItemStoreFragment : CodexFragment() {
         }
 
         private fun setIconFilter(icon: ImageView, colorString: String, alpha: Float) {
-            setIconFilter(icon, Color.parseColor(colorString), alpha)
+            setIconFilter(icon, colorString.toColorInt(), alpha)
         }
     }
 
@@ -373,7 +374,7 @@ abstract class ItemStoreFragment : CodexFragment() {
     abstract override fun reset()
 
     fun handleBackAction(dataView: View) {
-        if (dataView.visibility == View.VISIBLE) {
+        if (dataView.isVisible) {
             closeItemDataView(dataView)
             return
         }

@@ -73,7 +73,7 @@ class GhostScoreModel(
 
             for (e in evidenceRepository.evidenceList) {
                 var isContained = false
-                for (eThis in  ghostModel.normalEvidenceList) {
+                for (eThis in  ghostModel.evidence.normalEvidenceList) {
                     if (e == eThis) {
                         isContained = true
                         break
@@ -82,8 +82,8 @@ class GhostScoreModel(
                 if (!isContained) { if (e.ruling == POSITIVE) { return -5 } }
             }
 
-            for (i in ghostModel.normalEvidenceList.indices) {
-                val e = ghostModel.normalEvidenceList[i]
+            for (i in ghostModel.evidence.normalEvidenceList.indices) {
+                val e = ghostModel.evidence.normalEvidenceList[i]
                 when (e.ruling) {
                     POSITIVE -> { if (i < 3) { posScore++ } }
                     NEGATIVE -> {
@@ -95,7 +95,7 @@ class GhostScoreModel(
                 }
             }
 
-            for (e in ghostModel.strictEvidenceList) {
+            for (e in ghostModel.evidence.strictEvidenceList) {
                 if (e.ruling == NEGATIVE) { return -8 }
             }
 
@@ -106,8 +106,8 @@ class GhostScoreModel(
                 return posScore - negScore
             }
 
-            if (posScore == maxPosScore - (3 - ghostModel.normalEvidenceList.size)) {
-                for (e in ghostModel.strictEvidenceList) {
+            if (posScore == maxPosScore - (3 - ghostModel.evidence.normalEvidenceList.size)) {
+                for (e in ghostModel.evidence.strictEvidenceList) {
                     if (e.ruling != POSITIVE) {
                         return -10
                     }
@@ -148,7 +148,7 @@ class GhostScoreModel(
         }
 
     init {
-        ghostRepository.ghostList.forEach {
+        ghostRepository.ghosts.forEach {
             addGhostScore(GhostScore(it, 0))
         }
     }

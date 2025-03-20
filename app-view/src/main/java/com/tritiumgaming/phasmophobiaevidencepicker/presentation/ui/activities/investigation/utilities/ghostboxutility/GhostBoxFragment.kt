@@ -24,9 +24,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.ghostbox.GhostBoxUtilityModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.ghostboxutility.views.WaveformView
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.ghostbox.GhostBoxUtilityModel
 import java.util.Locale
 
 class GhostBoxFragment :

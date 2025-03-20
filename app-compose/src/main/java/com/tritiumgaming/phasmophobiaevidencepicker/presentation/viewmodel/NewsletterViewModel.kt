@@ -9,9 +9,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInbox
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.NewsletterHandler
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 

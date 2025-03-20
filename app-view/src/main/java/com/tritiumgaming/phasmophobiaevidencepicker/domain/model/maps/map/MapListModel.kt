@@ -1,8 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map
 
+import com.google.gson.JsonSyntaxException
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory.MapDesBlueprint
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory.MapDesFactory
-import com.google.gson.JsonSyntaxException
 
 class MapListModel(worldMapDeserializer: MapDesBlueprint) {
     private var mapModels: ArrayList<MapModel> = ArrayList()

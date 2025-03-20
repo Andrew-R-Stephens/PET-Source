@@ -13,7 +13,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.network.Netw
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketBundle
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.themes.MarketTypographyEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalDefaultPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographiesMap

@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavigationBar">
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavigationBar">
 
     <View
         android:id="@+id/dividerE"

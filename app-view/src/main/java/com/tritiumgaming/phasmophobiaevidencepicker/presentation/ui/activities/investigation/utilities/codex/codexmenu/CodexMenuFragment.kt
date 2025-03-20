@@ -47,5 +47,5 @@ class CodexMenuFragment : CodexFragment() {
 
     override fun reset() { }
 
-    override fun saveStates() { }
+    /*override fun saveStates() { }*/
 }

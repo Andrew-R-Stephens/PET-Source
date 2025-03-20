@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.
 import android.os.CountDownTimer
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel.SanityConstants.HALF_SANITY
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel.SanityConstants.MIN_SANITY
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel.SanityConstants.SAFE_MIN_BOUNDS

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInbox
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessage
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.NewsAlert
 
 class MessagesAdapterView(
     private val currentInbox: NewsletterInbox?,

@@ -26,8 +26,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.util.geometry
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.tritiumgaming.phasmophobiaevidencepicker.util.geometry.Point2D.Point2DDouble
-import com.tritiumgaming.phasmophobiaevidencepicker.util.geometry.Point2D.Point2DFloat
 import java.io.Serializable
 import kotlin.math.sqrt
 

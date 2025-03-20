@@ -6,28 +6,33 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import android.widget.ScrollView
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
-import androidx.lifecycle.lifecycleScope
+import androidx.compose.ui.platform.LocalContext
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.InvestigationSectionWrapper
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.SanityToolsLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.section.InvestigationSection
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.section.lists.GhostListView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.CollapseButton
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.ResetButton
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.CollapseButton
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.InvestigationToolbar
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.ResetButton
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.ToolBarItemPair
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.investigation.InvestigationSectionWrapper
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.investigation.sanity.SanityToolsLayout
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.investigation.section.InvestigationSection
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.investigation.section.lists.EvidenceListView
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.investigation.section.lists.GhostListView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
+
     private var investigationSectionWrapper: InvestigationSectionWrapper? = null
 
     private var ghostSection: InvestigationSection? = null
@@ -60,7 +65,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
             View.SCROLLBAR_POSITION_RIGHT
 
         globalPreferencesViewModel.let { globalPreferencesViewModel ->
-            if (!globalPreferencesViewModel.isLeftHandSupportEnabled) {
+            if (!globalPreferencesViewModel.rTLPreference.value) {
                 ghostSection = columnLeft?.getChildAt(0) as InvestigationSection
                 evidenceSection = columnRight?.getChildAt(0) as InvestigationSection
             } else {
@@ -78,11 +83,21 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         val setupLists = CoroutineScope(Dispatchers.Main).launch {
             globalPreferencesViewModel.let { globalPreferencesViewModel ->
                 investigationViewModel.let { investigationViewModel ->
-                    evidenceList?.init(globalPreferencesViewModel, investigationViewModel,
-                        popupWindow, evidenceSection?.findViewById(R.id.progressbar),
-                        adRequest, ghostList)
-                    ghostList?.init(globalPreferencesViewModel, investigationViewModel,
-                        popupWindow, ghostSection?.findViewById(R.id.progressbar), adRequest)
+                    evidenceList?.init(
+                        globalPreferencesViewModel,
+                        investigationViewModel,
+                        popupWindow,
+                        evidenceSection?.findViewById(R.id.progressbar),
+                        adRequest,
+                        ghostList
+                    )
+                    ghostList?.init(
+                        globalPreferencesViewModel,
+                        investigationViewModel,
+                        popupWindow,
+                        ghostSection?.findViewById(R.id.progressbar),
+                        adRequest
+                    )
                 }
             }
         }
@@ -94,50 +109,70 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         ghostScrollview?.addView(ghostList)
         evidenceScrollview?.addView(evidenceList)
 
-        /*val toggleCollapseButton: ComposeView? = view.findViewById(R.id.button_sanity_toggle)
-        initCollapsible(toggleCollapseButton)*/
+        sanityToolsLayout?.visibility =
+            if(investigationViewModel.investigationModel.isInvestigationToolsDrawerCollapsed.value)
+                GONE else VISIBLE
 
-        val buttonReset = view.findViewById<ComposeView?>(R.id.button_reset)
-        initResetButton(buttonReset)
 
-        /*
-        val setupToolbarJob = CoroutineScope(Dispatchers.Main).launch {
-            val sanityToolbarComposable: ComposeView? =
-                view.findViewById(R.id.sanityToolbarComposable)
-            sanityToolbarComposable?.setContent {
-                val collapseButton: @Composable () -> Unit = {
-                    investigationViewModel?.investigationModel?.let { investigationModel ->
-                        CollapseButton(
-                            isCollapsedState = investigationModel.isSanityDrawerCollapsed,
-                            onClick = { investigationModel.toggleDrawerState() }
-                        )
-                    }
-                }
+        val sanityToolbarComposable: ComposeView? = view.findViewById(R.id.sanityToolbarComposable)
+        sanityToolbarComposable?.setContent {
+            val collapseButton: @Composable () -> Unit = {
+                CollapseButton {
+                    investigationViewModel.investigationModel
+                        .isInvestigationToolsDrawerCollapsed.value.let {
+                            when (it) {
+                                true -> {
+                                    sanityToolsLayout?.animate()
+                                        ?.setListener(object : AnimatorListenerAdapter() {
+                                            override fun onAnimationStart(animation: Animator) {
+                                                super.onAnimationStart(animation)
+                                                sanityToolsLayout?.visibility = GONE
+                                            }
 
-                val resetButton: @Composable () -> Unit = {
-                    ResetButton(
-                        onClick = { reset() }
-                    )
-                }
+                                            override fun onAnimationEnd(animation: Animator) {
+                                                super.onAnimationEnd(animation)
+                                                sanityToolsLayout?.visibility = VISIBLE
+                                                investigationViewModel.investigationModel.setInvestigationToolsDrawerState(false)
+                                            }
+                                        })?.start()
+                                }
+                                false -> {
+                                    sanityToolsLayout?.animate()
+                                        ?.setListener(object : AnimatorListenerAdapter() {
+                                            override fun onAnimationStart(animation: Animator) {
+                                                super.onAnimationStart(animation)
+                                                sanityToolsLayout?.visibility = VISIBLE
+                                            }
 
-                val toolsList: Array<ToolBarItemPair> = arrayOf(
-                    ToolBarItemPair(collapseButton) {
-                        try {
-                            Toast.makeText(requireActivity(), "Hi!", Toast.LENGTH_SHORT).show()
-                        } catch (e: IllegalStateException) {
-                            e.printStackTrace()
+                                            override fun onAnimationEnd(animation: Animator) {
+                                                super.onAnimationStart(animation)
+                                                sanityToolsLayout?.visibility = GONE
+                                                investigationViewModel.investigationModel.setInvestigationToolsDrawerState(true)
+                                            }
+                                        })?.start()
+                                }
+                            }
+
                         }
-                    },
-                    ToolBarItemPair(resetButton),
-                    ToolBarItemPair(View(LocalContext.current))
-                )
-                InvestigationToolbar(
-                    toolsList
+                }
+            }
+
+            val resetButton: @Composable () -> Unit = {
+                ResetButton(
+                    onClick = { reset() }
                 )
             }
+
+            val toolsList: Array<ToolBarItemPair> = arrayOf(
+                ToolBarItemPair(collapseButton),
+                ToolBarItemPair(resetButton),
+                ToolBarItemPair(View(LocalContext.current))
+            )
+            InvestigationToolbar(
+                toolsList
+            )
         }
-        setupToolbarJob.start()
-        */
+
 
         popupWindow = PopupWindow(
             RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -152,20 +187,18 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
 
     }
 
-    private fun initResetButton(buttonReset: ComposeView?) {
+    /*private fun initResetButton(buttonReset: ComposeView?) {
         buttonReset?.setContent {
             ResetButton(
                 onClick = { reset() }
             )
         }
-
     }
 
     private fun initCollapsible(toggleCollapseButton: ComposeView?) {
         investigationViewModel.investigationModel.let { investigationModel ->
             toggleCollapseButton?.setContent {
                 CollapseButton(
-                    isCollapsedState = investigationModel.isInvestigationToolsDrawerCollapsed,
                     onClick = { investigationModel.toggleInvestigationToolsDrawerState() }
                 )
             }
@@ -214,7 +247,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                 }
             }
         }
-    }
+    }*/
 
     override fun reset() {
         investigationViewModel.reset()
@@ -230,6 +263,6 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         super.onDestroyView()
     }
 
-    override fun saveStates() { }
+    //override fun saveStates() { }
 
 }

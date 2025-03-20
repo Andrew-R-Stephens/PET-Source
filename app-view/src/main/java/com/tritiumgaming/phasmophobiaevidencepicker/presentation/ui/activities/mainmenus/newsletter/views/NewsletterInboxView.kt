@@ -6,10 +6,10 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
 import androidx.core.content.withStyledAttributes
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInbox
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.NewsAlert
 
 class NewsletterInboxView : ConstraintLayout {
 

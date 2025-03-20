@@ -17,8 +17,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRe
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.newsletter.views.MessagesAdapterView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
-import kotlinx.coroutines.CoroutineScope
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
 import kotlinx.coroutines.launch
 
 class NewsMessagesFragment : MainMenuFragment() {

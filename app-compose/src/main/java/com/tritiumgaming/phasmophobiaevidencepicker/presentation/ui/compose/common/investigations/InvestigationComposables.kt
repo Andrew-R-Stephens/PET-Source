@@ -84,9 +84,9 @@ fun RulingSelector(
                 EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
             investigationModel.ghostScoreModel.updateOrder()
 
-            Log.d("Updated",
+            /*Log.d("Updated",
                 investigationModel.ghostScoreModel.currOrder
-                    .contentToString())
+                    .contentToString())*/
 
             onSelection()
         },

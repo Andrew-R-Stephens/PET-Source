@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.cont
 import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
 abstract class AThemeHandler(
     protected val defaultUUID: String

@@ -6,7 +6,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.phasmophobiaevidencepicker.app.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.app.container.dataStore
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestorePurchaseHistory
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AccountManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.SignInCredentialManager
 

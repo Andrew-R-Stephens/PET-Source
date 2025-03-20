@@ -12,12 +12,12 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.ItemStoreAchievementGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.ItemStoreAchievementItemModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreItemView
 
 class AchievementsFragment : ItemStoreFragment() {
     @SuppressLint("ResourceType")
@@ -112,6 +112,5 @@ class AchievementsFragment : ItemStoreFragment() {
     override fun reset() {
     }
 
-    override fun saveStates() {
-    }
+    /*override fun saveStates() { }*/
 }

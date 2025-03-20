@@ -13,21 +13,16 @@ import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation.findNavController
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.MapFileIO
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.MapListModel
 import com.google.common.primitives.Ints
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 /**
  * MapMenuFragment class
  *
  * @author TritiumGamingStudios
  */
-class MapMenuFragment : InvestigationFragment() {
+class MapMenuFragment : MapFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,8 +54,7 @@ class MapMenuFragment : InvestigationFragment() {
                             navigateToMapView(itemView)
                         }
                     }
-            } ?:  Toast.makeText(requireContext(),
-                getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
+            }
         } ?: Toast.makeText(requireContext(),
             getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
     }
@@ -134,6 +128,6 @@ class MapMenuFragment : InvestigationFragment() {
     override fun reset() {
     }
 
-    override fun saveStates() {
-    }
+    /*override fun saveStates() {
+    }*/
 }

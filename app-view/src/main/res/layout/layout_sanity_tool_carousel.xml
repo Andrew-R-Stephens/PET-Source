@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
         android:id="@+id/carousel_prev"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toEndOf="@+id/carousel_prev"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
         android:id="@+id/carousel_next"
         android:layout_width="48dp"
         android:layout_height="48dp"

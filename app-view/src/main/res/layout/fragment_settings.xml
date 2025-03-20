@@ -22,15 +22,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout
             android:id="@+id/navHeaderLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:NavHeaderLayoutButtonLeft="cancel"
-            app:NavHeaderLayoutButtonRight="confirm"
+            app:NavHeaderLayoutButtonLeft="back"
             app:NavHeaderLayoutCenterTitle="@string/settings_title"
-            app:NavHeaderLayoutLeftTitle="@string/settings_cancel"
-            app:NavHeaderLayoutRightTitle="@string/settings_confirm"
+            app:NavHeaderLayoutButtonRight="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -80,7 +78,7 @@
                     android:textColor="?attr/textColorPrimary"
                     android:textSize="18sp" />
 
-                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountDetailsView
+                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountDetailsView
                     android:id="@+id/accountDetailsView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,7 +99,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/accountDetailsView">
 
-                    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountLoginRequestView
+                    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountLoginRequestView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -196,6 +194,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/switch_huntwarningaudio_title">
 
+                            <!--
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/seekbar_huntwarningtimeout_othertext"
                                 style="?attr/primaryFont_Regular_Manual"
@@ -215,6 +214,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintWidth_percent=".4" />
+                            -->
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/seekbar_huntwarningtimeout_timetext"
@@ -443,7 +443,7 @@
                                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                                 app:layout_constraintTop_toBottomOf="@+id/colorblindmode_title">
 
-                                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+                                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
                                     android:id="@+id/colorblindmode_leftbutton"
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
@@ -483,7 +483,7 @@
 
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+                                <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
                                     android:id="@+id/colorblindmode_rightbutton"
                                     android:layout_width="48dp"
                                     android:layout_height="48dp"
@@ -537,7 +537,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/font_title">
 
-                            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+                            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
                                 android:id="@+id/font_leftbutton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
@@ -579,7 +579,7 @@
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
-                            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+                            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
                                 android:id="@+id/font_rightbutton"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"

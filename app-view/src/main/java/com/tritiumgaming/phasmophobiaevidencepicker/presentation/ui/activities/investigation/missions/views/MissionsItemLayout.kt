@@ -1,18 +1,16 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.withStyledAttributes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.objectivelayout.MissionsCompletedButton
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.objectivelayout.MissionsSpinner
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel.Companion.NOT_COMPLETE
-import androidx.core.content.withStyledAttributes
 
 class MissionsItemLayout : LinearLayout {
 

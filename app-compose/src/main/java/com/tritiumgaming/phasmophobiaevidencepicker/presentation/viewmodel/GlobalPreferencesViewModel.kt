@@ -17,7 +17,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.contr
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.LanguageHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.PaletteHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.TypographyHandler
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class GlobalPreferencesViewModel(
@@ -72,20 +71,6 @@ class GlobalPreferencesViewModel(
 
     val languageList = languageHandler.languageList
 
-    val currentPaletteUUID = paletteHandler.currentUUID
-    fun setCurrentPaletteUUID(uuid: String) {
-        viewModelScope.launch {
-            paletteHandler.setCurrentUUID(uuid)
-        }
-    }
-
-    val currentTypographyUUID = typographyHandler.currentUUID
-    fun setCurrentTypographyUUID(uuid: String) {
-        viewModelScope.launch {
-            typographyHandler.setCurrentUUID(uuid)
-        }
-    }
-
     val currentLanguageCode = languageHandler.currentLanguageCode
     fun setCurrentLanguageCode(languageCode: String) {
         viewModelScope.launch {
@@ -104,6 +89,20 @@ class GlobalPreferencesViewModel(
     fun setCurrentLanguageCodeByIndex(index: Int) {
         viewModelScope.launch {
             languageHandler.setCurrentLanguageCodeByIndex(index)
+        }
+    }
+
+    val currentPaletteUUID = paletteHandler.currentUUID
+    fun setCurrentPaletteUUID(uuid: String) {
+        viewModelScope.launch {
+            paletteHandler.setCurrentUUID(uuid)
+        }
+    }
+
+    val currentTypographyUUID = typographyHandler.currentUUID
+    fun setCurrentTypographyUUID(uuid: String) {
+        viewModelScope.launch {
+            typographyHandler.setCurrentUUID(uuid)
         }
     }
 
@@ -160,12 +159,6 @@ class GlobalPreferencesViewModel(
     fun setWasRequested(status: Boolean) {
         viewModelScope.launch {
             reviewTrackingRepository.setWasRequested(status)
-        }
-    }
-
-    fun saveSelectedTypographyUUID() {
-        viewModelScope.launch {
-            typographyHandler.saveCurrentUUID()
         }
     }
 

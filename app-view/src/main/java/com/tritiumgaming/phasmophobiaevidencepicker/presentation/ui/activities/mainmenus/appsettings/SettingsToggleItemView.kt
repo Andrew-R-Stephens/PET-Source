@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.withStyledAttributes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 class SettingsToggleItemView : ConstraintLayout {
@@ -15,13 +16,13 @@ class SettingsToggleItemView : ConstraintLayout {
     var isChecked: Boolean
         get() {
             val toggleSwitch = findViewById<SwitchCompat>(this.switchId)
-            Log.d("GPVM", "Checking state of: " + toggleSwitch.id)
+            Log.d("GPVM", "Checking state of: " + toggleSwitch.id + " is " + toggleSwitch.isChecked.toString())
             return toggleSwitch.isChecked
         }
         set(isChecked) {
             val toggleSwitch = findViewById<SwitchCompat>(this.switchId)
-            Log.d("GPVM", "Changing state of: " + toggleSwitch.id)
             toggleSwitch.isChecked = isChecked
+            Log.d("GPVM", "Setting state of: " + toggleSwitch.id + " to " + isChecked.toString())
         }
 
     constructor(context: Context) : super(context) {
@@ -46,14 +47,13 @@ class SettingsToggleItemView : ConstraintLayout {
         inflate(context, R.layout.item_settings_toggle, this)
 
         if (attrs != null) {
-            val typedArray =
-                context.obtainStyledAttributes(attrs, R.styleable.SettingsToggleItemView)
+            context.withStyledAttributes(attrs, R.styleable.SettingsToggleItemView) {
 
-            val description =
-                typedArray.getString(R.styleable.SettingsToggleItemView_settings_toggle_description)
-            setDescription(description)
+                val description =
+                    getString(R.styleable.SettingsToggleItemView_settings_toggle_description)
+                setDescription(description)
 
-            typedArray.recycle()
+            }
         }
 
         initSwitchID(generateViewId())

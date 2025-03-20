@@ -28,12 +28,11 @@ class EvidenceRepository(
 
         for (i in namesArray.indices) {
 
-            val name = namesArray[i]
-            @IntegerRes val idRes = if(i <= idsArray.size) idsArray[i] else 0
-            val id = context.resources.getInteger(idRes)
+            val evidence = EvidenceModel(
+                context.resources.getInteger(if(i <= idsArray.size) idsArray[i] else 0),
+                namesArray[i],
+                typedArray.getResourceId(i, 0))
 
-            val evidence = EvidenceModel(id, name)
-            evidence.icon = typedArray.getResourceId(i, 0)
             evidenceList.add(evidence)
         }
 

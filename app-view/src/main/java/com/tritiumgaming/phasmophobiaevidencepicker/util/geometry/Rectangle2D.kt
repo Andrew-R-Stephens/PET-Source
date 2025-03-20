@@ -1,7 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.util.geometry
 
-import com.tritiumgaming.phasmophobiaevidencepicker.util.geometry.Rectangle2D.Rectangle2DDouble
-import com.tritiumgaming.phasmophobiaevidencepicker.util.geometry.Rectangle2D.Rectangle2DFloat
 import java.io.Serializable
 import kotlin.math.max
 import kotlin.math.min

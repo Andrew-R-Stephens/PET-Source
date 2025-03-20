@@ -5,25 +5,17 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.PermissionsViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.tasks.Task
 import com.google.android.ump.ConsentDebugSettings
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.FormError
 import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AccountManagementService
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AppUpdateManagerService
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.SignInCredentialManager
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.PermissionsViewModel
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -72,7 +64,7 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
         globalPreferencesViewModel.let { globalPreferencesViewModel ->
             changeTheme(globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme)
 
-            if (globalPreferencesViewModel.isAlwaysOn) {
+            if (globalPreferencesViewModel.screenSaverPreference.value) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             }
         }
@@ -104,22 +96,22 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
         }
     }
 
-    /** @param language The desired new language */
-    fun setLanguage(language: String): Boolean {
-        val languageLocale = Locale(language)
-        val currentLocale = Locale.getDefault()
+    /** @param newLanguage The desired new language */
+    fun setLanguage(newLanguage: String): Boolean {
 
-        var isChanged = false
-        if (!(currentLocale.language.equals(languageLocale.language, ignoreCase = true))) {
-            isChanged = true
+        val currentLocale = Locale.getDefault()
+        val newLocale = Locale(newLanguage)
+
+        if (!(currentLocale.language.equals(newLocale.language, ignoreCase = true))) {
+            Locale.setDefault(newLocale)
+            val config = resources.configuration
+            config.setLocale(newLocale)
+            resources.updateConfiguration(config, resources.displayMetrics)
+
+            return true
         }
 
-        Locale.setDefault(languageLocale)
-        val config = resources.configuration
-        config.setLocale(languageLocale)
-        resources.updateConfiguration(config, resources.displayMetrics)
-
-        return isChanged
+        return false
     }
 
     val isPrivacyOptionsRequired: Boolean

@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common
 
-import android.R.attr.onClick
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -22,7 +21,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.comm
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.discord_color_blurple
 import org.jetbrains.annotations.TestOnly
 
 @Preview

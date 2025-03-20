@@ -18,10 +18,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.MissionsItemLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 
 /**
  * ObjectivesFragment class
@@ -124,7 +120,7 @@ class MissionsFragment : InvestigationFragment() {
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
-    public override fun saveStates() { }
+    /*override fun saveStates() { }*/
 
     override fun reset() { }
 

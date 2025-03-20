@@ -62,7 +62,7 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
             }
 
         val huntWarningListener: SanityRunnable.HuntWarningAudioListener? = null
-        globalPreferencesViewModel.currentLanguageAbbr.let { language ->
+        globalPreferencesViewModel.currentLanguageCode.value.let { language ->
             object : SanityRunnable.HuntWarningAudioListener() {
                 private fun createMediaPlayer(language: String): MediaPlayer? {
                     var p: MediaPlayer? = null

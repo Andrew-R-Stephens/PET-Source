@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -34,9 +33,9 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.red_M100
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.JournalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.red_M100
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.yellow_M100
 import com.tritiumgaming.phasmophobiaevidencepicker.util.TextCase
 import org.jetbrains.annotations.TestOnly

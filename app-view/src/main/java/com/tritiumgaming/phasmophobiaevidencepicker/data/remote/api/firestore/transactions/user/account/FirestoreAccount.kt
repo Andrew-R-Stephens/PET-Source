@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account
 
+import com.google.firebase.firestore.CollectionReference
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser.Companion.userDocument
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountCredit
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.properties.FirestoreAccountPreferences
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.FirestoreTransactionHistory
-import com.google.firebase.firestore.CollectionReference
 
 class FirestoreAccount {
     companion object {

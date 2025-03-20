@@ -1,17 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.util
 
-import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParser.END_TAG
-import org.xmlpull.v1.XmlPullParser.START_TAG
-import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
-import java.io.IOException
-import java.io.InputStream
-import java.net.URL
-import java.util.Locale
 
 @Deprecated("Use NewsletterService instead.")
 class RSSParserUtils(

@@ -5,8 +5,8 @@ import android.content.Context
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.AThemeControl
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.AThemeControl
 
 class ColorThemeControl(context: Context) : AThemeControl(context) {
 

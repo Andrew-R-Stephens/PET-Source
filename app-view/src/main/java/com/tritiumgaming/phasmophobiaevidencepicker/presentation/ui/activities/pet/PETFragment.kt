@@ -5,14 +5,11 @@ import android.widget.PopupWindow
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.PermissionsViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.util.NetworkUtils.isNetworkAvailable
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AccountManagementService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.PermissionsViewModel
 
 
 abstract class PETFragment : Fragment, AccountManagementService {
@@ -30,13 +27,12 @@ abstract class PETFragment : Fragment, AccountManagementService {
     protected fun init() {
         setOnBackPressed()
 
-        initViewModels()
         initFirebaseAnalytics()
     }
 
-    protected fun initGlobalPreferencesViewModel() {
+    /*protected fun initGlobalPreferencesViewModel() {
         globalPreferencesViewModel.init(requireContext())
-    }
+    }*/
 
     private fun initFirebaseAnalytics() {
         try { this.analytics = (requireActivity() as PETActivity).firebaseAnalytics }
@@ -69,21 +65,9 @@ abstract class PETFragment : Fragment, AccountManagementService {
         return false
     }
 
-    protected fun checkInternetConnection(): Boolean {
-        return globalPreferencesViewModel.let { globalPreferencesViewModel ->
-            try {
-                return (isNetworkAvailable(
-                    requireContext(), globalPreferencesViewModel.networkPreference))
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-                return false
-            }
-        }
-    }
-
-    protected open fun saveStates() {
+    /*protected open fun saveStates() {
         saveGlobalPreferencesViewModel()
-    }
+    }*/
 
     protected open fun backPressedHandler() {
         if (closePopup()) { return }
@@ -100,7 +84,5 @@ abstract class PETFragment : Fragment, AccountManagementService {
                 })
         } catch (e: IllegalStateException) { e.printStackTrace() }
     }
-
-    protected abstract fun initViewModels()
 
 }

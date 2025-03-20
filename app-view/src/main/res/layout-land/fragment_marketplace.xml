@@ -11,7 +11,7 @@
     android:navigationBarColor="?attr/navigationBarColor"
     android:gravity="center_horizontal|center_vertical">
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout
         android:id="@+id/navHeaderLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider"
         app:layout_constraintWidth_percent=".4">
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountLoginRequestView
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountLoginRequestView
             android:id="@+id/layout_account_requestlogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountDetailsView
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountDetailsView
             android:id="@+id/layout_account_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_account_requestlogin" />
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountObtainCreditsView
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountObtainCreditsView
             android:id="@+id/layout_account_obtainCredits"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

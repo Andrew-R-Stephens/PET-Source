@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavHeaderLayout">
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout78"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
             android:id="@+id/button_left"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
             android:id="@+id/button_right"
             android:layout_width="48dp"
             android:layout_height="48dp"

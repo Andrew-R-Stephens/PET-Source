@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountDetailsView">
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountDetailsView">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_account"

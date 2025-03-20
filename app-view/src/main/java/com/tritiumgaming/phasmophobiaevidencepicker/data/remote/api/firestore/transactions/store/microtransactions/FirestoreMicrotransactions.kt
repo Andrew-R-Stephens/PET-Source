@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.microtransactions
 
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.FirestoreMarketplace.Companion.storeCollection
 import com.google.firebase.firestore.DocumentReference
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.store.FirestoreMarketplace.Companion.storeCollection
 
 class FirestoreMicrotransactions {
     companion object {
