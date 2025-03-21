@@ -53,16 +53,7 @@ class MainMenuActivity : PETActivity(), AppUpdateManagerService {
 
         setContentView(R.layout.activity_mainmenu)
 
-        createConsentInformation()
-    }
-
-    public override fun loadPreferences() {
-        super.loadPreferences()
-
-        //set language
-        /*if (setLanguage(globalPreferencesViewModel.currentLanguageCode.value)) {
-            recreate()
-        }*/
+        createConsentInformation(this)
     }
 
     override fun onResume() {

@@ -11,7 +11,7 @@ import com.google.android.ump.FormError
 import com.google.android.ump.UserMessagingPlatform
 import java.util.concurrent.atomic.AtomicBoolean
 
-interface ConsentManagementService {
+interface AdsConsentManagementService {
 
     var consentInformation: ConsentInformation?
 
@@ -24,10 +24,13 @@ interface ConsentManagementService {
                 == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED)
 
     fun createConsentInformation(activity: Activity) {
+
         val debugSettings = ConsentDebugSettings.Builder(activity)
-            .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER)
+            .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+            //.setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_OTHER)
             .addTestDeviceHashedId("00E2BE3BE3FB3298734CA8B92655E237")
             .addTestDeviceHashedId("B3C272DE5AEAB81CA9CBBCB2A928A38E")
+            .addTestDeviceHashedId("35C63C64AD5C412021F7831FF07C5411")
             .build()
 
         // Create a ConsentRequestParameters object.
@@ -71,8 +74,13 @@ interface ConsentManagementService {
         // TODO: Request an ad.
         // InterstitialAd.load(...);
 
-        val testDeviceIds = listOf("00E2BE3BE3FB3298734CA8B92655E237", "B3C272DE5AEAB81CA9CBBCB2A928A38E")
-        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
+        val testDeviceIds = listOf(
+            "00E2BE3BE3FB3298734CA8B92655E237",
+            "B3C272DE5AEAB81CA9CBBCB2A928A38E",
+            "35C63C64AD5C412021F7831FF07C5411"
+        )
+        val configuration = RequestConfiguration.Builder()
+            .setTestDeviceIds(testDeviceIds).build()
         MobileAds.setRequestConfiguration(configuration)
     }
 

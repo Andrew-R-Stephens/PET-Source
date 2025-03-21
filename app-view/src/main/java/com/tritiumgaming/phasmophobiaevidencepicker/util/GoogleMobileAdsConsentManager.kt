@@ -16,6 +16,7 @@ import com.google.android.ump.UserMessagingPlatform
  * you can choose another consent management platform to capture consent.
  */
 class GoogleMobileAdsConsentManager(private val activity: Activity) {
+
     private val consentInformation: ConsentInformation =
         UserMessagingPlatform.getConsentInformation(activity)
 

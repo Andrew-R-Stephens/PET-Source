@@ -6,49 +6,58 @@ import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.android.gms.ads.MobileAds
-import com.google.android.ump.ConsentDebugSettings
 import com.google.android.ump.ConsentInformation
-import com.google.android.ump.ConsentRequestParameters
-import com.google.android.ump.FormError
-import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AccountManagementService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AdsConsentManagementService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.FirebaseAnalyticsConsentManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import kotlinx.coroutines.launch
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
-abstract class PETActivity : AppCompatActivity(), AccountManagementService {
+abstract class PETActivity : AppCompatActivity(),
+    AccountManagementService, AdsConsentManagementService,
+    FirebaseAnalyticsConsentManagementService {
 
     protected val globalPreferencesViewModel: GlobalPreferencesViewModel by viewModels { GlobalPreferencesViewModel.Factory }
 
     var firebaseAnalytics: FirebaseAnalytics? = null
         protected set
 
-    private var consentInformation: ConsentInformation? = null
+    override var consentInformation: ConsentInformation? = null
+
+    override val isPrivacyOptionsRequired: Boolean
+        // Show a privacy options button if required.
+        get() = (consentInformation?.privacyOptionsRequirementStatus
+                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED)
 
     // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
-    private val isMobileAdsInitializeCalled = AtomicBoolean(false)
+    override val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-        initFirebaseAnalytics()
+        super.onCreate(savedInstanceState)
 
         initViewModels()
         loadPreferences()
+
+        initFirebaseAnalytics()
 
     }
 
     /** Set FirebaseAnalytics consent types to
      * [Consent V2](https://developers.google.com/tag-platform/security/guides/app-consent?platform=android&consentmode=advanced#upgrade-consent-v2). */
     private fun initFirebaseAnalytics() {
+
         //Obtain FirebaseAnalytics instance
         try { firebaseAnalytics = FirebaseAnalytics.getInstance(this)
             Log.d("Firebase", "Obtained instance.")
         } catch (e: IllegalStateException) { e.printStackTrace() }
+
+        initializeFirebaseAnalyticsConsent()
+
     }
 
     protected open fun initViewModels() {
@@ -115,15 +124,11 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
         return false
     }
 
-    val isPrivacyOptionsRequired: Boolean
-        // Show a privacy options button if required.
-        get() = (consentInformation!!.privacyOptionsRequirementStatus
-                == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED)
-
-    protected fun createConsentInformation() {
+    /*protected fun createConsentInformation() {
         val debugSettings = ConsentDebugSettings.Builder(this)
             .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_NOT_EEA)
             .addTestDeviceHashedId("00E2BE3BE3FB3298734CA8B92655E237")
+            .addTestDeviceHashedId("35C63C64AD5C412021F7831FF07C5411")
             .build()
 
         // Create a ConsentRequestParameters object.
@@ -166,7 +171,7 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
 
         // TODO: Request an ad.
         // InterstitialAd.load(...);
-    }
+    }*/
 
     fun setScreenSaverFlag(disableScreenSaver: Boolean) {
         if(disableScreenSaver) {

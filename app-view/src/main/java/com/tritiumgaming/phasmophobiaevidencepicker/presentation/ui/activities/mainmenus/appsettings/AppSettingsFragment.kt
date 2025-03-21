@@ -259,9 +259,9 @@ class AppSettingsFragment : MainMenuFragment() {
 
         // CANCEL BUTTON
         backButton.setOnClickListener { v: View? ->
-            //revertDemoChanges()
             try { v?.let { view -> findNavController(view).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
+            activity?.recreate()
         }
 
         // CONFIRM BUTTON
@@ -402,15 +402,10 @@ class AppSettingsFragment : MainMenuFragment() {
     */
 
     override fun backPressedHandler() {
-        //revertDemoChanges()
-
         try { findNavController(requireView()).popBackStack() }
         catch (e: IllegalStateException) { e.printStackTrace() }
 
-        try {
-            val message = getString(R.string.toast_discardchanges)
-            Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show()
-        } catch (e: IllegalStateException) { e.printStackTrace() }
+        activity?.recreate()
     }
 
     /*
