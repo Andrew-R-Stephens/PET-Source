@@ -12,6 +12,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.applanguages.views.LanguagesAdapterView
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.NavHeaderLayout
 
 class AppLanguageFragment : MainMenuFragment() {
@@ -27,37 +28,38 @@ class AppLanguageFragment : MainMenuFragment() {
 
         // INITIALIZE VIEWS
         val navHeaderLayout = view.findViewById<NavHeaderLayout>(R.id.navHeaderLayout)
-        val cancelButton = navHeaderLayout.findViewById<View>(R.id.button_left)
-        val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_right)
+        val backButton = navHeaderLayout.findViewById<View>(R.id.button_left)
+        //val confirmButton = navHeaderLayout.findViewById<View>(R.id.button_right)
 
         val recyclerViewLanguages = view.findViewById<RecyclerView>(R.id.recyclerview_languageslist)
 
         // LISTENERS
-        confirmButton.setOnClickListener { v: View? ->
-            mainMenuViewModel.languageSelectedOriginal = -1
+        backButton.setOnClickListener { v: View? ->
             try { v?.let { findNavController(v).popBackStack() } }
             catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
-        cancelButton.setOnClickListener { handleDiscardChanges() }
-
         // DATA
-        globalPreferencesViewModel.setTempLanguageCode(
-            globalPreferencesViewModel.currentLanguageCode.value
-        )
         globalPreferencesViewModel.languageList.let { languageList ->
+            val selectedIndex = languageList.indexOfFirst {
+                it.abbreviation == globalPreferencesViewModel.currentLanguageCode.value }
+
             for (i in languageList.indices) {
                 val adapter = LanguagesAdapterView(
-                    languageList,
-                    object: LanguagesAdapterView.OnLanguageListener {
+                    languages = languageList,
+                    defaultPosition = selectedIndex,
+                    onLanguageListener = object: LanguagesAdapterView.OnLanguageListener {
                         override fun onNoteClick(position: Int) {
-                            globalPreferencesViewModel.setTempLanguageCode(
-                                languageList[position].abbreviation
-                            )
-                            mainMenuViewModel.canRefreshFragment = true
+                            globalPreferencesViewModel.setCurrentLanguageCode(
+                                languageList[position].abbreviation)
 
-                            this@AppLanguageFragment.configureLanguage()
-                            this@AppLanguageFragment.refreshFragment()
+                            try {
+                                (activity as PETActivity).setLanguage(
+                                    globalPreferencesViewModel.currentLanguageCode.value)
+                            }
+                            catch (e: IllegalStateException) { e.printStackTrace() }
+
+                            recyclerViewLanguages.invalidate()
                         }
                     })
 
@@ -67,49 +69,6 @@ class AppLanguageFragment : MainMenuFragment() {
             }
         }
     }
-
-    private fun handleDiscardChanges() {
-        configureLanguage()
-
-        try { findNavController(requireView()).popBackStack() }
-        catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
-    private fun configureLanguage() {
-        globalPreferencesViewModel.setCurrentLanguageCode(
-            globalPreferencesViewModel.tempLanguageCode.value
-        )
-        globalPreferencesViewModel.currentLanguageCode.value.let{ currLangAbbr ->
-            try {
-                (requireActivity() as MainMenuActivity).setLanguage(currLangAbbr)
-            }
-            catch (e: IllegalStateException) { e.printStackTrace() }
-        }
-    }
-
-    override fun backPressedHandler() {
-        handleDiscardChanges()
-
-        val message = getString(R.string.toast_discardchanges)
-        try { Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
-        catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
-    public override fun refreshFragment() {
-        mainMenuViewModel.let { mainMenuViewModel ->
-            if (mainMenuViewModel.canRefreshFragment) {
-                super.refreshFragment()
-                mainMenuViewModel.canRefreshFragment = false
-            }
-        }
-    }
-
-    /*private fun saveStates() {
-        globalPreferencesViewModel.let { globalPreferencesViewModel ->
-            try { globalPreferencesViewModel.saveToFile(requireContext())
-            } catch (e: IllegalStateException) { e.printStackTrace() }
-        }
-    }*/
 
     override fun onPause() {
         // SAVE PERSISTENT DATA

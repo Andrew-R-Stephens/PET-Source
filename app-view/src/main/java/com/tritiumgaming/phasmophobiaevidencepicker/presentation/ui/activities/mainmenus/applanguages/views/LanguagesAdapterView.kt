@@ -12,16 +12,18 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views
 
 class LanguagesAdapterView(
     private val languages: ArrayList<LanguageObject>,
+    defaultPosition: Int = 0,
     onLanguageListener: OnLanguageListener
 ) : RecyclerView.Adapter<LanguagesAdapterView.ViewHolder>() {
     private val onLanguageListener: OnLanguageListener
 
     companion object {
-        private var mPreviousIndex = 0
+        private var mPreviousIndex = -1
     }
 
     init {
         this.onLanguageListener = onLanguageListener
+        mPreviousIndex = defaultPosition
     }
 
     class ViewHolder(view: View, onLanguageListener: OnLanguageListener) :

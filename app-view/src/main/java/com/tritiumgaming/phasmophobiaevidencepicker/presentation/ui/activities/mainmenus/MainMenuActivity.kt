@@ -59,14 +59,10 @@ class MainMenuActivity : PETActivity(), AppUpdateManagerService {
     public override fun loadPreferences() {
         super.loadPreferences()
 
-        globalPreferencesViewModel.let { globalPreferencesViewModel ->
-            globalPreferencesViewModel.incrementAppTimesOpened()
-
-            //set language
-            if (setLanguage(globalPreferencesViewModel.currentLanguageCode.value)) {
-                recreate()
-            }
-        }
+        //set language
+        /*if (setLanguage(globalPreferencesViewModel.currentLanguageCode.value)) {
+            recreate()
+        }*/
     }
 
     override fun onResume() {

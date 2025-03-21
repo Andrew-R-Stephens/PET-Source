@@ -16,13 +16,11 @@ class SettingsToggleItemView : ConstraintLayout {
     var isChecked: Boolean
         get() {
             val toggleSwitch = findViewById<SwitchCompat>(this.switchId)
-            Log.d("GPVM", "Checking state of: " + toggleSwitch.id + " is " + toggleSwitch.isChecked.toString())
             return toggleSwitch.isChecked
         }
         set(isChecked) {
             val toggleSwitch = findViewById<SwitchCompat>(this.switchId)
             toggleSwitch.isChecked = isChecked
-            Log.d("GPVM", "Setting state of: " + toggleSwitch.id + " to " + isChecked.toString())
         }
 
     constructor(context: Context) : super(context) {

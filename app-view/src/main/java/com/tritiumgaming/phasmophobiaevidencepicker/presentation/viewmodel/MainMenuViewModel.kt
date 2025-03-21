@@ -15,19 +15,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.startscreen.Ani
  *
  * @author TritiumGamingStudios
  */
-/*class MainMenuViewModel(application: Application): AndroidViewModel(application) {
-
-    val animationModel: AnimationModel = AnimationModel()
-    var canRefreshFragment = true
-    var languageSelectedOriginal: Int = -1
-
-    var adRequest: AdRequest? = null
-
-    fun hasAdRequest(): Boolean {
-        return adRequest != null
-    }
-}*/
-
 class MainMenuViewModel(
     val appInfoRepository: AppInfoRepository
 ): ViewModel() {
@@ -37,11 +24,6 @@ class MainMenuViewModel(
     var adRequest: AdRequest? = null
 
     val specialThanksList = appInfoRepository.specialThanksList
-
-    @Deprecated("Unused in Composables")
-    var canRefreshFragment = true
-    @Deprecated("Unused in Composables")
-    var languageSelectedOriginal: Int = -1
 
     fun hasAdRequest(): Boolean {
         return adRequest != null

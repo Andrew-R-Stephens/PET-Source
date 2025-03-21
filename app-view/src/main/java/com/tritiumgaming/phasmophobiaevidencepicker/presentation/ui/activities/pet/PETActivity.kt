@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.MobileAds
 import com.google.android.ump.ConsentDebugSettings
 import com.google.android.ump.ConsentInformation
@@ -15,14 +16,13 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AccountManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.PermissionsViewModel
+import kotlinx.coroutines.launch
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class PETActivity : AppCompatActivity(), AccountManagementService {
 
     protected val globalPreferencesViewModel: GlobalPreferencesViewModel by viewModels { GlobalPreferencesViewModel.Factory }
-    private val permissionsViewModel: PermissionsViewModel by viewModels()
 
     var firebaseAnalytics: FirebaseAnalytics? = null
         protected set
@@ -61,13 +61,14 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
 
     protected open fun loadPreferences() {
         //set colorSpace
-        globalPreferencesViewModel.let { globalPreferencesViewModel ->
-            changeTheme(globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme)
+        changeTheme(globalPreferencesViewModel.colorTheme, globalPreferencesViewModel.fontTheme)
 
-            if (globalPreferencesViewModel.screenSaverPreference.value) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        lifecycleScope.launch {
+            globalPreferencesViewModel.screenSaverPreference.collect {
+                setScreenSaverFlag(it)
             }
         }
+
     }
 
     /** Sets the Skin Theme based on User Preferences.
@@ -166,4 +167,13 @@ abstract class PETActivity : AppCompatActivity(), AccountManagementService {
         // TODO: Request an ad.
         // InterstitialAd.load(...);
     }
+
+    fun setScreenSaverFlag(disableScreenSaver: Boolean) {
+        if(disableScreenSaver) {
+            this@PETActivity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        } else {
+            this@PETActivity.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+    }
+
 }

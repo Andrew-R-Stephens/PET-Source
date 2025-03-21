@@ -45,11 +45,11 @@ class LanguageHandler(
         repository.setCurrentLanguageCode(languageCode)
     }
 
-    private var _tempLanguageCode = MutableStateFlow(Locale.getDefault().language)
+    /*private var _tempLanguageCode = MutableStateFlow(Locale.getDefault().language)
     val tempLanguageCode = _tempLanguageCode.asStateFlow()
     fun setTempLanguageCode(languageCode: String) {
         _tempLanguageCode.update { languageCode }
-    }
+    }*/
 
     suspend fun setCurrentLanguageCodeByIndex(position: Int) {
         if (position < 0 || position >= languageList.size) {

@@ -15,6 +15,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPrefer
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ReviewTrackingRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.GlobalPreferencesHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.LanguageHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.theming.subsets.ColorThemeControl
@@ -72,6 +73,7 @@ class GlobalPreferencesViewModel(
         viewModelScope.launch {
             languageHandler.initFlow()
         }
+
     }
 
     fun init(context: Context) {
@@ -95,23 +97,35 @@ class GlobalPreferencesViewModel(
     val languageList = languageHandler.languageList
 
     val currentLanguageCode = languageHandler.currentLanguageCode
-    fun setCurrentLanguageCode(languageCode: String) {
+    fun setCurrentLanguageCode(languageCode: String, activity: PETActivity? = null) {
         viewModelScope.launch {
             languageHandler.setCurrentLanguageCode(languageCode)
         }
-    }
-
-    val tempLanguageCode = languageHandler.tempLanguageCode
-    fun setTempLanguageCode(languageCode: String) {
-        viewModelScope.launch {
-            languageHandler.setTempLanguageCode(languageCode)
+        activity?.let {
+            try { activity.setLanguage(languageCode) }
+            catch (e: Exception) { e.printStackTrace() }
         }
     }
 
+    /*val tempLanguageCode = languageHandler.tempLanguageCode
+    fun setTempLanguageCode(languageCode: String, activity: PETActivity? = null) {
+        viewModelScope.launch {
+            languageHandler.setTempLanguageCode(languageCode)
+        }
+        activity?.let {
+            try { activity.setLanguage(languageCode) }
+            catch (e: Exception) { e.printStackTrace() }
+        }
+    }*/
+
     val screenSaverPreference = globalPreferencesHandler.disableScreensaver
-    fun setScreenSaverPreference(disable: Boolean) {
+    fun setScreenSaverPreference(disable: Boolean, activity: PETActivity? = null) {
         viewModelScope.launch {
             globalPreferencesHandler.setDisableScreenSaver(disable)
+        }
+        activity?.let {
+            try { activity.setScreenSaverFlag(disable) }
+            catch (e: Exception) { e.printStackTrace() }
         }
     }
 
