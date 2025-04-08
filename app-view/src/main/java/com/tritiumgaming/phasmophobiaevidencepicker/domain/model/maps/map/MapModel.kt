@@ -4,7 +4,7 @@ import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory.MapDesBlueprint
 
 class MapModel {
-    var mapId: Int
+    var mapId: String = ""
     var mapName: String = ""
     var mapNameShort: String = ""
     var mapDimensions: MapDimensionModel
@@ -24,7 +24,7 @@ class MapModel {
         }
 
     constructor() {
-        mapId = 0
+        mapId = "undefined"
         mapName = "undefined"
         mapNameShort = "undefined"
         mapDimensions = MapDimensionModel(0, 0)

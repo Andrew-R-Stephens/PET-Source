@@ -16,7 +16,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
@@ -68,8 +68,7 @@ class GhostView : ConstraintLayout {
         val iconRowLayout = findViewById<LinearLayoutCompat>(R.id.icon_container)
 
         this.investigationViewModel = investigationViewModel
-        this.ghostModel = investigationViewModel.investigationModel
-            .ghostScoreModel.ghostScores.value[groupIndex].ghostModel
+        this.ghostModel = investigationViewModel.ghostScores.value[groupIndex].ghostModel
 
         ghostModel?.let { ghost ->
 
@@ -87,10 +86,12 @@ class GhostView : ConstraintLayout {
 
                     evidenceIcon.setImageResource(currentEvidence.icon)
 
-                    when (currentEvidence.ruling) {
-                        Ruling.POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor)
-                        Ruling.NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor)
-                        Ruling.NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor)
+                    investigationViewModel.getRuledEvidence(currentEvidence)?.ruling?.value?.let { ruling ->
+                        when (ruling) {
+                            Ruling.POSITIVE -> evidenceIcon.setColorFilter(positiveSelColor)
+                            Ruling.NEGATIVE -> evidenceIcon.setColorFilter(negativeSelColor)
+                            Ruling.NEUTRAL -> evidenceIcon.setColorFilter(neutralSelColor)
+                        }
                     }
                     k++
                 }
@@ -123,7 +124,10 @@ class GhostView : ConstraintLayout {
                         val evidenceIcon = iconRowLayout.getChildAt(index)
                             .findViewById<AppCompatImageView>(R.id.evidence_icon)
                         evidenceModel.let {
-                            evidenceIcon.setColorFilter(getRulingColor(it.ruling))
+                            investigationViewModel.getRuledEvidence(it)?.ruling?.value?.let { ruling ->
+                                evidenceIcon.setColorFilter(getRulingColor(ruling))
+                            }
+
                         }
                     }
                 }
@@ -150,7 +154,7 @@ class GhostView : ConstraintLayout {
                 val evidenceIcon =
                     iconRowLayout.getChildAt(index) as AppCompatImageView
 
-                evidence.ruling.let { ruling ->
+                investigationViewModel?.getRuledEvidence(evidence)?.ruling?.value?.let { ruling ->
                     evidenceIcon.setColorFilter(getRulingColor(ruling))
                     getRulingColor(ruling)
                 }
@@ -171,11 +175,10 @@ class GhostView : ConstraintLayout {
     private fun redrawGhostRejectionStatus(ghost: GhostModel, index: Int, animate: Boolean) {
         val statusIcon = findViewById<AppCompatImageView>(R.id.icon_status)
 
-        investigationViewModel?.investigationModel?.let { investigationModel ->
-            investigationModel.getRejectionPile()?.get(index)?.let { rejectionStatus ->
-                if (rejectionStatus) { statusIcon.setImageLevel(1) }
-                else {
-                    val score = investigationModel.ghostScoreModel.ghostScores.value[index].score
+        investigationViewModel?.rejectionPileUi?.value[index].let { rejectionStatus ->
+            if (rejectionStatus == true) { statusIcon.setImageLevel(1) }
+            else {
+                investigationViewModel?.ghostScores?.value[index]?.score?.value?.let { score ->
                     when {
                         (score <= -5) -> statusIcon.setImageLevel(2 + (Math.random() * 3).toInt())
                         score == 3 -> statusIcon.setImageLevel(5)
@@ -183,20 +186,18 @@ class GhostView : ConstraintLayout {
                     }
                 }
             }
-
         }
+
 
     }
 
     inner class OnSwipeListener(private val index: Int) : SimpleOnGestureListener() {
         override fun onFling(
             e1: MotionEvent?, e2: MotionEvent, velX: Float, velY: Float): Boolean {
-            investigationViewModel?.investigationModel.let { investigationModel ->
-                investigationModel?.swapStatusInRejectedPile(index)
-                investigationModel?.ghostScoreModel?.updateOrder()
-                investigationModel?.ghostRepository?.getAt(index)?.let { ghostModel ->
-                    redrawGhostRejectionStatus(ghostModel, index, true)
-                }
+            investigationViewModel?.apply {
+                swapStatusInRejectedPile(index)
+                reorderGhostScoreModel()
+                redrawGhostRejectionStatus(ghostRepository.getAt(index), index, true)
             }
             return true
         }

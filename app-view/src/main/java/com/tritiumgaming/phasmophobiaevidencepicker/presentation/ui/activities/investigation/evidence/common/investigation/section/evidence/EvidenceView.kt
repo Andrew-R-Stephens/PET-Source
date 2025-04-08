@@ -59,26 +59,21 @@ class EvidenceView : ConstraintLayout {
     ) {
         val nameView = findViewById<AppCompatTextView>(R.id.label_name)
 
-        this.evidenceModel = investigationViewModel.investigationModel
-            .evidenceRepository.evidenceList[groupIndex]
+        this.evidenceModel = investigationViewModel.evidenceRepository.evidenceList[groupIndex]
 
-        investigationViewModel.investigationModel.let{ investigationModel ->
-            investigationModel.evidenceRepository.evidenceList[groupIndex]
-                .name.let{ resId ->
-                    nameView?.text = context.getString(resId)
-                }
-            investigationModel.let {
-                val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
-                radioGroupComposable?.setContent {
-                    RulingGroup(
-                        investigationModel = it,
-                        groupIndex = groupIndex,
-                        onClick = { onSelectEvidenceIcon(ghostList) }
-                    )
-                }
+        investigationViewModel.evidenceRepository.evidenceList[groupIndex]
+            .name.let{ resId ->
+                nameView?.text = context.getString(resId)
             }
-        }
 
+        val radioGroupComposable = findViewById<ComposeView>(R.id.radioGroup)
+        radioGroupComposable?.setContent {
+            RulingGroup(
+                investigationViewModel = investigationViewModel,
+                groupIndex = groupIndex,
+                onClick = { onSelectEvidenceIcon(ghostList) }
+            )
+        }
 
         visibility = INVISIBLE
         alpha = 0f
@@ -103,7 +98,7 @@ class EvidenceView : ConstraintLayout {
     }
 
     private fun onSelectEvidenceIcon(ghostContainer: LinearLayout) {
-        evidenceViewListener?.onAttemptInvalidate()
+        //evidenceViewListener?.onAttemptInvalidate()
 
         val parentScroller = (ghostContainer.parent as ScrollView)
         parentScroller.smoothScrollTo(0, 0)

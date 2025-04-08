@@ -1,21 +1,16 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.data.repository
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.AchievementsStoreModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.equipment.EquipmentStoreModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.PossessionsStoreModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.CodexAchievements
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.equipment.CodexEquipment
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.CodexPossessions
 
 class CodexRepository(
     context: Context
 ) {
 
-    val achievementsStore = AchievementsStoreModel()
-    val equipmentStore = EquipmentStoreModel()
-    val possessionsStore = PossessionsStoreModel()
+    val achievements = CodexAchievements(context)
+    val equipment = CodexEquipment(context)
+    val possessions = CodexPossessions(context)
 
-    init {
-        achievementsStore.init(context)
-        equipmentStore.init(context)
-        possessionsStore.init(context)
-    }
 }

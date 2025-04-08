@@ -3,26 +3,16 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-abstract class ItemStoreGroupModel {
+abstract class ItemStoreGroup {
 
     @StringRes
     var nameData: Int = 0
-    private val itemData = ArrayList<ItemStoreItemModel>()
+    private val itemData = ArrayList<ItemStoreItem>()
 
-    @get:DrawableRes
     @DrawableRes
     var paginationIcon: Int = 0
 
-    fun addItem(item: ItemStoreItemModel) {
-        itemData.add(item)
-    }
-
-    fun getItemDataAt(itemIndex: Int): ItemStoreItemModel {
-        return itemData[itemIndex]
-    }
-
-    val size: Int
-        get() = itemData.size
+    val size: Int = itemData.size
 
     val itemImages: ArrayList<Int>
         get() {
@@ -32,4 +22,12 @@ abstract class ItemStoreGroupModel {
             }
             return images
         }
+    fun addItem(item: ItemStoreItem) {
+        itemData.add(item)
+    }
+
+    fun getItemDataAt(itemIndex: Int): ItemStoreItem {
+        return itemData[itemIndex]
+    }
+
 }

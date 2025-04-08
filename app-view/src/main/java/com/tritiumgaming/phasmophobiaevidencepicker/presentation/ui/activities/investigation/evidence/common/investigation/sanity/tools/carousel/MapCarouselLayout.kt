@@ -28,31 +28,29 @@ class MapCarouselLayout : SanityCarouselLayout {
 
         leftListener = object : CarouselButtonListener() {
             override fun onAction() {
-                investigationViewModel.mapCarouselModel?.decrementIndex()
+                investigationViewModel.decrementMapIndex()
                 Log.d("Carousel", "Decrementing Map")
-                investigationViewModel.sanityModel?.reset()
+                investigationViewModel.resetSanityHandler()
             }
         }
 
         rightListener = object : CarouselButtonListener() {
             override fun onAction() {
-                investigationViewModel.mapCarouselModel?.incrementIndex()
+                investigationViewModel.incrementMapIndex()
                 Log.d("Carousel", "Incrementing Map")
-                investigationViewModel.sanityModel?.reset()
+                investigationViewModel.resetSanityHandler()
             }
         }
 
-        investigationViewModel.mapCarouselModel?.currentName?.let { nameRes ->
+        investigationViewModel.currentMapName.value.let { nameRes ->
             setName(context.getString(nameRes).split(" ")[0])
         }
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel.mapCarouselModel?.currentIndex?.collectLatest {
-                investigationViewModel.mapCarouselModel?.currentName?.let { nameRes ->
-                    setName(context.getString(nameRes).split(" ")[0])
-                }
+            investigationViewModel.currentMapIndex.collectLatest {
+                setName(context.getString(investigationViewModel.currentMapName.value).split(" ")[0])
             }
         }
     }

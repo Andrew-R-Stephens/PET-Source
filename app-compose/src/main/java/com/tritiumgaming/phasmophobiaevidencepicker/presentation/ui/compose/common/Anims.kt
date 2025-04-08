@@ -32,9 +32,7 @@ fun NewsAlert(
     @DrawableRes alertDrawableRes: Int = R.drawable.ic_notify,
     onClick: () -> Unit = {}
 ) {
-    val rememberActive by remember{ mutableStateOf(isActive) }
-
-    val infiniteTransition = rememberInfiniteTransition(label = "")
+    val infiniteTransition = rememberInfiniteTransition()
 
     Box(
         modifier = modifier
@@ -52,8 +50,7 @@ fun NewsAlert(
             )
         }
 
-        val opacity = if (rememberActive) {
-            infiniteTransition.animateFloat(
+        val opacity by infiniteTransition.animateFloat(
                 initialValue = .4f,
                 targetValue = .9f,
                 animationSpec = infiniteRepeatable(
@@ -63,14 +60,13 @@ fun NewsAlert(
                     ),
                     repeatMode = RepeatMode.Reverse
                 ), label = ""
-            ).value
-        } else 0f
+            )
 
         val alertScale = if(baseDrawableId != null) .5f else 1f
 
         Image(
             modifier = Modifier
-                .alpha(opacity)
+                .alpha(if(isActive) { opacity } else 0f )
                 .fillMaxSize(fraction = alertScale)
                 .align(Alignment.BottomEnd),
             painter = painterResource(id = alertDrawableRes),

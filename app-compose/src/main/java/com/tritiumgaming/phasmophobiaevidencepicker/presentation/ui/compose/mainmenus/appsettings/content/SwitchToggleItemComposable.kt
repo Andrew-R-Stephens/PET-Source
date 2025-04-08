@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -119,7 +120,7 @@ private fun CSwitch(
 ) {
 
     val rememberLabel by remember { mutableStateOf(label) }
-    var checkedState = checked.collectAsState()
+    var checkedState = checked.collectAsStateWithLifecycle()
 
     Row(
         modifier = Modifier

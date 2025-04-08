@@ -9,7 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.timer.PhaseTimerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.timer.TimerHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.FlashBackground
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.FlashState
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
@@ -32,8 +32,8 @@ abstract class SanityWarningView : ConstraintLayout {
     private var inactiveColor: Int = Color.WHITE
     private var activeColor: Int = Color.WHITE
 
-    protected var thisPhase: PhaseTimerModel.Phase = PhaseTimerModel.Phase.SETUP
-    protected var currentPhase: PhaseTimerModel.Phase? = null
+    protected var thisPhase: TimerHandler.Phase = TimerHandler.Phase.SETUP
+    protected var currentPhase: TimerHandler.Phase? = null
 
     private var canFlash: Boolean = true
     protected open var activeCondition: () -> Boolean = { false }
@@ -59,9 +59,7 @@ abstract class SanityWarningView : ConstraintLayout {
     open fun init(investigationViewModel: InvestigationViewModel) {
         this.investigationViewModel = investigationViewModel
 
-        investigationViewModel.timerModel?.currentPhase?.value?.let { value ->
-            currentPhase = value
-        }
+        currentPhase = investigationViewModel.currentPhase.value
 
         initObservables()
 
@@ -73,16 +71,16 @@ abstract class SanityWarningView : ConstraintLayout {
             when(activeCondition()) {
                 true -> {
                     when (currentPhase) {
-                        PhaseTimerModel.Phase.HUNT -> {
+                        TimerHandler.Phase.HUNT -> {
                             if (currentPhase == thisPhase)
-                                if(investigationViewModel?.phaseWarnModel?.canFlash?.value == true) {
+                                if(investigationViewModel?.canFlash?.value == true) {
                                     FlashState.ACTIVE_ANIMATED
                                 } else { FlashState.ACTIVE_STEADY }
 
                             else { FlashState.ACTIVE_STEADY }
                         }
 
-                        PhaseTimerModel.Phase.SETUP, PhaseTimerModel.Phase.ACTION -> {
+                        TimerHandler.Phase.SETUP, TimerHandler.Phase.ACTION -> {
                             FlashState.ACTIVE_STEADY
                         }
 
@@ -102,13 +100,13 @@ abstract class SanityWarningView : ConstraintLayout {
 
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel?.timerModel?.currentPhase?.collectLatest {
+            investigationViewModel?.currentPhase?.collectLatest {
                 currentPhase = it
                 update()
             }
         }
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel?.phaseWarnModel?.canFlash?.collectLatest {
+            investigationViewModel?.canFlash?.collectLatest {
                 update()
             }
         }

@@ -57,14 +57,14 @@ class PhaseTimerLayout : ConstraintLayout {
         this.investigationViewModel = investigationViewModel
 
         playToggleButton.setOnClickListener {
-            investigationViewModel.timerModel?.toggleTimer()
+            investigationViewModel.toggleTimer()
         }
 
         skipButton.setOnClickListener {
-            investigationViewModel.timerModel?.fastForwardTimer(0)
+            investigationViewModel.fastForwardTimer(0)
         }
 
-        phaseTimerTextView?.text = investigationViewModel.timerModel?.displayTime
+        phaseTimerTextView?.text = investigationViewModel.displayTime()
         setPlayButtonIcon()
 
         initObservables()
@@ -72,26 +72,26 @@ class PhaseTimerLayout : ConstraintLayout {
 
     private fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel.timerModel?.paused?.collectLatest {
+            investigationViewModel.isTimerPaused.collectLatest {
                 setPlayButtonIcon()
             }
         }
 
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel.timerModel?.timeRemaining?.collectLatest {
-                phaseTimerTextView?.text = investigationViewModel.timerModel?.displayTime
+            investigationViewModel.timeRemaining.collectLatest {
+                phaseTimerTextView?.text = investigationViewModel.displayTime()
             }
         }
 
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
-                phaseTimerTextView?.text = investigationViewModel.timerModel?.displayTime
+            investigationViewModel.currentDifficultyIndex.collectLatest {
+                phaseTimerTextView?.text = investigationViewModel.displayTime()
             }
         }
     }
 
     private fun setPlayButtonIcon() {
         playToggleButton.drawable.level =
-            states[investigationViewModel.timerModel?.paused?.value == true] ?: 0
+            states[investigationViewModel.isTimerPaused.value == true] ?: 0
     }
 }

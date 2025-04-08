@@ -43,6 +43,7 @@
     <string name="settings_extrasettings">Configurações extras</string>
     <string name="settings_appearancesettings">Aparência</string>
     <string name="settings_fontstylesettings">Estilo de fonte</string>
+    <string name="settings_adsconsentcontrolsection">Anúncios/Configurações do GDPR</string>
     <string name="settings_adsconsentcontrolsettings">Configurações do GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Editar</string>
     <string name="settings_screenalwayson">Mantenha sempre a tela ligada</string>

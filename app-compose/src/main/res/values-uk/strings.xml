@@ -106,6 +106,7 @@
     <!-- Page Details -->
     <!-- Team Data -->
     <!-- Solo/Team Data -->
+    <string name="investigation_your_sanity_level_title">Ваш рівень здорового глузду</string>
     <string name="investigation_timer_label">Час підготовки:</string>
     <string name="investigation_timer_difficulty_default">Жодного</string>
     <string name="investigation_timer_difficulty_1">Любитий</string>

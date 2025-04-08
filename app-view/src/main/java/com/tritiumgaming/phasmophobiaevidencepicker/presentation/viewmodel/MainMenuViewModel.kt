@@ -25,10 +25,6 @@ class MainMenuViewModel(
 
     val specialThanksList = appInfoRepository.specialThanksList
 
-    fun hasAdRequest(): Boolean {
-        return adRequest != null
-    }
-
     class MainMenuFactory(
         private val appInfoRepository: AppInfoRepository
     ) : ViewModelProvider.Factory {

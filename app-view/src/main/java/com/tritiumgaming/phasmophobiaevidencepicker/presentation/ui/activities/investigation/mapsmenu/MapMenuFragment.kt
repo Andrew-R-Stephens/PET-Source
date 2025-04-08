@@ -49,7 +49,8 @@ class MapMenuFragment : MapFragment() {
                             System.gc()
 
                             mapViewModel.currentMapIndex = position
-                            mapViewModel.currentMapModel = mapListModel.getMapById(position)
+                            val mapId = mapViewModel.currentSimpleMap.mapId
+                            mapViewModel.currentComplexMap = mapListModel.getMapById(getString(mapId))
 
                             navigateToMapView(itemView)
                         }
@@ -59,20 +60,7 @@ class MapMenuFragment : MapFragment() {
             getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
     }
 
-    /*@Throws(Exception::class)
-    private fun readMapsDataFromFile(): MapListModel? {
-        val mapFileIO = MapFileIO()
-        val reader = mapFileIO.mapFileReader
-
-        mapFileIO.readFile(requireActivity().assets, getString(R.string.mapsJson), reader)
-        mapListModel = MapListModel(reader.worldMapDeserializer)
-        mapListModel?.orderRooms()
-
-        return mapListModel
-    }*/
-
     private fun navigateToMapView(view: View) {
-        //findNavController(view).navigate(R.id.mapViewerFragment)
         try {
             findNavController(view).navigate(R.id.action_mapMenuFragment_to_mapViewerFragment)
         } catch (e: IllegalArgumentException) {
@@ -128,6 +116,4 @@ class MapMenuFragment : MapFragment() {
     override fun reset() {
     }
 
-    /*override fun saveStates() {
-    }*/
 }

@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel
 
+import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -8,6 +9,9 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.MissionRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.missions.MissionsListModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 class ObjectivesViewModel(
     missionRepository: MissionRepository
@@ -19,21 +23,28 @@ class ObjectivesViewModel(
     var spinnerCompletionStatus: BooleanArray = BooleanArray(3) { NOT_COMPLETE }
 
     /* Ghost name */
-    var ghostName: String? = null
-        get() { return (field ?: "")}
+    private val _ghostName = MutableStateFlow("")
+    val ghostName = _ghostName.asStateFlow()
+    fun setGhostName(ghostName: String? = null) {
+        _ghostName.update { ghostName ?: "" }
+    }
 
     /* Response */
-    var responseState: Response = UNKNOWN // alone , group
+    private var _responseState = MutableStateFlow<Response>(UNKNOWN) // alone , group
+    val responseState = _responseState.asStateFlow()
+    fun setResponseState(response: Response = UNKNOWN) {
+        _responseState.update { response }
+    }
 
     fun toggleCompletionStatus(spinnerIndex: Int) {
         spinnerCompletionStatus[spinnerIndex] = !spinnerCompletionStatus[spinnerIndex]
     }
 
     fun reset() {
-        ghostName = null
+        setGhostName()
         missionsListModel?.reset()
         spinnerCompletionStatus.all { NOT_COMPLETE }
-        responseState = UNKNOWN
+        _responseState.update { UNKNOWN }
     }
 
     class ObjectivesFactory(

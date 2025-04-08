@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils
@@ -31,8 +32,8 @@ fun SanityMeterView(
     investigationViewModel: InvestigationViewModel,
     modifier: Modifier = Modifier
 ) {
-    val sanityLevel = investigationViewModel.sanityModel?.sanityLevel?.collectAsState()
-    val sanityPercent = (sanityLevel?.value ?: 1f) * .01f
+    val sanityLevel = investigationViewModel.sanityModel.sanityLevel.collectAsStateWithLifecycle()
+    val sanityPercent = sanityLevel.value * .01f
 
     Box(
         modifier = modifier

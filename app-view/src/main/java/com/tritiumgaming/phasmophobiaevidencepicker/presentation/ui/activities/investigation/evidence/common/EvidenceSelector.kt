@@ -1,34 +1,36 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationJournal
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.SelectionState.Companion.Negative
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.SelectionState.Companion.Positive
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils
 
 @Composable
 fun RulingGroup(
     modifier: Modifier = Modifier,
-    investigationModel: InvestigationModel,
+    investigationViewModel: InvestigationViewModel,
     groupIndex: Int = 0,
     onClick: () -> Unit = {}
 ) {
-    val radioButtonState by investigationModel.radioButtonsChecked.collectAsState()
+    val radioButtonState by investigationViewModel.evidenceRadioButtonUi.collectAsStateWithLifecycle()
 
     Row(
         modifier = modifier
@@ -36,9 +38,9 @@ fun RulingGroup(
             .fillMaxSize(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        EvidenceModel.Ruling.entries.forEachIndexed { index, _ ->
+        Ruling.entries.forEachIndexed { index, _ ->
             RulingSelector(
-                investigationModel = investigationModel,
+                investigationViewModel = investigationViewModel,
                 groupIndex = groupIndex,
                 rulingType = SelectionState(index),
                 rulingState = index == radioButtonState[groupIndex],
@@ -56,13 +58,13 @@ fun RulingGroup(
 @Composable
 fun RulingSelector(
     modifier: Modifier = Modifier,
-    investigationModel: InvestigationModel,
+    investigationViewModel: InvestigationViewModel,
     groupIndex: Int = 0,
     rulingType: SelectionState = SelectionState.Neutral,
     rulingState: Boolean = true,
     onSelection: () -> Unit = {}
 ) {
-    val radioButtons = investigationModel.radioButtonsChecked.collectAsState()
+    val radioButtons = investigationViewModel.evidenceRadioButtonUi.collectAsStateWithLifecycle()
 
     val negativeColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.negativeSelColor))
     val neutralColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.neutralSelColor))
@@ -78,14 +80,10 @@ fun RulingSelector(
     IconButton(
         modifier = modifier,
         onClick = {
-            investigationModel.setRadioButtonChecked(groupIndex, rulingType.value)
-            investigationModel.evidenceRepository.evidenceList[groupIndex].ruling =
-                EvidenceModel.Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]]
-            investigationModel.ghostScoreModel.updateOrder()
+            investigationViewModel.checkEvidenceRadioButtonUi(groupIndex, rulingType.value)
 
-            Log.d("Updated",
-                investigationModel.ghostScoreModel.currOrder
-                    .contentToString())
+            investigationViewModel.setEvidenceRuling(
+                groupIndex, Ruling.entries.toTypedArray()[radioButtons.value[groupIndex]])
 
             onSelection()
         },

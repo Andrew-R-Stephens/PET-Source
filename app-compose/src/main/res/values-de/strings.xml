@@ -941,6 +941,7 @@
     <string name="evidence_section_overview">Überblick</string>
     <string name="store_title_equipment">Ausrüstungsladen</string>
     <string name="equipment_section_tiers">Ebenen</string>
+    <string name="settings_adsconsentcontrolsection">Anzeigen / DSGVO-Einstellungen</string>
     <string name="settings_adsconsentcontrolsettings">GDPR-Konfiguration</string>
     <string name="settings_adsconsentcontrolsettings_button">Bearbeiten</string>
     <string name="evidence_requirement_level_title">Freischaltstufe:</string>

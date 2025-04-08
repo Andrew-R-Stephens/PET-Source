@@ -46,37 +46,34 @@ class EvidenceListView : InvestigationListView {
 
     override fun build() {
 
-            investigationViewModel?.let { investigationViewModel ->
-                investigationViewModel.investigationModel.evidenceRepository
-                    .evidenceList.forEachIndexed { index, it ->
-                        ghostList?.let { ghostList ->
-                            val evidenceView = EvidenceView(context)
-                            evidenceView.evidenceViewListener = object: EvidenceView.EvidenceViewListener() {
-                                override fun onCreatePopup() {
-                                    popupWindow?.dismiss()
+        investigationViewModel?.let { investigationViewModel ->
+            investigationViewModel.evidenceRepository
+                .evidenceList.forEachIndexed { index, it ->
+                    ghostList?.let { ghostList ->
+                        val evidenceView = EvidenceView(context)
+                        evidenceView.evidenceViewListener = object: EvidenceView.EvidenceViewListener() {
+                            override fun onCreatePopup() {
+                                popupWindow?.dismiss()
 
-                                    val evidencePopupWindow = EvidencePopupWindow(context)
-                                    evidencePopupWindow.popupWindow = popupWindow
-                                    evidencePopupWindow.build(
-                                        investigationViewModel,
-                                        evidenceView.evidenceModel,
-                                        adRequest
-                                    )
-                                }
-
-                                override fun onAttemptInvalidate() {
-                                    ghostList.attemptInvalidate(
-                                        globalPreferencesViewModel?.ghostReorderPreference?.value == true
-                                    )
-                                }
+                                val evidencePopupWindow = EvidencePopupWindow(context)
+                                evidencePopupWindow.popupWindow = popupWindow
+                                evidencePopupWindow.build(
+                                    evidenceView.evidenceModel,
+                                    adRequest
+                                )
                             }
-                            evidenceView.build(investigationViewModel, index, ghostList)
 
-                            this.addView(evidenceView)
+                            override fun onAttemptInvalidate() {
+                                ghostList.attemptInvalidate()
+                            }
                         }
+                        evidenceView.build(investigationViewModel, index, ghostList)
+
+                        this.addView(evidenceView)
                     }
+                }
 
 
-            }
+        }
     }
 }

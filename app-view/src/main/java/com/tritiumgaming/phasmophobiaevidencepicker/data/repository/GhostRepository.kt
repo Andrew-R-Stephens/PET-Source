@@ -58,10 +58,13 @@ class GhostRepository(
             for (j in 0 until normalEvidenceIdTypedArray.length()) {
                 @IntegerRes val evidenceIdRes = normalEvidenceIdTypedArray.getResourceId(j, 0)
                 val evidenceID = resources.getInteger(evidenceIdRes)
-                ghostEvidenceModel.addEvidence(
-                    evidenceRepository.evidenceList,
-                    evidenceID
-                )
+                for(e in evidenceRepository.evidenceList) {
+                    if (evidenceID == e.id) {
+                        ghostEvidenceModel.addNormalEvidence(e)
+                        break
+                    }
+                }
+
             }
             normalEvidenceIdTypedArray.recycle()
 
@@ -70,10 +73,12 @@ class GhostRepository(
             for (j in 0 until requiredEvidenceIdTypedArray.length()) {
                 @IntegerRes val evidenceIdRes = requiredEvidenceIdTypedArray.getResourceId(j, 0)
                 val evidenceID = resources.getInteger(evidenceIdRes)
-                ghostEvidenceModel.addNightmareEvidence(
-                    evidenceRepository.evidenceList,
-                    evidenceID
-                )
+                for(e in evidenceRepository.evidenceList) {
+                    if (evidenceID == e.id) {
+                        ghostEvidenceModel.addStrictEvidence(e)
+                        break
+                    }
+                }
             }
             requiredEvidenceIdTypedArray.recycle()
 
@@ -99,6 +104,10 @@ class GhostRepository(
 
     fun getAt(index: Int): GhostModel {
         return ghosts[index]
+    }
+
+    fun getById(id: Int): GhostModel? {
+        return ghosts.find { it.id == id }
     }
 
 }

@@ -44,6 +44,7 @@
     <string name="settings_extrasettings">额外设置</string>
     <string name="settings_appearancesettings">外貌</string>
     <string name="settings_fontstylesettings">字体样式</string>
+    <string name="settings_adsconsentcontrolsection">广告/GDPR 设置</string>
     <string name="settings_adsconsentcontrolsettings">GDPR 设置</string>
     <string name="settings_adsconsentcontrolsettings_button">编辑</string>
     <string name="settings_screenalwayson">始终保持屏幕开启</string>

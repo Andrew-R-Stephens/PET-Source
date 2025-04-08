@@ -36,6 +36,7 @@ class NewsletterViewModel(
 
     fun requiresNotify(inboxType: InboxType?): StateFlow<Boolean>? {
         if(inboxType == null) return newsletterRepository.requiresNotify
+
         return newsletterRepository.requiresNotify(inboxType)
     }
 
@@ -50,20 +51,6 @@ class NewsletterViewModel(
             onComplete()
         }
     }
-
-    fun setLastReadDate(date: Long) {
-        viewModelScope.launch {
-            newsletterRepository.setLastReadDate(InboxType.GENERAL, date)
-        }
-        viewModelScope.launch {
-            newsletterRepository.setLastReadDate(InboxType.PET, date)
-        }
-        viewModelScope.launch {
-            newsletterRepository.setLastReadDate(InboxType.PHASMOPHOBIA, date)
-        }
-    }
-
-    fun getLastReadDate(inboxType: InboxType): Long = newsletterRepository.getLastReadDate(inboxType)
 
     class NewsletterFactory(
         private val newsletterRepository: NewsletterRepository

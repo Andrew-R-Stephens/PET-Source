@@ -62,12 +62,6 @@ class GhostScoreModel(
                 val isNightmare = currentDifficulty == DifficultyRepository.DifficultyTitle.NIGHTMARE
                 val isInsanity = currentDifficulty == DifficultyRepository.DifficultyTitle.INSANITY
 
-                val maxPosScore = when {
-                    isInsanity -> 1
-                    isNightmare -> 2
-                    else -> 3
-                }
-
                 var posScore = 0
                 var negScore = 0
 
@@ -97,6 +91,12 @@ class GhostScoreModel(
 
                 for (e in ghostModel.strictEvidenceList) {
                     if (e.ruling == NEGATIVE) { return -8 }
+                }
+
+                val maxPosScore = when {
+                    isInsanity -> 1
+                    isNightmare -> 2
+                    else -> 3
                 }
 
                 if (posScore > maxPosScore) return -8
@@ -131,7 +131,7 @@ class GhostScoreModel(
         _ghostScores.value.add(ghostScore)
     }
     fun getGhostScore(ghostModel: GhostModel): GhostScore? {
-        return _ghostScores.value.find { it.ghostModel.id == ghostModel.id }
+        return ghostScores.value.find { it.ghostModel.id == ghostModel.id }
     }
     fun getGhostScore(index: Int): GhostScore {
         return _ghostScores.value[index]

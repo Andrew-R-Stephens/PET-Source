@@ -47,6 +47,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.DisplayOrientation
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.fadingEdges
@@ -222,7 +223,7 @@ fun CollapseButton(
     onClick: () -> Unit = {},
     isCollapsedState: StateFlow<Boolean> = MutableStateFlow(false)
 ) {
-    val collapsedState by isCollapsedState.collectAsState()
+    val collapsedState by isCollapsedState.collectAsStateWithLifecycle()
 
     val rotation by animateFloatAsState(
         targetValue = if(collapsedState) 1f else 0f,
@@ -270,7 +271,7 @@ fun SanityButton(
     onClick: () -> Unit = {},
     isShownState: StateFlow<Boolean> = MutableStateFlow(false)
 ) {
-    val enabledState by isShownState.collectAsState()
+    val enabledState by isShownState.collectAsStateWithLifecycle()
 
     val foregroundColor = getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
 
@@ -308,7 +309,7 @@ fun ModifiersButton(
     onClick: () -> Unit = {},
     isShownState: StateFlow<Boolean> = MutableStateFlow(false)
 ) {
-    val enabledState by isShownState.collectAsState()
+    val enabledState by isShownState.collectAsStateWithLifecycle()
 
     val foregroundColor = getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
 

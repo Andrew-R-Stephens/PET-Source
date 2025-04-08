@@ -24,6 +24,10 @@ android {
         compose = true
     }
 
+    composeOptions{
+        kotlinCompilerExtensionVersion = "1.5.15"
+    }
+
     /* ---------------- */
 
     bundle {
@@ -186,6 +190,7 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.testJunit4)
     debugImplementation(libs.androidx.compose.ui.testManifest)
 
+    implementation(libs.androidx.compose.foundation)
     /* Material Design 3 */
     implementation(libs.androidx.compose.material3)
     // Optional - Add window size utils

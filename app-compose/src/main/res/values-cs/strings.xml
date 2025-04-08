@@ -961,6 +961,7 @@
     <string name="evidence_section_overview">Přehled</string>
     <string name="store_title_equipment">Obchod s vybavením</string>
     <string name="equipment_section_tiers">Úrovně</string>
+    <string name="settings_adsconsentcontrolsection">Nastavení reklam / GDPR</string>
     <string name="settings_adsconsentcontrolsettings">Konfigurace GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Upravit</string>
     <string name="evidence_requirement_level_title">Úroveň Odemknutí:</string>

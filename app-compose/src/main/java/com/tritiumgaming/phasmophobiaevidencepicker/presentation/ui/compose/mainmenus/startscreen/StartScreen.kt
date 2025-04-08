@@ -14,15 +14,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -53,7 +56,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.comm
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.PETActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.SignInCredentialManager
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl.SignInCredentialManager
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
@@ -62,9 +65,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.NewsletterViewModel
 import java.util.Locale
+import androidx.core.net.toUri
 
 @Composable
-@Preview
+//@Preview
 private fun StartScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
@@ -80,7 +84,12 @@ private fun StartScreenPreview() {
 @Composable
 @Preview
 private fun StartButtonPreview() {
-    StartButton()
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        StartButton()
+    }
 }
 
 @Composable
@@ -178,6 +187,7 @@ private fun StartContent(
                             //activity.recreate()
                         }
                     )
+
                 }
 
                 LanguageButton(
@@ -237,33 +247,47 @@ private fun StartButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
-    Box(
+    TextButton(
         modifier = modifier
-            .height(48.dp)
-            .clickable { onClick() },
-        contentAlignment = Alignment.Center
+            .height(48.dp),
+        onClick = { onClick() },
+        enabled = true,
+        shape = RectangleShape,
+        contentPadding = PaddingValues(0.dp)
     ) {
 
-        Image(
-            modifier = Modifier
-                .fillMaxSize(),
-            imageVector = ImageVector.vectorResource(R.drawable.button_scratched),
-            contentDescription = "",
-            contentScale = ContentScale.FillBounds
-        )
+        Box(
+            contentAlignment = Alignment.Center
+        ) {
 
-        AutoResizedText(
-            containerModifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(Alignment.CenterVertically),
-            contentModifier = Modifier
-                .padding(4.dp),
-            text = stringResource(R.string.titlescreen_button),
-            textAlign = TextAlign.Center,
-            color = LocalPalette.current.textFamily.body,
-            style = LocalTypography.current.primary.regular,
-            autoResizeStyle = AutoResizedStyleType.SQUEEZE
-        )
+            Image(
+                modifier = Modifier
+                    .fillMaxSize(),
+                imageVector = ImageVector.vectorResource(R.drawable.button_scratched),
+                contentDescription = "",
+                contentScale = ContentScale.FillBounds
+            )
+
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp),
+                contentAlignment = Alignment.Center
+            ) {
+
+                BasicText(
+                    text = stringResource(R.string.titlescreen_button),
+                    style = LocalTypography.current.primary.regular.copy(
+                        color = LocalPalette.current.textFamily.body,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 1,
+                    autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+                )
+
+            }
+
+        }
 
     }
 
@@ -278,6 +302,7 @@ private fun HeaderNavBar(
     val context = LocalContext.current
     val discordInvitation = stringResource(R.string.aboutinfo_discordInvite)
     val languageIcon: @Composable () -> Unit = { LanguageIcon() }
+
     val rememberNewsUpToDate by remember{
         mutableStateOf(false)
     }
@@ -292,9 +317,7 @@ private fun HeaderNavBar(
             DropdownClickPair(R.drawable.ic_discord) {
                 context.startActivity(
                     Intent(
-                        Intent.ACTION_VIEW, Uri.parse(
-                            "https://discord.gg/ $discordInvitation"
-                        )
+                        Intent.ACTION_VIEW, "https://discord.gg/ $discordInvitation".toUri()
                     )
                 )
             }

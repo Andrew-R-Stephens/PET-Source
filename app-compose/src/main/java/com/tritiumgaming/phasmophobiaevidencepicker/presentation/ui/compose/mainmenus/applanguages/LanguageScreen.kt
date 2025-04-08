@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -70,8 +71,8 @@ private fun LanguageContent(
         viewModel( factory = GlobalPreferencesViewModel.Factory )
 ) {
 
-    val languageState by globalPreferencesViewModel.currentLanguageCode.collectAsState()
-    val tempLanguageState by globalPreferencesViewModel.tempLanguageCode.collectAsState()
+    val languageState by globalPreferencesViewModel.currentLanguageCode.collectAsStateWithLifecycle()
+    val tempLanguageState by globalPreferencesViewModel.tempLanguageCode.collectAsStateWithLifecycle()
 
     var rememberLanguage by remember { mutableStateOf(tempLanguageState) }
 

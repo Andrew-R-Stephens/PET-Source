@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedBehavior
@@ -116,7 +119,7 @@ fun NavigationHeaderComposable(
 
         if(params.centerTitleRes != 0) {
 
-            AutoResizedText(
+            /*AutoResizedText(
                 containerModifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
@@ -127,8 +130,19 @@ fun NavigationHeaderComposable(
                 textAlign = TextAlign.Center,
                 autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
                 behavior = AutoResizedBehavior.MARQUEE
-            )
+            )*/
 
+            BasicText(
+                modifier = Modifier
+                    .weight(2f, fill = true),
+                text = centerTitle,
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.primary,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+            )
         }
 
         SideButton(

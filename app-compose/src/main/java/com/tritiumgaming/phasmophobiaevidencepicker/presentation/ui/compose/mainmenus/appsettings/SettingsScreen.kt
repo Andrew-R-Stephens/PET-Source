@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -300,8 +301,8 @@ fun ConfigurationControl(
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsState().value
-    val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsState().value
+    val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsStateWithLifecycle().value
+    val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsStateWithLifecycle().value
 
     var rememberPalette by remember { mutableStateOf(paletteState) }
     var rememberTypography by remember { mutableStateOf(typographyState) }
@@ -359,8 +360,8 @@ fun ConfigurationControl(
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
 
-    val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsState().value
-    val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsState().value
+    val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsStateWithLifecycle().value
+    val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsStateWithLifecycle().value
 
     var rememberPalette by remember {
         mutableStateOf(paletteState)

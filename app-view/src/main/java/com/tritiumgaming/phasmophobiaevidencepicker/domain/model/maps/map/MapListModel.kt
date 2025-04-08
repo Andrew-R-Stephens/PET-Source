@@ -5,6 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.io.factory.MapDesFactory
 
 class MapListModel(worldMapDeserializer: MapDesBlueprint) {
+
     private var mapModels: ArrayList<MapModel> = ArrayList()
 
     init {
@@ -26,7 +27,7 @@ class MapListModel(worldMapDeserializer: MapDesBlueprint) {
             return names
         }
 
-    fun getMapById(id: Int): MapModel? {
+    fun getMapById(id: String): MapModel? {
         for (m in mapModels) {
             if (m.mapId == id) {
                 return m

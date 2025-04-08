@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.navigation.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.navigation.PETImageButtonType
@@ -45,7 +46,7 @@ fun CarouselComposable(
     rightOnClick: () -> Unit = {}
 ) {
 
-    val rememberState = state.collectAsState()
+    val rememberState = state.collectAsStateWithLifecycle()
 
     Card(
         modifier = Modifier

@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
@@ -16,8 +17,9 @@ import com.google.android.material.navigation.NavigationView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.pet.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.ObjectivesViewModel
+import kotlinx.coroutines.launch
 
 /**
  * InvestigationActivity class
@@ -28,7 +30,7 @@ open class InvestigationActivity : PETActivity() {
 
     protected val investigationViewModel: InvestigationViewModel by viewModels{ InvestigationViewModel.Factory }
     protected val objectivesViewModel: ObjectivesViewModel by viewModels{ ObjectivesViewModel.Factory }
-    protected val mapViewModel: MapViewModel by viewModels{ MapViewModel.Factory }
+    protected val mapViewModel: MapsViewModel by viewModels{ MapsViewModel.Factory }
 
     private var drawerLayout: DrawerLayout? = null
     private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
@@ -36,14 +38,30 @@ open class InvestigationActivity : PETActivity() {
     private var navigationBarView: NavigationBarView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        lifecycleScope.launch {
+            globalPreferencesViewModel.currentLanguageCode.collect {
+                if(setLanguage(it)) recreate()
+            }
+        }
+        /*savedInstanceState?.getString("language")?.let {
+            if(setLanguage(it)) recreate()
+        }
+        */
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_investigation)
     }
 
     override fun loadPreferences() {
+
         super.loadPreferences()
-        setLanguage(globalPreferencesViewModel.currentLanguageCode.value)
+
+        /*lifecycleScope.launch {
+            globalPreferencesViewModel.currentLanguageCode.collect {
+                if(setLanguage(it)) recreate()
+            }
+        }*/
     }
 
     override fun onRequestPermissionsResult(

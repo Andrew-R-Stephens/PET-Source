@@ -5,7 +5,7 @@ import android.content.res.Resources
 import android.content.res.TypedArray
 import androidx.annotation.DrawableRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.MapViewerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.MapInteractModel
 
 class SimpleMapRepository(
     context: Context
@@ -16,18 +16,14 @@ class SimpleMapRepository(
         val MODIFIER_SETUP = floatArrayOf(.09f, .05f, .03f)
     }
 
+
     /* List */
-    //var mapsData = mutableListOf<MapSizeData>()
-    var mapsData: MutableList<MapViewerModel> = mutableListOf()
-    val itemCount: Int
-        get() {
-            return mapsData.size
-        }
+    var maps: MutableList<MapInteractModel> = mutableListOf()
 
     val mapThumbnails: MutableList<Int>
         @DrawableRes get() {
             @DrawableRes val mapThumbnails = mutableListOf<Int>()
-            mapsData.forEachIndexed { index, it ->
+            maps.forEachIndexed { index, it ->
                 mapThumbnails.add(index, it.thumbnailImage)
             }
             return mapThumbnails
@@ -37,22 +33,24 @@ class SimpleMapRepository(
         val resources: Resources = context.resources // NEW
         val typedArray: TypedArray = resources.obtainTypedArray(R.array.maps_resources_array)
 
-        val tempMapsData: MutableList<MapViewerModel> = mutableListOf() // NEW
+        val tempMaps: MutableList<MapInteractModel> = mutableListOf() // NEW
 
-        val mapNameKey = 0
-        val layerNamesKey = 4
-        val defaultLayerKey = 5
-        val mapSizeKey = 6
-        val thumbnailKey = 7
-        val layerImagesKey = 8
+        val mapIdKey = 0
+        val mapNameKey = 1
+        val layerNamesKey = 5
+        val defaultLayerKey = 6
+        val mapSizeKey = 7
+        val thumbnailKey = 8
+        val layerImagesKey = 9
 
         for (mapIndex in 0 until typedArray.length()) { //NEW
             val mapTypedArray: TypedArray =
                 resources.obtainTypedArray(typedArray.getResourceId(mapIndex, 0))
 
-            val tempMapData = MapViewerModel()
+            val tempMapData = MapInteractModel()
 
             //Set map name
+            tempMapData.mapId = mapTypedArray.getResourceId(mapIdKey, 0)
             tempMapData.mapName = mapTypedArray.getResourceId(mapNameKey, 0)
             tempMapData.mapSize = mapTypedArray.getInt(mapSizeKey, 0)
 
@@ -80,10 +78,10 @@ class SimpleMapRepository(
 
             mapTypedArray.recycle()
 
-            tempMapsData.add(tempMapData) // add to temp maps array
+            tempMaps.add(tempMapData) // add to temp maps array
         }
         typedArray.recycle()
 
-        this.mapsData = tempMapsData // finally, set maps temp array into maps array
+        this.maps = tempMaps // finally, set maps temp array into maps array
     }
 }

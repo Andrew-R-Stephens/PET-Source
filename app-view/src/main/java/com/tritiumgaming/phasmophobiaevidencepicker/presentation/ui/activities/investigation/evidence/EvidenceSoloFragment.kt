@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlin.concurrent.timer
 
 /**
  * EvidenceSoloFragment class
@@ -44,17 +45,15 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                     }
                     */
 
-                    investigationViewModel.let { investigationViewModel ->
-                        if (investigationViewModel.timerModel?.paused?.value == false) {
-                            investigationViewModel.sanityModel.tick()
+                    investigationViewModel.apply {
+                        if (!timerPaused.value) {
 
-                            investigationViewModel.phaseWarnModel?.let { phaseWarnModel ->
-                                phaseWarnModel.updateTimeElapsed()
+                            tickSanityHandler()
 
-                                // If the huntAudio is allowed
-                                if (phaseWarnModel.audioAllowed) {
-                                    huntWarningAudioListener?.play()
-                                }
+                            updatePhaseTimeElapsed()
+
+                            if (globalPreferencesViewModel.huntWarningAudioPreference.value) {
+                                huntWarningAudioListener?.play()
                             }
                         }
                     }
@@ -84,9 +83,9 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                 }
 
                 override fun play() {
-                    if (investigationViewModel.phaseWarnModel?.audioAllowed == true) {
+                    if (globalPreferencesViewModel.huntWarningAudioPreference.value) {
                         mediaPlayer?.start()
-                        investigationViewModel.phaseWarnModel?.audioWarnTriggered = true
+                        investigationViewModel.setAudioWarnTriggered(true)
                     }
                 }
 

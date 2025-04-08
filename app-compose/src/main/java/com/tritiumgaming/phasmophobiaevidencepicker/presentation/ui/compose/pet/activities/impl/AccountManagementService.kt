@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities
+package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth

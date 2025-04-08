@@ -28,10 +28,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.PoiType
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.RoomModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.InteractiveMapModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.MapViewerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.MapInteractModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.mapsmenu.mapdisplay.POISpinner
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.BitmapUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.util.BitmapUtils.Companion.bitmapExists
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
@@ -49,7 +49,7 @@ import kotlin.math.sqrt
  * @author TritiumGamingStudios
  */
 class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
-    private var mapMenuViewModel: MapViewModel? = null
+    private var mapMenuViewModel: MapsViewModel? = null
 
     private var interactiveMapModel: InteractiveMapModel? = null
     private val interactivePoiModel = InteractiveMapModel()
@@ -58,7 +58,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
 
     private var bitmapUtils: BitmapUtils? = BitmapUtils()
 
-    private var mapViewerModel: MapViewerModel? = null
+    private var mapViewerModel: MapInteractModel? = null
     private val mapImages: ArrayList<Bitmap?> = ArrayList()
     private val poiImages = HashMap<PoiType, Bitmap?>()
 
@@ -110,7 +110,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         )
     }
 
-    fun init(mapMenuViewModel: MapViewModel, roomSpinner: POISpinner) {
+    fun init(mapMenuViewModel: MapsViewModel, roomSpinner: POISpinner) {
         this.mapMenuViewModel = mapMenuViewModel
 
         interactiveMapModel = InteractiveMapModel()
@@ -126,7 +126,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                     view: View?, position: Int, id: Long
                 ) {
                     selectedRoomModel =
-                        mapMenuViewModel.currentMapModel?.currentFloor?.floorRooms?.get(position)
+                        mapMenuViewModel.currentComplexMap?.currentFloor?.floorRooms?.get(position)
 
                     invalidate()
                 }
@@ -136,7 +136,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
                 }
             }
         roomSpinner.onItemSelectedListener = poiSpinnerListener
-        mapMenuViewModel.currentMapModel?.let { currentMap ->
+        mapMenuViewModel.currentComplexMap?.let { currentMap ->
             roomSpinner.populateAdapter(
                 currentMap.currentFloor.floorRoomNames
             )
@@ -250,7 +250,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
         }
     }
 
-    fun setMapData(mapData: MapViewerModel?) {
+    fun setMapData(mapData: MapInteractModel?) {
         this.mapViewerModel = mapData
     }
 
@@ -387,7 +387,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
             paint.color = poiColor
             paint.setColorFilter(poiColorFilter)
 
-            mapMenuViewModel?.currentMapModel?.let { currentMapModel ->
+            mapMenuViewModel?.currentComplexMap?.let { currentMapModel ->
                 for (poi in currentMapModel.currentFloor.floorPOIs) {
                     var x = panX
                     var y = panY
@@ -459,7 +459,7 @@ class InteractiveMapView(context: Context?, attrs: AttributeSet?) : View(context
 
             Log.d("Tap", "Input Conversion: $touchX $touchY")
 
-            mapMenuViewModel?.currentMapModel?.let { currentMapModel ->
+            mapMenuViewModel?.currentComplexMap?.let { currentMapModel ->
                 val rooms = currentMapModel.currentFloor.floorRooms
                 for (room in rooms) {
                     val shape = Polygon()

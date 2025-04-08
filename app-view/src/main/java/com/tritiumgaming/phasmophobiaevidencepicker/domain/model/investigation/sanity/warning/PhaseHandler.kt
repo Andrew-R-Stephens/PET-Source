@@ -1,19 +1,18 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.sanity.SanityHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
-class PhaseWarningModel(
-    private val sanityModel: SanityModel?
+class PhaseHandler(
 ) {
     companion object Time {
         const val DEFAULT = -1L
         const val INFINITY = -1L
     }
 
-    var audioAllowed: Boolean = true
     /** If the warning is within the appropriate range and condition for activation */
     var audioWarnTriggered = false
 
@@ -23,9 +22,9 @@ class PhaseWarningModel(
 
     private val _timeElapsed: MutableStateFlow<Long> = MutableStateFlow(DEFAULT)
     private val timeElapsed = _timeElapsed.asStateFlow()
-    fun updateTimeElapsed() {
-        _timeElapsed.value = System.currentTimeMillis() - flashTimeStart
-        updateCanFlash()
+    fun updateTimeElapsed(sanityHandler: SanityHandler) {
+        _timeElapsed.update { System.currentTimeMillis() - flashTimeStart }
+        updateCanFlash(sanityHandler)
     }
 
     /** Allow the Warning indicator to flash either off or on if:
@@ -35,27 +34,27 @@ class PhaseWarningModel(
      * @return if the Warning indicator can flash */
     private val _canFlash: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val canFlash = _canFlash.asStateFlow()
-    private fun updateCanFlash() {
-        val isInsane = sanityModel?.isInsane == true
+    private fun updateCanFlash(sanityHandler: SanityHandler) {
+        val isInsane = sanityHandler.isInsane == true
 
         if (flashTimeMax == INFINITY) {
-            _canFlash.value = isInsane
+            _canFlash.update { isInsane }
             return
         }
 
         if (flashTimeStart == DEFAULT) {
             Log.d("Flash", "Start time is default.. now setting to current time")
             flashTimeStart = System.currentTimeMillis()
-            updateTimeElapsed()
+            updateTimeElapsed(sanityHandler)
             return
         }
 
-        _canFlash.value = timeElapsed.value <= flashTimeMax
+        _canFlash.update { timeElapsed.value <= flashTimeMax }
     }
 
-    fun reset() {
+    fun reset(sanityHandler: SanityHandler) {
         flashTimeStart = DEFAULT
-        updateTimeElapsed()
+        updateTimeElapsed(sanityHandler)
     }
 
 

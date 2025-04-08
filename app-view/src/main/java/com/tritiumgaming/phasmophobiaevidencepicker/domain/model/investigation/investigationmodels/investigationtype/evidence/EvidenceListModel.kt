@@ -38,11 +38,4 @@ class EvidenceListModel {
 
     }
 
-    /** Resets the Ruling for each Evidence type */
-    fun reset() {
-        for (i in evidenceList.indices) {
-            evidenceList[i].ruling = EvidenceModel.Ruling.NEUTRAL
-        }
-    }
-
 }

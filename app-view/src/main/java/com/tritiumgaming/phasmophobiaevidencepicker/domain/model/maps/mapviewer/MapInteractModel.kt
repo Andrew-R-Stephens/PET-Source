@@ -2,8 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer
 
 import androidx.annotation.DrawableRes
 
-class MapViewerModel {
+class MapInteractModel {
 
+    var mapId: Int = 0
     var mapName: Int = 0
     var mapSize: Int = 0
 

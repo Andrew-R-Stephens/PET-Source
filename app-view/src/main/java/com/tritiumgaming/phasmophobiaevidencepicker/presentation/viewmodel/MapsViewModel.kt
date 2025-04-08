@@ -9,53 +9,48 @@ import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.map.MapModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.MapViewerModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.maps.mapviewer.MapInteractModel
 
 /**
  * MapMenuViewModel class
  *
  * @author TritiumGamingStudios
  */
-class MapViewModel(
+class MapsViewModel(
     val simpleMapRepository: SimpleMapRepository,
     val complexMapRepository: ComplexMapRepository
 ) : ViewModel() {
 
-    private var allMaps = simpleMapRepository.mapsData
-
-    var currentMapModel: MapModel? = null
-
-    val mapThumbnails: MutableList<Int> = simpleMapRepository.mapThumbnails
-
     var imageDisplayThread: Thread? = null
 
+    val mapThumbnails: MutableList<Int> = simpleMapRepository.mapThumbnails
+    private var allMaps = simpleMapRepository.maps
+
+    var currentComplexMap: MapModel? = null
+    val currentSimpleMap: MapInteractModel
+        get() {
+            return allMaps[currentMapIndex]
+        }
     var currentMapIndex: Int = 0
         set(currentMapPos) {
             if (currentMapPos < allMaps.size) {
                 field = currentMapPos
             }
         }
-    val currentMapViewerModel: MapViewerModel
-        get() {
-            return allMaps[currentMapIndex]
-        }
+
     fun incrementFloorIndex() {
-        var layerIndex: Int = currentMapViewerModel.currentFloor
-        if (++layerIndex >= currentMapViewerModel.floorCount) {
+        var layerIndex: Int = currentSimpleMap.currentFloor
+        if (++layerIndex >= currentSimpleMap.floorCount) {
             layerIndex = 0
         }
-        currentMapViewerModel.currentFloor = layerIndex
+        currentSimpleMap.currentFloor = layerIndex
     }
     fun decrementFloorIndex() {
-        var layerIndex: Int = currentMapViewerModel.currentFloor
+        var layerIndex: Int = currentSimpleMap.currentFloor
         if (--layerIndex < 0) {
-            layerIndex = currentMapViewerModel.floorCount -1
+            layerIndex = currentSimpleMap.floorCount -1
         }
-        currentMapViewerModel.currentFloor = layerIndex
-    }
-
-    fun hasCurrentMapData(): Boolean {
-        return currentMapIndex < allMaps.size
+        currentSimpleMap.currentFloor = layerIndex
     }
 
     class MapMenuFactory(
@@ -64,9 +59,9 @@ class MapViewModel(
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MapViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return MapViewModel(
+                return MapsViewModel(
                     simpleMapRepository,
                     complexMapRepository
                 ) as T
@@ -84,7 +79,7 @@ class MapViewModel(
                 val simpleMapRepository: SimpleMapRepository = appKeyContainer.simpleMapRepository
                 val complexMapRepository: ComplexMapRepository = appKeyContainer.complexMapRepository
 
-                MapViewModel(
+                MapsViewModel(
                     simpleMapRepository = simpleMapRepository,
                     complexMapRepository = complexMapRepository
                 )

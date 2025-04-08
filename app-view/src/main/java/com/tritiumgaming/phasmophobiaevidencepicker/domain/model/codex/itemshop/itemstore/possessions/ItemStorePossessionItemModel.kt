@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop
 
 import android.content.Context
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItemModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItem
 
-class ItemStorePossessionItemModel : ItemStoreItemModel() {
+class ItemStorePossessionItemModel : ItemStoreItem() {
     @StringRes
     private val attributes = ArrayList<Int>()
 

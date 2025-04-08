@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities
+package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl
 
 import android.app.Activity
 import android.content.IntentSender.SendIntentException

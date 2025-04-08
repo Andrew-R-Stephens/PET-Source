@@ -9,11 +9,81 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.controllers.NewsletterHandler
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 
 class NewsletterViewModel(
+    private val newsletterRepository: NewsletterRepository
+): ViewModel() {
+
+    private val newsletterHandler: NewsletterHandler = NewsletterHandler(newsletterRepository)
+
+    private fun initialSetupEvent() {
+        newsletterHandler.initialSetupEvent()
+    }
+
+    init {
+        Log.d("NewsletterViewModel", "Initializing...")
+
+        initialSetupEvent()
+
+        viewModelScope.launch {
+            newsletterHandler.initFlow()
+        }
+    }
+
+    fun requiresNotify(inboxType: InboxType?): StateFlow<Boolean>? {
+        if(inboxType == null) return newsletterRepository.requiresNotify
+
+        return newsletterRepository.requiresNotify(inboxType)
+    }
+
+    fun getInbox(inboxType: InboxType) = newsletterRepository.getInbox(inboxType)
+
+    fun setLastReadDate(
+        inboxType: InboxType, date: Long,
+        onComplete: () -> Unit = {}
+    ) {
+        viewModelScope.launch {
+            newsletterRepository.setLastReadDate(inboxType, date)
+            onComplete()
+        }
+    }
+
+    class NewsletterFactory(
+        private val newsletterRepository: NewsletterRepository
+    ) : ViewModelProvider.Factory {
+
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(NewsletterViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return NewsletterViewModel(
+                    newsletterRepository
+                ) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
+    }
+
+    companion object {
+
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                val container = (this[APPLICATION_KEY] as PETApplication).container
+                val newsletterRepository = container.newsletterRepository
+
+                NewsletterViewModel(
+                    newsletterRepository = newsletterRepository
+                )
+            }
+        }
+    }
+}
+
+/*class NewsletterViewModel(
     private val newsletterRepository: NewsletterRepository
 ): ViewModel() {
 
@@ -38,7 +108,7 @@ class NewsletterViewModel(
     fun getInbox(inboxType: NewsletterRepository.NewsletterInboxType.InboxType) =
         newsletterHandler.getInbox(inboxType)
 
-    /*class NewsletterFactory(
+    class NewsletterFactory(
         private val newsletterRepository: NewsletterRepository
     ) : ViewModelProvider.Factory {
 
@@ -51,7 +121,7 @@ class NewsletterViewModel(
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }
-    }*/
+    }
 
     companion object {
 
@@ -61,9 +131,9 @@ class NewsletterViewModel(
                 val myRepository = (this[APPLICATION_KEY] as PETApplication).container.newsletterRepository
                 NewsletterViewModel(
                     newsletterRepository = myRepository,
-                    /*savedStateHandle = savedStateHandle*/
+                    savedStateHandle = savedStateHandle
                 )
             }
         }
     }
-}
+}*/

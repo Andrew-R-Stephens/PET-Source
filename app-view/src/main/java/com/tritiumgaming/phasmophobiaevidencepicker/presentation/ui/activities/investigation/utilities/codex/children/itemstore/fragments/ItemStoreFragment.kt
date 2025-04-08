@@ -22,8 +22,8 @@ import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.graphics.toColorInt
 import androidx.core.view.isVisible
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroups
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.CodexFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreGroupListView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView
@@ -36,7 +36,8 @@ import kotlin.math.max
 import kotlin.math.min
 
 abstract class ItemStoreFragment : CodexFragment() {
-    protected val storeData: ItemStoreListModel = ItemStoreListModel()
+
+    protected val storeData: ItemStoreGroups = ItemStoreGroups()
 
     protected var scrollView: FrameLayout? = null
     protected var viewTreeObserverListener: OnScrollChangedListener? = null
@@ -359,7 +360,7 @@ abstract class ItemStoreFragment : CodexFragment() {
     @SuppressLint("ResourceType")
     protected abstract fun buildStoreData()
 
-    protected abstract fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroupModel)
+    protected abstract fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroup)
 
     @SuppressLint("ResourceType")
     protected abstract fun buildGroupViews(

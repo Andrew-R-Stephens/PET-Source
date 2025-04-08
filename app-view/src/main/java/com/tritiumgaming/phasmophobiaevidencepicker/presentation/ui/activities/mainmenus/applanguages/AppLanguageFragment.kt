@@ -44,7 +44,7 @@ class AppLanguageFragment : MainMenuFragment() {
             val selectedIndex = languageList.indexOfFirst {
                 it.abbreviation == globalPreferencesViewModel.currentLanguageCode.value }
 
-            for (i in languageList.indices) {
+            languageList.forEach {
                 val adapter = LanguagesAdapterView(
                     languages = languageList,
                     defaultPosition = selectedIndex,
@@ -53,11 +53,11 @@ class AppLanguageFragment : MainMenuFragment() {
                             globalPreferencesViewModel.setCurrentLanguageCode(
                                 languageList[position].abbreviation)
 
-                            try {
+                            /*try {
                                 (activity as PETActivity).setLanguage(
                                     globalPreferencesViewModel.currentLanguageCode.value)
                             }
-                            catch (e: IllegalStateException) { e.printStackTrace() }
+                            catch (e: IllegalStateException) { e.printStackTrace() }*/
 
                             recyclerViewLanguages.invalidate()
                         }

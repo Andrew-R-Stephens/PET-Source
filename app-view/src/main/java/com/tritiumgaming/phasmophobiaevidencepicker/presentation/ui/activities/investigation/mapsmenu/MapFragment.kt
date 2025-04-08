@@ -2,10 +2,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 
 import androidx.fragment.app.activityViewModels
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapsViewModel
 
 abstract class MapFragment: InvestigationFragment() {
 
-    protected val mapViewModel: MapViewModel by activityViewModels { MapViewModel.Factory }
+    protected val mapViewModel: MapsViewModel by activityViewModels { MapsViewModel.Factory }
 
 }

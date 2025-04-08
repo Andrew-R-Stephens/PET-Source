@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities
+package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl
 
 import android.app.Activity
 import android.util.Log
@@ -17,11 +17,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.SignInCredentialManager.SignInOptions.GOOGLE
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.SignInCredentialManager.SignInOptions.ID_FALLBACK
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.SignInCredentialManager.SignInOptions.ID_SILENT
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.SignInCredentialManager.SignInOptions.ID_UI
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.SignInCredentialManager.SignInOptions.SILENT
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -54,18 +49,18 @@ interface SignInCredentialManager {
 
     fun signIn(
         activity: Activity? = null,
-        option: SignInOptions = SILENT,
+        option: SignInOptions = SignInOptions.SILENT,
         onSuccess: () -> Unit = {},
         onFailure: () -> Unit = {},
         onComplete: () -> Unit = {},
     ) {
 
         when(option) {
-            GOOGLE -> signInWithGoogleOption(activity, onSuccess, onFailure, onComplete)
-            ID_UI -> signInWithGoogleIDOptionSilent(activity, onSuccess, onFailure, onComplete)
-            ID_SILENT -> signInWithGoogleIDOptionSilent(activity, onSuccess, onFailure, onComplete)
-            ID_FALLBACK -> signInWithGoogleIDOptionSilentWithFallback(activity, onSuccess, onFailure, onComplete)
-            SILENT -> signInSilent(onSuccess, onFailure, onComplete)
+            SignInOptions.GOOGLE -> signInWithGoogleOption(activity, onSuccess, onFailure, onComplete)
+            SignInOptions.ID_UI -> signInWithGoogleIDOptionSilent(activity, onSuccess, onFailure, onComplete)
+            SignInOptions.ID_SILENT -> signInWithGoogleIDOptionSilent(activity, onSuccess, onFailure, onComplete)
+            SignInOptions.ID_FALLBACK -> signInWithGoogleIDOptionSilentWithFallback(activity, onSuccess, onFailure, onComplete)
+            SignInOptions.SILENT -> signInSilent(onSuccess, onFailure, onComplete)
         }
 
     }

@@ -49,14 +49,14 @@ class MissionsFragment : InvestigationFragment() {
         // GHOST NAME
         val nameInput = view.findViewById<EditText>(R.id.textInput_ghostName)
         nameInput?.let {
-            nameInput.setText(objectivesViewModel.ghostName)
+            nameInput.setText(objectivesViewModel.ghostName.value)
             nameInput.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence, start: Int, count: Int, after: Int) { }
                 override fun onTextChanged(
                     s: CharSequence, start: Int, before: Int, count: Int) { }
                 override fun afterTextChanged(s: Editable) {
-                    objectivesViewModel.ghostName = s.toString()
+                    objectivesViewModel.setGhostName(s.toString())
                 }
             })
         }
@@ -74,10 +74,10 @@ class MissionsFragment : InvestigationFragment() {
                     @ColorInt val selColor =
                         getColorFromAttribute(requireContext(), R.attr.selectedColor)
 
-                    if (investigationViewModel.difficultyCarouselModel.responseTypeKnown == true) {
+                    if (investigationViewModel.responseTypeUi.value) {
                         responseBlocker.visibility = View.GONE
 
-                        when (objectivesViewModel.responseState) {
+                        when (objectivesViewModel.responseState.value) {
                             ObjectivesViewModel.ALONE -> {
                                 buttonAlone?.setColorFilter(selColor)
                                 buttonGroup?.setColorFilter(unSelColor)
@@ -99,11 +99,11 @@ class MissionsFragment : InvestigationFragment() {
                 }
             }
         buttonAlone?.setOnClickListener {
-            objectivesViewModel.responseState = ObjectivesViewModel.ALONE
+            objectivesViewModel.setResponseState(ObjectivesViewModel.ALONE)
             onResponseChangeListener.onChange()
         }
         buttonGroup?.setOnClickListener {
-            objectivesViewModel.responseState = ObjectivesViewModel.GROUP
+            objectivesViewModel.setResponseState(ObjectivesViewModel.GROUP)
             onResponseChangeListener.onChange()
         }
 

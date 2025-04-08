@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroups
 
-class PossessionsStoreModel: ItemStoreListModel() {
+class CodexPossessions(context: Context): ItemStoreGroups() {
 
-    fun init(context: Context) {
+    init {
 
         val shopListTypedArray =
             context.resources.obtainTypedArray(R.array.shop_cursedpossessions_array)

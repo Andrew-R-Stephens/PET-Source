@@ -1,5 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions
 
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroup
 
-class ItemStorePossnsGroupModel : ItemStoreGroupModel()
+class ItemStorePossnsGroupModel : ItemStoreGroup()

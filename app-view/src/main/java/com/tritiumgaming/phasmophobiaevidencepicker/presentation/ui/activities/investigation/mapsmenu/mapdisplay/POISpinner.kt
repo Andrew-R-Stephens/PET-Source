@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatSpinner
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.MapsViewModel
 
 class POISpinner : AppCompatSpinner {
     constructor(context: Context) :
@@ -31,13 +31,13 @@ class POISpinner : AppCompatSpinner {
         // --
     }
 
-    fun populateAdapter(mapMenuViewModel: MapViewModel?) {
-        if (mapMenuViewModel?.currentMapModel != null) {
+    fun populateAdapter(mapMenuViewModel: MapsViewModel?) {
+        if (mapMenuViewModel?.currentComplexMap != null) {
             // Creating adapter for spinner
             val dataAdapter = ArrayAdapter(
                 context,
                 R.layout.poi_spinner_item,
-                mapMenuViewModel.currentMapModel!!.currentFloor.floorRoomNames
+                mapMenuViewModel.currentComplexMap!!.currentFloor.floorRoomNames
             )
 
             // Drop down layout style - list view with radio button

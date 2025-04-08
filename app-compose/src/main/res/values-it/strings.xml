@@ -42,6 +42,7 @@
     <string name="settings_extrasettings">Impostazioni aggiuntive</string>
     <string name="settings_appearancesettings">Aspetto</string>
     <string name="settings_fontstylesettings">Stile carattere</string>
+    <string name="settings_adsconsentcontrolsection">Annunci/Impostazioni GDPR</string>
     <string name="settings_adsconsentcontrolsettings">Impostazioni GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Modificare</string>
     <string name="settings_screenalwayson">Tieni lo schermo sempre acceso</string>

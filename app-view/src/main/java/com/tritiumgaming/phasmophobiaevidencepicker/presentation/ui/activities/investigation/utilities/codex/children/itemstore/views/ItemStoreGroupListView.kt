@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroup
 
 class ItemStoreGroupListView : LinearLayoutCompat {
 
@@ -26,7 +26,7 @@ class ItemStoreGroupListView : LinearLayoutCompat {
     }
 
     @JvmOverloads
-    fun build(@DrawableRes containerSrc: Int, group: ItemStoreGroupModel, hasTier: Boolean = false) {
+    fun build(@DrawableRes containerSrc: Int, group: ItemStoreGroup, hasTier: Boolean = false) {
         initView(
             if (group.size > 3) R.layout.item_itemstore_itemgroup_long
             else R.layout.item_itemstore_itemgroup)

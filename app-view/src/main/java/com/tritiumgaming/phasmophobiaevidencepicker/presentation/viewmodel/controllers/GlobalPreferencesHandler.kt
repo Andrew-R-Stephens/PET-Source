@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.cont
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GlobalPreferencesRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning.PhaseWarningModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.warning.PhaseHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -78,7 +78,7 @@ class GlobalPreferencesHandler(
     }
 
     // Investigation Behaviors
-    private val _maxHuntWarnFlashTime = MutableStateFlow(PhaseWarningModel.INFINITY)
+    private val _maxHuntWarnFlashTime = MutableStateFlow(PhaseHandler.INFINITY)
     val maxHuntWarnFlashTime: StateFlow<Long> = _maxHuntWarnFlashTime.asStateFlow()
     suspend fun setHuntWarnFlashTimeMax(maxTime: Long) {
         _maxHuntWarnFlashTime.value = maxTime

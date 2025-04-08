@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItemModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItem
 
-class ItemStoreEquipmentItemModel : ItemStoreItemModel() {
+class ItemStoreEquipmentItemModel : ItemStoreItem() {
 
     @IntegerRes
     var upgradeCostData: Int = 0

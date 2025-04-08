@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
@@ -29,7 +30,7 @@ fun RulingGroup(
     groupIndex: Int = 0,
     onClick: () -> Unit = {}
 ) {
-    val radioButtonState by investigationModel.radioButtonsChecked.collectAsState()
+    val radioButtonState by investigationModel.radioButtonsChecked.collectAsStateWithLifecycle()
 
     Row(
         modifier = modifier
@@ -63,7 +64,7 @@ fun RulingSelector(
     rulingState: Boolean = true,
     onSelection: () -> Unit = {}
 ) {
-    val radioButtons = investigationModel.radioButtonsChecked.collectAsState()
+    val radioButtons = investigationModel.radioButtonsChecked.collectAsStateWithLifecycle()
 
     val negativeColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.negativeSelColor))
     val neutralColor = Color(ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.neutralSelColor))

@@ -37,7 +37,7 @@ class MissionsCompletedButton : PETImageButton {
 
     private fun setState(
         isComplete: Boolean =
-            objectivesViewModel?.spinnerCompletionStatus?.get(missionId) ?: false) {
+            objectivesViewModel?.spinnerCompletionStatus?.get(missionId) == true) {
         if(isComplete)
             setColorFilter(getColorFromAttribute(context, R.attr.selectedColor))
         else {

@@ -157,7 +157,7 @@ object MapDesFactory {
 
             // Finalize MapModel
             val model = MapModel()
-            model.mapId = map["map_id"].toString().toDouble().toInt()
+            model.mapId = map["map_id"].toString()
             model.mapName = map["map_name"].toString()
             model.mapNameShort = map["map_name_short"].toString()
             model.mapDimensions = mapDimension

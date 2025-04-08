@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselModel
@@ -61,7 +62,7 @@ fun ActiveModifierDetails(
 @Composable
 fun PhaseModifierDetails(phase: PhaseTimerModel) {
 
-    val phaseState = phase.currentPhase.collectAsState()
+    val phaseState = phase.currentPhase.collectAsStateWithLifecycle()
 
     CategoryRow {
         TextCategoryTitle(text = "Phase:")
@@ -73,7 +74,7 @@ fun PhaseModifierDetails(phase: PhaseTimerModel) {
 @Composable
 fun MapModifierDetails(mapCarouselModel: MapCarouselModel) {
 
-    val mapName = MutableStateFlow("current-name").collectAsState()
+    val mapName = MutableStateFlow("current-name").collectAsStateWithLifecycle()
 
     CategoryColumn {
         Row(
@@ -100,7 +101,7 @@ fun MapModifierDetails(mapCarouselModel: MapCarouselModel) {
 
 @Composable
 fun DifficultyModifierDetails(difficultyCarouselModel: DifficultyCarouselModel) {
-    val difficultyIndex = difficultyCarouselModel.currentIndex.collectAsState()
+    val difficultyIndex = difficultyCarouselModel.currentIndex.collectAsStateWithLifecycle()
 
     CategoryColumn {
         Row(

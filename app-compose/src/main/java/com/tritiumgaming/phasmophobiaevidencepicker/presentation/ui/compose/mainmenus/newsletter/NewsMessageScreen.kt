@@ -88,7 +88,7 @@ private fun NewsMessageContent(
     messageID: Int
 ) {
 
-    val rememberInboxID by remember {
+    /*val rememberInboxID by remember {
         mutableIntStateOf(inboxID)
     }
 
@@ -96,7 +96,7 @@ private fun NewsMessageContent(
         mutableIntStateOf(messageID)
     }
 
-    val messages = newsletterViewModel.inboxes.collectAsState()
+    val messages = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
     val i: NewsletterInbox = messages.value.values.toList()[inboxID]
     val m: NewsletterMessage? = i.messages["$messageID"]
     val rememberMessage by remember {
@@ -183,5 +183,5 @@ private fun NewsMessageContent(
 
         AdmobBanner()
 
-    }
+    }*/
 }

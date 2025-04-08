@@ -16,9 +16,10 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationJournal
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.popups.GhostPopupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.FontUtils.replaceHTMLFontColor
 import kotlin.math.min
@@ -44,7 +45,7 @@ class GhostPopupWindow : InvestigationPopupWindow {
     }
 
     fun build(
-        investigationModel: InvestigationModel,
+        investigationViewModel: InvestigationViewModel,
         popupModel: GhostPopupModel?,
         groupIndex: Int,
         adRequest: AdRequest?
@@ -78,7 +79,7 @@ class GhostPopupWindow : InvestigationPopupWindow {
             resources.getString(R.string.popup_ghost_weakness)
         )
 
-        investigationModel.ghostScoreModel.ghostScores.value[groupIndex].let { ghostScoreModel ->
+        investigationViewModel.ghostScores.value[groupIndex].let { ghostScoreModel ->
             val ghostModel = ghostScoreModel.ghostModel
             for (i in ghostModel.evidence.normalEvidenceList.indices) {
                 val evidenceIcon = evidenceIconContainer.getChildAt(i) as AppCompatImageView

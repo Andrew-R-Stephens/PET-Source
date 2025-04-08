@@ -32,9 +32,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.Newsl
  */
 class MainMenuActivity : PETActivity(), AppUpdateManagerService {
 
-    private val mainMenuViewModel: MainMenuViewModel by viewModels { MainMenuViewModel.Factory }
+    /*private val mainMenuViewModel: MainMenuViewModel by viewModels { MainMenuViewModel.Factory }
     private val newsLetterViewModel: NewsletterViewModel
-        by viewModels { NewsletterViewModel.Factory }
+        by viewModels { NewsletterViewModel.Factory }*/
 
     override var appUpdateManager: AppUpdateManager? = null
     override var updateType: Int = IMMEDIATE

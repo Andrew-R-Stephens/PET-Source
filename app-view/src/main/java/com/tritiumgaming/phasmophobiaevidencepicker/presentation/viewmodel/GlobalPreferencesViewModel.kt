@@ -107,17 +107,6 @@ class GlobalPreferencesViewModel(
         }
     }
 
-    /*val tempLanguageCode = languageHandler.tempLanguageCode
-    fun setTempLanguageCode(languageCode: String, activity: PETActivity? = null) {
-        viewModelScope.launch {
-            languageHandler.setTempLanguageCode(languageCode)
-        }
-        activity?.let {
-            try { activity.setLanguage(languageCode) }
-            catch (e: Exception) { e.printStackTrace() }
-        }
-    }*/
-
     val screenSaverPreference = globalPreferencesHandler.disableScreensaver
     fun setScreenSaverPreference(disable: Boolean, activity: PETActivity? = null) {
         viewModelScope.launch {

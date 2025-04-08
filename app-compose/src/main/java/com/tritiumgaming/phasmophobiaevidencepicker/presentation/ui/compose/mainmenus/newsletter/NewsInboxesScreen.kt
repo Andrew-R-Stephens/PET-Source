@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mai
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,22 +16,29 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedBehavior
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
@@ -51,6 +59,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.Newsl
 @Composable
 @Preview
 private fun NewsInboxesScreenPreview() {
+
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
@@ -87,12 +96,9 @@ private fun NewsInboxesContent(
     onBack: () -> Unit = {}
 ) {
 
-    /*val rememberInboxes by remember {
-        mutableStateOf(
-            newsletterViewModel.inboxes.value
-        )
-    }*/
-    val rememberInboxes by newsletterViewModel.inboxes.collectAsState()
+    val rememberInboxes by remember {
+        mutableStateOf(InboxType.entries.toTypedArray())
+    }
 
     Column(
         modifier = Modifier
@@ -100,6 +106,7 @@ private fun NewsInboxesContent(
             .padding(8.dp),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
+
         NavigationHeaderComposable(
             NavHeaderComposableParams(
                 leftType = PETImageButtonType.BACK,
@@ -118,20 +125,18 @@ private fun NewsInboxesContent(
             verticalArrangement = Arrangement.Top,
         ) {
 
-            items(rememberInboxes.keys.toList()) {
-                key: NewsletterRepository.NewsletterInboxType.InboxType ->
+            items(rememberInboxes) { inboxType: InboxType ->
 
-                val inbox = rememberInboxes[key]
-
-                inbox?.inboxType?.let {
+                newsletterViewModel.getInbox(inboxType)?.let {
 
                     InboxCard(
-                        title = it.title,
-                        icon = it.icon,
-                        isActive = /*inbox.messages.compareDates() ?:*/ false,
+                        title = it.inboxType.title,
+                        icon = it.inboxType.icon,
+                        isActive = false,
                         onClick = {
                             navController.navigate(
-                                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${it.id}")
+                                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/" +
+                                        "${it.inboxType.id}")
                         }
                     )
 
@@ -150,7 +155,7 @@ private fun NewsInboxesContent(
 @Composable
 private fun InboxCard(
     modifier: Modifier = Modifier,
-    title: Int = R.string.preference_general_news_link,
+    title: Int = R.string.messagecenter_inboxestitle_label,
     @DrawableRes icon: Int = R.drawable.ic_notify,
     isActive: Boolean = true,
     onClick: () -> Unit = {}
@@ -166,6 +171,7 @@ private fun InboxCard(
         shape = RoundedCornerShape(CornerSize(16.dp)),
         onClick = { onClick() }
     ) {
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -179,20 +185,30 @@ private fun InboxCard(
                 modifier = Modifier
                     .size(98.dp),
                 isActive = isActive,
-                icon
-            ) { }
+                baseDrawableId = icon
+            ) {
+                onClick()
+            }
 
-            AutoResizedText(
-                containerModifier = Modifier
+            Box(
+                modifier = Modifier
                     .weight(1f)
                     .height(36.dp),
-                text = stringResource(title),
-                style = LocalTypography.current.primary.regular,
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center,
-                autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
-                behavior = AutoResizedBehavior.MARQUEE
-            )
+                contentAlignment = Alignment.Center
+            ) {
+
+                BasicText(
+                    text = stringResource(title),
+                    style = LocalTypography.current.primary.regular.copy(
+                        color = LocalPalette.current.textFamily.primary,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 2,
+                    softWrap = true,
+                    autoSize = TextAutoSize.StepBased(minFontSize = 24.sp, maxFontSize = 36.sp, stepSize = 5.sp)
+                )
+
+            }
 
         }
 
@@ -200,7 +216,7 @@ private fun InboxCard(
 }
 
 @Composable
-@Preview
+@Preview(locale = "de")
 private fun InboxButtonPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
@@ -209,21 +225,25 @@ private fun InboxButtonPreview() {
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+
             InboxCard(
-                title = R.string.preference_general_news_link,
+                title = R.string.messagecenter_inbox_general,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )
+
             InboxCard(
-                title = R.string.preference_phasmophobia_changelog_link,
+                title = R.string.messagecenter_inbox_phas,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )
+
             InboxCard(
-                title = R.string.preference_pet_changelog_link,
+                title = R.string.messagecenter_inbox_pet,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )
+
         }
     }
 }

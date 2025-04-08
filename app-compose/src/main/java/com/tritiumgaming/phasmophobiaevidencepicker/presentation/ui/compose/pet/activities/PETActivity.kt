@@ -21,6 +21,11 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.navigation.RootNavigation
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.mainmenus.appsettings.ConfigurationControl
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl.AccountManagementService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl.AppUpdateManagerService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl.ConsentManagementService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl.FirebaseAnalyticsService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl.SignInCredentialManager
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -74,10 +79,6 @@ class PETActivity : AppCompatActivity(),
                     "Signed in as: ${Firebase.auth.currentUser?.displayName}")
             })
 
-        initializeMobileAdsSdk(this)
-        createConsentInformation(this)
-        initFirebaseAnalytics(this)
-
         super.onCreate(savedInstanceState)
 
         setContent {
@@ -91,6 +92,10 @@ class PETActivity : AppCompatActivity(),
             }
 
         }
+
+        initializeMobileAdsSdk(this)
+        createConsentInformation(this)
+        initFirebaseAnalytics(this)
 
         checkForAppUpdate(this@PETActivity)
 

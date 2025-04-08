@@ -65,37 +65,39 @@ class MapViewerFragment : MapFragment() {
         layerName = view.findViewById(R.id.textview_floorname)
 
         mapViewModel.let { mapViewModel ->
-            val floor = mapViewModel.currentMapViewerModel.currentFloor
-            mapViewModel.currentMapModel?.let { currentMap ->
+            val mapModel = mapViewModel.currentSimpleMap
+
+            val floor = mapViewModel.currentSimpleMap.currentFloor
+            mapViewModel.currentComplexMap?.let { currentMap ->
                 currentMap.currentLayer = currentMap.getFloor(floor).floorLayer
             }
 
             buttonLayerNext.setOnClickListener {
                 mapViewModel.incrementFloorIndex()
-                setMapLayer(mapViewModel.currentMapViewerModel.currentFloor)
+                setMapLayer(mapViewModel.currentSimpleMap.currentFloor)
                 updateComponents()
             }
 
             buttonLayerPrev.setOnClickListener {
                 mapViewModel.decrementFloorIndex()
-                setMapLayer(mapViewModel.currentMapViewerModel.currentFloor)
+                setMapLayer(mapViewModel.currentSimpleMap.currentFloor)
                 updateComponents()
             }
 
             buttonHelp.setOnClickListener { showHelpPopup() }
             buttonBack.setOnClickListener { handleBackAction() }
 
-            Log.d("MapName", requireContext().getString(mapViewModel.currentMapViewerModel.mapName))
-            mapName.text = requireContext().getString(mapViewModel.currentMapViewerModel.mapName)
+            Log.d("MapName", requireContext().getString(mapViewModel.currentSimpleMap.mapName))
+            mapName.text = requireContext().getString(mapViewModel.currentSimpleMap.mapName)
 
             poiSpinner?.let { spinner ->
                 imageDisplay?.let { mapView ->
                     mapView.init(mapViewModel, spinner)
-                    mapView.setMapData(mapViewModel.currentMapViewerModel)
+                    mapView.setMapData(mapViewModel.currentSimpleMap)
                 }
             }
 
-            val tempData = mapViewModel.currentMapViewerModel
+            val tempData = mapViewModel.currentSimpleMap
 
             selectorGroup = MapLayerSelectorGroup(tempData.floorCount)
             for (i in 0 until (selectorGroup?.size ?: 0)) {
@@ -110,7 +112,7 @@ class MapViewerFragment : MapFragment() {
             }
 
             var mapNameStr: String? = requireContext().getString(tempData.mapName)
-            val name = mapViewModel.currentMapModel?.mapName
+            val name = mapViewModel.currentComplexMap?.mapName
             mapNameStr = if (name?.isNotEmpty() == true) name else mapNameStr
 
             mapName.text = mapNameStr
@@ -130,7 +132,7 @@ class MapViewerFragment : MapFragment() {
     private fun setMapLayer(index: Int) {
         imageDisplay?.resetRoomSelection()
 
-        mapViewModel.currentMapModel?.let { currentMap ->
+        mapViewModel.currentComplexMap?.let { currentMap ->
             val floor = currentMap.getFloor(index)
             currentMap.currentLayer = floor.floorLayer
             Log.d("Maps", currentMap.currentFloor.floorName + " ")
@@ -186,7 +188,7 @@ class MapViewerFragment : MapFragment() {
     }
 
     private fun updateComponents() {
-        mapViewModel.currentMapViewerModel.let { currentMapViewerModel ->
+        mapViewModel.currentSimpleMap.let { currentMapViewerModel ->
             selectorGroup?.setSelected(currentMapViewerModel.currentFloor)
 
             layerName?.text = resources.getString(currentMapViewerModel.floorName)
@@ -236,7 +238,7 @@ class MapViewerFragment : MapFragment() {
                 selectors[i] = MapLayerSelector(requireContext())
             }
             mapViewModel?.let { mapMenuViewModel ->
-                setSelected(mapMenuViewModel.currentMapViewerModel.currentFloor)
+                setSelected(mapMenuViewModel.currentSimpleMap.currentFloor)
             }
         }
 

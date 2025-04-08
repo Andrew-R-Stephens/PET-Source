@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroup
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.ItemStorePossessionItemModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.ItemStorePossnsGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
@@ -23,6 +23,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 class PossessionsFragment : ItemStoreFragment() {
 
     @SuppressLint("ResourceType")
+    override fun buildStoreData() {
+        investigationViewModel.possessionsStoreModel.groups.forEach { storeData.addGroup(it) }
+
+    }
+
+    /*@SuppressLint("ResourceType")
     override fun buildStoreData() {
         val shopListTypedArray = resources.obtainTypedArray(R.array.shop_cursedpossessions_array)
 
@@ -106,7 +112,7 @@ class PossessionsFragment : ItemStoreFragment() {
             storeData.addGroup(groupData)
         }
         shopListTypedArray.recycle()
-    }
+    }*/
 
     override fun setPageTitle(titleView: AppCompatTextView) {
         titleView.setText(R.string.store_title_cursedpossessions)
@@ -119,7 +125,7 @@ class PossessionsFragment : ItemStoreFragment() {
         dataView?.visibility = View.INVISIBLE
     }
 
-    override fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroupModel) {
+    override fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroup) {
         val itemStoreGroupList = ItemStoreGroupListView(requireContext())
         itemStoreGroupList.build(R.drawable.equipment_possession_item, group)
         parent.addView(itemStoreGroupList)

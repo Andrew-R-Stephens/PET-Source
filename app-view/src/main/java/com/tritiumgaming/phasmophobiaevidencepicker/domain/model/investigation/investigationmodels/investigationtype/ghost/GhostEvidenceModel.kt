@@ -1,35 +1,20 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost
 
+import androidx.compose.runtime.Stable
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 
 class GhostEvidenceModel(
+    @Stable
     val normalEvidenceList: ArrayList<EvidenceModel> = ArrayList<EvidenceModel>(),
+    @Stable
     val strictEvidenceList: ArrayList<EvidenceModel> = ArrayList<EvidenceModel>()
 ) {
-    private fun addEvidence(e: EvidenceModel) {
+    fun addNormalEvidence(e: EvidenceModel) {
         normalEvidenceList.add(e)
     }
 
-    fun addEvidence(evidenceList: ArrayList<EvidenceModel>, evidenceID: Int) {
-        for (e in evidenceList) {
-            if (evidenceID == e.id) {
-                addEvidence(e)
-                break
-            }
-        }
-    }
-
-    private fun addNightmareEvidence(e: EvidenceModel) {
+    fun addStrictEvidence(e: EvidenceModel) {
         strictEvidenceList.add(e)
-    }
-
-    fun addNightmareEvidence(evidenceList: ArrayList<EvidenceModel>, evidenceID: Int) {
-        for (e in evidenceList) {
-            if (evidenceID == e.id) {
-                addNightmareEvidence(e)
-                break
-            }
-        }
     }
 
     override fun toString(): String {

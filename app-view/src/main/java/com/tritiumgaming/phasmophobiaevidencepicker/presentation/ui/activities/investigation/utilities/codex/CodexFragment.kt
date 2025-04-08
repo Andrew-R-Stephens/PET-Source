@@ -7,6 +7,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 
 abstract class CodexFragment : InvestigationFragment() {
+
     fun stylizeLogo(ghostOSLabel: AppCompatTextView?) {
 
         val color1 = getColorFromAttribute(requireContext(), R.attr.codex3_gh0stTextNormal)

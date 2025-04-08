@@ -30,10 +30,6 @@ abstract class PETFragment : Fragment, AccountManagementService {
         initFirebaseAnalytics()
     }
 
-    /*protected fun initGlobalPreferencesViewModel() {
-        globalPreferencesViewModel.init(requireContext())
-    }*/
-
     private fun initFirebaseAnalytics() {
         try { this.analytics = (requireActivity() as PETActivity).firebaseAnalytics }
         catch (e: IllegalStateException) { e.printStackTrace() }

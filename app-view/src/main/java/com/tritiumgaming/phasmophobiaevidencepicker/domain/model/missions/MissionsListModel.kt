@@ -29,7 +29,7 @@ class MissionsListModel(
         return target
     }
 
-    fun deselectBy(missionId: Int? = null, state: Boolean? = null) {
+    /*fun deselectBy(missionId: Int? = null, state: Boolean? = null) {
         objectivesList.forEach { objective ->
             if(objective.missionId == missionId) {
                 objective.deselect()
@@ -43,7 +43,7 @@ class MissionsListModel(
             if(objective.missionId == missionId)
                 objective.deselect()
         }
-    }
+    }*/
 
     fun reset() {
         objectivesList.forEach { objective -> objective.deselect() }

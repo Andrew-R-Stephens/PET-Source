@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroups
 
-class AchievementsStoreModel : ItemStoreListModel() {
+class CodexAchievements(context: Context) : ItemStoreGroups() {
 
-    fun init(context: Context) {
+    init {
         val shopListTypedArray = context.resources.obtainTypedArray(R.array.shop_achievements_array)
 
         val nameKey = 0
@@ -24,7 +24,6 @@ class AchievementsStoreModel : ItemStoreListModel() {
 
             val shopTypedArray =
                 context.resources.obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
-
 
             achievementsName = shopTypedArray.getResourceId(nameKey, 0)
             achievementsInfo = shopTypedArray.getResourceId(infoKey, 0)
@@ -43,6 +42,7 @@ class AchievementsStoreModel : ItemStoreListModel() {
 
             shopTypedArray.recycle()
         }
+
         shopListTypedArray.recycle()
     }
 

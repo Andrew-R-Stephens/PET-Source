@@ -5,13 +5,12 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroups
 
 
-class EquipmentStoreModel(): ItemStoreListModel() {
+class CodexEquipment(context: Context): ItemStoreGroups() {
 
-
-    fun init(context: Context) {
+    init {
         val shopListTypedArray = context.resources.obtainTypedArray(R.array.shop_equipment_array)
 
         val nameKey = 0

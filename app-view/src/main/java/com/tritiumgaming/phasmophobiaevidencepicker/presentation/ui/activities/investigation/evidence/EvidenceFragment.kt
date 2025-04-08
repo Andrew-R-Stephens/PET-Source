@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -16,6 +17,7 @@ import android.widget.ScrollView
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.lifecycleScope
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.CollapseButton
@@ -29,6 +31,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.common.investigation.section.lists.GhostListView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
@@ -110,16 +113,14 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         evidenceScrollview?.addView(evidenceList)
 
         sanityToolsLayout?.visibility =
-            if(investigationViewModel.investigationModel.isInvestigationToolsDrawerCollapsed.value)
+            if(investigationViewModel.isInvestigationToolsDrawerCollapsed.value)
                 GONE else VISIBLE
-
 
         val sanityToolbarComposable: ComposeView? = view.findViewById(R.id.sanityToolbarComposable)
         sanityToolbarComposable?.setContent {
             val collapseButton: @Composable () -> Unit = {
                 CollapseButton {
-                    investigationViewModel.investigationModel
-                        .isInvestigationToolsDrawerCollapsed.value.let {
+                    investigationViewModel.isInvestigationToolsDrawerCollapsed.value.let {
                             when (it) {
                                 true -> {
                                     sanityToolsLayout?.animate()
@@ -132,7 +133,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                                             override fun onAnimationEnd(animation: Animator) {
                                                 super.onAnimationEnd(animation)
                                                 sanityToolsLayout?.visibility = VISIBLE
-                                                investigationViewModel.investigationModel.setInvestigationToolsDrawerState(false)
+                                                investigationViewModel.setInvestigationToolsDrawerState(false)
                                             }
                                         })?.start()
                                 }
@@ -147,7 +148,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
                                             override fun onAnimationEnd(animation: Animator) {
                                                 super.onAnimationStart(animation)
                                                 sanityToolsLayout?.visibility = GONE
-                                                investigationViewModel.investigationModel.setInvestigationToolsDrawerState(true)
+                                                investigationViewModel.setInvestigationToolsDrawerState(true)
                                             }
                                         })?.start()
                                 }
@@ -173,7 +174,6 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
             )
         }
 
-
         popupWindow = PopupWindow(
             RelativeLayout.LayoutParams.MATCH_PARENT,
             RelativeLayout.LayoutParams.MATCH_PARENT
@@ -184,6 +184,13 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
 
         Thread { ghostList?.createViews() }.start()
         Thread { evidenceList?.createViews() }.start()
+        
+        /*lifecycleScope.launch {
+            investigationViewModel.ghostOrder.collect {
+                Log.d("GhostListView", "Order Updated")
+                ghostList?.attemptInvalidate()
+            }
+        }*/
 
     }
 
@@ -252,7 +259,7 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
     override fun reset() {
         investigationViewModel.reset()
         objectivesViewModel.reset()
-        investigationViewModel.investigationModel.ghostScoreModel.updateOrder()
+        investigationViewModel.reorderGhostScoreModel()
         ghostList?.reset()
     }
 

@@ -114,7 +114,7 @@
     <string name="settings_extrasettings">Extra Settings</string>
     <string name="settings_appearancesettings">Appearance</string>
     <string name="settings_fontstylesettings">Font Style</string>
-    <string name="settings_adsconsentcontrolsection" translatable="false">Ads / GDPR Settings</string>
+    <string name="settings_adsconsentcontrolsection">Ads / GDPR Settings</string>
     <string name="settings_adsconsentcontrolsettings">GDPR Settings</string>
     <string name="settings_adsconsentcontrolsettings_button">GDPR Settings</string>
     <string name="settings_screenalwayson">Always keep the screen on</string>

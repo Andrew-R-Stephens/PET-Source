@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.NewsletterRepository.NewsletterInboxType.InboxType
@@ -37,7 +38,7 @@ fun NewsAlert(
     @DrawableRes alertDrawableRes: Int = R.drawable.ic_notify
 ) {
 
-    val activeAsState = newsletterViewModel.requiresNotify(inboxType)?.collectAsState()
+    val activeAsState = newsletterViewModel.requiresNotify(inboxType)?.collectAsStateWithLifecycle()
     val rememberIsActive by remember { mutableStateOf(activeAsState) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "")

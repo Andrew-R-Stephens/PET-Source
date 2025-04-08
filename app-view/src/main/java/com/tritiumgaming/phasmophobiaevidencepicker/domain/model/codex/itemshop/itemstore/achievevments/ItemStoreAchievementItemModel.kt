@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItemModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItem
 
-class ItemStoreAchievementItemModel : ItemStoreItemModel() {
+class ItemStoreAchievementItemModel : ItemStoreItem() {
 
     override fun getAllAttributesAsFormattedHTML(c: Context): String {
         val out = StringBuilder()

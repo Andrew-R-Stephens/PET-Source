@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 
-abstract class ItemStoreItemModel {
+abstract class ItemStoreItem {
 
     @StringRes var flavorData: Int = 0
 

@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +18,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.TextButton
@@ -24,18 +27,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedStyleType
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.palettes.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypographiesList
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.types.LocalTypography
 import org.jetbrains.annotations.TestOnly
@@ -48,16 +54,6 @@ private fun ReviewPopupComposablePreview() {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        /*items(count = LocalPalettesMap.toList().size) { index ->
-
-            SelectiveTheme(
-                palette = LocalPalettesMap.toList()[index].second,
-                typography = ClassicTypography
-            ) {
-                ReviewPopupComposable()
-            }
-        }*/
-
 
         items(count = LocalTypographiesList.size) { index ->
 
@@ -68,7 +64,33 @@ private fun ReviewPopupComposablePreview() {
                 ReviewPopupComposable()
             }
         }
+
     }
+}
+
+@Preview
+@Composable
+@TestOnly
+private fun OptionButtonPreview() {
+
+        SelectiveTheme(
+            palette = ClassicPalette,
+            typography = ClassicTypography
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                OptionButton(R.string.review_accept) {
+
+                }
+                OptionButton(R.string.review_decline) {
+
+                }
+
+            }
+        }
 }
 
 @Composable
@@ -87,22 +109,30 @@ fun ReviewPopupComposable() {
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
             modifier = Modifier
                 .padding(16.dp)
         ) {
 
-            AutoResizedText(
-                containerModifier = Modifier
+            Box(
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
-                text = stringResource(R.string.review_requesttitle),
-                style = LocalTypography.current.primary.regular,
-                color = LocalPalette.current.textFamily.secondary,
-                autoResizeStyle = AutoResizedStyleType.SQUEEZE,
-                textAlign = TextAlign.Center,
-                constrainWidth = true,
-                constrainHeight = true
-            )
+                contentAlignment = Alignment.Center
+            ) {
+
+                BasicText(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    text = stringResource(R.string.review_requesttitle),
+                    style = LocalTypography.current.primary.regular.copy(
+                        color = LocalPalette.current.textFamily.secondary,
+                        textAlign = TextAlign.Center
+                    ),
+                    autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 5.sp)
+                )
+
+            }
 
             LazyRow(
                 modifier = Modifier
@@ -151,7 +181,9 @@ private fun RowScope.OptionButton(
             .fillMaxWidth()
             .height(48.dp)
             .weight(1f),
-        onClick = { onClick() }
+        contentPadding = PaddingValues(4.dp),
+        onClick = { onClick() },
+        shape = RectangleShape
     ) {
         OptionContent(text)
     }
@@ -172,18 +204,24 @@ private fun OptionContent(
             contentDescription = stringResource(text),
             contentScale = ContentScale.FillBounds
         )
-        AutoResizedText(
-            containerModifier = Modifier
+
+        Box(
+            modifier = Modifier
                 .fillMaxSize()
-                .align(Alignment.Center)
                 .padding(8.dp),
-            text = stringResource(text),
-            style = LocalTypography.current.primary.regular,
-            autoResizeStyle = AutoResizedStyleType.SQUEEZE,
-            color = LocalPalette.current.textFamily.body,
-            textAlign = TextAlign.Center,
-            constrainWidth = true,
-            constrainHeight = true
-        )
+            contentAlignment = Alignment.Center
+        ) {
+
+            BasicText(
+                text = stringResource(text),
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.body,
+                    textAlign = TextAlign.Center
+                ),
+                autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 5.sp)
+            )
+
+        }
+
     }
 }

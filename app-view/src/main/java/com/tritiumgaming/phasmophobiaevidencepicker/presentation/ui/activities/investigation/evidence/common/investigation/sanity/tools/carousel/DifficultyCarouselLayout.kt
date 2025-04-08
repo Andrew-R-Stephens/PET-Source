@@ -27,30 +27,26 @@ class DifficultyCarouselLayout : SanityCarouselLayout {
 
         leftListener = object : CarouselButtonListener() {
             override fun onAction() {
-                investigationViewModel.difficultyCarouselModel?.decrementIndex()
+                investigationViewModel.decrementDifficultyIndex()
                 print("Decrementing Diff")
-                investigationViewModel.sanityModel?.reset()
+                investigationViewModel.resetSanityHandler()
             }
         }
 
         rightListener = object : CarouselButtonListener() {
             override fun onAction() {
-                investigationViewModel.difficultyCarouselModel?.incrementIndex()
+                investigationViewModel.incrementDifficultyIndex()
                 print("Incrementing Diff")
-                investigationViewModel.sanityModel?.reset()
+                investigationViewModel.resetSanityHandler()
             }
         }
-        investigationViewModel.difficultyCarouselModel?.currentName?.let { nameRes ->
-            setName(context.getString(nameRes))
-        }
+        setName(context.getString(investigationViewModel.currentDifficultyName))
     }
 
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
-            investigationViewModel.difficultyCarouselModel?.currentIndex?.collectLatest {
-                investigationViewModel.difficultyCarouselModel?.currentName?.let { nameRes ->
-                    setName(context.getString(nameRes))
-                }
+            investigationViewModel.currentDifficultyIndex.collectLatest {
+                setName(context.getString(investigationViewModel.currentDifficultyName))
             }
         }
     }

@@ -14,9 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.net.toUri
 import androidx.navigation.Navigation.findNavController
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuActivity
@@ -67,10 +64,7 @@ class StartScreenFragment : MainMenuFragment() {
         buttonLanguage.setOnClickListener { v: View -> this.gotoLanguagesFragment(v) }
         buttonMsgInbox?.setOnClickListener { v: View -> this.gotoMessageCenterFragment(v) }
         buttonStart.setOnClickListener {
-            try { val intent = Intent(requireActivity(), InvestigationActivity::class.java)
-                intent.putExtra("lobby", 0)
-                startActivity(intent)
-            } catch (e: IllegalStateException) { e.printStackTrace() }
+            gotoInvestigationActivity()
         }
 
         newsIcon = ComposeView(requireContext())
@@ -89,13 +83,7 @@ class StartScreenFragment : MainMenuFragment() {
                     DropdownNavigationPair(R.drawable.ic_gear, R.id.appSettingsFragment),
                     DropdownNavigationPair(translationIcon, R.id.appLanguageFragment),
                     DropdownClickPair(R.drawable.ic_discord) {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW,
-                                "https://discord.gg/ ${getString(R.string.aboutinfo_discordInvite)}"
-                                    .toUri()
-                            )
-                        )
+                        gotoDiscordApplication()
                     }
                 )
             ) { false }
@@ -117,7 +105,6 @@ class StartScreenFragment : MainMenuFragment() {
 
         buttonMsgInbox?.setContent { NewsAlert() }
 
-        //setBackgroundLogo(iconApp)
         setLanguageName(labelLanguageName)
 
         super.initAdView(view.findViewById(R.id.adView))
@@ -145,19 +132,25 @@ class StartScreenFragment : MainMenuFragment() {
         labelLanguageName.text = chosenLanguage
     }
 
-    private fun loadBannerAd(view: View) {
-        try { MobileAds.initialize(requireActivity()) { } }
-        catch (e: IllegalStateException) { e.printStackTrace() }
+    private fun gotoDiscordApplication() {
+        try {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                "https://discord.gg/ ${getString(R.string.aboutinfo_discordInvite)}"
+                    .toUri()
+            )
+            startActivity(intent)
+        } catch (e: IllegalStateException) { e.printStackTrace() }
+    }
 
-        val mAdView = view.findViewById<AdView>(R.id.adView)
+    private fun gotoInvestigationActivity() {
 
-        mainMenuViewModel.let { mainMenuViewModel ->
-            if (!mainMenuViewModel.hasAdRequest()) {
-                mainMenuViewModel.adRequest = AdRequest.Builder().build()
-            }
-            mainMenuViewModel.adRequest?.let { adRequest ->  mAdView.loadAd(adRequest) }
-        }
-
+        try {
+            val intent = Intent(requireActivity(), InvestigationActivity::class.java)
+            intent.putExtra("lobby", 0)
+            intent.putExtra("language", globalPreferencesViewModel.currentLanguageCode.value)
+            startActivity(intent)
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     private fun gotoMessageCenterFragment(v: View) {

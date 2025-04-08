@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -22,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
@@ -33,7 +33,7 @@ fun SanityMeterView(
         viewModel( factory = InvestigationViewModel.Factory ),
     modifier: Modifier = Modifier
 ) {
-    val sanityLevel = investigationViewModel.sanityModel.sanityLevel.collectAsState()
+    val sanityLevel = investigationViewModel.sanityLevel.collectAsStateWithLifecycle()
     val sanityPercent = (sanityLevel.value) * .01f
 
     Box(

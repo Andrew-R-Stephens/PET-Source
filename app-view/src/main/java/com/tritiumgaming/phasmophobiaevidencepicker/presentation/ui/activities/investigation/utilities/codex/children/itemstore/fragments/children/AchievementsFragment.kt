@@ -12,7 +12,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.res.ResourcesCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroup
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.ItemStoreAchievementGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.ItemStoreAchievementItemModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.fragments.ItemStoreFragment
@@ -22,7 +22,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 class AchievementsFragment : ItemStoreFragment() {
     @SuppressLint("ResourceType")
     override fun buildStoreData() {
-        val shopListTypedArray = resources.obtainTypedArray(R.array.shop_achievements_array)
+
+        investigationViewModel.achievementsStoreModel.groups.forEach { storeData.addGroup(it) }
+
+        /*val shopListTypedArray = resources.obtainTypedArray(R.array.shop_achievements_array)
 
         for (i in 0 until shopListTypedArray.length()) {
             @StringRes var achievementsName: Int
@@ -53,7 +56,7 @@ class AchievementsFragment : ItemStoreFragment() {
 
             shopTypedArray.recycle()
         }
-        shopListTypedArray.recycle()
+        shopListTypedArray.recycle()*/
     }
 
     override fun setPageTitle(titleView: AppCompatTextView) {
@@ -67,7 +70,7 @@ class AchievementsFragment : ItemStoreFragment() {
         dataView?.visibility = View.INVISIBLE
     }
 
-    override fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroupModel) {
+    override fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroup) {
         val itemStoreGroupList = ItemStoreGroupListView(requireContext())
         itemStoreGroupList.build(R.drawable.ic_achievement_banshee, group)
         parent.addView(itemStoreGroupList)

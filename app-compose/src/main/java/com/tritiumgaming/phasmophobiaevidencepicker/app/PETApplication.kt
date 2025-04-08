@@ -6,8 +6,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.app.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.app.container.dataStore
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.AccountManagementService
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.SignInCredentialManager
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl.AccountManagementService
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.pet.activities.impl.SignInCredentialManager
 
 class PETApplication : Application(), AccountManagementService {
 

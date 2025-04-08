@@ -791,6 +791,7 @@
     <string name="evidence_section_overview">Обзор</string>
     <string name="store_title_equipment">Магазин оборудования</string>
     <string name="equipment_section_tiers">Уровни</string>
+    <string name="settings_adsconsentcontrolsection">Настройки рекламы/GDPR</string>
     <string name="settings_adsconsentcontrolsettings">Конфигурация GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Редактировать</string>
     <string name="evidence_requirement_level_title">Уровень разблокировки:</string>

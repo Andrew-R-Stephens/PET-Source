@@ -20,13 +20,11 @@ import com.google.android.gms.ads.MobileAds
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.popups.EvidencePopupModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.FontUtils.replaceHTMLFontColor
 import pl.droidsonroids.gif.GifImageView
 
 class EvidencePopupWindow : InvestigationPopupWindow {
-    private val detailIndex = 0
 
     constructor(context: Context) :
             super(context) { initView() }
@@ -45,7 +43,6 @@ class EvidencePopupWindow : InvestigationPopupWindow {
     }
 
     fun build(
-        investigationViewModel: InvestigationViewModel?,
         evidenceModel: EvidenceModel?,
         adRequest: AdRequest?,
         popupModel: EvidencePopupModel? = evidenceModel?.popupModel,
@@ -189,7 +186,6 @@ class EvidencePopupWindow : InvestigationPopupWindow {
             )
         }
 
-
         val typedArray: TypedArray
         try {
             typedArray = context.resources.obtainTypedArray(R.array.equipment_animation_array)
@@ -217,7 +213,7 @@ class EvidencePopupWindow : InvestigationPopupWindow {
 
     private fun generateEvidenceTierView(
         tierIndex: Int,
-        animation_fullscreen: GifImageView,
+        fullscreenAnimation: GifImageView,
         popupModel: EvidencePopupModel,
         @ColorInt fontEmphasisColor: Int
     ) {
@@ -236,13 +232,14 @@ class EvidencePopupWindow : InvestigationPopupWindow {
         )
         levelView.text = Html.fromHtml(
             replaceHTMLFontColor(
-                context.getString(R.string.evidence_requirement_level_title) + " " + popupModel.unlock_level[tierIndex - 1],
+                "${context.getString(R.string.evidence_requirement_level_title)} " +
+                        "${popupModel.unlock_level[tierIndex - 1]}",
                 "#ff6161", fontEmphasisColor.toString()
             )
         )
 
         animationView.setImageResource(popupModel.animations[tierIndex])
-        animation_fullscreen.setImageResource(popupModel.animations[tierIndex])
+        fullscreenAnimation.setImageResource(popupModel.animations[tierIndex])
 
         val typedArray =
             resources.obtainTypedArray(R.array.equipment_tiers)
@@ -251,11 +248,11 @@ class EvidencePopupWindow : InvestigationPopupWindow {
 
 
         animationView.setOnClickListener {
-            if (animation_fullscreen.visibility != VISIBLE) {
-                animation_fullscreen.visibility = VISIBLE
+            if (fullscreenAnimation.visibility != VISIBLE) {
+                fullscreenAnimation.visibility = VISIBLE
             }
         }
-        animation_fullscreen.setOnClickListener { v: View ->
+        fullscreenAnimation.setOnClickListener { v: View ->
             if (isVisible) {
                 v.visibility = GONE
             }

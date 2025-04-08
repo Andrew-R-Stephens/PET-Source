@@ -30,18 +30,13 @@ abstract class MainMenuFragment : PETFragment {
         mainMenuViewModel.let { mainMenuViewModel ->
             try {
                 MobileAds.initialize(requireActivity()) { }
-                if (!mainMenuViewModel.hasAdRequest()) {
-                    mainMenuViewModel.adRequest = AdRequest.Builder().build() }
-                mainMenuViewModel.adRequest?.let { adRequest -> adView.loadAd(adRequest) }
+                mainMenuViewModel.adRequest ?: {
+                    mainMenuViewModel.adRequest = AdRequest.Builder().build().also {
+                            adView.loadAd(it) }
+                }
+
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
     }
 
-    /*override fun initViewModels() {
-        super.initGlobalPreferencesViewModel()
-    }
-
-    override fun saveStates() {
-        super.saveStates()
-    }*/
 }

@@ -14,17 +14,21 @@ class EvidenceModel(
     val popupModel: EvidencePopupModel = EvidencePopupModel()
 ) {
 
-    var ruling: Ruling = Ruling.NEUTRAL
-
-    enum class Ruling {
-        NEGATIVE, NEUTRAL, POSITIVE
+    override fun equals(other: Any?): Boolean {
+        if(other !is EvidenceModel) return false
+        val result = id == other.id
+        /*Log.d("EvidenceModel", "Comparing $id to ${other.id} -- RESULT: " +
+                if(result) { "OK" } else { "NO MATCH" }
+        )*/
+        return result
     }
 
-    fun isRuling(r: Ruling): Boolean {
-        return ruling == r
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + name
+        result = 31 * result + icon
+        result = 31 * result + popupModel.hashCode()
+        return result
     }
 
-    override fun toString(): String {
-        return ruling.name
-    }
 }

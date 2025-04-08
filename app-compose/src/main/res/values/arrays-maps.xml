@@ -63,7 +63,6 @@
     <!-- Drawable - Map Thumbnail -->
     <!-- Map images -->
     <!--<integer-array name= "map_asylum_array">
-        <item>@string/map_name_asylum</item>
         <item>@array/map_asylum_image_array</item>
         <item>@array/map_asylum_image_array</item>
         <item>@array/map_asylum_image_array</item>
@@ -73,23 +72,6 @@
         <item>@drawable/thumbnail_asylum</item>
         <item>@array/map_asylum_image_array</item>
     </integer-array>-->
-
-    <!-- Generic array of map names -->
-    <string-array name="map_names_array">
-        <item>@string/map_name_meadows</item>
-        <item>@string/map_name_meadows_r</item>
-        <item>@string/map_name_pointhope</item>
-        <item>@string/map_name_campmaple</item>
-        <item>@string/map_name_campwoodwind</item>
-        <item>@string/map_name_bleasdale</item>
-        <item>@string/map_name_grafton</item>
-        <item>@string/map_name_brownstone</item>
-        <item>@string/map_name_edgefield</item>
-        <item>@string/map_name_tanglewood</item>
-        <item>@string/map_name_willow</item>
-        <item>@string/map_name_ridgeview</item>
-        <item>@string/map_name_prison</item>
-    </string-array>
 
     <integer-array name= "map_meadows_array">
         <item>@string/map_name_meadows</item>
