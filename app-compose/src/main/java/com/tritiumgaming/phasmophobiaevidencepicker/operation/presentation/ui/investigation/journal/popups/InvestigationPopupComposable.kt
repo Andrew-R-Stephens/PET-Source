@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -39,8 +41,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.AutoResizedStyleType
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.AutoResizedText
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.PETImageButtonType
@@ -49,7 +49,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils.replaceHTMLFontColor
-import com.tritiumgaming.phasmophobiaevidencepicker.core.util.TextCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.EvidencePopupRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 
@@ -175,7 +174,15 @@ fun RowScope.PrimaryPageButton(
         },
         enabled = rememberActivePage != pageType.pageIndex
     ) {
-        AutoResizedText(
+        BasicText(
+            text = stringResource(textRes).uppercase(),
+            style = LocalTypography.current.secondary.regular.copy(
+                color = LocalPalette.current.textFamily.body,
+                textAlign = TextAlign.Center
+            ),
+            autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
+        )
+        /*AutoResizedText(
             containerModifier = Modifier
                 .fillMaxSize(),
             text = stringResource(textRes),
@@ -184,7 +191,7 @@ fun RowScope.PrimaryPageButton(
             autoResizeStyle = AutoResizedStyleType.SQUEEZE,
             textCase = TextCase.Uppercase,
             textAlign = TextAlign.Center
-        )
+        )*/
     }
 }
 

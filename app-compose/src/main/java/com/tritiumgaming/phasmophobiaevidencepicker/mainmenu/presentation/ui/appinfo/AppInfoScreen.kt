@@ -38,9 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.AutoResizedStyleType
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.AutoResizedText
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.DiscordIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.DiscordIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.PETImageButtonType
@@ -224,16 +222,17 @@ private fun InfoContent(
             verticalArrangement = Arrangement.Bottom
         ) {
 
-            AutoResizedText(
-                containerModifier = Modifier
+            BasicText(
+                modifier = Modifier
                     .padding(top = 16.dp)
                     .height(36.dp)
                     .fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                autoResizeStyle = AutoResizedStyleType.SQUEEZE,
-                style = LocalTypography.current.primary.regular,
-                color = LocalPalette.current.textFamily.primary,
-                text = stringResource(R.string.aboutinfo_specialthanks_title)
+                text = stringResource(R.string.aboutinfo_specialthanks_title),
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.primary,
+                    textAlign = TextAlign.Center
+                ),
+                autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
             )
 
             val specialThanks = mainMenuViewModel.specialThanksList
@@ -246,15 +245,17 @@ private fun InfoContent(
 
                 items(specialThanks.size) { index ->
 
-                    AutoResizedText(
-                        containerModifier = Modifier
+                    BasicText(
+                        modifier = Modifier
                             .fillMaxWidth()
                             .height(24.dp),
                         text = specialThanks[index],
-                        color = LocalPalette.current.textFamily.body,
-                        style = LocalTypography.current.quaternary.regular,
-                        textAlign = TextAlign.Center,
-                        autoResizeStyle = AutoResizedStyleType.SQUEEZE
+                        style = LocalTypography.current.quaternary.regular.copy(
+                            color = LocalPalette.current.textFamily.body,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
                     )
 
                 }
@@ -302,13 +303,15 @@ private fun VisitDiscordButton() {
                     .fillMaxHeight(),
             )
 
-            AutoResizedText(
-                containerModifier = Modifier
+            BasicText(
+                modifier = Modifier
                     .weight(1f, fill = true),
                 text = stringResource(R.string.aboutinfo_discord_join),
-                color = LocalPalette.current.textFamily.body,
-                textAlign = TextAlign.Center,
-                autoResizeStyle = AutoResizedStyleType.SQUEEZE
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.body,
+                    textAlign = TextAlign.Center
+                ),
+                autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
             )
 
         }

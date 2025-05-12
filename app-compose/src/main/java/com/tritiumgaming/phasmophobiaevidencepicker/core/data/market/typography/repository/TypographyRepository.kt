@@ -6,7 +6,7 @@ import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.MarketRemoteDataSourceInterface
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.ThemeRepository.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.TypographyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.TypographyLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.local.TypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.typography.Typography
@@ -95,7 +95,7 @@ class TypographyRepository(
         }
     }
 
-    override fun fetchAllLocalTypographies(): List<Pair<String, ExtendedTypography>> = localDataSource.typographys.toList()
+    override fun fetchAllLocalTypographies(): List<Pair<String, ExtendedTypography>> = localDataSource.typographies.toList()
 
     override fun findNextAvailable(
         currentUUID: StateFlow<String>,

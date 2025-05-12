@@ -9,8 +9,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.PaletteDatastore.ColorPreferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.ReviewTrackingDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.datastore.PaletteDatastore.ColorPreferences
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.datastore.ReviewTrackingDatastore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map

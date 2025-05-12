@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.LanguageObject
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.LanguageLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.local.LanguageLocalDataSource
 
 class LanguageRepository(
     context: Context,

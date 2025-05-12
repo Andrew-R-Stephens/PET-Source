@@ -2,8 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source
 
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.LanguageLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.LanguageLocalDataSource.Companion.DEFAULT_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.local.LanguageLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.local.LanguageLocalDataSource.Companion.DEFAULT_LANGUAGE
 import java.util.Locale
 
 class LanguageLocalDataSource: LanguageLocalDataSource {

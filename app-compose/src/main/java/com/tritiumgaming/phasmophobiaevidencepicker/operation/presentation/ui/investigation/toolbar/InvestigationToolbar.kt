@@ -48,8 +48,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.DisplayOrientation
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.fadingEdges
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.modifiers.DisplayOrientation
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.modifiers.fadingEdges
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils.getColorFromAttribute
 import kotlinx.coroutines.flow.MutableStateFlow

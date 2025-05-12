@@ -8,9 +8,9 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.TypographyDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.TypographyDatastore.TypographyPreferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.TypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.datastore.TypographyDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.datastore.TypographyDatastore.TypographyPreferences
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.datastore.TypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first

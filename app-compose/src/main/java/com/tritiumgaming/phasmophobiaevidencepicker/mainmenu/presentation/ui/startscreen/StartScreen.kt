@@ -24,8 +24,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.StrokeJoin
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -43,15 +41,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.AutoResizedBehavior
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.AutoResizedStyleType
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.AutoResizedText
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.DropdownClickPair
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.DropdownNavPair
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.IconDropdownMenu
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.LanguageIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.NewsAlert
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.account.AccountIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownClickPair
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownNavPair
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.IconDropdownMenu
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.LanguageIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.AccountIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
@@ -143,7 +138,20 @@ private fun StartContent(
                 contentScale = ContentScale.Fit
             )
 
-            AutoResizedText(
+            BasicText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
+                text = stringResource(R.string.titlescreen_description),
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.splashTextColor,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
+
+            /*AutoResizedText(
                 containerModifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp),
@@ -161,7 +169,7 @@ private fun StartContent(
                 ),
                 autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
                 behavior = AutoResizedBehavior.MARQUEE
-            )
+            )*/
 
             Column(
                 modifier = Modifier

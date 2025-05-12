@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.PaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.ThemeRepository.IncrementDirection
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.PaletteDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.datastore.PaletteDatastore
 import kotlinx.coroutines.flow.update
 
 class PaletteManager(
