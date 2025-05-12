@@ -6,9 +6,6 @@
     <!-- Page Details -->
     <string name="app_name" translatable="false">P.E.T.</string>
 
-    <!-- Toast Messages -->
-    <string name="toast_discardchanges">Changes discarded</string>
-
     <!-- Navigation Labels -->
     <string name="navigation_open_state">Navigation Drawer opened.</string>
     <string name="navigation_closed_state">Navigation Drawer closed.</string>
@@ -25,8 +22,6 @@
     <string name="general_navigation_tools">Tools</string>
     <string name="general_navigation_settings">Settings</string>
     <string name="general_navigation_system">System</string>
-
-
     <string name="general_evidence_reset_button">Reset</string>
 
     <!--
@@ -47,34 +42,6 @@
     <string name="review_decline">No thanks</string>
     <string name="review_storelink_app" translatable="false">market://details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
     <string name="review_storelink_website" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
-
-    <!--
-        LANGUAGE FRAGMENT
-    -->
-    <!-- Languages -->
-    <string name="language_fullName_chinese_s" translatable="false">Chinese (Simplified)</string>
-    <string name="language_fullName_czech" translatable="false">Czech</string>
-    <string name="language_fullName_german" translatable="false">Deutsch</string>
-    <string name="language_fullName_english" translatable="false">English</string>
-    <string name="language_fullName_spanish" translatable="false">Español</string>
-    <string name="language_fullName_french" translatable="false">Français</string>
-    <string name="language_fullName_italian" translatable="false">Italian</string>
-    <string name="language_fullName_japanese" translatable="false">Japanese</string>
-    <string name="language_fullName_portuguese" translatable="false">Portuguese</string>
-    <string name="language_fullName_russian" translatable="false">Russian</string>
-    <string name="language_fullName_ukrainian" translatable="false">Ukrainian</string>
-
-    <string name="language_abbrName_chinese_simplified" translatable="false">zh</string>
-    <string name="language_abbrName_czech" translatable="false">cs</string>
-    <string name="language_abbrName_english" translatable="false">en</string>
-    <string name="language_abbrName_spanish" translatable="false">es</string>
-    <string name="language_abbrName_french" translatable="false">fr</string>
-    <string name="language_abbrName_german" translatable="false">de</string>
-    <string name="language_abbrName_italian" translatable="false">it</string>
-    <string name="language_abbrName_japanese" translatable="false">ja</string>
-    <string name="language_abbrName_portuguese" translatable="false">pt</string>
-    <string name="language_abbrName_russian" translatable="false">ru</string>
-    <string name="language_abbrName_ukrainian" translatable="false">uk</string>
 
     <!--
         ABOUT FRAGMENT
@@ -100,78 +67,8 @@
     <string name="aboutinfo_developerinfo_title">Developer Info</string>
     <string name="aboutinfo_developerinfo_developer">Developer</string>
     <string name="aboutinfo_developerinfo_contact">Contact</string>
-    <string name="aboutinfo_joindiscord">Join the Discord</string>
+    <string name="aboutinfo_discord_join">Join the Discord</string>
     <string name="aboutinfo_specialthanks_title">Special Thanks</string>
-
-    <!--
-        SETTINGS FRAGMENT
-    -->
-    <!-- Page Details -->
-    <string name="settings_title">Settings</string>
-    <string name="settings_confirm">Confirm</string>
-    <string name="settings_cancel">Cancel</string>
-    <string name="settings_generalsettings">General Settings</string>
-    <string name="settings_extrasettings">Extra Settings</string>
-    <string name="settings_appearancesettings">Appearance</string>
-    <string name="settings_fontstylesettings">Font Style</string>
-    <string name="settings_adsconsentcontrolsection">Ads / GDPR Settings</string>
-    <string name="settings_adsconsentcontrolsettings">GDPR Settings</string>
-    <string name="settings_adsconsentcontrolsettings_button">GDPR Settings</string>
-    <string name="settings_screenalwayson">Always keep the screen on</string>
-    <string name="settings_networktitle">Allow Mobile Data</string>
-    <string name="settings_huntwarningflashtimeout">Hunt warning flash duration</string>
-    <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
-    <string name="settings_enableLeftHandSupport">Enable Left-Handed Mode</string>
-    <string name="settings_enablehuntaudioqueue">Enable Hunt Warning Audio</string>
-    <string name="settings_enableGhostReorder">Enable Ghost List Reordering</string>
-    <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
-    <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
-    <string name="settings_colortheme_title">Skin</string>
-    <string name="settings_colortheme_note">(Colorblindness selection takes precedence)</string>
-
-    <!-- Colorblindness Types -->
-    <string name="settings_colorblindnessmode_normal">None</string>
-    <string name="settings_colorblindnessmode_defaultName" translatable="false">Default</string>
-    <string name="settings_colorblindnessmode_defaultID" translatable="false">CzjtxSbXRwIpX8SYR0ttngAND</string>
-
-    <string name="theme_palette_classic" translatable="false">P.E.T. Classic</string>
-    <string name="theme_palette_colorblind_monochromacy">Achromatopsia</string>
-    <string name="theme_palette_colorblind_deuteranomaly">Deuteranopia</string>
-    <string name="theme_palette_colorblind_protanomaly">Protanopia</string>
-    <string name="theme_palette_colorblind_tritanomaly">Tritanopia</string>
-    <string name="theme_palette_special_whiteboard" translatable="false">Whiteboard</string>
-    <string name="theme_palette_special_strategemHero" translatable="false">Strategem Hero</string>
-    <string name="theme_palette_prestige_recruit" translatable="false">Recruit</string>
-    <string name="theme_palette_prestige_investigator" translatable="false">Investigator</string>
-    <string name="theme_palette_prestige_privateinvestigator" translatable="false">Private Investigator</string>
-    <string name="theme_palette_prestige_detective" translatable="false">Detective</string>
-    <string name="theme_palette_prestige_technician" translatable="false">Technician</string>
-    <string name="theme_palette_prestige_specialist" translatable="false">Specialist</string>
-    <string name="theme_palette_prestige_analyst" translatable="false">Analyst</string>
-    <string name="theme_palette_prestige_agent" translatable="false">Agent</string>
-    <string name="theme_palette_prestige_operator" translatable="false">Operator</string>
-    <string name="theme_palette_prestige_commissioner" translatable="false">Commissioner</string>
-    <string name="theme_palette_event_easter" translatable="false">Easter</string>
-    <string name="theme_palette_event_halloween" translatable="false">Halloween</string>
-    <string name="theme_palette_event_holiday22" translatable="false">Holiday \'22</string>
-    <string name="theme_palette_event_holiday23" translatable="false">Holiday \'23</string>
-    <string name="theme_palette_community_discord" translatable="false">Discord</string>
-    <string name="theme_palette_community_contentcreator" translatable="false">Content Creator</string>
-    <string name="theme_palette_community_developer" translatable="false">Developer</string>
-    <string name="theme_palette_community_translator" translatable="false">Translator</string>
-    <string name="theme_palette_community_winner" translatable="false">Winner</string>
-    <string name="theme_palette_community_artist" translatable="false">Artist</string>
-
-    <!-- Font-Style Types -->
-    <string name="theme_typography_classic">P.E.T. Classic</string>
-    <string name="theme_typography_android">Android</string>
-    <string name="theme_typography_journal">Journal</string>
-    <string name="theme_typography_brick">Brick</string>
-    <string name="theme_typography_clean">Clean</string>
-    <string name="theme_typography_longcang" translatable="false">Long Cang</string>
-    <string name="theme_typography_newtegmon" translatable="false">New Tegomin</string>
-    <string name="theme_typography_neucha" translatable="false">Neucha</string>
-    <string name="theme_typography_jetbrainsmono" translatable="false">Jetbrains Mono</string>
 
     <!--
         MESSAGE CENTER FRAGMENTS
@@ -185,7 +82,6 @@
     <!--
         EVIDENCE FRAGMENT
     -->
-    <!-- Page Details -->
 
     <!-- Team Data -->
     <string name="investigation_average_sanity_title" translatable="false">Average Sanity</string>
@@ -194,25 +90,57 @@
 
     <!-- Solo/Team Data -->
     <string name="investigation_timer_label">Preparation Time:</string>
-    <string name="investigation_timer_difficulty_default">None</string>
-    <string name="investigation_timer_difficulty_1">Amateur</string>
-    <string name="investigation_timer_difficulty_2">Intermediate</string>
-    <string name="investigation_timer_difficulty_3">Professional</string>
-    <string name="investigation_timer_difficulty_4">Nightmare</string>
-    <string name="investigation_timer_difficulty_5">Insanity</string>
-    <string name="investigation_timer_difficulty_label">Difficulty:</string>
-    <string name="investigation_timer_maplabel">Map:</string>
-    <string name="investigation_timer_actionlabel">ACTION</string>
-    <string name="investigation_timer_setuplabel">SETUP</string>
-    <string name="investigation_sanity_huntwarn">HUNT WARN</string>
+    <string name="investigation_timer_difficulty_label">Difficulty</string>
+    <string name="investigation_timer_maplabel">Map</string>
+    <string name="investigation_timer_actionlabel">Action</string>
+    <string name="investigation_timer_setuplabel">Setup</string>
+    <string name="investigation_sanity_huntwarn">Hunt Warn</string>
     <string name="investigation_sanitymeter_title">Max Sanity</string>
     <string name="investigation_section_title_ghosts">Ghosts</string>
     <string name="investigation_section_title_evidence">Evidence</string>
 
+    <!-- Difficulty Titles -->
+    <string name="difficulty_title_default">None</string>
+    <string name="difficulty_title_amateur">Amateur</string>
+    <string name="difficulty_title_intermediate">Intermediate</string>
+    <string name="difficulty_title_professional">Professional</string>
+    <string name="difficulty_title_nightmare">Nightmare</string>
+    <string name="difficulty_title_insanity">Insanity</string>
+
+    <!-- Difficulty Modifiers -->
+    <string name="difficulty_modifier_amateur" translatable="false">1.0</string>
+    <string name="difficulty_modifier_intermediate" translatable="false">1.5</string>
+    <string name="difficulty_modifier_professional" translatable="false">2.0</string>
+    <string name="difficulty_modifier_nightmare" translatable="false">2.0</string>
+    <string name="difficulty_modifier_insanity" translatable="false">2.0</string>
+
+    <!-- Difficulty Start Sanity -->
+    <string name="difficulty_initialSanity_amateur" translatable="false">1.0</string>
+    <string name="difficulty_initialSanity_intermediate" translatable="false">1.0</string>
+    <string name="difficulty_initialSanity_professional" translatable="false">1.0</string>
+    <string name="difficulty_initialSanity_nightmare" translatable="false">1.0</string>
+    <string name="difficulty_initialSanity_insanity" translatable="false">0.75</string>
+
     <!-- Timer Difficulty Times -->
-    <string name="investigation_timer_time_1" translatable="false">300000</string>
-    <string name="investigation_timer_time_2" translatable="false">120000</string>
-    <string name="investigation_timer_time_3" translatable="false">0</string>
+    <string name="difficulty_time_amateur" translatable="false">300000</string>
+    <string name="difficulty_time_intermediate" translatable="false">120000</string>
+    <string name="difficulty_time_professional" translatable="false">0</string>
+    <string name="difficulty_time_nightmare" translatable="false">0</string>
+    <string name="difficulty_time_insanity" translatable="false">0</string>
+
+    <!-- Map Size Modifiers -->
+    <string name="maps_size_modifier_small_setup" translatable="false">.09</string>
+    <string name="maps_size_modifier_small_normal" translatable="false">.12</string>
+    <string name="maps_size_modifier_medium_setup" translatable="false">.05</string>
+    <string name="maps_size_modifier_medium_normal" translatable="false">.08</string>
+    <string name="maps_size_modifier_large_setup" translatable="false">.03</string>
+    <string name="maps_size_modifier_large_normal" translatable="false">.05</string>
+
+
+    <!-- Map Size Titles -->
+    <string name="maps_size_title_small">Small</string>
+    <string name="maps_size_title_medium">Medium</string>
+    <string name="maps_size_title_large">Large</string>
 
     <!--
         OBJECTIVES PAGE
@@ -223,9 +151,9 @@
     <string name="objectives_title_ghost_name">Ghost\'s Name:</string>
     <string name="objectives_ghostname_note">Enter Ghost Name Here</string>
     <string name="objectives_title_response">Responds to People who are:</string>
-    <string name="objectives_title_optional_objective_1">- OBJECTIVE 1</string>
-    <string name="objectives_title_optional_objective_2">- OBJECTIVE 2</string>
-    <string name="objectives_title_optional_objective_3">- OBJECTIVE 3</string>
+    <string name="objectives_title_optional_objective_1">Objective 1</string>
+    <string name="objectives_title_optional_objective_2">Objective 2</string>
+    <string name="objectives_title_optional_objective_3">Objective 3</string>
     <string name="objectives_title_response_alone">Alone</string>
     <string name="objectives_title_response_everyone">Grouped Up</string>
     <!-- Objective Description -->
@@ -244,55 +172,6 @@
     <!--
         TOOLS PAGE
     -->
-
-    <!--
-        SPIRITBOX TOOL PAGE
-    -->
-    <!-- All Entries -->
-    <!-- Personal Statements -->
-    <string name="spiritbox_entry_q0_3">Bloody Mary.</string>
-    <string name="spiritbox_entry_q0_5">I\'m scared!</string>
-    <string name="spiritbox_entry_q0_6">Hide!</string>
-    <string name="spiritbox_entry_q0_8">Panic!</string>
-    <string name="spiritbox_entry_q0_9">Run!</string>
-    <!-- Preferential Questions -->
-    <string name="spiritbox_entry_q1_1">Are you angry?</string>
-    <string name="spiritbox_entry_q1_2">Are you happy?</string>
-    <string name="spiritbox_entry_q1_3">Are you friendly?</string>
-    <string name="spiritbox_entry_q1_6">Do you want to hurt us?</string>
-    <string name="spiritbox_entry_q1_7">Do you want us here?</string>
-    <!-- Name Questions -->
-    <string name="spiritbox_entry_q2_1">What is your name?</string>
-    <!-- Age Questions -->
-    <string name="spiritbox_entry_q3_5">How old are you?</string>
-    <!-- Location Questions -->
-    <string name="spiritbox_entry_q5_8">Where are you?</string>
-    <string name="spiritbox_entry_q5_1">Are you here?</string>
-    <string name="spiritbox_entry_q5_4">Are you the only one here?</string>
-    <string name="spiritbox_entry_q5_7">Where are you?</string>
-    <!-- Interaction Questions -->
-    <string name="spiritbox_entry_q0_2">Attack us!</string>
-    <string name="spiritbox_entry_q6_5">Can you speak to us?</string>
-    <string name="spiritbox_entry_q6_7">Do something.</string>
-    <string name="spiritbox_entry_q6_8">Give us a sign!</string>
-    <string name="spiritbox_entry_q0_7">Hunt us!</string>
-    <string name="spiritbox_entry_q6_16">Why are you here?</string>
-    <string name="spiritbox_entry_q6_17">Make a noise.</string>
-    <string name="spiritbox_entry_q6_18">Open the door.</string>
-    <string name="spiritbox_entry_q6_9">Show yourself!</string>
-    <string name="spiritbox_entry_q6_12">Throw something.</string>
-    <string name="spiritbox_entry_q6_13">Turn off the light.</string>
-    <string name="spiritbox_entry_q6_14">Turn on the light.</string>
-    <!-- General Questions -->
-    <string name="spiritbox_entry_q7_2">Hello?</string>
-    <string name="spiritbox_entry_q7_3">What can we do to help?</string>
-    <string name="spiritbox_entry_q7_9">What do you want?</string>
-    <string name="spiritbox_entry_q7_11">Why are you here?</string>
-    <!-- Sanity Questions -->
-    <string name="spiritbox_entry_q8_1">What is my sanity?</string>
-    <string name="spiritbox_entry_q8_2">How crazy am I?</string>
-    <string name="spiritbox_entry_q8_3">How insane am I?</string>
-    <string name="spiritbox_entry_q8_4">Am I insane?</string>
 
     <!--
         Codex Fragment
@@ -314,6 +193,7 @@
     <!--
         Toast and other alerts
     -->
+    <string name="toast_discardchanges">Changes discarded</string>
     <string name="alert_error_generic">Error!</string>
     <string name="alert_success_generic">Success!</string>
     <string name="alert_account_welcome">Welcome</string>

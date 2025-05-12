@@ -7,11 +7,11 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.DifficultyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.GhostRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselHandler
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.RuledEvidence.Ruling.POSITIVE
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.RuledEvidence.Ruling.NEGATIVE
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.RuledEvidence.Ruling.NEUTRAL
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.RuledEvidence.Ruling.POSITIVE
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -106,7 +106,16 @@ class GhostScoreHandler(
             ) ?: 1
     }
 
-    fun getGhostScore(ghostModel: GhostModel): StateFlow<Int>? {
+    fun getGhostScore(ghostModel: GhostModel): GhostScore? {
+        return scores.value.find { it.ghostModel.id == ghostModel.id }
+    }
+    fun setForcedNegation(ghostModel: GhostModel, isForceNegated: Boolean){
+        getGhostScore(ghostModel)?.setForcefullyRejected(isForceNegated)
+    }
+    fun toggleForcedNegation(ghostModel: GhostModel){
+        getGhostScore(ghostModel)?.toggleForcefullyRejected()
+    }
+    fun getGhostScorePoints(ghostModel: GhostModel): StateFlow<Int>? {
         val ghostScore = scores.value.find { it.ghostModel.id == ghostModel.id }
         return ghostScore?.score
     }
@@ -132,7 +141,14 @@ class GhostScoreHandler(
             _score.update { newScore }
         }
 
-        var forcefullyRejected: Boolean = false
+        private val _forcefullyRejected = MutableStateFlow(false)
+        val forcefullyRejected = _forcefullyRejected.asStateFlow()
+        fun setForcefullyRejected(reject: Boolean) {
+            _forcefullyRejected.update { reject }
+        }
+        fun toggleForcefullyRejected() {
+            _forcefullyRejected.update { it -> !it }
+        }
 
         /**
          * getEvidenceScore method
@@ -151,11 +167,8 @@ class GhostScoreHandler(
             currentDifficulty: DifficultyRepository.DifficultyTitle? =
                 DifficultyRepository.DifficultyTitle.AMATEUR
         ): Int {
-            /*Log.d("GhostScore", "Evidence Handler: ${evidenceHandler?.toString()}")
-            Log.d("GhostScore", "Difficulty: $currentDifficulty")
-            Log.d("GhostScore", "Current Evidence: ${ghostModel.evidence}")*/
 
-            if (forcefullyRejected) { return -5 }
+            //if (forcefullyRejected.value) { return -5 }
 
             val isNightmare = currentDifficulty == DifficultyRepository.DifficultyTitle.NIGHTMARE
             val isInsanity = currentDifficulty == DifficultyRepository.DifficultyTitle.INSANITY
@@ -237,7 +250,7 @@ class GhostScoreHandler(
 
         /** Resets the Ruling for each Evidence type  */
         fun reset() {
-            forcefullyRejected = false
+            setForcefullyRejected(false)
         }
     }
 

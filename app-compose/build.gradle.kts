@@ -9,6 +9,8 @@ plugins {
     alias(libs.plugins.gms.services)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.firebase.perf)
+
+    alias(libs.plugins.devtools.ksp)
 }
 
 android {
@@ -217,6 +219,8 @@ dependencies {
     implementation(libs.coilKt.network)
     implementation(libs.coilKt.gif)
 
+    implementation(libs.androidx.ui.graphics)
+
     /*
         ----- END OF COMPOSE -----
     */
@@ -245,8 +249,16 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.protobuf)
     implementation(libs.ktor.client.logging)
 
-    /* New */
-
-    implementation(libs.androidx.ui.graphics)
+    /*
+     * Room DB
+     */
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    annotationProcessor(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.rxjava2)
+    implementation(libs.androidx.room.rxjava3)
+    implementation(libs.androidx.room.guava)
+    testImplementation(libs.androidx.room.testing)
+    implementation(libs.androidx.room.paging)
 
 }

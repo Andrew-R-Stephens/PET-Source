@@ -7,6 +7,7 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.ExtendedTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.badge_10_commissioner
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.badge_1_recruit
@@ -4114,6 +4115,36 @@ data class SwitchColorFamily(
 
 val LocalPalette = staticCompositionLocalOf { ExtendedPalette() }
 
+val PaletteFromStyle = mapOf(
+    Pair(R.style.NonColorblind_Base, ClassicPalette),
+    Pair(R.style.Monochromacy, Monochromacy),
+    Pair(R.style.Deuteranomaly, Deuteranomaly),
+    Pair(R.style.Protanomaly, Protanomaly),
+    Pair(R.style.Tritanomaly, Tritanomaly),
+    Pair(R.style.Recruit, Recruit),
+    Pair(R.style.Investigator, Investigator),
+    Pair(R.style.PrivateInvestigator, PrivateInvestigator),
+    Pair(R.style.Detective, Detective),
+    Pair(R.style.Technician, Technician),
+    Pair(R.style.Specialist, Specialist),
+    Pair(R.style.Analyst, Analyst),
+    Pair(R.style.Agent, Agent),
+    Pair(R.style.Operator, Operator),
+    Pair(R.style.Commissioner, Commissioner),
+    Pair(R.style.Easter, Easter),
+    Pair(R.style.Halloween23, Halloween23),
+    Pair(R.style.Holiday22, Holiday22),
+    Pair(R.style.Holiday23, Holiday23),
+    Pair(R.style.Discord, Discord),
+    Pair(R.style.ContentCreator, ContentCreator),
+    Pair(R.style.Developer, Developer),
+    Pair(R.style.Translator, Translator),
+    Pair(R.style.Winner, Winner),
+    Pair(R.style.Artist, Artist),
+    Pair(R.style.Whiteboard, Whiteboard),
+    Pair(R.style.StrategemHero, StrategemHero),
+)
+
 val LocalPalettesMap = mapOf(
     Pair("CzjtxSbXRwIpX8SYR0ttngAND", ClassicPalette),
     Pair("ey6VbQN5tx0MgR8tw4iJq3J8L", Monochromacy),
@@ -4150,5 +4181,6 @@ val LocalDefaultPalette = SimpleUniquePalette(
     LocalPalettesList[0].first,
     LocalPalettesList[0].second
 )
+
 
 data class SimpleUniquePalette(val uuid: String, val palette: ExtendedPalette)

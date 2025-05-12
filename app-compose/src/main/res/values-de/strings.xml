@@ -8,13 +8,13 @@
     <string name="titlescreen_description">Das ultimative Beweiswerkzeug</string>
     <string name="titlescreen_button">Starten Sie die Jagd</string>
 
-    <string name="investigation_timer_difficulty_label">Schwierigkeit:</string>
+    <string name="investigation_timer_difficulty_label">Schwierigkeit</string>
     <string name="investigation_your_sanity_level_title">Ihre geistige Gesundheit</string>
     <string name="investigation_timer_label">Vorbereitungszeit:</string>
-    <string name="investigation_timer_difficulty_default">Keine</string>
-    <string name="investigation_timer_difficulty_1">Anfänger</string>
-    <string name="investigation_timer_difficulty_2">Fortgeschritten</string>
-    <string name="investigation_timer_difficulty_3">Profi</string>
+    <string name="difficulty_title_default">Keine</string>
+    <string name="difficulty_title_amateur">Anfänger</string>
+    <string name="difficulty_title_intermediate">Fortgeschritten</string>
+    <string name="difficulty_title_professional">Profi</string>
 
     <string name="aboutinfo_aboutapp_info">
         <![CDATA[
@@ -752,13 +752,14 @@
     <string name="map_info_help_rooms">Wählen Sie im Dropdown-Menü „Räume“ einen Raum aus, um die Position und Grenze dieses Raums anzuzeigen.</string>
     <string name="map_info_help_floors">Wechseln Sie zwischen den Etagen, um sie anzuzeigen und damit zu interagieren.</string>
     <string name="map_info_help_pois">Die Positionen von Sicherungskästen und verfluchten Gegenständen werden durch entsprechende Symbole angezeigt.</string>
+    <string name="maps_size_title_large">Groß</string>
     <string name="objectives_title_optional_objectives">Optionale Ziele</string>
     <string name="objectives_title_investigation_debrief">Untersuchungsbesprechung</string>
     <string name="objectives_title_ghost_name">Name des Geistes:</string>
     <string name="objectives_title_response">Reagiert auf Personen, die:</string>
-    <string name="objectives_title_optional_objective_1">- ZIEL 1</string>
-    <string name="objectives_title_optional_objective_2">- ZIEL 2</string>
-    <string name="objectives_title_optional_objective_3">- ZIEL 3</string>
+    <string name="objectives_title_optional_objective_1">Ziel 1</string>
+    <string name="objectives_title_optional_objective_2">Ziel 2</string>
+    <string name="objectives_title_optional_objective_3">Ziel 3</string>
     <string name="objectives_title_response_alone">"Alleine "</string>
     <string name="objectives_title_response_everyone">Gruppen</string>
     <string name="map_floor_name_ground">Erdgeschoss</string>
@@ -824,7 +825,7 @@
     <string name="aboutinfo_developerinfo_title">Entwicklerinformationen</string>
     <string name="settings_title">Einstellungen</string>
     <string name="settings_screenalwayson">Lassen Sie den Bildschirm immer eingeschaltet</string>
-    <string name="aboutinfo_joindiscord">Tritt unserer Discord bei</string>
+    <string name="aboutinfo_discord_join">Tritt unserer Discord bei</string>
 
     <string name="objective_info_ghostevent">Werden Sie Zeuge eines Geisterevents</string>
     <string name="objective_info_ghostphotograph">Fotografieren Sie den Geist</string>
@@ -838,7 +839,7 @@
     <string name="objective_info_repelwithsmudge">Den Jagdgeist mit einem Wischstock abwehren</string>
     <string name="objective_info_escapehunt">Échappez au fantastôme Anhänger qu\'il chasse</string>
 
-    <string name="investigation_timer_maplabel">Karte:</string>
+    <string name="investigation_timer_maplabel">Karte</string>
     <string name="investigation_sanity_huntwarn">Jagdwarnung</string>
     <string name="investigation_timer_actionlabel">Aktion</string>
     <string name="investigation_timer_setuplabel">Vorbereitung</string>
@@ -907,7 +908,7 @@
     <string name="review_requesttitle">Bitte beachten Sie die Bewertung P.E.T.!</string>
     <string name="review_accept">Akzeptieren!</string>
     <string name="review_decline">Ablehnen</string>
-    <string name="investigation_timer_difficulty_4">Albtraum</string>
+    <string name="difficulty_title_nightmare">Albtraum</string>
     <string name="theme_palette_colorblind_monochromacy">Achromatopsie</string>
     <string name="theme_palette_colorblind_deuteranomaly">Deuteranopía</string>
     <string name="theme_palette_colorblind_protanomaly">Protanopía</string>
@@ -933,7 +934,7 @@
     <string name="popup_ghost_info">Information</string>
 
     <string name="settings_enableLeftHandSupport">Linkshändermodus Aktivieren</string>
-    <string name="investigation_timer_difficulty_5">Wahnsinn</string>
+    <string name="difficulty_title_insanity">Wahnsinn</string>
     <string name="popup_ghost_huntdata">Jagddaten</string>
 
     <string name="settings_appearancesettings">Aussehen</string>
@@ -1534,5 +1535,18 @@
     <string name="marketplace_list_community">Community-Themen</string>
     <string name="marketplace_button_item_get">Holen Sie sich</string>
     <string name="marketplace_purchase_equip">Mit %1$s Thema ausstatten?</string>
+    <string name="maps_size_title_small">Klein</string>
+    <string name="maps_size_title_medium">Medium</string>
+    <string name="language_fullName_zh_Hans">Chinesisch (Vereinfacht)</string>
+    <string name="language_fullName_de">Deutsch</string>
+    <string name="language_fullName_en">Englisch</string>
+    <string name="language_fullName_cz">Tschechisch</string>
+    <string name="language_fullName_fr">Französisch</string>
+    <string name="language_fullName_it">Italienisch</string>
+    <string name="language_fullName_ja">Japanisch</string>
+    <string name="language_fullName_pt">Portugiesisch</string>
+    <string name="language_fullName_ru">Russisch</string>
+    <string name="language_fullName_es">Spanisch</string>
+    <string name="language_fullName_uk">Ukrainisch</string>
 
 </resources>

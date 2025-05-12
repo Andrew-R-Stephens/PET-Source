@@ -9,6 +9,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.CuyabraTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.DefaultTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.theme.DigitalDreamTextStyle
@@ -533,6 +534,18 @@ data class CustomFontFamily(
 
 val LocalTypography = staticCompositionLocalOf { ExtendedTypography() }
 
+val TypographyFromStyle = mapOf(
+    Pair(R.style.NorseRegular_Manual, ClassicTypography),
+    Pair(R.style.RobotoMono_Manual, AndroidTypography),
+    Pair(R.style.EastRegular_Manual, JournalTypography),
+    Pair(R.style.BrickRegular_Manual, BrickTypography),
+    Pair(R.style.CleanRegular_Manual, CleanTypography),
+    Pair(R.style.LongCangRegular_Manual, LongCangTypography),
+    Pair(R.style.NewTegominRegular_Manual, NewTegominTypography),
+    Pair(R.style.NeuchaRegular_Manual, NeuchaTypography),
+    Pair(R.style.JetbrainsMonoRegular_Manual, JetBrainsMonoTypography)
+)
+
 val LocalTypographiesMap = mapOf(
     Pair("c29cJglM92MLWN1RKRyK8qyAD", ClassicTypography),
     Pair("8Jk15N2GB6PBopXvmEluU2eoS", AndroidTypography),
@@ -552,4 +565,6 @@ val LocalDefaultTypography = SimpleUniqueTypography(
     LocalTypographiesList[0].second
 )
 
+
 data class SimpleUniqueTypography(val uuid: String, val typography: ExtendedTypography)
+

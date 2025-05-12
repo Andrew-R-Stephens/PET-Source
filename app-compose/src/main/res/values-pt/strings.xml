@@ -31,7 +31,7 @@
     <string name="aboutinfo_developerinfo_title">Informações do desenvolvedor</string>
     <string name="aboutinfo_developerinfo_developer">Desenvolvedor</string>
     <string name="aboutinfo_developerinfo_contact">Contato</string>
-    <string name="aboutinfo_joindiscord">Junte-se à discórdia</string>
+    <string name="aboutinfo_discord_join">Junte-se à discórdia</string>
     <string name="aboutinfo_specialthanks_title">Agradecimentos especiais</string>
 
     <!-- Page Details -->
@@ -85,17 +85,17 @@
 
     <string name="investigation_your_sanity_level_title">Seu nível de sanidade</string>
     <string name="investigation_timer_label">Tempo de preparação:</string>
-    <string name="investigation_timer_difficulty_default">Nenhum</string>
-    <string name="investigation_timer_difficulty_1">Amador</string>
-    <string name="investigation_timer_difficulty_2">Intermediário</string>
-    <string name="investigation_timer_difficulty_3">Profissional</string>
-    <string name="investigation_timer_difficulty_4">Pesadelo</string>
-    <string name="investigation_timer_difficulty_5">Insanidade</string>
-    <string name="investigation_timer_difficulty_label">Dificuldade:</string>
-    <string name="investigation_timer_maplabel">Mapa:</string>
-    <string name="investigation_timer_actionlabel">AÇÃO</string>
-    <string name="investigation_timer_setuplabel">CONFIGURAR</string>
-    <string name="investigation_sanity_huntwarn">AVISO DE CAÇA</string>
+    <string name="difficulty_title_default">Nenhum</string>
+    <string name="difficulty_title_amateur">Amador</string>
+    <string name="difficulty_title_intermediate">Intermediário</string>
+    <string name="difficulty_title_professional">Profissional</string>
+    <string name="difficulty_title_nightmare">Pesadelo</string>
+    <string name="difficulty_title_insanity">Insanidade</string>
+    <string name="investigation_timer_difficulty_label">Dificuldade</string>
+    <string name="investigation_timer_maplabel">Mapa</string>
+    <string name="investigation_timer_actionlabel">Ação</string>
+    <string name="investigation_timer_setuplabel">Configurar</string>
+    <string name="investigation_sanity_huntwarn">Aviso De Caça</string>
     <string name="investigation_sanitymeter_title">Nível máximo de sanidade</string>
     <string name="investigation_section_title_ghosts">Fantasmas</string>
     <string name="investigation_section_title_evidence">Evidência</string>
@@ -129,14 +129,15 @@
     <string name="map_info_help_rooms">Selecione uma sala no menu suspenso Salas para mostrar a localização e os limites dessa sala.</string>
     <string name="map_info_help_floors">Itere entre andares para visualizar e interagir com ele.</string>
     <string name="map_info_help_pois">As posições das caixas de fusíveis e dos itens amaldiçoados são indicadas por ícones relevantes.</string>
+    <string name="maps_size_title_large">Grande</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionais</string>
     <string name="objectives_title_investigation_debrief">Resumo da investigação</string>
     <string name="objectives_title_ghost_name">Nome do Fantasma:</string>
     <string name="objectives_ghostname_note">Digite o nome do fantasma aqui</string>
     <string name="objectives_title_response">Responde a pessoas que são:</string>
-    <string name="objectives_title_optional_objective_1">- OBJETIVO 1</string>
-    <string name="objectives_title_optional_objective_2">- OBJETIVO 2</string>
-    <string name="objectives_title_optional_objective_3">- OBJETIVO 3</string>
+    <string name="objectives_title_optional_objective_1">Objetivo 1</string>
+    <string name="objectives_title_optional_objective_2">Objetivo 2</string>
+    <string name="objectives_title_optional_objective_3">Objetivo 3</string>
     <string name="objectives_title_response_alone">Sozinho</string>
     <string name="objectives_title_response_everyone">Agrupado</string>
 
@@ -1014,4 +1015,17 @@
     <string name="marketplace_list_community">Temas da comunidade</string>
     <string name="marketplace_button_item_get">Pegar</string>
     <string name="marketplace_purchase_equip">Equipar o tema %1$s?</string>
+    <string name="maps_size_title_small">Pequeno</string>
+    <string name="maps_size_title_medium">Médio</string>
+    <string name="language_fullName_ja">Japonês</string>
+    <string name="language_fullName_pt">Português</string>
+    <string name="language_fullName_de">Alemão</string>
+    <string name="language_fullName_en">Inglês</string>
+    <string name="language_fullName_zh_Hans">Chinês (Simplificado)</string>
+    <string name="language_fullName_cz">Tcheco</string>
+    <string name="language_fullName_es">Espanhol</string>
+    <string name="language_fullName_fr">Francês</string>
+    <string name="language_fullName_it">Italiano</string>
+    <string name="language_fullName_ru">Russo</string>
+    <string name="language_fullName_uk">Ucraniano</string>
 </resources>

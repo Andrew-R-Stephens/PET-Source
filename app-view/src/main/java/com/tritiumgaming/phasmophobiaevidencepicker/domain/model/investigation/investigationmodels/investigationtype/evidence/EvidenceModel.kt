@@ -1,25 +1,25 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.JournalItemModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.popups.EvidencePopupModel
 
 /**
  * Evidence enums
  */
 class EvidenceModel(
-    var id: Int = 0,
-    var name: Int = 0,
+    id: Int = 0,
+    @StringRes name: Int = 0,
     @DrawableRes var icon: Int = R.drawable.ic_ev_dots,
     val popupModel: EvidencePopupModel = EvidencePopupModel()
-) {
+): JournalItemModel(id = id, name = name) {
 
     override fun equals(other: Any?): Boolean {
         if(other !is EvidenceModel) return false
         val result = id == other.id
-        /*Log.d("EvidenceModel", "Comparing $id to ${other.id} -- RESULT: " +
-                if(result) { "OK" } else { "NO MATCH" }
-        )*/
+
         return result
     }
 

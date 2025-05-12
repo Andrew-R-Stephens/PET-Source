@@ -53,7 +53,7 @@
     <string name="aboutinfo_developerinfo_title">Інформація про розробника</string>
     <string name="aboutinfo_developerinfo_developer">Розробник</string>
     <string name="aboutinfo_developerinfo_contact">Контакт</string>
-    <string name="aboutinfo_joindiscord">Приєднуйтесь до Discord</string>
+    <string name="aboutinfo_discord_join">Приєднуйтесь до Discord</string>
     <string name="aboutinfo_specialthanks_title">Особлива подяка</string>
     <!--
         SETTINGS FRAGMENT
@@ -108,17 +108,17 @@
     <!-- Solo/Team Data -->
     <string name="investigation_your_sanity_level_title">Ваш рівень здорового глузду</string>
     <string name="investigation_timer_label">Час підготовки:</string>
-    <string name="investigation_timer_difficulty_default">Жодного</string>
-    <string name="investigation_timer_difficulty_1">Любитий</string>
-    <string name="investigation_timer_difficulty_2">Середня</string>
-    <string name="investigation_timer_difficulty_3">Професіонал</string>
-    <string name="investigation_timer_difficulty_4">Кошмар</string>
-    <string name="investigation_timer_difficulty_5">Божевілля</string>
-    <string name="investigation_timer_difficulty_label">Складність:</string>
-    <string name="investigation_timer_maplabel">Карта:</string>
-    <string name="investigation_timer_actionlabel">ДІЯ</string>
-    <string name="investigation_timer_setuplabel">НАЛАШТУВАННЯ</string>
-    <string name="investigation_sanity_huntwarn">ПОЛЮВАННЯ ПОПЕРЕДЖУЄ</string>
+    <string name="difficulty_title_default">Жодного</string>
+    <string name="difficulty_title_amateur">Любитий</string>
+    <string name="difficulty_title_intermediate">Середня</string>
+    <string name="difficulty_title_professional">Професіонал</string>
+    <string name="difficulty_title_nightmare">Кошмар</string>
+    <string name="difficulty_title_insanity">Божевілля</string>
+    <string name="investigation_timer_difficulty_label">Складність</string>
+    <string name="investigation_timer_maplabel">Карта</string>
+    <string name="investigation_timer_actionlabel">Дія</string>
+    <string name="investigation_timer_setuplabel">Налаштування</string>
+    <string name="investigation_sanity_huntwarn">Полювання Попереджує</string>
     <string name="investigation_sanitymeter_title">Макс Саніті</string>
     <string name="investigation_section_title_ghosts">Привиди</string>
     <string name="investigation_section_title_evidence">Докази</string>
@@ -126,14 +126,15 @@
         OBJECTIVES PAGE
     -->
     <!-- Page Details -->
+    <string name="maps_size_title_large">Великий</string>
     <string name="objectives_title_optional_objectives">Додаткові цілі</string>
     <string name="objectives_title_investigation_debrief">Звіт про розслідування</string>
     <string name="objectives_title_ghost_name">Ім\'я Привида:</string>
     <string name="objectives_ghostname_note">Введіть ім\'я привида тут</string>
     <string name="objectives_title_response">Відповідає людям, які є:</string>
-    <string name="objectives_title_optional_objective_1">- ЦІЛЬ 1</string>
-    <string name="objectives_title_optional_objective_2">- ЦІЛЬ 2</string>
-    <string name="objectives_title_optional_objective_3">- ЦІЛЬ 3</string>
+    <string name="objectives_title_optional_objective_1">Ціль 1</string>
+    <string name="objectives_title_optional_objective_2">Ціль 2</string>
+    <string name="objectives_title_optional_objective_3">Ціль 3</string>
     <string name="objectives_title_response_alone">Наодинці</string>
     <string name="objectives_title_response_everyone">Згруповані</string>
     <!-- Objective Description -->
@@ -225,4 +226,17 @@
     <string name="alert_marketplace_purchase_success_skin">Скін придбаний!</string>
     <string name="alert_marketplace_purchase_success_generic">Покупка успішна!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Недостатньо кредитів для покупки!</string>
+    <string name="maps_size_title_small">Маленький</string>
+    <string name="maps_size_title_medium">Середній</string>
+    <string name="language_fullName_de">Німецька мова</string>
+    <string name="language_fullName_en">англійська мова</string>
+    <string name="language_fullName_es">Іспанська мова</string>
+    <string name="language_fullName_fr">Французька мова</string>
+    <string name="language_fullName_it">Португальська мова</string>
+    <string name="language_fullName_ja">Японська мова</string>
+    <string name="language_fullName_pt">Португальська мова</string>
+    <string name="language_fullName_ru">Російська мова</string>
+    <string name="language_fullName_uk">українська</string>
+    <string name="language_fullName_zh_Hans">Китайська мова (Спрощена)</string>
+    <string name="language_fullName_cz">Чеська мова</string>
 </resources>

@@ -6,13 +6,13 @@
     <string name="titlescreen_beta_label">Beta</string>
     <string name="titlescreen_description">La herramienta de evidencia definitiva</string>
     <string name="titlescreen_button">Comenzar Cacería</string>
-    <string name="investigation_timer_difficulty_label">Dificultad:</string>
-    <string name="investigation_timer_difficulty_default">Ninguna</string>
+    <string name="investigation_timer_difficulty_label">Dificultad</string>
+    <string name="difficulty_title_default">Ninguna</string>
     <string name="investigation_your_sanity_level_title">Tu nivel de cordura</string>
     <string name="investigation_timer_label">Tiempo de preparacion:</string>
-    <string name="investigation_timer_difficulty_1">Aficionado</string>
-    <string name="investigation_timer_difficulty_2">Intermedia</string>
-    <string name="investigation_timer_difficulty_3">Profesional</string>
+    <string name="difficulty_title_amateur">Aficionado</string>
+    <string name="difficulty_title_intermediate">Intermedia</string>
+    <string name="difficulty_title_professional">Profesional</string>
 
     <string name="aboutinfo_aboutapp_info">
         <![CDATA[
@@ -757,13 +757,16 @@
     <string name="map_info_help_rooms">Seleccione una habitación en el menú desplegable Habitaciones para mostrar la ubicación y los límites de esa habitación.</string>
     <string name="map_info_help_floors">Cicle entre pisos para verlo e interactuar con él.</string>
     <string name="map_info_help_pois">Las posiciones de las cajas de fusibles y los elementos malditos se indican mediante iconos relevantes.</string>
+    <string name="maps_size_title_small">Pequeño</string>
+    <string name="maps_size_title_medium">Medio</string>
+    <string name="maps_size_title_large">Grande</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionales</string>
     <string name="objectives_title_investigation_debrief">Informe de investigacion</string>
     <string name="objectives_title_ghost_name">Nombre del fantasma:</string>
     <string name="objectives_title_response">Responde a las personas que son:</string>
-    <string name="objectives_title_optional_objective_1">- OBJETIVO 1</string>
-    <string name="objectives_title_optional_objective_2">- OBJETIVO 2</string>
-    <string name="objectives_title_optional_objective_3">- OBJETIVO 3</string>
+    <string name="objectives_title_optional_objective_1">Objetivo 1</string>
+    <string name="objectives_title_optional_objective_2">Objetivo 2</string>
+    <string name="objectives_title_optional_objective_3">Objetivo 3</string>
     <string name="objectives_title_response_alone">Sola</string>
 
     <string name="map_floor_name_ground">Planta Baja</string>
@@ -833,7 +836,7 @@
     <string name="aboutinfo_developerinfo_developer">Desarrollador</string>
     <string name="aboutinfo_developerinfo_contact">Contacto</string>
     <string name="aboutinfo_developerinfo_title">Información Para Desarrolladores</string>
-    <string name="aboutinfo_joindiscord">Visita el Discord</string>
+    <string name="aboutinfo_discord_join">Visita el Discord</string>
 
     <string name="settings_title">Configuraciones</string>
     <string name="settings_screenalwayson">Mantenga siempre la pantalla encendida</string>
@@ -851,11 +854,11 @@
     <string name="objective_info_lowsanity">Obtenga una cordura de equipo promedio del 25% o menos</string>
     <string name="objectives_ghostname_note">Ingrese el nombre del fantasma aquí</string>
 
-    <string name="investigation_timer_maplabel">Mapa:</string>
+    <string name="investigation_timer_maplabel">Mapa</string>
     <string name="investigation_sanity_huntwarn">Advertencia de caza</string>
-    <string name="investigation_timer_actionlabel">acción</string>
+    <string name="investigation_timer_actionlabel">Acción</string>
     <string name="investigation_timer_setuplabel">preparacion</string>
-    <string name="investigation_sanitymeter_title">máxima cordura</string>
+    <string name="investigation_sanitymeter_title">Máxima cordura</string>
     <string name="settings_enablehuntaudioqueue">Habilitar advertencia de audio de búsqueda</string>
     <string name="settings_huntwarningflashtimeout">duración para Aviso de Advertencia de cacería</string>
     <string name="settings_huntwarningflashtimeout_never">"Timeout: Nunca "</string>
@@ -918,7 +921,7 @@
     <string name="review_requesttitle">¡Considere calificar la PET!</string>
     <string name="review_accept">¡Claro!</string>
     <string name="review_decline">¡No Gracias!</string>
-    <string name="investigation_timer_difficulty_4">Pesadilla</string>
+    <string name="difficulty_title_nightmare">Pesadilla</string>
     <string name="theme_palette_colorblind_monochromacy">Acromatopsia</string>
     <string name="theme_palette_colorblind_deuteranomaly">Deuteranopía</string>
     <string name="theme_palette_colorblind_protanomaly">Protanopia</string>
@@ -944,7 +947,7 @@
     <string name="popup_ghost_info">Información</string>
 
     <string name="settings_enableLeftHandSupport">Habilitar el Modo Para Zurdos</string>
-    <string name="investigation_timer_difficulty_5">Locura</string>
+    <string name="difficulty_title_insanity">Locura</string>
     <string name="popup_ghost_huntdata">Datos de Caza</string>
 
     <string name="settings_appearancesettings">Apariencia</string>
@@ -1545,4 +1548,17 @@
     <string name="marketplace_list_community">Temas de la comunidad</string>
     <string name="marketplace_button_item_get">Conseguir</string>
     <string name="marketplace_purchase_equip">¿Equipar el tema %1$s?</string>
+
+    <string name="language_fullName_de">Alemán</string>
+    <string name="language_fullName_en">Inglés</string>
+    <string name="language_fullName_zh_Hans">Chino (Simplificado)</string>
+    <string name="language_fullName_cz">Checo</string>
+    <string name="language_fullName_es">Español</string>
+    <string name="language_fullName_fr">Francés</string>
+    <string name="language_fullName_it">Italiano</string>
+    <string name="language_fullName_ja">Japonés</string>
+    <string name="language_fullName_pt">Portugués</string>
+    <string name="language_fullName_ru">Ruso</string>
+    <string name="language_fullName_uk">Ucraniano</string>
+
 </resources>

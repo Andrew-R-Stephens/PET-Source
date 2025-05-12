@@ -8,13 +8,13 @@
     <string name="titlescreen_description">L’outil de preuves ultime</string>
     <string name="titlescreen_button">Commencer la chasse</string>
 
-    <string name="investigation_timer_difficulty_label">Difficulté:</string>
+    <string name="investigation_timer_difficulty_label">Difficulté</string>
     <string name="investigation_your_sanity_level_title">Votre niveau de santé mentale</string>
     <string name="investigation_timer_label">Temps de préparation:</string>
-    <string name="investigation_timer_difficulty_default">Aucun</string>
-    <string name="investigation_timer_difficulty_1">Amatrice</string>
-    <string name="investigation_timer_difficulty_2">Intermédiaire</string>
-    <string name="investigation_timer_difficulty_3">Professionnel</string>
+    <string name="difficulty_title_default">Aucun</string>
+    <string name="difficulty_title_amateur">Amatrice</string>
+    <string name="difficulty_title_intermediate">Intermédiaire</string>
+    <string name="difficulty_title_professional">Professionnel</string>
 
 
     <string name="aboutinfo_aboutapp_info">
@@ -595,13 +595,14 @@
     <string name="map_info_help_rooms">Sélectionnez une pièce dans le menu déroulant Pièces pour afficher l\'emplacement et les limites de cette pièce.</string>
     <string name="map_info_help_floors">Parcourez les étages pour les visualiser et interagir avec eux.</string>
     <string name="map_info_help_pois">Les positions des boîtes à fusibles et des objets maudits sont indiquées par des icônes pertinentes.</string>
+    <string name="maps_size_title_large">Grand</string>
     <string name="objectives_title_optional_objectives">Objectifs optionnels</string>
     <string name="objectives_title_investigation_debrief">Compte rendu d\'enquête</string>
     <string name="objectives_title_ghost_name">Nom du fantôme :</string>
     <string name="objectives_title_response">Réponds aux personnes qui sont :</string>
-    <string name="objectives_title_optional_objective_1">- Objectif 1</string>
-    <string name="objectives_title_optional_objective_2">- Objectif 2</string>
-    <string name="objectives_title_optional_objective_3">- Objectif 3</string>
+    <string name="objectives_title_optional_objective_1">Objectif 1</string>
+    <string name="objectives_title_optional_objective_2">Objectif 2</string>
+    <string name="objectives_title_optional_objective_3">Objectif 3</string>
     <string name="objectives_title_response_alone">Seule</string>
     <string name="objectives_title_response_everyone">Groupe</string>
     <string name="map_floor_name_ground">"Rez-de-chaussée "</string>
@@ -667,7 +668,7 @@
     <string name="aboutinfo_developerinfo_title">Informations</string>
     <string name="settings_title">Paramètres</string>
     <string name="settings_screenalwayson">Maintenir l\'écran allumé</string>
-    <string name="aboutinfo_joindiscord">Rejoignez-nous sur Discord</string>
+    <string name="aboutinfo_discord_join">Rejoignez-nous sur Discord</string>
 
     <string name="objective_info_ghostevent">Avoir un membre de votre équipe assister à un événement paranormal</string>
     <string name="objective_info_ghostphotograph">Prenez une photo du fantôme</string>
@@ -681,7 +682,7 @@
     <string name="objective_info_extinguishcandle">Faire souffler une bougie par le fantôme</string>
     <string name="objective_info_lowsanity">Obtenez une santé mentale moyenne de l\'équipe de 25% ou moins</string>
 
-    <string name="investigation_timer_maplabel">Carte :</string>
+    <string name="investigation_timer_maplabel">Carte</string>
     <string name="investigation_sanity_huntwarn">Avertissement de chasse</string>
     <string name="investigation_timer_actionlabel">Action</string>
     <string name="investigation_timer_setuplabel">Préparation</string>
@@ -749,7 +750,7 @@
     <string name="review_requesttitle">Veuillez considérer la note P.E.T.!</string>
     <string name="review_accept">J\'accepte!</string>
     <string name="review_decline">Déclin</string>
-    <string name="investigation_timer_difficulty_4">Cauchemar</string>
+    <string name="difficulty_title_nightmare">Cauchemar</string>
     <string name="theme_palette_colorblind_monochromacy">Achromatopsie</string>
     <string name="theme_palette_colorblind_deuteranomaly">Deutéranopie</string>
     <string name="theme_palette_colorblind_protanomaly">Protanopie</string>
@@ -775,7 +776,7 @@
     <string name="popup_ghost_info">Informations</string>
 
     <string name="settings_enableLeftHandSupport">Activer le Mode Gaucher</string>
-    <string name="investigation_timer_difficulty_5">Folie</string>
+    <string name="difficulty_title_insanity">Folie</string>
     <string name="popup_ghost_huntdata">Données de Chasse</string>
 
     <string name="settings_appearancesettings">Apparence</string>
@@ -1536,5 +1537,18 @@
     <string name="marketplace_list_community">Thèmes communautaires</string>
     <string name="marketplace_button_item_get">Obtenir</string>
     <string name="marketplace_purchase_equip">Équiper le thème %1$s ?</string>
+    <string name="maps_size_title_small">Petit</string>
+    <string name="maps_size_title_medium">Moyen</string>
+    <string name="language_fullName_zh_Hans">Chinois (Simplifié)</string>
+    <string name="language_fullName_es">Espagnol</string>
+    <string name="language_fullName_fr">Français</string>
+    <string name="language_fullName_de">Allemand</string>
+    <string name="language_fullName_en">Anglais</string>
+    <string name="language_fullName_cz">Tchèque</string>
+    <string name="language_fullName_it">Italien</string>
+    <string name="language_fullName_ja">Japonais</string>
+    <string name="language_fullName_pt">Portugais</string>
+    <string name="language_fullName_ru">Russe</string>
+    <string name="language_fullName_uk">Ukrainien</string>
 
 </resources>

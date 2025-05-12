@@ -1,23 +1,33 @@
 [versions]
-activity-compose = "1.10.1" # Latest 1.10.0
+android-billing = "7.1.1" # Latest: 6.2.1
+android-play-core-review = "2.0.2"
+android-play-core-update = "2.1.0"
 android-gif-drawable = "1.2.29"
+android-play-services-ads = "24.2.0" # Latest: 24.1.0
+android-play-services-auth = "21.3.0" # Latest working: 20.5.0 -- Only update when ready to do major refactor ("21.0.0" "20.7.0")
+androidx-activity-compose = "1.10.1" # Latest 1.10.0
+androidx-composeUi = "1.7.8" # Latest: 1.7.6
+androidx-compose-bom = "2025.04.00" # Latest 2025.03.01
+androidx-core-ktx = "1.16.0" # Latest 1.15.0
+androidx-credentials-play-services-auth = "1.5.0" # Latest 1.5.0-rc01
 androidx-datastore = "1.1.4" # Latest 1.1.2
 androidx-junit = "1.2.1"
+androidx-legacy-support-v4 = "1.0.0"
+androidx-leanback-core = "1.2.0-rc01" # Latest 1.2.0-beta01
+androidx-leanback-paging = "1.1.0-rc01" # Latest 1.1.0-beta01
+androidx-leanback-tab = "1.1.0-rc01" # Latest 1.1.0-beta01
+androidx-lifecycle = "2.8.7" # Latest: 2.8.3
+androidx-navigation-fragment-ktx = "2.8.9" # Latest: 2.8.8
+androidx-room = "2.7.1" # Latest: 2.7.0
 appcompat = "1.7.0"
-billing = "7.1.1" # Latest: 6.2.1
 cardview = "1.0.0"
 coil3 = "3.0.4"
 constraintlayout = "2.2.1" # Latest 2.2.0
 kotlin-coroutines = "1.10.1" # Latest: 1.7.3
 kotlinx-coroutines-test = "1.10.1"
-play-core-review = "2.0.2"
-play-core-update = "2.1.0"
-core-ktx = "1.15.0"
-compose-bom = "2025.03.01" # Latest 2025.02.00 2025.01.00 / 2024.12.01
-compose-foundation = "1.8.0-rc02"
-credentials-play-services-auth = "1.5.0" # Latest 1.5.0-rc01
+androidx-compose-foundation = "1.8.0" # Latest 1.8.0-rc03
 espresso-core = "3.6.1" # Latest: 3.5.1
-firebase-bom = "33.11.0" # Latest 33.10.0
+firebase-bom = "33.12.0" # Latest 33.11.0
 firebase-crashlytics-gradle = "3.0.3" # Latest 33.8.0 / 33.1.1
 firebaseUi-auth = "8.0.2"
 firebase-perf-plugin = "1.4.2"
@@ -25,79 +35,81 @@ fragment-ktx = "1.8.6" # Latest 1.8.5 / 1.8.1
 google-services = "4.4.2" # Latest 4.4.1
 gson = "2.11.0"
 junit = "4.13.2"
-kotlin-stdlib = "2.1.0" # Latest 2.0.20
+kotlin-stdlib = "2.1.20" # Latest "2.1.0
 ktor = "3.0.3"
-leanback-core = "1.2.0-beta01" # Latest 1.2.0-alpha04
-leanback-paging = "1.1.0-beta01" # Latest 1.1.0-alpha11
-leanback-tab = "1.1.0-beta01"
-legacy-support-v4 = "1.0.0"
-android-lifecycle = "2.8.7" # Latest: 2.8.3
 material = "1.12.0"
+compose-material3 = "1.4.0-alpha13"
 multidex = "1.0.3"
-navigation-fragment-ktx = "2.8.9" # Latest: 2.8.8
-play-services-ads = "24.1.0" # Latest: 24.0.0
-play-services-auth = "21.3.0" # Latest working: 20.5.0 -- Only update when ready to do major refactor ("21.0.0" "20.7.0")
-composeUi = "1.7.8" # Latest: 1.7.6
 user-messaging-platform = "3.2.0" # Latest: 3.1.0
-work-runtime = "2.10.0"
+work-runtime = "2.10.1"
 realm-kotlin = "3.0.0" # Latest: 1.16.0
 realm-kotlin-base = "3.0.0"
 realm-kotlin-sync = "2.3.0"
 
-agp = "8.9.1" # Latest: 8.8.1
-kotlin = "2.1.0"
+agp = "8.10.0" # Latest: 8.8.1
+kotlin = "2.1.20"
+ksp = "2.1.20-2.0.0"
 googleid = "1.1.1" # 1.9.20
 
 [libraries]
 # Project Core - Root
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
 # Project Core - Kotlin
 jetbrains-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin-stdlib" }
 jetbrains-kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 jetbrains-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 # Billing
-android-billing-core = { group = "com.android.billingclient", name = "billing", version.ref = "billing" }
+android-billing-core = { group = "com.android.billingclient", name = "billing", version.ref = "android-billing" }
 # Play Store
-android-play-core-review = { group = "com.google.android.play", name = "review", version.ref = "play-core-review" }
-android-play-coreKtx-review = { group = "com.google.android.play", name = "review-ktx", version.ref = "play-core-review" }
-android-play-core-update = { group = "com.google.android.play", name = "app-update", version.ref = "play-core-update" }
-android-play-coreKtx-update = { group = "com.google.android.play", name = "app-update-ktx", version.ref = "play-core-update" }
+android-play-core-review = { group = "com.google.android.play", name = "review", version.ref = "android-play-core-review" }
+android-play-coreKtx-review = { group = "com.google.android.play", name = "review-ktx", version.ref = "android-play-core-review" }
+android-play-core-update = { group = "com.google.android.play", name = "app-update", version.ref = "android-play-core-update" }
+android-play-coreKtx-update = { group = "com.google.android.play", name = "app-update-ktx", version.ref = "android-play-core-update" }
 # Play Ads / Auth
-android-playServices-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "play-services-ads" }
-android-playServices-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
+android-playServices-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "android-play-services-ads" }
+android-playServices-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "android-play-services-auth" }
 # AndroidX: Compose
-androidx-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-androidx-compose-bom = { group="androidx.compose", name = "compose-bom", version.ref = "compose-bom"}
-androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose-foundation" }
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
+androidx-compose-bom = { group="androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom"}
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidx-compose-foundation" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "compose-material3" }
 androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-compose-runtime-liveData = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx-compose-runtime-rxJava2 = { group = "androidx.compose.runtime", name = "runtime-rxjava2" }
-androidx-compose-ui-core = { group = "androidx.compose.ui", name = "ui", version.ref = "composeUi" }
-androidx-compose-ui-testJunit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "composeUi" }
-androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "composeUi" }
-androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "composeUi" }
-androidx-compose-ui-toolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "composeUi" }
+androidx-compose-ui-core = { group = "androidx.compose.ui", name = "ui", version.ref = "androidx-composeUi" }
+androidx-compose-ui-testJunit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "androidx-composeUi" }
+androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "androidx-composeUi" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "androidx-composeUi" }
+androidx-compose-ui-toolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "androidx-composeUi" }
 # AndroidX: Auth Credentials / Play Services
-androidx-credentials-playServicesAuth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentials-play-services-auth" }
-androidx-credentials-core = { group = "androidx.credentials", name = "credentials", version.ref = "credentials-play-services-auth" }
+androidx-credentials-playServicesAuth = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "androidx-credentials-play-services-auth" }
+androidx-credentials-core = { group = "androidx.credentials", name = "credentials", version.ref = "androidx-credentials-play-services-auth" }
 # AndroidX: Datastore
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-datastore"}
 # AndroidX: Leanback
-androidx-leanback-core = { group = "androidx.leanback", name = "leanback", version.ref = "leanback-core" }
-androidx-leanback-paging = { group = "androidx.leanback", name = "leanback-paging", version.ref = "leanback-paging" }
-androidx-leanback-preference = { group = "androidx.leanback", name = "leanback-preference", version.ref = "leanback-core" }
-androidx-leanback-tab = { group = "androidx.leanback", name = "leanback-tab", version.ref = "leanback-tab" }
+androidx-leanback-core = { group = "androidx.leanback", name = "leanback", version.ref = "androidx-leanback-core" }
+androidx-leanback-paging = { group = "androidx.leanback", name = "leanback-paging", version.ref = "androidx-leanback-paging" }
+androidx-leanback-preference = { group = "androidx.leanback", name = "leanback-preference", version.ref = "androidx-leanback-core" }
+androidx-leanback-tab = { group = "androidx.leanback", name = "leanback-tab", version.ref = "androidx-leanback-tab" }
 # AndroidX: Legacy
-androidx-legacy-supportV4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacy-support-v4" }
+androidx-legacy-supportV4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "androidx-legacy-support-v4" }
 # AndroidX: Lifecycle
-androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "android-lifecycle" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "android-lifecycle" }
-androidx-lifecycle-viewmodelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "android-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 # AndroidX: Navigation
-androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-fragment-ktx" }
-androidx-navigation-fragmentKtx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
-androidx-navigation-uiKtx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation-fragment-ktx" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigation-fragment-ktx" }
+androidx-navigation-fragmentKtx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidx-navigation-fragment-ktx" }
+androidx-navigation-uiKtx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidx-navigation-fragment-ktx" }
+# AndroidX: Room
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
+androidx-room-rxjava2 = { group = "androidx.room", name = "room-rxjava2", version.ref = "androidx-room" }
+androidx-room-rxjava3 = { group = "androidx.room", name = "room-rxjava3", version.ref = "androidx-room" }
+androidx-room-guava = { group = "androidx.room", name = "room-guava", version.ref = "androidx-room" }
+androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "androidx-room" }
+androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "androidx-room" }
 # Firebase: BOM
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 firebase-analytics = { group = "com.google.firebase", name="firebase-analytics" }
@@ -109,7 +121,7 @@ firebase-perfCore = { group = "com.google.firebase", name="firebase-perf" }
 firebase-perfPlugin = { group = "com.google.firebase", name = "perf-plugin", version.ref = "firebase-perf-plugin" }
 firebase-crashlytics-gradle = { group = "com.google.firebase", name="firebase-crashlytics-gradle", version.ref = "firebase-crashlytics-gradle" }
 # Firebase UI
-firebase-ui-auth = { group = "com.firebaseui", name = "firebase-ui-auth", version.ref = "firebaseUi-auth" }
+#firebase-ui-auth = { group = "com.firebaseui", name = "firebase-ui-auth", version.ref = "firebaseUi-auth" }
 # Ktor
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
@@ -154,6 +166,7 @@ jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", ve
 jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 io-realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm-kotlin" }
+devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 gms-services = { id = "com.google.gms.google-services" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics" }
 firebase-perf = { id = "com.google.firebase.firebase-perf" }

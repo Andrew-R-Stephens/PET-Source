@@ -21,13 +21,13 @@
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
-        android:name=".app.PETApplication"
+        android:name=".core.presentation.app.PETApplication"
         tools:targetApi="34"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:configChanges="locale|orientation"
-        android:theme="@style/NonColorblind.Base"
+        android:theme="@style/Theme.PhasmophobiaEvidenceTool"
         android:fullBackupContent="@xml/backup_descriptor"
         android:hardwareAccelerated="true"
         android:largeHeap="true"
@@ -62,8 +62,8 @@
             Activities
         -->
         <activity
-            android:name=".presentation.ui.compose.pet.activities.PETActivity"
-            android:theme="@style/NonColorblind.Base"
+            android:name=".core.presentation.ui.activities.PETActivity"
+            android:theme="@style/Theme.PhasmophobiaEvidenceTool"
             android:configChanges="locale|orientation"
             android:windowSoftInputMode="adjustResize"
             android:exported="true">

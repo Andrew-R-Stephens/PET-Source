@@ -30,7 +30,7 @@
     <string name="aboutinfo_developerinfo_title">Informazioni sullo sviluppatore</string>
     <string name="aboutinfo_developerinfo_developer">Sviluppatore</string>
     <string name="aboutinfo_developerinfo_contact">Contatto</string>
-    <string name="aboutinfo_joindiscord">Unisciti alla Discordia</string>
+    <string name="aboutinfo_discord_join">Unisciti alla Discordia</string>
     <string name="aboutinfo_specialthanks_title">Ringraziamenti speciali</string>
 
     <!-- Page Details -->
@@ -67,7 +67,7 @@
 
     <!-- Font-Style Types -->
 
-    <string name="theme_typography_classic">P.E.T.. Classico</string>
+    <string name="theme_typography_classic">P.E.T. Classico</string>
 
     <!-- Page Details -->
 
@@ -77,24 +77,24 @@
     <string name="theme_typography_clean">Pulita</string>
     <string name="messagecenter_inboxestitle_label">Centro messaggi</string>
     <string name="messagecenter_inbox_general">Notizie generali</string>
-    <string name="messagecenter_inbox_pet">ANIMALE DOMESTICO. Registro delle modifiche</string>
+    <string name="messagecenter_inbox_pet">P.E.T. Registro delle modifiche</string>
     <string name="messagecenter_inbox_phas">Registro delle modifiche alla fasmofobia</string>
 
     <!-- Solo/Team Data -->
 
     <string name="investigation_your_sanity_level_title">Il tuo livello di sanità mentale</string>
     <string name="investigation_timer_label">Tempo di preparazione:</string>
-    <string name="investigation_timer_difficulty_default">Nessuno</string>
-    <string name="investigation_timer_difficulty_1">Dilettante</string>
-    <string name="investigation_timer_difficulty_2">Intermedio</string>
-    <string name="investigation_timer_difficulty_3">Professionale</string>
-    <string name="investigation_timer_difficulty_4">Incubo</string>
-    <string name="investigation_timer_difficulty_5">Follia</string>
-    <string name="investigation_timer_difficulty_label">Difficoltà:</string>
-    <string name="investigation_timer_maplabel">Carta geografica:</string>
-    <string name="investigation_timer_actionlabel">AZIONE</string>
-    <string name="investigation_timer_setuplabel">IMPOSTARE</string>
-    <string name="investigation_sanity_huntwarn">CACCIA AVVISO</string>
+    <string name="difficulty_title_default">Nessuno</string>
+    <string name="difficulty_title_amateur">Dilettante</string>
+    <string name="difficulty_title_intermediate">Intermedio</string>
+    <string name="difficulty_title_professional">Professionale</string>
+    <string name="difficulty_title_nightmare">Incubo</string>
+    <string name="difficulty_title_insanity">Follia</string>
+    <string name="investigation_timer_difficulty_label">Difficoltà</string>
+    <string name="investigation_timer_maplabel">Carta geografica</string>
+    <string name="investigation_timer_actionlabel">Azione</string>
+    <string name="investigation_timer_setuplabel">Impostare</string>
+    <string name="investigation_sanity_huntwarn">Caccia avviso</string>
     <string name="investigation_sanitymeter_title">Livello massimo di sanità mentale</string>
     <string name="investigation_section_title_ghosts">Fantasmi</string>
     <string name="investigation_section_title_evidence">Prova</string>
@@ -128,14 +128,15 @@
     <string name="map_info_help_rooms">Seleziona una stanza nel menu a discesa Stanze per mostrare la posizione e i confini di quella stanza.</string>
     <string name="map_info_help_floors">Scorri tra i piani per visualizzarli e interagire con essi.</string>
     <string name="map_info_help_pois">Le posizioni delle scatole dei fusibili e degli oggetti maledetti sono indicate dalle relative icone.</string>
+    <string name="maps_size_title_large">Grande</string>
     <string name="objectives_title_optional_objectives">Obiettivi facoltativi</string>
     <string name="objectives_title_investigation_debrief">Rapporto investigativo</string>
     <string name="objectives_title_ghost_name">Nome del fantasma:</string>
     <string name="objectives_ghostname_note">Inserisci qui il nome del fantasma</string>
     <string name="objectives_title_response">Risponde alle persone che sono:</string>
-    <string name="objectives_title_optional_objective_1">- OBIETTIVO 1</string>
-    <string name="objectives_title_optional_objective_2">- OBIETTIVO 2</string>
-    <string name="objectives_title_optional_objective_3">- OBIETTIVO 3</string>
+    <string name="objectives_title_optional_objective_1">Obiettivo 1</string>
+    <string name="objectives_title_optional_objective_2">Obiettivo 2</string>
+    <string name="objectives_title_optional_objective_3">Obiettivo 3</string>
     <string name="objectives_title_response_alone">Solo</string>
     <string name="objectives_title_response_everyone">Raggruppati</string>
 
@@ -1007,4 +1008,17 @@
     <string name="marketplace_list_community">Temi comunitari</string>
     <string name="marketplace_button_item_get">Ottenere</string>
     <string name="marketplace_purchase_equip">Equipaggiare il tema %1$s?</string>
+    <string name="maps_size_title_small">Piccolo</string>
+    <string name="maps_size_title_medium">Medio</string>
+    <string name="language_fullName_zh_Hans">Cinese (Semplificato)</string>
+    <string name="language_fullName_cz">Ceco</string>
+    <string name="language_fullName_de">Tedesco</string>
+    <string name="language_fullName_fr">Francese</string>
+    <string name="language_fullName_it">Italiano</string>
+    <string name="language_fullName_en">Inglese</string>
+    <string name="language_fullName_es">Spagnolo</string>
+    <string name="language_fullName_ja">Giapponese</string>
+    <string name="language_fullName_pt">Portoghese</string>
+    <string name="language_fullName_ru">Russo</string>
+    <string name="language_fullName_uk">Ucraino</string>
 </resources>

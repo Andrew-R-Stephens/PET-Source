@@ -7,7 +7,9 @@
 
     <!-- Evidence Full -->
     <string-array name="equipment_tiers_dots">
+        <item>@string/evidence_id_dots</item>
         <item>@string/evidence_type_dots</item>
+        <item>@drawable/ic_ev_dots</item>
         <item>@array/equipment_tiers_dots_description</item>
         <item>@array/evidence_tiers_dots_animation</item>
         <item>@integer/equipment_requirement_buycost_dots</item>
@@ -15,7 +17,9 @@
     </string-array>
 
     <string-array name="equipment_tiers_emf">
+        <item>@string/evidence_id_emf</item>
         <item>@string/evidence_type_emf</item>
+        <item>@drawable/ic_ev_emf</item>
         <item>@array/equipment_tiers_emf_description</item>
         <item>@array/evidence_tiers_emf_animation</item>
         <item>@integer/equipment_requirement_buycost_emf</item>
@@ -23,7 +27,9 @@
     </string-array>
 
     <string-array name="equipment_tiers_ultraviolet">
+        <item>@string/evidence_id_ultraviolet</item>
         <item>@string/evidence_type_ultraviolet</item>
+        <item>@drawable/ic_ev_uv</item>
         <item>@array/equipment_tiers_ultraviolet_description</item>
         <item>@array/evidence_tiers_ultraviolet_animation</item>
         <item>@integer/equipment_requirement_buycost_ultraviolet</item>
@@ -31,7 +37,9 @@
     </string-array>
 
     <string-array name="equipment_tiers_thermometer">
+        <item>@string/evidence_id_temperatures</item>
         <item>@string/evidence_type_temperatures</item>
+        <item>@drawable/ic_ev_freezing</item>
         <item>@array/equipment_tiers_thermometer_description</item>
         <item>@array/evidence_tiers_thermometer_animation</item>
         <item>@integer/equipment_requirement_buycost_thermometer</item>
@@ -39,7 +47,9 @@
     </string-array>
 
     <string-array name="equipment_tiers_vcam">
+        <item>@string/evidence_id_orbs</item>
         <item>@string/evidence_type_orbs</item>
+        <item>@drawable/ic_ev_orbs</item>
         <item>@array/equipment_tiers_vcam_description</item>
         <item>@array/evidence_tiers_vcam_animation</item>
         <item>@integer/equipment_requirement_buycost_vcam</item>
@@ -47,7 +57,9 @@
     </string-array>
 
     <string-array name="equipment_tiers_book">
+        <item>@string/evidence_id_book</item>
         <item>@string/evidence_type_book</item>
+        <item>@drawable/ic_ev_writing</item>
         <item>@array/equipment_tiers_book_description</item>
         <item>@array/evidence_tiers_book_animation</item>
         <item>@integer/equipment_requirement_buycost_book</item>
@@ -55,7 +67,9 @@
     </string-array>
 
     <string-array name="equipment_tiers_box">
+        <item>@string/evidence_id_box</item>
         <item>@string/evidence_type_box</item>
+        <item>@drawable/ic_ev_spiritbox</item>
         <item>@array/equipment_tiers_box_description</item>
         <item>@array/evidence_tiers_box_animation</item>
         <item>@integer/equipment_requirement_buycost_box</item>
@@ -79,28 +93,6 @@
         <item>@array/equipment_tiers_book</item>
         <item>@array/equipment_tiers_box</item>
     </string-array>
-
-    <!-- Evidence Names -->
-    <integer-array name="evidence_type_names">
-        <item>@string/evidence_type_dots</item>
-        <item>@string/evidence_type_emf</item>
-        <item>@string/evidence_type_ultraviolet</item>
-        <item>@string/evidence_type_temperatures</item>
-        <item>@string/evidence_type_orbs</item>
-        <item>@string/evidence_type_book</item>
-        <item>@string/evidence_type_box</item>
-    </integer-array>
-
-    <!-- Evidence Names -->
-    <integer-array name="evidence_type_ids">
-        <item>@integer/evidence_id_dots</item>
-        <item>@integer/evidence_id_emf</item>
-        <item>@integer/evidence_id_ultraviolet</item>
-        <item>@integer/evidence_id_temperatures</item>
-        <item>@integer/evidence_id_orbs</item>
-        <item>@integer/evidence_id_book</item>
-        <item>@integer/evidence_id_box</item>
-    </integer-array>
 
     <!-- Evidence Descriptions -->
     <string-array name="equipment_tiers_dots_description">

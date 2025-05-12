@@ -30,6 +30,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.compose) apply false
 
     alias(libs.plugins.io.realm.kotlin) apply false
+
+    alias(libs.plugins.devtools.ksp) apply false
 }
 
 

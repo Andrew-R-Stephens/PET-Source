@@ -19,4 +19,5 @@
     <dimen name="navbar_margin">0dp</dimen>
     <dimen name="navbar_label_padding">0dp</dimen>
     <dimen name="navbar_min">56dp</dimen>
+
 </resources>

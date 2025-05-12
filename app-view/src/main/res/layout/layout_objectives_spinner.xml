@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.MissionsItemLayout"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.missions.views.MissionsItemLayout"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.objectivelayout.MissionsCompletedButton
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.missions.views.objectivelayout.MissionsCompletedButton
             android:id="@+id/evidence_button_completed"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -30,7 +30,7 @@
             app:layout_constraintStart_toEndOf="@+id/objectives_item"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.objectivelayout.MissionsSpinner
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.missions.views.objectivelayout.MissionsSpinner
             android:id="@+id/objectives_item"
             android:layout_width="0dp"
             android:layout_height="48dp"

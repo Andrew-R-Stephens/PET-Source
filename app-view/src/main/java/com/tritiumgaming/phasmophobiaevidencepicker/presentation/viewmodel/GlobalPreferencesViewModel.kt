@@ -173,16 +173,16 @@ class GlobalPreferencesViewModel(
     val canShowReviewButton: Boolean
         get() { return reviewTrackingRepository.canShowReviewButton() }
 
-    fun saveColorSpace(c: Context) {
+    /*fun saveColorSpace(c: Context) {
         saveColorSpace(c, getEditor(c), true)
-    }
+    }*/
 
-    private fun saveColorSpace(
+    /*private fun saveColorSpace(
         context: Context, editor: SharedPreferences.Editor = getEditor(context), localApply: Boolean = false
     ) {
         saveColorSpace(context, editor, localApply)
         if (localApply) { editor.apply() }
-    }
+    }*/
 
     override fun saveToFile(context: Context) {
         val editor = getEditor(context)

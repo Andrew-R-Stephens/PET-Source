@@ -30,7 +30,7 @@
     <string name="aboutinfo_developerinfo_title">開発者情報</string>
     <string name="aboutinfo_developerinfo_developer">開発者</string>
     <string name="aboutinfo_developerinfo_contact">接触</string>
-    <string name="aboutinfo_joindiscord">ディスコードに参加する</string>
+    <string name="aboutinfo_discord_join">ディスコードに参加する</string>
     <string name="aboutinfo_specialthanks_title">特別な感謝</string>
 
     <!-- Page Details -->
@@ -85,14 +85,14 @@
 
     <string name="investigation_your_sanity_level_title">あなたの正気度</string>
     <string name="investigation_timer_label">準備時間：</string>
-    <string name="investigation_timer_difficulty_default">なし</string>
-    <string name="investigation_timer_difficulty_1">アマチュア</string>
-    <string name="investigation_timer_difficulty_2">中級</string>
-    <string name="investigation_timer_difficulty_3">プロ</string>
-    <string name="investigation_timer_difficulty_4">悪夢</string>
-    <string name="investigation_timer_difficulty_5">狂気</string>
-    <string name="investigation_timer_difficulty_label">困難：</string>
-    <string name="investigation_timer_maplabel">地図：</string>
+    <string name="difficulty_title_default">なし</string>
+    <string name="difficulty_title_amateur">アマチュア</string>
+    <string name="difficulty_title_intermediate">中級</string>
+    <string name="difficulty_title_professional">プロ</string>
+    <string name="difficulty_title_nightmare">悪夢</string>
+    <string name="difficulty_title_insanity">狂気</string>
+    <string name="investigation_timer_difficulty_label">困難</string>
+    <string name="investigation_timer_maplabel">地図</string>
     <string name="investigation_timer_actionlabel">アクション</string>
     <string name="investigation_timer_setuplabel">設定</string>
     <string name="investigation_sanity_huntwarn">狩猟警告</string>
@@ -130,14 +130,15 @@
     <string name="map_info_help_rooms">[部屋] ドロップダウン メニューで部屋を選択すると、その部屋の位置と境界が表示されます。</string>
     <string name="map_info_help_floors">フロア間を反復して表示し、操作します。</string>
     <string name="map_info_help_pois">ヒューズボックスと呪いのアイテムの位置は、関連するアイコンで示されます。</string>
+    <string name="maps_size_title_large">大きい</string>
     <string name="objectives_title_optional_objectives">オプションの目標</string>
     <string name="objectives_title_investigation_debrief">捜査報告書</string>
     <string name="objectives_title_ghost_name">幽霊の名前:</string>
     <string name="objectives_ghostname_note">ここにゴースト名を入力してください</string>
     <string name="objectives_title_response">次のような人々に対応します。</string>
-    <string name="objectives_title_optional_objective_1">- 目標 1</string>
-    <string name="objectives_title_optional_objective_2">- 目標 2</string>
-    <string name="objectives_title_optional_objective_3">- 目標 3</string>
+    <string name="objectives_title_optional_objective_1">目標 1</string>
+    <string name="objectives_title_optional_objective_2">目標 2</string>
+    <string name="objectives_title_optional_objective_3">目標 3</string>
     <string name="objectives_title_response_alone">一人で</string>
     <string name="objectives_title_response_everyone">グループ化</string>
 
@@ -1006,4 +1007,17 @@
     <string name="marketplace_list_community">コミュニティテーマ</string>
     <string name="marketplace_button_item_get">入手</string>
     <string name="marketplace_purchase_equip">%1$s テーマを装備しますか?</string>
+    <string name="maps_size_title_small">小さい</string>
+    <string name="maps_size_title_medium">中くらい</string>
+    <string name="language_fullName_it">イタリア語</string>
+    <string name="language_fullName_ja">日本語</string>
+    <string name="language_fullName_de">"ドイツ語 "</string>
+    <string name="language_fullName_en">英語</string>
+    <string name="language_fullName_es">スペイン語</string>
+    <string name="language_fullName_zh_Hans">簡体字中国語</string>
+    <string name="language_fullName_pt">ポルトガル語</string>
+    <string name="language_fullName_cz">"チェコ語 "</string>
+    <string name="language_fullName_fr">"フランス語 "</string>
+    <string name="language_fullName_ru">"ロシア語 "</string>
+    <string name="language_fullName_uk">ウクライナ語</string>
 </resources>

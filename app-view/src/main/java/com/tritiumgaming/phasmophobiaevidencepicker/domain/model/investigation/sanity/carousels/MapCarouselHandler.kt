@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository.MapConstraints.MODIFIER_NORMAL
 import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRepository.MapConstraints.MODIFIER_SETUP
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.timer.TimerHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel
 
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -16,10 +15,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.data.repository.SimpleMapRep
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.achievevments.CodexAchievements
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.equipment.CodexEquipment
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.possessions.CodexPossessions
-import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.GhostScoreHandler.GhostScore
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationJournal
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.RuledEvidence.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.JournalItemModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.carousels.DifficultyCarouselHandler
@@ -31,6 +30,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.s
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class InvestigationViewModel(
     val evidenceRepository: EvidenceRepository,
@@ -58,26 +58,39 @@ class InvestigationViewModel(
     val achievementsStoreModel: CodexAchievements
         get() = codexRepository.achievements
 
+    @Deprecated("Unused", level = DeprecationLevel.WARNING)
     val evidenceRadioButtonUi = investigationJournal.evidenceRadioButtonUi
+    @Deprecated("Unused", level = DeprecationLevel.WARNING)
     fun checkEvidenceRadioButtonUi(evidenceIndex: Int, buttonIndex: Int) {
         investigationJournal.checkEvidenceRadioButtonUi(evidenceIndex, buttonIndex)
     }
 
+    @Deprecated("Unused", level = DeprecationLevel.WARNING)
     val rejectionPileUi = investigationJournal.rejectionPileUi
+
     val responseTypeUi = difficultyHandler.responseTypeUi
 
     val sanityLevel = sanityHandler.sanityLevel
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), 0f)
     val ruledEvidence = investigationJournal.ruledEvidence
     val ghostScores = investigationJournal.scores
     val ghostOrder = investigationJournal.order
+    val journalPopupUi = investigationJournal.popupUi
     val currentDifficultyIndex = difficultyHandler.currentIndex
     val currentDifficultyName = difficultyHandler.currentName
     val currentMapIndex = mapHandler.currentIndex
     val currentMapName = mapHandler.currentName
     val currentPhase = timerHandler.currentPhase
-    val canFlash = phaseHandler.canFlash
     val isTimerPaused = timerHandler.paused
     val timeRemaining = timerHandler.timeRemaining
+    val canFlash = phaseHandler.canFlash
+
+    fun setPopupUi(popupModel: JournalItemModel?) {
+        investigationJournal.setPopupUi(popupModel)
+    }
+    fun unsetPopupUi() {
+        investigationJournal.unsetPopupUi()
+    }
 
     fun getRuledEvidence(evidenceModel: EvidenceModel): RuledEvidence? {
         return investigationJournal.getRuledEvidence(evidenceModel)
@@ -88,6 +101,14 @@ class InvestigationViewModel(
     }
     fun setEvidenceRuling(evidence: EvidenceModel, ruling: Ruling) {
         investigationJournal.setEvidenceRuling(evidence, ruling)
+        investigationJournal.reorderGhostScores(difficultyHandler)
+    }
+    fun setGhostNegation(ghostModel: GhostModel, isForceNegated: Boolean) {
+        investigationJournal.setGhostNegation(ghostModel, isForceNegated)
+        investigationJournal.reorderGhostScores(difficultyHandler)
+    }
+    fun toggleGhostNegation(ghostModel: GhostModel) {
+        investigationJournal.toggleGhostNegation(ghostModel)
         investigationJournal.reorderGhostScores(difficultyHandler)
     }
 
@@ -119,6 +140,7 @@ class InvestigationViewModel(
     fun getGhostScore(ghostModel: GhostModel): StateFlow<Int>? {
         return investigationJournal.getGhostScore(ghostModel)
     }
+    @Deprecated("Unused", level = DeprecationLevel.WARNING)
     fun swapStatusInRejectedPile(index: Int) {
         investigationJournal.swapStatusInRejectedPile(index)
     }

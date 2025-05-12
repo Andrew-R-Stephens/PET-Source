@@ -40,7 +40,7 @@ class EvidenceRulingHandler(
     /** Resets the Ruling for each Evidence type */
     fun reset() {
         ruledEvidence.value.forEach {
-            it.setRuling( Ruling.NEUTRAL)
+            it.setRuling(Ruling.NEUTRAL)
         }
     }
 

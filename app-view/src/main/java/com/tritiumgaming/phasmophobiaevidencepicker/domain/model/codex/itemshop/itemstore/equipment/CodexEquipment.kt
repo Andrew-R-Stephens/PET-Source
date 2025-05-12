@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.equipment
 
 import android.content.Context
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
@@ -46,11 +47,14 @@ class CodexEquipment(context: Context): ItemStoreGroups() {
 
             val iconsTypedArray = context.resources
                 .obtainTypedArray(shopTypedArray.getResourceId(imagesKey, 0))
+            Log.d("ItemStore", "Icons Count: ${iconsTypedArray.length()}")
             for (j in 0 until iconsTypedArray.length()) {
                 val itemData = ItemStoreEquipmentItemModel()
+
+                @DrawableRes val iconRes = iconsTypedArray.getResourceId(j, 0)
+                itemData.imageData = iconRes
+
                 groupData.addItem(itemData)
-                @DrawableRes val value = iconsTypedArray.getResourceId(j, 0)
-                groupData.getItemDataAt(j).imageData = value
             }
             iconsTypedArray.recycle()
 

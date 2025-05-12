@@ -53,7 +53,7 @@ class MapsViewModel(
         currentSimpleMap.currentFloor = layerIndex
     }
 
-    class MapMenuFactory(
+    class MapsFactory(
         private val simpleMapRepository: SimpleMapRepository,
         private val complexMapRepository: ComplexMapRepository
     ) : ViewModelProvider.Factory {

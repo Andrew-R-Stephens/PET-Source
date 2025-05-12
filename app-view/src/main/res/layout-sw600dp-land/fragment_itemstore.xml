@@ -82,7 +82,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout38">
 
-            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator
+            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.utilities.codex.children.itemstore.views.ItemStoreScrollPaginator
                 android:id="@+id/item_safehouse_itemstore_paginator"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList
+            <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.utilities.codex.children.itemstore.views.ItemStoreList
                 android:id="@+id/item_safehouse_itemstore"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"

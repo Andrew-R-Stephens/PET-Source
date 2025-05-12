@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreList"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.utilities.codex.children.itemstore.views.ItemStoreList"
     android:orientation="horizontal">
 
-    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.utilities.codex.children.itemstore.views.ItemStoreHScrollView
         android:id="@+id/scrollView_horiz"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -27,6 +27,6 @@
             android:layout_height="match_parent"
             android:orientation="horizontal" />
 
-    </com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.children.itemstore.views.ItemStoreHScrollView>
+    </com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.utilities.codex.children.itemstore.views.ItemStoreHScrollView>
 
 </merge>

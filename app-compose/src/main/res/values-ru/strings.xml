@@ -45,7 +45,7 @@
     <string name="aboutinfo_developerinfo_title">Информация для разработчика</string>
     <string name="aboutinfo_developerinfo_developer">Разработчик</string>
     <string name="aboutinfo_developerinfo_contact">Контакт</string>
-    <string name="aboutinfo_joindiscord">Присоединяйтесь к Discord</string>
+    <string name="aboutinfo_discord_join">Присоединяйтесь к Discord</string>
     <string name="aboutinfo_specialthanks_title">Особая благодарность</string>
 
     <!--
@@ -99,18 +99,18 @@
     <!-- Solo/Team Data -->
     <string name="investigation_your_sanity_level_title">Ваш уровень здравомыслия</string>
     <string name="investigation_timer_label">Время подготовки:</string>
-    <string name="investigation_timer_difficulty_default">Нет</string>
-    <string name="investigation_timer_difficulty_1">Любитель</string>
-    <string name="investigation_timer_difficulty_2">Средний</string>
-    <string name="investigation_timer_difficulty_3">Профессионал</string>
-    <string name="investigation_timer_difficulty_4">Кошмар</string>
-    <string name="investigation_timer_difficulty_5">Безумие</string>
-    <string name="investigation_timer_difficulty_label">Сложность:</string>
-    <string name="investigation_timer_maplabel">Карта:</string>
-    <string name="investigation_timer_actionlabel">ДЕЙСТВИЕ</string>
-    <string name="investigation_timer_setuplabel">НАСТРОЙКА</string>
-    <string name="investigation_sanity_huntwarn">ПРЕДУПРЕЖДЕНИЕ ОХОТЫ</string>
-    <string name="investigation_sanitymeter_title">МАКСИМАЛЬНЫЙ уровень вменяемости</string>
+    <string name="difficulty_title_default">Нет</string>
+    <string name="difficulty_title_amateur">Любитель</string>
+    <string name="difficulty_title_intermediate">Средний</string>
+    <string name="difficulty_title_professional">Профессионал</string>
+    <string name="difficulty_title_nightmare">Кошмар</string>
+    <string name="difficulty_title_insanity">Безумие</string>
+    <string name="investigation_timer_difficulty_label">Сложность</string>
+    <string name="investigation_timer_maplabel">Карта</string>
+    <string name="investigation_timer_actionlabel">Действие</string>
+    <string name="investigation_timer_setuplabel">Настройка</string>
+    <string name="investigation_sanity_huntwarn">Предупреждение Охоты</string>
+    <string name="investigation_sanitymeter_title">Максимальный Уровень Вменяемости</string>
     <string name="investigation_section_title_ghosts">Призраки</string>
     <string name="investigation_section_title_evidence">Доказательства</string>
     <string name="popup_ghost_strength">Сильные стороны</string>
@@ -714,14 +714,15 @@
     <string name="map_info_help_rooms">Выберите комнату в раскрывающемся меню «Комнаты», чтобы отобразить местоположение и границы этой комнаты.</string>
     <string name="map_info_help_floors">Перемещайтесь между этажами, чтобы просматривать их и взаимодействовать с ними.</string>
     <string name="map_info_help_pois">Положения блоков предохранителей и проклятых предметов обозначены соответствующими значками.</string>
+    <string name="maps_size_title_large">Большой</string>
     <string name="objectives_title_optional_objectives">Дополнительные цели</string>
     <string name="objectives_title_investigation_debrief">Отчет о расследовании</string>
     <string name="objectives_title_ghost_name">Имя призрака:</string>
     <string name="objectives_ghostname_note">Введите здесь имя призрака</string>
     <string name="objectives_title_response">Отвечает людям, которые:</string>
-    <string name="objectives_title_optional_objective_1">- ЦЕЛЬ 1</string>
-    <string name="objectives_title_optional_objective_2">- ЦЕЛЬ 2</string>
-    <string name="objectives_title_optional_objective_3">- ЦЕЛЬ 3</string>
+    <string name="objectives_title_optional_objective_1">Цель 1</string>
+    <string name="objectives_title_optional_objective_2">Цель 2</string>
+    <string name="objectives_title_optional_objective_3">Цель 3</string>
     <string name="objectives_title_response_alone">Один</string>
     <string name="objectives_title_response_everyone">Сгруппированы</string>
     <!-- Objective Description -->
@@ -2376,4 +2377,17 @@
     <string name="marketplace_list_community">Темы сообщества</string>
     <string name="marketplace_button_item_get">Получать</string>
     <string name="marketplace_purchase_equip">Оборудовать тему %1$s?</string>
+    <string name="maps_size_title_small">Маленький</string>
+    <string name="maps_size_title_medium">Середина</string>
+    <string name="language_fullName_it">Ital\'yanskiy yazyk</string>
+    <string name="language_fullName_de">Немецкий язык</string>
+    <string name="language_fullName_en">английский язык</string>
+    <string name="language_fullName_zh_Hans">Китайский язык (Упрощенный)</string>
+    <string name="language_fullName_cz">Чешский язык</string>
+    <string name="language_fullName_es">Испанский язык</string>
+    <string name="language_fullName_fr">Французский язык</string>
+    <string name="language_fullName_ja">Японский язык</string>
+    <string name="language_fullName_pt">Португальский язык</string>
+    <string name="language_fullName_ru">Русский язык</string>
+    <string name="language_fullName_uk">Украинский</string>
 </resources>

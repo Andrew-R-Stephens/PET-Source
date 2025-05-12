@@ -40,11 +40,11 @@
 
     <activity
         android:id="@+id/investigationActivity_Solo"
-        android:name="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity"
+        android:name="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.InvestigationActivity"
         android:label="InvestigationActivity_solo" />
     <activity
         android:id="@+id/investigationActivity_Mult"
-        android:name="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity"
+        android:name="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.InvestigationActivity"
         android:label="InvestigationActivity_Mult" />
     <fragment
         android:id="@+id/inboxFragment"

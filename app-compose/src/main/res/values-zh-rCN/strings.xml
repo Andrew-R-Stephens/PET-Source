@@ -32,7 +32,7 @@
     <string name="aboutinfo_developerinfo_title">开发者信息</string>
     <string name="aboutinfo_developerinfo_developer">开发商</string>
     <string name="aboutinfo_developerinfo_contact">接触</string>
-    <string name="aboutinfo_joindiscord">加入不和谐</string>
+    <string name="aboutinfo_discord_join">加入不和谐</string>
     <string name="aboutinfo_specialthanks_title">特别感谢</string>
 
     <!-- Page Details -->
@@ -86,14 +86,14 @@
 
     <string name="investigation_your_sanity_level_title">您的理智水平</string>
     <string name="investigation_timer_label">准备时间：</string>
-    <string name="investigation_timer_difficulty_default">没有任何</string>
-    <string name="investigation_timer_difficulty_1">业余</string>
-    <string name="investigation_timer_difficulty_2">中间的</string>
-    <string name="investigation_timer_difficulty_3">专业的</string>
-    <string name="investigation_timer_difficulty_4">恶梦</string>
-    <string name="investigation_timer_difficulty_5">疯狂</string>
-    <string name="investigation_timer_difficulty_label">困难：</string>
-    <string name="investigation_timer_maplabel">地图：</string>
+    <string name="difficulty_title_default">没有任何</string>
+    <string name="difficulty_title_amateur">业余</string>
+    <string name="difficulty_title_intermediate">中间的</string>
+    <string name="difficulty_title_professional">专业的</string>
+    <string name="difficulty_title_nightmare">恶梦</string>
+    <string name="difficulty_title_insanity">疯狂</string>
+    <string name="investigation_timer_difficulty_label">困难</string>
+    <string name="investigation_timer_maplabel">地图</string>
     <string name="investigation_timer_actionlabel">行动</string>
     <string name="investigation_timer_setuplabel">设置</string>
     <string name="investigation_sanity_huntwarn">狩猎警告</string>
@@ -130,14 +130,15 @@
     <string name="map_info_help_rooms">在“房间”下拉菜单中选择一个房间以显示该房间的位置和边界。</string>
     <string name="map_info_help_floors">在楼层之间迭代以查看并与其交互。</string>
     <string name="map_info_help_pois">保险丝盒和诅咒物品的位置由相关图标指示。</string>
+    <string name="maps_size_title_large">大的</string>
     <string name="objectives_title_optional_objectives">可选目标</string>
     <string name="objectives_title_investigation_debrief">调查汇报</string>
     <string name="objectives_title_ghost_name">鬼魂的名字：</string>
     <string name="objectives_ghostname_note">在此输入幽灵名称</string>
     <string name="objectives_title_response">回应以下人士：</string>
-    <string name="objectives_title_optional_objective_1">- 目标 1</string>
-    <string name="objectives_title_optional_objective_2">- 目标 2</string>
-    <string name="objectives_title_optional_objective_3">- 目标 3</string>
+    <string name="objectives_title_optional_objective_1">目标 1</string>
+    <string name="objectives_title_optional_objective_2">目标 2</string>
+    <string name="objectives_title_optional_objective_3">目标 3</string>
     <string name="objectives_title_response_alone">独自的</string>
     <string name="objectives_title_response_everyone">分组</string>
 
@@ -881,4 +882,17 @@
     <string name="marketplace_list_community">社区主题</string>
     <string name="marketplace_button_item_get">获取</string>
     <string name="marketplace_purchase_equip">装备 %1$s 主题？</string>
+    <string name="maps_size_title_small">小的</string>
+    <string name="maps_size_title_medium">中等的</string>
+    <string name="language_fullName_zh_Hans">简体中文</string>
+    <string name="language_fullName_it">意大利语</string>
+    <string name="language_fullName_ja">日语</string>
+    <string name="language_fullName_de">德语</string>
+    <string name="language_fullName_en">英文</string>
+    <string name="language_fullName_cz">捷克语</string>
+    <string name="language_fullName_es">西班牙语</string>
+    <string name="language_fullName_fr">法语</string>
+    <string name="language_fullName_pt">葡萄牙语</string>
+    <string name="language_fullName_ru">俄语</string>
+    <string name="language_fullName_uk">乌克兰语</string>
 </resources>
