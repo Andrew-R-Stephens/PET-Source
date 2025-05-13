@@ -5,6 +5,17 @@
         EVIDENCE ARRAYS
     -->
 
+    <!-- Evidence Typed Tiers -->
+    <string-array name="equipment_tiers_arrays">
+        <item>@array/equipment_tiers_dots</item>
+        <item>@array/equipment_tiers_emf</item>
+        <item>@array/equipment_tiers_ultraviolet</item>
+        <item>@array/equipment_tiers_thermometer</item>
+        <item>@array/equipment_tiers_vcam</item>
+        <item>@array/equipment_tiers_book</item>
+        <item>@array/equipment_tiers_box</item>
+    </string-array>
+
     <!-- Evidence Full -->
     <string-array name="equipment_tiers_dots">
         <item>@string/evidence_id_dots</item>
@@ -81,17 +92,6 @@
         <item>@string/equipment_tiers_1</item>
         <item>@string/equipment_tiers_2</item>
         <item>@string/equipment_tiers_3</item>
-    </string-array>
-
-    <!-- Evidence Typed Tiers -->
-    <string-array name="equipment_tiers_arrays">
-        <item>@array/equipment_tiers_dots</item>
-        <item>@array/equipment_tiers_emf</item>
-        <item>@array/equipment_tiers_ultraviolet</item>
-        <item>@array/equipment_tiers_thermometer</item>
-        <item>@array/equipment_tiers_vcam</item>
-        <item>@array/equipment_tiers_book</item>
-        <item>@array/equipment_tiers_box</item>
     </string-array>
 
     <!-- Evidence Descriptions -->

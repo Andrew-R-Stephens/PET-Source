@@ -9,7 +9,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.PaletteDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.palette.PaletteDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -20,7 +20,7 @@ class PaletteDatastore(
     private val dataStore: DataStore<Preferences>
 ): PaletteDatastore {
 
-    override val flow: Flow<PaletteDatastore.ColorPreferences> = dataStore.data
+    override val flow: Flow<PaletteDatastore.PalettePreferences> = dataStore.data
         .catch { exception ->
             if (exception is IOException) { emit(emptyPreferences()) }
             else { throw exception }
@@ -50,8 +50,8 @@ class PaletteDatastore(
     override suspend fun fetchInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
-    override fun mapPreferences(preferences: Preferences): PaletteDatastore.ColorPreferences {
-        return PaletteDatastore.ColorPreferences(
+    override fun mapPreferences(preferences: Preferences): PaletteDatastore.PalettePreferences {
+        return PaletteDatastore.PalettePreferences(
             preferences[PaletteDatastore.PreferenceKeys.KEY_PALETTE] ?: ""
         )
     }

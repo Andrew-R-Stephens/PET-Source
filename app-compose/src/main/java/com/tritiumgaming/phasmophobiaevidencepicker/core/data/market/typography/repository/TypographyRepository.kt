@@ -6,9 +6,9 @@ import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.MarketRemoteDataSourceInterface
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.Typography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.TypographyEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.ThemeRepository.IncrementDirection
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.TypographyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.TypographyLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.market.core.ThemeRepository.IncrementDirection
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.market.typography.TypographyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.typography.TypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalDefaultTypography
 import kotlinx.coroutines.CoroutineScope

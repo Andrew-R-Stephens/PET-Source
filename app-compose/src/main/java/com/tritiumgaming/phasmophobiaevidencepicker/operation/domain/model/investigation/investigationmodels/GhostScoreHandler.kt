@@ -5,8 +5,8 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.repository.GhostRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.EvidenceRulingHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostType

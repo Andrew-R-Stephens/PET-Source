@@ -37,13 +37,13 @@ fun EvidenceList(
 ) {
 
     val evidenceState = investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
-    val rememberState = remember { evidenceState.value }
+    //val rememberState = remember { evidenceState.value }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {
 
-        items(items = rememberState, key = { it.evidence.id }) { ruledEvidence ->
+        items(items = evidenceState.value, key = { it.evidence.id }) { ruledEvidence ->
 
             EvidenceListItem(
                 evidence = ruledEvidence.evidence

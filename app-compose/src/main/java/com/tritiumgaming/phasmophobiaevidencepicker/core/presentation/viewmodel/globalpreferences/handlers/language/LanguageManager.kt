@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.LanguageLocalDataSource.Companion.DEFAULT_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.language.LanguageLocalDataSource.Companion.DEFAULT_LANGUAGE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

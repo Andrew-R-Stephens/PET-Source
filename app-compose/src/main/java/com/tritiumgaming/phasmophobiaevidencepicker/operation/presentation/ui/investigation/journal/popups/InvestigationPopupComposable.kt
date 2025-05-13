@@ -49,7 +49,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils.replaceHTMLFontColor
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidencepopup.EvidencePopupRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidencepopup.repository.EvidencePopupRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 
 @Composable

@@ -9,8 +9,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.PaletteDatastore.ColorPreferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.ReviewTrackingDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.palette.PaletteDatastore.PalettePreferences
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.reviewtracker.ReviewTrackingDatastore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
@@ -114,11 +114,11 @@ class ReviewTrackingDatastore(
         TODO("Not yet implemented")
     }
 
-    override suspend fun fetchInitialPreferences(): ColorPreferences {
+    override suspend fun fetchInitialPreferences(): PalettePreferences {
         TODO("Not yet implemented")
     }
 
-    override fun mapPreferences(preferences: Preferences): ColorPreferences {
+    override fun mapPreferences(preferences: Preferences): PalettePreferences {
         TODO("Not yet implemented")
     }
 

@@ -3,8 +3,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.reposito
 import android.content.Context
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageObject
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.LanguageLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.language.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.language.LanguageLocalDataSource
 
 class LanguageRepository(
     context: Context,

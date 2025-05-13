@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.CodexRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.EvidenceRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.GhostRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.SimpleMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.achievevments.CodexAchievementsRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.equipment.CodexEquipmentRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.possessions.CodexPossessionsRepository
@@ -96,11 +96,9 @@ class InvestigationViewModel(
     }
     fun setGhostNegation(ghostModel: GhostType, isForceNegated: Boolean) {
         investigationJournal.setGhostNegation(ghostModel, isForceNegated)
-        investigationJournal.reorderGhostScores(difficultyHandler)
     }
     fun toggleGhostNegation(ghostModel: GhostType) {
         investigationJournal.toggleGhostNegation(ghostModel)
-        investigationJournal.reorderGhostScores(difficultyHandler)
     }
 
     fun incrementMapIndex() {

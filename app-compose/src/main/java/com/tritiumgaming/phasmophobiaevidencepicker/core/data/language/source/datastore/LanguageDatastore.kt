@@ -7,8 +7,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.LanguageDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.LanguageLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.language.LanguageDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.language.LanguageLocalDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map

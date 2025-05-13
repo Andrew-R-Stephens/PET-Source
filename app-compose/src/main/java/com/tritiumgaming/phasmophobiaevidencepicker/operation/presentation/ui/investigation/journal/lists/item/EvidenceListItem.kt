@@ -40,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
@@ -74,8 +75,8 @@ fun EvidenceListItem(
     onNameClick: () -> Unit = {},
 ) {
 
-    val rulingState = investigationViewModel.getRuledEvidence(evidence)?.ruling
-    var rememberRuling by remember { mutableStateOf(rulingState?.value) }
+    val rulingState = investigationViewModel.getRuledEvidence(evidence)?.ruling?.collectAsStateWithLifecycle()
+    //var rememberRuling by remember { mutableStateOf(rulingState?.value) }
 
     Card(
         modifier = modifier
@@ -139,7 +140,7 @@ fun EvidenceListItem(
                                 .weight(1f)
                                 .fillMaxHeight(),
                             onClick = {
-                                rememberRuling = rulingType
+                                //rememberRuling = rulingType
                                 investigationViewModel.setEvidenceRuling(evidence, rulingType)
                             },
                             colors = ButtonDefaults.buttonColors().copy(
@@ -153,7 +154,8 @@ fun EvidenceListItem(
                             content = {
                                 RulingIcon(
                                     ruling = rulingType,
-                                    isSelected = rememberRuling?.ordinal == rulingType.ordinal
+                                    isSelected = rulingState?.value?.ordinal == rulingType.ordinal,
+                                    //isSelected = rememberRuling?.ordinal == rulingType.ordinal
                                 )
                             }
                         )
@@ -209,7 +211,7 @@ fun EvidenceListItem(
                                 .weight(1f)
                                 .fillMaxHeight(),
                             onClick = {
-                                rememberRuling = rulingType
+                                //rememberRuling = rulingType
                                 investigationViewModel.setEvidenceRuling(evidence, rulingType)
                             },
                             colors = ButtonDefaults.buttonColors().copy(
@@ -223,7 +225,7 @@ fun EvidenceListItem(
                             content = {
                                 RulingIcon(
                                     ruling = rulingType,
-                                    isSelected = rememberRuling?.ordinal == rulingType.ordinal
+                                    isSelected = rulingState?.value?.ordinal == rulingType.ordinal
                                 )
                             }
                         )

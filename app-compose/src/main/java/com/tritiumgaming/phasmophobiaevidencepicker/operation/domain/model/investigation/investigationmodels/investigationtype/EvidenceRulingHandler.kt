@@ -6,7 +6,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.repository.EvidenceRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceType
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,7 +25,6 @@ class EvidenceRulingHandler(
         }
         _ruledEvidence.update { list.toMutableStateList() }
     }
-
     fun setEvidenceRuling(evidenceIndex: Int, ruling: Ruling) {
         ruledEvidence.value[evidenceIndex].setRuling(ruling)
     }
@@ -39,6 +38,7 @@ class EvidenceRulingHandler(
 
     /** Resets the Ruling for each Evidence type */
     fun reset() {
+        //initRuledEvidence()
         ruledEvidence.value.forEach {
             it.setRuling( Ruling.NEUTRAL)
         }

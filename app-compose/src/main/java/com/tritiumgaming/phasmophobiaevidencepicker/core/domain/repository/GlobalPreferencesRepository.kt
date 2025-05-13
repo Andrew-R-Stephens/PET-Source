@@ -1,2 +1,0 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository
-interface GlobalPreferencesRepository
