@@ -36,7 +36,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NewsAlert
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable
@@ -46,7 +45,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository.NewsletterInboxType.InboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType.InboxTypeDTO
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
 
@@ -91,7 +91,7 @@ private fun NewsInboxesContent(
 ) {
 
     val rememberInboxes by remember {
-        mutableStateOf(InboxType.entries.toTypedArray())
+        mutableStateOf(InboxTypeDTO.entries.toTypedArray())
     }
 
     Column(
@@ -119,7 +119,7 @@ private fun NewsInboxesContent(
             verticalArrangement = Arrangement.Top,
         ) {
 
-            items(rememberInboxes) { inboxType: InboxType ->
+            items(rememberInboxes) { inboxType: InboxTypeDTO ->
 
                 newsletterViewModel.getInbox(inboxType)?.let {
 
@@ -171,7 +171,7 @@ private fun InboxCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            NewsAlert(
+            NotificationIndicator(
                 modifier = Modifier
                     .size(98.dp),
                 isActive = isActive,

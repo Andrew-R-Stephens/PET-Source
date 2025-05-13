@@ -15,7 +15,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.core.net.toUri
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common.AccountIconView
@@ -23,6 +22,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.m
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.StartScreenAnimationView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewLauncher
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.operation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.DropdownClickPair
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.DropdownNavigationPair
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.IconDropdownMenu

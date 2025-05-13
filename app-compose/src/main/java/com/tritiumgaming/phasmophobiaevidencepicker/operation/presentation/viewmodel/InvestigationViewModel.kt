@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.CodexRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.achievevments.CodexAchievementsRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.equipment.CodexEquipmentRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.possessions.CodexPossessionsRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.CodexRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.EvidenceRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.GhostRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.InvestigationJournal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence.Ruling
@@ -225,7 +225,7 @@ class InvestigationViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).container
+                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
                 val evidenceRepository: EvidenceRepository = appKeyContainer.evidenceRepository
                 val ghostRepository: GhostRepository = appKeyContainer.ghostRepository

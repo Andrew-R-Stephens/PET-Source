@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository
 
 import android.os.Bundle
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.Typography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.TypographyEntity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.typography.Typography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.typography.TypographyEntity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

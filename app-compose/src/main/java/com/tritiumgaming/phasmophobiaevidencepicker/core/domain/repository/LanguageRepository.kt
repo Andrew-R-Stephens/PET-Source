@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.LanguageObject
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageObject
 
 interface LanguageRepository {
     var _languageList: List<LanguageObject>

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.MissionRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.MissionRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.missions.MissionsListModel
 
 class ObjectivesViewModel(
@@ -64,7 +64,7 @@ class ObjectivesViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).container
+                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
                 val missionRepository: MissionRepository = appKeyContainer.missionRepository
 

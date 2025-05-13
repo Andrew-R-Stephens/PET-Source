@@ -1,0 +1,3 @@
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore
+
+interface ReviewTrackingDatastore: DatastoreInterface<PaletteDatastore.ColorPreferences>

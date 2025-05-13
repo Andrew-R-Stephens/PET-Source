@@ -11,10 +11,10 @@
 /.kotlin/
 /build
 
-/app/build/
-/app/release/
-/app/upload_certificate.pem
-/app/google-services.json
+/app-view/build/
+/app-view/release/
+/app-view/upload_certificate.pem
+/app-view/google-services.json
 
 /app-compose/build/
 /app-compose/release/

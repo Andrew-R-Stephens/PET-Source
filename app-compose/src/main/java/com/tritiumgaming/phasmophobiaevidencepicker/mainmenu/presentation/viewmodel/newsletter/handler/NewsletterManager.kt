@@ -2,15 +2,19 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewm
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository.NewsletterInboxType
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterDatastoreInterface.PreferenceKeys.KEY_INBOX_GENERAL
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterDatastoreInterface.PreferenceKeys.KEY_INBOX_PET
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterDatastoreInterface.PreferenceKeys.KEY_INBOX_PHASMOPHOBIA
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore.NewsletterDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.datastore.NewsletterDatastore.PreferenceKeys.KEY_INBOX_GENERAL
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.datastore.NewsletterDatastore.PreferenceKeys.KEY_INBOX_PET
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.datastore.NewsletterDatastore.PreferenceKeys.KEY_INBOX_PHASMOPHOBIA
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 class NewsletterManager(
-private val repository: NewsletterRepository,
-private val datastore: NewsletterDatastore
+    repository: NewsletterRepository,
+    private val datastore: NewsletterDatastore
 ) {
 
     fun initialSetupEvent() {
@@ -21,9 +25,9 @@ private val datastore: NewsletterDatastore
 
         datastore.flow.collect { preferences ->
 
-            val general = repository.getInbox(NewsletterInboxType.InboxType.GENERAL)
-            val pet = repository.getInbox(NewsletterInboxType.InboxType.PET)
-            val phasmophobia = repository.getInbox(NewsletterInboxType.InboxType.PHASMOPHOBIA)
+            val general = getInbox(NewsletterInboxType.InboxTypeDTO.GENERAL)
+            val pet = getInbox(NewsletterInboxType.InboxTypeDTO.PET)
+            val phasmophobia = getInbox(NewsletterInboxType.InboxTypeDTO.PHASMOPHOBIA)
 
             general?.setLastReadDate( preferences.lastReadDateGeneral )
             pet?.setLastReadDate( preferences.lastReadDatePET )
@@ -35,20 +39,32 @@ private val datastore: NewsletterDatastore
                     "\tlastReadDatePhasmophobia -> ${ phasmophobia?.lastReadDate?.value }\n"
             )
 
-            repository.setRequiresNotify(
+            setRequiresNotify(
                 general?.requiresNotify?.value != false ||
                         pet?.requiresNotify?.value != false ||
                         phasmophobia?.requiresNotify?.value != false
             )
         }
-
     }
 
-    suspend fun setLastReadDate(inboxType: NewsletterInboxType.InboxType, date: Long) {
+    private val inboxes = repository.inboxes
+
+    private val _requiresNotify = MutableStateFlow<Boolean>(false)
+    val requiresNotify = _requiresNotify.asStateFlow()
+    fun requiresNotify(inboxType: NewsletterInboxType.InboxTypeDTO) = getInbox(inboxType)?.requiresNotify
+    fun setRequiresNotify(value: Boolean) {
+        _requiresNotify.update { value }
+    }
+
+    fun getInbox(inboxType: NewsletterInboxType.InboxTypeDTO): NewsletterInbox? {
+        return inboxes.value[inboxType]
+    }
+
+    suspend fun setLastReadDate(inboxType: NewsletterInboxType.InboxTypeDTO, date: Long) {
         val key = when(inboxType) {
-            NewsletterInboxType.InboxType.PHASMOPHOBIA -> KEY_INBOX_PHASMOPHOBIA
-            NewsletterInboxType.InboxType.PET -> KEY_INBOX_PET
-            NewsletterInboxType.InboxType.GENERAL -> KEY_INBOX_GENERAL
+            NewsletterInboxType.InboxTypeDTO.PHASMOPHOBIA -> KEY_INBOX_PHASMOPHOBIA
+            NewsletterInboxType.InboxTypeDTO.PET -> KEY_INBOX_PET
+            NewsletterInboxType.InboxTypeDTO.GENERAL -> KEY_INBOX_GENERAL
         }
         datastore.setLastReadDate(key, date)
     }

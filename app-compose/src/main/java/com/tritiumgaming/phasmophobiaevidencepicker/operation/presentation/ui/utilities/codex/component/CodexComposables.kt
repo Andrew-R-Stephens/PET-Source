@@ -20,13 +20,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.component.EquipmentTierItemStyle.Companion.Bordered
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.component.EquipmentTierItemStyle.Companion.Plain
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.component.TierLevel.Companion.One
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.component.TierLevel.Companion.Three
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.component.TierLevel.Companion.Two
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils.getColorFromAttribute
 
 @Composable
 fun EquipmentSimple(

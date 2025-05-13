@@ -57,7 +57,7 @@ class MainMenuViewModel(
             initializer {
 
                 val appKeyContainer =
-                    (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).container
+                    (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).mainMenuContainer
 
                 val appInfoRepository: AppInfoRepository = appKeyContainer.appInfoRepository
 

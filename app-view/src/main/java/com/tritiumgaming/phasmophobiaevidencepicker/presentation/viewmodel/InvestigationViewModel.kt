@@ -30,7 +30,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.s
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 
 class InvestigationViewModel(
     val evidenceRepository: EvidenceRepository,

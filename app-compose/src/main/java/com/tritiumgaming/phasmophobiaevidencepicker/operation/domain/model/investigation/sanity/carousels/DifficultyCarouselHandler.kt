@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.carousels
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.DifficultyRepository.DifficultyType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.DifficultyRepository.DifficultyType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.sanity.SanityHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.timer.TimerHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.warning.PhaseHandler

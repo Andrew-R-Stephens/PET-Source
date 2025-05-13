@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.dto.theming
 
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.bundle.MarketBundleEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.bundle.MarketBundleEntity
 
 class MarketBundleDto(
     private val uuid: String,

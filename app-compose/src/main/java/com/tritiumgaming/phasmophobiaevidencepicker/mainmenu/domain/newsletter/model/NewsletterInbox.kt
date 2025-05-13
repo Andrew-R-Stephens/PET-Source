@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -9,11 +9,9 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-
 class NewsletterInbox(
-    val inboxType: NewsletterRepository.NewsletterInboxType
+    val inboxType: NewsletterInboxType
 ) {
-
     var messages = mutableMapOf<String, NewsletterMessage>()
 
     private val _requiresNotify = MutableStateFlow(false)
@@ -108,6 +106,10 @@ class NewsletterInbox(
         val title: String = FontUtils.removeXMLImgSrcTags(title)
         val description: String = FontUtils.removeXMLImgSrcTags(description)
         val date: Long = formatToEpoch(FontUtils.removeXMLPubDateClockTime(date))
+        var language: String? = Locale.ENGLISH.language
+            set(value) {
+                field = value ?: Locale.ENGLISH.language
+            }
 
         @Deprecated("Unused")
         fun getDateFormatted(): String {

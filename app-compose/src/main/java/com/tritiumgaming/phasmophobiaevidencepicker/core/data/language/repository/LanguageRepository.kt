@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.reposito
 
 import android.content.Context
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.LanguageObject
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageObject
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.local.LanguageLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.LanguageLocalDataSource
 
 class LanguageRepository(
     context: Context,
@@ -12,13 +12,14 @@ class LanguageRepository(
 ): LanguageRepository {
 
     override var _languageList = listOf<LanguageObject>()
-    override val languageList: List<LanguageObject> = _languageList
+    override val languageList: List<LanguageObject>
+        get() = _languageList
 
     override fun fetchLanguages(context: Context): List<LanguageObject> =
         languageLocalDataSource.fetchLanguages(context)
 
     init {
-        Log.d("LanguagesRepository", "Initializing")
+        Log.d("Language", "Initializing Repository")
 
         _languageList = fetchLanguages(context)
     }

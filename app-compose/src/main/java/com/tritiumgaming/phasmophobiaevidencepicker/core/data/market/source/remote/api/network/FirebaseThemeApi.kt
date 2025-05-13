@@ -9,9 +9,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remo
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.api.firestore.transactions.store.merchandise.typographies.FirestoreMerchandiseTypographies.Companion.getAllTypographys
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.dto.theming.MarketBundleDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.dto.theming.MarketThemeDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.bundle.MarketBundleEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.palette.PaletteEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.typography.TypographyEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.bundle.MarketBundleEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.palette.PaletteEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.TypographyEntity
 import kotlinx.coroutines.tasks.await
 
 class StoreThemesApi: ThemeApi {

@@ -10,7 +10,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.S
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
 
@@ -26,7 +26,7 @@ private fun NewsMessageScreenPreview() {
             color = LocalPalette.current.surface.color
         ) {
             NewsMessageScreen(
-                inboxID = NewsletterRepository.NewsletterInboxType.InboxType.PET.id,
+                inboxID = NewsletterInboxType.InboxTypeDTO.PET.id,
                 messageID = 0
             )
         }

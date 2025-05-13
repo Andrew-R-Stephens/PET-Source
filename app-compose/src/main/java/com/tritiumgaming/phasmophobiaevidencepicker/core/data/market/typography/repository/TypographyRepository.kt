@@ -4,13 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.MarketRemoteDataSourceInterface
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.Typography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.TypographyEntity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.ThemeRepository.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.TypographyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.local.TypographyLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.TypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalDefaultTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.typography.Typography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.typography.TypographyEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

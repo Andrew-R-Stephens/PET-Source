@@ -2,9 +2,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.sourc
 
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.source.local.AppInfoLocalDataSource
 
 
-class AppInfoLocalDataSource: AppInfoLocalDataSourceInterface {
+class AppInfoLocalDataSource: AppInfoLocalDataSource {
 
     override fun fetchSpecialThanks(context: Context): List<String> {
         val specialThanksList = mutableListOf<String>()
@@ -19,8 +20,4 @@ class AppInfoLocalDataSource: AppInfoLocalDataSourceInterface {
 
         return specialThanksList
     }
-}
-
-interface AppInfoLocalDataSourceInterface {
-    fun fetchSpecialThanks(context: Context): List<String>
 }

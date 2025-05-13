@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.ProgressBar
+import androidx.core.view.isEmpty
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.AdRequest
@@ -15,7 +16,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.Globa
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import androidx.core.view.isEmpty
 
 @Deprecated("Replaced with GhostList", ReplaceWith("GhostList"), DeprecationLevel.WARNING)
 class GhostListView : InvestigationListView {

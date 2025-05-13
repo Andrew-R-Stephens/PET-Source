@@ -1,13 +1,26 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
+import androidx.datastore.preferences.SharedPreferencesMigration
+import androidx.datastore.preferences.preferencesDataStore
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.container.AppContainer
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.container.dataStore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.container.CoreContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AccountManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.SignInCredentialManager
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.container.MainMenuContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.container.OperationContainer
+
+private const val USER_PREFERENCES_NAME = "user_preferences"
+
+val Context.dataStore by preferencesDataStore(
+    name = USER_PREFERENCES_NAME,
+    produceMigrations = { context ->
+        listOf(SharedPreferencesMigration(context, USER_PREFERENCES_NAME))
+    }
+)
 
 class PETApplication : Application(), AccountManagementService {
 
@@ -16,13 +29,17 @@ class PETApplication : Application(), AccountManagementService {
         AppDatabase::class.java, "pet-db"
     ).build()*/
 
-    lateinit var container: AppContainer
+    lateinit var coreContainer: CoreContainer
+    lateinit var mainMenuContainer: MainMenuContainer
+    lateinit var operationsContainer: OperationContainer
 
     override fun onCreate() {
 
         super.onCreate()
 
-        container = AppContainer(applicationContext, dataStore)
+        coreContainer = CoreContainer(applicationContext, dataStore)
+        mainMenuContainer = MainMenuContainer(applicationContext, dataStore)
+        operationsContainer = OperationContainer(applicationContext, dataStore)
 
         signIn(
             option = SignInCredentialManager.SignInOptions.SILENT,

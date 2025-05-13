@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.carousels
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.SimpleMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.SimpleMapRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

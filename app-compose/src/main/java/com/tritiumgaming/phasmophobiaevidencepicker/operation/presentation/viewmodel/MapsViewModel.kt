@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.ComplexMapRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.SimpleMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.ComplexMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.MapModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.mapviewer.MapInteractModel
 
@@ -113,7 +113,7 @@ class MapsViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).container
+                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
                 val simpleMapRepository: SimpleMapRepository = appKeyContainer.simpleMapRepository
                 val complexMapRepository: ComplexMapRepository = appKeyContainer.complexMapRepository

@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.EvidenceRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.GhostRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.EvidenceRulingHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceType

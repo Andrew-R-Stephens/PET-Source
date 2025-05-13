@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.local.GlobalPreferencesDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.warning.PhaseHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

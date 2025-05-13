@@ -1,12 +1,13 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local.AppInfoLocalDataSourceInterface
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.repository.AppInfoRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.source.local.AppInfoLocalDataSource
 
 class AppInfoRepository(
     context: Context,
-    val localSource: AppInfoLocalDataSourceInterface
-): AppInfoRepositoryInterface {
+    val localSource: AppInfoLocalDataSource
+): AppInfoRepository {
 
     var specialThanksList: List<String> = listOf()
 
@@ -18,8 +19,4 @@ class AppInfoRepository(
         specialThanksList = fetchSpecialThanks(context)
     }
 
-}
-
-interface AppInfoRepositoryInterface {
-    fun fetchSpecialThanks(context: Context): List<String>
 }

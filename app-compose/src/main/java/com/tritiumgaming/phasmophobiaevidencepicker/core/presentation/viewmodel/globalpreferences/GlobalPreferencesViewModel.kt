@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.local.ReviewTrackingDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackingDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.ThemeRepository.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.handlers.globalpreferences.GlobalPreferencesManager
@@ -171,7 +171,7 @@ class GlobalPreferencesViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val appKeyContainer =
-                    (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).container
+                    (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).coreContainer
 
                 val reviewTrackingRepository: ReviewTrackingDatastore = appKeyContainer.reviewTrackingRepository
                 val globalPreferencesManager: GlobalPreferencesManager = appKeyContainer.globalPreferencesManager

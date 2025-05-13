@@ -7,23 +7,17 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.handler.NewsletterManager
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class NewsletterViewModel(
-    private val repository: NewsletterRepository,
-    private val datastore: NewsletterDatastore
+    private val newsletterManager: NewsletterManager
 ): ViewModel() {
 
-    val newsletterManager: NewsletterManager = NewsletterManager(
-        repository, datastore
-    )
-
     private fun initialSetupEvent() {
-        datastore.initialSetupEvent()
+        newsletterManager.initialSetupEvent()
     }
 
     init {
@@ -36,16 +30,17 @@ class NewsletterViewModel(
         }
     }
 
-    fun requiresNotify(inboxType: NewsletterRepository.NewsletterInboxType.InboxType?): StateFlow<Boolean>? {
-        if(inboxType == null) return repository.requiresNotify
+    fun requiresNotify(inboxType: NewsletterInboxType.InboxTypeDTO?): StateFlow<Boolean>? {
+        if(inboxType == null) return newsletterManager.requiresNotify
 
-        return repository.requiresNotify(inboxType)
+        return newsletterManager.requiresNotify(inboxType)
     }
 
-    fun getInbox(inboxType: NewsletterRepository.NewsletterInboxType.InboxType) = repository.getInbox(inboxType)
+    fun getInbox(inboxType: NewsletterInboxType.InboxTypeDTO) =
+        newsletterManager.getInbox(inboxType)
 
     fun setLastReadDate(
-        inboxType: NewsletterRepository.NewsletterInboxType.InboxType, date: Long,
+        inboxType: NewsletterInboxType.InboxTypeDTO, date: Long,
         onComplete: () -> Unit = {}
     ) {
         viewModelScope.launch {
@@ -55,16 +50,14 @@ class NewsletterViewModel(
     }
 
     class NewsletterFactory(
-        private val newsletterRepository: NewsletterRepository,
-        private val newsletterDatastore: NewsletterDatastore
+        private val newsletterManager: NewsletterManager
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(NewsletterViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return NewsletterViewModel(
-                    repository = newsletterRepository,
-                    datastore = newsletterDatastore
+                    newsletterManager = newsletterManager
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
@@ -76,14 +69,12 @@ class NewsletterViewModel(
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val container =
-                    (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).container
+                    (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).mainMenuContainer
 
-                val newsletterRepository = container.newsletterRepository
-                val newsletterDatastore = container.newsletterDatastore
+                val newsletterManager: NewsletterManager = container.newsletterManager
 
                 NewsletterViewModel(
-                    repository = newsletterRepository,
-                    datastore = newsletterDatastore
+                    newsletterManager = newsletterManager
                 )
             }
         }

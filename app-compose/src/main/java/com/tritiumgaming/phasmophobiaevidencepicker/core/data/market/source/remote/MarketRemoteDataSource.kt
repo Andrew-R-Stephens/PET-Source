@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.api.network.StoreThemesApi
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.bundle.MarketBundleEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.palette.PaletteEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.market.typography.TypographyEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.bundle.MarketBundleEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.palette.PaletteEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.TypographyEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

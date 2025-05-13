@@ -4,15 +4,15 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.LanguageDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.source.local.LanguageLocalDataSource.Companion.DEFAULT_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.LanguageLocalDataSource.Companion.DEFAULT_LANGUAGE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.Locale
 
 class LanguageManager(
-    repository: LanguageRepository,
+    private val repository: LanguageRepository,
     private val datastore: LanguageDatastore
 ) {
 
@@ -20,7 +20,8 @@ class LanguageManager(
         datastore.initialSetupEvent()
     }
 
-    val languageList = repository.languageList
+    val languageList
+        get() = repository.languageList
 
     suspend fun initFlow() {
         datastore.flow.collect { languagePreference ->
