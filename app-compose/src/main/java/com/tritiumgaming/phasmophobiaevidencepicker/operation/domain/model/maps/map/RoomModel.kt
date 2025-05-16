@@ -1,12 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.io.factory.MapDesBlueprint
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
 
 class RoomModel(
     var id: Int,
     var name: String,
-    points: MapDesBlueprint.WorldMap.Floor.Room.RoomPoints?
+    points: WorldMaps.WorldMap.Floor.Room.RoomPoints?
 ) {
 
     val roomArea: RoomAreaModel = RoomAreaModel()

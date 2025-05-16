@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup.CodexGroupItem
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups.CodexGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups.CodexGroup.CodexGroupItem
 
 class CodexPossessionsLocalDataSource {
 

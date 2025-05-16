@@ -3,11 +3,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.source
 import android.content.Context
 import android.content.res.Resources
 import androidx.annotation.ArrayRes
-import androidx.annotation.IntegerRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.investigation.popups.GhostPopup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghostevidence.GhostEvidence.GhostEvidenceDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.ghost.GhostType
 
 class GhostLocalDataSource {
 

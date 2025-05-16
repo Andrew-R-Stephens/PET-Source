@@ -3,22 +3,14 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.repo
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.util.ResourceUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.local.MissionLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.missions.Mission
 
 class MissionRepository(
-    context: Context
+    context: Context,
+    localSource: MissionLocalDataSource
 ) {
 
-    val objectivesList = ArrayList<Mission>()
-
-    init {
-        val missionsTypedArray = context.resources.obtainTypedArray(R.array.tasks_objectives_array)
-        val missionsArray =
-            ResourceUtils.intArrayFromTypedArray(context.resources, missionsTypedArray)
-
-        for (i in missionsArray.indices) {
-            objectivesList.add(Mission(missionsArray[i]))
-        }
-    }
+    val missions: List<Mission> = localSource.fetchMissions(context)
 
 }

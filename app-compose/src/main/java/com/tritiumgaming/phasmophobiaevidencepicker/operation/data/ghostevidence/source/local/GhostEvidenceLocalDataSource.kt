@@ -5,7 +5,7 @@ import android.content.res.Resources
 import androidx.annotation.ArrayRes
 import androidx.annotation.IntegerRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghostevidence.GhostEvidence.GhostEvidenceDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.ghostevidence.GhostEvidence.GhostEvidenceDto
 
 class GhostEvidenceLocalDataSource {
 

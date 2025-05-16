@@ -25,9 +25,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.reposit
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.possessions.CodexPossessionsRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexEquipmentLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexPossessionsLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghostevidence.GhostEvidence.GhostEvidenceDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.JournalRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalService
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.local.MissionLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.evidence.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.ghost.GhostType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.ghostevidence.GhostEvidence.GhostEvidenceDto
 
 class OperationContainer(context: Context, dataStore: DataStore<Preferences>) {
 
@@ -54,6 +59,11 @@ class OperationContainer(context: Context, dataStore: DataStore<Preferences>) {
             context = context,
             localSource = ghostEvidenceLocalDataSource
         )
+    val journalRepository: JournalRepository = JournalRepository(
+        evidenceRepository = evidenceRepository,
+        ghostRepository = ghostRepository,
+        ghostEvidenceRepository = ghostEvidenceRepository
+    )
 
     val evidencePopupLocalDataSource: EvidencePopupLocalDataSource = EvidencePopupLocalDataSource()
     val evidencePopupRepository: EvidencePopupRepository = EvidencePopupRepository(
@@ -75,9 +85,11 @@ class OperationContainer(context: Context, dataStore: DataStore<Preferences>) {
             localSource = difficultyLocalDataSource
         )
 
+    val missionLocalDataSource: MissionLocalDataSource = MissionLocalDataSource()
     val missionRepository: MissionRepository =
         MissionRepository(
-            context = context
+            context = context,
+            localSource = missionLocalDataSource
         )
 
     /*
@@ -85,12 +97,17 @@ class OperationContainer(context: Context, dataStore: DataStore<Preferences>) {
      */
     val simpleMapRepository: SimpleMapRepository =
         SimpleMapRepository(
-            context = context
+            context = context,
+            localSource = SimpleMapLocalDataSource()
         )
 
+    val complexMapLocalDataSource = ComplexMapLocalDataSource(
+        service = ComplexMapLocalService()
+    )
     val complexMapRepository: ComplexMapRepository =
         ComplexMapRepository(
-            context = context
+            context = context,
+            localSource = complexMapLocalDataSource
         )
 
     /*
@@ -124,39 +141,5 @@ class OperationContainer(context: Context, dataStore: DataStore<Preferences>) {
             equipmentRepository = equipmentRepository,
             possessionsRepository = possessionsRepository
         )
-
-    init {
-        mapGhostEvidence(
-            ghostEvidences = ghostEvidenceRepository.ghostEvidences,
-            ghosts = ghostRepository.ghosts,
-            evidences = evidenceRepository.evidences
-        )
-    }
-
-    private fun mapGhostEvidence(
-        ghostEvidences: List<GhostEvidenceDto>,
-        ghosts: List<GhostType>,
-        evidences: List<EvidenceType>
-    ) {
-        ghostEvidences.forEach { ghostEvidences ->
-            ghosts.find { ghost -> ghost.id == ghostEvidences.ghostId }
-                ?.evidence?.let { evidence ->
-                    ghostEvidences.normalEvidences.forEach {
-                        evidences.find { evidenceType ->
-                            evidenceType.id == it
-                        }?.let { evidenceType ->
-                            evidence.addNormalEvidence(evidenceType)
-                        }
-                    }
-                    ghostEvidences.strictEvidences.forEach {
-                        evidences.find { evidenceType ->
-                            evidenceType.id == it
-                        }?.let { evidenceType ->
-                            evidence.addStrictEvidence(evidenceType)
-                        }
-                    }
-                }
-        }
-    }
 
 }

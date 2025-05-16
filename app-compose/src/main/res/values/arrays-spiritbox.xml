@@ -37,7 +37,7 @@
         <item>@string/spiritbox_entry_q7_11</item>
     </string-array>
     <!-- Ouija Board Entries -->
-    <string-array name="ghostspeaktool_oijaboard_array">
+    <string-array name="ghostspeaktool_ouijaboard_array">
         <item>@string/spiritbox_entry_q5_7</item>
         <item>@string/spiritbox_entry_q6_5</item>
         <item>@string/spiritbox_entry_q6_9</item>

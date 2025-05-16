@@ -6,8 +6,8 @@ import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexAchievementsLocalDataSource.CodexAchievementGroup.CodexAchievementItem
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups.CodexGroup
 
 class CodexAchievementsLocalDataSource {
 

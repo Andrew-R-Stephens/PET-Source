@@ -4,7 +4,7 @@ import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.achievevments.CodexAchievementsRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.equipment.CodexEquipmentRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.possessions.CodexPossessionsRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups
 
 class CodexRepository(
     context: Context,

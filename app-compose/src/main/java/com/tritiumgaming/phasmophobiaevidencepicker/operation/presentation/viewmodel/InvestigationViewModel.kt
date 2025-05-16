@@ -14,12 +14,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.re
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.achievevments.CodexAchievementsRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.equipment.CodexEquipmentRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.possessions.CodexPossessionsRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.InvestigationJournal
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence.Ruling
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.JournalRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.InvestigationJournal
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.RuledEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.RuledEvidence.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.evidence.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.ghost.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.carousels.DifficultyCarouselHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.carousels.MapCarouselHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.sanity.SanityHandler
@@ -29,8 +29,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.inves
 import kotlinx.coroutines.flow.StateFlow
 
 class InvestigationViewModel(
-    val evidenceRepository: EvidenceRepository,
-    val ghostRepository: GhostRepository,
+    journalRepository: JournalRepository,
+    val ghostRepository: GhostRepository = journalRepository.ghostRepository,
+    val evidenceRepository: EvidenceRepository = journalRepository.evidenceRepository,
     difficultyRepository: DifficultyRepository,
     mapRepository: SimpleMapRepository,
     private val codexRepository: CodexRepository
@@ -207,8 +208,7 @@ class InvestigationViewModel(
      * VIEWMODEL FACTORIES
      */
     class InvestigationFactory(
-        private val evidenceRepository: EvidenceRepository,
-        private val ghostRepository: GhostRepository,
+        private val journalRepository: JournalRepository,
         private val difficultyRepository: DifficultyRepository,
         private val simpleMapRepository: SimpleMapRepository,
         private val codexRepository: CodexRepository
@@ -218,11 +218,10 @@ class InvestigationViewModel(
             if (modelClass.isAssignableFrom(InvestigationViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return InvestigationViewModel(
-                    evidenceRepository,
-                    ghostRepository,
-                    difficultyRepository,
-                    simpleMapRepository,
-                    codexRepository
+                    journalRepository = journalRepository,
+                    difficultyRepository = difficultyRepository,
+                    mapRepository = simpleMapRepository,
+                    codexRepository = codexRepository
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
@@ -235,15 +234,13 @@ class InvestigationViewModel(
             initializer {
                 val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
-                val evidenceRepository: EvidenceRepository = appKeyContainer.evidenceRepository
-                val ghostRepository: GhostRepository = appKeyContainer.ghostRepository
+                val journalRepository: JournalRepository = appKeyContainer.journalRepository
                 val difficultyRepository: DifficultyRepository = appKeyContainer.difficultyRepository
                 val mapRepository: SimpleMapRepository = appKeyContainer.simpleMapRepository
                 val codexRepository: CodexRepository = appKeyContainer.codexRepository
 
                 InvestigationViewModel(
-                    evidenceRepository = evidenceRepository,
-                    ghostRepository = ghostRepository,
+                    journalRepository = journalRepository,
                     difficultyRepository = difficultyRepository,
                     mapRepository = mapRepository,
                     codexRepository = codexRepository,

@@ -1,36 +1,38 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.repository
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.io.MapFileIO
+import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.toMapList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.MapListModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ComplexMapRepository(
-    private val context: Context
+    context: Context,
+    val localSource: ComplexMapLocalDataSource
 ) {
 
-    var mapListModel: MapListModel? = null
+    var worldMaps: WorldMaps = WorldMaps()
+    var mapListModel: MapListModel = MapListModel()
 
-    init {
+    suspend fun fetchMaps(context: Context): WorldMaps {
+        var worldMaps = WorldMaps()
         try {
-            CoroutineScope(Dispatchers.IO).launch {
-                mapListModel = readMapsDataFromFile() }
+            worldMaps = localSource.fetchWorldMaps(context)
+            Log.d("Maps", "Complex Maps:\n${worldMaps.maps.size}")
         }
         catch (e: Exception) { e.printStackTrace() }
+        return worldMaps
     }
 
-    @Throws(Exception::class)
-    private fun readMapsDataFromFile(): MapListModel? {
-        val mapFileIO = MapFileIO()
-        val reader = mapFileIO.mapFileReader
-
-        mapFileIO.readFile(context.assets, context.getString(R.string.mapsJson), reader)
-        mapListModel = MapListModel(reader.worldMapDeserializer)
-        mapListModel?.orderRooms()
-
-        return mapListModel
+    init {
+        CoroutineScope(Dispatchers.IO).launch {
+            worldMaps = fetchMaps(context)
+            mapListModel = worldMaps.toMapList()
+        }
     }
+
 }

@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.io.factory.MapDesBlueprint
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
 
 
 class MapModel {
@@ -32,7 +32,7 @@ class MapModel {
         for (layer in FloorLayerType.entries) mapFloors.add(FloorModel(layer))
     }
 
-    constructor(worldMap: MapDesBlueprint.WorldMap) {
+    constructor(worldMap: WorldMaps.WorldMap) {
         mapId = worldMap.mapId
         mapName = worldMap.mapName
         mapNameShort = worldMap.mapNameShort

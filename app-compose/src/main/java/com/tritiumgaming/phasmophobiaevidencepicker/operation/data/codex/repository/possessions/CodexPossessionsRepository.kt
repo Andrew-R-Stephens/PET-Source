@@ -1,13 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.possessions
 
 import android.content.Context
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexPossessionsLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup.CodexGroupItem
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups
 
 
 class CodexPossessionsRepository(

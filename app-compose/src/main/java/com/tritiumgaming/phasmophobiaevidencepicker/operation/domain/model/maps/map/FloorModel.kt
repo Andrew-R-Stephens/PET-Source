@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps
 
 import android.os.Build
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.io.factory.MapDesBlueprint
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
 
 class FloorModel {
     private var floorId: Int = 0
@@ -15,7 +15,7 @@ class FloorModel {
     val floorRooms: ArrayList<RoomModel> = ArrayList()
     val floorPOIs: ArrayList<PoiModel> = ArrayList()
 
-    constructor(floor: MapDesBlueprint.WorldMap.Floor) {
+    constructor(floor: WorldMaps.WorldMap.Floor) {
         floorImage = floor.imageFile
         floorId = floor.floorId
         floorName = floor.floorName

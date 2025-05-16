@@ -6,7 +6,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.miss
  * @author TritiumGamingStudios
  */
 class MissionsListModel(
-    private var objectivesList: ArrayList<Mission> = arrayListOf()
+    private var objectivesList: List<Mission> = listOf()
 ) {
 
     fun getMissionsBy(state: Boolean, missionId: Int? = null): List<Mission> {

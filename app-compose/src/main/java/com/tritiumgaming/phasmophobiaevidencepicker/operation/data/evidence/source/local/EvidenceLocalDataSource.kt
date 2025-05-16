@@ -2,12 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.sou
 
 import android.content.Context
 import androidx.annotation.DrawableRes
-import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.util.ResourceUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.investigation.popups.EvidencePopup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.evidence.EvidenceType
 
 class EvidenceLocalDataSource {
 

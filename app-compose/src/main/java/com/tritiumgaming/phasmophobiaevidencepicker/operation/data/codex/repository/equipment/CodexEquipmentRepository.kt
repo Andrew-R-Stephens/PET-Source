@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.reposi
 
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexEquipmentLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups
 
 class CodexEquipmentRepository(
     context: Context,

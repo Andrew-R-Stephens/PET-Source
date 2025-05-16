@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.view
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
@@ -10,6 +11,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.r
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.MapModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.mapviewer.MapInteractModel
+import kotlinx.coroutines.launch
 
 /**
  * MapMenuViewModel class
@@ -52,45 +54,6 @@ class MapsViewModel(
         }
         currentSimpleMap.currentFloor = layerIndex
     }
-
-    /*
-    private var allMaps = mapRepository.mapsData
-
-    var currentMapModel: MapModel? = null
-
-    val mapThumbnails: MutableList<Int> = mapRepository.mapThumbnails
-
-    var imageDisplayThread: Thread? = null
-
-    var currentMapIndex: Int = 0
-        set(currentMapPos) {
-            if (currentMapPos < allMaps.size) {
-                field = currentMapPos
-            }
-        }
-    val currentMapViewerModel: MapInteractModel
-        get() {
-            return allMaps[currentMapIndex]
-        }
-    fun incrementFloorIndex() {
-        var layerIndex: Int = currentMapViewerModel.currentFloor
-        if (++layerIndex >= currentMapViewerModel.floorCount) {
-            layerIndex = 0
-        }
-        currentMapViewerModel.currentFloor = layerIndex
-    }
-    fun decrementFloorIndex() {
-        var layerIndex: Int = currentMapViewerModel.currentFloor
-        if (--layerIndex < 0) {
-            layerIndex = currentMapViewerModel.floorCount -1
-        }
-        currentMapViewerModel.currentFloor = layerIndex
-    }
-
-    fun hasCurrentMapData(): Boolean {
-        return currentMapIndex < allMaps.size
-    }
-    */
 
     class MapsFactory(
         private val simpleMapRepository: SimpleMapRepository,
