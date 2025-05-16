@@ -32,6 +32,32 @@
     <string name="ghost_type_wraith">Wraith</string>
     <string name="ghost_type_yokai">Yokai</string>
     <string name="ghost_type_yurei">Yurei</string>
+    
+    <!-- Ghost IDs -->
+    <string name="ghost_id_banshee" translatable="false">0</string>
+    <string name="ghost_id_demon" translatable="false">1</string>
+    <string name="ghost_id_deogen" translatable="false">2</string>
+    <string name="ghost_id_goryo" translatable="false">3</string>
+    <string name="ghost_id_hantu" translatable="false">4</string>
+    <string name="ghost_id_jinn" translatable="false">5</string>
+    <string name="ghost_id_mare" translatable="false">6</string>
+    <string name="ghost_id_moroi" translatable="false">7</string>
+    <string name="ghost_id_myling" translatable="false">8</string>
+    <string name="ghost_id_obake" translatable="false">9</string>
+    <string name="ghost_id_oni" translatable="false">10</string>
+    <string name="ghost_id_onryo" translatable="false">11</string>
+    <string name="ghost_id_phantom" translatable="false">12</string>
+    <string name="ghost_id_poltergeist" translatable="false">13</string>
+    <string name="ghost_id_raiju" translatable="false">14</string>
+    <string name="ghost_id_revenant" translatable="false">15</string>
+    <string name="ghost_id_shade" translatable="false">16</string>
+    <string name="ghost_id_spirit" translatable="false">17</string>
+    <string name="ghost_id_thaye" translatable="false">18</string>
+    <string name="ghost_id_thetwins" translatable="false">19</string>
+    <string name="ghost_id_themimic" translatable="false">20</string>
+    <string name="ghost_id_wraith" translatable="false">21</string>
+    <string name="ghost_id_yokai" translatable="false">22</string>
+    <string name="ghost_id_yurei" translatable="false">23</string>
 
     <!-- Ghost description -->
     <string name="ghost_info_banshee" >

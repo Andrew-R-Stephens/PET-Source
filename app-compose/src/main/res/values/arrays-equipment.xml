@@ -6,7 +6,7 @@
     -->
 
     <!-- Evidence Typed Tiers -->
-    <string-array name="equipment_tiers_arrays">
+    <string-array name="evidence_tiers_arrays">
         <item>@array/equipment_tiers_dots</item>
         <item>@array/equipment_tiers_emf</item>
         <item>@array/equipment_tiers_ultraviolet</item>

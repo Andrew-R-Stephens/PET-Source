@@ -24,4 +24,11 @@ class GhostEvidence(
         for (e in strictEvidenceList) { s.append(e.name).append(", ") }
         return s.toString()
     }
+
+    data class GhostEvidenceDto(
+        val ghostId: String = "0",
+        val normalEvidences: MutableList<String> = mutableListOf(),
+        val strictEvidences: MutableList<String> = mutableListOf()
+    )
+
 }

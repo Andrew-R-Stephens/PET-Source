@@ -23,9 +23,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.
 
 class CoreContainer(context: Context, dataStore: DataStore<Preferences>) {
 
-    val globalPreferencesRepository: GlobalPreferencesRepository =
+    private val globalPreferencesRepository: GlobalPreferencesRepository =
         GlobalPreferencesRepository()
-    val globalPreferencesDatastore: GlobalPreferencesDatastore =
+    private val globalPreferencesDatastore: GlobalPreferencesDatastore =
         GlobalPreferencesDatastore(
             context = context,
             dataStore = dataStore
@@ -41,13 +41,13 @@ class CoreContainer(context: Context, dataStore: DataStore<Preferences>) {
             dataStore = dataStore
         )
 
-    val typographyLocalDataSource = TypographyLocalDataSource()
-    val typographyRemoteDataSource = MarketRemoteDataSource()
-    val typographyDatastore = TypographyDatastore(
+    private val typographyLocalDataSource = TypographyLocalDataSource()
+    private val typographyRemoteDataSource = MarketRemoteDataSource()
+    private val typographyDatastore = TypographyDatastore(
         context = context,
         dataStore = dataStore
     )
-    val typographyRepository: TypographyRepository =
+    private val typographyRepository: TypographyRepository =
         TypographyRepository(
             context = context,
             networkDataSource = typographyRemoteDataSource,
@@ -58,13 +58,13 @@ class CoreContainer(context: Context, dataStore: DataStore<Preferences>) {
         datastore = typographyDatastore
     )
 
-    val paletteLocalDataSource = PaletteLocalDataSource()
-    val paletteRemoteDataSource = MarketRemoteDataSource()
-    val paletteDatastore = PaletteDatastore(
+    private val paletteLocalDataSource = PaletteLocalDataSource()
+    private val paletteRemoteDataSource = MarketRemoteDataSource()
+    private val paletteDatastore = PaletteDatastore(
         context = context,
         dataStore = dataStore
     )
-    val paletteRepository: PaletteRepository =
+    private val paletteRepository: PaletteRepository =
         PaletteRepository(
             context = context,
             remoteDataSource = paletteRemoteDataSource,
@@ -75,11 +75,11 @@ class CoreContainer(context: Context, dataStore: DataStore<Preferences>) {
         datastore = paletteDatastore
     )
 
-    val languageRepository: LanguageRepository = LanguageRepository(
+    private val languageRepository: LanguageRepository = LanguageRepository(
             context = context,
             languageLocalDataSource = LanguageLocalDataSource()
         )
-    val languageDatastore = LanguageDatastore(
+    private val languageDatastore = LanguageDatastore(
         context = context,
         dataStore = dataStore
     )

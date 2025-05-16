@@ -13,22 +13,22 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmo
 
 class MainMenuContainer(context: Context, dataStore: DataStore<Preferences>) {
 
-    val appInfoLocalDataSource: AppInfoLocalDataSource = AppInfoLocalDataSource()
+    private val appInfoLocalDataSource: AppInfoLocalDataSource = AppInfoLocalDataSource()
     val appInfoRepository: AppInfoRepository =
         AppInfoRepository(
             context = context,
             localSource = appInfoLocalDataSource
         )
 
-    val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSource()
-    val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSource()
-    val newsletterRepository: NewsletterRepository =
+    private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSource()
+    private val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSource()
+    private val newsletterRepository: NewsletterRepository =
         NewsletterRepository(
             context = context,
             localDataSource = newsletterLocalDataSource,
             remoteDataSource = newsletterRemoteDataSource
         )
-    val newsletterDatastore: NewsletterDatastore =
+    private val newsletterDatastore: NewsletterDatastore =
         NewsletterDatastore(
             context = context,
             dataStore = dataStore

@@ -1,26 +1,21 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.source.local.GhostEvidenceLocalDataSource
+import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.source.local.GhostLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostType
 
 class GhostRepository(
-    ghostLocalSource: GhostLocalDataSource,
-    ghostEvidenceLocalSource: GhostEvidenceLocalDataSource
+    context: Context,
+    private val localSource: GhostLocalDataSource
 ) {
 
-    val ghosts = ghostLocalSource.ghosts
-    val ghostEvidences = ghostEvidenceLocalSource.ghostEvidences
+    val ghosts = fetchGhosts(context)
 
-    init {
-        ghosts.forEachIndexed { index: Int, ghost: GhostType ->
-            val ghostEvidence = ghost.evidence
-            ghostEvidence.normalEvidenceList.addAll(ghostEvidences[index].normalEvidences)
-            ghostEvidence.strictEvidenceList.addAll(ghostEvidences[index].strictEvidences)
-        }
+    private fun fetchGhosts(context: Context): List<GhostType> {
+        return localSource.fetchGhosts(context)
     }
 
-    fun getById(id: Int): GhostType? {
+    fun getById(id: String): GhostType? {
         return ghosts.find { it.id == id }
     }
 

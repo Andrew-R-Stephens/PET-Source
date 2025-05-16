@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.carousels
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepository.DifficultyType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.local.DifficultyLocalDataSource.DifficultyType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.sanity.SanityHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.timer.TimerHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.warning.PhaseHandler
@@ -52,7 +52,7 @@ class DifficultyCarouselHandler(
         phaseHandler: PhaseHandler) {
 
         var i = currentIndex.value + 1
-        if (i >= difficultyRepository.itemCount) { i = 0 }
+        if (i >= difficultyRepository.difficulties.size) { i = 0 }
 
         setIndex(sanityHandler, mapHandler, timerHandler, i)
         phaseHandler.audioWarnTriggered = false
@@ -64,7 +64,7 @@ class DifficultyCarouselHandler(
         phaseHandler: PhaseHandler) {
 
         var i = currentIndex.value - 1
-        if (i < 0) { i = difficultyRepository.itemCount - 1 }
+        if (i < 0) { i = difficultyRepository.difficulties.size - 1 }
 
         setIndex(sanityHandler, mapHandler, timerHandler, i)
         phaseHandler.audioWarnTriggered = false

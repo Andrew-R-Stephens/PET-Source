@@ -1,7 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.repository.EvidenceRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.repository.GhostRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.EvidenceRulingHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceType
@@ -18,12 +16,12 @@ import kotlinx.coroutines.flow.update
  * @author TritiumGamingStudios
  */
 class InvestigationJournal(
-    ghostRepository: GhostRepository,
-    evidenceRepository: EvidenceRepository,
+    ghosts: List<GhostType>,
+    evidences: List<EvidenceType>
 ) {
 
-    private val evidenceHandler: EvidenceRulingHandler = EvidenceRulingHandler(evidenceRepository)
-    private val ghostScoreHandler: GhostScoreHandler = GhostScoreHandler(ghostRepository)
+    private val evidenceHandler: EvidenceRulingHandler = EvidenceRulingHandler(evidences)
+    private val ghostScoreHandler: GhostScoreHandler = GhostScoreHandler(ghosts)
 
     val ruledEvidence = evidenceHandler.ruledEvidence
     val scores = ghostScoreHandler.scores

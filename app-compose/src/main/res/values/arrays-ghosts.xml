@@ -5,6 +5,274 @@
         GHOST ARRAYS
     -->
     <!-- Ghost Names -->
+    <integer-array name="ghosts_array">
+        <item>@array/ghost_array_banshee</item>
+        <item>@array/ghost_array_demon</item>
+        <item>@array/ghost_array_deogen</item>
+        <item>@array/ghost_array_goryo</item>
+        <item>@array/ghost_array_hantu</item>
+        <item>@array/ghost_array_jinn</item>
+        <item>@array/ghost_array_mare</item>
+        <item>@array/ghost_array_moroi</item>
+        <item>@array/ghost_array_myling</item>
+        <item>@array/ghost_array_obake</item>
+        <item>@array/ghost_array_oni</item>
+        <item>@array/ghost_array_onryo</item>
+        <item>@array/ghost_array_phantom</item>
+        <item>@array/ghost_array_poltergeist</item>
+        <item>@array/ghost_array_raiju</item>
+        <item>@array/ghost_array_revenant</item>
+        <item>@array/ghost_array_shade</item>
+        <item>@array/ghost_array_spirit</item>
+        <item>@array/ghost_array_thaye</item>
+        <item>@array/ghost_array_thetwins</item>
+        <item>@array/ghost_array_themimic</item>
+        <item>@array/ghost_array_wraith</item>
+        <item>@array/ghost_array_yokai</item>
+        <item>@array/ghost_array_yurei</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_banshee">
+        <item>@string/ghost_id_banshee</item>
+        <item>@string/ghost_type_banshee</item>
+        <item>@array/ghost_evidence_banshee</item>
+        <item>@string/ghost_info_banshee</item>
+        <item>@string/ghost_strengths_banshee</item>
+        <item>@string/ghost_weaknesses_banshee</item>
+        <item>@string/ghost_huntingdata_banshee</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_demon">
+        <item>@string/ghost_id_demon</item>
+        <item>@string/ghost_type_demon</item>
+        <item>@array/ghost_evidence_demon</item>
+        <item>@string/ghost_info_demon</item>
+        <item>@string/ghost_strengths_demon</item>
+        <item>@string/ghost_weaknesses_demon</item>
+        <item>@string/ghost_huntingdata_demon</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_deogen">
+        <item>@string/ghost_id_deogen</item>
+        <item>@string/ghost_type_deogen</item>
+        <item>@array/ghost_evidence_deogen</item>
+        <item>@string/ghost_info_deogen</item>
+        <item>@string/ghost_strengths_deogen</item>
+        <item>@string/ghost_weaknesses_deogen</item>
+        <item>@string/ghost_huntingdata_deogen</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_goryo">
+        <item>@string/ghost_id_goryo</item>
+        <item>@string/ghost_type_goryo</item>
+        <item>@array/ghost_evidence_goryo</item>
+        <item>@string/ghost_info_goryo</item>
+        <item>@string/ghost_strengths_goryo</item>
+        <item>@string/ghost_weaknesses_goryo</item>
+        <item>@string/ghost_huntingdata_goryo</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_hantu">
+        <item>@string/ghost_id_hantu</item>
+        <item>@string/ghost_type_hantu</item>
+        <item>@array/ghost_evidence_hantu</item>
+        <item>@string/ghost_info_hantu</item>
+        <item>@string/ghost_strengths_hantu</item>
+        <item>@string/ghost_weaknesses_hantu</item>
+        <item>@string/ghost_huntingdata_hantu</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_jinn">
+        <item>@string/ghost_id_jinn</item>
+        <item>@string/ghost_type_jinn</item>
+        <item>@array/ghost_evidence_jinn</item>
+        <item>@string/ghost_info_jinn</item>
+        <item>@string/ghost_strengths_jinn</item>
+        <item>@string/ghost_weaknesses_jinn</item>
+        <item>@string/ghost_huntingdata_jinn</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_mare">
+        <item>@string/ghost_id_mare</item>
+        <item>@string/ghost_type_mare</item>
+        <item>@array/ghost_evidence_mare</item>
+        <item>@string/ghost_info_mare</item>
+        <item>@string/ghost_strengths_mare</item>
+        <item>@string/ghost_weaknesses_mare</item>
+        <item>@string/ghost_huntingdata_mare</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_moroi">
+        <item>@string/ghost_id_moroi</item>
+        <item>@string/ghost_type_moroi</item>
+        <item>@array/ghost_evidence_moroi</item>
+        <item>@string/ghost_info_moroi</item>
+        <item>@string/ghost_strengths_moroi</item>
+        <item>@string/ghost_weaknesses_moroi</item>
+        <item>@string/ghost_huntingdata_moroi</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_myling">
+        <item>@string/ghost_id_myling</item>
+        <item>@string/ghost_type_myling</item>
+        <item>@array/ghost_evidence_myling</item>
+        <item>@string/ghost_info_myling</item>
+        <item>@string/ghost_strengths_myling</item>
+        <item>@string/ghost_weaknesses_myling</item>
+        <item>@string/ghost_huntingdata_myling</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_obake">
+        <item>@string/ghost_id_obake</item>
+        <item>@string/ghost_type_obake</item>
+        <item>@array/ghost_evidence_obake</item>
+        <item>@string/ghost_info_obake</item>
+        <item>@string/ghost_strengths_obake</item>
+        <item>@string/ghost_weaknesses_obake</item>
+        <item>@string/ghost_huntingdata_obake</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_oni">
+        <item>@string/ghost_id_oni</item>
+        <item>@string/ghost_type_oni</item>
+        <item>@array/ghost_evidence_oni</item>
+        <item>@string/ghost_info_oni</item>
+        <item>@string/ghost_strengths_oni</item>
+        <item>@string/ghost_weaknesses_oni</item>
+        <item>@string/ghost_huntingdata_oni</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_onryo">
+        <item>@string/ghost_id_onryo</item>
+        <item>@string/ghost_type_onryo</item>
+        <item>@array/ghost_evidence_onryo</item>
+        <item>@string/ghost_info_onryo</item>
+        <item>@string/ghost_strengths_onryo</item>
+        <item>@string/ghost_weaknesses_onryo</item>
+        <item>@string/ghost_huntingdata_onryo</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_phantom">
+        <item>@string/ghost_id_phantom</item>
+        <item>@string/ghost_type_phantom</item>
+        <item>@array/ghost_evidence_phantom</item>
+        <item>@string/ghost_info_phantom</item>
+        <item>@string/ghost_strengths_phantom</item>
+        <item>@string/ghost_weaknesses_phantom</item>
+        <item>@string/ghost_huntingdata_phantom</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_poltergeist">
+        <item>@string/ghost_id_poltergeist</item>
+        <item>@string/ghost_type_poltergeist</item>
+        <item>@array/ghost_evidence_poltergeist</item>
+        <item>@string/ghost_info_poltergeist</item>
+        <item>@string/ghost_strengths_poltergeist</item>
+        <item>@string/ghost_weaknesses_poltergeist</item>
+        <item>@string/ghost_huntingdata_poltergeist</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_raiju">
+        <item>@string/ghost_id_raiju</item>
+        <item>@string/ghost_type_raiju</item>
+        <item>@array/ghost_evidence_raiju</item>
+        <item>@string/ghost_info_raiju</item>
+        <item>@string/ghost_strengths_raiju</item>
+        <item>@string/ghost_weaknesses_raiju</item>
+        <item>@string/ghost_huntingdata_raiju</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_revenant">
+        <item>@string/ghost_id_revenant</item>
+        <item>@string/ghost_type_revenant</item>
+        <item>@array/ghost_evidence_revenant</item>
+        <item>@string/ghost_info_revenant</item>
+        <item>@string/ghost_strengths_revenant</item>
+        <item>@string/ghost_weaknesses_revenant</item>
+        <item>@string/ghost_huntingdata_revenant</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_shade">
+        <item>@string/ghost_id_shade</item>
+        <item>@string/ghost_type_shade</item>
+        <item>@array/ghost_evidence_shade</item>
+        <item>@string/ghost_info_shade</item>
+        <item>@string/ghost_strengths_shade</item>
+        <item>@string/ghost_weaknesses_shade</item>
+        <item>@string/ghost_huntingdata_shade</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_spirit">
+        <item>@string/ghost_id_spirit</item>
+        <item>@string/ghost_type_spirit</item>
+        <item>@array/ghost_evidence_spirit</item>
+        <item>@string/ghost_info_spirit</item>
+        <item>@string/ghost_strengths_spirit</item>
+        <item>@string/ghost_weaknesses_spirit</item>
+        <item>@string/ghost_huntingdata_spirit</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_thaye">
+        <item>@string/ghost_id_thaye</item>
+        <item>@string/ghost_type_thaye</item>
+        <item>@array/ghost_evidence_thaye</item>
+        <item>@string/ghost_info_thaye</item>
+        <item>@string/ghost_strengths_thaye</item>
+        <item>@string/ghost_weaknesses_thaye</item>
+        <item>@string/ghost_huntingdata_thaye</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_thetwins">
+        <item>@string/ghost_id_thetwins</item>
+        <item>@string/ghost_type_thetwins</item>
+        <item>@array/ghost_evidence_thetwins</item>
+        <item>@string/ghost_info_thetwins</item>
+        <item>@string/ghost_strengths_thetwins</item>
+        <item>@string/ghost_weaknesses_thetwins</item>
+        <item>@string/ghost_huntingdata_thetwins</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_themimic">
+        <item>@string/ghost_id_themimic</item>
+        <item>@string/ghost_type_themimic</item>
+        <item>@array/ghost_evidence_themimic</item>
+        <item>@string/ghost_info_themimic</item>
+        <item>@string/ghost_strengths_themimic</item>
+        <item>@string/ghost_weaknesses_themimic</item>
+        <item>@string/ghost_huntingdata_themimic</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_wraith">
+        <item>@string/ghost_id_wraith</item>
+        <item>@string/ghost_type_wraith</item>
+        <item>@array/ghost_evidence_wraith</item>
+        <item>@string/ghost_info_wraith</item>
+        <item>@string/ghost_strengths_wraith</item>
+        <item>@string/ghost_weaknesses_wraith</item>
+        <item>@string/ghost_huntingdata_wraith</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_yokai">
+        <item>@string/ghost_id_yokai</item>
+        <item>@string/ghost_type_yokai</item>
+        <item>@array/ghost_evidence_yokai</item>
+        <item>@string/ghost_info_yokai</item>
+        <item>@string/ghost_strengths_yokai</item>
+        <item>@string/ghost_weaknesses_yokai</item>
+        <item>@string/ghost_huntingdata_yokai</item>
+    </integer-array>
+
+    <integer-array name="ghost_array_yurei">
+        <item>@string/ghost_id_yurei</item>
+        <item>@string/ghost_type_yurei</item>
+        <item>@array/ghost_evidence_yurei</item>
+        <item>@string/ghost_info_yurei</item>
+        <item>@string/ghost_strengths_yurei</item>
+        <item>@string/ghost_weaknesses_yurei</item>
+        <item>@string/ghost_huntingdata_yurei</item>
+    </integer-array>
+
+    <!-- Ghost Names -->
     <string-array name="ghost_names">
         <item>@string/ghost_type_banshee</item>
         <item>@string/ghost_type_demon</item>

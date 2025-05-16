@@ -49,7 +49,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils.replaceHTMLFontColor
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidencepopup.repository.EvidencePopupRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidencepopup.source.local.EvidencePopupLocalDataSource.EvidencePopupRecord
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 
 @Composable
@@ -93,7 +93,7 @@ fun InvestigationPopup(
 
 @Composable
 fun EvidencePopup(
-    evidenceRecord: EvidencePopupRepository.EvidencePopupRecord? = null
+    evidenceRecord: EvidencePopupRecord? = null
 ) {
 
     InvestigationPopup {
@@ -104,7 +104,7 @@ fun EvidencePopup(
 
 @Composable
 private fun EvidencePopupContent(
-    evidenceRecord: EvidencePopupRepository.EvidencePopupRecord? = null
+    evidenceRecord: EvidencePopupRecord? = null
 ) {
 
     Column(
@@ -197,7 +197,7 @@ fun RowScope.PrimaryPageButton(
 
 @Composable
 private fun OverviewPage(
-    evidenceRecord: EvidencePopupRepository.EvidencePopupRecord? = null
+    evidenceRecord: EvidencePopupRecord? = null
 ) {
 
     Column(

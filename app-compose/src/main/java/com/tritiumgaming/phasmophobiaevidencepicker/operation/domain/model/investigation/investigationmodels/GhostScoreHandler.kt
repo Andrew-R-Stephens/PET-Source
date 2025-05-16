@@ -5,8 +5,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.local.DifficultyLocalDataSource.DifficultyType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.EvidenceRulingHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghost.GhostType
@@ -16,9 +15,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-
 class GhostScoreHandler(
-    private val ghostRepository: GhostRepository
+    private val ghosts: List<GhostType>
 ) {
 
     private val _scores : MutableStateFlow<SnapshotStateList<GhostScore>> =
@@ -31,7 +29,7 @@ class GhostScoreHandler(
         _scores.update { mutableStateListOf() }
 
         val str = StringBuilder()
-        ghostRepository.ghosts.forEach {
+        ghosts.forEach {
             val ghostScore = GhostScore(it)
             str.append("${ghostScore.ghostModel.id} ${ghostScore.score}, ")
             _scores.value.add(ghostScore)
@@ -48,7 +46,7 @@ class GhostScoreHandler(
     }
 
     /** Order of Ghost IDs **/
-    private val _order: MutableStateFlow<SnapshotStateList<Int>> =
+    private val _order: MutableStateFlow<SnapshotStateList<String>> =
         MutableStateFlow(mutableStateListOf())
     @Stable
     val order = _order.asStateFlow()
@@ -125,7 +123,6 @@ class GhostScoreHandler(
         difficultyCarouselHandler: DifficultyCarouselHandler
     ) {
         initScores(evidenceRulingHandler, difficultyCarouselHandler)
-        //initOrder(difficultyCarouselHandler)
     }
 
     init {
@@ -164,14 +161,14 @@ class GhostScoreHandler(
          */
         fun getEvidenceScore(
             evidenceHandler: EvidenceRulingHandler? = null,
-            currentDifficulty: DifficultyRepository.DifficultyType? =
-                DifficultyRepository.DifficultyType.AMATEUR
+            currentDifficulty: DifficultyType? =
+                DifficultyType.AMATEUR
         ): Int {
 
             //if (forcefullyRejected.value) { return -5 }
 
-            val isNightmare = currentDifficulty == DifficultyRepository.DifficultyType.NIGHTMARE
-            val isInsanity = currentDifficulty == DifficultyRepository.DifficultyType.INSANITY
+            val isNightmare = currentDifficulty == DifficultyType.NIGHTMARE
+            val isInsanity = currentDifficulty == DifficultyType.INSANITY
 
             val maxPosScore = when {
                 isInsanity -> 1

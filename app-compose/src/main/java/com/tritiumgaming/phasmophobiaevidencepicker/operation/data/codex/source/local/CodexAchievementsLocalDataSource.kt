@@ -7,12 +7,13 @@ import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexAchievementsLocalDataSource.CodexAchievementGroup.CodexAchievementItem
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup
 
-class CodexAchievementsLocalDataSource(
-    context: Context
-) : CodexGroups() {
+class CodexAchievementsLocalDataSource {
 
-    init {
+    fun fetchAchievements(context: Context): CodexGroups {
+        val achievements = CodexGroups()
+
         val shopListTypedArray = context.resources.obtainTypedArray(R.array.shop_achievements_array)
 
         val nameKey = 0
@@ -24,8 +25,6 @@ class CodexAchievementsLocalDataSource(
             @StringRes var achievementsInfo: Int
             @DrawableRes var achievementsIcon: Int
 
-            val groupData = CodexAchievementGroup()
-
             val shopTypedArray =
                 context.resources.obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
 
@@ -35,6 +34,8 @@ class CodexAchievementsLocalDataSource(
 
             val achievementItemModel = CodexAchievementItem()
 
+            val groupData = CodexAchievementGroup()
+
             groupData.nameData = achievementsName
             groupData.paginationIcon = achievementsIcon
             achievementItemModel.infoData = achievementsInfo
@@ -42,12 +43,14 @@ class CodexAchievementsLocalDataSource(
             groupData.addItem(achievementItemModel)
             groupData.paginationIcon = achievementsIcon
 
-            addGroup(groupData)
+            achievements.addGroup(groupData)
 
             shopTypedArray.recycle()
         }
 
         shopListTypedArray.recycle()
+
+        return achievements
     }
 
     class CodexAchievementGroup : CodexGroup() {

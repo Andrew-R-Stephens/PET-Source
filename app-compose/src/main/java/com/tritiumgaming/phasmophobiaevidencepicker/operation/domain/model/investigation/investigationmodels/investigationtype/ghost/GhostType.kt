@@ -5,8 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.investi
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.ghostevidence.GhostEvidence
 
 class GhostType(
-    var id: Int = 0,
+    var id: String = "",
     @StringRes var name: Int = 0,
-    val popupModel: GhostPopup = GhostPopup(),
     var evidence: GhostEvidence = GhostEvidence(),
 )

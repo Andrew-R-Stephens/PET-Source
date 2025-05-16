@@ -1,16 +1,19 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.equipment
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local
 
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexEquipmentLocalDataSource.CodexEquipmentGroup.CodexEquipmentItem
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.equipment.CodexEquipmentRepository.CodexEquipmentGroup.CodexEquipmentItem
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup
 
-class CodexEquipmentRepository(context: Context): CodexGroups() {
+class CodexEquipmentLocalDataSource {
 
-    init {
+    fun fetchEquipment(context: Context): CodexGroups {
+        val equipment = CodexGroups()
+
         val shopListTypedArray = context.resources.obtainTypedArray(R.array.shop_equipment_array)
 
         val nameKey = 0
@@ -129,9 +132,11 @@ class CodexEquipmentRepository(context: Context): CodexGroups() {
 
             shopTypedArray.recycle()
 
-            addGroup(groupData)
+            equipment.addGroup(groupData)
         }
         shopListTypedArray.recycle()
+
+        return equipment
     }
 
     class CodexEquipmentGroup : CodexGroup() {
@@ -187,4 +192,6 @@ class CodexEquipmentRepository(context: Context): CodexGroups() {
         }
     }
 }
+
+
 

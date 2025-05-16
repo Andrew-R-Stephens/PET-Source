@@ -14,7 +14,7 @@ plugins {
 android {
 
     namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
-    compileSdk = 35
+    compileSdk = 36
 
     /*
      *  Compose Options
@@ -41,8 +41,8 @@ android {
         applicationId = "com.TritiumGaming.phasmophobiaevidencepicker"
 
         minSdk = 23
-        targetSdk = 35
-        versionCode = 118
+        targetSdk = 36
+        versionCode = 119
         versionName = "9.1.1-view.a.1"
 
         ndk {
@@ -77,7 +77,7 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-    buildToolsVersion = "35.0.0"
+    buildToolsVersion = "36.0.0"
 
 }
 

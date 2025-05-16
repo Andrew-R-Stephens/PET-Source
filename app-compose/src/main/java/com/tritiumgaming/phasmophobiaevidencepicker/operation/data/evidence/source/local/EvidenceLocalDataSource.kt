@@ -9,27 +9,19 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.util.ResourceUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.investigation.popups.EvidencePopup
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceType
 
-class EvidenceLocalDataSource(
-    context: Context
-) {
+class EvidenceLocalDataSource {
 
-    val evidenceList = mutableListOf<EvidenceType>()
+    fun fetchEvidence(context: Context): List<EvidenceType> {
 
-    init {
+        val evidenceList = mutableListOf<EvidenceType>()
+
         val resources = context.resources
-
-        // Populate Evidence
-        evidenceList.clear()
 
         val keyEvidenceID = 0
         val keyEvidenceName = 1
         val keyEvidenceIcon = 2
-        val keyDescriptions = 3
-        val keyAnimationResources = 4
-        val keyEvidenceCost = 5
-        val keyUnlockLevels = 6
 
-        val evidenceTypes = resources.obtainTypedArray(R.array.equipment_tiers_arrays)
+        val evidenceTypes = resources.obtainTypedArray(R.array.evidence_tiers_arrays)
         for (i in 0 until evidenceTypes.length()) {
 
             val evidenceType = resources.obtainTypedArray(evidenceTypes.getResourceId(i, 0))
@@ -38,26 +30,11 @@ class EvidenceLocalDataSource(
             @StringRes val evidenceID = evidenceType.getResourceId(keyEvidenceID, 0)
             @StringRes val evidenceName = evidenceType.getResourceId(keyEvidenceName, 0)
             @DrawableRes val evidenceIcon = evidenceType.getResourceId(keyEvidenceIcon, 0)
-            @IntegerRes val evidenceCost = evidenceType.getResourceId(keyEvidenceCost, 0)
-            @IntegerRes val unlockLevels =
-                ResourceUtils.intArrayFromTypedArray(resources, evidenceType, keyUnlockLevels)
-            @StringRes val descriptions =
-                ResourceUtils.intArrayFromTypedArray(resources, evidenceType, keyDescriptions)
-            @DrawableRes val animationResources =
-                ResourceUtils.intArrayFromTypedArray(resources, evidenceType, keyAnimationResources)
-
-            val evidencePopupModel = EvidencePopup(
-                evidenceCost,
-                unlockLevels,
-                descriptions,
-                animationResources
-            )
 
             val evidence = EvidenceType(
-                id = evidenceID,
+                id = resources.getString(evidenceID),
                 name = evidenceName,
-                icon = evidenceIcon,
-                popupModel = evidencePopupModel
+                icon = evidenceIcon
             )
 
             evidenceList.add(evidence)
@@ -68,6 +45,7 @@ class EvidenceLocalDataSource(
 
         evidenceTypes.recycle()
 
+        return evidenceList
     }
-    
+
 }

@@ -57,7 +57,6 @@ fun EvidencePopup(
 ) {
 
     var rememberEvidence by remember { mutableStateOf(evidence) }
-    val popupModel = rememberEvidence?.popupModel
 
     var rememberSection by remember { mutableIntStateOf(0) }
 

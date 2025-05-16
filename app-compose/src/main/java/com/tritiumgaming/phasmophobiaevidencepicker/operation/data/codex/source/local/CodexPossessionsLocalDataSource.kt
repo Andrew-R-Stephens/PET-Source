@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.possessions
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local
 
 import android.content.Context
 import androidx.annotation.DrawableRes
@@ -8,10 +8,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.C
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups.CodexGroup.CodexGroupItem
 
+class CodexPossessionsLocalDataSource {
 
-class CodexPossessionsRepository(context: Context): CodexGroups() {
-
-    init {
+    fun fetchPossessions(
+        context: Context
+    ): CodexGroups {
+        val possessions = CodexGroups()
 
         val shopListTypedArray =
             context.resources.obtainTypedArray(R.array.shop_cursedpossessions_array)
@@ -105,40 +107,42 @@ class CodexPossessionsRepository(context: Context): CodexGroups() {
 
             shopTypedArray.recycle()
 
-            addGroup(groupData)
+            possessions.addGroup(groupData)
         }
         shopListTypedArray.recycle()
+
+        return possessions
     }
 
-}
+    class CodexPossessionsGroup : CodexGroup()
 
-class CodexPossessionsGroup : CodexGroup()
+    class CodexPossessionItem : CodexGroupItem() {
+        @StringRes
+        private val attributes = ArrayList<Int>()
 
-class CodexPossessionItem : CodexGroupItem() {
-    @StringRes
-    private val attributes = ArrayList<Int>()
+        @JvmField
+        @StringRes
+        var altName: Int = 0
 
-    @JvmField
-    @StringRes
-    var altName: Int = 0
+        @StringRes
+        var sanityDrainData: Int = 0
 
-    @StringRes
-    var sanityDrainData: Int = 0
+        @JvmField
+        @StringRes
+        var drawChance: Int = 0
 
-    @JvmField
-    @StringRes
-    var drawChance: Int = 0
-
-    fun addAttribute(value: Int) {
-        attributes.add(value)
-    }
-
-    override fun getAllAttributesAsFormattedHTML(c: Context): String {
-        val out = StringBuilder()
-        for (v in attributes) {
-            out.append(c.getString(v)).append(" ")
+        fun addAttribute(value: Int) {
+            attributes.add(value)
         }
 
-        return out.toString()
+        override fun getAllAttributesAsFormattedHTML(c: Context): String {
+            val out = StringBuilder()
+            for (v in attributes) {
+                out.append(c.getString(v)).append(" ")
+            }
+
+            return out.toString()
+        }
     }
+
 }

@@ -11,9 +11,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.re
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.repository.EvidenceRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.repository.GhostRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.repository.SimpleMapRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.achievevments.CodexAchievementsRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.equipment.CodexEquipmentRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.possessions.CodexPossessionsRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.achievevments.CodexAchievementsRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.equipment.CodexEquipmentRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.possessions.CodexPossessionsRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.model.codex.CodexGroups
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.InvestigationJournal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.investigationmodels.investigationtype.RuledEvidence.Ruling
@@ -35,24 +36,33 @@ class InvestigationViewModel(
     private val codexRepository: CodexRepository
 ): ViewModel() {
 
+    private val ghosts = ghostRepository.ghosts
+    private val evidences = evidenceRepository.evidences
+
     /*
      * HANDLERS / CONTROLLERS
      */
-    private var mapHandler: MapCarouselHandler = MapCarouselHandler(mapRepository)
-    private var difficultyHandler: DifficultyCarouselHandler = DifficultyCarouselHandler(difficultyRepository)
-    private var investigationJournal: InvestigationJournal = InvestigationJournal(ghostRepository, evidenceRepository)
+    private var mapHandler: MapCarouselHandler =
+        MapCarouselHandler(mapRepository)
+    private var difficultyHandler: DifficultyCarouselHandler =
+        DifficultyCarouselHandler(difficultyRepository)
+    private var investigationJournal: InvestigationJournal =
+        InvestigationJournal(
+            ghosts,
+            evidences
+        )
 
     private var timerHandler: TimerHandler = TimerHandler()
     private var phaseHandler: PhaseHandler = PhaseHandler()
 
     private var sanityHandler: SanityHandler = SanityHandler()
 
-    val equipmentStoreModel: CodexEquipmentRepository
-        get() = codexRepository.equipment
-    val possessionsStoreModel: CodexPossessionsRepository
-        get() = codexRepository.possessions
     val achievementsStoreModel: CodexAchievementsRepository
-        get() = codexRepository.achievements
+        get() = codexRepository.achievementsRepository
+    val equipmentStoreModel: CodexEquipmentRepository
+        get() = codexRepository.equipmentRepository
+    val possessionsStoreModel: CodexPossessionsRepository
+        get() = codexRepository.possessionsRepository
 
     /*
      * UI STATES
