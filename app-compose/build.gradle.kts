@@ -261,4 +261,8 @@ dependencies {
     testImplementation(libs.androidx.room.testing)
     implementation(libs.androidx.room.paging)
 
+    /*
+     * Include Shared Module for KMP
+     */
+    implementation(project(":shared"))
 }

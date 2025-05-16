@@ -32,6 +32,7 @@ plugins {
     alias(libs.plugins.io.realm.kotlin) apply false
 
     alias(libs.plugins.devtools.ksp) apply false
+    alias(libs.plugins.android.kotlin.multiplatform.library) apply false
 }
 
 
