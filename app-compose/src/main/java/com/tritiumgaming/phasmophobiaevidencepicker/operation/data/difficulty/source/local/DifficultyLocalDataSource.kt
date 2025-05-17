@@ -3,14 +3,14 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.s
 import android.content.Context
 import android.content.res.Resources
 import android.content.res.TypedArray
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.source.local.DifficultyDataSource
 
-class DifficultyLocalDataSource {
+class DifficultyLocalDataSource: DifficultyDataSource {
 
-    fun fetchDifficulties(
-        context: Context
-    ): List<DifficultyModel> {
+    override fun fetchDifficulties(context: Context): List<DifficultyModel> {
         val difficulties = mutableListOf<DifficultyModel>()
 
         val resources: Resources = context.resources
@@ -44,15 +44,5 @@ class DifficultyLocalDataSource {
 
         return difficulties
     }
-
-    enum class DifficultyType { AMATEUR, INTERMEDIATE, PROFESSIONAL, NIGHTMARE, INSANITY }
-
-    data class DifficultyModel(
-        val type: DifficultyType,
-        @StringRes val name: Int = R.string.difficulty_title_default,
-        val time: Long,
-        val modifier: Float,
-        val initialSanity: Float
-    )
 
 }

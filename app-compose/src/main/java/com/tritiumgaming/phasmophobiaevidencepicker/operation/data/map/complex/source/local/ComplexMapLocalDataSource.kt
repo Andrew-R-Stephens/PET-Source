@@ -1,19 +1,20 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local
 
 import android.content.Context
-import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 
 class ComplexMapLocalDataSource(
-    val service: ComplexMapLocalService,
-) {
+    override val service: ComplexMapService,
+): ComplexMapDataSource {
 
     @Throws(Exception::class)
-    suspend fun fetchWorldMaps(context: Context): WorldMaps {
+    override suspend fun fetchWorldMaps(context: Context): WorldMaps {
         var worldMaps = WorldMaps()
         try {
             return CoroutineScope(Dispatchers.IO).async {

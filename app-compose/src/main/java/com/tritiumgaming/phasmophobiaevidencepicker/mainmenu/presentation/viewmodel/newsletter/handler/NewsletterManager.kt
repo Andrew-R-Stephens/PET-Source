@@ -1,19 +1,19 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.handler
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore.NewsletterDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.datastore.NewsletterDatastore.PreferenceKeys.KEY_INBOX_GENERAL
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.datastore.NewsletterDatastore.PreferenceKeys.KEY_INBOX_PET
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.datastore.NewsletterDatastore.PreferenceKeys.KEY_INBOX_PHASMOPHOBIA
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.PreferenceKeys.KEY_INBOX_GENERAL
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.PreferenceKeys.KEY_INBOX_PET
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.PreferenceKeys.KEY_INBOX_PHASMOPHOBIA
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class NewsletterManager(
-    repository: NewsletterRepository,
+    repository: NewsletterRepositoryImpl,
     private val datastore: NewsletterDatastore
 ) {
 

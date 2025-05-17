@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.evidence.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.evidence.source.EvidenceDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
 
-class EvidenceLocalDataSource {
+class EvidenceLocalDataSource: EvidenceDataSource {
 
-    fun fetchEvidence(context: Context): List<EvidenceType> {
+    override fun fetchEvidence(context: Context): List<EvidenceType> {
 
         val evidenceList = mutableListOf<EvidenceType>()
 

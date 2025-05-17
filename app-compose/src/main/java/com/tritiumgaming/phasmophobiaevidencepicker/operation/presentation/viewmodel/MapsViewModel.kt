@@ -3,15 +3,13 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.view
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.repository.ComplexMapRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.repository.SimpleMapRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.MapModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.mapviewer.MapInteractModel
-import kotlinx.coroutines.launch
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.MapModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 
 /**
  * MapMenuViewModel class
@@ -25,7 +23,7 @@ class MapsViewModel(
 
     var imageDisplayThread: Thread? = null
 
-    val mapThumbnails: MutableList<Int> = simpleMapRepository.mapThumbnails
+    val mapThumbnails: List<Int> = simpleMapRepository.mapThumbnails
     private var allMaps = simpleMapRepository.maps
 
     var currentComplexMap: MapModel? = null

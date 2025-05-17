@@ -1,13 +1,14 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.api.network.StoreThemesApi
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.bundle.MarketBundleEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.palette.PaletteEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.TypographyEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.core.model.MarketBundleEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.core.source.MarketDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MarketRemoteDataSource: MarketRemoteDataSourceInterface {
+class MarketRemoteDataSource: MarketDataSource {
 
     override suspend fun fetchAllPalettes(): List<PaletteEntity> = withContext(Dispatchers.IO) {
         StoreThemesApi().fetchAllPalettes()
@@ -21,10 +22,4 @@ class MarketRemoteDataSource: MarketRemoteDataSourceInterface {
         StoreThemesApi().fetchAllTypographies()
     }
 
-}
-
-interface MarketRemoteDataSourceInterface {
-    suspend fun fetchAllPalettes(): List<PaletteEntity>
-    suspend fun fetchAllBundles(): List<MarketBundleEntity>
-    suspend fun fetchAllTypographies(): List<TypographyEntity>
 }

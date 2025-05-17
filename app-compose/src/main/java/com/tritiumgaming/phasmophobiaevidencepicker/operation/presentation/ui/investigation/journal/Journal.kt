@@ -32,7 +32,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.evidence.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.EvidenceList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.GhostList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.popups.EvidencePopup

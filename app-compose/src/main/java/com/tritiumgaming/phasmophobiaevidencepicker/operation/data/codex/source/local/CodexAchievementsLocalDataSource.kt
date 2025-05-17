@@ -2,16 +2,16 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source
 
 import android.content.Context
 import androidx.annotation.DrawableRes
-import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexAchievementsLocalDataSource.CodexAchievementGroup.CodexAchievementItem
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups.CodexGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexAchievementGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexAchievementItem
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.source.CodexDataSource
 
-class CodexAchievementsLocalDataSource {
+class CodexAchievementsLocalDataSource: CodexDataSource {
 
-    fun fetchAchievements(context: Context): CodexGroups {
+    override fun fetchItems(context: Context): CodexGroups {
         val achievements = CodexGroups()
 
         val shopListTypedArray = context.resources.obtainTypedArray(R.array.shop_achievements_array)
@@ -51,21 +51,6 @@ class CodexAchievementsLocalDataSource {
         shopListTypedArray.recycle()
 
         return achievements
-    }
-
-    class CodexAchievementGroup : CodexGroup() {
-
-        @IntegerRes
-        var buyCostData: Int = 0
-
-        class CodexAchievementItem : CodexGroupItem() {
-
-            override fun getAllAttributesAsFormattedHTML(c: Context): String {
-                val out = StringBuilder()
-
-                return out.toString()
-            }
-        }
     }
 
 

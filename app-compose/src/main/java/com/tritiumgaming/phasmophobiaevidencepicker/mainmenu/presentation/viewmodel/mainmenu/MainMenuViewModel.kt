@@ -6,7 +6,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.gms.ads.AdRequest
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository.AppInfoRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository.AppInfoRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.AnimationModel
 
 /**
@@ -15,7 +15,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.
  * @author TritiumGamingStudios
  */
 class MainMenuViewModel(
-    val appInfoRepository: AppInfoRepository
+    val appInfoRepository: AppInfoRepositoryImpl
 ): ViewModel() {
 
     val animationModel: AnimationModel = AnimationModel()
@@ -34,7 +34,7 @@ class MainMenuViewModel(
     }
 
     class MainMenuFactory(
-        private val appInfoRepository: AppInfoRepository
+        private val appInfoRepository: AppInfoRepositoryImpl
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -59,7 +59,7 @@ class MainMenuViewModel(
                 val appKeyContainer =
                     (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).mainMenuContainer
 
-                val appInfoRepository: AppInfoRepository = appKeyContainer.appInfoRepository
+                val appInfoRepository: AppInfoRepositoryImpl = appKeyContainer.appInfoRepository
 
                 MainMenuViewModel(
                     appInfoRepository = appInfoRepository

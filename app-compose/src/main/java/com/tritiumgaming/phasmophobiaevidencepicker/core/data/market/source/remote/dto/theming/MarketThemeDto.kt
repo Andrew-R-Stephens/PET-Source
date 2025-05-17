@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.dto.theming
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.palette.PaletteEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.model.market.typography.TypographyEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyEntity
 
 class MarketThemeDto(
     private val uuid: String,

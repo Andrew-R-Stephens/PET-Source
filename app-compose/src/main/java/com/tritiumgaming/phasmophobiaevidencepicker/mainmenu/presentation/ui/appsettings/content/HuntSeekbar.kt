@@ -49,7 +49,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.warning.PhaseHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
 import org.jetbrains.annotations.TestOnly
 import java.lang.String.format
 import java.util.Locale

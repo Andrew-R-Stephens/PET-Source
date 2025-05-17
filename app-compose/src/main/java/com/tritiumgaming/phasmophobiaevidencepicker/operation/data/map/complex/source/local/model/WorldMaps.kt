@@ -4,8 +4,7 @@ import android.util.Log
 import androidx.annotation.Keep
 import com.google.gson.JsonSyntaxException
 import com.google.gson.annotations.SerializedName
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMapsDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.MapListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.MapListModel
 
 @Keep
 class WorldMaps {

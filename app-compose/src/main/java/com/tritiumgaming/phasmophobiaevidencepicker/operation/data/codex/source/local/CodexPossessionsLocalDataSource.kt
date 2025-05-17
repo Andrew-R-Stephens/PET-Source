@@ -4,15 +4,14 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups.CodexGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups.CodexGroup.CodexGroupItem
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexPossessionItem
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexPossessionsGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.source.CodexDataSource
 
-class CodexPossessionsLocalDataSource {
+class CodexPossessionsLocalDataSource: CodexDataSource {
 
-    fun fetchPossessions(
-        context: Context
-    ): CodexGroups {
+    override fun fetchItems(context: Context): CodexGroups {
         val possessions = CodexGroups()
 
         val shopListTypedArray =
@@ -112,37 +111,6 @@ class CodexPossessionsLocalDataSource {
         shopListTypedArray.recycle()
 
         return possessions
-    }
-
-    class CodexPossessionsGroup : CodexGroup()
-
-    class CodexPossessionItem : CodexGroupItem() {
-        @StringRes
-        private val attributes = ArrayList<Int>()
-
-        @JvmField
-        @StringRes
-        var altName: Int = 0
-
-        @StringRes
-        var sanityDrainData: Int = 0
-
-        @JvmField
-        @StringRes
-        var drawChance: Int = 0
-
-        fun addAttribute(value: Int) {
-            attributes.add(value)
-        }
-
-        override fun getAllAttributesAsFormattedHTML(c: Context): String {
-            val out = StringBuilder()
-            for (v in attributes) {
-                out.append(c.getString(v)).append(" ")
-            }
-
-            return out.toString()
-        }
     }
 
 }

@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.repository.MissionRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.missions.MissionsListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.MissionsListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.repository.MissionRepository
 
 class ObjectivesViewModel(
     missionRepository: MissionRepository

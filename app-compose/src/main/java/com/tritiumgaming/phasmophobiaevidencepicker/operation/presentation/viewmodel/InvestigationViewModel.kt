@@ -6,26 +6,28 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.evidence.repository.EvidenceRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghost.repository.GhostRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.repository.SimpleMapRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.achievevments.CodexAchievementsRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.equipment.CodexEquipmentRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.possessions.CodexPossessionsRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.JournalRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.InvestigationJournal
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.RuledEvidence
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.RuledEvidence.Ruling
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.evidence.EvidenceType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.ghost.GhostType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.carousels.DifficultyCarouselHandler
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.carousels.MapCarouselHandler
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.sanity.SanityHandler
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.sanity.SanityRunnable
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.timer.TimerHandler
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.warning.PhaseHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexAchievementsRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexEquipmentRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexPossessionsRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.JournalRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.evidence.repository.EvidenceRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghost.repository.GhostRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.InvestigationJournal
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.RuledEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.RuledEvidence.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels.DifficultyCarouselHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels.MapCarouselHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.sanity.SanityHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.sanity.SanityRunnable
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.timer.TimerHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
 import kotlinx.coroutines.flow.StateFlow
 
 class InvestigationViewModel(
@@ -58,12 +60,12 @@ class InvestigationViewModel(
 
     private var sanityHandler: SanityHandler = SanityHandler()
 
-    val achievementsStoreModel: CodexAchievementsRepository
-        get() = codexRepository.achievementsRepository
-    val equipmentStoreModel: CodexEquipmentRepository
-        get() = codexRepository.equipmentRepository
-    val possessionsStoreModel: CodexPossessionsRepository
-        get() = codexRepository.possessionsRepository
+    val achievementsStoreModel: CodexAchievementsRepositoryImpl
+        get() = codexRepository.achievementsRepository as CodexAchievementsRepositoryImpl
+    val equipmentStoreModel: CodexEquipmentRepositoryImpl
+        get() = codexRepository.equipmentRepository as CodexEquipmentRepositoryImpl
+    val possessionsStoreModel: CodexPossessionsRepositoryImpl
+        get() = codexRepository.possessionsRepository as CodexPossessionsRepositoryImpl
 
     /*
      * UI STATES
@@ -208,10 +210,10 @@ class InvestigationViewModel(
      * VIEWMODEL FACTORIES
      */
     class InvestigationFactory(
-        private val journalRepository: JournalRepository,
+        private val journalRepository: JournalRepositoryImpl,
         private val difficultyRepository: DifficultyRepository,
         private val simpleMapRepository: SimpleMapRepository,
-        private val codexRepository: CodexRepository
+        private val codexRepository: CodexRepositoryImpl
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

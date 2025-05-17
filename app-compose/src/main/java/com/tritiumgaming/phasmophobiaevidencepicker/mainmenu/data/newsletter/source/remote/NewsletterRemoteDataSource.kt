@@ -3,10 +3,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.so
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.api.NewsletterService
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.remote.NewsletterRemoteDataSourceInterface
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterRemoteDataSource
 import io.ktor.http.Url
 
-class NewsletterRemoteDataSource: NewsletterRemoteDataSourceInterface {
+class NewsletterRemoteDataSource: NewsletterRemoteDataSource {
 
     override suspend fun fetchRemoteInboxData(inbox: NewsletterInbox) {
         NewsletterService.fetchInbox(

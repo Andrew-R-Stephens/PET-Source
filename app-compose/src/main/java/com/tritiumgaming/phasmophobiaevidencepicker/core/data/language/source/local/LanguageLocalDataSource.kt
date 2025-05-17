@@ -3,17 +3,18 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.l
 import android.content.Context
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.language.LanguageLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.local.language.LanguageLocalDataSource.Companion.DEFAULT_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.dao.LanguageObjectDao
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource.Companion.DEFAULT_LANGUAGE
 import java.util.Locale
 
-class LanguageLocalDataSource: LanguageLocalDataSource {
+class LanguageLocalDataSource: LanguageDataSource {
 
-    override fun fetchLanguages(context: Context): List<LanguageObject> {
+    override fun fetchLanguages(context: Context): List<LanguageObjectDao> {
 
         Log.d("Language", "Fetching Languages")
 
-        val languages = mutableListOf<LanguageObject>()
+        val languages = mutableListOf<LanguageObjectDao>()
 
         val languageNames = context.resources.obtainTypedArray(R.array.language_names)
         val languageNativeNames = context.resources.obtainTypedArray(R.array.language_names_native)
@@ -27,7 +28,7 @@ class LanguageLocalDataSource: LanguageLocalDataSource {
                 val nativeName = languageNativeNames.getResourceId(index, 0)
                 val code = languageCodes[index]
 
-                languages.add(LanguageObject(name, nativeName, code))
+                languages.add(LanguageObjectDao(name, nativeName, code))
             }
         }
 
@@ -47,9 +48,3 @@ class LanguageLocalDataSource: LanguageLocalDataSource {
     }
 
 }
-
-data class LanguageObject(
-    val name: Int,
-    val nativeName: Int,
-    val abbreviation: String
-)

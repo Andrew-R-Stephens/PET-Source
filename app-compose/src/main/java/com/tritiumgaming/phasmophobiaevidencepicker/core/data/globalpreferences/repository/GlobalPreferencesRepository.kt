@@ -1,5 +1,0 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository
-
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.globalpreferences.GlobalPreferencesRepository
-
-class GlobalPreferencesRepository: GlobalPreferencesRepository

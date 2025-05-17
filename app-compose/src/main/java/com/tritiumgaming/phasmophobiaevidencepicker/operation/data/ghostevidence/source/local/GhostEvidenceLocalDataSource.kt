@@ -5,11 +5,12 @@ import android.content.res.Resources
 import androidx.annotation.ArrayRes
 import androidx.annotation.IntegerRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.journal.type.ghostevidence.GhostEvidence.GhostEvidenceDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostevidence.source.GhostEvidenceDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostEvidence.GhostEvidenceDto
 
-class GhostEvidenceLocalDataSource {
+class GhostEvidenceLocalDataSource: GhostEvidenceDataSource {
 
-    fun fetchGhostEvidences(context: Context): ArrayList<GhostEvidenceDto> {
+    override fun fetchGhostEvidences(context: Context): ArrayList<GhostEvidenceDto> {
         var ghostEvidences: ArrayList<GhostEvidenceDto> = ArrayList()
 
         val resources = context.resources
@@ -24,7 +25,7 @@ class GhostEvidenceLocalDataSource {
         return ghostEvidences
     }
 
-    private fun readGhost(
+    override fun readGhost(
         resources: Resources,
         @ArrayRes ghostsArrayID: Int
     ): GhostEvidenceDto {

@@ -3,10 +3,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.sou
 import android.content.Context
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.source.GhostBoxDataSource
 
-class GhostBoxLocalDataSource {
+class GhostBoxLocalDataSource: GhostBoxDataSource {
 
-    @StringRes fun fetchGeneralRequests(context: Context): IntArray {
+    @StringRes
+    override fun fetchGeneralRequests(context: Context): IntArray {
         val resources = context.resources
         val typedArray = resources.obtainTypedArray(R.array.ghostspeaktool_general_array)
         val spiritBoxEntries = IntArray(typedArray.length())
@@ -18,7 +20,8 @@ class GhostBoxLocalDataSource {
         return spiritBoxEntries
     }
 
-    @StringRes fun fetchSpiritBoxRequests(context: Context): IntArray {
+    @StringRes
+    override fun fetchSpiritBoxRequests(context: Context): IntArray {
         val resources = context.resources
         val typedArray = resources.obtainTypedArray(R.array.ghostspeaktool_spiritbox_array)
         val spiritBoxEntries = IntArray(typedArray.length())
@@ -30,7 +33,8 @@ class GhostBoxLocalDataSource {
         return spiritBoxEntries
     }
 
-    @StringRes fun fetchOuijaBoardRequests(context: Context): IntArray {
+    @StringRes
+    override fun fetchOuijaBoardRequests(context: Context): IntArray {
         val resources = context.resources
         val typedArray = resources.obtainTypedArray(R.array.ghostspeaktool_ouijaboard_array)
         val spiritBoxEntries = IntArray(typedArray.length())

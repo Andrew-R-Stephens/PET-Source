@@ -4,12 +4,13 @@ import android.content.Context
 import android.content.res.Resources
 import android.content.res.TypedArray
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.repository.SimpleMapRepository.MapSizeModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.mapviewer.MapInteractModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.MapSizeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source.SimpleMapDataSource
 
-class SimpleMapLocalDataSource {
+class SimpleMapLocalDataSource: SimpleMapDataSource {
 
-    fun fetchMaps(context: Context): List<MapInteractModel> {
+    override fun fetchMaps(context: Context): List<MapInteractModel> {
 
         val resources: Resources = context.resources
         val mapsTypedArray: TypedArray = resources.obtainTypedArray(R.array.maps_resources_array)
@@ -66,7 +67,7 @@ class SimpleMapLocalDataSource {
         return tempMaps
     }
 
-    fun fetchSizeModifiers(context: Context): List<MapSizeModel> {
+    override fun fetchSizeModifiers(context: Context): List<MapSizeModel> {
 
         var modifiers = mutableListOf<MapSizeModel>()
 

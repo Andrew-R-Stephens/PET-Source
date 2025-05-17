@@ -3,16 +3,16 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.conta
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.PaletteRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.PaletteRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.PaletteDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.PaletteLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.source.remote.MarketRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.repository.TypographyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.repository.TypographyRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.TypographyDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.TypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackingDatastore
@@ -23,8 +23,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.
 
 class CoreContainer(context: Context, dataStore: DataStore<Preferences>) {
 
-    private val globalPreferencesRepository: GlobalPreferencesRepository =
-        GlobalPreferencesRepository()
+    private val globalPreferencesRepository: GlobalPreferencesRepositoryImpl =
+        GlobalPreferencesRepositoryImpl()
     private val globalPreferencesDatastore: GlobalPreferencesDatastore =
         GlobalPreferencesDatastore(
             context = context,
@@ -47,8 +47,8 @@ class CoreContainer(context: Context, dataStore: DataStore<Preferences>) {
         context = context,
         dataStore = dataStore
     )
-    private val typographyRepository: TypographyRepository =
-        TypographyRepository(
+    private val typographyRepository: TypographyRepositoryImpl =
+        TypographyRepositoryImpl(
             context = context,
             networkDataSource = typographyRemoteDataSource,
             localDataSource = typographyLocalDataSource,
@@ -64,8 +64,8 @@ class CoreContainer(context: Context, dataStore: DataStore<Preferences>) {
         context = context,
         dataStore = dataStore
     )
-    private val paletteRepository: PaletteRepository =
-        PaletteRepository(
+    private val paletteRepository: PaletteRepositoryImpl =
+        PaletteRepositoryImpl(
             context = context,
             remoteDataSource = paletteRemoteDataSource,
             localDataSource = paletteLocalDataSource,
@@ -75,7 +75,7 @@ class CoreContainer(context: Context, dataStore: DataStore<Preferences>) {
         datastore = paletteDatastore
     )
 
-    private val languageRepository: LanguageRepository = LanguageRepository(
+    private val languageRepository: LanguageRepositoryImpl = LanguageRepositoryImpl(
             context = context,
             languageLocalDataSource = LanguageLocalDataSource()
         )

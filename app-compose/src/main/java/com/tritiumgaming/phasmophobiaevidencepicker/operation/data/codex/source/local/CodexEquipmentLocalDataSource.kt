@@ -5,13 +5,14 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexEquipmentLocalDataSource.CodexEquipmentGroup.CodexEquipmentItem
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.codex.CodexGroups.CodexGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexEquipmentGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexEquipmentItem
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.source.CodexDataSource
 
-class CodexEquipmentLocalDataSource {
+class CodexEquipmentLocalDataSource: CodexDataSource {
 
-    fun fetchEquipment(context: Context): CodexGroups {
+    override fun fetchItems(context: Context): CodexGroups {
         val equipment = CodexGroups()
 
         val shopListTypedArray = context.resources.obtainTypedArray(R.array.shop_equipment_array)
@@ -139,58 +140,6 @@ class CodexEquipmentLocalDataSource {
         return equipment
     }
 
-    class CodexEquipmentGroup : CodexGroup() {
-
-        @IntegerRes
-        var buyCostData: Int = 0
-
-        class CodexEquipmentItem : CodexGroupItem() {
-
-            @IntegerRes
-            var upgradeCostData: Int = 0
-
-            @IntegerRes
-            var upgradeLevelData: Int = 0
-                private set
-
-            @StringRes
-            val positiveAttributes: ArrayList<Int> = ArrayList()
-
-            @StringRes
-            val negativeAttributes: ArrayList<Int> = ArrayList()
-
-            fun setUpgradeLevel(@IntegerRes levelData: Int) {
-                this.upgradeLevelData = levelData
-            }
-
-            fun addPositiveAttribute(value: Int) {
-                positiveAttributes.add(value)
-            }
-
-            fun addNegativeAttribute(value: Int) {
-                negativeAttributes.add(value)
-            }
-
-            override fun getAllAttributesAsFormattedHTML(c: Context): String {
-                val pos = c.getString(R.string.shop_equipment_attribute_opinion_positive)
-                val neg = c.getString(R.string.shop_equipment_attribute_opinion_negative)
-                val invsp = "&nbsp;"
-
-                val out = StringBuilder()
-                for (v in positiveAttributes) {
-                    val attr = c.getString(v).replace(" ", invsp)
-                    out.append(pos).append(invsp).append(attr).append(invsp).append(" ")
-                }
-                for (v in negativeAttributes) {
-                    val attr = c.getString(v).replace(" ", invsp)
-                    out.append(neg).append(invsp).append(attr).append(invsp).append(" ")
-                }
-
-                return out.toString()
-            }
-
-        }
-    }
 }
 
 

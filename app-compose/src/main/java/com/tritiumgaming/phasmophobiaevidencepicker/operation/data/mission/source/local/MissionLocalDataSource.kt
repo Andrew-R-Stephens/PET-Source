@@ -3,13 +3,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.sour
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.util.ResourceUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.missions.Mission
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
 
-class MissionLocalDataSource {
+class MissionLocalDataSource: MissionDataSource {
 
-    fun fetchMissions(
-        context: Context
-    ): List<Mission>{
+    override fun fetchMissions(context: Context): List<Mission>{
 
         val objectivesList = mutableListOf<Mission>()
 

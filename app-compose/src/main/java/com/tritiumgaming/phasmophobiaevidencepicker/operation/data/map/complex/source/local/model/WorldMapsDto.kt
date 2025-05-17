@@ -2,10 +2,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.FloorModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.MapDimensionModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.MapListModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.maps.map.MapModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.FloorModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.MapDimensionModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.MapListModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.MapModel
 
 object WorldMapsDto {
 

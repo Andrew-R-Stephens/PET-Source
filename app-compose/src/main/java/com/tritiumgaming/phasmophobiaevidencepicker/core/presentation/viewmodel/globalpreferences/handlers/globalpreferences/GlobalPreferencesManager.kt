@@ -1,16 +1,16 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.handlers.globalpreferences
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.model.investigation.sanity.warning.PhaseHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class GlobalPreferencesManager(
-    repository: GlobalPreferencesRepository,
+    repository: GlobalPreferencesRepositoryImpl,
     private val datastore: GlobalPreferencesDatastore
 ) {
 

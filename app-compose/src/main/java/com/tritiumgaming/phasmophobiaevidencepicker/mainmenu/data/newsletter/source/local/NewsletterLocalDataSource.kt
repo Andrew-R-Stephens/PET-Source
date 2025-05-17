@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.so
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.local.NewsletterLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterLocalDataSource
 
 class NewsletterLocalDataSource: NewsletterLocalDataSource {
 

@@ -30,7 +30,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.repository.market.core.ThemeRepository.IncrementDirection
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.core.repository.MarketRepository.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable

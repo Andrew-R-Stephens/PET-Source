@@ -1,6 +1,0 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.reviewtracker
-
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.DatastoreInterface
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.source.datastore.palette.PaletteDatastore
-
-interface ReviewTrackingDatastore: DatastoreInterface<PaletteDatastore.PalettePreferences>

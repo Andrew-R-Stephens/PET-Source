@@ -3,9 +3,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.c
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository.AppInfoRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository.AppInfoRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local.AppInfoLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore.NewsletterDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSource
@@ -14,16 +14,16 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmo
 class MainMenuContainer(context: Context, dataStore: DataStore<Preferences>) {
 
     private val appInfoLocalDataSource: AppInfoLocalDataSource = AppInfoLocalDataSource()
-    val appInfoRepository: AppInfoRepository =
-        AppInfoRepository(
+    val appInfoRepository: AppInfoRepositoryImpl =
+        AppInfoRepositoryImpl(
             context = context,
             localSource = appInfoLocalDataSource
         )
 
     private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSource()
     private val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSource()
-    private val newsletterRepository: NewsletterRepository =
-        NewsletterRepository(
+    private val newsletterRepository: NewsletterRepositoryImpl =
+        NewsletterRepositoryImpl(
             context = context,
             localDataSource = newsletterLocalDataSource,
             remoteDataSource = newsletterRemoteDataSource
