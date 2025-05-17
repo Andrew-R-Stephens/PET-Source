@@ -11,7 +11,7 @@ kotlin {
     androidLibrary {
         namespace = "com.tritiumstudios.phasmophobiaevidencepicker.shared"
         compileSdk = 36
-        minSdk = 24
+        minSdk = 23
 
         withHostTestBuilder {
         }

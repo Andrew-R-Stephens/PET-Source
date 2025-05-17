@@ -1,5 +1,5 @@
 
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -8,7 +8,7 @@ class NewsletterTesting {
     @Test
     fun runTestLoadInboxPET() = runTest {
 
-        val pet = NewsletterRepository.NewsletterInboxType(
+        val pet = NewsletterInboxType(
             id = 0,
             title = 0,
             url = "https://raw.githubusercontent.com/Andrew-R-Stephens/PET-MessageCenter/refs/heads/master/Changelog",
@@ -22,7 +22,7 @@ class NewsletterTesting {
     @Test
     fun runTestLoadInboxGeneral() = runTest {
 
-        val general = NewsletterRepository.NewsletterInboxType(
+        val general = NewsletterInboxType(
             id = 1,
             title = 0,
             url = "https://raw.githubusercontent.com/Andrew-R-Stephens/PET-MessageCenter/refs/heads/master/GeneralNews",
@@ -36,7 +36,7 @@ class NewsletterTesting {
     @Test
     fun runTestLoadInboxPhas() = runTest {
 
-        val phas = NewsletterRepository.NewsletterInboxType(
+        val phas = NewsletterInboxType(
             id = 2,
             title = 0,
             url = "https://steamcommunity.com/games/739630/rss/",
@@ -47,7 +47,7 @@ class NewsletterTesting {
 
     }
 
-    private suspend fun testLoadInbox(inbox: NewsletterRepository.NewsletterInboxType) {
+    private suspend fun testLoadInbox(inbox: NewsletterInboxType) {
         //NewsletterService(inbox).execute()
     }
 
