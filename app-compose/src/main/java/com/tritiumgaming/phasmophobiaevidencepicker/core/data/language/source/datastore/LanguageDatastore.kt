@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -47,7 +47,7 @@ class LanguageDatastore (
     private fun mapPreferences(preferences: Preferences) =
         LanguageDatastore.LanguagePreferences(
             preferences[KEY_CURRENT_LANGUAGE_CODE]
-                ?: LanguageDataSource.Companion.DEFAULT_LANGUAGE
+                ?: DEFAULT_LANGUAGE
         )
 
     private companion object {

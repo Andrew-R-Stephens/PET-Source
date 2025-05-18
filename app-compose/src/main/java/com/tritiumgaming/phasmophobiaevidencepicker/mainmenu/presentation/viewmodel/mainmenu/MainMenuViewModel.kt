@@ -22,7 +22,7 @@ class MainMenuViewModel(
 
     var adRequest: AdRequest? = null
 
-    val specialThanksList = appInfoRepository.specialThanksList
+    val specialThanksList = appInfoRepository.getSpecialThanks()
 
     @Deprecated("Unused in Composables")
     var canRefreshFragment = true

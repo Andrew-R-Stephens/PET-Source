@@ -1,4 +1,4 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.repository
 
-interface EvidencePopupRepository: PopupRepository
+interface EvidencePopupRepository<K, V>: PopupRepository<K, V>
 

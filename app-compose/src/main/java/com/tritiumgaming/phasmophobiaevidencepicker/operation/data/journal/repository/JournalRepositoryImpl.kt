@@ -11,7 +11,7 @@ class JournalRepositoryImpl(
     override val ghostEvidenceRepository: GhostEvidenceRepository
 ): JournalRepository {
 
-    override fun mapGhostEvidence() {
+    /*override fun mapGhostEvidence() {
         ghostEvidenceRepository.ghostEvidences.forEach { ghostEvidences ->
             ghostRepository.ghosts.find { ghost ->
                 ghost.id == ghostEvidences.ghostId
@@ -32,6 +32,10 @@ class JournalRepositoryImpl(
                 }
             }
         }
+    }*/
+
+    override fun mapGhostEvidence() {
+        //TODO "Not yet implemented"
     }
 
     init {

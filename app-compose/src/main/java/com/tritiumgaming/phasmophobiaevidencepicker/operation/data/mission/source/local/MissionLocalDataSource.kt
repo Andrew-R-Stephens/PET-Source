@@ -6,13 +6,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.util.ResourceUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
 
-class MissionLocalDataSource: MissionDataSource {
+class MissionLocalDataSource(
+    private val applicationContext: Context
+): MissionDataSource {
 
-    override fun fetchMissions(context: Context): List<Mission>{
+    override fun fetchMissions(): List<Mission> {
+
+        val resources = applicationContext.resources
 
         val objectivesList = mutableListOf<Mission>()
-
-        val resources = context.resources
 
         val missionsTypedArray = resources.obtainTypedArray(R.array.tasks_objectives_array)
         val missionsArray =

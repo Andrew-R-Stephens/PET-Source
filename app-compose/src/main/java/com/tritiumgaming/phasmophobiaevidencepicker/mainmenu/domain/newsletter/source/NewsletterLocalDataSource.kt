@@ -1,11 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source
 
-import android.content.Context
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository
 
 interface NewsletterLocalDataSource {
 
-    fun createInboxes(context: Context): Map<NewsletterRepository.NewsletterInboxType.InboxTypeDTO, NewsletterInbox>
+    fun fetchInboxes(): Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>
 
 }

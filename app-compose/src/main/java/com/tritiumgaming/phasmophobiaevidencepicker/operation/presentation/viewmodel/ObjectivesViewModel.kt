@@ -14,7 +14,7 @@ class ObjectivesViewModel(
 ): ViewModel() {
 
     /* All possible objectives */
-    var missionsListModel: MissionsListModel? = MissionsListModel(missionRepository.missions)
+    var missionsListModel: MissionsListModel? = MissionsListModel(missionRepository.getMissions())
     /* Objective Completed Buttons */
     var spinnerCompletionStatus: BooleanArray = BooleanArray(3) { NOT_COMPLETE }
 

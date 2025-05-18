@@ -76,7 +76,7 @@ fun GhostList(
             key = { it }
         ) {
 
-            investigationViewModel.ghostRepository.getById(it)?.let { ghostModel ->
+            investigationViewModel.getGhostById(it)?.let { ghostModel ->
 
                 GhostListItem(
                     modifier = Modifier

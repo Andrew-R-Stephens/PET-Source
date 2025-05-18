@@ -7,12 +7,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghost.source.GhostDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostType
 
-class GhostLocalDataSource: GhostDataSource {
+class GhostLocalDataSource(
+    private val applicationContext: Context
+): GhostDataSource {
 
-    override fun fetchGhosts(context: Context): ArrayList<GhostType> {
+    override fun fetchGhosts(): ArrayList<GhostType> {
+
+        val resources = applicationContext.resources
+
         var ghosts: ArrayList<GhostType> = ArrayList()
-
-        val resources = context.resources
 
         val ghostsTypedArray = resources.obtainTypedArray(R.array.ghosts_array)
         for(i in 0 until ghostsTypedArray.length()) {
@@ -24,7 +27,7 @@ class GhostLocalDataSource: GhostDataSource {
         return ghosts
     }
 
-    override fun readGhost(
+    private fun readGhost(
         resources: Resources,
         @ArrayRes ghostsArrayID: Int
     ): GhostType {

@@ -27,7 +27,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activit
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.FirebaseAnalyticsService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.SignInCredentialManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.appsettings.ConfigurationControl
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ConfigurationControl
 import java.util.concurrent.atomic.AtomicBoolean
 
 

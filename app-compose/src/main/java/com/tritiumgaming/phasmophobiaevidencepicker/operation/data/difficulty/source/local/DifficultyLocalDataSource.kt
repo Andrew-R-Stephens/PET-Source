@@ -1,19 +1,22 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.local
 
 import android.content.Context
-import android.content.res.Resources
 import android.content.res.TypedArray
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.source.local.DifficultyDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.source.DifficultyDataSource
 
-class DifficultyLocalDataSource: DifficultyDataSource {
+class DifficultyLocalDataSource(
+    private val applicationContext: Context
+): DifficultyDataSource {
 
-    override fun fetchDifficulties(context: Context): List<DifficultyModel> {
+    override fun fetchDifficulties(): List<DifficultyModel> {
+
+        val resources = applicationContext.resources
+
         val difficulties = mutableListOf<DifficultyModel>()
 
-        val resources: Resources = context.resources
         val difficultiesTypedArray: TypedArray =
             resources.obtainTypedArray(R.array.difficulties_array)
         val difficultiesLength = difficultiesTypedArray.length()

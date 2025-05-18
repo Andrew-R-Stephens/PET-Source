@@ -9,28 +9,30 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.rep
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore.NewsletterDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.source.AppInfoDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.handler.NewsletterManager
 
-class MainMenuContainer(context: Context, dataStore: DataStore<Preferences>) {
+class MainMenuContainer(
+    applicationContext: Context,
+    dataStore: DataStore<Preferences>
+) {
 
-    private val appInfoLocalDataSource: AppInfoLocalDataSource = AppInfoLocalDataSource()
+    private val appInfoLocalDataSource: AppInfoDataSource = AppInfoLocalDataSource(applicationContext)
     val appInfoRepository: AppInfoRepositoryImpl =
         AppInfoRepositoryImpl(
-            context = context,
             localSource = appInfoLocalDataSource
         )
 
-    private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSource()
+    private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSource(applicationContext)
     private val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSource()
     private val newsletterRepository: NewsletterRepositoryImpl =
         NewsletterRepositoryImpl(
-            context = context,
             localDataSource = newsletterLocalDataSource,
             remoteDataSource = newsletterRemoteDataSource
         )
     private val newsletterDatastore: NewsletterDatastore =
         NewsletterDatastore(
-            context = context,
+            context = applicationContext,
             dataStore = dataStore
         )
     val newsletterManager: NewsletterManager = NewsletterManager(

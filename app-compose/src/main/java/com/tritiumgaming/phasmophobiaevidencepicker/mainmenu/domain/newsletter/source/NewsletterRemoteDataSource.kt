@@ -3,5 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 
 interface NewsletterRemoteDataSource {
-    suspend fun fetchRemoteInboxData(inbox: NewsletterInbox)
+
+    suspend fun fetchInbox(inbox: NewsletterInbox)
+
 }

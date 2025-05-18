@@ -1,14 +1,13 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.popup.ghost.repository
 
-import android.content.Context
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model.GhostPopupRecord
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.repository.GhostPopupRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.source.GhostPopupDataSource
 
 class GhostPopupRepositoryImpl(
-    context: Context,
     override val localSource: GhostPopupDataSource
-): GhostPopupRepository {
+): GhostPopupRepository<GhostPopupDataSource, GhostPopupRecord> {
 
-    override val popups = localSource.fetchPopups(context)
+    override fun getPopups() = localSource.fetchPopups()
 
 }

@@ -3,22 +3,26 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.l
 import android.content.Context
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.dao.LanguageObjectDao
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.model.NetworkLanguageEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource.Companion.DEFAULT_LANGUAGE
 import java.util.Locale
 
-class LanguageLocalDataSource: LanguageDataSource {
+class LanguageLocalDataSource(
+    private val applicationContext: Context
+): LanguageDataSource {
 
-    override fun fetchLanguages(context: Context): List<LanguageObjectDao> {
+    override fun fetchLanguages(): List<NetworkLanguageEntity> {
+
+        val resources = applicationContext.resources
 
         Log.d("Language", "Fetching Languages")
 
-        val languages = mutableListOf<LanguageObjectDao>()
+        val languages = mutableListOf<NetworkLanguageEntity>()
 
-        val languageNames = context.resources.obtainTypedArray(R.array.language_names)
-        val languageNativeNames = context.resources.obtainTypedArray(R.array.language_names_native)
-        val languageCodes = listOf(*context.resources.getStringArray(R.array.language_codes))
+        val languageNames = resources.obtainTypedArray(R.array.language_names)
+        val languageNativeNames = resources.obtainTypedArray(R.array.language_names_native)
+        val languageCodes = listOf(*resources.getStringArray(R.array.language_codes))
 
         if((languageNames.length() == languageCodes.size) &&
             (languageNativeNames.length() == languageCodes.size)) {
@@ -28,7 +32,7 @@ class LanguageLocalDataSource: LanguageDataSource {
                 val nativeName = languageNativeNames.getResourceId(index, 0)
                 val code = languageCodes[index]
 
-                languages.add(LanguageObjectDao(name, nativeName, code))
+                languages.add(NetworkLanguageEntity(name, nativeName, code))
             }
         }
 

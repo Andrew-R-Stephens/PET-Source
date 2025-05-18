@@ -32,8 +32,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.popup.ghost.r
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.popup.ghost.source.local.GhostPopupLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexTypeRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.source.CodexDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.source.local.DifficultyDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.source.DifficultyDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.evidence.repository.EvidenceRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.evidence.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghost.repository.GhostRepository
@@ -47,34 +48,32 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.repository.MissionRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.repository.EvidencePopupRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.repository.GhostPopupRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.source.EvidencePopupDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.source.GhostPopupDataSource
 
-class OperationContainer(context: Context, dataStore: DataStore<Preferences>) {
+class OperationContainer(
+    applicationContext: Context,
+    dataStore: DataStore<Preferences>
+) {
 
     /*
      * Investigation Journal
      */
-    val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource()
+    val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource(applicationContext)
     val evidenceRepository: EvidenceRepository =
         EvidenceRepositoryImpl(
-            context = context,
             localSource = evidenceLocalDataSource
         )
 
-    val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource()
+    val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(applicationContext)
     val ghostRepository: GhostRepository =
         GhostRepositoryImpl(
-            context = context,
             localSource = ghostLocalDataSource
         )
 
-    val ghostEvidenceLocalDataSource: GhostEvidenceDataSource = GhostEvidenceLocalDataSource()
+    val ghostEvidenceLocalDataSource: GhostEvidenceDataSource = GhostEvidenceLocalDataSource(applicationContext)
     val ghostEvidenceRepository: GhostEvidenceRepository =
         GhostEvidenceRepositoryImpl(
-            context = context,
             localSource = ghostEvidenceLocalDataSource
         )
     val journalRepository: JournalRepository = JournalRepositoryImpl(
@@ -83,89 +82,80 @@ class OperationContainer(context: Context, dataStore: DataStore<Preferences>) {
         ghostEvidenceRepository = ghostEvidenceRepository
     )
 
-    val evidencePopupLocalDataSource: EvidencePopupDataSource = EvidencePopupLocalDataSource()
-    val evidencePopupRepository: EvidencePopupRepository =
+    val evidencePopupLocalDataSource: EvidencePopupDataSource = EvidencePopupLocalDataSource(applicationContext)
+    val evidencePopupRepository: EvidencePopupRepositoryImpl =
         EvidencePopupRepositoryImpl(
-            context = context,
             localSource = evidencePopupLocalDataSource
     )
 
-    val ghostPopupLocalDataSource: GhostPopupDataSource = GhostPopupLocalDataSource()
-    val ghostPopupRepository: GhostPopupRepository =
+    val ghostPopupLocalDataSource: GhostPopupDataSource = GhostPopupLocalDataSource(applicationContext)
+    val ghostPopupRepository: GhostPopupRepositoryImpl =
         GhostPopupRepositoryImpl(
-            context = context,
             localSource = ghostPopupLocalDataSource
         )
 
     /*
      * Investigation Difficulties
      */
-    val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource()
+    val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(applicationContext)
     val difficultyRepository: DifficultyRepository =
         DifficultyRepositoryImpl(
-            context = context,
             localSource = difficultyLocalDataSource
         )
 
     /*
      * Investigation Missions
      */
-    val missionLocalDataSource: MissionDataSource = MissionLocalDataSource()
+    val missionLocalDataSource: MissionDataSource = MissionLocalDataSource(applicationContext)
     val missionRepository: MissionRepository =
         MissionRepositoryImpl(
-            context = context,
             localSource = missionLocalDataSource
         )
 
     /*
      * Maps
      */
-    val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource()
+    val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(applicationContext)
     val simpleMapRepository: SimpleMapRepository =
         SimpleMapRepositoryImpl(
-            context = context,
             localSource = simpleMapLocalDataSource
         )
 
     val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
+        applicationContext = applicationContext,
         service = ComplexMapLocalService()
     )
     val complexMapRepository: ComplexMapRepository =
         ComplexMapRepositoryImpl(
-            context = context,
             localSource = complexMapLocalDataSource
         )
 
     /*
      * Codex
      */
-    val codexAchievementsLocalDataSource: CodexAchievementsLocalDataSource =
-        CodexAchievementsLocalDataSource()
+    val codexAchievementsLocalDataSource: CodexDataSource =
+        CodexAchievementsLocalDataSource(applicationContext)
     val achievementsRepository: CodexTypeRepository =
         CodexAchievementsRepositoryImpl(
-            context = context,
             localSource = codexAchievementsLocalDataSource
         )
 
-    val codexEquipmentLocalDataSource: CodexEquipmentLocalDataSource =
-        CodexEquipmentLocalDataSource()
+    val codexEquipmentLocalDataSource: CodexDataSource =
+        CodexEquipmentLocalDataSource(applicationContext)
     val equipmentRepository: CodexTypeRepository =
         CodexEquipmentRepositoryImpl(
-            context = context,
             localSource = codexEquipmentLocalDataSource
         )
 
-    val codexPossessionsLocalDataSource: CodexPossessionsLocalDataSource =
-        CodexPossessionsLocalDataSource()
+    val codexPossessionsLocalDataSource: CodexDataSource =
+        CodexPossessionsLocalDataSource(applicationContext)
     val possessionsRepository: CodexTypeRepository =
         CodexPossessionsRepositoryImpl(
-            context = context,
             localSource = codexPossessionsLocalDataSource
         )
 
     val codexRepository: CodexRepository =
         CodexRepositoryImpl(
-            context = context,
             achievementsRepository = achievementsRepository,
             equipmentRepository = equipmentRepository,
             possessionsRepository = possessionsRepository

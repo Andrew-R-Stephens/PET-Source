@@ -10,12 +10,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexGroups
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.source.CodexDataSource
 
-class CodexEquipmentLocalDataSource: CodexDataSource {
+class CodexEquipmentLocalDataSource(
+    override val applicationContext: Context
+): CodexDataSource {
 
-    override fun fetchItems(context: Context): CodexGroups {
+    override fun fetchItems(): CodexGroups {
+
+        val resources = applicationContext.resources
+
         val equipment = CodexGroups()
 
-        val shopListTypedArray = context.resources.obtainTypedArray(R.array.shop_equipment_array)
+        val shopListTypedArray = resources.obtainTypedArray(R.array.shop_equipment_array)
 
         val nameKey = 0
         val iconKey = 1
@@ -37,8 +42,8 @@ class CodexEquipmentLocalDataSource: CodexDataSource {
 
             val groupData = CodexEquipmentGroup()
 
-            val shopTypedArray = context.resources
-                .obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
+            val shopTypedArray =
+                resources.obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
 
             equipmentName = shopTypedArray.getResourceId(nameKey, 0)
             equipmentIcon = shopTypedArray.getResourceId(iconKey, 0)
@@ -48,8 +53,8 @@ class CodexEquipmentLocalDataSource: CodexDataSource {
             groupData.paginationIcon = equipmentIcon
             groupData.buyCostData = buyCostData
 
-            val iconsTypedArray = context.resources
-                .obtainTypedArray(shopTypedArray.getResourceId(imagesKey, 0))
+            val iconsTypedArray =
+                resources.obtainTypedArray(shopTypedArray.getResourceId(imagesKey, 0))
             for (j in 0 until iconsTypedArray.length()) {
                 val itemData = CodexEquipmentItem()
                 groupData.addItem(itemData)
@@ -58,29 +63,29 @@ class CodexEquipmentLocalDataSource: CodexDataSource {
             }
             iconsTypedArray.recycle()
 
-            val flavorTextTypedArray = context.resources
-                .obtainTypedArray(shopTypedArray.getResourceId(flavorTextKey, 0))
+            val flavorTextTypedArray =
+                resources.obtainTypedArray(shopTypedArray.getResourceId(flavorTextKey, 0))
             for (j in 0 until flavorTextTypedArray.length()) {
                 @StringRes val value = flavorTextTypedArray.getResourceId(j, 0)
                 groupData.getItemDataAt(j).flavorData = value
             }
             flavorTextTypedArray.recycle()
 
-            val infoTextTypedArray = context.resources
-                .obtainTypedArray(shopTypedArray.getResourceId(infoTextKey, 0))
+            val infoTextTypedArray =
+                resources.obtainTypedArray(shopTypedArray.getResourceId(infoTextKey, 0))
             for (j in 0 until infoTextTypedArray.length()) {
                 @StringRes val value = infoTextTypedArray.getResourceId(j, 0)
                 groupData.getItemDataAt(j).infoData = value
             }
             infoTextTypedArray.recycle()
 
-            val attributesTypedArray = context.resources
-                .obtainTypedArray(shopTypedArray.getResourceId(attributesTextKey, 0))
+            val attributesTypedArray =
+                resources.obtainTypedArray(shopTypedArray.getResourceId(attributesTextKey, 0))
             for (j in 0 until attributesTypedArray.length()) {
-                val positiveAttributesTypesArray = context.resources
-                    .obtainTypedArray(attributesTypedArray.getResourceId(j, 0))
-                val positiveAttributesListTypedArray = context.resources
-                    .obtainTypedArray(
+                val positiveAttributesTypesArray =
+                    resources.obtainTypedArray(attributesTypedArray.getResourceId(j, 0))
+                val positiveAttributesListTypedArray =
+                    resources.obtainTypedArray(
                         positiveAttributesTypesArray.getResourceId(
                             positiveAttrsKey,
                             0
@@ -95,10 +100,10 @@ class CodexEquipmentLocalDataSource: CodexDataSource {
                 positiveAttributesListTypedArray.recycle()
                 positiveAttributesTypesArray.recycle()
 
-                val negativeAttributesTypedArray = context.resources
-                    .obtainTypedArray(attributesTypedArray.getResourceId(j, 0))
-                val negativeAttributesListTypedArray = context.resources
-                    .obtainTypedArray(
+                val negativeAttributesTypedArray =
+                    resources.obtainTypedArray(attributesTypedArray.getResourceId(j, 0))
+                val negativeAttributesListTypedArray =
+                    resources.obtainTypedArray(
                         negativeAttributesTypedArray.getResourceId(
                             negativeAttrsKey,
                             0
@@ -115,16 +120,16 @@ class CodexEquipmentLocalDataSource: CodexDataSource {
             }
             attributesTypedArray.recycle()
 
-            val upgradeLevelTypedArray = context.resources
-                .obtainTypedArray(shopTypedArray.getResourceId(upgradeLevelKey, 0))
+            val upgradeLevelTypedArray =
+                resources.obtainTypedArray(shopTypedArray.getResourceId(upgradeLevelKey, 0))
             for (j in 0 until upgradeLevelTypedArray.length()) {
                 @IntegerRes val value = upgradeLevelTypedArray.getResourceId(j, 0)
                 (groupData.getItemDataAt(j) as CodexEquipmentItem).setUpgradeLevel(value)
             }
             upgradeLevelTypedArray.recycle()
 
-            val upgradeCostTypedArray = context.resources
-                .obtainTypedArray(shopTypedArray.getResourceId(upgradeCostKey, 0))
+            val upgradeCostTypedArray =
+                resources.obtainTypedArray(shopTypedArray.getResourceId(upgradeCostKey, 0))
             for (j in 0 until upgradeCostTypedArray.length()) {
                 @IntegerRes val value = upgradeCostTypedArray.getResourceId(j, 0)
                 (groupData.getItemDataAt(j) as CodexEquipmentItem).upgradeCostData = value

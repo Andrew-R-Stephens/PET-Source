@@ -1,12 +1,16 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository
 
-import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.dao.LanguageObjectDao
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.LanguageObject
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
+import java.util.Locale
 
 interface LanguageRepository {
-    var _languageList: List<LanguageObject>
-    val languageList: List<LanguageObject>
+    val dataSource: LanguageDataSource
 
-    fun fetchLanguages(context: Context): List<LanguageObjectDao>
+    fun getLanguages(): List<LanguageObject>
+
+    companion object {
+        var DEFAULT_LANGUAGE: String = Locale.ENGLISH.language
+    }
+
 }

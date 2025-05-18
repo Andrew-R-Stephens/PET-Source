@@ -9,12 +9,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexGroups
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.source.CodexDataSource
 
-class CodexAchievementsLocalDataSource: CodexDataSource {
+class CodexAchievementsLocalDataSource(
+    override val applicationContext: Context
+): CodexDataSource {
 
-    override fun fetchItems(context: Context): CodexGroups {
+    override fun fetchItems(): CodexGroups {
+
+        val resources = applicationContext.resources
+
         val achievements = CodexGroups()
 
-        val shopListTypedArray = context.resources.obtainTypedArray(R.array.shop_achievements_array)
+        val shopListTypedArray = resources.obtainTypedArray(R.array.shop_achievements_array)
 
         val nameKey = 0
         val infoKey = 1
@@ -26,7 +31,7 @@ class CodexAchievementsLocalDataSource: CodexDataSource {
             @DrawableRes var achievementsIcon: Int
 
             val shopTypedArray =
-                context.resources.obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
+                resources.obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
 
             achievementsName = shopTypedArray.getResourceId(nameKey, 0)
             achievementsInfo = shopTypedArray.getResourceId(infoKey, 0)

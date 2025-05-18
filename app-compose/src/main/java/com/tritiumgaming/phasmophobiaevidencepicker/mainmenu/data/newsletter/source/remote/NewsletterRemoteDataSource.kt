@@ -8,7 +8,7 @@ import io.ktor.http.Url
 
 class NewsletterRemoteDataSource: NewsletterRemoteDataSource {
 
-    override suspend fun fetchRemoteInboxData(inbox: NewsletterInbox) {
+    override suspend fun fetchInbox(inbox: NewsletterInbox) {
         NewsletterService.fetchInbox(
             Url(inbox.inboxType.url),
             onSuccess = { inboxDto ->

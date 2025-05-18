@@ -5,3 +5,4 @@ data class LanguageObject(
     val nativeName: Int,
     val abbreviation: String
 )
+

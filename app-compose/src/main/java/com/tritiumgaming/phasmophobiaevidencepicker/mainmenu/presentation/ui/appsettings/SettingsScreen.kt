@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.appsettings
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings
 
 import android.content.Context
 import android.util.Log
@@ -30,19 +30,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.core.repository.MarketRepository.IncrementDirection
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.PETImageButtonType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalettesMap
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypographiesMap
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.content.CarouselComposable
@@ -267,8 +261,11 @@ fun ConfigurationControl(
     val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
     val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
 
-    val palette: ExtendedPalette = LocalPalettesMap[paletteState.value] ?: ClassicPalette
-    val typography: ExtendedTypography = LocalTypographiesMap[typographyState.value] ?: ClassicTypography
+    val palette = globalPreferencesViewModel.getPaletteByUUID(paletteState.value)
+    val typography = globalPreferencesViewModel.getTypographyByUUID(typographyState.value)
+
+    /*val palette: ExtendedPalette = LocalPalettesMap[paletteState.value] ?: ClassicPalette
+    val typography: ExtendedTypography = LocalTypographiesMap[typographyState.value] ?: ClassicTypography*/
 
     Log.d("Palette", stringResource(palette.extrasFamily.title))
     Log.d("Typography", stringResource(typography.extrasFamily.title))
@@ -296,8 +293,11 @@ fun ConfigurationControl(
     val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
     val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
 
-    val palette: ExtendedPalette = LocalPalettesMap[paletteState.value] ?: ClassicPalette
-    val typography: ExtendedTypography = LocalTypographiesMap[typographyState.value] ?: ClassicTypography
+    val palette = globalPreferencesViewModel.getPaletteByUUID(paletteState.value)
+    val typography = globalPreferencesViewModel.getTypographyByUUID(typographyState.value)
+
+    /*val palette: ExtendedPalette = LocalPalettesMap[paletteState.value] ?: ClassicPalette
+    val typography: ExtendedTypography = LocalTypographiesMap[typographyState.value] ?: ClassicTypography*/
 
     Log.d("Palette", stringResource(palette.extrasFamily.title))
     Log.d("Typography", stringResource(typography.extrasFamily.title))

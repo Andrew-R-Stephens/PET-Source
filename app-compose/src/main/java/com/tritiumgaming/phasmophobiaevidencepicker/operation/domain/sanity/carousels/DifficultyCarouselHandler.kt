@@ -10,8 +10,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class DifficultyCarouselHandler(
-    private val difficultyRepository: DifficultyRepository
+    difficultyRepository: DifficultyRepository
 ) {
+
+    private val difficulties = difficultyRepository.getDifficulties()
+
     /* Index */
     private val _currentIndex: MutableStateFlow<Int> =
         MutableStateFlow(DifficultyType.AMATEUR.ordinal)
@@ -52,7 +55,7 @@ class DifficultyCarouselHandler(
         phaseHandler: PhaseHandler) {
 
         var i = currentIndex.value + 1
-        if (i >= difficultyRepository.difficulties.size) { i = 0 }
+        if (i >= difficulties.size) { i = 0 }
 
         setIndex(sanityHandler, mapHandler, timerHandler, i)
         phaseHandler.audioWarnTriggered = false
@@ -64,7 +67,7 @@ class DifficultyCarouselHandler(
         phaseHandler: PhaseHandler) {
 
         var i = currentIndex.value - 1
-        if (i < 0) { i = difficultyRepository.difficulties.size - 1 }
+        if (i < 0) { i = difficulties.size - 1 }
 
         setIndex(sanityHandler, mapHandler, timerHandler, i)
         phaseHandler.audioWarnTriggered = false
@@ -76,22 +79,22 @@ class DifficultyCarouselHandler(
         get() = DifficultyType.entries[currentIndex.value]
 
     private val _currentName = MutableStateFlow(
-        difficultyRepository.difficulties[currentIndex.value].name
+        difficulties[currentIndex.value].name
     )
     val currentName = _currentName.asStateFlow()
     fun updateCurrentName() {
-        _currentName.update { difficultyRepository.difficulties[currentIndex.value].name }
+        _currentName.update { difficulties[currentIndex.value].name }
     }
 
     fun getNameAt(index: Int): Int {
-        return difficultyRepository.difficulties[index].name
+        return difficulties[index].name
     }
 
     val currentTime: Long
-        get() = difficultyRepository.difficulties[currentIndex.value].time
+        get() = difficulties[currentIndex.value].time
 
     val currentStartSanity: Float
-        get() = difficultyRepository.difficulties[currentIndex.value].initialSanity
+        get() = difficulties[currentIndex.value].initialSanity
 
     private val _responseTypeUi = MutableStateFlow(false)
     val responseTypeUi = _responseTypeUi.asStateFlow()
@@ -104,8 +107,8 @@ class DifficultyCarouselHandler(
     val currentModifier: Float
         get() {
             val diffIndex = currentIndex.value
-            if (diffIndex >= 0 && diffIndex < difficultyRepository.difficulties.size) {
-                return difficultyRepository.difficulties[diffIndex].modifier
+            if (diffIndex >= 0 && diffIndex < difficulties.size) {
+                return difficulties[diffIndex].modifier
             }
             return 1f
         }

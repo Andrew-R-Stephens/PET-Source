@@ -10,16 +10,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 
 class ComplexMapLocalDataSource(
+    private val applicationContext: Context,
     override val service: ComplexMapService,
 ): ComplexMapDataSource {
 
     @Throws(Exception::class)
-    override suspend fun fetchWorldMaps(context: Context): WorldMaps {
+    override suspend fun fetchWorldMaps(): WorldMaps {
+
         var worldMaps = WorldMaps()
         try {
             return CoroutineScope(Dispatchers.IO).async {
                 val result = service.readFile(
-                    assets = context.assets, context.getString(R.string.mapsJson))
+                    assets = applicationContext.assets,
+                    fileName = applicationContext.getString(R.string.mapsJson)
+                )
                 if(result.isSuccess) {
                     return@async result.getOrNull() ?: WorldMaps()
                 } else {

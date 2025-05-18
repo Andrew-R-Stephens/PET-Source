@@ -5,6 +5,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model
 
 interface CodexDataSource {
 
-    fun fetchItems(context: Context): CodexGroups
+    val applicationContext: Context
+
+    fun fetchItems(): CodexGroups
 
 }

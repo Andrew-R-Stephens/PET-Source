@@ -8,11 +8,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.MapSizeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source.SimpleMapDataSource
 
-class SimpleMapLocalDataSource: SimpleMapDataSource {
+class SimpleMapLocalDataSource(
+    private val applicationContext: Context
+): SimpleMapDataSource {
 
-    override fun fetchMaps(context: Context): List<MapInteractModel> {
+    override fun fetchMaps(): List<MapInteractModel> {
 
-        val resources: Resources = context.resources
+        val resources: Resources = applicationContext.resources
+
         val mapsTypedArray: TypedArray = resources.obtainTypedArray(R.array.maps_resources_array)
 
         var tempMaps = mutableListOf<MapInteractModel>()
@@ -67,11 +70,11 @@ class SimpleMapLocalDataSource: SimpleMapDataSource {
         return tempMaps
     }
 
-    override fun fetchSizeModifiers(context: Context): List<MapSizeModel> {
+    override fun fetchSizeModifiers(): List<MapSizeModel> {
 
         var modifiers = mutableListOf<MapSizeModel>()
 
-        val resources: Resources = context.resources
+        val resources: Resources = applicationContext.resources
         val sizeModifiersTypedArray: TypedArray = resources.obtainTypedArray(R.array.maps_size_arrays)
 
         val nameIndex = 0

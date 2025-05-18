@@ -7,13 +7,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.evidence.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
 
-class EvidenceLocalDataSource: EvidenceDataSource {
+class EvidenceLocalDataSource(
+    private val applicationContext: Context
+): EvidenceDataSource {
 
-    override fun fetchEvidence(context: Context): List<EvidenceType> {
+    override fun fetchEvidence(): List<EvidenceType> {
+
+        val resources = applicationContext.resources
 
         val evidenceList = mutableListOf<EvidenceType>()
-
-        val resources = context.resources
 
         val keyEvidenceID = 0
         val keyEvidenceName = 1

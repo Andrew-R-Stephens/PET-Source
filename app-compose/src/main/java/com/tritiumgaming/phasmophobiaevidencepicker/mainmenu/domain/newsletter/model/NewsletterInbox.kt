@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

@@ -1,10 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model.PopupRecord
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.source.PopupDataSource
+interface PopupRepository<K, T> {
+    val localSource: K
 
-interface PopupRepository {
-    val localSource: PopupDataSource
-
-    val popups: List<PopupRecord>
+    fun getPopups():  List<T>
 }

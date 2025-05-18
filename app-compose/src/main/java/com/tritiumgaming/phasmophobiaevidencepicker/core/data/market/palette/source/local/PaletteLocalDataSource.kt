@@ -4,6 +4,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.s
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalettesMap
 
-class PaletteLocalDataSource(
-    override val palettes: Map<String, ExtendedPalette> = LocalPalettesMap
-) : PaletteDataSource
+class PaletteLocalDataSource : PaletteDataSource<Map<String, ExtendedPalette>> {
+
+    override suspend fun fetchAll(): Map<String, ExtendedPalette> = LocalPalettesMap
+
+}

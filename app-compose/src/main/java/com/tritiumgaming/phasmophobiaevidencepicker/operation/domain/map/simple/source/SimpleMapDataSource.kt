@@ -5,7 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 
 interface SimpleMapDataSource {
 
-    fun fetchMaps(context: android.content.Context): List<MapInteractModel>
-    fun fetchSizeModifiers(context: android.content.Context): List<MapSizeModel>
+    fun fetchMaps(): List<MapInteractModel>
+    fun fetchSizeModifiers(): List<MapSizeModel>
 
 }

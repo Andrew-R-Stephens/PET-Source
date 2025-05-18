@@ -9,10 +9,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.SettingsScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.account.AccountScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.appinfo.InfoScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.applanguages.LanguageScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.appsettings.SettingsScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.MarketplaceScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.billing.MarketplaceBillingScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter.NewsInboxesScreen

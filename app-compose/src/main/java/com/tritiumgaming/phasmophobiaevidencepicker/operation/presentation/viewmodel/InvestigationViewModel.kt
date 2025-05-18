@@ -39,8 +39,8 @@ class InvestigationViewModel(
     private val codexRepository: CodexRepository
 ): ViewModel() {
 
-    private val ghosts = ghostRepository.ghosts
-    private val evidences = evidenceRepository.evidences
+    private val ghosts = ghostRepository.fetchGhosts()
+    private val evidences = evidenceRepository.fetchEvidence()
 
     /*
      * HANDLERS / CONTROLLERS
@@ -96,6 +96,13 @@ class InvestigationViewModel(
     /*
      * FUNCTIONS
      */
+    fun getGhostById(ghostId: String): GhostType? {
+        return ghosts.find { it.id == ghostId }
+    }
+    fun getEvidenceById(evidenceId: String): EvidenceType? {
+        return evidences.find { it.id == evidenceId }
+    }
+
     fun getRuledEvidence(evidenceModel: EvidenceType): RuledEvidence? {
         return investigationJournal.getRuledEvidence(evidenceModel)
     }

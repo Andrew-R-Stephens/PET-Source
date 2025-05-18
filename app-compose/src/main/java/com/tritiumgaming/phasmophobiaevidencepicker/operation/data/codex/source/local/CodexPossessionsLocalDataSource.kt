@@ -9,13 +9,18 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexPossessionsGroup
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.source.CodexDataSource
 
-class CodexPossessionsLocalDataSource: CodexDataSource {
+class CodexPossessionsLocalDataSource(
+    override val applicationContext: Context
+): CodexDataSource {
 
-    override fun fetchItems(context: Context): CodexGroups {
+    override fun fetchItems(): CodexGroups {
+
+        val resources = applicationContext.resources
+
         val possessions = CodexGroups()
 
         val shopListTypedArray =
-            context.resources.obtainTypedArray(R.array.shop_cursedpossessions_array)
+            resources.obtainTypedArray(R.array.shop_cursedpossessions_array)
 
         val nameKey = 0
         val iconKey = 1
@@ -34,7 +39,7 @@ class CodexPossessionsLocalDataSource: CodexDataSource {
             val groupData = CodexPossessionsGroup()
 
             val shopTypedArray =
-                context.resources.obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
+                resources.obtainTypedArray(shopListTypedArray.getResourceId(i, 0))
 
             possessionName = shopTypedArray.getResourceId(nameKey, 0)
             possessionIcon = shopTypedArray.getResourceId(iconKey, 0)
@@ -43,7 +48,7 @@ class CodexPossessionsLocalDataSource: CodexDataSource {
             groupData.paginationIcon = possessionIcon
 
             val possessionImagesTypedArray =
-                context.resources.obtainTypedArray(shopTypedArray.getResourceId(imagesKey, 0))
+                resources.obtainTypedArray(shopTypedArray.getResourceId(imagesKey, 0))
             for (j in 0 until possessionImagesTypedArray.length()) {
                 groupData.addItem(CodexPossessionItem())
                 @DrawableRes val value = possessionImagesTypedArray.getResourceId(j, 0)
@@ -52,7 +57,7 @@ class CodexPossessionsLocalDataSource: CodexDataSource {
             possessionImagesTypedArray.recycle()
 
             val flavorTextTypedArray =
-                context.resources.obtainTypedArray(shopTypedArray.getResourceId(flavorTextKey, 0))
+                resources.obtainTypedArray(shopTypedArray.getResourceId(flavorTextKey, 0))
             for (j in 0 until flavorTextTypedArray.length()) {
                 @StringRes val value = flavorTextTypedArray.getResourceId(j, 0)
                 groupData.getItemDataAt(j).flavorData = value
@@ -60,7 +65,7 @@ class CodexPossessionsLocalDataSource: CodexDataSource {
             flavorTextTypedArray.recycle()
 
             val infoTextTypedArray =
-                context.resources.obtainTypedArray(shopTypedArray.getResourceId(infoTextKey, 0))
+                resources.obtainTypedArray(shopTypedArray.getResourceId(infoTextKey, 0))
             for (j in 0 until infoTextTypedArray.length()) {
                 @StringRes val value = infoTextTypedArray.getResourceId(j, 0)
                 groupData.getItemDataAt(j).infoData = value
@@ -68,7 +73,7 @@ class CodexPossessionsLocalDataSource: CodexDataSource {
             infoTextTypedArray.recycle()
 
             val attributesTypedArray =
-                context.resources.obtainTypedArray(
+                resources.obtainTypedArray(
                     shopTypedArray.getResourceId(
                         attributesTextKey,
                         0
@@ -81,7 +86,7 @@ class CodexPossessionsLocalDataSource: CodexDataSource {
             attributesTypedArray.recycle()
 
             val sanityDrainTypedArray =
-                context.resources.obtainTypedArray(shopTypedArray.getResourceId(sanityDrainKey, 0))
+                resources.obtainTypedArray(shopTypedArray.getResourceId(sanityDrainKey, 0))
             for (j in 0 until sanityDrainTypedArray.length()) {
                 @StringRes val value = sanityDrainTypedArray.getResourceId(j, 0)
                 (groupData.getItemDataAt(j) as CodexPossessionItem).sanityDrainData = value
@@ -89,7 +94,7 @@ class CodexPossessionsLocalDataSource: CodexDataSource {
             sanityDrainTypedArray.recycle()
 
             val drawChanceTypedArray =
-                context.resources.obtainTypedArray(shopTypedArray.getResourceId(drawChanceKey, 0))
+                resources.obtainTypedArray(shopTypedArray.getResourceId(drawChanceKey, 0))
             for (j in 0 until drawChanceTypedArray.length()) {
                 @StringRes val value = drawChanceTypedArray.getResourceId(j, 0)
                 (groupData.getItemDataAt(j) as CodexPossessionItem).drawChance = value
@@ -97,7 +102,7 @@ class CodexPossessionsLocalDataSource: CodexDataSource {
             drawChanceTypedArray.recycle()
 
             val altNameTypedArray =
-                context.resources.obtainTypedArray(shopTypedArray.getResourceId(altNameKey, 0))
+                resources.obtainTypedArray(shopTypedArray.getResourceId(altNameKey, 0))
             for (j in 0 until altNameTypedArray.length()) {
                 @StringRes val value = altNameTypedArray.getResourceId(j, 0)
                 (groupData.getItemDataAt(j) as CodexPossessionItem).altName = value

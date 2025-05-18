@@ -1,5 +1,5 @@
 
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

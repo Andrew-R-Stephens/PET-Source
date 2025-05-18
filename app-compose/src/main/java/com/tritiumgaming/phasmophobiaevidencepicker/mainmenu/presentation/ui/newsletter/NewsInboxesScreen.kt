@@ -21,9 +21,6 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -31,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -45,7 +43,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType.InboxTypeDTO
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
@@ -90,9 +87,8 @@ private fun NewsInboxesContent(
     onBack: () -> Unit = {}
 ) {
 
-    val rememberInboxes by remember {
-        mutableStateOf(InboxTypeDTO.entries.toTypedArray())
-    }
+    val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
+    val inboxTypes = inboxes.value.values
 
     Column(
         modifier = Modifier
@@ -119,7 +115,22 @@ private fun NewsInboxesContent(
             verticalArrangement = Arrangement.Top,
         ) {
 
-            items(rememberInboxes) { inboxType: InboxTypeDTO ->
+            items(items = inboxTypes.toList()) { inbox ->
+
+                InboxCard(
+                    title = inbox.inboxType.title,
+                    icon = inbox.inboxType.icon,
+                    isActive = false,
+                    onClick = {
+                        navController.navigate(
+                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/" +
+                                    "${inbox.inboxType.id}")
+                    }
+                )
+
+            }
+
+            /*items(items = inboxTypes.toList()) { inboxType: InboxTypeDTO ->
 
                 newsletterViewModel.getInbox(inboxType)?.let {
 
@@ -134,7 +145,7 @@ private fun NewsInboxesContent(
                         }
                     )
                 }
-            }
+            }*/
         }
 
         AdmobBanner()

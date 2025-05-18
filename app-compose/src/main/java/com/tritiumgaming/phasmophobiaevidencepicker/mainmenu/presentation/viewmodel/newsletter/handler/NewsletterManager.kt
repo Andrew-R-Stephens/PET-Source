@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.handler
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore.NewsletterDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.PreferenceKeys.KEY_INBOX_GENERAL
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.PreferenceKeys.KEY_INBOX_PET
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.PreferenceKeys.KEY_INBOX_PHASMOPHOBIA
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class NewsletterManager(
-    repository: NewsletterRepositoryImpl,
+    private val repository: NewsletterRepository,
     private val datastore: NewsletterDatastore
 ) {
 
@@ -47,7 +47,15 @@ class NewsletterManager(
         }
     }
 
-    private val inboxes = repository.inboxes
+    private val _inboxes =
+        MutableStateFlow<Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>>(mapOf())
+    val inboxes = _inboxes.asStateFlow()
+    suspend fun createInboxes() {
+        _inboxes.update { repository.getInboxes() }
+    }
+    fun getInbox(inboxType: NewsletterInboxType.InboxTypeDTO): NewsletterInbox? {
+        return inboxes.value[inboxType]
+    }
 
     private val _requiresNotify = MutableStateFlow<Boolean>(false)
     val requiresNotify = _requiresNotify.asStateFlow()
@@ -56,9 +64,6 @@ class NewsletterManager(
         _requiresNotify.update { value }
     }
 
-    fun getInbox(inboxType: NewsletterInboxType.InboxTypeDTO): NewsletterInbox? {
-        return inboxes.value[inboxType]
-    }
 
     suspend fun setLastReadDate(inboxType: NewsletterInboxType.InboxTypeDTO, date: Long) {
         val key = when(inboxType) {

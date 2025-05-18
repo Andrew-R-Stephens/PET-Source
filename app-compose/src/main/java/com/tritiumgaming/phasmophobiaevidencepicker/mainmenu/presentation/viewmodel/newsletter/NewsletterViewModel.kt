@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository.NewsletterInboxType
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.handler.NewsletterManager
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -26,9 +26,15 @@ class NewsletterViewModel(
         initialSetupEvent()
 
         viewModelScope.launch {
+            newsletterManager.createInboxes()
+        }
+
+        viewModelScope.launch {
             newsletterManager.initFlow()
         }
     }
+
+    val inboxes = newsletterManager.inboxes
 
     fun requiresNotify(inboxType: NewsletterInboxType.InboxTypeDTO?): StateFlow<Boolean>? {
         if(inboxType == null) return newsletterManager.requiresNotify

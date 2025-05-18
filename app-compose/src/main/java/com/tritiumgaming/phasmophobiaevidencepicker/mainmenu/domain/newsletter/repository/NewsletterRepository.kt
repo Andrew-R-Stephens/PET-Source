@@ -1,74 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository
 
-import android.content.Context
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 interface NewsletterRepository {
 
-    val _inboxes: MutableStateFlow<Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>>
-    val inboxes: StateFlow<Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>>
-    fun setInboxes(inboxes: Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>)
-
-    class NewsletterInboxType(
-        val id: Int,
-        val title: Int,
-        val url: String,
-        @DrawableRes val icon: Int
-    ) {
-
-        enum class InboxTypeDTO(
-            val id: Int,
-            @StringRes val title: Int,
-            @StringRes val url: Int,
-            @DrawableRes val icon: Int
-        ) {
-            GENERAL(
-                id = 0,
-                title = R.string.messagecenter_inbox_general,
-                url = R.string.preference_general_news_link,
-                icon = R.drawable.ic_news
-            ),
-            PET(
-                id = 1,
-                title = R.string.messagecenter_inbox_pet,
-                url = R.string.preference_pet_changelog_link,
-                icon = R.drawable.icon_logo_app
-            ),
-            PHASMOPHOBIA(
-                id = 2,
-                title = R.string.messagecenter_inbox_phas,
-                url = R.string.preference_phasmophobia_changelog_link,
-                icon = R.drawable.icon_logo_phas
-            )
-        }
-
-        companion object  {
-
-            fun create(
-                context: Context,
-                inboxType: InboxTypeDTO
-            ): NewsletterInboxType {
-
-                return NewsletterInboxType(
-                    id = inboxType.id,
-                    title = inboxType.title,
-                    url = context.getString(inboxType.url),
-                    icon = inboxType.icon
-                )
-
-            }
-
-            fun getInbox(id: Int): InboxTypeDTO? {
-                return InboxTypeDTO.entries.firstOrNull { it.id == id }
-            }
-
-        }
-
-    }
+    suspend fun getInboxes(): Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>
 
 }
