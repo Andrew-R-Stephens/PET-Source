@@ -68,8 +68,14 @@
   <ul>
     <li><h5>Refactor from Java to Kotlin ✔️</h5></li>
     <li><h5>Migrate from View to Compose ♻️</h5></li>
-    <li><h5>Implement KMP and build shared interfaces 🔳</h5></li>
-    <li><h5>Begin fixes for IOS/SwiftUI 🔳</h5></li>
+    <li>
+        <h5>Prepare with KMP for iOS ♻️</h5>
+        <ul>
+            <li><h5>Add KMP and iOS project module ✔️</h5></li>
+            <li><h5>Build shared interfaces 🔳</h5></li>
+        </ul>
+    </li>
+    <li><h5>Begin fixes for iOS/SwiftUI 🔳</h5></li>
     <li><h5>Test for iOS 🔳</h5></li>
     <li><h5>Publish on iOS App Store 🔳</h5></li>
   </ul>
