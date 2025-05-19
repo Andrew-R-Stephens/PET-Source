@@ -22,7 +22,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FetchPalettesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.usecase.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences.GlobalPreferencesManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.language.LanguageManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.PaletteManager
@@ -86,9 +89,17 @@ class CoreContainer(
             remotePaletteSource = paletteRemoteDataSource,
             localPaletteSource = paletteLocalDataSource
         )
+    private val fetchPalettesUseCase = FetchPalettesUseCase(
+        repository = paletteRepository
+    )
+    private val findNextAvailablePaletteUseCase = FindNextAvailablePaletteUseCase()
+    private val getPaletteByUUIDUseCase = GetPaletteByUUIDUseCase()
     val paletteManager: PaletteManager = PaletteManager(
         repository = paletteRepository,
-        datastore = paletteDatastore
+        datastore = paletteDatastore,
+        fetchPalettesUseCase = fetchPalettesUseCase,
+        getPalleteByUUIDUseCase = getPaletteByUUIDUseCase,
+        findNextAvailablePaletteUseCase = findNextAvailablePaletteUseCase
     )
 
     // Language

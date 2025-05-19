@@ -1,12 +1,14 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FetchPalettesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.usecase.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +18,10 @@ import kotlinx.coroutines.flow.update
 
 class PaletteManager(
     private val repository: PaletteRepository,
-    private val datastore: PaletteDatastore
+    private val datastore: PaletteDatastore,
+    private val fetchPalettesUseCase: FetchPalettesUseCase,
+    private val getPalleteByUUIDUseCase: GetPaletteByUUIDUseCase,
+    private val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase
 ) : AThemeManager(
     defaultUUID = LocalDefaultPalette.uuid,
 ) {
@@ -25,70 +30,22 @@ class PaletteManager(
     val palettes = _palettes.asStateFlow()
 
     suspend fun fetchPalettes() {
-
-        val local: List<MarketPalette> = repository.getLocalPalettes().toExternal()
-        val remote: List<MarketPalette> = repository.getRemotePalettes().toExternal()
-
-        val mergedModels = remote.fold(local) { localList, remoteEntity ->
-            localList.map { localEntity ->
-                if (localEntity.uuid == remoteEntity.uuid) localEntity.copy(
-                    uuid = localEntity.uuid,
-                    name = remoteEntity.name,
-                    group = remoteEntity.group,
-                    buyCredits = remoteEntity.buyCredits,
-                    priority = remoteEntity.priority,
-                    unlocked = remoteEntity.unlocked,
-                    palette = remoteEntity.palette ?: ExtendedPalette()
-                )
-                else localEntity
-            }
-        }
-        Log.d("Palette", "Fetched ${mergedModels.size} palettes")
-        mergedModels.forEach {
-            Log.d("Palette", "Fetched $it")
-        }
+        val mergedModels = fetchPalettesUseCase.invoke()
 
         _palettes.update { mergedModels.toPair() }
     }
 
     fun getPaletteByUUID(uuid: String): ExtendedPalette =
-        palettes.value[uuid]?.palette ?: LocalDefaultPalette.palette
+        getPalleteByUUIDUseCase.invoke(palettes.value, uuid, LocalDefaultPalette.palette)
 
     fun findNextAvailable(
         direction: IncrementDirection
-    ): String {
-        return findNextAvailable(currentUUID, direction)
-    }
+    ): String = findNextAvailable(currentUUID, direction)
 
     fun findNextAvailable(
         currentUUID: StateFlow<String>,
         direction: IncrementDirection
-    ): String {
-
-        Log.d("Settings", "${currentUUID.value} ${palettes.value.size}")
-        if(palettes.value.isEmpty()) return ""
-
-        val filtered = palettes.value
-            .filter {
-                it.value.palette != null &&
-                        it.value.isUnlocked == true
-            }
-
-        Log.d("Settings", "Filtered: ${filtered.size}")
-        if(filtered.isEmpty()) return ""
-
-
-        val list = filtered.keys.toList()
-        val currentIndex = list.indexOf(currentUUID.value)
-
-        var increment = currentIndex + direction.value
-        if(increment >= list.size) increment = 0
-        if(increment < 0) increment = list.size - 1
-
-        Log.d("Settings", "Move: $currentIndex $increment $direction")
-
-        return list[increment]
-    }
+    ): String = findNextAvailablePaletteUseCase.invoke(palettes.value, currentUUID.value, direction)
 
     fun initialSetupEvent() {
         datastore.initialSetupEvent()
