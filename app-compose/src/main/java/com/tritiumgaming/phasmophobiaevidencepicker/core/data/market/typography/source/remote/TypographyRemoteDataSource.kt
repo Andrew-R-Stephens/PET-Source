@@ -4,19 +4,18 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.api.FirestoreTypographyApi.Companion.getAllTypographys
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.TypographyDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class TypographyRemoteDataSource : TypographyDataSource<List<NetworkTypographyEntity>> {
+class TypographyRemoteDataSource : TypographyDataSource<List<MarketTypographyDto>> {
 
-    override suspend fun fetchAll(): List<NetworkTypographyEntity> =
+    override suspend fun fetchAll(): List<MarketTypographyDto> =
         withContext(Dispatchers.IO) {
 
-            val typographiesList = mutableListOf<NetworkTypographyEntity>()
+            val typographiesList = mutableListOf<MarketTypographyDto>()
 
             try {
                 getAllTypographys()
@@ -47,8 +46,8 @@ class TypographyRemoteDataSource : TypographyDataSource<List<NetworkTypographyEn
                                     buyCredits = buyCredits
                                 )
 
-                                val typographyEntity = dto.toExternal()
-                                typographiesList.add(typographyEntity)
+                                //val typographyEntity = dto.toNetwork()
+                                typographiesList.add(dto)
 
                             } catch (e: Exception) {
                                 Log.d("Firestore", "Error obtaining remote palettes!")

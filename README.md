@@ -67,6 +67,7 @@
   <blockquote>P.E.T. has become kotlin-first! Major code migration started in May 2024 and finished in July 2024. Planned migration to KMP will commence after confirmation of build stability and feature refinement.</blockquote>
   <ul>
     <li><h5>Refactor from Java to Kotlin ✔️</h5></li>
+    <li><h5>Refactor to Clean Code ♻️</h5></li>
     <li><h5>Migrate from View to Compose ♻️</h5></li>
     <li>
         <h5>Prepare with KMP for iOS ♻️</h5>

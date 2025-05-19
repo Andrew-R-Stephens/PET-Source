@@ -9,7 +9,7 @@ kotlin {
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     androidLibrary {
-        namespace = "com.tritiumstudios.phasmophobiaevidencepicker.shared"
+        namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
         compileSdk = 36
         minSdk = 23
 

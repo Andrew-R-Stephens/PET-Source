@@ -6,14 +6,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.
 import kotlinx.coroutines.flow.Flow
 
 interface LanguageDatastore: DatastoreInterface<LanguagePreferences> {
-    val flow: Flow<LanguagePreferences>
 
     data class LanguagePreferences(
         val languageCode: String
     )
 
     companion object PreferenceKeys {
-        lateinit var KEY_PALETTE: Preferences.Key<String>
+        lateinit var KEY_CURRENT_LANGUAGE_CODE: Preferences.Key<String>
     }
 
 }

@@ -9,5 +9,5 @@ class MicroTransactionDto(
 
 fun MicroTransactionDto.toExternal(): MicroTransactionEntity =
     MicroTransactionEntity(
-        productDetails
+        productDetails = productDetails
     )

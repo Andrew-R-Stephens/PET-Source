@@ -29,12 +29,6 @@ class TypographyDatastore(
             mapPreferences(preferences)
         }
 
-    override fun initialSetupEvent() {
-        liveData {
-            emit(fetchInitialPreferences())
-        }
-    }
-
     init {
         TypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY = stringPreferencesKey(
             context.resources.getString(R.string.preference_savedFont)

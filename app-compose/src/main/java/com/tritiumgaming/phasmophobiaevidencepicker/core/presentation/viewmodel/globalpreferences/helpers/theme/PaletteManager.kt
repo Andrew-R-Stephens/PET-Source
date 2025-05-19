@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme
 
 import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
@@ -24,10 +25,11 @@ class PaletteManager(
     val palettes = _palettes.asStateFlow()
 
     suspend fun fetchPalettes() {
-        val localPalettes: List<MarketPalette> = repository.getLocalPalettes()
-        val remotePalettes: List<MarketPalette> = repository.getRemotePalettes()
 
-        val mergedModels = remotePalettes.fold(localPalettes) { localList, remoteEntity ->
+        val local: List<MarketPalette> = repository.getLocalPalettes().toExternal()
+        val remote: List<MarketPalette> = repository.getRemotePalettes().toExternal()
+
+        val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->
                 if (localEntity.uuid == remoteEntity.uuid) localEntity.copy(
                     uuid = localEntity.uuid,
@@ -50,7 +52,7 @@ class PaletteManager(
     }
 
     fun getPaletteByUUID(uuid: String): ExtendedPalette =
-        palettes.value[uuid]?.palette ?: ExtendedPalette()
+        palettes.value[uuid]?.palette ?: LocalDefaultPalette.palette
 
     fun findNextAvailable(
         direction: IncrementDirection

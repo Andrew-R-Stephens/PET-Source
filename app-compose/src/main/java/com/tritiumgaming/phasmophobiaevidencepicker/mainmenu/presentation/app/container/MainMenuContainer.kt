@@ -17,12 +17,14 @@ class MainMenuContainer(
     dataStore: DataStore<Preferences>
 ) {
 
+    // App Info
     private val appInfoLocalDataSource: AppInfoDataSource = AppInfoLocalDataSource(applicationContext)
     val appInfoRepository: AppInfoRepositoryImpl =
         AppInfoRepositoryImpl(
             localSource = appInfoLocalDataSource
         )
 
+    // Newsletter
     private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSource(applicationContext)
     private val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSource()
     private val newsletterRepository: NewsletterRepositoryImpl =

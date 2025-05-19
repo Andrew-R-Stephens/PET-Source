@@ -4,7 +4,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 
-interface BillableDataSource<T> {
+interface BillableDataSource {
 
     fun getBillableWhere(
         filterField: String, value: String?,

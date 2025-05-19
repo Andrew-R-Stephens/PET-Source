@@ -6,7 +6,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 import kotlinx.coroutines.flow.Flow
 
 interface GlobalPreferencesDatastore: DatastoreInterface<GlobalPreferences> {
-    val flow: Flow<GlobalPreferences>
 
     data class GlobalPreferences(
         val disableScreenSaver: Boolean,
@@ -18,7 +17,7 @@ interface GlobalPreferencesDatastore: DatastoreInterface<GlobalPreferences> {
         val maxHuntWarnFlashTime: Long
     )
 
-    companion object {
+    companion object PreferenceKeys {
         lateinit var KEY_DISABLE_SCREENSAVER: Preferences.Key<Boolean>
         lateinit var KEY_ALLOW_CELLULAR_DATA: Preferences.Key<Boolean>
         lateinit var KEY_ALLOW_HUNT_WARN_AUDIO: Preferences.Key<Boolean>

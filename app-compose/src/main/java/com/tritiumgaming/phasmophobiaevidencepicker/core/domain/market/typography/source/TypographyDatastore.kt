@@ -6,7 +6,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 import kotlinx.coroutines.flow.Flow
 
 interface TypographyDatastore: DatastoreInterface<TypographyPreferences> {
-    val flow: Flow<TypographyPreferences>
 
     suspend fun saveTypography(uuid: String)
 

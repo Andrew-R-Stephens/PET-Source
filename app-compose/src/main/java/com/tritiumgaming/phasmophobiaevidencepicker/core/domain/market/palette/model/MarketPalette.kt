@@ -39,7 +39,3 @@ data class MarketPalette (
                 "palette=${palette})"
     }
 }
-
-fun MarketPalette.toPair(): Pair<String, MarketPalette> {
-    return Pair(uuid, this)
-}

@@ -6,11 +6,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.s
 import kotlinx.coroutines.flow.Flow
 
 interface NewsletterDatastore: DatastoreInterface<NewsletterPreferences> {
-    val flow: Flow<NewsletterPreferences>
-
-    override fun initialSetupEvent()
-    override suspend fun fetchInitialPreferences(): NewsletterPreferences
-    override fun mapPreferences(preferences: Preferences): NewsletterPreferences
 
     suspend fun setLastReadDate(key: Preferences.Key<Long>, date: Long)
 

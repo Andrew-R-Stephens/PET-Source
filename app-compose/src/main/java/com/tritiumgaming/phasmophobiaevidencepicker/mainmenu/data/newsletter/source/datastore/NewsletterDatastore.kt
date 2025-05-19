@@ -32,12 +32,6 @@ class NewsletterDatastore(
             mapPreferences(preferences)
         }
 
-    override fun initialSetupEvent() {
-        liveData {
-            emit(fetchInitialPreferences())
-        }
-    }
-
     init {
         NewsletterDatastore.PreferenceKeys.KEY_INBOX_GENERAL =
             longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_general))

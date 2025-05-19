@@ -17,11 +17,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.TypographyDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.TypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.TypographyRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackingDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences.GlobalPreferencesManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.language.LanguageManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.PaletteManager
@@ -32,6 +33,7 @@ class CoreContainer(
     dataStore: DataStore<Preferences>
 ) {
 
+    // Global Preferences
     private val globalPreferencesRepository: GlobalPreferencesRepository =
         GlobalPreferencesRepositoryImpl()
     private val globalPreferencesDatastore: GlobalPreferencesDatastore =
@@ -44,21 +46,24 @@ class CoreContainer(
         datastore = globalPreferencesDatastore
     )
 
-    val reviewTrackingRepository: ReviewTrackingDatastore =
-        ReviewTrackingDatastore(
+    // Review Tracker
+    val reviewTrackerDatastore: ReviewTrackerDatastore =
+        ReviewTrackerDatastore(
             context = applicationContext,
             dataStore = dataStore
         )
 
+    // Market Bundle
     private val bundleRemoteDataSource: BundleDataSource = BundleRemoteDataSource()
 
+    // Market Typography
     private val typographyLocalDataSource = TypographyLocalDataSource()
     private val typographyRemoteDataSource = TypographyRemoteDataSource()
     private val typographyDatastore = TypographyDatastore(
         context = applicationContext,
         dataStore = dataStore
     )
-    private val typographyRepository: TypographyRepositoryImpl =
+    private val typographyRepository: TypographyRepository =
         TypographyRepositoryImpl(
             networkDataSource = typographyRemoteDataSource,
             localDataSource = typographyLocalDataSource
@@ -69,6 +74,7 @@ class CoreContainer(
         datastore = typographyDatastore
     )
 
+    // Market Palette
     private val paletteLocalDataSource = PaletteLocalDataSource()
     private val paletteRemoteDataSource = PaletteRemoteDataSource()
     private val paletteDatastore = PaletteDatastore(
@@ -85,6 +91,7 @@ class CoreContainer(
         datastore = paletteDatastore
     )
 
+    // Language
     val languageDataSource = LanguageLocalDataSource(applicationContext)
     private val languageRepository: LanguageRepository = LanguageRepositoryImpl(
             dataSource = languageDataSource

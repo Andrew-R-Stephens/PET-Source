@@ -250,4 +250,7 @@ dependencies {
 
     implementation(libs.androidx.ui.graphics)
 
+    implementation(project(":shared"))
+
+
 }

@@ -1,10 +1,18 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore
 
 import androidx.datastore.preferences.core.Preferences
+import androidx.lifecycle.liveData
+import kotlinx.coroutines.flow.Flow
 
 interface DatastoreInterface<T> {
 
-    fun initialSetupEvent()
+    val flow: Flow<T>
+
+    fun initialSetupEvent() {
+        liveData {
+            emit(fetchInitialPreferences())
+        }
+    }
     suspend fun fetchInitialPreferences(): T
     fun mapPreferences(preferences: Preferences): T
 

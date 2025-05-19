@@ -12,13 +12,13 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.Companion.KEY_ALLOW_CELLULAR_DATA
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.Companion.KEY_ALLOW_HUNT_WARN_AUDIO
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.Companion.KEY_ALLOW_INTRODUCTION
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.Companion.KEY_DISABLE_SCREENSAVER
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.Companion.KEY_ENABLE_GHOST_REORDER
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.Companion.KEY_ENABLE_RTL
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.Companion.KEY_HUNT_WARN_MAX_TIMEOUT
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_CELLULAR_DATA
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_HUNT_WARN_AUDIO
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_INTRODUCTION
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_DISABLE_SCREENSAVER
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ENABLE_GHOST_REORDER
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ENABLE_RTL
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_HUNT_WARN_MAX_TIMEOUT
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -38,12 +38,6 @@ class GlobalPreferencesDatastore(
         .map { preferences ->
             mapPreferences(preferences)
         }
-
-    override fun initialSetupEvent() {
-        liveData {
-            emit(fetchInitialPreferences())
-        }
-    }
 
     init {
         Log.d("GlobalPreferences Repository", "Initializing")

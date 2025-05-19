@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme
 
 import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
@@ -24,10 +25,10 @@ class TypographyManager(
     var typographies = _typographies.asStateFlow()
 
     suspend fun fetchTypographies() {
-        val localPalettes: List<MarketTypography> = repository.getLocalTypographies()
-        val remotePalettes: List<MarketTypography> = repository.getRemoteTypographies()
+        val local: List<MarketTypography> = repository.getLocalTypographies().toExternal()
+        val remote: List<MarketTypography> = repository.getRemoteTypographies().toExternal()
 
-        val mergedModels = remotePalettes.fold(localPalettes) { localList, remoteEntity ->
+        val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->
                 if (localEntity.uuid == remoteEntity.uuid) localEntity.copy(
                     uuid = localEntity.uuid,
@@ -50,7 +51,7 @@ class TypographyManager(
     }
 
     fun getTypographyByUUID(uuid: String): ExtendedTypography =
-        typographies.value[uuid]?.typography ?: ExtendedTypography()
+        typographies.value[uuid]?.typography ?: LocalDefaultTypography.typography
 
     fun findNextAvailable(
         direction: IncrementDirection

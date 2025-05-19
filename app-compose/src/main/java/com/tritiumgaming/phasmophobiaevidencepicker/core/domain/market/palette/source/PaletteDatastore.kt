@@ -6,7 +6,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.s
 import kotlinx.coroutines.flow.Flow
 
 interface PaletteDatastore: DatastoreInterface<PalettePreferences> {
-    val flow: Flow<PalettePreferences>
 
     suspend fun savePalette(uuid: String)
 

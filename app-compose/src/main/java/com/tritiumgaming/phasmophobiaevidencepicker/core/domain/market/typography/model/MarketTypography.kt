@@ -40,8 +40,3 @@ data class MarketTypography (
     }
 
 }
-
-fun MarketTypography.toPair(): Pair<String, MarketTypography> {
-    return Pair(uuid, this)
-}
-

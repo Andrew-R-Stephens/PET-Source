@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
 
 interface PaletteRepository {
 
-    suspend fun getLocalPalettes(): List<MarketPalette>
-    suspend fun getRemotePalettes(): List<MarketPalette>
+    suspend fun getLocalPalettes(): List<MarketPaletteDto>
+    suspend fun getRemotePalettes(): List<MarketPaletteDto>
 
 }

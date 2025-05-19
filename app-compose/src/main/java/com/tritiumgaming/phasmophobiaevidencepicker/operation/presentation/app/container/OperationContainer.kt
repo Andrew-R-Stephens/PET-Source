@@ -59,53 +59,57 @@ class OperationContainer(
     /*
      * Investigation Journal
      */
+
+    // Evidence
     val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource(applicationContext)
     val evidenceRepository: EvidenceRepository =
         EvidenceRepositoryImpl(
             localSource = evidenceLocalDataSource
         )
 
+    // Ghost
     val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(applicationContext)
     val ghostRepository: GhostRepository =
         GhostRepositoryImpl(
             localSource = ghostLocalDataSource
         )
 
+    // Ghost Evidence
     val ghostEvidenceLocalDataSource: GhostEvidenceDataSource = GhostEvidenceLocalDataSource(applicationContext)
     val ghostEvidenceRepository: GhostEvidenceRepository =
         GhostEvidenceRepositoryImpl(
             localSource = ghostEvidenceLocalDataSource
         )
+
+    // Journal
     val journalRepository: JournalRepository = JournalRepositoryImpl(
         evidenceRepository = evidenceRepository,
         ghostRepository = ghostRepository,
         ghostEvidenceRepository = ghostEvidenceRepository
     )
 
+    // Evidence Popup
     val evidencePopupLocalDataSource: EvidencePopupDataSource = EvidencePopupLocalDataSource(applicationContext)
     val evidencePopupRepository: EvidencePopupRepositoryImpl =
         EvidencePopupRepositoryImpl(
             localSource = evidencePopupLocalDataSource
     )
 
+    // Ghost Popup
     val ghostPopupLocalDataSource: GhostPopupDataSource = GhostPopupLocalDataSource(applicationContext)
     val ghostPopupRepository: GhostPopupRepositoryImpl =
         GhostPopupRepositoryImpl(
             localSource = ghostPopupLocalDataSource
         )
 
-    /*
-     * Investigation Difficulties
-     */
+    // Difficulty
     val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(applicationContext)
     val difficultyRepository: DifficultyRepository =
         DifficultyRepositoryImpl(
             localSource = difficultyLocalDataSource
         )
 
-    /*
-     * Investigation Missions
-     */
+    // Mission
     val missionLocalDataSource: MissionDataSource = MissionLocalDataSource(applicationContext)
     val missionRepository: MissionRepository =
         MissionRepositoryImpl(
@@ -113,14 +117,16 @@ class OperationContainer(
         )
 
     /*
-     * Maps
+     * Interactive Map
      */
+    // Simple Map
     val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(applicationContext)
     val simpleMapRepository: SimpleMapRepository =
         SimpleMapRepositoryImpl(
             localSource = simpleMapLocalDataSource
         )
 
+    // Complex Map
     val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
         applicationContext = applicationContext,
         service = ComplexMapLocalService()
@@ -133,6 +139,8 @@ class OperationContainer(
     /*
      * Codex
      */
+
+    // Achievements
     val codexAchievementsLocalDataSource: CodexDataSource =
         CodexAchievementsLocalDataSource(applicationContext)
     val achievementsRepository: CodexTypeRepository =
@@ -140,6 +148,7 @@ class OperationContainer(
             localSource = codexAchievementsLocalDataSource
         )
 
+    // Equipment
     val codexEquipmentLocalDataSource: CodexDataSource =
         CodexEquipmentLocalDataSource(applicationContext)
     val equipmentRepository: CodexTypeRepository =
@@ -147,6 +156,7 @@ class OperationContainer(
             localSource = codexEquipmentLocalDataSource
         )
 
+    //Possessions
     val codexPossessionsLocalDataSource: CodexDataSource =
         CodexPossessionsLocalDataSource(applicationContext)
     val possessionsRepository: CodexTypeRepository =
@@ -154,6 +164,7 @@ class OperationContainer(
             localSource = codexPossessionsLocalDataSource
         )
 
+    // Codex
     val codexRepository: CodexRepository =
         CodexRepositoryImpl(
             achievementsRepository = achievementsRepository,

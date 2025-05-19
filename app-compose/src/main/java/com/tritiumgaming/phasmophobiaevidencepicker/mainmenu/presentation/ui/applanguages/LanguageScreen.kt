@@ -34,7 +34,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.LanguageObject
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.LanguageEntity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.PETImageButtonType
@@ -122,7 +122,7 @@ private fun LanguageContent(
 
 @Composable
 private fun LanguageItem(
-    language: LanguageObject,
+    language: LanguageEntity,
     onClick: () -> Unit
 ) {
     val rememberName by remember{ mutableIntStateOf(language.name) }

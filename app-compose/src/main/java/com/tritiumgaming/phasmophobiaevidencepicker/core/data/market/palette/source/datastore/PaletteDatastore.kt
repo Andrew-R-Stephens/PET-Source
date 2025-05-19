@@ -29,12 +29,6 @@ class PaletteDatastore(
             mapPreferences(preferences)
         }
 
-    override fun initialSetupEvent() {
-        liveData {
-            emit(fetchInitialPreferences())
-        }
-    }
-
     init {
         PaletteDatastore.PreferenceKeys.KEY_PALETTE = stringPreferencesKey(
             context.resources.getString(R.string.preference_savedTheme)

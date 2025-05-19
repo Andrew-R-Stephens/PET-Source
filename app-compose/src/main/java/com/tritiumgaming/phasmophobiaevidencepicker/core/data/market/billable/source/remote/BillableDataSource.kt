@@ -4,10 +4,9 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.merchandise.source.api.references.FirestoreBillableCollection.Companion.billableCollection
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.model.NetworkBillableEntity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.source.BillableDataSource
 
-class BillableRemoteDataSource: BillableDataSource<NetworkBillableEntity> {
+class BillableRemoteDataSource: BillableDataSource {
 
     override fun getBillableWhere(
         filterField: String, value: String?,

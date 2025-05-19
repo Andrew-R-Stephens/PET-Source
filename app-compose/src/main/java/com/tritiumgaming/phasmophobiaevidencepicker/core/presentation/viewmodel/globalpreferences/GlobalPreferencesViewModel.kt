@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackingDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences.GlobalPreferencesManager
@@ -16,7 +16,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.
 import kotlinx.coroutines.launch
 
 class GlobalPreferencesViewModel(
-    private val reviewTrackingDatastore: ReviewTrackingDatastore,
+    private val reviewTrackingDatastore: ReviewTrackerDatastore,
     private val globalPreferencesManager: GlobalPreferencesManager,
     private val languageManager: LanguageManager,
     private val typographyManager: TypographyManager,
@@ -151,7 +151,7 @@ class GlobalPreferencesViewModel(
         get() { return reviewTrackingDatastore.canShowReviewButton() }
 
     class GlobalPreferencesFactory(
-        val reviewTrackingRepository: ReviewTrackingDatastore,
+        val reviewTrackingRepository: ReviewTrackerDatastore,
         val globalPreferencesManager: GlobalPreferencesManager,
         val languageManager: LanguageManager,
         val typographyManager: TypographyManager,
@@ -183,7 +183,7 @@ class GlobalPreferencesViewModel(
                 val appKeyContainer =
                     (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).coreContainer
 
-                val reviewTrackingRepository: ReviewTrackingDatastore = appKeyContainer.reviewTrackingRepository
+                val reviewTrackingRepository: ReviewTrackerDatastore = appKeyContainer.reviewTrackerDatastore
                 val globalPreferencesManager: GlobalPreferencesManager = appKeyContainer.globalPreferencesManager
                 val languageManager: LanguageManager = appKeyContainer.languageManager
                 val typographyManager: TypographyManager = appKeyContainer.typographyManager

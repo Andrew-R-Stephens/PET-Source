@@ -4,19 +4,18 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.api.FirestorePaletteApi
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class PaletteRemoteDataSource : PaletteDataSource<List<NetworkPaletteEntity>> {
+class PaletteRemoteDataSource : PaletteDataSource<List<MarketPaletteDto>> {
 
-    override suspend fun fetchAll(): List<NetworkPaletteEntity> =
+    override suspend fun fetchAll(): List<MarketPaletteDto> =
         withContext(Dispatchers.IO) {
 
-            val themesList = mutableListOf<NetworkPaletteEntity>()
+            val themesList = mutableListOf<MarketPaletteDto>()
 
             try {
                 FirestorePaletteApi.Companion.getAllThemes()
@@ -47,8 +46,8 @@ class PaletteRemoteDataSource : PaletteDataSource<List<NetworkPaletteEntity>> {
                                     buyCredits = buyCredits
                                 )
 
-                                val paletteEntity = dto.toExternal()
-                                themesList.add(paletteEntity)
+                                //val paletteDto = dto.toNetwork()
+                                themesList.add(dto)
 
                             } catch (e: Exception) {
                                 Log.d("Firestore", "Error obtaining remote palettes!")
