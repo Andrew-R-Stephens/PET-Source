@@ -26,7 +26,7 @@ private fun NewsMessageScreenPreview() {
             color = LocalPalette.current.surface.color
         ) {
             NewsMessageScreen(
-                inboxID = NewsletterInboxType.InboxTypeDTO.PET.id,
+                inboxID = NewsletterInboxType.NewsletterInboxTypeDTO.PET.id,
                 messageID = 0
             )
         }

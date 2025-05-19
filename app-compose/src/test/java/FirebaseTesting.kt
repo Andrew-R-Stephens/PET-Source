@@ -1,5 +1,5 @@
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.api.firestore.transactions.user.FirestoreUser
+import org.jetbrains.annotations.TestOnly
 import org.junit.Test
 
 class FirebaseTesting {
@@ -8,7 +8,7 @@ class FirebaseTesting {
     fun testFirebaseUserDisplayNameIsNull() {
         val userName = null
 
-        val result = FirestoreUser.getCurrentFirebaseUserDisplayNameInitials(userName)
+        val result = getCurrentFirebaseUserDisplayNameInitials(userName)
 
         assert(result.isEmpty())
     }
@@ -17,7 +17,7 @@ class FirebaseTesting {
     fun testFirebaseUserDisplayNameIsEmpty() {
         val userName = ""
 
-        val result = FirestoreUser.getCurrentFirebaseUserDisplayNameInitials(userName)
+        val result = getCurrentFirebaseUserDisplayNameInitials(userName)
 
         assert(result.isEmpty())
     }
@@ -26,7 +26,7 @@ class FirebaseTesting {
     fun testFirebaseUserDisplayNameHasOneName() {
         val userName = "Andrew"
 
-        val result = FirestoreUser.getCurrentFirebaseUserDisplayNameInitials(userName)
+        val result = getCurrentFirebaseUserDisplayNameInitials(userName)
 
         assert(result.length == 1) {
             println(result);
@@ -37,7 +37,7 @@ class FirebaseTesting {
     fun testFirebaseUserDisplayNameHasTwoNames() {
         val userName = "Andrew Stephens"
 
-        val result = FirestoreUser.getCurrentFirebaseUserDisplayNameInitials(userName)
+        val result = getCurrentFirebaseUserDisplayNameInitials(userName)
 
         assert(result.length == 2) {
             println(result);
@@ -53,11 +53,29 @@ class FirebaseTesting {
             "Randrew Gephens Is A Wierd Dude")
 
         for(userName in userNames) {
-            val result = FirestoreUser.getCurrentFirebaseUserDisplayNameInitials(userName)
+            val result = getCurrentFirebaseUserDisplayNameInitials(userName)
             assert(result.length <= 2)
             Log.d("Test", result)
         }
 
     }
 
+    @TestOnly
+    private fun getCurrentFirebaseUserDisplayNameInitials(displayName: String?): String {
+        val displayInitials = StringBuilder()
+        if (displayName != null) {
+            val names =
+                displayName.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+
+            for (name in names) {
+                val trimmedName = name.trim { it <= ' ' }
+                if (trimmedName.isNotEmpty()) {
+                    val initial = trimmedName[0]
+                    displayInitials.append(initial)
+                    if (displayInitials.length >= 2) { break }
+                }
+            }
+        }
+        return displayInitials.toString()
+    }
 }

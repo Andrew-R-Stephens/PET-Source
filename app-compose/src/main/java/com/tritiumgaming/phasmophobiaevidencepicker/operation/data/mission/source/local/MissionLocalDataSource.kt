@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.sour
 
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.util.ResourceUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ResourceUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
 

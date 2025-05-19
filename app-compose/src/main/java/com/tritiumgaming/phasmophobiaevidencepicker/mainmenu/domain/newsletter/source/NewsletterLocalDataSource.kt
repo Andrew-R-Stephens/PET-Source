@@ -5,6 +5,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.m
 
 interface NewsletterLocalDataSource {
 
-    fun fetchInboxes(): Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>
+    fun fetchInboxes(): Map<NewsletterInboxType.NewsletterInboxTypeDTO, NewsletterInbox>
 
 }

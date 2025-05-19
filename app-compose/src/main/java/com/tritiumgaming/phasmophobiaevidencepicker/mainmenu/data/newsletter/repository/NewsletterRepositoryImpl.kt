@@ -11,7 +11,7 @@ class NewsletterRepositoryImpl(
     private val remoteDataSource: NewsletterRemoteDataSource
 ): NewsletterRepository {
 
-    override suspend fun getInboxes(): Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox> {
+    override suspend fun getInboxes(): Map<NewsletterInboxType.NewsletterInboxTypeDTO, NewsletterInbox> {
 
         val localInboxes = localDataSource.fetchInboxes()
         localInboxes.entries.forEach { inboxPair ->

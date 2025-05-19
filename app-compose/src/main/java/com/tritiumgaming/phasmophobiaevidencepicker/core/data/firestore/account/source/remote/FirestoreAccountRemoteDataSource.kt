@@ -1,0 +1,3 @@
+package com.tritiumgaming.phasmophobiaevidencepicker.core.data.firestore.account.source.remote
+
+class FirestoreAccountRemoteDataSource

@@ -36,17 +36,17 @@ class NewsletterViewModel(
 
     val inboxes = newsletterManager.inboxes
 
-    fun requiresNotify(inboxType: NewsletterInboxType.InboxTypeDTO?): StateFlow<Boolean>? {
+    fun requiresNotify(inboxType: NewsletterInboxType.NewsletterInboxTypeDTO?): StateFlow<Boolean>? {
         if(inboxType == null) return newsletterManager.requiresNotify
 
         return newsletterManager.requiresNotify(inboxType)
     }
 
-    fun getInbox(inboxType: NewsletterInboxType.InboxTypeDTO) =
+    fun getInbox(inboxType: NewsletterInboxType.NewsletterInboxTypeDTO) =
         newsletterManager.getInbox(inboxType)
 
     fun setLastReadDate(
-        inboxType: NewsletterInboxType.InboxTypeDTO, date: Long,
+        inboxType: NewsletterInboxType.NewsletterInboxTypeDTO, date: Long,
         onComplete: () -> Unit = {}
     ) {
         viewModelScope.launch {

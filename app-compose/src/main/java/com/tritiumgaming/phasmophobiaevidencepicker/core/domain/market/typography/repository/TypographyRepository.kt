@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 
 interface TypographyRepository {
 
-    suspend fun getLocalTypographies(): List<TypographyEntity>
-    suspend fun getRemoteTypographies(): List<TypographyEntity>
+    suspend fun getLocalTypographies(): List<MarketTypography>
+    suspend fun getRemoteTypographies(): List<MarketTypography>
 
 }

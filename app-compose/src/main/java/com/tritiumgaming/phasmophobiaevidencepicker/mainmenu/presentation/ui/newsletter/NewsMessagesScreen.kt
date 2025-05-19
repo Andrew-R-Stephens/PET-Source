@@ -55,7 +55,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType.InboxTypeDTO
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType.NewsletterInboxTypeDTO
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
@@ -102,7 +102,7 @@ private fun NewsMessagesContent(
     inboxID: Int
 ) {
 
-    val inboxType: InboxTypeDTO? = NewsletterInboxType.getInbox(inboxID)
+    val inboxType: NewsletterInboxTypeDTO? = NewsletterInboxType.getInbox(inboxID)
     val rememberInbox by remember{
         mutableStateOf(inboxType?.let { newsletterViewModel.getInbox(it) })
     }

@@ -5,6 +5,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.m
 
 interface NewsletterRepository {
 
-    suspend fun getInboxes(): Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>
+    suspend fun getInboxes(): Map<NewsletterInboxType.NewsletterInboxTypeDTO, NewsletterInbox>
 
 }

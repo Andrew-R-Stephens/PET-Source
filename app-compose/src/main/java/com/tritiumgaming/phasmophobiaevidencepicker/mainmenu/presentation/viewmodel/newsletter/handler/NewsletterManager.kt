@@ -25,9 +25,9 @@ class NewsletterManager(
 
         datastore.flow.collect { preferences ->
 
-            val general = getInbox(NewsletterInboxType.InboxTypeDTO.GENERAL)
-            val pet = getInbox(NewsletterInboxType.InboxTypeDTO.PET)
-            val phasmophobia = getInbox(NewsletterInboxType.InboxTypeDTO.PHASMOPHOBIA)
+            val general = getInbox(NewsletterInboxType.NewsletterInboxTypeDTO.GENERAL)
+            val pet = getInbox(NewsletterInboxType.NewsletterInboxTypeDTO.PET)
+            val phasmophobia = getInbox(NewsletterInboxType.NewsletterInboxTypeDTO.PHASMOPHOBIA)
 
             general?.setLastReadDate( preferences.lastReadDateGeneral )
             pet?.setLastReadDate( preferences.lastReadDatePET )
@@ -48,28 +48,28 @@ class NewsletterManager(
     }
 
     private val _inboxes =
-        MutableStateFlow<Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>>(mapOf())
+        MutableStateFlow<Map<NewsletterInboxType.NewsletterInboxTypeDTO, NewsletterInbox>>(mapOf())
     val inboxes = _inboxes.asStateFlow()
     suspend fun createInboxes() {
         _inboxes.update { repository.getInboxes() }
     }
-    fun getInbox(inboxType: NewsletterInboxType.InboxTypeDTO): NewsletterInbox? {
+    fun getInbox(inboxType: NewsletterInboxType.NewsletterInboxTypeDTO): NewsletterInbox? {
         return inboxes.value[inboxType]
     }
 
     private val _requiresNotify = MutableStateFlow<Boolean>(false)
     val requiresNotify = _requiresNotify.asStateFlow()
-    fun requiresNotify(inboxType: NewsletterInboxType.InboxTypeDTO) = getInbox(inboxType)?.requiresNotify
+    fun requiresNotify(inboxType: NewsletterInboxType.NewsletterInboxTypeDTO) = getInbox(inboxType)?.requiresNotify
     fun setRequiresNotify(value: Boolean) {
         _requiresNotify.update { value }
     }
 
 
-    suspend fun setLastReadDate(inboxType: NewsletterInboxType.InboxTypeDTO, date: Long) {
+    suspend fun setLastReadDate(inboxType: NewsletterInboxType.NewsletterInboxTypeDTO, date: Long) {
         val key = when(inboxType) {
-            NewsletterInboxType.InboxTypeDTO.PHASMOPHOBIA -> KEY_INBOX_PHASMOPHOBIA
-            NewsletterInboxType.InboxTypeDTO.PET -> KEY_INBOX_PET
-            NewsletterInboxType.InboxTypeDTO.GENERAL -> KEY_INBOX_GENERAL
+            NewsletterInboxType.NewsletterInboxTypeDTO.PHASMOPHOBIA -> KEY_INBOX_PHASMOPHOBIA
+            NewsletterInboxType.NewsletterInboxTypeDTO.PET -> KEY_INBOX_PET
+            NewsletterInboxType.NewsletterInboxTypeDTO.GENERAL -> KEY_INBOX_GENERAL
         }
         datastore.setLastReadDate(key, date)
     }

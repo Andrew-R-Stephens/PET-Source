@@ -9,15 +9,20 @@ class NewsletterLocalDataSource(
     private val applicationContext: Context
 ): NewsletterLocalDataSource {
 
-    override fun fetchInboxes(): Map<NewsletterInboxType.InboxTypeDTO, NewsletterInbox> {
+    override fun fetchInboxes(): Map<NewsletterInboxType.NewsletterInboxTypeDTO, NewsletterInbox> {
 
-        val inboxes = mutableMapOf<NewsletterInboxType.InboxTypeDTO, NewsletterInbox>()
+        val inboxes = mutableMapOf<NewsletterInboxType.NewsletterInboxTypeDTO, NewsletterInbox>()
 
-        NewsletterInboxType.InboxTypeDTO.entries.forEach {
+        NewsletterInboxType.NewsletterInboxTypeDTO.entries.forEach {
             inboxes[it] = NewsletterInbox(
-                NewsletterInboxType.create(context = applicationContext, inboxType = it)
+                NewsletterInboxType.create(
+                    context = applicationContext,
+                    inboxType = it
+                )
             )
         }
+
+
 
         return inboxes
     }
