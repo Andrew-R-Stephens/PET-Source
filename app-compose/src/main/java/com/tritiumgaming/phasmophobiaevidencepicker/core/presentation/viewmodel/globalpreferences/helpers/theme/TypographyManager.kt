@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class TypographyManager(
-    private val repository: TypographyRepository,
     private val datastore: TypographyDatastore,
     private val fetchTypographiesUseCase: FetchTypographyUsecase,
     private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,

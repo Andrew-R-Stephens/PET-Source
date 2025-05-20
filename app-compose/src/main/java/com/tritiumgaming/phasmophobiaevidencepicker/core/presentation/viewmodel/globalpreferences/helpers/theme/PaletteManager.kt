@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class PaletteManager(
-    private val repository: PaletteRepository,
     private val datastore: PaletteDatastore,
     private val fetchPalettesUseCase: FetchPalettesUseCase,
     private val getPalleteByUUIDUseCase: GetPaletteByUUIDUseCase,

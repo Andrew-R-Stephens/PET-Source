@@ -82,7 +82,6 @@ class CoreContainer(
     private val findNextAvailableTypographyUseCase = FindNextAvailableTypographyUseCase()
     private val getTypographyByUUIDUseCase = GetTypographyByUUIDUseCase()
     val typographyManager: TypographyManager = TypographyManager(
-        repository = typographyRepository,
         datastore = typographyDatastore,
         fetchTypographiesUseCase = fetchTypographiesUseCase,
         getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
@@ -109,7 +108,6 @@ class CoreContainer(
     private val getPaletteByUUIDUseCase = GetPaletteByUUIDUseCase()
     // Market Palette Manager
     val paletteManager: PaletteManager = PaletteManager(
-        repository = paletteRepository,
         datastore = paletteDatastore,
         fetchPalettesUseCase = fetchPalettesUseCase,
         getPalleteByUUIDUseCase = getPaletteByUUIDUseCase,
