@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.usecase
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection

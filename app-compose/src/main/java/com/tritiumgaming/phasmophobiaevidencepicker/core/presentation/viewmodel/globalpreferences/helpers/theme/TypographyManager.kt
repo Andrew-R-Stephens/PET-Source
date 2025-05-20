@@ -1,12 +1,17 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme
 
 import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.TypographyDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FetchTypographyUsecase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalDefaultTypography
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +21,10 @@ import kotlinx.coroutines.flow.update
 
 class TypographyManager(
     private val repository: TypographyRepository,
-    private val datastore: TypographyDatastore
+    private val datastore: TypographyDatastore,
+    private val fetchTypographiesUseCase: FetchTypographyUsecase,
+    private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
+    private val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase
 ) : AThemeManager(
     defaultUUID = LocalDefaultTypography.uuid
 ) {
@@ -25,67 +33,23 @@ class TypographyManager(
     var typographies = _typographies.asStateFlow()
 
     suspend fun fetchTypographies() {
-        val local: List<MarketTypography> = repository.getLocalTypographies().toExternal()
-        val remote: List<MarketTypography> = repository.getRemoteTypographies().toExternal()
-
-        val mergedModels = remote.fold(local) { localList, remoteEntity ->
-            localList.map { localEntity ->
-                if (localEntity.uuid == remoteEntity.uuid) localEntity.copy(
-                    uuid = localEntity.uuid,
-                    name = remoteEntity.name,
-                    group = remoteEntity.group,
-                    buyCredits = remoteEntity.buyCredits,
-                    priority = remoteEntity.priority,
-                    unlocked = remoteEntity.unlocked,
-                    typography = remoteEntity.typography ?: ExtendedTypography()
-                )
-                else localEntity
-            }
-        }
-        Log.d("Typography", "Fetched ${mergedModels.size} typography")
-        mergedModels.forEach {
-            Log.d("Typography", "Fetched $it")
-        }
+        val mergedModels = fetchTypographiesUseCase.invoke()
 
         _typographies.update { mergedModels.toPair() }
     }
 
     fun getTypographyByUUID(uuid: String): ExtendedTypography =
-        typographies.value[uuid]?.typography ?: LocalDefaultTypography.typography
+        getTypographyByUUIDUseCase.invoke(typographies.value, uuid, LocalDefaultTypography.typography)
+
+    fun findNextAvailable(
+        currentUUID: StateFlow<String>,
+        direction: IncrementDirection
+    ): String = findNextAvailableTypographyUseCase.invoke(typographies.value, currentUUID.value, direction)
 
     fun findNextAvailable(
         direction: IncrementDirection
     ): String {
         return findNextAvailable(currentUUID, direction)
-    }
-
-    fun findNextAvailable(
-        currentUUID: StateFlow<String>,
-        direction: IncrementDirection
-    ): String {
-
-        Log.d("Settings", "${currentUUID.value} ${typographies.value.size}")
-        if(typographies.value.isEmpty()) return ""
-
-        val filtered = typographies.value
-            .filter {
-                it.value.typography != null &&
-                        it.value.isUnlocked == true
-            }
-
-        Log.d("Settings", "Filtered: ${filtered.size}")
-        if(filtered.isEmpty()) return ""
-
-        val list = filtered.keys.toList()
-        val currentIndex = list.indexOf(currentUUID.value)
-
-        var increment = currentIndex + direction.value
-        if(increment >= list.size) increment = 0
-        if(increment < 0) increment = list.size - 1
-
-        Log.d("Settings", "Move: $currentIndex $increment $direction")
-
-        return list[increment]
     }
 
     fun initialSetupEvent() {

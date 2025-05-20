@@ -8,7 +8,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.r
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FetchPalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.usecase.FindNextAvailablePaletteUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,13 +39,13 @@ class PaletteManager(
         getPalleteByUUIDUseCase.invoke(palettes.value, uuid, LocalDefaultPalette.palette)
 
     fun findNextAvailable(
-        direction: IncrementDirection
-    ): String = findNextAvailable(currentUUID, direction)
-
-    fun findNextAvailable(
         currentUUID: StateFlow<String>,
         direction: IncrementDirection
     ): String = findNextAvailablePaletteUseCase.invoke(palettes.value, currentUUID.value, direction)
+
+    fun findNextAvailable(
+        direction: IncrementDirection
+    ): String = findNextAvailable(currentUUID, direction)
 
     fun initialSetupEvent() {
         datastore.initialSetupEvent()
