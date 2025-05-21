@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.data.db_unused
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

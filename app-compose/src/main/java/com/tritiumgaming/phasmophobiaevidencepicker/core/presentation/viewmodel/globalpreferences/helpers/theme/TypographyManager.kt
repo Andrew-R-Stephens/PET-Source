@@ -1,17 +1,13 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toPair
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.TypographyDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FetchTypographyUsecase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyUsecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalDefaultTypography
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,18 +17,31 @@ import kotlinx.coroutines.flow.update
 
 class TypographyManager(
     private val datastore: TypographyDatastore,
-    private val fetchTypographiesUseCase: FetchTypographyUsecase,
+    private val getTypographiesUseCase: GetTypographyUsecase,
     private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
     private val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase
-) : AThemeManager(
-    defaultUUID = LocalDefaultTypography.uuid
-) {
+): ThemeManager {
+
+    override val defaultUUID: String = LocalDefaultTypography.uuid
+
+    private val _currentUUID : MutableStateFlow<String> = MutableStateFlow(defaultUUID)
+    val currentUUID = _currentUUID.asStateFlow()
+    override suspend fun setCurrentUUID(uuid: String) {
+        _currentUUID.update { uuid }
+        saveCurrentUUID()
+        Log.d("Settings", "$uuid -> ${_currentUUID.value} == ${this.currentUUID.value}")
+    }
+
+    override suspend fun saveCurrentUUID() {
+        Log.d("Settings", "Attempting save typography.")
+        datastore.saveTypography(currentUUID.value)
+    }
 
     private val _typographies = MutableStateFlow(mapOf<String, MarketTypography>())
     var typographies = _typographies.asStateFlow()
 
     suspend fun fetchTypographies() {
-        val mergedModels = fetchTypographiesUseCase.invoke()
+        val mergedModels = getTypographiesUseCase.invoke()
 
         _typographies.update { mergedModels.toPair() }
     }
@@ -64,9 +73,5 @@ class TypographyManager(
         }
     }
 
-    override suspend fun saveCurrentUUID() {
-        Log.d("Settings", "Attempting save typography.")
-        datastore.saveTypography(currentUUID.value)
-    }
 
 }

@@ -20,13 +20,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FetchPalettesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FetchTypographyUsecase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyUsecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences.GlobalPreferencesManager
@@ -76,14 +77,14 @@ class CoreContainer(
 
         )
     //Market Typography Use Cases
-    private val fetchTypographiesUseCase = FetchTypographyUsecase(
+    private val fetchTypographiesUseCase = GetTypographyUsecase(
         repository = typographyRepository
     )
     private val findNextAvailableTypographyUseCase = FindNextAvailableTypographyUseCase()
     private val getTypographyByUUIDUseCase = GetTypographyByUUIDUseCase()
     val typographyManager: TypographyManager = TypographyManager(
         datastore = typographyDatastore,
-        fetchTypographiesUseCase = fetchTypographiesUseCase,
+        getTypographiesUseCase = fetchTypographiesUseCase,
         getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
         findNextAvailableTypographyUseCase = findNextAvailableTypographyUseCase
     )
@@ -101,7 +102,7 @@ class CoreContainer(
             localPaletteSource = paletteLocalDataSource
         )
     //Market Palette Use Cases
-    private val fetchPalettesUseCase = FetchPalettesUseCase(
+    private val fetchPalettesUseCase = GetPalettesUseCase(
         repository = paletteRepository
     )
     private val findNextAvailablePaletteUseCase = FindNextAvailablePaletteUseCase()
@@ -109,8 +110,8 @@ class CoreContainer(
     // Market Palette Manager
     val paletteManager: PaletteManager = PaletteManager(
         datastore = paletteDatastore,
-        fetchPalettesUseCase = fetchPalettesUseCase,
-        getPalleteByUUIDUseCase = getPaletteByUUIDUseCase,
+        getPalettesUseCase = fetchPalettesUseCase,
+        getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
         findNextAvailablePaletteUseCase = findNextAvailablePaletteUseCase
     )
 
@@ -123,9 +124,10 @@ class CoreContainer(
         context = applicationContext,
         dataStore = dataStore
     )
+    val getLanguageUseCase = GetLanguageUseCase(repository = languageRepository)
     val languageManager: LanguageManager = LanguageManager(
-        repository = languageRepository,
-        datastore = languageDatastore
+        datastore = languageDatastore,
+        getLanguagesUseCase = getLanguageUseCase
     )
 
 }

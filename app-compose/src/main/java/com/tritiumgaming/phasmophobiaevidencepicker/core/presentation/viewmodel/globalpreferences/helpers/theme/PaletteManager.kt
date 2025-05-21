@@ -4,9 +4,8 @@ import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FetchPalettesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
@@ -18,24 +17,38 @@ import kotlinx.coroutines.flow.update
 
 class PaletteManager(
     private val datastore: PaletteDatastore,
-    private val fetchPalettesUseCase: FetchPalettesUseCase,
-    private val getPalleteByUUIDUseCase: GetPaletteByUUIDUseCase,
+    private val getPalettesUseCase: GetPalettesUseCase,
+    private val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
     private val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase
-) : AThemeManager(
-    defaultUUID = LocalDefaultPalette.uuid,
-) {
+): ThemeManager {
+
+    override val defaultUUID: String = LocalDefaultPalette.uuid
+
+    private val _currentUUID : MutableStateFlow<String> = MutableStateFlow(defaultUUID)
+    val currentUUID = _currentUUID.asStateFlow()
+
+    override suspend fun setCurrentUUID(uuid: String) {
+        _currentUUID.update { uuid }
+        saveCurrentUUID()
+        Log.d("Settings", "$uuid -> ${_currentUUID.value} == ${this.currentUUID.value}")
+    }
+
+    override suspend fun saveCurrentUUID() {
+        Log.d("Settings", "Attempting save palette.")
+        datastore.savePalette(currentUUID.value)
+    }
 
     private val _palettes = MutableStateFlow(mapOf<String, MarketPalette>())
     val palettes = _palettes.asStateFlow()
 
     suspend fun fetchPalettes() {
-        val mergedModels = fetchPalettesUseCase.invoke()
+        val mergedModels = getPalettesUseCase.invoke()
 
         _palettes.update { mergedModels.toPair() }
     }
 
     fun getPaletteByUUID(uuid: String): ExtendedPalette =
-        getPalleteByUUIDUseCase.invoke(palettes.value, uuid, LocalDefaultPalette.palette)
+        getPaletteByUUIDUseCase.invoke(palettes.value, uuid, LocalDefaultPalette.palette)
 
     fun findNextAvailable(
         currentUUID: StateFlow<String>,
@@ -57,11 +70,6 @@ class PaletteManager(
             }
             Log.d("Color", "Collecting from flow:\n\tID -> ${currentUUID.value}")
         }
-    }
-
-    override suspend fun saveCurrentUUID() {
-        Log.d("Settings", "Attempting save palette.")
-        datastore.savePalette(currentUUID.value)
     }
 
 }
