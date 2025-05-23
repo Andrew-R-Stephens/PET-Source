@@ -1,4 +1,4 @@
- package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences
 
  import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesDatastoreRepository
 

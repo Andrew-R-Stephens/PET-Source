@@ -6,7 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 
 class FindNextAvailableTypographyUseCase {
 
-    fun invoke(
+    operator fun invoke(
         typograhys: Map<String, MarketTypography>,
         currentUUID: String,
         direction: IncrementDirection

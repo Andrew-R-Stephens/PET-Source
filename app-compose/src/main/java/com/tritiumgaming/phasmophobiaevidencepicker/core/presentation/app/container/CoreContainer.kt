@@ -23,15 +23,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repo
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesDatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.InitFlowGlobalPreferencesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowCellularDataUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowIntroductionUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetDisableScreenSaverUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetEnableGhostReorderUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetEnableRTLUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetupGlobalPreferencesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetDisableScreenSaverUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetEnableGhostReorderUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetEnableRTLUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguagesUseCase
@@ -107,38 +107,27 @@ class CoreContainer(
             )
         )
     val getReviewRequestStatusUseCase: GetReviewRequestStatusUseCase = GetReviewRequestStatusUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val loadReviewRequestStatusUseCase: LoadReviewRequestStatusUseCase = LoadReviewRequestStatusUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val initializeReviewTrackerUseCase = InitFlowReviewTrackerUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase = SetReviewRequestStatusUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val setAppTimeAliveUseCase: SetAppTimeAliveUseCase = SetAppTimeAliveUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val getAppTimeAliveUseCase: GetAppTimeAliveUseCase = GetAppTimeAliveUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val loadAppTimeAliveUseCase: LoadAppTimeAliveUseCase = LoadAppTimeAliveUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val setAppTimesOpenedUseCase = SetAppTimesOpenedUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val getAppTimesOpenedUseCase = GetAppTimesOpenedUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
     val loadAppTimesOpenedUseCase = LoadAppTimesOpenedUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
-    )
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
 
     /**
      *  Market Bundle

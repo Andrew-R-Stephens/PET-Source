@@ -5,7 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 
 class GetTypographyByUUIDUseCase {
 
-    fun invoke(
+    operator fun invoke(
         typographies: Map<String, MarketTypography>,
         uuid: String, defautTypography: ExtendedTypography
     ): ExtendedTypography =

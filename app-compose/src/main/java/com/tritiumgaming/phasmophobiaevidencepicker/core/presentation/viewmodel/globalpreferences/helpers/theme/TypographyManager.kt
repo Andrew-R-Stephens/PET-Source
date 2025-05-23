@@ -41,18 +41,18 @@ class TypographyManager(
     var typographies = _typographies.asStateFlow()
 
     suspend fun fetchTypographies() {
-        val mergedModels = getTypographiesUseCase.invoke()
+        val mergedModels = getTypographiesUseCase()
 
         _typographies.update { mergedModels.toPair() }
     }
 
     fun getTypographyByUUID(uuid: String): ExtendedTypography =
-        getTypographyByUUIDUseCase.invoke(typographies.value, uuid, LocalDefaultTypography.typography)
+        getTypographyByUUIDUseCase(typographies.value, uuid, LocalDefaultTypography.typography)
 
     fun findNextAvailable(
         currentUUID: StateFlow<String>,
         direction: IncrementDirection
-    ): String = findNextAvailableTypographyUseCase.invoke(typographies.value, currentUUID.value, direction)
+    ): String = findNextAvailableTypographyUseCase(typographies.value, currentUUID.value, direction)
 
     fun findNextAvailable(
         direction: IncrementDirection

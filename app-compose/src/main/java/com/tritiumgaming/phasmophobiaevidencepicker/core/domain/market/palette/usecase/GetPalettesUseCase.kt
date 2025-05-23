@@ -10,7 +10,7 @@ class GetPalettesUseCase(
     private val repository: PaletteRepository
 ) {
 
-    suspend fun invoke(): List<MarketPalette> {
+    suspend operator fun invoke(): List<MarketPalette> {
         val local: List<MarketPalette> = repository.getLocalPalettes().toExternal()
         val remote: List<MarketPalette> = repository.getRemotePalettes().toExternal()
 

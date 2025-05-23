@@ -42,18 +42,18 @@ class PaletteManager(
     val palettes = _palettes.asStateFlow()
 
     suspend fun fetchPalettes() {
-        val mergedModels = getPalettesUseCase.invoke()
+        val mergedModels = getPalettesUseCase()
 
         _palettes.update { mergedModels.toPair() }
     }
 
     fun getPaletteByUUID(uuid: String): ExtendedPalette =
-        getPaletteByUUIDUseCase.invoke(palettes.value, uuid, LocalDefaultPalette.palette)
+        getPaletteByUUIDUseCase(palettes.value, uuid, LocalDefaultPalette.palette)
 
     fun findNextAvailable(
         currentUUID: StateFlow<String>,
         direction: IncrementDirection
-    ): String = findNextAvailablePaletteUseCase.invoke(palettes.value, currentUUID.value, direction)
+    ): String = findNextAvailablePaletteUseCase(palettes.value, currentUUID.value, direction)
 
     fun findNextAvailable(
         direction: IncrementDirection

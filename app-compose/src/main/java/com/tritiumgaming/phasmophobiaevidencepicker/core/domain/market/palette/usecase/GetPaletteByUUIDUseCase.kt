@@ -5,7 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 
 class GetPaletteByUUIDUseCase {
 
-    fun invoke(
+    operator fun invoke(
         palettes: Map<String, MarketPalette>,
         uuid: String, defaultPalette: ExtendedPalette
     ): ExtendedPalette =

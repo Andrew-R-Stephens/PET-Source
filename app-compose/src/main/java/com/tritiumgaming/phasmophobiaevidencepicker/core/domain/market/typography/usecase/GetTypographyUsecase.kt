@@ -10,7 +10,7 @@ class GetTypographyUsecase(
     private val repository: TypographyRepository
 ) {
 
-    suspend fun invoke(): List<MarketTypography> {
+    suspend operator fun invoke(): List<MarketTypography> {
         val local: List<MarketTypography> = repository.getLocalTypographies().toExternal()
         val remote: List<MarketTypography> = repository.getRemoteTypographies().toExternal()
 
