@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreInterface
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore.PalettePreferences
-import kotlinx.coroutines.flow.Flow
 
 interface PaletteDatastore: DatastoreInterface<PalettePreferences> {
 

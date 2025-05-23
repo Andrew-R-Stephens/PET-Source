@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreInterface
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.NewsletterPreferences
-import kotlinx.coroutines.flow.Flow
 
 interface NewsletterDatastore: DatastoreInterface<NewsletterPreferences> {
 

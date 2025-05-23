@@ -1,20 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences
 
-import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
 
 class GlobalPreferencesManager(
-    repository: GlobalPreferencesRepository,
-    private val datastore: GlobalPreferencesDatastore
+    private val datastore: GlobalPreferencesDatastoreDataSource
 ) {
 
-    fun initialSetupEvent() {
+    /*fun initialSetupEvent() {
         datastore.initialSetupEvent()
     }
 
@@ -89,6 +81,6 @@ class GlobalPreferencesManager(
     suspend fun setAllowHuntWarnAudio(isAllowed: Boolean) {
         _allowHuntWarnAudio.value = isAllowed
         datastore.setAllowHuntWarnAudio(isAllowed)
-    }
+    }*/
 
 }

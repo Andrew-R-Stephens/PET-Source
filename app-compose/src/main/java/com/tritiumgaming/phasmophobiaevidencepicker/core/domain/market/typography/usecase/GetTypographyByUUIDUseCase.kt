@@ -1,8 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
 class GetTypographyByUUIDUseCase {

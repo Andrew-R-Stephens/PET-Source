@@ -130,7 +130,7 @@ private fun SettingsContent(
 
                     LabeledSwitch(
                         label = stringResource(R.string.settings_screenalwayson),
-                        checked = globalPreferencesViewModel.screenSaverPreference,
+                        checked = globalPreferencesViewModel.screensaverPreference,
                         onChange = {
                             globalPreferencesViewModel.setScreenSaverPreference(it)
                         }
@@ -321,7 +321,7 @@ private fun saveAllPreferences(
 
     val activity = (context as PETActivity)
 
-    if (globalPreferencesViewModel.screenSaverPreference.value) {
+    if (globalPreferencesViewModel.screensaverPreference.value) {
         activity.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 

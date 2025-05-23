@@ -75,7 +75,7 @@ fun HuntTimeoutPreferenceSeekbar(
     globalPreferencesViewModel: GlobalPreferencesViewModel =
         viewModel ( factory = GlobalPreferencesViewModel.Factory )
 ) {
-    val timeoutState = globalPreferencesViewModel.huntWarnTimeoutPreference.collectAsStateWithLifecycle()
+    val timeoutState = globalPreferencesViewModel.huntWarnDurationPreference.collectAsStateWithLifecycle()
     var rememberSliderPosition by remember { mutableFloatStateOf(
         PhaseHandler.timeAsPercent(timeoutState.value)
     ) }
@@ -90,7 +90,7 @@ fun HuntTimeoutPreferenceSeekbar(
             valueRange = 0f..1f,
             steps = 100,
             onValueChangeFinished = {
-                globalPreferencesViewModel.setHuntWarnTimeoutPreference(
+                globalPreferencesViewModel.setHuntWarnDurationPreference(
                     PhaseHandler.percentAsTime(rememberSliderPosition)
                 )
                 //rememberSliderPosition = PhaseHandler.timeAsPercent(timeoutState.value)
@@ -180,7 +180,7 @@ fun HuntTimeoutPreferenceSeekbar(
                         rememberSliderState.value = it
                     },
                     onValueChangeFinished = {
-                        globalPreferencesViewModel.setHuntWarnTimeoutPreference(
+                        globalPreferencesViewModel.setHuntWarnDurationPreference(
                             PhaseHandler.percentAsTime(rememberSliderPosition)
                         )
                         Log.d("Slider", "Slider finished $rememberSliderPosition ${timeoutState.value}")

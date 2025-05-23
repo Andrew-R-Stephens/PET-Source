@@ -9,9 +9,9 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
-import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_CELLULAR_DATA
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_HUNT_WARN_AUDIO
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_INTRODUCTION
@@ -19,13 +19,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ENABLE_GHOST_REORDER
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ENABLE_RTL
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_HUNT_WARN_MAX_TIMEOUT
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-class GlobalPreferencesDatastore(
+class GlobalPreferencesDatastoreDataSource(
     context: Context,
     private val dataStore: DataStore<Preferences>
 ): GlobalPreferencesDatastore {
@@ -61,46 +60,95 @@ class GlobalPreferencesDatastore(
     }
 
     // Generic settings
-    suspend fun setDisableScreenSaver(disable: Boolean) {
+    override suspend fun setDisableScreenSaver(disable: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_DISABLE_SCREENSAVER] = disable
         }
     }
+    override fun getDisableScreenSaver(): Boolean {
+        var disabled = false
+        dataStore.data.map { preferences ->
+            preferences[KEY_DISABLE_SCREENSAVER]?.let { disabled = it }
+        }
+        return disabled
+    }
 
-    suspend fun setAllowCellularData(allow: Boolean) {
+    override suspend fun setAllowCellularData(allow: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_ALLOW_CELLULAR_DATA] = allow
         }
     }
+    override fun getAllowCellularData(): Boolean {
+        var allowed = false
+        dataStore.data.map { preferences ->
+            preferences[KEY_ALLOW_CELLULAR_DATA]?.let { allowed = it }
+        }
+        return allowed
+    }
 
-    suspend fun setEnableRTL(enable: Boolean) {
+    override suspend fun setEnableRTL(enable: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_ENABLE_RTL] = enable
         }
     }
+    override fun getEnableRTL(): Boolean {
+        var enabled = false
+        dataStore.data.map { preferences ->
+            preferences[KEY_ENABLE_RTL]?.let { enabled = it }
+        }
+        return enabled
+    }
 
-    suspend fun setEnableGhostReorder(enable: Boolean) {
+    override suspend fun setEnableGhostReorder(enable: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_ENABLE_GHOST_REORDER] = enable
         }
     }
+    override fun getEnableGhostReorder(): Boolean {
+        var enabled = false
+        dataStore.data.map { preferences ->
+            preferences[KEY_ENABLE_GHOST_REORDER]?.let { enabled = it }
+        }
+        return enabled
+    }
 
-    suspend fun setAllowIntroduction(allow: Boolean) {
+    override suspend fun setAllowIntroduction(allow: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_ALLOW_INTRODUCTION] = allow
         }
     }
+    override fun getAllowIntroduction(): Boolean {
+        var allowed = false
+        dataStore.data.map { preferences ->
+            preferences[KEY_ALLOW_INTRODUCTION]?.let { allowed = it }
+        }
+        return allowed
+    }
 
-    suspend fun setMaxHuntWarnFlashTime(maxTime: Long) {
+    override suspend fun setMaxHuntWarnFlashTime(maxTime: Long) {
         dataStore.edit { preferences ->
             preferences[KEY_HUNT_WARN_MAX_TIMEOUT] = maxTime
         }
     }
+    override fun getMaxHuntWarnFlashTime(): Long {
+        var maxTime = 0L
+        dataStore.data.map { preferences ->
+            preferences[KEY_HUNT_WARN_MAX_TIMEOUT]?.let { maxTime = it }
+        }
+        return maxTime
+    }
 
-    suspend fun setAllowHuntWarnAudio(allowed: Boolean) {
+    override suspend fun setAllowHuntWarnAudio(allowed: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_ALLOW_HUNT_WARN_AUDIO] = allowed
         }
+    }
+    override fun getAllowHuntWarnAudio(): Boolean {
+        var allowed = false
+        dataStore.data.map { preferences ->
+            preferences[KEY_ALLOW_HUNT_WARN_AUDIO]?.let { allowed = it }
+        }
+        return allowed
     }
 
     override suspend fun fetchInitialPreferences() =

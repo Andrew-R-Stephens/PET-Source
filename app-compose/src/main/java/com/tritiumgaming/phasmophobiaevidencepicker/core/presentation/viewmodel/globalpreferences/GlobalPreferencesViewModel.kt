@@ -8,6 +8,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.InitFlowGlobalPreferencesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowCellularDataUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowIntroductionUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetDisableScreenSaverUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetEnableGhostReorderUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetEnableRTLUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetupGlobalPreferencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguagesUseCase
@@ -28,10 +37,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences.GlobalPreferencesManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.PaletteManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.TypographyManager
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -39,11 +49,19 @@ import java.util.Locale
 
 class GlobalPreferencesViewModel(
     // Global Preferences
-    private val globalPreferencesManager: GlobalPreferencesManager,
+    private val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase,
+    private val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase,
+    private val setAllowCellularDataUseCase: SetAllowCellularDataUseCase,
+    private val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase,
+    private val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
+    private val setDisableScreenSaverUseCase: SetDisableScreenSaverUseCase,
+    private val setEnableGhostReorderUseCase: SetEnableGhostReorderUseCase,
+    private val setEnableRTLUseCase: SetEnableRTLUseCase,
+    private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     // Languages
     private val getLanguagesUseCase: GetLanguagesUseCase,
     private val setupLanguageUseCase: SetupLanguageUseCase,
-    private val initializeLanguageUseCase: InitFlowLanguageUseCase,
+    private val initFlowLanguageUseCase: InitFlowLanguageUseCase,
     private val setCurrentLanguageUseCase: SetCurrentLanguageUseCase,
     private val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
     private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
@@ -53,7 +71,7 @@ class GlobalPreferencesViewModel(
     private val paletteManager: PaletteManager,
     // Review Tracker
     private val setupReviewTrackerUseCase: SetupReviewTrackerUseCase,
-    private val initializeReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
+    private val initFlowReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
     private val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
     private val getReviewRequestStatusUseCase: GetReviewRequestStatusUseCase,
     private val loadReviewRequestStatusUseCase: LoadReviewRequestStatusUseCase,
@@ -66,7 +84,7 @@ class GlobalPreferencesViewModel(
 ) : ViewModel() {
 
     private fun initialSetupEvent() {
-        globalPreferencesManager.initialSetupEvent()
+        setupGlobalPreferencesUseCase()
         setupReviewTrackerUseCase()
         setupLanguageUseCase()
         paletteManager.initialSetupEvent()
@@ -79,24 +97,26 @@ class GlobalPreferencesViewModel(
         initialSetupEvent()
 
         viewModelScope.launch {
-            initializeReviewTrackerUseCase().collect { preferences ->
-                _wasReviewRequested.update {
-                    preferences.allowRequestReview
-                }
-                _appTimeActive.update {
-                    preferences.timeActive
-                }
-                _timesOpened.update {
-                    preferences.timesOpened
-                }
+            initFlowReviewTrackerUseCase().collect { preferences ->
+                _wasReviewRequested.update { preferences.allowRequestReview }
+                _appTimeActive.update { preferences.timeActive }
+                _timesOpened.update { preferences.timesOpened }
             }
         }
 
         viewModelScope.launch {
-            globalPreferencesManager.initFlow()
+            initFlowGlobalPreferencesUseCase().collect { preferences ->
+                _screensaverPreference.update { preferences.disableScreenSaver }
+                _networkPreference.update { preferences.allowCellularData }
+                _huntWarningAudioPreference.update { preferences.allowHuntWarnAudio }
+                _ghostReorderPreference.update { preferences.enableGhostReorder }
+                _introductionPermissionPreference.update { preferences.allowIntroduction }
+                _rTLPreference.update { preferences.enableRTL }
+                _huntWarnDurationPreference.update { preferences.maxHuntWarnFlashTime }
+            }
         }
         viewModelScope.launch {
-            initializeLanguageUseCase().collect { preferences ->
+            initFlowLanguageUseCase().collect { preferences ->
                 _currentLanguageCode.update { preferences.languageCode }
                 Log.d("Language", "Collected Language Code: ${preferences.languageCode}")
 
@@ -121,6 +141,74 @@ class GlobalPreferencesViewModel(
         }
         viewModelScope.launch {
             typographyManager.fetchTypographies()
+        }
+    }
+
+    /**
+     * Global Preferences
+     */
+    // Generic settings
+    private val _screensaverPreference = MutableStateFlow(false)
+    var screensaverPreference = _screensaverPreference.asStateFlow()
+    fun setScreenSaverPreference(disable: Boolean) {
+        _screensaverPreference.update { disable }
+        viewModelScope.launch {
+            setDisableScreenSaverUseCase(disable)
+        }
+    }
+
+    private val _networkPreference = MutableStateFlow(true)
+    var networkPreference = _networkPreference.asStateFlow()
+    fun setNetworkPreference(allow: Boolean) {
+        _networkPreference.update { allow }
+        viewModelScope.launch {
+            setAllowCellularDataUseCase(allow)
+        }
+    }
+
+    private val _rTLPreference = MutableStateFlow(false)
+    val rTLPreference = _rTLPreference.asStateFlow()
+    fun setRTLPreference(enable: Boolean) {
+        _rTLPreference.update { enable }
+        viewModelScope.launch {
+            setEnableRTLUseCase(enable)
+        }
+    }
+
+    private val _ghostReorderPreference = MutableStateFlow(true)
+    val ghostReorderPreference = _ghostReorderPreference.asStateFlow()
+    fun setGhostReorderPreference(allow: Boolean) {
+        _ghostReorderPreference.update { allow }
+        viewModelScope.launch {
+            setEnableGhostReorderUseCase(allow)
+        }
+    }
+
+    private val _introductionPermissionPreference = MutableStateFlow(true)
+    val introductionPermissionPreference = _introductionPermissionPreference.asStateFlow()
+    fun setIntroductionPermissionPreference(allow: Boolean) {
+        _introductionPermissionPreference.update { allow }
+        viewModelScope.launch {
+            setAllowIntroductionUseCase(allow)
+        }
+    }
+
+    private val _huntWarnDurationPreference = MutableStateFlow(PhaseHandler.Time.FOREVER)
+    val huntWarnDurationPreference: StateFlow<Long> = _huntWarnDurationPreference.asStateFlow()
+    fun setHuntWarnDurationPreference(maxTime: Long) {
+        val time = maxTime.coerceIn(PhaseHandler.Time.MIN_TIME, PhaseHandler.Time.MAX_TIME)
+        _huntWarnDurationPreference.update { time }
+        viewModelScope.launch {
+            setMaxHuntWarnFlashTimeUseCase(time)
+        }
+    }
+
+    private val _huntWarningAudioPreference = MutableStateFlow(true)
+    val huntWarningAudioPreference: StateFlow<Boolean> = _huntWarningAudioPreference.asStateFlow()
+    fun setHuntWarningAudioPreference(isAllowed: Boolean) {
+        _huntWarningAudioPreference.update { isAllowed }
+        viewModelScope.launch {
+            setAllowHuntWarnAudioUseCase(isAllowed)
         }
     }
 
@@ -233,89 +321,60 @@ class GlobalPreferencesViewModel(
     }
     fun getTypographyByUUID(uuid: String) = typographyManager.getTypographyByUUID(uuid)
 
-    /**
-     * Global Preferences
-     */
-    val screenSaverPreference = globalPreferencesManager.disableScreensaver
-    fun setScreenSaverPreference(disable: Boolean) {
-        viewModelScope.launch {
-            globalPreferencesManager.setDisableScreenSaver(disable)
-        }
-    }
-
-    val networkPreference = globalPreferencesManager.allowCellularData
-    fun setNetworkPreference(allow: Boolean) {
-        viewModelScope.launch {
-            globalPreferencesManager.setAllowCellularData(allow)
-        }
-    }
-
-    val rTLPreference = globalPreferencesManager.enableRTL
-    fun setRTLPreference(enable: Boolean) {
-        viewModelScope.launch {
-            globalPreferencesManager.setEnableRTL(enable)
-        }
-    }
-
-    val huntWarningAudioPreference = globalPreferencesManager.allowHuntWarnAudio
-    fun setHuntWarningAudioPreference(enable: Boolean) {
-        viewModelScope.launch {
-            globalPreferencesManager.setAllowHuntWarnAudio(enable)
-        }
-    }
-
-    val huntWarnTimeoutPreference = globalPreferencesManager.maxHuntWarnFlashTime
-    fun setHuntWarnTimeoutPreference(timeout: Long) {
-        viewModelScope.launch {
-            globalPreferencesManager.setHuntWarnFlashTimeMax(timeout)
-        }
-    }
-
-    val ghostReorderPreference = globalPreferencesManager.enableGhostReorder
-    fun setGhostReorderPreference(allow: Boolean) {
-        viewModelScope.launch {
-            globalPreferencesManager.setEnableGhostReorder(allow)
-        }
-    }
-
     class GlobalPreferencesFactory(
-        val globalPreferencesManager: GlobalPreferencesManager,
-        val getLanguagesUseCase: GetLanguagesUseCase,
-        val setupLanguageUseCase: SetupLanguageUseCase,
-        val initializeLanguageUseCase: InitFlowLanguageUseCase,
-        val setCurrentLanguageUseCase: SetCurrentLanguageUseCase,
-        val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
-        val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
-        val typographyManager: TypographyManager,
-        val paletteManager: PaletteManager,
-        val setupReviewTrackerUseCase: SetupReviewTrackerUseCase,
-        val initializeReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
-        val getReviewRequestStatusUseCase: GetReviewRequestStatusUseCase,
-        val loadReviewRequestStatusUseCase: LoadReviewRequestStatusUseCase,
-        val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
-        val setAppTimeAliveUseCase: SetAppTimeAliveUseCase,
-        val getAppTimeAliveUseCase: GetAppTimeAliveUseCase,
-        val loadAppTimeAliveUseCase: LoadAppTimeAliveUseCase,
-        val setAppTimesOpenedUseCase: SetAppTimesOpenedUseCase,
-        val getAppTimesOpenedUseCase: GetAppTimesOpenedUseCase,
-        val loadAppTimesOpenedUseCase: LoadAppTimesOpenedUseCase
+        private val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase,
+        private val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase,
+        private val setAllowCellularDataUseCase: SetAllowCellularDataUseCase,
+        private val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase,
+        private val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
+        private val setDisableScreenSaverUseCase: SetDisableScreenSaverUseCase,
+        private val setEnableGhostReorderUseCase: SetEnableGhostReorderUseCase,
+        private val setEnableRTLUseCase: SetEnableRTLUseCase,
+        private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
+        private val getLanguagesUseCase: GetLanguagesUseCase,
+        private val setupLanguageUseCase: SetupLanguageUseCase,
+        private val initializeLanguageUseCase: InitFlowLanguageUseCase,
+        private val setCurrentLanguageUseCase: SetCurrentLanguageUseCase,
+        private val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
+        private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
+        private val typographyManager: TypographyManager,
+        private val paletteManager: PaletteManager,
+        private val setupReviewTrackerUseCase: SetupReviewTrackerUseCase,
+        private val initializeReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
+        private val getReviewRequestStatusUseCase: GetReviewRequestStatusUseCase,
+        private val loadReviewRequestStatusUseCase: LoadReviewRequestStatusUseCase,
+        private val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
+        private val setAppTimeAliveUseCase: SetAppTimeAliveUseCase,
+        private val getAppTimeAliveUseCase: GetAppTimeAliveUseCase,
+        private val loadAppTimeAliveUseCase: LoadAppTimeAliveUseCase,
+        private val setAppTimesOpenedUseCase: SetAppTimesOpenedUseCase,
+        private val getAppTimesOpenedUseCase: GetAppTimesOpenedUseCase,
+        private val loadAppTimesOpenedUseCase: LoadAppTimesOpenedUseCase
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(GlobalPreferencesViewModel::class.java)) {
                 val viewModel =
                     GlobalPreferencesViewModel(
-                        globalPreferencesManager = globalPreferencesManager,
+                        setupGlobalPreferencesUseCase = setupGlobalPreferencesUseCase,
+                        initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
+                        setAllowCellularDataUseCase = setAllowCellularDataUseCase,
+                        setAllowHuntWarnAudioUseCase = setAllowHuntWarnAudioUseCase,
+                        setAllowIntroductionUseCase = setAllowIntroductionUseCase,
+                        setDisableScreenSaverUseCase = setDisableScreenSaverUseCase,
+                        setEnableGhostReorderUseCase = setEnableGhostReorderUseCase,
+                        setEnableRTLUseCase = setEnableRTLUseCase,
+                        setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                         getLanguagesUseCase = getLanguagesUseCase,
                         setupLanguageUseCase = setupLanguageUseCase,
-                        initializeLanguageUseCase = initializeLanguageUseCase,
+                        initFlowLanguageUseCase = initializeLanguageUseCase,
                         setCurrentLanguageUseCase = setCurrentLanguageUseCase,
                         getCurrentLanguageUseCase = getCurrentLanguageUseCase,
                         loadCurrentLanguageUseCase = loadCurrentLanguageUseCase,
                         typographyManager = typographyManager,
                         paletteManager = paletteManager,
                         setupReviewTrackerUseCase = setupReviewTrackerUseCase,
-                        initializeReviewTrackerUseCase = initializeReviewTrackerUseCase,
+                        initFlowReviewTrackerUseCase = initializeReviewTrackerUseCase,
                         getReviewRequestStatusUseCase = getReviewRequestStatusUseCase,
                         loadReviewRequestStatusUseCase = loadReviewRequestStatusUseCase,
                         setReviewRequestStatusUseCase = setReviewRequestStatusUseCase,
@@ -342,7 +401,15 @@ class GlobalPreferencesViewModel(
                 val appKeyContainer =
                     (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).coreContainer
 
-                val globalPreferencesManager: GlobalPreferencesManager = appKeyContainer.globalPreferencesManager
+                val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase = appKeyContainer.setupGlobalPreferencesUseCase
+                val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase = appKeyContainer.initFlowGlobalPreferencesUseCase
+                val setAllowCellularDataUseCase: SetAllowCellularDataUseCase = appKeyContainer.setAllowCellularDataUseCase
+                val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase = appKeyContainer.setAllowHuntWarnAudioUseCase
+                val setAllowIntroductionUseCase: SetAllowIntroductionUseCase = appKeyContainer.setAllowIntroductionUseCase
+                val setDisableScreenSaverUseCase: SetDisableScreenSaverUseCase = appKeyContainer.setDisableScreenSaverUseCase
+                val setEnableGhostReorderUseCase: SetEnableGhostReorderUseCase = appKeyContainer.setEnableGhostReorderUseCase
+                val setEnableRTLUseCase: SetEnableRTLUseCase = appKeyContainer.setEnableRTLUseCase
+                val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase = appKeyContainer.setMaxHuntWarnFlashTimeUseCase
                 val getLanguagesUseCase: GetLanguagesUseCase = appKeyContainer.getLanguagesUseCase
                 val setupLanguageUseCase: SetupLanguageUseCase = appKeyContainer.setupLanguageUseCase
                 val initializeLanguageUseCase: InitFlowLanguageUseCase = appKeyContainer.initializeLanguageUseCase
@@ -364,17 +431,25 @@ class GlobalPreferencesViewModel(
                 val loadAppTimesOpenedUseCase: LoadAppTimesOpenedUseCase = appKeyContainer.loadAppTimesOpenedUseCase
 
                 GlobalPreferencesViewModel(
-                    globalPreferencesManager = globalPreferencesManager,
+                    setupGlobalPreferencesUseCase = setupGlobalPreferencesUseCase,
+                    initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
+                    setAllowCellularDataUseCase = setAllowCellularDataUseCase,
+                    setAllowHuntWarnAudioUseCase = setAllowHuntWarnAudioUseCase,
+                    setAllowIntroductionUseCase = setAllowIntroductionUseCase,
+                    setDisableScreenSaverUseCase = setDisableScreenSaverUseCase,
+                    setEnableGhostReorderUseCase = setEnableGhostReorderUseCase,
+                    setEnableRTLUseCase = setEnableRTLUseCase,
+                    setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                     getLanguagesUseCase = getLanguagesUseCase,
                     setupLanguageUseCase = setupLanguageUseCase,
-                    initializeLanguageUseCase = initializeLanguageUseCase,
+                    initFlowLanguageUseCase = initializeLanguageUseCase,
                     setCurrentLanguageUseCase = setCurrentLanguageUseCase,
                     getCurrentLanguageUseCase = getCurrentLanguageUseCase,
                     loadCurrentLanguageUseCase = loadCurrentLanguageUseCase,
                     typographyManager = typographyManager,
                     paletteManager = paletteManager,
                     setupReviewTrackerUseCase = setupReviewTrackerUseCase,
-                    initializeReviewTrackerUseCase = initializeReviewTrackerUseCase,
+                    initFlowReviewTrackerUseCase = initializeReviewTrackerUseCase,
                     setReviewRequestStatusUseCase = setReviewRequestStatusUseCase,
                     getReviewRequestStatusUseCase = getReviewRequestStatusUseCase,
                     loadReviewRequestStatusUseCase = loadReviewRequestStatusUseCase,

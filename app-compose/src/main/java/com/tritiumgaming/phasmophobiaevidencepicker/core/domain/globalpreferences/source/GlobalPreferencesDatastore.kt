@@ -3,9 +3,23 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferenc
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreInterface
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
-import kotlinx.coroutines.flow.Flow
 
 interface GlobalPreferencesDatastore: DatastoreInterface<GlobalPreferences> {
+
+    suspend fun setDisableScreenSaver(disable: Boolean)
+    fun getDisableScreenSaver(): Boolean
+    suspend fun setAllowCellularData(allow: Boolean)
+    fun getAllowCellularData(): Boolean
+    suspend fun setEnableRTL(enable: Boolean)
+    fun getEnableRTL(): Boolean
+    suspend fun setEnableGhostReorder(enable: Boolean)
+    fun getEnableGhostReorder(): Boolean
+    suspend fun setAllowIntroduction(allow: Boolean)
+    fun getAllowIntroduction(): Boolean
+    suspend fun setMaxHuntWarnFlashTime(maxTime: Long)
+    fun getMaxHuntWarnFlashTime(): Long
+    suspend fun setAllowHuntWarnAudio(allowed: Boolean)
+    fun getAllowHuntWarnAudio(): Boolean
 
     data class GlobalPreferences(
         val disableScreenSaver: Boolean,

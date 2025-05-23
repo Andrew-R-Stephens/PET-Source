@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograp
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreInterface
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.TypographyDatastore.TypographyPreferences
-import kotlinx.coroutines.flow.Flow
 
 interface TypographyDatastore: DatastoreInterface<TypographyPreferences> {
 

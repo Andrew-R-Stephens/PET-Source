@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository
 
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageDatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
 import kotlinx.coroutines.flow.Flow
 
@@ -20,16 +21,5 @@ class LanguageDatastoreRepositoryImpl(
     override suspend fun loadCurrentLanguageCode() {
         dataStoreSource.saveCurrentLanguageCode(dataStoreSource.getCurrentLanguageCode())
     }
-
-}
-
-interface LanguageDatastoreRepository {
-
-    fun initialSetupEvent()
-    suspend fun initFlow(): Flow<LanguageDatastore.LanguagePreferences>
-
-    suspend fun saveCurrentLanguageCode(languageCode: String)
-    fun getCurrentLanguageCode(): String
-    suspend fun loadCurrentLanguageCode()
 
 }

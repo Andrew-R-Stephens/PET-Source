@@ -7,7 +7,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
-import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore
 import kotlinx.coroutines.flow.Flow

@@ -1,9 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.NetworkMarketDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 

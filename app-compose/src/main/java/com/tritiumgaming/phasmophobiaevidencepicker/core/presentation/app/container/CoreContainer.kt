@@ -3,12 +3,13 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.conta
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesDatastoreRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageDatastoreRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.BundleRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.PaletteRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.PaletteDatastore
@@ -20,7 +21,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.TypographyRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerDatastoreRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesDatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.InitFlowGlobalPreferencesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowCellularDataUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetAllowIntroductionUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetDisableScreenSaverUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetEnableGhostReorderUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetEnableRTLUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.SetupGlobalPreferencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguagesUseCase
@@ -30,13 +41,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPalettesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyUsecase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPalettesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyUsecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerDatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
@@ -49,7 +60,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences.GlobalPreferencesManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.PaletteManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.TypographyManager
 
@@ -61,15 +71,30 @@ class CoreContainer(
     // Global Preferences
     private val globalPreferencesRepository: GlobalPreferencesRepository =
         GlobalPreferencesRepositoryImpl()
-    private val globalPreferencesDatastore: GlobalPreferencesDatastore =
-        GlobalPreferencesDatastore(
+    private val globalPreferencesDatastoreRepository: GlobalPreferencesDatastoreRepository = GlobalPreferencesDatastoreRepositoryImpl(
+        dataStoreSource = GlobalPreferencesDatastoreDataSource(
             context = applicationContext,
             dataStore = dataStore
         )
-    val globalPreferencesManager: GlobalPreferencesManager = GlobalPreferencesManager(
-        repository = globalPreferencesRepository,
-        datastore = globalPreferencesDatastore
     )
+    val setupGlobalPreferencesUseCase = SetupGlobalPreferencesUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
+    val initFlowGlobalPreferencesUseCase = InitFlowGlobalPreferencesUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
+    val setAllowCellularDataUseCase = SetAllowCellularDataUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
+    val setAllowHuntWarnAudioUseCase = SetAllowHuntWarnAudioUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
+    val setAllowIntroductionUseCase = SetAllowIntroductionUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
+    val setDisableScreenSaverUseCase = SetDisableScreenSaverUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
+    val setEnableGhostReorderUseCase = SetEnableGhostReorderUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
+    val setEnableRTLUseCase = SetEnableRTLUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
+    val setMaxHuntWarnFlashTimeUseCase = SetMaxHuntWarnFlashTimeUseCase(
+        datastoreRepository = globalPreferencesDatastoreRepository)
 
     /**
      * Review Tracker
