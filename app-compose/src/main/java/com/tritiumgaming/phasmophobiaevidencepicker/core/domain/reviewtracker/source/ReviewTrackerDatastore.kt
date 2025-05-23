@@ -6,6 +6,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.so
 
 interface ReviewTrackerDatastore: DatastoreInterface<ReviewTrackerPreferences> {
 
+    suspend fun saveWasRequestedState(wasRequested: Boolean)
+    fun getWasRequestedState(): Boolean
+
+    suspend fun saveAppTimeAlive(time: Long)
+    fun getAppTimeAlive(): Long
+
+    suspend fun saveAppTimesOpened(count: Int)
+    fun getAppTimesOpened(): Int
+
     data class ReviewTrackerPreferences(
         val allowRequestReview: Boolean,
         val timeActive: Long,

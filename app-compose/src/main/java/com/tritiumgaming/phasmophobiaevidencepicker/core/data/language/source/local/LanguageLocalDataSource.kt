@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.l
 import android.content.Context
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.NetworkLanguageDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.LanguageDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
 import java.util.Locale
@@ -12,13 +12,13 @@ class LanguageLocalDataSource(
     private val applicationContext: Context
 ): LanguageDataSource {
 
-    override fun fetchLanguages(): List<NetworkLanguageDto> {
+    override fun fetchLanguages(): List<LanguageDto> {
 
         val resources = applicationContext.resources
 
         Log.d("Language", "Fetching Languages")
 
-        val languages = mutableListOf<NetworkLanguageDto>()
+        val languages = mutableListOf<LanguageDto>()
 
         val languageNames = resources.obtainTypedArray(R.array.language_names)
         val languageNativeNames = resources.obtainTypedArray(R.array.language_names_native)
@@ -32,7 +32,7 @@ class LanguageLocalDataSource(
                 val nativeName = languageNativeNames.getResourceId(index, 0)
                 val code = languageCodes[index]
 
-                languages.add(NetworkLanguageDto(name, nativeName, code))
+                languages.add(LanguageDto(name, nativeName, code))
             }
         }
 

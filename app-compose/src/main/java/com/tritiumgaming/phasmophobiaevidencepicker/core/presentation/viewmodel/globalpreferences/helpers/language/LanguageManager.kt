@@ -4,18 +4,15 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.LanguageEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguageUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguagesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.Locale
 
 class LanguageManager(
-    private val datastore: LanguageDatastore,
-    private val getLanguagesUseCase: GetLanguageUseCase
+    private val datastore: LanguageDatastore
 ) {
 
     private var _currentLanguageCode = MutableStateFlow(DEFAULT_LANGUAGE)
@@ -26,8 +23,6 @@ class LanguageManager(
     }
 
     fun initialSetupEvent() = datastore.initialSetupEvent()
-
-    fun getLanguages(): List<LanguageEntity> =getLanguagesUseCase.invoke()
 
     suspend fun initFlow() {
         datastore.flow.collect { languagePreference ->

@@ -7,7 +7,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.repository.LanguageRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.BundleRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.PaletteRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.PaletteDatastore
@@ -17,10 +17,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.TypographyDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.TypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.TypographyRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerDatastoreRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguageUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguagesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPalettesUseCase
@@ -30,6 +31,18 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.u
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyUsecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.GetReviewRequestStatusUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.LoadReviewRequestStatusUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.SetReviewRequestStatusUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.GetAppTimeAliveUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.LoadAppTimeAliveUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.SetAppTimeAliveUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences.GlobalPreferencesManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.language.LanguageManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.PaletteManager
@@ -54,11 +67,46 @@ class CoreContainer(
     )
 
     // Review Tracker
-    val reviewTrackerDatastore: ReviewTrackerDatastore =
-        ReviewTrackerDatastore(
-            context = applicationContext,
-            dataStore = dataStore
+    val reviewTrackerDatastoreRepository: ReviewTrackerDatastoreRepository =
+        ReviewTrackerDatastoreRepositoryImpl(
+            dataStoreSource = ReviewTrackerDatastoreDataSource(
+                context = applicationContext,
+                datastore = dataStore
+            )
         )
+    val getReviewRequestStatusUseCase: GetReviewRequestStatusUseCase = GetReviewRequestStatusUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val loadReviewRequestStatusUseCase: LoadReviewRequestStatusUseCase = LoadReviewRequestStatusUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val initializeReviewTrackerUseCase = InitFlowReviewTrackerUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase = SetReviewRequestStatusUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val setAppTimeAliveUseCase: SetAppTimeAliveUseCase = SetAppTimeAliveUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val getAppTimeAliveUseCase: GetAppTimeAliveUseCase = GetAppTimeAliveUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val loadAppTimeAliveUseCase: LoadAppTimeAliveUseCase = LoadAppTimeAliveUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val setAppTimesOpenedUseCase = SetAppTimesOpenedUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val getAppTimesOpenedUseCase = GetAppTimesOpenedUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
+    val loadAppTimesOpenedUseCase = LoadAppTimesOpenedUseCase(
+        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository
+    )
 
     // Market Bundle
     private val bundleRemoteDataSource: BundleDataSource = BundleRemoteDataSource()
@@ -124,10 +172,10 @@ class CoreContainer(
         context = applicationContext,
         dataStore = dataStore
     )
-    val getLanguageUseCase = GetLanguageUseCase(repository = languageRepository)
+    val getLanguagesUseCase = GetLanguagesUseCase(repository = languageRepository)
     val languageManager: LanguageManager = LanguageManager(
         datastore = languageDatastore,
-        getLanguagesUseCase = getLanguageUseCase
+        getLanguagesUseCase = getLanguagesUseCase
     )
 
 }

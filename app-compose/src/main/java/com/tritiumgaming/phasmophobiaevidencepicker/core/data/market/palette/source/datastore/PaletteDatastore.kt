@@ -46,7 +46,7 @@ class PaletteDatastore(
 
     override fun mapPreferences(preferences: Preferences): PaletteDatastore.PalettePreferences {
         return PaletteDatastore.PalettePreferences(
-            preferences[PaletteDatastore.PreferenceKeys.KEY_PALETTE] ?: ""
+            uuid = preferences[PaletteDatastore.PreferenceKeys.KEY_PALETTE] ?: ""
         )
     }
 

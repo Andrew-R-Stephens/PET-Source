@@ -1,0 +1,5 @@
+package com.tritiumgaming.phasmophobiaevidencepicker.core.data.account.accounttransactionhistory.source.remote
+
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.firestore.source.TransactionHistoryDataSource
+
+class TransactionHistoryRemoteDataSource: TransactionHistoryDataSource

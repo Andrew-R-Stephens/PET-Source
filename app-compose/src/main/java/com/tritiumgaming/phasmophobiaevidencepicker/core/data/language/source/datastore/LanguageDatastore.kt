@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreInterface
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore.PreferenceKeys.KEY_CURRENT_LANGUAGE_CODE
@@ -17,18 +18,12 @@ import kotlinx.coroutines.flow.map
 class LanguageDatastore (
     context: Context,
     private val dataStore: DataStore<Preferences>
-) {
+): DatastoreInterface<LanguageDatastore.LanguagePreferences> {
 
-    val flow: Flow<LanguageDatastore.LanguagePreferences> = dataStore.data
+    override val flow: Flow<LanguageDatastore.LanguagePreferences> = dataStore.data
         .map { preferences ->
             mapPreferences(preferences)
         }
-
-    fun initialSetupEvent() {
-        liveData {
-            emit(fetchInitialPreferences())
-        }
-    }
 
     init {
         KEY_CURRENT_LANGUAGE_CODE = stringPreferencesKey(
@@ -42,10 +37,10 @@ class LanguageDatastore (
         }
     }
 
-    suspend fun fetchInitialPreferences() =
+    override suspend fun fetchInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
-    private fun mapPreferences(preferences: Preferences) =
+    override fun mapPreferences(preferences: Preferences) =
         LanguageDatastore.LanguagePreferences(
             preferences[KEY_CURRENT_LANGUAGE_CODE]
                 ?: DEFAULT_LANGUAGE
