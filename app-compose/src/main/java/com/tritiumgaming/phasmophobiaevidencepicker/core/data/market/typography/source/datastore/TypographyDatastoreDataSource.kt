@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.io.IOException
 
-class TypographyDatastore(
+class TypographyDatastoreDataSource(
     context: Context,
     private val dataStore: DataStore<Preferences>
 ): TypographyDatastore {

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
@@ -22,9 +23,16 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguagesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.LoadCurrentLanguageUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetCurrentLanguageUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographiesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.SetupTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.GetReviewRequestStatusUseCase
@@ -37,8 +45,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.PaletteManager
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.TypographyManager
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -62,11 +71,16 @@ class GlobalPreferencesViewModel(
     private val getLanguagesUseCase: GetLanguagesUseCase,
     private val setupLanguageUseCase: SetupLanguageUseCase,
     private val initFlowLanguageUseCase: InitFlowLanguageUseCase,
-    private val setCurrentLanguageUseCase: SetCurrentLanguageUseCase,
+    private val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
     private val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
     private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
     // Typographies
-    private val typographyManager: TypographyManager,
+    private val setupTypographyUseCase: SetupTypographyUseCase,
+    private val initFlowTypographyUseCase: InitFlowTypographyUseCase,
+    private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
+    private val getTypographiesUseCase: GetTypographiesUseCase,
+    private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
+    private val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
     // Palettes
     private val paletteManager: PaletteManager,
     // Review Tracker
@@ -83,12 +97,14 @@ class GlobalPreferencesViewModel(
     private val loadAppTimesOpenedUseCase: LoadAppTimesOpenedUseCase
 ) : ViewModel() {
 
+    val defaultTypographyUUID: String = LocalDefaultTypography.uuid
+
     private fun initialSetupEvent() {
         setupGlobalPreferencesUseCase()
         setupReviewTrackerUseCase()
         setupLanguageUseCase()
         paletteManager.initialSetupEvent()
-        typographyManager.initialSetupEvent()
+        setupTypographyUseCase()
     }
 
     init {
@@ -133,14 +149,19 @@ class GlobalPreferencesViewModel(
             paletteManager.initFlow()
         }
         viewModelScope.launch {
-            typographyManager.initFlow()
+            initFlowTypographyUseCase().collect { preferences ->
+                _currentTypographyUUID.update {
+                    preferences.uuid.ifBlank { defaultTypographyUUID }
+                }
+                Log.d("Typography", "Collecting from flow:\n\tID -> ${currentTypographyUUID.value}")
+            }
         }
 
         viewModelScope.launch {
             paletteManager.fetchPalettes()
         }
         viewModelScope.launch {
-            typographyManager.fetchTypographies()
+            fetchTypographies()
         }
     }
 
@@ -221,7 +242,7 @@ class GlobalPreferencesViewModel(
     val currentLanguageCode = _currentLanguageCode.asStateFlow()
     fun setCurrentLanguageCode(languageCode: String) {
         viewModelScope.launch {
-            setCurrentLanguageUseCase(languageCode)
+            saveCurrentLanguageUseCase(languageCode)
         }
         _currentLanguageCode.update { languageCode }
     }
@@ -310,16 +331,31 @@ class GlobalPreferencesViewModel(
     /**
      * Typographies
      */
-    val currentTypographyUUID = typographyManager.currentUUID
+    private val _typographies = MutableStateFlow(mapOf<String, MarketTypography>())
+    var typographies = _typographies.asStateFlow()
+    suspend fun fetchTypographies() {
+        val mergedModels = getTypographiesUseCase()
+        _typographies.update { mergedModels.toPair() }
+    }
+
+    private val _currentTypographyUUID : MutableStateFlow<String> =
+        MutableStateFlow(defaultTypographyUUID)
+    val currentTypographyUUID = _currentTypographyUUID.asStateFlow()
     fun setCurrentTypographyUUID(uuid: String) {
+        _currentTypographyUUID.update { uuid }
         viewModelScope.launch {
-            typographyManager.setCurrentUUID(uuid)
+            saveCurrentTypographyUseCase(uuid)
+            Log.d("Settings", "$uuid -> ${_currentTypographyUUID.value} == ${currentTypographyUUID.value}")
         }
     }
+
+    fun getTypographyByUUID(uuid: String): ExtendedTypography =
+        getTypographyByUUIDUseCase(typographies.value, uuid, LocalDefaultTypography.typography)
+
     fun setNextAvailableTypography(direction: IncrementDirection) {
-        return setCurrentTypographyUUID(typographyManager.findNextAvailable(direction))
+        return setCurrentTypographyUUID(
+            findNextAvailableTypographyUseCase(typographies.value, currentTypographyUUID.value, direction))
     }
-    fun getTypographyByUUID(uuid: String) = typographyManager.getTypographyByUUID(uuid)
 
     class GlobalPreferencesFactory(
         private val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase,
@@ -334,10 +370,15 @@ class GlobalPreferencesViewModel(
         private val getLanguagesUseCase: GetLanguagesUseCase,
         private val setupLanguageUseCase: SetupLanguageUseCase,
         private val initializeLanguageUseCase: InitFlowLanguageUseCase,
-        private val setCurrentLanguageUseCase: SetCurrentLanguageUseCase,
+        private val setCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
         private val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
         private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
-        private val typographyManager: TypographyManager,
+        private val setupTypographyUseCase: SetupTypographyUseCase,
+        private val initFlowTypographyUseCase: InitFlowTypographyUseCase,
+        private val setCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
+        private val getTypographiesUseCase: GetTypographiesUseCase,
+        private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
+        private val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
         private val paletteManager: PaletteManager,
         private val setupReviewTrackerUseCase: SetupReviewTrackerUseCase,
         private val initializeReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
@@ -368,10 +409,15 @@ class GlobalPreferencesViewModel(
                         getLanguagesUseCase = getLanguagesUseCase,
                         setupLanguageUseCase = setupLanguageUseCase,
                         initFlowLanguageUseCase = initializeLanguageUseCase,
-                        setCurrentLanguageUseCase = setCurrentLanguageUseCase,
+                        saveCurrentLanguageUseCase = setCurrentLanguageUseCase,
                         getCurrentLanguageUseCase = getCurrentLanguageUseCase,
                         loadCurrentLanguageUseCase = loadCurrentLanguageUseCase,
-                        typographyManager = typographyManager,
+                        setupTypographyUseCase = setupTypographyUseCase,
+                        initFlowTypographyUseCase = initFlowTypographyUseCase,
+                        saveCurrentTypographyUseCase = setCurrentTypographyUseCase,
+                        getTypographiesUseCase = getTypographiesUseCase,
+                        getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
+                        findNextAvailableTypographyUseCase = findNextAvailableTypographyUseCase,
                         paletteManager = paletteManager,
                         setupReviewTrackerUseCase = setupReviewTrackerUseCase,
                         initFlowReviewTrackerUseCase = initializeReviewTrackerUseCase,
@@ -413,10 +459,15 @@ class GlobalPreferencesViewModel(
                 val getLanguagesUseCase: GetLanguagesUseCase = appKeyContainer.getLanguagesUseCase
                 val setupLanguageUseCase: SetupLanguageUseCase = appKeyContainer.setupLanguageUseCase
                 val initializeLanguageUseCase: InitFlowLanguageUseCase = appKeyContainer.initializeLanguageUseCase
-                val setCurrentLanguageUseCase: SetCurrentLanguageUseCase = appKeyContainer.setCurrentLanguageUseCase
+                val setCurrentLanguageUseCase: SaveCurrentLanguageUseCase = appKeyContainer.setCurrentLanguageUseCase
                 val getCurrentLanguageUseCase: GetCurrentLanguageUseCase = appKeyContainer.getCurrentLanguageUseCase
                 val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase = appKeyContainer.loadCurrentLanguageUseCase
-                val typographyManager: TypographyManager = appKeyContainer.typographyManager
+                val setupTypographyUseCase: SetupTypographyUseCase = appKeyContainer.setupTypographyUseCase
+                val initFlowTypographyUseCase: InitFlowTypographyUseCase = appKeyContainer.initFlowTypographyUseCase
+                val setCurrentTypographyUseCase: SaveCurrentTypographyUseCase = appKeyContainer.setCurrentTypographyUseCase
+                val getTypographiesUseCase: GetTypographiesUseCase = appKeyContainer.getTypographiesUseCase
+                val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase = appKeyContainer.getTypographyByUUIDUseCase
+                val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase = appKeyContainer.findNextAvailableTypographyUseCase
                 val paletteManager: PaletteManager = appKeyContainer.paletteManager
                 val setupReviewTrackerUseCase: SetupReviewTrackerUseCase = appKeyContainer.setupReviewTrackerUseCase
                 val initializeReviewTrackerUseCase: InitFlowReviewTrackerUseCase = appKeyContainer.initializeReviewTrackerUseCase
@@ -443,10 +494,15 @@ class GlobalPreferencesViewModel(
                     getLanguagesUseCase = getLanguagesUseCase,
                     setupLanguageUseCase = setupLanguageUseCase,
                     initFlowLanguageUseCase = initializeLanguageUseCase,
-                    setCurrentLanguageUseCase = setCurrentLanguageUseCase,
+                    saveCurrentLanguageUseCase = setCurrentLanguageUseCase,
                     getCurrentLanguageUseCase = getCurrentLanguageUseCase,
                     loadCurrentLanguageUseCase = loadCurrentLanguageUseCase,
-                    typographyManager = typographyManager,
+                    getTypographiesUseCase = getTypographiesUseCase,
+                    setupTypographyUseCase = setupTypographyUseCase,
+                    initFlowTypographyUseCase = initFlowTypographyUseCase,
+                    saveCurrentTypographyUseCase = setCurrentTypographyUseCase,
+                    getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
+                    findNextAvailableTypographyUseCase = findNextAvailableTypographyUseCase,
                     paletteManager = paletteManager,
                     setupReviewTrackerUseCase = setupReviewTrackerUseCase,
                     initFlowReviewTrackerUseCase = initializeReviewTrackerUseCase,

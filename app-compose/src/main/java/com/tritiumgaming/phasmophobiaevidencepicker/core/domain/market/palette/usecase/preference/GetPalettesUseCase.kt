@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toExternal

@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-class PaletteDatastore(
+class PaletteDatastoreDataSource(
     context: Context,
     private val dataStore: DataStore<Preferences>
 ): PaletteDatastore {

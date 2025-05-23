@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toExternal
@@ -6,7 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
-class GetTypographyUsecase(
+class GetTypographiesUseCase(
     private val repository: TypographyRepository
 ) {
 

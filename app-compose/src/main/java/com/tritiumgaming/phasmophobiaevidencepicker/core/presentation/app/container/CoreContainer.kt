@@ -12,11 +12,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.da
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.BundleRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.PaletteRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.PaletteDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.PaletteDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.PaletteLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.PaletteRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.repository.TypographyDatastoreRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.repository.TypographyRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.TypographyDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.TypographyDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.TypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.TypographyRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerDatastoreRepositoryImpl
@@ -37,17 +38,20 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguagesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.LoadCurrentLanguageUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetCurrentLanguageUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.GetPalettesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.GetTypographyUsecase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographiesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.SetupTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerDatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
@@ -61,7 +65,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.PaletteManager
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.TypographyManager
 
 class CoreContainer(
     applicationContext: Context,
@@ -139,9 +142,11 @@ class CoreContainer(
      */
     private val typographyLocalDataSource = TypographyLocalDataSource()
     private val typographyRemoteDataSource = TypographyRemoteDataSource()
-    private val typographyDatastore = TypographyDatastore(
-        context = applicationContext,
-        dataStore = dataStore
+    private val typographyDatastoreRepository = TypographyDatastoreRepositoryImpl(
+        dataStoreSource = TypographyDatastoreDataSource(
+            context = applicationContext,
+            dataStore = dataStore
+        )
     )
     private val typographyRepository: TypographyRepository =
         TypographyRepositoryImpl(
@@ -152,24 +157,26 @@ class CoreContainer(
     /**
      * Market Typography Use Cases
      */
-    private val fetchTypographiesUseCase = GetTypographyUsecase(
+    private val fetchTypographiesUseCase = GetTypographiesUseCase(
         repository = typographyRepository
     )
-    private val findNextAvailableTypographyUseCase = FindNextAvailableTypographyUseCase()
-    private val getTypographyByUUIDUseCase = GetTypographyByUUIDUseCase()
-    val typographyManager: TypographyManager = TypographyManager(
-        datastore = typographyDatastore,
-        getTypographiesUseCase = fetchTypographiesUseCase,
-        getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
-        findNextAvailableTypographyUseCase = findNextAvailableTypographyUseCase
-    )
+    internal val findNextAvailableTypographyUseCase = FindNextAvailableTypographyUseCase()
+    internal val setupTypographyUseCase = SetupTypographyUseCase(
+        datastoreRepository = typographyDatastoreRepository)
+    internal val initFlowTypographyUseCase = InitFlowTypographyUseCase(
+        datastoreRepository = typographyDatastoreRepository)
+    internal val setCurrentTypographyUseCase = SaveCurrentTypographyUseCase(
+        datastoreRepository = typographyDatastoreRepository)
+    internal val getTypographiesUseCase = GetTypographiesUseCase(
+        repository = typographyRepository)
+    internal val getTypographyByUUIDUseCase = GetTypographyByUUIDUseCase()
 
     /**
      * Market Palette
      */
     private val paletteLocalDataSource = PaletteLocalDataSource()
     private val paletteRemoteDataSource = PaletteRemoteDataSource()
-    private val paletteDatastore = PaletteDatastore(
+    private val paletteDatastore = PaletteDatastoreDataSource(
         context = applicationContext,
         dataStore = dataStore
     )
@@ -211,7 +218,7 @@ class CoreContainer(
         datastoreRepository = languageDatastoreRepository)
     val initializeLanguageUseCase = InitFlowLanguageUseCase(
         datastoreRepository = languageDatastoreRepository)
-    val setCurrentLanguageUseCase = SetCurrentLanguageUseCase(
+    val setCurrentLanguageUseCase = SaveCurrentLanguageUseCase(
         datastoreRepository = languageDatastoreRepository)
     val getCurrentLanguageUseCase = GetCurrentLanguageUseCase(
         datastoreRepository = languageDatastoreRepository)

@@ -1,23 +1,23 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 
-class FindNextAvailableTypographyUseCase {
+class FindNextAvailablePaletteUseCase {
 
     operator fun invoke(
-        typograhys: Map<String, MarketTypography>,
+        palettes: Map<String, MarketPalette>,
         currentUUID: String,
         direction: IncrementDirection
     ): String {
 
-        Log.d("Settings", "$currentUUID ${typograhys.size}")
-        if(typograhys.isEmpty()) return ""
+        Log.d("Settings", "$currentUUID ${palettes.size}")
+        if(palettes.isEmpty()) return ""
 
-        val filtered = typograhys
+        val filtered = palettes
             .filter {
-                it.value.typography != null && it.value.isUnlocked == true
+                it.value.palette != null && it.value.isUnlocked == true
             }
 
         Log.d("Settings", "Filtered: ${filtered.size}")
