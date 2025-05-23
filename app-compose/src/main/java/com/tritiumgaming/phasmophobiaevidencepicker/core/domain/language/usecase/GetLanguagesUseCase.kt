@@ -4,9 +4,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.L
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 
 class GetLanguagesUseCase(
-   private val repository: LanguageRepository
+   private val languageRepository: LanguageRepository
 ) {
 
-    operator fun invoke(): List<LanguageEntity> = repository.getLanguages()
+    operator fun invoke(): List<LanguageEntity> = languageRepository.getLanguages()
 
 }

@@ -1,45 +1,52 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences
 
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetLanguagesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.InitFlowLanguageUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.LoadCurrentLanguageUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetCurrentLanguageUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerDatastoreRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.GetReviewRequestStatusUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.LoadReviewRequestStatusUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.SetAppTimeAliveUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.SetReviewRequestStatusUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.GetAppTimeAliveUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.LoadAppTimeAliveUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.SetAppTimeAliveUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.globalpreferences.GlobalPreferencesManager
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.language.LanguageManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.PaletteManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.helpers.theme.TypographyManager
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class GlobalPreferencesViewModel(
     // Global Preferences
     private val globalPreferencesManager: GlobalPreferencesManager,
     // Languages
-    private val languageManager: LanguageManager,
     private val getLanguagesUseCase: GetLanguagesUseCase,
+    private val setupLanguageUseCase: SetupLanguageUseCase,
+    private val initializeLanguageUseCase: InitFlowLanguageUseCase,
+    private val setCurrentLanguageUseCase: SetCurrentLanguageUseCase,
+    private val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
+    private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
     // Typographies
     private val typographyManager: TypographyManager,
     // Palettes
@@ -61,11 +68,10 @@ class GlobalPreferencesViewModel(
     private fun initialSetupEvent() {
         globalPreferencesManager.initialSetupEvent()
         setupReviewTrackerUseCase()
-        languageManager.initialSetupEvent()
+        setupLanguageUseCase()
         paletteManager.initialSetupEvent()
         typographyManager.initialSetupEvent()
     }
-
 
     init {
         Log.d("GlobalPreferencesViewModel", "Initializing...")
@@ -90,8 +96,19 @@ class GlobalPreferencesViewModel(
             globalPreferencesManager.initFlow()
         }
         viewModelScope.launch {
-            languageManager.initFlow()
+            initializeLanguageUseCase().collect { preferences ->
+                _currentLanguageCode.update { preferences.languageCode }
+                Log.d("Language", "Collected Language Code: ${preferences.languageCode}")
+
+                //Define the language used whenever the saved language changes
+                AppCompatDelegate.setApplicationLocales(
+                    LocaleListCompat.create(
+                        Locale.forLanguageTag(preferences.languageCode)
+                    )
+                )
+            }
         }
+
         viewModelScope.launch {
             paletteManager.initFlow()
         }
@@ -114,19 +131,17 @@ class GlobalPreferencesViewModel(
 
     private var _currentLanguageCode = MutableStateFlow(DEFAULT_LANGUAGE)
     val currentLanguageCode = _currentLanguageCode.asStateFlow()
-    suspend fun setCurrentLanguageCode(languageCode: String) {
-        _currentLanguageCode.update { languageCode }
-        viewModelScope.launch {
-            //TODO setCurrentLanguageCodeUseCase(languageCode)
-        }
-    }
-
-    /*val currentLanguageCode = languageManager.currentLanguageCode
     fun setCurrentLanguageCode(languageCode: String) {
         viewModelScope.launch {
-            languageManager.setCurrentLanguageCode(languageCode)
+            setCurrentLanguageUseCase(languageCode)
         }
-    }*/
+        _currentLanguageCode.update { languageCode }
+    }
+    fun loadCurrentLanguageCode() {
+        viewModelScope.launch {
+            loadCurrentLanguageUseCase()
+        }
+    }
 
     /**
      * ReviewTracker
@@ -143,9 +158,6 @@ class GlobalPreferencesViewModel(
         viewModelScope.launch {
             loadReviewRequestStatusUseCase()
         }
-    }
-    fun getReviewRequestStatus() {
-        _wasReviewRequested.value = getReviewRequestStatusUseCase()
     }
 
     private val _appTimeActive = MutableStateFlow(0L)
@@ -193,6 +205,9 @@ class GlobalPreferencesViewModel(
         return (wasReviewRequested.value) && (timesOpened.value >= MAX_TIMES_OPENED_TARGET)
     }
 
+    /**
+     * Palettes
+     */
     val currentPaletteUUID = paletteManager.currentUUID
     fun setCurrentPaletteUUID(uuid: String) {
         viewModelScope.launch {
@@ -202,7 +217,11 @@ class GlobalPreferencesViewModel(
     fun setNextAvailablePalette(direction: IncrementDirection) {
         return setCurrentPaletteUUID(paletteManager.findNextAvailable(direction))
     }
+    fun getPaletteByUUID(uuid: String) = paletteManager.getPaletteByUUID(uuid)
 
+    /**
+     * Typographies
+     */
     val currentTypographyUUID = typographyManager.currentUUID
     fun setCurrentTypographyUUID(uuid: String) {
         viewModelScope.launch {
@@ -212,10 +231,11 @@ class GlobalPreferencesViewModel(
     fun setNextAvailableTypography(direction: IncrementDirection) {
         return setCurrentTypographyUUID(typographyManager.findNextAvailable(direction))
     }
-
-    fun getPaletteByUUID(uuid: String) = paletteManager.getPaletteByUUID(uuid)
     fun getTypographyByUUID(uuid: String) = typographyManager.getTypographyByUUID(uuid)
 
+    /**
+     * Global Preferences
+     */
     val screenSaverPreference = globalPreferencesManager.disableScreensaver
     fun setScreenSaverPreference(disable: Boolean) {
         viewModelScope.launch {
@@ -260,8 +280,12 @@ class GlobalPreferencesViewModel(
 
     class GlobalPreferencesFactory(
         val globalPreferencesManager: GlobalPreferencesManager,
-        val languageManager: LanguageManager,
         val getLanguagesUseCase: GetLanguagesUseCase,
+        val setupLanguageUseCase: SetupLanguageUseCase,
+        val initializeLanguageUseCase: InitFlowLanguageUseCase,
+        val setCurrentLanguageUseCase: SetCurrentLanguageUseCase,
+        val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
+        val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
         val typographyManager: TypographyManager,
         val paletteManager: PaletteManager,
         val setupReviewTrackerUseCase: SetupReviewTrackerUseCase,
@@ -282,8 +306,12 @@ class GlobalPreferencesViewModel(
                 val viewModel =
                     GlobalPreferencesViewModel(
                         globalPreferencesManager = globalPreferencesManager,
-                        languageManager = languageManager,
                         getLanguagesUseCase = getLanguagesUseCase,
+                        setupLanguageUseCase = setupLanguageUseCase,
+                        initializeLanguageUseCase = initializeLanguageUseCase,
+                        setCurrentLanguageUseCase = setCurrentLanguageUseCase,
+                        getCurrentLanguageUseCase = getCurrentLanguageUseCase,
+                        loadCurrentLanguageUseCase = loadCurrentLanguageUseCase,
                         typographyManager = typographyManager,
                         paletteManager = paletteManager,
                         setupReviewTrackerUseCase = setupReviewTrackerUseCase,
@@ -315,8 +343,12 @@ class GlobalPreferencesViewModel(
                     (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).coreContainer
 
                 val globalPreferencesManager: GlobalPreferencesManager = appKeyContainer.globalPreferencesManager
-                val languageManager: LanguageManager = appKeyContainer.languageManager
                 val getLanguagesUseCase: GetLanguagesUseCase = appKeyContainer.getLanguagesUseCase
+                val setupLanguageUseCase: SetupLanguageUseCase = appKeyContainer.setupLanguageUseCase
+                val initializeLanguageUseCase: InitFlowLanguageUseCase = appKeyContainer.initializeLanguageUseCase
+                val setCurrentLanguageUseCase: SetCurrentLanguageUseCase = appKeyContainer.setCurrentLanguageUseCase
+                val getCurrentLanguageUseCase: GetCurrentLanguageUseCase = appKeyContainer.getCurrentLanguageUseCase
+                val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase = appKeyContainer.loadCurrentLanguageUseCase
                 val typographyManager: TypographyManager = appKeyContainer.typographyManager
                 val paletteManager: PaletteManager = appKeyContainer.paletteManager
                 val setupReviewTrackerUseCase: SetupReviewTrackerUseCase = appKeyContainer.setupReviewTrackerUseCase
@@ -333,8 +365,12 @@ class GlobalPreferencesViewModel(
 
                 GlobalPreferencesViewModel(
                     globalPreferencesManager = globalPreferencesManager,
-                    languageManager = languageManager,
                     getLanguagesUseCase = getLanguagesUseCase,
+                    setupLanguageUseCase = setupLanguageUseCase,
+                    initializeLanguageUseCase = initializeLanguageUseCase,
+                    setCurrentLanguageUseCase = setCurrentLanguageUseCase,
+                    getCurrentLanguageUseCase = getCurrentLanguageUseCase,
+                    loadCurrentLanguageUseCase = loadCurrentLanguageUseCase,
                     typographyManager = typographyManager,
                     paletteManager = paletteManager,
                     setupReviewTrackerUseCase = setupReviewTrackerUseCase,
