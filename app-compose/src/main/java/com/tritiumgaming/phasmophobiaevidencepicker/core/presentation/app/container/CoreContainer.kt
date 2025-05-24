@@ -186,8 +186,7 @@ class CoreContainer(
     /**
      * Market Palette Use Cases
      */
-    private val fetchPalettesUseCase = GetPalettesUseCase(
-        repository = paletteRepository)
+    private val fetchPalettesUseCase = GetPalettesUseCase(repository = paletteRepository)
     private val findNextAvailablePaletteUseCase = FindNextAvailablePaletteUseCase()
     private val getPaletteByUUIDUseCase = GetPaletteByUUIDUseCase()
     // Market Palette Manager
@@ -201,12 +200,14 @@ class CoreContainer(
     /**
      * Language
      */
+    private val languageLocalDataSource = LanguageLocalDataSource(applicationContext)
+    private val languageDatastoreDataSource = LanguageDatastoreDataSource(
+        context = applicationContext,
+        dataStore = dataStore
+    )
     private val languageRepository: LanguageRepository = LanguageRepositoryImpl(
-        localDataSource = LanguageLocalDataSource(applicationContext),
-        dataStoreSource = LanguageDatastoreDataSource(
-            context = applicationContext,
-            dataStore = dataStore
-        )
+        localDataSource = languageLocalDataSource,
+        dataStoreSource = languageDatastoreDataSource
     )
     val getLanguagesUseCase = GetLanguagesUseCase(
         repository = languageRepository)

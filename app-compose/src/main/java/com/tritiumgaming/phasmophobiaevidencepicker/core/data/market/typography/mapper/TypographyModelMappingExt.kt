@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.NetworkMarketDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
@@ -18,20 +17,6 @@ fun MarketTypographyDto.toExternal() = MarketTypography(
     unlocked = unlocked,
     typography = typography
 )
-
-fun MarketTypographyDto.toNetwork() = NetworkMarketDto(
-    uuid = uuid,
-    name = name,
-    group = group,
-    buyCredits = buyCredits,
-    priority = priority
-)
-
-fun Map<String, ExtendedTypography>.toNetwork() = map { (uuid) ->
-    NetworkMarketDto(
-        uuid = uuid
-    )
-}
 
 fun Map<String, ExtendedTypography>.toLocal() = map { (uuid, typography) ->
     MarketTypographyDto(
@@ -56,28 +41,6 @@ fun List<MarketTypographyDto>.toExternal() = map { dto ->
         priority = dto.priority,
         unlocked = dto.unlocked,
         typography = dto.typography
-    )
-}
-
-fun List<NetworkMarketDto>.toNetwork() = map { dto ->
-    MarketTypography(
-        uuid = dto.uuid,
-        name = dto.name,
-        group = dto.group,
-        buyCredits = dto.buyCredits,
-        priority = dto.priority,
-        unlocked = dto.unlocked
-    )
-}
-
-fun List<NetworkMarketDto>.toLocal() = map { dto ->
-    MarketTypographyDto(
-        uuid = dto.uuid,
-        name = dto.name ?: "",
-        group = dto.group ?: "",
-        buyCredits = dto.buyCredits,
-        priority = dto.priority,
-        unlocked = dto.unlocked
     )
 }
 

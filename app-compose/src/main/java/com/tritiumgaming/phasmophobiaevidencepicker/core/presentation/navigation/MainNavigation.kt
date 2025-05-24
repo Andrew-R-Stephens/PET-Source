@@ -18,7 +18,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mai
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter.NewsInboxesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter.NewsMessageScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter.NewsMessagesScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.startscreen.StartScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen

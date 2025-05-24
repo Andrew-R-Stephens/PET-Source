@@ -7,8 +7,6 @@ import kotlinx.coroutines.flow.Flow
 import java.util.Locale
 
 interface LanguageRepository {
-    val localDataSource: LanguageDataSource
-
     fun getAvailableLanguages(): List<LanguageEntity>
 
     fun initialSetupEvent()

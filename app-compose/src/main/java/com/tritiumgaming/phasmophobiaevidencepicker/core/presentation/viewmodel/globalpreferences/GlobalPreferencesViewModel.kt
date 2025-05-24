@@ -107,64 +107,6 @@ class GlobalPreferencesViewModel(
         setupTypographyUseCase()
     }
 
-    init {
-        Log.d("GlobalPreferencesViewModel", "Initializing...")
-
-        initialSetupEvent()
-
-        viewModelScope.launch {
-            initFlowReviewTrackerUseCase().collect { preferences ->
-                _wasReviewRequested.update { preferences.allowRequestReview }
-                _appTimeActive.update { preferences.timeActive }
-                _timesOpened.update { preferences.timesOpened }
-            }
-        }
-
-        viewModelScope.launch {
-            initFlowGlobalPreferencesUseCase().collect { preferences ->
-                _screensaverPreference.update { preferences.disableScreenSaver }
-                _networkPreference.update { preferences.allowCellularData }
-                _huntWarningAudioPreference.update { preferences.allowHuntWarnAudio }
-                _ghostReorderPreference.update { preferences.enableGhostReorder }
-                _introductionPermissionPreference.update { preferences.allowIntroduction }
-                _rTLPreference.update { preferences.enableRTL }
-                _huntWarnDurationPreference.update { preferences.maxHuntWarnFlashTime }
-            }
-        }
-        viewModelScope.launch {
-            initFlowLanguageUseCase().collect { preferences ->
-                _currentLanguageCode.update { preferences.languageCode }
-                Log.d("Language", "Collected Language Code: ${preferences.languageCode}")
-
-                //Define the language used whenever the saved language changes
-                AppCompatDelegate.setApplicationLocales(
-                    LocaleListCompat.create(
-                        Locale.forLanguageTag(preferences.languageCode)
-                    )
-                )
-            }
-        }
-
-        viewModelScope.launch {
-            paletteManager.initFlow()
-        }
-        viewModelScope.launch {
-            initFlowTypographyUseCase().collect { preferences ->
-                _currentTypographyUUID.update {
-                    preferences.uuid.ifBlank { defaultTypographyUUID }
-                }
-                Log.d("Typography", "Collecting from flow:\n\tID -> ${currentTypographyUUID.value}")
-            }
-        }
-
-        viewModelScope.launch {
-            paletteManager.fetchPalettes()
-        }
-        viewModelScope.launch {
-            fetchTypographies()
-        }
-    }
-
     /**
      * Global Preferences
      */
@@ -355,6 +297,64 @@ class GlobalPreferencesViewModel(
     fun setNextAvailableTypography(direction: IncrementDirection) {
         return setCurrentTypographyUUID(
             findNextAvailableTypographyUseCase(typographies.value, currentTypographyUUID.value, direction))
+    }
+
+    init {
+        Log.d("GlobalPreferencesViewModel", "Initializing...")
+
+        initialSetupEvent()
+
+        viewModelScope.launch {
+            initFlowReviewTrackerUseCase().collect { preferences ->
+                _wasReviewRequested.update { preferences.allowRequestReview }
+                _appTimeActive.update { preferences.timeActive }
+                _timesOpened.update { preferences.timesOpened }
+            }
+        }
+
+        viewModelScope.launch {
+            initFlowGlobalPreferencesUseCase().collect { preferences ->
+                _screensaverPreference.update { preferences.disableScreenSaver }
+                _networkPreference.update { preferences.allowCellularData }
+                _huntWarningAudioPreference.update { preferences.allowHuntWarnAudio }
+                _ghostReorderPreference.update { preferences.enableGhostReorder }
+                _introductionPermissionPreference.update { preferences.allowIntroduction }
+                _rTLPreference.update { preferences.enableRTL }
+                _huntWarnDurationPreference.update { preferences.maxHuntWarnFlashTime }
+            }
+        }
+        viewModelScope.launch {
+            initFlowLanguageUseCase().collect { preferences ->
+                _currentLanguageCode.update { preferences.languageCode }
+                Log.d("Language", "Collected Language Code: ${preferences.languageCode}")
+
+                //Define the language used whenever the saved language changes
+                AppCompatDelegate.setApplicationLocales(
+                    LocaleListCompat.create(
+                        Locale.forLanguageTag(preferences.languageCode)
+                    )
+                )
+            }
+        }
+
+        viewModelScope.launch {
+            paletteManager.initFlow()
+        }
+        viewModelScope.launch {
+            initFlowTypographyUseCase().collect { preferences ->
+                _currentTypographyUUID.update {
+                    preferences.uuid.ifBlank { defaultTypographyUUID }
+                }
+                Log.d("Typography", "Collecting from flow:\n\tID -> ${currentTypographyUUID.value}")
+            }
+        }
+
+        viewModelScope.launch {
+            paletteManager.fetchPalettes()
+        }
+        viewModelScope.launch {
+            fetchTypographies()
+        }
     }
 
     class GlobalPreferencesFactory(

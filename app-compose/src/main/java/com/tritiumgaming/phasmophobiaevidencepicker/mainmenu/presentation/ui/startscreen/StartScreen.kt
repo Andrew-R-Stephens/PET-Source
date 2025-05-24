@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.startscreen
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen
 
 import android.content.Intent
 import androidx.compose.foundation.Image

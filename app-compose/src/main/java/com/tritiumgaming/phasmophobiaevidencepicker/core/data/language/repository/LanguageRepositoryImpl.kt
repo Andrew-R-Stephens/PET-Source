@@ -8,7 +8,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.
 import kotlinx.coroutines.flow.Flow
 
 class LanguageRepositoryImpl(
-    override val localDataSource: LanguageDataSource,
+    private val localDataSource: LanguageDataSource,
     private val dataStoreSource: LanguageDatastore
 ): LanguageRepository {
 
