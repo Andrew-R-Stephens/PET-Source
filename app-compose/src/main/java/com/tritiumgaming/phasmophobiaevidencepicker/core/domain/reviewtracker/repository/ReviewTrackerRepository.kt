@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.r
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
 import kotlinx.coroutines.flow.Flow
 
-interface ReviewTrackerDatastoreRepository {
+interface ReviewTrackerRepository {
 
     fun initialSetupEvent()
     suspend fun initFlow(): Flow<ReviewTrackerDatastore.ReviewTrackerPreferences>

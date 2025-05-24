@@ -1,10 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageDatastoreRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 
 class LoadCurrentLanguageUseCase(
-    private val datastoreRepository: LanguageDatastoreRepository
+    private val repository: LanguageRepository
 ) {
-    suspend operator fun invoke() = datastoreRepository.loadCurrentLanguageCode()
+    suspend operator fun invoke() = repository.loadCurrentLanguageCode()
 }

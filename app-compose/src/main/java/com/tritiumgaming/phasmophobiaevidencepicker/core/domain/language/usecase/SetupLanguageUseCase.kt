@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 
 class SetupLanguageUseCase(
-    private val datastoreRepository: LanguageDatastoreRepository
+    private val repository: LanguageRepository
 ) {
-    operator fun invoke() = datastoreRepository.initialSetupEvent()
+    operator fun invoke() = repository.initialSetupEvent()
 }

@@ -3,10 +3,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.conta
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesDatastoreRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageDatastoreRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
@@ -20,11 +18,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.TypographyDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.TypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.TypographyRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerDatastoreRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesDatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
@@ -32,6 +28,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetEnableGhostReorderUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetEnableRTLUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetCurrentLanguageUseCase
@@ -47,12 +44,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.u
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographiesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.SetupTypographyUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.GetReviewRequestStatusUseCase
@@ -73,37 +70,36 @@ class CoreContainer(
 
     // Global Preferences
     private val globalPreferencesRepository: GlobalPreferencesRepository =
-        GlobalPreferencesRepositoryImpl()
-    private val globalPreferencesDatastoreRepository: GlobalPreferencesDatastoreRepository = GlobalPreferencesDatastoreRepositoryImpl(
-        dataStoreSource = GlobalPreferencesDatastoreDataSource(
-            context = applicationContext,
-            dataStore = dataStore
+        GlobalPreferencesRepositoryImpl(
+            dataStoreSource = GlobalPreferencesDatastoreDataSource(
+                context = applicationContext,
+                dataStore = dataStore
+            )
         )
-    )
     val setupGlobalPreferencesUseCase = SetupGlobalPreferencesUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
     val initFlowGlobalPreferencesUseCase = InitFlowGlobalPreferencesUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
     val setAllowCellularDataUseCase = SetAllowCellularDataUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
     val setAllowHuntWarnAudioUseCase = SetAllowHuntWarnAudioUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
     val setAllowIntroductionUseCase = SetAllowIntroductionUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
     val setDisableScreenSaverUseCase = SetDisableScreenSaverUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
     val setEnableGhostReorderUseCase = SetEnableGhostReorderUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
     val setEnableRTLUseCase = SetEnableRTLUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
     val setMaxHuntWarnFlashTimeUseCase = SetMaxHuntWarnFlashTimeUseCase(
-        datastoreRepository = globalPreferencesDatastoreRepository)
+        repository = globalPreferencesRepository)
 
     /**
      * Review Tracker
      */
-    val reviewTrackerDatastoreRepository: ReviewTrackerDatastoreRepository =
-        ReviewTrackerDatastoreRepositoryImpl(
+    val reviewTrackerDatastoreRepository: ReviewTrackerRepository =
+        ReviewTrackerRepositoryImpl(
             dataStoreSource = ReviewTrackerDatastoreDataSource(
                 context = applicationContext,
                 datastore = dataStore
@@ -174,16 +170,18 @@ class CoreContainer(
     /**
      * Market Palette
      */
-    private val paletteLocalDataSource = PaletteLocalDataSource()
-    private val paletteRemoteDataSource = PaletteRemoteDataSource()
     private val paletteDatastore = PaletteDatastoreDataSource(
         context = applicationContext,
         dataStore = dataStore
     )
     private val paletteRepository: PaletteRepository =
         PaletteRepositoryImpl(
-            remotePaletteSource = paletteRemoteDataSource,
-            localPaletteSource = paletteLocalDataSource
+            remotePaletteSource = PaletteRemoteDataSource(),
+            localPaletteSource = PaletteLocalDataSource(),
+            dataStoreSource = PaletteDatastoreDataSource(
+                context = applicationContext,
+                dataStore = dataStore
+            )
         )
     /**
      * Market Palette Use Cases
@@ -203,26 +201,24 @@ class CoreContainer(
     /**
      * Language
      */
-    val languageDataSource = LanguageLocalDataSource(applicationContext)
-    private val languageRepository: LanguageRepository =
-        LanguageRepositoryImpl(dataSource = languageDataSource)
-    private val languageDatastoreRepository = LanguageDatastoreRepositoryImpl(
+    private val languageRepository: LanguageRepository = LanguageRepositoryImpl(
+        localDataSource = LanguageLocalDataSource(applicationContext),
         dataStoreSource = LanguageDatastoreDataSource(
             context = applicationContext,
             dataStore = dataStore
         )
     )
     val getLanguagesUseCase = GetLanguagesUseCase(
-        languageRepository = languageRepository)
+        repository = languageRepository)
     val setupLanguageUseCase = SetupLanguageUseCase(
-        datastoreRepository = languageDatastoreRepository)
+        repository = languageRepository)
     val initializeLanguageUseCase = InitFlowLanguageUseCase(
-        datastoreRepository = languageDatastoreRepository)
+        repository = languageRepository)
     val setCurrentLanguageUseCase = SaveCurrentLanguageUseCase(
-        datastoreRepository = languageDatastoreRepository)
+        repository = languageRepository)
     val getCurrentLanguageUseCase = GetCurrentLanguageUseCase(
-        datastoreRepository = languageDatastoreRepository)
+        repository = languageRepository)
     val loadCurrentLanguageUseCase = LoadCurrentLanguageUseCase(
-        datastoreRepository = languageDatastoreRepository)
+        repository = languageRepository)
 
 }

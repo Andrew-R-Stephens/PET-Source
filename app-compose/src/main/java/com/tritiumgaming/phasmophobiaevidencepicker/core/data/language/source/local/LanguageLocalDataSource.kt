@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.LanguageDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageLocalRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
 import java.util.Locale
 
@@ -12,7 +12,7 @@ class LanguageLocalDataSource(
     private val applicationContext: Context
 ): LanguageDataSource {
 
-    override fun fetchLanguages(): List<LanguageDto> {
+    override fun getAvailableLanguages(): List<LanguageDto> {
 
         val resources = applicationContext.resources
 

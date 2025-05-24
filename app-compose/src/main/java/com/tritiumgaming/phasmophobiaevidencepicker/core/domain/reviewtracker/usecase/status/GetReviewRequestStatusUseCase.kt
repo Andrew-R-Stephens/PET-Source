@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 
 class GetReviewRequestStatusUseCase(
-    private val reviewTrackerDatastoreRepository: ReviewTrackerDatastoreRepository
+    private val reviewTrackerDatastoreRepository: ReviewTrackerRepository
 ) {
 
     operator fun invoke(): Boolean = reviewTrackerDatastoreRepository.getWasRequestedStatus()

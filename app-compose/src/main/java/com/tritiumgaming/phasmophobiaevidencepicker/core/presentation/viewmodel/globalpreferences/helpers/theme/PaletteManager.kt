@@ -8,8 +8,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.s
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPalettesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.SetupPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 
 class SetupGlobalPreferencesUseCase(
-    private val datastoreRepository: GlobalPreferencesDatastoreRepository
+    private val repository: GlobalPreferencesRepository
 ) {
-    operator fun invoke() = datastoreRepository.initialSetupEvent()
+    operator fun invoke() = repository.initialSetupEvent()
 }

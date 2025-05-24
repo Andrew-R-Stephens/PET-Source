@@ -1,10 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 
 class SetEnableGhostReorderUseCase(
-        private val datastoreRepository: GlobalPreferencesDatastoreRepository
+    private val repository: GlobalPreferencesRepository
     ) {
         suspend operator fun invoke(enable: Boolean) =
-            datastoreRepository.setEnableGhostReorder(enable)
+            repository.setEnableGhostReorder(enable)
     }

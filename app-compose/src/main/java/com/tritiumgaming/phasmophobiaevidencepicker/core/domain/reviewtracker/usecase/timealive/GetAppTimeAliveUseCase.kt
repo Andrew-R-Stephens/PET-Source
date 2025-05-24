@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 
 class GetAppTimeAliveUseCase(
-    private val reviewTrackerDatastoreRepository: ReviewTrackerDatastoreRepository
+    private val reviewTrackerDatastoreRepository: ReviewTrackerRepository
 ) {
 
     operator fun invoke() = reviewTrackerDatastoreRepository.getAppTimeAlive()

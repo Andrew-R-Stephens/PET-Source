@@ -30,7 +30,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ConfigurationControl
 import java.util.concurrent.atomic.AtomicBoolean
 
-
 class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService,
     ConsentManagementService, AccountManagementService {

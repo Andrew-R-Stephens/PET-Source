@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto
 
+@Deprecated("Use MarketTypographyDto instead")
 data class NetworkTypographyDto(
     val uuid: String,
     val name: String? = "",

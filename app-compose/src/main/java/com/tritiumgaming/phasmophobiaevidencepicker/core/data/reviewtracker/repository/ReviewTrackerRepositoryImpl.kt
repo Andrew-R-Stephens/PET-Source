@@ -1,12 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
 import kotlinx.coroutines.flow.Flow
 
-class ReviewTrackerDatastoreRepositoryImpl(
+class ReviewTrackerRepositoryImpl(
     private val dataStoreSource: ReviewTrackerDatastore,
-): ReviewTrackerDatastoreRepository {
+): ReviewTrackerRepository {
 
     override fun initialSetupEvent() {
         dataStoreSource.initialSetupEvent()

@@ -98,8 +98,6 @@ dependencies {
 
     implementation(libs.firebase.analytics)
 
-    implementation(libs.google.gson)
-
     implementation(libs.jetbrains.kotlin.stdlib)
     implementation(libs.jetbrains.kotlinx.coroutines)
 
@@ -229,11 +227,8 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
 
     /*
-     * Realms DB
+     * Ktor
      */
-    implementation(libs.realm.kotlin.library.base)
-    implementation(libs.realm.kotlin.library.sync)
-
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.content.negotiation)
@@ -248,6 +243,12 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.cbor)
     implementation(libs.ktor.serialization.kotlinx.protobuf)
     implementation(libs.ktor.client.logging)
+
+    /*
+     * Realms DB
+     */
+    implementation(libs.realm.kotlin.library.base)
+    implementation(libs.realm.kotlin.library.sync)
 
     /*
      * Room DB
@@ -265,4 +266,5 @@ dependencies {
      * Include Shared Module for KMP
      */
     implementation(project(":shared"))
+
 }
