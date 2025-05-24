@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecas
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.LanguageEntity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 
-class GetLanguagesUseCase(
+class GetAvailableLanguagesUseCase(
     private val repository: LanguageRepository
 ) {
 

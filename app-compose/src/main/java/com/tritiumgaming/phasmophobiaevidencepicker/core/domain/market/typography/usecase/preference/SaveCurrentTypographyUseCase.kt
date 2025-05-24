@@ -1,11 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 
 class SaveCurrentTypographyUseCase(
-    private val datastoreRepository: TypographyDatastoreRepository
+    private val repository: TypographyRepository
 ) {
 
-    suspend operator fun invoke(uuid: String) = datastoreRepository.saveCurrentTypography(uuid)
+    suspend operator fun invoke(uuid: String) = repository.saveCurrentTypography(uuid)
 
 }

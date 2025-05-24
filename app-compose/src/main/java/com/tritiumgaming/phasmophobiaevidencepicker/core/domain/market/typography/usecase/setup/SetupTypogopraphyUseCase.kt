@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyDatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 
 class SetupTypographyUseCase(
-    private val datastoreRepository: TypographyDatastoreRepository
+    private val repository: TypographyRepository
 ) {
-    operator fun invoke() = datastoreRepository.initialSetupEvent()
+    operator fun invoke() = repository.initialSetupEvent()
 }

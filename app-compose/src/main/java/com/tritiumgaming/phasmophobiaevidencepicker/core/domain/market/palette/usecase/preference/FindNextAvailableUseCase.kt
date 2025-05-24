@@ -3,9 +3,11 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
 
-class FindNextAvailablePaletteUseCase {
-
+class FindNextAvailablePaletteUseCase(
+    private val repository: PaletteRepository
+) {
     operator fun invoke(
         palettes: Map<String, MarketPalette>,
         currentUUID: String,

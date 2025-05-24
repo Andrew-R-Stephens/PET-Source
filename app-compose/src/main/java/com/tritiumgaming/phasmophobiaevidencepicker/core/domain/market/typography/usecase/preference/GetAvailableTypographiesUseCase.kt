@@ -6,7 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
-class GetTypographiesUseCase(
+class GetAvailableTypographiesUseCase(
     private val repository: TypographyRepository
 ) {
 

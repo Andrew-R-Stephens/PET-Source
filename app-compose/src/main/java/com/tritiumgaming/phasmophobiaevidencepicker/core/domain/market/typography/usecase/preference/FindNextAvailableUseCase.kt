@@ -2,20 +2,24 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograp
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
 
-class FindNextAvailableTypographyUseCase {
+class FindNextAvailableTypographyUseCase(
+    repository: TypographyRepository
+){
 
     operator fun invoke(
-        typograhys: Map<String, MarketTypography>,
+        typographies: Map<String, MarketTypography>,
         currentUUID: String,
         direction: IncrementDirection
     ): String {
 
-        Log.d("Settings", "$currentUUID ${typograhys.size}")
-        if(typograhys.isEmpty()) return ""
+        Log.d("Settings", "$currentUUID ${typographies.size}")
+        if(typographies.isEmpty()) return ""
 
-        val filtered = typograhys
+        val filtered = typographies
             .filter {
                 it.value.typography != null && it.value.isUnlocked == true
             }

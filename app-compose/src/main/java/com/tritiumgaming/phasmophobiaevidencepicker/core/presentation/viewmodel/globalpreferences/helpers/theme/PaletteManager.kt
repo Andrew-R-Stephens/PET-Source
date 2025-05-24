@@ -7,7 +7,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.m
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPalettesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +19,7 @@ class PaletteManager(
     private val datastore: PaletteDatastore,
     /*private val setupPaletteUseCase: SetupPaletteUseCase,
     private val initFlowPaletteUseCase: InitFlowPaletteUseCase,*/
-    private val getPalettesUseCase: GetPalettesUseCase,
+    private val getPalettesUseCase: GetAvailablePalettesUseCase,
     private val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
     private val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase
 ): ThemeManager {

@@ -9,16 +9,16 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.s
 import kotlinx.coroutines.flow.Flow
 
 class PaletteRepositoryImpl(
-    private val remotePaletteSource: PaletteRemoteDataSource,
-    private val localPaletteSource: PaletteLocalDataSource,
+    private val remoteDataSource: PaletteRemoteDataSource,
+    private val localDataSource: PaletteLocalDataSource,
     private val dataStoreSource: PaletteDatastore
 ): PaletteRepository {
 
     override suspend fun getRemotePalettes(): List<MarketPaletteDto> =
-        remotePaletteSource.fetchAll()
+        remoteDataSource.fetchAll()
 
     override suspend fun getLocalPalettes(): List<MarketPaletteDto> =
-        localPaletteSource.fetchAll().toLocal()
+        localDataSource.fetchAll().toLocal()
 
     override fun initialSetupEvent() {
         dataStoreSource.initialSetupEvent()

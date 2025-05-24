@@ -6,7 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.m
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 
-class GetPalettesUseCase(
+class GetAvailablePalettesUseCase(
     private val repository: PaletteRepository
 ) {
 
