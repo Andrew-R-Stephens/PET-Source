@@ -22,8 +22,6 @@ class NewsletterLocalDataSource(
             )
         }
 
-
-
         return inboxes
     }
 

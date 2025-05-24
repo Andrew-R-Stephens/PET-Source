@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageLocalRepository.Companion.DEFAULT_LANGUAGE
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore.PreferenceKeys.KEY_CURRENT_LANGUAGE_CODE
 import kotlinx.coroutines.flow.Flow

@@ -8,7 +8,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.dto.MarketBundleDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.merchandise.source.api.references.FirestoreBundleApi.Companion.bundlesCollection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
 import kotlinx.coroutines.Dispatchers
@@ -17,10 +16,10 @@ import kotlinx.coroutines.withContext
 
 class BundleRemoteDataSource: BundleDataSource {
 
-    override suspend fun fetchAll(): List<NetworkBundleEntity> =
+    override suspend fun fetchAll(): List<MarketBundleDto> =
         withContext(Dispatchers.IO) {
 
-            val bundleList = mutableListOf<NetworkBundleEntity>()
+            val bundleList = mutableListOf<MarketBundleDto>()
 
             try {
                 getAllBundles()
@@ -56,8 +55,7 @@ class BundleRemoteDataSource: BundleDataSource {
                                     items = themeUUIDs
                                 )
 
-                                val bundleEntity = dto.toExternal()
-                                bundleList.add(bundleEntity)
+                                bundleList.add(dto)
 
                             } catch (e: Exception) {
                                 Log.d("Firestore", "Error obtaining remote palettes!")
