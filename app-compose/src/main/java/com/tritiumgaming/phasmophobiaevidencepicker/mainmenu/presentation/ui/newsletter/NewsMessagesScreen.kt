@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter
 
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
@@ -24,12 +24,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -54,9 +51,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType.NewsletterInboxTypeDTO
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterMessage
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
@@ -80,7 +75,7 @@ private fun NewsMessagesScreenPreview() {
 @Composable
 fun NewsMessagesScreen(
     navController: NavController = rememberNavController(),
-    inboxID: Int = 0
+    inboxID: String = "0"
 ) {
 
     MainMenuScreen {
@@ -99,29 +94,17 @@ fun NewsMessagesScreen(
 private fun NewsMessagesContent(
     navController: NavController = rememberNavController(),
     newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
-    inboxID: Int
+    inboxID: String
 ) {
+    val rememberInboxID by remember{ mutableStateOf(inboxID) }
 
-    val inboxType: NewsletterInboxTypeDTO? = NewsletterInboxType.getInbox(inboxID)
-    val rememberInbox by remember{
-        mutableStateOf(inboxType?.let { newsletterViewModel.getInbox(it) })
-    }
-    val rememberMessages = remember { mutableStateOf(
-        rememberInbox?.messages?.toList() ?: listOf() ) }
+    val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
+    val inbox = inboxes.value.find { inbox -> inbox.id == rememberInboxID }
 
-    var lastReadDateState = rememberInbox?.lastReadDate?.collectAsStateWithLifecycle()
-    var rememberLastReadDate by remember {
-        mutableLongStateOf(lastReadDateState?.value ?: 0L)
-    }
+    val inboxNotificationState = inbox?.inboxNotificationState?.collectAsStateWithLifecycle()
 
-    val requiresNotifyState = newsletterViewModel.requiresNotify(inboxType)?.collectAsStateWithLifecycle()
-    val rememberRequiresNotify by remember {
-        mutableStateOf(requiresNotifyState)
-    }
-
-    LaunchedEffect(rememberRequiresNotify) {
-        rememberLastReadDate = rememberInbox?.lastReadDate?.value ?: 0L
-    }
+    val messagesState = inbox?.channel?.messages?.collectAsStateWithLifecycle()
+    var inboxLastReadDateState = inbox?.inboxLastReadDate?.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier
@@ -134,8 +117,8 @@ private fun NewsMessagesContent(
             NavHeaderComposableParams(
                 leftType = PETImageButtonType.BACK,
                 rightType = PETImageButtonType.NONE,
-                centerTitleRes = rememberInbox?.inboxType?.title
-                    ?: R.string.messagecenter_inboxestitle_label,
+                centerTitleRes = inbox?.title
+                    ?: R.string.newsletter_title,
                 leftOnClick = { navController.popBackStack() }
             )
         )
@@ -152,19 +135,17 @@ private fun NewsMessagesContent(
                 modifier = Modifier
                     .height(48.dp)
                     .wrapContentWidth()
-                    .alpha(if (rememberRequiresNotify?.value == true) 1f else .4f),
+                    .alpha(if (inboxNotificationState?.value == true) 1f else .4f),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = LocalPalette.current.buttonColor,
                 ),
                 contentPadding = PaddingValues(top = 4.dp, bottom = 4.dp, start = 16.dp, end = 16.dp),
                 shape = RoundedCornerShape(size = 8.dp),
-                enabled = rememberRequiresNotify?.value == true,
+                enabled = inboxNotificationState?.value == true,
                 onClick = {
-                    inboxType?.let { inboxType ->
-                        rememberMessages.value.firstOrNull()?.second?.date?.let {
-                            newsletterViewModel.setLastReadDate(inboxType, it)
-
-                            rememberLastReadDate = it
+                    inbox?.let { inboxType ->
+                        messagesState?.value?.firstOrNull()?.date?.let {
+                            newsletterViewModel.saveInboxLastReadDate(inboxID, it)
                         }
                     }
                 }
@@ -191,19 +172,17 @@ private fun NewsMessagesContent(
             state = rememberListState
         ) {
 
-            items(items = rememberMessages.value) { message ->
+            items(items = messagesState?.value ?: listOf()) { message ->
 
-                val rememberMessage by remember {
-                    mutableStateOf(message.second)
-                }
+                val rememberMessage by remember { mutableStateOf(message) }
 
                 MessageCard(
                     message = rememberMessage,
-                    isActive = rememberMessage.date - rememberLastReadDate > 0,
+                    isActive = rememberMessage.date - (inboxLastReadDateState?.value ?: 0) > 0,
                     onClick = {
-                        inboxType?.let { inboxType ->
-                            newsletterViewModel.setLastReadDate(
-                                inboxType, rememberMessage.date)
+                        inbox?.let { inboxType ->
+                            newsletterViewModel.saveInboxLastReadDate(
+                                inboxID, rememberMessage.date)
                         }
                         navController.navigate(
                             route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
@@ -223,7 +202,7 @@ private fun NewsMessagesContent(
 
 @Composable
 private fun MessageCard(
-    message: NewsletterInbox.NewsletterMessage,
+    message: NewsletterMessage,
     isActive: Boolean = false,
     onClick: () -> Unit = {}
 ) {

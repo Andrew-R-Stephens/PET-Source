@@ -96,10 +96,10 @@
         MESSAGE CENTER FRAGMENTS
     -->
     <!-- Page Details -->
-    <string name="messagecenter_inboxestitle_label">Центр повідомлень</string>
-    <string name="messagecenter_inbox_general">Загальні новини</string>
-    <string name="messagecenter_inbox_pet">P.E.T. Журнал змін</string>
-    <string name="messagecenter_inbox_phas">Список змін Phasmophobia</string>
+    <string name="newsletter_title">Центр повідомлень</string>
+    <string name="newsletter_inbox_title_general">Загальні новини</string>
+    <string name="newsletter_inbox_title_pet">P.E.T. Журнал змін</string>
+    <string name="newsletter_inbox_title_phasmophobia">Список змін Phasmophobia</string>
     <!--
         EVIDENCE FRAGMENT
     -->

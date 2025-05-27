@@ -76,10 +76,10 @@
     <string name="theme_typography_journal">Diária</string>
     <string name="theme_typography_brick">Tijolo</string>
     <string name="theme_typography_clean">Limpo</string>
-    <string name="messagecenter_inboxestitle_label">Centro de mensagens</string>
-    <string name="messagecenter_inbox_general">Noticias gerais</string>
-    <string name="messagecenter_inbox_pet">Registo de alterações de P.E.T.</string>
-    <string name="messagecenter_inbox_phas">Log de alterações da Fasmofobia</string>
+    <string name="newsletter_title">Centro de mensagens</string>
+    <string name="newsletter_inbox_title_general">Noticias gerais</string>
+    <string name="newsletter_inbox_title_pet">Registo de alterações de P.E.T.</string>
+    <string name="newsletter_inbox_title_phasmophobia">Log de alterações da Fasmofobia</string>
 
     <!-- Solo/Team Data -->
 

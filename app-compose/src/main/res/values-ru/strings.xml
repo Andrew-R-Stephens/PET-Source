@@ -85,10 +85,10 @@
     <string name="theme_typography_journal">Журнал</string>
     <string name="theme_typography_brick">Кирпич</string>
     <string name="theme_typography_clean">Чистый</string>
-    <string name="messagecenter_inboxestitle_label">Центр сообщений</string>
-    <string name="messagecenter_inbox_general">Общие новости</string>
-    <string name="messagecenter_inbox_pet">P.E.T. Журнал изменений</string>
-    <string name="messagecenter_inbox_phas">Журнал изменений фазмофобии</string>
+    <string name="newsletter_title">Центр сообщений</string>
+    <string name="newsletter_inbox_title_general">Общие новости</string>
+    <string name="newsletter_inbox_title_pet">P.E.T. Журнал изменений</string>
+    <string name="newsletter_inbox_title_phasmophobia">Журнал изменений фазмофобии</string>
 
     <!--
         EVIDENCE FRAGMENT

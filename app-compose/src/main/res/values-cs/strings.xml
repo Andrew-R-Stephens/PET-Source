@@ -34,10 +34,10 @@
     <string name="theme_typography_journal">Časopis</string>
     <string name="theme_typography_brick">Cihlový</string>
     <string name="theme_typography_clean">Čistý</string>
-    <string name="messagecenter_inboxestitle_label">Centrum Zpráv</string>
-    <string name="messagecenter_inbox_general">Obecné zprávy</string>
-    <string name="messagecenter_inbox_pet">Protokol změn P.E.T.</string>
-    <string name="messagecenter_inbox_phas">Protokol změn Phasmophobia</string>
+    <string name="newsletter_title">Centrum Zpráv</string>
+    <string name="newsletter_inbox_title_general">Obecné zprávy</string>
+    <string name="newsletter_inbox_title_pet">Protokol změn P.E.T.</string>
+    <string name="newsletter_inbox_title_phasmophobia">Protokol změn Phasmophobia</string>
 
     <!--
          REVIEW POPUP

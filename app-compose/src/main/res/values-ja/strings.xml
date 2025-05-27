@@ -76,10 +76,10 @@
     <string name="theme_typography_journal">ジャーナル</string>
     <string name="theme_typography_brick">レンガ</string>
     <string name="theme_typography_clean">清らか</string>
-    <string name="messagecenter_inboxestitle_label">メッセージセンター</string>
-    <string name="messagecenter_inbox_general">一般ニュース</string>
-    <string name="messagecenter_inbox_pet">ペット。変更履歴</string>
-    <string name="messagecenter_inbox_phas">恐怖症変更履歴</string>
+    <string name="newsletter_title">メッセージセンター</string>
+    <string name="newsletter_inbox_title_general">一般ニュース</string>
+    <string name="newsletter_inbox_title_pet">ペット。変更履歴</string>
+    <string name="newsletter_inbox_title_phasmophobia">恐怖症変更履歴</string>
 
     <!-- Solo/Team Data -->
 

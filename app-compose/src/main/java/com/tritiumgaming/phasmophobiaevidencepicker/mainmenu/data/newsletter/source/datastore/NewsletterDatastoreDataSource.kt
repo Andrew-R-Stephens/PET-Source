@@ -14,10 +14,12 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-class NewsletterDatastore(
+class NewsletterDatastoreDataSource(
     context: Context,
     private val dataStore: DataStore<Preferences>
 ): NewsletterDatastore {
+
+    private val keyList: Map<String, Preferences.Key<Long>> = mapOf()
 
     override val flow: Flow<NewsletterDatastore.NewsletterPreferences> = dataStore.data
         .catch { exception ->
@@ -32,12 +34,21 @@ class NewsletterDatastore(
         }
 
     init {
-        NewsletterDatastore.PreferenceKeys.KEY_INBOX_GENERAL =
-            longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_general))
-        NewsletterDatastore.PreferenceKeys.KEY_INBOX_PET =
-            longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_pet))
-        NewsletterDatastore.PreferenceKeys.KEY_INBOX_PHASMOPHOBIA =
-            longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_phas))
+        keyList.apply {
+            "1" to longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_general))
+            "2" to longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_pet))
+            "3" to longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_phas))
+        }
+
+    }
+
+    override suspend fun setLastReadDate(id: String, date: Long) {
+        val key = keyList[id]
+        key?.let { it ->
+            dataStore.edit { preferences ->
+                preferences[it] = date
+            }
+        }
     }
 
     override suspend fun setLastReadDate(key: Preferences.Key<Long>, date: Long) {
@@ -51,13 +62,16 @@ class NewsletterDatastore(
 
     override fun mapPreferences(preferences: Preferences): NewsletterDatastore.NewsletterPreferences {
         return NewsletterDatastore.NewsletterPreferences(
-            preferences[NewsletterDatastore.PreferenceKeys.KEY_INBOX_GENERAL]
-                ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT,
-            preferences[NewsletterDatastore.PreferenceKeys.KEY_INBOX_PET]
-                ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT,
-            preferences[NewsletterDatastore.PreferenceKeys.KEY_INBOX_PHASMOPHOBIA]
-                ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT
+            data = keyList.mapValues { preferences[it.value] ?: 0L }
         )
     }
+
+    /*override fun mapPreferences(preferences: Preferences): NewsletterDatastore.NewsletterPreferences {
+        return NewsletterDatastore.NewsletterPreferences(
+            preferences[KEY_INBOX_GENERAL] ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT,
+            preferences[KEY_INBOX_PET] ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT,
+            preferences[KEY_INBOX_PHASMOPHOBIA] ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT
+        )
+    }*/
 
 }

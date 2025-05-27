@@ -77,10 +77,10 @@
     <string name="theme_typography_journal">杂志</string>
     <string name="theme_typography_brick">砖</string>
     <string name="theme_typography_clean">干净</string>
-    <string name="messagecenter_inboxestitle_label">留言中心</string>
-    <string name="messagecenter_inbox_general">一般新闻</string>
-    <string name="messagecenter_inbox_pet">宠物。变更日志</string>
-    <string name="messagecenter_inbox_phas">恐惧症变更日志</string>
+    <string name="newsletter_title">留言中心</string>
+    <string name="newsletter_inbox_title_general">一般新闻</string>
+    <string name="newsletter_inbox_title_pet">宠物。变更日志</string>
+    <string name="newsletter_inbox_title_phasmophobia">恐惧症变更日志</string>
 
     <!-- Solo/Team Data -->
 

@@ -15,9 +15,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mai
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.applanguages.LanguageScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.MarketplaceScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.billing.MarketplaceBillingScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter.NewsInboxesScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter.NewsMessageScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter.NewsMessagesScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsInboxesScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsMessageScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsMessagesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
@@ -73,9 +73,9 @@ fun RootNavigation() {
 
                 composable(route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/{inboxID}",
                     arguments = listOf(
-                        navArgument("inboxID") { type = NavType.IntType }
+                        navArgument("inboxID") { type = NavType.StringType }
                     )) { navBackStackEntry ->
-                        val inboxID = navBackStackEntry.arguments?.getInt("inboxID")
+                        val inboxID = navBackStackEntry.arguments?.getString("inboxID")
 
                     if(inboxID != null) {
                         NewsMessagesScreen(
@@ -90,12 +90,12 @@ fun RootNavigation() {
 
                 composable(route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/{inboxID}/{messageID}",
                     arguments = listOf(
-                        navArgument("inboxID") { type = NavType.IntType },
-                        navArgument("messageID") { type = NavType.IntType }
+                        navArgument("inboxID") { type = NavType.StringType },
+                        navArgument("messageID") { type = NavType.StringType }
                     )) { navBackStackEntry ->
 
-                    val inboxID = navBackStackEntry.arguments?.getInt("inboxID")
-                    val messageID = navBackStackEntry.arguments?.getInt("messageID")
+                    val inboxID = navBackStackEntry.arguments?.getString("inboxID")
+                    val messageID = navBackStackEntry.arguments?.getString("messageID")
 
                     if(inboxID != null && messageID != null) {
                         NewsMessageScreen(

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.newsletter
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
@@ -88,7 +88,6 @@ private fun NewsInboxesContent(
 ) {
 
     val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
-    val inboxTypes = inboxes.value.values
 
     Column(
         modifier = Modifier
@@ -101,7 +100,7 @@ private fun NewsInboxesContent(
             NavHeaderComposableParams(
                 leftType = PETImageButtonType.BACK,
                 rightType = PETImageButtonType.NONE,
-                centerTitleRes = R.string.messagecenter_inboxestitle_label,
+                centerTitleRes = R.string.newsletter_title,
                 leftOnClick = onBack
             )
         )
@@ -115,37 +114,20 @@ private fun NewsInboxesContent(
             verticalArrangement = Arrangement.Top,
         ) {
 
-            items(items = inboxTypes.toList()) { inbox ->
+            items(items = inboxes.value) { inbox ->
 
                 InboxCard(
-                    title = inbox.inboxType.title,
-                    icon = inbox.inboxType.icon,
+                    title = inbox.title,
+                    icon = inbox.icon,
                     isActive = false,
                     onClick = {
                         navController.navigate(
-                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/" +
-                                    "${inbox.inboxType.id}")
+                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
                     }
                 )
 
             }
 
-            /*items(items = inboxTypes.toList()) { inboxType: InboxTypeDTO ->
-
-                newsletterViewModel.getInbox(inboxType)?.let {
-
-                    InboxCard(
-                        title = it.inboxType.title,
-                        icon = it.inboxType.icon,
-                        isActive = false,
-                        onClick = {
-                            navController.navigate(
-                                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/" +
-                                        "${it.inboxType.id}")
-                        }
-                    )
-                }
-            }*/
         }
 
         AdmobBanner()
@@ -156,7 +138,7 @@ private fun NewsInboxesContent(
 @Composable
 private fun InboxCard(
     modifier: Modifier = Modifier,
-    title: Int = R.string.messagecenter_inboxestitle_label,
+    title: Int = R.string.newsletter_title,
     @DrawableRes icon: Int = R.drawable.ic_notify,
     isActive: Boolean = true,
     onClick: () -> Unit = {}
@@ -228,19 +210,19 @@ private fun InboxButtonPreview() {
         ) {
 
             InboxCard(
-                title = R.string.messagecenter_inbox_general,
+                title = R.string.newsletter_inbox_title_general,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )
 
             InboxCard(
-                title = R.string.messagecenter_inbox_phas,
+                title = R.string.newsletter_inbox_title_phasmophobia,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )
 
             InboxCard(
-                title = R.string.messagecenter_inbox_pet,
+                title = R.string.newsletter_inbox_title_pet,
                 modifier = Modifier
                     .padding(vertical = 4.dp)
             )

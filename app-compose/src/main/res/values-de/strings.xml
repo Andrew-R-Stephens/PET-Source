@@ -918,10 +918,10 @@
     <string name="theme_typography_journal">Tagebuch</string>
     <string name="theme_typography_brick">Ziegel</string>
     <string name="theme_typography_clean">Sauber</string>
-    <string name="messagecenter_inboxestitle_label">Nachrichtenzentrum</string>
-    <string name="messagecenter_inbox_pet">P.E.T.-Änderungsprotokoll</string>
-    <string name="messagecenter_inbox_phas">Phasmophobia-Änderungsprotokoll</string>
-    <string name="messagecenter_inbox_general">Allgemeine Nachrichten</string>
+    <string name="newsletter_title">Nachrichtenzentrum</string>
+    <string name="newsletter_inbox_title_pet">P.E.T.-Änderungsprotokoll</string>
+    <string name="newsletter_inbox_title_phasmophobia">Phasmophobia-Änderungsprotokoll</string>
+    <string name="newsletter_inbox_title_general">Allgemeine Nachrichten</string>
     <string name="settings_networktitle">Mobile Datennutzung zulassen</string>
     <string name="spiritbox_entry_q8_1">Was ist mein Verstand?</string>
     <string name="spiritbox_entry_q8_2">Wie verrückt bin ich?</string>

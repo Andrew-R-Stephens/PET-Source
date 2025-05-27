@@ -35,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -59,7 +60,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmo
 import java.util.Locale
 
 @Composable
-//@Preview
+@Preview
 private fun StartScreenPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
@@ -150,26 +151,6 @@ private fun StartContent(
                 maxLines = 1,
                 autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
             )
-
-            /*AutoResizedText(
-                containerModifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp),
-                text = stringResource(R.string.titlescreen_description),
-                textAlign = TextAlign.Center,
-                color = LocalPalette.current.splashTextColor,
-                style = LocalTypography.current.primary.regular,
-                borderStyle = LocalTypography.current.primary.regular.copy(
-                    drawStyle = Stroke(
-                        miter = 1f,
-                        width = 2f,
-                        join = StrokeJoin.Bevel,
-                    ),
-                    color = LocalPalette.current.surface.onColor
-                ),
-                autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
-                behavior = AutoResizedBehavior.MARQUEE
-            )*/
 
             Column(
                 modifier = Modifier
@@ -307,9 +288,7 @@ private fun HeaderNavBar(
     val discordInvitation = stringResource(R.string.aboutinfo_discordInvite)
     val languageIcon: @Composable () -> Unit = { LanguageIcon() }
 
-    val rememberNewsUpToDate by remember{
-        mutableStateOf(false)
-    }
+    val rememberNewsUpToDate = newsletterViewModel.mainNotificationState.collectAsStateWithLifecycle()
 
     IconDropdownMenu(
         R.drawable.ic_menu,
@@ -329,7 +308,7 @@ private fun HeaderNavBar(
     ) { false }
 
     // News Button
-    NotificationIndicator(isActive = rememberNewsUpToDate) {
+    NotificationIndicator(isActive = rememberNewsUpToDate.value) {
         navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
     }
 

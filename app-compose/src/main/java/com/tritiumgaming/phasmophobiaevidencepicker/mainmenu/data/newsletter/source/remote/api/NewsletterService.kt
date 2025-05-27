@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.api
 
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.api.dto.NewsletterInboxDTO
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.dto.RemoteNewsletterInboxDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -14,14 +14,13 @@ import nl.adaptivity.xmlutil.XmlDeclMode
 import nl.adaptivity.xmlutil.serialization.XML
 import nl.adaptivity.xmlutil.serialization.XmlConfig
 
-data object NewsletterService {
+class NewsletterService {
 
     @OptIn(ExperimentalXmlUtilApi::class)
     @Throws(Exception::class)
     suspend fun fetchInbox(
-        inboxURL: Url,
-        onSuccess: (inboxDto: NewsletterInboxDTO) -> Unit
-    ) {
+        inboxURL: Url
+    ): Result<RemoteNewsletterInboxDto> {
         val format = XML {
             xmlDeclMode = XmlDeclMode.Charset
             unknownChildHandler = XmlConfig.Companion.IGNORING_UNKNOWN_CHILD_HANDLER
@@ -40,11 +39,11 @@ data object NewsletterService {
             }
         }
 
-        try {
-            val inboxDto = client.get(inboxURL).body<NewsletterInboxDTO>()
-            onSuccess(inboxDto)
+        return try {
+            val inboxDto = client.get(inboxURL).body<RemoteNewsletterInboxDto>()
+            Result.success(inboxDto)
         } catch (ex: Exception) {
-            ex.printStackTrace()
+            Result.failure(ex)
         }
 
     }

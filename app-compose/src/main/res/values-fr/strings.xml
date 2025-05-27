@@ -760,10 +760,10 @@
     <string name="theme_typography_journal">Journal</string>
     <string name="theme_typography_brick">Brique</string>
     <string name="theme_typography_clean">Faire le Ménage</string>
-    <string name="messagecenter_inboxestitle_label">Centre de Messagerie</string>
-    <string name="messagecenter_inbox_pet">Journal des Modifications P.E.T.</string>
-    <string name="messagecenter_inbox_phas">Journal des Modifications Phasmophobia</string>
-    <string name="messagecenter_inbox_general">Les nouvelles Générales</string>
+    <string name="newsletter_title">Centre de Messagerie</string>
+    <string name="newsletter_inbox_title_pet">Journal des Modifications P.E.T.</string>
+    <string name="newsletter_inbox_title_phasmophobia">Journal des Modifications Phasmophobia</string>
+    <string name="newsletter_inbox_title_general">Les nouvelles Générales</string>
     <string name="settings_networktitle">Autoriser l\'utilisation des Données Mobiles</string>
     <string name="spiritbox_entry_q8_1">Quelle est ma raison?</string>
     <string name="spiritbox_entry_q8_2">A quel point suis-je fou?</string>

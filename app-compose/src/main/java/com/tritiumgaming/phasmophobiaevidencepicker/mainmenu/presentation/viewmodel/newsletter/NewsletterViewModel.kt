@@ -7,17 +7,43 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.model.NewsletterInboxType
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.handler.NewsletterManager
-import kotlinx.coroutines.flow.StateFlow
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SetupNewsletterUseCase
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class NewsletterViewModel(
-    private val newsletterManager: NewsletterManager
+    private val setupNewsletterUseCase: SetupNewsletterUseCase,
+    private val initFlowNewsletterUseCase: InitFlowNewsletterUseCase,
+    private val fetchNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
+    private val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
 ): ViewModel() {
 
+    private val _inboxes = MutableStateFlow<List<NewsletterInbox>>(fetchNewsletterInboxesUseCase())
+    val inboxes = _inboxes.asStateFlow()
+    private fun getInbox(inboxId: String): NewsletterInbox? {
+        return inboxes.value.find { inbox -> inbox.id == inboxId }
+    }
+
+    private val _mainNotificationState = MutableStateFlow<Boolean>(true)
+    val mainNotificationState = _mainNotificationState.asStateFlow()
+    fun setMainNotificationState(value: Boolean) {
+        _mainNotificationState.update { value }
+    }
+
+    fun saveInboxLastReadDate(inboxId: String, date: Long) {
+        viewModelScope.launch {
+            saveNewsletterInboxLastReadDateUseCase(inboxId, date)
+        }
+    }
+
     private fun initialSetupEvent() {
-        newsletterManager.initialSetupEvent()
+        setupNewsletterUseCase()
     }
 
     init {
@@ -26,44 +52,30 @@ class NewsletterViewModel(
         initialSetupEvent()
 
         viewModelScope.launch {
-            newsletterManager.createInboxes()
-        }
-
-        viewModelScope.launch {
-            newsletterManager.initFlow()
-        }
-    }
-
-    val inboxes = newsletterManager.inboxes
-
-    fun requiresNotify(inboxType: NewsletterInboxType.NewsletterInboxTypeDTO?): StateFlow<Boolean>? {
-        if(inboxType == null) return newsletterManager.requiresNotify
-
-        return newsletterManager.requiresNotify(inboxType)
-    }
-
-    fun getInbox(inboxType: NewsletterInboxType.NewsletterInboxTypeDTO) =
-        newsletterManager.getInbox(inboxType)
-
-    fun setLastReadDate(
-        inboxType: NewsletterInboxType.NewsletterInboxTypeDTO, date: Long,
-        onComplete: () -> Unit = {}
-    ) {
-        viewModelScope.launch {
-            newsletterManager.setLastReadDate(inboxType, date)
-            onComplete()
+            initFlowNewsletterUseCase().collect { preferences ->
+                inboxes.value.forEach {
+                    it.setInboxLastReadDate(preferences.data[it.id] ?: 0L)
+                    Log.d("NewsletterViewModel", "ID ${it.id}: lastReadDate: ${it.inboxLastReadDate.value}")
+                }
+            }
         }
     }
 
     class NewsletterFactory(
-        private val newsletterManager: NewsletterManager
+        private val setupNewsletterUseCase: SetupNewsletterUseCase,
+        private val initFlowNewsletterUseCase: InitFlowNewsletterUseCase,
+        private val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
+        private val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(NewsletterViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return NewsletterViewModel(
-                    newsletterManager = newsletterManager
+                    setupNewsletterUseCase = setupNewsletterUseCase,
+                    initFlowNewsletterUseCase = initFlowNewsletterUseCase,
+                    fetchNewsletterInboxesUseCase = getNewsletterInboxesUseCase,
+                    saveNewsletterInboxLastReadDateUseCase = saveNewsletterInboxLastReadDateUseCase
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
@@ -74,13 +86,15 @@ class NewsletterViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
+
                 val container =
                     (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).mainMenuContainer
 
-                val newsletterManager: NewsletterManager = container.newsletterManager
-
                 NewsletterViewModel(
-                    newsletterManager = newsletterManager
+                    setupNewsletterUseCase = container.setupNewsletterUseCase,
+                    initFlowNewsletterUseCase = container.initFlowNewsletterUseCase,
+                    fetchNewsletterInboxesUseCase = container.getNewsletterInboxesUseCase,
+                    saveNewsletterInboxLastReadDateUseCase = container.saveNewsletterInboxLastReadDateUseCase
                 )
             }
         }
