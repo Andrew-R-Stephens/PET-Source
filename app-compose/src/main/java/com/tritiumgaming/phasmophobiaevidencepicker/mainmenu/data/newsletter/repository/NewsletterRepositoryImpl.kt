@@ -1,7 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository
 
-import android.util.Log
-import androidx.lifecycle.viewModelScope
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.FlattenedNewsletterInboxDto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.mapper.toExternal
@@ -49,18 +47,9 @@ class NewsletterRepositoryImpl(
     init {
         initialSetupEvent()
 
-
-
         CoroutineScope(coroutineDispatcher).launch {
             cache = getLocalInboxes()
             synchronizeInboxes()
-/*
-            dataStoreSource.flow.collect { preferences ->
-                inboxes.value.forEach {
-                    it.setInboxLastReadDate(preferences.data[it.id] ?: 0L)
-                    Log.d("NewsletterViewModel", "ID ${it.id}: lastReadDate: ${it.inboxLastReadDate.value}")
-                }
-            }*/
         }
     }
 

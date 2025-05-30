@@ -9,7 +9,7 @@ data class MarketPalette (
     val group: String? = "",
     val buyCredits: Long = 0L,
     val priority: Long? = 0L,
-    val unlocked: Boolean = true,
+    val unlocked: Boolean = false,
     val palette: ExtendedPalette? = null
 ) {
 

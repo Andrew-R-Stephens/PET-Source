@@ -13,19 +13,4 @@ interface NewsletterDatastore: DatastoreInterface<NewsletterPreferences> {
         val data: Map<String, Long>
     )
 
-    /*data class NewsletterPreferences(
-        val lastReadDateGeneral: Long,
-        val lastReadDatePET: Long,
-        val lastReadDatePhasmophobia: Long
-    )
-
-    companion object PferenceKeys {
-
-        lateinit var KEY_INBOX_GENERAL: Preferences.Key<Long>
-        lateinit var KEY_INBOX_PET: Preferences.Key<Long>
-        lateinit var KEY_INBOX_PHASMOPHOBIA: Preferences.Key<Long>
-
-        const val DATE_DEFAULT = 0L
-    }*/
-
 }

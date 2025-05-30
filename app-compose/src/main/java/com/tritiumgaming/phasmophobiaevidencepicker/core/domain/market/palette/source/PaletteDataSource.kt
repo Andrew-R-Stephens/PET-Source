@@ -1,7 +1,13 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source
 
-interface PaletteDataSource<T> {
+interface RemotePaletteDataSource<T> {
 
-    suspend fun fetchAll(): T
+    suspend fun fetchPalettes(): T
+
+}
+
+interface LocalPaletteDataSource<T> {
+
+    fun getPalettes(): T
 
 }

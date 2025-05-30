@@ -5,9 +5,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.so
 import kotlinx.coroutines.flow.Flow
 
 class InitFlowReviewTrackerUseCase(
-        private val reviewTrackerDatastoreRepository: ReviewTrackerRepository
+        private val repository: ReviewTrackerRepository
     ) {
         suspend operator fun invoke(): Flow<ReviewTrackerDatastore.ReviewTrackerPreferences> =
-            reviewTrackerDatastoreRepository.initFlow()
+            repository.initFlow()
     }
     

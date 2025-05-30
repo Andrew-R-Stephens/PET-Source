@@ -46,7 +46,7 @@ realm-kotlin = "3.0.0" # Latest: 1.16.0
 realm-kotlin-base = "3.0.0"
 realm-kotlin-sync = "2.3.0"
 
-agp = "8.10.0" # Latest: 8.8.1
+agp = "8.10.1" # Latest: 8.8.1
 kotlin = "2.1.20"
 ksp = "2.1.20-2.0.0"
 googleid = "1.1.1"

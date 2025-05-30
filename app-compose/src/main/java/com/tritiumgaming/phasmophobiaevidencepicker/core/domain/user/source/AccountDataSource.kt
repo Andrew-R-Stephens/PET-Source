@@ -1,0 +1,3 @@
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.source
+
+interface AccountDataSource

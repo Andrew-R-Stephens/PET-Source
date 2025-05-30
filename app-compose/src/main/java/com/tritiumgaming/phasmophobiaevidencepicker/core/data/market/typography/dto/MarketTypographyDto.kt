@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
-class MarketTypographyDto(
+data class MarketTypographyDto(
     internal val uuid: String,
     internal val name: String? = "",
     internal val group: String? = "",

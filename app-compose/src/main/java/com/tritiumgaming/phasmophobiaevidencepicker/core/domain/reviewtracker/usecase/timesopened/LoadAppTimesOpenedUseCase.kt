@@ -3,9 +3,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.u
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 
 class LoadAppTimesOpenedUseCase(
-    private val reviewTrackerDatastoreRepository: ReviewTrackerRepository
+    private val repository: ReviewTrackerRepository
 ) {
 
-    suspend operator fun invoke() = reviewTrackerDatastoreRepository.loadAppTimesOpened()
+    suspend operator fun invoke() = repository.loadAppTimesOpened()
 
 }

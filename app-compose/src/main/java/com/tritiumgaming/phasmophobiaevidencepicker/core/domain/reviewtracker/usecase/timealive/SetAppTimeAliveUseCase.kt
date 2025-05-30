@@ -3,11 +3,11 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.u
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 
 class SetAppTimeAliveUseCase(
-    private val reviewTrackerDatastoreRepository: ReviewTrackerRepository
+    private val repository: ReviewTrackerRepository
 ) {
 
     suspend operator fun invoke(time: Long) {
-        reviewTrackerDatastoreRepository.saveAppTimeAlive(time)
+        repository.saveAppTimeAlive(time)
     }
 
 }

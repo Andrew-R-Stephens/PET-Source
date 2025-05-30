@@ -3,20 +3,21 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.conta
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.google.firebase.firestore.FirebaseFirestore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.BundleRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.PaletteRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.PaletteDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.PaletteLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.PaletteRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.repository.TypographyRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.TypographyDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.TypographyLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.TypographyRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.MarketPaletteRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.MarketPaletteDatastoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.MarketPaletteLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.repository.MarketTypographyRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.MarketTypographyDatastoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.MarketTypographyLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
@@ -37,14 +38,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.SetupPaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
@@ -63,10 +64,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
+import kotlinx.coroutines.Dispatchers
 
 class CoreContainer(
     applicationContext: Context,
-    dataStore: DataStore<Preferences>
+    dataStore: DataStore<Preferences>,
+    firestore: FirebaseFirestore
 ) {
 
     // Global Preferences
@@ -77,57 +80,57 @@ class CoreContainer(
                 dataStore = dataStore
             )
         )
-    val setupGlobalPreferencesUseCase = SetupGlobalPreferencesUseCase(
+    internal val setupGlobalPreferencesUseCase = SetupGlobalPreferencesUseCase(
         repository = globalPreferencesRepository)
-    val initFlowGlobalPreferencesUseCase = InitFlowGlobalPreferencesUseCase(
+    internal val initFlowGlobalPreferencesUseCase = InitFlowGlobalPreferencesUseCase(
         repository = globalPreferencesRepository)
-    val setAllowCellularDataUseCase = SetAllowCellularDataUseCase(
+    internal val setAllowCellularDataUseCase = SetAllowCellularDataUseCase(
         repository = globalPreferencesRepository)
-    val setAllowHuntWarnAudioUseCase = SetAllowHuntWarnAudioUseCase(
+    internal val setAllowHuntWarnAudioUseCase = SetAllowHuntWarnAudioUseCase(
         repository = globalPreferencesRepository)
-    val setAllowIntroductionUseCase = SetAllowIntroductionUseCase(
+    internal val setAllowIntroductionUseCase = SetAllowIntroductionUseCase(
         repository = globalPreferencesRepository)
-    val setDisableScreenSaverUseCase = SetDisableScreenSaverUseCase(
+    internal val setDisableScreenSaverUseCase = SetDisableScreenSaverUseCase(
         repository = globalPreferencesRepository)
-    val setEnableGhostReorderUseCase = SetEnableGhostReorderUseCase(
+    internal val setEnableGhostReorderUseCase = SetEnableGhostReorderUseCase(
         repository = globalPreferencesRepository)
-    val setEnableRTLUseCase = SetEnableRTLUseCase(
+    internal val setEnableRTLUseCase = SetEnableRTLUseCase(
         repository = globalPreferencesRepository)
-    val setMaxHuntWarnFlashTimeUseCase = SetMaxHuntWarnFlashTimeUseCase(
+    internal val setMaxHuntWarnFlashTimeUseCase = SetMaxHuntWarnFlashTimeUseCase(
         repository = globalPreferencesRepository)
 
     /**
      * Review Tracker
      */
-    val reviewTrackerDatastoreRepository: ReviewTrackerRepository =
+    private val reviewTrackerRepository: ReviewTrackerRepository =
         ReviewTrackerRepositoryImpl(
             dataStoreSource = ReviewTrackerDatastoreDataSource(
                 context = applicationContext,
                 datastore = dataStore
             )
         )
-    val getReviewRequestStatusUseCase: GetReviewRequestStatusUseCase = GetReviewRequestStatusUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val loadReviewRequestStatusUseCase: LoadReviewRequestStatusUseCase = LoadReviewRequestStatusUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val initializeReviewTrackerUseCase = InitFlowReviewTrackerUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase = SetReviewRequestStatusUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val setAppTimeAliveUseCase: SetAppTimeAliveUseCase = SetAppTimeAliveUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val getAppTimeAliveUseCase: GetAppTimeAliveUseCase = GetAppTimeAliveUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val loadAppTimeAliveUseCase: LoadAppTimeAliveUseCase = LoadAppTimeAliveUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val setAppTimesOpenedUseCase = SetAppTimesOpenedUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val getAppTimesOpenedUseCase = GetAppTimesOpenedUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
-    val loadAppTimesOpenedUseCase = LoadAppTimesOpenedUseCase(
-        reviewTrackerDatastoreRepository = reviewTrackerDatastoreRepository)
+    internal val getReviewRequestStatusUseCase = GetReviewRequestStatusUseCase(
+        repository = reviewTrackerRepository)
+    internal val loadReviewRequestStatusUseCase = LoadReviewRequestStatusUseCase(
+        repository = reviewTrackerRepository)
+    internal val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
+        repository = reviewTrackerRepository)
+    internal val initializeReviewTrackerUseCase = InitFlowReviewTrackerUseCase(
+        repository = reviewTrackerRepository)
+    internal val setReviewRequestStatusUseCase = SetReviewRequestStatusUseCase(
+        repository = reviewTrackerRepository)
+    internal val setAppTimeAliveUseCase = SetAppTimeAliveUseCase(
+        repository = reviewTrackerRepository)
+    internal val getAppTimeAliveUseCase = GetAppTimeAliveUseCase(
+        repository = reviewTrackerRepository)
+    internal val loadAppTimeAliveUseCase = LoadAppTimeAliveUseCase(
+        repository = reviewTrackerRepository)
+    internal val setAppTimesOpenedUseCase = SetAppTimesOpenedUseCase(
+        repository = reviewTrackerRepository)
+    internal val getAppTimesOpenedUseCase = GetAppTimesOpenedUseCase(
+        repository = reviewTrackerRepository)
+    internal val loadAppTimesOpenedUseCase = LoadAppTimesOpenedUseCase(
+        repository = reviewTrackerRepository)
 
     /**
      *  Market Bundle
@@ -137,13 +140,13 @@ class CoreContainer(
     /**
      * Market Typography
      */
-    private val typographyLocalDataSource = TypographyLocalDataSource()
-    private val typographyRemoteDataSource = TypographyRemoteDataSource()
-    private val typographyDatastoreDataSource = TypographyDatastoreDataSource(
+    private val typographyLocalDataSource = MarketTypographyLocalDataSource()
+    private val typographyRemoteDataSource = MarketTypographyRemoteDataSource()
+    private val typographyDatastoreDataSource = MarketTypographyDatastoreDataSource(
         context = applicationContext,
         dataStore = dataStore
     )
-    private val typographyRepository: TypographyRepository = TypographyRepositoryImpl(
+    private val typographyRepository: MarketTypographyRepository = MarketTypographyRepositoryImpl(
         localDataSource = typographyLocalDataSource,
         remoteDataSource = typographyRemoteDataSource,
         dataStoreSource = typographyDatastoreDataSource
@@ -164,16 +167,17 @@ class CoreContainer(
     /**
      * Market Palette
      */
-    private val paletteLocalDataSource = PaletteLocalDataSource()
-    private val paletteRemoteDataSource = PaletteRemoteDataSource()
-    private val paletteDatastoreDataSource = PaletteDatastoreDataSource(
+    private val paletteLocalDataSource = MarketPaletteLocalDataSource()
+    private val paletteRemoteDataSource = MarketPaletteRemoteDataSource()
+    private val paletteDatastoreDataSource = MarketPaletteDatastoreDataSource(
         context = applicationContext,
         dataStore = dataStore
     )
-    private val paletteRepository: PaletteRepository = PaletteRepositoryImpl(
+    private val paletteRepository: MarketPaletteRepository = MarketPaletteRepositoryImpl(
         localDataSource = paletteLocalDataSource,
         remoteDataSource = paletteRemoteDataSource,
-        dataStoreSource = paletteDatastoreDataSource
+        dataStoreSource = paletteDatastoreDataSource,
+        coroutineDispatcher = Dispatchers.IO
     )
     internal val findNextAvailablePaletteUseCase = FindNextAvailablePaletteUseCase(
         repository = paletteRepository)
@@ -201,17 +205,17 @@ class CoreContainer(
         localDataSource = languageLocalDataSource,
         dataStoreSource = languageDatastoreDataSource
     )
-    val getLanguagesUseCase = GetAvailableLanguagesUseCase(
+    internal val getLanguagesUseCase = GetAvailableLanguagesUseCase(
         repository = languageRepository)
-    val setupLanguageUseCase = SetupLanguageUseCase(
+    internal val setupLanguageUseCase = SetupLanguageUseCase(
         repository = languageRepository)
-    val initializeLanguageUseCase = InitFlowLanguageUseCase(
+    internal val initializeLanguageUseCase = InitFlowLanguageUseCase(
         repository = languageRepository)
-    val setCurrentLanguageUseCase = SaveCurrentLanguageUseCase(
+    internal val setCurrentLanguageUseCase = SaveCurrentLanguageUseCase(
         repository = languageRepository)
-    val getCurrentLanguageUseCase = GetCurrentLanguageUseCase(
+    internal val getCurrentLanguageUseCase = GetCurrentLanguageUseCase(
         repository = languageRepository)
-    val loadCurrentLanguageUseCase = LoadCurrentLanguageUseCase(
+    internal val loadCurrentLanguageUseCase = LoadCurrentLanguageUseCase(
         repository = languageRepository)
 
 }

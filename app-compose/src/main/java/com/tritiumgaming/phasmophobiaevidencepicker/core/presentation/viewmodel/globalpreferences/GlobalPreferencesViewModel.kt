@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
@@ -27,7 +26,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
@@ -266,12 +264,12 @@ class GlobalPreferencesViewModel(
     /**
      * Palettes
      */
-    private val _palettes = MutableStateFlow(mapOf<String, MarketPalette>())
+    /*private val _palettes = MutableStateFlow(mapOf<String, MarketPalette>())
     var palettes = _palettes.asStateFlow()
     suspend fun fetchAvailablePalettes() {
         val mergedModels = getAvailablePalettesUseCase()
         _palettes.update { mergedModels.toPair() }
-    }
+    }*/
 
     private val _currentPaletteUUID : MutableStateFlow<String> =
         MutableStateFlow(defaultPaletteUUID)
@@ -285,11 +283,11 @@ class GlobalPreferencesViewModel(
     }
 
     fun getPaletteByUUID(uuid: String): ExtendedPalette =
-        getPaletteByUUIDUseCase(palettes.value, uuid, LocalDefaultPalette.palette)
+        getPaletteByUUIDUseCase(uuid, LocalDefaultPalette.palette)
 
     fun setNextAvailablePalette(direction: IncrementDirection) {
         return setCurrentPaletteUUID(
-            findNextAvailablePaletteUseCase(palettes.value, currentPaletteUUID.value, direction))
+            findNextAvailablePaletteUseCase(currentPaletteUUID.value, direction))
     }
 
     /**
@@ -395,9 +393,9 @@ class GlobalPreferencesViewModel(
             }
         }
 
-        viewModelScope.launch {
+        /*viewModelScope.launch {
             fetchAvailablePalettes()
-        }
+        }*/
         viewModelScope.launch {
             fetchAvailableTypographies()
         }

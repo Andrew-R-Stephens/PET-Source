@@ -1,3 +1,0 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.firestore.source
-
-interface TransactionHistoryDataSource

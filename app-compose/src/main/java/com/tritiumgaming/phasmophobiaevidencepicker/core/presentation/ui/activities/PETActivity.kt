@@ -28,14 +28,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activit
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.SignInCredentialManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ConfigurationControl
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
 import java.util.concurrent.atomic.AtomicBoolean
 
 class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService,
     ConsentManagementService, AccountManagementService {
 
-    private val globalPreferencesViewModel: GlobalPreferencesViewModel
-        by viewModels { GlobalPreferencesViewModel.Factory }
+    /*private val globalPreferencesViewModel: GlobalPreferencesViewModel
+        by viewModels { GlobalPreferencesViewModel.Factory }*/
 
     /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth

@@ -3,11 +3,11 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 
 class GetAvailablePalettesUseCase(
-    private val repository: PaletteRepository
+    private val repository: MarketPaletteRepository
 ) {
 
     suspend operator fun invoke(): List<MarketPalette> {

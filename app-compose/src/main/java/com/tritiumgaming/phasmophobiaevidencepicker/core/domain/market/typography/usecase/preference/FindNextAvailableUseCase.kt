@@ -3,10 +3,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograp
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.TypographyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
 
 class FindNextAvailableTypographyUseCase(
-    repository: TypographyRepository
+    repository: MarketTypographyRepository
 ){
 
     operator fun invoke(

@@ -3,12 +3,16 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigatio
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.SettingsScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.account.AccountScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.appinfo.InfoScreen
@@ -40,148 +44,161 @@ fun RootNavigation() {
         exitTransition = { ExitTransition.None }
     ) {
 
-        navigation(
-            route = NavRoute.NAVIGATION_MAIN_MENU.route,
-            //startDestination = "startScreen",
-            startDestination = NavRoute.SCREEN_START.route
-        ) {
+        mainMenuNavigation(navController)
 
-            composable(route = NavRoute.SCREEN_START.route) {
-                StartScreen(navController = navController)
-            }
+        investigationNavigation(navController)
 
-            composable(route = NavRoute.SCREEN_LANGUAGE.route) {
-                LanguageScreen(navController = navController)
-            }
+    }
+}
 
-            composable(route = NavRoute.SCREEN_APP_INFO.route) {
-                InfoScreen(navController = navController)
-            }
+private fun NavGraphBuilder.mainMenuNavigation(navController: NavHostController) {
 
-            composable(route = NavRoute.SCREEN_SETTINGS.route) {
-                SettingsScreen(navController = navController)
-            }
+    navigation(
+        route = NavRoute.NAVIGATION_MAIN_MENU.route,
+        startDestination = NavRoute.SCREEN_START.route
+    ) {
 
-            navigation(
-                route = NavRoute.NAVIGATION_NEWSLETTER.route,
-                startDestination = NavRoute.SCREEN_NEWSLETTER_INBOX.route
-            ) {
+        composable(route = NavRoute.SCREEN_START.route) {
+            StartScreen(navController = navController)
+        }
 
-                composable(route = NavRoute.SCREEN_NEWSLETTER_INBOX.route) {
-                    NewsInboxesScreen(navController)
-                }
+        composable(route = NavRoute.SCREEN_LANGUAGE.route) {
+            LanguageScreen(navController = navController)
+        }
 
-                composable(route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/{inboxID}",
-                    arguments = listOf(
-                        navArgument("inboxID") { type = NavType.StringType }
-                    )) { navBackStackEntry ->
-                        val inboxID = navBackStackEntry.arguments?.getString("inboxID")
+        composable(route = NavRoute.SCREEN_APP_INFO.route) {
+            InfoScreen(navController = navController)
+        }
 
-                    if(inboxID != null) {
-                        NewsMessagesScreen(
-                            navController = navController,
-                            inboxID = inboxID
-                        )
-                    } else {
-                        navController.popBackStack()
-                    }
-
-                }
-
-                composable(route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/{inboxID}/{messageID}",
-                    arguments = listOf(
-                        navArgument("inboxID") { type = NavType.StringType },
-                        navArgument("messageID") { type = NavType.StringType }
-                    )) { navBackStackEntry ->
-
-                    val inboxID = navBackStackEntry.arguments?.getString("inboxID")
-                    val messageID = navBackStackEntry.arguments?.getString("messageID")
-
-                    if(inboxID != null && messageID != null) {
-                        NewsMessageScreen(
-                            navController = navController,
-                            inboxID = inboxID,
-                            messageID = messageID
-                        )
-                    } else {
-                        navController.popBackStack()
-                    }
-                }
-
-            }
-
-            navigation(
-                route = NavRoute.NAVIGATION_MARKETPLACE.route,
-                startDestination = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route
-            ) {
-
-                composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
-                    AccountScreen()
-                }
-
-                composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {
-                    MarketplaceScreen()
-                }
-
-                composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) {
-                    MarketplaceBillingScreen()
-                }
-
-            }
+        composable(route = NavRoute.SCREEN_SETTINGS.route) {
+            SettingsScreen(navController = navController)
         }
 
         navigation(
-            route = NavRoute.NAVIGATION_INVESTIGATION.route,
-            startDestination = NavRoute.SCREEN_INVESTIGATION.route
+            route = NavRoute.NAVIGATION_NEWSLETTER.route,
+            startDestination = NavRoute.SCREEN_NEWSLETTER_INBOX.route
         ) {
 
-            composable(route = NavRoute.SCREEN_INVESTIGATION.route) {
-                InvestigationSoloScreen()
+            composable(route = NavRoute.SCREEN_NEWSLETTER_INBOX.route) {
+                NewsInboxesScreen(navController)
             }
 
-            composable(route = NavRoute.SCREEN_MISSIONS.route) {
-                MissionsScreen()
+            composable(
+                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/{inboxID}",
+                arguments = listOf(
+                    navArgument("inboxID") { type = NavType.StringType }
+                )) { navBackStackEntry ->
+                val inboxID = navBackStackEntry.arguments?.getString("inboxID")
+
+                if (inboxID != null) {
+                    NewsMessagesScreen(
+                        navController = navController,
+                        inboxID = inboxID
+                    )
+                } else {
+                    navController.popBackStack()
+                }
+
             }
 
-            navigation(
-                route = NavRoute.NAVIGATION_MAPS.route,
-                startDestination = NavRoute.SCREEN_MAPS_MENU.route
-            ) {
+            composable(
+                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/{inboxID}/{messageID}",
+                arguments = listOf(
+                    navArgument("inboxID") { type = NavType.StringType },
+                    navArgument("messageID") { type = NavType.StringType }
+                )) { navBackStackEntry ->
 
-                composable(route = NavRoute.SCREEN_MAPS_MENU.route) {
-                    MapMenuScreen()
+                val inboxID = navBackStackEntry.arguments?.getString("inboxID")
+                val messageID = navBackStackEntry.arguments?.getString("messageID")
+
+                if (inboxID != null && messageID != null) {
+                    NewsMessageScreen(
+                        navController = navController,
+                        inboxID = inboxID,
+                        messageID = messageID
+                    )
+                } else {
+                    navController.popBackStack()
                 }
-
-                composable(route = NavRoute.SCREEN_MAP_VIEWER.route) {
-                    MapViewerScreen()
-                }
-
-            }
-
-            navigation(
-                route = NavRoute.NAVIGATION_CODEX.route,
-                startDestination = NavRoute.SCREEN_CODEX_MENU.route
-            ) {
-
-                composable(route = NavRoute.SCREEN_CODEX_MENU.route) {
-                    CodexMenuScreen()
-                }
-
-                composable(route = NavRoute.SCREEN_CODEX_EQUIPMENT.route) {
-                    CodexEquipmentScreen()
-                }
-
-                composable(route = NavRoute.SCREEN_CODEX_POSSESSIONS.route) {
-                    CodexPossessionsScreen()
-                }
-
-                composable(route = NavRoute.SCREEN_CODEX_ACHIEVEMENTS.route) {
-                    CodexAchievementScreen()
-                }
-
             }
 
         }
+
+        navigation(
+            route = NavRoute.NAVIGATION_MARKETPLACE.route,
+            startDestination = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route
+        ) {
+
+            composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
+                AccountScreen()
+            }
+
+            composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {
+                MarketplaceScreen()
+            }
+
+            composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) {
+                MarketplaceBillingScreen()
+            }
+
+        }
+    }
+}
+
+private fun NavGraphBuilder.investigationNavigation(
+    navController: NavHostController
+) {
+    navigation(
+        route = NavRoute.NAVIGATION_INVESTIGATION.route,
+        startDestination = NavRoute.SCREEN_INVESTIGATION.route
+    ) {
+
+        composable(route = NavRoute.SCREEN_INVESTIGATION.route) {
+            InvestigationSoloScreen()
+        }
+
+        composable(route = NavRoute.SCREEN_MISSIONS.route) {
+            MissionsScreen()
+        }
+
+        navigation(
+            route = NavRoute.NAVIGATION_MAPS.route,
+            startDestination = NavRoute.SCREEN_MAPS_MENU.route
+        ) {
+
+            composable(route = NavRoute.SCREEN_MAPS_MENU.route) {
+                MapMenuScreen()
+            }
+
+            composable(route = NavRoute.SCREEN_MAP_VIEWER.route) {
+                MapViewerScreen()
+            }
+
+        }
+
+        navigation(
+            route = NavRoute.NAVIGATION_CODEX.route,
+            startDestination = NavRoute.SCREEN_CODEX_MENU.route
+        ) {
+
+            composable(route = NavRoute.SCREEN_CODEX_MENU.route) {
+                CodexMenuScreen()
+            }
+
+            composable(route = NavRoute.SCREEN_CODEX_EQUIPMENT.route) {
+                CodexEquipmentScreen()
+            }
+
+            composable(route = NavRoute.SCREEN_CODEX_POSSESSIONS.route) {
+                CodexPossessionsScreen()
+            }
+
+            composable(route = NavRoute.SCREEN_CODEX_ACHIEVEMENTS.route) {
+                CodexAchievementScreen()
+            }
+
+        }
+
     }
 }
 

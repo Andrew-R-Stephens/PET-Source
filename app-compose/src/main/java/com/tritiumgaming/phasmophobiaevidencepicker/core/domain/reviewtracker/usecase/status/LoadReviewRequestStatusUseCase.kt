@@ -3,9 +3,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.u
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 
 class LoadReviewRequestStatusUseCase(
-    private val reviewTrackerDatastoreRepository: ReviewTrackerRepository
+    private val repository: ReviewTrackerRepository
 ) {
 
-    suspend operator fun invoke() = reviewTrackerDatastoreRepository.loadWasRequestedStatus()
+    suspend operator fun invoke() = repository.loadWasRequestedStatus()
 
 }

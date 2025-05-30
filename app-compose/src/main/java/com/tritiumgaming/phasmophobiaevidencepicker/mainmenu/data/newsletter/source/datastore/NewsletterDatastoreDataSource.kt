@@ -66,12 +66,4 @@ class NewsletterDatastoreDataSource(
         )
     }
 
-    /*override fun mapPreferences(preferences: Preferences): NewsletterDatastore.NewsletterPreferences {
-        return NewsletterDatastore.NewsletterPreferences(
-            preferences[KEY_INBOX_GENERAL] ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT,
-            preferences[KEY_INBOX_PET] ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT,
-            preferences[KEY_INBOX_PHASMOPHOBIA] ?: NewsletterDatastore.PreferenceKeys.DATE_DEFAULT
-        )
-    }*/
-
 }

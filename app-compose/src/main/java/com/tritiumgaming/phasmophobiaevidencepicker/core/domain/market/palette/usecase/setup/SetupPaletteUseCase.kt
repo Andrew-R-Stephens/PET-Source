@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.PaletteRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
 
 class SetupPaletteUseCase(
-    private val repository: PaletteRepository
+    private val repository: MarketPaletteRepository
 ) {
     operator fun invoke() = repository.initialSetupEvent()
 }

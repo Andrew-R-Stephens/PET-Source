@@ -98,9 +98,7 @@ fun StartScreen(
 
 @Composable
 private fun StartContent(
-    navController: NavController,
-    globalPreferencesViewModel: GlobalPreferencesViewModel =
-        viewModel(factory = GlobalPreferencesViewModel.Factory)
+    navController: NavController
 ) {
 
 

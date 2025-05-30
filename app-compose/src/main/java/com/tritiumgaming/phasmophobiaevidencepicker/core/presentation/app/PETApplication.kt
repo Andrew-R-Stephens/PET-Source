@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.preferencesDataStore
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.container.CoreContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AccountManagementService
@@ -29,6 +31,10 @@ class PETApplication : Application(), AccountManagementService {
         AppDatabase::class.java, "pet-db"
     ).build()*/
 
+    private val firestore: FirebaseFirestore by lazy {
+        Firebase.firestore
+    }
+
     lateinit var coreContainer: CoreContainer
     lateinit var mainMenuContainer: MainMenuContainer
     lateinit var operationsContainer: OperationContainer
@@ -37,7 +43,7 @@ class PETApplication : Application(), AccountManagementService {
 
         super.onCreate()
 
-        coreContainer = CoreContainer(applicationContext, dataStore)
+        coreContainer = CoreContainer(applicationContext, dataStore, firestore)
         mainMenuContainer = MainMenuContainer(applicationContext, dataStore)
         operationsContainer = OperationContainer(applicationContext, dataStore)
 
