@@ -5,32 +5,36 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.source.remote.MarketBillableFirestoreDataSource.BillableQueryOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.dto.MarketBundleDto
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import kotlin.collections.forEach
 
-class MarketBundleFirestoreDataSource {
+class MarketBundleFirestoreDataSource(
+    private val firestore: FirebaseFirestore
+) {
 
-    fun getBundlesCollection(
-        merchandiseDocument: DocumentReference
-    ): CollectionReference = merchandiseDocument
+    val storeCollectionRef: CollectionReference
+    get() = firestore.collection(COLLECTION_STORE)
+
+    val merchandiseDocumentRef: DocumentReference = storeCollectionRef
+        .document(DOCUMENT_MERCHANDISE)
+
+    val bundlesCollection: CollectionReference = merchandiseDocumentRef
         .collection(COLLECTION_BUNDLES)
 
     suspend fun query(
-        merchandiseDocument: DocumentReference,
         options: BundleQueryOptions = BundleQueryOptions()
     ): List<MarketBundleDto> = withContext(Dispatchers.IO) {
 
         val bundles = mutableListOf<MarketBundleDto>()
 
         try {
-            createQuery(merchandiseDocument, options)
+            createQuery(options)
                 .await()
                 .documents
                 .forEach { documentSnapshot: DocumentSnapshot ->
@@ -81,18 +85,17 @@ class MarketBundleFirestoreDataSource {
     }
 
     private fun createQuery(
-        merchandiseDocument: DocumentReference,
         options: BundleQueryOptions
     ): Task<QuerySnapshot> {
 
-        var query: Query = getBundlesCollection(merchandiseDocument)
+        var query: Query = bundlesCollection
 
         query = if(options.filterField?.value != null && options.filterValue?.value != null) {
             query.whereEqualTo(options.filterField.value, options.filterValue.value)
         } else query
 
         query = if(options.orderField?.value != null && options.orderDirection != null) {
-            query.whereEqualTo(options.orderField.value, options.filterValue?.value)
+            query.whereEqualTo(options.orderField.value, options.orderDirection)
         } else query
 
         query = if(options.limit?.value != null) {
@@ -125,6 +128,8 @@ class MarketBundleFirestoreDataSource {
     }
 
     private companion object {
+        private const val COLLECTION_STORE = "Store"
+        private const val DOCUMENT_MERCHANDISE = "Merchandise"
         private const val COLLECTION_BUNDLES = "Bundles"
     }
 

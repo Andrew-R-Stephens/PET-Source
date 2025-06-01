@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
@@ -16,22 +17,27 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlin.collections.forEach
 
-class MarketTypographyFirestoreDataSource {
+class MarketTypographyFirestoreDataSource(
+    private val firestore: FirebaseFirestore
+) {
 
-    fun getTypographyCollection(
-        merchandiseDocument: DocumentReference
-    ): CollectionReference = merchandiseDocument
-            .collection(COLLECTION_TYPOGRAPHYS)
+    private val storeCollectionRef: CollectionReference
+        get() = firestore.collection(COLLECTION_STORE)
+
+    private val merchandiseDocumentRef: DocumentReference = storeCollectionRef
+        .document(DOCUMENT_MERCHANDISE)
+
+    private val typographyCollection: CollectionReference = merchandiseDocumentRef
+        .collection(COLLECTION_TYPOGRAPHYS)
 
     suspend fun query(
-        merchandiseDocument: DocumentReference,
         typographyQueryOptions: TypographyQueryOptions = TypographyQueryOptions()
     ): List<MarketTypographyDto> = withContext(Dispatchers.IO) {
 
         val typographies = mutableListOf<MarketTypographyDto>()
 
         try {
-            createQuery(merchandiseDocument, typographyQueryOptions)
+            createQuery( typographyQueryOptions)
                 .await()
                 .documents
                 .forEach { documentSnapshot: DocumentSnapshot ->
@@ -79,11 +85,10 @@ class MarketTypographyFirestoreDataSource {
     }
 
     private fun createQuery(
-        merchandiseDocument: DocumentReference,
         options: TypographyQueryOptions
     ): Task<QuerySnapshot> {
 
-        var query: Query = getTypographyCollection(merchandiseDocument)
+        var query: Query = typographyCollection
 
         query = if(options.filterField?.value != null && options.filterValue?.value != null) {
             query.whereEqualTo(options.filterField.value, options.filterValue.value)
@@ -124,6 +129,8 @@ class MarketTypographyFirestoreDataSource {
     }
 
     private companion object {
+        private const val COLLECTION_STORE = "Store"
+        private const val DOCUMENT_MERCHANDISE = "Merchandise"
         private const val COLLECTION_TYPOGRAPHYS = "Typographys"
     }
 

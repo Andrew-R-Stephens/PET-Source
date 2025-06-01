@@ -12,7 +12,7 @@ class GetAvailableTypographiesUseCase(
 
     suspend operator fun invoke(): List<MarketTypography> {
         val local: List<MarketTypography> = repository.getLocalTypographies().toExternal()
-        val remote: List<MarketTypography> = repository.getRemoteTypographies().toExternal()
+        val remote: List<MarketTypography> = repository.fetchRemoteTypographies().toExternal()
 
         val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->

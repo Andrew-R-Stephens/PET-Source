@@ -3,30 +3,19 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.r
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.dto.MarketBillableDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.source.remote.MarketBillableFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.source.remote.MarketBillableFirestoreDataSource.BillableQueryOptions
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.merchandise.source.remote.MarketFirestoreDataSource
 
 class MarketBillableRepositoryImpl(
-    private val marketFirestoreDataSource: MarketFirestoreDataSource,
     private val billableFirestoreDataSource: MarketBillableFirestoreDataSource,
 ) {
 
-    suspend fun fetchBillables(): List<MarketBillableDto> {
-
-        val storeCollectionRef = marketFirestoreDataSource.storeCollectionRef
-
-        return billableFirestoreDataSource.query(storeCollectionRef)
-
-    }
-
-    suspend fun queryBillables(
+    /**
+     * Fetches remote Billables from the Firestore database.
+     * @param billableQueryOptions This is an optional parameter that allows you to specify filter
+     * and ordering options. This can be left empty to fetch all Billables without any filtering.
+     * Ordering defaults to [Query.Direction.DESCENDING].
+     */
+    suspend fun fetchBillables(
         billableQueryOptions: BillableQueryOptions
-    ): List<MarketBillableDto> {
-
-        val storeCollectionRef = marketFirestoreDataSource.storeCollectionRef
-
-        return billableFirestoreDataSource.query(
-            storeCollectionRef, billableQueryOptions)
-
-    }
+    ): List<MarketBillableDto> = billableFirestoreDataSource.query(billableQueryOptions)
 
 }

@@ -5,6 +5,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
@@ -13,27 +14,27 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class MarketBillableFirestoreDataSource {
+class MarketBillableFirestoreDataSource(
+    private val firestore: FirebaseFirestore
+) {
 
-    private fun getMicroTransactionsDocument(
-        storeCollection: CollectionReference
-    ): DocumentReference = storeCollection
+    val storeCollectionRef: CollectionReference
+        get() = firestore.collection(COLLECTION_STORE)
+
+    private val microTransactionsDocument: DocumentReference = storeCollectionRef
         .document(DOCUMENT_MICRO_TRANSACTIONS)
 
-    private fun getBillableCollection(
-        storeCollection: CollectionReference
-    ): CollectionReference = getMicroTransactionsDocument(storeCollection)
+    private val billableCollection: CollectionReference = microTransactionsDocument
         .collection(COLLECTION_BILLABLE)
 
     suspend fun query(
-        storeCollectionRef: CollectionReference,
         billableQueryOptions: BillableQueryOptions = BillableQueryOptions()
     ): List<MarketBillableDto> = withContext(Dispatchers.IO) {
 
         val billables = mutableListOf<MarketBillableDto>()
 
         try {
-            createQuery(storeCollectionRef, billableQueryOptions)
+            createQuery(billableQueryOptions)
                 .await()
                 .documents
                 .forEach { documentSnapshot: DocumentSnapshot ->
@@ -88,18 +89,17 @@ class MarketBillableFirestoreDataSource {
     }
 
     private fun createQuery(
-        storeCollectionRef: CollectionReference,
         options: BillableQueryOptions
     ): Task<QuerySnapshot> {
 
-        var query: Query = getBillableCollection(storeCollectionRef)
+        var query: Query = billableCollection
 
         query = if(options.filterField?.value != null && options.filterValue?.value != null) {
             query.whereEqualTo(options.filterField.value, options.filterValue.value)
         } else query
 
         query = if(options.orderField?.value != null && options.orderDirection != null) {
-            query.whereEqualTo(options.orderField.value, options.filterValue?.value)
+            query.whereEqualTo(options.orderField.value, options.orderDirection)
         } else query
 
         query = if(options.limit?.value != null) {
@@ -134,6 +134,7 @@ class MarketBillableFirestoreDataSource {
     }
 
     private companion object {
+        private const val COLLECTION_STORE = "Store"
         private const val DOCUMENT_MICRO_TRANSACTIONS = "Microtransactions"
         private const val COLLECTION_BILLABLE = "Billables"
     }

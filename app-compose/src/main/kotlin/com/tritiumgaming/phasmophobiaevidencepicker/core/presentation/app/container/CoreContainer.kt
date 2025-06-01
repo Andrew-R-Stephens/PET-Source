@@ -9,12 +9,16 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.repository.MarketBundleRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.MarketBundleFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.MarketPaletteRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.MarketPaletteDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.MarketPaletteLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.repository.MarketTypographyRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.MarketTypographyDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.MarketTypographyLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
@@ -34,7 +38,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.BundleDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
@@ -132,21 +135,29 @@ class CoreContainer(
     /**
      *  Market Bundle
      */
-    private val bundleRemoteDataSource: BundleDataSource = BundleRemoteDataSource()
+    private val firestoreBundleDataSource = MarketBundleFirestoreDataSource(
+        firestore = firestore
+    )
+    private val bundleRepository = MarketBundleRepositoryImpl(
+        firestoreDataSource = firestoreBundleDataSource
+    )
 
     /**
      * Market Typography
      */
     private val typographyLocalDataSource = MarketTypographyLocalDataSource()
-    private val typographyRemoteDataSource = MarketTypographyRemoteDataSource()
+    private val typographyFirestoreDataSource = MarketTypographyFirestoreDataSource(
+        firestore = firestore
+    )
     private val typographyDatastoreDataSource = MarketTypographyDatastoreDataSource(
         context = applicationContext,
         dataStore = dataStore
     )
     private val typographyRepository: MarketTypographyRepository = MarketTypographyRepositoryImpl(
         localDataSource = typographyLocalDataSource,
-        remoteDataSource = typographyRemoteDataSource,
-        dataStoreSource = typographyDatastoreDataSource
+        firestoreDataSource = typographyFirestoreDataSource,
+        dataStoreSource = typographyDatastoreDataSource,
+        coroutineDispatcher = Dispatchers.IO
     )
     internal val findNextAvailableTypographyUseCase = FindNextAvailableTypographyUseCase(
         repository = typographyRepository
@@ -165,14 +176,16 @@ class CoreContainer(
      * Market Palette
      */
     private val paletteLocalDataSource = MarketPaletteLocalDataSource()
-    private val paletteRemoteDataSource = MarketPaletteRemoteDataSource()
+    private val paletteFirestoreDataSource = MarketPaletteFirestoreDataSource(
+        firestore = firestore
+    )
     private val paletteDatastoreDataSource = MarketPaletteDatastoreDataSource(
         context = applicationContext,
         dataStore = dataStore
     )
     private val paletteRepository: MarketPaletteRepository = MarketPaletteRepositoryImpl(
         localDataSource = paletteLocalDataSource,
-        remoteDataSource = paletteRemoteDataSource,
+        firestoreDataSource = paletteFirestoreDataSource,
         dataStoreSource = paletteDatastoreDataSource,
         coroutineDispatcher = Dispatchers.IO
     )

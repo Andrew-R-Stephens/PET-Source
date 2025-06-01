@@ -4,14 +4,18 @@ import android.util.Log
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.tasks.await
 
-class MetadataFirestoreDataSource {
+class MetadataFirestoreDataSource(
+    private val firestore: FirebaseFirestore
+) {
 
-    fun getMetadataDocumentRef(
-        storeCollectionRef: CollectionReference
-    ): DocumentReference = storeCollectionRef
+    val storeCollectionRef: CollectionReference
+        get() = firestore.collection(COLLECTION_STORE)
+
+    private val metadataDocumentRef: DocumentReference = storeCollectionRef
         .document(DOCUMENT_METADATA)
 
     suspend fun buildMetadataDocument(
@@ -19,7 +23,7 @@ class MetadataFirestoreDataSource {
     ): Result<String> {
 
         return try {
-            getMetadataDocumentRef(storeCollectionRef)
+            metadataDocumentRef
                 .get()
                 .addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
 
@@ -54,7 +58,7 @@ class MetadataFirestoreDataSource {
     }
 
     companion object {
-
+        private const val COLLECTION_STORE = "Store"
         private const val DOCUMENT_METADATA: String = "Metadata"
         private const val FIELD_VERSION_CODE: String = "versionCode"
 

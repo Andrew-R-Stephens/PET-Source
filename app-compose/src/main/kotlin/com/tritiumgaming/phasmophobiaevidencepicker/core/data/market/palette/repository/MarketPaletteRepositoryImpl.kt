@@ -1,10 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.dto.MarketBillableDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.source.remote.MarketBillableFirestoreDataSource.BillableQueryOptions
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.merchandise.source.remote.MarketFirestoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.merchandise.source.remote.MarketMerchandiseFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toLocal
@@ -21,9 +17,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class MarketPaletteRepositoryImpl(
-    private val marketFirestoreDataSource: MarketFirestoreDataSource,
-    private val merchandiseFirestoreDataSource: MarketMerchandiseFirestoreDataSource,
-    private val remoteDataSource: MarketPaletteFirestoreDataSource,
+    private val firestoreDataSource: MarketPaletteFirestoreDataSource,
     private val localDataSource: MarketPaletteLocalDataSource,
     private val dataStoreSource: PaletteDatastore,
     coroutineDispatcher: CoroutineDispatcher
@@ -36,13 +30,7 @@ class MarketPaletteRepositoryImpl(
 
     override suspend fun fetchRemotePalettes(
         paletteQueryOptions: PaletteQueryOptions
-    ): List<MarketPaletteDto> {
-        val storeCollectionRef = marketFirestoreDataSource.storeCollectionRef
-        val merchandiseDocument = merchandiseFirestoreDataSource
-            .getMerchandiseDocument(storeCollectionRef)
-
-        return remoteDataSource.query(merchandiseDocument)
-    }
+    ): List<MarketPaletteDto> = firestoreDataSource.query()
 
     override suspend fun synchronizePalettes() {
         val local: List<MarketPalette> = getLocalPalettes().toExternal()
