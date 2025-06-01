@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote2
+package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference

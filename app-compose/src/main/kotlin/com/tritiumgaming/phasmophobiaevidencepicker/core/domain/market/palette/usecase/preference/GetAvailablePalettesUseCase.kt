@@ -12,7 +12,7 @@ class GetAvailablePalettesUseCase(
 
     suspend operator fun invoke(): List<MarketPalette> {
         val local: List<MarketPalette> = repository.getLocalPalettes().toExternal()
-        val remote: List<MarketPalette> = repository.getRemotePalettes().toExternal()
+        val remote: List<MarketPalette> = repository.fetchRemotePalettes().toExternal()
 
         val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->

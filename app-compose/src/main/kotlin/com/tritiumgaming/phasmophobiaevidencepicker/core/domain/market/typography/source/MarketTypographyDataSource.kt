@@ -2,6 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograp
 
 interface MarketTypographyDataSource<T> {
 
-    suspend fun fetchAll(): T
+    fun getTypographies(): T
 
 }

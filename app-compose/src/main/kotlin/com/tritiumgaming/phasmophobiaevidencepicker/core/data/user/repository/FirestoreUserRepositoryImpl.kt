@@ -1,8 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote2.FirestoreAccountRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote2.FirestoreAuthRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote2.FirestoreUserRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAccountRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAuthRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreUserRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreUserRepository
 
 class FirestoreUserRepositoryImpl(

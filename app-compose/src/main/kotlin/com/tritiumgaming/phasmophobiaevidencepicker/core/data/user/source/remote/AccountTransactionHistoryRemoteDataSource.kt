@@ -1,5 +1,0 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote
-
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.source.TransactionHistoryDataSource
-
-class AccountTransactionHistoryRemoteDataSource: TransactionHistoryDataSource
