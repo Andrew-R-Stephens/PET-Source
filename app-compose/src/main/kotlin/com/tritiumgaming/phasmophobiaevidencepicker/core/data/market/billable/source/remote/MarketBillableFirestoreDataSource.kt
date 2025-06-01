@@ -10,13 +10,14 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.dto.MarketBillableDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.source.remote.MarketBillableRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class MarketBillableFirestoreDataSource(
     private val firestore: FirebaseFirestore
-) {
+): MarketBillableRemoteDataSource {
 
     val storeCollectionRef: CollectionReference
         get() = firestore.collection(COLLECTION_STORE)
@@ -27,8 +28,8 @@ class MarketBillableFirestoreDataSource(
     private val billableCollection: CollectionReference = microTransactionsDocument
         .collection(COLLECTION_BILLABLE)
 
-    suspend fun query(
-        billableQueryOptions: BillableQueryOptions = BillableQueryOptions()
+    override suspend fun fetch(
+        billableQueryOptions: BillableQueryOptions
     ): List<MarketBillableDto> = withContext(Dispatchers.IO) {
 
         val billables = mutableListOf<MarketBillableDto>()

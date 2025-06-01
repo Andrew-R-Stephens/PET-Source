@@ -10,13 +10,14 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.dto.MarketBundleDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.remote.MarketBundleFirestoreDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class MarketBundleFirestoreDataSource(
+class MarketBundleFirestoreDataSourceImpl(
     private val firestore: FirebaseFirestore
-) {
+): MarketBundleFirestoreDataSource {
 
     val storeCollectionRef: CollectionReference
     get() = firestore.collection(COLLECTION_STORE)
@@ -27,8 +28,8 @@ class MarketBundleFirestoreDataSource(
     val bundlesCollection: CollectionReference = merchandiseDocumentRef
         .collection(COLLECTION_BUNDLES)
 
-    suspend fun query(
-        options: BundleQueryOptions = BundleQueryOptions()
+    override suspend fun fetch(
+        options: BundleQueryOptions
     ): List<MarketBundleDto> = withContext(Dispatchers.IO) {
 
         val bundles = mutableListOf<MarketBundleDto>()

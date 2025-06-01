@@ -10,7 +10,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repositor
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.repository.MarketBundleRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.MarketBundleFirestoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.MarketPaletteRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.MarketPaletteDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.MarketPaletteLocalDataSource
@@ -135,7 +135,7 @@ class CoreContainer(
     /**
      *  Market Bundle
      */
-    private val firestoreBundleDataSource = MarketBundleFirestoreDataSource(
+    private val firestoreBundleDataSource = MarketBundleFirestoreDataSourceImpl(
         firestore = firestore
     )
     private val bundleRepository = MarketBundleRepositoryImpl(
