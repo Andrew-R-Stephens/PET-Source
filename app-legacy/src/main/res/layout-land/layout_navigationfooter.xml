@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.NavigationBar"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <com.google.android.material.navigationrail.NavigationRailView
+        android:theme="@style/PET.SideNavigationView"
+        android:id="@+id/item_navigation_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:background="@color/transparent"
+        app:elevation="0dp"
+        app:menuGravity="center"
+        app:itemActiveIndicatorStyle="@color/white"
+        app:itemIconTint="?attr/neutralSelColor"
+        app:itemIconSize="@dimen/_36sdp"
+        app:itemRippleColor="?attr/unselectedColor"
+        app:backgroundTint="@color/transparent"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_navbar_investigation" />
+
+</merge>

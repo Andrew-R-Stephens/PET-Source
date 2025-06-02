@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="8dp"
+    android:paddingHorizontal="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/equipment_itemdata_border_outer2"
+        android:paddingStart="4dp"
+        android:paddingEnd="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout99"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/equipment_itemdata_border_outer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/safehouse_shop_tool_label"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="start|center_vertical"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/cursedpossessions_info_name_mirror"
+                android:textAllCaps="true"
+                android:textColor="?attr/codex3_popupHeaderText"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textview_itemshop_altname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textview_itemshop_altname"
+                style="?attr/quaternaryFont_Bold_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="start|center_vertical"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/cursedpossessions_info_name_mirror"
+                android:textAllCaps="true"
+                android:textColor="?attr/codex3_popupHeaderText"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/close_button"
+                app:layout_constraintStart_toEndOf="@+id/safehouse_shop_tool_label"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/close_button"
+                android:layout_width="48dp"
+                android:layout_height="0dp"
+                android:background="?attr/codex3_popupCloseBackground"
+                android:padding="2dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="?attr/codex2_popupCloseIcon"
+                android:tintMode="multiply"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout100"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/equipment_itemdata_border_inner"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout99">
+
+            <include
+                android:id="@+id/itemStoreEquipmentItemData"
+                layout="@layout/item_itemstore_itemdata_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="96dp"
+                app:layout_constraintWidth_percent=".25" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout103"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/itemStoreEquipmentItemData"
+                app:layout_constraintTop_toBottomOf="@+id/itemStoreEquipmentItemData">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_shop_sanitydrain"
+                    android:tint="?attr/codex3_popupAttrIcons"
+                    android:tintMode="multiply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".25" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_sanitydrain"
+                    style="?attr/quaternaryFont_Regular_AutoSqueeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="start|center_vertical"
+                    android:textColor="?attr/codex3_popupAttrText"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout101"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout103"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout103"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout103">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_shop_chance"
+                    android:tint="?attr/codex3_popupAttrIcons"
+                    android:tintMode="multiply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".25" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_drawchance"
+                    style="?attr/quaternaryFont_Regular_AutoSqueeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="start|center_vertical"
+                    android:textColor="?attr/codex3_popupAttrText"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout102"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout101"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout101"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout101">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:padding="1dp"
+                    android:src="@drawable/ic_shop_upgrade_cost"
+                    android:tint="?attr/codex3_popupAttrIcons"
+                    android:tintMode="multiply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent=".25" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_upgradecost"
+                    style="?attr/quaternaryFont_Regular_AutoSqueeze"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="start|center_vertical"
+                    android:textColor="?attr/codex3_popupAttrText"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/equipment_itemdata_border_inner"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/constraintLayout100"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout99">
+
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fadeScrollbars="false"
+                android:fadingEdge="vertical"
+                android:fadingEdgeLength="8dp"
+                android:orientation="vertical"
+                android:paddingHorizontal="4dp"
+                android:requiresFadingEdge="vertical"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarStyle="insideInset"
+                app:layout_constraintBottom_toTopOf="@+id/divider5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_itemshop_flavor"
+                        style="?attr/quaternaryFont_Bold_Manual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:textColor="?attr/codex3_popupAttrText"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginVertical="2dp"
+                        android:layout_weight="1"
+                        android:background="?android:attr/listDivider"
+                        android:backgroundTint="?attr/codex3_other"
+                        android:foregroundTintMode="add" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textview_itemshop_info"
+                        style="?attr/quaternaryFont_Bold_Manual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="4dp"
+                        android:textColor="?attr/codex3_popupAttrText"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="2dp"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider"
+                android:backgroundTint="?attr/codex3_other"
+                android:foregroundTintMode="add"
+                app:layout_constraintBottom_toTopOf="@+id/textview_itemshop_attributes_wrapper"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <HorizontalScrollView
+                android:id="@id/textview_itemshop_attributes_wrapper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fadeScrollbars="false"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="8dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="4dp"
+                android:layout_weight="1"
+                android:requiresFadingEdge="horizontal"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarStyle="insideInset"
+                android:paddingBottom="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textview_itemshop_attributes"
+                    style="?attr/quaternaryFont_Bold_Manual"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:maxLines="2"
+                    android:padding="4dp"
+                    android:textColor="?attr/codex3_popupAttrText"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </HorizontalScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

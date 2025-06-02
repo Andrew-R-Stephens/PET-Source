@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Equipment Names -->
+    <string name="equipment_info_name_dots">D.O.T.S. Проєктор</string>
+    <string name="equipment_info_name_emf">ЕМП радар</string>
+    <string name="equipment_info_name_flashlight">Ліхтарик</string>
+    <string name="equipment_info_name_photocamera">Фотоапарат</string>
+    <string name="equipment_info_name_igniter">Запальник</string>
+    <string name="equipment_info_name_firelight">Вогнище</string>
+    <string name="equipment_info_name_uvlight">УФ світло</string>
+    <string name="equipment_info_name_crucifix">Розп\'яття</string>
+    <string name="equipment_info_name_videocamera">Відео камера</string>
+    <string name="equipment_info_name_spiritbox">Радіоприймач</string>
+    <string name="equipment_info_name_thermometer">Термометер</string>
+    <string name="equipment_info_name_salt">Сіль</string>
+    <string name="equipment_info_name_incense">Пахощі</string>
+    <string name="equipment_info_name_tripod">Штатив</string>
+    <string name="equipment_info_name_motionsensor">Датчик руху</string>
+    <string name="equipment_info_name_soundsensor">Датчик звуку</string>
+    <string name="equipment_info_name_sanitymedication">Ліки здорового глузду</string>
+    <string name="equipment_info_name_ghostwritingbook">Книга написання привидів</string>
+    <string name="equipment_info_name_parabolicmicrophone">Параболічний мікрофон</string>
+    <string name="equipment_info_name_headgear">Головний убір</string>
+    <!--
+        Attribute Titles
+    -->
+    <string name="shop_equipment_attribute_spotight_narrow">Прожектор: вузький</string>
+    <string name="shop_equipment_attribute_spotight_wide">Прожектор: широкий</string>
+    <string name="shop_equipment_attribute_spotight_area">Зона освітлення</string>
+    <string name="shop_equipment_attribute_intensity_low">Інтенсивність: низька</string>
+    <string name="shop_equipment_attribute_intensity_med">Інтенсивність: середня</string>
+    <string name="shop_equipment_attribute_intensity_high">Інтенсивність: висока</string>
+    <string name="shop_equipment_attribute_interactionrate_low">Швидкість взаємодії: низька</string>
+    <string name="shop_equipment_attribute_interactionrate_med">Швидкість взаємодії: середня</string>
+    <string name="shop_equipment_attribute_interactionrate_high">Швидкість взаємодії: висока</string>
+    <string name="shop_equipment_attribute_audioquality_low">Якість звуку: низька</string>
+    <string name="shop_equipment_attribute_audioquality_med">Якість звуку: середня</string>
+    <string name="shop_equipment_attribute_audioquality_high">Якість звуку: висока</string>
+    <string name="shop_equipment_attribute_responserate_low">Рівень відповіді: низький</string>
+    <string name="shop_equipment_attribute_responserate_med">Рівень відповіді: середній</string>
+    <string name="shop_equipment_attribute_responserate_high">Рівень відповіді: високий</string>
+    <string name="shop_equipment_attribute_samplespeed_low">Швидкість вибірки: низька</string>
+    <string name="shop_equipment_attribute_samplespeed_med">Швидкість вибірки: середня</string>
+    <string name="shop_equipment_attribute_samplespeed_high">Швидкість вибірки: висока</string>
+    <string name="shop_equipment_attribute_imagequality_low">Якість зображення: низька</string>
+    <string name="shop_equipment_attribute_imagequality_med">Якість зображення: середня</string>
+    <string name="shop_equipment_attribute_imagequality_high">Якість зображення: восока</string>
+    <string name="shop_equipment_attribute_interference_low">Паранормальні перешкоди: низький</string>
+    <string name="shop_equipment_attribute_interference_med">Паранормальні перешкоди: середня</string>
+    <string name="shop_equipment_attribute_interference_high">Паранормальні перешкоди: висока</string>
+    <string name="shop_equipment_attribute_knockdownchance_low">Шанс нокдауну: низький</string>
+    <string name="shop_equipment_attribute_knockdownchance_med">Шанс нокдауну: середня</string>
+    <string name="shop_equipment_attribute_knockdownchance_high">Шанс нокдауну: висока</string>
+    <string name="shop_equipment_attribute_accuracy_low">Точність: Низька</string>
+    <string name="shop_equipment_attribute_accuracy_med">Точність: середня</string>
+    <string name="shop_equipment_attribute_accuracy_high">Точність: висока</string>
+    <string name="shop_equipment_attribute_indicator_audio">Звуковий індикатор</string>
+    <string name="shop_equipment_attribute_indicator_light">Світловий індикатор</string>
+    <string name="shop_equipment_attribute_indicator_distance">Індикатор відстані</string>
+    <string name="shop_equipment_attribute_indicator_directional">Покажчик напрямку</string>
+    <string name="shop_equipment_attribute_range_1_7">Діапазон (М): 1,7</string>
+    <string name="shop_equipment_attribute_range_2">Діапазон (М): 2</string>
+    <string name="shop_equipment_attribute_range_2_5">Діапазон (М): 2,5</string>
+    <string name="shop_equipment_attribute_range_3">Діапазон (М): 3</string>
+    <string name="shop_equipment_attribute_range_3_5">Діапазон (М): 3,5</string>
+    <string name="shop_equipment_attribute_range_4">Діапазон (М): 4</string>
+    <string name="shop_equipment_attribute_range_5">Діапазон (М): 5</string>
+    <string name="shop_equipment_attribute_range_7">Діапазон (М): 7</string>
+    <string name="shop_equipment_attribute_range_20">Діапазон (М): 20</string>
+    <string name="shop_equipment_attribute_range_30">Діапазон (М): 30</string>
+    <string name="shop_equipment_attribute_range_5_10">Діапазон (М): 5, 10</string>
+    <string name="shop_equipment_attribute_range_5_10_15">Діапазон (М): 5, 10, 15</string>
+    <string name="shop_equipment_attribute_uvchargetime_1_5">Час УФ заряду: 1,5</string>
+    <string name="shop_equipment_attribute_uvchargetime_5">Час УФ заряду: 5</string>
+    <string name="shop_equipment_attribute_uvchargetime_10">Час УФ заряду: 10</string>
+    <string name="shop_equipment_attribute_phototime_low">Час між фотографіями: низький</string>
+    <string name="shop_equipment_attribute_phototime_med">Час між фотографіями: середній</string>
+    <string name="shop_equipment_attribute_phototime_high">Час між фотографіями: високий</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_33">Зменшення відтоку здорового глузду (%): 33</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_50">Зменшення відтоку здорового глузду (%): 50</string>
+    <string name="shop_equipment_attribute_sanitydrainreduction_66">Зменшення відтоку здорового глузду (%): 66</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10">Сон для відновлення здорового глузду (С): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20">Сон для відновлення здорового глузду (С): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30">Сон для відновлення здорового глузду (С): 30</string>
+    <string name="shop_equipment_attribute_sensorshape_line">Форма сенсора: Лінія</string>
+    <string name="shop_equipment_attribute_sensorshape_line_cone">Форма сенсора: Конус</string>
+    <string name="shop_equipment_attribute_sensorshape_circle">Форма сенсора: Коло</string>
+    <string name="shop_equipment_attribute_sensorshape_circle_cone_sides">Форма сенсора: Коло, Конус, Сторони</string>
+    <string name="shop_equipment_attribute_duration_3_s">Тривалість (С): 7</string>
+    <string name="shop_equipment_attribute_duration_5_s">Тривалість (С): 5</string>
+    <string name="shop_equipment_attribute_duration_6_s">Тривалість (С): 6</string>
+    <string name="shop_equipment_attribute_duration_7_s">Тривалість (С): 7</string>
+    <string name="shop_equipment_attribute_duration_10_s">Тривалість (С): 10</string>
+    <string name="shop_equipment_attribute_duration_60_s">Тривалість (С): 60</string>
+    <string name="shop_equipment_attribute_duration_3_m">Тривалість (С): 3</string>
+    <string name="shop_equipment_attribute_duration_5_m">Тривалість (М): 5</string>
+    <string name="shop_equipment_attribute_duration_10_m">Тривалість (М): 10</string>
+    <string name="shop_equipment_attribute_uses_1">Використовується: 1</string>
+    <string name="shop_equipment_attribute_uses_2">Використовується: 2</string>
+    <string name="shop_equipment_attribute_uses_3">Використовується: 3</string>
+    <string name="shop_equipment_attribute_uses_10">Використовується: 10</string>
+    <string name="shop_equipment_attribute_placeable">Розміщується</string>
+    <string name="shop_equipment_attribute_handheld">Ручний</string>
+    <string name="shop_equipment_attribute_property_ghosteffect_slows">Уповільнює привид під час полювання</string>
+    <string name="shop_equipment_attribute_property_ghosteffect_halts">Зупиняє привида під час полювання</string>
+    <string name="shop_equipment_attribute_property_displayscreen">Екран дисплея</string>
+    <string name="shop_equipment_attribute_property_preventscursedhunt">Запобігає одному проклятому полюванню</string>
+    <string name="shop_equipment_attribute_property_electronic">Електронний</string>
+    <string name="shop_equipment_attribute_property_consumable">Витратний матеріал</string>
+    <string name="shop_equipment_attribute_property_waterproof">Водонепроникний</string>
+    <string name="shop_equipment_attribute_property_headslot">Гніздо для голови</string>
+    <string name="shop_equipment_attribute_property_nightvision">Нічне бачення</string>
+    <string name="shop_equipment_attribute_property_sprintboost">Прискорення спринту (С): 10</string>
+    <string name="shop_equipment_attribute_property_rotationcontrol">Контроль обертання</string>
+    <string name="shop_equipment_attribute_property_scanning">Сканування</string>
+    <!-- Titles -->
+    <string name="store_title_equipment">Магазин обладнання</string>
+    <string name="equipment_section_tiers">Рівні</string>
+    <string name="equipment_section_equipment">Обладнання</string>
+    <string name="evidence_requirement_level_title">Розблокувати рівень:</string>
+    <string name="evidence_requirement_cost_title">Вартість:</string>
+    <!-- Equipment Tiers -->
+    <string name="equipment_tiers_1">Рівень 1</string>
+    <string name="equipment_tiers_2">Рівень 2</string>
+    <string name="equipment_tiers_3">Рівень 3</string>
+    <!-- Equipment Tiers -->
+    <!--
+        Data
+    -->
+    <string name="shop_equipment_dots_data_info_1"><![CDATA[<a>Лазерна ручка, схожа на ліхтарик. Ви можете обійти локацію та швидко сканувати докази, єдиним недоліком є його малий радіус дії та низька інтенсивність освітлення.</a>]]></string>
+    <string name="shop_equipment_dots_data_info_2"><![CDATA[<a>Це оригінальний D.O.T.S. проектор. Це переносний проектор, який випромінює світлову сферу середнього розміру, за винятком того, що тепер ви можете спонукати привида зайти в нього, стоячи поруч.</a><br><br>
+            <a>Найкраще підходить для невеликих\-\-середніх кімнат.</a>]]></string>
+    <string name="shop_equipment_dots_data_info_3"><![CDATA[<a>Цей переносний проектор сканує кімнату на набагато більшій відстані за допомогою широкого, широкого променя світла, що значно полегшує пошук привидів у великих кімнатах. Для найкращого покриття розташуйте проектор на стіні або рівній поверхні, станьте поруч і спостерігайте за силуетами привидів.</a>]]></string>
+    <string name="shop_equipment_emf_data_info_1"><![CDATA[<a>Старий аналоговий лічильник із малим діапазоном виявлення, низькою точністю та низьким випромінюванням звуку. Коли буде виявлено ЕМП рівня 5, стрілка перейде в підвищену швидкість, перевищивши рівень 5.</a>]]></string>
+    <string name="shop_equipment_emf_data_info_2"><![CDATA[<a>Надійний лічильник K2 має більший радіус дії та п\’ять світлодіодних індикаторів для виявлення показань ЕМП, а також додатковий модуль динаміків. Коли ви активуєте пристрій, загориться один індикатор. Коли K2 переміщується в межах діапазону виявлення плям ЕМП, він відображатиме точне значення від двох до п’яти та видаватиме чіткий, чутний звук.</a>]]></string>
+    <string name="shop_equipment_emf_data_info_3"><![CDATA[<a>Високотехнологічний ParaReader. Цей пристрій може відстежувати до трьох точок ЕМП одночасно та має найдальший діапазон виявлення.</a><br><br>
+            <a>Він одночасно показуватиме напрямок, діапазон і значення кожного показника. Він відтворює звуки для кожного виявлення ЕМП, щоб ви могли почути на відстані, скільки та наскільки сильні показання.</a><br><br>
+            <a>Якщо пляма ЕМП зникає, унизу списку буде розміщено нову пляму ЕМП.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>Класична ультрафіолетова палочка. Після клацання, щоб увімкнути, він проектує короткочасне освітлення, яке триває приблизно одну хвилину, а потім тьмяніє. Ви завжди можете струснути його ще раз, щоб відродити його світло.</a><br><br>
+            <a>Цей пристрій зарядить ультрафіолетову пляму протягом 10 секунд після випромінювання.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>Класичний ультрафіолетовий ліхтарик, який випромінює яскравіший, вузький промінь з більшою дальністю дії та може похвалитися набагато швидшим часом УФ\-заряду!</a><br><br>
+            <a>Цей пристрій зарядить ультрафіолетову пляму протягом 5 секунд після опромінення.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>UV Light Pro \-\- це масивний ліхтарик із набагато яскравішим і ширшим конусом світла, а також ще швидшим часом заряджання. Він ідеально підходить для швидкого виявлення ультрафіолетових доказів у більшому масштабі.</a><br><br><a>Цей пристрій заряджає ультрафіолетову пляму протягом 1,5 секунд після опромінення.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>Старий будинок\-термометр, зірваний прямо зі стіни вітальні вашого слідчого. Цей термометр має повільну частоту дискретизації, тому вам доведеться чекати довше, щоб отримати точні показання. Ви можете принести один і перевірити його пізніше в контракті.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_2"><![CDATA[<a>Оновлена версія класичного зчитувача температури, але набагато чуйніша. Замість того, щоб вмикати його та отримувати показання кожні дві секунди, утримуйте кнопку \'Використовувати\', щоб сканувати температуру. Це дозволяє бігати та перевіряти температуру в кожній кімнаті набагато швидше, ніж це дозволяє рівень I.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_info_3"><![CDATA[<a>Безпосереднє оновлення до Рівня II, що дозволяє сканувати температуру вдвічі швидше, ніж його попередник. Крім того, цей сучасніший термометр стає точнішим із кожним показанням, дозволяючи гравцям швидко й ефективно сканувати кімнати, щоб знайти привида або поставити галочку \"Замерзаючі температури\" в журналі.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_1"><![CDATA[<a>Цей паперовий блокнот можна покласти біля привида, щоб заохочувати до паранормального письма. Обов\’язково розмістіть його поблизу будь-якої активності, яку ви бачите. Деякі привиди можуть не помітити маленький блокнот і олівець, тому може минути деякий час, перш ніж щось станеться.<p/>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_2"><![CDATA[<a>Завдяки кращим сторінкам і ручці привиди, здається, помічають цю книгу трохи частіше, ніж попередню версію. трохи скоротити час очікування для появи доказів.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_info_3"><![CDATA[<a>Завдяки своєму великому профілю, поєднанню високоякісних матеріалів і ошатному перу, ця книга має найбільшу зміну, яку можна було б написати привидами. Вона має більший діапазон, ніж попередні два рівні, тому помістити цю книгу в зону дії привида набагато легше.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_1"><![CDATA[<a>Стара відеокамера, яку Ghost Huntin\' Distribution\' знайшла на горищі старого офісу. Він маленький і трохи побитий, але виконує свою роботу чудово.</a><br><br>
+            <a>Аналіз відеоканалу є складним завданням через жахливу якість і малі розміри екрана, тож не поспішайте!</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_2"><![CDATA[<a>Відеокамера Parasonic \-\- це HD\-відео, яке значно полегшує пошук куль. Він усе ще отримує багато перешкод від активного привида, але набагато менше, ніж рівень 1.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_info_3"><![CDATA[<a>Власна кінокамера Боні з великим корпусом підтримує набагато більший екран. Він має набагато чіткішу відеоподачу та отримує менше перешкод від привидів.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_1"><![CDATA[<a>Увімкнувши цей Spirit Box, він почне сканувати різні радіочастоти. Переконайтеся, що ви знаходитесь поблизу будь\-якої паранормальної активності, вимкніть будь\-яке світло в цій кімнаті та поставте кілька запитань, сподіваючись отримати відповідь.</a><br><br>
+            <a>Якщо запитання було почуто, на Скриньці духів спалахне червоне світло. Якщо він блимає білим, ви отримали відповідь від привида.</a><br><br>
+            <a>Спробуйте запитати \"Де ти?\" або \"Ти дружній?\". Попереджаємо, вам може не сподобатися отримана відповідь.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_2"><![CDATA[<a>Цей більш сучасний Радіоприймач має високоякісний динамік, який набагато ефективніше сканує частоти, що полегшує розшифровку паранормальних реакцій.</a><br><br>
+            <a>Якщо пролунало запитання, на екрані блимає чорний \'X\'. Якщо ви отримаєте відповідь, замість нього блимає маленький значок привида.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_info_3"><![CDATA[<a>Коли цей Радіоприймач увімкнено, сканує обидві частоти, дві одночасно, збільшуючи ймовірність підхопити паранормальну відповідь, коли ставите запитання. Він також має вбудований фільтр, щоб зменшити кількість шумів, які ви чуєте між взаємодіями.</a><br><br>
+            <a>Якщо звучить запитання, але відповідь не надана, світлодіоди RESPONSE блиматимуть червоним. Якщо відповідь надана, світлодіоди блиматимуть білим кольором одночасно зі звуком.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_1"><![CDATA[<a>Ретро металевий ліхтарик, який дає невелику кількість світла. достатньо, щоб обійти.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_2"><![CDATA[<a>Цей ліхтарик випромінює набагато яскравіший промінь світла.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_info_3"><![CDATA[<a>Проеціюючи набагато ширший світловий конус, цей ліхтарик ідеально підходить для великих приміщень і відкритих просторів.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_1"><![CDATA[<a>Ви можете використовувати цю камеру, щоб фотографувати будь\-які докази, які можете знайти. Це лише заважатиме привиду під час фотозйомки, тому будьте обережні, коли вирішите зробити знімок.</a><br><br>
+            <a>Для отримання додаткової інформації про те, як робити фотографії, перегляньте розділ \'Фотографії\' у своєму журналі.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_2"><![CDATA[<a>За допомогою цієї цифрової фотокамери ви можете робити знімки доказів і паранормальних істот набагато швидше, ніж попередній рівень.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_info_3"><![CDATA[<a>Ця першокласна камера забезпечує найменший час затримки між фотографіями, що дозволяє швидко збирати докази.</a><br><br>
+            <a>Крім того, його було змінено, щоб бути менш сприйнятливим до паранормальних сутностей, які спричиняють перешкоди на екрані під час проявів.</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_1"><![CDATA[<a>Ці сірники ідеально підходять для розпалювання вогнів і пахощів, але пам\’ятайте, якщо використати лише десять разів, ви швидко їх закінчите!</a><br><br>
+            <a>Їх також можна використовувати як невелике джерело світла, тільки стежте, щоб не обпекти пальці.</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_2"><![CDATA[<a>Газова запальничка. Він дає трохи більше світла, ніж сірники, і служить набагато довше.</a><br><br>
+            <a>Ви можете бачити, як рідина всередині нього стікає, коли ви ним користуєтеся, переконайтеся, що у вас залишилося достатньо!</a>]]></string>
+    <string name="shop_equipment_igniter_data_info_3"><![CDATA[<a>Цієї запальнички може вистачити на весь контракт, якщо ви не витрачаєте її даремно!</a><br><br>
+            <a>Завдяки більшому полум\’ю світло, яке воно забезпечує, є яскравішим і має більший радіус дії, що ідеально підходить для втечі в темряві під час нападу.</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_1"><![CDATA[<a>Ця маленька свічка забезпечить світло та запобіжить втраті розуму, але лише на деякий час, віск згорає досить швидко!</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_2"><![CDATA[<a>Завдяки трьом свічкам замість однієї світло стає набагато яскравішим, має більший діапазон і триває довше.</a><br><br>
+            <a>Крім того, цей Firelight не потрібно тримати, щоб отримати його ефект, тож ви можете розмістити його та стояти поруч, щоб усе одно отримати переваги розсудливості!</a>]]></string>
+    <string name="shop_equipment_firelight_data_info_3"><![CDATA[<a>Цей ліхтар прослужить протягом усього терміну дії контракту, тож не хвилюйтеся, що він згасне, коли вам це найбільше потрібно. Як і його попередник, ви можете стояти поруч, щоб отримати його ефект.</a><br><br>
+            <a>Нарешті, він водонепроникний, тому працює навіть під дощем!</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_1"><![CDATA[<a>Це розп\’яття можна тримати або розміщувати, щоб зупинити привида від одного нападу.</a><br><br>
+            <a>Переконайтеся, що він розміщений поблизу будь\-якої активності, яку ви можете виявити.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_2"><![CDATA[<a>Металеве розп\'яття, яке можна використовувати для блокування двох атак із більшою дальністю.</a><br><br>
+            <a>Пам\’ятайте, що тримайте його поблизу будь\-якої діяльності, яку ви зустрінете.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_info_3"><![CDATA[<a>Це розп\'яття має ще більший діапазон, ніж його попередня версія. Крім того, невикористане розп\’яття може запобігти проклятому полюванню, споживаючи обидва використання.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_1"><![CDATA[<a>Тримаючи цю ємність, ви можете покласти купи солі на підлогу в надії вистежити привида. Ми рекомендуємо розміщувати їх у дверях і біля поворотів у коридорах або кімнатах, щоб отримати найбільшу ймовірність реакції.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_2"><![CDATA[<a>Цей більший контейнер містить більше солі, ніж його попередник, що дозволяє розміщувати довгі лінії солі, щоб легко блокувати ширші проходи.</a>]]></string>
+    <string name="shop_equipment_salt_data_info_3"><![CDATA[<a>Ця сіль настільки потужна, що може впливати на рухливість привида двома способами.</a><br><br>
+            <a>Поки привид діє пасивно, ці лінії діятимуть як бар\’єр, змушуючи привида повертатися, коли він натрапляє на одну. Чудово підходить для того, щоб упіймати цих бродячих привидів у кімнаті, щоб ви могли знайти свої докази.</a><br><br>
+            <a>Якщо це відбувається під час атаки, привид буде сповільнено, що дасть вам додатковий час, щоб втекти.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_1"><![CDATA[<a>Ви можете запалити пахощі за допомогою будь\-якого запальника, щоб зупинити привида від початку полювання на тривалий час, крім того, ви можете використовувати його під час полювання, перебуваючи поблизу привида, щоб дезорієнтувати його на кілька секунд.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_2"><![CDATA[<a>Для створення цього пучка пахощів було використано набагато більше шавлії, що забезпечує довший час горіння та довше забезпечує безпеку під час атак.</a><br><br>
+            <a>Крім того, це сповільнить рух привида на частину дії ефекту.</a>]]></string>
+    <string name="shop_equipment_incense_data_info_3"><![CDATA[<a>Зі значно більшою дальністю дії та довшим часом горіння ви можете безпечніше відбивати привидів під час нападу. Коли привид спочатку відбитий, він буде приголомшений, зупиняючи свій рух на короткий період.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_1"><![CDATA[<a>Прикріпіть відеокамеру до штатива, помістивши її зверху. Потім ви можете переносити штатив і розміщувати його в місцях, де може бути непридатна поверхня для спостереження за паранормальними явищами.</a><br><br>
+            <a>Привиди можуть заважати вашим розміщеним камерам і намагатися їх перекинути. Перезавантажте їх, якщо їх штовхнуть на підлогу.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_2"><![CDATA[<a>Цей штатив було вдосконалено за допомогою обертового двигуна. Переглядаючи відеокамеру з вантажівки, ви можете використовувати елементи керування на екрані, щоб обертати двигун штатива, надаючи вам новий кут.</a>]]></string>
+    <string name="shop_equipment_tripod_data_info_3"><![CDATA[<a>Як і його попередні версії, цей штатив подібний, але набагато міцніший, тим надокучливим привидам слід перекидати його набагато рідше.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>Розмістіть цей датчик руху на стінах або підлозі, і він буде блимати щоразу, коли щось рухається перед ним, навіть те, що ви не бачите.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Цей датчик із двома різними режимами, більшим радіусом дії та звуковим індикатором ідеально підходить для відстеження паранормальних явищ.</a><br><br>
+            <a>Ви можете змінити форму лазера, взаємодіючи з датчиком після його розміщення.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>Поставте цю камеру з датчиком руху на підлогу поблизу будь\-якої активності привидів, яку ви можете виявити. Коли його активовано, він повертатиметься та спалахуватиме яскравим світлом щоразу, коли привид входить або виходить із зони виявлення.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Розмістіть ці звукові датчики в місцях, де ви хочете відстежувати будь-яку звукову взаємодію.</a><br><br>
+            <a>Після розміщення поверніться до вантажівки, ви можете слухати дистанційне відтворення, одночасно перевіряючи екран датчика звуку, щоб побачити, чи хтось із датчиків отримує якісь показники.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>Цей датчик звуку було вдосконалено, щоб мати три різні параметри розміру, які можна перемикати за допомогою кнопки розміру на екрані датчика звуку у вантажівці.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>На штативі є поворотні шарніри, що дозволяє взаємодіяти з ним, щоб змінити форму датчика звуку.</a><br><br>
+            <a>Кожна фігура представлена напрямками, куди спрямовані мікрофони:</a><br><br>
+            <a>Вперед: конус / назовні: сторони / всередину: сфера</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_1"><![CDATA[<a>Випийте цю пляшку старовинної зміїної олії, щоб відновити частину свого здорового глузду. Відновлення займе кілька секунд, а відновлена сума залежатиме від рівня складності, на якому ви граєте.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_2"><![CDATA[<a>Прийом цих таблеток швидше відновить ваш розум. Ви можете взяти кілька горщиків, щоб збільшити кількість здорового розуму, відновленого протягом його тривалості.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_info_3"><![CDATA[<a>Цей Adrenaline Shot відновить ваш розум набагато швидше, ніж попередні дві версії, крім того, ви не втратите витривалість у спринті протягом усього періоду його дії.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_1"><![CDATA[<a>Під час використання параболічного мікрофона та приєднаних навушників ви зможете почути звуки далі, ніж зазвичай, залежно від того, у який бік ви націлюєте мікрофон.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_2"><![CDATA[<a>Ми покращили цей параболічний мікрофон за допомогою кількох оновлень: кращого датчика та маленького екрана.</a><br><br>
+            <a>Якщо його ввімкнути, ви зможете почути віддалені звуки, а також отримати візуальне уявлення про те, наскільки гучним є цей звук.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_info_3"><![CDATA[<a>Цей параболічний мікрофон покращено за допомогою візуального індикатора звуку.</a><br><br>
+            <a>Кожного разу, коли в радіусі дії мікрофона виявляється звук, на екрані з\’являється візуальний індикатор, зокрема відстань і гучність, що дає змогу легко відстежувати, звідки надходить звук.</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_1"><![CDATA[<a>Прив\’яжіть цю маленьку камеру до вашої голови, щоб ваші товариші по команді могли дивитися відео в прямому ефірі вашого огляду з безпеки вантажівки, що чудово підходить для виконання кількох завдань одночасно та ловлення речей, які ви можете пропустити!</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_2"><![CDATA[<a>Невеликий накладний ліхтарик, який не займає місця в інвентарі. Єдиним недоліком є те, що світло не надто яскраве чи широке.</a><br><br>
+            <a>Ви можете вмикати та вимикати його, утримуючи спеціальну прив’язку клавіш.</a>]]></string>
+    <string name="shop_equipment_headgear_data_info_3"><![CDATA[<a>Пара окулярів нічного бачення, які дозволяють бачити в темряві без ліхтарика.</a><br><br>
+            <a>Однак майте на увазі, що ваше бачення може спотворитися, якщо ви перебуваєте в радіусі дії активного привида, що зробить окуляри марними.</a>]]></string>
+    <!--
+        Flavor Text
+    -->
+    <string name="shop_equipment_dots_data_flavortext_1"><![CDATA[<a>Маленька лазерна ручка, яка проектує маленькі пучки світла в навколишнє середовище.</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_2"><![CDATA[<a>Цей інфрачервоний датчик руху був адаптований для проектування світла. Він маленький і компактний і може приклеюватися до більшості поверхонь.</a>]]></string>
+    <string name="shop_equipment_dots_data_flavortext_3"><![CDATA[<a>Моторизований проектор із трьома лінзами для широкого охоплення світла.</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_1"><![CDATA[<a>Вимірювач ЕМП з кількома режимами для перевірки різних перешкод в повітрі. На жаль, він старий, і лише один із них працює, на щастя, це той, який нам потрібен для паранормальних показань!</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_2"><![CDATA[<a>Надійний K2 використовувався дослідниками паранормальних явищ у всьому світі з незмінними результатами.</a>]]></string>
+    <string name="shop_equipment_emf_data_flavortext_3"><![CDATA[<a>Пристрій, виготовлений на замовлення від Ghost Huntin\' Distribution\'. Здатний набагато більше, ніж просто відображати значення ЕРС на великому екрані.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_1"><![CDATA[<a>Передається з покоління в покоління, ми здивовані, що воно все ще працює.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_2"><![CDATA[<a>Він компактний і легкий, має кнопку \"Назад\" для більш зручного захоплення.</a>]]></string>
+    <string name="shop_equipment_flashlight_data_flavortext_3"><![CDATA[<a>Набагато більший ліхтарик, у нього навіть є ручка для перенесення!</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_1"><![CDATA[<a>Стара полтероїдна камера, трохи запилена і подряпана. Вам доведеться почекати, поки фотографія надрукується, перш ніж зробити наступну.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_2"><![CDATA[<a>Bony GhostShot - це компактна, проста у використанні цифрова камера, яка ідеально підходить для тих, хто панічно боїться фотографувати привидів у темряві.</a>]]></string>
+    <string name="shop_equipment_photocamera_data_flavortext_3"><![CDATA[<a>Одна з найкращих дзеркальних камер Bony, з ширшим об\'єктивом, вищою якістю зображення та швидкою обробкою.</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_1"><![CDATA[<a>Власна сірникова коробка Ghost Huntin\' Distribution\', укомплектована моторошним маленьким привидом як талісманом. Чарівна!</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_2"><![CDATA[<a>Pапальничка; Маленький, компактний і зручний!</a>]]></string>
+    <string name="shop_equipment_igniter_data_flavortext_3"><![CDATA[<a>З моменту випуску запальнички Zippy були основним продуктом для військових, а тепер і для дослідників привидів.</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>Старий іржавий підсвічник, який підтримує маленьку свічку, сподіваюся, він прослужить достатньо довго, якщо немає іншого світла. Не забудьте чимось його запалити!</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>Канделябри з трьома високими свічками. Вишуканий метал і якісніший свічковий віск роблять набагато надійнішим засобом збереження здоров\’я!</a>]]></string>
+    <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>Він може виглядати старим, але цей бензиновий ліхтар є найнадійнішим вогнем, який ми знайшли, він може працювати годинами безперервно.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Невелика світиться паличка, наповнена прозорою маслянистою рідиною, змішаною з флуоресцентним барвником. Клацання палички викликає реакцію освітлення навколишнього простору яскравим кольором.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Невеликий тактичний ультрафіолетовий ліхтарик зі зручною застібкою на пояс.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>Ліхтарик UV Light Pro має майже 80 окремих лампочок, які освітлюють світлом великі області.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>Лише два шматки дерева, зв’язані разом. Однієї форми, здається, достатньо, щоб захистити від деяких паранормальних сутностей.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>Модернізований з дерева на чавун, цей хрест забезпечує набагато надійніший захист.</a>]]></string>
+    <string name="shop_equipment_crucifix_data_flavortext_3"><![CDATA[<a>Це вишукане розп’яття було прикрашене золотими та срібними підкладками. Доведено, що ці складні конструкції збільшують захист від потойбічних істот.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_1"><![CDATA[<a>Ми знайшли купу цих старих відеокамер у коробці в старому офісі, сподіваюся, вони добре справляються зі своєю роботою.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_2"><![CDATA[<a>Parasonic випустила цю відеокамеру в надії замінити кожну відеокамеру Bony, здається, в основному вона спрацювала.</a>]]></string>
+    <string name="shop_equipment_videocamera_data_flavortext_3"><![CDATA[<a>Боні повернувся з найсучаснішою камерою, модифікованою виключно для мисливців за привидами. Це також стане чудовою кінокамерою.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_1"><![CDATA[<a>Старе FM/AM радіо. Він маленький і компактний, але динамік не найкращої якості.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_2"><![CDATA[<a>P\-SB7T Spirit Box створений виключно для спілкування з невідомими. Екран з підсвічуванням допомагає проводити дослідження в темряві.</a>]]></string>
+    <string name="shop_equipment_spiritbox_data_flavortext_3"><![CDATA[<a>SB11\-Z \-\- це набагато більший Spirit Box, здатний сканувати два частотних канали одночасно.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_1"><![CDATA[<a>Вінтажний настінний термометр, який зазвичай використовується для вимірювання кімнатної температури цілий рік, повісивши його на стіну. Він чудово працює, якщо його носити з собою!</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_2"><![CDATA[<a>Цей інфрачервоний термометр, який зазвичай використовується медичними працівниками для швидкого вимірювання температури, чудово підходить для швидкого вимірювання температури. Здається, він дає трохи неточні показання, хоча, можливо, він просто старий.</a>]]></string>
+    <string name="shop_equipment_thermometer_data_flavortext_3"><![CDATA[<a>Сучасніший, технічніший і точніший. Ви просто не можете перемогти це.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_1"><![CDATA[<a>Власна марка солі Ghost Huntin\' Distribution\', мабуть, не найкраща на смак, але чудова для привидів.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_2"><![CDATA[<a>Ми виявили, що рожева гімалайська сіль дрібного помелу чудово допомагає виявити неприємні сліди.</a>]]></string>
+    <string name="shop_equipment_salt_data_flavortext_3"><![CDATA[<a>Скляна пляшка благословенної чорної солі, поєднана з іншими мінералами для додаткового очисного ефекту. Це також виглядає гарніше, блискуче!</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_1"><![CDATA[<a>Маленький пучок шавлії чорного, здається, майже все листя опало, сподіваюся, все ще діє.</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_2"><![CDATA[<a>Великий пучок білої шавлії, акуратно перев’язаний ниткою для компактного та ефективного спалювання під час освітлення. Має солодкий гіркуватий аромат.</a>]]></string>
+    <string name="shop_equipment_incense_data_flavortext_3"><![CDATA[<a>Священна кадильниця, наповнена спеціальною сумішшю, розробленою спеціально для захисту від паранормальних істот. Розгойдування, коли горить, виділяє велику кількість відлякуючого диму.</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_1"><![CDATA[<a>Дешевий і приємний, він просто стоїть сам по собі. Краще стежте, щоб він не впав.</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_2"><![CDATA[<a>Це набагато сучасніше, чистіше та міцніше. Він навіть оснащений електронним двигуном!</a>]]></string>
+    <string name="shop_equipment_tripod_data_flavortext_3"><![CDATA[<a>Посилені металеві ніжки з висувними ніжками ідеально підходять для транспортування більших профільних камер.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>Датчик, який раніше був камерою дикої природи, був модифікований для відстеження паранормальних істот, що рухаються перед ним.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>З того, що ми дізналися, модифікувавши попередню версію, нам вдалося покращити вдосконалену камеру для наших потреб у відстеженні паранормальних явищ.</a>]]></string>
+    <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>Камера відеоспостереження, яку розібрали та перебудували з нуля, дозволяючи бачити паранормальну сферу.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>Невеликий мікрофон, прикріплений до міні\-штатива, дешевий і ефективний.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>Два високоякісних мікрофона з’єднані разом на виготовленому на замовлення штативі. Вони витратили додатковий час і гроші на створення цього.</a>]]></string>
+    <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>Дорогі стрілчасті мікрофони приєднані до невеликого приймача, що забезпечує високоякісні аудіопотоки назад до вантажівки.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_1"><![CDATA[<a>Ми не впевнені, наскільки безпечна ця формула Insane Away, але, здається, вона допомагає під час панікуючих сеансів полювання на привидів.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_2"><![CDATA[<a>Набагато більш регульований і масовий продукт. Ghost Huntin\' Distribution\', мабуть, найняла для цього експертів.</a>]]></string>
+    <string name="shop_equipment_sanitymedication_data_flavortext_3"><![CDATA[<a>Нова формула, створена фахівцями з усього світу, акуратно міститься в невеликій ін\'єкції.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_1"><![CDATA[<a>Можливо, це не найгламурніша річ у світі, але вона виконує свою роботу.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_2"><![CDATA[<a>Сторінки пергаменту захищені шкіряним футляром. Зберігайте свої секрети в безпеці, прив\’язавши мотузку зовні.</a>]]></string>
+    <string name="shop_equipment_ghostwritingbook_data_flavortext_3"><![CDATA[<a>Гримуар, який, здається, має багато історії. Металеві акценти роблять цю важку книгу набагато елегантнішою.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_1"><![CDATA[<a>Параболічний мікрофон 8X21 може посилювати звуки набагато далі, ніж може почути неозброєне вухо.</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_2"><![CDATA[<a>Модернізований і вдосконалений, цей параболічний мікрофон ідеально підходить для прослуховування тих паранормальних розмов!</a>]]></string>
+    <string name="shop_equipment_parabolicmicrophone_data_flavortext_3"><![CDATA[<a>Якісний мікрофон з екраном із індивідуальним інтерфейсом.</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_1"><![CDATA[<a>Камера GhostPro, прикріплена до наголовних ременів, не наймодніша, але корисна.</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_2"><![CDATA[<a>Ремінці стали міцнішими, а камеру замінили на маленький світлодіодний ліхтарик</a>]]></string>
+    <string name="shop_equipment_headgear_data_flavortext_3"><![CDATA[<a>Ці окуляри, які використовуються військовими, дозволяють побачити те, що неозброєним оком неможливо побачити.</a>]]></string>
+    <!-- Equipment Unlock Level Requirements -->
+    <!-- Equipment Buy Cost -->
+</resources>

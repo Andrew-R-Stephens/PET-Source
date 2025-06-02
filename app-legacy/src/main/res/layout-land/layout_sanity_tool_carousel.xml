@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.tools.carousel.SanityCarouselLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/carousel_title"
+        style="?attr/primaryFont_Regular_AutoSqueeze"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/investigation_timer_difficulty_label"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout104"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout104"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carousel_title">
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+            android:id="@+id/carousel_prev"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:PETImageButtonType="back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/carousel_name"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/carousel_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/carousel_name"
+            style="?attr/secondaryFont_Regular_AutoSqueeze"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/investigation_timer_difficulty_default"
+            android:paddingVertical="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/carousel_next"
+            app:layout_constraintStart_toEndOf="@+id/carousel_prev"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+            android:id="@+id/carousel_next"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:PETImageButtonType="forward"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/carousel_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</merge>

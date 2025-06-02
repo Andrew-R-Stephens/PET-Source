@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.MissionsItemLayout"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/label_objectivetitle"
+        style="?attr/primaryFont_Regular_Auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:text="@string/objectives_title_optional_objective_3"
+        android:textSize="18sp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/spinnerConstraints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.objectivelayout.MissionsCompletedButton
+            android:id="@+id/evidence_button_completed"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:PETImageButtonType="confirm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/objectives_item"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.missions.views.objectivelayout.MissionsSpinner
+            android:id="@+id/objectives_item"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="?attr/textColorBody"
+            android:contentDescription="@string/app_name"
+            android:dropDownWidth="wrap_content"
+            android:overlapAnchor="false"
+            android:popupBackground="?attr/backgroundColorOnBackground"
+            android:scrollbars="vertical"
+            android:spinnerMode="dropdown"
+            android:textColor="?attr/textColorBody"
+            android:saveEnabled="false"
+            app:layout_constraintBottom_toBottomOf="@+id/evidence_button_completed"
+            app:layout_constraintEnd_toStartOf="@+id/evidence_button_completed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/evidence_button_completed" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/completionStrikethrough"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_strikethrough_3"
+            android:tintMode="multiply"
+            android:tint="?attr/strikethroughColor"
+            android:saveEnabled="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/objectives_item"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

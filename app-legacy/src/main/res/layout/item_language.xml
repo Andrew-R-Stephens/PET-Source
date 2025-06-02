@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="horizontal">
+
+    <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+        android:id="@+id/imageView_languageChoiceIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="visible"
+        app:PETImageButtonType="forward"
+        android:tint="?attr/textColorBody"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView_languageName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textView_languageName"
+        style="?attr/quaternaryFont_Bold_Manual"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="3dp"
+        android:background="@drawable/radiobutton_language"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="?attr/textColorPrimary"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_languageChoiceIcon"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_languageChoiceIcon2"
+        app:layout_constraintStart_toEndOf="@+id/imageView_languageChoiceIcon"
+        app:layout_constraintTop_toTopOf="@+id/imageView_languageChoiceIcon" />
+
+    <View
+        android:id="@+id/imageView_languageChoiceIcon2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_languageChoiceIcon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_languageName"
+        app:layout_constraintTop_toTopOf="@+id/imageView_languageChoiceIcon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

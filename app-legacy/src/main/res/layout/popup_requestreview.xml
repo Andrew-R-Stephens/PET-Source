@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup_main_relativelayout"
+    tools:parentTag="com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewPopupView">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popup_rating_fg"
+        android:padding="8dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".75">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/label_ratingstitle"
+            style="?attr/primaryFont_Regular_AutoSqueeze"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:text="@string/review_requesttitle"
+            android:textColor="?attr/textColorSecondary"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_ratingstitle">
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="5"
+                android:stepSize="1"
+                android:theme="@style/RequestRatingBar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/constraintLayout18"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout18"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout18">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/label_accept"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:background="@drawable/icon_square_alt"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:text="@string/review_accept"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/label_decline"
+                app:layout_constraintHeight_percent=".5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".45" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/label_decline"
+                style="?attr/primaryFont_Regular_AutoSqueeze"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:background="@drawable/icon_square_alt"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:text="@string/review_decline"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".5"
+                app:layout_constraintStart_toEndOf="@+id/label_accept"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent=".45" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

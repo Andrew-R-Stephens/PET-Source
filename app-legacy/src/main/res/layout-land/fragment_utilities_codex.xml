@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/popup_main_relativelayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/codex_grid_background"
+    android:gravity="center">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout38"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/codex3_navHeaderBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/label_pagetitle"
+            style="?attr/quaternaryFont_Bold_AutoSqueeze"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@string/general_codex_button"
+            android:textAllCaps="true"
+            android:textColor="?attr/codex5_navHeaderText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <GridLayout
+        android:id="@+id/grid_codex"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:columnCount="4"
+        android:fadeScrollbars="false"
+        android:fadingEdge="vertical"
+        android:fadingEdgeLength="50sp"
+        android:gravity="center"
+        android:horizontalSpacing="20sp"
+        android:padding="16dp"
+        android:requiresFadingEdge="vertical"
+        android:rowCount="5"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:useDefaultMargins="true"
+        android:verticalSpacing="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout35"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout38">
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.views.CodexGridCard
+            android:id="@+id/grid_codexmenu_option1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowSpan="1"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="2"
+            android:padding="8dp"
+            app:background_image="@drawable/thumbnail_shop"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
+            app:cardElevation="15dp"
+            app:cardPreventCornerOverlap="true"
+            app:label_text="@string/codex_section_equipment"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
+            app:strokeWidth="2dp" />
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.views.CodexGridCard
+            android:id="@+id/grid_codexmenu_option2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowSpan="1"
+            android:layout_columnSpan="1"
+            android:layout_columnWeight="1"
+            android:padding="8dp"
+            app:background_image="@drawable/thumbnail_possessions"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
+            app:cardElevation="15dp"
+            app:cardPreventCornerOverlap="true"
+            app:label_text="@string/store_title_cursedpossessions"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
+            app:strokeWidth="2dp" />
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.utilities.codex.views.CodexGridCard
+            android:id="@+id/grid_codexmenu_option3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_rowSpan="1"
+            android:layout_columnSpan="1"
+            android:layout_columnWeight="1"
+            android:alpha=".5"
+            android:padding="8dp"
+            app:cardBackgroundColor="?attr/codex3_cardBorder"
+            app:cardElevation="15dp"
+            app:cardPreventCornerOverlap="true"
+            app:label_text="@string/codex_section_more"
+            app:layout_constraintHeight_min="48dp"
+            app:layout_constraintWidth_min="48dp"
+            app:rippleColor="?attr/codex3_cardBorder"
+            app:strokeColor="?attr/codex3_cardBorder"
+            app:strokeWidth="2dp" />
+
+        <!--
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.fragments.investigation.utilities.codex.views.CodexGridCard
+            android:id="@+id/grid_codexmenu_option2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:label_text="Other"
+            app:background_image="@drawable/thumbnail_shop"
+            android:layout_rowSpan="1"
+            android:layout_columnSpan="1"
+            android:layout_columnWeight="1"/>
+
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.fragments.investigation.utilities.codex.views.CodexGridCard
+            android:id="@+id/grid_codexmenu_option3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:label_text="Extra"
+            app:background_image="@drawable/thumbnail_shop"
+            android:layout_rowSpan="1"
+            android:layout_columnSpan="2"
+            android:layout_columnWeight="1" />
+        -->
+
+        <!--
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/listitem_circled"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:adjustViewBounds="true"
+                    android:cropToPadding="true"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toStartOf="@+id/item2"
+                    app:layout_constraintHeight_max="48dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/icon_evidencecodex" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/item2"
+                    style="?attr/quaternaryFont_Regular"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:text="Evidence"
+                    android:textColor="?attr/bodyFontColor"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            -->
+
+    </GridLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout35"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/codex1_gh0stBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grid_codex">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/label_codex_ghostos"
+            style="@style/JetbrainsMonoBold_Manual"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="4dp"
+            android:gravity="end"
+            android:text="GH//OS.T"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Colors
+    -->
+    <attr name="colorActionPrimary" format="reference|color" />
+    <attr name="colorActionSecondary" format="reference|color" />
+    <attr name="colorActionTertiary" format="reference|color" />
+
+    <attr name="textColorPrimary" format="reference|color" />
+    <attr name="textColorSecondary" format="reference|color" />
+    <attr name="textColorTertiary" format="reference|color" />
+    <attr name="textColorBody" format="reference|color" />
+    <attr name="textColorBodyEmphasis" format="reference|color" />
+    <attr name="splashTextColor" format="reference|color" />
+    <attr name="foregroundColor" format="reference|color" />
+    <attr name="middlegroundColor" format="reference|color" />
+    <attr name="backgroundColor" format="reference|color" />
+    <attr name="backgroundColor_mapviewOverlay" format="reference|color" />
+    <attr name="backgroundColorOnBackground" format="reference|color" />
+    <attr name="navigationBarColor" format="reference|color" />
+    <attr name="statusBarColor" format="reference|color" />
+
+    <attr name="windowStrokeColor" format="reference|color" />
+    <attr name="windowBackgroundColor" format="reference|color" />
+    <attr name="fragmentBackgroundColor" format="reference|color" />
+
+    <attr name="light_active" format="reference|color" />
+    <attr name="light_inactive" format="reference|color" />
+    <attr name="light_off" format="reference|color" />
+
+    <attr name="switchColorOn" format="reference|color" />
+    <attr name="switchColorOff" format="reference|color" />
+    <attr name="inboxNotification" format="reference|color" />
+
+    <attr name="buttonFilterOnPrimary" format="reference|color" />
+    <attr name="buttonBorderOnPrimary" format="reference|color" />
+    <attr name="buttonBackgroundOnPrimary" format="reference|color" />
+
+    <attr name="navigationFooterIcon" format="reference|color" />
+    <attr name="navigationFooterIconAlt" format="reference|color" />
+
+    <attr name="sanityPieStartColor" format="reference|color" />
+    <attr name="sanityPieEndColor" format="reference|color" />
+    <attr name="sanityHeadBrainColor" format="reference|color" />
+    <attr name="sanityHeadSkullColor" format="reference|color" />
+    <attr name="sanityBorderColor" format="reference|color" />
+
+    <attr name="progressBarColorStart" format="reference|color" />
+    <attr name="progressBarColorEnd" format="reference|color" />
+    <attr name="progressBarColorThumbGradientStart" format="reference|color" />
+    <attr name="progressBarColorThumbGradientEnd" format="reference|color" />
+    <attr name="progressBarColorThumbOutline" format="reference|color" />
+
+    <attr name="selectedColor" format="reference|color" />
+    <attr name="selectedColor2" format="reference|color" />
+    <attr name="unselectedColor" format="reference|color" />
+
+    <attr name="positiveSelColor" format="reference|color" />
+    <attr name="negativeSelColor" format="reference|color" />
+    <attr name="neutralSelColor" format="reference|color" />
+
+    <attr name="strikethroughColor" format="reference|color" />
+    <attr name="circleColor" format="reference|color" />
+
+    <attr name="mapPoiFillColor" format="reference|color" />
+    <attr name="mapRoomFillColor" format="reference|color" />
+    <attr name="mapRoomBorderColor" format="reference|color" />
+
+    <attr name="theme_colorPrimary" format="reference|color" />
+
+
+    <attr name="a" format="reference|color" />
+    <attr name="b" format="reference|color" />
+    <attr name="c" format="reference|color" />
+    <attr name="d" format="reference|color" />
+    <attr name="e" format="reference|color" />
+    <attr name="f" format="reference|color" />
+    <attr name="g" format="reference|color" />
+    <attr name="h" format="reference|color" />
+    <attr name="i" format="reference|color" />
+    <attr name="j" format="reference|color" />
+    <attr name="k" format="reference|color" />
+    <attr name="l" format="reference|color" />
+    <attr name="m" format="reference|color" />
+    <attr name="n" format="reference|color" />
+    <attr name="o" format="reference|color" />
+    <attr name="p" format="reference|color" />
+    <attr name="q" format="reference|color" />
+
+    <attr name="theme_coreColor_1" format="reference|color" />
+    <attr name="theme_coreColor_2" format="reference|color" />
+    <attr name="theme_coreColor_3" format="reference|color" />
+    <attr name="theme_coreColor_4" format="reference|color" />
+    <attr name="theme_coreColor_5" format="reference|color" />
+    <attr name="theme_coreColor_6" format="reference|color" />
+    <attr name="theme_coreColor_7" format="reference|color" />
+    <attr name="theme_coreColor_8" format="reference|color" />
+
+    <attr name="buttonColor" format="reference|color" />
+    <attr name="colorOnButton" format="reference|color" />
+
+    <!--
+        Codex
+    -->
+
+    <attr name="codex1" format="reference|color" />
+    <attr name="codex2" format="reference|color" />
+    <attr name="codex3" format="reference|color" />
+    <attr name="codex4" format="reference|color" />
+    <attr name="codex5" format="reference|color" />
+
+    <attr name="codex2_headerBackground" format="reference|color" />
+
+    <attr name="codex1_itemBackground" format="reference|color" />
+    <attr name="codex2_itemBorder" format="reference|color" />
+    <attr name="codex3_itemBorder" format="reference|color" />
+    <attr name="codex2_tierNormal" format="reference|color" />
+    <attr name="codex4_tierAlt" format="reference|color" />
+    <attr name="codex3_tierBackground" format="reference|color" />
+
+    <attr name="codex3_groupHeaderText" format="reference|color" />
+
+    <attr name="codex3_throbber" format="reference|color" />
+
+    <attr name="codex1_gh0stBackground" format="reference|color" />
+    <attr name="codex3_gh0stTextNormal" format="reference|color" />
+    <attr name="codex4_gh0stTextAlt" format="reference|color" />
+    <attr name="codex1_adViewBackground" format="reference|color" />
+
+    <attr name="codex1_cardArrow" format="reference|color" />
+    <attr name="codex3_cardBorder" format="reference|color" />
+
+    <attr name="codex3_navHeaderBackground" format="reference|color" />
+    <attr name="codex5_navHeaderText" format="reference|color" />
+    <attr name="codex2_navBackIcon" format="reference|color" />
+
+    <attr name="codex3_popupHeaderText" format="reference|color" />
+    <attr name="codex3_popupCloseBackground" format="reference|color" />
+    <attr name="codex2_popupCloseIcon" format="reference|color" />
+    <attr name="codex3_popupAttrIcons" format="reference|color" />
+    <attr name="codex3_popupAttrText" format="reference|color" />
+
+    <attr name="codex3_other" format="reference|color" />
+
+    <attr name="codex5_sel" format="reference|color" />
+    <attr name="codex4_unsel" format="reference|color" />
+
+    <attr name="codex4_border" format="reference|color" />
+    <attr name="codex4_background" format="reference|color" />
+
+    <attr name="codex6_gridBackground" format="reference|color" />
+    <attr name="codex7_gridStroke" format="reference|color" />
+
+    <!-- Unused -->
+    <attr name="codex3_buttonBackground" format="reference|color" />
+    <attr name="codex5_header" format="reference|color" />
+    <!-- -->
+
+    <!-- Other -->
+    <attr name="theme_title" format="string" />
+    <attr name="theme_badge" format="reference" />
+
+    <!--
+        Fonts
+    -->
+
+    <!-- AutoFit -->
+    <attr name="primaryFont_Regular_Auto" format="reference" />
+    <attr name="primaryFont_Bold_Auto" format="reference" />
+
+    <attr name="secondaryFont_Regular_Auto" format="reference" />
+    <attr name="secondaryFont_Bold_Auto" format="reference" />
+
+    <attr name="tertiaryFont_Regular_Auto" format="reference" />
+    <attr name="tertiaryFont_Bold_Auto" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_Auto" format="reference" />
+
+    <attr name="quaternaryFont_Regular_Auto" format="reference" />
+    <attr name="quaternaryFont_Bold_Auto" format="reference" />
+
+    <!-- Squeeze -->
+    <attr name="primaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="primaryFont_Bold_AutoSqueeze" format="reference" />
+
+    <attr name="secondaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="secondaryFont_Bold_AutoSqueeze" format="reference" />
+
+    <attr name="tertiaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="tertiaryFont_Bold_AutoSqueeze" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_AutoSqueeze" format="reference" />
+
+    <attr name="quaternaryFont_Regular_AutoSqueeze" format="reference" />
+    <attr name="quaternaryFont_Bold_AutoSqueeze" format="reference" />
+
+    <!-- Manual -->
+    <attr name="primaryFont_Regular_Manual" format="reference" />
+    <attr name="primaryFont_Bold_Manual" format="reference" />
+
+    <attr name="secondaryFont_Regular_Manual" format="reference" />
+    <attr name="secondaryFont_Bold_Manual" format="reference" />
+
+    <attr name="tertiaryFont_Regular_Manual" format="reference" />
+    <attr name="tertiaryFont_Bold_Manual" format="reference" />
+    <attr name="tertiaryFont_BoldNarrow_Manual" format="reference" />
+
+    <attr name="quaternaryFont_Regular_Manual" format="reference" />
+    <attr name="quaternaryFont_Bold_Manual" format="reference" />
+
+    <!--
+        Radio Selector
+    -->
+    <attr name="state_done" format="boolean" />
+    <attr name="state_enabled" format="boolean" />
+    <attr name="state_selected" format="boolean" />
+
+    <attr name="equipment_type" format="enum">
+        <enum name="DOTS_1" value="1"/>
+        <enum name="DOTS_2" value="2"/>
+        <enum name="DOTS_3" value="3"/>
+        <enum name="EMF_1" value="1"/>
+        <enum name="EMF_2" value="2"/>
+        <enum name="EMF_3" value="3"/>
+        <enum name="UV_1" value="1"/>
+        <enum name="UV_2" value="2"/>
+        <enum name="UV_3" value="3"/>
+        <enum name="THERMO_1" value="1"/>
+        <enum name="THERMO_2" value="2"/>
+        <enum name="THERMO_3" value="3"/>
+        <enum name="VCAM_1" value="1"/>
+        <enum name="VCAM_2" value="2"/>
+        <enum name="VCAM_3" value="3"/>
+        <enum name="GWRITING_1" value="1"/>
+        <enum name="GWRITING_2" value="2"/>
+        <enum name="GWRITING_3" value="3"/>
+        <enum name="SBOX_1" value="1"/>
+        <enum name="SBOX_2" value="2"/>
+        <enum name="SBOX_3" value="3"/>
+    </attr>
+
+</resources>

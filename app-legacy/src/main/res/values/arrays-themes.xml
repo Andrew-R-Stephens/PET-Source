@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Color Styles -->
+    <integer-array name="settings_themes_color_array">
+        <item>@array/settings_themes_colorblind_array</item>
+        <item>@array/settings_themes_primary_array</item>
+    </integer-array>
+
+    <!-- Sub-Theme: Colorblind -->
+    <integer-array name="settings_themes_colorblind_array">
+        <item>@array/settings_themes_colorblind_id_array</item>
+        <item>@array/settings_themes_colorblind_name_array</item>
+        <item>@array/settings_themes_colorblind_style_array</item>
+        <item>@bool/settings_themes_colorblind_defaultAvailable</item>
+    </integer-array>
+
+    <string-array name="settings_themes_colorblind_id_array">
+        <item>CzjtxSbXRwIpX8SYR0ttngAND</item>
+        <item>ey6VbQN5tx0MgR8tw4iJq3J8L</item>
+        <item>9Ec5cQIB0Jb73gbQ3a9R5kScX</item>
+        <item>44uBEX9ID9131TMG3yH7T2P1Q</item>
+        <item>28yi3LJWYMbA7v87RMAEznISy</item>
+        <item>tempWhiteboard</item>
+        <item>tempStratHero</item>
+
+    </string-array>
+    <string-array name="settings_themes_colorblind_name_array">
+        <item>@string/settings_colorblindnessmode_normal</item>
+        <item>@string/theme_palette_colorblind_monochromacy</item>
+        <item>@string/theme_palette_colorblind_deuteranomaly</item>
+        <item>@string/theme_palette_colorblind_protanomaly</item>
+        <item>@string/theme_palette_colorblind_tritanomaly</item>
+        <item>@string/theme_palette_special_whiteboard</item>
+        <item>@string/theme_palette_special_strategemHero</item>
+    </string-array>
+    <integer-array name="settings_themes_colorblind_style_array">
+        <item>@style/NonColorblind.Base</item>
+        <item>@style/Monochromacy</item>
+        <item>@style/Deuteranomaly</item>
+        <item>@style/Protanomaly</item>
+        <item>@style/Tritanomaly</item>
+        <item>@style/Whiteboard</item>
+        <item>@style/StrategemHero</item>
+    </integer-array>
+
+    <bool name="settings_themes_colorblind_defaultAvailable">true</bool>
+
+    <!-- Sub-Theme: Prestige -->
+    <integer-array name="settings_themes_primary_array">
+        <item>@array/settings_themes_primary_id_array</item>
+        <item>@array/settings_themes_primary_name_array</item>
+        <item>@array/settings_themes_primary_style_array</item>
+        <item>@bool/settings_themes_primary_defaultAvailable</item>
+    </integer-array>
+
+    <string-array name="settings_themes_primary_id_array">
+        <item>9QWud4Mj5C4jYp1hOA91b6G0L</item>
+        <item>1UdIWr97JGtOoRszQHpBYfK5U</item>
+        <item>1oF0ZF78LqA64zRyn8ozgMqLu</item>
+        <item>5T2mB6W1370DEc3cnYN2bI0gT</item>
+        <item>9t44qIYH7UU3EPwvgXEO6309E</item>
+        <item>9Uo9I6AmpW2XbhHDIxCP4ppds</item>
+        <item>E2m4fr5Vp6dv07JnWE5Q3T08D</item>
+        <item>6BL0zB7jGGye94j45hq3wtwVq</item>
+        <item>8No78zJ6oUSBLS818jH10Seni</item>
+        <item>4p77qstew9oX20l4X5O0J010k</item>
+        <item>B6xTXIXttQUqW02Skd094BY15</item>
+        <item>EOkBD2aJZhOh9V821o20GFLXK</item>
+        <item>7RF705OjW3uo39zl0aTktINHd</item>
+        <item>0XrEhnlpA9mD9dNxrzCbNfkRe</item>
+        <item>Ex00XEBLXbh65Nk9SdYMrMfsP</item>
+        <item>2pe8HDVVWRfxhPUw4Xf0rhgwb</item>
+        <item>56iV5cnR3lRJ59uZF1mTtEz9X</item>
+        <item>e6nDE683SE7Wg9dRPJeN61CD6</item>
+        <item>8xkSw89x50Zwgr4tGd6z5X0a7</item>
+        <item>88kEPt48wGs0ZxR4n7gtM3OTe</item>
+    </string-array>
+    <string-array name="settings_themes_primary_name_array">
+        <item>@string/theme_palette_prestige_recruit</item>
+        <item>@string/theme_palette_prestige_investigator</item>
+        <item>@string/theme_palette_prestige_privateinvestigator</item>
+        <item>@string/theme_palette_prestige_detective</item>
+        <item>@string/theme_palette_prestige_technician</item>
+        <item>@string/theme_palette_prestige_specialist</item>
+        <item>@string/theme_palette_prestige_analyst</item>
+        <item>@string/theme_palette_prestige_agent</item>
+        <item>@string/theme_palette_prestige_operator</item>
+        <item>@string/theme_palette_prestige_commissioner</item>
+
+        <item>@string/theme_palette_event_easter</item>
+        <item>@string/theme_palette_event_halloween</item>
+        <item>@string/theme_palette_event_holiday22</item>
+        <item>@string/theme_palette_event_holiday23</item>
+        
+        <item>@string/theme_palette_community_discord</item>
+        <item>@string/theme_palette_community_contentcreator</item>
+        <item>@string/theme_palette_community_developer</item>
+        <item>@string/theme_palette_community_translator</item>
+        <item>@string/theme_palette_community_winner</item>
+        <item>@string/theme_palette_community_artist</item>
+    </string-array>
+
+    <integer-array name="settings_themes_primary_style_array">
+        <item>@style/Recruit</item>
+        <item>@style/Investigator</item>
+        <item>@style/PrivateInvestigator</item>
+        <item>@style/Detective</item>
+        <item>@style/Technician</item>
+        <item>@style/Specialist</item>
+        <item>@style/Analyst</item>
+        <item>@style/Agent</item>
+        <item>@style/Operator</item>
+        <item>@style/Commissioner</item>
+
+        <item>@style/Easter</item>
+        <item>@style/Halloween23</item>
+        <item>@style/Holiday22</item>
+        <item>@style/Holiday23</item>
+
+        <item>@style/Discord</item>
+        <item>@style/ContentCreator</item>
+        <item>@style/Developer</item>
+        <item>@style/Translator</item>
+        <item>@style/Winner</item>
+        <item>@style/Artist</item>
+    </integer-array>
+
+    <bool name="settings_themes_primary_defaultAvailable">false</bool>
+
+    <!-- _______ -->
+
+
+    <!-- Font Styles -->
+    <integer-array name="settings_themes_fonts_array">
+        <item>@array/settings_themes_font_array</item>
+    </integer-array>
+
+    <!-- Sub-Theme: Colorblind -->
+    <integer-array name="settings_themes_font_array">
+        <item>@array/settings_themes_font_id_array</item>
+        <item>@array/settings_themes_font_name_array</item>
+        <item>@array/settings_themes_font_style_array</item>
+    </integer-array>
+
+    <string-array name="settings_themes_font_id_array">
+        <item>c29cJglM92MLWN1RKRyK8qyAD</item>
+        <item>8Jk15N2GB6PBopXvmEluU2eoS</item>
+        <item>7q1Nza1o0Nvt16YyNXNkJ590F</item>
+        <item>3a1vXEZveFEWrf5RdVxTJI6pF</item>
+        <item>93Ph8a2SLU3YEupV54TKMKJAO</item>
+        <item>8UEl0G5HXx119AXh69OeIUPCB</item>
+        <item>8rX9hVOyV8eIZmz3ZQaHgrnan</item>
+        <item>DPre8Bscm8Tf3pwyQw7HxBznt</item>
+        <item>3vAD75LdzvZN3zBjab5z19zpc</item>
+    </string-array>
+    <string-array name="settings_themes_font_name_array">
+        <item>@string/theme_typography_classic</item>
+        <item>@string/theme_typography_android</item>
+        <item>@string/theme_typography_journal</item>
+        <item>@string/theme_typography_brick</item>
+        <item>@string/theme_typography_clean</item>
+        <item>@string/theme_typography_longcang</item>
+        <item>@string/theme_typography_newtegmon</item>
+        <item>@string/theme_typography_neucha</item>
+        <item>@string/theme_typography_jetbrainsmono</item>
+    </string-array>
+    <integer-array name="settings_themes_font_style_array">
+        <item>@style/Fonts.Base</item>
+        <item>@style/Android</item>
+        <item>@style/Journal</item>
+        <item>@style/Brick</item>
+        <item>@style/Clean</item>
+        <item>@style/LongCang</item>
+        <item>@style/NewTegomin</item>
+        <item>@style/Neucha</item>
+        <item>@style/JetBrainsMono</item>
+    </integer-array>
+
+</resources>
