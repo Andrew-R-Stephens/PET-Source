@@ -146,16 +146,15 @@ open class InvestigationActivity : PETActivity() {
     }
 
     private fun setNavigationBarBehavior(navView: NavigationBarView?, navController: NavController) {
-        navView?.let {
-            this.navigationBarView = navView
+        navView?.let { nv ->
+            navigationBarView = nv
 
-            setupWithNavController(navView, navController)
+            setupWithNavController(nv, navController)
 
-            navView.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item: MenuItem ->
+            nv.setOnItemSelectedListener(
+                NavigationBarView.OnItemSelectedListener { item: MenuItem ->
                 if (onNavDestinationSelected(item, navController)) {
-                    if (drawerLayout != null) {
-                        drawerLayout!!.closeDrawer(GravityCompat.START)
-                    }
+                    drawerLayout?.closeDrawer(GravityCompat.START)
 
                     return@OnItemSelectedListener true
                 }
@@ -170,7 +169,7 @@ open class InvestigationActivity : PETActivity() {
                 true
             })
 
-            navView.itemIconTintList = null
+            nv.itemIconTintList = null
         }
     }
 

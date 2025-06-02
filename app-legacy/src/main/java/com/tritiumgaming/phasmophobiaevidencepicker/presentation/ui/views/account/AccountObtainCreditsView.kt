@@ -62,10 +62,11 @@ class AccountObtainCreditsView : ConstraintLayout {
         @ColorInt val color =
             getColorFromAttribute(context, R.attr.textColorPrimary)
 
-        val descriptionQuantity = resources.getQuantityString(
-            R.plurals.marketplace_description_watch_ad,
-            quantity, quantity
-        )
+        val descriptionQuantity =
+            try { resources.getQuantityString(
+                    R.plurals.marketplace_description_watch_ad,
+                    quantity, quantity)
+            } catch (_: Exception) { quantity }
         val colorHex = intToHex(color)
 
         val quantityStrTemp = StringBuilder("<font color=")

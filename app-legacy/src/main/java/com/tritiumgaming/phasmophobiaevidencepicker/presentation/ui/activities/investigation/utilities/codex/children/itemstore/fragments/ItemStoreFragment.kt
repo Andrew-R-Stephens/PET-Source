@@ -86,8 +86,10 @@ abstract class ItemStoreFragment : CodexFragment() {
                 requireActivity().runOnUiThread {
                     scrollView?.let { scrollView ->
                         scrollView.post {
-                            val isPortrait =
+                            val isPortrait = try {
                                 resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+                            } catch (_: IllegalStateException) { true }
+
                             val isScrollable: Boolean =
                                 if (isPortrait) {
                                     scrollView.height < scrollView.getChildAt(0).height +

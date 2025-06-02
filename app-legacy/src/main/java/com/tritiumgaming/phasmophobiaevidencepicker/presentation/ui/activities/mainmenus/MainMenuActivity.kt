@@ -113,6 +113,7 @@ class MainMenuActivity : PETActivity() {
                     requestAppUpdate(appUpdateInfo)
                     hasUpdate.set(true)
                 } catch (e: SendIntentException) { throw RuntimeException(e) }
+                catch (e: IllegalStateException) { throw RuntimeException(e) }
             }
         }
 
@@ -127,15 +128,19 @@ class MainMenuActivity : PETActivity() {
 
     private fun completePendingAppUpdate() {
         appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
-            val isUpdateInProgress =
-                appUpdateInfo.updateAvailability() == DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+            try {
+                val isUpdateInProgress =
+                    appUpdateInfo.updateAvailability() == DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
                 if (isUpdateInProgress) {
                     appUpdateManager?.startUpdateFlowForResult(
                         appUpdateInfo, activityUpdateResultLauncher,
                         AppUpdateOptions.newBuilder(IMMEDIATE).build()
                     )
                 }
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
             }
+        }
     }
 
     override fun onResume() {

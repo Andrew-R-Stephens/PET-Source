@@ -332,12 +332,15 @@ interface SignInCredentialManager {
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            val credentialResponse = credentialManager.getCredential(
-                request = request,
-                context = activity
-            )
 
-            handleSignIn(credentialResponse, onSuccess, onFailure, onComplete)
+            try{
+                val credentialResponse = credentialManager.getCredential(
+                    request = request,
+                    context = activity
+                )
+                handleSignIn(credentialResponse, onSuccess, onFailure, onComplete)
+
+            } catch (e: Exception) { e.printStackTrace() }
         }
 
     }

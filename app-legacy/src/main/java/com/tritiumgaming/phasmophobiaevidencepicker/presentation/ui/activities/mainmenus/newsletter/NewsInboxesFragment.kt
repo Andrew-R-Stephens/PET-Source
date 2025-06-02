@@ -61,7 +61,10 @@ class NewsInboxesFragment : MainMenuFragment() {
     }
 
     private fun navigateToInboxFragment(v: View) {
-        findNavController(v).navigate(R.id.action_inboxFragment_to_inboxMessageListFragment)
+        try {
+            findNavController(v).navigate(R.id.action_inboxFragment_to_inboxMessageListFragment)
+        } catch (e: IllegalStateException) { e.printStackTrace() }
+
     }
 
     /** showExtraNewsPopup method */

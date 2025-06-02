@@ -63,13 +63,21 @@ abstract class PETFragment : Fragment, AccountManagementService {
 
     //@SuppressLint("DetachAndAttachSameFragment")
     protected open fun refreshFragment() {
-        var ft = parentFragmentManager.beginTransaction()
-        if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
-        ft.detach(this@PETFragment).commitNow()
-        //ft = parentFragmentManager.beginTransaction()
-        ft = parentFragmentManager.beginTransaction()
-        if (Build.VERSION.SDK_INT >= 26) { ft.setReorderingAllowed(false) }
-        ft.attach(this@PETFragment).commitNow()
+        try {
+            var ft = parentFragmentManager.beginTransaction()
+            if (Build.VERSION.SDK_INT >= 26) {
+                ft.setReorderingAllowed(false)
+            }
+            ft.detach(this@PETFragment).commitNow()
+            //ft = parentFragmentManager.beginTransaction()
+            ft = parentFragmentManager.beginTransaction()
+            if (Build.VERSION.SDK_INT >= 26) {
+                ft.setReorderingAllowed(false)
+            }
+            ft.attach(this@PETFragment).commitNow()
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+        }
     }
 
     protected fun closePopup(): Boolean {

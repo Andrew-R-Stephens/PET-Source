@@ -31,6 +31,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.Lang
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountIconView
 import java.util.Locale
+import androidx.core.net.toUri
 
 class StartScreenFragment : MainMenuFragment() {
     private var animationView: StartScreenAnimationView? = null
@@ -89,13 +90,17 @@ class StartScreenFragment : MainMenuFragment() {
                     DropdownNavigationPair(R.drawable.ic_gear, R.id.appSettingsFragment),
                     DropdownNavigationPair(translationIcon, R.id.appLanguageFragment),
                     DropdownClickPair(R.drawable.ic_discord) {
-                        startActivity(
-                            Intent(
-                                Intent.ACTION_VIEW, Uri.parse(
+                        try {
+                            startActivity(
+                                Intent(
+                                    Intent.ACTION_VIEW,
                                     "https://discord.gg/ ${getString(R.string.aboutinfo_discordInvite)}"
+                                        .toUri()
                                 )
                             )
-                        )
+                        } catch (e: IllegalStateException) {
+                            e.printStackTrace()
+                        }
                     }
                 )
             ) { false }
@@ -173,11 +178,15 @@ class StartScreenFragment : MainMenuFragment() {
     }
 
     private fun gotoMessageCenterFragment(v: View) {
-        findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment)
+        try {
+            findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment)
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     private fun gotoLanguagesFragment(v: View) {
-        findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment)
+        try {
+            findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment)
+        } catch (e: IllegalStateException) { e.printStackTrace() }
     }
 
     private fun initReviewRequest(buttonReview: AppCompatImageView) {
