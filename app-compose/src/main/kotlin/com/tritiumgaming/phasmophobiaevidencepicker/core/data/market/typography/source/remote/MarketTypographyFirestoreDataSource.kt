@@ -27,13 +27,13 @@ class MarketTypographyFirestoreDataSource(
     private val typographyCollection: CollectionReference = merchandiseDocumentRef
         .collection(COLLECTION_TYPOGRAPHYS)
 
-    suspend fun query(
+    suspend fun fetch(
         typographyQueryOptions: TypographyQueryOptions = TypographyQueryOptions()
-    ): List<MarketTypographyDto> = withContext(Dispatchers.IO) {
-
-        val typographies = mutableListOf<MarketTypographyDto>()
+    ): Result<List<MarketTypographyDto>> = withContext(Dispatchers.IO) {
 
         try {
+            val typographies = mutableListOf<MarketTypographyDto>()
+
             createQuery( typographyQueryOptions)
                 .await()
                 .documents
@@ -62,22 +62,21 @@ class MarketTypographyFirestoreDataSource(
                                 buyCredits = buyCredits
                             )
 
-                            //val paletteDto = dto.toNetwork()
                             typographies.add(dto)
 
                         } catch (e: Exception) {
                             Log.d("Firestore", "Error obtaining remote typographies!")
                             e.printStackTrace()
                         }
-
                     }
-
                 }
+
+            Result.success(typographies)
+
         } catch (e: FirebaseFirestoreException) {
             e.printStackTrace()
+            Result.failure(Exception("Error obtaining remote typographies!", e))
         }
-
-        typographies
 
     }
 

@@ -23,18 +23,22 @@ class MarketPaletteRepositoryImpl(
     coroutineDispatcher: CoroutineDispatcher
 ): MarketPaletteRepository {
 
-    private var cache: List<MarketPaletteDto> = localDataSource.getPalettes().toLocal()
+    private var cache: List<MarketPaletteDto> = emptyList()
 
     override fun getLocalPalettes(): List<MarketPaletteDto> =
         localDataSource.getPalettes().toLocal()
 
     override suspend fun fetchRemotePalettes(
         paletteQueryOptions: PaletteQueryOptions
-    ): List<MarketPaletteDto> = firestoreDataSource.query()
+    ): List<MarketPaletteDto> {
+        val result = firestoreDataSource.fetch(paletteQueryOptions)
 
-    override suspend fun synchronizePalettes() {
-        val local: List<MarketPalette> = getLocalPalettes().toExternal()
-        val remote: List<MarketPalette> = fetchRemotePalettes().toExternal()
+        return result.getOrNull() ?: emptyList()
+    }
+
+    override suspend fun synchronizePalettes(): List<MarketPalette> {
+        val local: List<MarketPaletteDto> = getLocalPalettes()
+        val remote: List<MarketPaletteDto> = fetchRemotePalettes()
 
         val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->
@@ -50,10 +54,15 @@ class MarketPaletteRepositoryImpl(
                 else localEntity
             }
         }
+
         Log.d("Palette", "Fetched ${mergedModels.size} palettes")
         mergedModels.forEach {
             Log.d("Palette", "Fetched $it")
         }
+
+        cache = mergedModels
+
+        return cache.toExternal()
     }
 
     override fun getPalettes(): List<MarketPalette> {
@@ -75,7 +84,6 @@ class MarketPaletteRepositoryImpl(
         initialSetupEvent()
 
         CoroutineScope(coroutineDispatcher).launch {
-            cache = getLocalPalettes()
             synchronizePalettes()
         }
     }

@@ -34,6 +34,9 @@ class PETApplication : Application(), AccountManagementService {
     private val firestore: FirebaseFirestore by lazy {
         Firebase.firestore
     }
+    private val firebaseAuth by lazy {
+        Firebase.auth
+    }
 
     lateinit var coreContainer: CoreContainer
     lateinit var mainMenuContainer: MainMenuContainer
@@ -43,7 +46,7 @@ class PETApplication : Application(), AccountManagementService {
 
         super.onCreate()
 
-        coreContainer = CoreContainer(applicationContext, dataStore, firestore)
+        coreContainer = CoreContainer(applicationContext, dataStore, firestore, firebaseAuth)
         mainMenuContainer = MainMenuContainer(applicationContext, dataStore)
         operationsContainer = OperationContainer(applicationContext, dataStore)
 

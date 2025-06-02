@@ -23,18 +23,22 @@ class MarketTypographyRepositoryImpl(
     coroutineDispatcher: CoroutineDispatcher
 ): MarketTypographyRepository {
 
-    private var cache: List<MarketTypographyDto> = localDataSource.getTypographies().toLocal()
+    private var cache: List<MarketTypographyDto> = emptyList()
 
     override fun getLocalTypographies(): List<MarketTypographyDto> =
         localDataSource.getTypographies().toLocal()
 
     override suspend fun fetchRemoteTypographies(
         typographyQueryOptions: TypographyQueryOptions
-    ): List<MarketTypographyDto> = firestoreDataSource.query(typographyQueryOptions)
+    ): List<MarketTypographyDto> {
+        val result = firestoreDataSource.fetch(typographyQueryOptions)
 
-    override suspend fun synchronizeTypographies() {
-        val local: List<MarketTypography> = getLocalTypographies().toExternal()
-        val remote: List<MarketTypography> = fetchRemoteTypographies().toExternal()
+        return result.getOrNull() ?: emptyList()
+    }
+
+    override suspend fun synchronizeTypographies(): List<MarketTypography> {
+        val local: List<MarketTypographyDto> = getLocalTypographies()
+        val remote: List<MarketTypographyDto> = fetchRemoteTypographies()
 
         val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->
@@ -50,10 +54,15 @@ class MarketTypographyRepositoryImpl(
                 else localEntity
             }
         }
+
         Log.d("Typography", "Fetched ${mergedModels.size} typographies")
         mergedModels.forEach {
             Log.d("Typography", "Fetched $it")
         }
+
+        cache = mergedModels
+
+        return cache.toExternal()
     }
 
     override fun getTypographies(): List<MarketTypography> {
@@ -75,7 +84,6 @@ class MarketTypographyRepositoryImpl(
         initialSetupEvent()
 
         CoroutineScope(coroutineDispatcher).launch {
-            cache = getLocalTypographies()
             synchronizeTypographies()
         }
     }

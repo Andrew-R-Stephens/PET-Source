@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.conta
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
@@ -21,6 +22,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository.FirestoreAccountRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAccountRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAuthRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreUserRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
@@ -69,7 +74,8 @@ import kotlinx.coroutines.Dispatchers
 class CoreContainer(
     applicationContext: Context,
     dataStore: DataStore<Preferences>,
-    firestore: FirebaseFirestore
+    firestore: FirebaseFirestore,
+    firebaseAuth: FirebaseAuth
 ) {
 
     // Global Preferences
@@ -98,6 +104,25 @@ class CoreContainer(
         repository = globalPreferencesRepository)
     internal val setMaxHuntWarnFlashTimeUseCase = SetMaxHuntWarnFlashTimeUseCase(
         repository = globalPreferencesRepository)
+
+    /**
+     * Account
+     */
+    internal val firestoreUserRemoteDataSource = FirestoreUserRemoteDataSource(
+        firestore = firestore
+    )
+    internal val firestoreAuthRemoteDataSource = FirestoreAuthRemoteDataSource(
+        firebaseAuth = firebaseAuth
+    )
+    internal val firestoreAccountDataSource = FirestoreAccountRemoteDataSource()
+    private val firestoreAccountRepository = FirestoreAccountRepositoryImpl(
+        authRemoteDataSource = firestoreAuthRemoteDataSource,
+        userRemoteDataSource = firestoreUserRemoteDataSource,
+        accountRemoteDataSource = firestoreAccountDataSource
+    )
+    internal val setMarketplaceAgreementStateUseCase = SetMarketplaceAgreementStateUseCase(
+        repository = firestoreAccountRepository)
+
 
     /**
      * Review Tracker

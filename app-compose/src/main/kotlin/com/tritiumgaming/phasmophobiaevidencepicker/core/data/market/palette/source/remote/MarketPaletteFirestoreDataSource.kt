@@ -27,13 +27,13 @@ class MarketPaletteFirestoreDataSource(
     val paletteCollection: CollectionReference = merchandiseDocumentRef
         .collection(COLLECTION_PALETTES)
 
-    suspend fun query(
+    suspend fun fetch(
         options: PaletteQueryOptions = PaletteQueryOptions()
-    ): List<MarketPaletteDto> = withContext(Dispatchers.IO) {
-
-        val palettes = mutableListOf<MarketPaletteDto>()
+    ): Result<List<MarketPaletteDto>> = withContext(Dispatchers.IO) {
 
         try {
+            val palettes = mutableListOf<MarketPaletteDto>()
+
             createQuery(options)
                 .await()
                 .documents
@@ -62,22 +62,21 @@ class MarketPaletteFirestoreDataSource(
                                 buyCredits = buyCredits
                             )
 
-                            //val paletteDto = dto.toNetwork()
                             palettes.add(dto)
 
                         } catch (e: Exception) {
                             Log.d("Firestore", "Error obtaining remote palettes!")
                             e.printStackTrace()
                         }
-
                     }
-
                 }
+
+            Result.success(palettes)
+
         } catch (e: FirebaseFirestoreException) {
             e.printStackTrace()
+            Result.failure(Exception("Error obtaining remote palettes!", e))
         }
-
-        palettes
 
     }
 

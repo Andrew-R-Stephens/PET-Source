@@ -1,8 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.dto.MarketBillableDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.mapper.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.source.remote.MarketBillableFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.source.remote.MarketBillableFirestoreDataSource.BillableQueryOptions
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.model.MarketBillable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.repository.MarketBillableRepository
 
 class MarketBillableRepositoryImpl(
@@ -17,6 +18,6 @@ class MarketBillableRepositoryImpl(
      */
     override suspend fun fetchBillables(
         billableQueryOptions: BillableQueryOptions
-    ): List<MarketBillableDto> = billableFirestoreDataSource.fetch(billableQueryOptions)
+    ): List<MarketBillable> = billableFirestoreDataSource.fetch(billableQueryOptions).toDomain()
 
 }

@@ -7,7 +7,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.r
 class FindNextAvailablePaletteUseCase(
     private val repository: MarketPaletteRepository
 ) {
-
     operator fun invoke(
         currentUUID: String,
         direction: IncrementDirection

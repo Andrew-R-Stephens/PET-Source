@@ -12,7 +12,8 @@ interface MarketTypographyRepository {
     suspend fun fetchRemoteTypographies(
         typographyQueryOptions: TypographyQueryOptions = TypographyQueryOptions()
     ): List<MarketTypographyDto>
-    suspend fun synchronizeTypographies()
+
+    suspend fun synchronizeTypographies(): List<MarketTypography>
     fun getTypographies(): List<MarketTypography>
 
     fun initialSetupEvent()

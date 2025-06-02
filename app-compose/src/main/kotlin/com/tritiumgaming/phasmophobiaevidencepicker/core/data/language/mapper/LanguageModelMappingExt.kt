@@ -8,13 +8,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.L
 // Local is data local layer
 
 // Local to External
-fun LanguageDto.toExternal(): LanguageEntity {
-    return LanguageEntity(
+fun LanguageDto.toDomain(): LanguageEntity =
+    LanguageEntity(
         name = name,
         nativeName = nativeName,
         abbreviation = abbreviation
     )
-}
 
-fun List<LanguageDto>.toExternal(): List<LanguageEntity> =
-    map ( LanguageDto::toExternal )
+
+fun List<LanguageDto>.toDomain(): List<LanguageEntity> =
+    map ( LanguageDto::toDomain )

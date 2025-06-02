@@ -1,87 +1,133 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote
 
 import android.util.Log
+import androidx.compose.ui.graphics.vector.path
+import androidx.work.await
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.SetOptions
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.MarketAgreementDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.MarketCreditsDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.MarketAgreement
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.MarketCreditTransaction
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.MarketCredits
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
+import kotlin.Long
+import kotlin.io.path.exists
 
-class FirestoreAccountRemoteDataSource {
+class FirestoreAccountRemoteDataSource(
+    private val firestore: FirebaseFirestore,
+    private val firebaseAuth: FirebaseAuth
+) {
+    val currentAuthUser: FirebaseUser?
+        get() = firebaseAuth.currentUser
 
-    private fun getAccountCollectionRef(
-        userDocumentRef: DocumentReference?
-    ): CollectionReference? {
-        return userDocumentRef
+    private val userCollectionRef: CollectionReference
+        get() = firestore.collection(COLLECTION_USERS)
+
+    fun getUserDocumentRef(
+        uid: String? = currentAuthUser?.uid
+    ): DocumentReference? {
+        return uid?.let { userCollectionRef.document(it) }
+    }
+
+    private val accountCollectionRef: CollectionReference? =
+        getUserDocumentRef()
             ?.collection(COLLECTION_ACCOUNT)
-    }
 
-    private fun getCreditsDocumentRef(
-        userDocumentRef: DocumentReference?
-    ): DocumentReference? {
-        return getAccountCollectionRef(userDocumentRef)
+    private val creditsDocumentRef: DocumentReference? =
+        accountCollectionRef
             ?.document(DOCUMENT_CREDITS)
-    }
 
-    private fun getPreferencesDocumentRef(
-        userDocumentRef: DocumentReference?
-    ): DocumentReference? {
-        return getAccountCollectionRef(userDocumentRef)
+    private val preferencesDocumentRef: DocumentReference? =
+        accountCollectionRef
             ?.document(DOCUMENT_PREFERENCES)
-    }
 
-    private fun getTransactionHistoryDocumentRef(
-        userDocumentRef: DocumentReference?
-    ): DocumentReference? {
-        return getAccountCollectionRef(userDocumentRef)
+    private val transactionHistoryDocumentRef: DocumentReference? =
+        accountCollectionRef
             ?.document(DOCUMENT_TRANSACTION_HISTORY)
-    }
 
-    private fun getPurchaseHistoryCollectionRef(
-        userDocumentRef: DocumentReference?
-    ): CollectionReference? {
-        return getTransactionHistoryDocumentRef(userDocumentRef)
+    private val purchaseHistoryCollectionRef: CollectionReference? =
+        transactionHistoryDocumentRef
             ?.collection(COLLECTION_PURCHASE_HISTORY)
-    }
 
-    private fun getPurchaseDocumentRef(
-        userDocumentRef: DocumentReference?,
-    ): DocumentReference? {
-        return getPurchaseHistoryCollectionRef(userDocumentRef)
+    private val purchaseDocumentRef: DocumentReference? =
+        purchaseHistoryCollectionRef
             ?.document(DOCUMENT_PURCHASED_ITEM)
-    }
 
-    private fun getUnlockHistoryCollectionRef(
-        userDocumentRef: DocumentReference?,
-    ): CollectionReference? {
-        return getTransactionHistoryDocumentRef(userDocumentRef)
+    private val unlockHistoryCollectionRef: CollectionReference? =
+        transactionHistoryDocumentRef
             ?.collection(COLLECTION_UNLOCK_HISTORY)
-    }
 
-    private fun getUnlockedDocumentRef(
-        userDocumentRef: DocumentReference?,
-    ): DocumentReference? {
-        return getUnlockHistoryCollectionRef(userDocumentRef)
+    private val unlockedDocumentRef: DocumentReference? =
+        unlockHistoryCollectionRef
             ?.document(DOCUMENT_UNLOCKED_ITEM)
-    }
 
     suspend fun setMarketplaceAgreementState(
-        userDocumentRef: DocumentReference,
-        shown: Boolean
-    ): Result<String> {
-
-        val preferencesDocument = getPreferencesDocumentRef(userDocumentRef)
-            ?: buildAccountPreferencesDocument(userDocumentRef)
-
-        val data: MutableMap<String, Any> = HashMap()
-        data[FIELD_MARKETPLACE_AGREEMENT_SHOWN] = shown
+        marketAgreementDto: MarketAgreementDto
+    ): Result<MarketAgreementDto> {
 
         return try {
-            preferencesDocument.update(data).await()
-            Result.success("Marketplace Agreement set successfully!")
+
+            if(preferencesDocumentRef == null)
+                return Result.failure(Exception("User Marketplace Preferences document null!"))
+
+            firestore.runTransaction { transaction ->
+
+                val snapshot = transaction.get(preferencesDocumentRef)
+                if(!snapshot.exists()) {
+                    val data: MutableMap<String, Any> = HashMap()
+                    data[FIELD_MARKETPLACE_AGREEMENT_SHOWN] = marketAgreementDto.isAgreementShown
+
+                    transaction.set(preferencesDocumentRef, data)
+
+                    marketAgreementDto
+                }
+
+            }.await()
+
+            return Result.success(marketAgreementDto)
+
+        } catch (e: Exception) {
+            Log.e("Firestore", "Error marketplace agreement modification unsuccessful.", e)
+            Result.failure(e)
+        }
+
+    }
+
+    suspend fun getMarketplaceAgreementState(): Result<MarketAgreementDto> {
+
+        return try {
+
+            if(preferencesDocumentRef == null)
+                return Result.failure(Exception("User Marketplace Preferences document null!"))
+
+            val agreementDto = firestore.runTransaction { transaction ->
+
+                val snapshot = transaction.get(preferencesDocumentRef)
+                if(snapshot.exists()) {
+                    MarketAgreementDto(
+                        isAgreementShown =
+                            snapshot.getBoolean(FIELD_MARKETPLACE_AGREEMENT_SHOWN) == true
+                    )
+                } else { MarketAgreementDto() }
+
+            }.await()
+
+            Result.success(agreementDto)
+
         } catch (e: Exception) {
             Log.e("Firestore", "Error marketplace agreement modification unsuccessful.", e)
             Result.failure(e)
@@ -90,65 +136,155 @@ class FirestoreAccountRemoteDataSource {
     }
 
     suspend fun addCredits(
-        userDocumentRef: DocumentReference,
-        creditAmount: Long
-    ): Result<String> {
-
-        val creditsDocument = getCreditsDocumentRef(userDocumentRef)
-            ?: buildAccountCreditDocument(userDocumentRef)
-
-        val data: MutableMap<String, Any> = HashMap()
-        data[FIELD_CREDITS_EARNED] = FieldValue.increment(creditAmount)
+        marketCreditTransaction: MarketCreditTransaction
+    ): Result<MarketCreditsDto> {
 
         return try {
-            creditsDocument.update(data).await()
-            Result.success("Credits added successfully!")
+
+            if (creditsDocumentRef == null)
+                return Result.failure(Exception("User Account Credits document null!"))
+
+            // Update document
+            firestore.runTransaction { transaction ->
+
+                val snapshot = transaction.get(creditsDocumentRef)
+                if (!snapshot.exists()) { MarketAgreementDto() }
+
+                val updates = hashMapOf<String, Any>(
+                    FIELD_CREDITS_EARNED to FieldValue.increment(marketCreditTransaction.credits)
+                )
+                transaction.update(creditsDocumentRef, updates)
+
+            }.await()
+
+            // Get updated document
+            val updatedSnapshot = creditsDocumentRef.get().await()
+            if (!updatedSnapshot.exists()) {
+                return Result.failure(
+                    FirebaseFirestoreException(
+                        "Document ${creditsDocumentRef.path} unexpectedly not found after update.",
+                        FirebaseFirestoreException.Code.NOT_FOUND
+                    )
+                )
+            }
+            val updatedDto = MarketCreditsDto(
+                earnedCredits = updatedSnapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
+                spentCredits = updatedSnapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
+            )
+            Result.success(updatedDto)
+
         } catch (e: Exception) {
             Log.e("Firestore", "Error adding credits", e)
             Result.failure(e)
         }
+
     }
 
     suspend fun removeCredits(
-        userDocumentRef: DocumentReference,
-        creditAmount: Long
-    ): Result<String> {
+        marketCreditTransaction: MarketCreditTransaction
+    ): Result<MarketCreditsDto> {
 
-        val creditsDocument = getCreditsDocumentRef(userDocumentRef)
-            ?: buildAccountCreditDocument(userDocumentRef)
+        return try {
+
+            if (creditsDocumentRef == null)
+                return Result.failure(Exception("User Account Credits document null!"))
+
+            // Update document
+            firestore.runTransaction { transaction ->
+
+                val snapshot = transaction.get(creditsDocumentRef)
+                if (!snapshot.exists()) { MarketCreditsDto() }
+
+                val storedCredits = snapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L
+                if (storedCredits < marketCreditTransaction.credits) {
+                    return@runTransaction
+                }
+
+                val updates = hashMapOf<String, Any>(
+                    FIELD_CREDITS_EARNED to FieldValue.increment(-marketCreditTransaction.credits),
+                    FIELD_CREDITS_SPENT to FieldValue.increment(marketCreditTransaction.credits)
+                )
+                transaction.update(creditsDocumentRef, updates)
+
+            }.await()
+
+            // Get updated document
+            val updatedSnapshot = creditsDocumentRef.get().await()
+            if (!updatedSnapshot.exists()) {
+                return Result.failure(
+                    FirebaseFirestoreException(
+                        "Document ${creditsDocumentRef.path} unexpectedly not found after update.",
+                        FirebaseFirestoreException.Code.NOT_FOUND
+                    )
+                )
+            }
+            val updatedDto = MarketCreditsDto(
+                earnedCredits = updatedSnapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
+                spentCredits = updatedSnapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
+            )
+            Result.success(updatedDto)
+
+        } catch (e: Exception) {
+            Log.e("Firestore", "Error adding credits", e)
+            Result.failure(e)
+        }
+
+        /*val creditsDocument = creditsDocumentRef
 
         return try {
             creditsDocument
                 .get()
                 .addOnCompleteListener { task: Task<DocumentSnapshot> ->
                     val storedCredits = task.result.getLong(FIELD_CREDITS_EARNED)
-                    if (storedCredits != null && storedCredits < creditAmount) {
+                    if (storedCredits != null && storedCredits < marketCreditTransaction.credits) {
                         return@addOnCompleteListener
                     }
 
                     val data: MutableMap<String, Any> = HashMap()
-                    data[FIELD_CREDITS_EARNED] = FieldValue.increment(-creditAmount)
-                    data[FIELD_CREDITS_SPENT] = FieldValue.increment(creditAmount)
+                    data[FIELD_CREDITS_EARNED] = FieldValue.increment(-marketCreditTransaction.credits)
+                    data[FIELD_CREDITS_SPENT] = FieldValue.increment(marketCreditTransaction.credits)
 
                     task.result.reference.update(data)
                 }.await()
-            Result.success("Credits added successfully!")
+            Result.success(MarketCreditsDto(0, 0))
         } catch (e: Exception) {
             Log.e("Firestore", "Error adding credits", e)
             Result.failure(e)
-        }
+        }*/
 
     }
 
+    fun observeCreditsDocument(): Flow<Result<MarketCreditsDto>> =
+        callbackFlow {
+
+            creditsDocumentRef?.addSnapshotListener { snapshot, error ->
+                error?.let {
+                    this.close(it)
+                }
+
+                snapshot?.let { it ->
+                    val data = MarketCreditsDto(
+                        earnedCredits = it.getLong(FIELD_CREDITS_EARNED) ?: 0L,
+                        spentCredits = it.getLong(FIELD_CREDITS_SPENT) ?: 0L
+                    )
+                    this.trySend(Result.success(data))
+                }
+
+                this.trySend(Result.failure(Exception("Document not found or deleted.")))
+
+            }
+
+            awaitClose { this.cancel() }
+        }
+
     suspend fun addPurchaseDocument(
-        userDocumentRef: DocumentReference,
         orderID: String
     ): Result<String> {
-        val purchaseHistoryCollection = getPurchaseHistoryCollectionRef(userDocumentRef)
-        if(purchaseHistoryCollection == null)
+
+        if(purchaseHistoryCollectionRef == null)
             return Result.failure(Exception("Purchase history collection not found!"))
 
-        val purchaseReferenceDoc = getPurchaseDocumentRef(userDocumentRef)
+        val purchaseReferenceDoc = purchaseDocumentRef
         if(purchaseReferenceDoc == null)
             return Result.failure(Exception("Purchase history document not found!"))
 
@@ -158,7 +294,7 @@ class FirestoreAccountRemoteDataSource {
         documentData[FIELD_DATE_PURCHASED] = Timestamp.Companion.now()
 
         return try {
-            purchaseHistoryCollection.add(documentData).await()
+            purchaseHistoryCollectionRef.add(documentData).await()
             Result.success("Purchase document of ${ purchaseReferenceDoc.id } GENERATED / LOCATED!")
         } catch (e: Exception) {
             Log.e("Firestore", "Purchase document of ${ purchaseReferenceDoc.id } " +
@@ -168,54 +304,24 @@ class FirestoreAccountRemoteDataSource {
 
     }
 
-    suspend fun addUnlockedDocument(
-        userDocumentRef: DocumentReference?,
-        unlockUUID: String?,
-        type: String
-    ): Result<String> {
-
-        val unlockHistoryCollection = getUnlockHistoryCollectionRef(userDocumentRef)
-        if(unlockHistoryCollection == null)
-            return Result.failure(Exception("Unlock history collection not found!"))
-        if(unlockUUID == null)
-            return Result.failure(Exception("No UUIDs found!"))
-
-        val unlockDocument = unlockHistoryCollection.document(unlockUUID)
-
-        val documentData: MutableMap<String, Any> = HashMap()
-        documentData[FIELD_TYPE] = type
-        documentData[FIELD_DATE_UNLOCKED] = Timestamp.Companion.now()
-
-        return try {
-            unlockDocument.set(documentData, SetOptions.merge()).await()
-            Result.success("Unlocked document of $unlockUUID GENERATED / LOCATED!")
-        } catch (e: Exception) {
-            Log.e("Firestore",
-                "Unlocked document of $unlockUUID could NOT be GENERATED / LOCATED!")
-            Result.failure(e)
-        }
-
-    }
-
-    suspend fun addUnlockedDocuments(
-        userDocumentRef: DocumentReference?,
+    /*suspend fun addUnlockedDocuments(
         unlockUUIDs: ArrayList<String>?,
         type: String
     ): Result<String> {
 
-        val unlockHistoryCollection = getUnlockHistoryCollectionRef(userDocumentRef)
-        if(unlockHistoryCollection == null)
+        if(unlockHistoryCollectionRef == null)
             return Result.failure(Exception("Unlock history collection not found!"))
         if(unlockUUIDs == null)
             return Result.failure(Exception("No UUIDs found!"))
 
-        val documentData: MutableMap<String, Any> = HashMap()
-        documentData[FIELD_TYPE] = type
-        documentData[FIELD_DATE_UNLOCKED] = Timestamp.Companion.now()
-
         return try {
+
+            val documentData: MutableMap<String, Any> = HashMap()
+            documentData[FIELD_TYPE] = type
+            documentData[FIELD_DATE_UNLOCKED] = Timestamp.Companion.now()
+
             for (uuid in unlockUUIDs) {
-                val purchasedDocument = unlockHistoryCollection.document(uuid)
+                val purchasedDocument = unlockHistoryCollectionRef.document(uuid)
                 purchasedDocument.set(documentData, SetOptions.merge()).await()
             }
             Result.success("Unlocked documents GENERATED / LOCATED!")
@@ -224,16 +330,16 @@ class FirestoreAccountRemoteDataSource {
             Result.failure(e)
         }
 
-    }
+    }*/
 
-    private fun buildAccountCreditDocument(
-        creditsDocumentRef: DocumentReference
-    ): DocumentReference {
-        val creditsMap: MutableMap<Any, Any> = HashMap()
+    /*private fun buildAccountCreditDocument(): DocumentReference {
 
         creditsDocumentRef
             .get()
             .addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
+
+                val creditsMap: MutableMap<Any, Any> = HashMap()
+
                 if (documentSnapshot[FIELD_CREDITS_EARNED] == null) {
                     creditsMap[FIELD_CREDITS_EARNED] = 0
                 }
@@ -255,39 +361,10 @@ class FirestoreAccountRemoteDataSource {
             .addOnFailureListener { obj: Exception -> obj.printStackTrace() }
 
         return creditsDocumentRef
-    }
 
-    private fun buildAccountPreferencesDocument(
-        preferencesDocumentRef: DocumentReference
-    ): DocumentReference {
-        val preferencesMap: MutableMap<Any, Any> = HashMap()
+    }*/
 
-        preferencesDocumentRef
-            .get()
-            .addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
-                if (documentSnapshot[FIELD_MARKETPLACE_AGREEMENT_SHOWN] == null) {
-                    preferencesMap[FIELD_MARKETPLACE_AGREEMENT_SHOWN] = false
-                }
-                documentSnapshot.reference.set(preferencesMap, SetOptions.merge())
-                    .addOnSuccessListener {
-                        Log.d("Firestore",
-                            "$DOCUMENT_PREFERENCES successfully INITIALIZED!") }
-                    .addOnFailureListener { e: Exception ->
-                        Log.e("Firestore",
-                            "$DOCUMENT_PREFERENCES failed INITIALIZATION")
-                        e.printStackTrace() }
-                    .addOnCompleteListener { task: Task<Void?>? ->
-                        Log.d("Firestore",
-                            "$DOCUMENT_PREFERENCES INITIALIZATION process complete!") }
-            }
-            .addOnFailureListener { obj: Exception -> obj.printStackTrace() }
-
-        return preferencesDocumentRef
-    }
-
-    private fun buildAccountTransactionHistoryDocument(
-        transactionHistoryDocumentRef: DocumentReference
-    ): DocumentReference {
+    /*private fun buildAccountTransactionHistoryDocument(): DocumentReference {
 
         transactionHistoryDocumentRef
             .get()
@@ -310,9 +387,10 @@ class FirestoreAccountRemoteDataSource {
             .addOnFailureListener { obj: Exception -> obj.printStackTrace() }
 
         return transactionHistoryDocumentRef
-    }
+    }*/
 
     private companion object {
+
         private const val COLLECTION_PURCHASE_HISTORY = "PurchaseHistory"
 
         private const val DOCUMENT_PREFERENCES: String = "Preferences"
@@ -329,7 +407,8 @@ class FirestoreAccountRemoteDataSource {
         private const val FIELD_DATE_UNLOCKED = "dateUnlocked"
         private const val FIELD_TYPE = "type"
 
-
+        // User Collection
+        private const val COLLECTION_USERS = "Users"
 
         // Account Collection
         private const val COLLECTION_ACCOUNT = "Account"
@@ -338,5 +417,6 @@ class FirestoreAccountRemoteDataSource {
         private const val DOCUMENT_CREDITS: String = "Credits"
         private const val FIELD_CREDITS_SPENT: String = "spentCredits"
         private const val FIELD_CREDITS_EARNED: String = "earnedCredits"
+
     }
 }

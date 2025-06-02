@@ -12,7 +12,7 @@ interface MarketPaletteRepository {
     suspend fun fetchRemotePalettes(
         paletteQueryOptions: PaletteQueryOptions = PaletteQueryOptions()
     ): List<MarketPaletteDto>
-    suspend fun synchronizePalettes()
+    suspend fun synchronizePalettes(): List<MarketPalette>
     fun getPalettes(): List<MarketPalette>
 
     fun initialSetupEvent()
