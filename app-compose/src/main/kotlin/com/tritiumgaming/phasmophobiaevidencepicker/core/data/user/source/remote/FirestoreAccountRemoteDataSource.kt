@@ -1,9 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote
 
 import android.util.Log
-import androidx.compose.ui.graphics.vector.path
-import androidx.work.await
-import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.Transaction
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -14,17 +12,16 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.SetOptions
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountCreditTransactionDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountCreditsDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.MarketAgreementDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.MarketCreditsDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.MarketAgreement
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.MarketCreditTransaction
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.MarketCredits
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
-import kotlin.Long
+import kotlin.collections.get
+import kotlin.collections.set
 import kotlin.io.path.exists
 
 class FirestoreAccountRemoteDataSource(
@@ -136,8 +133,8 @@ class FirestoreAccountRemoteDataSource(
     }
 
     suspend fun addCredits(
-        marketCreditTransaction: MarketCreditTransaction
-    ): Result<MarketCreditsDto> {
+        creditTransaction: AccountCreditTransactionDto
+    ): Result<AccountCreditsDto> {
 
         return try {
 
@@ -147,11 +144,10 @@ class FirestoreAccountRemoteDataSource(
             // Update document
             firestore.runTransaction { transaction ->
 
-                val snapshot = transaction.get(creditsDocumentRef)
-                if (!snapshot.exists()) { MarketAgreementDto() }
+                transaction.getOrCreateCreditsDocument(creditsDocumentRef)
 
                 val updates = hashMapOf<String, Any>(
-                    FIELD_CREDITS_EARNED to FieldValue.increment(marketCreditTransaction.credits)
+                    FIELD_CREDITS_EARNED to FieldValue.increment(creditTransaction.credits)
                 )
                 transaction.update(creditsDocumentRef, updates)
 
@@ -167,7 +163,7 @@ class FirestoreAccountRemoteDataSource(
                     )
                 )
             }
-            val updatedDto = MarketCreditsDto(
+            val updatedDto = AccountCreditsDto(
                 earnedCredits = updatedSnapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
                 spentCredits = updatedSnapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
             )
@@ -181,8 +177,8 @@ class FirestoreAccountRemoteDataSource(
     }
 
     suspend fun removeCredits(
-        marketCreditTransaction: MarketCreditTransaction
-    ): Result<MarketCreditsDto> {
+        creditTransaction: AccountCreditTransactionDto
+    ): Result<AccountCreditsDto> {
 
         return try {
 
@@ -192,24 +188,27 @@ class FirestoreAccountRemoteDataSource(
             // Update document
             firestore.runTransaction { transaction ->
 
-                val snapshot = transaction.get(creditsDocumentRef)
-                if (!snapshot.exists()) { MarketCreditsDto() }
+                val snapshot = transaction.getOrCreateCreditsDocument(creditsDocumentRef)
 
-                val storedCredits = snapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L
-                if (storedCredits < marketCreditTransaction.credits) {
-                    return@runTransaction
-                }
-
-                val updates = hashMapOf<String, Any>(
-                    FIELD_CREDITS_EARNED to FieldValue.increment(-marketCreditTransaction.credits),
-                    FIELD_CREDITS_SPENT to FieldValue.increment(marketCreditTransaction.credits)
+                val currentCredits = AccountCreditsDto(
+                    earnedCredits = snapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
+                    spentCredits = snapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
                 )
-                transaction.update(creditsDocumentRef, updates)
+
+                // Check if there are enough credits to remove
+                if (currentCredits.earnedCredits >= creditTransaction.credits) {
+                    val updates = hashMapOf<String, Any>(
+                        FIELD_CREDITS_EARNED to FieldValue.increment(-creditTransaction.credits),
+                        FIELD_CREDITS_SPENT to FieldValue.increment(creditTransaction.credits)
+                    )
+                    transaction.update(creditsDocumentRef, updates)
+                }
 
             }.await()
 
             // Get updated document
             val updatedSnapshot = creditsDocumentRef.get().await()
+
             if (!updatedSnapshot.exists()) {
                 return Result.failure(
                     FirebaseFirestoreException(
@@ -218,7 +217,7 @@ class FirestoreAccountRemoteDataSource(
                     )
                 )
             }
-            val updatedDto = MarketCreditsDto(
+            val updatedDto = AccountCreditsDto(
                 earnedCredits = updatedSnapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
                 spentCredits = updatedSnapshot.getLong(FIELD_CREDITS_SPENT) ?: 0L
             )
@@ -254,7 +253,25 @@ class FirestoreAccountRemoteDataSource(
 
     }
 
-    fun observeCreditsDocument(): Flow<Result<MarketCreditsDto>> =
+    private fun Transaction.getOrCreateCreditsDocument(
+        reference: DocumentReference
+    ): DocumentSnapshot {
+
+        val snapshot = get(reference)
+
+        if (!snapshot.exists()) {
+            println("Credits document ${reference.path} not found. Creating with default values.")
+            val initialCreditsData = AccountCreditsDto(
+                earnedCredits = 0L,
+                spentCredits = 0L
+            )
+            set(reference, initialCreditsData) // Create the document in the transaction
+        }
+
+        return snapshot
+    }
+
+    fun observeCreditsDocument(): Flow<Result<AccountCreditsDto>> =
         callbackFlow {
 
             creditsDocumentRef?.addSnapshotListener { snapshot, error ->
@@ -263,7 +280,7 @@ class FirestoreAccountRemoteDataSource(
                 }
 
                 snapshot?.let { it ->
-                    val data = MarketCreditsDto(
+                    val data = AccountCreditsDto(
                         earnedCredits = it.getLong(FIELD_CREDITS_EARNED) ?: 0L,
                         spentCredits = it.getLong(FIELD_CREDITS_SPENT) ?: 0L
                     )
@@ -304,7 +321,7 @@ class FirestoreAccountRemoteDataSource(
 
     }
 
-    /*suspend fun addUnlockedDocuments(
+    suspend fun addUnlockedDocuments(
         unlockUUIDs: ArrayList<String>?,
         type: String
     ): Result<String> {
@@ -330,7 +347,7 @@ class FirestoreAccountRemoteDataSource(
             Result.failure(e)
         }
 
-    }*/
+    }
 
     /*private fun buildAccountCreditDocument(): DocumentReference {
 
@@ -419,4 +436,5 @@ class FirestoreAccountRemoteDataSource(
         private const val FIELD_CREDITS_EARNED: String = "earnedCredits"
 
     }
+
 }

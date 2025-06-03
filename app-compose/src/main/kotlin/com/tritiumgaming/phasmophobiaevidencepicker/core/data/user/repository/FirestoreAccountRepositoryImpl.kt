@@ -5,9 +5,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.toNetwork
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAccountRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreUserRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.MarketAgreement
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.MarketCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.toNetwork
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketAgreement
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCreditTransaction
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCredits
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
 
 class FirestoreAccountRepositoryImpl(
@@ -17,8 +17,8 @@ class FirestoreAccountRepositoryImpl(
 ): FirestoreAccountRepository {
 
     override suspend fun addCredits(
-        marketCredits: MarketCredits
-    ): Result<MarketCredits> {
+        creditTransaction: AccountCreditTransaction
+    ): Result<AccountCredits> {
 
         val uid: String? = authRemoteDataSource.currentAuthUser?.uid
         if(uid == null)
@@ -28,13 +28,17 @@ class FirestoreAccountRepositoryImpl(
         if(userDocumentRef == null)
             return Result.failure(Exception("The authorized user's data could not be located!"))
 
-        return accountRemoteDataSource.addCredits(creditAmount)
+        val result = accountRemoteDataSource.addCredits(creditTransaction.toNetwork())
+
+        return result.map { dto ->
+            dto.toDomain()
+        }
 
     }
 
     override suspend fun removeCredits(
-        marketCredits: MarketCredits
-    ): Result<MarketCredits> {
+        creditTransaction: AccountCreditTransaction
+    ): Result<AccountCredits> {
 
         val uid: String? = authRemoteDataSource.currentAuthUser?.uid
         if(uid == null)
@@ -44,8 +48,7 @@ class FirestoreAccountRepositoryImpl(
         if(userDocumentRef == null)
             return Result.failure(Exception("The authorized user's data could not be located!"))
 
-        val result =
-            accountRemoteDataSource.removeCredits(marketCredits.toNetwork())
+        val result = accountRemoteDataSource.removeCredits(creditTransaction.toNetwork())
 
         return result.map { dto ->
             dto.toDomain()
@@ -56,8 +59,8 @@ class FirestoreAccountRepositoryImpl(
     //TODO: Get Credit Snapshot Observer
 
     override suspend fun setMarketplaceAgreementState(
-        marketAgreement: MarketAgreement
-    ): Result<MarketAgreement> {
+        marketAgreement: AccountMarketAgreement
+    ): Result<AccountMarketAgreement> {
 
         val uid: String? = authRemoteDataSource.currentAuthUser?.uid
         if(uid == null)

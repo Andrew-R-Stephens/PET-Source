@@ -69,6 +69,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.RemoveAccountCreditsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import kotlinx.coroutines.Dispatchers
 
 class CoreContainer(
@@ -114,15 +118,21 @@ class CoreContainer(
     internal val firestoreAuthRemoteDataSource = FirestoreAuthRemoteDataSource(
         firebaseAuth = firebaseAuth
     )
-    internal val firestoreAccountDataSource = FirestoreAccountRemoteDataSource()
-    private val firestoreAccountRepository = FirestoreAccountRepositoryImpl(
+    internal val firestoreAccountDataSource = FirestoreAccountRemoteDataSource(
+        firestore = firestore,
+        firebaseAuth = firebaseAuth
+    )
+    val firestoreAccountRepository = FirestoreAccountRepositoryImpl(
         authRemoteDataSource = firestoreAuthRemoteDataSource,
         userRemoteDataSource = firestoreUserRemoteDataSource,
         accountRemoteDataSource = firestoreAccountDataSource
     )
     internal val setMarketplaceAgreementStateUseCase = SetMarketplaceAgreementStateUseCase(
         repository = firestoreAccountRepository)
-
+    val addAccountCreditsUseCase = AddAccountCreditsUseCase(
+        repository = firestoreAccountRepository)
+    val removeAccountCreditsUseCase = RemoveAccountCreditsUseCase(
+        repository = firestoreAccountRepository)
 
     /**
      * Review Tracker

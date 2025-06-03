@@ -1,4 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model
-data class MarketAgreement(
-    val isAgreementShown: Boolean = false
+
+data class AccountCreditTransaction(
+    val credits: Long
 )

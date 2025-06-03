@@ -8,6 +8,6 @@ data class MarketPaletteDto(
     internal val group: String? = "",
     internal val buyCredits: Long = 0L,
     internal val priority: Long? = 0L,
-    internal val unlocked: Boolean = false,
+    internal val unlocked: Boolean = true,
     internal val palette: ExtendedPalette? = null
 )

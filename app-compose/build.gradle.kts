@@ -112,10 +112,12 @@ dependencies {
     implementation(libs.android.material)
     implementation(libs.googleid)
 
+    // Testing
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.testExt.junit)
     testImplementation(libs.jetbrains.kotlinx.coroutines.test)
+    androidTestImplementation(libs.androidx.testExt.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.mockito.kotlin)
 
     // --- Google Credential Manager ----
     implementation(libs.android.playServices.auth)
