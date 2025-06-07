@@ -211,9 +211,13 @@ private fun SettingsContent(
                         maxLines = 1,
                     )
 
+                    val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
+                    val paletteLabel = globalPreferencesViewModel.getPaletteByUUID(paletteState.value)
+
                     CarouselComposable(
                         title = R.string.settings_colortheme_title,
-                        state = MutableStateFlow(LocalPalette.current.extrasFamily.title),
+                        state = globalPreferencesViewModel.currentPaletteUUID,
+                        label = stringResource(paletteLabel.extrasFamily.title),
                         painterResource = painterResource(LocalPalette.current.extrasFamily.badge),
                         leftOnClick = {
                             globalPreferencesViewModel.setNextAvailablePalette(
@@ -227,9 +231,13 @@ private fun SettingsContent(
                         }
                     )
 
+                    val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
+                    val typographyLabel = globalPreferencesViewModel.getTypographyByUUID(typographyState.value)
+
                     CarouselComposable(
                         title = R.string.settings_fontstylesettings,
                         state = MutableStateFlow(LocalTypography.current.extrasFamily.title),
+                        label = stringResource(typographyLabel.extrasFamily.title),
                         colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body),
                         painterResource = painterResource(R.drawable.ic_font_family),
                         leftOnClick = {

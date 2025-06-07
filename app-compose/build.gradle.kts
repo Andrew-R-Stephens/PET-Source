@@ -187,9 +187,11 @@ dependencies {
     */
     implementation(platform(libs.androidx.compose.bom))
 
+    // Testing --
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.testJunit4)
     debugImplementation(libs.androidx.compose.ui.testManifest)
+    // ---
 
     implementation(libs.androidx.compose.foundation)
     /* Material Design 3 */

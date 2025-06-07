@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toExternal
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toLocal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.MarketTypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
@@ -12,9 +12,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class MarketTypographyRepositoryImpl(
     private val firestoreDataSource: MarketTypographyFirestoreDataSource,
@@ -37,6 +35,8 @@ class MarketTypographyRepositoryImpl(
     }
 
     override suspend fun synchronizeTypographies(): List<MarketTypography> {
+        Log.d("Typography", "Fetched typographies")
+
         val local: List<MarketTypographyDto> = getLocalTypographies()
         val remote: List<MarketTypographyDto> = fetchRemoteTypographies()
 
@@ -62,11 +62,11 @@ class MarketTypographyRepositoryImpl(
 
         cache = mergedModels
 
-        return cache.toExternal()
+        return cache.toDomain()
     }
 
     override fun getTypographies(): List<MarketTypography> {
-        return cache.toExternal()
+        return cache.toDomain()
     }
 
     override fun initialSetupEvent() {
@@ -83,9 +83,9 @@ class MarketTypographyRepositoryImpl(
     init {
         initialSetupEvent()
 
-        CoroutineScope(coroutineDispatcher).launch {
+        /*CoroutineScope(coroutineDispatcher).launch {
             synchronizeTypographies()
-        }
+        }*/
     }
 
 }

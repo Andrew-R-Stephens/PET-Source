@@ -11,18 +11,19 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountCreditTransactionDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountCreditsDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountPaletteDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountTypographyDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.MarketAgreementDto
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
-import kotlin.collections.get
 import kotlin.collections.set
-import kotlin.io.path.exists
 
 class FirestoreAccountRemoteDataSource(
     private val firestore: FirebaseFirestore,
@@ -294,33 +295,6 @@ class FirestoreAccountRemoteDataSource(
             awaitClose { this.cancel() }
         }
 
-    suspend fun addPurchaseDocument(
-        orderID: String
-    ): Result<String> {
-
-        if(purchaseHistoryCollectionRef == null)
-            return Result.failure(Exception("Purchase history collection not found!"))
-
-        val purchaseReferenceDoc = purchaseDocumentRef
-        if(purchaseReferenceDoc == null)
-            return Result.failure(Exception("Purchase history document not found!"))
-
-        val documentData: MutableMap<String, Any> = HashMap()
-        documentData[FIELD_PURCHASE_REFERENCE] = purchaseReferenceDoc.id
-        documentData[FIELD_ORDER_ID] = orderID
-        documentData[FIELD_DATE_PURCHASED] = Timestamp.Companion.now()
-
-        return try {
-            purchaseHistoryCollectionRef.add(documentData).await()
-            Result.success("Purchase document of ${ purchaseReferenceDoc.id } GENERATED / LOCATED!")
-        } catch (e: Exception) {
-            Log.e("Firestore", "Purchase document of ${ purchaseReferenceDoc.id } " +
-                    "could NOT be GENERATED / LOCATED!", e)
-            Result.failure(e)
-        }
-
-    }
-
     suspend fun addUnlockedDocuments(
         unlockUUIDs: ArrayList<String>?,
         type: String
@@ -344,6 +318,125 @@ class FirestoreAccountRemoteDataSource(
             Result.success("Unlocked documents GENERATED / LOCATED!")
         } catch (e: Exception) {
             Log.e("Firestore", "Unlocked document of could NOT be GENERATED / LOCATED!")
+            Result.failure(e)
+        }
+
+    }
+
+    enum class UnlockTypes(val type: String) {
+        SINGLE_THEME("Single Theme")
+    }
+
+    suspend fun fetchUnlockedPaletteDocuments(): Result<List<AccountPaletteDto>> {
+
+        if(unlockHistoryCollectionRef == null)
+            return Result.failure(Exception("Unlock history collection not found!"))
+
+        val accountPaletteDtoList = mutableListOf<AccountPaletteDto>()
+
+        val snapshot = unlockHistoryCollectionRef.get().await()
+        snapshot.documents.forEach { documentSnapshot ->
+
+            val reference = documentSnapshot.reference
+            val uid = reference.id
+
+            accountPaletteDtoList.add(AccountPaletteDto(uid))
+        }
+
+        return Result.success(accountPaletteDtoList)
+    }
+
+    suspend fun fetchUnlockedTypographyDocuments(): Result<List<AccountTypographyDto>> {
+
+        if(unlockHistoryCollectionRef == null)
+            return Result.failure(Exception("Unlock history collection not found!"))
+
+        val accountTypographyDtoList = mutableListOf<AccountTypographyDto>()
+
+        val snapshot = unlockHistoryCollectionRef.get().await()
+        snapshot.documents.forEach { documentSnapshot ->
+
+            val reference = documentSnapshot.reference
+            val uid = reference.id
+
+            accountTypographyDtoList.add(AccountTypographyDto(uid))
+        }
+
+        return Result.success(accountTypographyDtoList)
+    }
+
+    fun observeUnlockedPaletteDocuments(): Flow<Result<List<AccountPaletteDto>>> =
+
+        callbackFlow {
+            if (unlockHistoryCollectionRef == null) {
+                trySend(Result.failure(Exception("Unlock history collection not found!")))
+                close()
+                return@callbackFlow
+            }
+
+            // Keep track of the listener registration to remove it when the flow is cancelled
+            var listenerRegistration: ListenerRegistration? = null
+
+            try {
+                listenerRegistration = unlockHistoryCollectionRef
+                    .addSnapshotListener { snapshot, error ->
+                        if (error != null) {
+                            val customError = FirebaseFirestoreException(
+                                "Error listening to unlocked palette documents: ${error.message}",
+                                error.code
+                            )
+                            trySend(Result.failure(customError))
+
+                            return@addSnapshotListener
+                        }
+
+                        if (snapshot != null) {
+                            val accountPaletteDtoList = mutableListOf<AccountPaletteDto>()
+
+                            snapshot.documents.forEach { documentSnapshot ->
+                                val uid = documentSnapshot.id
+                                accountPaletteDtoList.add(AccountPaletteDto(uuid = uid))
+                            }
+
+                            trySend(Result.success(accountPaletteDtoList))
+
+                        } else {
+                            trySend(Result.success(emptyList()))
+                        }
+                    }
+            } catch (e: Exception) {
+                trySend(Result.failure(Exception("Failed to attach snapshot listener: ${e.message}")))
+                close(e)
+            }
+
+            awaitClose {
+                listenerRegistration?.remove()
+                println("SnapshotListener for UnlockedPaletteDocuments removed.")
+            }
+    }
+
+    suspend fun addPurchaseDocument(
+        orderID: String
+    ): Result<String> {
+
+        if(purchaseHistoryCollectionRef == null)
+            return Result.failure(Exception("Purchase history collection not found!"))
+
+        val purchaseReferenceDoc = purchaseDocumentRef
+        if(purchaseReferenceDoc == null)
+            return Result.failure(Exception("Purchase history document not found!"))
+
+        val documentData: MutableMap<String, Any> = HashMap()
+        documentData[FIELD_PURCHASE_REFERENCE] = purchaseReferenceDoc.id
+        documentData[FIELD_ORDER_ID] = orderID
+        documentData[FIELD_DATE_PURCHASED] = Timestamp.Companion.now()
+
+        return try {
+            purchaseHistoryCollectionRef.add(documentData).await()
+            Result.success("Purchase document of ${ purchaseReferenceDoc.id } GENERATED / LOCATED!")
+        } catch (e: Exception) {
+            Log.e("Firestore", "Purchase document of ${ purchaseReferenceDoc.id } " +
+                    "could NOT be GENERATED / LOCATED!", e)
             Result.failure(e)
         }
 

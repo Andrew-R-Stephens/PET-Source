@@ -69,7 +69,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
@@ -195,7 +194,8 @@ class CoreContainer(
         coroutineDispatcher = Dispatchers.IO
     )
     internal val findNextAvailableTypographyUseCase = FindNextAvailableTypographyUseCase(
-        repository = typographyRepository
+        marketRepository = typographyRepository,
+        accountRepository = firestoreAccountRepository
     )
     internal val setupTypographyUseCase = SetupTypographyUseCase(
         repository = typographyRepository)
@@ -225,7 +225,9 @@ class CoreContainer(
         coroutineDispatcher = Dispatchers.IO
     )
     internal val findNextAvailablePaletteUseCase = FindNextAvailablePaletteUseCase(
-        repository = paletteRepository)
+        marketRepository = paletteRepository,
+        accountRepository = firestoreAccountRepository
+    )
     internal val setupPaletteUseCase = SetupPaletteUseCase(
         repository = paletteRepository)
     internal val initFlowPaletteUseCase = InitFlowPaletteUseCase(

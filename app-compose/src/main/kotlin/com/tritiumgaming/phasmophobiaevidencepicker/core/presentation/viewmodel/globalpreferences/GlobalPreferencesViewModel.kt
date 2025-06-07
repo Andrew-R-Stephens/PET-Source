@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
@@ -26,6 +27,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
@@ -61,11 +63,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 import java.util.Locale
 
 class GlobalPreferencesViewModel(
     // Global Preferences
-    private val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase,
+    private val initGlobalPreferencesDataStoreUseCase: SetupGlobalPreferencesUseCase,
     private val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase,
     private val setAllowCellularDataUseCase: SetAllowCellularDataUseCase,
     private val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase,
@@ -76,27 +79,27 @@ class GlobalPreferencesViewModel(
     private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     // Languages
     private val getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase,
-    private val setupLanguageUseCase: SetupLanguageUseCase,
+    private val initLanguageDataStoreUseCase: SetupLanguageUseCase,
     private val initFlowLanguageUseCase: InitFlowLanguageUseCase,
     private val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
     private val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
     private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
     // Typographies
-    private val setupTypographyUseCase: SetupTypographyUseCase,
+    private val initTypographyDataStoreUseCase: SetupTypographyUseCase,
     private val initFlowTypographyUseCase: InitFlowTypographyUseCase,
     private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     private val getAvailableTypographiesUseCase: GetAvailableTypographiesUseCase,
     private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
     private val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
     // Palettes
-    private val setupPaletteUseCase: SetupPaletteUseCase,
+    private val initPaletteDataStoreUseCase: SetupPaletteUseCase,
     private val initFlowPaletteUseCase: InitFlowPaletteUseCase,
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     private val getAvailablePalettesUseCase: GetAvailablePalettesUseCase,
     private val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
     private val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase,
     // Review Tracker
-    private val setupReviewTrackerUseCase: SetupReviewTrackerUseCase,
+    private val initReviewTrackerDataStoreUseCase: SetupReviewTrackerUseCase,
     private val initFlowReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
     private val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
     private val getReviewRequestStatusUseCase: GetReviewRequestStatusUseCase,
@@ -282,12 +285,15 @@ class GlobalPreferencesViewModel(
         }
     }
 
-    fun getPaletteByUUID(uuid: String): ExtendedPalette =
-        getPaletteByUUIDUseCase(uuid, LocalDefaultPalette.palette)
+    fun getPaletteByUUID(uuid: String): ExtendedPalette {
+        return getPaletteByUUIDUseCase(uuid, LocalDefaultPalette.palette)
+    }
 
     fun setNextAvailablePalette(direction: IncrementDirection) {
-        return setCurrentPaletteUUID(
-            findNextAvailablePaletteUseCase(currentPaletteUUID.value, direction))
+        viewModelScope.launch {
+            val uuid = findNextAvailablePaletteUseCase(currentPaletteUUID.value, direction)
+            setCurrentPaletteUUID(uuid)
+        }
     }
 
     /**
@@ -316,25 +322,32 @@ class GlobalPreferencesViewModel(
             LocalDefaultTypography.typography
         )
 
-    fun setNextAvailableTypography(direction: IncrementDirection) = setCurrentTypographyUUID(
-        findNextAvailableTypographyUseCase(
-            typographies.value,
-            currentTypographyUUID.value,
-            direction
-        ))
+    fun setNextAvailableTypography(direction: IncrementDirection) {
+        viewModelScope.launch {
+            val uuid = findNextAvailableTypographyUseCase(currentTypographyUUID.value, direction)
+            setCurrentTypographyUUID(uuid)
+        }
+    }
 
-    private fun initialSetupEvent() {
-        setupGlobalPreferencesUseCase()
-        setupReviewTrackerUseCase()
-        setupLanguageUseCase()
-        setupPaletteUseCase()
-        setupTypographyUseCase()
+    private fun initialDataStoreSetupEvent() {
+        initGlobalPreferencesDataStoreUseCase()
+        initReviewTrackerDataStoreUseCase()
+        initLanguageDataStoreUseCase()
+        initPaletteDataStoreUseCase()
+        initTypographyDataStoreUseCase()
     }
 
     init {
         Log.d("GlobalPreferencesViewModel", "Initializing...")
 
-        initialSetupEvent()
+        initialDataStoreSetupEvent()
+
+        /*viewModelScope.launch {
+            getAvailablePalettesUseCase
+        }*/
+        viewModelScope.launch {
+            fetchAvailableTypographies()
+        }
 
         // Review Tracker
         viewModelScope.launch {
@@ -393,13 +406,6 @@ class GlobalPreferencesViewModel(
             }
         }
 
-        /*viewModelScope.launch {
-            fetchAvailablePalettes()
-        }*/
-        viewModelScope.launch {
-            fetchAvailableTypographies()
-        }
-
     }
 
     class GlobalPreferencesFactory(
@@ -453,7 +459,7 @@ class GlobalPreferencesViewModel(
                 val viewModel =
                     GlobalPreferencesViewModel(
                         // Global Preferences
-                        setupGlobalPreferencesUseCase = setupGlobalPreferencesUseCase,
+                        initGlobalPreferencesDataStoreUseCase = setupGlobalPreferencesUseCase,
                         initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
                         setAllowCellularDataUseCase = setAllowCellularDataUseCase,
                         setAllowHuntWarnAudioUseCase = setAllowHuntWarnAudioUseCase,
@@ -464,27 +470,27 @@ class GlobalPreferencesViewModel(
                         setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                         // Languages
                         getAvailableLanguagesUseCase = getLanguagesUseCase,
-                        setupLanguageUseCase = setupLanguageUseCase,
+                        initLanguageDataStoreUseCase = setupLanguageUseCase,
                         initFlowLanguageUseCase = initializeLanguageUseCase,
                         saveCurrentLanguageUseCase = setCurrentLanguageUseCase,
                         getCurrentLanguageUseCase = getCurrentLanguageUseCase,
                         loadCurrentLanguageUseCase = loadCurrentLanguageUseCase,
                         // Typographies
-                        setupTypographyUseCase = setupTypographyUseCase,
+                        initTypographyDataStoreUseCase = setupTypographyUseCase,
                         initFlowTypographyUseCase = initFlowTypographyUseCase,
                         saveCurrentTypographyUseCase = setCurrentTypographyUseCase,
                         getAvailableTypographiesUseCase = getTypographiesUseCase,
                         getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                         findNextAvailableTypographyUseCase = findNextAvailableTypographyUseCase,
                         // Palettes
-                        setupPaletteUseCase = setupPaletteUseCase,
+                        initPaletteDataStoreUseCase = setupPaletteUseCase,
                         initFlowPaletteUseCase = initFlowPaletteUseCase,
                         saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
                         getAvailablePalettesUseCase = getAvailablePalettesUseCase,
                         getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                         findNextAvailablePaletteUseCase = findNextAvailablePaletteUseCase,
                         // Reviews
-                        setupReviewTrackerUseCase = setupReviewTrackerUseCase,
+                        initReviewTrackerDataStoreUseCase = setupReviewTrackerUseCase,
                         initFlowReviewTrackerUseCase = initializeReviewTrackerUseCase,
                         getReviewRequestStatusUseCase = getReviewRequestStatusUseCase,
                         loadReviewRequestStatusUseCase = loadReviewRequestStatusUseCase,
@@ -558,7 +564,7 @@ class GlobalPreferencesViewModel(
 
                 GlobalPreferencesViewModel(
                     // Global Preferences
-                    setupGlobalPreferencesUseCase = setupGlobalPreferencesUseCase,
+                    initGlobalPreferencesDataStoreUseCase = setupGlobalPreferencesUseCase,
                     initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
                     setAllowCellularDataUseCase = setAllowCellularDataUseCase,
                     setAllowHuntWarnAudioUseCase = setAllowHuntWarnAudioUseCase,
@@ -569,27 +575,27 @@ class GlobalPreferencesViewModel(
                     setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                     // Languages
                     getAvailableLanguagesUseCase = getLanguagesUseCase,
-                    setupLanguageUseCase = setupLanguageUseCase,
+                    initLanguageDataStoreUseCase = setupLanguageUseCase,
                     initFlowLanguageUseCase = initializeLanguageUseCase,
                     saveCurrentLanguageUseCase = setCurrentLanguageUseCase,
                     getCurrentLanguageUseCase = getCurrentLanguageUseCase,
                     loadCurrentLanguageUseCase = loadCurrentLanguageUseCase,
                     // Typographies
                     getAvailableTypographiesUseCase = getTypographiesUseCase,
-                    setupTypographyUseCase = setupTypographyUseCase,
+                    initTypographyDataStoreUseCase = setupTypographyUseCase,
                     initFlowTypographyUseCase = initFlowTypographyUseCase,
                     saveCurrentTypographyUseCase = setCurrentTypographyUseCase,
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                     findNextAvailableTypographyUseCase = findNextAvailableTypographyUseCase,
                     // Palettes
-                    setupPaletteUseCase = setupPaletteUseCase,
+                    initPaletteDataStoreUseCase = setupPaletteUseCase,
                     initFlowPaletteUseCase = initFlowPaletteUseCase,
                     saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
                     getAvailablePalettesUseCase = getAvailablePalettesUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                     findNextAvailablePaletteUseCase = findNextAvailablePaletteUseCase,
                     // Reviews
-                    setupReviewTrackerUseCase = setupReviewTrackerUseCase,
+                    initReviewTrackerDataStoreUseCase = setupReviewTrackerUseCase,
                     initFlowReviewTrackerUseCase = initializeReviewTrackerUseCase,
                     setReviewRequestStatusUseCase = setReviewRequestStatusUseCase,
                     getReviewRequestStatusUseCase = getReviewRequestStatusUseCase,

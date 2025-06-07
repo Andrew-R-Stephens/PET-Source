@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen
 
 import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -40,8 +41,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.PETActivity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AccountManager
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.SignInCredentialManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
@@ -323,8 +329,25 @@ private fun HeaderNavBar(
         accountIcon,
         navController,
         arrayOf(
-            DropdownNavPair(R.drawable.ic_person, NavRoute.SCREEN_ACCOUNT_OVERVIEW),
+            DropdownClickPair(R.drawable.ic_person, onClick = {
+                AccountManager().signIn(
+                    activity = context as PETActivity,
+                    option = SignInCredentialManager.SignInOptions.GOOGLE,
+                    onSuccess = {
+                        Log.d("Firebase", "Signed in as: ${Firebase.auth.currentUser?.displayName}")
+                    }
+                )
+            }),
             DropdownNavPair(R.drawable.ic_store, NavRoute.SCREEN_MARKETPLACE_UNLOCKS)
         )
     )
+
+    /*IconDropdownMenu(
+        accountIcon,
+        navController,
+        arrayOf(
+            DropdownNavPair(R.drawable.ic_person, NavRoute.SCREEN_ACCOUNT_OVERVIEW),
+            DropdownNavPair(R.drawable.ic_store, NavRoute.SCREEN_MARKETPLACE_UNLOCKS)
+        )
+    )*/
 }

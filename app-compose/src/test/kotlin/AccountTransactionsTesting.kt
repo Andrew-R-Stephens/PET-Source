@@ -44,7 +44,6 @@ class AccountTransactionsTesting {
             val actualResult = addAccountCreditsUseCase(credits)
 
             // Assert
-            println("$transaction\n$expectedCredits\n$expectedResult =? $actualResult")
             Assert.assertEquals(expectedResult, actualResult)
 
             // Verify that the repository's addCredits method was called exactly once with the correct parameter

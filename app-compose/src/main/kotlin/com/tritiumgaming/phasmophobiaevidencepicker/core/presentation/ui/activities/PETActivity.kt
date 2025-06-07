@@ -70,12 +70,17 @@ class PETActivity : AppCompatActivity(),
         auth = Firebase.auth
 
         //signOut(activity = this@PETActivity)
-        signIn(
+        /*signIn(
+            activity = this,
             option = SignInCredentialManager.SignInOptions.SILENT,
             onSuccess = {
                 Log.d("Firebase",
                     "Signed in as: ${Firebase.auth.currentUser?.displayName}")
-            })
+            },
+            onFailure = {
+                Log.d("Firebase", "Failed to sign in.")
+            }
+        )*/
 
         super.onCreate(savedInstanceState)
 

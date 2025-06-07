@@ -26,3 +26,5 @@
 keystore.jks
 Keystore_old.jks
 Keystore_old2.jks
+/firestore.rules
+/firestore.indexes.json

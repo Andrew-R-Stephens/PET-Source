@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.re
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toExternal
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toLocal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.MarketPaletteLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteFirestoreDataSource
@@ -25,32 +25,40 @@ class MarketPaletteRepositoryImpl(
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
-    override fun getLocalPalettes(): List<MarketPaletteDto> =
-        localDataSource.getPalettes().toLocal()
+    override fun getLocalPalettes(): List<MarketPaletteDto> {
+        Log.d("Palette", "Getting local palettes")
+
+        return localDataSource.getPalettes().toLocal()
+    }
 
     override suspend fun fetchRemotePalettes(
         paletteQueryOptions: PaletteQueryOptions
     ): List<MarketPaletteDto> {
+        Log.d("Palette", "Fetching remote palettes")
+
         val result = firestoreDataSource.fetch(paletteQueryOptions)
 
         return result.getOrNull() ?: emptyList()
     }
 
     override suspend fun synchronizePalettes(): List<MarketPalette> {
+        Log.d("Palette", "Synchronizing palettes")
+
         val local: List<MarketPaletteDto> = getLocalPalettes()
         val remote: List<MarketPaletteDto> = fetchRemotePalettes()
 
         val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->
-                if (localEntity.uuid == remoteEntity.uuid) localEntity.copy(
-                    uuid = localEntity.uuid,
-                    name = remoteEntity.name,
-                    group = remoteEntity.group,
-                    buyCredits = remoteEntity.buyCredits,
-                    priority = remoteEntity.priority,
-                    unlocked = remoteEntity.unlocked,
-                    palette = remoteEntity.palette ?: ExtendedPalette()
-                )
+                if (localEntity.uuid == remoteEntity.uuid)
+                    localEntity.copy(
+                        uuid = localEntity.uuid,
+                        name = remoteEntity.name,
+                        group = remoteEntity.group,
+                        buyCredits = remoteEntity.buyCredits,
+                        unlocked = remoteEntity.unlocked,
+                        priority = remoteEntity.priority,
+                        palette = localEntity.palette ?: ExtendedPalette()
+                    )
                 else localEntity
             }
         }
@@ -62,11 +70,16 @@ class MarketPaletteRepositoryImpl(
 
         cache = mergedModels
 
-        return cache.toExternal()
+        return cache.toDomain()
     }
 
     override fun getPalettes(): List<MarketPalette> {
-        return cache.toExternal()
+        Log.d("Palette", "Getting ${cache.size} cached palettes:")
+        cache.forEach {
+            Log.d("Palette", "\t$it")
+        }
+
+        return cache.toDomain()
     }
 
     override fun initialSetupEvent() {

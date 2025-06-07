@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference
 
+import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 
@@ -9,7 +10,16 @@ class GetPaletteByUUIDUseCase(
 
     operator fun invoke(
         uuid: String, defaultPalette: ExtendedPalette
-    ): ExtendedPalette =
-        repository.getPalettes().find { it.uuid == uuid }?.palette ?: defaultPalette
+    ): ExtendedPalette {
+        Log.d("GetPaletteByUUIDUseCase", "Finding cached palette: $uuid")
+        val palettesCache = repository.getPalettes()
+        val cachedPalette = palettesCache.find { it.uuid == uuid }
+
+        Log.d("GetPaletteByUUIDUseCase", "Cached palette found $cachedPalette")
+        Log.d("GetPaletteByUUIDUseCase", "ExtendedPalette: ${cachedPalette?.palette}")
+
+        return cachedPalette?.palette ?: defaultPalette
+    }
+
 
 }

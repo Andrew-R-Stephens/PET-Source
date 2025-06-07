@@ -1,0 +1,44 @@
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model
+
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.FeatureAvailability
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
+
+data class AccountMarketTypography (
+    internal val uuid: String,
+    internal val name: String? = "",
+    internal val group: String? = "",
+    internal val buyCredits: Long = 0L,
+    internal val priority: Long? = 0L,
+    internal val unlocked: Boolean = false,
+    internal val typography: ExtendedTypography? = null
+) {
+
+    private var unlockedState: FeatureAvailability =
+        if (unlocked) FeatureAvailability.UNLOCKED_DEFAULT
+        else FeatureAvailability.LOCKED
+
+    val isUnlocked: Boolean
+        get() = unlockedState != FeatureAvailability.LOCKED
+
+    fun setUnlocked(state: FeatureAvailability) {
+        if (unlockedState == FeatureAvailability.UNLOCKED_DEFAULT) {
+            return
+        }
+        this.unlockedState = state
+    }
+
+    fun revertUnlockStatus() {
+        if (unlockedState == FeatureAvailability.UNLOCKED_PURCHASE) {
+            unlockedState = FeatureAvailability.LOCKED
+        }
+    }
+
+    override fun toString(): String {
+        return "AccountMarketTypography(uuid='$uuid', name='$name', group='$group', " +
+                "buyCredits=$buyCredits, priority=$priority, unlocked=$unlocked, " +
+                "typography=${typography})"
+    }
+    
+}
+

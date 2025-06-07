@@ -107,7 +107,7 @@ class MarketTypographyFirestoreDataSource(
         val filterValue: FilterValue? = FilterValue.NONE,
         val orderField: OrderField? = OrderField.NONE,
         val orderDirection: Query.Direction? = Query.Direction.DESCENDING,
-        val limit: Limit? = Limit.UNLIMITED
+        val limit: Limit? = Limit.SAFE_LIMIT
     ) {
         enum class FilterField(val value: String?) {
             GROUP("group"),
@@ -120,6 +120,7 @@ class MarketTypographyFirestoreDataSource(
             NONE(null)
         }
         enum class Limit(val value: Int) {
+            SAFE_LIMIT(50),
             UNLIMITED(Int.MAX_VALUE)
         }
     }

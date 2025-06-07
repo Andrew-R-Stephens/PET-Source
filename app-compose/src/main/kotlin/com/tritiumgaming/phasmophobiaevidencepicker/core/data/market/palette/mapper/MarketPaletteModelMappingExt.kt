@@ -1,13 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 
-fun MarketPalette.toPair(): Pair<String, MarketPalette> {
-    return Pair(uuid, this)
-}
-fun MarketPaletteDto.toExternal() = MarketPalette(
+fun MarketPaletteDto.toDomain(): MarketPalette = MarketPalette(
     uuid = uuid,
     name = name,
     group = group,
@@ -17,21 +16,15 @@ fun MarketPaletteDto.toExternal() = MarketPalette(
     palette = palette
 )
 
-fun Map<String, ExtendedPalette>.toLocal() = map { (uuid, palette) ->
+fun Map<String, ExtendedPalette>.toLocal(): List<MarketPaletteDto> = map { (uuid, palette) ->
     MarketPaletteDto(
         uuid = uuid,
-        palette = palette
+        palette = palette,
+        unlocked = true
     )
 }
 
-fun Map<String, ExtendedPalette>.toExternal() = map { (uuid, palette) ->
-    MarketPalette(
-        uuid = uuid,
-        palette = palette
-    )
-}
-
-fun List<MarketPaletteDto>.toExternal() = map { dto ->
+fun List<MarketPaletteDto>.toDomain(): List<MarketPalette> = map { dto ->
     MarketPalette(
         uuid = dto.uuid,
         name = dto.name,
@@ -41,6 +34,10 @@ fun List<MarketPaletteDto>.toExternal() = map { dto ->
         unlocked = dto.unlocked,
         palette = dto.palette
     )
+}
+
+fun MarketPalette.toPair(): Pair<String, MarketPalette> {
+    return Pair(uuid, this)
 }
 
 fun List<MarketPalette>.toPair() = associate { it ->

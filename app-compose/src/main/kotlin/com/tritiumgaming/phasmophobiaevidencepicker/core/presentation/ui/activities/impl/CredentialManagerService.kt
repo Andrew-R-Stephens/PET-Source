@@ -277,9 +277,6 @@ interface SignInCredentialManager {
 
             try {
                 val credentialManager = CredentialManager.create(context = activity)
-                    onFailure()
-                    onComplete()
-                    null
 
                 val credentialResponse = credentialManager.getCredential(
                     request = request,

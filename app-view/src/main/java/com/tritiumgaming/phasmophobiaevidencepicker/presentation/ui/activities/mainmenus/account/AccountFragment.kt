@@ -1,23 +1,21 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.common
+package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.account
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
-import androidx.navigation.Navigation.findNavController
+import androidx.navigation.Navigation
 import com.google.android.gms.common.SignInButton
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser.Companion.currentFirebaseUser
+import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.account.transactions.types.FirestoreUnlockHistory
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.SignInCredentialManager
@@ -25,6 +23,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.m
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.DeleteAccountDialog
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.LogoutDialog
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
+import androidx.navigation.findNavController
 
 class AccountFragment : MainMenuFragment() {
 
@@ -33,7 +32,7 @@ class AccountFragment : MainMenuFragment() {
     private val userPurchaseHistory: Unit
         get() {
             var unlockHistoryCollection: CollectionReference? = null
-            try { unlockHistoryCollection = FirestoreUnlockHistory.unlockHistoryCollection }
+            try { unlockHistoryCollection = FirestoreUnlockHistory.Companion.unlockHistoryCollection }
             catch (e: Exception) { e.printStackTrace() }
 
             if (unlockHistoryCollection == null) { return }
@@ -82,7 +81,7 @@ class AccountFragment : MainMenuFragment() {
 
         backButton?.setOnClickListener { v: View? ->
             v?.let {
-                try { findNavController(v).popBackStack() }
+                try { v.findNavController().popBackStack() }
                 catch (e: IllegalStateException) { e.printStackTrace() } }
         }
 
@@ -96,7 +95,7 @@ class AccountFragment : MainMenuFragment() {
 
                         onSuccess = {
                             try {
-                                currentFirebaseUser?.let { user ->
+                                FirestoreUser.Companion.currentFirebaseUser?.let { user ->
                                     val message =
                                         "${requireActivity().getString(R.string.alert_account_welcome)} ${user.displayName}"
                                     val toast = Toast.makeText(activity, message, Toast.LENGTH_LONG)
@@ -122,7 +121,7 @@ class AccountFragment : MainMenuFragment() {
 
                         signOut(
                             onSuccess = {
-                                confirmationDialog?.visibility = GONE
+                                confirmationDialog?.visibility = View.GONE
 
                                 refreshFragment()
                             }
@@ -130,12 +129,12 @@ class AccountFragment : MainMenuFragment() {
 
                     },
                     onCancel = {
-                        confirmationDialog?.visibility = GONE
+                        confirmationDialog?.visibility = View.GONE
                     }
                 )
             }
 
-            confirmationDialog?.visibility = VISIBLE
+            confirmationDialog?.visibility = View.VISIBLE
         }
 
         deleteButton?.setOnClickListener{
@@ -145,7 +144,7 @@ class AccountFragment : MainMenuFragment() {
 
                         deleteAccount(
                             onSuccess = {
-                                confirmationDialog?.visibility = GONE
+                                confirmationDialog?.visibility = View.GONE
 
                                 refreshFragment()
                             }
@@ -153,19 +152,19 @@ class AccountFragment : MainMenuFragment() {
 
                     },
                     onCancel = {
-                        confirmationDialog?.visibility = GONE
+                        confirmationDialog?.visibility = View.GONE
                     }
                 )
             }
-            confirmationDialog?.visibility = VISIBLE
+            confirmationDialog?.visibility = View.VISIBLE
         }
 
-        currentFirebaseUser?.let { user ->
+        FirestoreUser.Companion.currentFirebaseUser?.let { user ->
             accountNameTextView?.text = user.displayName
             accountEmailTextView?.text = user.email
-            accountDetailsList?.visibility = VISIBLE
+            accountDetailsList?.visibility = View.VISIBLE
         } ?: {
-            accountDetailsList?.visibility = GONE
+            accountDetailsList?.visibility = View.GONE
         }
     }
 

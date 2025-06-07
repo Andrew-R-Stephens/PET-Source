@@ -8,7 +8,7 @@ fun MarketTypography.toPair(): Pair<String, MarketTypography> {
     return Pair(uuid, this)
 }
 
-fun MarketTypographyDto.toExternal() = MarketTypography(
+fun MarketTypographyDto.toDomain() = MarketTypography(
     uuid = uuid,
     name = name,
     group = group,
@@ -25,14 +25,14 @@ fun Map<String, ExtendedTypography>.toLocal() = map { (uuid, typography) ->
     )
 }
 
-fun Map<String, ExtendedTypography>.toExternal() = map { (uuid, typography) ->
+fun Map<String, ExtendedTypography>.toDomain() = map { (uuid, typography) ->
     MarketTypography(
         uuid = uuid,
         typography = typography
     )
 }
 
-fun List<MarketTypographyDto>.toExternal() = map { dto ->
+fun List<MarketTypographyDto>.toDomain() = map { dto ->
     MarketTypography(
         uuid = dto.uuid,
         name = dto.name,

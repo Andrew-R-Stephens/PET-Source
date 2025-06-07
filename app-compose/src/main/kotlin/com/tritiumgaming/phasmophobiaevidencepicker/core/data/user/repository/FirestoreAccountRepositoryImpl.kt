@@ -1,5 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository
 
+import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountPaletteDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountTypographyDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.toNetwork
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAccountRemoteDataSource
@@ -8,13 +11,20 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketAgreement
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCreditTransaction
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCredits
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 
 class FirestoreAccountRepositoryImpl(
     private val authRemoteDataSource: FirestoreAuthRemoteDataSource,
     private val userRemoteDataSource: FirestoreUserRemoteDataSource,
     private val accountRemoteDataSource: FirestoreAccountRemoteDataSource
 ): FirestoreAccountRepository {
+
+    val unlockedPalettes = MutableStateFlow<List<AccountPaletteDto>>(listOf())
+    val unlockedTypographies = MutableStateFlow<List<AccountTypographyDto>>(listOf())
 
     override suspend fun addCredits(
         creditTransaction: AccountCreditTransaction
@@ -118,6 +128,53 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
+    override suspend fun fetchUnlockedPalettes(): Result<List<AccountPalette>> {
+
+        val result = accountRemoteDataSource.fetchUnlockedPaletteDocuments()
+
+        if(result.isFailure) {
+            Log.e("Firestore", "Error fetching unlocked palettes", result.exceptionOrNull())
+        } else {
+            Log.d("Firestore", "Success fetching unlocked palettes")
+        }
+
+        return result.map { dto -> dto.toDomain() }
+
+    }
+
+    override suspend fun fetchUnlockedTypographies(): Result<List<AccountTypography>> {
+
+        val result = accountRemoteDataSource.fetchUnlockedTypographyDocuments()
+
+        if(result.isFailure) {
+            Log.e("Firestore", "Error fetching unlocked typographies", result.exceptionOrNull())
+        } else {
+            Log.d("Firestore", "Success fetching unlocked typographies")
+        }
+
+        return result.map { dto -> dto.toDomain() }
+
+    }
+
+    suspend fun observeUnlockedPalettes() {
+
+        accountRemoteDataSource.observeUnlockedPaletteDocuments().collect { result ->
+            val paletteDtoList = result.getOrNull()
+            paletteDtoList?.let { list ->
+                unlockedPalettes.update { list }
+            }
+        }
+
+    }
+
+    fun getUnlockedPalettes(): List<AccountPalette> {
+        return unlockedPalettes.value.toDomain()
+    }
+
+    fun getUnlockedTypographies(): List<AccountTypography> {
+        return unlockedTypographies.value.toDomain()
+    }
+
     //TODO: Get Unlock History Snapshot Observer
     /*try {
         unlockHistoryCollection.addSnapshotListener(EventListener {
@@ -139,7 +196,7 @@ class FirestoreAccountRepositoryImpl(
         })
     } catch (e: Exception) { e.printStackTrace() }*/
 
-    override suspend fun addPurchaseDocument(
+    override suspend fun addPurchasedDocument(
         orderID: String
     ): Result<String> {
 

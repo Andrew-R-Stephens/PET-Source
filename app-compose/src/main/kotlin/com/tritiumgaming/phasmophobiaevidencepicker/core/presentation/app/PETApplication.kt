@@ -55,7 +55,8 @@ class PETApplication : Application(), AccountManagementService {
             onSuccess = {
                 Log.d("Firebase",
                     "Signed in as: ${Firebase.auth.currentUser?.displayName}")
-            })
+            }
+        )
 
     }
 

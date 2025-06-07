@@ -38,7 +38,8 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 fun CarouselComposable(
     @StringRes title: Int = 0,
-    state: StateFlow<Int> = MutableStateFlow(0),
+    state: StateFlow<Any?> = MutableStateFlow(null),
+    label: String = "",
     painterResource: Painter = painterResource(R.drawable.ic_font_family),
     colorFilter: ColorFilter? = null,
     leftOnClick: () -> Unit = {},
@@ -116,7 +117,7 @@ fun CarouselComposable(
                             .weight(1f)
                             .align(Alignment.CenterVertically)
                             .padding(4.dp),
-                        text = if(rememberState.value != 0) { stringResource(rememberState.value) } else "",
+                        text = if(rememberState.value != 0) { label } else "",
                         color = LocalPalette.current.textFamily.emphasis,
                         style = LocalTypography.current.primary.regular,
                         textAlign = TextAlign.Center,
