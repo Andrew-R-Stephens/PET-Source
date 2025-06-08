@@ -5,6 +5,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.sour
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.MarketBundleFirestoreDataSourceImpl.BundleQueryOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.model.MarketBundle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.repository.MarketBundleRemoteRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class MarketBundleRepositoryImpl(
     private val firestoreDataSource: MarketBundleFirestoreDataSourceImpl
@@ -18,6 +20,8 @@ class MarketBundleRepositoryImpl(
      */
     override suspend fun fetchRemote(
         bundleQueryOptions: BundleQueryOptions
-    ): List<MarketBundle> = firestoreDataSource.fetch(bundleQueryOptions).toDomain()
+    ): Result<List<MarketBundle>> = withContext(Dispatchers.IO) {
+        firestoreDataSource.fetch(bundleQueryOptions).map { bs -> bs.map { it.toDomain() } }
+    }
 
 }

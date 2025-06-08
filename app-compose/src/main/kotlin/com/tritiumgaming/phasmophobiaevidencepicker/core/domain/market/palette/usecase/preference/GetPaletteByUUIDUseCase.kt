@@ -12,7 +12,7 @@ class GetPaletteByUUIDUseCase(
         uuid: String, defaultPalette: ExtendedPalette
     ): ExtendedPalette {
         Log.d("GetPaletteByUUIDUseCase", "Finding cached palette: $uuid")
-        val palettesCache = repository.getPalettes()
+        val palettesCache = repository.getPalettes().getOrDefault(emptyList())
         val cachedPalette = palettesCache.find { it.uuid == uuid }
 
         Log.d("GetPaletteByUUIDUseCase", "Cached palette found $cachedPalette")

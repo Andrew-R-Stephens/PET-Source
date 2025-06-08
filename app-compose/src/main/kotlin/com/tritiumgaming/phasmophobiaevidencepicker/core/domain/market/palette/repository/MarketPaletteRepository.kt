@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.Flow
 
 interface MarketPaletteRepository {
 
-    fun getLocalPalettes(): List<MarketPaletteDto>
+    fun getLocalPalettes(): Result<List<MarketPaletteDto>>
     suspend fun fetchRemotePalettes(
         paletteQueryOptions: PaletteQueryOptions = PaletteQueryOptions()
-    ): List<MarketPaletteDto>
-    suspend fun synchronizePalettes(): List<MarketPalette>
-    fun getPalettes(): List<MarketPalette>
+    ): Result<List<MarketPaletteDto>>
+    suspend fun synchronizePalettes(): Result<List<MarketPalette>>
+    fun getPalettes(): Result<List<MarketPalette>>
 
     fun initialSetupEvent()
     suspend fun initFlow(): Flow<PaletteDatastore.PalettePreferences>

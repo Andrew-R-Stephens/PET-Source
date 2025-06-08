@@ -205,7 +205,8 @@ class CoreContainer(
         repository = typographyRepository)
     internal val getAvailableTypographiesUseCase = GetAvailableTypographiesUseCase(
         repository = typographyRepository)
-    internal val getTypographyByUUIDUseCase = GetTypographyByUUIDUseCase()
+    internal val getTypographyByUUIDUseCase = GetTypographyByUUIDUseCase(
+        repository = typographyRepository)
 
     /**
      * Market Palette

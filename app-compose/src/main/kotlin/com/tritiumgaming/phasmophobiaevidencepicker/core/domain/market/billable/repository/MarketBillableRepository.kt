@@ -7,6 +7,6 @@ interface MarketBillableRepository {
 
     suspend fun fetchBillables(
         billableQueryOptions: BillableQueryOptions = BillableQueryOptions()
-    ): List<MarketBillable>
+    ): Result<List<MarketBillable>>
 
 }

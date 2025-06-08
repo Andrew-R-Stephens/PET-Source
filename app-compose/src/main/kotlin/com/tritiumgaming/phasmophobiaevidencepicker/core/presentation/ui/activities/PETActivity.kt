@@ -1,11 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.ui.Modifier
@@ -24,7 +24,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activit
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AppUpdateManagerService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.ConsentManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.FirebaseAnalyticsService
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.SignInCredentialManager
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ConfigurationControl
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -32,8 +32,8 @@ class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService,
     ConsentManagementService, AccountManagementService {
 
-    /*private val globalPreferencesViewModel: GlobalPreferencesViewModel
-        by viewModels { GlobalPreferencesViewModel.Factory }*/
+    private val globalPreferencesViewModel: GlobalPreferencesViewModel
+        by viewModels { GlobalPreferencesViewModel.Factory }
 
     /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth
@@ -87,7 +87,8 @@ class PETActivity : AppCompatActivity(),
         setContent {
 
             ConfigurationControl(
-                modifier = Modifier.safeDrawingPadding()
+                modifier = Modifier.safeDrawingPadding(),
+                globalPreferencesViewModel = globalPreferencesViewModel
             ) {
 
                 RootNavigation()

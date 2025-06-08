@@ -8,7 +8,7 @@ class GetAvailableTypographiesUseCase(
 ) {
 
     suspend operator fun invoke(): List<MarketTypography> {
-        return repository.synchronizeTypographies()
+        return repository.synchronizeTypographies().getOrDefault(emptyList())
     }
 
 }

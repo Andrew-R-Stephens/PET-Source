@@ -12,6 +12,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.u
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SetupNewsletterUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SyncNewsletterInboxesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -21,6 +22,7 @@ class NewsletterViewModel(
     private val setupNewsletterUseCase: SetupNewsletterUseCase,
     private val initFlowNewsletterUseCase: InitFlowNewsletterUseCase,
     private val fetchNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
+    private val synchronizeNewsletterInboxesUseCase: SyncNewsletterInboxesUseCase,
     private val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
 ): ViewModel() {
 
@@ -52,6 +54,12 @@ class NewsletterViewModel(
         initialSetupEvent()
 
         viewModelScope.launch {
+            synchronizeNewsletterInboxesUseCase()
+
+            _inboxes.update {
+                fetchNewsletterInboxesUseCase()
+            }
+
             initFlowNewsletterUseCase().collect { preferences ->
                 inboxes.value.forEach {
                     it.setInboxLastReadDate(preferences.data[it.id] ?: 0L)
@@ -64,7 +72,8 @@ class NewsletterViewModel(
     class NewsletterFactory(
         private val setupNewsletterUseCase: SetupNewsletterUseCase,
         private val initFlowNewsletterUseCase: InitFlowNewsletterUseCase,
-        private val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
+        private val fetchNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
+        private val syncNewsletterInboxesUseCase: SyncNewsletterInboxesUseCase,
         private val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
     ) : ViewModelProvider.Factory {
 
@@ -74,7 +83,8 @@ class NewsletterViewModel(
                 return NewsletterViewModel(
                     setupNewsletterUseCase = setupNewsletterUseCase,
                     initFlowNewsletterUseCase = initFlowNewsletterUseCase,
-                    fetchNewsletterInboxesUseCase = getNewsletterInboxesUseCase,
+                    fetchNewsletterInboxesUseCase = fetchNewsletterInboxesUseCase,
+                    synchronizeNewsletterInboxesUseCase = syncNewsletterInboxesUseCase,
                     saveNewsletterInboxLastReadDateUseCase = saveNewsletterInboxLastReadDateUseCase
                 ) as T
             }
@@ -94,6 +104,7 @@ class NewsletterViewModel(
                     setupNewsletterUseCase = container.setupNewsletterUseCase,
                     initFlowNewsletterUseCase = container.initFlowNewsletterUseCase,
                     fetchNewsletterInboxesUseCase = container.getNewsletterInboxesUseCase,
+                    synchronizeNewsletterInboxesUseCase = container.syncNewsletterInboxesUseCase,
                     saveNewsletterInboxLastReadDateUseCase = container.saveNewsletterInboxLastReadDateUseCase
                 )
             }

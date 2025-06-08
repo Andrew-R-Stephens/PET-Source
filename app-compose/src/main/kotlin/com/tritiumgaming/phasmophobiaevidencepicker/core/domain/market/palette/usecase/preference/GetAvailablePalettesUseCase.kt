@@ -8,7 +8,7 @@ class GetAvailablePalettesUseCase(
 ) {
 
     suspend operator fun invoke(): List<MarketPalette> {
-        return repository.synchronizePalettes()
+        return repository.synchronizePalettes().getOrDefault(emptyList())
     }
 
 }

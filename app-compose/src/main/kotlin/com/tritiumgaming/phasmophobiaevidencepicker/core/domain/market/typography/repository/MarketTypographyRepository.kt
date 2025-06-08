@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.Flow
 
 interface MarketTypographyRepository {
 
-    fun getLocalTypographies(): List<MarketTypographyDto>
+    fun getLocalTypographies(): Result<List<MarketTypographyDto>>
     suspend fun fetchRemoteTypographies(
         typographyQueryOptions: TypographyQueryOptions = TypographyQueryOptions()
-    ): List<MarketTypographyDto>
+    ): Result<List<MarketTypographyDto>>
 
-    suspend fun synchronizeTypographies(): List<MarketTypography>
-    fun getTypographies(): List<MarketTypography>
+    suspend fun synchronizeTypographies(): Result<List<MarketTypography>>
+    fun getTypographies(): Result<List<MarketTypography>>
 
     fun initialSetupEvent()
     suspend fun initFlow(): Flow<MarketTypographyDatastore.TypographyPreferences>

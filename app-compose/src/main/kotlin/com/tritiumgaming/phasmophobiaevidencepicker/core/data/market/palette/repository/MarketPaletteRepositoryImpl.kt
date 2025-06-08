@@ -25,27 +25,39 @@ class MarketPaletteRepositoryImpl(
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
-    override fun getLocalPalettes(): List<MarketPaletteDto> {
+    override fun getLocalPalettes(): Result<List<MarketPaletteDto>> {
         Log.d("Palette", "Getting local palettes")
 
-        return localDataSource.getPalettes().toLocal()
+        val result = localDataSource.getPalettes()
+        result.exceptionOrNull()?.let { e ->
+            Log.d("Palette", "Error getting local palettes: $e") }
+        val list: List<MarketPaletteDto> = result.getOrDefault(emptyMap()).toLocal()
+
+        return Result.success(list)
     }
 
     override suspend fun fetchRemotePalettes(
         paletteQueryOptions: PaletteQueryOptions
-    ): List<MarketPaletteDto> {
+    ): Result<List<MarketPaletteDto>> {
         Log.d("Palette", "Fetching remote palettes")
 
         val result = firestoreDataSource.fetch(paletteQueryOptions)
 
-        return result.getOrNull() ?: emptyList()
+        return result
     }
 
-    override suspend fun synchronizePalettes(): List<MarketPalette> {
+    override suspend fun synchronizePalettes(): Result<List<MarketPalette>> {
         Log.d("Palette", "Synchronizing palettes")
 
-        val local: List<MarketPaletteDto> = getLocalPalettes()
-        val remote: List<MarketPaletteDto> = fetchRemotePalettes()
+        val localResult = getLocalPalettes()
+        localResult.exceptionOrNull()?.let { e ->
+            Log.d("Palette", "Error getting local palettes: $e") }
+        val local = localResult.getOrDefault(emptyList())
+
+        val remoteResult = fetchRemotePalettes()
+        remoteResult.exceptionOrNull()?.let { e ->
+            Log.d("Palette", "Error getting remote palettes: $e") }
+        val remote = remoteResult.getOrDefault(emptyList())
 
         val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->
@@ -70,16 +82,16 @@ class MarketPaletteRepositoryImpl(
 
         cache = mergedModels
 
-        return cache.toDomain()
+        return Result.success(cache.toDomain())
     }
 
-    override fun getPalettes(): List<MarketPalette> {
+    override fun getPalettes(): Result<List<MarketPalette>> {
         Log.d("Palette", "Getting ${cache.size} cached palettes:")
         cache.forEach {
             Log.d("Palette", "\t$it")
         }
 
-        return cache.toDomain()
+        return Result.success(cache.toDomain())
     }
 
     override fun initialSetupEvent() {
@@ -100,5 +112,4 @@ class MarketPaletteRepositoryImpl(
             synchronizePalettes()
         }
     }
-
 }

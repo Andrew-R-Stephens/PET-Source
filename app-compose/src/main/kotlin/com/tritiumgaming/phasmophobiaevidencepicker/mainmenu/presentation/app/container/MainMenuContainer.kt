@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.c
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.network.ConnectivityManagerHelper
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository.AppInfoRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local.AppInfoLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepositoryImpl
@@ -15,6 +16,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.u
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SetupNewsletterUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SyncNewsletterInboxesUseCase
+import kotlinx.coroutines.Dispatchers
 
 class MainMenuContainer(
     applicationContext: Context,
@@ -38,18 +41,23 @@ class MainMenuContainer(
             context = applicationContext,
             dataStore = dataStore
         )
+    private val connectivityManagerHelper: ConnectivityManagerHelper =
+        ConnectivityManagerHelper(applicationContext)
     private val newsletterRepository: NewsletterRepositoryImpl =
         NewsletterRepositoryImpl(
             localDataSource = newsletterLocalDataSource,
             remoteDataSource = newsletterRemoteDataSource,
             dataStoreSource = newsletterDatastore,
-            coroutineDispatcher = kotlinx.coroutines.Dispatchers.IO
+            connectivityManagerHelper = connectivityManagerHelper,
+            coroutineDispatcher = Dispatchers.IO
         )
     internal val setupNewsletterUseCase = SetupNewsletterUseCase(
         repository = newsletterRepository)
     internal val initFlowNewsletterUseCase = InitFlowNewsletterUseCase(
         repository = newsletterRepository)
     internal val getNewsletterInboxesUseCase = FetchNewsletterInboxesUseCase(
+        repository = newsletterRepository)
+    internal val syncNewsletterInboxesUseCase = SyncNewsletterInboxesUseCase(
         repository = newsletterRepository)
     internal val saveNewsletterInboxLastReadDateUseCase = SaveNewsletterInboxLastReadDateUseCase(
         repository = newsletterRepository)

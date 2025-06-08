@@ -8,9 +8,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.toNetwork
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAccountRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreUserRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketAgreement
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCreditTransaction
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCredits
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketAgreement
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
@@ -128,7 +128,7 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
-    override suspend fun fetchUnlockedPalettes(): Result<List<AccountPalette>> {
+    override suspend fun fetchUnlockedPalettes(forceUpdate: Boolean): Result<List<AccountPalette>> {
 
         val result = accountRemoteDataSource.fetchUnlockedPaletteDocuments()
 
@@ -142,7 +142,7 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
-    override suspend fun fetchUnlockedTypographies(): Result<List<AccountTypography>> {
+    override suspend fun fetchUnlockedTypographies(forceUpdate: Boolean): Result<List<AccountTypography>> {
 
         val result = accountRemoteDataSource.fetchUnlockedTypographyDocuments()
 

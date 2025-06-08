@@ -1,9 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 
 fun MarketPaletteDto.toDomain(): MarketPalette = MarketPalette(
@@ -34,12 +32,4 @@ fun List<MarketPaletteDto>.toDomain(): List<MarketPalette> = map { dto ->
         unlocked = dto.unlocked,
         palette = dto.palette
     )
-}
-
-fun MarketPalette.toPair(): Pair<String, MarketPalette> {
-    return Pair(uuid, this)
-}
-
-fun List<MarketPalette>.toPair() = associate { it ->
-    it.toPair()
 }

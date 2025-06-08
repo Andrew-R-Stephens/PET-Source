@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigatio
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -11,6 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.SettingsScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.account.AccountScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.appinfo.InfoScreen
@@ -21,6 +23,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.new
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsMessageScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsMessagesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen
@@ -31,7 +35,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.ut
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.menu.CodexMenuScreen
 
 @Composable
-fun RootNavigation() {
+fun RootNavigation(
+    globalPreferencesViewModel: GlobalPreferencesViewModel =
+        viewModel(factory = GlobalPreferencesViewModel.Factory),
+    newsletterViewModel: NewsletterViewModel =
+        viewModel(factory = NewsletterViewModel.Factory)
+) {
 
     val navController = rememberNavController()
 
@@ -42,14 +51,22 @@ fun RootNavigation() {
         exitTransition = { ExitTransition.None }
     ) {
 
-        mainMenuNavigation(navController)
+        mainMenuNavigation(
+            navController = navController,
+            globalPreferencesViewModel = globalPreferencesViewModel,
+            newsletterViewModel = newsletterViewModel
+        )
 
         investigationNavigation(navController)
 
     }
 }
 
-private fun NavGraphBuilder.mainMenuNavigation(navController: NavHostController) {
+private fun NavGraphBuilder.mainMenuNavigation(
+    navController: NavHostController,
+    globalPreferencesViewModel: GlobalPreferencesViewModel,
+    newsletterViewModel: NewsletterViewModel
+) {
 
     navigation(
         route = NavRoute.NAVIGATION_MAIN_MENU.route,
@@ -69,7 +86,10 @@ private fun NavGraphBuilder.mainMenuNavigation(navController: NavHostController)
         }
 
         composable(route = NavRoute.SCREEN_SETTINGS.route) {
-            SettingsScreen(navController = navController)
+            SettingsScreen(
+                navController = navController,
+                globalPreferencesViewModel = globalPreferencesViewModel
+            )
         }
 
         navigation(
@@ -78,7 +98,10 @@ private fun NavGraphBuilder.mainMenuNavigation(navController: NavHostController)
         ) {
 
             composable(route = NavRoute.SCREEN_NEWSLETTER_INBOX.route) {
-                NewsInboxesScreen(navController)
+                NewsInboxesScreen(
+                    navController = navController,
+                    newsletterViewModel = newsletterViewModel
+                )
             }
 
             composable(
@@ -91,6 +114,7 @@ private fun NavGraphBuilder.mainMenuNavigation(navController: NavHostController)
                 if (inboxID != null) {
                     NewsMessagesScreen(
                         navController = navController,
+                        newsletterViewModel = newsletterViewModel,
                         inboxID = inboxID
                     )
                 } else {
@@ -112,6 +136,7 @@ private fun NavGraphBuilder.mainMenuNavigation(navController: NavHostController)
                 if (inboxID != null && messageID != null) {
                     NewsMessageScreen(
                         navController = navController,
+                        newsletterViewModel = newsletterViewModel,
                         inboxID = inboxID,
                         messageID = messageID
                     )
@@ -231,4 +256,5 @@ enum class NavRoute(val route: String) {
     
     SCREEN_MARKETPLACE_UNLOCKS("MarketplaceUnlocksScreen"),
     SCREEN_MARKETPLACE_BILLABLE("MarketplaceBillableScreen")
+
 }

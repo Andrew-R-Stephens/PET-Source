@@ -6,6 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 
 class MarketTypographyLocalDataSource: MarketTypographyDataSource<Map<String, ExtendedTypography>> {
 
-    override fun getTypographies(): Map<String, ExtendedTypography> = LocalTypographiesMap
+    override fun getTypographies(): Result<Map<String, ExtendedTypography>> =
+        Result.success(LocalTypographiesMap)
 
 }

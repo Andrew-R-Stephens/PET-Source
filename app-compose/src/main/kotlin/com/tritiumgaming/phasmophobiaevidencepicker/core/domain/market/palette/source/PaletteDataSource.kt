@@ -2,6 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.
 
 interface LocalPaletteDataSource<T> {
 
-    fun getPalettes(): T
+    fun getPalettes(): Result<T>
 
 }

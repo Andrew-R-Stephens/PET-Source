@@ -18,8 +18,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.LinkAnnotation
-import androidx.compose.ui.text.LinkInteractionListener
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.fromHtml
@@ -66,6 +64,7 @@ private fun NewsMessageScreenPreview() {
 @Composable
 fun NewsMessageScreen(
     navController: NavHostController = rememberNavController(),
+    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
     inboxID: String,
     messageID: String
 ) {
@@ -74,6 +73,7 @@ fun NewsMessageScreen(
 
         NewsMessageContent(
             navController = navController,
+            newsletterViewModel = newsletterViewModel,
             inboxID = inboxID,
             messageID = messageID
         )

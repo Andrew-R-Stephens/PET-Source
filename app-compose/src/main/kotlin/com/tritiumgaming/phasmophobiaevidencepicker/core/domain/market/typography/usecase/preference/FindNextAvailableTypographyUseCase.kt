@@ -2,16 +2,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograp
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.toAccountMarketPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.toAccountMarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.toAccountMarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.toAccountMarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import kotlin.collections.forEach
 
 class FindNextAvailableTypographyUseCase(
@@ -24,7 +20,8 @@ class FindNextAvailableTypographyUseCase(
     ): String {
 
         val marketTypographies: List<AccountMarketTypography> =
-            marketRepository.getTypographies().toAccountMarketTypography()
+            marketRepository.getTypographies()
+                .getOrDefault(emptyList()).toAccountMarketTypography()
 
         Log.d("Settings", "MarketTypographies:")
         marketTypographies.forEach {
@@ -32,43 +29,44 @@ class FindNextAvailableTypographyUseCase(
         }
 
         val accountTypographies: List<AccountMarketTypography> =
-            (accountRepository.fetchUnlockedTypographies().getOrNull()?.toAccountMarketTypography()
-                ?: listOf())
+            accountRepository.fetchUnlockedTypographies()
+                .getOrDefault(emptyList()).toAccountMarketTypography()
 
         Log.d("Settings", "AccountTypographies:")
         accountTypographies.forEach {
             Log.d("Settings", "\t$it")
         }
 
-        val marketAccountTypographies: MutableList<AccountMarketTypography> = mutableListOf()
-
-        accountTypographies.forEach { accountTypography ->
-            val foundMarketTypography = marketTypographies.find {
-                marketTypography -> marketTypography.uuid == accountTypography.uuid }
-
-            Log.d("Settings", "Found matching typographies:\n\t$foundMarketTypography\n\t$accountTypography")
-
-            foundMarketTypography?.let { mp ->
-                mp.copy(
-                    unlocked = accountTypography.unlocked,
-                    priority = accountTypography.priority
-                )
-                marketAccountTypographies.add(mp)
+        val mergedMarketAccountTypographies =
+            accountTypographies.fold(marketTypographies) { marketTs, accountT ->
+                marketTs.map { marketT ->
+                    if (accountT.uuid == marketT.uuid) {
+                        marketT.copy(
+                            uuid = accountT.uuid,
+                            unlocked = accountT.unlocked,
+                            name = marketT.name,
+                            group = marketT.group,
+                            buyCredits = marketT.buyCredits,
+                            priority = marketT.priority,
+                            typography = marketT.typography ?: ExtendedTypography()
+                        )
+                    } else marketT
+                }
             }
-        }
 
         Log.d("Settings", "MarketAccountTypographies:")
-        marketAccountTypographies.forEach {
+        mergedMarketAccountTypographies.forEach {
             Log.d("Settings", "\t$it")
         }
 
-        return currentUUID
-
-        /*marketAccountPalettes.forEach {
-            Log.d("Settings", "AccountMarketPalettes: ${it.uuid}, ${it.name}, ${it.unlocked}")
+        val filteredMergedMarketAccountTypographies =
+            mergedMarketAccountTypographies.filter { it.isUnlocked }
+        Log.d("Settings", "Filtered MarketAccountTypographies:")
+        filteredMergedMarketAccountTypographies.forEach {
+            Log.d("Settings", "\t$it")
         }
 
-        val uuidsFiltered = marketAccountPalettes.map { it.uuid }
+        val uuidsFiltered = filteredMergedMarketAccountTypographies.map { it.uuid }
         val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
 
         var increment = currentIndex + direction.value
@@ -77,7 +75,7 @@ class FindNextAvailableTypographyUseCase(
 
         Log.d("Settings", "Move: $currentIndex $increment $direction")
 
-        return uuidsFiltered[increment]*/
+        return uuidsFiltered[increment]
     }
 
 }

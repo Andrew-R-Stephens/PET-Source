@@ -5,6 +5,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.mo
 
 interface MarketBundleRemoteRepository {
     
-    suspend fun fetchRemote(bundleQueryOptions: BundleQueryOptions): List<MarketBundle>
+    suspend fun fetchRemote(bundleQueryOptions: BundleQueryOptions): Result<List<MarketBundle>>
 
 }

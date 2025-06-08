@@ -14,4 +14,5 @@ data class MarketPaletteDto(
     override fun toString(): String {
         return "MarketPaletteDto(uuid='$uuid', name='$name', group='$group', buyCredits=$buyCredits, priority=$priority, unlocked=$unlocked, palette=$palette)"
     }
+
 }

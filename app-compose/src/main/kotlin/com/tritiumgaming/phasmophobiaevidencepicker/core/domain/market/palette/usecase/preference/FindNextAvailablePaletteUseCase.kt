@@ -19,7 +19,8 @@ class FindNextAvailablePaletteUseCase(
     ): String {
 
         val marketPalettes: List<AccountMarketPalette> =
-            marketRepository.getPalettes().toAccountMarketPalette()
+            marketRepository.getPalettes()
+                .getOrDefault(emptyList()).toAccountMarketPalette()
 
         Log.d("Settings", "MarketPalettes:")
         marketPalettes.forEach {
@@ -27,8 +28,8 @@ class FindNextAvailablePaletteUseCase(
         }
 
         val accountPalettes: List<AccountMarketPalette> =
-            (accountRepository.fetchUnlockedPalettes().getOrNull()?.toAccountMarketPalette()
-                ?: listOf())
+            accountRepository.fetchUnlockedPalettes()
+                .getOrDefault(emptyList()).toAccountMarketPalette()
 
         Log.d("Settings", "AccountPalettes:")
         accountPalettes.forEach {
@@ -57,7 +58,8 @@ class FindNextAvailablePaletteUseCase(
             Log.d("Settings", "\t$it")
         }
 
-        val filteredMergedMarketAccountPalettes = mergedMarketAccountPalettes.filter { it.isUnlocked }
+        val filteredMergedMarketAccountPalettes =
+            mergedMarketAccountPalettes.filter { it.isUnlocked }
         Log.d("Settings", "Filtered MarketAccountPalettes:")
         filteredMergedMarketAccountPalettes.forEach {
             Log.d("Settings", "\t$it")

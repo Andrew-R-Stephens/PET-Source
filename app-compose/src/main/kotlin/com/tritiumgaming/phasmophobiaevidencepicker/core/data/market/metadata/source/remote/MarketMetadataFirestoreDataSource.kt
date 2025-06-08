@@ -6,7 +6,9 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.metadata.dto.MarketMetadataDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.metadata.source.MarketMetadataDataSource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class MarketMetadataFirestoreDataSource(
     private val firestore: FirebaseFirestore
@@ -18,7 +20,7 @@ class MarketMetadataFirestoreDataSource(
     private val metadataDocumentRef: DocumentReference = storeCollectionRef
         .document(DOCUMENT_METADATA)
 
-    override suspend fun fetch(): Result<MarketMetadataDto> {
+    override suspend fun fetch(): Result<MarketMetadataDto> = withContext(Dispatchers.IO) {
 
         metadataDocumentRef.get(/*Source.SERVER*/)
             .await()
@@ -30,7 +32,7 @@ class MarketMetadataFirestoreDataSource(
                         map[FIELD_VERSION_CODE]?.let { versionCode = it as Int }
                     }
 
-                    return Result.success(
+                    Result.success(
                         MarketMetadataDto(
                             versionCode = versionCode
                         )
@@ -39,7 +41,7 @@ class MarketMetadataFirestoreDataSource(
                 } catch (e: Exception) {
                     Log.d("Firestore", "Error obtaining Metadata!")
                     e.printStackTrace()
-                    return Result.failure(Exception("Error obtaining Metadata!"))
+                    Result.failure(Exception("Error obtaining Metadata!"))
                 }
             }
 

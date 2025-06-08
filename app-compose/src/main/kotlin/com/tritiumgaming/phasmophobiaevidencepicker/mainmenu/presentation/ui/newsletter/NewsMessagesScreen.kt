@@ -75,6 +75,7 @@ private fun NewsMessagesScreenPreview() {
 @Composable
 fun NewsMessagesScreen(
     navController: NavController = rememberNavController(),
+    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
     inboxID: String = "0"
 ) {
 
@@ -82,6 +83,7 @@ fun NewsMessagesScreen(
 
         NewsMessagesContent(
             navController = navController,
+            newsletterViewModel = newsletterViewModel,
             inboxID = inboxID
         )
 

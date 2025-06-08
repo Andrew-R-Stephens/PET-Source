@@ -4,10 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
-fun MarketTypography.toPair(): Pair<String, MarketTypography> {
-    return Pair(uuid, this)
-}
-
 fun MarketTypographyDto.toDomain() = MarketTypography(
     uuid = uuid,
     name = name,
@@ -21,14 +17,8 @@ fun MarketTypographyDto.toDomain() = MarketTypography(
 fun Map<String, ExtendedTypography>.toLocal() = map { (uuid, typography) ->
     MarketTypographyDto(
         uuid = uuid,
-        typography = typography
-    )
-}
-
-fun Map<String, ExtendedTypography>.toDomain() = map { (uuid, typography) ->
-    MarketTypography(
-        uuid = uuid,
-        typography = typography
+        typography = typography,
+        unlocked = true
     )
 }
 
@@ -44,6 +34,3 @@ fun List<MarketTypographyDto>.toDomain() = map { dto ->
     )
 }
 
-fun List<MarketTypography>.toPair() = associate { it ->
-    it.toPair()
-}

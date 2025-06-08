@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.FeatureAvailability
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
 data class AccountMarketTypography (
@@ -17,14 +16,24 @@ data class AccountMarketTypography (
     private var unlockedState: FeatureAvailability =
         if (unlocked) FeatureAvailability.UNLOCKED_DEFAULT
         else FeatureAvailability.LOCKED
+        get() =
+            if (unlocked) FeatureAvailability.UNLOCKED_DEFAULT
+            else FeatureAvailability.LOCKED
 
     val isUnlocked: Boolean
         get() = unlockedState != FeatureAvailability.LOCKED
 
+    fun setUnlocked(state: Boolean) {
+        if (unlockedState == FeatureAvailability.UNLOCKED_DEFAULT) { return }
+
+        this.unlockedState =
+            if(state) { FeatureAvailability.UNLOCKED_PURCHASE }
+            else { this.unlockedState }
+    }
+
     fun setUnlocked(state: FeatureAvailability) {
-        if (unlockedState == FeatureAvailability.UNLOCKED_DEFAULT) {
-            return
-        }
+        if (unlockedState == FeatureAvailability.UNLOCKED_DEFAULT) { return }
+
         this.unlockedState = state
     }
 

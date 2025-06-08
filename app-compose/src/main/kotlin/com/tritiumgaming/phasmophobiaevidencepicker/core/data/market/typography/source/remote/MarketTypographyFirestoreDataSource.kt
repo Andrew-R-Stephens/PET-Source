@@ -25,7 +25,7 @@ class MarketTypographyFirestoreDataSource(
         .document(DOCUMENT_MERCHANDISE)
 
     private val typographyCollection: CollectionReference = merchandiseDocumentRef
-        .collection(COLLECTION_TYPOGRAPHYS)
+        .collection(COLLECTION_TYPOGRAPHIES)
 
     suspend fun fetch(
         typographyQueryOptions: TypographyQueryOptions = TypographyQueryOptions()
@@ -34,7 +34,7 @@ class MarketTypographyFirestoreDataSource(
         try {
             val typographies = mutableListOf<MarketTypographyDto>()
 
-            createQuery( typographyQueryOptions)
+            createQuery(typographyQueryOptions)
                 .await()
                 .documents
                 .forEach { documentSnapshot: DocumentSnapshot ->
@@ -67,6 +67,8 @@ class MarketTypographyFirestoreDataSource(
                         } catch (e: Exception) {
                             Log.d("Firestore", "Error obtaining remote typographies!")
                             e.printStackTrace()
+                            return@withContext Result.failure(
+                                Exception("Error obtaining remote typographies!", e))
                         }
                     }
                 }
@@ -128,7 +130,7 @@ class MarketTypographyFirestoreDataSource(
     private companion object {
         private const val COLLECTION_STORE = "Store"
         private const val DOCUMENT_MERCHANDISE = "Merchandise"
-        private const val COLLECTION_TYPOGRAPHYS = "Typographys"
+        private const val COLLECTION_TYPOGRAPHIES = "Typographies"
     }
 
 }

@@ -4,14 +4,18 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.sou
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.dto.RemoteNewsletterInboxDto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterRemoteDataSource
 import io.ktor.http.Url
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class NewsletterRemoteDataSource(
     private val newsletterApi: NewsletterService
 ): NewsletterRemoteDataSource {
 
-    override suspend fun fetchInbox(inboxUrl: Url): RemoteNewsletterInboxDto =
-        newsletterApi.fetchInbox(inboxUrl).getOrThrow()
-
+    override suspend fun fetchInbox(
+        inboxUrl: Url
+    ): Result<RemoteNewsletterInboxDto> = withContext(Dispatchers.IO) {
+        Result.success(newsletterApi.fetchInbox(inboxUrl).getOrThrow())
+    }
 
 }
 

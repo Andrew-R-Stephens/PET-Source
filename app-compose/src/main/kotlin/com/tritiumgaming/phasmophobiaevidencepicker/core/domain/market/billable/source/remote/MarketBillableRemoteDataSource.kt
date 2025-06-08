@@ -7,6 +7,6 @@ interface MarketBillableRemoteDataSource {
 
     suspend fun fetch(
         billableQueryOptions: BillableQueryOptions = BillableQueryOptions()
-    ): List<MarketBillableDto>
+    ): Result<List<MarketBillableDto>>
 
 }

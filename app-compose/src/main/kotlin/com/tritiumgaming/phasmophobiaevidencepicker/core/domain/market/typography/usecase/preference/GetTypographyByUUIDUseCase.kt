@@ -1,14 +1,24 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
+import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
-class GetTypographyByUUIDUseCase {
+class GetTypographyByUUIDUseCase(
+    private val repository: MarketTypographyRepository
+) {
 
     operator fun invoke(
-        typographies: Map<String, MarketTypography>,
         uuid: String, defaultTypography: ExtendedTypography
-    ): ExtendedTypography =
-        typographies[uuid]?.typography ?: defaultTypography
+    ): ExtendedTypography {
+        Log.d("GetTypographyByUUIDUseCase", "Finding cached palette: $uuid")
+        val typographyCache = repository.getTypographies().getOrDefault(emptyList())
+        val cachedTypography = typographyCache.find { it.uuid == uuid }
+
+        Log.d("GetTypographyByUUIDUseCase", "Cached palette found $cachedTypography")
+        Log.d("GetTypographyByUUIDUseCase", "ExtendedPalette: ${cachedTypography?.typography}")
+
+        return cachedTypography?.typography ?: defaultTypography
+    }
 
 }

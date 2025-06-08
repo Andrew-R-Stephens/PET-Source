@@ -12,7 +12,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 class MarketTypographyRepositoryImpl(
     private val firestoreDataSource: MarketTypographyFirestoreDataSource,
@@ -23,34 +25,52 @@ class MarketTypographyRepositoryImpl(
 
     private var cache: List<MarketTypographyDto> = emptyList()
 
-    override fun getLocalTypographies(): List<MarketTypographyDto> =
-        localDataSource.getTypographies().toLocal()
+    override fun getLocalTypographies(): Result<List<MarketTypographyDto>> {
+        Log.d("Typography", "Getting local typographies")
+
+        val result = localDataSource.getTypographies()
+        result.exceptionOrNull()?.let { e ->
+            Log.d("Typography", "Error getting local typographies: $e") }
+        val list: List<MarketTypographyDto> = result.getOrDefault(emptyMap()).toLocal()
+
+        return Result.success(list)
+    }
 
     override suspend fun fetchRemoteTypographies(
         typographyQueryOptions: TypographyQueryOptions
-    ): List<MarketTypographyDto> {
+    ): Result<List<MarketTypographyDto>> {
+        Log.d("Typography", "Fetching remote typographies")
+
         val result = firestoreDataSource.fetch(typographyQueryOptions)
 
-        return result.getOrNull() ?: emptyList()
+        return result
     }
 
-    override suspend fun synchronizeTypographies(): List<MarketTypography> {
+    override suspend fun synchronizeTypographies(): Result<List<MarketTypography>> {
         Log.d("Typography", "Fetched typographies")
 
-        val local: List<MarketTypographyDto> = getLocalTypographies()
-        val remote: List<MarketTypographyDto> = fetchRemoteTypographies()
+        val localResult = getLocalTypographies()
+        localResult.exceptionOrNull()?.let { e ->
+            Log.d("Typography", "Error getting local typographies: $e") }
+        val local = localResult.getOrDefault(emptyList())
+
+        val remoteResult = fetchRemoteTypographies()
+        remoteResult.exceptionOrNull()?.let { e ->
+            Log.d("Typography", "Error getting remote typographies: $e") }
+        val remote = remoteResult.getOrDefault(emptyList())
 
         val mergedModels = remote.fold(local) { localList, remoteEntity ->
             localList.map { localEntity ->
-                if (localEntity.uuid == remoteEntity.uuid) localEntity.copy(
-                    uuid = localEntity.uuid,
-                    name = remoteEntity.name,
-                    group = remoteEntity.group,
-                    buyCredits = remoteEntity.buyCredits,
-                    priority = remoteEntity.priority,
-                    unlocked = remoteEntity.unlocked,
-                    typography = remoteEntity.typography ?: ExtendedTypography()
-                )
+                if (localEntity.uuid == remoteEntity.uuid)
+                    localEntity.copy(
+                        uuid = localEntity.uuid,
+                        name = remoteEntity.name,
+                        group = remoteEntity.group,
+                        buyCredits = remoteEntity.buyCredits,
+                        unlocked = remoteEntity.unlocked,
+                        priority = remoteEntity.priority,
+                        typography = remoteEntity.typography ?: ExtendedTypography()
+                    )
                 else localEntity
             }
         }
@@ -62,11 +82,16 @@ class MarketTypographyRepositoryImpl(
 
         cache = mergedModels
 
-        return cache.toDomain()
+        return Result.success(cache.toDomain())
     }
 
-    override fun getTypographies(): List<MarketTypography> {
-        return cache.toDomain()
+    override fun getTypographies(): Result<List<MarketTypography>> {
+        Log.d("Typography", "Getting ${cache.size} cached typographies:")
+        cache.forEach {
+            Log.d("Palette", "\t$it")
+        }
+
+        return Result.success(cache.toDomain())
     }
 
     override fun initialSetupEvent() {
@@ -83,9 +108,8 @@ class MarketTypographyRepositoryImpl(
     init {
         initialSetupEvent()
 
-        /*CoroutineScope(coroutineDispatcher).launch {
+        CoroutineScope(coroutineDispatcher).launch {
             synchronizeTypographies()
-        }*/
+        }
     }
-
 }

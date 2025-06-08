@@ -9,7 +9,7 @@ class NewsletterLocalDataSource(
     private val applicationContext: Context
 ): NewsletterLocalDataSource {
 
-    override fun fetchInboxes(): List<LocalNewsletterInboxDto> {
+    override fun fetchInboxes(): Result<List<LocalNewsletterInboxDto>> {
         val resources = applicationContext.resources
 
         val inboxes: MutableList<LocalNewsletterInboxDto> = mutableListOf()
@@ -43,7 +43,7 @@ class NewsletterLocalDataSource(
         }
         newslettersTypedArray.recycle()
 
-        return inboxes
+        return Result.success(inboxes)
     }
 
 }

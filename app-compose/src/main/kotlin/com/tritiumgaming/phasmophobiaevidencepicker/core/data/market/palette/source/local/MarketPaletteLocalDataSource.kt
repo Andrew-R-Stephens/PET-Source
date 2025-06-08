@@ -6,6 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 
 class MarketPaletteLocalDataSource : LocalPaletteDataSource<Map<String, ExtendedPalette>> {
 
-    override fun getPalettes(): Map<String, ExtendedPalette> = LocalPalettesMap
+    override fun getPalettes(): Result<Map<String, ExtendedPalette>> =
+        Result.success(LocalPalettesMap)
 
 }

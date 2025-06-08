@@ -18,6 +18,7 @@ class MarketBillableRepositoryImpl(
      */
     override suspend fun fetchBillables(
         billableQueryOptions: BillableQueryOptions
-    ): List<MarketBillable> = billableFirestoreDataSource.fetch(billableQueryOptions).toDomain()
+    ): Result<List<MarketBillable>> =
+        billableFirestoreDataSource.fetch(billableQueryOptions).map { it.toDomain() }
 
 }

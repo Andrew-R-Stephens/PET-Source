@@ -66,13 +66,15 @@ private fun NewsInboxesScreenPreview() {
 @Composable
 fun NewsInboxesScreen(
     //content: @Composable () -> Unit
-    navController: NavController = rememberNavController()
+    navController: NavController = rememberNavController(),
+    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
 ) {
 
     MainMenuScreen(
         content = {
             NewsInboxesContent(
-                navController = navController
+                navController = navController,
+                newsletterViewModel = newsletterViewModel
             ) { navController.popBackStack() }
         }
     )

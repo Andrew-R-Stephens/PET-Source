@@ -14,7 +14,8 @@ data class AccountMarketPalette (
 ) {
 
     private var unlockedState: FeatureAvailability =
-        if (unlocked) FeatureAvailability.UNLOCKED_DEFAULT else FeatureAvailability.LOCKED
+        if (unlocked) FeatureAvailability.UNLOCKED_DEFAULT
+        else FeatureAvailability.LOCKED
         get() =
             if (unlocked) FeatureAvailability.UNLOCKED_DEFAULT
             else FeatureAvailability.LOCKED

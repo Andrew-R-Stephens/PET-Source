@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote
 
 import android.util.Log
-import com.google.firebase.firestore.Transaction
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -13,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.Transaction
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountCreditTransactionDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountCreditsDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountPaletteDto
@@ -23,7 +23,6 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
-import kotlin.collections.set
 
 class FirestoreAccountRemoteDataSource(
     private val firestore: FirebaseFirestore,

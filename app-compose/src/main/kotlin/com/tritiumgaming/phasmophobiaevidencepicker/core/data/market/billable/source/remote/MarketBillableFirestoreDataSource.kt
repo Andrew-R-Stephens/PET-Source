@@ -30,7 +30,7 @@ class MarketBillableFirestoreDataSource(
 
     override suspend fun fetch(
         billableQueryOptions: BillableQueryOptions
-    ): List<MarketBillableDto> = withContext(Dispatchers.IO) {
+    ): Result<List<MarketBillableDto>> = withContext(Dispatchers.IO) {
 
         val billables = mutableListOf<MarketBillableDto>()
 
@@ -76,16 +76,19 @@ class MarketBillableFirestoreDataSource(
                         } catch (e: Exception) {
                             Log.d("Firestore", "Error obtaining remote typographies!")
                             e.printStackTrace()
+                            return@withContext Result.failure(
+                                Exception("Error obtaining remote typographies!", e))
                         }
 
                     }
 
                 }
+
+            Result.success(billables)
         } catch (e: FirebaseFirestoreException) {
             e.printStackTrace()
+            Result.failure(Exception("Error obtaining remote typographies!", e))
         }
-
-        billables
 
     }
 

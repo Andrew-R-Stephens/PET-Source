@@ -7,6 +7,6 @@ interface MarketBundleFirestoreDataSource {
 
     suspend fun fetch(
         options: BundleQueryOptions = BundleQueryOptions()
-    ): List<MarketBundleDto>
+    ): Result<List<MarketBundleDto>>
 
 }

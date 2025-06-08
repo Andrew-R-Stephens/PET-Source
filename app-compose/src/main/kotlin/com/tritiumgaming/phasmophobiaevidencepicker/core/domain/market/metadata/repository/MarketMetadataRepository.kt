@@ -4,6 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.metadata.
 
 interface MarketMetadataRepository {
 
-    suspend fun fetch(): MarketMetadata
+    suspend fun fetch(): Result<MarketMetadata>
 
 }

@@ -11,6 +11,7 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.dto.MarketBundleDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.source.remote.MarketBundleFirestoreDataSource
+import io.realm.kotlin.internal.platform.returnType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -30,7 +31,7 @@ class MarketBundleFirestoreDataSourceImpl(
 
     override suspend fun fetch(
         options: BundleQueryOptions
-    ): List<MarketBundleDto> = withContext(Dispatchers.IO) {
+    ): Result<List<MarketBundleDto>> = withContext(Dispatchers.IO) {
 
         val bundles = mutableListOf<MarketBundleDto>()
 
@@ -73,15 +74,18 @@ class MarketBundleFirestoreDataSourceImpl(
                         } catch (e: Exception) {
                             Log.d("Firestore", "Error obtaining remote bundles!")
                             e.printStackTrace()
+                            return@withContext Result.failure(
+                                Exception("Error obtaining remote bundles!", e))
                         }
                     }
 
                 }
-        } catch (e: FirebaseFirestoreException) {
-            e.printStackTrace()
-        }
 
-        bundles
+            Result.success(bundles)
+
+        } catch (e: FirebaseFirestoreException) {
+            Result.failure(Exception("Error obtaining remote bundles!", e))
+        }
 
     }
 

@@ -67,6 +67,8 @@ class MarketPaletteFirestoreDataSource(
                         } catch (e: Exception) {
                             Log.d("Firestore", "Error obtaining remote palettes!")
                             e.printStackTrace()
+                            return@withContext Result.failure(
+                                Exception("Error obtaining remote palettes!", e))
                         }
                     }
                 }

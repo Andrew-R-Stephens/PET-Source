@@ -11,10 +11,10 @@ class MarketMetadataRepositoryImpl(
     private val marketMetadataFirestoreDataSource: MarketMetadataFirestoreDataSource
 ): MarketMetadataRepository {
 
-    override suspend fun fetch(): MarketMetadata {
+    override suspend fun fetch(): Result<MarketMetadata> {
         val result = marketMetadataFirestoreDataSource.fetch()
 
-        return result.getOrNull()?.toDomain() ?: MarketMetadata(0)
+        return result.map { dto -> dto.toDomain() }
     }
 
 }

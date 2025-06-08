@@ -13,10 +13,10 @@ interface NewsletterRepository {
 
     suspend fun saveInboxLastReadDate(id: String, date: Long)
 
-    suspend fun getLocalInboxes(): List<FlattenedNewsletterInboxDto>
-    suspend fun fetchRemoteInbox(url: Url): FlattenedNewsletterInboxDto
+    fun getLocalInboxes(): Result<List<FlattenedNewsletterInboxDto>>
+    suspend fun fetchRemoteInbox(url: Url): Result<FlattenedNewsletterInboxDto>
 
-    suspend fun synchronizeInboxes()
+    suspend fun synchronizeInboxes(forceUpdate: Boolean = false): Result<Boolean>
     fun getInboxes(): List<NewsletterInbox>
 
 }

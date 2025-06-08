@@ -6,6 +6,6 @@ interface NewsletterLocalDataSource {
 
     //fun fetchInboxes(): Map<NewsletterInboxType.NewsletterInboxTypeDTO, NewsletterInbox>
 
-    fun fetchInboxes(): List<LocalNewsletterInboxDto>
+    fun fetchInboxes(): Result<List<LocalNewsletterInboxDto>>
 
 }

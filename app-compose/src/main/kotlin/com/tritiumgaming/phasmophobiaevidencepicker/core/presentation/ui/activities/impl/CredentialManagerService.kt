@@ -268,9 +268,9 @@ interface SignInCredentialManager {
 
         }
 
-
-
         CoroutineScope(Dispatchers.IO).launch {
+            Log.e("FirebaseAuth", "Attempting to obtain credentials.")
+
             val request = GetCredentialRequest.Builder()
                 .addCredentialOption(credentialOption)
                 .build()

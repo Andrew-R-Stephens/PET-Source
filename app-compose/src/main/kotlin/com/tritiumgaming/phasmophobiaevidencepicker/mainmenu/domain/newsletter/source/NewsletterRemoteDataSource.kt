@@ -5,6 +5,6 @@ import io.ktor.http.Url
 
 interface NewsletterRemoteDataSource {
 
-    suspend fun fetchInbox(url: Url): RemoteNewsletterInboxDto
+    suspend fun fetchInbox(url: Url): Result<RemoteNewsletterInboxDto>
 
 }

@@ -8,8 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toPair
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
@@ -27,7 +25,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
@@ -35,6 +32,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.u
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.SetupPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
@@ -63,7 +61,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import okhttp3.internal.wait
 import java.util.Locale
 
 class GlobalPreferencesViewModel(
@@ -299,12 +296,12 @@ class GlobalPreferencesViewModel(
     /**
      * Typographies
      */
-    private val _typographies = MutableStateFlow(mapOf<String, MarketTypography>())
+    /*private val _typographies = MutableStateFlow(mapOf<String, MarketTypography>())
     var typographies = _typographies.asStateFlow()
     suspend fun fetchAvailableTypographies() {
-        val mergedModels = getAvailableTypographiesUseCase()
+        val mergedModels: List<MarketTypography> = getAvailableTypographiesUseCase()
         _typographies.update { mergedModels.toPair() }
-    }
+    }*/
 
     private val _currentTypographyUUID : MutableStateFlow<String> =
         MutableStateFlow(defaultTypographyUUID)
@@ -317,7 +314,6 @@ class GlobalPreferencesViewModel(
     }
 
     fun getTypographyByUUID(uuid: String): ExtendedTypography = getTypographyByUUIDUseCase(
-            typographies.value,
             uuid,
             LocalDefaultTypography.typography
         )
@@ -344,10 +340,10 @@ class GlobalPreferencesViewModel(
 
         /*viewModelScope.launch {
             getAvailablePalettesUseCase
-        }*/
+        }
         viewModelScope.launch {
             fetchAvailableTypographies()
-        }
+        }*/
 
         // Review Tracker
         viewModelScope.launch {
