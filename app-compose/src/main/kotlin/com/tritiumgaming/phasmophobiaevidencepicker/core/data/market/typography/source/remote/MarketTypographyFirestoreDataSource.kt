@@ -10,13 +10,15 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource.TypographyQueryOptions
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.common.source.MarketFirestoreDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class MarketTypographyFirestoreDataSource(
     private val firestore: FirebaseFirestore
-) {
+): MarketFirestoreDataSource<MarketTypographyDto, TypographyQueryOptions> {
 
     private val storeCollectionRef: CollectionReference
         get() = firestore.collection(COLLECTION_STORE)
@@ -27,14 +29,14 @@ class MarketTypographyFirestoreDataSource(
     private val typographyCollection: CollectionReference = merchandiseDocumentRef
         .collection(COLLECTION_TYPOGRAPHIES)
 
-    suspend fun fetch(
-        typographyQueryOptions: TypographyQueryOptions = TypographyQueryOptions()
+    override suspend fun fetch(
+        queryOptions: TypographyQueryOptions
     ): Result<List<MarketTypographyDto>> = withContext(Dispatchers.IO) {
 
         try {
             val typographies = mutableListOf<MarketTypographyDto>()
 
-            createQuery(typographyQueryOptions)
+            createQuery(queryOptions)
                 .await()
                 .documents
                 .forEach { documentSnapshot: DocumentSnapshot ->

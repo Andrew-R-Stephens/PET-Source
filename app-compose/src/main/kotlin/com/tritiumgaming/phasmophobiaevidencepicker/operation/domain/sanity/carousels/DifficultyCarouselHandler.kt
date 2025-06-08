@@ -13,7 +13,7 @@ class DifficultyCarouselHandler(
     difficultyRepository: DifficultyRepository
 ) {
 
-    private val difficulties = difficultyRepository.getDifficulties()
+    private val difficulties = difficultyRepository.getDifficulties().getOrDefault(emptyList())
 
     /* Index */
     private val _currentIndex: MutableStateFlow<Int> =

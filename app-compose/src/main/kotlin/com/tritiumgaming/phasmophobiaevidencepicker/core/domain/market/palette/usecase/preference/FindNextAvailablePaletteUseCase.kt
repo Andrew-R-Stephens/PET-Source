@@ -19,7 +19,7 @@ class FindNextAvailablePaletteUseCase(
     ): String {
 
         val marketPalettes: List<AccountMarketPalette> =
-            marketRepository.getPalettes()
+            marketRepository.get()
                 .getOrDefault(emptyList()).toAccountMarketPalette()
 
         Log.d("Settings", "MarketPalettes:")

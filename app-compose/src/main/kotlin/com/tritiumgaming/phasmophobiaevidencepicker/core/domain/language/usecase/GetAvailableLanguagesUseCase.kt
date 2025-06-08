@@ -7,6 +7,7 @@ class GetAvailableLanguagesUseCase(
     private val repository: LanguageRepository
 ) {
 
-    operator fun invoke(): List<LanguageEntity> = repository.getAvailableLanguages()
+    operator fun invoke(): List<LanguageEntity> =
+        repository.getAvailableLanguages().getOrDefault(emptyList())
 
 }

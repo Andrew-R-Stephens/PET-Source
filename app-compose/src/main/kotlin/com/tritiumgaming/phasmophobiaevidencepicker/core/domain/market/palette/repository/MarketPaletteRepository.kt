@@ -2,22 +2,26 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteFirestoreDataSource.PaletteQueryOptions
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.common.repository.MarketCatalogRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import kotlinx.coroutines.flow.Flow
 
-interface MarketPaletteRepository {
+interface MarketPaletteRepository:
+    MarketCatalogRepository<MarketPalette> {
 
-    fun getLocalPalettes(): Result<List<MarketPaletteDto>>
-    suspend fun fetchRemotePalettes(
+    fun getLocal(): Result<List<MarketPaletteDto>>
+    suspend fun fetchRemote(
         paletteQueryOptions: PaletteQueryOptions = PaletteQueryOptions()
     ): Result<List<MarketPaletteDto>>
-    suspend fun synchronizePalettes(): Result<List<MarketPalette>>
-    fun getPalettes(): Result<List<MarketPalette>>
 
     fun initialSetupEvent()
     suspend fun initFlow(): Flow<PaletteDatastore.PalettePreferences>
 
-    suspend fun saveCurrentPalette(uuid: String)
+    suspend fun saveCurrent(uuid: String)
 
 }

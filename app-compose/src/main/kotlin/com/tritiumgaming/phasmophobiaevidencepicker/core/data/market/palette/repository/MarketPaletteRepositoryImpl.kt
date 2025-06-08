@@ -25,7 +25,7 @@ class MarketPaletteRepositoryImpl(
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
-    override fun getLocalPalettes(): Result<List<MarketPaletteDto>> {
+    override fun getLocal(): Result<List<MarketPaletteDto>> {
         Log.d("Palette", "Getting local palettes")
 
         val result = localDataSource.getPalettes()
@@ -36,25 +36,25 @@ class MarketPaletteRepositoryImpl(
         return Result.success(list)
     }
 
-    override suspend fun fetchRemotePalettes(
-        paletteQueryOptions: PaletteQueryOptions
+    override suspend fun fetchRemote(
+        queryOptions: PaletteQueryOptions
     ): Result<List<MarketPaletteDto>> {
         Log.d("Palette", "Fetching remote palettes")
 
-        val result = firestoreDataSource.fetch(paletteQueryOptions)
+        val result = firestoreDataSource.fetch(queryOptions)
 
         return result
     }
 
-    override suspend fun synchronizePalettes(): Result<List<MarketPalette>> {
+    override suspend fun synchronizeCache(): Result<List<MarketPalette>> {
         Log.d("Palette", "Synchronizing palettes")
 
-        val localResult = getLocalPalettes()
+        val localResult = getLocal()
         localResult.exceptionOrNull()?.let { e ->
             Log.d("Palette", "Error getting local palettes: $e") }
         val local = localResult.getOrDefault(emptyList())
 
-        val remoteResult = fetchRemotePalettes()
+        val remoteResult = fetchRemote()
         remoteResult.exceptionOrNull()?.let { e ->
             Log.d("Palette", "Error getting remote palettes: $e") }
         val remote = remoteResult.getOrDefault(emptyList())
@@ -85,7 +85,7 @@ class MarketPaletteRepositoryImpl(
         return Result.success(cache.toDomain())
     }
 
-    override fun getPalettes(): Result<List<MarketPalette>> {
+    override fun get(): Result<List<MarketPalette>> {
         Log.d("Palette", "Getting ${cache.size} cached palettes:")
         cache.forEach {
             Log.d("Palette", "\t$it")
@@ -101,7 +101,7 @@ class MarketPaletteRepositoryImpl(
     override suspend fun initFlow(): Flow<PaletteDatastore.PalettePreferences> =
         dataStoreSource.flow
 
-    override suspend fun saveCurrentPalette(uuid: String) {
+    override suspend fun saveCurrent(uuid: String) {
         dataStoreSource.savePalette(uuid)
     }
 
@@ -109,7 +109,7 @@ class MarketPaletteRepositoryImpl(
         initialSetupEvent()
 
         CoroutineScope(coroutineDispatcher).launch {
-            synchronizePalettes()
+            synchronizeCache()
         }
     }
 }

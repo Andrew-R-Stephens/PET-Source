@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograp
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.toAccountMarketTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.common.repository.MarketCatalogRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.toAccountMarketTypography
@@ -19,7 +20,7 @@ class FindNextAvailableTypographyUseCase(
     ): String {
 
         val marketTypographies: List<AccountMarketTypography> =
-            marketRepository.getTypographies()
+            marketRepository.get()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
 
         Log.d("Settings", "MarketTypographies:")

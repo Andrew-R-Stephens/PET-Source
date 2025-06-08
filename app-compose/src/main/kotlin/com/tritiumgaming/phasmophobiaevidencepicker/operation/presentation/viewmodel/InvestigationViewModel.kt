@@ -39,8 +39,8 @@ class InvestigationViewModel(
     private val codexRepository: CodexRepository
 ): ViewModel() {
 
-    private val ghosts = ghostRepository.fetchGhosts()
-    private val evidences = evidenceRepository.fetchEvidence()
+    private val ghosts = ghostRepository.fetchGhosts().getOrDefault(emptyList())
+    private val evidences = evidenceRepository.fetchEvidence().getOrDefault(emptyList())
 
     /*
      * HANDLERS / CONTROLLERS

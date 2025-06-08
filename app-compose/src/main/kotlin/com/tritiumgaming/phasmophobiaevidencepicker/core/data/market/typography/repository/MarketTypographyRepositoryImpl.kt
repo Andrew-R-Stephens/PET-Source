@@ -25,10 +25,10 @@ class MarketTypographyRepositoryImpl(
 
     private var cache: List<MarketTypographyDto> = emptyList()
 
-    override fun getLocalTypographies(): Result<List<MarketTypographyDto>> {
+    override fun getLocal(): Result<List<MarketTypographyDto>> {
         Log.d("Typography", "Getting local typographies")
 
-        val result = localDataSource.getTypographies()
+        val result = localDataSource.get()
         result.exceptionOrNull()?.let { e ->
             Log.d("Typography", "Error getting local typographies: $e") }
         val list: List<MarketTypographyDto> = result.getOrDefault(emptyMap()).toLocal()
@@ -36,25 +36,25 @@ class MarketTypographyRepositoryImpl(
         return Result.success(list)
     }
 
-    override suspend fun fetchRemoteTypographies(
-        typographyQueryOptions: TypographyQueryOptions
+    override suspend fun fetchRemote(
+        queryOptions: TypographyQueryOptions
     ): Result<List<MarketTypographyDto>> {
         Log.d("Typography", "Fetching remote typographies")
 
-        val result = firestoreDataSource.fetch(typographyQueryOptions)
+        val result = firestoreDataSource.fetch(queryOptions)
 
         return result
     }
 
-    override suspend fun synchronizeTypographies(): Result<List<MarketTypography>> {
+    override suspend fun synchronizeCache(): Result<List<MarketTypography>> {
         Log.d("Typography", "Fetched typographies")
 
-        val localResult = getLocalTypographies()
+        val localResult = getLocal()
         localResult.exceptionOrNull()?.let { e ->
             Log.d("Typography", "Error getting local typographies: $e") }
         val local = localResult.getOrDefault(emptyList())
 
-        val remoteResult = fetchRemoteTypographies()
+        val remoteResult = fetchRemote()
         remoteResult.exceptionOrNull()?.let { e ->
             Log.d("Typography", "Error getting remote typographies: $e") }
         val remote = remoteResult.getOrDefault(emptyList())
@@ -85,7 +85,7 @@ class MarketTypographyRepositoryImpl(
         return Result.success(cache.toDomain())
     }
 
-    override fun getTypographies(): Result<List<MarketTypography>> {
+    override fun get(): Result<List<MarketTypography>> {
         Log.d("Typography", "Getting ${cache.size} cached typographies:")
         cache.forEach {
             Log.d("Palette", "\t$it")
@@ -101,7 +101,7 @@ class MarketTypographyRepositoryImpl(
     override suspend fun initFlow(): Flow<MarketTypographyDatastore.TypographyPreferences> =
         dataStoreSource.flow
 
-    override suspend fun saveCurrentTypography(uuid: String) {
+    override suspend fun saveCurrent(uuid: String) {
         dataStoreSource.saveTypography(uuid)
     }
 
@@ -109,7 +109,7 @@ class MarketTypographyRepositoryImpl(
         initialSetupEvent()
 
         CoroutineScope(coroutineDispatcher).launch {
-            synchronizeTypographies()
+            synchronizeCache()
         }
     }
 }

@@ -11,7 +11,7 @@ class GhostPopupLocalDataSource(
     private val applicationContext: Context
 ): GhostPopupDataSource {
 
-    override fun fetchPopups(): ArrayList<GhostPopupRecord> {
+    override fun fetchPopups(): Result<ArrayList<GhostPopupRecord>> {
 
         val resources = applicationContext.resources
 
@@ -26,7 +26,7 @@ class GhostPopupLocalDataSource(
         }
         ghostsTypedArray.recycle()
 
-        return records
+        return Result.success(records)
     }
 
     private fun readGhost(
