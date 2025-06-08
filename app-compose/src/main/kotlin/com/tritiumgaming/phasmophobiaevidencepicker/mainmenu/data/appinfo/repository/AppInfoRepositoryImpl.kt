@@ -7,8 +7,8 @@ class AppInfoRepositoryImpl(
     val localSource: AppInfoDataSource
 ): AppInfoRepository {
 
-    override fun getSpecialThanks(): List<String> {
-        return localSource.fetchSpecialThanks()
+    override fun getSpecialThanks(): Result<List<String>> {
+        return Result.success(localSource.fetchSpecialThanks())
     }
 
 }

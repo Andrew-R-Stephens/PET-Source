@@ -8,6 +8,6 @@ class EvidencePopupRepositoryImpl(
     override val localSource: EvidencePopupDataSource
 ): EvidencePopupRepository<EvidencePopupDataSource, EvidencePopupRecord> {
 
-    override fun getPopups() = localSource.fetchPopups()
+    override fun getPopups(): Result<List<EvidencePopupRecord>> = localSource.fetchPopups()
 
 }

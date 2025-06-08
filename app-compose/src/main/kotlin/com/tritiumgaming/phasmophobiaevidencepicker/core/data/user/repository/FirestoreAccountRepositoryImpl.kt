@@ -128,7 +128,9 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
-    override suspend fun fetchUnlockedPalettes(forceUpdate: Boolean): Result<List<AccountPalette>> {
+    override suspend fun fetchUnlockedPalettes(
+        forceUpdate: Boolean
+    ): Result<List<AccountPalette>> {
 
         val result = accountRemoteDataSource.fetchUnlockedPaletteDocuments()
 
@@ -142,7 +144,9 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
-    override suspend fun fetchUnlockedTypographies(forceUpdate: Boolean): Result<List<AccountTypography>> {
+    override suspend fun fetchUnlockedTypographies(
+        forceUpdate: Boolean
+    ): Result<List<AccountTypography>> {
 
         val result = accountRemoteDataSource.fetchUnlockedTypographyDocuments()
 
@@ -167,13 +171,12 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
-    fun getUnlockedPalettes(): List<AccountPalette> {
-        return unlockedPalettes.value.toDomain()
-    }
+    fun getUnlockedPalettes(): Result<List<AccountPalette>> =
+        Result.success(unlockedPalettes.value.toDomain())
 
-    fun getUnlockedTypographies(): List<AccountTypography> {
-        return unlockedTypographies.value.toDomain()
-    }
+
+    fun getUnlockedTypographies(): Result<List<AccountTypography>> =
+        Result.success(unlockedTypographies.value.toDomain())
 
     //TODO: Get Unlock History Snapshot Observer
     /*try {

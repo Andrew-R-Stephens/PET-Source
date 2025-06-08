@@ -8,7 +8,7 @@ class GhostRepositoryImpl(
     override val localSource: GhostDataSource
 ): GhostRepository {
 
-    override fun fetchGhosts(): List<GhostType> {
+    override fun fetchGhosts(): Result<List<GhostType>> {
         return localSource.fetchGhosts()
     }
 

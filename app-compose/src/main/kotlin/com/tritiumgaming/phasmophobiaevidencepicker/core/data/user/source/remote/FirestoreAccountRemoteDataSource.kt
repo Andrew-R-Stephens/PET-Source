@@ -322,10 +322,6 @@ class FirestoreAccountRemoteDataSource(
 
     }
 
-    enum class UnlockTypes(val type: String) {
-        SINGLE_THEME("Single Theme")
-    }
-
     suspend fun fetchUnlockedPaletteDocuments(): Result<List<AccountPaletteDto>> {
 
         if(unlockHistoryCollectionRef == null)

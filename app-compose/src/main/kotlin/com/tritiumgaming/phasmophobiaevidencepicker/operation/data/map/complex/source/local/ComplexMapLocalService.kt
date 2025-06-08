@@ -25,12 +25,17 @@ class ComplexMapLocalService: ComplexMapService {
         val type = object : TypeToken<WorldMaps?>() {}.type
         val worldMaps: WorldMaps = gson.fromJson(fileReader, type)
 
-        try {
+        return try {
             fileReader.close()
             inputStream.close()
-        } catch (e: IOException) { e.printStackTrace() }
 
-        return Result.success(worldMaps)
+            Result.success(worldMaps)
+        } catch (e: IOException) {
+            e.printStackTrace()
+
+            Result.failure(Exception("Failed to fetch World Maps", e))
+        }
+
     }
 
 }

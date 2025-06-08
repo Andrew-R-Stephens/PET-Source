@@ -4,6 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model
 
 interface CodexTypeRepository {
 
-    fun fetchItems(): CodexGroups
+    fun fetchItems(): Result<CodexGroups>
 
 }

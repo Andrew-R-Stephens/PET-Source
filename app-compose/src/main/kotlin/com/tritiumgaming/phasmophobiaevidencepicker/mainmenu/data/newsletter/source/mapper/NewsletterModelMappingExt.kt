@@ -1,40 +1,23 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.mapper
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.FlattenedNewsletterChannelDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.FlattenedNewsletterInboxDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.FlattenedNewsletterMessageDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.dto.LocalNewsletterInboxDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.dto.RemoteNewsletterInboxDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.dto.RemoteNewsletterInboxDto.RemoteNewsletterChannelDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.dto.RemoteNewsletterInboxDto.RemoteNewsletterChannelDto.RemoteNewsletterMessageDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterChannel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterMessage
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.formatToEpoch
-
-@JvmName("localNewsletterInboxDtoToFlattenedNewsletterInboxDto")
-fun LocalNewsletterInboxDto.toExternal(): FlattenedNewsletterInboxDto =
-    FlattenedNewsletterInboxDto(
-        id = id,
-        title = title,
-        url = url,
-        icon = icon
-    )
-
+/*
 @JvmName("remoteNewsletterInboxDtoToFlattenedNewsletterInboxDto")
 fun RemoteNewsletterInboxDto.toInternal(): FlattenedNewsletterInboxDto =
     FlattenedNewsletterInboxDto(
         channel = channel.toExternal()
     )
+*/
 
+/*
 @JvmName("remoteNewsletterChannelDtoToFlattenedNewsletterChannelDto")
 fun RemoteNewsletterChannelDto.toExternal(): FlattenedNewsletterChannelDto =
     FlattenedNewsletterChannelDto(
         language = language,
         messages = items?.toExternal()
     )
+*/
 
+/*
 @JvmName("remoteNewsletterMessageDtoToFlattenedNewsletterMessageDto")
 fun RemoteNewsletterMessageDto.toExternal(): FlattenedNewsletterMessageDto =
     FlattenedNewsletterMessageDto(
@@ -43,8 +26,9 @@ fun RemoteNewsletterMessageDto.toExternal(): FlattenedNewsletterMessageDto =
         description = FontUtils.removeXMLImgSrcTags(description),
         date = formatToEpoch(FontUtils.removeXMLPubDateClockTime(pubDate))
     )
+*/
 
-@JvmName("remoteNewsletterMessageDtoToNewsletterMessage")
+/*@JvmName("remoteNewsletterMessageDtoToNewsletterMessage")
 fun RemoteNewsletterMessageDto.toExternal(fallbackId: String): NewsletterMessage =
     NewsletterMessage(
         id = id ?: fallbackId,
@@ -52,7 +36,9 @@ fun RemoteNewsletterMessageDto.toExternal(fallbackId: String): NewsletterMessage
         description = description,
         date = formatToEpoch(pubDate)
     )
+*/
 
+/*
 @JvmName("flattenedNewsletterInboxDtoToNewsletterInbox")
 fun FlattenedNewsletterInboxDto.toExternal(): NewsletterInbox =
     NewsletterInbox(
@@ -60,22 +46,6 @@ fun FlattenedNewsletterInboxDto.toExternal(): NewsletterInbox =
         title = title,
         url = url,
         icon = icon
-    )
-
-@JvmName("flattenedNewsletterChannelDtoToNewsletterChannel")
-fun FlattenedNewsletterChannelDto.toExternal(): NewsletterChannel {
-    return NewsletterChannel(
-        language = language,
-        messages = messages?.toExternal() ?: listOf()
-    )
-}
-@JvmName("flattenedNewsletterMessageDtoToNewsletterMessage")
-fun FlattenedNewsletterMessageDto.toExternal(): NewsletterMessage =
-    NewsletterMessage(
-        id = id ?: "0",
-        title = title,
-        description = description,
-        date = date
     )
 
 @JvmName("flattenedNewsletterInboxDtoListToNewsletterInboxList")
@@ -89,6 +59,27 @@ fun List<FlattenedNewsletterInboxDto>.toExternal(): List<NewsletterInbox> =
             channel = dto.channel?.toExternal() ?: NewsletterChannel()
         )
     }
+*/
+
+/*
+@JvmName("flattenedNewsletterChannelDtoToNewsletterChannel")
+fun FlattenedNewsletterChannelDto.toExternal(): NewsletterChannel {
+    return NewsletterChannel(
+        language = language,
+        messages = messages?.toExternal() ?: listOf()
+    )
+}
+*/
+
+/*
+@JvmName("flattenedNewsletterMessageDtoToNewsletterMessage")
+fun FlattenedNewsletterMessageDto.toExternal(): NewsletterMessage =
+    NewsletterMessage(
+        id = id ?: "0",
+        title = title,
+        description = description,
+        date = date
+    )
 
 @JvmName("flattenedNewsletterMessageDtoListToNewsletterMessageList")
 fun List<FlattenedNewsletterMessageDto>.toExternal(): List<NewsletterMessage> =
@@ -100,6 +91,17 @@ fun List<FlattenedNewsletterMessageDto>.toExternal(): List<NewsletterMessage> =
             date = dto.date
         )
     }
+*/
+
+/*
+@JvmName("localNewsletterInboxDtoToFlattenedNewsletterInboxDto")
+fun LocalNewsletterInboxDto.toExternal(): FlattenedNewsletterInboxDto =
+    FlattenedNewsletterInboxDto(
+        id = id,
+        title = title,
+        url = url,
+        icon = icon
+    )
 
 @JvmName("localNewsletterInboxDtoToFlattenedNewsletterInboxDto")
 fun List<LocalNewsletterInboxDto>.toInternal(): List<FlattenedNewsletterInboxDto> =
@@ -111,8 +113,9 @@ fun List<LocalNewsletterInboxDto>.toInternal(): List<FlattenedNewsletterInboxDto
         icon = dto.icon
     )
 }
+*/
 
-@JvmName("remoteNewsletterInboxDtoListToFlattenedNewsletterInboxDtoList")
+/*@JvmName("remoteNewsletterInboxDtoListToFlattenedNewsletterInboxDtoList")
 fun List<RemoteNewsletterInboxDto>.toExternal(): List<FlattenedNewsletterInboxDto> =
     map { dto ->
         FlattenedNewsletterInboxDto(
@@ -139,3 +142,4 @@ fun List<RemoteNewsletterMessageDto>.toExternal(): List<FlattenedNewsletterMessa
             date = formatToEpoch(dto.pubDate)
         )
     }
+*/

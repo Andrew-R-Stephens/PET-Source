@@ -8,7 +8,7 @@ class DifficultyRepositoryImpl(
     override val localSource: DifficultyDataSource
 ): DifficultyRepository {
 
-    override fun getDifficulties(): List<DifficultyModel> {
+    override fun getDifficulties(): Result<List<DifficultyModel>> {
         return localSource.fetchDifficulties()
     }
 

@@ -4,6 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 
 interface DifficultyDataSource {
 
-    fun fetchDifficulties(): List<DifficultyModel>
+    fun fetchDifficulties(): Result<List<DifficultyModel>>
 
 }

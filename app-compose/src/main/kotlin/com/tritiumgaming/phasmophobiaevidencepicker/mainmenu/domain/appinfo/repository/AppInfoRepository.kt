@@ -1,5 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.repository
 
 interface AppInfoRepository {
-    fun getSpecialThanks(): List<String>
+    fun getSpecialThanks(): Result<List<String>>
 }

@@ -8,8 +8,8 @@ interface CodexRepository {
     val equipmentRepository: CodexTypeRepository
     val possessionsRepository: CodexTypeRepository
 
-    fun fetchAchievements(): CodexGroups
-    fun fetchEquipment(): CodexGroups
-    fun fetchPossessions(): CodexGroups
+    fun fetchAchievements(): Result<CodexGroups>
+    fun fetchEquipment(): Result<CodexGroups>
+    fun fetchPossessions(): Result<CodexGroups>
 
 }

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import java.util.Locale
 
 interface LanguageRepository {
-    fun getAvailableLanguages(): List<LanguageEntity>
+    fun getAvailableLanguages(): Result<List<LanguageEntity>>
 
     fun initialSetupEvent()
     suspend fun initFlow(): Flow<LanguageDatastore.LanguagePreferences>

@@ -2,6 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.sour
 
 interface PopupDataSource<T> {
 
-    fun fetchPopups(): List<T>
+    fun fetchPopups(): Result<List<T>>
 
 }

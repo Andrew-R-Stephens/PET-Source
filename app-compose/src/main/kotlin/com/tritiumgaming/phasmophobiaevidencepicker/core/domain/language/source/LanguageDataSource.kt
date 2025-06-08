@@ -4,6 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.Langu
 
 interface LanguageDataSource {
 
-    fun getAvailableLanguages(): List<LanguageDto>
+    fun getAvailableLanguages(): Result<List<LanguageDto>>
 
 }

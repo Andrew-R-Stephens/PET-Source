@@ -5,6 +5,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.so
 interface GhostBoxRepository {
     val localSource: GhostBoxDataSource
 
-    fun getVoiceRequests(): MutableMap<String, Int>
+    fun getVoiceRequests(): Result<MutableMap<String, Int>>
 
 }

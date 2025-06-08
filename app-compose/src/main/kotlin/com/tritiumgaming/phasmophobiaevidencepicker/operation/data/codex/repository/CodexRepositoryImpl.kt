@@ -10,15 +10,15 @@ class CodexRepositoryImpl(
     override val possessionsRepository: CodexTypeRepository
 ): CodexRepository {
 
-    override fun fetchAchievements(): CodexGroups {
+    override fun fetchAchievements(): Result<CodexGroups> {
         return achievementsRepository.fetchItems()
     }
 
-    override fun fetchEquipment(): CodexGroups {
+    override fun fetchEquipment(): Result<CodexGroups> {
         return equipmentRepository.fetchItems()
     }
 
-    override fun fetchPossessions(): CodexGroups {
+    override fun fetchPossessions(): Result<CodexGroups> {
         return possessionsRepository.fetchItems()
     }
 

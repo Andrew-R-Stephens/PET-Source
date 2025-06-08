@@ -8,7 +8,7 @@ class GhostEvidenceRepositoryImpl(
     override val localSource: GhostEvidenceDataSource
 ): GhostEvidenceRepository {
 
-    override fun getGhostEvidences(): ArrayList<GhostEvidence.GhostEvidenceDto> {
+    override fun getGhostEvidences(): Result<ArrayList<GhostEvidence.GhostEvidenceDto>> {
         return localSource.fetchGhostEvidences()
     }
 

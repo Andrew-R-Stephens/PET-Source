@@ -13,7 +13,7 @@ class CodexAchievementsLocalDataSource(
     override val applicationContext: Context
 ): CodexDataSource {
 
-    override fun fetchItems(): CodexGroups {
+    override fun fetchItems(): Result<CodexGroups> {
 
         val resources = applicationContext.resources
 
@@ -55,7 +55,7 @@ class CodexAchievementsLocalDataSource(
 
         shopListTypedArray.recycle()
 
-        return achievements
+        return Result.success(achievements)
     }
 
 

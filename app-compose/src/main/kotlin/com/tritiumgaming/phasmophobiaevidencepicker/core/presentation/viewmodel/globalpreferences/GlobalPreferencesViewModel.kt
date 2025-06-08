@@ -31,8 +31,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.u
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.SetupPaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.toPair
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase

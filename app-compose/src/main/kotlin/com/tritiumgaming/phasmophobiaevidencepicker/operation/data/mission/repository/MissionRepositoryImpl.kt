@@ -8,6 +8,6 @@ class MissionRepositoryImpl(
     private val localSource: MissionDataSource
 ): MissionRepository {
 
-    override fun getMissions(): List<Mission> = localSource.fetchMissions()
+    override fun getMissions(): Result<List<Mission>> = localSource.fetchMissions()
 
 }

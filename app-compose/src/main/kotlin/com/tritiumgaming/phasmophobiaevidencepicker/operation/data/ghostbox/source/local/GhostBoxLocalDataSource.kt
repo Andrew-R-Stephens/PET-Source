@@ -9,8 +9,7 @@ class GhostBoxLocalDataSource(
     private val applicationContext: Context
 ): GhostBoxDataSource {
 
-    @StringRes
-    override fun fetchGeneralRequests(): IntArray {
+    override fun fetchGeneralRequests(): Result<IntArray> {
         val resources = applicationContext.resources
         val typedArray = resources.obtainTypedArray(R.array.ghostspeaktool_general_array)
         val spiritBoxEntries = IntArray(typedArray.length())
@@ -19,11 +18,10 @@ class GhostBoxLocalDataSource(
         }
         typedArray.recycle()
 
-        return spiritBoxEntries
+        return Result.success(spiritBoxEntries)
     }
 
-    @StringRes
-    override fun fetchSpiritBoxRequests(): IntArray {
+    override fun fetchSpiritBoxRequests(): Result<IntArray> {
         val resources = applicationContext.resources
         val typedArray = resources.obtainTypedArray(R.array.ghostspeaktool_spiritbox_array)
         val spiritBoxEntries = IntArray(typedArray.length())
@@ -32,11 +30,10 @@ class GhostBoxLocalDataSource(
         }
         typedArray.recycle()
 
-        return spiritBoxEntries
+        return Result.success(spiritBoxEntries)
     }
 
-    @StringRes
-    override fun fetchOuijaBoardRequests(): IntArray {
+    override fun fetchOuijaBoardRequests(): Result<IntArray> {
         val resources = applicationContext.resources
         val typedArray = resources.obtainTypedArray(R.array.ghostspeaktool_ouijaboard_array)
         val spiritBoxEntries = IntArray(typedArray.length())
@@ -45,7 +42,7 @@ class GhostBoxLocalDataSource(
         }
         typedArray.recycle()
 
-        return spiritBoxEntries
+        return Result.success(spiritBoxEntries)
     }
 
 }

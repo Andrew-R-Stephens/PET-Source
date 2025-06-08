@@ -8,7 +8,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.Accou
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.toAccountMarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
-import kotlin.collections.forEach
 
 class FindNextAvailableTypographyUseCase(
     private val marketRepository: MarketTypographyRepository,

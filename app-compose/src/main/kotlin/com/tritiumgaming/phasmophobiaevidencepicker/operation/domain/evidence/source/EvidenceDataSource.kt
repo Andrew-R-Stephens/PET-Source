@@ -4,6 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.typ
 
 interface EvidenceDataSource {
 
-    fun fetchEvidence(): List<EvidenceType>
+    fun fetchEvidence(): Result<List<EvidenceType>>
 
 }

@@ -12,7 +12,7 @@ class LanguageLocalDataSource(
     private val applicationContext: Context
 ): LanguageDataSource {
 
-    override fun getAvailableLanguages(): List<LanguageDto> {
+    override fun getAvailableLanguages(): Result<List<LanguageDto>> {
 
         val resources = applicationContext.resources
 
@@ -48,7 +48,7 @@ class LanguageLocalDataSource(
 
         Log.d("Language", "Finished fetching ${languages.size} languages")
 
-        return languages
+        return Result.success(languages)
     }
 
 }

@@ -8,7 +8,7 @@ class EvidenceRepositoryImpl(
     override val localSource: EvidenceDataSource
 ): EvidenceRepository {
 
-    override fun fetchEvidence(): List<EvidenceType> {
+    override fun fetchEvidence(): Result<List<EvidenceType>> {
         return localSource.fetchEvidence()
     }
 

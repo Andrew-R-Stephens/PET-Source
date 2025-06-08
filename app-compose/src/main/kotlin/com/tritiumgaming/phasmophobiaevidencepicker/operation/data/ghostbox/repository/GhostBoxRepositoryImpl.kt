@@ -8,21 +8,29 @@ class GhostBoxRepositoryImpl(
     override val localSource: GhostBoxDataSource
 ): GhostBoxRepository {
 
-    override fun getVoiceRequests(): MutableMap<String, Int> {
+    override fun getVoiceRequests(): Result<MutableMap<String, Int>> {
 
         val voiceRequests = mutableMapOf<String, Int>()
 
-        localSource.fetchGeneralRequests().forEach {
+        val generalResult = localSource.fetchGeneralRequests()
+        generalResult.exceptionOrNull()?.printStackTrace()
+        generalResult.getOrNull()?.forEach {
             voiceRequests[GhostBoxType.GENERAL.title] = it
         }
-        localSource.fetchSpiritBoxRequests().forEach {
+
+        val spiritBoxResult = localSource.fetchSpiritBoxRequests()
+        spiritBoxResult.exceptionOrNull()?.printStackTrace()
+        spiritBoxResult.getOrNull()?.forEach {
             voiceRequests[GhostBoxType.SPIRIT_BOX.title] = it
         }
-        localSource.fetchOuijaBoardRequests().forEach {
+
+        val ouijaBoardResult = localSource.fetchOuijaBoardRequests()
+        ouijaBoardResult.exceptionOrNull()?.printStackTrace()
+        ouijaBoardResult.getOrNull()?.forEach {
             voiceRequests[GhostBoxType.OUIJA_BOARD.title] = it
         }
 
-        return voiceRequests
+        return Result.success(voiceRequests)
     }
 
 }

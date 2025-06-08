@@ -11,7 +11,7 @@ class EvidenceLocalDataSource(
     private val applicationContext: Context
 ): EvidenceDataSource {
 
-    override fun fetchEvidence(): List<EvidenceType> {
+    override fun fetchEvidence(): Result<List<EvidenceType>> {
 
         val resources = applicationContext.resources
 
@@ -45,7 +45,7 @@ class EvidenceLocalDataSource(
 
         evidenceTypes.recycle()
 
-        return evidenceList
+        return Result.success(evidenceList)
     }
 
 }

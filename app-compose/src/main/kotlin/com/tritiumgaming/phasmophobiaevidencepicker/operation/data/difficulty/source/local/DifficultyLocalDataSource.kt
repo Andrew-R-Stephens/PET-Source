@@ -11,7 +11,7 @@ class DifficultyLocalDataSource(
     private val applicationContext: Context
 ): DifficultyDataSource {
 
-    override fun fetchDifficulties(): List<DifficultyModel> {
+    override fun fetchDifficulties(): Result<List<DifficultyModel>> {
 
         val resources = applicationContext.resources
 
@@ -45,7 +45,7 @@ class DifficultyLocalDataSource(
 
         difficultiesTypedArray.recycle()
 
-        return difficulties
+        return Result.success(difficulties)
     }
 
 }

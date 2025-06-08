@@ -6,6 +6,6 @@ interface ComplexMapDataSource {
     val service: ComplexMapService
 
     @Throws(Exception::class)
-    suspend fun fetchWorldMaps(): WorldMaps
+    suspend fun fetchWorldMaps(): Result<WorldMaps>
 
 }

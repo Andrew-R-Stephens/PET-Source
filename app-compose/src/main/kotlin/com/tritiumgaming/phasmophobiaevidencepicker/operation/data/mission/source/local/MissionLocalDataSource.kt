@@ -10,7 +10,7 @@ class MissionLocalDataSource(
     private val applicationContext: Context
 ): MissionDataSource {
 
-    override fun fetchMissions(): List<Mission> {
+    override fun fetchMissions(): Result<List<Mission>> {
 
         val resources = applicationContext.resources
 
@@ -24,7 +24,7 @@ class MissionLocalDataSource(
             objectivesList.add(Mission(missionsArray[i]))
         }
 
-        return objectivesList
+        return Result.success(objectivesList)
 
     }
 

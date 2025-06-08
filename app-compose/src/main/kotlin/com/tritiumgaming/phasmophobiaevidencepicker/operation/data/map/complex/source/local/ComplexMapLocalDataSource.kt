@@ -15,24 +15,21 @@ class ComplexMapLocalDataSource(
 ): ComplexMapDataSource {
 
     @Throws(Exception::class)
-    override suspend fun fetchWorldMaps(): WorldMaps {
-
-        var worldMaps = WorldMaps()
-        try {
-            return CoroutineScope(Dispatchers.IO).async {
-                val result = service.readFile(
+    override suspend fun fetchWorldMaps(): Result<WorldMaps> {
+        return try {
+            val result = CoroutineScope(Dispatchers.IO).async {
+                service.readFile(
                     assets = applicationContext.assets,
                     fileName = applicationContext.getString(R.string.mapsJson)
                 )
-                if(result.isSuccess) {
-                    return@async result.getOrNull() ?: WorldMaps()
-                } else {
-                    throw Exception("Failed to fetch world maps")
-                }
             }.await()
+
+            result
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+            Result.failure(Exception("Failed to fetch World Maps", e))
         }
-        catch (e: Exception) { e.printStackTrace() }
-        return worldMaps
     }
 
 }

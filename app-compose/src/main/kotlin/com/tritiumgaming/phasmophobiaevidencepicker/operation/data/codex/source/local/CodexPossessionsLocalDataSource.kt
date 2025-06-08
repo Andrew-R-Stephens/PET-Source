@@ -13,7 +13,7 @@ class CodexPossessionsLocalDataSource(
     override val applicationContext: Context
 ): CodexDataSource {
 
-    override fun fetchItems(): CodexGroups {
+    override fun fetchItems(): Result<CodexGroups> {
 
         val resources = applicationContext.resources
 
@@ -115,7 +115,7 @@ class CodexPossessionsLocalDataSource(
         }
         shopListTypedArray.recycle()
 
-        return possessions
+        return Result.success(possessions)
     }
 
 }

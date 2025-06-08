@@ -7,6 +7,6 @@ interface CodexDataSource {
 
     val applicationContext: Context
 
-    fun fetchItems(): CodexGroups
+    fun fetchItems(): Result<CodexGroups>
 
 }

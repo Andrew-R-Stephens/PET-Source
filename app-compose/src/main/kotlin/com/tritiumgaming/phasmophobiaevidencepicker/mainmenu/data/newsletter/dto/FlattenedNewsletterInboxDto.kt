@@ -2,6 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dt
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterChannel
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 
 data class FlattenedNewsletterInboxDto(
     val id: String? = null,
@@ -11,14 +13,21 @@ data class FlattenedNewsletterInboxDto(
     var channel: FlattenedNewsletterChannelDto? = null
 )
 
-data class FlattenedNewsletterChannelDto(
-    val language: String? = null,
-    val messages: List<FlattenedNewsletterMessageDto>? = null
-)
+fun FlattenedNewsletterInboxDto.toExternal(): NewsletterInbox =
+    NewsletterInbox(
+        id = id,
+        title = title,
+        url = url,
+        icon = icon
+    )
 
-data class FlattenedNewsletterMessageDto(
-    val id: String? = null,
-    val title: String? = null,
-    val description: String? = null,
-    val date: Long? = null
-)
+fun List<FlattenedNewsletterInboxDto>.toExternal(): List<NewsletterInbox> =
+    map { dto ->
+        NewsletterInbox(
+            id = dto.id,
+            title = dto.title,
+            url = dto.url,
+            icon = dto.icon,
+            channel = dto.channel?.toExternal() ?: NewsletterChannel()
+        )
+    }

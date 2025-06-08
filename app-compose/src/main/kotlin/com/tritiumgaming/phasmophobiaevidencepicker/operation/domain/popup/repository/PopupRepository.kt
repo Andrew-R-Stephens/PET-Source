@@ -3,5 +3,5 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.repo
 interface PopupRepository<K, T> {
     val localSource: K
 
-    fun getPopups():  List<T>
+    fun getPopups(): Result<List<T>>
 }

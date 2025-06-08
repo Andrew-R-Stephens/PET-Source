@@ -12,8 +12,8 @@ class LanguageRepositoryImpl(
     private val dataStoreSource: LanguageDatastore
 ): LanguageRepository {
 
-    override fun getAvailableLanguages(): List<LanguageEntity> =
-        localDataSource.getAvailableLanguages().toDomain()
+    override fun getAvailableLanguages(): Result<List<LanguageEntity>> =
+        localDataSource.getAvailableLanguages().map { dto -> dto.toDomain() }
 
     override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
 

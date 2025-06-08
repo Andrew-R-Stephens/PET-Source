@@ -12,7 +12,7 @@ class GhostEvidenceLocalDataSource(
     private val applicationContext: Context
 ): GhostEvidenceDataSource {
 
-    override fun fetchGhostEvidences(): ArrayList<GhostEvidenceDto> {
+    override fun fetchGhostEvidences(): Result<ArrayList<GhostEvidenceDto>> {
 
         val resources = applicationContext.resources
 
@@ -25,7 +25,7 @@ class GhostEvidenceLocalDataSource(
         }
         ghostsTypedArray.recycle()
 
-        return ghostEvidences
+        return Result.success(ghostEvidences)
     }
 
     private fun readGhost(

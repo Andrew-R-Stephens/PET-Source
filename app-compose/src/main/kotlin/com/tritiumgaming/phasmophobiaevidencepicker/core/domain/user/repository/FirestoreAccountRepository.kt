@@ -8,12 +8,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.Accou
 
 interface FirestoreAccountRepository {
 
-    suspend fun addCredits(creditTransaction: AccountCreditTransaction): Result<AccountCredits>
+    suspend fun addCredits(
+        creditTransaction: AccountCreditTransaction
+    ): Result<AccountCredits>
 
-    suspend fun removeCredits(creditTransaction: AccountCreditTransaction): Result<AccountCredits>
+    suspend fun removeCredits(
+        creditTransaction: AccountCreditTransaction
+    ): Result<AccountCredits>
 
     suspend fun setMarketplaceAgreementState(
-        marketAgreement: AccountMarketAgreement): Result<AccountMarketAgreement>
+        marketAgreement: AccountMarketAgreement
+    ): Result<AccountMarketAgreement>
 
     suspend fun addUnlockedDocuments(
         unlockUUIDs: ArrayList<String>?,
@@ -28,6 +33,8 @@ interface FirestoreAccountRepository {
         forceUpdate: Boolean = false
     ): Result<List<AccountTypography>>
 
-    suspend fun addPurchasedDocument(orderID: String): Result<String>
+    suspend fun addPurchasedDocument(
+        orderID: String
+    ): Result<String>
 
 }

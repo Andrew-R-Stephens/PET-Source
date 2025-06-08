@@ -6,6 +6,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 interface DifficultyRepository {
     val localSource: DifficultyDataSource
 
-    fun getDifficulties(): List<DifficultyModel>
+    fun getDifficulties(): Result<List<DifficultyModel>>
 
 }

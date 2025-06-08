@@ -6,5 +6,5 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.typ
 interface GhostEvidenceRepository {
     val localSource: GhostEvidenceDataSource
 
-    fun getGhostEvidences(): ArrayList<GhostEvidence.GhostEvidenceDto>
+    fun getGhostEvidences(): Result<ArrayList<GhostEvidence.GhostEvidenceDto>>
 }

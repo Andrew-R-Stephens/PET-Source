@@ -4,6 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mod
 
 interface MissionDataSource {
 
-    fun fetchMissions(): List<Mission>
+    fun fetchMissions(): Result<List<Mission>>
 
 }

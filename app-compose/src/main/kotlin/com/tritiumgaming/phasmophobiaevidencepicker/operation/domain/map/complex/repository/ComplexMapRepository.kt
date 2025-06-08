@@ -6,6 +6,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex
 interface ComplexMapRepository {
     val localSource: ComplexMapDataSource
 
-    suspend fun fetchMaps(): MapListModel
+    suspend fun fetchMaps(): Result<MapListModel>
 
 }

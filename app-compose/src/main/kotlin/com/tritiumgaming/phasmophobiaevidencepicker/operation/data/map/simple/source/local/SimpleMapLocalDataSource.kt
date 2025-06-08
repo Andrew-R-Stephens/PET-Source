@@ -12,7 +12,7 @@ class SimpleMapLocalDataSource(
     private val applicationContext: Context
 ): SimpleMapDataSource {
 
-    override fun fetchMaps(): List<MapInteractModel> {
+    override fun fetchMaps(): Result<List<MapInteractModel>> {
 
         val resources: Resources = applicationContext.resources
 
@@ -67,10 +67,10 @@ class SimpleMapLocalDataSource(
         }
         mapsTypedArray.recycle()
 
-        return tempMaps
+        return Result.success(tempMaps)
     }
 
-    override fun fetchSizeModifiers(): List<MapSizeModel> {
+    override fun fetchSizeModifiers(): Result<List<MapSizeModel>> {
 
         var modifiers = mutableListOf<MapSizeModel>()
 
@@ -102,7 +102,7 @@ class SimpleMapLocalDataSource(
 
         sizeModifiersTypedArray.recycle()
 
-        return modifiers
+        return Result.success(modifiers)
     }
 
 }

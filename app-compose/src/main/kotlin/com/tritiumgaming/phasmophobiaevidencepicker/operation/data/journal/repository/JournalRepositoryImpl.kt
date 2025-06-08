@@ -5,6 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghost.repos
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostevidence.repository.GhostEvidenceRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 
+//TODO "Not yet implemented"
 class JournalRepositoryImpl(
     override val evidenceRepository: EvidenceRepository,
     override val ghostRepository: GhostRepository,

@@ -8,6 +8,6 @@ class GhostPopupRepositoryImpl(
     override val localSource: GhostPopupDataSource
 ): GhostPopupRepository<GhostPopupDataSource, GhostPopupRecord> {
 
-    override fun getPopups() = localSource.fetchPopups()
+    override fun getPopups(): Result<List<GhostPopupRecord>> = localSource.fetchPopups()
 
 }

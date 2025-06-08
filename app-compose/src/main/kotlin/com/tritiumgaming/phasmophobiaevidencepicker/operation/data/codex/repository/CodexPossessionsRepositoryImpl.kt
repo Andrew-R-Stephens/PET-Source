@@ -8,7 +8,7 @@ class CodexPossessionsRepositoryImpl(
     val localSource: CodexDataSource
 ): CodexTypeRepository {
 
-    override fun fetchItems(): CodexGroups {
+    override fun fetchItems(): Result<CodexGroups> {
         return localSource.fetchItems()
     }
 

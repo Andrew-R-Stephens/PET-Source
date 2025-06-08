@@ -14,7 +14,7 @@ class EvidencePopupLocalDataSource(
     private val applicationContext: Context
 ): EvidencePopupDataSource {
 
-    override fun fetchPopups(): List<EvidencePopupRecord> {
+    override fun fetchPopups(): Result<List<EvidencePopupRecord>> {
 
         val resources = applicationContext.resources
 
@@ -29,7 +29,7 @@ class EvidencePopupLocalDataSource(
         }
         evidencesTypedArray.recycle()
 
-        return records
+        return Result.success(records)
     }
 
     private fun readEvidence(

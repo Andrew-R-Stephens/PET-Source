@@ -4,6 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.typ
 
 interface GhostDataSource {
 
-    fun fetchGhosts(): ArrayList<GhostType>
+    fun fetchGhosts(): Result<ArrayList<GhostType>>
 
 }

@@ -6,19 +6,25 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.s
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.MapListModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ComplexMapRepositoryImpl(
     override val localSource: ComplexMapDataSource
 ): ComplexMapRepository {
 
-    override suspend fun fetchMaps(): MapListModel {
-        var worldMaps = WorldMaps()
+    override suspend fun fetchMaps(): Result<MapListModel> = withContext(Dispatchers.IO) {
+
         try {
-            worldMaps = localSource.fetchWorldMaps()
-            Log.d("Maps", "Complex Maps:\n${worldMaps.maps.size}")
+            val result = localSource.fetchWorldMaps()
+            Log.d("Maps", "Complex Maps:\n${result.getOrNull()?.maps?.size}")
+
+            result.map { it.toMapList() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Result.failure(Exception("Failed to fetch World Maps", e))
         }
-        catch (e: Exception) { e.printStackTrace() }
-        return worldMaps.toMapList()
+
     }
 
 }
