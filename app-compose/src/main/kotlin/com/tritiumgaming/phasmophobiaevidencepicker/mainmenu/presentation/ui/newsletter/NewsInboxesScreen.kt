@@ -21,6 +21,10 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -175,10 +179,14 @@ private fun InboxCard(
                 onClick()
             }
 
+            var rememberOverflow by remember { mutableStateOf(false) }
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .height(36.dp),
+                    .then(
+                        if (rememberOverflow) Modifier.wrapContentHeight()
+                        else Modifier
+                    ),
                 contentAlignment = Alignment.Center
             ) {
 
@@ -188,9 +196,15 @@ private fun InboxCard(
                         color = LocalPalette.current.textFamily.primary,
                         textAlign = TextAlign.Center
                     ),
-                    maxLines = 2,
                     softWrap = true,
-                    autoSize = TextAutoSize.StepBased(minFontSize = 24.sp, maxFontSize = 36.sp, stepSize = 5.sp)
+                    maxLines = if (rememberOverflow) 2 else 1,
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = 24.sp, maxFontSize = 36.sp, stepSize = 5.sp),
+                    onTextLayout = { textLayoutResult ->
+                        if (textLayoutResult.hasVisualOverflow) {
+                            rememberOverflow = true
+                        }
+                    },
                 )
 
             }

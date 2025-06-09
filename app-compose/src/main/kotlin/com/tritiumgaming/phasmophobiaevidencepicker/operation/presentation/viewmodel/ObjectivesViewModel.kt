@@ -38,7 +38,6 @@ class ObjectivesViewModel(
         responseState = UNKNOWN
     }
 
-
     class ObjectivesFactory(
         private val missionRepository: MissionRepository
     ) : ViewModelProvider.Factory {
