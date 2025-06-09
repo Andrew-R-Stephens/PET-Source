@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        MESSAGE CENTER PAGE
+    -->
+    <!-- Developer Info -->
+    <string-array name="messagecenter_inboxtitles">
+        <item>@string/newsletter_inbox_title_general</item>
+        <item>@string/newsletter_inbox_title_pet</item>
+        <item>@string/newsletter_inbox_title_phasmophobia</item>
+    </string-array>
+    <integer-array name="messagecenter_inboxicons">
+        <item>@drawable/ic_news</item>
+        <item>@drawable/icon_logo_app</item>
+        <item>@drawable/icon_logo_phasmophobia</item>
+    </integer-array>
+
+</resources>

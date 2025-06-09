@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Objectives -->
+    <integer-array name="tasks_objectives_array">
+        <item>@string/objective_info_ghostevent</item>
+        <item>@string/objective_info_ghostphotograph</item>
+        <item>@string/objective_info_emfreader</item>
+        <item>@string/objective_info_motionsensor</item>
+        <item>@string/objective_info_smudgestick</item>
+        <item>@string/objective_info_crucifix</item>
+        <item>@string/objective_info_salt</item>
+        <item>@string/objective_info_escapehunt</item>
+        <item>@string/objective_info_repelwithsmudge</item>
+        <item>@string/objective_info_extinguishcandle</item>
+        <item>@string/objective_info_lowsanity</item>
+    </integer-array>
+
+</resources>
