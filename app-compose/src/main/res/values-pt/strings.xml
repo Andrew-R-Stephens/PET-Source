@@ -1017,15 +1017,15 @@
     <string name="marketplace_purchase_equip">Equipar o tema %1$s?</string>
     <string name="maps_size_title_small">Pequeno</string>
     <string name="maps_size_title_medium">Médio</string>
-    <string name="language_fullName_ja">Japonês</string>
-    <string name="language_fullName_pt">Português</string>
-    <string name="language_fullName_de">Alemão</string>
-    <string name="language_fullName_en">Inglês</string>
-    <string name="language_fullName_zh_Hans">Chinês (Simplificado)</string>
-    <string name="language_fullName_cz">Tcheco</string>
-    <string name="language_fullName_es">Espanhol</string>
-    <string name="language_fullName_fr">Francês</string>
-    <string name="language_fullName_it">Italiano</string>
-    <string name="language_fullName_ru">Russo</string>
-    <string name="language_fullName_uk">Ucraniano</string>
+    <string name="language_name_localized_ja">Japonês</string>
+    <string name="language_name_localized_pt">Português</string>
+    <string name="language_name_localized_de">Alemão</string>
+    <string name="language_name_localized_en">Inglês</string>
+    <string name="language_name_localized_zh_Hans">Chinês (Simplificado)</string>
+    <string name="language_name_localized_cz">Tcheco</string>
+    <string name="language_name_localized_es">Espanhol</string>
+    <string name="language_name_localized_fr">Francês</string>
+    <string name="language_name_localized_it">Italiano</string>
+    <string name="language_name_localized_ru">Russo</string>
+    <string name="language_name_localized_uk">Ucraniano</string>
 </resources>

@@ -10,9 +10,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.L
 // Local to External
 fun LanguageDto.toDomain(): LanguageEntity =
     LanguageEntity(
-        name = name,
+        localizedName = this@toDomain.localizedName,
         nativeName = nativeName,
-        abbreviation = abbreviation
+        code = code
     )
 
 

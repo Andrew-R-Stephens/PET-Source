@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.source.local
 
 import android.content.Context
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.source.GhostBoxDataSource
 

@@ -2379,15 +2379,15 @@
     <string name="marketplace_purchase_equip">Оборудовать тему %1$s?</string>
     <string name="maps_size_title_small">Маленький</string>
     <string name="maps_size_title_medium">Середина</string>
-    <string name="language_fullName_it">Ital\'yanskiy yazyk</string>
-    <string name="language_fullName_de">Немецкий язык</string>
-    <string name="language_fullName_en">английский язык</string>
-    <string name="language_fullName_zh_Hans">Китайский язык (Упрощенный)</string>
-    <string name="language_fullName_cz">Чешский язык</string>
-    <string name="language_fullName_es">Испанский язык</string>
-    <string name="language_fullName_fr">Французский язык</string>
-    <string name="language_fullName_ja">Японский язык</string>
-    <string name="language_fullName_pt">Португальский язык</string>
-    <string name="language_fullName_ru">Русский язык</string>
-    <string name="language_fullName_uk">Украинский</string>
+    <string name="language_name_localized_it">Ital\'yanskiy yazyk</string>
+    <string name="language_name_localized_de">Немецкий язык</string>
+    <string name="language_name_localized_en">английский язык</string>
+    <string name="language_name_localized_zh_Hans">Китайский язык (Упрощенный)</string>
+    <string name="language_name_localized_cz">Чешский язык</string>
+    <string name="language_name_localized_es">Испанский язык</string>
+    <string name="language_name_localized_fr">Французский язык</string>
+    <string name="language_name_localized_ja">Японский язык</string>
+    <string name="language_name_localized_pt">Португальский язык</string>
+    <string name="language_name_localized_ru">Русский язык</string>
+    <string name="language_name_localized_uk">Украинский</string>
 </resources>

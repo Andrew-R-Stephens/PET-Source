@@ -1009,15 +1009,15 @@
     <string name="marketplace_purchase_equip">%1$s テーマを装備しますか?</string>
     <string name="maps_size_title_small">小さい</string>
     <string name="maps_size_title_medium">中くらい</string>
-    <string name="language_fullName_it">イタリア語</string>
-    <string name="language_fullName_ja">日本語</string>
-    <string name="language_fullName_de">"ドイツ語 "</string>
-    <string name="language_fullName_en">英語</string>
-    <string name="language_fullName_es">スペイン語</string>
-    <string name="language_fullName_zh_Hans">簡体字中国語</string>
-    <string name="language_fullName_pt">ポルトガル語</string>
-    <string name="language_fullName_cz">"チェコ語 "</string>
-    <string name="language_fullName_fr">"フランス語 "</string>
-    <string name="language_fullName_ru">"ロシア語 "</string>
-    <string name="language_fullName_uk">ウクライナ語</string>
+    <string name="language_name_localized_it">イタリア語</string>
+    <string name="language_name_localized_ja">日本語</string>
+    <string name="language_name_localized_de">"ドイツ語 "</string>
+    <string name="language_name_localized_en">英語</string>
+    <string name="language_name_localized_es">スペイン語</string>
+    <string name="language_name_localized_zh_Hans">簡体字中国語</string>
+    <string name="language_name_localized_pt">ポルトガル語</string>
+    <string name="language_name_localized_cz">"チェコ語 "</string>
+    <string name="language_name_localized_fr">"フランス語 "</string>
+    <string name="language_name_localized_ru">"ロシア語 "</string>
+    <string name="language_name_localized_uk">ウクライナ語</string>
 </resources>

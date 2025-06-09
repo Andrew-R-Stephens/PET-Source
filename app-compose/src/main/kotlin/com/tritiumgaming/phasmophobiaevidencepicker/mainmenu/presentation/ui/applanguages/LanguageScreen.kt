@@ -92,7 +92,6 @@ private fun LanguageContent(
         )
 
         val columnState = rememberLazyListState()
-
         LazyColumn(
             modifier = Modifier
                 .padding(all = 8.dp)
@@ -104,12 +103,13 @@ private fun LanguageContent(
         ){
             items(
                 items = globalPreferencesViewModel.languageList.toList(),
-                key = { it.abbreviation }
+                key = { it.code }
             ) {
+                val languageCode = stringResource(it.code)
                 LanguageItem(
                     language = it
                 ) {
-                    globalPreferencesViewModel.setCurrentLanguageCode(it.abbreviation)
+                    globalPreferencesViewModel.setCurrentLanguageCode(languageCode)
                 }
 
             }
@@ -125,10 +125,11 @@ private fun LanguageItem(
     language: LanguageEntity,
     onClick: () -> Unit
 ) {
-    val rememberName by remember{ mutableIntStateOf(language.name) }
+    val rememberName by remember{ mutableIntStateOf(language.localizedName) }
+    val languageCode = stringResource(language.code)
 
     val color =
-        if(language.abbreviation == AppCompatDelegate.getApplicationLocales()[0]?.language) {
+        if(languageCode == AppCompatDelegate.getApplicationLocales()[0]?.language) {
             LocalPalette.current.textFamily.emphasis
         } else {
             LocalPalette.current.textFamily.body
@@ -163,7 +164,7 @@ private fun LanguageItem(
                 text = stringResource(rememberName),
                 style = LocalTypography.current.secondary.regular.copy(
                     color = color,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Start
                 ),
                 maxLines = 1,
                 fontSize = 18.sp
@@ -177,7 +178,7 @@ private fun LanguageItem(
                 text = "( ${stringResource(language.nativeName)} )",
                 style = LocalTypography.current.secondary.regular.copy(
                     color = color,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.End
                 ),
                 maxLines = 1,
                 fontSize = 18.sp

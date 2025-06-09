@@ -1010,15 +1010,15 @@
     <string name="marketplace_purchase_equip">Equipaggiare il tema %1$s?</string>
     <string name="maps_size_title_small">Piccolo</string>
     <string name="maps_size_title_medium">Medio</string>
-    <string name="language_fullName_zh_Hans">Cinese (Semplificato)</string>
-    <string name="language_fullName_cz">Ceco</string>
-    <string name="language_fullName_de">Tedesco</string>
-    <string name="language_fullName_fr">Francese</string>
-    <string name="language_fullName_it">Italiano</string>
-    <string name="language_fullName_en">Inglese</string>
-    <string name="language_fullName_es">Spagnolo</string>
-    <string name="language_fullName_ja">Giapponese</string>
-    <string name="language_fullName_pt">Portoghese</string>
-    <string name="language_fullName_ru">Russo</string>
-    <string name="language_fullName_uk">Ucraino</string>
+    <string name="language_name_localized_zh_Hans">Cinese (Semplificato)</string>
+    <string name="language_name_localized_cz">Ceco</string>
+    <string name="language_name_localized_de">Tedesco</string>
+    <string name="language_name_localized_fr">Francese</string>
+    <string name="language_name_localized_it">Italiano</string>
+    <string name="language_name_localized_en">Inglese</string>
+    <string name="language_name_localized_es">Spagnolo</string>
+    <string name="language_name_localized_ja">Giapponese</string>
+    <string name="language_name_localized_pt">Portoghese</string>
+    <string name="language_name_localized_ru">Russo</string>
+    <string name="language_name_localized_uk">Ucraino</string>
 </resources>

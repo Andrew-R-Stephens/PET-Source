@@ -228,15 +228,15 @@
     <string name="alert_marketplace_purchase_failure_skin_credits">Недостатньо кредитів для покупки!</string>
     <string name="maps_size_title_small">Маленький</string>
     <string name="maps_size_title_medium">Середній</string>
-    <string name="language_fullName_de">Німецька мова</string>
-    <string name="language_fullName_en">англійська мова</string>
-    <string name="language_fullName_es">Іспанська мова</string>
-    <string name="language_fullName_fr">Французька мова</string>
-    <string name="language_fullName_it">Португальська мова</string>
-    <string name="language_fullName_ja">Японська мова</string>
-    <string name="language_fullName_pt">Португальська мова</string>
-    <string name="language_fullName_ru">Російська мова</string>
-    <string name="language_fullName_uk">українська</string>
-    <string name="language_fullName_zh_Hans">Китайська мова (Спрощена)</string>
-    <string name="language_fullName_cz">Чеська мова</string>
+    <string name="language_name_localized_de">Німецька мова</string>
+    <string name="language_name_localized_en">англійська мова</string>
+    <string name="language_name_localized_es">Іспанська мова</string>
+    <string name="language_name_localized_fr">Французька мова</string>
+    <string name="language_name_localized_it">Португальська мова</string>
+    <string name="language_name_localized_ja">Японська мова</string>
+    <string name="language_name_localized_pt">Португальська мова</string>
+    <string name="language_name_localized_ru">Російська мова</string>
+    <string name="language_name_localized_uk">українська</string>
+    <string name="language_name_localized_zh_Hans">Китайська мова (Спрощена)</string>
+    <string name="language_name_localized_cz">Чеська мова</string>
 </resources>

@@ -2,13 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteFirestoreDataSource.PaletteQueryOptions
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.common.repository.MarketCatalogRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import kotlinx.coroutines.flow.Flow
 
 interface MarketPaletteRepository:

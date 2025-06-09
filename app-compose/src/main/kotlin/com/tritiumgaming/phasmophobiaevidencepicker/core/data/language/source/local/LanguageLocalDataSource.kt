@@ -14,6 +14,24 @@ class LanguageLocalDataSource(
 
     override fun getAvailableLanguages(): Result<List<LanguageDto>> {
 
+        Log.d("Language", "Fetching Languages")
+
+        // OVERRIDE DEFAULT LANGUAGE
+        languages.find { language ->
+            applicationContext.getString(language.code)
+                .equals(Locale.getDefault().language, ignoreCase = true)
+        }?.let { language ->
+            DEFAULT_LANGUAGE = applicationContext.getString(language.code)
+        }
+
+        Log.d("Language", "Finished fetching ${languages.size} languages")
+
+        return Result.success(languages)
+    }
+
+    /*
+    override fun getAvailableLanguages(): Result<List<LanguageDto>> {
+
         val resources = applicationContext.resources
 
         Log.d("Language", "Fetching Languages")
@@ -50,5 +68,67 @@ class LanguageLocalDataSource(
 
         return Result.success(languages)
     }
+    */
 
 }
+
+val languages: List<LanguageDto>
+    get() = listOf(
+
+        LanguageDto(
+            localizedName = R.string.language_name_localized_zh_Hans,
+            nativeName = R.string.language_name_native_zh_Hans,
+            code = R.string.language_code_zh_Hans
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_cz,
+            nativeName = R.string.language_name_native_cz,
+            code = R.string.language_code_cz
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_de,
+            nativeName = R.string.language_name_native_de,
+            code = R.string.language_code_de
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_en,
+            nativeName = R.string.language_name_native_en,
+            code = R.string.language_code_en
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_es,
+            nativeName = R.string.language_name_native_es,
+            code = R.string.language_code_es
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_fr,
+            nativeName = R.string.language_name_native_fr,
+            code = R.string.language_code_fr
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_it,
+            nativeName = R.string.language_name_native_it,
+            code = R.string.language_code_it
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_ja,
+            nativeName = R.string.language_name_native_ja,
+            code = R.string.language_code_ja
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_pt,
+            nativeName = R.string.language_name_native_pt,
+            code = R.string.language_code_pt
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_ru,
+            nativeName = R.string.language_name_native_ru,
+            code = R.string.language_code_ru
+        ),
+        LanguageDto(
+            localizedName = R.string.language_name_localized_uk,
+            nativeName = R.string.language_name_native_uk,
+            code = R.string.language_code_uk
+        )
+
+    )

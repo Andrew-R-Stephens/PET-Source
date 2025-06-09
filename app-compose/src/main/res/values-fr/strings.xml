@@ -1539,16 +1539,16 @@
     <string name="marketplace_purchase_equip">Équiper le thème %1$s ?</string>
     <string name="maps_size_title_small">Petit</string>
     <string name="maps_size_title_medium">Moyen</string>
-    <string name="language_fullName_zh_Hans">Chinois (Simplifié)</string>
-    <string name="language_fullName_es">Espagnol</string>
-    <string name="language_fullName_fr">Français</string>
-    <string name="language_fullName_de">Allemand</string>
-    <string name="language_fullName_en">Anglais</string>
-    <string name="language_fullName_cz">Tchèque</string>
-    <string name="language_fullName_it">Italien</string>
-    <string name="language_fullName_ja">Japonais</string>
-    <string name="language_fullName_pt">Portugais</string>
-    <string name="language_fullName_ru">Russe</string>
-    <string name="language_fullName_uk">Ukrainien</string>
+    <string name="language_name_localized_zh_Hans">Chinois (Simplifié)</string>
+    <string name="language_name_localized_es">Espagnol</string>
+    <string name="language_name_localized_fr">Français</string>
+    <string name="language_name_localized_de">Allemand</string>
+    <string name="language_name_localized_en">Anglais</string>
+    <string name="language_name_localized_cz">Tchèque</string>
+    <string name="language_name_localized_it">Italien</string>
+    <string name="language_name_localized_ja">Japonais</string>
+    <string name="language_name_localized_pt">Portugais</string>
+    <string name="language_name_localized_ru">Russe</string>
+    <string name="language_name_localized_uk">Ukrainien</string>
 
 </resources>

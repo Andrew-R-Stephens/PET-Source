@@ -5,40 +5,40 @@
         LANGUAGE FRAGMENT
     -->
     <!-- Languages -->
-    <string name="language_nativeName_zh_Hans" translatable="false">简体中文</string>
-    <string name="language_nativeName_cz" translatable="false">Čeština</string>
-    <string name="language_nativeName_de" translatable="false">Deutsch</string>
-    <string name="language_nativeName_en" translatable="false">English</string>
-    <string name="language_nativeName_es" translatable="false">Español</string>
-    <string name="language_nativeName_fr" translatable="false">Français</string>
-    <string name="language_nativeName_it" translatable="false">Italiano</string>
-    <string name="language_nativeName_ja" translatable="false">日本語</string>
-    <string name="language_nativeName_pt" translatable="false">Português</string>
-    <string name="language_nativeName_ru" translatable="false">Русский язык</string>
-    <string name="language_nativeName_uk" translatable="false">українська</string>
+    <string name="language_name_native_zh_Hans" translatable="false">简体中文</string>
+    <string name="language_name_native_cz" translatable="false">Čeština</string>
+    <string name="language_name_native_de" translatable="false">Deutsch</string>
+    <string name="language_name_native_en" translatable="false">English</string>
+    <string name="language_name_native_es" translatable="false">Español</string>
+    <string name="language_name_native_fr" translatable="false">Français</string>
+    <string name="language_name_native_it" translatable="false">Italiano</string>
+    <string name="language_name_native_ja" translatable="false">日本語</string>
+    <string name="language_name_native_pt" translatable="false">Português</string>
+    <string name="language_name_native_ru" translatable="false">Русский язык</string>
+    <string name="language_name_native_uk" translatable="false">українська</string>
 
-    <string name="language_fullName_zh_Hans">Chinese (Simplified)</string>
-    <string name="language_fullName_cz">Czech</string>
-    <string name="language_fullName_de">German</string>
-    <string name="language_fullName_en">English</string>
-    <string name="language_fullName_es">Español</string>
-    <string name="language_fullName_fr">Français</string>
-    <string name="language_fullName_it">Italian</string>
-    <string name="language_fullName_ja">Japanese</string>
-    <string name="language_fullName_pt">Portuguese</string>
-    <string name="language_fullName_ru">Russian</string>
-    <string name="language_fullName_uk">Ukrainian</string>
+    <string name="language_code_zh_Hans" translatable="false">zh</string>
+    <string name="language_code_cz" translatable="false">cs</string>
+    <string name="language_code_en" translatable="false">en</string>
+    <string name="language_code_es" translatable="false">es</string>
+    <string name="language_code_fr" translatable="false">fr</string>
+    <string name="language_code_de" translatable="false">de</string>
+    <string name="language_code_it" translatable="false">it</string>
+    <string name="language_code_ja" translatable="false">ja</string>
+    <string name="language_code_pt" translatable="false">pt</string>
+    <string name="language_code_ru" translatable="false">ru</string>
+    <string name="language_code_uk" translatable="false">uk</string>
 
-    <string name="language_abbrName_zh_Hans" translatable="false">zh</string>
-    <string name="language_abbrName_cz" translatable="false">cs</string>
-    <string name="language_abbrName_en" translatable="false">en</string>
-    <string name="language_abbrName_es" translatable="false">es</string>
-    <string name="language_abbrName_fr" translatable="false">fr</string>
-    <string name="language_abbrName_de" translatable="false">de</string>
-    <string name="language_abbrName_it" translatable="false">it</string>
-    <string name="language_abbrName_ja" translatable="false">ja</string>
-    <string name="language_abbrName_pt" translatable="false">pt</string>
-    <string name="language_abbrName_ru" translatable="false">ru</string>
-    <string name="language_abbrName_uk" translatable="false">uk</string>
+    <string name="language_name_localized_zh_Hans">Chinese (Simplified)</string>
+    <string name="language_name_localized_cz">Czech</string>
+    <string name="language_name_localized_de">German</string>
+    <string name="language_name_localized_en">English</string>
+    <string name="language_name_localized_es">Español</string>
+    <string name="language_name_localized_fr">Français</string>
+    <string name="language_name_localized_it">Italian</string>
+    <string name="language_name_localized_ja">Japanese</string>
+    <string name="language_name_localized_pt">Portuguese</string>
+    <string name="language_name_localized_ru">Russian</string>
+    <string name="language_name_localized_uk">Ukrainian</string>
 
 </resources>

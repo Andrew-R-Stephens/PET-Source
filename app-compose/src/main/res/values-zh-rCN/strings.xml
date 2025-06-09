@@ -884,15 +884,15 @@
     <string name="marketplace_purchase_equip">装备 %1$s 主题？</string>
     <string name="maps_size_title_small">小的</string>
     <string name="maps_size_title_medium">中等的</string>
-    <string name="language_fullName_zh_Hans">简体中文</string>
-    <string name="language_fullName_it">意大利语</string>
-    <string name="language_fullName_ja">日语</string>
-    <string name="language_fullName_de">德语</string>
-    <string name="language_fullName_en">英文</string>
-    <string name="language_fullName_cz">捷克语</string>
-    <string name="language_fullName_es">西班牙语</string>
-    <string name="language_fullName_fr">法语</string>
-    <string name="language_fullName_pt">葡萄牙语</string>
-    <string name="language_fullName_ru">俄语</string>
-    <string name="language_fullName_uk">乌克兰语</string>
+    <string name="language_name_localized_zh_Hans">简体中文</string>
+    <string name="language_name_localized_it">意大利语</string>
+    <string name="language_name_localized_ja">日语</string>
+    <string name="language_name_localized_de">德语</string>
+    <string name="language_name_localized_en">英文</string>
+    <string name="language_name_localized_cz">捷克语</string>
+    <string name="language_name_localized_es">西班牙语</string>
+    <string name="language_name_localized_fr">法语</string>
+    <string name="language_name_localized_pt">葡萄牙语</string>
+    <string name="language_name_localized_ru">俄语</string>
+    <string name="language_name_localized_uk">乌克兰语</string>
 </resources>

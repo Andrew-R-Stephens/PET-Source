@@ -2371,15 +2371,15 @@
     <string name="marketplace_purchase_equip">Vybavit motiv %1$s?</string>
     <string name="maps_size_title_small">Malý</string>
     <string name="maps_size_title_medium">Střední</string>
-    <string name="language_fullName_zh_Hans">Čínština (Zjednodušená)</string>
-    <string name="language_fullName_de">Němčina</string>
-    <string name="language_fullName_en">Angličtina</string>
-    <string name="language_fullName_it">Italština</string>
-    <string name="language_fullName_ja">Japonština</string>
-    <string name="language_fullName_pt">Portugalština</string>
-    <string name="language_fullName_es">Španělština</string>
-    <string name="language_fullName_cz">Čeština</string>
-    <string name="language_fullName_fr">Francouzština</string>
-    <string name="language_fullName_ru">Ruština</string>
-    <string name="language_fullName_uk">Ukrajinština</string>
+    <string name="language_name_localized_zh_Hans">Čínština (Zjednodušená)</string>
+    <string name="language_name_localized_de">Němčina</string>
+    <string name="language_name_localized_en">Angličtina</string>
+    <string name="language_name_localized_it">Italština</string>
+    <string name="language_name_localized_ja">Japonština</string>
+    <string name="language_name_localized_pt">Portugalština</string>
+    <string name="language_name_localized_es">Španělština</string>
+    <string name="language_name_localized_cz">Čeština</string>
+    <string name="language_name_localized_fr">Francouzština</string>
+    <string name="language_name_localized_ru">Ruština</string>
+    <string name="language_name_localized_uk">Ukrajinština</string>
 </resources>
