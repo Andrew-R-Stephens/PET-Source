@@ -1,6 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local
 
 import android.content.Context
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.dto.LocalNewsletterInboxDto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterLocalDataSource
@@ -9,41 +11,58 @@ class NewsletterLocalDataSource(
     private val applicationContext: Context
 ): NewsletterLocalDataSource {
 
+    private val inboxResourcesDto: List<NewsletterInboxResourceDto>
+        get() = listOf(
+            // General Inbox
+            NewsletterInboxResourceDto(
+                id = R.string.newsletter_inbox_id_general,
+                title = R.string.newsletter_inbox_title_general,
+                url = R.string.preference_general_news_link,
+                icon = R.drawable.ic_news
+            ),
+            // PET Inbox
+            NewsletterInboxResourceDto(
+                id = R.string.newsletter_inbox_id_pet,
+                title = R.string.newsletter_inbox_title_pet,
+                url = R.string.preference_pet_changelog_link,
+                icon = R.drawable.icon_logo_app
+            ),
+            // Official Phasmophobia Inbox
+            NewsletterInboxResourceDto(
+                id = R.string.newsletter_inbox_id_phasmophobia,
+                title = R.string.newsletter_inbox_title_phasmophobia,
+                url = R.string.preference_phasmophobia_changelog_link,
+                icon = R.drawable.icon_logo_phasmophobia
+            )
+        )
+
     override fun fetchInboxes(): Result<List<LocalNewsletterInboxDto>> {
+
         val resources = applicationContext.resources
 
         val inboxes: MutableList<LocalNewsletterInboxDto> = mutableListOf()
 
-        val newslettersTypedArray = resources.obtainTypedArray(R.array.newsletters_array)
-        val idKey = 0
-        val titleKey = 1
-        val urlKey = 2
-        val iconKey = 3
-        for (i in 0 until newslettersTypedArray.length()) {
-
-            val newsletterTypedArrayID = newslettersTypedArray.getResourceId(i, 0)
-            val newsletterTypedArray = resources.obtainTypedArray(newsletterTypedArrayID)
-
-            val id = newsletterTypedArray.getResourceId(idKey, 0)
-            val title = newsletterTypedArray.getResourceId(titleKey, 0)
-            val url = newsletterTypedArray.getResourceId(urlKey, 0)
-            val icon = newsletterTypedArray.getResourceId(iconKey, 0)
+        inboxResourcesDto.forEach { resDto ->
 
             inboxes.add(
                LocalNewsletterInboxDto(
-                   id = resources.getString(id),
-                   title = title,
-                   url = resources.getString(url),
-                   icon = icon
+                   id = resources.getString(resDto.id),
+                   title = resDto.title,
+                   url = resources.getString(resDto.url),
+                   icon = resDto.icon
                )
             )
 
-            newsletterTypedArray.recycle()
-
         }
-        newslettersTypedArray.recycle()
 
         return Result.success(inboxes)
     }
 
 }
+
+private data class NewsletterInboxResourceDto(
+    @StringRes val id: Int,
+    @StringRes val title: Int,
+    @StringRes val url: Int,
+    @DrawableRes val icon: Int
+)

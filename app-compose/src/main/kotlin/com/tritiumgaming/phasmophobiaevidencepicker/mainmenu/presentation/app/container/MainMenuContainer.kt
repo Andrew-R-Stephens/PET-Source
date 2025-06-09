@@ -25,7 +25,7 @@ class MainMenuContainer(
 ) {
 
     // App Info
-    private val appInfoLocalDataSource: AppInfoDataSource = AppInfoLocalDataSource(applicationContext)
+    private val appInfoLocalDataSource: AppInfoDataSource = AppInfoLocalDataSource()
     val appInfoRepository: AppInfoRepositoryImpl =
         AppInfoRepositoryImpl(
             localSource = appInfoLocalDataSource

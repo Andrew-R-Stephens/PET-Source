@@ -1,27 +1,36 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.local
 
-import android.content.Context
+import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ResourceUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto.MissionDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
 
 class MissionLocalDataSource(
-    private val applicationContext: Context
 ): MissionDataSource {
 
-    override fun fetchMissions(): Result<List<Mission>> {
+    val missionResources
+        get() = listOf(
+            MissionResource(data = R.string.objective_info_ghostevent),
+            MissionResource(data = R.string.objective_info_ghostphotograph),
+            MissionResource(data = R.string.objective_info_emfreader),
+            MissionResource(data = R.string.objective_info_motionsensor),
+            MissionResource(data = R.string.objective_info_smudgestick),
+            MissionResource(data = R.string.objective_info_crucifix),
+            MissionResource(data = R.string.objective_info_salt),
+            MissionResource(data = R.string.objective_info_escapehunt),
+            MissionResource(data = R.string.objective_info_repelwithsmudge),
+            MissionResource(data = R.string.objective_info_extinguishcandle),
+            MissionResource(data = R.string.objective_info_lowsanity)
+        )
 
-        val resources = applicationContext.resources
+    override fun get(): Result<List<MissionDto>> {
 
-        val objectivesList = mutableListOf<Mission>()
+        val objectivesList = mutableListOf<MissionDto>()
 
-        val missionsTypedArray = resources.obtainTypedArray(R.array.tasks_objectives_array)
-        val missionsArray =
-            ResourceUtils.intArrayFromTypedArray(resources, missionsTypedArray)
-
-        for (i in missionsArray.indices) {
-            objectivesList.add(Mission(missionsArray[i]))
+        missionResources.forEach { resDto ->
+            objectivesList.add(
+                MissionDto(resDto.data)
+            )
         }
 
         return Result.success(objectivesList)
@@ -29,3 +38,7 @@ class MissionLocalDataSource(
     }
 
 }
+
+data class MissionResource(
+    @StringRes val data: Int
+)

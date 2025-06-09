@@ -1,28 +1,42 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local
 
-import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.source.AppInfoDataSource
 
+class AppInfoLocalDataSource(): AppInfoDataSource {
 
-class AppInfoLocalDataSource(
-    private val applicationContext: Context
-): AppInfoDataSource {
+    private val specialThanksResourceDto
+        get() = listOf(
+            SpecialThanksResourceDto(
+                username = "Bravo-1"
+            ),
+            SpecialThanksResourceDto(
+                username = "DoctorCrow"
+            ),
+            SpecialThanksResourceDto(
+                username = "Edahix"
+            ),
+            SpecialThanksResourceDto(
+                username = "Miss Shuee"
+            ),
+            SpecialThanksResourceDto(
+                username = "HAINER"
+            )
+        )
+
 
     override fun fetchSpecialThanks(): List<String> {
 
-        val resources = applicationContext.resources
-
         val specialThanksList = mutableListOf<String>()
 
-        val typedArray = resources.obtainTypedArray(R.array.aboutinfo_specialthanks_list)
-        for (i in 0 until typedArray.length()) {
-            typedArray.getString(i)?.let { name ->
-                specialThanksList.add(name)
-            }
+        specialThanksResourceDto.forEach { resDto ->
+            specialThanksList.add(resDto.username)
         }
-        typedArray.recycle()
 
         return specialThanksList
     }
+
 }
+
+data class SpecialThanksResourceDto(
+    val username: String
+)

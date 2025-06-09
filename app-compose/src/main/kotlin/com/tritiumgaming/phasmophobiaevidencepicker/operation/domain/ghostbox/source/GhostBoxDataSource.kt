@@ -1,9 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.source
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.dto.GhostBoxResponseDto
+
 interface GhostBoxDataSource {
 
-    fun fetchGeneralRequests(): Result<IntArray>
-    fun fetchSpiritBoxRequests(): Result<IntArray>
-    fun fetchOuijaBoardRequests(): Result<IntArray>
+    fun fetchGeneralRequests(): Result<List<GhostBoxResponseDto>>
+    fun fetchSpiritBoxRequests(): Result<List<GhostBoxResponseDto>>
+    fun fetchOuijaBoardRequests(): Result<List<GhostBoxResponseDto>>
 
 }

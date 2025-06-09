@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.model
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.model
 
 enum class GhostBoxType(val title: String) {
     GENERAL("General"),

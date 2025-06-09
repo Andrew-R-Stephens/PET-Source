@@ -110,7 +110,7 @@ class OperationContainer(
         )
 
     // Mission
-    val missionLocalDataSource: MissionDataSource = MissionLocalDataSource(applicationContext)
+    val missionLocalDataSource: MissionDataSource = MissionLocalDataSource()
     val missionRepository: MissionRepository =
         MissionRepositoryImpl(
             localSource = missionLocalDataSource

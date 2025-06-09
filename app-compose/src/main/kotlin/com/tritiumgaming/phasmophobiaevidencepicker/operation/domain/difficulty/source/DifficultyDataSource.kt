@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.source
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.dto.DifficultyModelDto
 
 interface DifficultyDataSource {
 
-    fun fetchDifficulties(): Result<List<DifficultyModel>>
+    fun fetchDifficulties(): Result<List<DifficultyModelDto>>
 
 }
