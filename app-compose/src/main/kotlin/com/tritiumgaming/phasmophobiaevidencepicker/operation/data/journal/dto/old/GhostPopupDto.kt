@@ -1,8 +1,8 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.old
 
 import androidx.annotation.StringRes
 
-class GhostPopup(
+class GhostPopupDto(
     @StringRes val info: Int = 0,
     @StringRes val strength: Int = 0,
     @StringRes val weakness: Int = 0,

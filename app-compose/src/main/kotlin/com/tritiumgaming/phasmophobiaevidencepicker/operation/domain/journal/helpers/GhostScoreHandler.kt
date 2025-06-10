@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers
 
 import android.util.Log
 import androidx.compose.runtime.Stable
@@ -179,7 +179,7 @@ class GhostScoreHandler(
 
             evidenceHandler?.ruledEvidence?.value?.forEach { ruledEvidence ->
                 var isContained = false
-                for (normalEvidence in ghostModel.evidence.normalEvidenceList) {
+                for (normalEvidence in ghostModel.normalEvidenceList) {
                     if (ruledEvidence.evidence == normalEvidence) {
                         isContained = true
                         break

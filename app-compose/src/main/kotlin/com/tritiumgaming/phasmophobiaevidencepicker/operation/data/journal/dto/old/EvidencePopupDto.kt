@@ -1,10 +1,10 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.old
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 
-class EvidencePopup(
+class EvidencePopupDto(
     val id: String = "0",
     @IntegerRes val cost: Int = 0,
     @IntegerRes val unlock_level: IntArray = intArrayOf(),

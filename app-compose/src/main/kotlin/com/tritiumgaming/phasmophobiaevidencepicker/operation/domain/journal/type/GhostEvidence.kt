@@ -3,18 +3,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.ty
 import androidx.compose.runtime.Stable
 
 class GhostEvidence(
+    val ghostId: String = "0",
     @Stable
-    val normalEvidenceList: ArrayList<EvidenceType> = ArrayList<EvidenceType>(),
+    val normalEvidenceList: List<EvidenceType>,
     @Stable
-    val strictEvidenceList: ArrayList<EvidenceType> = ArrayList<EvidenceType>()
+    val strictEvidenceList: List<EvidenceType>
 ) {
-    fun addNormalEvidence(e: EvidenceType) {
-        normalEvidenceList.add(e)
-    }
-
-    fun addStrictEvidence(e: EvidenceType) {
-        strictEvidenceList.add(e)
-    }
 
     override fun toString(): String {
         val s = StringBuilder()
@@ -23,11 +17,5 @@ class GhostEvidence(
         for (e in strictEvidenceList) { s.append(e.name).append(", ") }
         return s.toString()
     }
-
-    data class GhostEvidenceDto(
-        val ghostId: String = "0",
-        val normalEvidences: MutableList<String> = mutableListOf(),
-        val strictEvidences: MutableList<String> = mutableListOf()
-    )
 
 }

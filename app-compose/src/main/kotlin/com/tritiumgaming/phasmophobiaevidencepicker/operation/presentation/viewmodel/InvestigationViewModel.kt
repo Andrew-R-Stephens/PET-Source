@@ -7,14 +7,12 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.JournalRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.new.JournalRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.evidence.repository.EvidenceRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghost.repository.GhostRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.InvestigationJournal
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.RuledEvidence
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.RuledEvidence.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.InvestigationJournal
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.RuledEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostType
@@ -29,15 +27,13 @@ import kotlinx.coroutines.flow.StateFlow
 
 class InvestigationViewModel(
     journalRepository: JournalRepository,
-    ghostRepository: GhostRepository = journalRepository.ghostRepository,
-    evidenceRepository: EvidenceRepository = journalRepository.evidenceRepository,
     difficultyRepository: DifficultyRepository,
     mapRepository: SimpleMapRepository,
     private val codexRepository: CodexRepository
 ): ViewModel() {
 
-    private val ghosts = ghostRepository.fetchGhosts().getOrDefault(emptyList())
-    private val evidences = evidenceRepository.fetchEvidence().getOrDefault(emptyList())
+    private val ghosts = journalRepository.fetchGhosts().getOrDefault(emptyList())
+    private val evidences = journalRepository.fetchEvidence().getOrDefault(emptyList())
 
     /*
      * HANDLERS / CONTROLLERS

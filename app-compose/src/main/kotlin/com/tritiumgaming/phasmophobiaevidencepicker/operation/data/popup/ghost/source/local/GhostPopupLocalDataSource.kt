@@ -53,10 +53,10 @@ class GhostPopupLocalDataSource(
         // Set Popup
         val record = GhostPopupRecord(
             id = resources.getString(id),
-            infoArray = info,
-            strengthArray = strength,
-            weaknessArray = weakness,
-            huntDataArray = huntData
+            generalInfo = info,
+            strengthData = strength,
+            weaknessData = weakness,
+            huntData = huntData
         )
 
         return record

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostType

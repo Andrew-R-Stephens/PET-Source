@@ -4,10 +4,9 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexEquipmentGroupDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexEquipmentGroupItemDto
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import kotlin.collections.List
 
 class CodexEquipmentLocalDataSource(
     val applicationContext: Context
