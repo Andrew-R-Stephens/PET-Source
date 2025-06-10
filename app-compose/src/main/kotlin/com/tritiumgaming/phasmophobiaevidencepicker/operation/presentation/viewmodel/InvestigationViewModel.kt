@@ -6,9 +6,6 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexAchievementsRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexEquipmentRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexPossessionsRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.JournalRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
@@ -32,8 +29,8 @@ import kotlinx.coroutines.flow.StateFlow
 
 class InvestigationViewModel(
     journalRepository: JournalRepository,
-    val ghostRepository: GhostRepository = journalRepository.ghostRepository,
-    val evidenceRepository: EvidenceRepository = journalRepository.evidenceRepository,
+    ghostRepository: GhostRepository = journalRepository.ghostRepository,
+    evidenceRepository: EvidenceRepository = journalRepository.evidenceRepository,
     difficultyRepository: DifficultyRepository,
     mapRepository: SimpleMapRepository,
     private val codexRepository: CodexRepository
@@ -59,13 +56,6 @@ class InvestigationViewModel(
     private var phaseHandler: PhaseHandler = PhaseHandler()
 
     private var sanityHandler: SanityHandler = SanityHandler()
-
-    val achievementsStoreModel: CodexAchievementsRepositoryImpl
-        get() = codexRepository.achievementsRepository as CodexAchievementsRepositoryImpl
-    val equipmentStoreModel: CodexEquipmentRepositoryImpl
-        get() = codexRepository.equipmentRepository as CodexEquipmentRepositoryImpl
-    val possessionsStoreModel: CodexPossessionsRepositoryImpl
-        get() = codexRepository.possessionsRepository as CodexPossessionsRepositoryImpl
 
     /*
      * UI STATES

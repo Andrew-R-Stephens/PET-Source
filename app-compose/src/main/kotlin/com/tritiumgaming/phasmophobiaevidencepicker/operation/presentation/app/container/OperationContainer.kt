@@ -3,9 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexAchievementsRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexEquipmentRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexPossessionsRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexAchievementsLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexEquipmentLocalDataSource
@@ -31,8 +28,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.popup.evidenc
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.popup.ghost.repository.GhostPopupRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.popup.ghost.source.local.GhostPopupLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexTypeRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.source.CodexDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.source.DifficultyDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.evidence.repository.EvidenceRepository
@@ -141,35 +136,23 @@ class OperationContainer(
      */
 
     // Achievements
-    val codexAchievementsLocalDataSource: CodexDataSource =
-        CodexAchievementsLocalDataSource(applicationContext)
-    val achievementsRepository: CodexTypeRepository =
-        CodexAchievementsRepositoryImpl(
-            localSource = codexAchievementsLocalDataSource
-        )
+    val codexAchievementsLocalDataSource: CodexAchievementsLocalDataSource =
+        CodexAchievementsLocalDataSource()
 
     // Equipment
-    val codexEquipmentLocalDataSource: CodexDataSource =
+    val codexEquipmentLocalDataSource: CodexEquipmentLocalDataSource =
         CodexEquipmentLocalDataSource(applicationContext)
-    val equipmentRepository: CodexTypeRepository =
-        CodexEquipmentRepositoryImpl(
-            localSource = codexEquipmentLocalDataSource
-        )
 
     //Possessions
-    val codexPossessionsLocalDataSource: CodexDataSource =
-        CodexPossessionsLocalDataSource(applicationContext)
-    val possessionsRepository: CodexTypeRepository =
-        CodexPossessionsRepositoryImpl(
-            localSource = codexPossessionsLocalDataSource
-        )
+    val codexPossessionsLocalDataSource: CodexPossessionsLocalDataSource =
+        CodexPossessionsLocalDataSource()
 
     // Codex
     val codexRepository: CodexRepository =
         CodexRepositoryImpl(
-            achievementsRepository = achievementsRepository,
-            equipmentRepository = equipmentRepository,
-            possessionsRepository = possessionsRepository
+            achievementsLocalDataSource = codexAchievementsLocalDataSource,
+            equipmentLocalDataSource = codexEquipmentLocalDataSource,
+            possessionsLocalDataSource = codexPossessionsLocalDataSource
         )
 
 }

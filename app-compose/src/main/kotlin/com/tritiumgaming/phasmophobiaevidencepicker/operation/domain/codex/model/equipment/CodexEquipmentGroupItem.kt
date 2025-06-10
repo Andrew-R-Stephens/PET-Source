@@ -1,31 +1,22 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment
 
 import android.content.Context
+import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 
-class CodexEquipmentItem : CodexGroups.CodexGroup.CodexGroupItem() {
+data class CodexEquipmentGroupItem(
+    @DrawableRes val image: Int,
+    @StringRes val flavor: Int,
+    @StringRes val info: Int,
+    @IntegerRes var upgradeCostData: Int = 0,
+    @IntegerRes var upgradeLevelData: Int = 0,
+    @StringRes val positiveAttributes: List<Int> = ArrayList(),
+    @StringRes val negativeAttributes: List<Int> = ArrayList()
+) {
 
-    @IntegerRes var upgradeCostData: Int = 0
-    @IntegerRes var upgradeLevelData: Int = 0
-        private set
-    @StringRes val positiveAttributes: ArrayList<Int> = ArrayList()
-    @StringRes val negativeAttributes: ArrayList<Int> = ArrayList()
-
-    fun setUpgradeLevel(@IntegerRes levelData: Int) {
-        this.upgradeLevelData = levelData
-    }
-
-    fun addPositiveAttribute(value: Int) {
-        positiveAttributes.add(value)
-    }
-
-    fun addNegativeAttribute(value: Int) {
-        negativeAttributes.add(value)
-    }
-
-    override fun getAllAttributesAsFormattedHTML(c: Context): String {
+    fun getAllAttributesAsFormattedHTML(c: Context): String {
         val pos = c.getString(R.string.shop_equipment_attribute_opinion_positive)
         val neg = c.getString(R.string.shop_equipment_attribute_opinion_negative)
         val invsp = "&nbsp;"
@@ -42,5 +33,4 @@ class CodexEquipmentItem : CodexGroups.CodexGroup.CodexGroupItem() {
 
         return out.toString()
     }
-
 }

@@ -1,25 +1,30 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.toDomain
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexAchievementsLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexEquipmentLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexPossessionsLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements.CodexAchievementsGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment.CodexEquipmentGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.possessions.CodexPossessionsGroup
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexTypeRepository
 
 class CodexRepositoryImpl(
-    override val achievementsRepository: CodexTypeRepository,
-    override val equipmentRepository: CodexTypeRepository,
-    override val possessionsRepository: CodexTypeRepository
+    private val achievementsLocalDataSource: CodexAchievementsLocalDataSource,
+    private val equipmentLocalDataSource: CodexEquipmentLocalDataSource,
+    private val possessionsLocalDataSource: CodexPossessionsLocalDataSource
 ): CodexRepository {
 
-    override fun fetchAchievements(): Result<CodexGroups> {
-        return achievementsRepository.fetchItems()
+    override fun fetchAchievements(): Result<List<CodexAchievementsGroup>> {
+        return achievementsLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
     }
 
-    override fun fetchEquipment(): Result<CodexGroups> {
-        return equipmentRepository.fetchItems()
+    override fun fetchEquipment(): Result<List<CodexEquipmentGroup>> {
+        return equipmentLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
     }
 
-    override fun fetchPossessions(): Result<CodexGroups> {
-        return possessionsRepository.fetchItems()
+    override fun fetchPossessions(): Result<List<CodexPossessionsGroup>> {
+        return possessionsLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
     }
 
 }

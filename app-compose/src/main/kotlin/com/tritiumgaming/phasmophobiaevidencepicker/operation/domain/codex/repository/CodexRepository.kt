@@ -1,15 +1,13 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.CodexGroups
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements.CodexAchievementsGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment.CodexEquipmentGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.possessions.CodexPossessionsGroup
 
 interface CodexRepository {
 
-    val achievementsRepository: CodexTypeRepository
-    val equipmentRepository: CodexTypeRepository
-    val possessionsRepository: CodexTypeRepository
-
-    fun fetchAchievements(): Result<CodexGroups>
-    fun fetchEquipment(): Result<CodexGroups>
-    fun fetchPossessions(): Result<CodexGroups>
+    fun fetchAchievements(): Result<List<CodexAchievementsGroup>>
+    fun fetchEquipment(): Result<List<CodexEquipmentGroup>>
+    fun fetchPossessions(): Result<List<CodexPossessionsGroup>>
 
 }
