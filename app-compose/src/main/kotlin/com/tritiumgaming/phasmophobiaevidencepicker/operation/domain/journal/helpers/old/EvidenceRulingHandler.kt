@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
@@ -6,7 +6,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.RuledEvidence.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

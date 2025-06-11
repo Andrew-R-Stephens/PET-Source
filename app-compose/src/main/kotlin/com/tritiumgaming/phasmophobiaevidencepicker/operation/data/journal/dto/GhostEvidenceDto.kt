@@ -9,7 +9,7 @@ data class GhostEvidenceDto(
 )
 
 fun GhostEvidenceDto.toGhostEvidence() = GhostEvidence(
-    ghostId = ghostDto.id,
+    ghost = ghostDto.toDomain(),
     normalEvidenceList = normalEvidences.toEvidenceType(),
     strictEvidenceList = strictEvidences.toEvidenceType()
 )

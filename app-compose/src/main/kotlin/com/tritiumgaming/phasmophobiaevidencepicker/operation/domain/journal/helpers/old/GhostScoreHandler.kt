@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old
 
 import android.util.Log
 import androidx.compose.runtime.Stable

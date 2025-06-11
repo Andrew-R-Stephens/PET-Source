@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mo
 import androidx.compose.runtime.Stable
 
 class GhostEvidence(
-    val ghostId: String = "0",
+    val ghost: GhostType,
     @Stable
     val normalEvidenceList: List<EvidenceType>,
     @Stable

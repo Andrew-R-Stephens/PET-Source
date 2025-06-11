@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.newvm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,12 +10,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.reposit
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.new.JournalRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.newhelpers.InvestigationJournal2
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.InvestigationJournal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.newmodel.RuledEvidence2
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.newmodel.RuledEvidence2.Ruling2
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidenceUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels.DifficultyCarouselHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels.MapCarouselHandler
@@ -25,15 +30,16 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.time
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
 import kotlinx.coroutines.flow.StateFlow
 
-class InvestigationViewModel(
-    journalRepository: JournalRepository,
+class InvestigationViewModel2(
+    private val fetchGhostsUseCase: FetchGhostsUseCase,
+    private val fetchEvidenceUseCase: FetchEvidenceUseCase,
     difficultyRepository: DifficultyRepository,
     mapRepository: SimpleMapRepository,
     private val codexRepository: CodexRepository
 ): ViewModel() {
 
-    private val ghosts = journalRepository.fetchGhosts().getOrDefault(emptyList())
-    private val evidences = journalRepository.fetchEvidence().getOrDefault(emptyList())
+    private val ghosts = fetchGhostsUseCase()
+    private val evidences = fetchEvidenceUseCase()
 
     /*
      * HANDLERS / CONTROLLERS
@@ -42,11 +48,8 @@ class InvestigationViewModel(
         MapCarouselHandler(mapRepository)
     private var difficultyHandler: DifficultyCarouselHandler =
         DifficultyCarouselHandler(difficultyRepository)
-    private var investigationJournal: InvestigationJournal =
-        InvestigationJournal(
-            ghosts,
-            evidences
-        )
+    private var investigationJournal: InvestigationJournal2 =
+        InvestigationJournal2(ghosts, evidences)
 
     private var timerHandler: TimerHandler = TimerHandler()
     private var phaseHandler: PhaseHandler = PhaseHandler()
@@ -89,14 +92,14 @@ class InvestigationViewModel(
         return evidences.find { it.id == evidenceId }
     }
 
-    fun getRuledEvidence(evidenceModel: EvidenceType): RuledEvidence? {
+    fun getRuledEvidence(evidenceModel: EvidenceType): RuledEvidence2? {
         return investigationJournal.getRuledEvidence(evidenceModel)
     }
-    fun setEvidenceRuling(evidenceIndex: Int, ruling: Ruling) {
+    fun setEvidenceRuling(evidenceIndex: Int, ruling: Ruling2) {
         investigationJournal.setEvidenceRuling(evidenceIndex, ruling)
         investigationJournal.reorderGhostScores(difficultyHandler)
     }
-    fun setEvidenceRuling(evidence: EvidenceType, ruling: Ruling) {
+    fun setEvidenceRuling(evidence: EvidenceType, ruling: Ruling2) {
         investigationJournal.setEvidenceRuling(evidence, ruling)
         investigationJournal.reorderGhostScores(difficultyHandler)
     }
@@ -210,9 +213,9 @@ class InvestigationViewModel(
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(InvestigationViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(InvestigationViewModel2::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return InvestigationViewModel(
+                return InvestigationViewModel2(
                     journalRepository = journalRepository,
                     difficultyRepository = difficultyRepository,
                     mapRepository = simpleMapRepository,
@@ -234,7 +237,7 @@ class InvestigationViewModel(
                 val mapRepository: SimpleMapRepository = appKeyContainer.simpleMapRepository
                 val codexRepository: CodexRepository = appKeyContainer.codexRepository
 
-                InvestigationViewModel(
+                InvestigationViewModel2(
                     journalRepository = journalRepository,
                     difficultyRepository = difficultyRepository,
                     mapRepository = mapRepository,

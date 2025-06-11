@@ -33,8 +33,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.GhostScoreHandler
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.RuledEvidence.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.GhostScoreHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 
