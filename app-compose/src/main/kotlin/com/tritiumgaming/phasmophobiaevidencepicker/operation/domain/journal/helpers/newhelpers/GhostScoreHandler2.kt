@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.update
 class GhostScoreHandler2(
     private val ghosts: List<GhostType>
 ) {
+/*
 
     private val _scores : MutableStateFlow<SnapshotStateList<GhostScore2>> =
         MutableStateFlow(mutableStateListOf())
@@ -43,7 +44,9 @@ class GhostScoreHandler2(
         return _scores.value.getOrNull(index)
     }
 
-    /** Order of Ghost IDs **/
+    */
+/** Order of Ghost IDs **//*
+
     private val _order: MutableStateFlow<SnapshotStateList<String>> =
         MutableStateFlow(mutableStateListOf())
     @Stable
@@ -126,5 +129,6 @@ class GhostScoreHandler2(
     init {
         initScores()
     }
+*/
 
 }

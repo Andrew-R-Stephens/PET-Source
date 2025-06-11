@@ -11,9 +11,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repos
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.newhelpers.InvestigationJournal2
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.InvestigationJournal
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
@@ -184,7 +181,7 @@ class InvestigationViewModel2(
     }
 
     fun resetInvestigationJournal() {
-        investigationJournal.reset(difficultyHandler)
+        investigationJournal.resetGhostScoreHandler(difficultyHandler)
     }
 
     fun resetPhaseHandler() {
