@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
 
 data class GhostEvidenceDto(
     val ghostDto: GhostDto,
@@ -8,13 +8,13 @@ data class GhostEvidenceDto(
     val strictEvidences: List<EvidenceTypeDto>
 )
 
-fun GhostEvidenceDto.toDomain() = GhostEvidence(
+fun GhostEvidenceDto.toGhostEvidence() = GhostEvidence(
     ghostId = ghostDto.id,
-    normalEvidenceList = normalEvidences.toDomain(),
-    strictEvidenceList = strictEvidences.toDomain()
+    normalEvidenceList = normalEvidences.toEvidenceType(),
+    strictEvidenceList = strictEvidences.toEvidenceType()
 )
 
-fun List<GhostEvidenceDto>.toDomain() = map {
-    it.toDomain()
+fun List<GhostEvidenceDto>.toGhostEvidence() = map {
+    it.toGhostEvidence()
 }
 

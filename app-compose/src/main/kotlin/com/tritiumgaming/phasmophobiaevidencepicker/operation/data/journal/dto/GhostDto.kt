@@ -1,18 +1,18 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto
 
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model.GhostPopupRecord
 
 data class GhostDto(
     val id: String,
     @StringRes val name: Int,
+    val normalEvidence: List<String>,
+    val strictEvidence: List<String>,
     @StringRes val info: Int,
     @StringRes val strengthData: Int,
     @StringRes val weaknessData: Int,
-    @StringRes val huntData: Int,
-    val normalEvidence: List<String>,
-    val strictEvidence: List<String>
+    @StringRes val huntData: Int
 )
 
 fun GhostDto.toDomain() = GhostType(

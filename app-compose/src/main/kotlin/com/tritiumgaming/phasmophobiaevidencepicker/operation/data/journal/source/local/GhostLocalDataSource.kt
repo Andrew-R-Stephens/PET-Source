@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.new
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local
 
 import android.content.Context
 import androidx.annotation.StringRes
@@ -358,17 +358,7 @@ class GhostLocalDataSource(
         val result: MutableList<GhostDto> = mutableListOf()
 
         ghostResource.forEach { resDto ->
-            val ghostDto = GhostDto(
-                id = applicationContext.getString(resDto.id),
-                name = resDto.name,
-                info = resDto.info,
-                strengthData = resDto.strengthData,
-                weaknessData = resDto.weaknessData,
-                huntData = resDto.huntData,
-                normalEvidence = resDto.normalEvidence.map { applicationContext.getString(it) },
-                strictEvidence = resDto.strictEvidence.map { applicationContext.getString(it) }
-            )
-            result.add(ghostDto)
+            result.add(resDto.toGhostDto())
         }
         return Result.success(emptyList())
 
@@ -383,6 +373,19 @@ class GhostLocalDataSource(
         @StringRes val huntData: Int,
         val normalEvidence: List<Int>,
         val strictEvidence: List<Int>,
+    )
+
+    private fun List<GhostResource>.toGhostDto() = map { it.toGhostDto() }
+
+    private fun GhostResource.toGhostDto() = GhostDto(
+        id = applicationContext.getString(id),
+        name = name,
+        normalEvidence = normalEvidence.map { applicationContext.getString(it) },
+        strictEvidence = strictEvidence.map { applicationContext.getString(it) },
+        info = info,
+        strengthData = strengthData,
+        weaknessData = weaknessData,
+        huntData = huntData
     )
 
 }

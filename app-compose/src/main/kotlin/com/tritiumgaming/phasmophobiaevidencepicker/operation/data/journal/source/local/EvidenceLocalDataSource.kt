@@ -1,13 +1,13 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.new
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local
 
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.EvidenceDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.EvidenceTierDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 
 class EvidenceLocalDataSource(
     private val applicationContext: Context

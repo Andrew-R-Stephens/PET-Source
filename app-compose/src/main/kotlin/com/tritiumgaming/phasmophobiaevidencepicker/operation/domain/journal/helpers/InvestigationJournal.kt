@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels.DifficultyCarouselHandler
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -11,7 +11,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.re
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.local.DifficultyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.new.JournalRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.new.EvidenceLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.new.GhostLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.GhostLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.repository.ComplexMapRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalService

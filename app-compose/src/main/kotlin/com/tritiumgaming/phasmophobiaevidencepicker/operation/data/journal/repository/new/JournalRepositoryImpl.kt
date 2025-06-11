@@ -2,13 +2,15 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repo
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostEvidenceDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.toDomain
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.toLocal
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.toEvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.toEvidenceTypeDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.toGhostEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostEvidence
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.GhostType
 
 //TODO "Not yet implemented"
 class JournalRepositoryImpl(
@@ -29,7 +31,7 @@ class JournalRepositoryImpl(
 
         result.exceptionOrNull()?.printStackTrace()
 
-        return result.map { it.toDomain() }
+        return result.map { it.toEvidenceType() }
     }
 
     override fun fetchGhostEvidence(): Result<List<GhostEvidence>> {
@@ -42,14 +44,14 @@ class JournalRepositoryImpl(
         evidenceResult.exceptionOrNull()?.printStackTrace()
         val evidenceList = evidenceResult.getOrDefault(emptyList())
 
-        val ghostEvidenceDtolist: List<GhostEvidenceDto> = ghostList.map { ghostDto ->
+        val ghostEvidenceDtoList: List<GhostEvidenceDto> = ghostList.map { ghostDto ->
 
             val normalEvidence = ghostDto.normalEvidence.map { evidence ->
-                evidenceList.first { it.id == evidence }.toLocal()
+                evidenceList.first { it.id == evidence }.toEvidenceTypeDto()
             }
 
             val strictEvidence = ghostDto.strictEvidence.map { evidence ->
-                evidenceList.first { it.id == evidence }.toLocal()
+                evidenceList.first { it.id == evidence }.toEvidenceTypeDto()
             }
 
             GhostEvidenceDto(
@@ -60,7 +62,7 @@ class JournalRepositoryImpl(
 
         }
 
-        return Result.success(ghostEvidenceDtolist.toDomain())
+        return Result.success(ghostEvidenceDtoList.toGhostEvidence())
 
     }
 

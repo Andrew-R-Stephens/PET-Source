@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
