@@ -11,25 +11,19 @@ class SimpleMapRepositoryImpl(
     val localSource: SimpleMapDataSource
 ): SimpleMapRepository {
 
-    var maps: List<MapInteractModel> = emptyList()
-    var modifiers: List<MapSizeModel> = emptyList()
-
-    val mapThumbnails: List<Int>
-        @DrawableRes get() {
-            @DrawableRes val mapThumbnails = mutableListOf<Int>()
-            maps.forEachIndexed { index, it ->
-                mapThumbnails.add(index, it.thumbnailImage)
-            }
-            return mapThumbnails
-        }
+    var simpleMaps: List<MapInteractModel> = emptyList()
+    var simpleModifiers: List<MapSizeModel> = emptyList()
+    @DrawableRes var simpleThumbnails: List<Int> = emptyList()
 
     fun sync() {
-        maps = localSource.fetchMaps().getOrDefault(emptyList())
-        modifiers = localSource.fetchSizeModifiers().getOrDefault(emptyList())
+        simpleMaps = localSource.fetchMaps().getOrDefault(emptyList())
+        simpleModifiers = localSource.fetchSizeModifiers().getOrDefault(emptyList())
+        simpleThumbnails = simpleMaps.map { it -> it.thumbnailImage }
     }
 
-    override fun getMaps(): List<MapInteractModel> = maps
-    override fun getModifiers(): List<MapSizeModel> = modifiers
+    override fun getMaps(): List<MapInteractModel> = simpleMaps
+    override fun getModifiers(): List<MapSizeModel> = simpleModifiers
+    override fun getThumbnails(): List<Int> = simpleThumbnails
 
     init {
         sync()

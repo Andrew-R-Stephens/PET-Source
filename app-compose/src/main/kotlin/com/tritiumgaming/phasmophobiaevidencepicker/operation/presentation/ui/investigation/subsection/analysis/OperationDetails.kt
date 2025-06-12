@@ -75,7 +75,7 @@ fun PhaseModifierDetails(
         viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
-    val phaseState = investigationViewModel.currentPhase.collectAsStateWithLifecycle()
+    val phaseState = investigationViewModel.currentTimerPhase.collectAsStateWithLifecycle()
     val rememberPhase by remember { mutableStateOf(phaseState.value) }
 
     CategoryRow {

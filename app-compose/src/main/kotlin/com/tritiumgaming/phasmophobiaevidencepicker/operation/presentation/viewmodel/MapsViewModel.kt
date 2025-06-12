@@ -1,11 +1,15 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel
 
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapModifiersUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapThumbnailsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.MapModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
@@ -17,20 +21,21 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
  * @author TritiumGamingStudios
  */
 class MapsViewModel(
-    val simpleMapRepository: SimpleMapRepository,
+    val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
+    val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
+    val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
     val complexMapRepository: ComplexMapRepository
 ) : ViewModel() {
 
     var imageDisplayThread: Thread? = null
 
-    val mapThumbnails: List<Int> = simpleMapRepository.mapThumbnails
-    private var allMaps = simpleMapRepository.maps
+    @DrawableRes val mapThumbnails: List<Int> = fetchMapThumbnailsUseCase()
+    private val allMaps = fetchSimpleMapsUseCase()
 
     var currentComplexMap: MapModel? = null
     val currentSimpleMap: MapInteractModel
-        get() {
-            return allMaps[currentMapIndex]
-        }
+        get() = allMaps[currentMapIndex]
+
     var currentMapIndex: Int = 0
         set(currentMapPos) {
             if (currentMapPos < allMaps.size) {
@@ -54,7 +59,9 @@ class MapsViewModel(
     }
 
     class MapsFactory(
-        private val simpleMapRepository: SimpleMapRepository,
+        private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
+        private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
+        private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
         private val complexMapRepository: ComplexMapRepository
     ) : ViewModelProvider.Factory {
 
@@ -62,7 +69,9 @@ class MapsViewModel(
             if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return MapsViewModel(
-                    simpleMapRepository,
+                    fetchSimpleMapsUseCase,
+                    fetchMapModifiersUseCase,
+                    fetchMapThumbnailsUseCase,
                     complexMapRepository
                 ) as T
             }
@@ -76,11 +85,15 @@ class MapsViewModel(
             initializer {
                 val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
-                val simpleMapRepository: SimpleMapRepository = appKeyContainer.simpleMapRepository
-                val complexMapRepository: ComplexMapRepository = appKeyContainer.complexMapRepository
+                val fetchSimpleMapsUseCase = appKeyContainer.fetchSimpleMapsUseCase
+                val fetchMapModifiersUseCase = appKeyContainer.fetchMapModifiersUseCase
+                val fetchMapThumbnailsUseCase = appKeyContainer.fetchMapThumbnailsUseCase
+                val complexMapRepository = appKeyContainer.complexMapRepository
 
                 MapsViewModel(
-                    simpleMapRepository = simpleMapRepository,
+                    fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
+                    fetchMapModifiersUseCase = fetchMapModifiersUseCase,
+                    fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     complexMapRepository = complexMapRepository
                 )
             }

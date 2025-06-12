@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -31,7 +32,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.EvidenceList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.GhostList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.popups.EvidencePopup
