@@ -1,14 +1,12 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.newmodel
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.newhelpers.EvidenceRulingHandler2
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
-data class GhostScore2(
-    val ghostModel: GhostType,
+data class GhostScore(
+    val ghostEvidence: GhostEvidence,
 ) {
     private val _score = MutableStateFlow(0)
     val score = _score.asStateFlow()
@@ -38,7 +36,7 @@ data class GhostScore2(
      * @return numerical representation of the Ghost's Evidence score
      */
     fun getEvidenceScore(
-        evidenceHandler: EvidenceRulingHandler2? = null,
+        ruledEvidence: List<RuledEvidence> = emptyList(),
         currentDifficulty: DifficultyType? =
             DifficultyType.AMATEUR
     ): Int {
@@ -57,44 +55,45 @@ data class GhostScore2(
         var posScore = 0
         var negScore = 0
 
-        evidenceHandler?.ruledEvidence?.value?.forEach { ruledEvidence ->
+        ruledEvidence.forEach { ruledEvidence ->
             var isContained = false
-            for (normalEvidence in ghostModel.normalEvidenceList) {
+            for (normalEvidence in ghostEvidence.normalEvidenceList) {
                 if (ruledEvidence.evidence == normalEvidence) {
                     isContained = true
                     break
                 }
             }
             if (!isContained) {
-                if (ruledEvidence.isRuling(RuledEvidence2.Ruling2.POSITIVE)) { return -5 } }
+                if (ruledEvidence.isRuling(RuledEvidence.Ruling2.POSITIVE)) { return -5 } }
         }
 
-        ghostModel.evidence.normalEvidenceList.forEachIndexed { index, normalEvidence ->
+        ghostEvidence.normalEvidenceList.forEachIndexed { index, normalEvidence ->
 
-            evidenceHandler?.getRuledEvidence(normalEvidence)?.ruling?.value?.let {
-                    ruling: RuledEvidence2.Ruling2 ->
+            val normalRuledEvidence = ruledEvidence.find { it.isEvidence(normalEvidence) }
+
+            normalRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling2 ->
 
                 when (ruling) {
-                    RuledEvidence2.Ruling2.POSITIVE -> { if (index < 3) { posScore++ } }
-                    RuledEvidence2.Ruling2.NEGATIVE -> {
+                    RuledEvidence.Ruling2.POSITIVE -> { if (index < 3) { posScore++ } }
+                    RuledEvidence.Ruling2.NEGATIVE -> {
                         if (!(isNightmare || isInsanity)) return -6
                         negScore++
                         if (index >= 3) { return -7 }
                     }
 
-                    RuledEvidence2.Ruling2.NEUTRAL -> {}
+                    RuledEvidence.Ruling2.NEUTRAL -> {}
                 }
             }
 
         }
 
-        ghostModel.evidence.strictEvidenceList.forEach { strictEvidence ->
-            evidenceHandler?.getRuledEvidence(strictEvidence)?.ruling?.value?.let {
-                    ruling: RuledEvidence2.Ruling2 ->
+        ghostEvidence.strictEvidenceList.forEach { strictEvidence ->
 
-                if (ruling == RuledEvidence2.Ruling2.NEGATIVE) {
-                    return -8
-                }
+            val strictRuledEvidence = ruledEvidence.find { it.isEvidence(strictEvidence) }
+
+            strictRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling2 ->
+
+                if (ruling == RuledEvidence.Ruling2.NEGATIVE) { return -8 }
             }
         }
 
@@ -105,15 +104,14 @@ data class GhostScore2(
             return posScore - negScore
         }
 
-        if (posScore == maxPosScore - (3 - ghostModel.evidence.normalEvidenceList.size)) {
-            ghostModel.evidence.strictEvidenceList.forEach { strictEvidence ->
+        if (posScore == maxPosScore - (3 - ghostEvidence.normalEvidenceList.size)) {
+            ghostEvidence.strictEvidenceList.forEach { strictEvidence ->
 
-                evidenceHandler?.getRuledEvidence(strictEvidence)?.ruling?.value?.let {
-                        ruling: RuledEvidence2.Ruling2 ->
+                val strictRuledEvidence = ruledEvidence.find { it.isEvidence(strictEvidence) }
 
-                    if (ruling != RuledEvidence2.Ruling2.POSITIVE) {
-                        return -10
-                    }
+                strictRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling2 ->
+
+                    if (ruling != RuledEvidence.Ruling2.POSITIVE) { return -10 }
                 }
             }
 
@@ -124,7 +122,7 @@ data class GhostScore2(
 
 
     /** Resets the Ruling for each Evidence type  */
-    fun reset() {
+    fun resetGhostScore() {
         setForcefullyRejected(false)
     }
 }

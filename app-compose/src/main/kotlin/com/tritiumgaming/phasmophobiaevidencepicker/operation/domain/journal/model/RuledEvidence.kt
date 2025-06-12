@@ -1,17 +1,16 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.newmodel
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 @Stable
 @Immutable
-data class RuledEvidence2(
+data class RuledEvidence(
     val evidence: EvidenceType
 ) {
     private val _ruling = MutableStateFlow(Ruling2.NEUTRAL)
@@ -32,7 +31,7 @@ data class RuledEvidence2(
         return ruling.value == other
     }
 
-    fun isEvidence(other: RuledEvidence2): Boolean {
+    fun isEvidence(other: RuledEvidence): Boolean {
         return isEvidence(other.evidence)
     }
 

@@ -10,7 +10,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.local.DifficultyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.new.JournalRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.new.EvidenceLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.EvidenceLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.GhostLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.repository.ComplexMapRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalDataSource
@@ -25,6 +25,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
@@ -48,6 +51,9 @@ class OperationContainer(
         ghostLocalDataSource = ghostLocalDataSource,
         evidenceLocalDataSource = evidenceLocalDataSource
     )
+    internal val fetchGhostsUseCase = FetchGhostsUseCase(journalRepository)
+    internal val fetchEvidencesUseCase = FetchEvidencesUseCase(journalRepository)
+    internal val fetchGhostEvidencesUseCase = FetchGhostEvidencesUseCase(journalRepository)
 
     // Difficulty
     val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(applicationContext)

@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.us
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 
-class FetchEvidenceUseCase(
+class FetchEvidencesUseCase(
         private val journalRepository: JournalRepository
     ) {
         operator fun invoke(): List<EvidenceType> {

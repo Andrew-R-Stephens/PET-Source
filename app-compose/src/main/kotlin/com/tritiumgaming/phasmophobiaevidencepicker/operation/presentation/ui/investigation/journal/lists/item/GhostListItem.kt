@@ -33,24 +33,24 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.GhostScoreHandler
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence.Ruling
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.type.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostScore
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling2
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 
 @Composable
 fun GhostListItem(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel = viewModel(factory = InvestigationViewModel.Factory),
-    ghostScore: GhostScoreHandler.GhostScore? = null,
-    label: String = ghostScore?.let { stringResource(ghostScore.ghostModel.name) } ?: "Test"
+    ghostScore: GhostScore? = null,
+    label: String = ghostScore?.let { stringResource(ghostScore.ghostEvidence.ghost.name) } ?: "Test"
 ) {
 
     val scoreState = ghostScore?.score?.collectAsStateWithLifecycle()
 
     val rejectionState = ghostScore?.forcefullyRejected?.collectAsStateWithLifecycle()
 
-    val strikethroughIcon = when(ghostScore?.ghostModel?.id?.toFloat()?.rem(3f)) {
+    val strikethroughIcon = when(ghostScore?.ghostEvidence?.ghost?.id?.toFloat()?.rem(3f)) {
         0f -> R.drawable.icon_strikethrough_2
         1f -> R.drawable.icon_strikethrough_3
         else ->  R.drawable.icon_strikethrough_1
@@ -73,7 +73,8 @@ fun GhostListItem(
                     detectHorizontalDragGestures(
                         onDragEnd = {
                             ghostScore?.let {
-                                investigationViewModel.toggleGhostNegation(ghostScore.ghostModel)
+                                investigationViewModel.toggleGhostNegation(
+                                    ghostScore.ghostEvidence.ghost)
                             }
                         }
                     ) { change, dragAmount ->
@@ -131,7 +132,7 @@ fun GhostListItem(
             horizontalArrangement = Arrangement.Absolute.Center
         ) {
 
-            val evidenceList = ghostScore?.ghostModel?.evidence?.normalEvidenceList
+            val evidenceList = ghostScore?.ghostEvidence?.normalEvidenceList
 
             if (evidenceList != null) {
 
@@ -167,8 +168,8 @@ private fun RowScope.EvidenceIcon(
         contentDescription = "Evidence Icon",
         colorFilter = ColorFilter.tint(
             when (rememberRuling?.value) {
-                Ruling.NEGATIVE -> LocalPalette.current.negativeSelColor
-                Ruling.POSITIVE -> LocalPalette.current.positiveSelColor
+                Ruling2.NEGATIVE -> LocalPalette.current.negativeSelColor
+                Ruling2.POSITIVE -> LocalPalette.current.positiveSelColor
                 else -> LocalPalette.current.neutralSelColor
             }
         )

@@ -7,15 +7,16 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.new.JournalRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.InvestigationJournal
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.old.RuledEvidence.Ruling
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.helpers.InvestigationJournal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling2
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels.DifficultyCarouselHandler
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels.MapCarouselHandler
@@ -26,14 +27,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warn
 import kotlinx.coroutines.flow.StateFlow
 
 class InvestigationViewModel(
-    journalRepository: JournalRepository,
+    private val fetchGhostsUseCase: FetchGhostsUseCase,
+    private val fetchEvidenceUseCase: FetchEvidencesUseCase,
+    private val fetchGhostEvidenceUseCase: FetchGhostEvidencesUseCase,
     difficultyRepository: DifficultyRepository,
     mapRepository: SimpleMapRepository,
     private val codexRepository: CodexRepository
 ): ViewModel() {
 
-    private val ghosts = journalRepository.fetchGhosts().getOrDefault(emptyList())
-    private val evidences = journalRepository.fetchEvidence().getOrDefault(emptyList())
+    private val ghosts = fetchGhostsUseCase()
+    private val evidences = fetchEvidenceUseCase()
+    private val ghostEvidences = fetchGhostEvidenceUseCase()
 
     /*
      * HANDLERS / CONTROLLERS
@@ -43,10 +47,7 @@ class InvestigationViewModel(
     private var difficultyHandler: DifficultyCarouselHandler =
         DifficultyCarouselHandler(difficultyRepository)
     private var investigationJournal: InvestigationJournal =
-        InvestigationJournal(
-            ghosts,
-            evidences
-        )
+        InvestigationJournal(ghosts, evidences, ghostEvidences)
 
     private var timerHandler: TimerHandler = TimerHandler()
     private var phaseHandler: PhaseHandler = PhaseHandler()
@@ -68,8 +69,8 @@ class InvestigationViewModel(
      */
     val sanityLevel = sanityHandler.sanityLevel
     val ruledEvidence = investigationJournal.ruledEvidence
-    val ghostScores = investigationJournal.scores
-    val ghostOrder = investigationJournal.order
+    val ghostScores = investigationJournal.ghostScores
+    val ghostOrder = investigationJournal.ghostOrder
     val currentDifficultyIndex = difficultyHandler.currentIndex
     val currentDifficultyName = difficultyHandler.currentName
     val currentMapIndex = mapHandler.currentIndex
@@ -92,11 +93,11 @@ class InvestigationViewModel(
     fun getRuledEvidence(evidenceModel: EvidenceType): RuledEvidence? {
         return investigationJournal.getRuledEvidence(evidenceModel)
     }
-    fun setEvidenceRuling(evidenceIndex: Int, ruling: Ruling) {
+    fun setEvidenceRuling(evidenceIndex: Int, ruling: Ruling2) {
         investigationJournal.setEvidenceRuling(evidenceIndex, ruling)
         investigationJournal.reorderGhostScores(difficultyHandler)
     }
-    fun setEvidenceRuling(evidence: EvidenceType, ruling: Ruling) {
+    fun setEvidenceRuling(evidence: EvidenceType, ruling: Ruling2) {
         investigationJournal.setEvidenceRuling(evidence, ruling)
         investigationJournal.reorderGhostScores(difficultyHandler)
     }
@@ -132,8 +133,8 @@ class InvestigationViewModel(
     fun reorderGhostScoreModel() {
         investigationJournal.reorderGhostScores(difficultyHandler)
     }
-    fun getGhostScore(ghostModel: GhostType): StateFlow<Int>? {
-        return investigationJournal.getGhostScore(ghostModel)
+    fun getGhostScore(ghostModel: GhostType): StateFlow<Int> {
+        return investigationJournal.getGhostScore(ghostModel).score
     }
     /*fun swapStatusInRejectedPile(index: Int) {
         investigationJournal.swapStatusInRejectedPile(index)
@@ -181,7 +182,7 @@ class InvestigationViewModel(
     }
 
     fun resetInvestigationJournal() {
-        investigationJournal.reset(difficultyHandler)
+        investigationJournal.resetInvestigationJournal(difficultyHandler)
     }
 
     fun resetPhaseHandler() {
@@ -199,11 +200,19 @@ class InvestigationViewModel(
         reorderGhostScoreModel()
     }
 
+    /* InvestigationJournal
+     *
+     */
+
+
+
     /*
      * VIEWMODEL FACTORIES
      */
     class InvestigationFactory(
-        private val journalRepository: JournalRepositoryImpl,
+        private val fetchGhostsUseCase: FetchGhostsUseCase,
+        private val fetchEvidenceUseCase: FetchEvidencesUseCase,
+        private val fetchGhostEvidenceUseCase: FetchGhostEvidencesUseCase,
         private val difficultyRepository: DifficultyRepository,
         private val simpleMapRepository: SimpleMapRepository,
         private val codexRepository: CodexRepositoryImpl
@@ -213,7 +222,9 @@ class InvestigationViewModel(
             if (modelClass.isAssignableFrom(InvestigationViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return InvestigationViewModel(
-                    journalRepository = journalRepository,
+                    fetchGhostsUseCase = fetchGhostsUseCase,
+                    fetchEvidenceUseCase = fetchEvidenceUseCase,
+                    fetchGhostEvidenceUseCase = fetchGhostEvidenceUseCase,
                     difficultyRepository = difficultyRepository,
                     mapRepository = simpleMapRepository,
                     codexRepository = codexRepository
@@ -229,13 +240,23 @@ class InvestigationViewModel(
             initializer {
                 val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
-                val journalRepository: JournalRepository = appKeyContainer.journalRepository
-                val difficultyRepository: DifficultyRepository = appKeyContainer.difficultyRepository
-                val mapRepository: SimpleMapRepository = appKeyContainer.simpleMapRepository
-                val codexRepository: CodexRepository = appKeyContainer.codexRepository
+                val fetchGhostsUseCase: FetchGhostsUseCase =
+                    appKeyContainer.fetchGhostsUseCase
+                val fetchEvidencesUseCase: FetchEvidencesUseCase =
+                    appKeyContainer.fetchEvidencesUseCase
+                val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase =
+                    appKeyContainer.fetchGhostEvidencesUseCase
+                val difficultyRepository: DifficultyRepository =
+                    appKeyContainer.difficultyRepository
+                val mapRepository: SimpleMapRepository =
+                    appKeyContainer.simpleMapRepository
+                val codexRepository: CodexRepository =
+                    appKeyContainer.codexRepository
 
                 InvestigationViewModel(
-                    journalRepository = journalRepository,
+                    fetchGhostsUseCase = fetchGhostsUseCase,
+                    fetchEvidenceUseCase = fetchEvidencesUseCase,
+                    fetchGhostEvidenceUseCase = fetchGhostEvidencesUseCase,
                     difficultyRepository = difficultyRepository,
                     mapRepository = mapRepository,
                     codexRepository = codexRepository,
