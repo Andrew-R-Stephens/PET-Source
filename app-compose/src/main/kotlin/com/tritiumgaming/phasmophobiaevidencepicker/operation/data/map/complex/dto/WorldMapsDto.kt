@@ -1,5 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.WorldMaps
+
 class WorldMapsDto() {
 
     private var mapModels: ArrayList<WorldMapDto> = ArrayList()
@@ -42,3 +44,8 @@ class WorldMapsDto() {
     }
 
 }
+
+fun WorldMapsDto.toDomain() = WorldMaps(
+    // TODO
+)
+

@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.repository
 
 import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.toMapList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.WorldMaps
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
@@ -18,7 +19,7 @@ class ComplexMapRepositoryImpl(
             val result = localSource.fetchWorldMaps()
             Log.d("Maps", "Complex Maps:\n${result.getOrNull()?.maps?.size}")
 
-            result.map { it.toMapList() }
+            result.map { it.toMapList().toDomain() }
         } catch (e: Exception) {
             e.printStackTrace()
             Result.failure(Exception("Failed to fetch World Maps", e))
