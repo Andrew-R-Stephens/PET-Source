@@ -25,10 +25,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexAchievementsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexEquipmentUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexPossessionsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapModifiersUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
@@ -80,6 +85,8 @@ class OperationContainer(
         SimpleMapRepositoryImpl(
             localSource = simpleMapLocalDataSource
         )
+    internal val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(simpleMapRepository)
+    internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(simpleMapRepository)
 
     // Complex Map
     val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
@@ -114,5 +121,8 @@ class OperationContainer(
             equipmentLocalDataSource = codexEquipmentLocalDataSource,
             possessionsLocalDataSource = codexPossessionsLocalDataSource
         )
+    internal val fetchCodexAchievementsUseCase = FetchCodexAchievementsUseCase(codexRepository)
+    internal val fetchCodexEquipmentUseCase = FetchCodexEquipmentUseCase(codexRepository)
+    internal val fetchCodexPossessionsUseCase = FetchCodexPossessionsUseCase(codexRepository)
 
 }

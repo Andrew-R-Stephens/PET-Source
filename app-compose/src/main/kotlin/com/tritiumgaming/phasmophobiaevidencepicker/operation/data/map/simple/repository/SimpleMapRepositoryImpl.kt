@@ -8,15 +8,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 
 // TODO Fix this and implement clean code!
 class SimpleMapRepositoryImpl(
-    override val localSource: SimpleMapDataSource
+    val localSource: SimpleMapDataSource
 ): SimpleMapRepository {
 
-    override var maps: List<MapInteractModel> =
-        localSource.fetchMaps().getOrDefault(emptyList())
-    override var modifiers: List<MapSizeModel> =
-        localSource.fetchSizeModifiers().getOrDefault(emptyList())
+    var maps: List<MapInteractModel> = emptyList()
+    var modifiers: List<MapSizeModel> = emptyList()
 
-    override val mapThumbnails: List<Int>
+    val mapThumbnails: List<Int>
         @DrawableRes get() {
             @DrawableRes val mapThumbnails = mutableListOf<Int>()
             maps.forEachIndexed { index, it ->
@@ -24,5 +22,17 @@ class SimpleMapRepositoryImpl(
             }
             return mapThumbnails
         }
+
+    fun sync() {
+        maps = localSource.fetchMaps().getOrDefault(emptyList())
+        modifiers = localSource.fetchSizeModifiers().getOrDefault(emptyList())
+    }
+
+    override fun getMaps(): List<MapInteractModel> = maps
+    override fun getModifiers(): List<MapSizeModel> = modifiers
+
+    init {
+        sync()
+    }
 
 }
