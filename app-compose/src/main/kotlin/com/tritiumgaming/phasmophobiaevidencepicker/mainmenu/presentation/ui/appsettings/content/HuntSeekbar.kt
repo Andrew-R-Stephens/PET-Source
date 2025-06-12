@@ -50,6 +50,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel.Companion.percentAsTime
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel.Companion.timeAsPercent
 import org.jetbrains.annotations.TestOnly
 import java.lang.String.format
 import java.util.Locale
@@ -77,21 +79,21 @@ fun HuntTimeoutPreferenceSeekbar(
 ) {
     val timeoutState = globalPreferencesViewModel.huntWarnDurationPreference.collectAsStateWithLifecycle()
     var rememberSliderPosition by remember { mutableFloatStateOf(
-        PhaseHandler.timeAsPercent(timeoutState.value)
+        timeAsPercent(timeoutState.value)
     ) }
 
     LaunchedEffect(timeoutState.value) {
-        rememberSliderPosition = PhaseHandler.timeAsPercent(timeoutState.value)
+        rememberSliderPosition = timeAsPercent(timeoutState.value)
     }
 
     val rememberSliderState =
         rememberSliderState(
-            value = PhaseHandler.timeAsPercent(timeoutState.value),
+            value = timeAsPercent(timeoutState.value),
             valueRange = 0f..1f,
             steps = 100,
             onValueChangeFinished = {
                 globalPreferencesViewModel.setHuntWarnDurationPreference(
-                    PhaseHandler.percentAsTime(rememberSliderPosition)
+                    percentAsTime(rememberSliderPosition)
                 )
                 //rememberSliderPosition = PhaseHandler.timeAsPercent(timeoutState.value)
                 Log.d("Slider", "Slider finished $rememberSliderPosition ${timeoutState.value}")
@@ -152,7 +154,7 @@ fun HuntTimeoutPreferenceSeekbar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                val millis = PhaseHandler.percentAsTime(rememberSliderPosition)
+                val millis = percentAsTime(rememberSliderPosition)
                 val minutes = millis / 1000 / 60
                 val seconds = millis / 1000 % 60
                 val time = format(Locale.US, "%2dm %2ds", minutes, seconds)
@@ -181,7 +183,7 @@ fun HuntTimeoutPreferenceSeekbar(
                     },
                     onValueChangeFinished = {
                         globalPreferencesViewModel.setHuntWarnDurationPreference(
-                            PhaseHandler.percentAsTime(rememberSliderPosition)
+                            percentAsTime(rememberSliderPosition)
                         )
                         Log.d("Slider", "Slider finished $rememberSliderPosition ${timeoutState.value}")
                     },

@@ -53,7 +53,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalDefaultTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning.PhaseHandler
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel.Companion.FOREVER
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel.Companion.MAX_TIME
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel.Companion.MIN_TIME
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -159,10 +161,10 @@ class GlobalPreferencesViewModel(
         }
     }
 
-    private val _huntWarnDurationPreference = MutableStateFlow(PhaseHandler.Time.FOREVER)
+    private val _huntWarnDurationPreference = MutableStateFlow(FOREVER)
     val huntWarnDurationPreference: StateFlow<Long> = _huntWarnDurationPreference.asStateFlow()
     fun setHuntWarnDurationPreference(maxTime: Long) {
-        val time = maxTime.coerceIn(PhaseHandler.Time.MIN_TIME, PhaseHandler.Time.MAX_TIME)
+        val time = maxTime.coerceIn(MIN_TIME, MAX_TIME)
         _huntWarnDurationPreference.update { time }
         viewModelScope.launch {
             setMaxHuntWarnFlashTimeUseCase(time)
