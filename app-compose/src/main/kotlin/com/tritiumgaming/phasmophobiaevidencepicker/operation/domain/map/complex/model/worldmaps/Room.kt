@@ -1,15 +1,15 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 
-class RoomModel(
+class Room(
     var id: Int,
     var name: String,
-    points: WorldMaps.WorldMap.Floor.Room.RoomPoints?
+    points: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto?
 ) {
 
-    val roomArea: RoomAreaModel = RoomAreaModel()
+    val roomArea: RoomArea = RoomArea()
 
     init {
         roomArea.setPoints(points)

@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.comple
 
 import android.util.Log
 
-class MapDimensionModel(val w: Int, val h: Int) {
+class RoomDimensions(val w: Int, val h: Int) {
     @Synchronized
     fun print() {
         Log.d("Maps", "[ W: $w H: $h ]")

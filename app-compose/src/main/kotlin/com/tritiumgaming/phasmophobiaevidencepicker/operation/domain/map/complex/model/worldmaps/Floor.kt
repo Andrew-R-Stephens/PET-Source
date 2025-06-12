@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.comple
 
 import android.os.Build
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 
-class FloorModel {
+class Floor {
     private var floorId: Int = 0
     var floorName: String? = null
         private set
@@ -12,20 +12,20 @@ class FloorModel {
 
     var floorLayer: FloorLayerType
 
-    val floorRooms: ArrayList<RoomModel> = ArrayList()
-    val floorPOIs: ArrayList<PoiModel> = ArrayList()
+    val floorRooms: ArrayList<Room> = ArrayList()
+    val floorPOIs: ArrayList<Poi> = ArrayList()
 
-    constructor(floor: WorldMaps.WorldMap.Floor) {
+    constructor(floor: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto) {
         floorImage = floor.imageFile
         floorId = floor.floorId
         floorName = floor.floorName
         floorLayer = FloorLayerType.entries[floor.floorNumber]
 
         for (r in floor.floorRooms) {
-            floorRooms.add(RoomModel(r.roomId, r.roomName, r.roomPoints))
+            floorRooms.add(Room(r.roomId, r.roomName, r.roomPoints))
         }
         for (p in floor.floorPOIs) {
-            floorPOIs.add(PoiModel(p.poiId, p.poiName, p.poiType, p.x, p.y))
+            floorPOIs.add(Poi(p.poiId, p.poiName, p.poiType, p.x, p.y))
         }
     }
 
@@ -42,7 +42,7 @@ class FloorModel {
             return names
         }
 
-    val lastRoom: RoomModel?
+    val lastRoom: Room?
         get() {
             if (floorRooms.isEmpty()) {
                 return null
@@ -50,7 +50,7 @@ class FloorModel {
             return floorRooms[floorRooms.size - 1]
         }
 
-    fun getRoomById(id: Int): RoomModel? {
+    fun getRoomById(id: Int): Room? {
         for (room in floorRooms) {
             if (room.id == id) return room
         }
@@ -88,11 +88,11 @@ class FloorModel {
 
     fun orderRooms() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            floorRooms.sortWith(Comparator.comparing(RoomModel::name))
+            floorRooms.sortWith(Comparator.comparing(Room::name))
         }
     }
 
-    fun addRoomModels(roomModels: ArrayList<RoomModel>) {
+    fun addRoomModels(roomModels: ArrayList<Room>) {
         floorRooms.addAll(roomModels)
     }
 }

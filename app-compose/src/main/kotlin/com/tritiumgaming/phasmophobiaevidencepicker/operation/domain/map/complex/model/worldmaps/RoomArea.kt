@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.comple
 
 import android.graphics.PointF
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 
-class RoomAreaModel {
+class RoomArea {
     var points = mutableListOf<PointF>()
 
     fun setPoints(tempPoints: ArrayList<PointF>) {
@@ -15,7 +15,7 @@ class RoomAreaModel {
         }
     }
 
-    fun setPoints(tempPoints: WorldMaps.WorldMap.Floor.Room.RoomPoints?) {
+    fun setPoints(tempPoints: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto?) {
         tempPoints?.points?.forEach() {
             points.add(
                 PointF(it.x, it.y)

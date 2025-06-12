@@ -1,20 +1,20 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 
 
-class MapModel {
+class WorldMap {
     var mapId: String = ""
     var mapName: String = ""
     var mapNameShort: String = ""
-    var mapDimensions: MapDimensionModel
+    var mapDimensions: RoomDimensions
 
     var currentLayer: FloorLayerType = FloorLayerType.entries[0]
 
-    var mapFloors: ArrayList<FloorModel> = ArrayList()
+    var mapFloors: ArrayList<Floor> = ArrayList()
 
-    val currentFloor: FloorModel
+    val currentFloor: Floor
         get() {
             for (floor in mapFloors) {
                 if (floor.floorLayer == currentLayer) {
@@ -28,24 +28,24 @@ class MapModel {
         mapId = "undefined"
         mapName = "undefined"
         mapNameShort = "undefined"
-        mapDimensions = MapDimensionModel(0, 0)
-        for (layer in FloorLayerType.entries) mapFloors.add(FloorModel(layer))
+        mapDimensions = RoomDimensions(0, 0)
+        for (layer in FloorLayerType.entries) mapFloors.add(Floor(layer))
     }
 
-    constructor(worldMap: WorldMaps.WorldMap) {
+    constructor(worldMap: WorldMapsSerializerDto.WorldMapSerializerDto) {
         mapId = worldMap.mapId
         mapName = worldMap.mapName
         mapNameShort = worldMap.mapNameShort
-        mapDimensions = MapDimensionModel(worldMap.mapDimensions.w, worldMap.mapDimensions.h)
+        mapDimensions = RoomDimensions(worldMap.mapDimensions.w, worldMap.mapDimensions.h)
         for (f in worldMap.mapFloors) {
-            f.let { floorModel -> mapFloors.add(FloorModel(floorModel)) }
+            f.let { floorModel -> mapFloors.add(Floor(floorModel)) }
         }
         currentLayer =
             if (mapFloors.isNotEmpty()) { mapFloors[0].floorLayer }
             else FloorLayerType.FIRST_FLOOR
     }
 
-    fun getFloor(index: Int): FloorModel {
+    fun getFloor(index: Int): Floor {
         return mapFloors[index]
     }
 

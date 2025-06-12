@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps
 
-class MapListModel() {
+class WorldMaps() {
 
-    private var mapModels: ArrayList<MapModel> = ArrayList()
+    private var mapModels: ArrayList<WorldMap> = ArrayList()
 
-    fun addMapModel(model: MapModel) {
+    fun addMapModel(model: WorldMap) {
         mapModels.add(model)
     }
 
@@ -18,7 +18,7 @@ class MapListModel() {
             return names
         }
 
-    fun getMapById(id: String): MapModel? {
+    fun getMapById(id: String): WorldMap? {
         for (m in mapModels) {
             if (m.mapId == id) {
                 return m

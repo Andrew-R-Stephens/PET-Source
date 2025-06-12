@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.comple
 import android.graphics.PointF
 import android.util.Log
 
-class PoiModel {
+class Poi {
     var id: Int = -1
     var name: String = ""
     var type: PoiType = PoiType.entries[0]
@@ -14,7 +14,7 @@ class PoiModel {
         name = ""
     }
 
-    constructor(tempPoiData: PoiModel?) {
+    constructor(tempPoiData: Poi?) {
         if (tempPoiData == null) {
             return
         }
