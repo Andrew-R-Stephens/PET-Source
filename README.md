@@ -46,6 +46,15 @@
 
 <div align='center'><h2>Design and Architecture</h2></div>
 
+<div align='left'><h3>Modules</h3></div>
+<ul>
+    <li><code>app-compose</code> [ <code>active</code> ] : Adopts modern Jetpack Compose / Clean Code approach. It is a completely reworked <em>app-legacy  / app-view</em>.</li>
+    <li><code>app-legacy</code> [  <code>sunset</code> ] : Prod build. Maintained for prod hotfixes.</li>
+    <li><code>app-view</code> [ <code>sunset</code> ] : Playground build used to both propose future <em>app-legacy</em> features and fixes and migrate <em>app-legacy</em> features to <em>app-compose</em>.</li>
+  </ul>
+
+<br>
+
 <div align='left'><h3>Technologies Used</h3></div>
 <div align='left' style="display:float">
   <img src="https://img.shields.io/badge/-Kotlin-7F52FF?logo=kotlin&logoColor=white&style=bold" alt=""/>
