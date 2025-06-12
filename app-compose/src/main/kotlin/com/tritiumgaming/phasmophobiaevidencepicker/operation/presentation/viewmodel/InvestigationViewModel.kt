@@ -81,27 +81,11 @@ class InvestigationViewModel(
         return evidences.find { it.id == evidenceId }
     }
 
-    fun reorderGhostScoreModel() {
-        reorderGhostScores()
-    }
-
-    fun updatePhaseTimeElapsed() {
-        updateTimeElapsed(isSanityInsane)
-    }
-
-    fun resetSanityHandler() {
-        resetSanity(currentDifficultyStartSanity)
-    }
-
-    fun resetPhaseHandler() {
-        resetPhaseHandler(isSanityInsane)
-    }
-
     fun reset() {
-        resetTimerHandler(currentDifficultyTime)
+        resetTimer(currentDifficultyTime)
         resetInvestigationJournal()
-        resetSanityHandler()
-        resetPhaseHandler()
+        resetSanity()
+        resetTimerPhase()
     }
 
     /*
@@ -396,7 +380,7 @@ class InvestigationViewModel(
         }
 
     init {
-        reorderGhostScoreModel()
+        reorderGhostScores()
         initGhostScores()
         initRuledEvidence()
     }
@@ -533,9 +517,7 @@ class InvestigationViewModel(
     }
 
     /** Defaults all persistent data. */
-    fun resetSanity(
-        currentDifficultyStartSanity: Float
-    ) {
+    fun resetSanity() {
         //TODO warnTriggered = false
         setSanityStartTimeByProgress(
             MAX_SANITY - (currentDifficultyStartSanity))
@@ -597,8 +579,7 @@ class InvestigationViewModel(
                 setTimeRemaining(millis)
             }
 
-            override fun onFinish() { /* TODO not needed */
-            }
+            override fun onFinish() { /* TODO not needed */ }
         }
     }
 
@@ -629,6 +610,14 @@ class InvestigationViewModel(
         setLiveTimer()
     }
 
+    fun resetTimer(
+        currentDifficultyTime: Long
+    ) {
+        resetTimer()
+        setTimeRemaining(currentDifficultyTime)
+        resetStartTime()
+    }
+
     fun fastForwardTimer(time: Long) {
         pauseTimer()
         setTimeRemaining(time)
@@ -637,13 +626,6 @@ class InvestigationViewModel(
         playTimer()
     }
 
-    fun resetTimerHandler(
-        currentDifficultyTime: Long
-    ) {
-        resetTimer()
-        setTimeRemaining(currentDifficultyTime)
-        resetStartTime()
-    }
 
     /*
      * Phase Handler
@@ -658,9 +640,9 @@ class InvestigationViewModel(
 
     private val _timeElapsed: MutableStateFlow<Long> = MutableStateFlow(DEFAULT)
     private val timeElapsed = _timeElapsed.asStateFlow()
-    fun updateTimeElapsed(isSanityInsane: Boolean) {
+    fun updateTimeElapsed() {
         _timeElapsed.update { System.currentTimeMillis() - flashTimeStart }
-        updateCanFlash(isSanityInsane)
+        updateCanFlash()
     }
 
     /** Allow the Warning indicator to flash either off or on if:
@@ -670,7 +652,7 @@ class InvestigationViewModel(
      * @return if the Warning indicator can flash */
     private val _canFlash: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val canFlash = _canFlash.asStateFlow()
-    private fun updateCanFlash(isSanityInsane: Boolean) {
+    private fun updateCanFlash() {
 
         if (flashTimeMax == FOREVER) {
             _canFlash.update { isSanityInsane }
@@ -680,16 +662,16 @@ class InvestigationViewModel(
         if (flashTimeStart == DEFAULT) {
             Log.d("Flash", "Start time is default.. now setting to current time")
             flashTimeStart = System.currentTimeMillis()
-            updateTimeElapsed(isSanityInsane)
+            updateTimeElapsed()
             return
         }
 
         _canFlash.update { timeElapsed.value <= flashTimeMax }
     }
 
-    fun resetPhaseHandler(isSanityInsane: Boolean) {
+    fun resetTimerPhase() {
         flashTimeStart = DEFAULT
-        updateTimeElapsed(isSanityInsane)
+        updateTimeElapsed()
     }
 
     /*

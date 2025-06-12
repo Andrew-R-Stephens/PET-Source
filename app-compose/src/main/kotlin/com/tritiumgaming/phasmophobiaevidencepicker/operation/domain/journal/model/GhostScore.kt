@@ -37,8 +37,7 @@ data class GhostScore(
      */
     fun getEvidenceScore(
         ruledEvidence: List<RuledEvidence> = emptyList(),
-        currentDifficulty: DifficultyType? =
-            DifficultyType.AMATEUR
+        currentDifficulty: DifficultyType? = DifficultyType.AMATEUR
     ): Int {
 
         //if (forcefullyRejected.value) { return -5 }
