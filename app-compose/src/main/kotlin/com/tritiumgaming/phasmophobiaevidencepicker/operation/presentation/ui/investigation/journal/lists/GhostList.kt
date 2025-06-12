@@ -81,7 +81,8 @@ fun GhostList(
                 GhostListItem(
                     modifier = Modifier
                         .animateItem(),
-                    ghostScore = ghostsScoreState.value.find { it.ghostModel.id == ghostModel.id }
+                    ghostScore = ghostsScoreState.value.find {
+                        it.ghostEvidence.ghost.id == ghostModel.id }
                 )
 
             }

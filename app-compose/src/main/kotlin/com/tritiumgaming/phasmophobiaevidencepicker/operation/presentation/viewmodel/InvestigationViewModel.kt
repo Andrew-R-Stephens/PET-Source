@@ -26,6 +26,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.use
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapModifiersUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.sanity.SanityRunnable
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils.millisToTime
@@ -45,6 +46,7 @@ class InvestigationViewModel(
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
     private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
+    private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
     private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
     private val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
     private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
@@ -85,12 +87,6 @@ class InvestigationViewModel(
 
     fun updatePhaseTimeElapsed() {
         updateTimeElapsed(isSanityInsane)
-    }
-
-    fun setAudioWarnTriggered(
-        triggered: Boolean
-    ) {
-        audioWarnTriggered = triggered
     }
 
     fun resetSanityHandler() {
@@ -764,6 +760,7 @@ class InvestigationViewModel(
         private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
         private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
         private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
+        private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
         private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
         private val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
         private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
@@ -779,6 +776,7 @@ class InvestigationViewModel(
                     fetchDifficultiesUseCase = fetchDifficultiesUseCase,
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
+                    fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
                     fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
                     fetchCodexEquipmentUseCase = fetchCodexEquipmentUseCase
@@ -800,6 +798,7 @@ class InvestigationViewModel(
                 val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
                 val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
                 val fetchMapModifiersUseCase = container.fetchMapModifiersUseCase
+                val fetchMapThumbnailsUseCase = container.fetchMapThumbnailsUseCase
                 val fetchCodexAchievementsUseCase = container.fetchCodexAchievementsUseCase
                 val fetchCodexPossessionsUseCase = container.fetchCodexPossessionsUseCase
                 val fetchCodexEquipmentUseCase = container.fetchCodexEquipmentUseCase
@@ -811,6 +810,7 @@ class InvestigationViewModel(
                     fetchDifficultiesUseCase = fetchDifficultiesUseCase,
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
+                    fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
                     fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
                     fetchCodexEquipmentUseCase = fetchCodexEquipmentUseCase
