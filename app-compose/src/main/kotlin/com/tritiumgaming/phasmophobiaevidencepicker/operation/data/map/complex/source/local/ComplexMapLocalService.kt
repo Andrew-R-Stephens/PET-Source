@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 import android.content.res.AssetManager
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapService
 import java.io.BufferedReader
 import java.io.IOException
@@ -12,7 +12,7 @@ import java.io.InputStreamReader
 
 class ComplexMapLocalService: ComplexMapService {
 
-    override fun readFile(assets: AssetManager, fileName: String): Result<WorldMaps> {
+    override fun readFile(assets: AssetManager, fileName: String): Result<WorldMapsSerializerDto> {
         val inputStream: InputStream? = assets.open(fileName)
 
         //Creating a JSONObject object
@@ -22,8 +22,8 @@ class ComplexMapLocalService: ComplexMapService {
             throw Exception("InputStream is null")
         }
         val fileReader = gson.newJsonReader(BufferedReader(InputStreamReader(inputStream)))
-        val type = object : TypeToken<WorldMaps?>() {}.type
-        val worldMaps: WorldMaps = gson.fromJson(fileReader, type)
+        val type = object : TypeToken<WorldMapsSerializerDto?>() {}.type
+        val worldMaps: WorldMapsSerializerDto = gson.fromJson(fileReader, type)
 
         return try {
             fileReader.close()

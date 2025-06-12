@@ -11,9 +11,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.use
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.MapModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.WorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 
 /**
  * MapMenuViewModel class
@@ -32,7 +31,7 @@ class MapsViewModel(
     @DrawableRes val mapThumbnails: List<Int> = fetchMapThumbnailsUseCase()
     private val allMaps = fetchSimpleMapsUseCase()
 
-    var currentComplexMap: MapModel? = null
+    var currentComplexMap: WorldMap? = null
     val currentSimpleMap: MapInteractModel
         get() = allMaps[currentMapIndex]
 

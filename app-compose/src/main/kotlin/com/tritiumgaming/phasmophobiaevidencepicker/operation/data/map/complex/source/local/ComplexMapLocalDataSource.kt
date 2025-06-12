@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.model.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapService
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +15,7 @@ class ComplexMapLocalDataSource(
 ): ComplexMapDataSource {
 
     @Throws(Exception::class)
-    override suspend fun fetchWorldMaps(): Result<WorldMaps> {
+    override suspend fun fetchWorldMaps(): Result<WorldMapsSerializerDto> {
         return try {
             val result = CoroutineScope(Dispatchers.IO).async {
                 service.readFile(
