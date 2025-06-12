@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.sanity.SanityHandler
@@ -10,10 +11,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class DifficultyCarouselHandler(
-    difficultyRepository: DifficultyRepository
+    private val difficulties: List<DifficultyModel>
 ) {
-
-    private val difficulties = difficultyRepository.getDifficulties().getOrDefault(emptyList())
 
     /* Index */
     private val _currentIndex: MutableStateFlow<Int> =

@@ -35,7 +35,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostScore
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling2
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 
 @Composable
@@ -168,8 +168,8 @@ private fun RowScope.EvidenceIcon(
         contentDescription = "Evidence Icon",
         colorFilter = ColorFilter.tint(
             when (rememberRuling?.value) {
-                Ruling2.NEGATIVE -> LocalPalette.current.negativeSelColor
-                Ruling2.POSITIVE -> LocalPalette.current.positiveSelColor
+                Ruling.NEGATIVE -> LocalPalette.current.negativeSelColor
+                Ruling.POSITIVE -> LocalPalette.current.positiveSelColor
                 else -> LocalPalette.current.neutralSelColor
             }
         )

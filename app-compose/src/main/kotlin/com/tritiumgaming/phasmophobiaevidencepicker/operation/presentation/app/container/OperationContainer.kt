@@ -25,6 +25,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
@@ -61,6 +62,7 @@ class OperationContainer(
         DifficultyRepositoryImpl(
             localSource = difficultyLocalDataSource
         )
+    internal val fetchDifficultiesUseCase = FetchDifficultiesUseCase(difficultyRepository)
 
     // Mission
     val missionLocalDataSource: MissionDataSource = MissionLocalDataSource()

@@ -13,13 +13,13 @@ import kotlinx.coroutines.flow.update
 data class RuledEvidence(
     val evidence: EvidenceType
 ) {
-    private val _ruling = MutableStateFlow(Ruling2.NEUTRAL)
+    private val _ruling = MutableStateFlow(Ruling.NEUTRAL)
     val ruling = _ruling.asStateFlow()
-    fun setRuling(ruling: Ruling2) {
+    fun setRuling(ruling: Ruling) {
         _ruling.update { ruling }
     }
 
-    enum class Ruling2(
+    enum class Ruling(
         @DrawableRes var icon: Int,
     ) {
         NEGATIVE(R.drawable.ic_selector_neg_unsel),
@@ -27,7 +27,7 @@ data class RuledEvidence(
         POSITIVE(R.drawable.ic_selector_pos_unsel)
     }
 
-    fun isRuling(other: Ruling2?): Boolean {
+    fun isRuling(other: Ruling?): Boolean {
         return ruling.value == other
     }
 

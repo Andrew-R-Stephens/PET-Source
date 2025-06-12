@@ -64,24 +64,24 @@ data class GhostScore(
                 }
             }
             if (!isContained) {
-                if (ruledEvidence.isRuling(RuledEvidence.Ruling2.POSITIVE)) { return -5 } }
+                if (ruledEvidence.isRuling(RuledEvidence.Ruling.POSITIVE)) { return -5 } }
         }
 
         ghostEvidence.normalEvidenceList.forEachIndexed { index, normalEvidence ->
 
             val normalRuledEvidence = ruledEvidence.find { it.isEvidence(normalEvidence) }
 
-            normalRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling2 ->
+            normalRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling ->
 
                 when (ruling) {
-                    RuledEvidence.Ruling2.POSITIVE -> { if (index < 3) { posScore++ } }
-                    RuledEvidence.Ruling2.NEGATIVE -> {
+                    RuledEvidence.Ruling.POSITIVE -> { if (index < 3) { posScore++ } }
+                    RuledEvidence.Ruling.NEGATIVE -> {
                         if (!(isNightmare || isInsanity)) return -6
                         negScore++
                         if (index >= 3) { return -7 }
                     }
 
-                    RuledEvidence.Ruling2.NEUTRAL -> {}
+                    RuledEvidence.Ruling.NEUTRAL -> {}
                 }
             }
 
@@ -91,9 +91,9 @@ data class GhostScore(
 
             val strictRuledEvidence = ruledEvidence.find { it.isEvidence(strictEvidence) }
 
-            strictRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling2 ->
+            strictRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling ->
 
-                if (ruling == RuledEvidence.Ruling2.NEGATIVE) { return -8 }
+                if (ruling == RuledEvidence.Ruling.NEGATIVE) { return -8 }
             }
         }
 
@@ -109,9 +109,9 @@ data class GhostScore(
 
                 val strictRuledEvidence = ruledEvidence.find { it.isEvidence(strictEvidence) }
 
-                strictRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling2 ->
+                strictRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling ->
 
-                    if (ruling != RuledEvidence.Ruling2.POSITIVE) { return -10 }
+                    if (ruling != RuledEvidence.Ruling.POSITIVE) { return -10 }
                 }
             }
 
