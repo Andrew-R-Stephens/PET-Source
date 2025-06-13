@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
 

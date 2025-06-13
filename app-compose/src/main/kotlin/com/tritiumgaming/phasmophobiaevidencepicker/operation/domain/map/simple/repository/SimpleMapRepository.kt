@@ -6,8 +6,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 
 interface SimpleMapRepository {
 
-    fun getMaps(): List<MapInteractModel>
-    fun getModifiers(): List<MapSizeModel>
-    @DrawableRes fun getThumbnails(): List<Int>
+    fun getMaps(): Result<List<MapInteractModel>>
+    fun getModifiers(): Result<List<MapSizeModel>>
+    fun getThumbnails(): Result<List<Int>>
 
 }

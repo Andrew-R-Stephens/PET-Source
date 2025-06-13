@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
@@ -14,4 +14,3 @@ class FetchDifficultiesUseCase(
         return result.getOrDefault(emptyList())
     }
 }
-    
