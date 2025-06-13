@@ -2,130 +2,132 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.FloorDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.RoomDimensionsDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.WorldMapDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.WorldMapsDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.WorldDimensionsSerializerDto
 
 object WorldMapsFactory {
 
     fun parseMinified(worldMaps: WorldMapsSerializerDto): Result<WorldMapsDto> {
 
-        val mapListModel = WorldMapsDto()
-
         //Log.d("Map", "Blueprint: \n$mapDesBlueprint")
+
+        val worldMapDtos = mutableListOf<WorldMapDto>()
 
         for (mappedWorldMap in worldMaps.maps) {
             // ---
 
             val mappedWorldMapJSON = getJSON(mappedWorldMap)
-            val mappedMapType = object : TypeToken<Map<String?, WorldMapsSerializerDto.WorldMapSerializerDto?>?>() {}.type
-            val mappedMap = Gson().fromJson<Map<String, WorldMapsSerializerDto.WorldMapSerializerDto>>(mappedWorldMapJSON, mappedMapType)
+            val typeWorldMap = object : TypeToken<Map<String?, WorldMapsSerializerDto.WorldMapSerializerDto?>?>() {}.type
+            val serializedWorldMap = Gson().fromJson<Map<String, WorldMapsSerializerDto.WorldMapSerializerDto>>(mappedWorldMapJSON, typeWorldMap)
 
-            val mapJSON = getJSON(mappedMap["map_data"])
-            //Log.d("Map", mapJSON)
-            /*val mapType = object : TypeToken<Map<String, WorldMap>>() {}.type
-            val map: Map<String, WorldMap> = Gson().fromJson(mapJSON, mapType)*/
-            val mapType = object : TypeToken<Map<String, Any>>() {}.type
-            val map: Map<String, Any> = Gson().fromJson(mapJSON, mapType)
+            val mapJSON = getJSON(serializedWorldMap["map_data"])
+
+            val typeWorldMapData = object : TypeToken<Map<String, Any>>() {}.type
+            val serializedWorldMapData: Map<String, Any> = Gson().fromJson(mapJSON, typeWorldMapData)
 
             // ---
 
             // Dimensions
-            val dimensionJSON = getJSON(map["map_dimensions"])
+            val dimensionJSON = getJSON(serializedWorldMapData["map_dimensions"])
             //Log.d("Dimension", dimensionJSON)
-            val mappedDimensionType = object : TypeToken<Map<String?, Any>?>() {}.type
-            val mappedDimension =
-                Gson().fromJson<Map<String, WorldMapsSerializerDto.WorldMapSerializerDto.WorldDimensionsSerializerDto>>(dimensionJSON, mappedDimensionType)
-            val mapDimension = RoomDimensionsDto(
-                getInt(mappedDimension["w"]),
-                getInt(mappedDimension["h"])
-            )
+            val typeWorldMapDimensions = object : TypeToken<Map<String?, Any>?>() {}.type
+            val serializedWorldMapDimensions =
+                Gson().fromJson<Map<String, WorldDimensionsSerializerDto>>(dimensionJSON, typeWorldMapDimensions)
+
+            val worldMapDimensionSerializerDto = WorldDimensionsSerializerDto()
+            worldMapDimensionSerializerDto.w = getInt(serializedWorldMapDimensions["w"])
+            worldMapDimensionSerializerDto.h = getInt(serializedWorldMapDimensions["h"])
 
             //--
 
             // All Floors
-            val floorsJSON = getJSON(map["map_floors"])
+            val floorsJSON = getJSON(serializedWorldMapData["map_floors"])
             //Log.d("Floors", floorsJSON)
-            val floorsType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
-            val mappedFloors = Gson().fromJson<ArrayList<Map<String?, Any>>>(floorsJSON, floorsType)
+            val typeFloors = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
+            val serializedFloors = Gson().fromJson<ArrayList<Map<String?, Any>>>(floorsJSON, typeFloors)
 
-            val mapFloors = ArrayList<FloorDto>()
-            for (mappedFloor in mappedFloors) {
+            val serialFloorDtos = ArrayList<WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto>()
+            for (serializedFloor in serializedFloors) {
+
                 // Floor    "floor_id" "floor_number" "floor_pois" "floor_rooms"
-                val floorJSON = getJSON(mappedFloor)
-                //Log.d("Floor", floorJSON)
-                val floorType = object : TypeToken<Map<String?, Any>?>() {}.type
-                val mappedFloorItem = Gson().fromJson<Map<String, Any>>(floorJSON, floorType)
+                val floorJSON = getJSON(serializedFloor)
 
-                val floorId = mappedFloorItem["floor_id"].toString()
-                val floorName = mappedFloorItem["floor_name"].toString()
-                val floorNumber = mappedFloorItem["floor_number"].toString()
-                val roomsJSON = getJSON(mappedFloorItem["floor_rooms"])
-                val floorPOIsJSON = getJSON(mappedFloorItem["floor_pois"])
-                //Log.d("Floor","$floorId $floorName $floorNumber")
+                val typeFloorData = object : TypeToken<Map<String?, Any>?>() {}.type
+                val serializedFloorData = Gson().fromJson<Map<String, Any>>(floorJSON, typeFloorData)
+
+                val floorId = serializedFloorData["floor_id"].toString()
+                val floorName = serializedFloorData["floor_name"].toString()
+                val floorNumber = serializedFloorData["floor_number"].toString()
+                val roomsJSON = getJSON(serializedFloorData["floor_rooms"])
+                val floorPOIsJSON = getJSON(serializedFloorData["floor_pois"])
 
 
                 // All Rooms
-                val roomsType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
-                val mappedRooms = Gson().fromJson<ArrayList<Map<String, Any>>>(roomsJSON, roomsType)
+                val typeRooms = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
+                val serializedRooms = Gson().fromJson<ArrayList<Map<String, Any>>>(roomsJSON, typeRooms)
                 //Log.d("Rooms", roomsJSON)
 
-                val roomsCollection = ArrayList<WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto>()
-                for (mappedRoom in mappedRooms) {
+                val roomsDtos = ArrayList<WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto>()
+                for (serializedRoom in serializedRooms) {
                     // "room_iD" "room_name" "room_points"
 
-                    val tempRoom = WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto()
-                    val roomID = getInt(mappedRoom["room_iD"])
-                    val roomName = getString(mappedRoom["room_name"])
-                    val pointsListJSON = getJSON(mappedRoom["room_points"])
+                    val roomDto = WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto()
+
+                    val roomID = getInt(serializedRoom["room_iD"])
+                    val roomName = getString(serializedRoom["room_name"])
+                    val roomPointsListJSON = getJSON(serializedRoom["room_points"])
                     //Log.d("RoomPoints", pointsListJSON)
 
 
                     // All Points
                     //"points" "x": "y":
-                    val pointsListType = object : TypeToken<Map<String?, Any>?>() {}.type
-                    val mappedPointsList =
-                        Gson().fromJson<Map<String, *>>(pointsListJSON, pointsListType)
+                    val typeRoomPoints = object : TypeToken<Map<String?, Any>?>() {}.type
+                    val serializedRoomPoints =
+                        Gson().fromJson<Map<String, *>>(roomPointsListJSON, typeRoomPoints)
 
-                    val pointsJSON = getJSON(mappedPointsList["points"])
+                    val roomPointsJSON = getJSON(serializedRoomPoints["points"])
+
                     //Log.d("Points", pointsJSON)
                     val pointsType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
-                    val mappedPoints =
-                        Gson().fromJson<ArrayList<Map<String, Any>>>(pointsJSON, pointsType)
+                    val serializedPoints =
+                        Gson().fromJson<ArrayList<Map<String, Any>>>(roomPointsJSON, pointsType)
 
-                    val pointsCollection = WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto()
-                    for (point in mappedPoints) {
+                    val pointsDto = WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto()
+                    for (serializedPoint in serializedPoints) {
+                        val pX = getFloat(serializedPoint["x"])
+                        val pY = getFloat(serializedPoint["y"])
+
                         val tempPoint = WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto.RoomPointSerializerDto()
-                        val pX = getFloat(point["x"])
-                        val pY = getFloat(point["y"])
                         tempPoint.x = pX
                         tempPoint.y = pY
-                        pointsCollection.points.add(tempPoint)
+
+                        pointsDto.points.add(tempPoint)
                     }
 
                     // ---
-                    tempRoom.roomId = roomID
-                    tempRoom.roomName = roomName
-                    tempRoom.roomPoints = pointsCollection
-                    roomsCollection.add(tempRoom)
+                    roomDto.roomId = roomID
+                    roomDto.roomName = roomName
+                    roomDto.roomPoints = pointsDto
+                    roomsDtos.add(roomDto)
                 }
 
                 // ---
 
                 // All POIs
-                val poisType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
-                val mappedPois = Gson().fromJson<ArrayList<Map<String, Any>>>(floorPOIsJSON, poisType)
+                val floorPoisType = object : TypeToken<ArrayList<Map<String?, Any>?>?>() {}.type
+                val serializedFloorPois = Gson().fromJson<ArrayList<Map<String, Any>>>(floorPOIsJSON, floorPoisType)
 
-                val poisCollection = ArrayList<WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.POISerializerDto>()
-                for (mappedPoi in mappedPois) {
+                val poiDtos = ArrayList<WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.POISerializerDto>()
+                for (serializedFloorPoi in serializedFloorPois) {
+
                     // "poi_iD" "poi_name" "poi_type" "x" "y"
                     val tempPOI = WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.POISerializerDto()
-                    val poiId = getInt(mappedPoi["poi_iD"])
-                    val poiType = getInt(mappedPoi["poi_type"])
-                    val poiX = getFloat(mappedPoi["x"])
-                    val poiY = getFloat(mappedPoi["y"])
-                    val poiName = getString(mappedPoi["poi_name"])
+                    val poiId = getInt(serializedFloorPoi["poi_iD"])
+                    val poiType = getInt(serializedFloorPoi["poi_type"])
+                    val poiX = getFloat(serializedFloorPoi["x"])
+                    val poiY = getFloat(serializedFloorPoi["y"])
+                    val poiName = getString(serializedFloorPoi["poi_name"])
 
                     tempPOI.poiId = poiId
                     tempPOI.poiName = poiName
@@ -133,45 +135,54 @@ object WorldMapsFactory {
                     tempPOI.x = poiX
                     tempPOI.y = poiY
 
-                    poisCollection.add(tempPOI)
+                    poiDtos.add(tempPOI)
                 }
 
                 // ---
 
                 // Add Floor
-                val tempFloor = WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto()
-                tempFloor.floorName = floorName
-                tempFloor.floorNumber = floorNumber.toDouble().toInt()
-                tempFloor.floorId = floorId.toDouble().toInt()
-                tempFloor.floorRooms = roomsCollection
-                tempFloor.floorPOIs = poisCollection
+                val serialFloorDto = WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto()
+                serialFloorDto.floorName = floorName
+                serialFloorDto.floorNumber = floorNumber.toDouble().toInt()
+                serialFloorDto.floorId = floorId.toDouble().toInt()
+                serialFloorDto.floorRooms = roomsDtos
+                serialFloorDto.floorPOIs = poiDtos
 
-                mapFloors.add(FloorDto(tempFloor))
+                serialFloorDtos.add(serialFloorDto)
             }
 
             // ---
 
             // Finalize MapModel
-            val model = WorldMapDto()
-            model.mapId = map["map_id"].toString()
-            model.mapName = map["map_name"].toString()
-            model.mapNameShort = map["map_name_short"].toString()
-            model.mapDimensions = mapDimension
-            model.mapFloors = mapFloors
+            val worldMapId = serializedWorldMapData["map_id"].toString()
+            val worldMapName = serializedWorldMapData["map_name"].toString()
+            val worldMapNameShort = serializedWorldMapData["map_name_short"].toString()
+
+            val worldMapSerializerDto = WorldMapsSerializerDto.WorldMapSerializerDto()
+            worldMapSerializerDto.mapId = worldMapId
+            worldMapSerializerDto.mapName = worldMapName
+            worldMapSerializerDto.mapNameShort = worldMapNameShort
+            worldMapSerializerDto.mapDimensions = worldMapDimensionSerializerDto
+            worldMapSerializerDto.mapFloors = serialFloorDtos
+
+            val worldMapDto = worldMapSerializerDto.toWorldMapDto()
+
+            worldMapDtos.add(worldMapDto)
 
             //Log.d("Map", "Adding Map model\n${model.print()}")
-            mapListModel.addMapModel(model)
+
         }
 
-        return Result.success(mapListModel)
+        val worldMapsDto = WorldMapsDto(
+            maps = worldMapDtos
+        )
+
+        return Result.success(worldMapsDto)
     }
 
-    fun parseUnMinified(worldMaps: WorldMapsSerializerDto): Result<WorldMapsDto> {
-        val mapModels = WorldMapsDto()
-        for (map in worldMaps.maps) {
-            map["map_data"]?.let { worldMap -> mapModels.addMapModel(WorldMapDto(worldMap)) }
-        }
-        return Result.success(mapModels)
+    fun parseUnMinified(serializedWorldMapsDto: WorldMapsSerializerDto): Result<WorldMapsDto> {
+
+        return Result.success(serializedWorldMapsDto.toWorldMapsDto())
     }
 
     private fun getString(value: Any?): String {
