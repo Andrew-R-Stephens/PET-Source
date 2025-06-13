@@ -1,10 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.warning
 
-import android.util.Log
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-
 class PhaseHandler(
 ) {
     /*companion object Time {

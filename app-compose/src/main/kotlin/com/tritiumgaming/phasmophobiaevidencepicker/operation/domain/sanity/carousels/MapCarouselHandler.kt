@@ -1,9 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.carousels
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
 class MapCarouselHandler(
     private val simpleMapRepository: SimpleMapRepository

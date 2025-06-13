@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.comple
 
 import android.graphics.PointF
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 
 class RoomArea(
     val points: List<PointF>

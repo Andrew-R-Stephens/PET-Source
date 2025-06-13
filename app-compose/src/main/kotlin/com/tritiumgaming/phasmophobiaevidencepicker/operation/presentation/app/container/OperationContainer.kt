@@ -37,6 +37,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.use
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.repository.MissionRepository
@@ -99,6 +100,9 @@ class OperationContainer(
         ComplexMapRepositoryImpl(
             localSource = complexMapLocalDataSource
         )
+    internal val fetchComplexMapsUseCase = FetchComplexMapsUseCase(
+        complexMapRepository = complexMapRepository
+    )
 
     /*
      * Codex
