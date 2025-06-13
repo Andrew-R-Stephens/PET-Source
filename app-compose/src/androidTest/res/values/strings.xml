@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mapsJson" translatable="false">maps.json</string>
+</resources>
