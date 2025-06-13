@@ -13,14 +13,14 @@ import java.io.InputStreamReader
 class ComplexMapLocalService: ComplexMapService {
 
     override fun readFile(assets: AssetManager, fileName: String): Result<WorldMapsSerializerDto> {
+
         val inputStream: InputStream? = assets.open(fileName)
 
         //Creating a JSONObject object
         val gson = GsonBuilder().create()
 
-        if (inputStream == null) {
-            throw Exception("InputStream is null")
-        }
+        inputStream ?: throw Exception("InputStream is null")
+
         val fileReader = gson.newJsonReader(BufferedReader(InputStreamReader(inputStream)))
         val type = object : TypeToken<WorldMapsSerializerDto?>() {}.type
         val worldMaps: WorldMapsSerializerDto = gson.fromJson(fileReader, type)

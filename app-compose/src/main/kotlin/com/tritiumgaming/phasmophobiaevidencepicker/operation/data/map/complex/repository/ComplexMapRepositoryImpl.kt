@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class ComplexMapRepositoryImpl(
-    override val localSource: ComplexMapDataSource
+    val localSource: ComplexMapDataSource
 ): ComplexMapRepository {
 
     override suspend fun fetchMaps(): Result<WorldMaps> = withContext(Dispatchers.IO) {
@@ -22,7 +22,7 @@ class ComplexMapRepositoryImpl(
             result.map { it.toMapList().toDomain() }
         } catch (e: Exception) {
             e.printStackTrace()
-            Result.failure(Exception("Failed to fetch World Maps", e))
+            Result.failure(Exception("Failed to fetch World Maps in Repository", e))
         }
 
     }

@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
@@ -12,7 +13,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.use
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.WorldMap
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
+import kotlinx.coroutines.launch
 
 /**
  * MapMenuViewModel class
@@ -23,7 +25,7 @@ class MapsViewModel(
     val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
     val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
     val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
-    val complexMapRepository: ComplexMapRepository
+    val fetchComplexMapsUseCase: FetchComplexMapsUseCase
 ) : ViewModel() {
 
     var imageDisplayThread: Thread? = null
@@ -52,26 +54,36 @@ class MapsViewModel(
     fun decrementFloorIndex() {
         var layerIndex: Int = currentSimpleMap.currentFloor
         if (--layerIndex < 0) {
-            layerIndex = currentSimpleMap.floorCount -1
+            layerIndex = currentSimpleMap.floorCount - 1
         }
         currentSimpleMap.currentFloor = layerIndex
+    }
+
+    fun fetchComplexMapsUseCase() {
+        viewModelScope.launch {
+            fetchComplexMapsUseCase()
+        }
+    }
+
+    init {
+        fetchComplexMapsUseCase()
     }
 
     class MapsFactory(
         private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
         private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
         private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
-        private val complexMapRepository: ComplexMapRepository
+        private val fetchComplexMapsUseCase: FetchComplexMapsUseCase
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return MapsViewModel(
-                    fetchSimpleMapsUseCase,
-                    fetchMapModifiersUseCase,
-                    fetchMapThumbnailsUseCase,
-                    complexMapRepository
+                    fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
+                    fetchMapModifiersUseCase = fetchMapModifiersUseCase,
+                    fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
+                    fetchComplexMapsUseCase = fetchComplexMapsUseCase
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
@@ -87,13 +99,13 @@ class MapsViewModel(
                 val fetchSimpleMapsUseCase = appKeyContainer.fetchSimpleMapsUseCase
                 val fetchMapModifiersUseCase = appKeyContainer.fetchMapModifiersUseCase
                 val fetchMapThumbnailsUseCase = appKeyContainer.fetchMapThumbnailsUseCase
-                val complexMapRepository = appKeyContainer.complexMapRepository
+                val fetchComplexMapsUseCase = appKeyContainer.fetchComplexMapsUseCase
 
                 MapsViewModel(
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
                     fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
-                    complexMapRepository = complexMapRepository
+                    fetchComplexMapsUseCase = fetchComplexMapsUseCase
                 )
             }
         }

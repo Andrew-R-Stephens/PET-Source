@@ -28,7 +28,7 @@ class ComplexMapLocalDataSource(
         } catch (e: Exception) {
             e.printStackTrace()
 
-            Result.failure(Exception("Failed to fetch World Maps", e))
+            Result.failure(Exception("Failed to read file.", e))
         }
     }
 
