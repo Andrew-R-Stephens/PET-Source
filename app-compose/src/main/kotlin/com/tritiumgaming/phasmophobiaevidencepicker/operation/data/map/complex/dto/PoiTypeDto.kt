@@ -1,5 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.PoiType
+
 enum class PoiTypeDto {
     FUSE_BOX,
     CAR_KEY, CABIN_KEY, BONE,
@@ -8,3 +10,5 @@ enum class PoiTypeDto {
     HIDING_LOCATION, MAIN_ENTRANCE,
     MATCH
 }
+
+fun PoiTypeDto.toDomain() = PoiType.valueOf(name)

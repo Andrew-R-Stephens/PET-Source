@@ -2,57 +2,36 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import android.graphics.PointF
 import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.Poi
 
-class PoiDto {
-    var id: Int = -1
-    var name: String = ""
-    var type: PoiTypeDto = PoiTypeDto.entries[0]
-    var point: PointF? = null
+class PoiDto(
+    var id: Int,
+    var name: String,
+    var type: PoiTypeDto,
+    var point: PointF
+) {
 
-    constructor() {
-        id = -1
-        name = ""
-    }
-
-    constructor(tempPoiData: PoiDto?) {
-        if (tempPoiData == null) {
-            return
-        }
-
-        id = tempPoiData.id
-        name = tempPoiData.name
-        type = tempPoiData.type
-        point = tempPoiData.point
-    }
-
-    constructor(id: Int, name: String, type: Int, x: Float, y: Float) {
-        this.id = id
-        this.name = name
-        setType(type)
+    constructor(id: Int, name: String, type: Int, x: Float, y: Float) : this(
+        id = id,
+        name = name,
+        type = PoiTypeDto.entries[type],
         point = PointF(x, y)
-    }
-
-
-    private fun setType(type: Int) {
-        this.type = PoiTypeDto.entries[type]
-    }
-
-    fun hasName(): Boolean {
-        return name.isNotEmpty()
-    }
-
-    fun hasId(): Boolean {
-        return this.id >= -1
-    }
+    )
 
     override fun toString(): String {
         return "\n\t\t[Room ID: $id] [Room Name: $name] [Room Name: $type] [Room points: $point]"
     }
 
-    val isReady: Boolean
-        get() = point != null
-
     fun print() {
         Log.d("Maps", "$id $name $type $point")
     }
 }
+
+fun List<PoiDto>.toDomain() = map { poiDto -> poiDto.toDomain() }
+
+fun PoiDto.toDomain() = Poi(
+    id = id,
+    name = name,
+    type = type.toDomain(),
+    point = point
+)

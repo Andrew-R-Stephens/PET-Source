@@ -2,18 +2,13 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.Room
 
 class RoomDto(
-    var id: Int,
-    var name: String,
-    points: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto?
+    val id: Int,
+    val name: String,
+    val roomArea: RoomAreaDto
 ) {
-
-    val roomArea: RoomAreaDto = RoomAreaDto()
-
-    init {
-        roomArea.setPoints(points)
-    }
 
     override fun toString(): String {
         return "\n\t\t[Room ID: $id] [Room Name: $name] [Room points: $roomArea]"
@@ -25,3 +20,11 @@ class RoomDto(
         roomArea.print()
     }
 }
+
+fun List<RoomDto>.toDomain() = map { roomDto -> roomDto.toDomain() }
+
+fun RoomDto.toDomain() = Room(
+    id = id,
+    name = name,
+    roomArea = roomArea.toDomain()
+)

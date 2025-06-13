@@ -3,53 +3,11 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 import android.graphics.PointF
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.RoomArea
 
-class RoomAreaDto {
-    var points = mutableListOf<PointF>()
-
-    fun setPoints(tempPoints: ArrayList<PointF>) {
-        for (tempPoint in tempPoints) {
-            points.add(
-                PointF(tempPoint.x, tempPoint.y)
-            )
-        }
-    }
-
-    fun setPoints(tempPoints: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto?) {
-        tempPoints?.points?.forEach() {
-            points.add(
-                PointF(it.x, it.y)
-            )
-        }
-    }
-
-    val center: PointF
-        get() {
-            var x = 0f
-            var y = 0f
-            val pointCount = points.size
-            for (i in 0 until pointCount - 1) {
-                val point = points[i]
-                x += point.x
-                y += point.y
-            }
-
-            x /= pointCount
-            y /= pointCount
-
-            return PointF(x, y)
-        }
-
-    fun reset() {
-        points = ArrayList()
-    }
-
-    val lastPoint: PointF
-        get() {
-            points.isEmpty()
-
-            return points[points.size - 1]
-        }
+class RoomAreaDto(
+    val points: List<PointF>
+) {
 
     override fun toString(): String {
         val s = StringBuilder()
@@ -66,3 +24,7 @@ class RoomAreaDto {
         }
     }
 }
+
+fun RoomAreaDto.toDomain() = RoomArea(
+    points = points.map { point -> PointF(point.x, point.y) }
+)

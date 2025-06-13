@@ -1,51 +1,29 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.WorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.WorldMaps
 
-class WorldMapsDto() {
-
-    private var mapModels: ArrayList<WorldMapDto> = ArrayList()
-
-    fun addMapModel(model: WorldMapDto) {
-        mapModels.add(model)
-    }
-
-    val shortenedMapNames: ArrayList<String>
-        get() {
-            val names = ArrayList<String>(mapModels.size)
-            for (mapModel in mapModels) {
-                names.add(mapModel.mapNameShort)
-            }
-
-            return names
-        }
-
-    fun getMapById(id: String): WorldMapDto? {
-        for (m in mapModels) {
-            if (m.mapId == id) {
-                return m
-            }
-        }
-
-        return null
-    }
+class WorldMapsDto(
+    internal var maps: List<WorldMapDto>
+) {
 
     @Synchronized
     fun print() {
-        for (m in mapModels) {
+        for (m in maps) {
             m.print()
-        }
-    }
-
-    fun orderRooms() {
-        for (m in mapModels) {
-            m.orderRooms()
         }
     }
 
 }
 
 fun WorldMapsDto.toDomain() = WorldMaps(
-    // TODO
+    maps = maps.map { dto ->
+        WorldMap(
+            mapId = dto.mapId,
+            mapName = dto.mapName,
+            mapNameShort = dto.mapNameShort,
+            mapDimensions = dto.mapDimensions.toDomain(),
+            mapFloors = dto.mapFloors.toDomain()
+        )
+    }
 )
-

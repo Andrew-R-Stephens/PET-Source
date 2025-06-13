@@ -1,70 +1,47 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
-import android.os.Build
+import android.graphics.PointF
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.Floor
 
-class FloorDto {
-    private var floorId: Int = 0
-    var floorName: String? = null
-        private set
-    private var floorImage: String? = null
+class FloorDto(
+    internal val floorId: Int,
+    internal val floorName: String?,
+    internal val floorImage: String?,
+    internal val floorLayer: FloorLayerTypeDto,
+    internal val floorRooms: List<RoomDto>,
+    internal val floorPOIs: List<PoiDto>
+) {
 
-    var floorLayer: FloorLayerTypeDto
-
-    val floorRooms: ArrayList<RoomDto> = ArrayList()
-    val floorPOIs: ArrayList<PoiDto> = ArrayList()
-
-    constructor(floor: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto) {
-        floorImage = floor.imageFile
-        floorId = floor.floorId
-        floorName = floor.floorName
-        floorLayer = FloorLayerTypeDto.entries[floor.floorNumber]
-
-        for (r in floor.floorRooms) {
-            floorRooms.add(RoomDto(r.roomId, r.roomName, r.roomPoints))
+    constructor(floor: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto) : this(
+        floorId = floor.floorId,
+        floorName = floor.floorName,
+        floorImage = floor.imageFile,
+        floorLayer = FloorLayerTypeDto.entries[floor.floorNumber],
+        floorRooms = floor.floorRooms.map { roomSDto ->
+            RoomDto(
+                id = roomSDto.roomId,
+                name = roomSDto.roomName,
+                roomArea = RoomAreaDto(
+                    points = roomSDto.roomPoints.points.map { pointDto ->
+                        PointF(pointDto.x, pointDto.y)
+                    }
+                )
+            )
+        },
+        floorPOIs = floor.floorPOIs.map { poiSDto ->
+            PoiDto(poiSDto.poiId, poiSDto.poiName, poiSDto.poiType, poiSDto.x, poiSDto.y)
         }
-        for (p in floor.floorPOIs) {
-            floorPOIs.add(PoiDto(p.poiId, p.poiName, p.poiType, p.x, p.y))
+    ) {
+        floor.floorRooms.map { roomSDto ->
+            RoomAreaDto(
+                points = roomSDto.roomPoints.points.map { pointDto ->
+                    PointF(pointDto.x, pointDto.y)
+                }
+            )
+
         }
-    }
-
-    constructor(layer: FloorLayerTypeDto) {
-        this.floorLayer = layer
-    }
-
-    val floorRoomNames: ArrayList<String>
-        get() {
-            val names = ArrayList<String>()
-            for (r in floorRooms) {
-                names.add(r.name)
-            }
-            return names
-        }
-
-    val lastRoom: RoomDto?
-        get() {
-            if (floorRooms.isEmpty()) {
-                return null
-            }
-            return floorRooms[floorRooms.size - 1]
-        }
-
-    fun getRoomById(id: Int): RoomDto? {
-        for (room in floorRooms) {
-            if (room.id == id) return room
-        }
-
-        return null
-    }
-
-    fun getRoomIndexById(id: Int): Int {
-        var i = 0
-        while (i < floorRooms.size) {
-            if (floorRooms[i].id == id) return i
-            i++
-        }
-        return ++i
     }
 
     override fun toString(): String {
@@ -86,13 +63,15 @@ class FloorDto {
         }
     }
 
-    fun orderRooms() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            floorRooms.sortWith(Comparator.comparing(RoomDto::name))
-        }
-    }
-
-    fun addRoomModels(roomModels: ArrayList<RoomDto>) {
-        floorRooms.addAll(roomModels)
-    }
 }
+
+fun List<FloorDto>.toDomain() = map { floorDto -> floorDto.toDomain() }
+
+fun FloorDto.toDomain() = Floor(
+    floorId = floorId,
+    floorName = floorName,
+    floorImage = floorImage,
+    floorLayer = floorLayer.toDomain(),
+    floorRooms = floorRooms.toDomain(),
+    floorPOIs = floorPOIs.toDomain()
+)
