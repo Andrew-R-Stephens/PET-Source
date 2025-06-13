@@ -4,24 +4,9 @@ import android.graphics.PointF
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 
-class RoomArea {
-    var points = mutableListOf<PointF>()
-
-    fun setPoints(tempPoints: ArrayList<PointF>) {
-        for (tempPoint in tempPoints) {
-            points.add(
-                PointF(tempPoint.x, tempPoint.y)
-            )
-        }
-    }
-
-    fun setPoints(tempPoints: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto?) {
-        tempPoints?.points?.forEach() {
-            points.add(
-                PointF(it.x, it.y)
-            )
-        }
-    }
+class RoomArea(
+    val points: List<PointF>
+) {
 
     val center: PointF
         get() {
@@ -40,29 +25,20 @@ class RoomArea {
             return PointF(x, y)
         }
 
-    fun reset() {
-        points = ArrayList()
-    }
-
     val lastPoint: PointF
-        get() {
-            points.isEmpty()
-
-            return points[points.size - 1]
-        }
+        get() = points.last()
 
     override fun toString(): String {
         val s = StringBuilder()
-        for (p in points) {
-            s.append("\n\t\t[Point: x").append(p.x).append(" y").append(p.y).append("]")
-        }
+        points.forEach { p ->
+            s.append("\n\t\t[Point: x").append(p.x).append(" y").append(p.y).append("]") }
+
         return "[Points:$s\t]"
     }
 
     @Synchronized
     fun print() {
-        for (p in points) {
-            Log.d("Maps", "[Point: x" + p.x + " y" + p.y + "]")
-        }
+        points.forEach { p ->
+            Log.d("Maps", "[Point: x" + p.x + " y" + p.y + "]") }
     }
 }

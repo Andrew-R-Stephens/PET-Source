@@ -1,71 +1,28 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps
 
-import android.os.Build
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 
-class Floor {
-    private var floorId: Int = 0
-    var floorName: String? = null
-        private set
-    private var floorImage: String? = null
+data class Floor(
+    internal val floorId: Int,
+    internal val floorName: String?,
+    internal val floorImage: String?,
+    internal val floorLayer: FloorLayerType,
+    internal val floorRooms: List<Room>,
+    internal val floorPOIs: List<Poi>
+) {
 
-    var floorLayer: FloorLayerType
-
-    val floorRooms: ArrayList<Room> = ArrayList()
-    val floorPOIs: ArrayList<Poi> = ArrayList()
-
-    constructor(floor: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto) {
-        floorImage = floor.imageFile
-        floorId = floor.floorId
-        floorName = floor.floorName
-        floorLayer = FloorLayerType.entries[floor.floorNumber]
-
-        for (r in floor.floorRooms) {
-            floorRooms.add(Room(r.roomId, r.roomName, r.roomPoints))
-        }
-        for (p in floor.floorPOIs) {
-            floorPOIs.add(Poi(p.poiId, p.poiName, p.poiType, p.x, p.y))
-        }
-    }
-
-    constructor(layer: FloorLayerType) {
-        this.floorLayer = layer
-    }
-
-    val floorRoomNames: ArrayList<String>
-        get() {
-            val names = ArrayList<String>()
-            for (r in floorRooms) {
-                names.add(r.name)
-            }
-            return names
-        }
+    val floorRoomNames: List<String>
+        get() = floorRooms.map { it.name }
 
     val lastRoom: Room?
         get() {
-            if (floorRooms.isEmpty()) {
-                return null
-            }
+            if (floorRooms.isEmpty()) { return null }
             return floorRooms[floorRooms.size - 1]
         }
 
-    fun getRoomById(id: Int): Room? {
-        for (room in floorRooms) {
-            if (room.id == id) return room
-        }
+    fun getRoomById(id: Int): Room? = floorRooms.find { room -> room.id == id }
 
-        return null
-    }
-
-    fun getRoomIndexById(id: Int): Int {
-        var i = 0
-        while (i < floorRooms.size) {
-            if (floorRooms[i].id == id) return i
-            i++
-        }
-        return ++i
-    }
+    fun getRoomIndexById(id: Int): Int = floorRooms.indexOfFirst { room -> room.id == id }
 
     override fun toString(): String {
         return "\n\t[Floor ID: $floorId] [Floor Name: $floorName] [ Assigned Layer: $floorLayer ] [Image File: $floorImage] Rooms:$floorRooms\n"
@@ -73,26 +30,16 @@ class Floor {
 
     @Synchronized
     fun print() {
-        Log.d(
-            "Maps",
-            "[Floor ID: $floorId] [Floor Name: $floorName] [ Assigned Layer: $floorLayer ] [Image File: $floorImage]"
+        Log.d("Maps",
+            "[Floor ID: $floorId] [Floor Name: $floorName] " +
+                    "[ Assigned Layer: $floorLayer ] [Image File: $floorImage]"
         )
-        for (r in floorRooms) {
-            r.print()
-        }
-
-        for (p in floorPOIs) {
-            p.print()
-        }
+        floorRooms.forEach { it.print() }
+        floorPOIs.forEach { it.print() }
     }
 
     fun orderRooms() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            floorRooms.sortWith(Comparator.comparing(Room::name))
-        }
+        floorRooms.sortedBy { room -> room.name }
     }
 
-    fun addRoomModels(roomModels: ArrayList<Room>) {
-        floorRooms.addAll(roomModels)
-    }
 }

@@ -3,54 +3,23 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.comple
 import android.graphics.PointF
 import android.util.Log
 
-class Poi {
-    var id: Int = -1
-    var name: String = ""
-    var type: PoiType = PoiType.entries[0]
-    var point: PointF? = null
+data class Poi(
+    val id: Int,
+    val name: String,
+    val type: PoiType,
+    val point: PointF?
+) {
 
-    constructor() {
-        id = -1
-        name = ""
-    }
+    fun hasName(): Boolean = name.isNotEmpty()
 
-    constructor(tempPoiData: Poi?) {
-        if (tempPoiData == null) {
-            return
-        }
+    fun hasId(): Boolean = this.id >= -1
 
-        id = tempPoiData.id
-        name = tempPoiData.name
-        type = tempPoiData.type
-        point = tempPoiData.point
-    }
-
-    constructor(id: Int, name: String, type: Int, x: Float, y: Float) {
-        this.id = id
-        this.name = name
-        setType(type)
-        point = PointF(x, y)
-    }
-
-
-    private fun setType(type: Int) {
-        this.type = PoiType.entries[type]
-    }
-
-    fun hasName(): Boolean {
-        return name.isNotEmpty()
-    }
-
-    fun hasId(): Boolean {
-        return this.id >= -1
-    }
+    val isReady: Boolean
+        get() = point != null
 
     override fun toString(): String {
         return "\n\t\t[Room ID: $id] [Room Name: $name] [Room Name: $type] [Room points: $point]"
     }
-
-    val isReady: Boolean
-        get() = point != null
 
     fun print() {
         Log.d("Maps", "$id $name $type $point")

@@ -1,44 +1,16 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps
 
-class WorldMaps() {
+class WorldMaps(
+    private val maps: List<WorldMap>
+) {
 
-    private var mapModels: ArrayList<WorldMap> = ArrayList()
+    val shortenedMapNames = maps.map { map -> map.mapNameShort }
 
-    fun addMapModel(model: WorldMap) {
-        mapModels.add(model)
-    }
+    fun getMapById(id: String): WorldMap? = maps.find { map -> map.mapId == id }
 
-    val shortenedMapNames: ArrayList<String>
-        get() {
-            val names = ArrayList<String>(mapModels.size)
-            for (mapModel in mapModels) {
-                names.add(mapModel.mapNameShort)
-            }
-
-            return names
-        }
-
-    fun getMapById(id: String): WorldMap? {
-        for (m in mapModels) {
-            if (m.mapId == id) {
-                return m
-            }
-        }
-
-        return null
-    }
+    fun orderRooms() = maps.forEach{ map -> map.orderRooms() }
 
     @Synchronized
-    fun print() {
-        for (m in mapModels) {
-            m.print()
-        }
-    }
-
-    fun orderRooms() {
-        for (m in mapModels) {
-            m.orderRooms()
-        }
-    }
+    fun print() = maps.forEach { map -> map.print() }
 
 }
