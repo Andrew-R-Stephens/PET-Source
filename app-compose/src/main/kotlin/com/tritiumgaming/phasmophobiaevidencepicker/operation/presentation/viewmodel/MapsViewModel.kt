@@ -8,9 +8,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapModifiersUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapThumbnailsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapModifiersUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.WorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase

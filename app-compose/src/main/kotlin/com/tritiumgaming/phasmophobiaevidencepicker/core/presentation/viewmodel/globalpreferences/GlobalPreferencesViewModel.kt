@@ -264,12 +264,6 @@ class GlobalPreferencesViewModel(
     /**
      * Palettes
      */
-    /*private val _palettes = MutableStateFlow(mapOf<String, MarketPalette>())
-    var palettes = _palettes.asStateFlow()
-    suspend fun fetchAvailablePalettes() {
-        val mergedModels = getAvailablePalettesUseCase()
-        _palettes.update { mergedModels.toPair() }
-    }*/
 
     private val _currentPaletteUUID : MutableStateFlow<String> =
         MutableStateFlow(defaultPaletteUUID)
@@ -296,12 +290,6 @@ class GlobalPreferencesViewModel(
     /**
      * Typographies
      */
-    /*private val _typographies = MutableStateFlow(mapOf<String, MarketTypography>())
-    var typographies = _typographies.asStateFlow()
-    suspend fun fetchAvailableTypographies() {
-        val mergedModels: List<MarketTypography> = getAvailableTypographiesUseCase()
-        _typographies.update { mergedModels.toPair() }
-    }*/
 
     private val _currentTypographyUUID : MutableStateFlow<String> =
         MutableStateFlow(defaultTypographyUUID)
@@ -337,13 +325,6 @@ class GlobalPreferencesViewModel(
         Log.d("GlobalPreferencesViewModel", "Initializing...")
 
         initialDataStoreSetupEvent()
-
-        /*viewModelScope.launch {
-            getAvailablePalettesUseCase
-        }
-        viewModelScope.launch {
-            fetchAvailableTypographies()
-        }*/
 
         // Review Tracker
         viewModelScope.launch {

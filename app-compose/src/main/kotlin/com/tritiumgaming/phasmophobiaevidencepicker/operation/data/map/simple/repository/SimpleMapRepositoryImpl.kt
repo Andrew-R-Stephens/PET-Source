@@ -21,9 +21,9 @@ class SimpleMapRepositoryImpl(
         simpleThumbnails = simpleMaps.map { it -> it.thumbnailImage }
     }
 
-    override fun getMaps(): List<MapInteractModel> = simpleMaps
-    override fun getModifiers(): List<MapSizeModel> = simpleModifiers
-    override fun getThumbnails(): List<Int> = simpleThumbnails
+    override fun getMaps(): Result<List<MapInteractModel>> = Result.success(simpleMaps)
+    override fun getModifiers(): Result<List<MapSizeModel>> = Result.success(simpleModifiers)
+    override fun getThumbnails(): Result<List<Int>> = Result.success(simpleThumbnails)
 
     init {
         sync()

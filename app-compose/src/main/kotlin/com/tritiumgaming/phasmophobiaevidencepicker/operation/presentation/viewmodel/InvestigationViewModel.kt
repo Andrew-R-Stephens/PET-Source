@@ -18,16 +18,24 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mod
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexAchievementsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexEquipmentUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexPossessionsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchDifficultiesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapIndexUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapModifiersUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapThumbnailsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapModifiersUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetEvidenceByIdUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetGhostByIdUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapSetupModifierUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapNormalModifierUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapNameUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapSizeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.sanity.SanityRunnable
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils.millisToTime
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,10 +49,18 @@ import kotlin.math.min
 
 class InvestigationViewModel(
     private val fetchGhostsUseCase: FetchGhostsUseCase,
-    private val fetchEvidenceUseCase: FetchEvidencesUseCase,
-    private val fetchGhostEvidenceUseCase: FetchGhostEvidencesUseCase,
+    private val fetchEvidencesUseCase: FetchEvidencesUseCase,
+    private val getEvidenceByIdUseCase: GetEvidenceByIdUseCase,
+    private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
+    private val getGhostByIdUseCase: GetGhostByIdUseCase,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
+    private val incrementMapIndexUseCase: IncrementMapIndexUseCase,
+    private val decrementMapIndexUseCase: DecrementMapIndexUseCase,
+    private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
+    private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
+    private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase,
+    private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
     private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
     private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
     private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
@@ -52,12 +68,9 @@ class InvestigationViewModel(
     private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
 ): ViewModel() {
 
-    private val ghosts = fetchGhostsUseCase()
-    private val evidences = fetchEvidenceUseCase()
-    private val ghostEvidences = fetchGhostEvidenceUseCase()
+    private val evidences = fetchEvidencesUseCase()
+    private val ghostEvidences = fetchGhostEvidencesUseCase()
     private val difficulties = fetchDifficultiesUseCase()
-    private val simpleMaps = fetchSimpleMapsUseCase()
-    private val mapModifiers = fetchMapModifiersUseCase()
     private val codexAchievements = fetchCodexAchievementsUseCase()
     private val codexPossessions = fetchCodexPossessionsUseCase()
     private val codexEquipment = fetchCodexEquipmentUseCase()
@@ -74,12 +87,9 @@ class InvestigationViewModel(
     /*
      * FUNCTIONS
      */
-    fun getGhostById(ghostId: String): GhostType? {
-        return ghosts.find { it.id == ghostId }
-    }
-    fun getEvidenceById(evidenceId: String): EvidenceType? {
-        return evidences.find { it.id == evidenceId }
-    }
+    fun getGhostById(ghostId: String): GhostType? = getGhostByIdUseCase(ghostId)
+
+    fun getEvidenceById(evidenceId: String): EvidenceType? = getEvidenceByIdUseCase(evidenceId)
 
     fun reset() {
         resetTimer(currentDifficultyTime)
@@ -92,18 +102,6 @@ class InvestigationViewModel(
      * InvestigationJournal
      */
 
-    fun setGhostNegation(
-        ghostModel: GhostType,
-        isForceNegated: Boolean
-    ) {
-        setForcedNegation(ghostModel, isForceNegated)
-    }
-    fun toggleGhostNegation(
-        ghostModel: GhostType
-    ) {
-        toggleForcedNegation(ghostModel)
-    }
-
     private val _isInvestigationToolsDrawerCollapsed: MutableStateFlow<Boolean> =
         MutableStateFlow(false)
     val isInvestigationToolsDrawerCollapsed = _isInvestigationToolsDrawerCollapsed.asStateFlow()
@@ -113,17 +111,13 @@ class InvestigationViewModel(
         _isInvestigationToolsDrawerCollapsed.update { isCollapsed }
     }
     fun toggleInvestigationToolsDrawerState() {
-        _isInvestigationToolsDrawerCollapsed.update { !(isInvestigationToolsDrawerCollapsed.value) }
+        setInvestigationToolsDrawerState(!isInvestigationToolsDrawerCollapsed.value)
     }
 
     private val _investigationToolsCategory: MutableStateFlow<Int> = MutableStateFlow(TOOL_SANITY)
     val investigationToolsCategory = _investigationToolsCategory.asStateFlow()
     fun setInvestigationToolsCategory(categoryIndex: Int) {
         _investigationToolsCategory.value = categoryIndex
-    }
-
-    fun reorderGhostScores() {
-        reorder()
     }
 
     /** Resets the Ruling for each Evidence type */
@@ -177,9 +171,9 @@ class InvestigationViewModel(
         }
         Log.d("GhostOrder", "Creating New:\n${str}")
 
-        reorder()
+        reorderGhostScores()
     }
-    fun reorder() {
+    fun reorderGhostScores() {
         val orderedScores = mutableListOf<GhostScore>()
         ghostScores.value.forEach {
             it.setScore ( getEvidenceScore(
@@ -218,16 +212,16 @@ class InvestigationViewModel(
         return ghostScores.value.first { it.ghostEvidence.ghost.id == ghostModel.id }.score
     }
 
-    fun setForcedNegation(
+    fun setGhostNegation(
         ghostModel: GhostType,
         isForceNegated: Boolean
     ){
         val ghostScore = ghostScores.value.first { it.ghostEvidence.ghost.id == ghostModel.id }
         ghostScore.setForcefullyRejected(isForceNegated)
     }
-    fun toggleForcedNegation(
+    fun toggleGhostNegation(
         ghostModel: GhostType
-    ){
+    ) {
         val ghostScore = ghostScores.value.first { it.ghostEvidence.ghost.id == ghostModel.id }
         ghostScore.toggleForcefullyRejected()
     }
@@ -692,31 +686,33 @@ class InvestigationViewModel(
 
     // TODO("Move to UseCase")
     fun incrementMapIndex() {
-        var i = currentMapIndex.value + 1
-        if (i >= simpleMaps.size) { i = 0 }
-        setIndex(i)
+        setIndex(incrementMapIndexUseCase(currentMapIndex.value))
     }
+
+
     // TODO("Move to UseCase")
     fun decrementMapIndex() {
-        var i = currentMapIndex.value - 1
-        if (i < 0) { i = simpleMaps.size - 1 }
-        setIndex(i)
+        setIndex(decrementMapIndexUseCase(currentMapIndex.value))
     }
+
     /* -- */
 
     private val _currentMapName = MutableStateFlow<Int>(
-        simpleMaps[currentMapIndex.value].mapName
+        getSimpleMapNameUseCase(currentMapIndex.value)
     )
     val currentMapName = _currentMapName.asStateFlow()
     private fun setCurrentMapName() {
-        _currentMapName.update { simpleMaps[currentMapIndex.value].mapName }
+        _currentMapName.update { getSimpleMapNameUseCase(currentMapIndex.value) }
     }
 
+
+
     private val _currentMapSize = MutableStateFlow<Int>(
-        simpleMaps[currentMapIndex.value].mapSize)
+        getSimpleMapSizeUseCase(currentMapIndex.value)
+    )
     private val currentMapSize = _currentMapSize.asStateFlow()
     private fun setCurrentMapSize() {
-        _currentMapSize.update { simpleMaps[currentMapIndex.value].mapSize }
+        _currentMapSize.update { getSimpleMapSizeUseCase(currentMapIndex.value) }
     }
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation
@@ -727,20 +723,28 @@ class InvestigationViewModel(
         timeRemaining: Long = 0L
     ): Float {
         if (timeRemaining <= 0L) {
-            return mapModifiers[currentMapSize.value].normalModifier
+            return getSimpleMapNormalModifierUseCase(currentMapSize.value)
         }
-        return mapModifiers[currentMapSize.value].setupModifier
+        return getSimpleMapSetupModifierUseCase(currentMapSize.value)
     }
 
     /*
      * VIEWMODEL FACTORIES
      */
     class InvestigationFactory(
+        private val fetchEvidencesUseCase: FetchEvidencesUseCase,
         private val fetchGhostsUseCase: FetchGhostsUseCase,
-        private val fetchEvidenceUseCase: FetchEvidencesUseCase,
-        private val fetchGhostEvidenceUseCase: FetchGhostEvidencesUseCase,
+        private val getEvidenceByIdUseCase: GetEvidenceByIdUseCase,
+        private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
+        private val getGhostByIdUseCase: GetGhostByIdUseCase,
         private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
         private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
+        private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
+        private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
+        private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase,
+        private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
+        private val incrementMapIndexUseCase: IncrementMapIndexUseCase,
+        private val decrementMapIndexUseCase: DecrementMapIndexUseCase,
         private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
         private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
         private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
@@ -752,11 +756,19 @@ class InvestigationViewModel(
             if (modelClass.isAssignableFrom(InvestigationViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return InvestigationViewModel(
+                    fetchEvidencesUseCase = fetchEvidencesUseCase,
+                    getEvidenceByIdUseCase = getEvidenceByIdUseCase,
                     fetchGhostsUseCase = fetchGhostsUseCase,
-                    fetchEvidenceUseCase = fetchEvidenceUseCase,
-                    fetchGhostEvidenceUseCase = fetchGhostEvidenceUseCase,
+                    fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
+                    getGhostByIdUseCase = getGhostByIdUseCase,
                     fetchDifficultiesUseCase = fetchDifficultiesUseCase,
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
+                    getSimpleMapNameUseCase = getSimpleMapNameUseCase,
+                    getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
+                    getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
+                    getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
+                    incrementMapIndexUseCase = incrementMapIndexUseCase,
+                    decrementMapIndexUseCase = decrementMapIndexUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
                     fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
@@ -774,11 +786,19 @@ class InvestigationViewModel(
             initializer {
                 val container = (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
-                val fetchGhostsUseCase = container.fetchGhostsUseCase
                 val fetchEvidencesUseCase = container.fetchEvidencesUseCase
+                val getEvidenceByIdUseCase = container.getEvidenceByIdUseCase
+                val fetchGhostsUseCase = container.fetchGhostsUseCase
+                val getGhostByIdUseCase = container.getGhostByIdUseCase
                 val fetchGhostEvidencesUseCase = container.fetchGhostEvidencesUseCase
                 val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
                 val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
+                val getSimpleMapNameUseCase = container.getSimpleMapNameUseCase
+                val getSimpleMapSizeUseCase = container.getSimpleMapSizeUseCase
+                val getSimpleMapSetupModifierUseCase = container.getSimpleMapSetupModifierUseCase
+                val getSimpleMapNormalModifierUseCase = container.getSimpleMapNormalModifierUseCase
+                val incrementMapIndexUseCase = container.incrementMapIndexUseCase
+                val decrementMapIndexUseCase = container.decrementMapIndexUseCase
                 val fetchMapModifiersUseCase = container.fetchMapModifiersUseCase
                 val fetchMapThumbnailsUseCase = container.fetchMapThumbnailsUseCase
                 val fetchCodexAchievementsUseCase = container.fetchCodexAchievementsUseCase
@@ -786,11 +806,19 @@ class InvestigationViewModel(
                 val fetchCodexEquipmentUseCase = container.fetchCodexEquipmentUseCase
 
                 InvestigationViewModel(
+                    fetchEvidencesUseCase = fetchEvidencesUseCase,
+                    getEvidenceByIdUseCase = getEvidenceByIdUseCase,
                     fetchGhostsUseCase = fetchGhostsUseCase,
-                    fetchEvidenceUseCase = fetchEvidencesUseCase,
-                    fetchGhostEvidenceUseCase = fetchGhostEvidencesUseCase,
+                    getGhostByIdUseCase = getGhostByIdUseCase,
+                    fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
                     fetchDifficultiesUseCase = fetchDifficultiesUseCase,
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
+                    getSimpleMapNameUseCase = getSimpleMapNameUseCase,
+                    getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
+                    getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
+                    getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
+                    incrementMapIndexUseCase = incrementMapIndexUseCase,
+                    decrementMapIndexUseCase = decrementMapIndexUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
                     fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,

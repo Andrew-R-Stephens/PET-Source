@@ -25,16 +25,24 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexAchievementsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexEquipmentUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchCodexPossessionsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchDifficultiesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapIndexUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapModifiersUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchMapThumbnailsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapModifiersUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetEvidenceByIdUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetGhostByIdUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapNameUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapNormalModifierUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapSetupModifierUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapSizeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
@@ -62,6 +70,8 @@ class OperationContainer(
     internal val fetchGhostsUseCase = FetchGhostsUseCase(journalRepository)
     internal val fetchEvidencesUseCase = FetchEvidencesUseCase(journalRepository)
     internal val fetchGhostEvidencesUseCase = FetchGhostEvidencesUseCase(journalRepository)
+    internal val getGhostByIdUseCase = GetGhostByIdUseCase(journalRepository)
+    internal val getEvidenceByIdUseCase = GetEvidenceByIdUseCase(journalRepository)
 
     // Difficulty
     val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(applicationContext)
@@ -90,6 +100,12 @@ class OperationContainer(
     internal val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(simpleMapRepository)
     internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(simpleMapRepository)
     internal val fetchMapThumbnailsUseCase = FetchMapThumbnailsUseCase(simpleMapRepository)
+    internal val incrementMapIndexUseCase = IncrementMapIndexUseCase(simpleMapRepository)
+    internal val decrementMapIndexUseCase = DecrementMapIndexUseCase(simpleMapRepository)
+    internal val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(simpleMapRepository)
+    internal val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(simpleMapRepository)
+    internal val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(simpleMapRepository)
+    internal val getSimpleMapNormalModifierUseCase = GetSimpleMapNormalModifierUseCase(simpleMapRepository)
 
     // Complex Map
     val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
