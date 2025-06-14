@@ -12,6 +12,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.sou
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.api.NewsletterService
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.source.AppInfoDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
@@ -26,10 +27,11 @@ class MainMenuContainer(
 
     // App Info
     private val appInfoLocalDataSource: AppInfoDataSource = AppInfoLocalDataSource()
-    val appInfoRepository: AppInfoRepositoryImpl =
+    private val appInfoRepository: AppInfoRepositoryImpl =
         AppInfoRepositoryImpl(
             localSource = appInfoLocalDataSource
         )
+    internal val getSpecialThanksUseCase = GetSpecialThanksUseCase(appInfoRepository)
 
     // Newsletter
     private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSource(applicationContext)

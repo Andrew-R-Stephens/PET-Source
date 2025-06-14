@@ -6,7 +6,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.gms.ads.AdRequest
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository.AppInfoRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.AnimationModel
 
 /**
@@ -15,33 +15,28 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.
  * @author TritiumGamingStudios
  */
 class MainMenuViewModel(
-    val appInfoRepository: AppInfoRepositoryImpl
+    private val getSpecialThanksUseCase: GetSpecialThanksUseCase
 ): ViewModel() {
 
     val animationModel: AnimationModel = AnimationModel()
 
     var adRequest: AdRequest? = null
 
-    val specialThanksList = appInfoRepository.getSpecialThanks().getOrDefault(emptyList())
-
-    @Deprecated("Unused in Composables")
-    var canRefreshFragment = true
-    @Deprecated("Unused in Composables")
-    var languageSelectedOriginal: Int = -1
+    val specialThanksList = getSpecialThanksUseCase()
 
     fun hasAdRequest(): Boolean {
         return adRequest != null
     }
 
     class MainMenuFactory(
-        private val appInfoRepository: AppInfoRepositoryImpl
+        private val getSpecialThanksUseCase: GetSpecialThanksUseCase
     ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(MainMenuViewModel::class.java)) {
                 val viewModel =
                     MainMenuViewModel(
-                        appInfoRepository
+                        getSpecialThanksUseCase = getSpecialThanksUseCase
                     )
                 /*viewModel.init()*/
                 @Suppress("UNCHECKED_CAST")
@@ -59,10 +54,10 @@ class MainMenuViewModel(
                 val appKeyContainer =
                     (this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY] as PETApplication).mainMenuContainer
 
-                val appInfoRepository: AppInfoRepositoryImpl = appKeyContainer.appInfoRepository
+                val getSpecialThanksUseCase: GetSpecialThanksUseCase = appKeyContainer.getSpecialThanksUseCase
 
                 MainMenuViewModel(
-                    appInfoRepository = appInfoRepository
+                    getSpecialThanksUseCase = getSpecialThanksUseCase
                 )
 
             }

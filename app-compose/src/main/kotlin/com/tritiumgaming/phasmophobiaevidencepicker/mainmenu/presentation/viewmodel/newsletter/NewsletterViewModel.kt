@@ -56,9 +56,7 @@ class NewsletterViewModel(
         viewModelScope.launch {
             synchronizeNewsletterInboxesUseCase()
 
-            _inboxes.update {
-                fetchNewsletterInboxesUseCase()
-            }
+            _inboxes.update { fetchNewsletterInboxesUseCase() }
 
             initFlowNewsletterUseCase().collect { preferences ->
                 inboxes.value.forEach {
