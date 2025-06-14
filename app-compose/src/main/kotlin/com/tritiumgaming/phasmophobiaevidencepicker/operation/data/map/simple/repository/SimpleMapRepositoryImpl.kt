@@ -12,7 +12,7 @@ class SimpleMapRepositoryImpl(
 ): SimpleMapRepository {
 
     var simpleMaps: List<LocalWorldMap> = emptyList()
-    var simpleModifiers: List<WorldMapModifier> = emptyList()
+
     @DrawableRes var simpleThumbnails: List<Int> = emptyList()
 
     fun sync() {

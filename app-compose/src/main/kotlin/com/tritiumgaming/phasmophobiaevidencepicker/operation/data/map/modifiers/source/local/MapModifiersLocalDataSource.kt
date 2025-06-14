@@ -3,7 +3,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifier
 import android.content.Context
 import android.content.res.Resources
 import android.content.res.TypedArray
+import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.dto.WorldMapModifierDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifiers.source.local.MapModifiersDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapModifier
 
@@ -11,40 +13,46 @@ class MapModifiersLocalDataSource(
     private val applicationContext: Context
 ): MapModifiersDataSource {
 
-    override fun fetchSizeModifiers(): Result<List<WorldMapModifier>> {
+    private val mapModifiers: List<MapModifierResourceDto> = listOf(
 
-        var modifiers = mutableListOf<WorldMapModifier>()
+        MapModifierResourceDto(
+            name = R.string.maps_size_title_small,
+            setupModifier = R.string.maps_size_modifier_small_setup,
+            normalModifier = R.string.maps_size_modifier_small_normal
+        ),
+        MapModifierResourceDto(
+            name = R.string.maps_size_title_medium,
+            setupModifier = R.string.maps_size_modifier_medium_setup,
+            normalModifier = R.string.maps_size_modifier_medium_normal
+        ),
+        MapModifierResourceDto(
+            name = R.string.maps_size_title_large,
+            setupModifier = R.string.maps_size_modifier_large_setup,
+            normalModifier = R.string.maps_size_modifier_large_normal
+        ),
 
-        val resources: Resources = applicationContext.resources
-        val sizeModifiersTypedArray: TypedArray = resources.obtainTypedArray(R.array.maps_size_arrays)
+    )
 
-        val nameIndex = 0
-        val setupModifierIndex = 0
-        val normalModifierIndex = 1
+    override fun fetchSizeModifiers(): Result<List<WorldMapModifierDto>> {
 
-        for (i in 0 until sizeModifiersTypedArray.length()){
-            val modifiersTypedArray: TypedArray =
-                resources.obtainTypedArray(sizeModifiersTypedArray.getResourceId(i, 0))
-
-            val name = modifiersTypedArray.getResourceId(nameIndex, 0)
-            val setupModifier = modifiersTypedArray.getString(setupModifierIndex)?.toFloat() ?: 0f
-            val normalModifier = modifiersTypedArray.getString(normalModifierIndex)?.toFloat() ?: 0f
-
-            modifiers.add(i,
-                WorldMapModifier(
-                    name = name,
-                    setupModifier = setupModifier,
-                    normalModifier = normalModifier
-                )
-            )
-
-            modifiersTypedArray.recycle()
-        }
-
-        sizeModifiersTypedArray.recycle()
+        val modifiers = mapModifiers.toWorldMapModifierDtoList()
 
         return Result.success(modifiers)
     }
 
+    private fun MapModifierResourceDto.toWorldMapModifierDto() = WorldMapModifierDto(
+        name = name,
+        setupModifier = applicationContext.getString(setupModifier).toDouble().toFloat(),
+        normalModifier = applicationContext.getString(normalModifier).toDouble().toFloat(),
+    )
+
+    private fun List<MapModifierResourceDto>.toWorldMapModifierDtoList() =
+        map { it.toWorldMapModifierDto() }
+
+    private data class MapModifierResourceDto(
+        @StringRes val name: Int,
+        @StringRes val setupModifier: Int,
+        @StringRes val normalModifier: Int
+    )
 
 }

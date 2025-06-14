@@ -49,12 +49,14 @@ class MapsViewModel(
         }
 
     fun incrementFloorIndex() {
-        currentSimpleMap.currentFloor = incrementMapFloorIndexUseCase(currentSimpleMap.currentFloor)
+        currentSimpleMap.currentFloor =
+            incrementMapFloorIndexUseCase(currentSimpleMap.currentFloor)
     }
 
 
     fun decrementFloorIndex() {
-        currentSimpleMap.currentFloor = decrementMapFloorIndexUseCase(currentSimpleMap.currentFloor)
+        currentSimpleMap.currentFloor =
+            decrementMapFloorIndexUseCase(currentSimpleMap.currentFloor)
     }
 
 
