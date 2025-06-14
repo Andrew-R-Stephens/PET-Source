@@ -15,7 +15,7 @@ import androidx.navigation.navigation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.SettingsScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.account.AccountScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.appinfo.InfoScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appinfo.InfoScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.applanguages.LanguageScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.MarketplaceScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.billing.MarketplaceBillingScreen

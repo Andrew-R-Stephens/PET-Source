@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local
 
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.dto.SpecialThanksContributorDto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.source.AppInfoDataSource
 
 class AppInfoLocalDataSource(): AppInfoDataSource {
@@ -24,18 +25,19 @@ class AppInfoLocalDataSource(): AppInfoDataSource {
         )
 
 
-    override fun fetchSpecialThanks(): List<String> {
+    override fun fetchSpecialThanks(): List<SpecialThanksContributorDto> {
 
-        val specialThanksList = mutableListOf<String>()
-
-        specialThanksResourceDto.forEach { resDto ->
-            specialThanksList.add(resDto.username)
-        }
-
-        return specialThanksList
+        return specialThanksResourceDto.toSpecialThanksContributorDto()
     }
 
 }
+
+fun SpecialThanksResourceDto.toSpecialThanksContributorDto() = SpecialThanksContributorDto(
+    username = username
+)
+
+fun List<SpecialThanksResourceDto>.toSpecialThanksContributorDto() =
+    map { it.toSpecialThanksContributorDto() }
 
 data class SpecialThanksResourceDto(
     val username: String
