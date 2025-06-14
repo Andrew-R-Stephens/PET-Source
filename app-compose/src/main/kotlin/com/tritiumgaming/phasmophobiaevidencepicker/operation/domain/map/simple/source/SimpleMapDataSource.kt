@@ -1,11 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.MapSizeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.LocalWorldMapDto
 
 interface SimpleMapDataSource {
 
-    fun fetchMaps(): Result<List<MapInteractModel>>
-    fun fetchSizeModifiers(): Result<List<MapSizeModel>>
+    fun fetchMaps(): Result<List<LocalWorldMapDto>>
 
 }

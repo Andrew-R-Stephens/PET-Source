@@ -1,18 +1,17 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer
 
 import androidx.annotation.DrawableRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapSizeType
 
-class MapInteractModel {
-
-    var mapId: Int = 0
-    var mapName: Int = 0
-    var mapSize: Int = 0
-
-    @DrawableRes var thumbnailImage: Int = 0
-        @DrawableRes get
+class LocalWorldMap(
+    var mapId: String,
+    var mapName: Int,
+    var mapSize: WorldMapSizeType,
+    @DrawableRes var thumbnailImage: Int
+) {
 
     private var defaultFloorIndex = 0
-    var currentFloor: Int = 0
+    var currentFloor: Int = 0 // TODO("Move to ViewModel")
     val floorNames = mutableListOf<Int>()
     val allFloorLayers: ArrayList<ArrayList<Int>> = ArrayList()
 
