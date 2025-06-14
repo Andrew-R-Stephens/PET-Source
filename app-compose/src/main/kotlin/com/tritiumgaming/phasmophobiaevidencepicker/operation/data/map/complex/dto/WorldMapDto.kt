@@ -8,7 +8,7 @@ data class WorldMapDto(
     val mapName: String,
     val mapNameShort: String,
     val mapDimensions: MapDimensionsDto,
-    var mapFloors: List<FloorDto>
+    val mapFloors: List<FloorDto>
 ) {
 
     constructor(worldMap: WorldMapsSerializerDto.WorldMapSerializerDto) : this(

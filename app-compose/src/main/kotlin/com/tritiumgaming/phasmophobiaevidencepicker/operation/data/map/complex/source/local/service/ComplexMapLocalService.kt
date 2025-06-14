@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.service
 
 import android.content.res.AssetManager
 import com.google.gson.GsonBuilder

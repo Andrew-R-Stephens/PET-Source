@@ -1,108 +1,350 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local
 
 import android.content.Context
-import android.content.res.Resources
-import android.content.res.TypedArray
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.MapSizeModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.SMALL
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.MEDIUM
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.LARGE
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.LocalWorldMapFloorDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.LocalWorldMapDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.WorldMapSizeTypeDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapModifier
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source.SimpleMapDataSource
 
 class SimpleMapLocalDataSource(
     private val applicationContext: Context
 ): SimpleMapDataSource {
 
-    override fun fetchMaps(): Result<List<MapInteractModel>> {
+    private val mapsResourceDto: List<MapResourceDto>
+        get() = listOf(
+            // Sunny Meadows
+            MapResourceDto(
+                mapId = R.string.map_id_meadows,
+                mapName = R.string.map_name_meadows,
+                thumbnailImage = R.drawable.thumbnail_meadows,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_basement,
+                        image = R.drawable.map_sunnymeadows_basement
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_sunnymeadows_firstfloor
+                    ),
+                ),
+                defaultFloor = 1
+            ),
+            // Sunny Meadows Restricted
+            MapResourceDto(
+                mapId = R.string.map_id_meadows_r,
+                mapName = R.string.map_name_meadows_r,
+                thumbnailImage = R.drawable.thumbnail_meadows,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_basement,
+                        image = R.drawable.map_sunnymeadowsrestricted_basement
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_sunnymeadowsrestricted_firstfloor
+                    ),
+                ),
+                defaultFloor = 1
+            ),
+            // Point Hope
+            MapResourceDto(
+                mapId = R.string.map_id_pointhope,
+                mapName = R.string.map_name_pointhope,
+                thumbnailImage = R.drawable.thumbnail_pointhope,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_ground,
+                        image = R.drawable.map_sunnymeadowsrestricted_firstfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_second,
+                        image = R.drawable.map_pointhope_secondfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_third,
+                        image = R.drawable.map_pointhope_thirdfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_fourth,
+                        image = R.drawable.map_pointhope_fourthfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_fifth,
+                        image = R.drawable.map_pointhope_fifthfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_sixth,
+                        image = R.drawable.map_pointhope_sixthfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_seventh,
+                        image = R.drawable.map_pointhope_seventhfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_eighth,
+                        image = R.drawable.map_pointhope_eighthfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_ninth,
+                        image = R.drawable.map_pointhope_ninthfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_tenth,
+                        image = R.drawable.map_pointhope_tenthfloor
+                    ),
+                ),
+                defaultFloor = 0
+            ),
+            // Camp Woodwind
+            MapResourceDto(
+                mapId = R.string.map_id_campwoodwind,
+                mapName = R.string.map_name_campwoodwind,
+                thumbnailImage = R.drawable.thumbnail_campmaple,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_ground,
+                        image = R.drawable.map_woodwind_firstfloor
+                    ),
+                ),
+                defaultFloor = 0
+            ),
+            // Camp Maple
+            MapResourceDto(
+                mapId = R.string.map_id_campmaple,
+                mapName = R.string.map_name_campmaple,
+                thumbnailImage = R.drawable.thumbnail_campmaple,
+                mapSize = MEDIUM,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_basement,
+                        image = R.drawable.map_maple_basement
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_maple_firstfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_second,
+                        image = R.drawable.map_maple_secondfloor
+                    ),
+                ),
+                defaultFloor = 0
+            ),
+            // Bleasdale Farmhouse
+            MapResourceDto(
+                mapId = R.string.map_id_bleasdale,
+                mapName = R.string.map_name_bleasdale,
+                thumbnailImage = R.drawable.thumbnail_bleasedale,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_bleasdale_firstfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_second,
+                        image = R.drawable.map_bleasdale_secondfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_attic,
+                        image = R.drawable.map_bleasdale_thirdfloor
+                    ),
+                ),
+                defaultFloor = 0
+            ),
+            // Grafton Farmhouse
+            MapResourceDto(
+                mapId = R.string.map_id_grafton,
+                mapName = R.string.map_name_grafton,
+                thumbnailImage = R.drawable.thumbnail_grafton,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_grafton_firstfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_second,
+                        image = R.drawable.map_grafton_secondfloor
+                    ),
+                ),
+                defaultFloor = 0
+            ),
+            // Brownstone Highschool
+            MapResourceDto(
+                mapId = R.string.map_id_brownstone,
+                mapName = R.string.map_name_brownstone,
+                thumbnailImage = R.drawable.thumbnail_highschool,
+                mapSize = LARGE,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_brownstone_firstfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_second,
+                        image = R.drawable.map_brownstone_secondfloor
+                    ),
+                ),
+                defaultFloor = 0
+            ),
+            // Edgefield
+            MapResourceDto(
+                mapId = R.string.map_id_edgefield,
+                mapName = R.string.map_name_edgefield,
+                thumbnailImage = R.drawable.thumbnail_edgefield,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_basement,
+                        image = R.drawable.map_edgefield_basement
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_edgefield_firstfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_second,
+                        image = R.drawable.map_edgefield_secondfloor
+                    ),
+                ),
+                defaultFloor = 1
+            ),
+            // Tanglewood
+            MapResourceDto(
+                mapId = R.string.map_id_tanglewood,
+                mapName = R.string.map_name_tanglewood,
+                thumbnailImage = R.drawable.thumbnail_tanglewood,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_basement,
+                        image = R.drawable.map_tanglewood_basement
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_tanglewood_firstfloor
+                    ),
+                ),
+                defaultFloor = 1
+            ),
+            // Willow
+            MapResourceDto(
+                mapId = R.string.map_id_willow,
+                mapName = R.string.map_name_willow,
+                thumbnailImage = R.drawable.thumbnail_willow,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_basement,
+                        image = R.drawable.map_willow_basement
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_willow_firstfloor
+                    ),
+                ),
+                defaultFloor = 1
+            ),
+            // Ridgeview
+            MapResourceDto(
+                mapId = R.string.map_id_ridgeview,
+                mapName = R.string.map_name_ridgeview,
+                thumbnailImage = R.drawable.thumbnail_ridgeview,
+                mapSize = SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_basement,
+                        image = R.drawable.map_ridgeview_basement
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_ridgeview_firstfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_second,
+                        image = R.drawable.map_ridgeview_secondfloor
+                    ),
+                ),
+                defaultFloor = 1
+            ),
+            //Prison
+            MapResourceDto(
+                mapId = R.string.map_id_prison,
+                mapName = R.string.map_name_prison,
+                thumbnailImage = R.drawable.thumbnail_prison,
+                mapSize = MEDIUM,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_first,
+                        image = R.drawable.map_prison_firstfloor
+                    ),
+                    MapFloorResourceDto(
+                        layerName = R.string.map_floor_name_second,
+                        image = R.drawable.map_prison_secondfloor
+                    )
+                ),
+                defaultFloor = 0
+            )
+        )
 
-        val resources: Resources = applicationContext.resources
+    override fun fetchMaps(): Result<List<LocalWorldMapDto>> {
 
-        val mapsTypedArray: TypedArray = resources.obtainTypedArray(R.array.maps_resources_array)
-
-        var tempMaps = mutableListOf<MapInteractModel>()
-
-        val mapIdKey = 0
-        val mapNameKey = 1
-        val layerNamesKey = 5
-        val defaultLayerKey = 6
-        val mapSizeKey = 7
-        val thumbnailKey = 8
-        val layerImagesKey = 9
-
-        for (mapIndex in 0 until mapsTypedArray.length()) {
-            val mapTypedArray: TypedArray =
-                resources.obtainTypedArray(mapsTypedArray.getResourceId(mapIndex, 0))
-
-            val tempMapData = MapInteractModel()
-
-            //Set map name
-            tempMapData.mapId = mapTypedArray.getResourceId(mapIdKey, 0)
-            tempMapData.mapName = mapTypedArray.getResourceId(mapNameKey, 0)
-            tempMapData.mapSize = mapTypedArray.getInt(mapSizeKey, 0)
-
-            //Set map layer names
-            val mapLayerNamesIDs =
-                resources.obtainTypedArray(mapTypedArray.getResourceId(layerNamesKey, 0))
-            for (j in 0 until mapLayerNamesIDs.length()) {
-                tempMapData.floorNames.add(j, mapLayerNamesIDs.getResourceId(j, 0))
-            }
-            mapLayerNamesIDs.recycle() //cleanup
-
-            //Set map default layer
-            tempMapData.defaultFloor = mapTypedArray.getInt(defaultLayerKey, 0)
-
-            //Set map thumbnail resource id
-            tempMapData.thumbnailImage = mapTypedArray.getResourceId(thumbnailKey, 0)
-
-            //Set map layer primary images
-            val mapImages =
-                resources.obtainTypedArray(mapTypedArray.getResourceId(layerImagesKey, 0))
-            for (j in 0 until mapImages.length()) {
-                tempMapData.addFloorLayer(j, mapImages.getResourceId(j, 0))
-            }
-            mapImages.recycle() //cleanup
-
-            mapTypedArray.recycle()
-
-            tempMaps.add(tempMapData) // add to temp maps array
-        }
-        mapsTypedArray.recycle()
-
-        return Result.success(tempMaps)
+        return Result.success(listOf())
     }
 
-    override fun fetchSizeModifiers(): Result<List<MapSizeModel>> {
+    override fun fetchSizeModifiers(): Result<List<WorldMapModifier>> {
 
-        var modifiers = mutableListOf<MapSizeModel>()
+        return Result.success(listOf())
+    }
 
-        val resources: Resources = applicationContext.resources
-        val sizeModifiersTypedArray: TypedArray = resources.obtainTypedArray(R.array.maps_size_arrays)
+    private fun MapResourceDto.toWorldMapDto() = LocalWorldMapDto(
+        mapId = applicationContext.getString(mapId),
+        mapName = mapName,
+        thumbnailImage = thumbnailImage,
+        mapSize = mapSize.toWorldMapSizeTypeDto(),
+        mapFloors = mapFloors.toWorldMapFloorDto(),
+        defaultFloor = defaultFloor
+    )
 
-        val nameIndex = 0
-        val setupModifierIndex = 0
-        val normalModifierIndex = 1
+    private fun MapFloorResourceDto.toWorldMapFloorDto() = LocalWorldMapFloorDto(
+        layerName = layerName,
+        image = image
+    )
 
-        for (i in 0 until sizeModifiersTypedArray.length()){
-            val modifiersTypedArray: TypedArray =
-                resources.obtainTypedArray(sizeModifiersTypedArray.getResourceId(i, 0))
+    private fun MapSizeTypeResourceDto.toWorldMapSizeTypeDto() = WorldMapSizeTypeDto.valueOf(name)
 
-            val name = modifiersTypedArray.getResourceId(nameIndex, 0)
-            val setupModifier = modifiersTypedArray.getString(setupModifierIndex)?.toFloat() ?: 0f
-            val normalModifier = modifiersTypedArray.getString(normalModifierIndex)?.toFloat() ?: 0f
+    private fun List<MapResourceDto>.toWorldMapDto() = map { it.toWorldMapDto() }
 
-            modifiers.add(i,
-                MapSizeModel(
-                    name = name,
-                    setupModifier = setupModifier,
-                    normalModifier = normalModifier
-                )
-            )
+    private fun List<MapFloorResourceDto>.toWorldMapFloorDto() = map { it.toWorldMapFloorDto() }
 
-            modifiersTypedArray.recycle()
-        }
+    private data class MapResourceDto(
+        val mapId: Int,
+        @StringRes val mapName: Int,
+        val mapSize: MapSizeTypeResourceDto,
+        @DrawableRes val thumbnailImage: Int,
+        val mapFloors: List<MapFloorResourceDto>,
+        val defaultFloor: Int
+    )
 
-        sizeModifiersTypedArray.recycle()
+    private data class MapFloorResourceDto(
+        @StringRes val layerName: Int,
+        @DrawableRes val image: Int
+    )
 
-        return Result.success(modifiers)
+    internal enum class MapSizeTypeResourceDto {
+        SMALL, MEDIUM, LARGE
     }
 
 }
