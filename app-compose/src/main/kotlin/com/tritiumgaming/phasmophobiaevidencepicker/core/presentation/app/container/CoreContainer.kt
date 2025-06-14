@@ -111,26 +111,26 @@ class CoreContainer(
     /**
      * Account
      */
-    internal val firestoreUserRemoteDataSource = FirestoreUserRemoteDataSource(
+    private val firestoreUserRemoteDataSource = FirestoreUserRemoteDataSource(
         firestore = firestore
     )
-    internal val firestoreAuthRemoteDataSource = FirestoreAuthRemoteDataSource(
+    private val firestoreAuthRemoteDataSource = FirestoreAuthRemoteDataSource(
         firebaseAuth = firebaseAuth
     )
-    internal val firestoreAccountDataSource = FirestoreAccountRemoteDataSource(
+    private val firestoreAccountDataSource = FirestoreAccountRemoteDataSource(
         firestore = firestore,
         firebaseAuth = firebaseAuth
     )
-    val firestoreAccountRepository = FirestoreAccountRepositoryImpl(
+    private val firestoreAccountRepository = FirestoreAccountRepositoryImpl(
         authRemoteDataSource = firestoreAuthRemoteDataSource,
         userRemoteDataSource = firestoreUserRemoteDataSource,
         accountRemoteDataSource = firestoreAccountDataSource
     )
     internal val setMarketplaceAgreementStateUseCase = SetMarketplaceAgreementStateUseCase(
         repository = firestoreAccountRepository)
-    val addAccountCreditsUseCase = AddAccountCreditsUseCase(
+    internal val addAccountCreditsUseCase = AddAccountCreditsUseCase(
         repository = firestoreAccountRepository)
-    val removeAccountCreditsUseCase = RemoveAccountCreditsUseCase(
+    internal val removeAccountCreditsUseCase = RemoveAccountCreditsUseCase(
         repository = firestoreAccountRepository)
 
     /**
