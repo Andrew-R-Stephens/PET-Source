@@ -31,10 +31,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetEvidenceByIdUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetGhostByIdUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapFloorIndexUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetMapModifierUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapSetupModifierUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapNormalModifierUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapSizeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.sanity.SanityRunnable
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils.millisToTime
@@ -57,10 +60,13 @@ class InvestigationViewModel(
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
     private val incrementMapIndexUseCase: IncrementMapIndexUseCase,
     private val decrementMapIndexUseCase: DecrementMapIndexUseCase,
+    private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
+    private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
     private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
     private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
     private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase,
     private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
+    private val getMapModifierUseCase: GetMapModifierUseCase,
     private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
     private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
     private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
@@ -145,7 +151,7 @@ class InvestigationViewModel(
 
         initOrder()
     }
-    fun getGhostScores(
+    private fun getGhostScores(
         ghostModel: GhostType
     ): GhostScore? {
         return _ghostScores.value.find { it.ghostEvidence.ghost.id == ghostModel.id }
@@ -161,7 +167,7 @@ class InvestigationViewModel(
         MutableStateFlow(mutableStateListOf())
     @Stable
     val ghostOrder = _ghostOrder.asStateFlow()
-    fun initOrder() {
+    private fun initOrder() {
         _ghostOrder.update { mutableStateListOf() }
 
         val str = StringBuilder()
@@ -173,7 +179,7 @@ class InvestigationViewModel(
 
         reorderGhostScores()
     }
-    fun reorderGhostScores() {
+    private fun reorderGhostScores() {
         val orderedScores = mutableListOf<GhostScore>()
         ghostScores.value.forEach {
             it.setScore ( getEvidenceScore(
@@ -232,7 +238,7 @@ class InvestigationViewModel(
         return ghostScore?.score
     }
 
-    fun resetGhostScoreHandler() {
+    private fun resetGhostScoreHandler() {
         initGhostScores()
     }
 
@@ -242,7 +248,7 @@ class InvestigationViewModel(
 
     private val _ruledEvidence = MutableStateFlow(SnapshotStateList<RuledEvidence>())
     val ruledEvidence = _ruledEvidence.asStateFlow()
-    fun initRuledEvidence() {
+    private fun initRuledEvidence() {
         val list = evidences.map {
             RuledEvidence(it).apply { setRuling(Ruling.NEUTRAL) }
         }
@@ -269,20 +275,20 @@ class InvestigationViewModel(
     }
 
     /** Resets the Ruling for each Evidence type */
-    fun resetEvidenceRulingHandler() {
+    private fun resetEvidenceRulingHandler() {
         //initRuledEvidence()
         ruledEvidence.value.forEach {
             it.setRuling( Ruling.NEUTRAL)
         }
     }
 
-    override fun toString(): String {
+    /*override fun toString(): String {
         val str = StringBuilder()
         ruledEvidence.value.forEach {
             str.append(" [${it.evidence.id}:${it.ruling.value}] ")
         }
         return "$str"
-    }
+    }*/
 
 
     /*
@@ -292,17 +298,12 @@ class InvestigationViewModel(
     /* Index */
     private val _currentDifficultyIndex: MutableStateFlow<Int> =
         MutableStateFlow(DifficultyType.AMATEUR.ordinal)
-    val currentDifficultyIndex = _currentDifficultyIndex.asStateFlow()
+    private val currentDifficultyIndex = _currentDifficultyIndex.asStateFlow()
     private fun setDifficultyIndex(
         index: Int
     ) {
         _currentDifficultyIndex.update { index }
-        onUpdateDifficultyIndex(index)
-    }
 
-    private fun onUpdateDifficultyIndex(
-        index: Int
-    ) {
         updateCurrentDifficultyName()
 
         setTimeRemaining(currentDifficultyTime)
@@ -331,16 +332,14 @@ class InvestigationViewModel(
         audioWarnTriggered = false
     }
 
-    /* -- */
-
-    val currentDifficulty: DifficultyType
+    private val currentDifficulty: DifficultyType
         get() = DifficultyType.entries[currentDifficultyIndex.value]
 
     private val _currentDifficultyName = MutableStateFlow(
         difficulties[currentDifficultyIndex.value].name
     )
     val currentDifficultyName = _currentDifficultyName.asStateFlow()
-    fun updateCurrentDifficultyName() {
+    private fun updateCurrentDifficultyName() {
         _currentDifficultyName.update { difficulties[currentDifficultyIndex.value].name }
     }
 
@@ -350,21 +349,21 @@ class InvestigationViewModel(
         return difficulties[index].name
     }
 
-    val currentDifficultyTime: Long
+    private val currentDifficultyTime: Long
         get() = difficulties[currentDifficultyIndex.value].time
 
-    val currentDifficultyStartSanity: Float
+    private val currentDifficultyStartSanity: Float
         get() = difficulties[currentDifficultyIndex.value].initialSanity
 
     private val _difficultyResponseTypeUi = MutableStateFlow(false)
     val difficultyResponseTypeUi = _difficultyResponseTypeUi.asStateFlow()
-    fun updateDifficultyResponseTypeUi() {
+    private fun updateDifficultyResponseTypeUi() {
         _difficultyResponseTypeUi.update { currentDifficultyIndex.value < DifficultyType.PROFESSIONAL.ordinal }
     }
 
     /** Defaults if the selected index is out of range of available indexes.
      * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */
-    val currentDifficultyModifier: Float
+    private val currentDifficultyModifier: Float
         get() {
             val diffIndex = currentDifficultyIndex.value
             if (diffIndex >= 0 && diffIndex < difficulties.size) {
@@ -384,8 +383,8 @@ class InvestigationViewModel(
      */
 
     private val _currentMaxSanity = MutableStateFlow(MAX_SANITY)
-    val currentMaxSanity = _currentMaxSanity.asStateFlow()
-    fun updateCurrentMaxSanity(
+    private val currentMaxSanity = _currentMaxSanity.asStateFlow()
+    private fun updateCurrentMaxSanity(
         difficulty: DifficultyType
     ) {
         _currentMaxSanity.update {
@@ -396,7 +395,7 @@ class InvestigationViewModel(
     /** The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual. */
     private val _insanityLevel = MutableStateFlow(0f)
-    val insanityLevel = _insanityLevel.asStateFlow()
+    private val insanityLevel = _insanityLevel.asStateFlow()
     fun setInsanityLevel(
         value: Float
     ) {
@@ -404,7 +403,7 @@ class InvestigationViewModel(
         _insanityLevel.update { (max(min(MAX_SANITY, value), MIN_SANITY)) }
         updateSanityLevel()
     }
-    fun timeRemainingToInsanityLevel() {
+    private fun timeRemainingToInsanityLevel() {
 
         val tickMultiplier = .001f
         val startTime = max(
@@ -417,7 +416,7 @@ class InvestigationViewModel(
             MAX_SANITY - (timeDifference * drainMultiplier)
         )
     }
-    fun skipInsanity(
+    private fun skipInsanity(
         newLevel: Float = HALF_SANITY
     ) {
 
@@ -437,22 +436,22 @@ class InvestigationViewModel(
     }
 
     private val _sanityDrainModifier = MutableStateFlow(1f)
-    val sanityDrainModifier = _sanityDrainModifier.asStateFlow()
-    fun updateSanityDrainModifier(
+    private val sanityDrainModifier = _sanityDrainModifier.asStateFlow()
+    private fun updateSanityDrainModifier(
         currentDifficultyModifier: Float
     ) {
         val mapModifier = getCurrentMapModifier(timeRemaining.value)
         _sanityDrainModifier.update { currentDifficultyModifier * mapModifier }
     }
 
-    val isSanityInsane: Boolean
+    private val isSanityInsane: Boolean
         get() = sanityLevel.value < SAFE_MIN_BOUNDS
 
     /**
      * Reduces player sanity level each doTick. Sanity cannot drop below 50% if the clock still has
      * time remaining.
      */
-    fun tickSanity() {
+    private fun tickSanity() {
         timeRemainingToInsanityLevel()
         updateCurrentTimerPhase(sanityLevel.value)
     }
@@ -461,7 +460,7 @@ class InvestigationViewModel(
      * Resets the Warning Indicator to start flashing again, if necessary
      * Sets the Start Time of the Sanity Drain, based on remaining time,
      * sanity, difficulty and map size. */
-    fun setSanityStartTimeByProgress(
+    private fun setSanityStartTimeByProgress(
         progress: Float = insanityLevel.value
     ) {
         val progressOverride =
@@ -511,7 +510,7 @@ class InvestigationViewModel(
     }
 
     /** Defaults all persistent data. */
-    fun resetSanity() {
+    private fun resetSanity() {
         //TODO warnTriggered = false
         setSanityStartTimeByProgress(
             MAX_SANITY - (currentDifficultyStartSanity))
@@ -525,7 +524,7 @@ class InvestigationViewModel(
 
     private val _currentTimerPhase: MutableStateFlow<Phase> = MutableStateFlow(Phase.SETUP)
     val currentTimerPhase = _currentTimerPhase.asStateFlow()
-    internal fun updateCurrentTimerPhase(
+    private  fun updateCurrentTimerPhase(
         sanityLevel: Float
     ) {
         _currentTimerPhase.update {
@@ -540,8 +539,8 @@ class InvestigationViewModel(
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
     private val _startTime = MutableStateFlow(TIME_DEFAULT)
-    val startTime = _startTime.asStateFlow()
-    fun setStartTime(
+    private val startTime = _startTime.asStateFlow()
+    private fun setStartTime(
         time: Long
     ) {
         _startTime.update { time }
@@ -551,8 +550,8 @@ class InvestigationViewModel(
     }
 
     private val _timeRemaining: MutableStateFlow<Long> = MutableStateFlow(TIME_DEFAULT)
-    val timeRemaining = _timeRemaining.asStateFlow()
-    fun setTimeRemaining(
+    private val timeRemaining = _timeRemaining.asStateFlow()
+    private fun setTimeRemaining(
         value: Long
     ) {
         _timeRemaining.update { value }
@@ -578,7 +577,7 @@ class InvestigationViewModel(
     }
 
     private val _timerPaused = MutableStateFlow(true)
-    val timerPaused = _timerPaused.asStateFlow()
+    private val timerPaused = _timerPaused.asStateFlow()
     private fun pauseTimer() {
         _timerPaused.update { true }
         liveTimer?.cancel()
@@ -597,14 +596,14 @@ class InvestigationViewModel(
         }
     }
 
-    fun resetTimer() {
+    private fun resetTimer() {
         pauseTimer()
         resetStartTime()
         timeRemainingToInsanityLevel()
         setLiveTimer()
     }
 
-    fun resetTimer(
+    private fun resetTimer(
         currentDifficultyTime: Long
     ) {
         resetTimer()
@@ -626,15 +625,15 @@ class InvestigationViewModel(
      */
 
     /** If the warning is within the appropriate range and condition for activation */
-    var audioWarnTriggered = false
+    private var audioWarnTriggered = false
 
     /** The starting flash time, in milliseconds, for the hunt warning */
     private var flashTimeStart: Long = DEFAULT
-    var flashTimeMax: Long = FOREVER
+    private var flashTimeMax: Long = FOREVER
 
     private val _timeElapsed: MutableStateFlow<Long> = MutableStateFlow(DEFAULT)
     private val timeElapsed = _timeElapsed.asStateFlow()
-    fun updateTimeElapsed() {
+    private fun updateTimeElapsed() {
         _timeElapsed.update { System.currentTimeMillis() - flashTimeStart }
         updateCanFlash()
     }
@@ -663,7 +662,7 @@ class InvestigationViewModel(
         _canFlash.update { timeElapsed.value <= flashTimeMax }
     }
 
-    fun resetTimerPhase() {
+    private fun resetTimerPhase() {
         flashTimeStart = DEFAULT
         updateTimeElapsed()
     }
@@ -674,8 +673,8 @@ class InvestigationViewModel(
 
     /* Index */
     private val _currentMapIndex: MutableStateFlow<Int> = MutableStateFlow(0)
-    val currentMapIndex = _currentMapIndex.asStateFlow()
-    private fun setIndex(
+    private val currentMapIndex = _currentMapIndex.asStateFlow()
+    private fun setCurrentMapIndex(
         index: Int
     ) {
         _currentMapIndex.value = index
@@ -684,18 +683,13 @@ class InvestigationViewModel(
         setCurrentMapSize()
     }
 
-    // TODO("Move to UseCase")
     fun incrementMapIndex() {
-        setIndex(incrementMapIndexUseCase(currentMapIndex.value))
+        setCurrentMapIndex(incrementMapIndexUseCase(currentMapIndex.value))
     }
 
-
-    // TODO("Move to UseCase")
     fun decrementMapIndex() {
-        setIndex(decrementMapIndexUseCase(currentMapIndex.value))
+        setCurrentMapIndex(decrementMapIndexUseCase(currentMapIndex.value))
     }
-
-    /* -- */
 
     private val _currentMapName = MutableStateFlow<Int>(
         getSimpleMapNameUseCase(currentMapIndex.value)
@@ -704,8 +698,6 @@ class InvestigationViewModel(
     private fun setCurrentMapName() {
         _currentMapName.update { getSimpleMapNameUseCase(currentMapIndex.value) }
     }
-
-
 
     private val _currentMapSize = MutableStateFlow<Int>(
         getSimpleMapSizeUseCase(currentMapIndex.value)
@@ -719,14 +711,10 @@ class InvestigationViewModel(
      * (Setup vs Hunt)
      * Defaults if the selected index is out of range of available indexes.
      * @returns the drop rate multiplier. */
-    fun getCurrentMapModifier(
+    private fun getCurrentMapModifier(
         timeRemaining: Long = 0L
-    ): Float {
-        if (timeRemaining <= 0L) {
-            return getSimpleMapNormalModifierUseCase(currentMapSize.value)
-        }
-        return getSimpleMapSetupModifierUseCase(currentMapSize.value)
-    }
+    ): Float = getMapModifierUseCase(currentMapSize.value, timeRemaining)
+
 
     /*
      * VIEWMODEL FACTORIES
@@ -743,8 +731,11 @@ class InvestigationViewModel(
         private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
         private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase,
         private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
+        private val getMapModifierUseCase: GetMapModifierUseCase,
         private val incrementMapIndexUseCase: IncrementMapIndexUseCase,
         private val decrementMapIndexUseCase: DecrementMapIndexUseCase,
+        private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
+        private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
         private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
         private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
         private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
@@ -767,8 +758,11 @@ class InvestigationViewModel(
                     getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
                     getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
                     getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
+                    getMapModifierUseCase = getMapModifierUseCase,
                     incrementMapIndexUseCase = incrementMapIndexUseCase,
                     decrementMapIndexUseCase = decrementMapIndexUseCase,
+                    incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
+                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
                     fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
@@ -797,8 +791,11 @@ class InvestigationViewModel(
                 val getSimpleMapSizeUseCase = container.getSimpleMapSizeUseCase
                 val getSimpleMapSetupModifierUseCase = container.getSimpleMapSetupModifierUseCase
                 val getSimpleMapNormalModifierUseCase = container.getSimpleMapNormalModifierUseCase
+                val getMapModifierUseCase = container.getMapModifierUseCase
                 val incrementMapIndexUseCase = container.incrementMapIndexUseCase
                 val decrementMapIndexUseCase = container.decrementMapIndexUseCase
+                val incrementMapFloorIndexUseCase = container.incrementMapFloorIndexUseCase
+                val decrementMapFloorIndexUseCase = container.decrementMapFloorIndexUseCase
                 val fetchMapModifiersUseCase = container.fetchMapModifiersUseCase
                 val fetchMapThumbnailsUseCase = container.fetchMapThumbnailsUseCase
                 val fetchCodexAchievementsUseCase = container.fetchCodexAchievementsUseCase
@@ -817,8 +814,11 @@ class InvestigationViewModel(
                     getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
                     getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
                     getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
+                    getMapModifierUseCase = getMapModifierUseCase,
                     incrementMapIndexUseCase = incrementMapIndexUseCase,
                     decrementMapIndexUseCase = decrementMapIndexUseCase,
+                    incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
+                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
                     fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,

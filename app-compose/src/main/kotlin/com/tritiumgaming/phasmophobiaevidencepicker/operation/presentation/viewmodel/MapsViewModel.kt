@@ -11,9 +11,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApp
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.MapInteractModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer.LocalWorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.WorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapFloorIndexUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import kotlinx.coroutines.launch
 
 /**
@@ -22,10 +24,12 @@ import kotlinx.coroutines.launch
  * @author TritiumGamingStudios
  */
 class MapsViewModel(
-    val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
-    val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
-    val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
-    val fetchComplexMapsUseCase: FetchComplexMapsUseCase
+    private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
+    private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
+    private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
+    private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
+    private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
+    private val fetchComplexMapsUseCase: FetchComplexMapsUseCase
 ) : ViewModel() {
 
     var imageDisplayThread: Thread? = null
@@ -34,7 +38,7 @@ class MapsViewModel(
     private val allMaps = fetchSimpleMapsUseCase()
 
     var currentComplexMap: WorldMap? = null
-    val currentSimpleMap: MapInteractModel
+    val currentSimpleMap: LocalWorldMap
         get() = allMaps[currentMapIndex]
 
     var currentMapIndex: Int = 0
@@ -45,19 +49,14 @@ class MapsViewModel(
         }
 
     fun incrementFloorIndex() {
-        var layerIndex: Int = currentSimpleMap.currentFloor
-        if (++layerIndex >= currentSimpleMap.floorCount) {
-            layerIndex = 0
-        }
-        currentSimpleMap.currentFloor = layerIndex
+        currentSimpleMap.currentFloor = incrementMapFloorIndexUseCase(currentSimpleMap.currentFloor)
     }
+
+
     fun decrementFloorIndex() {
-        var layerIndex: Int = currentSimpleMap.currentFloor
-        if (--layerIndex < 0) {
-            layerIndex = currentSimpleMap.floorCount - 1
-        }
-        currentSimpleMap.currentFloor = layerIndex
+        currentSimpleMap.currentFloor = decrementMapFloorIndexUseCase(currentSimpleMap.currentFloor)
     }
+
 
     fun fetchComplexMapsUseCase() {
         viewModelScope.launch {
@@ -71,6 +70,8 @@ class MapsViewModel(
 
     class MapsFactory(
         private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
+        private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
+        private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
         private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
         private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
         private val fetchComplexMapsUseCase: FetchComplexMapsUseCase
@@ -81,6 +82,8 @@ class MapsViewModel(
                 @Suppress("UNCHECKED_CAST")
                 return MapsViewModel(
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
+                    incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
+                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
                     fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     fetchComplexMapsUseCase = fetchComplexMapsUseCase
@@ -94,15 +97,19 @@ class MapsViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val appKeyContainer = (this[APPLICATION_KEY] as PETApplication).operationsContainer
+                val container = (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
-                val fetchSimpleMapsUseCase = appKeyContainer.fetchSimpleMapsUseCase
-                val fetchMapModifiersUseCase = appKeyContainer.fetchMapModifiersUseCase
-                val fetchMapThumbnailsUseCase = appKeyContainer.fetchMapThumbnailsUseCase
-                val fetchComplexMapsUseCase = appKeyContainer.fetchComplexMapsUseCase
+                val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
+                val incrementMapFloorIndexUseCase = container.incrementMapFloorIndexUseCase
+                val decrementMapFloorIndexUseCase = container.decrementMapFloorIndexUseCase
+                val fetchMapModifiersUseCase = container.fetchMapModifiersUseCase
+                val fetchMapThumbnailsUseCase = container.fetchMapThumbnailsUseCase
+                val fetchComplexMapsUseCase = container.fetchComplexMapsUseCase
 
                 MapsViewModel(
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
+                    incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
+                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
                     fetchMapModifiersUseCase = fetchMapModifiersUseCase,
                     fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
                     fetchComplexMapsUseCase = fetchComplexMapsUseCase
