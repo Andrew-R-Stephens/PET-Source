@@ -10,9 +10,9 @@ class GhostLocalDataSource(
     private val applicationContext: Context
 ): GhostDataSource {
 
-    private val ghostResource: List<GhostResource>
+    private val ghostResourceDto: List<GhostResourceDto>
         get() = listOf(
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_banshee,
                 name = R.string.ghost_type_banshee,
                 info = R.string.ghost_info_banshee,
@@ -26,7 +26,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_demon,
                 name = R.string.ghost_type_demon,
                 info = R.string.ghost_info_demon,
@@ -40,7 +40,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_deogen,
                 name = R.string.ghost_type_deogen,
                 info = R.string.ghost_info_deogen,
@@ -56,7 +56,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_box
                 )
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_goryo,
                 name = R.string.ghost_type_goryo,
                 info = R.string.ghost_info_goryo,
@@ -71,7 +71,7 @@ class GhostLocalDataSource(
                 strictEvidence = listOf(
                     R.string.evidence_id_dots
                 )
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_hantu,
                 name = R.string.ghost_type_hantu,
                 info = R.string.ghost_info_hantu,
@@ -87,7 +87,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_temperatures
                 )
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_jinn,
                 name = R.string.ghost_type_jinn,
                 info = R.string.ghost_info_jinn,
@@ -100,7 +100,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_temperatures,
                 ),
                 strictEvidence = emptyList()
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_mare,
                 name = R.string.ghost_type_mare,
                 info = R.string.ghost_info_mare,
@@ -114,7 +114,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_moroi,
                 name = R.string.ghost_type_moroi,
                 info = R.string.ghost_info_moroi,
@@ -129,7 +129,7 @@ class GhostLocalDataSource(
                 strictEvidence = listOf(
                     R.string.evidence_id_box
                 )
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_myling,
                 name = R.string.ghost_type_myling,
                 info = R.string.ghost_info_myling,
@@ -143,7 +143,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_obake,
                 name = R.string.ghost_type_obake,
                 info = R.string.ghost_info_obake,
@@ -158,7 +158,7 @@ class GhostLocalDataSource(
                 strictEvidence = listOf(
                     R.string.evidence_id_ultraviolet
                 )
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_oni,
                 name = R.string.ghost_type_oni,
                 info = R.string.ghost_info_oni,
@@ -172,7 +172,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_onryo,
                 name = R.string.ghost_type_onryo,
                 info = R.string.ghost_info_onryo,
@@ -185,7 +185,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_box,
                 ),
                 strictEvidence = emptyList()
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_phantom,
                 name = R.string.ghost_type_phantom,
                 info = R.string.ghost_info_phantom,
@@ -199,7 +199,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_poltergeist,
                 name = R.string.ghost_type_poltergeist,
                 info = R.string.ghost_info_poltergeist,
@@ -212,7 +212,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_box,
                 ),
                 strictEvidence = emptyList()
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_raiju,
                 name = R.string.ghost_type_raiju,
                 info = R.string.ghost_info_raiju,
@@ -226,7 +226,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_revenant,
                 name = R.string.ghost_type_revenant,
                 info = R.string.ghost_info_revenant,
@@ -239,7 +239,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_book,
                 ),
                 strictEvidence = emptyList()
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_shade,
                 name = R.string.ghost_type_shade,
                 info = R.string.ghost_info_shade,
@@ -253,7 +253,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_spirit,
                 name = R.string.ghost_type_spirit,
                 info = R.string.ghost_info_spirit,
@@ -266,7 +266,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_book,
                 ),
                 strictEvidence = emptyList()
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_thaye,
                 name = R.string.ghost_type_thaye,
                 info = R.string.ghost_info_thaye,
@@ -280,7 +280,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_thetwins,
                 name = R.string.ghost_type_thetwins,
                 info = R.string.ghost_info_thetwins,
@@ -293,7 +293,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_box,
                 ),
                 strictEvidence = emptyList()
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_themimic,
                 name = R.string.ghost_type_themimic,
                 info = R.string.ghost_info_themimic,
@@ -310,7 +310,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_orbs
                 )
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_wraith,
                 name = R.string.ghost_type_wraith,
                 info = R.string.ghost_info_wraith,
@@ -323,7 +323,7 @@ class GhostLocalDataSource(
                     R.string.evidence_id_dots,
                 ),
                 strictEvidence = emptyList()
-            ),GhostResource(
+            ),GhostResourceDto(
                 id = R.string.ghost_id_yokai,
                 name = R.string.ghost_type_yokai,
                 info = R.string.ghost_info_yokai,
@@ -337,7 +337,7 @@ class GhostLocalDataSource(
                 ),
                 strictEvidence = emptyList()
             ),
-            GhostResource(
+            GhostResourceDto(
                 id = R.string.ghost_id_yurei,
                 name = R.string.ghost_type_yurei,
                 info = R.string.ghost_info_yurei,
@@ -357,14 +357,14 @@ class GhostLocalDataSource(
 
         val result: MutableList<GhostDto> = mutableListOf()
 
-        ghostResource.forEach { resDto ->
+        ghostResourceDto.forEach { resDto ->
             result.add(resDto.toGhostDto())
         }
         return Result.success(emptyList())
 
     }
 
-    private data class GhostResource(
+    private data class GhostResourceDto(
         val id: Int,
         @StringRes val name: Int,
         @StringRes val info: Int,
@@ -375,9 +375,9 @@ class GhostLocalDataSource(
         val strictEvidence: List<Int>,
     )
 
-    private fun List<GhostResource>.toGhostDto() = map { it.toGhostDto() }
+    private fun List<GhostResourceDto>.toGhostDto() = map { it.toGhostDto() }
 
-    private fun GhostResource.toGhostDto() = GhostDto(
+    private fun GhostResourceDto.toGhostDto() = GhostDto(
         id = applicationContext.getString(id),
         name = name,
         normalEvidence = normalEvidence.map { applicationContext.getString(it) },
