@@ -14,7 +14,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.sourc
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.GhostLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.repository.ComplexMapRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalService
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.service.ComplexMapLocalService
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.repository.MapModifiersRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.source.local.MapModifiersLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.repository.SimpleMapRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.repository.MissionRepositoryImpl
@@ -46,8 +48,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifiers.repsitory.MapModifiersRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifiers.source.local.MapModifiersDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source.SimpleMapDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapFloorIndexUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetMapModifierUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.repository.MissionRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
 
@@ -61,9 +68,9 @@ class OperationContainer(
      */
 
     // Journal
-    val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource(applicationContext)
-    val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(applicationContext)
-    val journalRepository: JournalRepository = JournalRepositoryImpl(
+    private val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource(applicationContext)
+    private val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(applicationContext)
+    private val journalRepository: JournalRepository = JournalRepositoryImpl(
         ghostLocalDataSource = ghostLocalDataSource,
         evidenceLocalDataSource = evidenceLocalDataSource
     )
@@ -74,45 +81,53 @@ class OperationContainer(
     internal val getEvidenceByIdUseCase = GetEvidenceByIdUseCase(journalRepository)
 
     // Difficulty
-    val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(applicationContext)
-    val difficultyRepository: DifficultyRepository =
+    private val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(applicationContext)
+    private val difficultyRepository: DifficultyRepository =
         DifficultyRepositoryImpl(
             localSource = difficultyLocalDataSource
         )
     internal val fetchDifficultiesUseCase = FetchDifficultiesUseCase(difficultyRepository)
 
     // Mission
-    val missionLocalDataSource: MissionDataSource = MissionLocalDataSource()
-    val missionRepository: MissionRepository =
+    private val missionLocalDataSource: MissionDataSource = MissionLocalDataSource()
+    internal val missionRepository: MissionRepository =
         MissionRepositoryImpl(
             localSource = missionLocalDataSource
         )
 
-    /*
-     * Interactive Map
-     */
+    // Map Modifiers
+    private val mapModifiersLocalDataSource: MapModifiersDataSource =
+        MapModifiersLocalDataSource(applicationContext)
+    private val mapModifiersRepository: MapModifiersRepository = MapModifiersRepositoryImpl(
+        localSource = mapModifiersLocalDataSource
+    )
+    internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(mapModifiersRepository)
+
     // Simple Map
-    val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(applicationContext)
-    val simpleMapRepository: SimpleMapRepository =
+    private val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(applicationContext)
+    private val simpleMapRepository: SimpleMapRepository =
         SimpleMapRepositoryImpl(
             localSource = simpleMapLocalDataSource
         )
     internal val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(simpleMapRepository)
-    internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(simpleMapRepository)
     internal val fetchMapThumbnailsUseCase = FetchMapThumbnailsUseCase(simpleMapRepository)
     internal val incrementMapIndexUseCase = IncrementMapIndexUseCase(simpleMapRepository)
     internal val decrementMapIndexUseCase = DecrementMapIndexUseCase(simpleMapRepository)
+    internal val incrementMapFloorIndexUseCase = IncrementMapFloorIndexUseCase(simpleMapRepository)
+    internal val decrementMapFloorIndexUseCase = DecrementMapFloorIndexUseCase(simpleMapRepository)
     internal val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(simpleMapRepository)
     internal val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(simpleMapRepository)
     internal val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(simpleMapRepository)
     internal val getSimpleMapNormalModifierUseCase = GetSimpleMapNormalModifierUseCase(simpleMapRepository)
+    internal val getMapModifierUseCase = GetMapModifierUseCase(
+        getSimpleMapNormalModifierUseCase, getSimpleMapSetupModifierUseCase)
 
     // Complex Map
-    val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
+    private val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
         applicationContext = applicationContext,
         service = ComplexMapLocalService()
     )
-    val complexMapRepository: ComplexMapRepository =
+    private val complexMapRepository: ComplexMapRepository =
         ComplexMapRepositoryImpl(
             localSource = complexMapLocalDataSource
         )
@@ -125,19 +140,19 @@ class OperationContainer(
      */
 
     // Achievements
-    val codexAchievementsLocalDataSource: CodexAchievementsLocalDataSource =
+    private val codexAchievementsLocalDataSource: CodexAchievementsLocalDataSource =
         CodexAchievementsLocalDataSource()
 
     // Equipment
-    val codexEquipmentLocalDataSource: CodexEquipmentLocalDataSource =
+    private val codexEquipmentLocalDataSource: CodexEquipmentLocalDataSource =
         CodexEquipmentLocalDataSource(applicationContext)
 
     //Possessions
-    val codexPossessionsLocalDataSource: CodexPossessionsLocalDataSource =
+    private val codexPossessionsLocalDataSource: CodexPossessionsLocalDataSource =
         CodexPossessionsLocalDataSource()
 
     // Codex
-    val codexRepository: CodexRepository =
+    private val codexRepository: CodexRepository =
         CodexRepositoryImpl(
             achievementsLocalDataSource = codexAchievementsLocalDataSource,
             equipmentLocalDataSource = codexEquipmentLocalDataSource,
