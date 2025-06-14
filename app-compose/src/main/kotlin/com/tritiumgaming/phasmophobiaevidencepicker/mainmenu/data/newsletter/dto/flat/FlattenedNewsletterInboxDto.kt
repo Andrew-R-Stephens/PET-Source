@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

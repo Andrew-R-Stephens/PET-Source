@@ -2,12 +2,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.re
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.network.ConnectivityManagerHelper
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.FlattenedNewsletterInboxDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.toExternal
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat.toExternal
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local.toInternal
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.remote.toInternal
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.dto.toInternal
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.dto.toInternal
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore

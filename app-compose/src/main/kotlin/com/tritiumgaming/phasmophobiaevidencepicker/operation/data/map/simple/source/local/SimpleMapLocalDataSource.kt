@@ -4,13 +4,12 @@ import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.SMALL
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.MEDIUM
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.LARGE
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.LocalWorldMapFloorDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.LocalWorldMapDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.LocalWorldMapFloorDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.WorldMapSizeTypeDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapModifier
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.LARGE
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.MEDIUM
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource.MapSizeTypeResourceDto.SMALL
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source.SimpleMapDataSource
 
 class SimpleMapLocalDataSource(

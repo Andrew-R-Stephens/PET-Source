@@ -1,7 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
-
 class GetSimpleMapNormalModifierUseCase(
     private val fetchMapModifiersUseCase: FetchMapModifiersUseCase
 ) {

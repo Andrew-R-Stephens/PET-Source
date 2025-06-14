@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source
 
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.dto.LocalNewsletterInboxDto
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local.LocalNewsletterInboxDto
 
 interface NewsletterLocalDataSource {
 

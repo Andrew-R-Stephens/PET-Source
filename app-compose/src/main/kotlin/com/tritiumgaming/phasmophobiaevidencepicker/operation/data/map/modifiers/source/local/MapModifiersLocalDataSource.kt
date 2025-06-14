@@ -1,13 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.source.local
 
 import android.content.Context
-import android.content.res.Resources
-import android.content.res.TypedArray
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.dto.WorldMapModifierDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifiers.source.local.MapModifiersDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapModifier
 
 class MapModifiersLocalDataSource(
     private val applicationContext: Context

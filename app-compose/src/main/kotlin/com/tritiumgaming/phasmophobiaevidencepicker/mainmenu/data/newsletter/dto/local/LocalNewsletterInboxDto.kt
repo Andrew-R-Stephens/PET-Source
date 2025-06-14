@@ -1,8 +1,8 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.dto
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.FlattenedNewsletterInboxDto
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
 
 data class LocalNewsletterInboxDto(
     val id: String,
