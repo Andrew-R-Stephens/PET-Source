@@ -11,6 +11,6 @@ class GetSimpleMapSizeUseCase(
 
         result.exceptionOrNull()
 
-        return result.getOrNull()?.getOrNull(index)?.mapSize ?: 0
+        return result.getOrNull()?.getOrNull(index)?.mapSize?.size ?: 0
     }
 }

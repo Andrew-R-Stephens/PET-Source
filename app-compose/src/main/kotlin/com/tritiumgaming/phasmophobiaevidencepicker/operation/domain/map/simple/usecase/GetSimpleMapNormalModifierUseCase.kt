@@ -3,10 +3,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 
 class GetSimpleMapNormalModifierUseCase(
-    private val simpleMapsRepository: SimpleMapRepository
+    private val fetchMapModifiersUseCase: FetchMapModifiersUseCase
 ) {
     operator fun invoke(index: Int): Float {
-        val result = simpleMapsRepository.getModifiers()
+        val result = fetchMapModifiersUseCase()
 
         result.exceptionOrNull()
 

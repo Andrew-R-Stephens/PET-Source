@@ -9,6 +9,8 @@ data class WorldMapModifierDto(
     val normalModifier: Float
 )
 
+fun List<WorldMapModifierDto>.toDomain() = map { it.toDomain() }
+
 fun WorldMapModifierDto.toDomain() = WorldMapModifier(
     name = name,
     setupModifier = setupModifier,

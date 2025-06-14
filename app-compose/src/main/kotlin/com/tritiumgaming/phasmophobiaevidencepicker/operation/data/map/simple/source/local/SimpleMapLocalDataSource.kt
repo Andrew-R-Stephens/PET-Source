@@ -301,12 +301,9 @@ class SimpleMapLocalDataSource(
 
     override fun fetchMaps(): Result<List<LocalWorldMapDto>> {
 
-        return Result.success(listOf())
-    }
+        val simpleMaps = mapsResourceDto.toWorldMapDto()
 
-    override fun fetchSizeModifiers(): Result<List<WorldMapModifier>> {
-
-        return Result.success(listOf())
+        return Result.success(simpleMaps)
     }
 
     private fun MapResourceDto.toWorldMapDto() = LocalWorldMapDto(

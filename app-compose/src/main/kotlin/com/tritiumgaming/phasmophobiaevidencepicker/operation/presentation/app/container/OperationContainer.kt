@@ -117,8 +117,8 @@ class OperationContainer(
     internal val decrementMapFloorIndexUseCase = DecrementMapFloorIndexUseCase(simpleMapRepository)
     internal val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(simpleMapRepository)
     internal val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(simpleMapRepository)
-    internal val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(simpleMapRepository)
-    internal val getSimpleMapNormalModifierUseCase = GetSimpleMapNormalModifierUseCase(simpleMapRepository)
+    internal val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(fetchMapModifiersUseCase)
+    internal val getSimpleMapNormalModifierUseCase = GetSimpleMapNormalModifierUseCase(fetchMapModifiersUseCase)
     internal val getMapModifierUseCase = GetMapModifierUseCase(
         getSimpleMapNormalModifierUseCase, getSimpleMapSetupModifierUseCase)
 
