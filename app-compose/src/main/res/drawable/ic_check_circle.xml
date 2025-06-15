@@ -2,29 +2,24 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-        <shape
-            android:shape="oval">
+        <shape android:shape="oval">
             <size
                 android:width="48dp"
-                android:height="48dp"
-                />
+                android:height="48dp" />
 
-            <solid
-                android:color="@color/black_M50" />
+            <solid android:color="@color/black_M50" />
         </shape>
     </item>
 
     <item>
-        <shape
-            android:shape="oval">
+        <shape android:shape="oval">
             <size
                 android:width="48dp"
-                android:height="48dp"
-                />
+                android:height="48dp" />
 
             <stroke
                 android:color="@color/white"
-                android:width="3dp"/>
+                android:width="3dp" />
         </shape>
     </item>
 
@@ -40,7 +35,7 @@
             android:viewportHeight="960">
             <path
                 android:fillColor="@color/white"
-                android:pathData="M382,720 L154,492l57,-57 171,171 367,-367 57,57 -424,424Z"/>
+                android:pathData="M382,720 L154,492l57,-57 171,171 367,-367 57,57 -424,424Z" />
         </vector>
     </item>
 

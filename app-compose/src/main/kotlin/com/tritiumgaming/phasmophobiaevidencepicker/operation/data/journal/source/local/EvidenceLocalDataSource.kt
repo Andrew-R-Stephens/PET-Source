@@ -19,7 +19,7 @@ class EvidenceLocalDataSource(
                 id = R.string.evidence_id_dots,
                 name = R.string.evidence_type_dots,
                 icon = R.drawable.ic_ev_dots,
-                buyCost = R.integer.equipment_requirement_buycost_dots,
+                buyCost = R.integer.equipment_requirement_buycost_65,
                 defaultAnimation = R.drawable.example_dots_0,
                 defaultDescription = R.string.evidence_info_overview_dots,
                 tiers = listOf(

@@ -220,7 +220,7 @@ private fun OverviewPage(
                 modifier = Modifier
                     .padding(PaddingValues(top = 8.dp))
                     .wrapContentHeight(),
-                text = "${integerResource(R.integer.equipment_requirement_buycost_dots)}",
+                text = "${integerResource(R.integer.equipment_requirement_buycost_65)}",
                 fontSize = 30.sp,
                 color = LocalPalette.current.textFamily.body,
                 style = LocalTypography.current.primary.regular
