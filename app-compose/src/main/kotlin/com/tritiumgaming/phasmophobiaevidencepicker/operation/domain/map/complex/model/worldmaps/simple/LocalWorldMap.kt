@@ -1,11 +1,12 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.mapviewer
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.simple
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapSizeType
 
 class LocalWorldMap(
     var mapId: String,
-    var mapName: Int,
+    @StringRes var mapName: Int,
     var mapSize: WorldMapSizeType,
     @DrawableRes var thumbnailImage: Int
 ) {

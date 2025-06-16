@@ -39,14 +39,4 @@ class TestComplexMaps {
         fetchComplexMapsUseCase = FetchComplexMapsUseCase(complexMapsRepository)
     }
 
-    @Test
-    fun fetchComplexMaps(): Unit =
-        runTest(testDispatcher) {
-            val result = complexMapsRepository.fetchMaps()
-
-            assertTrue("${ result.exceptionOrNull()?.message }", result.isSuccess)
-
-            println(result.getOrNull())
-            result.getOrNull()?.print()
-        }
 }

@@ -44,7 +44,7 @@ class EvidenceLocalDataSource(
                 id = R.string.evidence_id_emf,
                 name = R.string.evidence_type_emf,
                 icon = R.drawable.ic_ev_emf,
-                buyCost = R.integer.equipment_requirement_buycost_emf,
+                buyCost = R.integer.equipment_requirement_buycost_45,
                 defaultAnimation = R.drawable.example_emf5_0,
                 defaultDescription = R.string.evidence_info_overview_emf,
                 tiers = listOf(
@@ -69,7 +69,7 @@ class EvidenceLocalDataSource(
                 id = R.string.evidence_id_ultraviolet,
                 name = R.string.evidence_type_ultraviolet,
                 icon = R.drawable.ic_ev_uv,
-                buyCost = R.integer.equipment_requirement_buycost_ultraviolet,
+                buyCost = R.integer.equipment_requirement_buycost_20,
                 defaultAnimation = R.drawable.example_fingerprints_normal_cropped_0,
                 defaultDescription = R.string.evidence_info_overview_ultraviolet,
                 tiers = listOf(
@@ -94,7 +94,7 @@ class EvidenceLocalDataSource(
                 id = R.string.evidence_id_temperatures,
                 name = R.string.evidence_type_temperatures,
                 icon = R.drawable.ic_ev_freezing,
-                buyCost = R.integer.equipment_requirement_buycost_thermometer,
+                buyCost = R.integer.equipment_requirement_buycost_30,
                 defaultAnimation = R.drawable.example_thermometer_freezing_cropped_0,
                 defaultDescription = R.string.evidence_info_overview_thermometer,
                 tiers = listOf(
@@ -119,7 +119,7 @@ class EvidenceLocalDataSource(
                 id = R.string.evidence_id_orbs,
                 name = R.string.evidence_type_orbs,
                 icon = R.drawable.ic_ev_orbs,
-                buyCost = R.integer.equipment_requirement_buycost_vcam,
+                buyCost = R.integer.equipment_requirement_buycost_50,
                 defaultAnimation = R.drawable.example_ghost_orbs_0,
                 defaultDescription = R.string.evidence_info_overview_vcam,
                 tiers = listOf(
@@ -144,7 +144,7 @@ class EvidenceLocalDataSource(
                 id = R.string.evidence_id_book,
                 name = R.string.evidence_type_book,
                 icon = R.drawable.ic_ev_writing,
-                buyCost = R.integer.equipment_requirement_buycost_book,
+                buyCost = R.integer.equipment_requirement_buycost_40,
                 defaultAnimation = R.drawable.example_ghost_writing_cropped_0,
                 defaultDescription = R.string.evidence_info_overview_book,
                 tiers = listOf(
@@ -169,7 +169,7 @@ class EvidenceLocalDataSource(
                 id = R.string.evidence_id_box,
                 name = R.string.evidence_type_box,
                 icon = R.drawable.ic_ev_spiritbox,
-                buyCost = R.integer.equipment_requirement_buycost_box,
+                buyCost = R.integer.equipment_requirement_buycost_50,
                 defaultAnimation = R.drawable.example_spirit_box_cropped_0,
                 defaultDescription = R.string.evidence_info_overview_sbox,
                 tiers = listOf(
