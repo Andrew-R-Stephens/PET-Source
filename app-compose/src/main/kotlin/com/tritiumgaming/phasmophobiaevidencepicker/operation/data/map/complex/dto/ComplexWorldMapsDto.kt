@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex.WorldMap
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMap
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMaps
 
-class WorldMapsDto(
-    internal var maps: List<WorldMapDto>
+data class ComplexWorldMapsDto(
+    internal var maps: List<ComplexWorldMapDto>
 ) {
 
     @Synchronized
@@ -16,9 +16,9 @@ class WorldMapsDto(
 
 }
 
-fun WorldMapsDto.toDomain() = WorldMaps(
+fun ComplexWorldMapsDto.toDomain() = ComplexWorldMaps(
     maps = maps.map { dto ->
-        WorldMap(
+        ComplexWorldMap(
             mapId = dto.mapId,
             mapName = dto.mapName,
             mapNameShort = dto.mapNameShort,

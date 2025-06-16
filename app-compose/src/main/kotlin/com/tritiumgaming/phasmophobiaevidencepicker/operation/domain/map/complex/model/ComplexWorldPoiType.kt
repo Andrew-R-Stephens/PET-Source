@@ -1,6 +1,6 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
-enum class PoiType {
+enum class ComplexWorldPoiType {
     FUSE_BOX,
     CAR_KEY, CABIN_KEY, BONE,
     MUSIC_BOX, HAUNTED_MIRROR, OUIJA_BOARD, SUMMONING_CIRCLE,

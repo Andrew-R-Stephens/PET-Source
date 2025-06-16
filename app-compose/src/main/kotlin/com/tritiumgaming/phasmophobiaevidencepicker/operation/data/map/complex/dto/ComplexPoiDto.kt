@@ -2,19 +2,19 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import android.graphics.PointF
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex.Poi
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoi
 
-class PoiDto(
+data class ComplexPoiDto(
     var id: Int,
     var name: String,
-    var type: PoiTypeDto,
+    var type: ComplexPoiTypeDto,
     var point: PointF
 ) {
 
     constructor(id: Int, name: String, type: Int, x: Float, y: Float) : this(
         id = id,
         name = name,
-        type = PoiTypeDto.entries[type],
+        type = ComplexPoiTypeDto.entries[type],
         point = PointF(x, y)
     )
 
@@ -27,9 +27,9 @@ class PoiDto(
     }
 }
 
-fun List<PoiDto>.toDomain() = map { poiDto -> poiDto.toDomain() }
+fun List<ComplexPoiDto>.toDomain() = map { poiDto -> poiDto.toDomain() }
 
-fun PoiDto.toDomain() = Poi(
+fun ComplexPoiDto.toDomain() = ComplexWorldPoi(
     id = id,
     name = name,
     type = type.toDomain(),

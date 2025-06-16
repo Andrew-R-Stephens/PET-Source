@@ -99,6 +99,7 @@
     <string name="difficulty_title_insanity">Insanity</string>
 
     <!-- Difficulty Modifiers -->
+    <!-- TODO(Refactor to fractions) -->
     <string name="difficulty_modifier_amateur" translatable="false">1.0</string>
     <string name="difficulty_modifier_intermediate" translatable="false">1.5</string>
     <string name="difficulty_modifier_professional" translatable="false">2.0</string>
@@ -106,6 +107,7 @@
     <string name="difficulty_modifier_insanity" translatable="false">2.0</string>
 
     <!-- Difficulty Start Sanity -->
+    <!-- TODO(Refactor to fractions) -->
     <string name="difficulty_initialSanity_amateur" translatable="false">1.0</string>
     <string name="difficulty_initialSanity_intermediate" translatable="false">1.0</string>
     <string name="difficulty_initialSanity_professional" translatable="false">1.0</string>
@@ -120,13 +122,12 @@
     <string name="difficulty_time_insanity" translatable="false">0</string>
 
     <!-- Map Size Modifiers -->
-    <string name="maps_size_modifier_small_setup" translatable="false">.09</string>
-    <string name="maps_size_modifier_small_normal" translatable="false">.12</string>
-    <string name="maps_size_modifier_medium_setup" translatable="false">.05</string>
-    <string name="maps_size_modifier_medium_normal" translatable="false">.08</string>
-    <string name="maps_size_modifier_large_setup" translatable="false">.03</string>
-    <string name="maps_size_modifier_large_normal" translatable="false">.05</string>
-
+    <item name="maps_size_modifier_small_setup" type="fraction">.09</item>
+    <item name="maps_size_modifier_small_normal" type="fraction">.12</item>
+    <item name="maps_size_modifier_medium_setup" type="fraction">.05</item>
+    <item name="maps_size_modifier_medium_normal" type="fraction">.08</item>
+    <item name="maps_size_modifier_large_setup" type="fraction">.03</item>
+    <item name="maps_size_modifier_large_normal" type="fraction">.05</item>
 
     <!-- Map Size Titles -->
     <string name="maps_size_title_small">Small</string>

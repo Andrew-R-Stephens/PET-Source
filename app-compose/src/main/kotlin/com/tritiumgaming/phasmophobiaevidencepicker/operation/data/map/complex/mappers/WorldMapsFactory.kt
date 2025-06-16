@@ -2,17 +2,17 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.WorldMapDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.WorldMapsDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexWorldMapDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexWorldMapsDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.WorldDimensionsSerializerDto
 
 object WorldMapsFactory {
 
-    fun parseMinified(worldMaps: WorldMapsSerializerDto): Result<WorldMapsDto> {
+    fun parseMinified(worldMaps: WorldMapsSerializerDto): Result<ComplexWorldMapsDto> {
 
         //Log.d("Map", "Blueprint: \n$mapDesBlueprint")
 
-        val worldMapDtos = mutableListOf<WorldMapDto>()
+        val worldMapDtos = mutableListOf<ComplexWorldMapDto>()
 
         for (mappedWorldMap in worldMaps.maps) {
             // ---
@@ -173,14 +173,14 @@ object WorldMapsFactory {
 
         }
 
-        val worldMapsDto = WorldMapsDto(
+        val worldMapsDto = ComplexWorldMapsDto(
             maps = worldMapDtos
         )
 
         return Result.success(worldMapsDto)
     }
 
-    fun parseUnMinified(serializedWorldMapsDto: WorldMapsSerializerDto): Result<WorldMapsDto> {
+    fun parseUnMinified(serializedWorldMapsDto: WorldMapsSerializerDto): Result<ComplexWorldMapsDto> {
 
         return Result.success(serializedWorldMapsDto.toWorldMapsDto())
     }

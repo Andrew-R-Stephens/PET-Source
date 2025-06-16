@@ -3,20 +3,20 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 
-data class WorldMapDto(
+data class ComplexWorldMapDto(
     val mapId: String,
     val mapName: String,
     val mapNameShort: String,
-    val mapDimensions: MapDimensionsDto,
-    val mapFloors: List<FloorDto>
+    val mapDimensions: ComplexMapDimensionsDto,
+    val mapFloors: List<ComplexFloorDto>
 ) {
 
     constructor(worldMap: WorldMapsSerializerDto.WorldMapSerializerDto) : this(
         mapId = worldMap.mapId,
         mapName = worldMap.mapName,
         mapNameShort = worldMap.mapNameShort,
-        mapDimensions = MapDimensionsDto(worldMap.mapDimensions.w, worldMap.mapDimensions.h),
-        mapFloors = worldMap.mapFloors.map { floorDto -> FloorDto(floorDto) }
+        mapDimensions = ComplexMapDimensionsDto(worldMap.mapDimensions.w, worldMap.mapDimensions.h),
+        mapFloors = worldMap.mapFloors.map { floorDto -> ComplexFloorDto(floorDto) }
     )
 
     @Synchronized

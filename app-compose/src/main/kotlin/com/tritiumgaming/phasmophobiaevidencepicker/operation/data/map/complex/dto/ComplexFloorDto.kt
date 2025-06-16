@@ -3,27 +3,27 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 import android.graphics.PointF
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex.Floor
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMapFloor
 
-class FloorDto(
+data class ComplexFloorDto(
     internal val floorId: Int,
     internal val floorName: String?,
     internal val floorImage: String?,
-    internal val floorLayer: FloorLayerTypeDto,
-    internal val floorRooms: List<RoomDto>,
-    internal val floorPOIs: List<PoiDto>
+    internal val floorLayer: ComplexFloorLayerTypeDto,
+    internal val floorRooms: List<ComplexRoomDto>,
+    internal val floorPOIs: List<ComplexPoiDto>
 ) {
 
     constructor(floor: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto) : this(
         floorId = floor.floorId,
         floorName = floor.floorName,
         floorImage = floor.imageFile,
-        floorLayer = FloorLayerTypeDto.entries[floor.floorNumber],
+        floorLayer = ComplexFloorLayerTypeDto.entries[floor.floorNumber],
         floorRooms = floor.floorRooms.map { roomSDto ->
-            RoomDto(
+            ComplexRoomDto(
                 id = roomSDto.roomId,
                 name = roomSDto.roomName,
-                roomArea = RoomAreaDto(
+                roomArea = ComplexRoomAreaDto(
                     points = roomSDto.roomPoints.points.map { pointDto ->
                         PointF(pointDto.x, pointDto.y)
                     }
@@ -31,11 +31,11 @@ class FloorDto(
             )
         },
         floorPOIs = floor.floorPOIs.map { poiSDto ->
-            PoiDto(poiSDto.poiId, poiSDto.poiName, poiSDto.poiType, poiSDto.x, poiSDto.y)
+            ComplexPoiDto(poiSDto.poiId, poiSDto.poiName, poiSDto.poiType, poiSDto.x, poiSDto.y)
         }
     ) {
         floor.floorRooms.map { roomSDto ->
-            RoomAreaDto(
+            ComplexRoomAreaDto(
                 points = roomSDto.roomPoints.points.map { pointDto ->
                     PointF(pointDto.x, pointDto.y)
                 }
@@ -65,9 +65,9 @@ class FloorDto(
 
 }
 
-fun List<FloorDto>.toDomain() = map { floorDto -> floorDto.toDomain() }
+fun List<ComplexFloorDto>.toDomain() = map { floorDto -> floorDto.toDomain() }
 
-fun FloorDto.toDomain() = Floor(
+fun ComplexFloorDto.toDomain() = ComplexWorldMapFloor(
     floorId = floorId,
     floorName = floorName,
     floorImage = floorImage,

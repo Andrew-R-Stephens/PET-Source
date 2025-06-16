@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.toMapList
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex.WorldMaps
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMaps
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ class ComplexMapRepositoryImpl(
     val localSource: ComplexMapDataSource
 ): ComplexMapRepository {
 
-    override suspend fun fetchMaps(): Result<WorldMaps> = withContext(Dispatchers.IO) {
+    override suspend fun fetchMaps(): Result<ComplexWorldMaps> = withContext(Dispatchers.IO) {
 
         try {
             val result = localSource.fetchWorldMaps()

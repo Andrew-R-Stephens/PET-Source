@@ -1,12 +1,12 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
 import android.graphics.PointF
 import android.util.Log
 
-data class Poi(
+data class ComplexWorldPoi(
     val id: Int,
     val name: String,
-    val type: PoiType,
+    val type: ComplexWorldPoiType,
     val point: PointF?
 ) {
 

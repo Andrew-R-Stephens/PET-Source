@@ -5,15 +5,15 @@ import android.util.Log
 import androidx.annotation.Keep
 import com.google.gson.JsonSyntaxException
 import com.google.gson.annotations.SerializedName
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.FloorDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.FloorLayerTypeDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.MapDimensionsDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.PoiDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.PoiTypeDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.RoomAreaDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.RoomDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.WorldMapDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.WorldMapsDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexFloorDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexFloorLayerTypeDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexMapDimensionsDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexPoiDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexPoiTypeDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexRoomAreaDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexRoomDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexWorldMapDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexWorldMapsDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.POISerializerDto
@@ -118,7 +118,7 @@ class WorldMapsSerializerDto {
     }
 }
 
-fun WorldMapsSerializerDto.toMapList(): WorldMapsDto {
+fun WorldMapsSerializerDto.toMapList(): ComplexWorldMapsDto {
     try {
         return WorldMapsFactory.parseMinified(this).getOrThrow()
     }
@@ -132,10 +132,10 @@ fun List<POISerializerDto>.toPoiDto() = map {
     it.toPoiDto()
 }
 
-fun POISerializerDto.toPoiDto() = PoiDto(
+fun POISerializerDto.toPoiDto() = ComplexPoiDto(
     id = poiId,
     name = poiName,
-    type = PoiTypeDto.entries[poiType],
+    type = ComplexPoiTypeDto.entries[poiType],
     point = PointF(x, y)
 )
 
@@ -145,7 +145,7 @@ fun List<RoomPointSerializerDto>.toRoomPointDto() = map {
 
 fun RoomPointSerializerDto.toRoomPointDto() = PointF(x, y)
 
-fun RoomPointsSerializerDto.toRoomAreaDto() = RoomAreaDto(
+fun RoomPointsSerializerDto.toRoomAreaDto() = ComplexRoomAreaDto(
     points = points.toRoomPointDto()
 )
 
@@ -153,22 +153,22 @@ fun List<RoomSerializerDto>.toRoomDto() = map {
     it.toRoomDto()
 }
 
-fun RoomSerializerDto.toRoomDto() = RoomDto(
+fun RoomSerializerDto.toRoomDto() = ComplexRoomDto(
     id = roomId,
     name = roomName,
     roomArea = roomPoints.toRoomAreaDto()
 )
 
-fun WorldDimensionsSerializerDto.toMapDimensionsDto() = MapDimensionsDto(
+fun WorldDimensionsSerializerDto.toMapDimensionsDto() = ComplexMapDimensionsDto(
     w = w,
     h = h
 )
 
-fun FloorSerializerDto.toFloorDto() = FloorDto(
+fun FloorSerializerDto.toFloorDto() = ComplexFloorDto(
     floorId = floorId,
     floorName = floorName,
     floorImage = imageFile,
-    floorLayer = FloorLayerTypeDto.entries[floorNumber],
+    floorLayer = ComplexFloorLayerTypeDto.entries[floorNumber],
     floorRooms = floorRooms.toRoomDto(),
     floorPOIs = floorPOIs.toPoiDto(),
 )
@@ -177,7 +177,7 @@ fun List<WorldMapSerializerDto>.toWorldMapDto() = map {
     it.toWorldMapDto()
 }
 
-fun WorldMapSerializerDto.toWorldMapDto() = WorldMapDto(
+fun WorldMapSerializerDto.toWorldMapDto() = ComplexWorldMapDto(
     mapId = mapId,
     mapName = mapName,
     mapNameShort = mapNameShort,
@@ -185,6 +185,6 @@ fun WorldMapSerializerDto.toWorldMapDto() = WorldMapDto(
     mapFloors = mapFloors.map { it.toFloorDto() }
 )
 
-fun WorldMapsSerializerDto.toWorldMapsDto() = WorldMapsDto(
+fun WorldMapsSerializerDto.toWorldMapsDto() = ComplexWorldMapsDto(
     maps = maps.map { it.values }.flatten().toWorldMapDto()
 )

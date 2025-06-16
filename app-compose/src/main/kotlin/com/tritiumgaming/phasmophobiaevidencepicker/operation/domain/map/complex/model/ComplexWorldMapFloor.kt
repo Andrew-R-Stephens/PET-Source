@@ -1,26 +1,26 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
 import android.util.Log
 
-data class Floor(
+data class ComplexWorldMapFloor(
     internal val floorId: Int,
     internal val floorName: String?,
     internal val floorImage: String?,
-    internal val floorLayer: FloorLayerType,
-    internal val floorRooms: List<Room>,
-    internal val floorPOIs: List<Poi>
+    internal val floorLayer: ComplexWorldMapFloorLayerType,
+    internal val floorRooms: List<ComplexWorldRoom>,
+    internal val floorPOIs: List<ComplexWorldPoi>
 ) {
 
     val floorRoomNames: List<String>
         get() = floorRooms.map { it.name }
 
-    val lastRoom: Room?
+    val lastRoom: ComplexWorldRoom?
         get() {
             if (floorRooms.isEmpty()) { return null }
             return floorRooms[floorRooms.size - 1]
         }
 
-    fun getRoomById(id: Int): Room? = floorRooms.find { room -> room.id == id }
+    fun getRoomById(id: Int): ComplexWorldRoom? = floorRooms.find { room -> room.id == id }
 
     fun getRoomIndexById(id: Int): Int = floorRooms.indexOfFirst { room -> room.id == id }
 

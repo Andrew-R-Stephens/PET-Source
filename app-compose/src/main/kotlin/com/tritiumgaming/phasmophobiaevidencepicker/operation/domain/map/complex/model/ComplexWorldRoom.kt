@@ -1,11 +1,11 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
 import android.util.Log
 
-class Room(
+class ComplexWorldRoom(
     val id: Int,
     val name: String,
-    val roomArea: RoomArea
+    val roomArea: ComplexWorldRoomArea
 ) {
 
     override fun toString(): String {

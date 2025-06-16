@@ -1,9 +1,9 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
 import android.graphics.PointF
 import android.util.Log
 
-class RoomArea(
+class ComplexWorldRoomArea(
     val points: List<PointF>
 ) {
 

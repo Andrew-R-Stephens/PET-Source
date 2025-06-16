@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex.MapDimensions
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMapDimensions
 
-class MapDimensionsDto(
+data class ComplexMapDimensionsDto(
     val w: Int,
     val h: Int
 ) {
@@ -13,7 +13,7 @@ class MapDimensionsDto(
     }
 }
 
-fun MapDimensionsDto.toDomain() = MapDimensions(
+fun ComplexMapDimensionsDto.toDomain() = ComplexWorldMapDimensions(
     w = w,
     h = h
 )

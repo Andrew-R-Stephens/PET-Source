@@ -1,12 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.complex.Room
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldRoom
 
-class RoomDto(
+data class ComplexRoomDto(
     val id: Int,
     val name: String,
-    val roomArea: RoomAreaDto
+    val roomArea: ComplexRoomAreaDto
 ) {
 
     override fun toString(): String {
@@ -20,9 +20,9 @@ class RoomDto(
     }
 }
 
-fun List<RoomDto>.toDomain() = map { roomDto -> roomDto.toDomain() }
+fun List<ComplexRoomDto>.toDomain() = map { roomDto -> roomDto.toDomain() }
 
-fun RoomDto.toDomain() = Room(
+fun ComplexRoomDto.toDomain() = ComplexWorldRoom(
     id = id,
     name = name,
     roomArea = roomArea.toDomain()
