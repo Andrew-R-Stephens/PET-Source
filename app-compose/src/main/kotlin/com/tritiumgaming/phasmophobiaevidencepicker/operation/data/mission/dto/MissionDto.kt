@@ -1,14 +1,14 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto
 
-import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mappers.MissionResources.MissionContent
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
 
 data class MissionDto(
-    @StringRes val content: Int
+    val mission: MissionContent
 )
 
 fun MissionDto.toDomain() = Mission(
-    contentRes = content
+    mission = mission
 )
 
 fun List<MissionDto>.toDomain() = map {

@@ -1,44 +1,39 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.local
 
-import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto.MissionDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mappers.MissionResources.MissionContent
 
 class MissionLocalDataSource(
 ): MissionDataSource {
 
     val missionResources
         get() = listOf(
-            MissionResource(data = R.string.objective_info_ghostevent),
-            MissionResource(data = R.string.objective_info_ghostphotograph),
-            MissionResource(data = R.string.objective_info_emfreader),
-            MissionResource(data = R.string.objective_info_motionsensor),
-            MissionResource(data = R.string.objective_info_smudgestick),
-            MissionResource(data = R.string.objective_info_crucifix),
-            MissionResource(data = R.string.objective_info_salt),
-            MissionResource(data = R.string.objective_info_escapehunt),
-            MissionResource(data = R.string.objective_info_repelwithsmudge),
-            MissionResource(data = R.string.objective_info_extinguishcandle),
-            MissionResource(data = R.string.objective_info_lowsanity)
+            MissionResourceDto(mission = MissionContent.WITNESS_A_GHOST_EVENT),
+            MissionResourceDto(mission = MissionContent.PHOTOGRAPH_THE_GHOST),
+            MissionResourceDto(mission = MissionContent.GET_EMF_READING),
+            MissionResourceDto(mission = MissionContent.GET_MOTION_SENSOR_ACTIVITY),
+            MissionResourceDto(mission = MissionContent.SMUDGE_THE_GHOST_LOCATION),
+            MissionResourceDto(mission = MissionContent.PREVENT_HUNT_WITH_CRUCIFIX),
+            MissionResourceDto(mission = MissionContent.GHOST_WALKS_THROUGH_SALT),
+            MissionResourceDto(mission = MissionContent.ESCAPE_A_GHOST_HUNT),
+            MissionResourceDto(mission = MissionContent.REPEL_HUNTING_GHOST_WITH_SMUDGE),
+            MissionResourceDto(mission = MissionContent.GHOST_BLOW_OUT_CANDLE),
+            MissionResourceDto(mission = MissionContent.GET_AVERAGE_SANITY_AT_OR_BELOW_25)
         )
 
     override fun get(): Result<List<MissionDto>> {
 
-        val objectivesList = mutableListOf<MissionDto>()
-
-        missionResources.forEach { resDto ->
-            objectivesList.add(
-                MissionDto(resDto.data)
-            )
-        }
-
-        return Result.success(objectivesList)
+        return Result.success(missionResources.map { it.toMissionDto() })
 
     }
 
 }
 
-data class MissionResource(
-    @StringRes val data: Int
+fun MissionResourceDto.toMissionDto() = MissionDto(
+    mission = mission
+)
+
+data class MissionResourceDto(
+    val mission: MissionContent
 )

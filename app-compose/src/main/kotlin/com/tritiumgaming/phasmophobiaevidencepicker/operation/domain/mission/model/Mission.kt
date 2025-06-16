@@ -1,9 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model
 
 import android.content.Context
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mappers.MissionResources.MissionContent
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 
 class Mission(
-    val contentRes: Int,
+    val mission: MissionContent,
     var missionId: Int? = null
 ) {
     var selected: Boolean = false
@@ -19,10 +21,10 @@ class Mission(
     }
 
     fun getData(): String {
-        return "$selected $missionId $contentRes"
+        return "$selected $missionId $mission"
     }
 
     fun getContent(context: Context): String {
-        return context.getString(contentRes)
+        return context.getString(mission.toStringResource())
     }
 }
