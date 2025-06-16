@@ -1,10 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.simple.LocalWorldMap
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.SimpleWorldMap
 
 interface SimpleMapRepository {
 
-    fun getMaps(): Result<List<LocalWorldMap>>
-    fun getThumbnails(): Result<List<Int>>
+    fun getMaps(): Result<List<SimpleWorldMap>>
 
 }

@@ -2,25 +2,22 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.r
 
 import androidx.annotation.DrawableRes
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.toDomain
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.simple.LocalWorldMap
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.SimpleWorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.source.SimpleMapDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 
 class SimpleMapRepositoryImpl(
     val localSource: SimpleMapDataSource
 ): SimpleMapRepository {
 
-    var simpleMaps: List<LocalWorldMap> = emptyList()
-
-    @DrawableRes var simpleThumbnails: List<Int> = emptyList()
+    var simpleMaps: List<SimpleWorldMap> = emptyList()
 
     fun sync() {
         simpleMaps = localSource.fetchMaps().getOrDefault(emptyList()).toDomain()
-        simpleThumbnails = simpleMaps.map { it -> it.thumbnailImage }
     }
 
-    override fun getMaps(): Result<List<LocalWorldMap>> = Result.success(simpleMaps)
-    override fun getThumbnails(): Result<List<Int>> = Result.success(simpleThumbnails)
+    override fun getMaps(): Result<List<SimpleWorldMap>> = Result.success(simpleMaps)
 
     init {
         sync()

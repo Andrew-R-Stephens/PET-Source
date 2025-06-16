@@ -1,14 +1,15 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.worldmaps.simple
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapSizeType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.SimpleWorldMapFloorDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources
 
-class LocalWorldMap(
-    var mapId: String,
-    @StringRes var mapName: Int,
-    var mapSize: WorldMapSizeType,
-    @DrawableRes var thumbnailImage: Int
+class SimpleWorldMap(
+    val mapId: String,
+    val mapName: SimpleMapResources.MapTitle,
+    val mapSize: SimpleMapResources.MapSize,
+    val thumbnailImage: SimpleMapResources.MapThumbnail,
+    val mapFloors: List<SimpleWorldMapFloorDto>,
+    val defaultFloor: Int
 ) {
 
     private var defaultFloorIndex = 0
@@ -18,13 +19,6 @@ class LocalWorldMap(
 
     val floorCount: Int
         get() = floorNames.size
-
-    var defaultFloor: Int
-        get() = defaultFloorIndex
-        set(index) {
-            this.defaultFloorIndex = index
-            this.currentFloor = this.defaultFloorIndex
-        }
 
     val floorName: Int
         get() = floorNames[currentFloor]
