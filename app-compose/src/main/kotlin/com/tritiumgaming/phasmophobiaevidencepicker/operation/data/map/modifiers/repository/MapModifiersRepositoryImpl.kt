@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.repository
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.dto.toDomain
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifiers.repsitory.MapModifiersRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifiers.source.local.MapModifiersDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapModifier
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.repsitory.MapModifiersRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.source.MapModifiersDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.model.WorldMapModifier
 
 class MapModifiersRepositoryImpl(
     val localSource: MapModifiersDataSource

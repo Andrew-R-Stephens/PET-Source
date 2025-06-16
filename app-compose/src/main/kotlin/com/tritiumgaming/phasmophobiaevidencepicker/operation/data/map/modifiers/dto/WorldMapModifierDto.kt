@@ -1,10 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.dto
 
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.WorldMapModifier
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.model.WorldMapModifier
 
 data class WorldMapModifierDto(
-    @StringRes val name: Int,
+    val name: MapModifierResources.MapSize,
     val setupModifier: Float,
     val normalModifier: Float
 )

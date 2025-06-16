@@ -1,10 +1,13 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.source.local
 
 import android.content.Context
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.dto.WorldMapModifierDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifiers.source.local.MapModifiersDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.source.MapModifiersDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources.SizePhaseModifier
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toFractionResource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 
 class MapModifiersLocalDataSource(
     private val applicationContext: Context
@@ -13,19 +16,19 @@ class MapModifiersLocalDataSource(
     private val mapModifiers: List<MapModifierResourceDto> = listOf(
 
         MapModifierResourceDto(
-            name = R.string.maps_size_title_small,
-            setupModifier = R.string.maps_size_modifier_small_setup,
-            normalModifier = R.string.maps_size_modifier_small_normal
+            mapSize = MapSize.SMALL,
+            setupModifier = SizePhaseModifier.SETUP_SMALL,
+            normalModifier = SizePhaseModifier.ACTION_SMALL
         ),
         MapModifierResourceDto(
-            name = R.string.maps_size_title_medium,
-            setupModifier = R.string.maps_size_modifier_medium_setup,
-            normalModifier = R.string.maps_size_modifier_medium_normal
+            mapSize = MapSize.MEDIUM,
+            setupModifier = SizePhaseModifier.SETUP_MEDIUM,
+            normalModifier = SizePhaseModifier.ACTION_MEDIUM
         ),
         MapModifierResourceDto(
-            name = R.string.maps_size_title_large,
-            setupModifier = R.string.maps_size_modifier_large_setup,
-            normalModifier = R.string.maps_size_modifier_large_normal
+            mapSize = MapSize.LARGE,
+            setupModifier = SizePhaseModifier.SETUP_LARGE,
+            normalModifier = SizePhaseModifier.ACTION_LARGE
         ),
 
     )
@@ -38,18 +41,20 @@ class MapModifiersLocalDataSource(
     }
 
     private fun MapModifierResourceDto.toWorldMapModifierDto() = WorldMapModifierDto(
-        name = name,
-        setupModifier = applicationContext.getString(setupModifier).toDouble().toFloat(),
-        normalModifier = applicationContext.getString(normalModifier).toDouble().toFloat(),
+        name = mapSize,
+        setupModifier = applicationContext.resources
+            .getFraction(setupModifier.toFractionResource(), 1, 1),
+        normalModifier = applicationContext.resources
+            .getFraction(normalModifier.toFractionResource(), 1, 1),
     )
 
     private fun List<MapModifierResourceDto>.toWorldMapModifierDtoList() =
         map { it.toWorldMapModifierDto() }
 
     private data class MapModifierResourceDto(
-        @StringRes val name: Int,
-        @StringRes val setupModifier: Int,
-        @StringRes val normalModifier: Int
+        val mapSize: MapSize,
+        val setupModifier: SizePhaseModifier,
+        val normalModifier: SizePhaseModifier
     )
 
 }
