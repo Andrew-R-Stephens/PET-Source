@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    
     <!-- Equipment Unlock Level Requirements -->
     <integer name="equipment_requirement_level_dots_1" >0</integer>
     <integer name="equipment_requirement_level_dots_2" >29</integer>
