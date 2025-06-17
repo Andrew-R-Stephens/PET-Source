@@ -1,10 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model
 
-import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizationCode
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizedTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.NativeTitle
 
 data class LanguageEntity(
-    @StringRes val localizedName: Int,
-    @StringRes val nativeName: Int,
-    @StringRes val code: Int
+    val localizedName: LocalizedTitle,
+    val nativeName: NativeTitle,
+    val code: LocalizationCode
 )
 
