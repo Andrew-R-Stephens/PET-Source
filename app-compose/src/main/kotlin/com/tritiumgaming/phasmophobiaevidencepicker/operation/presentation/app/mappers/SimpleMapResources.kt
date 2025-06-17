@@ -10,7 +10,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
         SimpleMapResources.MapTitle.SUNNY_MEADOWS -> R.string.map_name_meadows
         SimpleMapResources.MapTitle.SUNNY_MEADOWS_RESTRICTED -> R.string.map_name_meadows_r
         SimpleMapResources.MapTitle.POINT_HOPE -> R.string.map_name_pointhope
-        SimpleMapResources.MapTitle.CAMP_WOODWIND -> R.string.map_name_campmaple
+        SimpleMapResources.MapTitle.CAMP_WOODWIND -> R.string.map_name_campwoodwind
         SimpleMapResources.MapTitle.CAMP_MAPLE -> R.string.map_name_campmaple
         SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE -> R.string.map_name_bleasdale
         SimpleMapResources.MapTitle.GRAFTON_FARMHOUSE -> R.string.map_name_grafton
