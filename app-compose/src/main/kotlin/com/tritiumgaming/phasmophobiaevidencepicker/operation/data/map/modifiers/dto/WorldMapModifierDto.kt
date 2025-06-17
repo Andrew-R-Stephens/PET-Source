@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.dto
 
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.model.WorldMapModifier
 

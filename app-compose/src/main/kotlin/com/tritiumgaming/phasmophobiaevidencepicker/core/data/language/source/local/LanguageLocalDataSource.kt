@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.l
 
 import android.content.Context
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.LanguageDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizationCode
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizedTitle
