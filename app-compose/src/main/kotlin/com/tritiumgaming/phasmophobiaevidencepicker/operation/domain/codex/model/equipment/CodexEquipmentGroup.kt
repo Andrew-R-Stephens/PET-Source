@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mode
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentTitles
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment.CodexEquipmentGroupItem
 
 data class CodexEquipmentGroup(
     val name: EquipmentTitles,
