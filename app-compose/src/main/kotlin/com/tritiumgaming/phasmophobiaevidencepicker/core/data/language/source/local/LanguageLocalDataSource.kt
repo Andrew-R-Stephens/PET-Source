@@ -2,11 +2,14 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.l
 
 import android.content.Context
 import android.util.Log
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.LanguageDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizationCode
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizedTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.NativeTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toStringResource
 import java.util.Locale
 
 class LanguageLocalDataSource(
@@ -17,59 +20,59 @@ class LanguageLocalDataSource(
         get() = listOf(
 
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_zh_Hans,
-                nativeName = R.string.language_name_native_zh_Hans,
-                code = R.string.language_code_zh_Hans
+                localizedName = LocalizedTitle.ZH_HANS,
+                nativeName = NativeTitle.ZH_HANS,
+                code = LocalizationCode.ZH_HANS
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_cz,
-                nativeName = R.string.language_name_native_cz,
-                code = R.string.language_code_cz
+                localizedName = LocalizedTitle.CS,
+                nativeName = NativeTitle.CS,
+                code = LocalizationCode.CS
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_de,
-                nativeName = R.string.language_name_native_de,
-                code = R.string.language_code_de
+                localizedName = LocalizedTitle.DE,
+                nativeName = NativeTitle.DE,
+                code = LocalizationCode.DE
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_en,
-                nativeName = R.string.language_name_native_en,
-                code = R.string.language_code_en
+                localizedName = LocalizedTitle.EN,
+                nativeName = NativeTitle.EN,
+                code = LocalizationCode.EN
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_es,
-                nativeName = R.string.language_name_native_es,
-                code = R.string.language_code_es
+                localizedName = LocalizedTitle.ES,
+                nativeName = NativeTitle.ES,
+                code = LocalizationCode.ES
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_fr,
-                nativeName = R.string.language_name_native_fr,
-                code = R.string.language_code_fr
+                localizedName = LocalizedTitle.FR,
+                nativeName = NativeTitle.FR,
+                code = LocalizationCode.FR
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_it,
-                nativeName = R.string.language_name_native_it,
-                code = R.string.language_code_it
+                localizedName = LocalizedTitle.IT,
+                nativeName = NativeTitle.IT,
+                code = LocalizationCode.IT
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_ja,
-                nativeName = R.string.language_name_native_ja,
-                code = R.string.language_code_ja
+                localizedName = LocalizedTitle.JA,
+                nativeName = NativeTitle.JA,
+                code = LocalizationCode.JA
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_pt,
-                nativeName = R.string.language_name_native_pt,
-                code = R.string.language_code_pt
+                localizedName = LocalizedTitle.PT,
+                nativeName = NativeTitle.PT,
+                code = LocalizationCode.PT
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_ru,
-                nativeName = R.string.language_name_native_ru,
-                code = R.string.language_code_ru
+                localizedName = LocalizedTitle.RU,
+                nativeName = NativeTitle.RU,
+                code = LocalizationCode.RU
             ),
             LanguageResourceDto(
-                localizedName = R.string.language_name_localized_uk,
-                nativeName = R.string.language_name_native_uk,
-                code = R.string.language_code_uk
+                localizedName = LocalizedTitle.UK,
+                nativeName = NativeTitle.UK,
+                code = LocalizationCode.UK
             )
 
         )
@@ -82,10 +85,10 @@ class LanguageLocalDataSource(
 
         // OVERRIDE DEFAULT LANGUAGE
         languagesDto.find { language ->
-            applicationContext.getString(language.code)
+            applicationContext.getString(language.code.toStringResource())
                 .equals(Locale.getDefault().language, ignoreCase = true)
         }?.let { language ->
-            DEFAULT_LANGUAGE = applicationContext.getString(language.code)
+            DEFAULT_LANGUAGE = applicationContext.getString(language.code.toStringResource())
         }
 
         Log.d("Language", "Finished fetching ${languagesResource.size} languages")
@@ -102,9 +105,9 @@ class LanguageLocalDataSource(
     private fun List<LanguageResourceDto>.toLanguageDto() = map { it.toLanguageDto() }
     
     private class LanguageResourceDto(
-        @StringRes val localizedName: Int,
-        @StringRes val nativeName: Int,
-        @StringRes val code: Int
+        val localizedName: LocalizedTitle,
+        val nativeName: NativeTitle,
+        val code: LocalizationCode
     )
     
 }
