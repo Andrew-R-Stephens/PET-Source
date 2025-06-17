@@ -1,0 +1,440 @@
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers
+
+import androidx.annotation.DrawableRes
+import androidx.annotation.IntegerRes
+import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentTitles
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierImage
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
+
+@StringRes fun EquipmentTitles.toStringResource(): Int =
+    when (this) {
+        EquipmentTitles.DOTS -> R.string.equipment_info_name_dots
+        EquipmentTitles.EMF -> R.string.equipment_info_name_emf
+        EquipmentTitles.FLASHLIGHT -> R.string.equipment_info_name_flashlight
+        EquipmentTitles.PHOTO_CAMERA -> R.string.equipment_info_name_photocamera
+        EquipmentTitles.IGNITER -> R.string.equipment_info_name_igniter
+        EquipmentTitles.FIRELIGHT -> R.string.equipment_info_name_firelight
+        EquipmentTitles.UV_LIGHT -> R.string.equipment_info_name_uvlight
+        EquipmentTitles.CRUCIFIX -> R.string.equipment_info_name_crucifix
+        EquipmentTitles.VIDEO_CAMERA -> R.string.equipment_info_name_videocamera
+        EquipmentTitles.SPIRIT_BOX -> R.string.equipment_info_name_spiritbox
+        EquipmentTitles.THERMOMETER -> R.string.equipment_info_name_thermometer
+        EquipmentTitles.SALT -> R.string.equipment_info_name_salt
+        EquipmentTitles.INCENSE -> R.string.equipment_info_name_incense
+        EquipmentTitles.TRIPOD -> R.string.equipment_info_name_tripod
+        EquipmentTitles.MOTION_SENSOR -> R.string.equipment_info_name_motionsensor
+        EquipmentTitles.SOUND_SENSOR -> R.string.equipment_info_name_soundsensor
+        EquipmentTitles.SANITY_MEDICATION -> R.string.equipment_info_name_sanitymedication
+        EquipmentTitles.GHOST_WRITING_BOOK -> R.string.equipment_info_name_ghostwritingbook
+        EquipmentTitles.PARABOLIC_MICROPHONE -> R.string.equipment_info_name_parabolicmicrophone
+        EquipmentTitles.HEAD_GEAR -> R.string.equipment_info_name_headgear
+    }
+
+@DrawableRes fun CodexEquipmentResources.EquipmentIcon.toDrawableResource(): Int =
+    when (this) {
+        EquipmentIcon.DOTS -> TODO()
+        EquipmentIcon.EMF -> TODO()
+        EquipmentIcon.FLASHLIGHT -> TODO()
+        EquipmentIcon.PHOTO_CAMERA -> TODO()
+        EquipmentIcon.IGNITER -> TODO()
+        EquipmentIcon.FIRELIGHT -> TODO()
+        EquipmentIcon.UV_LIGHT -> TODO()
+        EquipmentIcon.CRUCIFIX -> TODO()
+        EquipmentIcon.VIDEO_CAMERA -> TODO()
+        EquipmentIcon.SPIRIT_BOX -> TODO()
+        EquipmentIcon.THERMOMETER -> TODO()
+        EquipmentIcon.SALT -> TODO()
+        EquipmentIcon.INCENSE -> TODO()
+        EquipmentIcon.TRIPOD -> TODO()
+        EquipmentIcon.MOTION_SENSOR -> TODO()
+        EquipmentIcon.SOUND_SENSOR -> TODO()
+        EquipmentIcon.SANITY_MEDICATION -> TODO()
+        EquipmentIcon.GHOST_WRITING_BOOK -> TODO()
+        EquipmentIcon.PARABOLIC_MICROPHONE -> TODO()
+        EquipmentIcon.HEAD_GEAR -> TODO()
+    }
+
+@StringRes fun CodexEquipmentResources.EquipmentAttribute.toStringResource(): Int =
+    when (this) {
+        EquipmentAttribute.SPOTLIGHT_NARROW -> R.string.shop_equipment_attribute_spotight_narrow
+        EquipmentAttribute.SPOTLIGHT_WIDE -> R.string.shop_equipment_attribute_spotight_wide
+        EquipmentAttribute.SPOTLIGHT_AREA -> R.string.shop_equipment_attribute_spotight_area
+        EquipmentAttribute.INTENSITY_LOW -> R.string.shop_equipment_attribute_intensity_low
+        EquipmentAttribute.INTENSITY_MED -> R.string.shop_equipment_attribute_intensity_med
+        EquipmentAttribute.INTENSITY_HIGH -> R.string.shop_equipment_attribute_intensity_high
+        EquipmentAttribute.INTERACTION_RATE_LOW -> R.string.shop_equipment_attribute_interactionrate_low
+        EquipmentAttribute.INTERACTION_RATE_MED -> R.string.shop_equipment_attribute_interactionrate_med
+        EquipmentAttribute.INTERACTION_RATE_HIGH -> R.string.shop_equipment_attribute_interactionrate_high
+        EquipmentAttribute.AUDIO_QUALITY_LOW -> R.string.shop_equipment_attribute_audioquality_low
+        EquipmentAttribute.AUDIO_QUALITY_MED -> R.string.shop_equipment_attribute_audioquality_med
+        EquipmentAttribute.AUDIO_QUALITY_HIGH -> R.string.shop_equipment_attribute_audioquality_high
+        EquipmentAttribute.RESPONSE_RATE_LOW -> R.string.shop_equipment_attribute_responserate_low
+        EquipmentAttribute.RESPONSE_RATE_MED -> R.string.shop_equipment_attribute_responserate_med
+        EquipmentAttribute.RESPONSE_RATE_HIGH -> R.string.shop_equipment_attribute_responserate_high
+        EquipmentAttribute.SAMPLE_SPEED_LOW -> R.string.shop_equipment_attribute_samplespeed_low
+        EquipmentAttribute.SAMPLE_SPEED_MED -> R.string.shop_equipment_attribute_samplespeed_med
+        EquipmentAttribute.SAMPLE_SPEED_HIGH -> R.string.shop_equipment_attribute_samplespeed_high
+        EquipmentAttribute.IMAGE_QUALITY_LOW -> R.string.shop_equipment_attribute_imagequality_low
+        EquipmentAttribute.IMAGE_QUALITY_MED -> R.string.shop_equipment_attribute_imagequality_med
+        EquipmentAttribute.IMAGE_QUALITY_HIGH -> R.string.shop_equipment_attribute_imagequality_high
+        EquipmentAttribute.INTERFERENCE_LOW -> R.string.shop_equipment_attribute_interference_low
+        EquipmentAttribute.INTERFERENCE_MED -> R.string.shop_equipment_attribute_interference_med
+        EquipmentAttribute.INTERFERENCE_HIGH -> R.string.shop_equipment_attribute_interference_high
+        EquipmentAttribute.KNOCKDOWN_CHANCE_LOW -> R.string.shop_equipment_attribute_knockdownchance_low
+        EquipmentAttribute.KNOCKDOWN_CHANCE_MED -> R.string.shop_equipment_attribute_knockdownchance_med
+        EquipmentAttribute.KNOCKDOWN_CHANCE_HIGH -> R.string.shop_equipment_attribute_knockdownchance_high
+        EquipmentAttribute.ACCURACY_LOW -> R.string.shop_equipment_attribute_accuracy_low
+        EquipmentAttribute.ACCURACY_MED -> R.string.shop_equipment_attribute_accuracy_med
+        EquipmentAttribute.ACCURACY_HIGH -> R.string.shop_equipment_attribute_accuracy_high
+        EquipmentAttribute.INDICATOR_AUDIO -> R.string.shop_equipment_attribute_indicator_audio
+        EquipmentAttribute.INDICATOR_LIGHT -> R.string.shop_equipment_attribute_indicator_light
+        EquipmentAttribute.INDICATOR_DISTANCE -> R.string.shop_equipment_attribute_indicator_distance
+        EquipmentAttribute.INDICATOR_DIRECTIONAL -> R.string.shop_equipment_attribute_indicator_directional
+        EquipmentAttribute.RANGE_1_7 -> R.string.shop_equipment_attribute_range_1_7
+        EquipmentAttribute.RANGE_2 -> R.string.shop_equipment_attribute_range_2
+        EquipmentAttribute.RANGE_2_5 -> R.string.shop_equipment_attribute_range_2_5
+        EquipmentAttribute.RANGE_3 -> R.string.shop_equipment_attribute_range_3
+        EquipmentAttribute.RANGE_3_5 -> R.string.shop_equipment_attribute_range_3_5
+        EquipmentAttribute.RANGE_4 -> R.string.shop_equipment_attribute_range_4
+        EquipmentAttribute.RANGE_5 -> R.string.shop_equipment_attribute_range_5
+        EquipmentAttribute.RANGE_7 -> R.string.shop_equipment_attribute_range_7
+        EquipmentAttribute.RANGE_20 -> R.string.shop_equipment_attribute_range_20
+        EquipmentAttribute.RANGE_30 -> R.string.shop_equipment_attribute_range_30
+        EquipmentAttribute.RANGE_5_10 -> R.string.shop_equipment_attribute_range_5_10
+        EquipmentAttribute.RANGE_5_10_15 -> R.string.shop_equipment_attribute_range_5_10_15
+        EquipmentAttribute.UV_CHARGE_TIME_1_5 -> R.string.shop_equipment_attribute_uvchargetime_1_5
+        EquipmentAttribute.UV_CHARGE_TIME_5 -> R.string.shop_equipment_attribute_uvchargetime_5
+        EquipmentAttribute.UV_CHARGE_TIME_10 -> R.string.shop_equipment_attribute_uvchargetime_10
+        EquipmentAttribute.PHOTO_TIME_LOW -> R.string.shop_equipment_attribute_phototime_low
+        EquipmentAttribute.PHOTO_TIME_MED -> R.string.shop_equipment_attribute_phototime_med
+        EquipmentAttribute.PHOTO_TIME_HIGH -> R.string.shop_equipment_attribute_phototime_high
+        EquipmentAttribute.SANITY_DRAIN_REDUCTION_33 -> R.string.shop_equipment_attribute_sanitydrainreduction_33
+        EquipmentAttribute.SANITY_DRAIN_REDUCTION_50 -> R.string.shop_equipment_attribute_sanitydrainreduction_50
+        EquipmentAttribute.SANITY_DRAIN_REDUCTION_66 -> R.string.shop_equipment_attribute_sanitydrainreduction_66
+        EquipmentAttribute.SANITY_RESTORATION_10 -> R.string.shop_equipment_attribute_sanityrestoration_10
+        EquipmentAttribute.SANITY_RESTORATION_20 -> R.string.shop_equipment_attribute_sanityrestoration_20
+        EquipmentAttribute.SANITY_RESTORATION_30 -> R.string.shop_equipment_attribute_sanityrestoration_30
+        EquipmentAttribute.SENSOR_SHAPE_LINE -> R.string.shop_equipment_attribute_sensorshape_line
+        EquipmentAttribute.SENSOR_SHAPE_LINE_CONE -> R.string.shop_equipment_attribute_sensorshape_line_cone
+        EquipmentAttribute.SENSOR_SHAPE_CIRCLE -> R.string.shop_equipment_attribute_sensorshape_circle
+        EquipmentAttribute.SENSOR_SHAPE_CIRCLE_CONE_SIDES -> R.string.shop_equipment_attribute_sensorshape_circle_cone_sides
+        EquipmentAttribute.DURATION_3_S -> R.string.shop_equipment_attribute_duration_3_s
+        EquipmentAttribute.DURATION_5_S -> R.string.shop_equipment_attribute_duration_5_s
+        EquipmentAttribute.DURATION_6_S -> R.string.shop_equipment_attribute_duration_6_s
+        EquipmentAttribute.DURATION_7_S -> R.string.shop_equipment_attribute_duration_7_s
+        EquipmentAttribute.DURATION_10_S -> R.string.shop_equipment_attribute_duration_10_s
+        EquipmentAttribute.DURATION_60_S -> R.string.shop_equipment_attribute_duration_60_s
+        EquipmentAttribute.DURATION_3_M -> R.string.shop_equipment_attribute_duration_3_m
+        EquipmentAttribute.DURATION_5_M -> R.string.shop_equipment_attribute_duration_5_m
+        EquipmentAttribute.DURATION_10_M -> R.string.shop_equipment_attribute_duration_10_m
+        EquipmentAttribute.USES_1 -> R.string.shop_equipment_attribute_uses_1
+        EquipmentAttribute.USES_2 -> R.string.shop_equipment_attribute_uses_2
+        EquipmentAttribute.USES_3 -> R.string.shop_equipment_attribute_uses_3
+        EquipmentAttribute.USES_10 -> R.string.shop_equipment_attribute_uses_10
+        EquipmentAttribute.PLACEABLE -> R.string.shop_equipment_attribute_placeable
+        EquipmentAttribute.HANDHELD -> R.string.shop_equipment_attribute_handheld
+        EquipmentAttribute.PROPERTY_GHOST_EFFECT_SLOWS -> R.string.shop_equipment_attribute_property_ghosteffect_slows
+        EquipmentAttribute.PROPERTY_GHOST_EFFECT_HALTS -> R.string.shop_equipment_attribute_property_ghosteffect_halts
+        EquipmentAttribute.PROPERTY_DISPLAY_SCREEN -> R.string.shop_equipment_attribute_property_displayscreen
+        EquipmentAttribute.PROPERTY_PREVENT_CURSED_HUNT -> R.string.shop_equipment_attribute_property_preventscursedhunt
+        EquipmentAttribute.PROPERTY_ELECTRONIC -> R.string.shop_equipment_attribute_property_electronic
+        EquipmentAttribute.PROPERTY_CONSUMABLE -> R.string.shop_equipment_attribute_property_consumable
+        EquipmentAttribute.PROPERTY_WATERPROOF -> R.string.shop_equipment_attribute_property_waterproof
+        EquipmentAttribute.PROPERTY_HEAD_SLOT -> R.string.shop_equipment_attribute_property_headslot
+        EquipmentAttribute.PROPERTY_NIGHT_VISION -> R.string.shop_equipment_attribute_property_nightvision
+        EquipmentAttribute.PROPERTY_SPRINT_BOOST -> R.string.shop_equipment_attribute_property_sprintboost
+        EquipmentAttribute.PROPERTY_ROTATION_CONTROL -> R.string.shop_equipment_attribute_property_rotationcontrol
+        EquipmentAttribute.PROPERTY_SCANNING -> R.string.shop_equipment_attribute_property_scanning
+    }
+
+@DrawableRes fun CodexEquipmentResources.TierImage.toDrawableResource(): Int =
+    when (this) {
+        CodexEquipmentResources.TierImage.DOTS_1 -> TODO()
+        CodexEquipmentResources.TierImage.DOTS_2 -> TODO()
+        CodexEquipmentResources.TierImage.DOTS_3 -> TODO()
+        CodexEquipmentResources.TierImage.EMF_1 -> TODO()
+        CodexEquipmentResources.TierImage.EMF_2 -> TODO()
+        CodexEquipmentResources.TierImage.EMF_3 -> TODO()
+        CodexEquipmentResources.TierImage.FLASHLIGHT_1 -> TODO()
+        CodexEquipmentResources.TierImage.FLASHLIGHT_2 -> TODO()
+        CodexEquipmentResources.TierImage.FLASHLIGHT_3 -> TODO()
+        CodexEquipmentResources.TierImage.PHOTO_CAMERA_1 -> TODO()
+        CodexEquipmentResources.TierImage.PHOTO_CAMERA_2 -> TODO()
+        CodexEquipmentResources.TierImage.PHOTO_CAMERA_3 -> TODO()
+        CodexEquipmentResources.TierImage.IGNITER_1 -> TODO()
+        CodexEquipmentResources.TierImage.IGNITER_2 -> TODO()
+        CodexEquipmentResources.TierImage.IGNITER_3 -> TODO()
+        CodexEquipmentResources.TierImage.FIRELIGHT_1 -> TODO()
+        CodexEquipmentResources.TierImage.FIRELIGHT_2 -> TODO()
+        CodexEquipmentResources.TierImage.FIRELIGHT_3 -> TODO()
+        CodexEquipmentResources.TierImage.UV_LIGHT_1 -> TODO()
+        CodexEquipmentResources.TierImage.UV_LIGHT_2 -> TODO()
+        CodexEquipmentResources.TierImage.UV_LIGHT_3 -> TODO()
+        CodexEquipmentResources.TierImage.CRUCIFIX_1 -> TODO()
+        CodexEquipmentResources.TierImage.CRUCIFIX_2 -> TODO()
+        CodexEquipmentResources.TierImage.CRUCIFIX_3 -> TODO()
+        CodexEquipmentResources.TierImage.VIDEO_CAMERA_1 -> TODO()
+        CodexEquipmentResources.TierImage.VIDEO_CAMERA_2 -> TODO()
+        CodexEquipmentResources.TierImage.VIDEO_CAMERA_3 -> TODO()
+        CodexEquipmentResources.TierImage.SPIRIT_BOX_1 -> TODO()
+        CodexEquipmentResources.TierImage.SPIRIT_BOX_2 -> TODO()
+        CodexEquipmentResources.TierImage.SPIRIT_BOX_3 -> TODO()
+        CodexEquipmentResources.TierImage.THERMOMETER_1 -> TODO()
+        CodexEquipmentResources.TierImage.THERMOMETER_2 -> TODO()
+        CodexEquipmentResources.TierImage.THERMOMETER_3 -> TODO()
+        CodexEquipmentResources.TierImage.SALT_1 -> TODO()
+        CodexEquipmentResources.TierImage.SALT_2 -> TODO()
+        CodexEquipmentResources.TierImage.SALT_3 -> TODO()
+        CodexEquipmentResources.TierImage.INCENSE_1 -> TODO()
+        CodexEquipmentResources.TierImage.INCENSE_2 -> TODO()
+        CodexEquipmentResources.TierImage.INCENSE_3 -> TODO()
+        CodexEquipmentResources.TierImage.TRIPOD_1 -> TODO()
+        CodexEquipmentResources.TierImage.TRIPOD_2 -> TODO()
+        CodexEquipmentResources.TierImage.TRIPOD_3 -> TODO()
+        CodexEquipmentResources.TierImage.MOTION_SENSOR_1 -> TODO()
+        CodexEquipmentResources.TierImage.MOTION_SENSOR_2 -> TODO()
+        CodexEquipmentResources.TierImage.MOTION_SENSOR_3 -> TODO()
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_1 -> TODO()
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_2 -> TODO()
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_3 -> TODO()
+        CodexEquipmentResources.TierImage.SANITY_MEDICATION_1 -> TODO()
+        CodexEquipmentResources.TierImage.SANITY_MEDICATION_2 -> TODO()
+        CodexEquipmentResources.TierImage.SANITY_MEDICATION_3 -> TODO()
+        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_1 -> TODO()
+        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_2 -> TODO()
+        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_3 -> TODO()
+        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_1 -> TODO()
+        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_2 -> TODO()
+        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_3 -> TODO()
+        CodexEquipmentResources.TierImage.HEAD_GEAR_1 -> TODO()
+        CodexEquipmentResources.TierImage.HEAD_GEAR_2 -> TODO()
+        CodexEquipmentResources.TierImage.HEAD_GEAR_3 -> TODO()
+    }
+
+@StringRes fun TierInformation.toStringResource(): Int =
+    when (this) {
+        TierInformation.DOTS_1 -> R.string.shop_equipment_dots_data_info_1
+        TierInformation.DOTS_2 -> R.string.shop_equipment_dots_data_info_2
+        TierInformation.DOTS_3 -> R.string.shop_equipment_dots_data_info_3
+        TierInformation.EMF_1 -> R.string.shop_equipment_emf_data_info_1
+        TierInformation.EMF_2 -> R.string.shop_equipment_emf_data_info_2
+        TierInformation.EMF_3 -> R.string.shop_equipment_emf_data_info_3
+        TierInformation.FLASHLIGHT_1 -> R.string.shop_equipment_flashlight_data_info_1
+        TierInformation.FLASHLIGHT_2 -> R.string.shop_equipment_flashlight_data_info_2
+        TierInformation.FLASHLIGHT_3 -> R.string.shop_equipment_flashlight_data_info_3
+        TierInformation.PHOTO_CAMERA_1 -> R.string.shop_equipment_photocamera_data_info_1
+        TierInformation.PHOTO_CAMERA_2 -> R.string.shop_equipment_photocamera_data_info_2
+        TierInformation.PHOTO_CAMERA_3 -> R.string.shop_equipment_photocamera_data_info_3
+        TierInformation.IGNITER_1 -> R.string.shop_equipment_igniter_data_info_1
+        TierInformation.IGNITER_2 -> R.string.shop_equipment_igniter_data_info_2
+        TierInformation.IGNITER_3 -> R.string.shop_equipment_igniter_data_info_3
+        TierInformation.FIRELIGHT_1 -> R.string.shop_equipment_firelight_data_info_1
+        TierInformation.FIRELIGHT_2 -> R.string.shop_equipment_firelight_data_info_2
+        TierInformation.FIRELIGHT_3 -> R.string.shop_equipment_firelight_data_info_3
+        TierInformation.UV_LIGHT_1 -> R.string.shop_equipment_uvlight_data_info_1
+        TierInformation.UV_LIGHT_2 -> R.string.shop_equipment_uvlight_data_info_2
+        TierInformation.UV_LIGHT_3 -> R.string.shop_equipment_uvlight_data_info_3
+        TierInformation.CRUCIFIX_1 -> R.string.shop_equipment_crucifix_data_info_1
+        TierInformation.CRUCIFIX_2 -> R.string.shop_equipment_crucifix_data_info_2
+        TierInformation.CRUCIFIX_3 -> R.string.shop_equipment_crucifix_data_info_3
+        TierInformation.VIDEO_CAMERA_1 -> R.string.shop_equipment_videocamera_data_info_1
+        TierInformation.VIDEO_CAMERA_2 -> R.string.shop_equipment_videocamera_data_info_2
+        TierInformation.VIDEO_CAMERA_3 -> R.string.shop_equipment_videocamera_data_info_3
+        TierInformation.SPIRIT_BOX_1 -> R.string.shop_equipment_spiritbox_data_info_1
+        TierInformation.SPIRIT_BOX_2 -> R.string.shop_equipment_spiritbox_data_info_2
+        TierInformation.SPIRIT_BOX_3 -> R.string.shop_equipment_spiritbox_data_info_3
+        TierInformation.THERMOMETER_1 -> R.string.shop_equipment_thermometer_data_info_1
+        TierInformation.THERMOMETER_2 -> R.string.shop_equipment_thermometer_data_info_2
+        TierInformation.THERMOMETER_3 -> R.string.shop_equipment_thermometer_data_info_3
+        TierInformation.SALT_1 -> R.string.shop_equipment_salt_data_info_1
+        TierInformation.SALT_2 -> R.string.shop_equipment_salt_data_info_2
+        TierInformation.SALT_3 -> R.string.shop_equipment_salt_data_info_3
+        TierInformation.INCENSE_1 -> R.string.shop_equipment_incense_data_info_1
+        TierInformation.INCENSE_2 -> R.string.shop_equipment_incense_data_info_2
+        TierInformation.INCENSE_3 -> R.string.shop_equipment_incense_data_info_3
+        TierInformation.TRIPOD_1 -> R.string.shop_equipment_tripod_data_info_1
+        TierInformation.TRIPOD_2 -> R.string.shop_equipment_tripod_data_info_2
+        TierInformation.TRIPOD_3 -> R.string.shop_equipment_tripod_data_info_3
+        TierInformation.MOTION_SENSOR_1 -> R.string.shop_equipment_motionsensor_data_info_1
+        TierInformation.MOTION_SENSOR_2 -> R.string.shop_equipment_motionsensor_data_info_2
+        TierInformation.MOTION_SENSOR_3 -> R.string.shop_equipment_motionsensor_data_info_3
+        TierInformation.SOUND_SENSOR_1 -> R.string.shop_equipment_soundsensor_data_info_1
+        TierInformation.SOUND_SENSOR_2 -> R.string.shop_equipment_soundsensor_data_info_2
+        TierInformation.SOUND_SENSOR_3 -> R.string.shop_equipment_soundsensor_data_info_3
+        TierInformation.SANITY_MEDICATION_1 -> R.string.shop_equipment_sanitymedication_data_info_1
+        TierInformation.SANITY_MEDICATION_2 -> R.string.shop_equipment_sanitymedication_data_info_2
+        TierInformation.SANITY_MEDICATION_3 -> R.string.shop_equipment_sanitymedication_data_info_3
+        TierInformation.GHOST_WRITING_BOOK_1 -> R.string.shop_equipment_ghostwritingbook_data_info_1
+        TierInformation.GHOST_WRITING_BOOK_2 -> R.string.shop_equipment_ghostwritingbook_data_info_2
+        TierInformation.GHOST_WRITING_BOOK_3 -> R.string.shop_equipment_ghostwritingbook_data_info_3
+        TierInformation.PARABOLIC_MICROPHONE_1 -> R.string.shop_equipment_parabolicmicrophone_data_info_1
+        TierInformation.PARABOLIC_MICROPHONE_2 -> R.string.shop_equipment_parabolicmicrophone_data_info_2
+        TierInformation.PARABOLIC_MICROPHONE_3 -> R.string.shop_equipment_parabolicmicrophone_data_info_3
+        TierInformation.HEAD_GEAR_1 -> R.string.shop_equipment_headgear_data_info_1
+        TierInformation.HEAD_GEAR_2 -> R.string.shop_equipment_headgear_data_info_2
+        TierInformation.HEAD_GEAR_3 -> R.string.shop_equipment_headgear_data_info_3
+    }
+
+@StringRes fun TierFlavorText.toStringResource(): Int =
+    when (this) {
+        TierFlavorText.DOTS_1 -> R.string.shop_equipment_dots_data_flavortext_1
+        TierFlavorText.DOTS_2 -> R.string.shop_equipment_dots_data_flavortext_2
+        TierFlavorText.DOTS_3 -> R.string.shop_equipment_dots_data_flavortext_3
+        TierFlavorText.EMF_1 -> R.string.shop_equipment_emf_data_flavortext_1
+        TierFlavorText.EMF_2 -> R.string.shop_equipment_emf_data_flavortext_2
+        TierFlavorText.EMF_3 -> R.string.shop_equipment_emf_data_flavortext_3
+        TierFlavorText.FLASHLIGHT_1 -> R.string.shop_equipment_flashlight_data_flavortext_1
+        TierFlavorText.FLASHLIGHT_2 -> R.string.shop_equipment_flashlight_data_flavortext_2
+        TierFlavorText.FLASHLIGHT_3 -> R.string.shop_equipment_flashlight_data_flavortext_3
+        TierFlavorText.PHOTO_CAMERA_1 -> R.string.shop_equipment_photocamera_data_flavortext_1
+        TierFlavorText.PHOTO_CAMERA_2 -> R.string.shop_equipment_photocamera_data_flavortext_2
+        TierFlavorText.PHOTO_CAMERA_3 -> R.string.shop_equipment_photocamera_data_flavortext_3
+        TierFlavorText.IGNITER_1 -> R.string.shop_equipment_igniter_data_flavortext_1
+        TierFlavorText.IGNITER_2 -> R.string.shop_equipment_igniter_data_flavortext_2
+        TierFlavorText.IGNITER_3 -> R.string.shop_equipment_igniter_data_flavortext_3
+        TierFlavorText.FIRELIGHT_1 -> R.string.shop_equipment_firelight_data_flavortext_1
+        TierFlavorText.FIRELIGHT_2 -> R.string.shop_equipment_firelight_data_flavortext_2
+        TierFlavorText.FIRELIGHT_3 -> R.string.shop_equipment_firelight_data_flavortext_3
+        TierFlavorText.UV_LIGHT_1 -> R.string.shop_equipment_uvlight_data_flavortext_1
+        TierFlavorText.UV_LIGHT_2 -> R.string.shop_equipment_uvlight_data_flavortext_2
+        TierFlavorText.UV_LIGHT_3 -> R.string.shop_equipment_uvlight_data_flavortext_3
+        TierFlavorText.CRUCIFIX_1 -> R.string.shop_equipment_crucifix_data_flavortext_1
+        TierFlavorText.CRUCIFIX_2 -> R.string.shop_equipment_crucifix_data_flavortext_2
+        TierFlavorText.CRUCIFIX_3 -> R.string.shop_equipment_crucifix_data_flavortext_3
+        TierFlavorText.VIDEO_CAMERA_1 -> R.string.shop_equipment_videocamera_data_flavortext_1
+        TierFlavorText.VIDEO_CAMERA_2 -> R.string.shop_equipment_videocamera_data_flavortext_2
+        TierFlavorText.VIDEO_CAMERA_3 -> R.string.shop_equipment_videocamera_data_flavortext_3
+        TierFlavorText.SPIRIT_BOX_1 -> R.string.shop_equipment_spiritbox_data_flavortext_1
+        TierFlavorText.SPIRIT_BOX_2 -> R.string.shop_equipment_spiritbox_data_flavortext_2
+        TierFlavorText.SPIRIT_BOX_3 -> R.string.shop_equipment_spiritbox_data_flavortext_3
+        TierFlavorText.THERMOMETER_1 -> R.string.shop_equipment_thermometer_data_flavortext_1
+        TierFlavorText.THERMOMETER_2 -> R.string.shop_equipment_thermometer_data_flavortext_2
+        TierFlavorText.THERMOMETER_3 -> R.string.shop_equipment_thermometer_data_flavortext_3
+        TierFlavorText.SALT_1 -> R.string.shop_equipment_salt_data_flavortext_1
+        TierFlavorText.SALT_2 -> R.string.shop_equipment_salt_data_flavortext_2
+        TierFlavorText.SALT_3 -> R.string.shop_equipment_salt_data_flavortext_3
+        TierFlavorText.INCENSE_1 -> R.string.shop_equipment_incense_data_flavortext_1
+        TierFlavorText.INCENSE_2 -> R.string.shop_equipment_incense_data_flavortext_2
+        TierFlavorText.INCENSE_3 -> R.string.shop_equipment_incense_data_flavortext_3
+        TierFlavorText.TRIPOD_1 -> R.string.shop_equipment_tripod_data_flavortext_1
+        TierFlavorText.TRIPOD_2 -> R.string.shop_equipment_tripod_data_flavortext_2
+        TierFlavorText.TRIPOD_3 -> R.string.shop_equipment_tripod_data_flavortext_3
+        TierFlavorText.MOTION_SENSOR_1 -> R.string.shop_equipment_motionsensor_data_flavortext_1
+        TierFlavorText.MOTION_SENSOR_2 -> R.string.shop_equipment_motionsensor_data_flavortext_2
+        TierFlavorText.MOTION_SENSOR_3 -> R.string.shop_equipment_motionsensor_data_flavortext_3
+        TierFlavorText.SOUND_SENSOR_1 -> R.string.shop_equipment_soundsensor_data_flavortext_1
+        TierFlavorText.SOUND_SENSOR_2 -> R.string.shop_equipment_soundsensor_data_flavortext_2
+        TierFlavorText.SOUND_SENSOR_3 -> R.string.shop_equipment_soundsensor_data_flavortext_3
+        TierFlavorText.SANITY_MEDICATION_1 -> R.string.shop_equipment_sanitymedication_data_flavortext_1
+        TierFlavorText.SANITY_MEDICATION_2 -> R.string.shop_equipment_sanitymedication_data_flavortext_2
+        TierFlavorText.SANITY_MEDICATION_3 -> R.string.shop_equipment_sanitymedication_data_flavortext_3
+        TierFlavorText.GHOST_WRITING_BOOK_1 -> R.string.shop_equipment_ghostwritingbook_data_flavortext_1
+        TierFlavorText.GHOST_WRITING_BOOK_2 -> R.string.shop_equipment_ghostwritingbook_data_flavortext_2
+        TierFlavorText.GHOST_WRITING_BOOK_3 -> R.string.shop_equipment_ghostwritingbook_data_flavortext_3
+        TierFlavorText.PARABOLIC_MICROPHONE_1 -> R.string.shop_equipment_parabolicmicrophone_data_flavortext_1
+        TierFlavorText.PARABOLIC_MICROPHONE_2 -> R.string.shop_equipment_parabolicmicrophone_data_flavortext_2
+        TierFlavorText.PARABOLIC_MICROPHONE_3 -> R.string.shop_equipment_parabolicmicrophone_data_flavortext_3
+        TierFlavorText.HEAD_GEAR_1 -> R.string.shop_equipment_headgear_data_flavortext_1
+        TierFlavorText.HEAD_GEAR_2 -> R.string.shop_equipment_headgear_data_flavortext_2
+        TierFlavorText.HEAD_GEAR_3 -> R.string.shop_equipment_headgear_data_flavortext_3
+    }
+
+@IntegerRes fun EquipmentBuyCost.toIntegerResource(): Int =
+    when (this) {
+        EquipmentBuyCost.COST_10 -> R.integer.equipment_requirement_buycost_10
+        EquipmentBuyCost.COST_15 -> R.integer.equipment_requirement_buycost_15
+        EquipmentBuyCost.COST_20 -> R.integer.equipment_requirement_buycost_20
+        EquipmentBuyCost.COST_25 -> R.integer.equipment_requirement_buycost_25
+        EquipmentBuyCost.COST_30 -> R.integer.equipment_requirement_buycost_30
+        EquipmentBuyCost.COST_40 -> R.integer.equipment_requirement_buycost_40
+        EquipmentBuyCost.COST_45 -> R.integer.equipment_requirement_buycost_45
+        EquipmentBuyCost.COST_50 -> R.integer.equipment_requirement_buycost_50
+        EquipmentBuyCost.COST_60 -> R.integer.equipment_requirement_buycost_60
+        EquipmentBuyCost.COST_65 -> R.integer.equipment_requirement_buycost_65
+        EquipmentBuyCost.COST_80 -> R.integer.equipment_requirement_buycost_80
+        EquipmentBuyCost.COST_100 -> R.integer.equipment_requirement_buycost_100
+    }
+
+
+@IntegerRes fun UpgradeCost.toIntegerResource(): Int =
+    when (this) {
+        UpgradeCost.COST_0 -> R.integer.equipment_requirement_upgradecost_0
+        UpgradeCost.COST_500 -> R.integer.equipment_requirement_upgradecost_500
+        UpgradeCost.COST_750 -> R.integer.equipment_requirement_upgradecost_750
+        UpgradeCost.COST_1500 -> R.integer.equipment_requirement_upgradecost_1500
+        UpgradeCost.COST_2000 -> R.integer.equipment_requirement_upgradecost_2000
+        UpgradeCost.COST_2500 -> R.integer.equipment_requirement_upgradecost_2500
+        UpgradeCost.COST_3000 -> R.integer.equipment_requirement_upgradecost_3000
+        UpgradeCost.COST_3500 -> R.integer.equipment_requirement_upgradecost_3500
+        UpgradeCost.COST_4000 -> R.integer.equipment_requirement_upgradecost_4000
+        UpgradeCost.COST_4500 -> R.integer.equipment_requirement_upgradecost_4500
+        UpgradeCost.COST_5000 -> R.integer.equipment_requirement_upgradecost_5000
+        UpgradeCost.COST_8000 -> R.integer.equipment_requirement_upgradecost_8000
+        UpgradeCost.COST_10000 -> R.integer.equipment_requirement_upgradecost_10000
+        UpgradeCost.COST_15000 -> R.integer.equipment_requirement_upgradecost_15000
+        UpgradeCost.COST_20000 -> R.integer.equipment_requirement_upgradecost_20000
+    }
+
+@IntegerRes fun UnlockLevel.toIntegerResource(): Int =
+    when (this) {
+        UnlockLevel.LEVEL_0 -> R.integer.equipment_requirement_level_0
+        UnlockLevel.LEVEL_3 -> R.integer.equipment_requirement_level_3
+        UnlockLevel.LEVEL_5 -> R.integer.equipment_requirement_level_5
+        UnlockLevel.LEVEL_7 -> R.integer.equipment_requirement_level_7
+        UnlockLevel.LEVEL_8 -> R.integer.equipment_requirement_level_8
+        UnlockLevel.LEVEL_9 -> R.integer.equipment_requirement_level_9
+        UnlockLevel.LEVEL_10 -> R.integer.equipment_requirement_level_10
+        UnlockLevel.LEVEL_11 -> R.integer.equipment_requirement_level_11
+        UnlockLevel.LEVEL_12 -> R.integer.equipment_requirement_level_12
+        UnlockLevel.LEVEL_13 -> R.integer.equipment_requirement_level_13
+        UnlockLevel.LEVEL_14 -> R.integer.equipment_requirement_level_14
+        UnlockLevel.LEVEL_16 -> R.integer.equipment_requirement_level_16
+        UnlockLevel.LEVEL_19 -> R.integer.equipment_requirement_level_19
+        UnlockLevel.LEVEL_20 -> R.integer.equipment_requirement_level_20
+        UnlockLevel.LEVEL_21 -> R.integer.equipment_requirement_level_21
+        UnlockLevel.LEVEL_23 -> R.integer.equipment_requirement_level_23
+        UnlockLevel.LEVEL_25 -> R.integer.equipment_requirement_level_25
+        UnlockLevel.LEVEL_27 -> R.integer.equipment_requirement_level_27
+        UnlockLevel.LEVEL_29 -> R.integer.equipment_requirement_level_29
+        UnlockLevel.LEVEL_31 -> R.integer.equipment_requirement_level_31
+        UnlockLevel.LEVEL_32 -> R.integer.equipment_requirement_level_32
+        UnlockLevel.LEVEL_33 -> R.integer.equipment_requirement_level_33
+        UnlockLevel.LEVEL_34 -> R.integer.equipment_requirement_level_34
+        UnlockLevel.LEVEL_35 -> R.integer.equipment_requirement_level_35
+        UnlockLevel.LEVEL_36 -> R.integer.equipment_requirement_level_36
+        UnlockLevel.LEVEL_37 -> R.integer.equipment_requirement_level_37
+        UnlockLevel.LEVEL_39 -> R.integer.equipment_requirement_level_39
+        UnlockLevel.LEVEL_41 -> R.integer.equipment_requirement_level_41
+        UnlockLevel.LEVEL_42 -> R.integer.equipment_requirement_level_42
+        UnlockLevel.LEVEL_43 -> R.integer.equipment_requirement_level_43
+        UnlockLevel.LEVEL_45 -> R.integer.equipment_requirement_level_45
+        UnlockLevel.LEVEL_47 -> R.integer.equipment_requirement_level_47
+        UnlockLevel.LEVEL_49 -> R.integer.equipment_requirement_level_49
+        UnlockLevel.LEVEL_52 -> R.integer.equipment_requirement_level_52
+        UnlockLevel.LEVEL_54 -> R.integer.equipment_requirement_level_54
+        UnlockLevel.LEVEL_56 -> R.integer.equipment_requirement_level_56
+        UnlockLevel.LEVEL_57 -> R.integer.equipment_requirement_level_57
+        UnlockLevel.LEVEL_58 -> R.integer.equipment_requirement_level_58
+        UnlockLevel.LEVEL_60 -> R.integer.equipment_requirement_level_60
+        UnlockLevel.LEVEL_61 -> R.integer.equipment_requirement_level_61
+        UnlockLevel.LEVEL_62 -> R.integer.equipment_requirement_level_62
+        UnlockLevel.LEVEL_63 -> R.integer.equipment_requirement_level_63
+        UnlockLevel.LEVEL_64 -> R.integer.equipment_requirement_level_64
+        UnlockLevel.LEVEL_68 -> R.integer.equipment_requirement_level_68
+        UnlockLevel.LEVEL_72 -> R.integer.equipment_requirement_level_72
+        UnlockLevel.LEVEL_74 -> R.integer.equipment_requirement_level_74
+        UnlockLevel.LEVEL_77 -> R.integer.equipment_requirement_level_77
+        UnlockLevel.LEVEL_79 -> R.integer.equipment_requirement_level_79
+        UnlockLevel.LEVEL_82 -> R.integer.equipment_requirement_level_82
+        UnlockLevel.LEVEL_85 -> R.integer.equipment_requirement_level_85
+        UnlockLevel.LEVEL_90 -> R.integer.equipment_requirement_level_90
+    }
