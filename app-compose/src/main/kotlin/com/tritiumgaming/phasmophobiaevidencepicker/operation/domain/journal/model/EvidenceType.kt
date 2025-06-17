@@ -3,14 +3,16 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mo
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTitle
 
 /**
  * Evidence enums
  */
 class EvidenceType(
-    val id: String = "0",
-    @StringRes val name: Int = 0,
-    @DrawableRes val icon: Int = R.drawable.ic_ev_dots
+    val id: String,
+    val name: EvidenceTitle,
+    val icon: EvidenceIcon,
 ) {
 
     override fun equals(other: Any?): Boolean {
@@ -19,9 +21,9 @@ class EvidenceType(
     }
 
     override fun hashCode(): Int {
-        var result = name
-        result = 31 * result + icon
-        result = 31 * result + id.hashCode()
+        var result = id.hashCode()
+        result = 31 * result + name.hashCode()
+        result = 31 * result + icon.hashCode()
         return result
     }
 

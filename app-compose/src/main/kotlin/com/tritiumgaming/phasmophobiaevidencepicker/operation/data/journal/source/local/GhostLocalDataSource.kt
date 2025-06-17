@@ -4,6 +4,11 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostStrength
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
 
 class GhostLocalDataSource(
@@ -366,11 +371,11 @@ class GhostLocalDataSource(
 
     private data class GhostResourceDto(
         val id: Int,
-        @StringRes val name: Int,
-        @StringRes val info: Int,
-        @StringRes val strengthData: Int,
-        @StringRes val weaknessData: Int,
-        @StringRes val huntData: Int,
+        val name: GhostTitle,
+        val info: GhostDescription,
+        val strengthData: GhostStrength,
+        val weaknessData: GhostWeakness,
+        val huntData: GhostHuntInfo,
         val normalEvidence: List<Int>,
         val strictEvidence: List<Int>,
     )

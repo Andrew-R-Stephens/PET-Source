@@ -7,6 +7,15 @@ import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.EvidenceDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.EvidenceTierDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceAnimation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceCost
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceRequiredLevel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierRequiredLevel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 
 class EvidenceLocalDataSource(
@@ -193,56 +202,42 @@ class EvidenceLocalDataSource(
 
         )
 
-
-    override fun get(): Result<List<EvidenceDto>> {
-
-        val result: MutableList<EvidenceDto> = mutableListOf()
-
-        evidenceResource.forEach { resDto ->
-            val evidenceDto = EvidenceDto(
-                id = applicationContext.getString(resDto.id),
-                name = resDto.name,
-                icon = resDto.icon,
-                buyCost = resDto.buyCost,
-                tiers = resDto.tiers.toLocal()
-            )
-            result.add(evidenceDto)
-        }
-        return Result.success(emptyList())
-
-    }
+    override fun get(): Result<List<EvidenceDto>> =
+        Result.success(evidenceResource.toLocal())
 
     private data class EvidenceResourceDto(
         val id: Int,
-        @StringRes val name: Int,
-        @DrawableRes val icon: Int,
-        @IntegerRes val buyCost: Int,
-        @DrawableRes val defaultAnimation: Int,
-        @StringRes val defaultDescription: Int,
+        val name: EvidenceTitle,
+        val icon: EvidenceIcon,
+        val buyCost: EvidenceCost,
+        val defaultAnimation: EvidenceAnimation,
+        val defaultDescription: EvidenceDescription,
         val tiers: List<EvidenceResourceTierDto> = emptyList()
     )
 
     private data class EvidenceResourceTierDto(
-        @StringRes val description: Int,
-        @DrawableRes val animation: Int,
-        @IntegerRes val levelRequirement: Int
+        val description: EvidenceTierDescription,
+        val animation: EvidenceTierAnimation,
+        val levelRequirement: EvidenceTierRequiredLevel
     )
+
+    private fun List<EvidenceResourceDto>.toLocal() = map { it.toLocal() }
 
     private fun EvidenceResourceDto.toLocal(): EvidenceDto =
         EvidenceDto(
-            id = applicationContext.getString(this.id),
-            name = this.name,
-            icon = this.icon,
-            buyCost = this.buyCost,
-            tiers = this.tiers.toLocal()
+            id = applicationContext.getString(id),
+            name = name,
+            icon = icon,
+            buyCost = buyCost,
+            tiers = tiers.toLocal()
         )
 
     @JvmName("EvidenceResourceTierDtoToEvidenceTierDto")
     private fun EvidenceResourceTierDto.toLocal() =
         EvidenceTierDto(
-            description = this.description,
-            animation = this.animation,
-            levelRequirement = this.levelRequirement
+            description = description,
+            animation = animation,
+            levelRequirement = levelRequirement
         )
 
     @JvmName("EvidenceResourceTierDtoListToEvidenceTierDtoList")

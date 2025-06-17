@@ -1,11 +1,16 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model
 
-import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostStrength
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostWeakness
 
 data class GhostPopupRecord(
     val id: String = "0",
-    @StringRes val generalInfo: Int,
-    @StringRes val strengthData: Int,
-    @StringRes val weaknessData: Int,
-    @StringRes val huntData: Int
+    val name: GhostTitle,
+    val info: GhostDescription,
+    val strengthData: GhostStrength,
+    val weaknessData: GhostWeakness,
+    val huntData: GhostHuntInfo,
 ): PopupRecord()

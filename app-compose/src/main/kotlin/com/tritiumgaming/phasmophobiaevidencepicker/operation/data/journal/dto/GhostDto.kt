@@ -1,18 +1,22 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto
 
-import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostStrength
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostWeakness
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model.GhostPopupRecord
 
 data class GhostDto(
     val id: String,
-    @StringRes val name: Int,
+    val name: GhostTitle,
     val normalEvidence: List<String>,
     val strictEvidence: List<String>,
-    @StringRes val info: Int,
-    @StringRes val strengthData: Int,
-    @StringRes val weaknessData: Int,
-    @StringRes val huntData: Int
+    val info: GhostDescription,
+    val strengthData: GhostStrength,
+    val weaknessData: GhostWeakness,
+    val huntData: GhostHuntInfo,
 )
 
 fun GhostDto.toDomain() = GhostType(
@@ -22,10 +26,11 @@ fun GhostDto.toDomain() = GhostType(
 
 fun GhostDto.toLocalPopup() = GhostPopupRecord(
     id = id,
-    generalInfo = info,
+    name = name,
+    info = this@toLocalPopup.info,
     strengthData = strengthData,
     weaknessData = weaknessData,
-    huntData = huntData
+    huntData = huntData,
 )
 
 fun List<GhostDto>.toDomain() = map {

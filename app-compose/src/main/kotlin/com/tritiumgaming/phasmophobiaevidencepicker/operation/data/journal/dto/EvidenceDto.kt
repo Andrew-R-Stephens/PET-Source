@@ -3,20 +3,26 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceCost
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierRequiredLevel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 
 data class EvidenceDto(
     val id: String,
-    @StringRes val name: Int,
-    @DrawableRes val icon: Int,
-    @IntegerRes val buyCost: Int,
+    val name: EvidenceTitle,
+    val icon: EvidenceIcon,
+    val buyCost: EvidenceCost,
     val tiers: List<EvidenceTierDto> = emptyList()
 )
 
 data class EvidenceTierDto(
-    @StringRes val description: Int,
-    @DrawableRes val animation: Int,
-    @IntegerRes val levelRequirement: Int
+    val description: EvidenceTierDescription,
+    val animation: EvidenceTierAnimation,
+    val levelRequirement: EvidenceTierRequiredLevel
 )
 
 fun EvidenceDto.toEvidenceTypeDto() = EvidenceTypeDto(
