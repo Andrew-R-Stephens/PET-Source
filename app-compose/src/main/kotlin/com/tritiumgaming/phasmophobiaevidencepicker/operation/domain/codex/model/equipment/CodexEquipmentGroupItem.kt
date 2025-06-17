@@ -1,19 +1,23 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment
 
 import android.content.Context
-import androidx.annotation.DrawableRes
-import androidx.annotation.IntegerRes
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierImage
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 
 data class CodexEquipmentGroupItem(
-    @DrawableRes val image: Int,
-    @StringRes val flavor: Int,
-    @StringRes val info: Int,
-    @IntegerRes var upgradeCostData: Int = 0,
-    @IntegerRes var upgradeLevelData: Int = 0,
-    @StringRes val positiveAttributes: List<Int> = ArrayList(),
-    @StringRes val negativeAttributes: List<Int> = ArrayList()
+    val image: TierImage,
+    val flavor: TierFlavorText,
+    val info: TierInformation,
+    val upgradeCostData: UpgradeCost,
+    val upgradeLevelData: UnlockLevel,
+    val positiveAttributes: List<EquipmentAttribute>,
+    val negativeAttributes: List<EquipmentAttribute>
 ) {
 
     fun getAllAttributesAsFormattedHTML(c: Context): String {
@@ -23,11 +27,11 @@ data class CodexEquipmentGroupItem(
 
         val out = StringBuilder()
         for (v in positiveAttributes) {
-            val attr = c.getString(v).replace(" ", invsp)
+            val attr = c.getString(v.toStringResource()).replace(" ", invsp)
             out.append(pos).append(invsp).append(attr).append(invsp).append(" ")
         }
         for (v in negativeAttributes) {
-            val attr = c.getString(v).replace(" ", invsp)
+            val attr = c.getString(v.toStringResource()).replace(" ", invsp)
             out.append(neg).append(invsp).append(attr).append(invsp).append(" ")
         }
 
