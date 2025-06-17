@@ -1,18 +1,19 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto.SimpleWorldMapFloorDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail
 
 class SimpleWorldMap(
     val mapId: String,
-    val mapName: SimpleMapResources.MapTitle,
-    val mapSize: SimpleMapResources.MapSize,
-    val thumbnailImage: SimpleMapResources.MapThumbnail,
+    val mapName: MapTitle,
+    val mapSize: MapSize,
+    val thumbnailImage: MapThumbnail,
     val mapFloors: List<SimpleWorldMapFloorDto>,
     val defaultFloor: Int
 ) {
 
-    private var defaultFloorIndex = 0
     var currentFloor: Int = 0 // TODO("Move to ViewModel")
     val floorNames = mutableListOf<Int>()
     val allFloorLayers: ArrayList<ArrayList<Int>> = ArrayList()

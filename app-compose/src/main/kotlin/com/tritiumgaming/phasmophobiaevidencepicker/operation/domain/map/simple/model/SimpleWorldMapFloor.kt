@@ -2,9 +2,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapFloorImage
 
 data class SimpleWorldMapFloor(
-    val layerName: SimpleMapResources.MapFloorTitle,
-    val image: SimpleMapResources.MapFloorImage
+    val layerName: MapFloorTitle,
+    val image: MapFloorImage
 )

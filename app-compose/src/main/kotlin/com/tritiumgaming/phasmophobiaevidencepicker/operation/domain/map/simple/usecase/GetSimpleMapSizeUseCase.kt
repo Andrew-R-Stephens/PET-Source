@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 
 class GetSimpleMapSizeUseCase(
     private val simpleMapsRepository: SimpleMapRepository
@@ -11,6 +12,6 @@ class GetSimpleMapSizeUseCase(
 
         result.exceptionOrNull()
 
-        return result.getOrNull()?.getOrNull(index)?.mapSize?.size ?: 0
+        return result.getOrNull()?.getOrNull(index)?.mapSize?.toStringResource() ?: 0
     }
 }
