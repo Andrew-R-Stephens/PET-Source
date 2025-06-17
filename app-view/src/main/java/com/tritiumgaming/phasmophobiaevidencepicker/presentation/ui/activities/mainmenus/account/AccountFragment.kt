@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.google.android.gms.common.SignInButton
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.QuerySnapshot
@@ -23,7 +23,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.m
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.DeleteAccountDialog
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.compose.LogoutDialog
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.common.views.PETImageButton
-import androidx.navigation.findNavController
 
 class AccountFragment : MainMenuFragment() {
 

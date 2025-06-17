@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +12,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
+import androidx.core.net.toUri
 import androidx.navigation.Navigation.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -31,7 +31,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.Lang
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountIconView
 import java.util.Locale
-import androidx.core.net.toUri
 
 class StartScreenFragment : MainMenuFragment() {
     private var animationView: StartScreenAnimationView? = null

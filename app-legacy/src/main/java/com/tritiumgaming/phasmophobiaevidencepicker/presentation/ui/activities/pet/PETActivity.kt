@@ -3,17 +3,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
 import android.view.WindowManager
-import androidx.activity.SystemBarStyle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import com.google.android.gms.ads.MobileAds
@@ -23,14 +16,12 @@ import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.FormError
 import com.google.android.ump.UserMessagingPlatform
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.settings.ThemeModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl.AccountManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.PermissionsViewModel
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicBoolean
-import androidx.core.view.isNotEmpty
 
 abstract class PETActivity : AppCompatActivity(), AccountManagementService {
     var firebaseAnalytics: FirebaseAnalytics? = null

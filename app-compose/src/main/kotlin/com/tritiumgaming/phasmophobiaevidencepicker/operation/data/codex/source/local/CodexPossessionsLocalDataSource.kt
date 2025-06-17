@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local
 
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexPossessionGroupDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexPossessionGroupItemDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemAltName
