@@ -145,7 +145,7 @@ class OperationContainer(
 
     // Equipment
     private val codexEquipmentLocalDataSource: CodexEquipmentLocalDataSource =
-        CodexEquipmentLocalDataSource(applicationContext)
+        CodexEquipmentLocalDataSource()
 
     //Possessions
     private val codexPossessionsLocalDataSource: CodexPossessionsLocalDataSource =
