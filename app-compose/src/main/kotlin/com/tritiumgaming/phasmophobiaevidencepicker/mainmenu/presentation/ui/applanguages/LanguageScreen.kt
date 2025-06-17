@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.applanguages
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.applanguages
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
@@ -35,6 +35,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.LanguageEntity
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.PETImageButtonType
@@ -105,7 +106,7 @@ private fun LanguageContent(
                 items = globalPreferencesViewModel.languageList.toList(),
                 key = { it.code }
             ) {
-                val languageCode = stringResource(it.code)
+                val languageCode = stringResource(it.code.toStringResource())
                 LanguageItem(
                     language = it
                 ) {
@@ -125,8 +126,8 @@ private fun LanguageItem(
     language: LanguageEntity,
     onClick: () -> Unit
 ) {
-    val rememberName by remember{ mutableIntStateOf(language.localizedName) }
-    val languageCode = stringResource(language.code)
+    val rememberName by remember{ mutableIntStateOf(language.localizedName.toStringResource()) }
+    val languageCode = stringResource(language.code.toStringResource())
 
     val color =
         if(languageCode == AppCompatDelegate.getApplicationLocales()[0]?.language) {
@@ -175,7 +176,7 @@ private fun LanguageItem(
                     .weight(1f)
                     .wrapContentWidth(Alignment.End)
                     .alpha(.75f),
-                text = "( ${stringResource(language.nativeName)} )",
+                text = "( ${stringResource(language.nativeName.toStringResource())} )",
                 style = LocalTypography.current.secondary.regular.copy(
                     color = color,
                     textAlign = TextAlign.End
