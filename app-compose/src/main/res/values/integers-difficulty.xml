@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Difficulty Modifiers -->
+    <!-- TODO(Refactor to fractions) -->
+    <item name="difficulty_modifier_amateur" type="fraction">100%</item>
+    <item name="difficulty_modifier_intermediate" type="fraction">150%</item>
+    <item name="difficulty_modifier_professional" type="fraction">200%</item>
+    <item name="difficulty_modifier_nightmare" type="fraction">200%</item>
+    <item name="difficulty_modifier_insanity" type="fraction">200%</item>
+
+    <!-- Difficulty Start Sanity -->
+    <!-- TODO(Refactor to fractions) -->
+    <item name="difficulty_initialSanity_amateur" type="fraction">100%</item>
+    <item name="difficulty_initialSanity_intermediate" type="fraction">100%</item>
+    <item name="difficulty_initialSanity_professional" type="fraction">100%</item>
+    <item name="difficulty_initialSanity_nightmare" type="fraction">100%</item>
+    <item name="difficulty_initialSanity_insanity" type="fraction">75%</item>
+
+    <!-- Timer Difficulty Times -->
+    <integer name="difficulty_time_amateur" translatable="false">300000</integer>
+    <integer name="difficulty_time_intermediate" translatable="false">120000</integer>
+    <integer name="difficulty_time_professional" translatable="false">0</integer>
+    <integer name="difficulty_time_nightmare" translatable="false">0</integer>
+    <integer name="difficulty_time_insanity" translatable="false">0</integer>
+</resources>
