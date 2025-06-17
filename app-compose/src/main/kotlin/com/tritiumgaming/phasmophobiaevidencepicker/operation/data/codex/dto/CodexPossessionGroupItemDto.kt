@@ -1,17 +1,22 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemAltName
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemDrawChance
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemFlavorText
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemImage
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemInfoText
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemSanityDrain
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.possessions.CodexPossessionsGroupItem
 
 data class CodexPossessionGroupItemDto(
-    @DrawableRes val image: Int,
-    @StringRes val flavorText: Int,
-    @StringRes val infoText: Int,
-    @StringRes val attributesText: Int,
-    @StringRes val sanityDrain: Int,
-    @StringRes val drawChance: Int,
-    @StringRes val altName: Int? = null
+    val image: PossessionItemImage,
+    val flavorText: PossessionItemFlavorText,
+    val infoText: PossessionItemInfoText,
+    val attributesText: PossessionItemAttribute,
+    val sanityDrain: PossessionItemSanityDrain,
+    val drawChance: PossessionItemDrawChance,
+    val altName: PossessionItemAltName? = null
 )
 
 fun CodexPossessionGroupItemDto.toDomain() =

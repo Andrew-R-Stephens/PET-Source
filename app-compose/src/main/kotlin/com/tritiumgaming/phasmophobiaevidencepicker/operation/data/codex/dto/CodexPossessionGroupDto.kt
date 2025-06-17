@@ -1,12 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionsIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.possessions.CodexPossessionsGroup
 
 data class CodexPossessionGroupDto(
-    @StringRes val name: Int,
-    @DrawableRes val icon: Int,
+    val name: PossessionTitle,
+    val icon: PossessionsIcon,
     val items: List<CodexPossessionGroupItemDto>
 )
 

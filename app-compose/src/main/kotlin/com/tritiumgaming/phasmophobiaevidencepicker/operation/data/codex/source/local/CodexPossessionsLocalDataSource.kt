@@ -1,10 +1,17 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexPossessionGroupDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexPossessionGroupItemDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemAltName
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemDrawChance
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemFlavorText
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemImage
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemInfoText
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemSanityDrain
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionsIcon
 
 class CodexPossessionsLocalDataSource {
 
@@ -12,201 +19,201 @@ class CodexPossessionsLocalDataSource {
         get() = listOf(
             // Mirror
             CodexPossessionGroupRes(
-                name = R.string.cursedpossessions_info_name_mirror,
-                icon = R.drawable.ic_map_cp_mirror,
+                name = PossessionTitle.HAUNTED_MIRROR,
+                icon = PossessionsIcon.HAUNTED_MIRROR,
                 items = listOf(
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cursedpossessions_mirror,
-                        flavorText = R.string.shop_cursedpossessions_mirror_data_flavortext,
-                        infoText = R.string.shop_cursedpossessions_mirror_data_info,
-                        attributesText = R.string.shop_cursedpossessions_mirror_data_attribute,
-                        sanityDrain = R.string.shop_cursedpossessions_mirror_data_sanitydrain,
-                        drawChance = R.string.shop_cursedpossessions_mirror_data_drawchance
+                        image = PossessionItemImage.HAUNTED_MIRROR,
+                        flavorText = PossessionItemFlavorText.HAUNTED_MIRROR,
+                        infoText = PossessionItemInfoText.HAUNTED_MIRROR,
+                        attributesText = PossessionItemAttribute.HAUNTED_MIRROR,
+                        sanityDrain = PossessionItemSanityDrain.HAUNTED_MIRROR,
+                        drawChance = PossessionItemDrawChance.HAUNTED_MIRROR
                     )
                 )
             ),
             // Monkey Paw
             CodexPossessionGroupRes(
-                name = R.string.cursedpossessions_info_name_monkeypaw,
-                icon = R.drawable.ic_map_cp_paw,
+                name = PossessionTitle.MONKEY_PAW,
+                icon = PossessionsIcon.MONKEY_PAW,
                 items = listOf(
 
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cursedpossessions_monkeyspawhand,
-                        flavorText = R.string.shop_cursedpossessions_monkeypaw_data_flavortext,
-                        infoText = R.string.shop_cursedpossessions_monkeypaw_data_info,
-                        attributesText = R.string.shop_cursedpossessions_monkeypaw_data_attribute,
-                        sanityDrain = R.string.shop_cursedpossessions_monkeypaw_data_sanitydrain,
-                        drawChance = R.string.shop_cursedpossessions_monkeypaw_data_drawchance,
-                        altName = R.string.shop_cursedpossessions_monkeypaw_data_altname
+                        image = PossessionItemImage.MONKEY_PAW,
+                        flavorText = PossessionItemFlavorText.MONKEY_PAW,
+                        infoText = PossessionItemInfoText.MONKEY_PAW,
+                        attributesText = PossessionItemAttribute.MONKEY_PAW,
+                        sanityDrain = PossessionItemSanityDrain.MONKEY_PAW,
+                        drawChance = PossessionItemDrawChance.MONKEY_PAW,
+                        altName = PossessionItemAltName.MONKEY_PAW
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cursedpossessions_monkeyspawwish,
-                        flavorText = R.string.shop_cursedpossessions_monkeypawwish_data_flavortext,
-                        infoText = R.string.shop_cursedpossessions_monkeypawwish_data_info,
-                        attributesText = R.string.shop_cursedpossessions_monkeypaw_data_attribute,
-                        sanityDrain = R.string.shop_cursedpossessions_monkeypaw_data_sanitydrain,
-                        drawChance = R.string.shop_cursedpossessions_monkeypaw_data_drawchance,
-                        altName = R.string.shop_cursedpossessions_monkeypawwish_data_altname
+                        image = PossessionItemImage.MONKEY_PAW_WISH,
+                        flavorText = PossessionItemFlavorText.MONKEY_PAW_WISH,
+                        infoText = PossessionItemInfoText.MONKEY_PAW_WISH,
+                        attributesText = PossessionItemAttribute.MONKEY_PAW_WISH,
+                        sanityDrain = PossessionItemSanityDrain.MONKEY_PAW_WISH,
+                        drawChance = PossessionItemDrawChance.MONKEY_PAW_WISH,
+                        altName = PossessionItemAltName.MONKEY_PAW_WISH
                     )
                 )
             ),
             // Music Box
             CodexPossessionGroupRes(
-                name = R.string.cursedpossessions_info_name_musicbox,
-                icon = R.drawable.ic_map_cp_musicbox,
+                name = PossessionTitle.MUSIC_BOX,
+                icon = PossessionsIcon.MUSIC_BOX,
                 items = listOf(
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cursedpossessions_musicbox,
-                        flavorText = R.string.shop_cursedpossessions_musicbox_data_flavortext,
-                        infoText = R.string.shop_cursedpossessions_musicbox_data_info,
-                        attributesText = R.string.shop_cursedpossessions_musicbox_data_attribute,
-                        sanityDrain = R.string.shop_cursedpossessions_musicbox_data_sanitydrain,
-                        drawChance = R.string.shop_cursedpossessions_musicbox_data_drawchance
+                        image = PossessionItemImage.MUSIC_BOX,
+                        flavorText = PossessionItemFlavorText.MUSIC_BOX,
+                        infoText = PossessionItemInfoText.MUSIC_BOX,
+                        attributesText = PossessionItemAttribute.MUSIC_BOX,
+                        sanityDrain = PossessionItemSanityDrain.MUSIC_BOX,
+                        drawChance = PossessionItemDrawChance.MUSIC_BOX
                     )
 
                 )
             ),
             // Ouija Board
             CodexPossessionGroupRes(
-                name = R.string.cursedpossessions_info_name_ouijaboard,
-                icon = R.drawable.ic_map_cp_ouija,
+                name = PossessionTitle.OUIJA_BOARD,
+                icon = PossessionsIcon.OUIJA_BOARD,
                 items = listOf(
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cursedpossessions_ouijaboard,
-                        flavorText = R.string.shop_cursedpossessions_ouijaboard_data_flavortext,
-                        infoText = R.string.shop_cursedpossessions_ouijaboard_data_info,
-                        attributesText = R.string.shop_cursedpossessions_ouijaboard_data_attribute,
-                        sanityDrain = R.string.shop_cursedpossessions_ouijaboard_data_sanitydrain,
-                        drawChance = R.string.shop_cursedpossessions_ouijaboard_data_drawchance
+                        image = PossessionItemImage.OUIJA_BOARD,
+                        flavorText = PossessionItemFlavorText.OUIJA_BOARD,
+                        infoText = PossessionItemInfoText.OUIJA_BOARD,
+                        attributesText = PossessionItemAttribute.OUIJA_BOARD,
+                        sanityDrain = PossessionItemSanityDrain.OUIJA_BOARD,
+                        drawChance = PossessionItemDrawChance.OUIJA_BOARD
                     )
                 )
             ),
             // Summoning  Circle
             CodexPossessionGroupRes(
-                name = R.string.cursedpossessions_info_name_summoningcircle,
-                icon = R.drawable.ic_map_cp_candle,
+                name = PossessionTitle.SUMMONING_CIRCLE,
+                icon = PossessionsIcon.SUMMONING_CIRCLE,
                 items = listOf(
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cursedpossessions_summoningcircle,
-                        flavorText = R.string.shop_cursedpossessions_summoningcircle_data_flavortext,
-                        infoText = R.string.shop_cursedpossessions_summoningcircle_data_info,
-                        attributesText = R.string.shop_cursedpossessions_summoningcircle_data_attribute,
-                        sanityDrain = R.string.shop_cursedpossessions_summoningcircle_data_sanitydrain,
-                        drawChance = R.string.shop_cursedpossessions_summoningcircle_data_drawchance
+                        image = PossessionItemImage.SUMMONING_CIRCLE,
+                        flavorText = PossessionItemFlavorText.SUMMONING_CIRCLE,
+                        infoText = PossessionItemInfoText.SUMMONING_CIRCLE,
+                        attributesText = PossessionItemAttribute.SUMMONING_CIRCLE,
+                        sanityDrain = PossessionItemSanityDrain.SUMMONING_CIRCLE,
+                        drawChance = PossessionItemDrawChance.SUMMONING_CIRCLE
                     )
                 )
             ),
             // Tarot Cards
             CodexPossessionGroupRes(
-                name = R.string.cursedpossessions_info_name_tarotcards,
-                icon = R.drawable.ic_map_cp_tarot,
+                name = PossessionTitle.TAROT_CARDS,
+                icon = PossessionsIcon.TAROT_CARDS,
                 items = listOf(
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_hangedman_alt,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_hangedman,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_hangedman,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_hangedman,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_hangedman,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_hangedman
+                        image = PossessionItemImage.TAROT_CARDS_HANGED_MAN,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_HANGED_MAN,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_HANGED_MAN,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_HANGED_MAN,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_HANGED_MAN,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_HANGED_MAN,
+                        altName = PossessionItemAltName.TAROT_CARDS_HANGED_MAN
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_priestess,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_priestess,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_priestess,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_priestess,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_priestess,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_priestess,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_priestess
+                        image = PossessionItemImage.TAROT_CARDS_PRIESTESS,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_PRIESTESS,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_PRIESTESS,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_PRIESTESS,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_PRIESTESS,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_PRIESTESS,
+                        altName = PossessionItemAltName.TAROT_CARDS_PRIESTESS
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_death,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_death,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_death,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_death,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_death,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_death,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_death
+                        image = PossessionItemImage.TAROT_CARDS_DEATH,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_DEATH,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_DEATH,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_DEATH,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_DEATH,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_DEATH,
+                        altName = PossessionItemAltName.TAROT_CARDS_DEATH
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_devil,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_devil,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_devil,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_devil,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_devil,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_devil,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_devil
+                        image = PossessionItemImage.TAROT_CARDS_DEVIL,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_DEVIL,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_DEVIL,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_DEVIL,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_DEVIL,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_DEVIL,
+                        altName = PossessionItemAltName.TAROT_CARDS_DEVIL
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_fortune,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_fortune,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_fortune,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_fortune,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_fortune,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_fortune,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_fortune
+                        image = PossessionItemImage.TAROT_CARDS_FORTUNE,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_FORTUNE,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_FORTUNE,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_FORTUNE,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_FORTUNE,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_FORTUNE,
+                        altName = PossessionItemAltName.TAROT_CARDS_FORTUNE
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_hermit,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_hermit,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_hermit,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_hermit,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_hermit,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_hermit,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_hermit
+                        image = PossessionItemImage.TAROT_CARDS_HERMIT,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_HERMIT,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_HERMIT,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_HERMIT,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_HERMIT,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_HERMIT,
+                        altName = PossessionItemAltName.TAROT_CARDS_HERMIT
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_joker,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_joker,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_joker,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_joker,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_joker,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_joker,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_joker
+                        image = PossessionItemImage.TAROT_CARDS_JOKER,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_JOKER,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_JOKER,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_JOKER,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_JOKER,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_JOKER,
+                        altName = PossessionItemAltName.TAROT_CARDS_JOKER
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_moon,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_moon,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_moon,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_moon,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_moon,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_moon,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_moon
+                        image = PossessionItemImage.TAROT_CARDS_MOON,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_MOON,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_MOON,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_MOON,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_MOON,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_MOON,
+                        altName = PossessionItemAltName.TAROT_CARDS_MOON
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_sun,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_sun,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_sun,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_sun,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_sun,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_sun,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_sun
+                        image = PossessionItemImage.TAROT_CARDS_SUN,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_SUN,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_SUN,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_SUN,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_SUN,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_SUN,
+                        altName = PossessionItemAltName.TAROT_CARDS_SUN
                     ),
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cp_tarot_tower,
-                        flavorText = R.string.shop_cursedpossessions_tarotcards_data_flavortext_tower,
-                        infoText = R.string.shop_cursedpossessions_tarotcards_data_info_tower,
-                        attributesText = R.string.shop_cursedpossessions_tarotcards_data_attribute_tower,
-                        sanityDrain = R.string.shop_cursedpossessions_tarotcards_data_sanitydrain_tower,
-                        drawChance = R.string.shop_cursedpossessions_tarotcards_data_drawchance_tower,
-                        altName = R.string.shop_cursedpossessions_tarotcards_data_altname_tower
+                        image = PossessionItemImage.TAROT_CARDS_TOWER,
+                        flavorText = PossessionItemFlavorText.TAROT_CARDS_TOWER,
+                        infoText = PossessionItemInfoText.TAROT_CARDS_TOWER,
+                        attributesText = PossessionItemAttribute.TAROT_CARDS_TOWER,
+                        sanityDrain = PossessionItemSanityDrain.TAROT_CARDS_TOWER,
+                        drawChance = PossessionItemDrawChance.TAROT_CARDS_TOWER,
+                        altName = PossessionItemAltName.TAROT_CARDS_TOWER
                     )
 
                 )
             ),
             // Voodoo Doll
             CodexPossessionGroupRes(
-                name = R.string.cursedpossessions_info_name_voodoodoll,
-                icon = R.drawable.ic_map_cp_doll,
+                name = PossessionTitle.VOODOO_DOLL,
+                icon = PossessionsIcon.VOODOO_DOLL,
                 items = listOf(
                     CodexPossessionGroupItemRes(
-                        image = R.drawable.icon_cursedpossessions_voodoodoll,
-                        flavorText =  R.string.shop_cursedpossessions_voodoodoll_data_flavortext,
-                        infoText =  R.string.shop_cursedpossessions_voodoodoll_data_info,
-                        attributesText = R.string.shop_cursedpossessions_voodoodoll_data_attribute,
-                        sanityDrain = R.string.shop_cursedpossessions_voodoodoll_data_sanitydrain,
-                        drawChance = R.string.shop_cursedpossessions_voodoodoll_data_drawchance
+                        image = PossessionItemImage.VOODOO_DOLL,
+                        flavorText = PossessionItemFlavorText.VOODOO_DOLL,
+                        infoText = PossessionItemInfoText.VOODOO_DOLL,
+                        attributesText = PossessionItemAttribute.VOODOO_DOLL,
+                        sanityDrain = PossessionItemSanityDrain.VOODOO_DOLL,
+                        drawChance = PossessionItemDrawChance.VOODOO_DOLL
                     )
                 )
             ),
@@ -225,19 +232,19 @@ class CodexPossessionsLocalDataSource {
     }
 
     private data class CodexPossessionGroupRes(
-        @StringRes val name: Int,
-        @DrawableRes val icon: Int,
+        val name: PossessionTitle,
+        val icon: PossessionsIcon,
         val items: List<CodexPossessionGroupItemRes>
     )
 
     private data class CodexPossessionGroupItemRes(
-        @DrawableRes val image: Int,
-        @StringRes val flavorText: Int,
-        @StringRes val infoText: Int,
-        @StringRes val attributesText: Int,
-        @StringRes val sanityDrain: Int,
-        @StringRes val drawChance: Int,
-        @StringRes val altName: Int? = null,
+        val image: PossessionItemImage,
+        val flavorText: PossessionItemFlavorText,
+        val infoText: PossessionItemInfoText,
+        val attributesText: PossessionItemAttribute,
+        val sanityDrain: PossessionItemSanityDrain,
+        val drawChance: PossessionItemDrawChance,
+        val altName: PossessionItemAltName? = null
     )
 
     private fun CodexPossessionGroupRes.toLocal() = CodexPossessionGroupDto(

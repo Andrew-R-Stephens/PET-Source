@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.source.local
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.mapper.GhostBoxResources.Response
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.dto.GhostBoxResponseDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.mapper.GhostBoxResources.Response
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.source.GhostBoxDataSource
 
 class GhostBoxLocalDataSource: GhostBoxDataSource {
