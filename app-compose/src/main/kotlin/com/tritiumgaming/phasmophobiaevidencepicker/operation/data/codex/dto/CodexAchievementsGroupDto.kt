@@ -1,19 +1,20 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements.CodexAchievementsGroup
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements.CodexAchievementsGroupItem
 
 data class CodexAchievementsGroupDto(
-    @StringRes val name: Int,
-    @DrawableRes val icon: Int,
-    val item: CodexAchievementsGroupItemDto
+    val name: AchievementTitle,
+    val icon: AchievementIcon,
+    val item: CodexAchievementsGroupItem
 )
 
 fun CodexAchievementsGroupDto.toDomain() = CodexAchievementsGroup(
     name = name,
     icon = icon,
-    item = item.toDomain()
+    item = item
 )
 
 fun List<CodexAchievementsGroupDto>.toDomain() = map { dto ->

@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementTitle
 
 data class CodexAchievementsGroup(
-    @StringRes val name: Int,
-    @DrawableRes val icon: Int,
+    val name: AchievementTitle,
+    val icon: AchievementIcon,
     val item: CodexAchievementsGroupItem
 )

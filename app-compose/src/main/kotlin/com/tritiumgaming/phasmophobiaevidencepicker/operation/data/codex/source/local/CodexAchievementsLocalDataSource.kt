@@ -1,398 +1,391 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexAchievementsGroupDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexAchievementsGroupItemDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementContent
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementTitle
 
 class CodexAchievementsLocalDataSource() {
 
     private val achievementsResources
-        get() = listOf<CodexAchievementGroupRes>(
-            CodexAchievementGroupRes(
-                name = R.string.achievements_trainingwheels_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_trainingwheels_info
+        get() = listOf<CodexAchievementGroupResourceDto>(
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.TRAINING_WHEELS,
+                icon = AchievementIcon.TRAINING_WHEELS,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.TRAINING_WHEELS
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_rookie_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_rookie_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.ROOKIE,
+                icon = AchievementIcon.ROOKIE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.ROOKIE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_professional_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_professional_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.PROFESSIONAL,
+                icon = AchievementIcon.PROFESSIONAL,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.PROFESSIONAL
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_boss_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_boss_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.BOSS,
+                icon = AchievementIcon.BOSS,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.BOSS
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_trainingwheels_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_trainingwheels_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.EXTRA_MILE,
+                icon = AchievementIcon.EXTRA_MILE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.EXTRA_MILE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_extramile_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_extramile_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.DEDICATED,
+                icon = AchievementIcon.DEDICATED,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.DEDICATED
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_dedicated_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_dedicated_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.DEVOTED,
+                icon = AchievementIcon.DEVOTED,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.DEVOTED
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_devoted_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_devoted_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.CHALLENGER,
+                icon = AchievementIcon.CHALLENGER,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.CHALLENGER
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_challenger_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_challenger_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.RISE_CHALLENGE,
+                icon = AchievementIcon.RISE_CHALLENGE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.RISE_CHALLENGE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_risechallenge_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_risechallenge_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.TAKE_CHALLENGES,
+                icon = AchievementIcon.TAKE_CHALLENGES,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.TAKE_CHALLENGES
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_takingchallenges_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_takingchallenges_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.CHUMP_CHANGE,
+                icon = AchievementIcon.CHUMP_CHANGE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.CHUMP_CHANGE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_chumpchange_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_chumpchange_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.FAT_STOCK,
+                icon = AchievementIcon.FAT_STOCK,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.FAT_STOCK
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_fatstock_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_fatstock_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.CASH_COW,
+                icon = AchievementIcon.CASH_COW,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.CASH_COW
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_cashcow_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_cashcow_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.BREAK_THE_BANK,
+                icon = AchievementIcon.BREAK_THE_BANK,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.BREAK_THE_BANK
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_breakthebank_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_breakthebank_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.BARE_ESSENTIALS,
+                icon = AchievementIcon.BARE_ESSENTIALS,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.BARE_ESSENTIALS
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_bareessentials_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_bareessentials_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.TOOLS_OF_THE_TRADE,
+                icon = AchievementIcon.TOOLS_OF_THE_TRADE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.TOOLS_OF_THE_TRADE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_toolsofthetrade_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_toolsofthetrade_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.FULLY_LOADED,
+                icon = AchievementIcon.FULLY_LOADED,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.FULLY_LOADED
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_fullyloaded_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_fullyloaded_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.DIRECTOR,
+                icon = AchievementIcon.DIRECTOR,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.DIRECTOR
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_director_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_director_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.BRONZE_HUNTER,
+                icon = AchievementIcon.BRONZE_HUNTER,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.BRONZE_HUNTER
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_bronzehunter_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_bronzehunter_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.SILVER_HUNTER,
+                icon = AchievementIcon.SILVER_HUNTER,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.SILVER_HUNTER
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_silverhunter_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_silverhunter_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.GOLD_HUNTER,
+                icon = AchievementIcon.GOLD_HUNTER,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.GOLD_HUNTER
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_goldhunter_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_goldhunter_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.BANSHEE,
+                icon = AchievementIcon.BANSHEE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.BANSHEE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_banshee_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_banshee_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.DEMON,
+                icon = AchievementIcon.DEMON,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.DEMON
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_demon_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_demon_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.DEOGEN,
+                icon = AchievementIcon.DEOGEN,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.DEOGEN
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_deogen_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_deogen_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.GORYO,
+                icon = AchievementIcon.GORYO,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.GORYO
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_goryo_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_goryo_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.HANTU,
+                icon = AchievementIcon.HANTU,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.HANTU
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_hantu_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_hantu_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.JINN,
+                icon = AchievementIcon.JINN,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.JINN
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_jinn_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_jinn_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.MARE,
+                icon = AchievementIcon.MARE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.MARE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_mare_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_mare_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.MOROI,
+                icon = AchievementIcon.MOROI,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.MOROI
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_moroi_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_moroi_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.MYLING,
+                icon = AchievementIcon.MYLING,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.MYLING
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_myling_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_myling_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.OBAKE,
+                icon = AchievementIcon.OBAKE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.OBAKE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_obake_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_obake_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.ONI,
+                icon = AchievementIcon.ONI,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.ONI
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_oni_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_oni_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.ONRYO,
+                icon = AchievementIcon.ONRYO,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.ONRYO
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_onryo_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_onryo_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.PHANTOM,
+                icon = AchievementIcon.PHANTOM,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.PHANTOM
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_phantom_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_phantom_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.POLTERGEIST,
+                icon = AchievementIcon.POLTERGEIST,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.POLTERGEIST
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_poltergeist_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_poltergeist_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.RAIJU,
+                icon = AchievementIcon.RAIJU,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.RAIJU
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_raiju_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_raiju_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.REVENANT,
+                icon = AchievementIcon.REVENANT,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.REVENANT
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_revenant_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_revenant_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.SHADE,
+                icon = AchievementIcon.SHADE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.SHADE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_shade_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_shade_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.SPIRIT,
+                icon = AchievementIcon.SPIRIT,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.SPIRIT
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_spirit_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_spirit_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.THAYE,
+                icon = AchievementIcon.THAYE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.THAYE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_thaye_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_thaye_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.MIMIC,
+                icon = AchievementIcon.MIMIC,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.MIMIC
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_mimic_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_mimic_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.TWINS,
+                icon = AchievementIcon.TWINS,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.TWINS
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_twins_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_twins_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.WRAITH,
+                icon = AchievementIcon.WRAITH,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.WRAITH
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_wraith_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_wraith_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.YOKAI,
+                icon = AchievementIcon.YOKAI,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.YOKAI
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_yokai_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_yokai_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.YUREI,
+                icon = AchievementIcon.YUREI,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.YUREI
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_yurei_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_yurei_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.PRESTIGE1,
+                icon = AchievementIcon.PRESTIGE1,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.PRESTIGE1
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_prestige1_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_prestige1_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.PRESTIGE2,
+                icon = AchievementIcon.PRESTIGE2,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.PRESTIGE2
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_prestige2_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_prestige2_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.PRESTIGE3,
+                icon = AchievementIcon.PRESTIGE3,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.PRESTIGE3
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_prestige3_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_prestige3_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.WORK_EXPERIENCE,
+                icon = AchievementIcon.WORK_EXPERIENCE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.WORK_EXPERIENCE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_workexperience_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_workexperience_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.FLAWLESS_EXECUTION,
+                icon = AchievementIcon.FLAWLESS_EXECUTION,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.FLAWLESS_EXECUTION
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_flawlessexecution_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_flawlessexecution_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.THEYRE_HERE,
+                icon = AchievementIcon.THEYRE_HERE,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.THEYRE_HERE
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_theyrehere_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_theyrehere_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.ESCAPE_ARTIST,
+                icon = AchievementIcon.ESCAPE_ARTIST,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.ESCAPE_ARTIST
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_escapeartist_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_escapeartist_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.BAIT,
+                icon = AchievementIcon.BAIT,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.BAIT
                 )
             ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_bait_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_bait_info
-                )
-            ),
-            CodexAchievementGroupRes(
-                name = R.string.achievements_doomslayed_name,
-                icon = R.drawable.ic_achievement_banshee,
-                item = CodexAchievementGroupItemRes(
-                    infoText = R.string.achievements_doomslayed_info
+            CodexAchievementGroupResourceDto(
+                name = AchievementTitle.DOOM_SLAYED,
+                icon = AchievementIcon.DOOM_SLAYED,
+                item = CodexAchievementGroupItemResourceDto(
+                    infoText = AchievementContent.DOOM_SLAYED
                 )
             )
         )
@@ -408,33 +401,33 @@ class CodexAchievementsLocalDataSource() {
         return Result.success(groupsDto)
     }
 
-    private data class CodexAchievementGroupRes(
-        @StringRes val name: Int,
-        @DrawableRes val icon: Int,
-        val item: CodexAchievementGroupItemRes
+    private data class CodexAchievementGroupResourceDto(
+        val name: AchievementTitle,
+        val icon: AchievementIcon,
+        val item: CodexAchievementGroupItemResourceDto
     )
 
-    private data class CodexAchievementGroupItemRes(
-        @StringRes val infoText: Int
+    private data class CodexAchievementGroupItemResourceDto(
+        val infoText: AchievementContent
     )
 
-    private fun CodexAchievementGroupRes.toLocal() = CodexAchievementsGroupDto(
+    private fun CodexAchievementGroupResourceDto.toLocal() = CodexAchievementsGroupDto(
         name = name,
         icon = icon,
         item = item.toLocal()
     )
 
-    private fun CodexAchievementGroupItemRes.toLocal() = CodexAchievementsGroupItemDto(
+    private fun CodexAchievementGroupItemResourceDto.toLocal() = CodexAchievementsGroupItemDto(
         infoText = infoText
     )
 
     @JvmName("codexAchievementGroupResListToLocalCodexAchievementGroupRes")
-    private fun List<CodexAchievementGroupRes>.toLocal() = map { dto ->
+    private fun List<CodexAchievementGroupResourceDto>.toLocal() = map { dto ->
         dto.toLocal()
     }
 
     @JvmName("CodexAchievementGroupItemResListToLocalCodexAchievementGroupItemRes")
-    private fun List<CodexAchievementGroupItemRes>.toLocal() = map { dto ->
+    private fun List<CodexAchievementGroupItemResourceDto>.toLocal() = map { dto ->
         dto.toLocal()
     }
 
