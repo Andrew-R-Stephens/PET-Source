@@ -23,12 +23,12 @@
     <string name="equipment_info_name_parabolicmicrophone">Parabolic Microphone</string>
     <string name="equipment_info_name_headgear">Head Gear</string>
 
-    <!--
-        Attribute Titles
-    -->
     <string name="shop_equipment_attribute_opinion_positive" translatable="false">+</string>
     <string name="shop_equipment_attribute_opinion_negative" translatable="false">-</string>
 
+    <!--
+        Attribute Titles
+    -->
     <string name="shop_equipment_attribute_spotight_narrow">Spotlight: Narrow</string>
     <string name="shop_equipment_attribute_spotight_wide">Spotlight: Wide</string>
     <string name="shop_equipment_attribute_spotight_area">Area Light</string>
