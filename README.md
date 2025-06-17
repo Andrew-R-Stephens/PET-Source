@@ -51,6 +51,11 @@
 <ul>
     <li><code>app-compose</code> : Adopts modern Jetpack Compose / Clean Code approach. It is a completely reworked <em>app-legacy  / app-view</em>.</li>
 </ul>
+[ <code>incubating</code> ]
+<ul>
+    <li><code>shared</code> : The KMP shared bin. Currently awaiting confirmation from <em>app-compose</em> to begin integration.</li>
+    <li><code>iosApp</code> : The iOS project files. Dependent on the <em>shared</em> modules.</li>
+</ul>
 [ <code>sunset</code> ]
 <ul>
     <li><code>app-legacy</code> : Prod build. Maintained for prod hotfixes.</li>
