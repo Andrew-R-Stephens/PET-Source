@@ -160,63 +160,63 @@
 
     <!-- Personal Statements -->
 
-    <string name="spiritbox_entry_q0_3">血腥玛丽。</string>
-    <string name="spiritbox_entry_q0_5">我很害怕！</string>
-    <string name="spiritbox_entry_q0_6">隐藏！</string>
-    <string name="spiritbox_entry_q0_8">恐慌！</string>
-    <string name="spiritbox_entry_q0_9">跑步！</string>
+    <string name="spiritbox_entry_q01">血腥玛丽。</string>
+    <string name="spiritbox_entry_q02">我很害怕！</string>
+    <string name="spiritbox_entry_q03">隐藏！</string>
+    <string name="spiritbox_entry_q04">恐慌！</string>
+    <string name="spiritbox_entry_q05">跑步！</string>
 
     <!-- Preferential Questions -->
 
-    <string name="spiritbox_entry_q1_1">你在生气吗？</string>
-    <string name="spiritbox_entry_q1_2">你快乐吗？</string>
-    <string name="spiritbox_entry_q1_3">你友善吗？</string>
-    <string name="spiritbox_entry_q1_6">你想伤害我们吗？</string>
-    <string name="spiritbox_entry_q1_7">你想要我们在这里吗？</string>
+    <string name="spiritbox_entry_q06">你在生气吗？</string>
+    <string name="spiritbox_entry_q07">你快乐吗？</string>
+    <string name="spiritbox_entry_q08">你友善吗？</string>
+    <string name="spiritbox_entry_q09">你想伤害我们吗？</string>
+    <string name="spiritbox_entry_q10">你想要我们在这里吗？</string>
 
     <!-- Name Questions -->
 
-    <string name="spiritbox_entry_q2_1">你叫什么名字？</string>
+    <string name="spiritbox_entry_q11">你叫什么名字？</string>
 
     <!-- Age Questions -->
 
-    <string name="spiritbox_entry_q3_5">你今年多大？</string>
+    <string name="spiritbox_entry_q12">你今年多大？</string>
 
     <!-- Location Questions -->
 
-    <string name="spiritbox_entry_q5_8">你在哪里？</string>
-    <string name="spiritbox_entry_q5_1">你在这里？</string>
-    <string name="spiritbox_entry_q5_4">这里只有你一个人吗？</string>
-    <string name="spiritbox_entry_q5_7">你在哪里？</string>
+    <string name="spiritbox_entry_q13">你在哪里？</string>
+    <string name="spiritbox_entry_q14">你在这里？</string>
+    <string name="spiritbox_entry_q15">这里只有你一个人吗？</string>
+    <string name="spiritbox_entry_q16">你在哪里？</string>
 
     <!-- Interaction Questions -->
 
-    <string name="spiritbox_entry_q0_2">攻击我们！</string>
-    <string name="spiritbox_entry_q6_5">你能和我们说话吗？</string>
-    <string name="spiritbox_entry_q6_7">做一点事。</string>
-    <string name="spiritbox_entry_q6_8">给我们一个信号！</string>
-    <string name="spiritbox_entry_q0_7">追捕我们！</string>
-    <string name="spiritbox_entry_q6_16">你为什么在这？</string>
-    <string name="spiritbox_entry_q6_17">发出声音。</string>
-    <string name="spiritbox_entry_q6_18">打开门。</string>
-    <string name="spiritbox_entry_q6_9">展示你自己！</string>
-    <string name="spiritbox_entry_q6_12">扔东西。</string>
-    <string name="spiritbox_entry_q6_13">关掉灯。</string>
-    <string name="spiritbox_entry_q6_14">打开灯。</string>
+    <string name="spiritbox_entry_q17">攻击我们！</string>
+    <string name="spiritbox_entry_q18">你能和我们说话吗？</string>
+    <string name="spiritbox_entry_q19">做一点事。</string>
+    <string name="spiritbox_entry_q20">给我们一个信号！</string>
+    <string name="spiritbox_entry_q21">追捕我们！</string>
+    <string name="spiritbox_entry_q22">你为什么在这？</string>
+    <string name="spiritbox_entry_q23">发出声音。</string>
+    <string name="spiritbox_entry_q24">打开门。</string>
+    <string name="spiritbox_entry_q25">展示你自己！</string>
+    <string name="spiritbox_entry_q26">扔东西。</string>
+    <string name="spiritbox_entry_q27">关掉灯。</string>
+    <string name="spiritbox_entry_q28">打开灯。</string>
 
     <!-- General Questions -->
 
-    <string name="spiritbox_entry_q7_2">你好？</string>
-    <string name="spiritbox_entry_q7_3">我们能提供什么帮助？</string>
-    <string name="spiritbox_entry_q7_9">你想要什么？</string>
-    <string name="spiritbox_entry_q7_11">你为什么在这？</string>
+    <string name="spiritbox_entry_q29">你好？</string>
+    <string name="spiritbox_entry_q30">我们能提供什么帮助？</string>
+    <string name="spiritbox_entry_q31">你想要什么？</string>
+    <string name="spiritbox_entry_q32">你为什么在这？</string>
 
     <!-- Sanity Questions -->
 
-    <string name="spiritbox_entry_q8_1">我的理智是什么？</string>
-    <string name="spiritbox_entry_q8_2">我有多疯狂？</string>
-    <string name="spiritbox_entry_q8_3">我到底有多疯狂？</string>
-    <string name="spiritbox_entry_q8_4">我疯了吗？</string>
+    <string name="spiritbox_entry_q33">我的理智是什么？</string>
+    <string name="spiritbox_entry_q34">我有多疯狂？</string>
+    <string name="spiritbox_entry_q35">我到底有多疯狂？</string>
+    <string name="spiritbox_entry_q36">我疯了吗？</string>
     <string name="evidence_section_overview">概述</string>
     <string name="store_title_equipment">装备店</string>
     <string name="equipment_section_tiers">层级</string>

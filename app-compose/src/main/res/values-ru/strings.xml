@@ -743,49 +743,49 @@
     -->
     <!-- All Entries -->
     <!-- Personal Statements -->
-    <string name="spiritbox_entry_q0_3">Кровавая Мэри.</string>
-    <string name="spiritbox_entry_q0_5">Мне страшно!</string>
-    <string name="spiritbox_entry_q0_6">Скрыть!</string>
-    <string name="spiritbox_entry_q0_8">Паника!</string>
-    <string name="spiritbox_entry_q0_9">Беги!</string>
+    <string name="spiritbox_entry_q01">Кровавая Мэри.</string>
+    <string name="spiritbox_entry_q02">Мне страшно!</string>
+    <string name="spiritbox_entry_q03">Скрыть!</string>
+    <string name="spiritbox_entry_q04">Паника!</string>
+    <string name="spiritbox_entry_q05">Беги!</string>
     <!-- Preferential Questions -->
-    <string name="spiritbox_entry_q1_1">Вы злитесь?</string>
-    <string name="spiritbox_entry_q1_2">Вы счастливы?</string>
-    <string name="spiritbox_entry_q1_3">Вы дружелюбны?</string>
-    <string name="spiritbox_entry_q1_6">Вы хотите причинить нам вред?</string>
-    <string name="spiritbox_entry_q1_7">Вы хотите, чтобы мы были здесь?</string>
+    <string name="spiritbox_entry_q06">Вы злитесь?</string>
+    <string name="spiritbox_entry_q07">Вы счастливы?</string>
+    <string name="spiritbox_entry_q08">Вы дружелюбны?</string>
+    <string name="spiritbox_entry_q09">Вы хотите причинить нам вред?</string>
+    <string name="spiritbox_entry_q10">Вы хотите, чтобы мы были здесь?</string>
     <!-- Name Questions -->
-    <string name="spiritbox_entry_q2_1">Как вас зовут?</string>
+    <string name="spiritbox_entry_q11">Как вас зовут?</string>
     <!-- Age Questions -->
-    <string name="spiritbox_entry_q3_5">Сколько вам лет?</string>
+    <string name="spiritbox_entry_q12">Сколько вам лет?</string>
     <!-- Location Questions -->
-    <string name="spiritbox_entry_q5_8">Где ты?</string>
-    <string name="spiritbox_entry_q5_1">Вы здесь?</string>
-    <string name="spiritbox_entry_q5_4">Вы здесь один?</string>
-    <string name="spiritbox_entry_q5_7">Где ты?</string>
+    <string name="spiritbox_entry_q13">Где ты?</string>
+    <string name="spiritbox_entry_q14">Вы здесь?</string>
+    <string name="spiritbox_entry_q15">Вы здесь один?</string>
+    <string name="spiritbox_entry_q16">Где ты?</string>
     <!-- Interaction Questions -->
-    <string name="spiritbox_entry_q0_2">Атакуйте нас!</string>
-    <string name="spiritbox_entry_q6_5">Вы можете с нами поговорить?</string>
-    <string name="spiritbox_entry_q6_7">Сделайте что-нибудь.</string>
-    <string name="spiritbox_entry_q6_8">Дайте нам знак!</string>
-    <string name="spiritbox_entry_q0_7">Охоться на нас!</string>
-    <string name="spiritbox_entry_q6_16">Почему вы здесь?</string>
-    <string name="spiritbox_entry_q6_17">Пошуметь.</string>
-    <string name="spiritbox_entry_q6_18">Откройте дверь.</string>
-    <string name="spiritbox_entry_q6_9">Покажи себя!</string>
-    <string name="spiritbox_entry_q6_12">Бросьте что-нибудь.</string>
-    <string name="spiritbox_entry_q6_13">Выключите свет.</string>
-    <string name="spiritbox_entry_q6_14">Включите свет.</string>
+    <string name="spiritbox_entry_q17">Атакуйте нас!</string>
+    <string name="spiritbox_entry_q18">Вы можете с нами поговорить?</string>
+    <string name="spiritbox_entry_q19">Сделайте что-нибудь.</string>
+    <string name="spiritbox_entry_q20">Дайте нам знак!</string>
+    <string name="spiritbox_entry_q21">Охоться на нас!</string>
+    <string name="spiritbox_entry_q22">Почему вы здесь?</string>
+    <string name="spiritbox_entry_q23">Пошуметь.</string>
+    <string name="spiritbox_entry_q24">Откройте дверь.</string>
+    <string name="spiritbox_entry_q25">Покажи себя!</string>
+    <string name="spiritbox_entry_q26">Бросьте что-нибудь.</string>
+    <string name="spiritbox_entry_q27">Выключите свет.</string>
+    <string name="spiritbox_entry_q28">Включите свет.</string>
     <!-- General Questions -->
-    <string name="spiritbox_entry_q7_2">Привет?</string>
-    <string name="spiritbox_entry_q7_3">Чем мы можем помочь?</string>
-    <string name="spiritbox_entry_q7_9">Чего вы хотите?</string>
-    <string name="spiritbox_entry_q7_11">Почему вы здесь?</string>
+    <string name="spiritbox_entry_q29">Привет?</string>
+    <string name="spiritbox_entry_q30">Чем мы можем помочь?</string>
+    <string name="spiritbox_entry_q31">Чего вы хотите?</string>
+    <string name="spiritbox_entry_q32">Почему вы здесь?</string>
     <!-- Sanity Questions -->
-    <string name="spiritbox_entry_q8_1">Каково мое здравомыслие?</string>
-    <string name="spiritbox_entry_q8_2">Насколько я сумасшедший?</string>
-    <string name="spiritbox_entry_q8_3">Насколько я сумасшедший?</string>
-    <string name="spiritbox_entry_q8_4">Я сошел с ума?</string>
+    <string name="spiritbox_entry_q33">Каково мое здравомыслие?</string>
+    <string name="spiritbox_entry_q34">Насколько я сумасшедший?</string>
+    <string name="spiritbox_entry_q35">Насколько я сумасшедший?</string>
+    <string name="spiritbox_entry_q36">Я сошел с ума?</string>
 
     <string name="settings_appearancesettings">Появление</string>
     <string name="settings_fontstylesettings">Стиль шрифта</string>

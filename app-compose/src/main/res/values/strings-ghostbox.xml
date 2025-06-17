@@ -7,48 +7,48 @@
 
     <!-- All Entries -->
     <!-- Personal Statements -->
-    <string name="spiritbox_entry_q0_3">Bloody Mary.</string>
-    <string name="spiritbox_entry_q0_5">I\'m scared!</string>
-    <string name="spiritbox_entry_q0_6">Hide!</string>
-    <string name="spiritbox_entry_q0_8">Panic!</string>
-    <string name="spiritbox_entry_q0_9">Run!</string>
+    <string name="spiritbox_entry_q01">Bloody Mary.</string>
+    <string name="spiritbox_entry_q02">I\'m scared!</string>
+    <string name="spiritbox_entry_q03">Hide!</string>
+    <string name="spiritbox_entry_q04">Panic!</string>
+    <string name="spiritbox_entry_q05">Run!</string>
     <!-- Preferential Questions -->
-    <string name="spiritbox_entry_q1_1">Are you angry?</string>
-    <string name="spiritbox_entry_q1_2">Are you happy?</string>
-    <string name="spiritbox_entry_q1_3">Are you friendly?</string>
-    <string name="spiritbox_entry_q1_6">Do you want to hurt us?</string>
-    <string name="spiritbox_entry_q1_7">Do you want us here?</string>
+    <string name="spiritbox_entry_q06">Are you angry?</string>
+    <string name="spiritbox_entry_q07">Are you happy?</string>
+    <string name="spiritbox_entry_q08">Are you friendly?</string>
+    <string name="spiritbox_entry_q09">Do you want to hurt us?</string>
+    <string name="spiritbox_entry_q10">Do you want us here?</string>
     <!-- Name Questions -->
-    <string name="spiritbox_entry_q2_1">What is your name?</string>
+    <string name="spiritbox_entry_q11">What is your name?</string>
     <!-- Age Questions -->
-    <string name="spiritbox_entry_q3_5">How old are you?</string>
+    <string name="spiritbox_entry_q12">How old are you?</string>
     <!-- Location Questions -->
-    <string name="spiritbox_entry_q5_8">Where are you?</string>
-    <string name="spiritbox_entry_q5_1">Are you here?</string>
-    <string name="spiritbox_entry_q5_4">Are you the only one here?</string>
-    <string name="spiritbox_entry_q5_7">Where are you?</string>
+    <string name="spiritbox_entry_q13">Where are you?</string>
+    <string name="spiritbox_entry_q14">Are you here?</string>
+    <string name="spiritbox_entry_q15">Are you the only one here?</string>
+    <string name="spiritbox_entry_q16">Where are you?</string>
     <!-- Interaction Questions -->
-    <string name="spiritbox_entry_q0_2">Attack us!</string>
-    <string name="spiritbox_entry_q6_5">Can you speak to us?</string>
-    <string name="spiritbox_entry_q6_7">Do something.</string>
-    <string name="spiritbox_entry_q6_8">Give us a sign!</string>
-    <string name="spiritbox_entry_q0_7">Hunt us!</string>
-    <string name="spiritbox_entry_q6_16">Why are you here?</string>
-    <string name="spiritbox_entry_q6_17">Make a noise.</string>
-    <string name="spiritbox_entry_q6_18">Open the door.</string>
-    <string name="spiritbox_entry_q6_9">Show yourself!</string>
-    <string name="spiritbox_entry_q6_12">Throw something.</string>
-    <string name="spiritbox_entry_q6_13">Turn off the light.</string>
-    <string name="spiritbox_entry_q6_14">Turn on the light.</string>
+    <string name="spiritbox_entry_q17">Attack us!</string>
+    <string name="spiritbox_entry_q18">Can you speak to us?</string>
+    <string name="spiritbox_entry_q19">Do something.</string>
+    <string name="spiritbox_entry_q20">Give us a sign!</string>
+    <string name="spiritbox_entry_q21">Hunt us!</string>
+    <string name="spiritbox_entry_q22">Why are you here?</string>
+    <string name="spiritbox_entry_q23">Make a noise.</string>
+    <string name="spiritbox_entry_q24">Open the door.</string>
+    <string name="spiritbox_entry_q25">Show yourself!</string>
+    <string name="spiritbox_entry_q26">Throw something.</string>
+    <string name="spiritbox_entry_q27">Turn off the light.</string>
+    <string name="spiritbox_entry_q28">Turn on the light.</string>
     <!-- General Questions -->
-    <string name="spiritbox_entry_q7_2">Hello?</string>
-    <string name="spiritbox_entry_q7_3">What can we do to help?</string>
-    <string name="spiritbox_entry_q7_9">What do you want?</string>
-    <string name="spiritbox_entry_q7_11">Why are you here?</string>
+    <string name="spiritbox_entry_q29">Hello?</string>
+    <string name="spiritbox_entry_q30">What can we do to help?</string>
+    <string name="spiritbox_entry_q31">What do you want?</string>
+    <string name="spiritbox_entry_q32">Why are you here?</string>
     <!-- Sanity Questions -->
-    <string name="spiritbox_entry_q8_1">What is my sanity?</string>
-    <string name="spiritbox_entry_q8_2">How crazy am I?</string>
-    <string name="spiritbox_entry_q8_3">How insane am I?</string>
-    <string name="spiritbox_entry_q8_4">Am I insane?</string>
+    <string name="spiritbox_entry_q33">What is my sanity?</string>
+    <string name="spiritbox_entry_q34">How crazy am I?</string>
+    <string name="spiritbox_entry_q35">How insane am I?</string>
+    <string name="spiritbox_entry_q36">Am I insane?</string>
 
 </resources>

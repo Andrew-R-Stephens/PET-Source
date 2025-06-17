@@ -158,63 +158,63 @@
 
     <!-- Personal Statements -->
 
-    <string name="spiritbox_entry_q0_3">Bloody Mary.</string>
-    <string name="spiritbox_entry_q0_5">Ho paura!</string>
-    <string name="spiritbox_entry_q0_6">Nascondere!</string>
-    <string name="spiritbox_entry_q0_8">Panico!</string>
-    <string name="spiritbox_entry_q0_9">Correre!</string>
+    <string name="spiritbox_entry_q01">Bloody Mary.</string>
+    <string name="spiritbox_entry_q02">Ho paura!</string>
+    <string name="spiritbox_entry_q03">Nascondere!</string>
+    <string name="spiritbox_entry_q04">Panico!</string>
+    <string name="spiritbox_entry_q05">Correre!</string>
 
     <!-- Preferential Questions -->
 
-    <string name="spiritbox_entry_q1_1">Sei arrabbiato?</string>
-    <string name="spiritbox_entry_q1_2">Sei felice?</string>
-    <string name="spiritbox_entry_q1_3">Sei amichevole?</string>
-    <string name="spiritbox_entry_q1_6">Vuoi farci del male?</string>
-    <string name="spiritbox_entry_q1_7">Ci vuoi qui?</string>
+    <string name="spiritbox_entry_q06">Sei arrabbiato?</string>
+    <string name="spiritbox_entry_q07">Sei felice?</string>
+    <string name="spiritbox_entry_q08">Sei amichevole?</string>
+    <string name="spiritbox_entry_q09">Vuoi farci del male?</string>
+    <string name="spiritbox_entry_q10">Ci vuoi qui?</string>
 
     <!-- Name Questions -->
 
-    <string name="spiritbox_entry_q2_1">Come ti chiami?</string>
+    <string name="spiritbox_entry_q11">Come ti chiami?</string>
 
     <!-- Age Questions -->
 
-    <string name="spiritbox_entry_q3_5">Quanti anni hai?</string>
+    <string name="spiritbox_entry_q12">Quanti anni hai?</string>
 
     <!-- Location Questions -->
 
-    <string name="spiritbox_entry_q5_8">Dove sei?</string>
-    <string name="spiritbox_entry_q5_1">Sei qui?</string>
-    <string name="spiritbox_entry_q5_4">Sei l\'unico qui?</string>
-    <string name="spiritbox_entry_q5_7">Dove sei?</string>
+    <string name="spiritbox_entry_q13">Dove sei?</string>
+    <string name="spiritbox_entry_q14">Sei qui?</string>
+    <string name="spiritbox_entry_q15">Sei l\'unico qui?</string>
+    <string name="spiritbox_entry_q16">Dove sei?</string>
 
     <!-- Interaction Questions -->
 
-    <string name="spiritbox_entry_q0_2">Attaccaci!</string>
-    <string name="spiritbox_entry_q6_5">Puoi parlare con noi?</string>
-    <string name="spiritbox_entry_q6_7">Fare qualcosa.</string>
-    <string name="spiritbox_entry_q6_8">Dateci un segno!</string>
-    <string name="spiritbox_entry_q0_7">Cacciaci!</string>
-    <string name="spiritbox_entry_q6_16">Perché sei qui?</string>
-    <string name="spiritbox_entry_q6_17">Fare un rumore.</string>
-    <string name="spiritbox_entry_q6_18">Apri la porta.</string>
-    <string name="spiritbox_entry_q6_9">Mostrati!</string>
-    <string name="spiritbox_entry_q6_12">Lancia qualcosa.</string>
-    <string name="spiritbox_entry_q6_13">Spegni la luce.</string>
-    <string name="spiritbox_entry_q6_14">Accendi la luce.</string>
+    <string name="spiritbox_entry_q17">Attaccaci!</string>
+    <string name="spiritbox_entry_q18">Puoi parlare con noi?</string>
+    <string name="spiritbox_entry_q19">Fare qualcosa.</string>
+    <string name="spiritbox_entry_q20">Dateci un segno!</string>
+    <string name="spiritbox_entry_q21">Cacciaci!</string>
+    <string name="spiritbox_entry_q22">Perché sei qui?</string>
+    <string name="spiritbox_entry_q23">Fare un rumore.</string>
+    <string name="spiritbox_entry_q24">Apri la porta.</string>
+    <string name="spiritbox_entry_q25">Mostrati!</string>
+    <string name="spiritbox_entry_q26">Lancia qualcosa.</string>
+    <string name="spiritbox_entry_q27">Spegni la luce.</string>
+    <string name="spiritbox_entry_q28">Accendi la luce.</string>
 
     <!-- General Questions -->
 
-    <string name="spiritbox_entry_q7_2">Ciao?</string>
-    <string name="spiritbox_entry_q7_3">Cosa possiamo fare per aiutare?</string>
-    <string name="spiritbox_entry_q7_9">Cosa vuoi?</string>
-    <string name="spiritbox_entry_q7_11">Perché sei qui?</string>
+    <string name="spiritbox_entry_q29">Ciao?</string>
+    <string name="spiritbox_entry_q30">Cosa possiamo fare per aiutare?</string>
+    <string name="spiritbox_entry_q31">Cosa vuoi?</string>
+    <string name="spiritbox_entry_q32">Perché sei qui?</string>
 
     <!-- Sanity Questions -->
 
-    <string name="spiritbox_entry_q8_1">Qual è la mia sanità mentale?</string>
-    <string name="spiritbox_entry_q8_2">Quanto sono pazzo?</string>
-    <string name="spiritbox_entry_q8_3">Quanto sono pazzo?</string>
-    <string name="spiritbox_entry_q8_4">Sono pazzo?</string>
+    <string name="spiritbox_entry_q33">Qual è la mia sanità mentale?</string>
+    <string name="spiritbox_entry_q34">Quanto sono pazzo?</string>
+    <string name="spiritbox_entry_q35">Quanto sono pazzo?</string>
+    <string name="spiritbox_entry_q36">Sono pazzo?</string>
     <string name="evidence_section_overview">Panoramica</string>
     <string name="store_title_equipment">Negozio di Attrezzature</string>
     <string name="equipment_section_tiers">Livelli</string>

@@ -709,44 +709,44 @@
     -->
     <!-- All Entries -->
     <!-- Personal Statements -->
-    <string name="spiritbox_entry_q0_3">Bloody Mary.</string>
-    <string name="spiritbox_entry_q0_5">J\'ai peur!</string>
-    <string name="spiritbox_entry_q0_6">Cacher!</string>
-    <string name="spiritbox_entry_q0_8">Panique!</string>
-    <string name="spiritbox_entry_q0_9">Cours!</string>
+    <string name="spiritbox_entry_q01">Bloody Mary.</string>
+    <string name="spiritbox_entry_q02">J\'ai peur!</string>
+    <string name="spiritbox_entry_q03">Cacher!</string>
+    <string name="spiritbox_entry_q04">Panique!</string>
+    <string name="spiritbox_entry_q05">Cours!</string>
     <!-- Mental State Questions -->
-    <string name="spiritbox_entry_q1_1">Êtes-vous en colère?</string>
-    <string name="spiritbox_entry_q1_2">Es-tu heureux?</string>
-    <string name="spiritbox_entry_q1_3">Êtes vous amical?</string>
-    <string name="spiritbox_entry_q1_6">Voulez-vous nous faire du mal?</string>
-    <string name="spiritbox_entry_q1_7">Tu nous veux ici?</string>
+    <string name="spiritbox_entry_q06">Êtes-vous en colère?</string>
+    <string name="spiritbox_entry_q07">Es-tu heureux?</string>
+    <string name="spiritbox_entry_q08">Êtes vous amical?</string>
+    <string name="spiritbox_entry_q09">Voulez-vous nous faire du mal?</string>
+    <string name="spiritbox_entry_q10">Tu nous veux ici?</string>
     <!-- Name Questions -->
-    <string name="spiritbox_entry_q2_1">Quel est ton nom?</string>
+    <string name="spiritbox_entry_q11">Quel est ton nom?</string>
     <!-- Age Questions -->
-    <string name="spiritbox_entry_q3_5">Quel âge as-tu?</string>
+    <string name="spiritbox_entry_q12">Quel âge as-tu?</string>
     <!-- Location Questions -->
-    <string name="spiritbox_entry_q5_8">Où es-tu?</string>
-    <string name="spiritbox_entry_q5_1">Êtes-vous ici?</string>
-    <string name="spiritbox_entry_q5_4">Êtes-vous le seul ici?</string>
-    <string name="spiritbox_entry_q5_7">Où es-tu?</string>
+    <string name="spiritbox_entry_q13">Où es-tu?</string>
+    <string name="spiritbox_entry_q14">Êtes-vous ici?</string>
+    <string name="spiritbox_entry_q15">Êtes-vous le seul ici?</string>
+    <string name="spiritbox_entry_q16">Où es-tu?</string>
     <!-- Interaction Questions -->
-    <string name="spiritbox_entry_q0_2">Attaquez-nous!</string>
-    <string name="spiritbox_entry_q6_5">Pouvez-vous nous parler?</string>
-    <string name="spiritbox_entry_q6_7">Faire quelque chose.</string>
-    <string name="spiritbox_entry_q6_8">Donnez-nous un signe!</string>
-    <string name="spiritbox_entry_q0_7">Chassez-nous!</string>
-    <string name="spiritbox_entry_q6_16">Faites-nous savoir que vous êtes ici.</string>
-    <string name="spiritbox_entry_q6_17">Faites du bruit.</string>
-    <string name="spiritbox_entry_q6_18">Ouvre la porte.</string>
-    <string name="spiritbox_entry_q6_9">Montre toi!</string>
-    <string name="spiritbox_entry_q6_12">Jetez quelque chose.</string>
-    <string name="spiritbox_entry_q6_13">Éteindre la lumière.</string>
-    <string name="spiritbox_entry_q6_14">Allume la lumière.</string>
+    <string name="spiritbox_entry_q17">Attaquez-nous!</string>
+    <string name="spiritbox_entry_q18">Pouvez-vous nous parler?</string>
+    <string name="spiritbox_entry_q19">Faire quelque chose.</string>
+    <string name="spiritbox_entry_q20">Donnez-nous un signe!</string>
+    <string name="spiritbox_entry_q21">Chassez-nous!</string>
+    <string name="spiritbox_entry_q22">Faites-nous savoir que vous êtes ici.</string>
+    <string name="spiritbox_entry_q23">Faites du bruit.</string>
+    <string name="spiritbox_entry_q24">Ouvre la porte.</string>
+    <string name="spiritbox_entry_q25">Montre toi!</string>
+    <string name="spiritbox_entry_q26">Jetez quelque chose.</string>
+    <string name="spiritbox_entry_q27">Éteindre la lumière.</string>
+    <string name="spiritbox_entry_q28">Allume la lumière.</string>
     <!-- General Questions -->
-    <string name="spiritbox_entry_q7_2">Bonjour?</string>
-    <string name="spiritbox_entry_q7_3">Que pouvons-nous faire pour aider?</string>
-    <string name="spiritbox_entry_q7_9">Que veux-tu?</string>
-    <string name="spiritbox_entry_q7_11">Pourquoi es-tu ici?</string>
+    <string name="spiritbox_entry_q29">Bonjour?</string>
+    <string name="spiritbox_entry_q30">Que pouvons-nous faire pour aider?</string>
+    <string name="spiritbox_entry_q31">Que veux-tu?</string>
+    <string name="spiritbox_entry_q32">Pourquoi es-tu ici?</string>
     <string name="review_requesttitle">Veuillez considérer la note P.E.T.!</string>
     <string name="review_accept">J\'accepte!</string>
     <string name="review_decline">Déclin</string>
@@ -765,10 +765,10 @@
     <string name="newsletter_inbox_title_phasmophobia">Journal des Modifications Phasmophobia</string>
     <string name="newsletter_inbox_title_general">Les nouvelles Générales</string>
     <string name="settings_networktitle">Autoriser l\'utilisation des Données Mobiles</string>
-    <string name="spiritbox_entry_q8_1">Quelle est ma raison?</string>
-    <string name="spiritbox_entry_q8_2">A quel point suis-je fou?</string>
-    <string name="spiritbox_entry_q8_3">A quel point suis-je fou ?</string>
-    <string name="spiritbox_entry_q8_4">Suis je fou?</string>
+    <string name="spiritbox_entry_q33">Quelle est ma raison?</string>
+    <string name="spiritbox_entry_q34">A quel point suis-je fou?</string>
+    <string name="spiritbox_entry_q35">A quel point suis-je fou ?</string>
+    <string name="spiritbox_entry_q36">Suis je fou?</string>
     <string name="settings_cancel">Annuler</string>
     <string name="settings_confirm">Confirmer</string>
     <string name="popup_ghost_strength">Forces</string>

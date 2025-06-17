@@ -160,63 +160,63 @@
 
     <!-- Personal Statements -->
 
-    <string name="spiritbox_entry_q0_3">ブラッディマリー。</string>
-    <string name="spiritbox_entry_q0_5">怖いよ！</string>
-    <string name="spiritbox_entry_q0_6">隠れる！</string>
-    <string name="spiritbox_entry_q0_8">パニック！</string>
-    <string name="spiritbox_entry_q0_9">走る！</string>
+    <string name="spiritbox_entry_q01">ブラッディマリー。</string>
+    <string name="spiritbox_entry_q02">怖いよ！</string>
+    <string name="spiritbox_entry_q03">隠れる！</string>
+    <string name="spiritbox_entry_q04">パニック！</string>
+    <string name="spiritbox_entry_q05">走る！</string>
 
     <!-- Preferential Questions -->
 
-    <string name="spiritbox_entry_q1_1">あなたは怒っていますか？</string>
-    <string name="spiritbox_entry_q1_2">幸せですか？</string>
-    <string name="spiritbox_entry_q1_3">フレンドリーですか？</string>
-    <string name="spiritbox_entry_q1_6">私たちを傷つけたいのですか？</string>
-    <string name="spiritbox_entry_q1_7">ここに来てほしいですか？</string>
+    <string name="spiritbox_entry_q06">あなたは怒っていますか？</string>
+    <string name="spiritbox_entry_q07">幸せですか？</string>
+    <string name="spiritbox_entry_q08">フレンドリーですか？</string>
+    <string name="spiritbox_entry_q09">私たちを傷つけたいのですか？</string>
+    <string name="spiritbox_entry_q10">ここに来てほしいですか？</string>
 
     <!-- Name Questions -->
 
-    <string name="spiritbox_entry_q2_1">あなたの名前は何ですか？</string>
+    <string name="spiritbox_entry_q11">あなたの名前は何ですか？</string>
 
     <!-- Age Questions -->
 
-    <string name="spiritbox_entry_q3_5">何歳ですか？</string>
+    <string name="spiritbox_entry_q12">何歳ですか？</string>
 
     <!-- Location Questions -->
 
-    <string name="spiritbox_entry_q5_8">どこにいるの？</string>
-    <string name="spiritbox_entry_q5_1">あなたはここにいますか？</string>
-    <string name="spiritbox_entry_q5_4">ここにいるのはあなただけですか？</string>
-    <string name="spiritbox_entry_q5_7">どこにいるの？</string>
+    <string name="spiritbox_entry_q13">どこにいるの？</string>
+    <string name="spiritbox_entry_q14">あなたはここにいますか？</string>
+    <string name="spiritbox_entry_q15">ここにいるのはあなただけですか？</string>
+    <string name="spiritbox_entry_q16">どこにいるの？</string>
 
     <!-- Interaction Questions -->
 
-    <string name="spiritbox_entry_q0_2">私たちを攻撃してください！</string>
-    <string name="spiritbox_entry_q6_5">お話しいただけますか？</string>
-    <string name="spiritbox_entry_q6_7">何かをしてください。</string>
-    <string name="spiritbox_entry_q6_8">サインをください！</string>
-    <string name="spiritbox_entry_q0_7">私たちを狩ってください！</string>
-    <string name="spiritbox_entry_q6_16">なぜあなたはここにいるのですか？</string>
-    <string name="spiritbox_entry_q6_17">騒音を立てる。</string>
-    <string name="spiritbox_entry_q6_18">ドアを開ける。</string>
-    <string name="spiritbox_entry_q6_9">自分自身を見せてください！</string>
-    <string name="spiritbox_entry_q6_12">何かを投げます。</string>
-    <string name="spiritbox_entry_q6_13">明かりを消す。</string>
-    <string name="spiritbox_entry_q6_14">電気をつける。</string>
+    <string name="spiritbox_entry_q17">私たちを攻撃してください！</string>
+    <string name="spiritbox_entry_q18">お話しいただけますか？</string>
+    <string name="spiritbox_entry_q19">何かをしてください。</string>
+    <string name="spiritbox_entry_q20">サインをください！</string>
+    <string name="spiritbox_entry_q21">私たちを狩ってください！</string>
+    <string name="spiritbox_entry_q22">なぜあなたはここにいるのですか？</string>
+    <string name="spiritbox_entry_q23">騒音を立てる。</string>
+    <string name="spiritbox_entry_q24">ドアを開ける。</string>
+    <string name="spiritbox_entry_q25">自分自身を見せてください！</string>
+    <string name="spiritbox_entry_q26">何かを投げます。</string>
+    <string name="spiritbox_entry_q27">明かりを消す。</string>
+    <string name="spiritbox_entry_q28">電気をつける。</string>
 
     <!-- General Questions -->
 
-    <string name="spiritbox_entry_q7_2">こんにちは？</string>
-    <string name="spiritbox_entry_q7_3">何ができるでしょうか？</string>
-    <string name="spiritbox_entry_q7_9">なんでしょう？</string>
-    <string name="spiritbox_entry_q7_11">なぜあなたはここにいるのですか？</string>
+    <string name="spiritbox_entry_q29">こんにちは？</string>
+    <string name="spiritbox_entry_q30">何ができるでしょうか？</string>
+    <string name="spiritbox_entry_q31">なんでしょう？</string>
+    <string name="spiritbox_entry_q32">なぜあなたはここにいるのですか？</string>
 
     <!-- Sanity Questions -->
 
-    <string name="spiritbox_entry_q8_1">私の正気とは何ですか？</string>
-    <string name="spiritbox_entry_q8_2">私はどれほど狂っているのでしょうか？</string>
-    <string name="spiritbox_entry_q8_3">私はどれほど狂っているのでしょうか？</string>
-    <string name="spiritbox_entry_q8_4">私は正気ですか？</string>
+    <string name="spiritbox_entry_q33">私の正気とは何ですか？</string>
+    <string name="spiritbox_entry_q34">私はどれほど狂っているのでしょうか？</string>
+    <string name="spiritbox_entry_q35">私はどれほど狂っているのでしょうか？</string>
+    <string name="spiritbox_entry_q36">私は正気ですか？</string>
     <string name="evidence_section_overview">概要</string>
     <string name="store_title_equipment">装備品店</string>
     <string name="equipment_section_tiers">階層</string>
