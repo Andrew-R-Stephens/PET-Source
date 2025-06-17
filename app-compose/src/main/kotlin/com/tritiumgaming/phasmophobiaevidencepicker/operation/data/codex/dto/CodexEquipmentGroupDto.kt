@@ -3,12 +3,16 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentTitles
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment.CodexEquipmentGroup
 
 data class CodexEquipmentGroupDto(
-    @StringRes val name: Int,
-    @DrawableRes val icon: Int,
-    @IntegerRes var buyCostData: Int,
+    val name: EquipmentTitles,
+    val icon: EquipmentIcon,
+    val buyCostData: EquipmentBuyCost,
     val items: List<CodexEquipmentGroupItemDto>
 )
 
