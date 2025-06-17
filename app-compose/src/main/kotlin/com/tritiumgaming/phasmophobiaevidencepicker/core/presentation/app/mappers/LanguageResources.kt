@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappe
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizationCode
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizedTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.NativeTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizationCode
 
 @StringRes fun LocalizedTitle.toStringResource(): Int =
     when(this) {
