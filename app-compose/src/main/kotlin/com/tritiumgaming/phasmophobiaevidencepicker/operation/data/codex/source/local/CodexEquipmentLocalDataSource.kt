@@ -1,1037 +1,1042 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local
 
 import android.content.Context
-import androidx.annotation.DrawableRes
-import androidx.annotation.IntegerRes
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexEquipmentGroupDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexEquipmentGroupItemDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentTitles
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierImage
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
 
-class CodexEquipmentLocalDataSource(
-    val applicationContext: Context
-) {
+class CodexEquipmentLocalDataSource {
 
-    private val equipmentResources: List<CodexEquipmentGroupRes>
+    private val equipmentResources: List<CodexEquipmentGroupResourceDto>
         get() = listOf(
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_dots,
-                icon = R.drawable.icon_sh_dotsprojector,
-                buyCostData = R.integer.equipment_requirement_buycost_65,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.DOTS,
+                icon = EquipmentIcon.DOTS,
+                buyCostData = EquipmentBuyCost.COST_65,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_dots_1,
-                        flavor = R.string.shop_equipment_dots_data_flavortext_1,
-                        info = R.string.shop_equipment_dots_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_dots_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.DOTS_1,
+                        flavor = TierFlavorText.DOTS_1,
+                        info = TierInformation.DOTS_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_spotight_narrow,
-                            R.string.shop_equipment_attribute_range_5,
-                            R.string.shop_equipment_attribute_handheld
+                            EquipmentAttribute.SPOTLIGHT_NARROW,
+                            EquipmentAttribute.RANGE_5,
+                            EquipmentAttribute.HANDHELD
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_dots_2,
-                        flavor = R.string.shop_equipment_dots_data_flavortext_2,
-                        info = R.string.shop_equipment_dots_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_dots_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.DOTS_2,
+                        flavor = TierFlavorText.DOTS_2,
+                        info = TierInformation.DOTS_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_29,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_spotight_area,
-                            R.string.shop_equipment_attribute_range_2_5,
-                            R.string.shop_equipment_attribute_placeable
+                            EquipmentAttribute.SPOTLIGHT_AREA,
+                            EquipmentAttribute.RANGE_2_5,
+                            EquipmentAttribute.PLACEABLE
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_dots_3,
-                        flavor = R.string.shop_equipment_dots_data_flavortext_3,
-                        info = R.string.shop_equipment_dots_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_dots_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.DOTS_3,
+                        flavor = TierFlavorText.DOTS_3,
+                        info = TierInformation.DOTS_3,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_60,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_spotight_wide,
-                            R.string.shop_equipment_attribute_range_7,
-                            R.string.shop_equipment_attribute_placeable,
-                            R.string.shop_equipment_attribute_property_scanning
+                            EquipmentAttribute.SPOTLIGHT_WIDE,
+                            EquipmentAttribute.RANGE_7,
+                            EquipmentAttribute.PLACEABLE,
+                            EquipmentAttribute.PROPERTY_SCANNING
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // EMF
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_emf,
-                icon = R.drawable.icon_sh_emf,
-                buyCostData = R.integer.equipment_requirement_buycost_45,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.EMF,
+                icon = EquipmentIcon.EMF,
+                buyCostData = EquipmentBuyCost.COST_45,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_emf_1,
-                        flavor = R.string.shop_equipment_emf_data_flavortext_1,
-                        info = R.string.shop_equipment_emf_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_emf_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.EMF_1,
+                        flavor = TierFlavorText.EMF_1,
+                        info = TierInformation.EMF_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_1_7,
-                            R.string.shop_equipment_attribute_accuracy_low
+                            EquipmentAttribute.RANGE_1_7,
+                            EquipmentAttribute.ACCURACY_LOW
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_emf_2,
-                        flavor = R.string.shop_equipment_emf_data_flavortext_2,
-                        info = R.string.shop_equipment_emf_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_emf_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.EMF_2,
+                        flavor = TierFlavorText.EMF_2,
+                        info = TierInformation.EMF_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_20,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_1_7,
-                            R.string.shop_equipment_attribute_accuracy_high,
-                            R.string.shop_equipment_attribute_indicator_audio
+                            EquipmentAttribute.RANGE_1_7,
+                            EquipmentAttribute.ACCURACY_HIGH,
+                            EquipmentAttribute.INDICATOR_AUDIO
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_emf_3,
-                        flavor = R.string.shop_equipment_emf_data_flavortext_3,
-                        info = R.string.shop_equipment_emf_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_4500,
-                        upgradeLevelData = R.integer.equipment_requirement_level_emf_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.EMF_3,
+                        flavor = TierFlavorText.EMF_3,
+                        info = TierInformation.EMF_3,
+                        upgradeCostData = UpgradeCost.COST_4500,
+                        upgradeLevelData = UnlockLevel.LEVEL_52,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_3_5,
-                            R.string.shop_equipment_attribute_accuracy_high,
-                            R.string.shop_equipment_attribute_property_displayscreen,
-                            R.string.shop_equipment_attribute_indicator_audio,
-                            R.string.shop_equipment_attribute_indicator_distance,
-                            R.string.shop_equipment_attribute_indicator_directional
+                            EquipmentAttribute.RANGE_3_5,
+                            EquipmentAttribute.ACCURACY_HIGH,
+                            EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
+                            EquipmentAttribute.INDICATOR_AUDIO,
+                            EquipmentAttribute.INDICATOR_DISTANCE,
+                            EquipmentAttribute.INDICATOR_DIRECTIONAL
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // Flashlight
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_flashlight,
-                icon = R.drawable.icon_sh_flashlight,
-                buyCostData = R.integer.equipment_requirement_buycost_30,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.FLASHLIGHT,
+                icon = EquipmentIcon.FLASHLIGHT,
+                buyCostData = EquipmentBuyCost.COST_30,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_flashlight_1,
-                        flavor = R.string.shop_equipment_flashlight_data_flavortext_1,
-                        info = R.string.shop_equipment_flashlight_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_flashlight_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.FLASHLIGHT_1,
+                        flavor = TierFlavorText.FLASHLIGHT_1,
+                        info = TierInformation.FLASHLIGHT_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_spotight_narrow
+                            EquipmentAttribute.SPOTLIGHT_NARROW
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_intensity_low,
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.INTENSITY_LOW,
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_flashlight_2,
-                        flavor = R.string.shop_equipment_flashlight_data_flavortext_2,
-                        info = R.string.shop_equipment_flashlight_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_flashlight_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.FLASHLIGHT_2,
+                        flavor = TierFlavorText.FLASHLIGHT_2,
+                        info = TierInformation.FLASHLIGHT_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_19,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_spotight_narrow,
-                            R.string.shop_equipment_attribute_intensity_med
+                            EquipmentAttribute.SPOTLIGHT_NARROW,
+                            EquipmentAttribute.INTENSITY_MED
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_flashlight_3,
-                        flavor = R.string.shop_equipment_flashlight_data_flavortext_3,
-                        info = R.string.shop_equipment_flashlight_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_flashlight_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.FLASHLIGHT_3,
+                        flavor = TierFlavorText.FLASHLIGHT_3,
+                        info = TierInformation.FLASHLIGHT_3,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_35,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_spotight_wide,
-                            R.string.shop_equipment_attribute_intensity_high
+                            EquipmentAttribute.SPOTLIGHT_WIDE,
+                            EquipmentAttribute.INTENSITY_HIGH
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // Photo Camera
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_photocamera,
-                icon = R.drawable.icon_sh_photocamera,
-                buyCostData = R.integer.equipment_requirement_buycost_40,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.PHOTO_CAMERA,
+                icon = EquipmentIcon.PHOTO_CAMERA,
+                buyCostData = EquipmentBuyCost.COST_40,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_photocam_1,
-                        flavor = R.string.shop_equipment_photocamera_data_flavortext_1,
-                        info = R.string.shop_equipment_photocamera_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_photocamera_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.PHOTO_CAMERA_1,
+                        flavor = TierFlavorText.PHOTO_CAMERA_1,
+                        info = TierInformation.PHOTO_CAMERA_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_3,
                         positiveAttributes = emptyList(/* NONE */),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_phototime_high
+                            EquipmentAttribute.PHOTO_TIME_HIGH
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_photocam_2,
-                        flavor = R.string.shop_equipment_photocamera_data_flavortext_2,
-                        info = R.string.shop_equipment_photocamera_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_photocamera_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.PHOTO_CAMERA_2,
+                        flavor = TierFlavorText.PHOTO_CAMERA_2,
+                        info = TierInformation.PHOTO_CAMERA_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_25,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_phototime_med,
-                            R.string.shop_equipment_attribute_property_displayscreen
+                            EquipmentAttribute.PHOTO_TIME_MED,
+                            EquipmentAttribute.PROPERTY_DISPLAY_SCREEN
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_interference_med,
-                            R.string.shop_equipment_attribute_property_electronic,
+                            EquipmentAttribute.INTERFERENCE_MED,
+                            EquipmentAttribute.PROPERTY_ELECTRONIC,
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_photocam_3,
-                        flavor = R.string.shop_equipment_photocamera_data_flavortext_3,
-                        info = R.string.shop_equipment_photocamera_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_5000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_photocamera_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.PHOTO_CAMERA_3,
+                        flavor = TierFlavorText.PHOTO_CAMERA_3,
+                        info = TierInformation.PHOTO_CAMERA_3,
+                        upgradeCostData = UpgradeCost.COST_5000,
+                        upgradeLevelData = UnlockLevel.LEVEL_57,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_phototime_low,
-                            R.string.shop_equipment_attribute_property_displayscreen
+                            EquipmentAttribute.PHOTO_TIME_LOW,
+                            EquipmentAttribute.PROPERTY_DISPLAY_SCREEN
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_interference_med,
-                            R.string.shop_equipment_attribute_property_electronic,
+                            EquipmentAttribute.INTERFERENCE_MED,
+                            EquipmentAttribute.PROPERTY_ELECTRONIC,
                         )
                     )
                 )
             ),
             // Igniter
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_igniter,
-                icon = R.drawable.icon_sh_igniter,
-                buyCostData = R.integer.equipment_requirement_buycost_10,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.IGNITER,
+                icon = EquipmentIcon.IGNITER,
+                buyCostData = EquipmentBuyCost.COST_10,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_igniter_1,
-                        flavor = R.string.shop_equipment_igniter_data_flavortext_1,
-                        info = R.string.shop_equipment_igniter_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_igniter_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.IGNITER_1,
+                        flavor = TierFlavorText.IGNITER_1,
+                        info = TierInformation.IGNITER_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_12,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_duration_10_s,
-                            R.string.shop_equipment_attribute_uses_10
+                            EquipmentAttribute.DURATION_10_S,
+                            EquipmentAttribute.USES_10
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_igniter_2,
-                        flavor = R.string.shop_equipment_igniter_data_flavortext_2,
-                        info = R.string.shop_equipment_igniter_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_500,
-                        upgradeLevelData = R.integer.equipment_requirement_level_igniter_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.IGNITER_2,
+                        flavor = TierFlavorText.IGNITER_2,
+                        info = TierInformation.IGNITER_2,
+                        upgradeCostData = UpgradeCost.COST_500,
+                        upgradeLevelData = UnlockLevel.LEVEL_41,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_duration_5_m
+                            EquipmentAttribute.DURATION_5_M
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_igniter_3,
-                        flavor = R.string.shop_equipment_igniter_data_flavortext_3,
-                        info = R.string.shop_equipment_igniter_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_750,
-                        upgradeLevelData = R.integer.equipment_requirement_level_igniter_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.IGNITER_3,
+                        flavor = TierFlavorText.IGNITER_3,
+                        info = TierInformation.IGNITER_3,
+                        upgradeCostData = UpgradeCost.COST_750,
+                        upgradeLevelData = UnlockLevel.LEVEL_57,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_duration_10_m,
-                            R.string.shop_equipment_attribute_property_waterproof
+                            EquipmentAttribute.DURATION_10_M,
+                            EquipmentAttribute.PROPERTY_WATERPROOF
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     )
                 )
             ),
             // Firelight
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_firelight,
-                icon = R.drawable.icon_sh_firelight,
-                buyCostData = R.integer.equipment_requirement_buycost_15,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.FIRELIGHT,
+                icon = EquipmentIcon.FIRELIGHT,
+                buyCostData = EquipmentBuyCost.COST_15,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_firelight_1,
-                        flavor = R.string.shop_equipment_firelight_data_flavortext_1,
-                        info = R.string.shop_equipment_firelight_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_firelight_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.FIRELIGHT_1,
+                        flavor = TierFlavorText.FIRELIGHT_1,
+                        info = TierInformation.FIRELIGHT_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_12,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_2,
-                            R.string.shop_equipment_attribute_duration_3_m,
-                            R.string.shop_equipment_attribute_sanitydrainreduction_33,
-                            R.string.shop_equipment_attribute_placeable
+                            EquipmentAttribute.RANGE_2,
+                            EquipmentAttribute.DURATION_3_M,
+                            EquipmentAttribute.SANITY_DRAIN_REDUCTION_33,
+                            EquipmentAttribute.PLACEABLE
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_firelight_2,
-                        flavor = R.string.shop_equipment_firelight_data_flavortext_2,
-                        info = R.string.shop_equipment_firelight_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_firelight_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.FIRELIGHT_2,
+                        flavor = TierFlavorText.FIRELIGHT_2,
+                        info = TierInformation.FIRELIGHT_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_47,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_2,
-                            R.string.shop_equipment_attribute_duration_5_m,
-                            R.string.shop_equipment_attribute_sanitydrainreduction_50,
-                            R.string.shop_equipment_attribute_placeable
+                            EquipmentAttribute.RANGE_2,
+                            EquipmentAttribute.DURATION_5_M,
+                            EquipmentAttribute.SANITY_DRAIN_REDUCTION_50,
+                            EquipmentAttribute.PLACEABLE
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_firelight_3,
-                        flavor = R.string.shop_equipment_firelight_data_flavortext_3,
-                        info = R.string.shop_equipment_firelight_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_10000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_firelight_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.FIRELIGHT_3,
+                        flavor = TierFlavorText.FIRELIGHT_3,
+                        info = TierInformation.FIRELIGHT_3,
+                        upgradeCostData = UpgradeCost.COST_10000,
+                        upgradeLevelData = UnlockLevel.LEVEL_79,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_2,
-                            R.string.shop_equipment_attribute_sanitydrainreduction_66,
-                            R.string.shop_equipment_attribute_property_waterproof,
-                            R.string.shop_equipment_attribute_placeable
+                            EquipmentAttribute.RANGE_2,
+                            EquipmentAttribute.SANITY_DRAIN_REDUCTION_66,
+                            EquipmentAttribute.PROPERTY_WATERPROOF,
+                            EquipmentAttribute.PLACEABLE
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     )
                 )
             ),
             // UV Light
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_uvlight,
-                icon = R.drawable.icon_sh_uvlight,
-                buyCostData = R.integer.equipment_requirement_buycost_20,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.UV_LIGHT,
+                icon = EquipmentIcon.UV_LIGHT,
+                buyCostData = EquipmentBuyCost.COST_20,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_uv_1,
-                        flavor = R.string.shop_equipment_uvlight_data_flavortext_1,
-                        info = R.string.shop_equipment_uvlight_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_ultraviolet_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.UV_LIGHT_1,
+                        flavor = TierFlavorText.UV_LIGHT_1,
+                        info = TierInformation.UV_LIGHT_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_duration_60_s,
-                            R.string.shop_equipment_attribute_uvchargetime_10,
-                            R.string.shop_equipment_attribute_spotight_area,
+                            EquipmentAttribute.DURATION_60_S,
+                            EquipmentAttribute.UV_CHARGE_TIME_10,
+                            EquipmentAttribute.SPOTLIGHT_AREA,
                         ),
                         negativeAttributes = emptyList(/* NONE */)
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_uv_2,
-                        flavor = R.string.shop_equipment_uvlight_data_flavortext_2,
-                        info = R.string.shop_equipment_uvlight_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_ultraviolet_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.UV_LIGHT_2,
+                        flavor = TierFlavorText.UV_LIGHT_2,
+                        info = TierInformation.UV_LIGHT_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_21,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_uvchargetime_5,
-                            R.string.shop_equipment_attribute_spotight_narrow,
+                            EquipmentAttribute.UV_CHARGE_TIME_5,
+                            EquipmentAttribute.SPOTLIGHT_NARROW,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_uv_3,
-                        flavor = R.string.shop_equipment_uvlight_data_flavortext_3,
-                        info = R.string.shop_equipment_uvlight_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_ultraviolet_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.UV_LIGHT_3,
+                        flavor = TierFlavorText.UV_LIGHT_3,
+                        info = TierInformation.UV_LIGHT_3,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_56,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_uvchargetime_1_5,
-                            R.string.shop_equipment_attribute_spotight_wide,
+                            EquipmentAttribute.UV_CHARGE_TIME_1_5,
+                            EquipmentAttribute.SPOTLIGHT_WIDE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // Crucifix
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_crucifix,
-                icon = R.drawable.icon_sh_crucifix,
-                buyCostData = R.integer.equipment_requirement_buycost_30,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.CRUCIFIX,
+                icon = EquipmentIcon.CRUCIFIX,
+                buyCostData = EquipmentBuyCost.COST_30,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_crucifix_1,
-                        flavor = R.string.shop_equipment_crucifix_data_flavortext_1,
-                        info = R.string.shop_equipment_crucifix_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_crucifix_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.CRUCIFIX_1,
+                        flavor = TierFlavorText.CRUCIFIX_1,
+                        info = TierInformation.CRUCIFIX_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_8,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_3,
-                            R.string.shop_equipment_attribute_uses_1,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.RANGE_3,
+                            EquipmentAttribute.USES_1,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_crucifix_2,
-                        flavor = R.string.shop_equipment_crucifix_data_flavortext_2,
-                        info = R.string.shop_equipment_crucifix_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_4000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_crucifix_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.CRUCIFIX_2,
+                        flavor = TierFlavorText.CRUCIFIX_2,
+                        info = TierInformation.CRUCIFIX_2,
+                        upgradeCostData = UpgradeCost.COST_4000,
+                        upgradeLevelData = UnlockLevel.LEVEL_37,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_4,
-                            R.string.shop_equipment_attribute_uses_2,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.RANGE_4,
+                            EquipmentAttribute.USES_2,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_crucifix_3,
-                        flavor = R.string.shop_equipment_crucifix_data_flavortext_3,
-                        info = R.string.shop_equipment_crucifix_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_20000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_crucifix_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.CRUCIFIX_3,
+                        flavor = TierFlavorText.CRUCIFIX_3,
+                        info = TierInformation.CRUCIFIX_3,
+                        upgradeCostData = UpgradeCost.COST_20000,
+                        upgradeLevelData = UnlockLevel.LEVEL_90,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_preventscursedhunt,
-                            R.string.shop_equipment_attribute_range_4,
-                            R.string.shop_equipment_attribute_uses_2,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.PROPERTY_PREVENT_CURSED_HUNT,
+                            EquipmentAttribute.RANGE_4,
+                            EquipmentAttribute.USES_2,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     )
                 )
             ),
             // Video Camera
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_videocamera,
-                icon = R.drawable.icon_sh_videocamera,
-                buyCostData = R.integer.equipment_requirement_buycost_50,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.VIDEO_CAMERA,
+                icon = EquipmentIcon.VIDEO_CAMERA,
+                buyCostData = EquipmentBuyCost.COST_50,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_vidcam_1,
-                        flavor = R.string.shop_equipment_videocamera_data_flavortext_1,
-                        info = R.string.shop_equipment_videocamera_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_vcam_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.VIDEO_CAMERA_1,
+                        flavor = TierFlavorText.VIDEO_CAMERA_1,
+                        info = TierInformation.VIDEO_CAMERA_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_0,
                         positiveAttributes = emptyList(/* NONE */),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_interference_high,
-                            R.string.shop_equipment_attribute_property_electronic,
-                            R.string.shop_equipment_attribute_knockdownchance_high,
+                            EquipmentAttribute.INTERFERENCE_HIGH,
+                            EquipmentAttribute.PROPERTY_ELECTRONIC,
+                            EquipmentAttribute.KNOCKDOWN_CHANCE_HIGH,
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_vidcam_2,
-                        flavor = R.string.shop_equipment_videocamera_data_flavortext_2,
-                        info = R.string.shop_equipment_videocamera_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_vcam_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.VIDEO_CAMERA_2,
+                        flavor = TierFlavorText.VIDEO_CAMERA_2,
+                        info = TierInformation.VIDEO_CAMERA_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_33,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_imagequality_med
+                            EquipmentAttribute.IMAGE_QUALITY_MED
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_interference_med,
-                            R.string.shop_equipment_attribute_property_electronic,
-                            R.string.shop_equipment_attribute_knockdownchance_high,
+                            EquipmentAttribute.INTERFERENCE_MED,
+                            EquipmentAttribute.PROPERTY_ELECTRONIC,
+                            EquipmentAttribute.KNOCKDOWN_CHANCE_HIGH,
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_vidcam_3,
-                        flavor = R.string.shop_equipment_videocamera_data_flavortext_3,
-                        info = R.string.shop_equipment_videocamera_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_vcam_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.VIDEO_CAMERA_3,
+                        flavor = TierFlavorText.VIDEO_CAMERA_3,
+                        info = TierInformation.VIDEO_CAMERA_3,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_61,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_imagequality_high
+                            EquipmentAttribute.IMAGE_QUALITY_HIGH
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_interference_low,
-                            R.string.shop_equipment_attribute_property_electronic,
-                            R.string.shop_equipment_attribute_knockdownchance_high,
+                            EquipmentAttribute.INTERFERENCE_LOW,
+                            EquipmentAttribute.PROPERTY_ELECTRONIC,
+                            EquipmentAttribute.KNOCKDOWN_CHANCE_HIGH,
                         )
                     )
                 )
             ),
             // Spirit Box
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_spiritbox,
-                icon = R.drawable.icon_sh_spiritbox,
-                buyCostData = R.integer.equipment_requirement_buycost_50,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.SPIRIT_BOX,
+                icon = EquipmentIcon.SPIRIT_BOX,
+                buyCostData = EquipmentBuyCost.COST_50,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_spiritbox_1,
-                        flavor = R.string.shop_equipment_spiritbox_data_flavortext_1,
-                        info = R.string.shop_equipment_spiritbox_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_box_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SPIRIT_BOX_1,
+                        flavor = TierFlavorText.SPIRIT_BOX_1,
+                        info = TierInformation.SPIRIT_BOX_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_3
+                            EquipmentAttribute.RANGE_3
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_audioquality_low,
-                            R.string.shop_equipment_attribute_responserate_low,
-                            R.string.shop_equipment_attribute_property_electronic,
+                            EquipmentAttribute.AUDIO_QUALITY_LOW,
+                            EquipmentAttribute.RESPONSE_RATE_LOW,
+                            EquipmentAttribute.PROPERTY_ELECTRONIC,
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_spiritbox_2,
-                        flavor = R.string.shop_equipment_spiritbox_data_flavortext_2,
-                        info = R.string.shop_equipment_spiritbox_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_box_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SPIRIT_BOX_2,
+                        flavor = TierFlavorText.SPIRIT_BOX_2,
+                        info = TierInformation.SPIRIT_BOX_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_27,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_4,
-                            R.string.shop_equipment_attribute_audioquality_med,
-                            R.string.shop_equipment_attribute_responserate_med,
-                            R.string.shop_equipment_attribute_property_displayscreen,
+                            EquipmentAttribute.RANGE_4,
+                            EquipmentAttribute.AUDIO_QUALITY_MED,
+                            EquipmentAttribute.RESPONSE_RATE_MED,
+                            EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_spiritbox_3,
-                        flavor = R.string.shop_equipment_spiritbox_data_flavortext_3,
-                        info = R.string.shop_equipment_spiritbox_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_box_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SPIRIT_BOX_3,
+                        flavor = TierFlavorText.SPIRIT_BOX_3,
+                        info = TierInformation.SPIRIT_BOX_3,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_54,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_5,
-                            R.string.shop_equipment_attribute_audioquality_high,
-                            R.string.shop_equipment_attribute_responserate_high
+                            EquipmentAttribute.RANGE_5,
+                            EquipmentAttribute.AUDIO_QUALITY_HIGH,
+                            EquipmentAttribute.RESPONSE_RATE_HIGH
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // Thermometer
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_thermometer,
-                icon = R.drawable.icon_sh_thermometer,
-                buyCostData = R.integer.equipment_requirement_buycost_30,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.THERMOMETER,
+                icon = EquipmentIcon.THERMOMETER,
+                buyCostData = EquipmentBuyCost.COST_30,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_thermo_1,
-                        flavor = R.string.shop_equipment_thermometer_data_flavortext_1,
-                        info = R.string.shop_equipment_thermometer_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_thermometer_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.THERMOMETER_1,
+                        flavor = TierFlavorText.THERMOMETER_1,
+                        info = TierInformation.THERMOMETER_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_accuracy_med
+                            EquipmentAttribute.ACCURACY_MED
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_samplespeed_low
+                            EquipmentAttribute.SAMPLE_SPEED_LOW
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_thermo_2,
-                        flavor = R.string.shop_equipment_thermometer_data_flavortext_2,
-                        info = R.string.shop_equipment_thermometer_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_thermometer_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.THERMOMETER_2,
+                        flavor = TierFlavorText.THERMOMETER_2,
+                        info = TierInformation.THERMOMETER_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_36,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_accuracy_high,
-                            R.string.shop_equipment_attribute_samplespeed_med
+                            EquipmentAttribute.ACCURACY_HIGH,
+                            EquipmentAttribute.SAMPLE_SPEED_HIGH
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_thermo_3,
-                        flavor = R.string.shop_equipment_thermometer_data_flavortext_3,
-                        info = R.string.shop_equipment_thermometer_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_thermometer_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.THERMOMETER_3,
+                        flavor = TierFlavorText.THERMOMETER_3,
+                        info = TierInformation.THERMOMETER_3,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_64,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_accuracy_high,
-                            R.string.shop_equipment_attribute_samplespeed_high
+                            EquipmentAttribute.ACCURACY_HIGH,
+                            EquipmentAttribute.SAMPLE_SPEED_HIGH
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // Salt
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_salt,
-                icon = R.drawable.icon_sh_salt,
-                buyCostData = R.integer.equipment_requirement_buycost_15,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.SALT,
+                icon = EquipmentIcon.SALT,
+                buyCostData = EquipmentBuyCost.COST_15,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_salt_1,
-                        flavor = R.string.shop_equipment_salt_data_flavortext_1,
-                        info = R.string.shop_equipment_salt_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_salt_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SALT_1,
+                        flavor = TierFlavorText.SALT_1,
+                        info = TierInformation.SALT_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_9,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_uses_2
+                            EquipmentAttribute.USES_2
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_salt_2,
-                        flavor = R.string.shop_equipment_salt_data_flavortext_2,
-                        info = R.string.shop_equipment_salt_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_2500,
-                        upgradeLevelData = R.integer.equipment_requirement_level_salt_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SALT_2,
+                        flavor = TierFlavorText.SALT_2,
+                        info = TierInformation.SALT_2,
+                        upgradeCostData = UpgradeCost.COST_2500,
+                        upgradeLevelData = UnlockLevel.LEVEL_43,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_uses_3
+                            EquipmentAttribute.USES_3
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_salt_3,
-                        flavor = R.string.shop_equipment_salt_data_flavortext_3,
-                        info = R.string.shop_equipment_salt_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_5000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_salt_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SALT_3,
+                        flavor = TierFlavorText.SALT_3,
+                        info = TierInformation.SALT_3,
+                        upgradeCostData = UpgradeCost.COST_5000,
+                        upgradeLevelData = UnlockLevel.LEVEL_68,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_uses_3,
-                            R.string.shop_equipment_attribute_property_ghosteffect_slows
+                            EquipmentAttribute.USES_3,
+                            EquipmentAttribute.PROPERTY_GHOST_EFFECT_SLOWS
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     )
                 )
             ),
             // Incense
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_incense,
-                icon = R.drawable.icon_sh_smudge,
-                buyCostData = R.integer.equipment_requirement_buycost_15,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.INCENSE,
+                icon = EquipmentIcon.INCENSE,
+                buyCostData = EquipmentBuyCost.COST_15,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_repellant_1,
-                        flavor = R.string.shop_equipment_incense_data_flavortext_1,
-                        info = R.string.shop_equipment_incense_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_incense_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.INCENSE_1,
+                        flavor = TierFlavorText.INCENSE_1,
+                        info = TierInformation.INCENSE_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_14,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_3,
-                            R.string.shop_equipment_attribute_duration_5_s,
+                            EquipmentAttribute.RANGE_3,
+                            EquipmentAttribute.DURATION_5_S,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_repellant_2,
-                        flavor = R.string.shop_equipment_incense_data_flavortext_2,
-                        info = R.string.shop_equipment_incense_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3500,
-                        upgradeLevelData = R.integer.equipment_requirement_level_incense_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.INCENSE_2,
+                        flavor = TierFlavorText.INCENSE_2,
+                        info = TierInformation.INCENSE_2,
+                        upgradeCostData = UpgradeCost.COST_3500,
+                        upgradeLevelData = UnlockLevel.LEVEL_42,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_4,
-                            R.string.shop_equipment_attribute_duration_6_s,
-                            R.string.shop_equipment_attribute_property_ghosteffect_slows,
+                            EquipmentAttribute.RANGE_4,
+                            EquipmentAttribute.DURATION_6_S,
+                            EquipmentAttribute.PROPERTY_GHOST_EFFECT_SLOWS,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_repellant_3,
-                        flavor = R.string.shop_equipment_incense_data_flavortext_3,
-                        info = R.string.shop_equipment_incense_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_15000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_incense_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.INCENSE_3,
+                        flavor = TierFlavorText.INCENSE_3,
+                        info = TierInformation.INCENSE_3,
+                        upgradeCostData = UpgradeCost.COST_15000,
+                        upgradeLevelData = UnlockLevel.LEVEL_85,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_5,
-                            R.string.shop_equipment_attribute_duration_7_s,
-                            R.string.shop_equipment_attribute_property_ghosteffect_halts,
+                            EquipmentAttribute.RANGE_5,
+                            EquipmentAttribute.DURATION_7_S,
+                            EquipmentAttribute.PROPERTY_GHOST_EFFECT_HALTS,
                         ),
                         negativeAttributes = emptyList( /* NONE */)
                     )
                 )
             ),
             // Tripod
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_tripod,
-                icon = R.drawable.icon_sh_tripod,
-                buyCostData = R.integer.equipment_requirement_buycost_25,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.TRIPOD,
+                icon = EquipmentIcon.TRIPOD,
+                buyCostData = EquipmentBuyCost.COST_25,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_tripod_1,
-                        flavor = R.string.shop_equipment_tripod_data_flavortext_1,
-                        info = R.string.shop_equipment_tripod_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_tripod_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.TRIPOD_1,
+                        flavor = TierFlavorText.TRIPOD_1,
+                        info = TierInformation.TRIPOD_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_10,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_placeable
+                            EquipmentAttribute.PLACEABLE
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_knockdownchance_med
+                            EquipmentAttribute.KNOCKDOWN_CHANCE_MED
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_tripod_2,
-                        flavor = R.string.shop_equipment_tripod_data_flavortext_2,
-                        info = R.string.shop_equipment_tripod_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_5000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_tripod_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.TRIPOD_2,
+                        flavor = TierFlavorText.TRIPOD_2,
+                        info = TierInformation.TRIPOD_2,
+                        upgradeCostData = UpgradeCost.COST_5000,
+                        upgradeLevelData = UnlockLevel.LEVEL_34,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_placeable,
-                            R.string.shop_equipment_attribute_property_rotationcontrol,
+                            EquipmentAttribute.PLACEABLE,
+                            EquipmentAttribute.PROPERTY_ROTATION_CONTROL,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_knockdownchance_med
+                            EquipmentAttribute.KNOCKDOWN_CHANCE_MED
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_tripod_3,
-                        flavor = R.string.shop_equipment_tripod_data_flavortext_3,
-                        info = R.string.shop_equipment_tripod_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_tripod_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.TRIPOD_3,
+                        flavor = TierFlavorText.TRIPOD_3,
+                        info = TierInformation.TRIPOD_3,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_62,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_placeable,
-                            R.string.shop_equipment_attribute_property_rotationcontrol,
+                            EquipmentAttribute.PLACEABLE,
+                            EquipmentAttribute.PROPERTY_ROTATION_CONTROL,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_knockdownchance_low
+                            EquipmentAttribute.KNOCKDOWN_CHANCE_LOW
                         )
                     )
                 )
             ),
             // Motion Sensor
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_motionsensor,
-                icon = R.drawable.icon_sh_motionsensor,
-                buyCostData = R.integer.equipment_requirement_buycost_100,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.MOTION_SENSOR,
+                icon = EquipmentIcon.MOTION_SENSOR,
+                buyCostData = EquipmentBuyCost.COST_100,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_motion_1,
-                        flavor = R.string.shop_equipment_motionsensor_data_flavortext_1,
-                        info = R.string.shop_equipment_motionsensor_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_motionsensor_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.MOTION_SENSOR_1,
+                        flavor = TierFlavorText.MOTION_SENSOR_1,
+                        info = TierInformation.MOTION_SENSOR_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_5,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_sensorshape_line,
-                            R.string.shop_equipment_attribute_indicator_light,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.SENSOR_SHAPE_LINE,
+                            EquipmentAttribute.INDICATOR_LIGHT,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_motion_2,
-                        flavor = R.string.shop_equipment_motionsensor_data_flavortext_2,
-                        info = R.string.shop_equipment_motionsensor_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_2500,
-                        upgradeLevelData = R.integer.equipment_requirement_level_motionsensor_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.MOTION_SENSOR_2,
+                        flavor = TierFlavorText.MOTION_SENSOR_2,
+                        info = TierInformation.MOTION_SENSOR_2,
+                        upgradeCostData = UpgradeCost.COST_2500,
+                        upgradeLevelData = UnlockLevel.LEVEL_45,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_sensorshape_line_cone,
-                            R.string.shop_equipment_attribute_indicator_light,
-                            R.string.shop_equipment_attribute_indicator_audio,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.SENSOR_SHAPE_LINE_CONE,
+                            EquipmentAttribute.INDICATOR_LIGHT,
+                            EquipmentAttribute.INDICATOR_AUDIO,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_motion_3,
-                        flavor = R.string.shop_equipment_motionsensor_data_flavortext_3,
-                        info = R.string.shop_equipment_motionsensor_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_8000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_motionsensor_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.MOTION_SENSOR_3,
+                        flavor = TierFlavorText.MOTION_SENSOR_3,
+                        info = TierInformation.MOTION_SENSOR_3,
+                        upgradeCostData = UpgradeCost.COST_8000,
+                        upgradeLevelData = UnlockLevel.LEVEL_74,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_sensorshape_circle,
-                            R.string.shop_equipment_attribute_property_scanning,
-                            R.string.shop_equipment_attribute_indicator_light,
-                            R.string.shop_equipment_attribute_indicator_audio,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.SENSOR_SHAPE_CIRCLE,
+                            EquipmentAttribute.PROPERTY_SCANNING,
+                            EquipmentAttribute.INDICATOR_LIGHT,
+                            EquipmentAttribute.INDICATOR_AUDIO,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // Sound Sensor
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_soundsensor,
-                icon = R.drawable.icon_sh_soundsensor,
-                buyCostData = R.integer.equipment_requirement_buycost_80,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.SOUND_SENSOR,
+                icon = EquipmentIcon.SOUND_SENSOR,
+                buyCostData = EquipmentBuyCost.COST_80,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_sound_1,
-                        flavor = R.string.shop_equipment_soundsensor_data_flavortext_1,
-                        info = R.string.shop_equipment_soundsensor_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_soundsensor_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SOUND_SENSOR_1,
+                        flavor = TierFlavorText.SOUND_SENSOR_1,
+                        info = TierInformation.SOUND_SENSOR_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_11,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_5_10,
-                            R.string.shop_equipment_attribute_sensorshape_circle,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.RANGE_5_10,
+                            EquipmentAttribute.SENSOR_SHAPE_CIRCLE,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_sound_2,
-                        flavor = R.string.shop_equipment_soundsensor_data_flavortext_2,
-                        info = R.string.shop_equipment_soundsensor_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_soundsensor_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SOUND_SENSOR_2,
+                        flavor = TierFlavorText.SOUND_SENSOR_2,
+                        info = TierInformation.SOUND_SENSOR_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_32,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_5_10_15,
-                            R.string.shop_equipment_attribute_sensorshape_circle,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.RANGE_5_10_15,
+                            EquipmentAttribute.SENSOR_SHAPE_CIRCLE,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_sound_3,
-                        flavor = R.string.shop_equipment_soundsensor_data_flavortext_3,
-                        info = R.string.shop_equipment_soundsensor_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_1500,
-                        upgradeLevelData = R.integer.equipment_requirement_level_soundsensor_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SOUND_SENSOR_3,
+                        flavor = TierFlavorText.SOUND_SENSOR_3,
+                        info = TierInformation.SOUND_SENSOR_3,
+                        upgradeCostData = UpgradeCost.COST_1500,
+                        upgradeLevelData = UnlockLevel.LEVEL_58,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_5_10_15,
-                            R.string.shop_equipment_attribute_sensorshape_circle_cone_sides,
-                            R.string.shop_equipment_attribute_placeable,
+                            EquipmentAttribute.RANGE_5_10_15,
+                            EquipmentAttribute.SENSOR_SHAPE_CIRCLE_CONE_SIDES,
+                            EquipmentAttribute.PLACEABLE,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // Sanity Medication
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_sanitymedication,
-                icon = R.drawable.icon_sh_sanitymedication,
-                buyCostData = R.integer.equipment_requirement_buycost_20,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.SANITY_MEDICATION,
+                icon = EquipmentIcon.SANITY_MEDICATION,
+                buyCostData = EquipmentBuyCost.COST_20,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_sanity_1,
-                        flavor = R.string.shop_equipment_sanitymedication_data_flavortext_1,
-                        info = R.string.shop_equipment_sanitymedication_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_sanitymedication_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SANITY_MEDICATION_1,
+                        flavor = TierFlavorText.SANITY_MEDICATION_1,
+                        info = TierInformation.SANITY_MEDICATION_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_16,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_sanityrestoration_30
+                            EquipmentAttribute.SANITY_RESTORATION_30
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_sanity_2,
-                        flavor = R.string.shop_equipment_sanitymedication_data_flavortext_2,
-                        info = R.string.shop_equipment_sanitymedication_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_2000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_sanitymedication_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SANITY_MEDICATION_2,
+                        flavor = TierFlavorText.SANITY_MEDICATION_2,
+                        info = TierInformation.SANITY_MEDICATION_2,
+                        upgradeCostData = UpgradeCost.COST_2000,
+                        upgradeLevelData = UnlockLevel.LEVEL_39,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_sanityrestoration_20
+                            EquipmentAttribute.SANITY_RESTORATION_20
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_sanity_3,
-                        flavor = R.string.shop_equipment_sanitymedication_data_flavortext_3,
-                        info = R.string.shop_equipment_sanitymedication_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_5000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_sanitymedication_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SANITY_MEDICATION_3,
+                        flavor = TierFlavorText.SANITY_MEDICATION_3,
+                        info = TierInformation.SANITY_MEDICATION_3,
+                        upgradeCostData = UpgradeCost.COST_5000,
+                        upgradeLevelData = UnlockLevel.LEVEL_77,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_sanityrestoration_10,
-                            R.string.shop_equipment_attribute_property_sprintboost,
+                            EquipmentAttribute.SANITY_RESTORATION_10,
+                            EquipmentAttribute.PROPERTY_SPRINT_BOOST,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_consumable
+                            EquipmentAttribute.PROPERTY_CONSUMABLE
                         )
                     )
                 )
             ),
             // Ghost Writing Book
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_ghostwritingbook,
-                icon = R.drawable.icon_sh_ghostwritingbook,
-                buyCostData = R.integer.equipment_requirement_buycost_40,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.GHOST_WRITING_BOOK,
+                icon = EquipmentIcon.GHOST_WRITING_BOOK,
+                buyCostData = EquipmentBuyCost.COST_40,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_writing_1,
-                        flavor = R.string.shop_equipment_ghostwritingbook_data_flavortext_1,
-                        info = R.string.shop_equipment_ghostwritingbook_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_book_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.GHOST_WRITING_BOOK_1,
+                        flavor = TierFlavorText.GHOST_WRITING_BOOK_1,
+                        info = TierInformation.GHOST_WRITING_BOOK_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_3
+                            EquipmentAttribute.RANGE_3
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_interactionrate_low
+                            EquipmentAttribute.INTERACTION_RATE_LOW
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_writing_2,
-                        flavor = R.string.shop_equipment_ghostwritingbook_data_flavortext_2,
-                        info = R.string.shop_equipment_ghostwritingbook_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_book_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.GHOST_WRITING_BOOK_2,
+                        flavor = TierFlavorText.GHOST_WRITING_BOOK_2,
+                        info = TierInformation.GHOST_WRITING_BOOK_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_23,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_4,
-                            R.string.shop_equipment_attribute_interactionrate_med,
+                            EquipmentAttribute.RANGE_4,
+                            EquipmentAttribute.INTERACTION_RATE_MED,
                         ),
                         negativeAttributes = emptyList(/* NONE */)
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_writing_3,
-                        flavor = R.string.shop_equipment_ghostwritingbook_data_flavortext_3,
-                        info = R.string.shop_equipment_ghostwritingbook_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_book_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.GHOST_WRITING_BOOK_3,
+                        flavor = TierFlavorText.GHOST_WRITING_BOOK_3,
+                        info = TierInformation.GHOST_WRITING_BOOK_3,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_63,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_5,
-                            R.string.shop_equipment_attribute_interactionrate_high,
+                            EquipmentAttribute.RANGE_5,
+                            EquipmentAttribute.INTERACTION_RATE_HIGH,
                         ),
                         negativeAttributes = emptyList(/* NONE */)
                     )
                 )
             ),
             // Parabolic Microphone
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_parabolicmicrophone,
-                icon = R.drawable.icon_sh_parabolicmicrophone,
-                buyCostData = R.integer.equipment_requirement_buycost_50,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.PARABOLIC_MICROPHONE,
+                icon = EquipmentIcon.PARABOLIC_MICROPHONE,
+                buyCostData = EquipmentBuyCost.COST_50,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_para_1,
-                        flavor = R.string.shop_equipment_parabolicmicrophone_data_flavortext_1,
-                        info = R.string.shop_equipment_parabolicmicrophone_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_parabolicmicrophone_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.PARABOLIC_MICROPHONE_1,
+                        flavor = TierFlavorText.PARABOLIC_MICROPHONE_1,
+                        info = TierInformation.PARABOLIC_MICROPHONE_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_7,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_20
+                            EquipmentAttribute.RANGE_20
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_para_2,
-                        flavor = R.string.shop_equipment_parabolicmicrophone_data_flavortext_2,
-                        info = R.string.shop_equipment_parabolicmicrophone_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_3000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_parabolicmicrophone_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.PARABOLIC_MICROPHONE_2,
+                        flavor = TierFlavorText.PARABOLIC_MICROPHONE_2,
+                        info = TierInformation.PARABOLIC_MICROPHONE_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_31,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_30,
-                            R.string.shop_equipment_attribute_property_displayscreen,
+                            EquipmentAttribute.RANGE_30,
+                            EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_para_3,
-                        flavor = R.string.shop_equipment_parabolicmicrophone_data_flavortext_3,
-                        info = R.string.shop_equipment_parabolicmicrophone_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_5000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_parabolicmicrophone_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.PARABOLIC_MICROPHONE_3,
+                        flavor = TierFlavorText.PARABOLIC_MICROPHONE_3,
+                        info = TierInformation.PARABOLIC_MICROPHONE_3,
+                        upgradeCostData = UpgradeCost.COST_5000,
+                        upgradeLevelData = UnlockLevel.LEVEL_72,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_range_30,
-                            R.string.shop_equipment_attribute_property_displayscreen,
-                            R.string.shop_equipment_attribute_indicator_distance,
-                            R.string.shop_equipment_attribute_indicator_directional,
+                            EquipmentAttribute.RANGE_30,
+                            EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
+                            EquipmentAttribute.INDICATOR_DISTANCE,
+                            EquipmentAttribute.INDICATOR_DIRECTIONAL,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     )
                 )
             ),
             // Headgear
-            CodexEquipmentGroupRes(
-                name = R.string.equipment_info_name_headgear,
-                icon = R.drawable.icon_sh_headgear,
-                buyCostData = R.integer.equipment_requirement_buycost_60,
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.HEAD_GEAR,
+                icon = EquipmentIcon.HEAD_GEAR,
+                buyCostData = EquipmentBuyCost.COST_60,
                 items = listOf(
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_headgear_1,
-                        flavor = R.string.shop_equipment_headgear_data_flavortext_1,
-                        info = R.string.shop_equipment_headgear_data_info_1,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_0,
-                        upgradeLevelData = R.integer.equipment_requirement_level_headgear_1,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.HEAD_GEAR_1,
+                        flavor = TierFlavorText.HEAD_GEAR_1,
+                        info = TierInformation.HEAD_GEAR_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_13,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_headslot,
-                            R.string.shop_equipment_attribute_imagequality_med,
-                            R.string.shop_equipment_attribute_interference_med,
+                            EquipmentAttribute.PROPERTY_HEAD_SLOT,
+                            EquipmentAttribute.IMAGE_QUALITY_MED,
+                            EquipmentAttribute.INTERFERENCE_MED,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_headgear_2,
-                        flavor = R.string.shop_equipment_headgear_data_flavortext_2,
-                        info = R.string.shop_equipment_headgear_data_info_2,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_10000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_headgear_2,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.HEAD_GEAR_2,
+                        flavor = TierFlavorText.HEAD_GEAR_2,
+                        info = TierInformation.HEAD_GEAR_2,
+                        upgradeCostData = UpgradeCost.COST_10000,
+                        upgradeLevelData = UnlockLevel.LEVEL_49,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_headslot,
-                            R.string.shop_equipment_attribute_intensity_low,
-                            R.string.shop_equipment_attribute_spotight_narrow,
+                            EquipmentAttribute.PROPERTY_HEAD_SLOT,
+                            EquipmentAttribute.INTENSITY_LOW,
+                            EquipmentAttribute.SPOTLIGHT_NARROW,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_electronic
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
                         )
                     ),
-                    CodexEquipmentGroupItemRes(
-                        image = R.drawable.icon_shop_headgear_3,
-                        flavor = R.string.shop_equipment_headgear_data_flavortext_3,
-                        info = R.string.shop_equipment_headgear_data_info_3,
-                        upgradeCostData = R.integer.equipment_requirement_upgradecost_10000,
-                        upgradeLevelData = R.integer.equipment_requirement_level_headgear_3,
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.HEAD_GEAR_3,
+                        flavor = TierFlavorText.HEAD_GEAR_3,
+                        info = TierInformation.HEAD_GEAR_3,
+                        upgradeCostData = UpgradeCost.COST_10000,
+                        upgradeLevelData = UnlockLevel.LEVEL_82,
                         positiveAttributes = listOf(
-                            R.string.shop_equipment_attribute_property_headslot,
-                            R.string.shop_equipment_attribute_property_nightvision,
+                            EquipmentAttribute.PROPERTY_HEAD_SLOT,
+                            EquipmentAttribute.PROPERTY_NIGHT_VISION,
                         ),
                         negativeAttributes = listOf(
-                            R.string.shop_equipment_attribute_interference_med,
-                            R.string.shop_equipment_attribute_property_electronic,
+                            EquipmentAttribute.INTERFERENCE_MED,
+                            EquipmentAttribute.PROPERTY_ELECTRONIC,
                         )
                     )
                 )
@@ -1050,31 +1055,31 @@ class CodexEquipmentLocalDataSource(
 
     }
 
-    private data class CodexEquipmentGroupRes(
-        @StringRes val name: Int,
-        @DrawableRes val icon: Int,
-        @IntegerRes var buyCostData: Int,
-        val items: List<CodexEquipmentGroupItemRes>
+    private data class CodexEquipmentGroupResourceDto(
+        val name: EquipmentTitles,
+        val icon: EquipmentIcon,
+        val buyCostData: EquipmentBuyCost,
+        val items: List<CodexEquipmentGroupItemResourceDto>
     )
 
-    private data class CodexEquipmentGroupItemRes(
-        @DrawableRes val image: Int,
-        @StringRes val flavor: Int,
-        @StringRes val info: Int,
-        @IntegerRes var upgradeCostData: Int,
-        @IntegerRes var upgradeLevelData: Int,
-        @StringRes val positiveAttributes: List<Int>,
-        @StringRes val negativeAttributes: List<Int>
+    private data class CodexEquipmentGroupItemResourceDto(
+        val image: TierImage,
+        val flavor: TierFlavorText,
+        val info: TierInformation,
+        var upgradeCostData: UpgradeCost,
+        var upgradeLevelData: CodexEquipmentResources.UnlockLevel,
+        val positiveAttributes: List<EquipmentAttribute>,
+        val negativeAttributes: List<EquipmentAttribute>
     )
 
-    private fun CodexEquipmentGroupRes.toLocal() = CodexEquipmentGroupDto(
+    private fun CodexEquipmentGroupResourceDto.toLocal() = CodexEquipmentGroupDto(
         name = name,
         icon = icon,
         buyCostData = buyCostData,
         items = items.toLocal()
     )
 
-    private fun CodexEquipmentGroupItemRes.toLocal() = CodexEquipmentGroupItemDto(
+    private fun CodexEquipmentGroupItemResourceDto.toLocal() = CodexEquipmentGroupItemDto(
         image = image,
         flavor = flavor,
         info = info,
@@ -1085,12 +1090,12 @@ class CodexEquipmentLocalDataSource(
     )
 
     @JvmName("CodexEquipmentGroupResListToLocalCodexEquipmentGroupRes")
-    private fun List<CodexEquipmentGroupRes>.toLocal() = map { dto ->
+    private fun List<CodexEquipmentGroupResourceDto>.toLocal() = map { dto ->
         dto.toLocal()
     }
 
     @JvmName("CodexEquipmentGroupItemResListToLocalCodexEquipmentGroupItemRes")
-    private fun List<CodexEquipmentGroupItemRes>.toLocal() = map { dto ->
+    private fun List<CodexEquipmentGroupItemResourceDto>.toLocal() = map { dto ->
         dto.toLocal()
     }
 
