@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.mapper
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper
 
 class DifficultyResources {
 

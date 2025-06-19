@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
 
 data class DifficultyModel(
     val type: DifficultyType,
