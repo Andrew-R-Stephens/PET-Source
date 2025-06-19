@@ -1,21 +1,17 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local
 
 import android.content.Context
-import androidx.annotation.DrawableRes
-import androidx.annotation.IntegerRes
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.EvidenceDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.EvidenceTierDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceDescription
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceAnimation
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceCost
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceRequiredLevel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierDescription
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierAnimation
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierRequiredLevel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceAnimation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceCost
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierRequiredLevel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 
 class EvidenceLocalDataSource(
@@ -26,176 +22,176 @@ class EvidenceLocalDataSource(
         get() = listOf(
             EvidenceResourceDto(
                 id = R.string.evidence_id_dots,
-                name = R.string.evidence_type_dots,
-                icon = R.drawable.ic_ev_dots,
-                buyCost = R.integer.equipment_requirement_buycost_65,
-                defaultAnimation = R.drawable.example_dots_0,
-                defaultDescription = R.string.evidence_info_overview_dots,
+                name = EvidenceTitle.DOTS,
+                icon = EvidenceIcon.DOTS,
+                buyCost = EvidenceCost.DOTS,
+                defaultAnimation = EvidenceAnimation.DOTS,
+                defaultDescription = EvidenceDescription.DOTS,
                 tiers = listOf(
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_dots_data_info_1,
-                        animation = R.drawable.anim_dots_1,
-                        levelRequirement = R.integer.equipment_requirement_level_dots_1
+                        description = EvidenceTierDescription.DOTS_1,
+                        animation = EvidenceTierAnimation.DOTS_1,
+                        levelRequirement = EvidenceTierRequiredLevel.DOTS_1
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_dots_data_info_2,
-                        animation = R.drawable.anim_dots_2,
-                        levelRequirement = R.integer.equipment_requirement_level_dots_2
+                        description = EvidenceTierDescription.DOTS_2,
+                        animation = EvidenceTierAnimation.DOTS_2,
+                        levelRequirement = EvidenceTierRequiredLevel.DOTS_2
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_dots_data_info_3,
-                        animation = R.drawable.anim_dots_3,
-                        levelRequirement = R.integer.equipment_requirement_level_dots_3
+                        description = EvidenceTierDescription.DOTS_3,
+                        animation = EvidenceTierAnimation.DOTS_3,
+                        levelRequirement = EvidenceTierRequiredLevel.DOTS_3
                     ),
                 )
             ),
             EvidenceResourceDto(
                 id = R.string.evidence_id_emf,
-                name = R.string.evidence_type_emf,
-                icon = R.drawable.ic_ev_emf,
-                buyCost = R.integer.equipment_requirement_buycost_45,
-                defaultAnimation = R.drawable.example_emf5_0,
-                defaultDescription = R.string.evidence_info_overview_emf,
+                name = EvidenceTitle.EMF_5,
+                icon = EvidenceIcon.EMF_5,
+                buyCost = EvidenceCost.EMF_5,
+                defaultAnimation = EvidenceAnimation.EMF_5,
+                defaultDescription = EvidenceDescription.EMF_5,
                 tiers = listOf(
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_emf_data_info_1,
-                        animation = R.drawable.anim_emf_1,
-                        levelRequirement = R.integer.equipment_requirement_level_emf_1
+                        description = EvidenceTierDescription.EMF_5_1,
+                        animation = EvidenceTierAnimation.EMF_5_1,
+                        levelRequirement = EvidenceTierRequiredLevel.EMF_5_1
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_emf_data_info_2,
-                        animation = R.drawable.anim_emf_2,
-                        levelRequirement = R.integer.equipment_requirement_level_emf_2
+                        description = EvidenceTierDescription.EMF_5_2,
+                        animation = EvidenceTierAnimation.EMF_5_2,
+                        levelRequirement = EvidenceTierRequiredLevel.EMF_5_2
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_emf_data_info_3,
-                        animation = R.drawable.anim_emf_3,
-                        levelRequirement = R.integer.equipment_requirement_level_emf_3
+                        description = EvidenceTierDescription.EMF_5_3,
+                        animation = EvidenceTierAnimation.EMF_5_3,
+                        levelRequirement = EvidenceTierRequiredLevel.EMF_5_3
                     ),
                 )
             ),
             EvidenceResourceDto(
                 id = R.string.evidence_id_ultraviolet,
-                name = R.string.evidence_type_ultraviolet,
-                icon = R.drawable.ic_ev_uv,
-                buyCost = R.integer.equipment_requirement_buycost_20,
-                defaultAnimation = R.drawable.example_fingerprints_normal_cropped_0,
-                defaultDescription = R.string.evidence_info_overview_ultraviolet,
+                name = EvidenceTitle.ULTRAVIOLET_LIGHT,
+                icon = EvidenceIcon.ULTRAVIOLET_LIGHT,
+                buyCost = EvidenceCost.ULTRAVIOLET_LIGHT,
+                defaultAnimation = EvidenceAnimation.ULTRAVIOLET_LIGHT,
+                defaultDescription = EvidenceDescription.ULTRAVIOLET_LIGHT,
                 tiers = listOf(
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_uvlight_data_info_1,
-                        animation = R.drawable.anim_uv_1,
-                        levelRequirement = R.integer.equipment_requirement_level_ultraviolet_1
+                        description = EvidenceTierDescription.ULTRAVIOLET_LIGHT_1,
+                        animation = EvidenceTierAnimation.ULTRAVIOLET_LIGHT_1,
+                        levelRequirement = EvidenceTierRequiredLevel.ULTRAVIOLET_LIGHT_1
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_uvlight_data_info_2,
-                        animation = R.drawable.anim_uv_2,
-                        levelRequirement = R.integer.equipment_requirement_level_ultraviolet_2
+                        description = EvidenceTierDescription.ULTRAVIOLET_LIGHT_2,
+                        animation = EvidenceTierAnimation.ULTRAVIOLET_LIGHT_2,
+                        levelRequirement = EvidenceTierRequiredLevel.ULTRAVIOLET_LIGHT_2
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_uvlight_data_info_3,
-                        animation = R.drawable.anim_uv_3,
-                        levelRequirement = R.integer.equipment_requirement_level_ultraviolet_3
+                        description = EvidenceTierDescription.ULTRAVIOLET_LIGHT_3,
+                        animation = EvidenceTierAnimation.ULTRAVIOLET_LIGHT_3,
+                        levelRequirement = EvidenceTierRequiredLevel.ULTRAVIOLET_LIGHT_3
                     ),
                 )
             ),
             EvidenceResourceDto(
                 id = R.string.evidence_id_temperatures,
-                name = R.string.evidence_type_temperatures,
-                icon = R.drawable.ic_ev_freezing,
-                buyCost = R.integer.equipment_requirement_buycost_30,
-                defaultAnimation = R.drawable.example_thermometer_freezing_cropped_0,
-                defaultDescription = R.string.evidence_info_overview_thermometer,
+                name = EvidenceTitle.FREEZING_TEMPERATURE,
+                icon = EvidenceIcon.FREEZING_TEMPERATURE,
+                buyCost = EvidenceCost.FREEZING_TEMPERATURE,
+                defaultAnimation = EvidenceAnimation.FREEZING_TEMPERATURE,
+                defaultDescription = EvidenceDescription.FREEZING_TEMPERATURE,
                 tiers = listOf(
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_thermometer_data_info_1,
-                        animation = R.drawable.anim_thermo_1,
-                        levelRequirement = R.integer.equipment_requirement_level_thermometer_1
+                        description = EvidenceTierDescription.FREEZING_TEMPERATURE_1,
+                        animation = EvidenceTierAnimation.FREEZING_TEMPERATURE_1,
+                        levelRequirement = EvidenceTierRequiredLevel.FREEZING_TEMPERATURE_1
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_thermometer_data_info_2,
-                        animation = R.drawable.anim_thermo_2,
-                        levelRequirement = R.integer.equipment_requirement_level_thermometer_2
+                        description = EvidenceTierDescription.FREEZING_TEMPERATURE_2,
+                        animation = EvidenceTierAnimation.FREEZING_TEMPERATURE_2,
+                        levelRequirement = EvidenceTierRequiredLevel.FREEZING_TEMPERATURE_2
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_thermometer_data_info_3,
-                        animation = R.drawable.anim_thermo_3,
-                        levelRequirement = R.integer.equipment_requirement_level_thermometer_3
+                        description = EvidenceTierDescription.FREEZING_TEMPERATURE_3,
+                        animation = EvidenceTierAnimation.FREEZING_TEMPERATURE_3,
+                        levelRequirement = EvidenceTierRequiredLevel.FREEZING_TEMPERATURE_3
                     ),
                 )
             ),
             EvidenceResourceDto(
                 id = R.string.evidence_id_orbs,
-                name = R.string.evidence_type_orbs,
-                icon = R.drawable.ic_ev_orbs,
-                buyCost = R.integer.equipment_requirement_buycost_50,
-                defaultAnimation = R.drawable.example_ghost_orbs_0,
-                defaultDescription = R.string.evidence_info_overview_vcam,
+                name = EvidenceTitle.GHOST_ORBS,
+                icon = EvidenceIcon.GHOST_ORBS,
+                buyCost = EvidenceCost.GHOST_ORBS,
+                defaultAnimation = EvidenceAnimation.GHOST_ORBS,
+                defaultDescription = EvidenceDescription.GHOST_ORBS,
                 tiers = listOf(
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_videocamera_data_info_1,
-                        animation = R.drawable.anim_orbs_1,
-                        levelRequirement = R.integer.equipment_requirement_level_vcam_1
+                        description = EvidenceTierDescription.GHOST_ORBS_1,
+                        animation = EvidenceTierAnimation.GHOST_ORBS_1,
+                        levelRequirement = EvidenceTierRequiredLevel.GHOST_ORBS_1
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_videocamera_data_info_2,
-                        animation = R.drawable.anim_orbs_2,
-                        levelRequirement = R.integer.equipment_requirement_level_vcam_2
+                        description = EvidenceTierDescription.GHOST_ORBS_2,
+                        animation = EvidenceTierAnimation.GHOST_ORBS_2,
+                        levelRequirement = EvidenceTierRequiredLevel.GHOST_ORBS_2
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_videocamera_data_info_3,
-                        animation = R.drawable.anim_orbs_3,
-                        levelRequirement = R.integer.equipment_requirement_level_vcam_3
+                        description = EvidenceTierDescription.GHOST_ORBS_3,
+                        animation = EvidenceTierAnimation.GHOST_ORBS_3,
+                        levelRequirement = EvidenceTierRequiredLevel.GHOST_ORBS_3
                     ),
                 )
             ),
             EvidenceResourceDto(
                 id = R.string.evidence_id_book,
-                name = R.string.evidence_type_book,
-                icon = R.drawable.ic_ev_writing,
-                buyCost = R.integer.equipment_requirement_buycost_40,
-                defaultAnimation = R.drawable.example_ghost_writing_cropped_0,
-                defaultDescription = R.string.evidence_info_overview_book,
+                name = EvidenceTitle.GHOST_WRITING,
+                icon = EvidenceIcon.GHOST_WRITING,
+                buyCost = EvidenceCost.GHOST_WRITING,
+                defaultAnimation = EvidenceAnimation.GHOST_WRITING,
+                defaultDescription = EvidenceDescription.GHOST_WRITING,
                 tiers = listOf(
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_ghostwritingbook_data_info_1,
-                        animation = R.drawable.anim_writing_1,
-                        levelRequirement = R.integer.equipment_requirement_level_book_1
+                        description = EvidenceTierDescription.GHOST_WRITING_1,
+                        animation = EvidenceTierAnimation.GHOST_WRITING_1,
+                        levelRequirement = EvidenceTierRequiredLevel.GHOST_WRITING_1
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_ghostwritingbook_data_info_2,
-                        animation = R.drawable.anim_writing_2,
-                        levelRequirement = R.integer.equipment_requirement_level_book_2
+                        description = EvidenceTierDescription.GHOST_WRITING_2,
+                        animation = EvidenceTierAnimation.GHOST_WRITING_2,
+                        levelRequirement = EvidenceTierRequiredLevel.GHOST_WRITING_2
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_ghostwritingbook_data_info_3,
-                        animation = R.drawable.anim_writing_3,
-                        levelRequirement = R.integer.equipment_requirement_level_book_3
+                        description = EvidenceTierDescription.GHOST_WRITING_3,
+                        animation = EvidenceTierAnimation.GHOST_WRITING_3,
+                        levelRequirement = EvidenceTierRequiredLevel.GHOST_WRITING_3
                     ),
                 )
             ),
             EvidenceResourceDto(
                 id = R.string.evidence_id_box,
-                name = R.string.evidence_type_box,
-                icon = R.drawable.ic_ev_spiritbox,
-                buyCost = R.integer.equipment_requirement_buycost_50,
-                defaultAnimation = R.drawable.example_spirit_box_cropped_0,
-                defaultDescription = R.string.evidence_info_overview_sbox,
+                name = EvidenceTitle.SPIRIT_BOX,
+                icon = EvidenceIcon.SPIRIT_BOX,
+                buyCost = EvidenceCost.SPIRIT_BOX,
+                defaultAnimation = EvidenceAnimation.SPIRIT_BOX,
+                defaultDescription = EvidenceDescription.SPIRIT_BOX,
                 tiers = listOf(
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_spiritbox_data_info_1,
-                        animation = R.drawable.example_spirit_box_cropped_0,
-                        levelRequirement = R.integer.equipment_requirement_level_box_1
+                        description = EvidenceTierDescription.SPIRIT_BOX_1,
+                        animation = EvidenceTierAnimation.SPIRIT_BOX_1,
+                        levelRequirement = EvidenceTierRequiredLevel.SPIRIT_BOX_1
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_spiritbox_data_info_2,
-                        animation = R.drawable.example_spirit_box_cropped_0,
-                        levelRequirement = R.integer.equipment_requirement_level_box_2
+                        description = EvidenceTierDescription.SPIRIT_BOX_2,
+                        animation = EvidenceTierAnimation.SPIRIT_BOX_2,
+                        levelRequirement = EvidenceTierRequiredLevel.SPIRIT_BOX_2
                     ),
                     EvidenceResourceTierDto(
-                        description = R.string.shop_equipment_spiritbox_data_info_3,
-                        animation = R.drawable.example_spirit_box_cropped_0,
-                        levelRequirement = R.integer.equipment_requirement_level_box_3
+                        description = EvidenceTierDescription.SPIRIT_BOX_3,
+                        animation = EvidenceTierAnimation.SPIRIT_BOX_3,
+                        levelRequirement = EvidenceTierRequiredLevel.SPIRIT_BOX_3
                     ),
                 )
             ),

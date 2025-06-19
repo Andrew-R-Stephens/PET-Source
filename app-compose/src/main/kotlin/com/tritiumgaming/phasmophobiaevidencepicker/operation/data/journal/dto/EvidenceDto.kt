@@ -1,14 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.IntegerRes
-import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceCost
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierAnimation
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierDescription
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.EvidenceResources.EvidenceTierRequiredLevel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceCost
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierRequiredLevel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 
 data class EvidenceDto(
