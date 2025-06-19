@@ -10,13 +10,12 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class NewsletterInbox(
-    val id: String?,
-    val title: NewsletterTitle?,
-    val url: String?,
-    val icon: NewsletterIcon?,
-    channel: NewsletterChannel? = null
+    val id: String? = "",
+    val title: NewsletterTitle = NewsletterTitle.GENERAL_NEWS,
+    val url: String? = "",
+    val icon: NewsletterIcon = NewsletterIcon.GENERAL_NEWS,
+    val channel: NewsletterChannel = NewsletterChannel()
 ) {
-    val channel: NewsletterChannel = channel ?: NewsletterChannel()
 
     private val _inboxNotificationState = MutableStateFlow(true)
     val inboxNotificationState = _inboxNotificationState.asStateFlow()
@@ -42,6 +41,8 @@ class NewsletterInbox(
 
     fun compareDates(): Boolean {
 
+        channel ?: return false
+
         channel.messages.value.forEach { message ->
             if(compareDate(message.date) > 0L) {
                 return true
@@ -52,6 +53,8 @@ class NewsletterInbox(
     }
 
     override fun toString(): String {
+
+        channel ?: return "No channels in Inbox"
 
         val t = StringBuilder()
 

@@ -13,4 +13,4 @@ data class GhostPopupRecord(
     val strengthData: GhostStrength,
     val weaknessData: GhostWeakness,
     val huntData: GhostHuntInfo,
-): PopupRecord()
+)
