@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source
 
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreInterface
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore.LanguagePreferences
 
-interface LanguageDatastore: DatastoreInterface<LanguagePreferences> {
+interface LanguageDatastore: DatastoreDataSource<LanguagePreferences> {
 
     suspend fun saveCurrentLanguageCode(languageCode: String)
     fun getCurrentLanguageCode(): String

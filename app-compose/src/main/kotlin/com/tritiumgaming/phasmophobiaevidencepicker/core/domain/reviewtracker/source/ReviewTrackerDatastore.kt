@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source
 
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreInterface
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
 
-interface ReviewTrackerDatastore: DatastoreInterface<ReviewTrackerPreferences> {
+interface ReviewTrackerDatastore: DatastoreDataSource<ReviewTrackerPreferences> {
 
     suspend fun saveWasRequestedState(wasRequested: Boolean)
     fun getWasRequestedState(): Boolean

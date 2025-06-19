@@ -4,7 +4,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.liveData
 import kotlinx.coroutines.flow.Flow
 
-interface DatastoreInterface<T> {
+interface DatastoreDataSource<T> {
 
     val flow: Flow<T>
 
