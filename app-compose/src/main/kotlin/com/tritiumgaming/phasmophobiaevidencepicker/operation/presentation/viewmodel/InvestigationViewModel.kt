@@ -40,6 +40,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.SanityRunnable
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils.millisToTime
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -346,7 +347,7 @@ class InvestigationViewModel(
     fun getDifficultyNameAt(
         index: Int
     ): Int {
-        return difficulties[index].name
+        return difficulties[index].name.toStringResource()
     }
 
     private val currentDifficultyTime: Long
@@ -692,19 +693,23 @@ class InvestigationViewModel(
     }
 
     private val _currentMapName = MutableStateFlow<Int>(
-        getSimpleMapNameUseCase(currentMapIndex.value)
+        getSimpleMapNameUseCase(currentMapIndex.value)?.toStringResource() ?: 0
     )
     val currentMapName = _currentMapName.asStateFlow()
     private fun setCurrentMapName() {
-        _currentMapName.update { getSimpleMapNameUseCase(currentMapIndex.value) }
+        _currentMapName.update {
+            getSimpleMapNameUseCase(currentMapIndex.value)?.toStringResource() ?: 0
+        }
     }
 
     private val _currentMapSize = MutableStateFlow<Int>(
-        getSimpleMapSizeUseCase(currentMapIndex.value)
+        getSimpleMapSizeUseCase(currentMapIndex.value)?.toStringResource() ?: 0
     )
     private val currentMapSize = _currentMapSize.asStateFlow()
     private fun setCurrentMapSize() {
-        _currentMapSize.update { getSimpleMapSizeUseCase(currentMapIndex.value) }
+        _currentMapSize.update {
+            getSimpleMapSizeUseCase(currentMapIndex.value)?.toStringResource() ?: 0
+        }
     }
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation

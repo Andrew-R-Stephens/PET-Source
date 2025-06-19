@@ -11,11 +11,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApp
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.SimpleWorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 import kotlinx.coroutines.launch
 
 /**
@@ -34,7 +36,7 @@ class MapsViewModel(
 
     var imageDisplayThread: Thread? = null
 
-    @DrawableRes val mapThumbnails: List<Int> = fetchMapThumbnailsUseCase()
+    val mapThumbnails: List<MapThumbnail> = fetchMapThumbnailsUseCase()
     private val allMaps = fetchSimpleMapsUseCase()
 
     var currentComplexMap: ComplexWorldMap? = null
