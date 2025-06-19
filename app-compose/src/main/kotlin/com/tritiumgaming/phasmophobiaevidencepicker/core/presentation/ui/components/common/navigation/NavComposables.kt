@@ -90,8 +90,8 @@ fun ToggleButton(
 
 @Composable
 fun NavigationHeaderComposable(
-    modifier: Modifier = Modifier,
     params: NavHeaderComposableParams = NavHeaderComposableParams(),
+    modifier: Modifier = Modifier,
 ) {
 
     val centerTitle =
