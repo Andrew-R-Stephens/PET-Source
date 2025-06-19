@@ -2,6 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -10,18 +12,13 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class NewsletterInbox(
-    id: String? = null,
-    @StringRes title: Int? = null,
-    url: String? = null,
-    @DrawableRes icon: Int? = null,
+    val id: String?,
+    val title: NewsletterTitle?,
+    val url: String?,
+    val icon: NewsletterIcon?,
     channel: NewsletterChannel? = null
 ) {
-    val id: String = id ?: ""
-    @StringRes val title: Int = title ?: 0
-    val url: String = url ?: ""
-    @DrawableRes val icon: Int = icon ?: 0
     val channel: NewsletterChannel = channel ?: NewsletterChannel()
-
 
     private val _inboxNotificationState = MutableStateFlow(true)
     val inboxNotificationState = _inboxNotificationState.asStateFlow()

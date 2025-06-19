@@ -5,6 +5,9 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local.LocalNewsletterInboxDto
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterLocalDataSource
 
 class NewsletterLocalDataSource(
@@ -16,53 +19,45 @@ class NewsletterLocalDataSource(
             // General Inbox
             NewsletterInboxResourceDto(
                 id = R.string.newsletter_inbox_id_general,
-                title = R.string.newsletter_inbox_title_general,
+                title = NewsletterTitle.GENERAL_NEWS,
                 url = R.string.preference_general_news_link,
-                icon = R.drawable.ic_news
+                icon = NewsletterIcon.GENERAL_NEWS
             ),
             // PET Inbox
             NewsletterInboxResourceDto(
                 id = R.string.newsletter_inbox_id_pet,
-                title = R.string.newsletter_inbox_title_pet,
+                title = NewsletterTitle.PET_CHANGELOG,
                 url = R.string.preference_pet_changelog_link,
-                icon = R.drawable.icon_logo_app
+                icon = NewsletterIcon.PET_CHANGELOG
             ),
             // Official Phasmophobia Inbox
             NewsletterInboxResourceDto(
                 id = R.string.newsletter_inbox_id_phasmophobia,
-                title = R.string.newsletter_inbox_title_phasmophobia,
+                title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
                 url = R.string.preference_phasmophobia_changelog_link,
-                icon = R.drawable.icon_logo_phasmophobia
+                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
             )
         )
 
-    override fun fetchInboxes(): Result<List<LocalNewsletterInboxDto>> {
+    override fun fetchInboxes(): Result<List<LocalNewsletterInboxDto>> =
+       Result.success(inboxResourcesDto.toLocalNewsletterInboxDto())
 
-        val resources = applicationContext.resources
-
-        val inboxes: MutableList<LocalNewsletterInboxDto> = mutableListOf()
-
-        inboxResourcesDto.forEach { resDto ->
-
-            inboxes.add(
-               LocalNewsletterInboxDto(
-                   id = resources.getString(resDto.id),
-                   title = resDto.title,
-                   url = resources.getString(resDto.url),
-                   icon = resDto.icon
-               )
-            )
-
-        }
-
-        return Result.success(inboxes)
+    private fun List<NewsletterInboxResourceDto>.toLocalNewsletterInboxDto() = map {
+        it.toLocalNewsletterInboxDto()
     }
 
-}
+    private fun NewsletterInboxResourceDto.toLocalNewsletterInboxDto() = LocalNewsletterInboxDto(
+        id = applicationContext.resources.getString(id),
+        title = title,
+        url = applicationContext.resources.getString(url),
+        icon = icon
+    )
 
-private data class NewsletterInboxResourceDto(
-    @StringRes val id: Int,
-    @StringRes val title: Int,
-    @StringRes val url: Int,
-    @DrawableRes val icon: Int
-)
+    private data class NewsletterInboxResourceDto(
+        @StringRes val id: Int,
+        val title: NewsletterTitle,
+        @StringRes val url: Int,
+        val icon: NewsletterIcon
+    )
+
+}

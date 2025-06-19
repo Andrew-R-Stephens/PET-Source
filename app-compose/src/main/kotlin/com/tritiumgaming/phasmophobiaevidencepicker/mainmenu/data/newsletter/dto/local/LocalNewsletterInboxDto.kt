@@ -3,12 +3,14 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dt
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
 
 data class LocalNewsletterInboxDto(
     val id: String,
-    @StringRes val title: Int,
+    val title: NewsletterTitle,
     val url: String,
-    @DrawableRes val icon: Int
+    val icon: NewsletterIcon,
 )
 
 fun LocalNewsletterInboxDto.toExternal(): FlattenedNewsletterInboxDto =
