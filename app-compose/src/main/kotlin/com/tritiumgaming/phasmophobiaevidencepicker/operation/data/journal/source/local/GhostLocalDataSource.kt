@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local
 
 import android.content.Context
+import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostDescription
@@ -18,11 +19,11 @@ class GhostLocalDataSource(
         get() = listOf(
             GhostResourceDto(
                 id = R.string.ghost_id_banshee,
-                name = R.string.ghost_type_banshee,
-                info = R.string.ghost_info_banshee,
-                strengthData = R.string.ghost_strengths_banshee,
-                weaknessData = R.string.ghost_weaknesses_banshee,
-                huntData = R.string.ghost_huntingdata_banshee,
+                name = GhostTitle.BANSHEE,
+                info = GhostDescription.BANSHEE,
+                strengthData = GhostStrength.BANSHEE,
+                weaknessData = GhostWeakness.BANSHEE,
+                huntData = GhostHuntInfo.BANSHEE,
                 normalEvidence = listOf(
                     R.string.evidence_id_dots,
                     R.string.evidence_id_ultraviolet,
@@ -32,11 +33,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_demon,
-                name = R.string.ghost_type_demon,
-                info = R.string.ghost_info_demon,
-                strengthData = R.string.ghost_strengths_demon,
-                weaknessData = R.string.ghost_weaknesses_demon,
-                huntData = R.string.ghost_huntingdata_demon,
+                name = GhostTitle.DEMON,
+                info = GhostDescription.DEMON,
+                strengthData = GhostStrength.DEMON,
+                weaknessData = GhostWeakness.DEMON,
+                huntData = GhostHuntInfo.DEMON,
                 normalEvidence = listOf(
                     R.string.evidence_id_ultraviolet,
                     R.string.evidence_id_temperatures,
@@ -46,11 +47,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_deogen,
-                name = R.string.ghost_type_deogen,
-                info = R.string.ghost_info_deogen,
-                strengthData = R.string.ghost_strengths_deogen,
-                weaknessData = R.string.ghost_weaknesses_deogen,
-                huntData = R.string.ghost_huntingdata_deogen,
+                name = GhostTitle.DEOGEN,
+                info = GhostDescription.DEOGEN,
+                strengthData = GhostStrength.DEOGEN,
+                weaknessData = GhostWeakness.DEOGEN,
+                huntData = GhostHuntInfo.DEOGEN,
                 normalEvidence = listOf(
                     R.string.evidence_id_book,
                     R.string.evidence_id_box,
@@ -62,11 +63,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_goryo,
-                name = R.string.ghost_type_goryo,
-                info = R.string.ghost_info_goryo,
-                strengthData = R.string.ghost_strengths_goryo,
-                weaknessData = R.string.ghost_weaknesses_goryo,
-                huntData = R.string.ghost_huntingdata_goryo,
+                name = GhostTitle.GORYO,
+                info = GhostDescription.GORYO,
+                strengthData = GhostStrength.GORYO,
+                weaknessData = GhostWeakness.GORYO,
+                huntData = GhostHuntInfo.GORYO,
                 normalEvidence = listOf(
                     R.string.evidence_id_dots,
                     R.string.evidence_id_emf,
@@ -77,11 +78,11 @@ class GhostLocalDataSource(
                 )
             ),GhostResourceDto(
                 id = R.string.ghost_id_hantu,
-                name = R.string.ghost_type_hantu,
-                info = R.string.ghost_info_hantu,
-                strengthData = R.string.ghost_strengths_hantu,
-                weaknessData = R.string.ghost_weaknesses_hantu,
-                huntData = R.string.ghost_huntingdata_hantu,
+                name = GhostTitle.HANTU,
+                info = GhostDescription.HANTU,
+                strengthData = GhostStrength.HANTU,
+                weaknessData = GhostWeakness.HANTU,
+                huntData = GhostHuntInfo.HANTU,
                 normalEvidence = listOf(
                     R.string.evidence_id_ultraviolet,
                     R.string.evidence_id_temperatures,
@@ -93,11 +94,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_jinn,
-                name = R.string.ghost_type_jinn,
-                info = R.string.ghost_info_jinn,
-                strengthData = R.string.ghost_strengths_jinn,
-                weaknessData = R.string.ghost_weaknesses_jinn,
-                huntData = R.string.ghost_huntingdata_jinn,
+                name = GhostTitle.JINN,
+                info = GhostDescription.JINN,
+                strengthData = GhostStrength.JINN,
+                weaknessData = GhostWeakness.JINN,
+                huntData = GhostHuntInfo.JINN,
                 normalEvidence = listOf(
                     R.string.evidence_id_emf,
                     R.string.evidence_id_ultraviolet,
@@ -106,11 +107,11 @@ class GhostLocalDataSource(
                 strictEvidence = emptyList()
             ),GhostResourceDto(
                 id = R.string.ghost_id_mare,
-                name = R.string.ghost_type_mare,
-                info = R.string.ghost_info_mare,
-                strengthData = R.string.ghost_strengths_mare,
-                weaknessData = R.string.ghost_weaknesses_mare,
-                huntData = R.string.ghost_huntingdata_mare,
+                name = GhostTitle.MARE,
+                info = GhostDescription.MARE,
+                strengthData = GhostStrength.MARE,
+                weaknessData = GhostWeakness.MARE,
+                huntData = GhostHuntInfo.MARE,
                 normalEvidence = listOf(
                     R.string.evidence_id_orbs,
                     R.string.evidence_id_book,
@@ -120,11 +121,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_moroi,
-                name = R.string.ghost_type_moroi,
-                info = R.string.ghost_info_moroi,
-                strengthData = R.string.ghost_strengths_moroi,
-                weaknessData = R.string.ghost_weaknesses_moroi,
-                huntData = R.string.ghost_huntingdata_moroi,
+                name = GhostTitle.MOROI,
+                info = GhostDescription.MOROI,
+                strengthData = GhostStrength.MOROI,
+                weaknessData = GhostWeakness.MOROI,
+                huntData = GhostHuntInfo.MOROI,
                 normalEvidence = listOf(
                     R.string.evidence_id_box,
                     R.string.evidence_id_temperatures,
@@ -135,11 +136,11 @@ class GhostLocalDataSource(
                 )
             ),GhostResourceDto(
                 id = R.string.ghost_id_myling,
-                name = R.string.ghost_type_myling,
-                info = R.string.ghost_info_myling,
-                strengthData = R.string.ghost_strengths_myling,
-                weaknessData = R.string.ghost_weaknesses_myling,
-                huntData = R.string.ghost_huntingdata_myling,
+                name = GhostTitle.MYLING,
+                info = GhostDescription.MYLING,
+                strengthData = GhostStrength.MYLING,
+                weaknessData = GhostWeakness.MYLING,
+                huntData = GhostHuntInfo.MYLING,
                 normalEvidence = listOf(
                     R.string.evidence_id_emf,
                     R.string.evidence_id_ultraviolet,
@@ -149,11 +150,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_obake,
-                name = R.string.ghost_type_obake,
-                info = R.string.ghost_info_obake,
-                strengthData = R.string.ghost_strengths_obake,
-                weaknessData = R.string.ghost_weaknesses_obake,
-                huntData = R.string.ghost_huntingdata_obake,
+                name = GhostTitle.OBAKE,
+                info = GhostDescription.OBAKE,
+                strengthData = GhostStrength.OBAKE,
+                weaknessData = GhostWeakness.OBAKE,
+                huntData = GhostHuntInfo.OBAKE,
                 normalEvidence = listOf(
                     R.string.evidence_id_emf,
                     R.string.evidence_id_ultraviolet,
@@ -164,11 +165,11 @@ class GhostLocalDataSource(
                 )
             ),GhostResourceDto(
                 id = R.string.ghost_id_oni,
-                name = R.string.ghost_type_oni,
-                info = R.string.ghost_info_oni,
-                strengthData = R.string.ghost_strengths_oni,
-                weaknessData = R.string.ghost_weaknesses_oni,
-                huntData = R.string.ghost_huntingdata_oni,
+                name = GhostTitle.ONI,
+                info = GhostDescription.ONI,
+                strengthData = GhostStrength.ONI,
+                weaknessData = GhostWeakness.ONI,
+                huntData = GhostHuntInfo.ONI,
                 normalEvidence = listOf(
                     R.string.evidence_id_dots,
                     R.string.evidence_id_emf,
@@ -178,11 +179,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_onryo,
-                name = R.string.ghost_type_onryo,
-                info = R.string.ghost_info_onryo,
-                strengthData = R.string.ghost_strengths_onryo,
-                weaknessData = R.string.ghost_weaknesses_onryo,
-                huntData = R.string.ghost_huntingdata_onryo,
+                name = GhostTitle.ONRYO,
+                info = GhostDescription.ONRYO,
+                strengthData = GhostStrength.ONRYO,
+                weaknessData = GhostWeakness.ONRYO,
+                huntData = GhostHuntInfo.ONRYO,
                 normalEvidence = listOf(
                     R.string.evidence_id_temperatures,
                     R.string.evidence_id_orbs,
@@ -191,11 +192,11 @@ class GhostLocalDataSource(
                 strictEvidence = emptyList()
             ),GhostResourceDto(
                 id = R.string.ghost_id_phantom,
-                name = R.string.ghost_type_phantom,
-                info = R.string.ghost_info_phantom,
-                strengthData = R.string.ghost_strengths_phantom,
-                weaknessData = R.string.ghost_weaknesses_phantom,
-                huntData = R.string.ghost_huntingdata_phantom,
+                name = GhostTitle.PHANTOM,
+                info = GhostDescription.PHANTOM,
+                strengthData = GhostStrength.PHANTOM,
+                weaknessData = GhostWeakness.PHANTOM,
+                huntData = GhostHuntInfo.PHANTOM,
                 normalEvidence = listOf(
                     R.string.evidence_id_dots,
                     R.string.evidence_id_ultraviolet,
@@ -205,11 +206,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_poltergeist,
-                name = R.string.ghost_type_poltergeist,
-                info = R.string.ghost_info_poltergeist,
-                strengthData = R.string.ghost_strengths_poltergeist,
-                weaknessData = R.string.ghost_weaknesses_poltergeist,
-                huntData = R.string.ghost_huntingdata_poltergeist,
+                name = GhostTitle.POLTERGEIST,
+                info = GhostDescription.POLTERGEIST,
+                strengthData = GhostStrength.POLTERGEIST,
+                weaknessData = GhostWeakness.POLTERGEIST,
+                huntData = GhostHuntInfo.POLTERGEIST,
                 normalEvidence = listOf(
                     R.string.evidence_id_ultraviolet,
                     R.string.evidence_id_book,
@@ -218,11 +219,11 @@ class GhostLocalDataSource(
                 strictEvidence = emptyList()
             ),GhostResourceDto(
                 id = R.string.ghost_id_raiju,
-                name = R.string.ghost_type_raiju,
-                info = R.string.ghost_info_raiju,
-                strengthData = R.string.ghost_strengths_raiju,
-                weaknessData = R.string.ghost_weaknesses_raiju,
-                huntData = R.string.ghost_huntingdata_raiju,
+                name = GhostTitle.RAIJU,
+                info = GhostDescription.RAIJU,
+                strengthData = GhostStrength.RAIJU,
+                weaknessData = GhostWeakness.RAIJU,
+                huntData = GhostHuntInfo.RAIJU,
                 normalEvidence = listOf(
                     R.string.evidence_id_dots,
                     R.string.evidence_id_emf,
@@ -232,11 +233,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_revenant,
-                name = R.string.ghost_type_revenant,
-                info = R.string.ghost_info_revenant,
-                strengthData = R.string.ghost_strengths_revenant,
-                weaknessData = R.string.ghost_weaknesses_revenant,
-                huntData = R.string.ghost_huntingdata_revenant,
+                name = GhostTitle.REVENANT,
+                info = GhostDescription.REVENANT,
+                strengthData = GhostStrength.REVENANT,
+                weaknessData = GhostWeakness.REVENANT,
+                huntData = GhostHuntInfo.REVENANT,
                 normalEvidence = listOf(
                     R.string.evidence_id_temperatures,
                     R.string.evidence_id_orbs,
@@ -245,11 +246,11 @@ class GhostLocalDataSource(
                 strictEvidence = emptyList()
             ),GhostResourceDto(
                 id = R.string.ghost_id_shade,
-                name = R.string.ghost_type_shade,
-                info = R.string.ghost_info_shade,
-                strengthData = R.string.ghost_strengths_shade,
-                weaknessData = R.string.ghost_weaknesses_shade,
-                huntData = R.string.ghost_huntingdata_shade,
+                name = GhostTitle.SHADE,
+                info = GhostDescription.SHADE,
+                strengthData = GhostStrength.SHADE,
+                weaknessData = GhostWeakness.SHADE,
+                huntData = GhostHuntInfo.SHADE,
                 normalEvidence = listOf(
                     R.string.evidence_id_emf,
                     R.string.evidence_id_temperatures,
@@ -259,11 +260,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_spirit,
-                name = R.string.ghost_type_spirit,
-                info = R.string.ghost_info_spirit,
-                strengthData = R.string.ghost_strengths_spirit,
-                weaknessData = R.string.ghost_weaknesses_spirit,
-                huntData = R.string.ghost_huntingdata_spirit,
+                name = GhostTitle.SPIRIT,
+                info = GhostDescription.SPIRIT,
+                strengthData = GhostStrength.SPIRIT,
+                weaknessData = GhostWeakness.SPIRIT,
+                huntData = GhostHuntInfo.SPIRIT,
                 normalEvidence = listOf(
                     R.string.evidence_id_emf,
                     R.string.evidence_id_box,
@@ -272,11 +273,11 @@ class GhostLocalDataSource(
                 strictEvidence = emptyList()
             ),GhostResourceDto(
                 id = R.string.ghost_id_thaye,
-                name = R.string.ghost_type_thaye,
-                info = R.string.ghost_info_thaye,
-                strengthData = R.string.ghost_strengths_thaye,
-                weaknessData = R.string.ghost_weaknesses_thaye,
-                huntData = R.string.ghost_huntingdata_thaye,
+                name = GhostTitle.THAYE,
+                info = GhostDescription.THAYE,
+                strengthData = GhostStrength.THAYE,
+                weaknessData = GhostWeakness.THAYE,
+                huntData = GhostHuntInfo.THAYE,
                 normalEvidence = listOf(
                     R.string.evidence_id_book,
                     R.string.evidence_id_dots,
@@ -286,11 +287,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_thetwins,
-                name = R.string.ghost_type_thetwins,
-                info = R.string.ghost_info_thetwins,
-                strengthData = R.string.ghost_strengths_thetwins,
-                weaknessData = R.string.ghost_weaknesses_thetwins,
-                huntData = R.string.ghost_huntingdata_thetwins,
+                name = GhostTitle.THE_TWINS,
+                info = GhostDescription.THE_TWINS,
+                strengthData = GhostStrength.THE_TWINS,
+                weaknessData = GhostWeakness.THE_TWINS,
+                huntData = GhostHuntInfo.THE_TWINS,
                 normalEvidence = listOf(
                     R.string.evidence_id_emf,
                     R.string.evidence_id_temperatures,
@@ -299,11 +300,11 @@ class GhostLocalDataSource(
                 strictEvidence = emptyList()
             ),GhostResourceDto(
                 id = R.string.ghost_id_themimic,
-                name = R.string.ghost_type_themimic,
-                info = R.string.ghost_info_themimic,
-                strengthData = R.string.ghost_strengths_themimic,
-                weaknessData = R.string.ghost_weaknesses_themimic,
-                huntData = R.string.ghost_huntingdata_themimic,
+                name = GhostTitle.THE_MIMIC,
+                info = GhostDescription.THE_MIMIC,
+                strengthData = GhostStrength.THE_MIMIC,
+                weaknessData = GhostWeakness.THE_MIMIC,
+                huntData = GhostHuntInfo.THE_MIMIC,
                 normalEvidence = listOf(
                     R.string.evidence_id_ultraviolet,
                     R.string.evidence_id_temperatures,
@@ -316,11 +317,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_wraith,
-                name = R.string.ghost_type_wraith,
-                info = R.string.ghost_info_wraith,
-                strengthData = R.string.ghost_strengths_wraith,
-                weaknessData = R.string.ghost_weaknesses_wraith,
-                huntData = R.string.ghost_huntingdata_wraith,
+                name = GhostTitle.WRAITH,
+                info = GhostDescription.WRAITH,
+                strengthData = GhostStrength.WRAITH,
+                weaknessData = GhostWeakness.WRAITH,
+                huntData = GhostHuntInfo.WRAITH,
                 normalEvidence = listOf(
                     R.string.evidence_id_emf,
                     R.string.evidence_id_box,
@@ -329,11 +330,11 @@ class GhostLocalDataSource(
                 strictEvidence = emptyList()
             ),GhostResourceDto(
                 id = R.string.ghost_id_yokai,
-                name = R.string.ghost_type_yokai,
-                info = R.string.ghost_info_yokai,
-                strengthData = R.string.ghost_strengths_yokai,
-                weaknessData = R.string.ghost_weaknesses_yokai,
-                huntData = R.string.ghost_huntingdata_yokai,
+                name = GhostTitle.YOKAI,
+                info = GhostDescription.YOKAI,
+                strengthData = GhostStrength.YOKAI,
+                weaknessData = GhostWeakness.YOKAI,
+                huntData = GhostHuntInfo.YOKAI,
                 normalEvidence = listOf(
                     R.string.evidence_id_dots,
                     R.string.evidence_id_orbs,
@@ -343,11 +344,11 @@ class GhostLocalDataSource(
             ),
             GhostResourceDto(
                 id = R.string.ghost_id_yurei,
-                name = R.string.ghost_type_yurei,
-                info = R.string.ghost_info_yurei,
-                strengthData = R.string.ghost_strengths_yurei,
-                weaknessData = R.string.ghost_weaknesses_yurei,
-                huntData = R.string.ghost_huntingdata_yurei,
+                name = GhostTitle.YUREI,
+                info = GhostDescription.YUREI,
+                strengthData = GhostStrength.YUREI,
+                weaknessData = GhostWeakness.YUREI,
+                huntData = GhostHuntInfo.YUREI,
                 normalEvidence = listOf(
                     R.string.evidence_id_dots,
                     R.string.evidence_id_temperatures,
@@ -368,28 +369,28 @@ class GhostLocalDataSource(
 
     }
 
-    private data class GhostResourceDto(
-        val id: Int,
-        val name: GhostTitle,
-        val info: GhostDescription,
-        val strengthData: GhostStrength,
-        val weaknessData: GhostWeakness,
-        val huntData: GhostHuntInfo,
-        val normalEvidence: List<Int>,
-        val strictEvidence: List<Int>,
-    )
-
     private fun List<GhostResourceDto>.toGhostDto() = map { it.toGhostDto() }
 
     private fun GhostResourceDto.toGhostDto() = GhostDto(
         id = applicationContext.getString(id),
         name = name,
-        normalEvidence = normalEvidence.map { applicationContext.getString(it) },
-        strictEvidence = strictEvidence.map { applicationContext.getString(it) },
         info = info,
         strengthData = strengthData,
         weaknessData = weaknessData,
-        huntData = huntData
+        huntData = huntData,
+        normalEvidence = normalEvidence.map { applicationContext.getString(it) },
+        strictEvidence = strictEvidence.map { applicationContext.getString(it) }
+    )
+
+    private data class GhostResourceDto(
+        @StringRes val id: Int,
+        val name: GhostTitle,
+        val info: GhostDescription,
+        val strengthData: GhostStrength,
+        val weaknessData: GhostWeakness,
+        val huntData: GhostHuntInfo,
+        @StringRes val normalEvidence: List<Int>,
+        @StringRes val strictEvidence: List<Int>,
     )
 
 }
