@@ -4,7 +4,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 
 data class GhostScore(
     val ghostEvidence: GhostEvidence,

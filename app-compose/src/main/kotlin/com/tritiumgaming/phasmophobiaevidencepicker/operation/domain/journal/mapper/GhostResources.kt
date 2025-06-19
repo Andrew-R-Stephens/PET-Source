@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper
 
 //TODO(Create all enum values)
 class GhostResources {

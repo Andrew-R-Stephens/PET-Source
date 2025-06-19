@@ -1,14 +1,13 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local
 
 import android.content.Context
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostWeakness
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostHuntInfo
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostStrength
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.mapper.GhostResources.GhostDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostDescription
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostStrength
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostWeakness
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
 
 class GhostLocalDataSource(
