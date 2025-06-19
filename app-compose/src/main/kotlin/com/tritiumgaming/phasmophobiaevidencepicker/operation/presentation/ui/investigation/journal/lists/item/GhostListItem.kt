@@ -36,6 +36,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostScore
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 
 @Composable
@@ -43,7 +45,8 @@ fun GhostListItem(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel = viewModel(factory = InvestigationViewModel.Factory),
     ghostScore: GhostScore? = null,
-    label: String = ghostScore?.let { stringResource(ghostScore.ghostEvidence.ghost.name) } ?: "Test"
+    label: String = ghostScore?.let {
+        stringResource(ghostScore.ghostEvidence.ghost.name.toStringResource()) } ?: "Test"
 ) {
 
     val scoreState = ghostScore?.score?.collectAsStateWithLifecycle()
@@ -164,7 +167,7 @@ private fun RowScope.EvidenceIcon(
             .padding(2.dp)
             .weight(1f, false),
         contentScale = ContentScale.Fit,
-        painter = painterResource(id = evidence.icon),
+        painter = painterResource(id = evidence.icon.toDrawableResource()),
         contentDescription = "Evidence Icon",
         colorFilter = ColorFilter.tint(
             when (rememberRuling?.value) {

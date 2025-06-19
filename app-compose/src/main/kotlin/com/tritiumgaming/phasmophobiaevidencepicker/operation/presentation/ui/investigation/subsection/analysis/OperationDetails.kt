@@ -32,6 +32,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 import org.jetbrains.annotations.TestOnly
 
@@ -124,7 +125,7 @@ fun DifficultyModifierDetails(
 ) {
 
     val difficultyNameState = investigationViewModel.currentDifficultyName.collectAsStateWithLifecycle()
-    val rememberDifficultyName by remember { mutableIntStateOf(difficultyNameState.value) }
+    val rememberDifficultyName by remember { mutableIntStateOf(difficultyNameState.value.toStringResource()) }
 
     CategoryColumn {
         Row(

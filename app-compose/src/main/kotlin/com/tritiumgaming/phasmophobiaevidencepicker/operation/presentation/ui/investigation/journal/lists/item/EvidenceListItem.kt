@@ -44,8 +44,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
 import org.jetbrains.annotations.TestOnly
 
@@ -66,8 +68,12 @@ fun EvidenceListItem(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel =
         viewModel(factory = InvestigationViewModel.Factory),
-    evidence: EvidenceType = EvidenceType(),
-    label: String = stringResource(evidence.name),
+    evidence: EvidenceType = EvidenceType(
+        id = "test",
+        name = EvidenceResources.EvidenceTitle.DOTS,
+        icon = EvidenceResources.EvidenceIcon.DOTS
+    ),
+    label: String = stringResource(evidence.name.toStringResource()),
     onNameClick: () -> Unit = {},
 ) {
 

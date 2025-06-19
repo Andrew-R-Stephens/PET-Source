@@ -46,6 +46,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toDrawableResource
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
@@ -122,8 +124,8 @@ private fun NewsInboxesContent(
             items(items = inboxes.value) { inbox ->
 
                 InboxCard(
-                    title = inbox.title,
-                    icon = inbox.icon,
+                    title = inbox.title.toStringResource(),
+                    icon = inbox.icon.toDrawableResource(),
                     isActive = false,
                     onClick = {
                         navController.navigate(

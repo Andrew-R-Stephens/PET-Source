@@ -52,6 +52,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterMessage
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
@@ -119,8 +120,7 @@ private fun NewsMessagesContent(
             NavHeaderComposableParams(
                 leftType = PETImageButtonType.BACK,
                 rightType = PETImageButtonType.NONE,
-                centerTitleRes = inbox?.title
-                    ?: R.string.newsletter_title,
+                centerTitleRes = inbox?.title?.toStringResource() ?: R.string.newsletter_title,
                 leftOnClick = { navController.popBackStack() }
             )
         )
