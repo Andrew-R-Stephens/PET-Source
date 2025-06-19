@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper
 
-//TODO(Create all enum values)
 class EvidenceResources {
 
     enum class EvidenceTitle {

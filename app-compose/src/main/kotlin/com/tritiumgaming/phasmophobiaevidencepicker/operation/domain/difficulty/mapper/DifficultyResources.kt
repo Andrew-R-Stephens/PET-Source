@@ -2,6 +2,14 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty
 
 class DifficultyResources {
 
+    enum class DifficultyType {
+        AMATEUR,
+        INTERMEDIATE,
+        PROFESSIONAL,
+        NIGHTMARE,
+        INSANITY
+    }
+
     enum class DifficultyTitle {
         AMATEUR,
         INTERMEDIATE,
