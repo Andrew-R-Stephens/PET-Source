@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.consentmanager.model
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model
 
 import android.app.Activity
 import com.google.android.ump.ConsentDebugSettings

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore
+package com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore
 
 import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.liveData

@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source
 
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreInterface
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreInterface
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore.TypographyPreferences
 
 interface MarketTypographyDatastore: DatastoreInterface<TypographyPreferences> {
