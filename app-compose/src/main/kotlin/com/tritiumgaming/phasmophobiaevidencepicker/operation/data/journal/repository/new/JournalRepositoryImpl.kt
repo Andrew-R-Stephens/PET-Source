@@ -12,7 +12,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.rep
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
 
-//TODO "Not yet implemented"
 class JournalRepositoryImpl(
     val ghostLocalDataSource: GhostDataSource,
     val evidenceLocalDataSource: EvidenceDataSource

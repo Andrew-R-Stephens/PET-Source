@@ -1,12 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyType
 
 data class DifficultyModelDto(
     val index: Int,
-    val name: DifficultyResources.DifficultyTitle,
+    val name: DifficultyTitle,
     val time: Long,
     val modifier: Float,
     val initialSanity: Float
