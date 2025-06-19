@@ -6,7 +6,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.map
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierDescription
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierRequiredLevel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceTier
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model.EvidencePopupRecord
 
 data class EvidenceDto(
     val id: String,
@@ -22,13 +24,25 @@ data class EvidenceTierDto(
     val levelRequirement: EvidenceTierRequiredLevel
 )
 
+fun List<EvidenceTierDto>.toDomain() = map { it.toDomain() }
+
+fun EvidenceTierDto.toDomain() = EvidenceTier(
+    description = description,
+    animation = animation,
+    levelRequirement = levelRequirement
+)
+
+fun List<EvidenceDto>.toEvidenceTypeDto() = map {
+    it.toEvidenceType()
+}
+
 fun EvidenceDto.toEvidenceTypeDto() = EvidenceTypeDto(
     id = id,
     name = name,
     icon = icon
 )
 
-fun List<EvidenceDto>.toEvidenceTypeDto() = map {
+fun List<EvidenceDto>.toEvidenceType() = map {
     it.toEvidenceType()
 }
 
@@ -38,6 +52,8 @@ fun EvidenceDto.toEvidenceType() = EvidenceType(
     icon = icon
 )
 
-fun List<EvidenceDto>.toEvidenceType() = map {
-    it.toEvidenceType()
-}
+fun EvidenceDto.toLocalPopup() = EvidencePopupRecord(
+    id = id,
+    cost = buyCost,
+    tiers = tiers.toDomain()
+)

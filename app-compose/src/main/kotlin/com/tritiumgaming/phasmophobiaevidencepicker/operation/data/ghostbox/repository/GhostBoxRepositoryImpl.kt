@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.repository
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.mapper.GhostBoxResources.Response
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.model.GhostBoxType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.repository.GhostBoxRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.source.GhostBoxDataSource
@@ -8,9 +9,9 @@ class GhostBoxRepositoryImpl(
     override val localSource: GhostBoxDataSource
 ): GhostBoxRepository {
 
-    override fun getVoiceRequests(): Result<MutableMap<String, Int>> {
+    override fun getVoiceRequests(): Result<MutableMap<String, Response>> {
 
-        val voiceRequests = mutableMapOf<String, Int>()
+        val voiceRequests = mutableMapOf<String, Response>()
 
         val generalResult = localSource.fetchGeneralRequests()
         generalResult.exceptionOrNull()?.printStackTrace()

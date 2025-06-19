@@ -19,6 +19,9 @@ data class GhostDto(
     val huntData: GhostHuntInfo,
 )
 
+fun List<GhostDto>.toDomain() = map {
+    it.toDomain()
+}
 fun GhostDto.toDomain() = GhostType(
     id = id,
     name = name
@@ -27,12 +30,8 @@ fun GhostDto.toDomain() = GhostType(
 fun GhostDto.toLocalPopup() = GhostPopupRecord(
     id = id,
     name = name,
-    info = this@toLocalPopup.info,
+    info = info,
     strengthData = strengthData,
     weaknessData = weaknessData,
     huntData = huntData,
 )
-
-fun List<GhostDto>.toDomain() = map {
-    it.toDomain()
-}

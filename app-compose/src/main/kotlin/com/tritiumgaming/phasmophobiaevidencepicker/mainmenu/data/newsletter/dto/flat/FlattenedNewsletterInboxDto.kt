@@ -16,18 +16,18 @@ data class FlattenedNewsletterInboxDto(
 fun FlattenedNewsletterInboxDto.toExternal(): NewsletterInbox =
     NewsletterInbox(
         id = id,
-        title = title,
+        title = title ?: NewsletterTitle.GENERAL_NEWS,
         url = url,
-        icon = icon
+        icon = icon ?: NewsletterIcon.GENERAL_NEWS
     )
 
 fun List<FlattenedNewsletterInboxDto>.toExternal(): List<NewsletterInbox> =
     map { dto ->
         NewsletterInbox(
             id = dto.id,
-            title = dto.title,
+            title = dto.title ?: NewsletterTitle.GENERAL_NEWS,
             url = dto.url,
-            icon = dto.icon,
+            icon = dto.icon ?: NewsletterIcon.GENERAL_NEWS,
             channel = dto.channel?.toExternal() ?: NewsletterChannel()
         )
     }

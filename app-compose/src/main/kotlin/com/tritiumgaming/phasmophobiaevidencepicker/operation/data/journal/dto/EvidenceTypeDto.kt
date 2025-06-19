@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model.GhostPopupRecord
 
 data class EvidenceTypeDto(
     val id: String,
