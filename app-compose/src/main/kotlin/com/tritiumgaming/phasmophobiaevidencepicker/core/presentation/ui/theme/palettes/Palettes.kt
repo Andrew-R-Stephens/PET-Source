@@ -4114,7 +4114,6 @@ data class SwitchColorFamily(
 
 val LocalPalette = staticCompositionLocalOf { ExtendedPalette() }
 
-//TODO Move this to PaletteLocalDataSource
 val LocalPalettesMap = mapOf(
     Pair("CzjtxSbXRwIpX8SYR0ttngAND", ClassicPalette),
     Pair("ey6VbQN5tx0MgR8tw4iJq3J8L", Monochromacy),

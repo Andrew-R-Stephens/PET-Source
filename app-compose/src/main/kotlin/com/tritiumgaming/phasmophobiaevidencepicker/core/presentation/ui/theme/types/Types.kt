@@ -533,7 +533,6 @@ data class CustomFontFamily(
 
 val LocalTypography = staticCompositionLocalOf { ExtendedTypography() }
 
-// TODO move to TypographyLocalDataSource
 val LocalTypographiesMap = mapOf(
     Pair("c29cJglM92MLWN1RKRyK8qyAD", ClassicTypography),
     Pair("8Jk15N2GB6PBopXvmEluU2eoS", AndroidTypography),
