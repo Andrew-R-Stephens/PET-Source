@@ -10,7 +10,7 @@ data class FlattenedNewsletterInboxDto(
     val title: NewsletterTitle? = null,
     val url: String? = null,
     val icon: NewsletterIcon? = null,
-    var channel: FlattenedNewsletterChannelDto?
+    var channel: FlattenedNewsletterChannelDto? = null
 )
 
 fun FlattenedNewsletterInboxDto.toExternal(): NewsletterInbox =

@@ -1,5 +1,0 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.source
-
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model.GhostPopupRecord
-
-interface GhostPopupDataSource: PopupDataSource<GhostPopupRecord>

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity.sanity
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity
 
 import android.content.Context
 import android.media.MediaPlayer

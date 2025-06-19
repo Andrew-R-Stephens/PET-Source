@@ -1,7 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
