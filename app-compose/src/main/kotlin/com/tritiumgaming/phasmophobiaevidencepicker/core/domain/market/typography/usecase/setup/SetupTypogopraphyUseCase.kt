@@ -5,5 +5,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 class SetupTypographyUseCase(
     private val repository: MarketTypographyRepository
 ) {
+    @Suppress("unused")
     operator fun invoke() = repository.initialSetupEvent()
 }

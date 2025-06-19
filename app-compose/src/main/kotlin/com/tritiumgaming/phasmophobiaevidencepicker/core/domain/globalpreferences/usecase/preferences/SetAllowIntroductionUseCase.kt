@@ -4,7 +4,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 
 class SetAllowIntroductionUseCase(
     private val repository: GlobalPreferencesRepository
-    ) {
-        suspend operator fun invoke(allow: Boolean) =
-            repository.setAllowIntroduction(allow)
-    }
+) {
+    @Suppress("unused")
+    suspend operator fun invoke(allow: Boolean) =
+        repository.setAllowIntroduction(allow)
+}

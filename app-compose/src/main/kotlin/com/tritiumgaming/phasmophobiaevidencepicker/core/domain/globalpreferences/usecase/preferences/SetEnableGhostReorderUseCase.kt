@@ -5,6 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 class SetEnableGhostReorderUseCase(
     private val repository: GlobalPreferencesRepository
     ) {
+    @Suppress("unused")
         suspend operator fun invoke(enable: Boolean) =
             repository.setEnableGhostReorder(enable)
     }

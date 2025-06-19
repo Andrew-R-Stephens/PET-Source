@@ -4,7 +4,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 
 class SetAllowCellularDataUseCase(
     private val repository: GlobalPreferencesRepository
-    ) {
-        suspend operator fun invoke(allow: Boolean) =
-            repository.setAllowCellularData(allow)
-    }
+) {
+    @Suppress("unused")
+    suspend operator fun invoke(allow: Boolean) =
+        repository.setAllowCellularData(allow)
+}

@@ -6,6 +6,7 @@ class SaveCurrentPaletteUseCase(
     private val repository: MarketPaletteRepository
 ) {
 
+    @Suppress("unused")
     suspend operator fun invoke(uuid: String) = repository.saveCurrent(uuid)
 
 }

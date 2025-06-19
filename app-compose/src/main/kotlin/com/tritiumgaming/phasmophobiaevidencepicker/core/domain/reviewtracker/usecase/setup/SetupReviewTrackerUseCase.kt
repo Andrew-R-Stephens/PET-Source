@@ -5,5 +5,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.re
 class SetupReviewTrackerUseCase(
     private val repository: ReviewTrackerRepository
 ) {
+    @Suppress("unused")
     operator fun invoke() = repository.initialSetupEvent()
 }

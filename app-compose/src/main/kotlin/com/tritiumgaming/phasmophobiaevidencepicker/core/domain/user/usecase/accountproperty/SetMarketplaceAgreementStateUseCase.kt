@@ -6,6 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.
 class SetMarketplaceAgreementStateUseCase(
     private val repository: FirestoreAccountRepository
 ) {
+    @Suppress("unused")
     suspend operator fun invoke(shown: Boolean) {
         repository.setMarketplaceAgreementState(AccountMarketAgreement(shown))
     }

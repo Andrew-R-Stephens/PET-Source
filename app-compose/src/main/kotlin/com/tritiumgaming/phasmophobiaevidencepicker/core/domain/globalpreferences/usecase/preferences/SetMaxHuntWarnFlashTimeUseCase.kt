@@ -5,6 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 class SetMaxHuntWarnFlashTimeUseCase(
     private val repository: GlobalPreferencesRepository
     ) {
+    @Suppress("unused")
         suspend operator fun invoke(time: Long) {
             repository.setMaxHuntWarnFlashTime(time)
         }

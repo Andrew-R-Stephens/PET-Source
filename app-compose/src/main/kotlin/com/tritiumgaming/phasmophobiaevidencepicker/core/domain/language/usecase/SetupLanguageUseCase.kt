@@ -5,5 +5,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.reposit
 class SetupLanguageUseCase(
     private val repository: LanguageRepository
 ) {
+    @Suppress("unused")
     operator fun invoke() = repository.initialSetupEvent()
 }

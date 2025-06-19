@@ -5,5 +5,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.r
 class SetupPaletteUseCase(
     private val repository: MarketPaletteRepository
 ) {
+    @Suppress("unused")
     operator fun invoke() = repository.initialSetupEvent()
 }
