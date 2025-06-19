@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.sanity
 
 import android.content.Context
 import android.media.MediaPlayer
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.job.DeltaRunnable
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.job.DeltaRunnable
 
 /**
  * Contains references to all Views for Sanity-specific UI and updates them via Runnable.

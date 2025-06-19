@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.job
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.job
 
 import android.content.Context
 import android.os.Build
