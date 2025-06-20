@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore.PreferenceKeys.KEY_PALETTE
 import kotlinx.coroutines.flow.Flow
@@ -28,6 +29,9 @@ class MarketPaletteDatastoreDataSource(
         .map { preferences ->
             mapPreferences(preferences)
         }
+
+    override suspend fun initFlow(onUpdate: (PaletteDatastore.PalettePreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
 
     init {
         KEY_PALETTE = stringPreferencesKey(

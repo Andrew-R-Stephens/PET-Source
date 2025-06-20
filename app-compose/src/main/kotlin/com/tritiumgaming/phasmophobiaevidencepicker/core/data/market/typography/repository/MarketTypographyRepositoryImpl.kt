@@ -10,6 +10,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -22,6 +23,12 @@ class MarketTypographyRepositoryImpl(
     private val dataStoreSource: MarketTypographyDatastore,
     coroutineDispatcher: CoroutineDispatcher
 ): MarketTypographyRepository {
+
+    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
+
+    override suspend fun initFlow(
+        onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit
+    ) = dataStoreSource.initFlow(onUpdate)
 
     private var cache: List<MarketTypographyDto> = emptyList()
 
@@ -93,13 +100,6 @@ class MarketTypographyRepositoryImpl(
 
         return Result.success(cache.toDomain())
     }
-
-    override fun initialSetupEvent() {
-        dataStoreSource.initialSetupEvent()
-    }
-
-    override suspend fun initFlow(): Flow<MarketTypographyDatastore.TypographyPreferences> =
-        dataStoreSource.flow
 
     override suspend fun saveCurrent(uuid: String) {
         dataStoreSource.saveTypography(uuid)

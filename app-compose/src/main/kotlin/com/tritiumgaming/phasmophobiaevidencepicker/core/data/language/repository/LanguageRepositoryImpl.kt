@@ -5,6 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.L
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import kotlinx.coroutines.flow.Flow
 
 class LanguageRepositoryImpl(
@@ -12,13 +13,14 @@ class LanguageRepositoryImpl(
     private val dataStoreSource: LanguageDatastore
 ): LanguageRepository {
 
-    override fun getAvailableLanguages(): Result<List<LanguageEntity>> =
-        localDataSource.getAvailableLanguages().map { dto -> dto.toDomain() }
-
     override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
 
-    override suspend fun initFlow(): Flow<LanguageDatastore.LanguagePreferences> =
-        dataStoreSource.flow
+    override suspend fun initFlow(
+        onUpdate: (LanguageDatastore.LanguagePreferences) -> Unit
+    ) = dataStoreSource.initFlow(onUpdate)
+
+    override fun getAvailableLanguages(): Result<List<LanguageEntity>> =
+        localDataSource.getAvailableLanguages().map { dto -> dto.toDomain() }
 
     override suspend fun saveCurrentLanguageCode(languageCode: String) =
         dataStoreSource.saveCurrentLanguageCode(languageCode)

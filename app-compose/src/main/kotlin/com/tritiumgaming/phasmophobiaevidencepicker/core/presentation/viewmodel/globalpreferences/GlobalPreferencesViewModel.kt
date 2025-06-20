@@ -328,7 +328,7 @@ class GlobalPreferencesViewModel(
 
         // Review Tracker
         viewModelScope.launch {
-            initFlowReviewTrackerUseCase().collect { preferences ->
+            initFlowReviewTrackerUseCase { preferences ->
                 _wasReviewRequested.update { preferences.allowRequestReview }
                 _appTimeActive.update { preferences.timeActive }
                 _timesOpened.update { preferences.timesOpened }
@@ -337,7 +337,7 @@ class GlobalPreferencesViewModel(
 
         // Global Preferences
         viewModelScope.launch {
-            initFlowGlobalPreferencesUseCase().collect { preferences ->
+            initFlowGlobalPreferencesUseCase { preferences ->
                 _screensaverPreference.update { preferences.disableScreenSaver }
                 _networkPreference.update { preferences.allowCellularData }
                 _huntWarningAudioPreference.update { preferences.allowHuntWarnAudio }
@@ -350,7 +350,7 @@ class GlobalPreferencesViewModel(
 
         // Language
         viewModelScope.launch {
-            initFlowLanguageUseCase().collect { preferences ->
+            initFlowLanguageUseCase { preferences ->
                 _currentLanguageCode.update { preferences.languageCode }
                 Log.d("Language", "Collected Language Code: ${preferences.languageCode}")
 
@@ -365,7 +365,7 @@ class GlobalPreferencesViewModel(
 
         // Palette
         viewModelScope.launch {
-            initFlowPaletteUseCase().collect { preferences ->
+            initFlowPaletteUseCase { preferences ->
                 _currentPaletteUUID.update {
                     preferences.uuid.ifBlank { defaultPaletteUUID }
                 }
@@ -375,7 +375,7 @@ class GlobalPreferencesViewModel(
 
         // Typography
         viewModelScope.launch {
-            initFlowTypographyUseCase().collect { preferences ->
+            initFlowTypographyUseCase { preferences ->
                 _currentTypographyUUID.update {
                     preferences.uuid.ifBlank { defaultTypographyUUID }
                 }

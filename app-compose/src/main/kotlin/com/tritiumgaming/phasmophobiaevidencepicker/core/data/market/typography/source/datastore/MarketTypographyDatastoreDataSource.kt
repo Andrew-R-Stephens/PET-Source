@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -27,6 +28,9 @@ class MarketTypographyDatastoreDataSource(
         .map { preferences ->
             mapPreferences(preferences)
         }
+
+    override suspend fun initFlow(onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
 
     init {
         MarketTypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY = stringPreferencesKey(

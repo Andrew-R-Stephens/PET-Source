@@ -23,6 +23,9 @@ class LanguageDatastoreDataSource(
             mapPreferences(preferences)
         }
 
+    override suspend fun initFlow(onUpdate: (LanguageDatastore.LanguagePreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
+
     init {
         KEY_CURRENT_LANGUAGE_CODE = stringPreferencesKey(
             context.resources.getString(R.string.preference_language)

@@ -11,6 +11,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.PreferenceKeys.KEY_ALLOW_REQUEST_REVIEW
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.PreferenceKeys.KEY_TIMES_OPENED
@@ -42,6 +43,9 @@ class ReviewTrackerDatastoreDataSource(
         .map { preferences ->
             mapPreferences(preferences)
         }
+
+    override suspend fun initFlow(onUpdate: (ReviewTrackerPreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
 
     init {
         Log.d("ReviewTracking Repository", "Initializing")

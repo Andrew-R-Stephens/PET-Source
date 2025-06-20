@@ -1,19 +1,20 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository
 
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
 import kotlinx.coroutines.flow.Flow
 
 class ReviewTrackerRepositoryImpl(
     private val dataStoreSource: ReviewTrackerDatastore,
 ): ReviewTrackerRepository {
 
-    override fun initialSetupEvent() {
-        dataStoreSource.initialSetupEvent()
-    }
+    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
 
-    override suspend fun initFlow(): Flow<ReviewTrackerDatastore.ReviewTrackerPreferences> =
-        dataStoreSource.flow
+    override suspend fun initFlow(
+        onUpdate: (ReviewTrackerPreferences) -> Unit
+    ) = dataStoreSource.initFlow(onUpdate)
 
     override suspend fun saveWasRequestedStatus(wasRequested: Boolean) =
         dataStoreSource.saveWasRequestedState(wasRequested)

@@ -38,6 +38,12 @@ class GlobalPreferencesDatastoreDataSource(
             mapPreferences(preferences)
         }
 
+    override suspend fun initFlow(onUpdate: (preferences: GlobalPreferences) -> Unit) {
+        flow.collect { preferences ->
+            onUpdate(preferences)
+        }
+    }
+
     init {
         Log.d("GlobalPreferences Repository", "Initializing")
 

@@ -8,6 +8,8 @@ interface DatastoreDataSource<T> {
 
     val flow: Flow<T>
 
+    suspend fun initFlow(onUpdate: (T) -> Unit)
+
     fun initialSetupEvent() {
         liveData {
             emit(fetchInitialPreferences())

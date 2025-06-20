@@ -2,18 +2,18 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import kotlinx.coroutines.flow.Flow
 
 class GlobalPreferencesRepositoryImpl(
     private val dataStoreSource: GlobalPreferencesDatastore
 ): GlobalPreferencesRepository {
 
-    override fun initialSetupEvent() {
-        dataStoreSource.initialSetupEvent()
-    }
+    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
 
-    override suspend fun initFlow(): Flow<GlobalPreferencesDatastore.GlobalPreferences> =
-        dataStoreSource.flow
+    override suspend fun initFlow(
+        onUpdate: (preferences: GlobalPreferencesDatastore.GlobalPreferences) -> Unit
+    ) = dataStoreSource.initFlow(onUpdate)
 
     override suspend fun setDisableScreenSaver(disable: Boolean) =
         dataStoreSource.setDisableScreenSaver(disable)

@@ -10,6 +10,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.sou
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -22,6 +23,12 @@ class MarketPaletteRepositoryImpl(
     private val dataStoreSource: PaletteDatastore,
     coroutineDispatcher: CoroutineDispatcher
 ): MarketPaletteRepository {
+
+    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
+
+    override suspend fun initFlow(
+        onUpdate: (PaletteDatastore.PalettePreferences) -> Unit
+    ) = dataStoreSource.initFlow(onUpdate)
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
@@ -93,13 +100,6 @@ class MarketPaletteRepositoryImpl(
 
         return Result.success(cache.toDomain())
     }
-
-    override fun initialSetupEvent() {
-        dataStoreSource.initialSetupEvent()
-    }
-
-    override suspend fun initFlow(): Flow<PaletteDatastore.PalettePreferences> =
-        dataStoreSource.flow
 
     override suspend fun saveCurrent(uuid: String) {
         dataStoreSource.savePalette(uuid)
