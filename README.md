@@ -9,6 +9,7 @@
     <a href='https://play.google.com/store/apps/details?id=com.tritiumstudios.phasmophobiaevidencepicker&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
         width="150" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 </div>
+<div align='center'><code>[ iOS Coming Soon ]</code></div>
 
 <div align='left'> 
     <h2>Author</h2>
@@ -49,17 +50,38 @@
 <div align='left'><h3>Modules</h3></div> 
 [ <code>active</code> ]
 <ul>
-    <li><code>app-compose</code> : Adopts modern Jetpack Compose / Clean Code approach. It is a completely reworked <em>app-legacy  / app-view</em>.</li>
+    <li><code>app-compose</code> : The Android core module.<br>
+        <ul>
+            <li>Implements the <em>shared</em> KMP module.</li>
+            <li>It is a completely reworked <em>app-legacy  / app-view</em>.</li>
+            <li>Adopts modern Jetpack Compose / Clean Code approach.</li></li>
+        </ul>
+    <li><code>shared</code> : The KMP project module.
+        <ul>
+            <li>Currently ongoing integration with <em>app-compose</em> module.</li>
+        </ul>
+    </li>
 </ul>
 [ <code>incubating</code> ]
 <ul>
-    <li><code>shared</code> : The KMP shared bin. Currently awaiting confirmation from <em>app-compose</em> to begin integration.</li>
-    <li><code>iosApp</code> : The iOS project files. Dependent on the <em>shared</em> modules.</li>
+    <li><code>iosApp</code> : The iOS project files.
+        <ul>
+            <li>Dependent on the <em>shared</em> module.</li>
+        </ul>
+    </li>
 </ul>
 [ <code>sunset</code> ]
 <ul>
-    <li><code>app-legacy</code> : Prod build. Maintained for prod hotfixes.</li>
-    <li><code>app-view</code> : Playground build used to both propose future <em>app-legacy</em> features and fixes and migrate <em>app-legacy</em> features to <em>app-compose</em>.</li>
+    <li><code>app-legacy</code> : Current Live module.
+        <ul>
+            <li>Maintained for live hotfixes.</li>
+        </ul>
+    </li>
+    <li><code>app-view</code> : Sandbox build.
+        <ul>
+            <li>used to both propose future <em>app-legacy</em> features and fixes and migrate <em>app-legacy</em> features to <em>app-compose</em>.</li>
+        </ul>
+    </li>
 </ul>
 
 <br>
