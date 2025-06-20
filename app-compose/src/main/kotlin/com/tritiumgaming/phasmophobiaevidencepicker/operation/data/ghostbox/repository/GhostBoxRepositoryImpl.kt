@@ -1,9 +1,9 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.repository
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.source.GhostBoxDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.mapper.GhostBoxResources.Response
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.model.GhostBoxType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.repository.GhostBoxRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.source.GhostBoxDataSource
 
 class GhostBoxRepositoryImpl(
     val localSource: GhostBoxDataSource
