@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote
 
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.remote.RemoteNewsletterInboxDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.api.NewsletterService
 import io.ktor.http.Url
 import kotlinx.coroutines.Dispatchers

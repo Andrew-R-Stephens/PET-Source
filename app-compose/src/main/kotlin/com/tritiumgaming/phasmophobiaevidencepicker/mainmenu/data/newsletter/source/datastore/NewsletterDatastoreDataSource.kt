@@ -7,8 +7,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -33,9 +34,6 @@ class NewsletterDatastoreDataSource(
             mapPreferences(preferences)
         }
 
-    override suspend fun initFlow(onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
-
     init {
         keyList.apply {
             "1" to longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_general))
@@ -54,10 +52,17 @@ class NewsletterDatastoreDataSource(
         }
     }
 
+    override fun initialSetupEvent() {
+        liveData { emit(fetchInitialPreferences()) }
+    }
+
+    override suspend fun initFlow(onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
+
     override suspend fun fetchInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
-    override fun mapPreferences(preferences: Preferences): NewsletterDatastore.NewsletterPreferences {
+    fun mapPreferences(preferences: Preferences): NewsletterDatastore.NewsletterPreferences {
         return NewsletterDatastore.NewsletterPreferences(
             data = keyList.mapValues { preferences[it.value] ?: 0L }
         )

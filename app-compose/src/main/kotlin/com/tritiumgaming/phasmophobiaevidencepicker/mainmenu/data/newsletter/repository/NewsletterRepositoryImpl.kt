@@ -6,12 +6,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local.toInternal
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.remote.toInternal
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore.NewsletterPreferences
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSourceImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.NewsletterPreferences
 import io.ktor.http.Url
 import kotlinx.coroutines.CoroutineDispatcher
 
