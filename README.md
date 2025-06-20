@@ -54,8 +54,9 @@
         <ul>
             <li>Implements the <em>shared</em> KMP module.</li>
             <li>It is a completely reworked <em>app-legacy  / app-view</em>.</li>
-            <li>Adopts modern Jetpack Compose / Clean Code approach.</li></li>
+            <li>Adopts modern Jetpack Compose / Clean Code approach.</li>
         </ul>
+    </li>
     <li><code>shared</code> : The KMP project module.
         <ul>
             <li>Currently ongoing integration with <em>app-compose</em> module.</li>
