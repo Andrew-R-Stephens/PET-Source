@@ -1,4 +1,4 @@
-<h1>:shared</h1>
+<h1>shared</h1>
 <b>Status</b> : <code>active</code>
 
 <br>
