@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source
 
-import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
 
@@ -30,17 +29,5 @@ interface GlobalPreferencesDatastore: DatastoreDataSource<GlobalPreferences> {
         val enableRTL: Boolean = false,
         val maxHuntWarnFlashTime: Long = 300L
     )
-
-    companion object PreferenceKeys {
-        lateinit var KEY_DISABLE_SCREENSAVER: Preferences.Key<Boolean>
-        lateinit var KEY_ALLOW_CELLULAR_DATA: Preferences.Key<Boolean>
-        lateinit var KEY_ALLOW_HUNT_WARN_AUDIO: Preferences.Key<Boolean>
-        lateinit var KEY_ENABLE_GHOST_REORDER: Preferences.Key<Boolean>
-        lateinit var KEY_ALLOW_INTRODUCTION: Preferences.Key<Boolean>
-
-        lateinit var KEY_ENABLE_RTL: Preferences.Key<Boolean>
-
-        lateinit var KEY_HUNT_WARN_MAX_TIMEOUT: Preferences.Key<Long>
-    }
 
 }

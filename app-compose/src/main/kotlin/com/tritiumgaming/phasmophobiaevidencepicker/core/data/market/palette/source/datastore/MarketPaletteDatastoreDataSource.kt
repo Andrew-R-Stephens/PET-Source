@@ -10,7 +10,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore.PreferenceKeys.KEY_PALETTE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -42,7 +41,9 @@ class MarketPaletteDatastoreDataSource(
         }
     }
 
-    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+    override fun initialSetupEvent() {
+        liveData { emit(fetchInitialPreferences()) }
+    }
 
     override suspend fun initFlow(onUpdate: (PaletteDatastore.PalettePreferences) -> Unit) =
         flow.collect { onUpdate(it) }
@@ -54,6 +55,10 @@ class MarketPaletteDatastoreDataSource(
         return PaletteDatastore.PalettePreferences(
             uuid = preferences[KEY_PALETTE] ?: ""
         )
+    }
+
+    companion object PreferenceKeys {
+        lateinit var KEY_PALETTE: Preferences.Key<String>
     }
 
 }

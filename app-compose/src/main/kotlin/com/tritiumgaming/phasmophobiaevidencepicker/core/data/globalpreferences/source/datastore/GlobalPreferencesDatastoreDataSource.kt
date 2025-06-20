@@ -13,13 +13,6 @@ import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_CELLULAR_DATA
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_HUNT_WARN_AUDIO
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ALLOW_INTRODUCTION
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_DISABLE_SCREENSAVER
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ENABLE_GHOST_REORDER
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_ENABLE_RTL
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.PreferenceKeys.KEY_HUNT_WARN_MAX_TIMEOUT
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -152,7 +145,9 @@ class GlobalPreferencesDatastoreDataSource(
         return allowed
     }
 
-    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+    override fun initialSetupEvent() {
+        liveData { emit(fetchInitialPreferences()) }
+    }
 
     override suspend fun initFlow(onUpdate: (preferences: GlobalPreferences) -> Unit) {
         flow.collect { preferences ->
@@ -175,5 +170,16 @@ class GlobalPreferencesDatastoreDataSource(
         )
     }
 
+    companion object PreferenceKeys {
+        lateinit var KEY_DISABLE_SCREENSAVER: Preferences.Key<Boolean>
+        lateinit var KEY_ALLOW_CELLULAR_DATA: Preferences.Key<Boolean>
+        lateinit var KEY_ALLOW_HUNT_WARN_AUDIO: Preferences.Key<Boolean>
+        lateinit var KEY_ENABLE_GHOST_REORDER: Preferences.Key<Boolean>
+        lateinit var KEY_ALLOW_INTRODUCTION: Preferences.Key<Boolean>
+
+        lateinit var KEY_ENABLE_RTL: Preferences.Key<Boolean>
+
+        lateinit var KEY_HUNT_WARN_MAX_TIMEOUT: Preferences.Key<Long>
+    }
 
 }

@@ -13,9 +13,6 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.PreferenceKeys.KEY_ALLOW_REQUEST_REVIEW
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.PreferenceKeys.KEY_TIMES_OPENED
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.PreferenceKeys.KEY_TIME_ACTIVE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -98,7 +95,9 @@ class ReviewTrackerDatastoreDataSource(
         return timesOpened
     }
 
-    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+    override fun initialSetupEvent() {
+        liveData { emit(fetchInitialPreferences()) }
+    }
 
     override suspend fun initFlow(onUpdate: (ReviewTrackerPreferences) -> Unit) =
         flow.collect { onUpdate(it) }
@@ -112,6 +111,12 @@ class ReviewTrackerDatastoreDataSource(
             timesOpened = preferences[KEY_TIMES_OPENED] ?: 0,
             allowRequestReview =  preferences[KEY_ALLOW_REQUEST_REVIEW] == true,
         )
+    }
+
+    companion object PreferenceKeys {
+        lateinit var KEY_ALLOW_REQUEST_REVIEW: Preferences.Key<Boolean>
+        lateinit var KEY_TIME_ACTIVE: Preferences.Key<Long>
+        lateinit var KEY_TIMES_OPENED: Preferences.Key<Int>
     }
 
 }

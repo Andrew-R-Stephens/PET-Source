@@ -8,7 +8,6 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -31,18 +30,20 @@ class MarketTypographyDatastoreDataSource(
         }
 
     init {
-        MarketTypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY = stringPreferencesKey(
+        KEY_TYPOGRAPHY = stringPreferencesKey(
             context.resources.getString(R.string.preference_savedFont)
         )
     }
 
     override suspend fun saveTypography(uuid: String) {
         dataStore.edit { preferences ->
-            preferences[MarketTypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY] = uuid
+            preferences[KEY_TYPOGRAPHY] = uuid
         }
     }
 
-    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+    override fun initialSetupEvent() {
+        liveData { emit(fetchInitialPreferences()) }
+    }
 
     override suspend fun initFlow(onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit) =
         flow.collect { onUpdate(it) }
@@ -52,8 +53,12 @@ class MarketTypographyDatastoreDataSource(
 
     private fun mapPreferences(preferences: Preferences): MarketTypographyDatastore.TypographyPreferences {
         return MarketTypographyDatastore.TypographyPreferences(
-            preferences[MarketTypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY] ?: ""
+            preferences[KEY_TYPOGRAPHY] ?: ""
         )
+    }
+
+    companion object PreferencesKeys {
+        lateinit var KEY_TYPOGRAPHY: Preferences.Key<String>
     }
 
 }

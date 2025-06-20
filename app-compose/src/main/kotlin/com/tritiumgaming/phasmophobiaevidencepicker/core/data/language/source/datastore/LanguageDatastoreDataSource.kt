@@ -7,10 +7,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore.PreferenceKeys.KEY_CURRENT_LANGUAGE_CODE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -45,7 +43,9 @@ class LanguageDatastoreDataSource(
         return currentLanguageCode
     }
 
-    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+    override fun initialSetupEvent() {
+        liveData { emit(fetchInitialPreferences()) }
+    }
 
     override suspend fun initFlow(onUpdate: (LanguageDatastore.LanguagePreferences) -> Unit) =
         flow.collect { onUpdate(it) }
@@ -58,5 +58,9 @@ class LanguageDatastoreDataSource(
             preferences[KEY_CURRENT_LANGUAGE_CODE]
                 ?: DEFAULT_LANGUAGE
         )
+
+    companion object PreferenceKeys {
+        lateinit var KEY_CURRENT_LANGUAGE_CODE: Preferences.Key<String>
+    }
 
 }
