@@ -23,6 +23,10 @@ kotlin {
         }
     }
 
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
     // For iOS targets, this is also where you should
     // configure native binary output. For more information, see:
     // https://kotlinlang.org/docs/multiplatform-build-native-binaries.html#build-xcframeworks
@@ -74,6 +78,23 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
+
+                // Compose UI
+                implementation(libs.androidx.compose.ui.core)
+                implementation(libs.androidx.compose.ui.toolingPreview)
+
+                /*Optional - Included automatically by material, only add when you need
+                the icons but not the material library (e.g. when using Material3 or a
+                custom design system based on Foundation)*/
+                implementation(libs.androidx.compose.runtime.liveData) // Optional - Integration with LiveData
+                implementation(libs.androidx.compose.runtime.rxJava2) // Optional - Integration with RxJava
+
+                implementation(libs.androidx.activityCompose)
+                implementation(libs.androidx.lifecycle.runtime.ktx)
+                implementation(libs.androidx.lifecycle.viewmodelCompose)
+                implementation(libs.androidx.lifecycle.runtime.compose)
+                implementation(libs.androidx.navigation.compose)
+
             }
         }
 
@@ -94,6 +115,7 @@ kotlin {
                 // KMP dependencies declared in commonMain.
             }
         }
+
     }
 
 }
