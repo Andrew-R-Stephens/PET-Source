@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dt
 
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterChannel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 
 data class FlattenedNewsletterInboxDto(
@@ -28,6 +27,6 @@ fun List<FlattenedNewsletterInboxDto>.toExternal(): List<NewsletterInbox> =
             title = dto.title ?: NewsletterTitle.GENERAL_NEWS,
             url = dto.url,
             icon = dto.icon ?: NewsletterIcon.GENERAL_NEWS,
-            channel = dto.channel?.toExternal() ?: NewsletterChannel()
+            channel = dto.channel?.toExternal()
         )
     }

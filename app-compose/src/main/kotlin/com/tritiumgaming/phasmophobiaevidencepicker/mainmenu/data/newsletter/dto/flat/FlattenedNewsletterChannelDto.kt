@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dt
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterChannel
 
 data class FlattenedNewsletterChannelDto(
-    val language: String? = null,
+    val language: String,
     val messages: List<FlattenedNewsletterMessageDto>? = null
 )
 

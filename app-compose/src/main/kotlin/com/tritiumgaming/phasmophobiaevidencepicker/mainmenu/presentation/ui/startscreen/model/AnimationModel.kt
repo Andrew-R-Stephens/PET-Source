@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.model
 
 import android.content.Context
 import android.content.res.Resources
@@ -7,11 +7,6 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.graphicsdata.AnimatedFrostModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.graphicsdata.AnimatedHandModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.graphicsdata.AnimatedMirrorModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.graphicsdata.AnimatedOrbModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.graphicsdata.AnimatedWritingModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.util.BitmapUtils
 
 class AnimationModel {

@@ -8,7 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -32,6 +32,9 @@ class NewsletterDatastoreDataSource(
         .map { preferences ->
             mapPreferences(preferences)
         }
+
+    override suspend fun initFlow(onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
 
     init {
         keyList.apply {

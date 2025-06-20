@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local
 
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.dto.SpecialThanksContributorDto
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.source.AppInfoDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.AppInfoDataSource
 
 class AppInfoLocalDataSource(): AppInfoDataSource {
 

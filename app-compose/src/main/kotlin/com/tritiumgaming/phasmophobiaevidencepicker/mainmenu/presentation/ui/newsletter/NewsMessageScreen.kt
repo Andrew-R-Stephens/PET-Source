@@ -38,7 +38,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.formatFromEpoch
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
 
@@ -94,8 +93,8 @@ private fun NewsMessageContent(
 
     val inbox = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
     val channel = inbox.value.find { inbox -> inbox.id == rememberInboxID }?.channel
-    val messages = channel?.messages?.collectAsStateWithLifecycle()
-    val message = messages?.value?.find { message -> message.id == rememberMessageID }
+    val messages = channel?.messages
+    val message = messages?.find { message -> message.id == rememberMessageID }
 
     Column(
         modifier = Modifier
@@ -150,9 +149,7 @@ private fun NewsMessageContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    text = AnnotatedString.Companion.fromHtml(
-                        formatFromEpoch(message?.date) ?: ""
-                    ),
+                    text = AnnotatedString.Companion.fromHtml(message?.dateFormatted ?: ""),
                     style = LocalTypography.current.quaternary.regular.copy(
                         color = LocalPalette.current.textFamily.body,
                         fontSize = 18.sp,

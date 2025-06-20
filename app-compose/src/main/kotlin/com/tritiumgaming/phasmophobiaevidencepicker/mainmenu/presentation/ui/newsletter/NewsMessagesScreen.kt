@@ -104,10 +104,10 @@ private fun NewsMessagesContent(
     val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
     val inbox = inboxes.value.find { inbox -> inbox.id == rememberInboxID }
 
-    val inboxNotificationState = inbox?.inboxNotificationState?.collectAsStateWithLifecycle()
+    val inboxNotificationState = inbox?.inboxNotificationState
 
-    val messagesState = inbox?.channel?.messages?.collectAsStateWithLifecycle()
-    var inboxLastReadDateState = inbox?.inboxLastReadDate?.collectAsStateWithLifecycle()
+    val messages = inbox?.channel?.messages
+    var inboxLastReadDateState = inbox?.inboxLastReadDate
 
     Column(
         modifier = Modifier
@@ -137,16 +137,16 @@ private fun NewsMessagesContent(
                 modifier = Modifier
                     .height(48.dp)
                     .wrapContentWidth()
-                    .alpha(if (inboxNotificationState?.value == true) 1f else .4f),
+                    .alpha(if (inboxNotificationState == true) 1f else .4f),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = LocalPalette.current.buttonColor,
                 ),
                 contentPadding = PaddingValues(top = 4.dp, bottom = 4.dp, start = 16.dp, end = 16.dp),
                 shape = RoundedCornerShape(size = 8.dp),
-                enabled = inboxNotificationState?.value == true,
+                enabled = inboxNotificationState == true,
                 onClick = {
                     inbox?.let { inboxType ->
-                        messagesState?.value?.firstOrNull()?.date?.let {
+                        messages?.firstOrNull()?.dateEpoch?.let {
                             newsletterViewModel.saveInboxLastReadDate(inboxID, it)
                         }
                     }
@@ -174,17 +174,17 @@ private fun NewsMessagesContent(
             state = rememberListState
         ) {
 
-            items(items = messagesState?.value ?: listOf()) { message ->
+            items(items = messages ?: listOf()) { message ->
 
                 val rememberMessage by remember { mutableStateOf(message) }
 
                 MessageCard(
                     message = rememberMessage,
-                    isActive = rememberMessage.date - (inboxLastReadDateState?.value ?: 0) > 0,
+                    isActive = rememberMessage.dateEpoch - (inboxLastReadDateState ?: 0) > 0,
                     onClick = {
                         inbox?.let { inboxType ->
                             newsletterViewModel.saveInboxLastReadDate(
-                                inboxID, rememberMessage.date)
+                                inboxID, rememberMessage.dateEpoch)
                         }
                         navController.navigate(
                             route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
@@ -245,7 +245,7 @@ private fun MessageCard(
                     .basicMarquee(
                         iterations = Int.MAX_VALUE,
                     ),
-                text = rememberMessage.title,
+                text = rememberMessage.title ?: "",
                 style = LocalTypography.current.quaternary.bold,
                 color = LocalPalette.current.textFamily.primary,
                 textAlign = TextAlign.Center,

@@ -5,13 +5,13 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.network.ConnectivityManagerHelper
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository.AppInfoRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.AppInfoDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local.AppInfoLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore.NewsletterDatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.api.NewsletterService
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.source.AppInfoDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase

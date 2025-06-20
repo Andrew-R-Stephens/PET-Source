@@ -58,10 +58,10 @@ class NewsletterViewModel(
 
             _inboxes.update { fetchNewsletterInboxesUseCase() }
 
-            initFlowNewsletterUseCase().collect { preferences ->
+            initFlowNewsletterUseCase { preferences ->
                 inboxes.value.forEach {
-                    it.setInboxLastReadDate(preferences.data[it.id] ?: 0L)
-                    Log.d("NewsletterViewModel", "ID ${it.id}: lastReadDate: ${it.inboxLastReadDate.value}")
+                    it.inboxLastReadDate = (preferences.data[it.id] ?: 0L)
+                    Log.d("NewsletterViewModel", "ID ${it.id}: lastReadDate: ${it.inboxLastReadDate}")
                 }
             }
         }

@@ -2,15 +2,17 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.re
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.network.ConnectivityManagerHelper
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat.toExternal
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local.toInternal
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.remote.toInternal
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore.NewsletterPreferences
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore
 import io.ktor.http.Url
 import kotlinx.coroutines.CoroutineDispatcher
 
@@ -22,15 +24,22 @@ class NewsletterRepositoryImpl(
     coroutineDispatcher: CoroutineDispatcher
 ): NewsletterRepository {
 
+    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
+
+    override suspend fun initFlow(
+        onUpdate: (NewsletterPreferences) -> Unit
+    ) = dataStoreSource.initFlow(onUpdate)
+
+
     private var cache: List<FlattenedNewsletterInboxDto> = emptyList()
 
-    override fun getLocalInboxes(): Result<List<FlattenedNewsletterInboxDto>> {
+    private fun getLocalInboxes(): Result<List<FlattenedNewsletterInboxDto>> {
         val result = localDataSource.fetchInboxes()
         val out = result.getOrDefault(emptyList()).toInternal()
         return Result.success(out)
     }
 
-    override suspend fun fetchRemoteInbox(
+    private suspend fun fetchRemoteInbox(
         inboxUrl: Url
     ): Result<FlattenedNewsletterInboxDto> {
         val result = remoteDataSource.fetchInbox(inboxUrl)
@@ -38,7 +47,7 @@ class NewsletterRepositoryImpl(
         return result.map{ dto -> dto.toInternal() }
     }
 
-    suspend fun fetchRemoteInboxes(): Result<List<FlattenedNewsletterInboxDto>> {
+    private suspend fun fetchRemoteInboxes(): Result<List<FlattenedNewsletterInboxDto>> {
 
         val connection = connectivityManagerHelper.getActiveNetworkTransport()
         connection.exceptionOrNull()?.let { e ->
@@ -96,9 +105,6 @@ class NewsletterRepositoryImpl(
 
     override suspend fun saveInboxLastReadDate(id: String, date: Long) =
         dataStoreSource.setLastReadDate(id, date)
-
-    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
-    override suspend fun initFlow() = dataStoreSource.flow
 
     init {
         initialSetupEvent()

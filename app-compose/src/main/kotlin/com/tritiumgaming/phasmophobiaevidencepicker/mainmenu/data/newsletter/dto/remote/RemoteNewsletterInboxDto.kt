@@ -7,11 +7,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.remote.RemoteNewsletterInboxDto.RemoteNewsletterChannelDto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.remote.RemoteNewsletterInboxDto.RemoteNewsletterChannelDto.RemoteNewsletterMessageDto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterMessage
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.formatToEpoch
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlElement
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @Serializable
 @SerialName("rss")
@@ -44,15 +46,15 @@ fun RemoteNewsletterInboxDto.toInternal(): FlattenedNewsletterInboxDto =
 
 fun RemoteNewsletterChannelDto.toExternal(): FlattenedNewsletterChannelDto =
     FlattenedNewsletterChannelDto(
-        language = language,
+        language = language ?: Locale.ENGLISH.language,
         messages = items?.toExternal()
     )
 
 fun RemoteNewsletterMessageDto.toExternal(): FlattenedNewsletterMessageDto =
     FlattenedNewsletterMessageDto(
         id = id,
-        title = FontUtils.removeXMLImgSrcTags(title),
-        description = FontUtils.removeXMLImgSrcTags(description),
+        title = title,
+        description = description,
         date = formatToEpoch(FontUtils.removeXMLPubDateClockTime(pubDate))
     )
 
@@ -61,33 +63,49 @@ fun RemoteNewsletterMessageDto.toExternal(fallbackId: String): NewsletterMessage
         id = id ?: fallbackId,
         title = title,
         description = description,
-        date = formatToEpoch(pubDate)
+        dateFormatted = pubDate
     )
 
 @JvmName("remoteNewsletterInboxDtoListToFlattenedNewsletterInboxDtoList")
 fun List<RemoteNewsletterInboxDto>.toExternal(): List<FlattenedNewsletterInboxDto> =
-    map { dto ->
-        FlattenedNewsletterInboxDto(
-            channel = dto.channel.toExternal()
-        )
-    }
+    map { dto -> dto.toInternal() }
 
 @JvmName("remoteNewsletterChannelDtoListToFlattenedNewsletterChannelDtoList")
 fun List<RemoteNewsletterChannelDto>.toExternal(): List<FlattenedNewsletterChannelDto> =
-    map { dto ->
-        FlattenedNewsletterChannelDto(
-            language = dto.language,
-            messages = dto.items?.toExternal()
-        )
-    }
+    map { dto -> dto.toExternal() }
 
 @JvmName("remoteNewsletterMessageDtoListToFlattenedNewsletterMessageDtoList")
 fun List<RemoteNewsletterMessageDto>.toExternal(): List<FlattenedNewsletterMessageDto> =
-    map { dto ->
-        FlattenedNewsletterMessageDto(
-            id = dto.id,
-            title = dto.title,
-            description = dto.description,
-            date = formatToEpoch(dto.pubDate)
-        )
+    map { dto -> dto.toExternal() }
+
+private fun formatFromEpoch(time: Long?): String? {
+
+    time ?: return formatFromEpoch(1L)
+
+    val parser = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.ENGLISH)
+    var stringDate: String? = null
+    try {
+        stringDate = parser.format(time)
+    } catch (e: IllegalArgumentException) {
+        e.printStackTrace()
     }
+
+    return stringDate
+
+}
+
+private fun formatToEpoch(stringDate: String?): Long {
+
+    stringDate ?: return 1L
+
+    val dateFormatter = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.ENGLISH)
+    var time = 1L
+    try {
+        time = dateFormatter.parse(stringDate)?.time ?: time
+    } catch (e: ParseException) {
+        e.printStackTrace()
+    }
+
+    return time
+
+}

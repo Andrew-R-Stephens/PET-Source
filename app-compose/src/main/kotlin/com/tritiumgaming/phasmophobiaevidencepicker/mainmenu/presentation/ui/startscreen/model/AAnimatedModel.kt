@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.model
 
 import android.graphics.Bitmap
 import android.graphics.Canvas

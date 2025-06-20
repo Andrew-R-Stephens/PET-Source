@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source
 
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local.LocalNewsletterInboxDto
 

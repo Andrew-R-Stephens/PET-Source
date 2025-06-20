@@ -1,8 +1,8 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source
 
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.NewsletterPreferences
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore.NewsletterPreferences
 
 interface NewsletterDatastore: DatastoreDataSource<NewsletterPreferences> {
 

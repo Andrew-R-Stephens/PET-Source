@@ -1,9 +1,8 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.graphicsdata
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.model
 
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.AAnimatedModel
 
 /**
  * GhostOrbData class

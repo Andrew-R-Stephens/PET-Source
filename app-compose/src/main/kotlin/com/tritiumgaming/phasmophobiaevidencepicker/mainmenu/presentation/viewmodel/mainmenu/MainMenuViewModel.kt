@@ -7,7 +7,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.gms.ads.AdRequest
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.startscreen.AnimationModel
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.model.AnimationModel
 
 /**
  * TitleScreenViewModel class
