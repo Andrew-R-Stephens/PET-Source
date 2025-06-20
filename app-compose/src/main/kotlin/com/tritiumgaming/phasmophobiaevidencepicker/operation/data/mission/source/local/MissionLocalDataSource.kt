@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.sour
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto.MissionDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mappers.MissionResources.MissionContent
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.MissionDataSource
 
 class MissionLocalDataSource(
 ): MissionDataSource {

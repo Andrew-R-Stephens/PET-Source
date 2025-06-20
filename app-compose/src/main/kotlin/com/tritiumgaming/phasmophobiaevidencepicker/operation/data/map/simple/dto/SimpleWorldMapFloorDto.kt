@@ -9,6 +9,8 @@ data class SimpleWorldMapFloorDto(
     val image: MapFloorImage
 )
 
+fun List<SimpleWorldMapFloorDto>.toDomain() = map { it.toDomain() }
+
 fun SimpleWorldMapFloorDto.toDomain() = SimpleWorldMapFloor(
     layerName = layerName,
     image = image

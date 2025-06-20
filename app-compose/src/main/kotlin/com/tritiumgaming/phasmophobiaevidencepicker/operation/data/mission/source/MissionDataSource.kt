@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto.MissionDto
 

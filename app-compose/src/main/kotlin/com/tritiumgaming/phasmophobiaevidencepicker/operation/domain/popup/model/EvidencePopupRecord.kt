@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model
 
-import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceCost
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierAnimation
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources.EvidenceTierDescription
@@ -12,10 +11,6 @@ data class EvidencePopupRecord(
     val cost: EvidenceCost,
     val tiers: List<EvidenceTier> = emptyList()
 ) {
-
-    fun getCost(c: Context): EvidenceCost {
-        return cost
-    }
 
     fun getAnimationAt(i: Int): EvidenceTierAnimation {
         return tiers[i].animation
@@ -31,7 +26,6 @@ data class EvidencePopupRecord(
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
 
         other as EvidencePopupRecord
 

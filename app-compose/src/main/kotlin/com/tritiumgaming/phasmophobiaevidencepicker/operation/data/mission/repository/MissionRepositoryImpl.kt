@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.repo
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.repository.MissionRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.source.MissionDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.MissionDataSource
 
 class MissionRepositoryImpl(
     private val localSource: MissionDataSource

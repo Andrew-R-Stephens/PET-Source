@@ -28,6 +28,6 @@ fun SimpleWorldMapDto.toDomain() = SimpleWorldMap(
     mapName = mapName,
     mapSize = mapSize,
     thumbnailImage = thumbnailImage,
-    mapFloors = mapFloors,
+    mapFloors = mapFloors.toDomain(),
     defaultFloor = defaultFloor
 )

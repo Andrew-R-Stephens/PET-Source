@@ -10,7 +10,7 @@ class SimpleWorldMap(
     val mapName: MapTitle,
     val mapSize: MapSize,
     val thumbnailImage: MapThumbnail,
-    val mapFloors: List<SimpleWorldMapFloorDto>,
+    val mapFloors: List<SimpleWorldMapFloor>,
     val defaultFloor: Int
 ) {
 
