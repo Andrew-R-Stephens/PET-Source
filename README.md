@@ -50,14 +50,14 @@
 <div align='left'><h3>Modules</h3></div> 
 [ <code>active</code> ]
 <ul>
-    <li><code>app-compose</code> : The Android core module.<br>
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/app-compose"><code>:app-compose</code></a> : The Android core module.<br>
         <ul>
             <li>Implements the <em>shared</em> KMP module.</li>
             <li>It is a completely reworked <em>app-legacy  / app-view</em>.</li>
             <li>Adopts modern Jetpack Compose / Clean Code approach.</li>
         </ul>
     </li>
-    <li><code>shared</code> : The KMP project module.
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/shared"><code>shared</code></a> : The KMP project module.
         <ul>
             <li>Currently ongoing integration with <em>app-compose</em> module.</li>
         </ul>
@@ -65,7 +65,7 @@
 </ul>
 [ <code>incubating</code> ]
 <ul>
-    <li><code>iosApp</code> : The iOS project files.
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/iosApp"><code>iosApp</code></a> : The iOS project files.
         <ul>
             <li>Dependent on the <em>shared</em> module.</li>
         </ul>
@@ -73,12 +73,12 @@
 </ul>
 [ <code>sunset</code> ]
 <ul>
-    <li><code>app-legacy</code> : Current Live module.
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/app-legacy"><code>:app-legacy</code></a> : Current Live module.
         <ul>
             <li>Maintained for live hotfixes.</li>
         </ul>
     </li>
-    <li><code>app-view</code> : Sandbox build.
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/app-view"><code>:app-view</code></a> : Sandbox build.
         <ul>
             <li>used to both propose future <em>app-legacy</em> features and fixes and migrate <em>app-legacy</em> features to <em>app-compose</em>.</li>
         </ul>
