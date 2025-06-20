@@ -114,7 +114,7 @@
         <h5>Prepare with KMP for iOS ♻️</h5>
         <ul>
             <li><h5>Add KMP and iOS project module ✔️</h5></li>
-            <li><h5>Build shared interfaces 🔳</h5></li>
+            <li><h5>Build shared interfaces ♻️</h5></li>
         </ul>
     </li>
     <li><h5>Begin fixes for iOS/SwiftUI 🔳</h5></li>
