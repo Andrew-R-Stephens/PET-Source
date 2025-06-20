@@ -2,10 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferenc
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 
-class SetAllowHuntWarnAudioUseCase(
+class SetEnableRTLUseCase(
     private val repository: GlobalPreferencesRepository
 ) {
-    @Suppress("unused")
-    suspend operator fun invoke(allow: Boolean) =
-        repository.setAllowHuntWarnAudio(allow)
+    suspend operator fun invoke(enable: Boolean) =
+        repository.setEnableRTL(enable)
 }

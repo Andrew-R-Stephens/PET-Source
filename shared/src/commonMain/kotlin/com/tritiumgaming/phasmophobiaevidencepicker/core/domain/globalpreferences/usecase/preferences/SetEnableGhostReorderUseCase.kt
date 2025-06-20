@@ -2,10 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferenc
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 
-class SetEnableRTLUseCase(
+class SetEnableGhostReorderUseCase(
     private val repository: GlobalPreferencesRepository
-    ) {
-    @Suppress("unused")
-        suspend operator fun invoke(enable: Boolean) =
-            repository.setEnableRTL(enable)
-    }
+) {
+    suspend operator fun invoke(enable: Boolean) =
+        repository.setEnableGhostReorder(enable)
+}

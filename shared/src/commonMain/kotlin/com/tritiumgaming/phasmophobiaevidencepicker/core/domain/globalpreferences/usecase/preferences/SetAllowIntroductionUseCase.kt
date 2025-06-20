@@ -2,11 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferenc
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 
-class SetMaxHuntWarnFlashTimeUseCase(
+class SetAllowIntroductionUseCase(
     private val repository: GlobalPreferencesRepository
-    ) {
-    @Suppress("unused")
-        suspend operator fun invoke(time: Long) {
-            repository.setMaxHuntWarnFlashTime(time)
-        }
-    }
+) {
+    suspend operator fun invoke(allow: Boolean) =
+        repository.setAllowIntroduction(allow)
+}

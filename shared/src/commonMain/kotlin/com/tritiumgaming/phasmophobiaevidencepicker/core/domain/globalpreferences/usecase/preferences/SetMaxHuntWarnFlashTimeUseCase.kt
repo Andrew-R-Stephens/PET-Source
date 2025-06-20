@@ -2,10 +2,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferenc
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 
-class SetAllowCellularDataUseCase(
+class SetMaxHuntWarnFlashTimeUseCase(
     private val repository: GlobalPreferencesRepository
 ) {
-    @Suppress("unused")
-    suspend operator fun invoke(allow: Boolean) =
-        repository.setAllowCellularData(allow)
+    suspend operator fun invoke(time: Long) {
+        repository.setMaxHuntWarnFlashTime(time)
+    }
 }
