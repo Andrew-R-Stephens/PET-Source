@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.c
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.network.ConnectivityManagerHelper
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model.ConnectivityManagerHelper
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.repository.AppInfoRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.AppInfoDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local.AppInfoLocalDataSource
