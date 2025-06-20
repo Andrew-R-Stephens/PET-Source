@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.source
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.source
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.dto.GhostBoxResponseDto
 

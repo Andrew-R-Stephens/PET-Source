@@ -1,13 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
-import android.graphics.PointF
-import android.util.Log
-
 class ComplexWorldRoomArea(
-    val points: List<PointF>
+    val points: List<ComplexWorldPoint>
 ) {
 
-    val center: PointF
+    val center: ComplexWorldPoint
         get() {
             var x = 0f
             var y = 0f
@@ -21,10 +18,10 @@ class ComplexWorldRoomArea(
             x /= pointCount
             y /= pointCount
 
-            return PointF(x, y)
+            return ComplexWorldPoint(x, y)
         }
 
-    val lastPoint: PointF
+    val lastPoint: ComplexWorldPoint
         get() = points.last()
 
     override fun toString(): String {
@@ -35,9 +32,4 @@ class ComplexWorldRoomArea(
         return "[Points:$s\t]"
     }
 
-    @Synchronized
-    fun print() {
-        points.forEach { p ->
-            Log.d("Maps", "[Point: x" + p.x + " y" + p.y + "]") }
-    }
 }

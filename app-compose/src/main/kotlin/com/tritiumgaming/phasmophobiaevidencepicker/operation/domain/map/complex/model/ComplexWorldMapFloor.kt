@@ -1,7 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
-import android.util.Log
-
 data class ComplexWorldMapFloor(
     internal val floorId: Int,
     internal val floorName: String?,
@@ -25,17 +23,13 @@ data class ComplexWorldMapFloor(
     fun getRoomIndexById(id: Int): Int = floorRooms.indexOfFirst { room -> room.id == id }
 
     override fun toString(): String {
-        return "\n\t[Floor ID: $floorId] [Floor Name: $floorName] [ Assigned Layer: $floorLayer ] [Image File: $floorImage] Rooms:$floorRooms\n"
-    }
+        val builder = StringBuilder()
+        builder.append("[Floor ID: $floorId] [Floor Name: $floorName] " +
+                "[ Assigned Layer: $floorLayer ] [Image File: $floorImage]")
+        floorRooms.forEach { builder.append(it) }
+        floorPOIs.forEach { builder.append(it) }
 
-    @Synchronized
-    fun print() {
-        Log.d("Maps",
-            "[Floor ID: $floorId] [Floor Name: $floorName] " +
-                    "[ Assigned Layer: $floorLayer ] [Image File: $floorImage]"
-        )
-        floorRooms.forEach { it.print() }
-        floorPOIs.forEach { it.print() }
+        return builder.toString()
     }
 
     fun orderRooms() {

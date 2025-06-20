@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 

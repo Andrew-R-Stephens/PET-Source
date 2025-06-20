@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 import android.graphics.PointF
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMapFloor
 
 data class ComplexFloorDto(
     internal val floorId: Int,

@@ -1,10 +1,10 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.service
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.service
 
 import android.content.res.AssetManager
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapService
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.ComplexMapService
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream

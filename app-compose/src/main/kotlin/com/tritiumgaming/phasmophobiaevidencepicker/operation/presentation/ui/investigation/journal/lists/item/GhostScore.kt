@@ -1,7 +1,7 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.RuledEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -38,13 +38,13 @@ data class GhostScore(
      */
     fun getEvidenceScore(
         ruledEvidence: List<RuledEvidence> = emptyList(),
-        currentDifficulty: DifficultyType? = DifficultyType.AMATEUR
+        currentDifficulty: DifficultyResources.DifficultyType? = DifficultyResources.DifficultyType.AMATEUR
     ): Int {
 
         //if (forcefullyRejected.value) { return -5 }
 
-        val isNightmare = currentDifficulty == DifficultyType.NIGHTMARE
-        val isInsanity = currentDifficulty == DifficultyType.INSANITY
+        val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
+        val isInsanity = currentDifficulty == DifficultyResources.DifficultyType.INSANITY
 
         val maxPosScore = when {
             isInsanity -> 1

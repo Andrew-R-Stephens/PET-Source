@@ -1,13 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
-import android.graphics.PointF
-import android.util.Log
-
 data class ComplexWorldPoi(
     val id: Int,
     val name: String,
     val type: ComplexWorldPoiType,
-    val point: PointF?
+    val point: ComplexWorldPoint?
 ) {
 
     fun hasName(): Boolean = name.isNotEmpty()
@@ -21,7 +18,4 @@ data class ComplexWorldPoi(
         return "\n\t\t[Room ID: $id] [Room Name: $name] [Room Name: $type] [Room points: $point]"
     }
 
-    fun print() {
-        Log.d("Maps", "$id $name $type $point")
-    }
 }

@@ -9,7 +9,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.map
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostWeakness
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.GhostDataSource
 
 class GhostLocalDataSource(
     private val applicationContext: Context

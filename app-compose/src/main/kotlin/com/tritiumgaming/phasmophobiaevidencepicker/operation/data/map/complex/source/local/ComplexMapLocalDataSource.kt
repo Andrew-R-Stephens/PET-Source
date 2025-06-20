@@ -3,8 +3,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.source.ComplexMapService
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.ComplexMapDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.ComplexMapService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async

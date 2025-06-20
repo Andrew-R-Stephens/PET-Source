@@ -1,7 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
-class ComplexWorldMapDimensions(val w: Int, val h: Int) {
+data class ComplexWorldPoint(
+    val x: Float,
+    val y: Float
+) {
     override fun toString(): String {
-        return "[ W: $w H: $h ]"
+        return "[P1: $x P2: $y]"
     }
 }

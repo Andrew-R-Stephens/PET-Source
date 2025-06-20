@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostDto
 

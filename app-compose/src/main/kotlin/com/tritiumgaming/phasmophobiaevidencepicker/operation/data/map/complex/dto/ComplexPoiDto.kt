@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import android.graphics.PointF
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoi
 
 data class ComplexPoiDto(
     var id: Int,
@@ -33,5 +32,5 @@ fun ComplexPoiDto.toDomain() = ComplexWorldPoi(
     id = id,
     name = name,
     type = type.toDomain(),
-    point = point
+    point = ComplexWorldPoint(point.x, point.y)
 )

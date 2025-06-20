@@ -9,8 +9,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mod
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.EvidenceDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.source.GhostDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.EvidenceDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.GhostDataSource
 
 class JournalRepositoryImpl(
     val ghostLocalDataSource: GhostDataSource,
