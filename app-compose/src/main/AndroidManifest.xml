@@ -76,26 +76,6 @@
 
         </activity>
 
-        <!--<activity
-            android:name="com.tritiumgaming.phasmophobiaevidencepicker.ui.noncompose.investigation.InvestigationActivity"
-            android:theme="@style/NonColorblind.Base"
-            android:configChanges="locale|orientation">
-        </activity>-->
-
-        <!--
-        <activity
-            android:name="com.tritiumgaming.phasmophobiaevidencepicker.activities.onboarding.OnboardingActivity"
-            android:theme="@style/Theme.PhasmophobiaEvidenceTool.Onboarding"
-            android:configChanges="locale|orientation"
-            android:exported="true">
-
-            <intent-filter>
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-        -->
-
     </application>
 
 </manifest>

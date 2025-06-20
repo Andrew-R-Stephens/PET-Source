@@ -2,11 +2,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecas
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore.LanguagePreferences
 import kotlinx.coroutines.flow.Flow
 
 class InitFlowLanguageUseCase(
     private val repository: LanguageRepository
 ) {
-    suspend operator fun invoke(): Flow<LanguageDatastore.LanguagePreferences> =
-        repository.initFlow()
+    suspend operator fun invoke(onUpdate: (LanguagePreferences) -> Unit) =
+        repository.initFlow(onUpdate)
 }

@@ -22,13 +22,13 @@ interface GlobalPreferencesDatastore: DatastoreDataSource<GlobalPreferences> {
     fun getAllowHuntWarnAudio(): Boolean
 
     data class GlobalPreferences(
-        val disableScreenSaver: Boolean,
-        val allowCellularData: Boolean,
-        val allowHuntWarnAudio: Boolean,
-        val enableGhostReorder: Boolean,
-        val allowIntroduction: Boolean,
-        val enableRTL: Boolean,
-        val maxHuntWarnFlashTime: Long
+        val disableScreenSaver: Boolean = true,
+        val allowCellularData: Boolean = true,
+        val allowHuntWarnAudio: Boolean = true,
+        val enableGhostReorder: Boolean = true,
+        val allowIntroduction: Boolean = true,
+        val enableRTL: Boolean = false,
+        val maxHuntWarnFlashTime: Long = 300L
     )
 
     companion object PreferenceKeys {

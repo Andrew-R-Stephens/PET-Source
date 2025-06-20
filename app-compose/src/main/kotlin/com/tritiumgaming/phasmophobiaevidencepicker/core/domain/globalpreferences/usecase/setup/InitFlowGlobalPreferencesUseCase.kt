@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class InitFlowGlobalPreferencesUseCase(
     private val repository: GlobalPreferencesRepository
 ) {
-    suspend operator fun invoke(): Flow<GlobalPreferencesDatastore.GlobalPreferences> =
-        repository.initFlow()
+    suspend operator fun invoke(
+        onUpdate: (preferences: GlobalPreferencesDatastore.GlobalPreferences) -> Unit
+    ) = repository.initFlow(onUpdate)
 }
