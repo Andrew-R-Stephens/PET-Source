@@ -1,5 +1,5 @@
 <h1>:app-compose</h1>
-<code>Status</code> : <code>active</code>
+<b>Status</b> : <code>active</code>
 
 <br>
 
@@ -8,7 +8,7 @@
 <h2>About Module</h3>
 <b>Type:<b> Android Core
 <br><br>
-<p>This module defines Android-only components.</p>
+<p>This module defines Android-only components for the <code>shared</code> KMP project.</p>
 <br>
   
 <h2>Dependencies</h3>
