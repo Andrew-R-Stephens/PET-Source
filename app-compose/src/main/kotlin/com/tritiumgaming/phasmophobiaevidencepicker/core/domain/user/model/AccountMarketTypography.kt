@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.FeatureAvailability
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.model.FeatureAvailability
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
 data class AccountMarketTypography (

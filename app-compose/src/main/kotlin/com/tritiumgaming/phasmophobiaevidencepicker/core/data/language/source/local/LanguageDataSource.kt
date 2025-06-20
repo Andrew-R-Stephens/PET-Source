@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source
+package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.LanguageDto
 

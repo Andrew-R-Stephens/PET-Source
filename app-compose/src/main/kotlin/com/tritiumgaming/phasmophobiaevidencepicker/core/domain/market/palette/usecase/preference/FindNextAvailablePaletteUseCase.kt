@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.market.model.IncrementDirection
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.toAccountMarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketPalette

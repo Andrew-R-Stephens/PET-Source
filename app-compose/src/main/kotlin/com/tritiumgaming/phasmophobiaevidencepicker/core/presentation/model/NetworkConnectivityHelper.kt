@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.network
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model
 
 import android.content.Context
 import android.net.ConnectivityManager

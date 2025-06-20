@@ -3,11 +3,10 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.l
 import android.content.Context
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.LanguageDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastoreDataSource.PreferenceKeys.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizationCode
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.LocalizedTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.mappers.LanguageResources.NativeTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toStringResource
 import java.util.Locale
 
