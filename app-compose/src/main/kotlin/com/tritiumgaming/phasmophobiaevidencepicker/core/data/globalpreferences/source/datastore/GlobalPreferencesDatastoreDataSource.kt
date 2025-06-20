@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
@@ -29,7 +30,7 @@ class GlobalPreferencesDatastoreDataSource(
     private val dataStore: DataStore<Preferences>
 ): GlobalPreferencesDatastore {
 
-    override val flow: Flow<GlobalPreferences> = dataStore.data
+    val flow: Flow<GlobalPreferences> = dataStore.data
         .catch { exception ->
             if (exception is IOException) { emit(emptyPreferences()) }
             else { throw exception }
@@ -37,12 +38,6 @@ class GlobalPreferencesDatastoreDataSource(
         .map { preferences ->
             mapPreferences(preferences)
         }
-
-    override suspend fun initFlow(onUpdate: (preferences: GlobalPreferences) -> Unit) {
-        flow.collect { preferences ->
-            onUpdate(preferences)
-        }
-    }
 
     init {
         Log.d("GlobalPreferences Repository", "Initializing")
@@ -157,10 +152,18 @@ class GlobalPreferencesDatastoreDataSource(
         return allowed
     }
 
+    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+
+    override suspend fun initFlow(onUpdate: (preferences: GlobalPreferences) -> Unit) {
+        flow.collect { preferences ->
+            onUpdate(preferences)
+        }
+    }
+
     override suspend fun fetchInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
-    override fun mapPreferences(preferences: Preferences): GlobalPreferences {
+    private fun mapPreferences(preferences: Preferences): GlobalPreferences {
         return GlobalPreferences(
             preferences[KEY_DISABLE_SCREENSAVER] == true,
             preferences[KEY_ALLOW_CELLULAR_DATA] != false,

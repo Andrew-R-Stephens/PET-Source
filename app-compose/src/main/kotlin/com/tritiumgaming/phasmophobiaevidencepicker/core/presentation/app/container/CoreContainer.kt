@@ -140,7 +140,7 @@ class CoreContainer(
         ReviewTrackerRepositoryImpl(
             dataStoreSource = ReviewTrackerDatastoreDataSource(
                 context = applicationContext,
-                datastore = dataStore
+                dataStore = dataStore
             )
         )
     internal val getReviewRequestStatusUseCase = GetReviewRequestStatusUseCase(

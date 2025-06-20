@@ -9,8 +9,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.source.local.AppInfoLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore.NewsletterDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSourceImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.api.NewsletterService
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
@@ -34,8 +34,8 @@ class MainMenuContainer(
     internal val getSpecialThanksUseCase = GetSpecialThanksUseCase(appInfoRepository)
 
     // Newsletter
-    private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSource(applicationContext)
-    private val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSource(
+    private val newsletterLocalDataSource: NewsletterLocalDataSourceImpl = NewsletterLocalDataSourceImpl(applicationContext)
+    private val newsletterRemoteDataSource: NewsletterRemoteDataSourceImpl = NewsletterRemoteDataSourceImpl(
         newsletterApi = NewsletterService()
     )
     private val newsletterDatastore: NewsletterDatastoreDataSource =

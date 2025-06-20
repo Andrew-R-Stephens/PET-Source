@@ -2,8 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
-import kotlinx.coroutines.flow.Flow
 
 class GlobalPreferencesRepositoryImpl(
     private val dataStoreSource: GlobalPreferencesDatastore

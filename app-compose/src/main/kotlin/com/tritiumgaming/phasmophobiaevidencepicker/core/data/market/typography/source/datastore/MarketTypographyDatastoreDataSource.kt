@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
@@ -20,7 +21,7 @@ class MarketTypographyDatastoreDataSource(
     private val dataStore: DataStore<Preferences>
 ): MarketTypographyDatastore {
 
-    override val flow: Flow<MarketTypographyDatastore.TypographyPreferences> = dataStore.data
+    val flow: Flow<MarketTypographyDatastore.TypographyPreferences> = dataStore.data
         .catch { exception ->
             if (exception is IOException) { emit(emptyPreferences()) }
             else { throw exception }
@@ -28,9 +29,6 @@ class MarketTypographyDatastoreDataSource(
         .map { preferences ->
             mapPreferences(preferences)
         }
-
-    override suspend fun initFlow(onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
 
     init {
         MarketTypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY = stringPreferencesKey(
@@ -44,10 +42,15 @@ class MarketTypographyDatastoreDataSource(
         }
     }
 
+    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+
+    override suspend fun initFlow(onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
+
     override suspend fun fetchInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
-    override fun mapPreferences(preferences: Preferences): MarketTypographyDatastore.TypographyPreferences {
+    private fun mapPreferences(preferences: Preferences): MarketTypographyDatastore.TypographyPreferences {
         return MarketTypographyDatastore.TypographyPreferences(
             preferences[MarketTypographyDatastore.PreferencesKeys.KEY_TYPOGRAPHY] ?: ""
         )

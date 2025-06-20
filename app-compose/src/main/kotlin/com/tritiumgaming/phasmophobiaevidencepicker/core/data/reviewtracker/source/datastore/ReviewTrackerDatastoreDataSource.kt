@@ -10,8 +10,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.PreferenceKeys.KEY_ALLOW_REQUEST_REVIEW
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.PreferenceKeys.KEY_TIMES_OPENED
@@ -29,10 +29,10 @@ import kotlinx.coroutines.flow.map
  */
 class ReviewTrackerDatastoreDataSource(
     context: Context,
-    val datastore: DataStore<Preferences>
+    private val dataStore: DataStore<Preferences>
 ): ReviewTrackerDatastore {
 
-    override val flow: Flow<ReviewTrackerPreferences> = datastore.data
+    val flow: Flow<ReviewTrackerPreferences> = dataStore.data
         .catch { exception ->
             if (exception is IOException) {
                 emit(emptyPreferences())
@@ -43,9 +43,6 @@ class ReviewTrackerDatastoreDataSource(
         .map { preferences ->
             mapPreferences(preferences)
         }
-
-    override suspend fun initFlow(onUpdate: (ReviewTrackerPreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
 
     init {
         Log.d("ReviewTracking Repository", "Initializing")
@@ -62,49 +59,54 @@ class ReviewTrackerDatastoreDataSource(
     }
 
     override suspend fun saveWasRequestedState(wasRequested: Boolean) {
-        datastore.edit { preferences ->
+        dataStore.edit { preferences ->
             preferences[KEY_ALLOW_REQUEST_REVIEW] = wasRequested
         }
     }
     override fun getWasRequestedState(): Boolean {
         var wasRequested = false
-        datastore.data.map { preferences ->
+        dataStore.data.map { preferences ->
             wasRequested = (preferences[KEY_ALLOW_REQUEST_REVIEW] == true)
         }
         return wasRequested
     }
 
     override suspend fun saveAppTimeAlive(time: Long) {
-        datastore.edit { preferences ->
+        dataStore.edit { preferences ->
             preferences[KEY_TIME_ACTIVE] = time
         }
     }
 
     override fun getAppTimeAlive(): Long {
         var timeAlive = 0L
-        datastore.data.map { preferences ->
+        dataStore.data.map { preferences ->
             timeAlive = (preferences[KEY_TIME_ACTIVE] ?: 0L)
         }
         return timeAlive
     }
 
     override suspend fun saveAppTimesOpened(count: Int) {
-        datastore.edit { preferences ->
+        dataStore.edit { preferences ->
             preferences[KEY_TIMES_OPENED] = count
         }
     }
     override fun getAppTimesOpened(): Int {
         var timesOpened = 0
-        datastore.data.map  { preferences ->
+        dataStore.data.map  { preferences ->
             timesOpened = (preferences[KEY_TIMES_OPENED] ?: 0)
         }
         return timesOpened
     }
 
-    override suspend fun fetchInitialPreferences() =
-        mapPreferences(datastore.data.first().toPreferences())
+    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
 
-    override fun mapPreferences(preferences: Preferences): ReviewTrackerPreferences {
+    override suspend fun initFlow(onUpdate: (ReviewTrackerPreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
+
+    override suspend fun fetchInitialPreferences() =
+        mapPreferences(dataStore.data.first().toPreferences())
+
+    private fun mapPreferences(preferences: Preferences): ReviewTrackerPreferences {
         return ReviewTrackerPreferences(
             timeActive = preferences[KEY_TIME_ACTIVE] ?: 0L,
             timesOpened = preferences[KEY_TIMES_OPENED] ?: 0,

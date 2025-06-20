@@ -21,7 +21,7 @@ class NewsletterDatastoreDataSource(
 
     private val keyList: Map<String, Preferences.Key<Long>> = mapOf()
 
-    override val flow: Flow<NewsletterDatastore.NewsletterPreferences> = dataStore.data
+    val flow: Flow<NewsletterDatastore.NewsletterPreferences> = dataStore.data
         .catch { exception ->
             if (exception is IOException) {
                 emit(emptyPreferences())
@@ -51,12 +51,6 @@ class NewsletterDatastoreDataSource(
             dataStore.edit { preferences ->
                 preferences[it] = date
             }
-        }
-    }
-
-    override suspend fun setLastReadDate(key: Preferences.Key<Long>, date: Long) {
-        dataStore.edit { preferences ->
-            preferences[key] = date
         }
     }
 

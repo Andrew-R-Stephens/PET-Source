@@ -1,10 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
-import kotlinx.coroutines.flow.Flow
 
 interface ReviewTrackerRepository: DatastoreRepository<ReviewTrackerPreferences> {
 

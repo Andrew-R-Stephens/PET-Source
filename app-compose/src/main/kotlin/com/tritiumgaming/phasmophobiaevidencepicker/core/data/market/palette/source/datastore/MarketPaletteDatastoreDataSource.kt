@@ -7,8 +7,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore.PreferenceKeys.KEY_PALETTE
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +21,7 @@ class MarketPaletteDatastoreDataSource(
     private val dataStore: DataStore<Preferences>
 ): PaletteDatastore {
 
-    override val flow: Flow<PaletteDatastore.PalettePreferences> = dataStore.data
+    val flow: Flow<PaletteDatastore.PalettePreferences> = dataStore.data
         .catch { exception ->
             if (exception is IOException) { emit(emptyPreferences()) }
             else { throw exception }
@@ -29,9 +29,6 @@ class MarketPaletteDatastoreDataSource(
         .map { preferences ->
             mapPreferences(preferences)
         }
-
-    override suspend fun initFlow(onUpdate: (PaletteDatastore.PalettePreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
 
     init {
         KEY_PALETTE = stringPreferencesKey(
@@ -45,10 +42,15 @@ class MarketPaletteDatastoreDataSource(
         }
     }
 
+    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+
+    override suspend fun initFlow(onUpdate: (PaletteDatastore.PalettePreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
+
     override suspend fun fetchInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
-    override fun mapPreferences(preferences: Preferences): PaletteDatastore.PalettePreferences {
+    private fun mapPreferences(preferences: Preferences): PaletteDatastore.PalettePreferences {
         return PaletteDatastore.PalettePreferences(
             uuid = preferences[KEY_PALETTE] ?: ""
         )

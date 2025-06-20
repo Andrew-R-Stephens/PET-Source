@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source
 
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore.LanguagePreferences
 
 interface LanguageDatastore: DatastoreDataSource<LanguagePreferences> {

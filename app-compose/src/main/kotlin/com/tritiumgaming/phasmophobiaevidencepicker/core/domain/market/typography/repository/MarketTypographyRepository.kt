@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.common.repository.MarketCatalogRepository

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore
 interface DatastoreRepository<T> {
     
     fun initialSetupEvent()

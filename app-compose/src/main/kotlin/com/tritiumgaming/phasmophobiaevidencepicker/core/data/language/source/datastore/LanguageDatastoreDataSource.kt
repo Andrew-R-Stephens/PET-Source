@@ -5,7 +5,9 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository.Companion.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore.PreferenceKeys.KEY_CURRENT_LANGUAGE_CODE
@@ -18,13 +20,10 @@ class LanguageDatastoreDataSource(
     private val dataStore: DataStore<Preferences>
 ) : LanguageDatastore {
 
-    override val flow: Flow<LanguageDatastore.LanguagePreferences> = dataStore.data
+    val flow: Flow<LanguageDatastore.LanguagePreferences> = dataStore.data
         .map { preferences ->
             mapPreferences(preferences)
         }
-
-    override suspend fun initFlow(onUpdate: (LanguageDatastore.LanguagePreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
 
     init {
         KEY_CURRENT_LANGUAGE_CODE = stringPreferencesKey(
@@ -46,10 +45,15 @@ class LanguageDatastoreDataSource(
         return currentLanguageCode
     }
 
+    fun initialSetupEvent() = liveData { emit(fetchInitialPreferences()) }
+
+    override suspend fun initFlow(onUpdate: (LanguageDatastore.LanguagePreferences) -> Unit) =
+        flow.collect { onUpdate(it) }
+
     override suspend fun fetchInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
-    override fun mapPreferences(preferences: Preferences) =
+    private fun mapPreferences(preferences: Preferences) =
         LanguageDatastore.LanguagePreferences(
             preferences[KEY_CURRENT_LANGUAGE_CODE]
                 ?: DEFAULT_LANGUAGE

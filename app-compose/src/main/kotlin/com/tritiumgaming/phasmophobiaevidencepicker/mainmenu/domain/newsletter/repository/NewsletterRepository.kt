@@ -1,10 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.datastore.DatastoreRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.NewsletterDatastore.NewsletterPreferences
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
-import kotlinx.coroutines.flow.Flow
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.NewsletterPreferences
 
 interface NewsletterRepository: DatastoreRepository<NewsletterPreferences> {
 
