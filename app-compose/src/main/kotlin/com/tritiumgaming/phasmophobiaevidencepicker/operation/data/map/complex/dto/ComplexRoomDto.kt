@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
 import android.util.Log
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldRoom
 
 data class ComplexRoomDto(
     val id: Int,

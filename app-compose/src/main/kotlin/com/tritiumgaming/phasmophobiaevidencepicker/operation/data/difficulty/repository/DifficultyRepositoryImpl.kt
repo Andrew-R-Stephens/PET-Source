@@ -6,7 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.DifficultyDataSource
 
 class DifficultyRepositoryImpl(
-    override val localSource: DifficultyDataSource
+    val localSource: DifficultyDataSource
 ): DifficultyRepository {
 
     override fun getDifficulties(): Result<List<DifficultyModel>> {

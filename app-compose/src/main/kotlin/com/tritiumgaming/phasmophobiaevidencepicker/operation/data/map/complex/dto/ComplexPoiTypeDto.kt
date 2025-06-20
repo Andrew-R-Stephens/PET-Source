@@ -1,5 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoiType
+
 enum class ComplexPoiTypeDto {
     FUSE_BOX,
     CAR_KEY, CABIN_KEY, BONE,

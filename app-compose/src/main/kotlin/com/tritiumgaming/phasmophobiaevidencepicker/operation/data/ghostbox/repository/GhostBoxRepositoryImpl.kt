@@ -6,7 +6,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostbox.re
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostbox.source.GhostBoxDataSource
 
 class GhostBoxRepositoryImpl(
-    override val localSource: GhostBoxDataSource
+    val localSource: GhostBoxDataSource
 ): GhostBoxRepository {
 
     override fun getVoiceRequests(): Result<MutableMap<String, Response>> {

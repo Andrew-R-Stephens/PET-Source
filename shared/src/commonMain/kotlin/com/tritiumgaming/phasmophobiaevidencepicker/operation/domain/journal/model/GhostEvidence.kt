@@ -1,11 +1,15 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model
 
-expect class GhostEvidence() {
+expect class GhostEvidence(
+    ghost: GhostType,
+    normalEvidenceList: List<EvidenceType>,
+    strictEvidenceList: List<EvidenceType>
+) {
 
-    expect val ghost: GhostType
-    expect val normalEvidenceList: List<EvidenceType>
-    expect val strictEvidenceList: List<EvidenceType>
+    val ghost: GhostType
+    val normalEvidenceList: List<EvidenceType>
+    val strictEvidenceList: List<EvidenceType>
 
-    expect override fun toString(): String
+    override fun toString(): String
 
 }
