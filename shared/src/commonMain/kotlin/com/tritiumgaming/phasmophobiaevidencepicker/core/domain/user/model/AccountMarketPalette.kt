@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.model.FeatureAvailability
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteResources.PaletteType
 
 data class AccountMarketPalette (
     internal val uuid: String,
@@ -10,7 +10,7 @@ data class AccountMarketPalette (
     internal val buyCredits: Long = 0L,
     internal val priority: Long? = 0L,
     internal val unlocked: Boolean = false,
-    internal val palette: ExtendedPalette? = null
+    internal val palette: PaletteType? = null
 ) {
 
     private var unlockedState: FeatureAvailability =
@@ -46,7 +46,7 @@ data class AccountMarketPalette (
     override fun toString(): String {
         return "AccountMarketPalette(uuid='$uuid', name='$name', group='$group', " +
                 "buyCredits=$buyCredits, priority=$priority, unlocked=$unlocked, " +
-                "palette=${palette})"
+                "palette=${palette?.name})"
     }
     
 }

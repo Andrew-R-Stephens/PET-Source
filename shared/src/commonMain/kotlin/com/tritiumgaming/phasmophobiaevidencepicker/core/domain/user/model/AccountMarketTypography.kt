@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.model.FeatureAvailability
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyResources.TypographyType
 
 data class AccountMarketTypography (
     internal val uuid: String,
@@ -10,7 +10,7 @@ data class AccountMarketTypography (
     internal val buyCredits: Long = 0L,
     internal val priority: Long? = 0L,
     internal val unlocked: Boolean = false,
-    internal val typography: ExtendedTypography? = null
+    internal val typography: TypographyType? = null
 ) {
 
     private var unlockedState: FeatureAvailability =
