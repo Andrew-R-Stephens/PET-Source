@@ -4,9 +4,9 @@ import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toLocal
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteQueryOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.MarketPaletteLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteFirestoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteFirestoreDataSource.PaletteQueryOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
@@ -30,7 +30,7 @@ class MarketPaletteRepositoryImpl(
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
-    override fun getLocal(): Result<List<MarketPaletteDto>> {
+    fun getLocal(): Result<List<MarketPaletteDto>> {
         Log.d("Palette", "Getting local palettes")
 
         val result = localDataSource.getPalettes()
@@ -41,12 +41,12 @@ class MarketPaletteRepositoryImpl(
         return Result.success(list)
     }
 
-    override suspend fun fetchRemote(
-        queryOptions: PaletteQueryOptions
+    suspend fun fetchRemote(
+        queryOptions: PaletteQueryOptions? = null
     ): Result<List<MarketPaletteDto>> {
         Log.d("Palette", "Fetching remote palettes")
 
-        val result = firestoreDataSource.fetch(queryOptions)
+        val result = firestoreDataSource.fetch(queryOptions ?: PaletteQueryOptions())
 
         return result
     }

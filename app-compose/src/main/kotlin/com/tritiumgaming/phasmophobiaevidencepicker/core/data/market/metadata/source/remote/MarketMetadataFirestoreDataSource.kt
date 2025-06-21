@@ -5,7 +5,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.metadata.dto.MarketMetadataDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.metadata.source.MarketMetadataDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.metadata.source.remote.MarketMetadataDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext

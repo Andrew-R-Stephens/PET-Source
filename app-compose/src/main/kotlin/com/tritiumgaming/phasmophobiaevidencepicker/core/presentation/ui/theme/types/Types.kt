@@ -1,19 +1,17 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types
 
-import androidx.annotation.StringRes
 import androidx.compose.material3.Typography
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.common.ExtrasFamily
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.CuyabraTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.DefaultTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.EastSeaDokdoTextStyle
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.ExtendedTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.GeoTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.JetbrainsMonoTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.LazyDogTextStyle
@@ -32,6 +30,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_longcang
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_neucha
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_newtegmon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.common.CustomFontFamily
 
 val DefaultFont = Typography(
     displayLarge = DefaultTextStyle.copy(
@@ -505,31 +504,6 @@ val JetBrainsMonoTypography = BaseFont.copy(
     )
 )
 
-
-@Immutable
-data class ExtrasFamily(
-    @StringRes val title: Int = title_classic
-)
-
-@Immutable
-data class ExtendedTypography(
-    val extrasFamily: ExtrasFamily = ExtrasFamily(
-        title = title_classic
-    ),
-
-    val primary: CustomFontFamily = CustomFontFamily(),
-    val secondary: CustomFontFamily = CustomFontFamily(),
-    val tertiary: CustomFontFamily = CustomFontFamily(),
-    val quaternary: CustomFontFamily = CustomFontFamily()
-): ExtendedTheme()
-
-@Immutable
-data class CustomFontFamily(
-    val regular: TextStyle = TextStyle(),
-    val bold: TextStyle = TextStyle(),
-    val narrow: TextStyle = TextStyle(),
-    val boldNarrow: TextStyle = TextStyle()
-)
 
 val LocalTypography = staticCompositionLocalOf { ExtendedTypography() }
 

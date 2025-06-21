@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyQueryOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore.DatastoreRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.common.repository.MarketCatalogRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
@@ -13,8 +13,8 @@ interface MarketTypographyRepository:
     fun getLocal(): Result<List<MarketTypographyDto>>
 
     suspend fun fetchRemote(
-        queryOptions: MarketTypographyFirestoreDataSource.TypographyQueryOptions =
-            MarketTypographyFirestoreDataSource.TypographyQueryOptions()
+        queryOptions: TypographyQueryOptions =
+            TypographyQueryOptions()
     ): Result<List<MarketTypographyDto>>
 
     suspend fun saveCurrent(uuid: String)

@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteQueryOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -88,43 +89,20 @@ class MarketPaletteFirestoreDataSource(
 
         var query: Query = paletteCollection
 
-        query = if(options.filterField?.value != null && options.filterValue?.value != null) {
-            query.whereEqualTo(options.filterField.value, options.filterValue.value)
+        val filterField = options.filterField.value
+        query = if(filterField != null && options.filterValue.value != null) {
+            query.whereEqualTo(filterField, options.filterValue.value)
         } else query
 
-        query = if(options.orderField?.value != null && options.orderDirection != null) {
-            query.whereEqualTo(options.orderField.value, options.orderDirection)
+        val orderField = options.orderField.value
+        query = if(orderField != null) {
+            query.whereEqualTo(orderField, options.orderDirection)
         } else query
 
-        query = if(options.limit?.value != null) {
-            query.limit(options.limit.value.toLong())
-        } else query
+        query = query.limit(options.limit.value.toLong())
 
         return query
             .get()
-    }
-
-    data class PaletteQueryOptions(
-        val filterField: FilterField? = FilterField.GROUP,
-        val filterValue: FilterValue? = FilterValue.NONE,
-        val orderField: OrderField? = OrderField.NONE,
-        val orderDirection: Query.Direction? = Query.Direction.DESCENDING,
-        val limit: Limit? = Limit.SAFE_LIMIT
-    ) {
-        enum class FilterField(val value: String?) {
-            GROUP("group"),
-            NONE(null)
-        }
-        enum class FilterValue(val value: String?) {
-            NONE(null)
-        }
-        enum class OrderField(val value: String?) {
-            NONE(null)
-        }
-        enum class Limit(val value: Int) {
-            SAFE_LIMIT(50),
-            UNLIMITED(Int.MAX_VALUE)
-        }
     }
 
     private companion object {
