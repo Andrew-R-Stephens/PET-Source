@@ -27,7 +27,7 @@ val title_dev = R.string.theme_palette_community_developer
 val title_translator = R.string.theme_palette_community_translator
 val title_winner = R.string.theme_palette_community_winner
 val title_artist = R.string.theme_palette_community_artist
-val title_strategemhero = R.string.theme_palette_special_strategemHero
+val title_strategemhero = R.string.theme_palette_special_stratagemHero
 val title_whiteboard = R.string.theme_palette_special_whiteboard
 
 val title_classic = R.string.theme_typography_classic

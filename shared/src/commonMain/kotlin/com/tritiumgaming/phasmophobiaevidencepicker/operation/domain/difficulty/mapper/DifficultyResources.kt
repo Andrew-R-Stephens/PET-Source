@@ -18,4 +18,28 @@ class DifficultyResources {
         INSANITY
     }
 
+    enum class DifficultyTime {
+        AMATEUR,
+        INTERMEDIATE,
+        PROFESSIONAL,
+        NIGHTMARE,
+        INSANITY
+    }
+
+    enum class DifficultyModifier {
+        AMATEUR,
+        INTERMEDIATE,
+        PROFESSIONAL,
+        NIGHTMARE,
+        INSANITY
+    }
+
+    enum class DifficultyInitialSanity {
+        AMATEUR,
+        INTERMEDIATE,
+        PROFESSIONAL,
+        NIGHTMARE,
+        INSANITY
+    }
+
 }
