@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.merchandise.model
+package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.merchandise.model
 
 import com.android.billingclient.api.ProductDetails
 

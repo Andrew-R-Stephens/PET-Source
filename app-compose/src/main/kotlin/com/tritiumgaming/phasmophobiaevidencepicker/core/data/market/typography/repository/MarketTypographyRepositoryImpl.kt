@@ -30,7 +30,7 @@ class MarketTypographyRepositoryImpl(
 
     private var cache: List<MarketTypographyDto> = emptyList()
 
-    override fun getLocal(): Result<List<MarketTypographyDto>> {
+    fun getLocal(): Result<List<MarketTypographyDto>> {
         Log.d("Typography", "Getting local typographies")
 
         val result = localDataSource.get()
@@ -41,7 +41,7 @@ class MarketTypographyRepositoryImpl(
         return Result.success(list)
     }
 
-    override suspend fun fetchRemote(
+    suspend fun fetchRemote(
         queryOptions: TypographyQueryOptions
     ): Result<List<MarketTypographyDto>> {
         Log.d("Typography", "Fetching remote typographies")
