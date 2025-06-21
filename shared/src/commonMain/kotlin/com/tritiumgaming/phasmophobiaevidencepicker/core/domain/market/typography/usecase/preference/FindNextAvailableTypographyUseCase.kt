@@ -7,7 +7,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.toAccountMarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 
 class FindNextAvailableTypographyUseCase(
     private val marketRepository: MarketTypographyRepository,
@@ -47,7 +46,7 @@ class FindNextAvailableTypographyUseCase(
                             group = marketT.group,
                             buyCredits = marketT.buyCredits,
                             priority = marketT.priority,
-                            typography = marketT.typography ?: ExtendedTypography()
+                            typography = marketT.typography
                         )
                     } else marketT
                 }
