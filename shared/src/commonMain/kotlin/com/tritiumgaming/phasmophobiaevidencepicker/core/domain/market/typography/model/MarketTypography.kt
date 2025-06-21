@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyResources.TypographyType
 
 data class MarketTypography (
     val uuid: String,
@@ -10,7 +10,7 @@ data class MarketTypography (
     val buyCredits: Long = 0L,
     val priority: Long? = 0L,
     val unlocked: Boolean = false,
-    val typography: ExtendedTypography? = null
+    val typography: TypographyType? = null
 )
 
 fun MarketTypography.toPair(): Pair<String, MarketTypography> {
