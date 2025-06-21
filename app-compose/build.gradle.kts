@@ -96,8 +96,6 @@ dependencies {
     // PRIMARY
     implementation(libs.android.support.multidex)
 
-    implementation(libs.firebase.analytics)
-
     implementation(libs.jetbrains.kotlin.stdlib)
     implementation(libs.jetbrains.kotlinx.coroutines)
 
@@ -127,12 +125,14 @@ dependencies {
 
     // GOOGLE FIREBASE
     // Import the BoM for the Firebase platform
-    implementation(libs.firebase.auth)
     implementation(platform(libs.firebase.bom))
+    // GOOGLE FIREBASE AUTH
+    implementation(libs.firebase.auth)
     // GOOGLE FIREBASE FIRESTORE
     implementation(libs.firebase.firestore)
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
+    // GOOGLE FIREBASE ANALYTICS
     implementation(libs.firebase.crashlytics.core)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.perfCore)

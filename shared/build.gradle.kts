@@ -95,6 +95,19 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(libs.androidx.navigation.compose)
 
+                // GOOGLE FIREBASE
+                // GOOGLE FIREBASE FIRESTORE
+                implementation(project.dependencies.platform(libs.firebase.bom))
+                // GOOGLE FIREBASE AUTH
+                implementation(libs.firebase.auth)
+                // GOOGLE FIREBASE FIRESTORE
+                implementation(libs.firebase.firestore)
+                // Declare the dependencies for the Crashlytics and Analytics libraries
+                // When using the BoM, you don't specify versions in Firebase library dependencies
+                // GOOGLE FIREBASE ANALYTICS
+                implementation(libs.firebase.crashlytics.core)
+                implementation(libs.firebase.analytics)
+                implementation(libs.firebase.perfCore)
             }
         }
 
