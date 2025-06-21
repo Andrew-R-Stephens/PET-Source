@@ -1,16 +1,16 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.palette.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteResources.PaletteType
 
-data class MarketPalette (
+data class MarketPalette(
     val uuid: String,
     val name: String? = "",
     val group: String? = "",
     val buyCredits: Long = 0L,
     val priority: Long? = 0L,
     val unlocked: Boolean = false,
-    val palette: ExtendedPalette? = null
+    val palette: PaletteType? = null
 )
 
 fun MarketPalette.toPair(): Pair<String, MarketPalette> {

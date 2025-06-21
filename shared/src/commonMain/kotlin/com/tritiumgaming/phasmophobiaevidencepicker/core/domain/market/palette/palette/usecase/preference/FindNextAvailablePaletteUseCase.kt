@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference
+package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.palette.usecase.preference
 
 import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.model.IncrementDirection
@@ -7,7 +7,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.r
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.toAccountMarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 
 class FindNextAvailablePaletteUseCase(
     private val marketRepository: MarketPaletteRepository,
@@ -47,7 +46,7 @@ class FindNextAvailablePaletteUseCase(
                             group = marketP.group,
                             buyCredits = marketP.buyCredits,
                             priority = marketP.priority,
-                            palette = marketP.palette ?: ExtendedPalette()
+                            palette = marketP.palette
                         )
                     } else marketP
                 }
