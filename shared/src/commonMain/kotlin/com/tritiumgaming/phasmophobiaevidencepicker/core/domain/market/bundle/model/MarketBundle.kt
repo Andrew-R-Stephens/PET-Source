@@ -1,5 +1,4 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.model
-
 data class MarketBundle (
     val uuid: String,
     val name: String,
