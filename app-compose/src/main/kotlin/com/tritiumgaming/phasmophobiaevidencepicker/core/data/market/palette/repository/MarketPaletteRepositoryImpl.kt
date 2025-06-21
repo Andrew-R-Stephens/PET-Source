@@ -74,7 +74,7 @@ class MarketPaletteRepositoryImpl(
                         buyCredits = remoteEntity.buyCredits,
                         unlocked = remoteEntity.unlocked,
                         priority = remoteEntity.priority,
-                        palette = localEntity.palette ?: ExtendedPalette()
+                        palette = localEntity.palette
                     )
                 else localEntity
             }

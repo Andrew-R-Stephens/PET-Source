@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteResources.PaletteType
 
 data class MarketPaletteDto(
     internal val uuid: String,
@@ -9,7 +9,7 @@ data class MarketPaletteDto(
     internal val buyCredits: Long = 0L,
     internal val priority: Long? = 0L,
     internal val unlocked: Boolean = false,
-    internal val palette: ExtendedPalette? = null
+    internal val palette: PaletteType? = null
 ) {
     override fun toString(): String {
         return "MarketPaletteDto(uuid='$uuid', name='$name', group='$group', buyCredits=$buyCredits, priority=$priority, unlocked=$unlocked, palette=$palette)"

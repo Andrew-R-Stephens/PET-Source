@@ -6,8 +6,12 @@ import androidx.annotation.IntegerRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.dto.DifficultyModelDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.DifficultyDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyModifier
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyInitialSanity
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTime
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toFractionResource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toIntegerResource
 
 class DifficultyLocalDataSource(
     private val applicationContext: Context
@@ -67,10 +71,10 @@ class DifficultyLocalDataSource(
 
     private data class DifficultyResourceDto(
         val index: Int,
-        val name: DifficultyResources.DifficultyTitle,
+        val name: DifficultyTitle,
         @IntegerRes val time: Int,
-        @FractionRes val modifier: Int,
-        @FractionRes val initialSanity: Int
+        @IntegerRes val modifier: Int,
+        @IntegerRes  val initialSanity: Int
     )
 
 }

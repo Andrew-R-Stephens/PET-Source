@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.ma
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto.MarketPaletteDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteResources.PaletteType
 
 fun MarketPaletteDto.toDomain(): MarketPalette = MarketPalette(
     uuid = uuid,
@@ -14,7 +14,7 @@ fun MarketPaletteDto.toDomain(): MarketPalette = MarketPalette(
     palette = palette
 )
 
-fun Map<String, ExtendedPalette>.toLocal(): List<MarketPaletteDto> = map { (uuid, palette) ->
+fun Map<String, PaletteType>.toLocal(): List<MarketPaletteDto> = map { (uuid, palette) ->
     MarketPaletteDto(
         uuid = uuid,
         palette = palette,

@@ -42,7 +42,7 @@ class MarketTypographyRepositoryImpl(
     }
 
     suspend fun fetchRemote(
-        queryOptions: TypographyQueryOptions
+        queryOptions: TypographyQueryOptions = TypographyQueryOptions()
     ): Result<List<MarketTypographyDto>> {
         Log.d("Typography", "Fetching remote typographies")
 
@@ -74,7 +74,7 @@ class MarketTypographyRepositoryImpl(
                         buyCredits = remoteEntity.buyCredits,
                         unlocked = remoteEntity.unlocked,
                         priority = remoteEntity.priority,
-                        typography = remoteEntity.typography ?: ExtendedTypography()
+                        typography = remoteEntity.typography
                     )
                 else localEntity
             }

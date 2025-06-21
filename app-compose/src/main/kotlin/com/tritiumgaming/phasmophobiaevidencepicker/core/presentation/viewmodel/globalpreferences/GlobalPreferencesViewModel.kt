@@ -25,12 +25,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.model.IncrementDirection
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.SetupPaletteUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyResources.TypographyType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
@@ -49,6 +51,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toPaletteResource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toTypographyResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
@@ -276,9 +280,9 @@ class GlobalPreferencesViewModel(
         }
     }
 
-    fun getPaletteByUUID(uuid: String): ExtendedPalette {
-        return getPaletteByUUIDUseCase(uuid, LocalDefaultPalette.palette)
-    }
+    fun getPaletteByUUID(uuid: String): ExtendedPalette =
+        getPaletteByUUIDUseCase(uuid, PaletteType.CLASSIC).toPaletteResource()
+
 
     fun setNextAvailablePalette(direction: IncrementDirection) {
         viewModelScope.launch {
@@ -301,10 +305,8 @@ class GlobalPreferencesViewModel(
         }
     }
 
-    fun getTypographyByUUID(uuid: String): ExtendedTypography = getTypographyByUUIDUseCase(
-            uuid,
-            LocalDefaultTypography.typography
-        )
+    fun getTypographyByUUID(uuid: String): ExtendedTypography =
+        getTypographyByUUIDUseCase(uuid, TypographyType.CLASSIC).toTypographyResource()
 
     fun setNextAvailableTypography(direction: IncrementDirection) {
         viewModelScope.launch {
