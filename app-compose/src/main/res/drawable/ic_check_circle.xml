@@ -7,7 +7,7 @@
                 android:width="48dp"
                 android:height="48dp" />
 
-            <solid android:color="@color/black_M50" />
+            <solid android:color="#080808" />
         </shape>
     </item>
 
@@ -18,7 +18,7 @@
                 android:height="48dp" />
 
             <stroke
-                android:color="@color/white"
+                android:color="#FFFFFF"
                 android:width="3dp" />
         </shape>
     </item>
@@ -34,7 +34,7 @@
             android:viewportWidth="960"
             android:viewportHeight="960">
             <path
-                android:fillColor="@color/white"
+                android:fillColor="#FFFFFF"
                 android:pathData="M382,720 L154,492l57,-57 171,171 367,-367 57,57 -424,424Z" />
         </vector>
     </item>

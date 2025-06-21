@@ -4,7 +4,7 @@
     android:viewportWidth="500"
     android:viewportHeight="500">
     <path
-        android:fillColor="?attr/codex1_itemBackground"
+        android:fillColor="#161C1C"
         android:fillType="nonZero"
         android:pathData="M0,0L500,0L500,500L0,500z"
         android:strokeWidth="0"
