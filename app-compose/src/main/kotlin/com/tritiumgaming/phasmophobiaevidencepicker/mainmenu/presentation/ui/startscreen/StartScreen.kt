@@ -44,6 +44,8 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AccountManager
@@ -134,13 +136,10 @@ private fun StartContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Image(
+            IconResources.IconResource.ICON_LOGO_APP.ToComposable(
                 modifier = Modifier
                     .aspectRatio(1f)
-                    .fillMaxWidth(),
-                painter = painterResource(R.drawable.icon_logo_app),
-                contentDescription = "",
-                contentScale = ContentScale.Fit
+                    .fillMaxWidth()
             )
 
             BasicText(

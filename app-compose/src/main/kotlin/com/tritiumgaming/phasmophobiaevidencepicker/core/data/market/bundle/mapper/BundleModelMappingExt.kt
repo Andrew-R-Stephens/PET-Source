@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.map
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.dto.MarketBundleDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.model.MarketBundle
 
-
 fun MarketBundleDto.toDomain(): MarketBundle =
     MarketBundle(
         uuid = uuid,

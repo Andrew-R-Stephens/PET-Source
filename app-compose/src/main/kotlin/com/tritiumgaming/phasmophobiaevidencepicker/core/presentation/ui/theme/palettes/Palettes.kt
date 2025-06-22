@@ -700,7 +700,7 @@ val Whiteboard = Skin.copy(
     tertiary = Skin.tertiary.copy(),
 
     background = Skin.background.copy(
-        color = Color(0xFF383839)
+        color = Color(0xFFafb7be)
     ),
     surface = Skin.surface.copy(
         color = white_M50,
