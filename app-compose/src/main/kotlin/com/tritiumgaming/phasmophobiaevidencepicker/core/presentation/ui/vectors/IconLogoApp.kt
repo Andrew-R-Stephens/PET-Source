@@ -1717,6 +1717,7 @@ fun IconLogoApp(
         modifier = modifier,
         imageVector = getVector(
             listOf(
+                LocalPalette.current.background.color,
                 LocalPalette.current.textFamily.body
             )
         ),

@@ -314,6 +314,7 @@ fun IconLogoPhasmophobia(
         modifier = modifier,
         imageVector = getVector(
             listOf(
+                LocalPalette.current.background.color,
                 LocalPalette.current.textFamily.body
             )
         ),

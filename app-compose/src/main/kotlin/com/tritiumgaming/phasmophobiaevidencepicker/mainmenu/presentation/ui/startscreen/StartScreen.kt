@@ -249,12 +249,9 @@ private fun StartButton(
             contentAlignment = Alignment.Center
         ) {
 
-            Image(
+            IconResource.BUTTON_SCRATCHED.ToComposable(
                 modifier = Modifier
-                    .fillMaxSize(),
-                imageVector = ImageVector.vectorResource(R.drawable.button_scratched),
-                contentDescription = "",
-                contentScale = ContentScale.FillBounds
+                    .fillMaxSize()
             )
 
             Box(

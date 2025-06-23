@@ -103,7 +103,8 @@ private fun getVector(groupColors: List<Color>): ImageVector =
 
 @Composable
 fun Discord(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    colors: List<Color> = emptyList()
 ) {
 
     Image(
@@ -112,7 +113,7 @@ fun Discord(
             listOf(
                 LocalPalette.current.background.color,
                 LocalPalette.current.textFamily.body
-            )
+            ).mapIndexed { index:Int, color:Color -> colors.getOrElse(index) { color } }
         ),
         contentDescription = null,
         contentScale = ContentScale.Fit

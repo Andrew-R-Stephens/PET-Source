@@ -92,37 +92,27 @@ fun LanguageIcon(
 @Composable
 fun DiscordIcon(
     modifier: Modifier = Modifier
-        .size(48.dp),
-    tintColor: Color = LocalPalette.current.textFamily.primary
+        .size(48.dp)
 ) {
 
     Box(
         modifier = modifier
     ) {
-        val contentScale = ContentScale.Inside
-        val contentDescription = "Outer Box"
-
-        Image(
-            painter = painterResource(id = R.drawable.ic_discord),
-            colorFilter = ColorFilter.tint(
-                tintColor,
-                BlendMode.Modulate
-            ),
-            contentDescription = contentDescription,
-            contentScale = contentScale,
+        IconResource.DISCORD.ToComposable(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxSize(),
+            colors = listOf(
+                LocalPalette.current.background.color,
+                LocalPalette.current.textFamily.primary
+            )
         )
 
-        Image(
-            painter = painterResource(id = R.drawable.ic_open_in_new),
-            contentDescription = contentDescription,
-            contentScale = contentScale,
+        IconResource.OPEN_IN_NEW.ToComposable(
             modifier = Modifier
                 .padding(4.dp)
                 .fillMaxSize(.4f)
                 .align(Alignment.BottomEnd)
         )
-
     }
+
 }

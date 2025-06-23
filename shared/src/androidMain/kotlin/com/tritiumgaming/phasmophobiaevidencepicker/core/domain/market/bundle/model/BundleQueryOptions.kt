@@ -9,7 +9,7 @@ actual class BundleQueryOptions {
         this.filterValue = FilterValue.NONE
         this.orderField = OrderField.NONE
         this.orderDirection = OrderDirection.DESCENDING
-        this.limit = Limit.UNLIMITED
+        this.limit = Limit.SAFE_LIMIT
     }
 
     actual constructor(
