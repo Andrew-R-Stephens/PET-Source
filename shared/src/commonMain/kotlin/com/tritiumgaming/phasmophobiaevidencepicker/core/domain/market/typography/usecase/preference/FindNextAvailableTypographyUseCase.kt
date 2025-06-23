@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference
 
-import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.toAccountMarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
@@ -21,19 +20,19 @@ class FindNextAvailableTypographyUseCase(
             marketRepository.get()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
 
-        Log.d("Settings", "MarketTypographies:")
+        /*Log.d("Settings", "MarketTypographies:")
         marketTypographies.forEach {
             Log.d("Settings", "\t$it")
-        }
+        }*/
 
         val accountTypographies: List<AccountMarketTypography> =
             accountRepository.fetchUnlockedTypographies()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
 
-        Log.d("Settings", "AccountTypographies:")
+        /*Log.d("Settings", "AccountTypographies:")
         accountTypographies.forEach {
             Log.d("Settings", "\t$it")
-        }
+        }*/
 
         val mergedMarketAccountTypographies =
             accountTypographies.fold(marketTypographies) { marketTs, accountT ->
@@ -52,17 +51,17 @@ class FindNextAvailableTypographyUseCase(
                 }
             }
 
-        Log.d("Settings", "MarketAccountTypographies:")
+        /*Log.d("Settings", "MarketAccountTypographies:")
         mergedMarketAccountTypographies.forEach {
             Log.d("Settings", "\t$it")
-        }
+        }*/
 
         val filteredMergedMarketAccountTypographies =
             mergedMarketAccountTypographies.filter { it.isUnlocked }
-        Log.d("Settings", "Filtered MarketAccountTypographies:")
+        /*Log.d("Settings", "Filtered MarketAccountTypographies:")
         filteredMergedMarketAccountTypographies.forEach {
             Log.d("Settings", "\t$it")
-        }
+        }*/
 
         val uuidsFiltered = filteredMergedMarketAccountTypographies.map { it.uuid }
         val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
@@ -71,7 +70,7 @@ class FindNextAvailableTypographyUseCase(
         if(increment >= uuidsFiltered.size) increment = 0
         if(increment < 0) increment = uuidsFiltered.size - 1
 
-        Log.d("Settings", "Move: $currentIndex $increment $direction")
+        //Log.d("Settings", "Move: $currentIndex $increment $direction")
 
         return uuidsFiltered[increment]
     }
