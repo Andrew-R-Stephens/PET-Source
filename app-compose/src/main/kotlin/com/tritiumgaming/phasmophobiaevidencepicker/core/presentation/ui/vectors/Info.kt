@@ -22,22 +22,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 
-@Composable
-fun Info(
-    modifier: Modifier = Modifier
-) {
-    val vector: ImageVector = Builder(
+private var vector: ImageVector? = null
+
+private fun getVector(groupColors: List<Color>): ImageVector =
+
+    vector ?: Builder(
         name = "Info",
         defaultWidth = 200.0.dp,
         defaultHeight = 200.0.dp,
         viewportWidth = 750.0f,
         viewportHeight = 750.0f
     ).apply {
-
-        val groupColors = listOf(
-            LocalPalette.current.background.color,
-            LocalPalette.current.textFamily.body
-        )
 
         group {
             path(
@@ -1939,16 +1934,26 @@ fun Info(
                 close()
             }
         }
-    }
-        .build()
+    }.build()
+
+@Composable
+fun Info(
+    modifier: Modifier = Modifier
+) {
 
     Image(
         modifier = modifier,
-        imageVector = vector,
+        imageVector = getVector(
+            listOf(
+                LocalPalette.current.background.color,
+                LocalPalette.current.textFamily.body
+            )
+        ),
         contentDescription = null,
         contentScale = ContentScale.Fit
     )
 }
+
 
 @Preview
 @Composable

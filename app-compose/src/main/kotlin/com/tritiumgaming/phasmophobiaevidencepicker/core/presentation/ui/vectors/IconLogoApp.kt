@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
@@ -21,22 +22,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 
-@Composable
-fun IconLogoApp(
-    modifier: Modifier = Modifier
-) {
-    val vector: ImageVector = Builder(
+private val vector: ImageVector? = null
+
+private fun getVector(groupColors: List<Color>): ImageVector =
+
+    vector ?: Builder(
         name = "IconLogoApp",
         defaultWidth = 200.0.dp,
         defaultHeight = 200.0.dp,
         viewportWidth = 900.0f,
         viewportHeight = 900.0f
     ).apply {
-
-        val groupColors = listOf(
-            LocalPalette.current.background.color,
-            LocalPalette.current.textFamily.body
-        )
 
         group {
             path(
@@ -1712,9 +1708,18 @@ fun IconLogoApp(
     }
     .build()
 
+@Composable
+fun IconLogoApp(
+    modifier: Modifier = Modifier
+) {
+
     Image(
         modifier = modifier,
-        imageVector = vector,
+        imageVector = getVector(
+            listOf(
+                LocalPalette.current.textFamily.body
+            )
+        ),
         contentDescription = null,
         contentScale = ContentScale.Fit
     )

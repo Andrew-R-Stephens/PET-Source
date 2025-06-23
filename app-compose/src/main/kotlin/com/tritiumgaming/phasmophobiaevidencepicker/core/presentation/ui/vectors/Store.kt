@@ -23,7 +23,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import kotlin.collections.listOf
 
-private val vector: ImageVector? = null
+private var vector: ImageVector? = null
 
 private fun getVector(groupColors: List<Color>): ImageVector =
 
@@ -106,7 +106,7 @@ fun Store(
             listOf(
                 LocalPalette.current.textFamily.body
             )
-    ),
+        ),
         contentDescription = null,
         contentScale = ContentScale.Fit
     )

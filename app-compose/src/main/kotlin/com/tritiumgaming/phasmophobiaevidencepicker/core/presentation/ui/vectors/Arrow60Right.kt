@@ -13,24 +13,26 @@ import androidx.compose.ui.graphics.StrokeJoin.Companion.Miter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 
-private var _arrow60Right: ImageVector? = null
+private val vector: ImageVector? = null
 
-val Arrow60Right: ImageVector
-    get() {
-        if (_arrow60Right != null) {
-            return _arrow60Right!!
-        }
-        _arrow60Right = Builder(
+private fun getVector(groupColors: List<Color>): ImageVector =
+
+    vector ?: Builder(
             name = "Arrow60Right", 
             defaultWidth = 200.0.dp, 
             defaultHeight = 200.0.dp, 
             viewportWidth = 300.0f, 
             viewportHeight = 300.0f
             ).apply {
-                path(fill = SolidColor(Color(0xFFFFFFFF)), stroke = SolidColor(Color(0xFFFFFFFF)),
+                path(fill = SolidColor(groupColors[0]), stroke = SolidColor(groupColors[0]),
                         strokeLineWidth = 0.0f, strokeLineCap = Butt, strokeLineJoin = Miter,
                         strokeLineMiter = 4.0f, pathFillType = NonZero) {
                     moveTo(152.8f, 22.5f)
@@ -108,13 +110,34 @@ val Arrow60Right: ImageVector
                 }
             }
             .build()
-            return _arrow60Right!!
+
+
+        @Composable
+        fun Arrow60Right(
+            modifier: Modifier = Modifier
+        ) {
+
+            Image(
+                modifier = modifier,
+                imageVector = getVector(
+                    listOf(
+                        LocalPalette.current.textFamily.body
+                    )
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.Fit
+            )
         }
 
-    @Preview
-    @Composable
-    private fun Preview() {
-        Box(modifier = Modifier.padding(12.dp)) {
-            Image(imageVector = Arrow60Right, contentDescription = null)
+        @Preview
+        @Composable
+        private fun Preview() {
+            SelectiveTheme(
+                palette = ClassicPalette,
+                typography = ClassicTypography
+            ) {
+                Box(modifier = Modifier.padding(12.dp)) {
+                    Translate()
+                }
+            }
         }
-    }

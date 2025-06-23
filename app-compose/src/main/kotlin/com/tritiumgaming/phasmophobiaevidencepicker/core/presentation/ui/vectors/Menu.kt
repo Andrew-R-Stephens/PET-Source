@@ -23,22 +23,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 
-@Composable
-fun Menu(
-    modifier: Modifier = Modifier
-) {
-    val vector: ImageVector = Builder(
+private val vector: ImageVector? = null
+
+private fun getVector(groupColors: List<Color>): ImageVector =
+
+    vector ?: Builder(
         name = "Menu",
         defaultWidth = 48.0.dp,
         defaultHeight = 48.0.dp,
         viewportWidth = 24.0f,
         viewportHeight = 24.0f
     ).apply {
-
-        val groupColors = listOf(
-            LocalPalette.current.background.color,
-            LocalPalette.current.textFamily.body
-        )
 
         group {
             path(
@@ -94,9 +89,20 @@ fun Menu(
         }
     }
         .build()
+
+@Composable
+fun Menu(
+    modifier: Modifier = Modifier
+) {
+
     Image(
         modifier = modifier,
-        imageVector = vector,
+        imageVector = getVector(
+            listOf(
+                LocalPalette.current.background.color,
+                LocalPalette.current.textFamily.body
+            )
+        ),
         contentDescription = null,
         contentScale = ContentScale.Fit
     )

@@ -2801,8 +2801,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 close()
             }
         }
-    }
-        .build()
+    }.build()
 
 @Composable
 fun Globe(

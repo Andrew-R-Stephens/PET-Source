@@ -22,22 +22,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 
-@Composable
-fun IconLogoPhasmophobia(
-    modifier: Modifier = Modifier
-) {
-    val vector: ImageVector = Builder(
+private val vector: ImageVector? = null
+
+private fun getVector(groupColors: List<Color>): ImageVector =
+
+    vector ?: Builder(
         name = "IconLogoPhasmophobia",
         defaultWidth = 200.0.dp,
         defaultHeight = 200.0.dp,
         viewportWidth = 250.0f,
         viewportHeight = 250.0f
     ).apply {
-
-        val groupColors = listOf(
-            LocalPalette.current.background.color,
-            LocalPalette.current.textFamily.body
-        )
 
         group {
             path(
@@ -307,11 +302,21 @@ fun IconLogoPhasmophobia(
                 close()
             }
         }
-    }
-        .build()
+    }.build()
+
+
+@Composable
+fun IconLogoPhasmophobia(
+    modifier: Modifier = Modifier
+) {
+
     Image(
         modifier = modifier,
-        imageVector = vector,
+        imageVector = getVector(
+            listOf(
+                LocalPalette.current.textFamily.body
+            )
+        ),
         contentDescription = null,
         contentScale = ContentScale.Fit
     )
