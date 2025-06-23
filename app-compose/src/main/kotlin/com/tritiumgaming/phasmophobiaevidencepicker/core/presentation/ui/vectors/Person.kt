@@ -14,26 +14,33 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 
-private var _person: ImageVector? = null
+@Composable
+fun Person(
+    modifier: Modifier = Modifier
+) {
+    val vector: ImageVector = Builder(
+        name = "Person",
+        defaultWidth = 200.0.dp,
+        defaultHeight = 200.0.dp,
+        viewportWidth = 900.0f,
+        viewportHeight = 900.0f
+    ).apply {
 
-val Person: ImageVector
-    get() {
-        if (_person != null) {
-            return _person!!
-        }
-        _person = Builder(
-            name = "Person", 
-            defaultWidth = 200.0.dp, 
-            defaultHeight = 200.0.dp, 
-            viewportWidth = 700.0f, 
-            viewportHeight = 700.0f
-            ).apply {
+        val groupColors = listOf(
+            LocalPalette.current.background.color,
+            LocalPalette.current.textFamily.body
+        )
                 group {
-                    path(fill = SolidColor(Color(0xFF000000)), stroke =
-                            SolidColor(Color(0xFF000000)), strokeLineWidth = 0.0f, strokeLineCap =
+                    path(fill = SolidColor(groupColors[0]), stroke =
+                            SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
                             Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
                             NonZero) {
                         moveTo(190.7f, 173.65f)
@@ -74,8 +81,8 @@ val Person: ImageVector
                     }
                 }
                 group {
-                    path(fill = SolidColor(Color(0xFF000000)), stroke =
-                            SolidColor(Color(0xFF000000)), strokeLineWidth = 0.0f, strokeLineCap =
+                    path(fill = SolidColor(groupColors[1]), stroke =
+                            SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
                             Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
                             NonZero) {
                         moveTo(497.0f, 621.0f)
@@ -115,8 +122,8 @@ val Person: ImageVector
                         curveTo(258.3f, 461.95f, 233.14f, 468.95f, 207.78f, 478.04f)
                         close()
                     }
-                    path(fill = SolidColor(Color(0xFF000000)), stroke =
-                            SolidColor(Color(0xFF000000)), strokeLineWidth = 0.0f, strokeLineCap =
+                    path(fill = SolidColor(groupColors[1]), stroke =
+                            SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
                             Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
                             NonZero) {
                         moveTo(370.9f, 82.0f)
@@ -148,13 +155,24 @@ val Person: ImageVector
                 }
             }
             .build()
-            return _person!!
+
+    Image(
+        modifier = modifier,
+        imageVector = vector,
+        contentDescription = null,
+        contentScale = ContentScale.Fit
+    )
         }
 
     @Preview
     @Composable
     private fun Preview() {
-        Box(modifier = Modifier.padding(12.dp)) {
-            Image(imageVector = Person, contentDescription = null)
+        SelectiveTheme(
+            palette = ClassicPalette,
+            typography = ClassicTypography
+        ) {
+            Box(modifier = Modifier.padding(12.dp)) {
+                Person()
+            }
         }
     }

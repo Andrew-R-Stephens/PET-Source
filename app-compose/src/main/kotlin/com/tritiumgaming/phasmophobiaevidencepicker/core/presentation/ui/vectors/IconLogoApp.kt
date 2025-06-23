@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
@@ -26,7 +25,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 fun IconLogoApp(
     modifier: Modifier = Modifier
 ) {
-    val iconLogoApp = Builder(
+    val vector: ImageVector = Builder(
         name = "IconLogoApp",
         defaultWidth = 200.0.dp,
         defaultHeight = 200.0.dp,
@@ -1715,7 +1714,7 @@ fun IconLogoApp(
 
     Image(
         modifier = modifier,
-        imageVector = iconLogoApp,
+        imageVector = vector,
         contentDescription = null,
         contentScale = ContentScale.Fit
     )
