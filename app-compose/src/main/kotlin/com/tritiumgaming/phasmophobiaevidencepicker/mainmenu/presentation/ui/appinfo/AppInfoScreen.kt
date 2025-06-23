@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -18,6 +20,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +33,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -217,7 +223,10 @@ private fun InfoContent(
 
         }
 
-        VisitDiscordButton()
+        VisitDiscordButton(
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 16.dp)
+        )
 
         Column(
             verticalArrangement = Arrangement.Bottom
@@ -271,14 +280,15 @@ private fun InfoContent(
 }
 
 @Composable
-private fun VisitDiscordButton() {
+private fun VisitDiscordButton(
+    modifier: Modifier = Modifier
+) {
 
     val context = LocalContext.current
     val discordInvitation = stringResource(R.string.aboutinfo_discordInvite)
 
-    OutlinedButton(
-        modifier = Modifier
-            .padding(8.dp)
+    Button(
+        modifier = modifier
             .fillMaxWidth()
             .height(48.dp),
         onClick = {
@@ -288,8 +298,11 @@ private fun VisitDiscordButton() {
                 )
             )
         },
-        border = BorderStroke(2.dp, LocalPalette.current.light_inactive),
-        shape = RoundedCornerShape(25)
+        shape = RoundedCornerShape(25),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = LocalPalette.current.textFamily.primary
+        ),
+        contentPadding = PaddingValues(16.dp, 4.dp)
     ) {
 
         Row(
@@ -302,6 +315,10 @@ private fun VisitDiscordButton() {
                 modifier = Modifier
                     .aspectRatio(1f)
                     .fillMaxHeight(),
+                colors = listOf(
+                    LocalPalette.current.textFamily.primary,
+                    LocalPalette.current.background.color
+                )
             )
 
             BasicText(
@@ -309,7 +326,8 @@ private fun VisitDiscordButton() {
                     .weight(1f, fill = true),
                 text = stringResource(R.string.aboutinfo_discord_join),
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.body,
+                    fontWeight = FontWeight.Bold,
+                    color = LocalPalette.current.background.color,
                     textAlign = TextAlign.Center
                 ),
                 autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)

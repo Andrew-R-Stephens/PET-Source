@@ -91,20 +91,21 @@ fun LanguageIcon(
 
 @Composable
 fun DiscordIcon(
-    modifier: Modifier = Modifier
-        .size(48.dp)
+    modifier: Modifier = Modifier,
+    colors: List<Color> = listOf(
+        LocalPalette.current.background.color,
+        LocalPalette.current.textFamily.primary
+    )
 ) {
 
     Box(
         modifier = modifier
+            .size(48.dp)
     ) {
         IconResource.DISCORD.ToComposable(
             modifier = Modifier
                 .fillMaxSize(),
-            colors = listOf(
-                LocalPalette.current.background.color,
-                LocalPalette.current.textFamily.primary
-            )
+            colors = colors
         )
 
         IconResource.OPEN_IN_NEW.ToComposable(

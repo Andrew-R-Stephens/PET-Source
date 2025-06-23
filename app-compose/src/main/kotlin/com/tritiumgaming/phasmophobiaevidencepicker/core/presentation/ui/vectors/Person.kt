@@ -30,8 +30,8 @@ private fun getVector(groupColors: List<Color>): ImageVector =
         name = "Person",
         defaultWidth = 200.0.dp,
         defaultHeight = 200.0.dp,
-        viewportWidth = 900.0f,
-        viewportHeight = 900.0f
+        viewportWidth = 700.0f,
+        viewportHeight = 700.0f
     ).apply {
 
         group {

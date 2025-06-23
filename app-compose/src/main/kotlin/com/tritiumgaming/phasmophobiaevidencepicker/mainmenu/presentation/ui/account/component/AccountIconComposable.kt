@@ -26,6 +26,8 @@ import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
@@ -79,13 +81,10 @@ fun AccountIcon() {
 
         if (Firebase.auth.currentUser == null) {
 
-            Image(
+            IconResources.IconResource.PERSON.ToComposable(
                 modifier = Modifier
                     .padding(8.dp)
                     .fillMaxSize(),
-                painter = painterResource(id = R.drawable.ic_person),
-                contentDescription = "",
-                contentScale = contentScale
             )
 
         } else {

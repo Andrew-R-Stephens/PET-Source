@@ -23,4 +23,8 @@ fun AccountScreen(
 
 
 @Composable
-private fun AccountContent() {}
+private fun AccountContent() {
+
+
+
+}
