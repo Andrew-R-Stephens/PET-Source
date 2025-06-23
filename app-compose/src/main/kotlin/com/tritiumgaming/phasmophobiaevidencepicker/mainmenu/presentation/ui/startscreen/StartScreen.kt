@@ -45,6 +45,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.PETActivity
@@ -136,7 +137,7 @@ private fun StartContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            IconResources.IconResource.ICON_LOGO_APP.ToComposable(
+            IconResource.ICON_LOGO_APP.ToComposable(
                 modifier = Modifier
                     .aspectRatio(1f)
                     .fillMaxWidth()
@@ -289,18 +290,27 @@ private fun HeaderNavBar(
 
     val context = LocalContext.current
     val discordInvitation = stringResource(R.string.aboutinfo_discordInvite)
+
+    val menuIcon: @Composable () -> Unit = { IconResource.MENU.ToComposable() }
+    val infoIcon: @Composable () -> Unit = { IconResource.INFO.ToComposable() }
+    val gearIcon: @Composable () -> Unit = { IconResource.GEAR.ToComposable() }
     val languageIcon: @Composable () -> Unit = { LanguageIcon() }
+    val discordIcon: @Composable () -> Unit = { IconResource.DISCORD.ToComposable() }
+    val reviewIcon: @Composable () -> Unit = { IconResource.REVIEW.ToComposable() }
+    val accountIcon: @Composable () -> Unit = { AccountIcon() }
+    val personIcon: @Composable () -> Unit = { IconResource.PERSON.ToComposable() }
+    val storeIcon: @Composable () -> Unit = { IconResource.STORE.ToComposable() }
 
     val rememberNewsUpToDate = newsletterViewModel.mainNotificationState.collectAsStateWithLifecycle()
 
     IconDropdownMenu(
-        R.drawable.ic_menu,
+        menuIcon,
         navController,
         arrayOf(
-            DropdownNavPair(R.drawable.ic_info, NavRoute.SCREEN_APP_INFO),
-            DropdownNavPair(R.drawable.ic_gear, NavRoute.SCREEN_SETTINGS),
+            DropdownNavPair(infoIcon, NavRoute.SCREEN_APP_INFO),
+            DropdownNavPair(gearIcon, NavRoute.SCREEN_SETTINGS),
             DropdownNavPair(languageIcon, NavRoute.SCREEN_LANGUAGE),
-            DropdownClickPair(R.drawable.ic_discord) {
+            DropdownClickPair(discordIcon) {
                 context.startActivity(
                     Intent(
                         Intent.ACTION_VIEW, "https://discord.gg/ $discordInvitation".toUri()
@@ -311,24 +321,21 @@ private fun HeaderNavBar(
     ) { false }
 
     // News Button
-    NotificationIndicator(isActive = rememberNewsUpToDate.value) {
+    NotificationIndicator(
+        isActive = rememberNewsUpToDate.value,
+        alertIcon = IconResource.NOTIFY,
+    ) {
         navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
     }
 
-    Image(
-        painter = painterResource(R.drawable.ic_review),
-        contentDescription = ""
-    )
+    reviewIcon
 
-    val accountIcon: @Composable () -> Unit = {
-        AccountIcon()
-    }
 
     IconDropdownMenu(
         accountIcon,
         navController,
         arrayOf(
-            DropdownClickPair(R.drawable.ic_person, onClick = {
+            DropdownClickPair(personIcon, onClick = {
                 AccountManager().signIn(
                     activity = context as PETActivity,
                     option = SignInCredentialManager.SignInOptions.GOOGLE,
@@ -337,10 +344,11 @@ private fun HeaderNavBar(
                     }
                 )
             }),
-            DropdownNavPair(R.drawable.ic_store, NavRoute.SCREEN_MARKETPLACE_UNLOCKS)
+            DropdownNavPair(storeIcon, NavRoute.SCREEN_MARKETPLACE_UNLOCKS)
         )
     )
 
+    //DO NOT DELETE
     /*IconDropdownMenu(
         accountIcon,
         navController,

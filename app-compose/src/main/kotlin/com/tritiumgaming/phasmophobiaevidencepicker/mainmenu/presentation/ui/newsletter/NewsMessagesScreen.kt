@@ -235,7 +235,7 @@ private fun MessageCard(
                     modifier = Modifier
                         .fillMaxHeight(),
                     isActive = true,
-                    baseDrawableId = null
+                    baseIcon = null
                 )
             }
 

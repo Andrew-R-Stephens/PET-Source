@@ -17,6 +17,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
@@ -47,6 +50,18 @@ fun TestDiscordIcon() {
     }
 }
 
+@Preview
+@Composable
+@TestOnly
+fun TestLanguageIcon() {
+
+    SelectiveTheme(
+        palette = ClassicPalette
+    ) {
+        LanguageIcon()
+    }
+}
+
 @Composable
 fun LanguageIcon(
     onClick: () -> Unit = {}
@@ -58,21 +73,13 @@ fun LanguageIcon(
             .size(size)
             .clickable(true) { onClick() }
     ) {
-        val contentScale = ContentScale.Inside
-        val contentDescription = "Outer Box"
 
-        Image(
-            painter = painterResource(id = R.drawable.ic_globe),
-            contentDescription = contentDescription,
-            contentScale = contentScale,
+        IconResource.GLOBE.ToComposable(
             modifier = Modifier
-                .fillMaxSize()
+            .fillMaxSize()
         )
 
-        Image(
-            painter = painterResource(id = R.drawable.ic_translate),
-            contentDescription = contentDescription,
-            contentScale = contentScale,
+        IconResource.TRANSLATE.ToComposable(
             modifier = Modifier
                 .padding(4.dp)
                 .fillMaxSize(.5f)

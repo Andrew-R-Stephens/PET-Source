@@ -32,7 +32,7 @@ class NewsletterViewModel(
         return inboxes.value.find { inbox -> inbox.id == inboxId }
     }
 
-    private val _mainNotificationState = MutableStateFlow<Boolean>(true)
+    private val _mainNotificationState = MutableStateFlow<Boolean>(false)
     val mainNotificationState = _mainNotificationState.asStateFlow()
     fun setMainNotificationState(value: Boolean) {
         _mainNotificationState.update { value }

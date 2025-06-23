@@ -36,6 +36,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
@@ -46,7 +49,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toDrawableResource
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toIconResource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
@@ -125,7 +131,7 @@ private fun NewsInboxesContent(
 
                 InboxCard(
                     title = inbox.title.toStringResource(),
-                    icon = inbox.icon.toDrawableResource(),
+                    icon = inbox.icon,
                     isActive = false,
                     onClick = {
                         navController.navigate(
@@ -216,6 +222,79 @@ private fun InboxCard(
 }
 
 @Composable
+private fun InboxCard(
+    modifier: Modifier = Modifier,
+    title: Int = R.string.newsletter_title,
+    icon: NewsletterIcon = NewsletterIcon.GENERAL_NEWS,
+    isActive: Boolean = true,
+    onClick: () -> Unit = {}
+) {
+
+    Surface(
+        modifier = modifier
+            .padding(8.dp)
+            .clickable {
+                onClick()
+            },
+        color = LocalPalette.current.surface.onColor,
+        shape = RoundedCornerShape(CornerSize(16.dp)),
+        onClick = { onClick() }
+    ) {
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            NotificationIndicator(
+                modifier = Modifier
+                    .size(98.dp),
+                isActive = isActive,
+                baseIcon = icon.toIconResource()
+            ) {
+                onClick()
+            }
+
+            var rememberOverflow by remember { mutableStateOf(false) }
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .then(
+                        if (rememberOverflow) Modifier.wrapContentHeight()
+                        else Modifier
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+
+                BasicText(
+                    text = stringResource(title),
+                    style = LocalTypography.current.primary.regular.copy(
+                        color = LocalPalette.current.textFamily.primary,
+                        textAlign = TextAlign.Center
+                    ),
+                    softWrap = true,
+                    maxLines = if (rememberOverflow) 2 else 1,
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = 24.sp, maxFontSize = 36.sp, stepSize = 5.sp),
+                    onTextLayout = { textLayoutResult ->
+                        if (textLayoutResult.hasVisualOverflow) {
+                            rememberOverflow = true
+                        }
+                    },
+                )
+
+            }
+
+        }
+
+    }
+}
+
+@Composable
 @Preview(locale = "de")
 private fun InboxButtonPreview() {
     SelectiveTheme(
@@ -227,21 +306,24 @@ private fun InboxButtonPreview() {
         ) {
 
             InboxCard(
+                modifier = Modifier
+                    .padding(vertical = 4.dp),
                 title = R.string.newsletter_inbox_title_general,
-                modifier = Modifier
-                    .padding(vertical = 4.dp)
+                icon = NewsletterIcon.GENERAL_NEWS
             )
 
             InboxCard(
+                modifier = Modifier
+                    .padding(vertical = 4.dp),
                 title = R.string.newsletter_inbox_title_phasmophobia,
-                modifier = Modifier
-                    .padding(vertical = 4.dp)
+                icon = NewsletterIcon.PET_CHANGELOG
             )
 
             InboxCard(
-                title = R.string.newsletter_inbox_title_pet,
                 modifier = Modifier
-                    .padding(vertical = 4.dp)
+                    .padding(vertical = 4.dp),
+                title = R.string.newsletter_inbox_title_pet,
+                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
             )
 
         }

@@ -10,10 +10,14 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -22,10 +26,17 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.vectors.News
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.ToComposable
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toIconResource
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -36,9 +47,16 @@ private fun NotificationIndicatorPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        NotificationIndicator(
-            isActive = true
-        )
+        Column {
+            NotificationIndicator(
+                isActive = true,
+                baseIcon = IconResource.NOTIFY
+            )
+            NotificationIndicator(
+                isActive = true,
+                baseDrawableId = null
+            )
+        }
     }
 
 }
@@ -100,6 +118,58 @@ fun NotificationIndicator(
             contentDescription = "Inbox Symbol",
             colorFilter = ColorFilter.tint(LocalPalette.current.inboxNotification)
         )
+
+    }
+}
+
+@Composable
+fun NotificationIndicator(
+    modifier: Modifier = Modifier,
+    isActive: Boolean = false,
+    baseIcon: IconResource? = NewsletterIcon.GENERAL_NEWS.toIconResource(),
+    alertIcon: IconResource = IconResource.NOTIFY,
+    onClick: () -> Unit = {}
+) {
+
+    Box(
+        modifier = modifier
+            .aspectRatio(1f)
+            .clickable {
+                onClick()
+            }
+    ) {
+
+        baseIcon?.ToComposable(
+            modifier = Modifier
+                .fillMaxSize()
+        )
+
+        val opacity by rememberInfiniteTransition().animateFloat(
+                initialValue = .4f,
+                targetValue = .9f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(
+                        durationMillis = 1000,
+                        easing = EaseOutQuad
+                    ),
+                    repeatMode = RepeatMode.Reverse
+                ), label = ""
+            )
+
+        val alertScale = if(baseIcon != null) .5f else 1f
+
+        Box(
+            modifier = Modifier
+                .alpha(
+                    if (isActive) {
+                        opacity
+                    } else 0f
+                )
+                .fillMaxSize(fraction = alertScale)
+                .align(Alignment.BottomEnd)
+        ) {
+            alertIcon.ToComposable()
+        }
 
     }
 }
