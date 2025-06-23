@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import sharedKit
 
 @main
-struct iosAppApp: App {
+struct iosApp: App {
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {
@@ -16,5 +17,7 @@ struct iosAppApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+        
+        let evidence = EvidenceResources.EvidenceAnimation.dots
     }
 }

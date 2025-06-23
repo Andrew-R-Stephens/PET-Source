@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.palette.usecase.preference
 
-import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.model.IncrementDirection
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.toAccountMarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
@@ -21,19 +20,19 @@ class FindNextAvailablePaletteUseCase(
             marketRepository.get()
                 .getOrDefault(emptyList()).toAccountMarketPalette()
 
-        Log.d("Settings", "MarketPalettes:")
-        marketPalettes.forEach {
+        //Log.d("Settings", "MarketPalettes:")
+        /*marketPalettes.forEach {
             Log.d("Settings", "\t$it")
-        }
+        }*/
 
         val accountPalettes: List<AccountMarketPalette> =
             accountRepository.fetchUnlockedPalettes()
                 .getOrDefault(emptyList()).toAccountMarketPalette()
 
-        Log.d("Settings", "AccountPalettes:")
+        /*Log.d("Settings", "AccountPalettes:")
         accountPalettes.forEach {
             Log.d("Settings", "\t$it")
-        }
+        }*/
 
         val mergedMarketAccountPalettes =
             accountPalettes.fold(marketPalettes) { marketPs, accountP ->
@@ -52,17 +51,17 @@ class FindNextAvailablePaletteUseCase(
                 }
             }
 
-        Log.d("Settings", "MarketAccountPalettes:")
+        /*Log.d("Settings", "MarketAccountPalettes:")
         mergedMarketAccountPalettes.forEach {
             Log.d("Settings", "\t$it")
-        }
+        }*/
 
         val filteredMergedMarketAccountPalettes =
             mergedMarketAccountPalettes.filter { it.isUnlocked }
-        Log.d("Settings", "Filtered MarketAccountPalettes:")
+        /*Log.d("Settings", "Filtered MarketAccountPalettes:")
         filteredMergedMarketAccountPalettes.forEach {
             Log.d("Settings", "\t$it")
-        }
+        }*/
 
         val uuidsFiltered = filteredMergedMarketAccountPalettes.map { it.uuid }
         val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
@@ -71,7 +70,7 @@ class FindNextAvailablePaletteUseCase(
         if(increment >= uuidsFiltered.size) increment = 0
         if(increment < 0) increment = uuidsFiltered.size - 1
 
-        Log.d("Settings", "Move: $currentIndex $increment $direction")
+        //Log.d("Settings", "Move: $currentIndex $increment $direction")
 
         return uuidsFiltered[increment]
     }
