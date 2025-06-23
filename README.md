@@ -88,22 +88,28 @@
 <br>
 
 <div align='left'><h3>Technologies Used</h3></div>
-<div align='left' style="display:float">
+<div align='center' style="display:float">
   <img src="https://img.shields.io/badge/-Kotlin-7F52FF?logo=kotlin&logoColor=white&style=bold" alt=""/>
-  <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Swift-F05138?logo=swift&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Jetpack%20Compose-4285F4?logo=jetpackcompose&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-SwiftUI-F05138?logo=swift&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-KMP-7F52FF?logo=kotlin&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Android%20Studio-3DDC84?logo=androidstudio&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Xcode-147EFB?logo=xcode&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Java-F80000?logo=oracle&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-Gradle-02303A?logo=gradle&logoColor=white&style=bold" alt=""/>
+  <img src="https://img.shields.io/badge/-JSON-black?logo=json&logoColor=white&style=bold" alt=""/>
+</div> 
+<div align='center' style="display:float">
   <img src="https://img.shields.io/badge/-Google%20Play-E37400?logo=googleplay&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Google%20Analytics-E37400?logo=googleanalytics&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Google%20Firebase-FFCA28?logo=firebase&logoColor=white&style=bold" alt=""/>
   <img src="https://img.shields.io/badge/-Google%20Admob-EA4335?logo=googleadmob&logoColor=white&style=bold" alt=""/>
-  <img src="https://img.shields.io/badge/-Gradle-02303A?logo=gradle&logoColor=white&style=bold" alt=""/>
-  <img src="https://img.shields.io/badge/-JSON-black?logo=json&logoColor=white&style=bold" alt=""/>
 </div>
 
 <div align='left' style="display:float">
   <h3>High-Level Design</h3>
-  <div align='center'><label>Native Android -> Kotlin Multiplatform (Android / iOS) Integration Pattern</label></div>
+  <div align='center'><label><b>Native Android -> Kotlin Multiplatform (Android / iOS) Integration Pattern</b></label></div>
   &emsp;<img src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet_migration_flow_stage3.png" alt=""/>
   <blockquote>P.E.T. has become kotlin-first! Major code migration started in May 2024 and finished in July 2024. Planned migration to KMP will commence after confirmation of build stability and feature refinement.</blockquote>
   <ul>
