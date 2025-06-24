@@ -1,5 +1,9 @@
 plugins {
     alias(libs.plugins.jetbrains.kotlin.multiplatform)
+    alias(libs.plugins.jetbrains.compose.multiplatform)
+    alias(libs.plugins.jetbrains.compose.compiler)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+
     alias(libs.plugins.android.kotlin.multiplatform.library)
 }
 
@@ -63,11 +67,14 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlin.stdlib)
-                // Add KMP dependencies here
-                // Compose UI
-                //implementation(libs.androidx.compose.ui.core)
-                //implementation(libs.androidx.compose.ui.toolingPreview)
-
+                
+                // Compose
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
             }
         }
 

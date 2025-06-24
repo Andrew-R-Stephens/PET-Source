@@ -27,12 +27,16 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.jetbrains.kotlin.multiplatform) apply false
-    alias(libs.plugins.jetbrains.kotlin.compose) apply false
+    alias(libs.plugins.jetbrains.compose.multiplatform) apply false
+    alias(libs.plugins.jetbrains.compose.compiler) apply false
+    alias(libs.plugins.jetbrains.kotlin.serialization) apply false
 
     alias(libs.plugins.io.realm.kotlin) apply false
 
     alias(libs.plugins.devtools.ksp) apply false
     alias(libs.plugins.android.kotlin.multiplatform.library) apply false
+
+
 }
 
 

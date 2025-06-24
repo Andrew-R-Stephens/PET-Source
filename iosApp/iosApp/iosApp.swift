@@ -16,8 +16,11 @@ struct iosApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            
+            
+            let newsIcon = IconResources.IconResource.news
+            newsIcon.toView()
+            
         }
-        
-        let evidence = EvidenceResources.EvidenceAnimation.dots
     }
 }
