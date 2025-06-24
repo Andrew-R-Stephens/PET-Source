@@ -13,11 +13,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -32,10 +29,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.S
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.vectors.News
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toIconResource
 import org.jetbrains.annotations.TestOnly
 
