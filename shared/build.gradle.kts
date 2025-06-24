@@ -65,8 +65,8 @@ kotlin {
                 implementation(libs.jetbrains.kotlin.stdlib)
                 // Add KMP dependencies here
                 // Compose UI
-                implementation(libs.androidx.compose.ui.core)
-                implementation(libs.androidx.compose.ui.toolingPreview)
+                //implementation(libs.androidx.compose.ui.core)
+                //implementation(libs.androidx.compose.ui.toolingPreview)
 
             }
         }
