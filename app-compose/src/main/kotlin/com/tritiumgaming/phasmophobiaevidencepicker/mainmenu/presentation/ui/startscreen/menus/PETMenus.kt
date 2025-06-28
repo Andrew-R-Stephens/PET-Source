@@ -40,7 +40,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkBuilder
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import org.jetbrains.annotations.TestOnly
 
 @TestOnly

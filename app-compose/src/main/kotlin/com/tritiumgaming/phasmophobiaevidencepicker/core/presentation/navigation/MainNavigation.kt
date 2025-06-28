@@ -28,9 +28,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.MissionsScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.itemstore.children.CodexAchievementScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.itemstore.children.CodexEquipmentScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.itemstore.children.CodexPossessionsScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexAchievementScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexEquipmentScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexPossessionsScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.menu.CodexMenuScreen
 
 @Composable

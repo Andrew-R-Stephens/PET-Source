@@ -53,10 +53,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toPaletteResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toTypographyResource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ExtendedPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalDefaultPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalDefaultTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ExtendedPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalDefaultPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ExtendedTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel.Companion.FOREVER
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel.Companion.MAX_TIME
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel.Companion.MIN_TIME

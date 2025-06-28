@@ -10,7 +10,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
