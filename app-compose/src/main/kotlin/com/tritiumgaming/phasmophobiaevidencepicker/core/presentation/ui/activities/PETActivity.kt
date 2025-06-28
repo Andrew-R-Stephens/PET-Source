@@ -7,7 +7,11 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.google.android.material.navigation.NavigationBarView
@@ -24,8 +28,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activit
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AppUpdateManagerService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.ConsentManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.FirebaseAnalyticsService
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ConfigurationControl
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ThemeConfigurationControl
 import java.util.concurrent.atomic.AtomicBoolean
 
 class PETActivity : AppCompatActivity(),
@@ -86,12 +91,21 @@ class PETActivity : AppCompatActivity(),
 
         setContent {
 
-            ConfigurationControl(
-                modifier = Modifier.safeDrawingPadding(),
+            ThemeConfigurationControl(
                 globalPreferencesViewModel = globalPreferencesViewModel
             ) {
 
-                RootNavigation()
+                Scaffold {
+
+                    Box(
+                        modifier = Modifier
+                            .background(LocalPalette.current.surface.color)
+                            .padding(it)
+                    ) {
+                        RootNavigation()
+                    }
+
+                }
 
             }
 

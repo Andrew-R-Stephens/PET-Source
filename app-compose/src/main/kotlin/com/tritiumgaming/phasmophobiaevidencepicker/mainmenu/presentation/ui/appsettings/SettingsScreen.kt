@@ -3,16 +3,20 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.ap
 import android.content.Context
 import android.util.Log
 import android.view.WindowManager
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,8 +40,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.PETImageButtonType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.content.CarouselComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.content.HuntTimeoutPreferenceSeekbar
@@ -66,12 +70,14 @@ fun SettingsScreen(
         modifier = modifier
     ) {
 
-        ConfigurationControl(
-            globalPreferencesViewModel = globalPreferencesViewModel,
-            onBack = {
-                navController.popBackStack()
-            }
-        )
+        ThemeConfigurationControl(
+            globalPreferencesViewModel = globalPreferencesViewModel
+        ) {
+            SettingsContent(
+                globalPreferencesViewModel = globalPreferencesViewModel
+            ) { navController.popBackStack() }
+        }
+
     }
 
 }
@@ -90,8 +96,7 @@ private fun SettingsContent(
     ) {
 
         Column(
-            modifier = Modifier
-                .padding(8.dp),
+            modifier = Modifier,
             verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.Top),
         ) {
             NavigationHeaderComposable(
@@ -259,7 +264,7 @@ private fun SettingsContent(
 }
 
 @Composable
-fun ConfigurationControl(
+fun ThemeConfigurationControl(
     modifier: Modifier = Modifier,
     globalPreferencesViewModel: GlobalPreferencesViewModel =
         viewModel(factory = GlobalPreferencesViewModel.Factory),
@@ -271,9 +276,6 @@ fun ConfigurationControl(
 
     val palette = globalPreferencesViewModel.getPaletteByUUID(paletteState.value)
     val typography = globalPreferencesViewModel.getTypographyByUUID(typographyState.value)
-
-    /*val palette: ExtendedPalette = LocalPalettesMap[paletteState.value] ?: ClassicPalette
-    val typography: ExtendedTypography = LocalTypographiesMap[typographyState.value] ?: ClassicTypography*/
 
     Log.d("Palette", stringResource(palette.extrasFamily.title))
     Log.d("Typography", stringResource(typography.extrasFamily.title))
@@ -287,37 +289,7 @@ fun ConfigurationControl(
         ) {
             content()
         }
-    }
 
-}
-
-@Composable
-fun ConfigurationControl(
-    globalPreferencesViewModel: GlobalPreferencesViewModel =
-        viewModel(factory = GlobalPreferencesViewModel.Factory),
-    onBack: () -> Unit = {}
-) {
-
-    val paletteState = globalPreferencesViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
-    val typographyState = globalPreferencesViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
-
-    val palette = globalPreferencesViewModel.getPaletteByUUID(paletteState.value)
-    val typography = globalPreferencesViewModel.getTypographyByUUID(typographyState.value)
-
-    /*val palette: ExtendedPalette = LocalPalettesMap[paletteState.value] ?: ClassicPalette
-    val typography: ExtendedTypography = LocalTypographiesMap[typographyState.value] ?: ClassicTypography*/
-
-    Log.d("Palette", stringResource(palette.extrasFamily.title))
-    Log.d("Typography", stringResource(typography.extrasFamily.title))
-
-    SelectiveTheme(
-        palette = palette,
-        typography = typography
-    ) {
-
-        SettingsContent(
-            globalPreferencesViewModel = globalPreferencesViewModel
-        ) { onBack() }
     }
 
 }
