@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.android.application)
 
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.jetbrains.kotlin.compose)
+    alias(libs.plugins.jetbrains.compose.compiler)
 
     alias(libs.plugins.gms.services)
     alias(libs.plugins.firebase.crashlytics)
