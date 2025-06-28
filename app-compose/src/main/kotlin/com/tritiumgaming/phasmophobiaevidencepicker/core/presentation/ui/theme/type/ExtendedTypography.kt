@@ -1,10 +1,10 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type
 
 import androidx.compose.runtime.Immutable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.ExtendedTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_classic
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.common.CustomFontFamily
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.common.ExtrasFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.common.CustomFontFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.common.ExtrasFamily
 
 @Immutable
 data class ExtendedTypography(

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -6,8 +6,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.unit.sp
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.common.ExtrasFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.common.ExtrasFamily
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.CuyabraTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.DefaultTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.DigitalDreamTextStyle
@@ -30,7 +29,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_longcang
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_neucha
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_newtegmon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.common.CustomFontFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.common.CustomFontFamily
 
 val DefaultFont = Typography(
     displayLarge = DefaultTextStyle.copy(

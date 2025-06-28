@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.common
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.common
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.text.TextStyle

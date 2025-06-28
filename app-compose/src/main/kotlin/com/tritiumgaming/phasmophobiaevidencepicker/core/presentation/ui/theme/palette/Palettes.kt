@@ -1,13 +1,9 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.ExtendedTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.badge_10_commissioner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.badge_1_recruit
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.badge_2_investigator
@@ -133,12 +129,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.o
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.orange_M85
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.orange_M900
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.orange_M950
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.common.CodexColorFamily
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.common.CoreColorFamily
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.common.ExtrasFamily
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.common.M3ColorFamily
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.common.SwitchColorFamily
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.common.TextColorFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.common.CodexColorFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.common.CoreColorFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.common.ExtrasFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.common.M3ColorFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.common.SwitchColorFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.common.TextColorFamily
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.purple
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.purple_A10
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.purple_M150
