@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.itemstore
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview

@@ -1,16 +1,16 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyResources.TypographyType
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.AndroidTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.JournalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.BrickTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.CleanTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.LongCangTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.NewTegominTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.NeuchaTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.JetBrainsMonoTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ExtendedTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.AndroidTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.JournalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.BrickTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.CleanTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LongCangTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.NewTegominTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.NeuchaTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.JetBrainsMonoTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ExtendedTypography
 
 fun TypographyType.toTypographyResource(): ExtendedTypography =
     when (this) {
