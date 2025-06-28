@@ -1,10 +1,5 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.vectors
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.SolidColor
@@ -14,20 +9,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.getNewsVector
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.ClassicPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palettes.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.types.ClassicTypography
 
-private val vector: ImageVector? = null
-
-private fun getVector(groupColors: List<Color>): ImageVector =
-
-    vector ?: Builder(
+fun getNewsVector(groupColors: List<Color>): ImageVector =
+    Builder(
         name = "News",
         defaultWidth = 200.0.dp,
         defaultHeight = 200.0.dp,
@@ -233,39 +218,21 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -0.8f, 0.7f, -1.5f, 1.5f, -1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, 0.7f, 1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+            /**/
                 moveTo(377.0f, 107.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+            /**/
                 moveTo(662.0f, 119.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+            /**/
                 moveTo(434.0f, 121.9f)
                 curveToRelative(0.0f, 0.5f, 0.7f, 1.4f, 1.5f, 2.1f)
                 curveToRelative(0.8f, 0.7f, 1.5f, 1.6f, 1.5f, 2.1f)
@@ -1115,13 +1082,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -1.2f, 1.5f, -1.5f, 7.5f, -1.5f)
                 curveToRelative(6.0f, -0.0f, 7.5f, 0.3f, 7.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+            /**/
                 moveTo(235.7f, 176.4f)
                 curveToRelative(-0.3f, 0.8f, -2.2f, 1.6f, -4.4f, 1.8f)
                 curveToRelative(-3.0f, 0.2f, -3.9f, 0.8f, -4.1f, 2.4f)
@@ -1136,169 +1097,91 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(-1.8f, -1.5f, -3.0f, -3.4f, -3.0f, -4.9f)
                 curveToRelative(0.0f, -2.6f, -2.4f, -3.3f, -3.3f, -1.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(221.0f, 196.0f)
                 curveToRelative(0.0f, 4.7f, 0.3f, 6.0f, 1.5f, 6.0f)
                 curveToRelative(1.2f, -0.0f, 1.5f, -1.3f, 1.5f, -6.0f)
                 curveToRelative(0.0f, -4.7f, -0.3f, -6.0f, -1.5f, -6.0f)
                 curveToRelative(-1.2f, -0.0f, -1.5f, 1.3f, -1.5f, 6.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(284.0f, 203.5f)
                 curveToRelative(0.0f, 3.3f, 0.4f, 4.5f, 1.5f, 4.5f)
                 curveToRelative(1.1f, -0.0f, 1.5f, -1.2f, 1.5f, -4.5f)
                 curveToRelative(0.0f, -3.3f, -0.4f, -4.5f, -1.5f, -4.5f)
                 curveToRelative(-1.1f, -0.0f, -1.5f, 1.2f, -1.5f, 4.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(515.0f, 212.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(230.0f, 421.0f)
                 curveToRelative(0.0f, 4.7f, 0.3f, 6.0f, 1.5f, 6.0f)
                 curveToRelative(1.2f, -0.0f, 1.5f, -1.3f, 1.5f, -6.0f)
                 curveToRelative(0.0f, -4.7f, -0.3f, -6.0f, -1.5f, -6.0f)
                 curveToRelative(-1.2f, -0.0f, -1.5f, 1.3f, -1.5f, 6.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(533.0f, 362.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(500.0f, 407.5f)
                 curveToRelative(0.0f, 1.0f, 1.0f, 1.5f, 3.0f, 1.5f)
                 curveToRelative(2.0f, -0.0f, 3.0f, -0.5f, 3.0f, -1.5f)
                 curveToRelative(0.0f, -1.0f, -1.0f, -1.5f, -3.0f, -1.5f)
                 curveToRelative(-2.0f, -0.0f, -3.0f, 0.5f, -3.0f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(284.0f, 467.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(245.0f, 470.5f)
                 curveToRelative(0.0f, 1.1f, 1.2f, 1.5f, 4.5f, 1.5f)
                 curveToRelative(3.3f, -0.0f, 4.5f, -0.4f, 4.5f, -1.5f)
                 curveToRelative(0.0f, -1.1f, -1.2f, -1.5f, -4.5f, -1.5f)
                 curveToRelative(-3.3f, -0.0f, -4.5f, 0.4f, -4.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(353.0f, 530.5f)
                 curveToRelative(0.0f, 1.2f, 1.7f, 1.5f, 9.0f, 1.5f)
                 curveToRelative(7.3f, -0.0f, 9.0f, -0.3f, 9.0f, -1.5f)
                 curveToRelative(0.0f, -1.2f, -1.7f, -1.5f, -9.0f, -1.5f)
                 curveToRelative(-7.3f, -0.0f, -9.0f, 0.3f, -9.0f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(371.0f, 566.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(140.0f, 188.5f)
                 curveToRelative(0.0f, 1.2f, 1.3f, 1.5f, 6.0f, 1.5f)
                 curveToRelative(4.7f, -0.0f, 6.0f, -0.3f, 6.0f, -1.5f)
                 curveToRelative(0.0f, -1.2f, -1.3f, -1.5f, -6.0f, -1.5f)
                 curveToRelative(-4.7f, -0.0f, -6.0f, 0.3f, -6.0f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(686.0f, 214.0f)
                 curveToRelative(0.0f, 10.0f, 0.3f, 12.0f, 1.5f, 12.0f)
                 curveToRelative(1.3f, -0.0f, 1.5f, -2.0f, 1.5f, -12.0f)
                 curveToRelative(0.0f, -10.0f, -0.2f, -12.0f, -1.5f, -12.0f)
                 curveToRelative(-1.2f, -0.0f, -1.5f, 2.0f, -1.5f, 12.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(89.0f, 206.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, 0.7f, 1.5f, 1.5f)
@@ -1386,63 +1269,33 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -9.6f, 0.3f, -11.5f, 1.5f, -11.5f)
                 curveToRelative(1.3f, -0.0f, 1.5f, 2.3f, 1.5f, 14.4f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(164.0f, 235.0f)
                 curveToRelative(0.0f, 2.0f, 0.5f, 3.0f, 1.5f, 3.0f)
                 curveToRelative(1.0f, -0.0f, 1.5f, -1.0f, 1.5f, -3.0f)
                 curveToRelative(0.0f, -2.0f, -0.5f, -3.0f, -1.5f, -3.0f)
                 curveToRelative(-1.0f, -0.0f, -1.5f, 1.0f, -1.5f, 3.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(161.7f, 496.7f)
                 curveToRelative(-1.3f, 1.3f, -0.7f, 5.3f, 0.8f, 5.3f)
                 curveToRelative(1.0f, -0.0f, 1.5f, -1.0f, 1.5f, -3.0f)
                 curveToRelative(0.0f, -2.9f, -0.9f, -3.8f, -2.3f, -2.3f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(431.0f, 623.5f)
                 curveToRelative(0.0f, 1.3f, 3.2f, 1.5f, 22.5f, 1.5f)
                 curveToRelative(19.3f, -0.0f, 22.5f, -0.2f, 22.5f, -1.5f)
                 curveToRelative(0.0f, -1.3f, -3.2f, -1.5f, -22.5f, -1.5f)
                 curveToRelative(-19.3f, -0.0f, -22.5f, 0.2f, -22.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(639.8f, 633.1f)
                 curveToRelative(-2.6f, 2.7f, -2.2f, 4.1f, 1.0f, 3.7f)
                 curveToRelative(2.1f, -0.2f, 2.8f, -0.9f, 3.0f, -3.1f)
                 curveToRelative(0.4f, -3.2f, -1.4f, -3.5f, -4.0f, -0.6f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[0]), stroke =
-                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(263.0f, 638.5f)
                 curveToRelative(0.0f, 1.1f, 1.1f, 1.5f, 3.9f, 1.5f)
                 curveToRelative(2.2f, -0.0f, 4.4f, 0.6f, 5.1f, 1.5f)
@@ -1459,7 +1312,6 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 close()
             }
         }
-
         group {
             path(
                 fill = SolidColor(groupColors[1]), stroke =
@@ -1937,13 +1789,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -4.7f, 0.3f, -6.0f, 1.5f, -6.0f)
                 curveToRelative(1.2f, -0.0f, 1.5f, 1.3f, 1.5f, 6.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(325.6f, 146.5f)
                 curveToRelative(-0.3f, 0.9f, -1.8f, 1.5f, -3.9f, 1.5f)
                 curveToRelative(-1.9f, -0.0f, -4.0f, 0.7f, -4.7f, 1.5f)
@@ -2034,26 +1880,14 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -3.3f, 0.4f, -4.5f, 1.5f, -4.5f)
                 curveToRelative(1.1f, -0.0f, 1.5f, 1.2f, 1.5f, 4.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(209.0f, 155.5f)
                 curveToRelative(0.0f, 6.0f, 0.3f, 7.5f, 1.5f, 7.5f)
                 curveToRelative(1.2f, -0.0f, 1.5f, -1.5f, 1.5f, -7.5f)
                 curveToRelative(0.0f, -6.0f, -0.3f, -7.5f, -1.5f, -7.5f)
                 curveToRelative(-1.2f, -0.0f, -1.5f, 1.5f, -1.5f, 7.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(347.0f, 149.5f)
                 curveToRelative(-0.7f, 0.8f, -2.0f, 1.5f, -3.0f, 1.5f)
                 curveToRelative(-1.0f, -0.0f, -2.3f, 0.6f, -3.0f, 1.4f)
@@ -2096,51 +1930,27 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(-1.0f, -1.2f, -4.7f, -1.5f, -21.0f, -1.5f)
                 curveToRelative(-16.3f, -0.0f, -20.0f, 0.3f, -21.0f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(302.0f, 170.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(359.0f, 171.9f)
                 curveToRelative(0.0f, 2.1f, 0.5f, 3.1f, 1.6f, 3.1f)
                 curveToRelative(1.1f, -0.0f, 1.4f, -0.8f, 1.2f, -2.7f)
                 curveToRelative(-0.4f, -3.9f, -2.8f, -4.2f, -2.8f, -0.4f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(257.0f, 173.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(597.5f, 199.0f)
                 curveToRelative(-1.6f, 1.6f, -3.6f, 3.0f, -4.6f, 3.0f)
                 curveToRelative(-0.9f, -0.0f, -2.2f, 0.6f, -2.9f, 1.4f)
@@ -2181,13 +1991,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -1.5f, -4.2f, -4.8f, -6.1f, -4.9f)
                 curveToRelative(-0.8f, -0.0f, -2.8f, 1.3f, -4.4f, 3.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(479.7f, 202.8f)
                 curveToRelative(-3.6f, 3.7f, -3.7f, 4.0f, -3.7f, 11.4f)
                 curveToRelative(0.0f, 5.5f, -0.4f, 7.9f, -1.5f, 8.8f)
@@ -2219,26 +2023,14 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(-2.9f, -0.2f, -5.6f, -0.9f, -6.3f, -1.7f)
                 curveToRelative(-2.4f, -2.8f, -7.3f, -1.8f, -11.3f, 2.3f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(380.0f, 203.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(446.0f, 203.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, 0.6f, 1.5f, 1.4f)
@@ -2272,13 +2064,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(560.7f, 202.6f)
                 curveToRelative(-0.4f, 0.4f, -0.7f, 1.8f, -0.7f, 3.1f)
                 curveToRelative(0.0f, 1.4f, -0.6f, 2.3f, -1.5f, 2.3f)
@@ -2334,13 +2120,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -0.8f, 0.7f, -1.5f, 1.5f, -1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, 0.7f, 1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(296.5f, 224.1f)
                 curveToRelative(-0.4f, 0.6f, -0.5f, 1.1f, -0.4f, 1.2f)
                 curveToRelative(0.2f, 0.1f, 1.4f, 1.0f, 2.6f, 2.0f)
@@ -2348,65 +2128,35 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(1.2f, -1.2f, 2.1f, -2.6f, 2.1f, -3.1f)
                 curveToRelative(0.0f, -1.3f, -7.7f, -1.3f, -8.5f, 0.1f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(323.0f, 236.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(215.0f, 247.0f)
                 curveToRelative(0.0f, 2.0f, 0.5f, 3.0f, 1.5f, 3.0f)
                 curveToRelative(1.0f, -0.0f, 1.5f, -1.0f, 1.5f, -3.0f)
                 curveToRelative(0.0f, -2.0f, -0.5f, -3.0f, -1.5f, -3.0f)
                 curveToRelative(-1.0f, -0.0f, -1.5f, 1.0f, -1.5f, 3.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(359.0f, 247.0f)
                 curveToRelative(0.0f, 2.0f, 0.5f, 3.0f, 1.5f, 3.0f)
                 curveToRelative(1.0f, -0.0f, 1.5f, -1.0f, 1.5f, -3.0f)
                 curveToRelative(0.0f, -2.0f, -0.5f, -3.0f, -1.5f, -3.0f)
                 curveToRelative(-1.0f, -0.0f, -1.5f, 1.0f, -1.5f, 3.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(623.0f, 281.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(221.7f, 283.7f)
                 curveToRelative(-0.4f, 0.3f, -0.7f, 11.5f, -0.7f, 24.8f)
                 curveToRelative(0.0f, 20.3f, 0.2f, 24.5f, 1.5f, 25.5f)
@@ -2507,13 +2257,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -4.7f, 0.3f, -6.0f, 1.5f, -6.0f)
                 curveToRelative(1.2f, -0.0f, 1.5f, 1.3f, 1.5f, 6.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(485.0f, 287.5f)
                 curveToRelative(-1.0f, 1.2f, -5.7f, 1.5f, -27.4f, 1.7f)
                 lineToRelative(-26.1f, 0.3f)
@@ -2539,13 +2283,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(-1.0f, -0.0f, -2.3f, -0.7f, -3.0f, -1.5f)
                 curveToRelative(-1.9f, -2.2f, -58.1f, -2.2f, -60.0f, -0.0f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(482.0f, 344.5f)
                 curveToRelative(-1.0f, 1.2f, -3.7f, 1.5f, -12.0f, 1.5f)
                 curveToRelative(-8.2f, -0.0f, -11.0f, 0.3f, -12.0f, 1.5f)
@@ -2586,13 +2324,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -0.8f, 0.7f, -1.5f, 1.5f, -1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, 0.7f, 1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(443.7f, 403.7f)
                 curveToRelative(-0.4f, 0.3f, -0.7f, 5.1f, -0.7f, 10.5f)
                 curveToRelative(0.0f, 7.7f, 0.3f, 9.8f, 1.4f, 9.8f)
@@ -2640,52 +2372,28 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(-2.9f, -0.0f, -3.8f, -0.9f, -2.3f, -2.3f)
                 curveToRelative(1.3f, -1.3f, 5.3f, -0.7f, 5.3f, 0.8f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(395.0f, 446.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(410.0f, 446.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(218.0f, 461.5f)
                 curveToRelative(0.0f, 1.0f, 1.0f, 1.5f, 3.0f, 1.5f)
                 curveToRelative(2.0f, -0.0f, 3.0f, -0.5f, 3.0f, -1.5f)
                 curveToRelative(0.0f, -1.0f, -1.0f, -1.5f, -3.0f, -1.5f)
                 curveToRelative(-2.0f, -0.0f, -3.0f, 0.5f, -3.0f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(355.6f, 461.5f)
                 curveToRelative(-0.4f, 1.3f, -3.5f, 1.5f, -18.9f, 1.5f)
                 curveToRelative(-15.2f, -0.0f, -18.7f, 0.3f, -19.7f, 1.5f)
@@ -2739,38 +2447,20 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -1.1f, 1.2f, -1.5f, 4.5f, -1.5f)
                 curveToRelative(3.3f, -0.0f, 4.5f, 0.4f, 4.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(380.0f, 482.4f)
                 curveToRelative(0.0f, 1.2f, 1.1f, 1.6f, 4.6f, 1.6f)
                 curveToRelative(5.9f, -0.0f, 5.5f, -2.4f, -0.4f, -2.8f)
                 curveToRelative(-3.3f, -0.2f, -4.2f, -0.0f, -4.2f, 1.2f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(569.0f, 482.5f)
                 curveToRelative(0.0f, 1.1f, 1.2f, 1.5f, 4.5f, 1.5f)
                 curveToRelative(3.3f, -0.0f, 4.5f, -0.4f, 4.5f, -1.5f)
                 curveToRelative(0.0f, -1.1f, -1.2f, -1.5f, -4.5f, -1.5f)
                 curveToRelative(-3.3f, -0.0f, -4.5f, 0.4f, -4.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(425.0f, 509.5f)
                 curveToRelative(-1.1f, 1.3f, -13.2f, 1.5f, -97.5f, 1.5f)
                 curveToRelative(-82.9f, -0.0f, -96.4f, 0.2f, -97.5f, 1.5f)
@@ -2814,38 +2504,20 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -1.2f, 1.7f, -1.5f, 9.0f, -1.5f)
                 curveToRelative(7.3f, -0.0f, 9.0f, 0.3f, 9.0f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(386.7f, 532.7f)
                 curveToRelative(-1.9f, 1.8f, 0.3f, 2.3f, 11.3f, 2.3f)
                 curveToRelative(10.0f, -0.0f, 12.0f, -0.3f, 12.0f, -1.5f)
                 curveToRelative(0.0f, -1.2f, -1.9f, -1.5f, -11.3f, -1.5f)
                 curveToRelative(-6.3f, -0.0f, -11.7f, 0.3f, -12.0f, 0.7f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(224.7f, 535.7f)
                 curveToRelative(-1.5f, 1.4f, -0.6f, 2.3f, 2.3f, 2.3f)
                 curveToRelative(2.0f, -0.0f, 3.0f, -0.5f, 3.0f, -1.5f)
                 curveToRelative(0.0f, -1.5f, -4.0f, -2.1f, -5.3f, -0.8f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(218.4f, 560.3f)
                 curveToRelative(-0.2f, 0.7f, -0.3f, 6.0f, -0.2f, 11.8f)
                 lineToRelative(0.3f, 10.4f)
@@ -2878,39 +2550,21 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -0.8f, 0.7f, -1.5f, 1.5f, -1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, 0.7f, 1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(662.0f, 575.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(599.0f, 584.5f)
                 curveToRelative(0.0f, 1.2f, 1.5f, 1.5f, 7.5f, 1.5f)
                 curveToRelative(6.0f, -0.0f, 7.5f, -0.3f, 7.5f, -1.5f)
                 curveToRelative(0.0f, -1.2f, -1.5f, -1.5f, -7.5f, -1.5f)
                 curveToRelative(-6.0f, -0.0f, -7.5f, 0.3f, -7.5f, 1.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(77.0f, 390.5f)
                 curveToRelative(0.0f, 9.4f, -0.3f, 11.7f, -1.5f, 12.1f)
                 curveToRelative(-1.2f, 0.5f, -1.5f, 2.7f, -1.5f, 11.0f)
@@ -2921,13 +2575,7 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -12.1f, -0.2f, -14.4f, -1.5f, -14.4f)
                 curveToRelative(-1.2f, -0.0f, -1.5f, 1.9f, -1.5f, 11.5f)
                 close()
-            }
-            path(
-                fill = SolidColor(groupColors[1]), stroke =
-                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
-                    Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
-                    NonZero
-            ) {
+
                 moveTo(56.0f, 590.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
@@ -2936,36 +2584,5 @@ private fun getVector(groupColors: List<Color>): ImageVector =
                 close()
             }
         }
-    }
-        .build()
 
-@Composable
-fun News(
-    modifier: Modifier = Modifier
-) {
-
-    Image(
-        modifier = modifier,
-        imageVector = getNewsVector(
-            listOf(
-                LocalPalette.current.background.color,
-                LocalPalette.current.textFamily.body
-            )
-        ),
-        contentDescription = null,
-        contentScale = ContentScale.Fit
-    )
-}
-
-@Preview
-@Composable
-private fun Preview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Box(modifier = Modifier.padding(12.dp)) {
-            News()
-        }
-    }
-}
+    }.build()
