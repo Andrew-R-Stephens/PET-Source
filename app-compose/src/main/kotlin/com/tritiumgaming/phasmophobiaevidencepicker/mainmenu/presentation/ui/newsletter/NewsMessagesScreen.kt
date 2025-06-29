@@ -53,7 +53,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterMessage
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toStringResource
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
 

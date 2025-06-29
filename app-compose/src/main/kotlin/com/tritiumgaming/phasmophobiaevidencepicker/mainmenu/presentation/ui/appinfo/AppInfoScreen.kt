@@ -50,7 +50,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.DiscordIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon.DiscordIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
 import org.jetbrains.annotations.TestOnly

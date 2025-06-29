@@ -53,8 +53,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.AccountIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.LanguageIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.NotificationIndicator
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon.LanguageIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownClickPair
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownNavPair
@@ -156,21 +156,11 @@ private fun StartContent(
                 verticalArrangement = Arrangement.spacedBy(32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                //val activity = (LocalContext.current) as PETActivity
-
                 StartButton(
                     modifier = Modifier
                         .fillMaxWidth(.75f)
                 ) {
                     navController.navigate(NavRoute.SCREEN_INVESTIGATION.route)
-
-                    /*activity.signIn(
-                        activity,
-                        SignInCredentialManager.SignInOptions.GOOGLE,
-                        onSuccess = {
-                            //activity.recreate()
-                        }
-                    )*/
                 }
 
                 LanguageButton {
@@ -326,15 +316,7 @@ private fun HeaderNavBar(
         accountIcon,
         navController,
         arrayOf(
-            DropdownClickPair(personIcon, onClick = {
-                AccountManager().signIn(
-                    activity = context as PETActivity,
-                    option = SignInCredentialManager.SignInOptions.GOOGLE,
-                    onSuccess = {
-                        Log.d("Firebase", "Signed in as: ${Firebase.auth.currentUser?.displayName}")
-                    }
-                )
-            }),
+            DropdownNavPair(personIcon, NavRoute.SCREEN_ACCOUNT_OVERVIEW),
             DropdownNavPair(storeIcon, NavRoute.SCREEN_MARKETPLACE_UNLOCKS)
         )
     )
