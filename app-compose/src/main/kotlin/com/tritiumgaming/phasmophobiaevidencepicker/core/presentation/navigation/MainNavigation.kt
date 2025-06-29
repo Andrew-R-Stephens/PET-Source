@@ -152,7 +152,7 @@ private fun NavGraphBuilder.mainMenuNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
-                AccountScreen()
+                AccountScreen(navController = navController)
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {

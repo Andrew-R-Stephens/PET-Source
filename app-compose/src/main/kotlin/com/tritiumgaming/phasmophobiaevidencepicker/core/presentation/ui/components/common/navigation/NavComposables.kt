@@ -94,9 +94,7 @@ fun NavigationHeaderComposable(
     modifier: Modifier = Modifier,
 ) {
 
-    val centerTitle =
-        if(params.centerTitleRes != 0) stringResource(params.centerTitleRes)
-        else ""
+    val centerTitle = params.centerTitleRes?.let { stringResource(it) } ?: ""
 
     Row(
         modifier = modifier
@@ -114,19 +112,6 @@ fun NavigationHeaderComposable(
         )
 
         if(params.centerTitleRes != 0) {
-
-            /*AutoResizedText(
-                containerModifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .weight(2f, fill = true),
-                text = centerTitle,
-                style = LocalTypography.current.primary.regular,
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center,
-                autoResizeStyle = AutoResizedStyleType.CONSTRAIN,
-                behavior = AutoResizedBehavior.MARQUEE
-            )*/
 
             BasicText(
                 modifier = Modifier
@@ -155,7 +140,7 @@ fun NavigationHeaderComposable(
 data class NavHeaderComposableParams(
     var leftType: PETImageButtonType = PETImageButtonType.NONE,
     var rightType: PETImageButtonType = PETImageButtonType.NONE,
-    @StringRes var centerTitleRes: Int = 0,
+    @StringRes var centerTitleRes: Int? = null,
     @StringRes var leftTitleRes: Int = leftType.labelRes,
     @StringRes var rightTitleRes: Int = rightType.labelRes,
     var leftOnClick: () -> Unit = {},
