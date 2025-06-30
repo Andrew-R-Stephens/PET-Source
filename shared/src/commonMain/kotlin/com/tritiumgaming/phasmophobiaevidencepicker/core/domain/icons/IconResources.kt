@@ -14,7 +14,7 @@ class IconResources {
         ICON_LOGO_APP,
         ICON_LOGO_PHASMOPHOBIA,
         INFO,
-        MENU,
+        HAMBURGER_MENU,
         NEWS,
         NOTIFY,
         OPEN_IN_NEW,
