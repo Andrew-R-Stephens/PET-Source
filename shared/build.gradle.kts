@@ -67,7 +67,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation(libs.jetbrains.kotlin.stdlib)
-                
+                implementation(libs.jetbrains.kotlinx.coroutines)
                 // Compose
                 implementation(compose.runtime)
                 implementation(compose.foundation)

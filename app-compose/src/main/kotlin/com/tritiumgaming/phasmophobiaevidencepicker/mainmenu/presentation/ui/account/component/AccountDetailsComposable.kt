@@ -20,14 +20,13 @@ private fun AccountDetailsPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        AccountDetails()
+        AccountBanner()
     }
 }
 
 @Composable
-fun AccountDetails(
+fun AccountBanner(
     modifier: Modifier = Modifier,
-    firebaseUser: FirebaseUser? = null,
     credits: Int = 100
 ) {
 
