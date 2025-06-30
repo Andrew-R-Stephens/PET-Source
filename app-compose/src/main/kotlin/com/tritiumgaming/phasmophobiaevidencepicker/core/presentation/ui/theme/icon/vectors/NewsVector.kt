@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
@@ -218,21 +218,21 @@ fun getNewsVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -0.8f, 0.7f, -1.5f, 1.5f, -1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, 0.7f, 1.5f, 1.5f)
                 close()
-            /**/
+                /**/
                 moveTo(377.0f, 107.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            /**/
+                /**/
                 moveTo(662.0f, 119.5f)
                 curveToRelative(0.0f, 0.8f, 0.7f, 1.5f, 1.5f, 1.5f)
                 curveToRelative(0.8f, -0.0f, 1.5f, -0.7f, 1.5f, -1.5f)
                 curveToRelative(0.0f, -0.8f, -0.7f, -1.5f, -1.5f, -1.5f)
                 curveToRelative(-0.8f, -0.0f, -1.5f, 0.7f, -1.5f, 1.5f)
                 close()
-            /**/
+                /**/
                 moveTo(434.0f, 121.9f)
                 curveToRelative(0.0f, 0.5f, 0.7f, 1.4f, 1.5f, 2.1f)
                 curveToRelative(0.8f, 0.7f, 1.5f, 1.6f, 1.5f, 2.1f)
@@ -1082,7 +1082,7 @@ fun getNewsVector(groupColors: List<Color>): ImageVector =
                 curveToRelative(0.0f, -1.2f, 1.5f, -1.5f, 7.5f, -1.5f)
                 curveToRelative(6.0f, -0.0f, 7.5f, 0.3f, 7.5f, 1.5f)
                 close()
-            /**/
+                /**/
                 moveTo(235.7f, 176.4f)
                 curveToRelative(-0.3f, 0.8f, -2.2f, 1.6f, -4.4f, 1.8f)
                 curveToRelative(-3.0f, 0.2f, -3.9f, 0.8f, -4.1f, 2.4f)

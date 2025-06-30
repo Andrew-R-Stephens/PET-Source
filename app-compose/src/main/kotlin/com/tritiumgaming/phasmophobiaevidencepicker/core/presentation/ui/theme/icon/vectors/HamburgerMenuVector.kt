@@ -1,10 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.SolidColor
@@ -15,19 +10,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 
-private val vector: ImageVector? = null
-
-private fun getVector(groupColors: List<Color>): ImageVector =
-
-    vector ?: Builder(
+fun getHamburgerMenuVector(groupColors: List<Color>): ImageVector =
+    Builder(
         name = "Menu",
         defaultWidth = 48.0.dp,
         defaultHeight = 48.0.dp,
@@ -89,34 +75,3 @@ private fun getVector(groupColors: List<Color>): ImageVector =
         }
     }
         .build()
-
-@Composable
-fun Menu(
-    modifier: Modifier = Modifier
-) {
-
-    Image(
-        modifier = modifier,
-        imageVector = getVector(
-            listOf(
-                LocalPalette.current.background.color,
-                LocalPalette.current.textFamily.body
-            )
-        ),
-        contentDescription = null,
-        contentScale = ContentScale.Fit
-    )
-}
-
-@Preview
-@Composable
-private fun Preview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Box(modifier = Modifier.padding(12.dp)) {
-            Menu()
-        }
-    }
-}
