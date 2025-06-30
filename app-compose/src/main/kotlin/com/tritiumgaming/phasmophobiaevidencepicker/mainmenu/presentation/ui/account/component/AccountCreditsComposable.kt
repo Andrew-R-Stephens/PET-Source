@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.ShopCost
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
@@ -68,14 +69,12 @@ fun AccountCredits(
                 space = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_shop_cost),
-                contentDescription = "P.E.T. Currency Icon",
+            ShopCost(
                 modifier = Modifier
                     .wrapContentWidth()
                     .height(36.dp)
             )
-
+            
             Text(
                 text = rememberCredits.intValue.toString(),
                 fontSize = 24.sp,

@@ -21,8 +21,8 @@ fun ShopCost(
 
     val vector = getShopCostVector(
         listOf(
+            LocalPalette.current.textFamily.body,
             LocalPalette.current.background.color,
-            LocalPalette.current.textFamily.body
         )
     )
 
