@@ -8,4 +8,5 @@ class FirestoreAuthRemoteDataSource(
 ) {
     val currentAuthUser: FirebaseUser?
         get() = firebaseAuth.currentUser
+
 }

@@ -228,29 +228,6 @@ class FirestoreAccountRemoteDataSource(
             Result.failure(e)
         }
 
-        /*val creditsDocument = creditsDocumentRef
-
-        return try {
-            creditsDocument
-                .get()
-                .addOnCompleteListener { task: Task<DocumentSnapshot> ->
-                    val storedCredits = task.result.getLong(FIELD_CREDITS_EARNED)
-                    if (storedCredits != null && storedCredits < marketCreditTransaction.credits) {
-                        return@addOnCompleteListener
-                    }
-
-                    val data: MutableMap<String, Any> = HashMap()
-                    data[FIELD_CREDITS_EARNED] = FieldValue.increment(-marketCreditTransaction.credits)
-                    data[FIELD_CREDITS_SPENT] = FieldValue.increment(marketCreditTransaction.credits)
-
-                    task.result.reference.update(data)
-                }.await()
-            Result.success(MarketCreditsDto(0, 0))
-        } catch (e: Exception) {
-            Log.e("Firestore", "Error adding credits", e)
-            Result.failure(e)
-        }*/
-
     }
 
     private fun Transaction.getOrCreateCreditsDocument(

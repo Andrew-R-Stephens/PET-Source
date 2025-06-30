@@ -22,10 +22,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository.CredentialsRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository.FirestoreAccountRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.CredentialsDataSourceImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAccountRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreUserRemoteDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.GetSignInCredentialsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
@@ -57,6 +62,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typograph
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.SetupTypographyUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.user.usecase.SignInAccountUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
@@ -70,6 +76,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import kotlinx.coroutines.Dispatchers
@@ -109,6 +116,24 @@ class CoreContainer(
         repository = globalPreferencesRepository)
 
     /**
+     * Credentials Service
+     */
+    private val credentialsDataSource = CredentialsDataSourceImpl(
+        context = applicationContext
+    )
+    private val credentialsRepository = CredentialsRepositoryImpl(
+        credentialsDataSource = credentialsDataSource
+    )
+    internal val getSignInCredentialsUseCase = GetSignInCredentialsUseCase(
+        credentialsRepository = credentialsRepository)
+    internal val signInAccountUseCase = SignInAccountUseCase(
+        credentialsRepository = credentialsRepository)
+    internal val signOutAccountUseCase = SignOutAccountUseCase(
+        credentialsRepository = credentialsRepository)
+    internal val deactivateAccountUseCase = DeactivateAccountUseCase(
+        credentialsRepository = credentialsRepository)
+
+    /**
      * Account
      */
     private val firestoreUserRemoteDataSource = FirestoreUserRemoteDataSource(
@@ -131,6 +156,8 @@ class CoreContainer(
     internal val addAccountCreditsUseCase = AddAccountCreditsUseCase(
         repository = firestoreAccountRepository)
     internal val removeAccountCreditsUseCase = RemoveAccountCreditsUseCase(
+        repository = firestoreAccountRepository)
+    internal val observeAccountCreditsUseCase = ObserveAccountCreditsUseCase(
         repository = firestoreAccountRepository)
 
     /**

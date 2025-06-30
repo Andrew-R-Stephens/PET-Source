@@ -5,6 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.Accou
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketAgreement
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountTypography
+import kotlinx.coroutines.flow.Flow
 
 interface FirestoreAccountRepository {
 
@@ -15,6 +16,8 @@ interface FirestoreAccountRepository {
     suspend fun removeCredits(
         creditTransaction: AccountCreditTransaction
     ): Result<AccountCredits>
+
+    fun observeCredits(): Flow<Result<AccountCredits>>
 
     suspend fun setMarketplaceAgreementState(
         marketAgreement: AccountMarketAgreement
