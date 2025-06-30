@@ -6,7 +6,6 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.unit.sp
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.common.ExtrasFamily
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.CuyabraTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.DefaultTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.DigitalDreamTextStyle
@@ -30,6 +29,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_neucha
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.title_newtegmon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.common.CustomFontFamily
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.common.ExtrasFamily
 
 val DefaultFont = Typography(
     displayLarge = DefaultTextStyle.copy(

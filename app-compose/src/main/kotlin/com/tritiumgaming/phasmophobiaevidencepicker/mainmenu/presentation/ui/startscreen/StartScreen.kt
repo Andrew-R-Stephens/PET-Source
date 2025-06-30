@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen
 
 import android.content.Intent
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,15 +35,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.PETActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AccountManager
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.SignInCredentialManager
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
@@ -272,7 +266,7 @@ private fun HeaderNavBar(
     val context = LocalContext.current
     val discordInvitation = stringResource(R.string.aboutinfo_discordInvite)
 
-    val menuIcon: @Composable () -> Unit = { IconResource.MENU.ToComposable() }
+    val menuIcon: @Composable () -> Unit = { IconResource.HAMBURGER_MENU.ToComposable() }
     val infoIcon: @Composable () -> Unit = { IconResource.INFO.ToComposable() }
     val gearIcon: @Composable () -> Unit = { IconResource.GEAR.ToComposable() }
     val languageIcon: @Composable () -> Unit = { LanguageIcon() }

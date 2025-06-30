@@ -1,17 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.local
 
 import android.content.Context
-import androidx.annotation.FractionRes
 import androidx.annotation.IntegerRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.dto.DifficultyModelDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.DifficultyDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyModifier
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyInitialSanity
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTime
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toFractionResource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toIntegerResource
 
 class DifficultyLocalDataSource(
     private val applicationContext: Context

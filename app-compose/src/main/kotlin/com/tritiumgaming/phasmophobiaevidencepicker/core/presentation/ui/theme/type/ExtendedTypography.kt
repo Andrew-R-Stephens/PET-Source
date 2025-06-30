@@ -16,4 +16,4 @@ data class ExtendedTypography(
     val secondary: CustomFontFamily = CustomFontFamily(),
     val tertiary: CustomFontFamily = CustomFontFamily(),
     val quaternary: CustomFontFamily = CustomFontFamily()
-): ExtendedTheme()
+) : ExtendedTheme()

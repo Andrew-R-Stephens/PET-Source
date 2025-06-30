@@ -196,4 +196,4 @@ data class ExtendedPalette(
     inversePrimary = md_theme_dark_inversePrimary,
     surfaceTint = md_theme_dark_surfaceTint
     */
-): ExtendedTheme()
+) : ExtendedTheme()

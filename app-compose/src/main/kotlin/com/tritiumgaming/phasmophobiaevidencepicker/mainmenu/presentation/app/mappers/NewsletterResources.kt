@@ -5,7 +5,6 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon

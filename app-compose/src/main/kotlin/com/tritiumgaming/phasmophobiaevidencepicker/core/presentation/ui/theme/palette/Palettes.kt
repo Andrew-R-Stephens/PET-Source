@@ -536,7 +536,7 @@ val Deuteranomaly = Colorblind.copy(
 
     themeFamily = PET_Base.themeFamily.copy(),
     coreFamily = PET_Base.coreFamily.copy(
-        primary =  blue_M175
+        primary = blue_M175
     ),
     primary = PET_Base.primary.copy(),
     secondary = PET_Base.secondary.copy(),
@@ -609,7 +609,7 @@ val Protanomaly = Colorblind.copy(
         body = white,
         emphasis = blue_M175,
     ),
-    
+
     light_active = yellow,
     light_inactive = yellow_A40,
     sanityPieStartColor = white,
@@ -875,7 +875,7 @@ val Recruit = Prestige.copy(
         body = white,
         emphasis = orange_M250,
     ),
-    
+
     //foregroundColor = white,
     //middlegroundColor = Color(0xFF818180),
     statusBarColor = orange_M950,
@@ -1569,7 +1569,7 @@ val Specialist = Prestige.copy(
         thumbInactive = green_M150,
         trackInactive = black,
     ),
-    
+
     //foregroundColor = Color(0xFFFEFEFE),
     //middlegroundColor = Color(0xFFC9CCC8),
     statusBarColor = Color(0xFF070C05),
@@ -1580,7 +1580,7 @@ val Specialist = Prestige.copy(
     light_active = green_M150,
     light_inactive = Color(0xFF80994D),
     light_off = white_M600,
-    
+
     strikethroughColor = Color(0xFFA0B17B),
     circleColor = green_M150,
     selectedColor = Color(0xFF80994D),
@@ -1707,7 +1707,7 @@ val Analyst = Prestige.copy(
         thumbInactive = Color(0xFF2667CD),
         trackInactive = black,
     ),
-    
+
     //foregroundColor = Color(0xFFA7968C),
     //middlegroundColor = Color(0xFF84736A),
 
@@ -2747,7 +2747,7 @@ val Discord = Community.copy(
         title = title_discord,
         badge = badge_discord
     ),
-    
+
     themeFamily = Community.themeFamily.copy(
         a = blue_M850,
         b = blue_M75,
@@ -3240,10 +3240,10 @@ val Translator = Community.copy(
         color = black,
         onColor = black_M50,
     ),
-    
+
     //foregroundColor = white,
     //middlegroundColor = white_M400,
-    
+
     statusBarColor = black,
     navigationBarColor = black,
     windowBackgroundColor = black,
@@ -3356,7 +3356,7 @@ val Winner = Community.copy(
         color = Color(0xFF060C10),
         onColor = Color(0xFF091319)
     ),
-    
+
     codexFamily = Community.codexFamily.copy(
         codex1 = blue_M850,
         codex3 = Color(0xFFBFB5A6),
@@ -3365,7 +3365,7 @@ val Winner = Community.copy(
         codex5 = Color(0xFF090A0B),
         codex6_gridBackground = Color(0x40161C1C)
     ),
-    
+
     switchTheme = Community.switchTheme.copy(
         thumbActive = Color(0xFFECDFCD),
         trackActive = orange_M250,
@@ -3379,7 +3379,7 @@ val Winner = Community.copy(
         body = white,
         emphasis = Color(0xFFDABA80)
     ),
-    
+
     //foregroundColor = white,
     //middlegroundColor = white_M400,
 
@@ -3493,7 +3493,7 @@ val Artist = Community.copy(
         color = Color(0xFF0A0C0C),
         onColor = Color(0xFF131717)
     ),
-    
+
     codexFamily = Community.codexFamily.copy(
         codex1 = Color(0xFF0A0C0C),
         codex3 = Color(0xFFE3D6F7),
@@ -3501,9 +3501,9 @@ val Artist = Community.copy(
         codex4 = Color(0xFFAA7FFD),
         codex5 = blue_M850,
         codex6_gridBackground = Color(0x400A0C0C)
-        
+
     ),
-    
+
     switchTheme = Community.switchTheme.copy(
         thumbActive = Color(0xFFE3D6F7),
         trackActive = Color(0xFFAA7FFD),
@@ -3520,7 +3520,7 @@ val Artist = Community.copy(
 
     //foregroundColor = white,
     //middlegroundColor = white_M400,
-    
+
     statusBarColor = Color(0xFF0A0C0C),
     navigationBarColor = Color(0xFF0A0C0C),
     windowBackgroundColor = Color(0xFF0A0C0C),
