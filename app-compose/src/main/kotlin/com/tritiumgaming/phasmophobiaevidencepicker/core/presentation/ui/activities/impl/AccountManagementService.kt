@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activi
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 
+@Deprecated("Replaced by CredentialsRepository")
 interface AccountManagementService: CredentialManagerService {
 
     fun delete(

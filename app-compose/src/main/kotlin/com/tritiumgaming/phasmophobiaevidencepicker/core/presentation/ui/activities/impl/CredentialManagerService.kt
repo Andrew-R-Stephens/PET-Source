@@ -18,13 +18,16 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.SignInOptions
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@Deprecated("Replaced by CredentialsRepository")
 interface CredentialManagerService:
     SignInCredentialManager, SignOutCredentialManager
 
+@Deprecated("Replaced by CredentialsRepository")
 interface SignOutCredentialManager {
 
     fun signOut(
@@ -46,6 +49,7 @@ interface SignOutCredentialManager {
 
 }
 
+@Deprecated("Replaced by CredentialsRepository")
 interface SignInCredentialManager {
 
     fun signIn(
@@ -292,14 +296,6 @@ interface SignInCredentialManager {
 
         }
 
-    }
-
-    enum class SignInOptions {
-        GOOGLE,
-        ID_UI,
-        ID_SILENT,
-        ID_FALLBACK,
-        SILENT
     }
 
 }

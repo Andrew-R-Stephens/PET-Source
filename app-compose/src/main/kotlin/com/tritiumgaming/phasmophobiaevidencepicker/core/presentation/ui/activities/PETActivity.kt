@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
@@ -24,7 +23,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.RootNavigation
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AccountManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AppUpdateManagerService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.ConsentManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.FirebaseAnalyticsService
@@ -35,7 +33,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService,
-    ConsentManagementService, AccountManagementService {
+    ConsentManagementService {
 
     private val globalPreferencesViewModel: GlobalPreferencesViewModel
         by viewModels { GlobalPreferencesViewModel.Factory }
