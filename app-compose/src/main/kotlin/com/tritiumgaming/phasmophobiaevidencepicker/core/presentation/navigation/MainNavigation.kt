@@ -13,16 +13,17 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.AccountScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appinfo.InfoScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.applanguages.LanguageScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.SettingsScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.AccountScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.MarketplaceScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.billing.MarketplaceBillingScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsInboxesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsMessageScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsMessagesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
@@ -37,6 +38,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.ut
 fun RootNavigation(
     globalPreferencesViewModel: GlobalPreferencesViewModel =
         viewModel(factory = GlobalPreferencesViewModel.Factory),
+    accountViewModel: AccountViewModel =
+        viewModel(factory = AccountViewModel.Factory),
     newsletterViewModel: NewsletterViewModel =
         viewModel(factory = NewsletterViewModel.Factory)
 ) {
@@ -53,6 +56,7 @@ fun RootNavigation(
         mainMenuNavigation(
             navController = navController,
             globalPreferencesViewModel = globalPreferencesViewModel,
+            accountViewModel = accountViewModel,
             newsletterViewModel = newsletterViewModel
         )
 
@@ -64,6 +68,7 @@ fun RootNavigation(
 private fun NavGraphBuilder.mainMenuNavigation(
     navController: NavHostController,
     globalPreferencesViewModel: GlobalPreferencesViewModel,
+    accountViewModel: AccountViewModel,
     newsletterViewModel: NewsletterViewModel
 ) {
 
@@ -152,7 +157,10 @@ private fun NavGraphBuilder.mainMenuNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
-                AccountScreen(navController = navController)
+                AccountScreen(
+                    navController = navController,
+                    accountViewModel = accountViewModel
+                )
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {
