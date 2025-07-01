@@ -40,36 +40,36 @@ class FirestoreAccountRemoteDataSource(
         return uid?.let { userCollectionRef.document(it) }
     }
 
-    private val accountCollectionRef: CollectionReference? =
-        getUserDocumentRef()
+    private val accountCollectionRef: CollectionReference?
+        get() = getUserDocumentRef()
             ?.collection(COLLECTION_ACCOUNT)
 
-    private val creditsDocumentRef: DocumentReference? =
-        accountCollectionRef
+    private val creditsDocumentRef: DocumentReference?
+        get() = accountCollectionRef
             ?.document(DOCUMENT_CREDITS)
 
-    private val preferencesDocumentRef: DocumentReference? =
-        accountCollectionRef
+    private val preferencesDocumentRef: DocumentReference?
+        get() = accountCollectionRef
             ?.document(DOCUMENT_PREFERENCES)
 
-    private val transactionHistoryDocumentRef: DocumentReference? =
-        accountCollectionRef
+    private val transactionHistoryDocumentRef: DocumentReference?
+        get() = accountCollectionRef
             ?.document(DOCUMENT_TRANSACTION_HISTORY)
 
-    private val purchaseHistoryCollectionRef: CollectionReference? =
-        transactionHistoryDocumentRef
+    private val purchaseHistoryCollectionRef: CollectionReference?
+        get() = transactionHistoryDocumentRef
             ?.collection(COLLECTION_PURCHASE_HISTORY)
 
-    private val purchaseDocumentRef: DocumentReference? =
-        purchaseHistoryCollectionRef
+    private val purchaseDocumentRef: DocumentReference?
+        get() = purchaseHistoryCollectionRef
             ?.document(DOCUMENT_PURCHASED_ITEM)
 
-    private val unlockHistoryCollectionRef: CollectionReference? =
-        transactionHistoryDocumentRef
+    private val unlockHistoryCollectionRef: CollectionReference?
+        get() = transactionHistoryDocumentRef
             ?.collection(COLLECTION_UNLOCK_HISTORY)
 
-    private val unlockedDocumentRef: DocumentReference? =
-        unlockHistoryCollectionRef
+    private val unlockedDocumentRef: DocumentReference?
+        get() = unlockHistoryCollectionRef
             ?.document(DOCUMENT_UNLOCKED_ITEM)
 
     suspend fun setMarketplaceAgreementState(
@@ -78,17 +78,19 @@ class FirestoreAccountRemoteDataSource(
 
         return try {
 
-            if(preferencesDocumentRef == null)
+            val docRef = purchaseDocumentRef
+
+            if(docRef == null)
                 return Result.failure(Exception("User Marketplace Preferences document null!"))
 
             firestore.runTransaction { transaction ->
 
-                val snapshot = transaction.get(preferencesDocumentRef)
+                val snapshot = transaction.get(docRef)
                 if(!snapshot.exists()) {
                     val data: MutableMap<String, Any> = HashMap()
                     data[FIELD_MARKETPLACE_AGREEMENT_SHOWN] = marketAgreementDto.isAgreementShown
 
-                    transaction.set(preferencesDocumentRef, data)
+                    transaction.set(docRef, data)
 
                     marketAgreementDto
                 }
@@ -108,12 +110,14 @@ class FirestoreAccountRemoteDataSource(
 
         return try {
 
-            if(preferencesDocumentRef == null)
+            val docRef = preferencesDocumentRef
+
+            if(docRef == null)
                 return Result.failure(Exception("User Marketplace Preferences document null!"))
 
             val agreementDto = firestore.runTransaction { transaction ->
 
-                val snapshot = transaction.get(preferencesDocumentRef)
+                val snapshot = transaction.get(docRef)
                 if(snapshot.exists()) {
                     MarketAgreementDto(
                         isAgreementShown =
@@ -138,27 +142,29 @@ class FirestoreAccountRemoteDataSource(
 
         return try {
 
-            if (creditsDocumentRef == null)
+            val docRef = creditsDocumentRef
+
+            if (docRef == null)
                 return Result.failure(Exception("User Account Credits document null!"))
 
             // Update document
             firestore.runTransaction { transaction ->
 
-                transaction.getOrCreateCreditsDocument(creditsDocumentRef)
+                transaction.getOrCreateCreditsDocument(docRef)
 
                 val updates = hashMapOf<String, Any>(
                     FIELD_CREDITS_EARNED to FieldValue.increment(creditTransaction.credits)
                 )
-                transaction.update(creditsDocumentRef, updates)
+                transaction.update(docRef, updates)
 
             }.await()
 
             // Get updated document
-            val updatedSnapshot = creditsDocumentRef.get().await()
+            val updatedSnapshot = docRef.get().await()
             if (!updatedSnapshot.exists()) {
                 return Result.failure(
                     FirebaseFirestoreException(
-                        "Document ${creditsDocumentRef.path} unexpectedly not found after update.",
+                        "Document ${docRef.path} unexpectedly not found after update.",
                         FirebaseFirestoreException.Code.NOT_FOUND
                     )
                 )
@@ -182,13 +188,15 @@ class FirestoreAccountRemoteDataSource(
 
         return try {
 
-            if (creditsDocumentRef == null)
+            val docRef = creditsDocumentRef
+
+            if (docRef == null)
                 return Result.failure(Exception("User Account Credits document null!"))
 
             // Update document
             firestore.runTransaction { transaction ->
 
-                val snapshot = transaction.getOrCreateCreditsDocument(creditsDocumentRef)
+                val snapshot = transaction.getOrCreateCreditsDocument(docRef)
 
                 val currentCredits = AccountCreditsDto(
                     earnedCredits = snapshot.getLong(FIELD_CREDITS_EARNED) ?: 0L,
@@ -201,18 +209,18 @@ class FirestoreAccountRemoteDataSource(
                         FIELD_CREDITS_EARNED to FieldValue.increment(-creditTransaction.credits),
                         FIELD_CREDITS_SPENT to FieldValue.increment(creditTransaction.credits)
                     )
-                    transaction.update(creditsDocumentRef, updates)
+                    transaction.update(docRef, updates)
                 }
 
             }.await()
 
             // Get updated document
-            val updatedSnapshot = creditsDocumentRef.get().await()
+            val updatedSnapshot = docRef.get().await()
 
             if (!updatedSnapshot.exists()) {
                 return Result.failure(
                     FirebaseFirestoreException(
-                        "Document ${creditsDocumentRef.path} unexpectedly not found after update.",
+                        "Document ${docRef.path} unexpectedly not found after update.",
                         FirebaseFirestoreException.Code.NOT_FOUND
                     )
                 )
@@ -276,19 +284,22 @@ class FirestoreAccountRemoteDataSource(
         type: String
     ): Result<String> {
 
-        if(unlockHistoryCollectionRef == null)
+        val docRef = unlockHistoryCollectionRef
+
+        if(docRef == null)
             return Result.failure(Exception("Unlock history collection not found!"))
         if(unlockUUIDs == null)
             return Result.failure(Exception("No UUIDs found!"))
 
         return try {
 
+
             val documentData: MutableMap<String, Any> = HashMap()
             documentData[FIELD_TYPE] = type
             documentData[FIELD_DATE_UNLOCKED] = Timestamp.Companion.now()
 
             for (uuid in unlockUUIDs) {
-                val purchasedDocument = unlockHistoryCollectionRef.document(uuid)
+                val purchasedDocument = docRef.document(uuid)
                 purchasedDocument.set(documentData, SetOptions.merge()).await()
             }
             Result.success("Unlocked documents GENERATED / LOCATED!")
@@ -301,12 +312,14 @@ class FirestoreAccountRemoteDataSource(
 
     suspend fun fetchUnlockedPaletteDocuments(): Result<List<AccountPaletteDto>> {
 
-        if(unlockHistoryCollectionRef == null)
+        val docRef = unlockHistoryCollectionRef
+
+        if(docRef == null)
             return Result.failure(Exception("Unlock history collection not found!"))
 
         val accountPaletteDtoList = mutableListOf<AccountPaletteDto>()
 
-        val snapshot = unlockHistoryCollectionRef.get().await()
+        val snapshot = docRef.get().await()
         snapshot.documents.forEach { documentSnapshot ->
 
             val reference = documentSnapshot.reference
@@ -320,12 +333,14 @@ class FirestoreAccountRemoteDataSource(
 
     suspend fun fetchUnlockedTypographyDocuments(): Result<List<AccountTypographyDto>> {
 
-        if(unlockHistoryCollectionRef == null)
+        val docRef = unlockHistoryCollectionRef
+
+        if(docRef == null)
             return Result.failure(Exception("Unlock history collection not found!"))
 
         val accountTypographyDtoList = mutableListOf<AccountTypographyDto>()
 
-        val snapshot = unlockHistoryCollectionRef.get().await()
+        val snapshot = docRef.get().await()
         snapshot.documents.forEach { documentSnapshot ->
 
             val reference = documentSnapshot.reference
@@ -340,7 +355,10 @@ class FirestoreAccountRemoteDataSource(
     fun observeUnlockedPaletteDocuments(): Flow<Result<List<AccountPaletteDto>>> =
 
         callbackFlow {
-            if (unlockHistoryCollectionRef == null) {
+
+            val docRef = unlockHistoryCollectionRef
+
+            if (docRef == null) {
                 trySend(Result.failure(Exception("Unlock history collection not found!")))
                 close()
                 return@callbackFlow
@@ -350,7 +368,7 @@ class FirestoreAccountRemoteDataSource(
             var listenerRegistration: ListenerRegistration? = null
 
             try {
-                listenerRegistration = unlockHistoryCollectionRef
+                listenerRegistration = docRef
                     .addSnapshotListener { snapshot, error ->
                         if (error != null) {
                             val customError = FirebaseFirestoreException(
@@ -391,7 +409,9 @@ class FirestoreAccountRemoteDataSource(
         orderID: String
     ): Result<String> {
 
-        if(purchaseHistoryCollectionRef == null)
+        val docRef = purchaseHistoryCollectionRef
+
+        if(docRef == null)
             return Result.failure(Exception("Purchase history collection not found!"))
 
         val purchaseReferenceDoc = purchaseDocumentRef
@@ -404,7 +424,7 @@ class FirestoreAccountRemoteDataSource(
         documentData[FIELD_DATE_PURCHASED] = Timestamp.Companion.now()
 
         return try {
-            purchaseHistoryCollectionRef.add(documentData).await()
+            docRef.add(documentData).await()
             Result.success("Purchase document of ${ purchaseReferenceDoc.id } GENERATED / LOCATED!")
         } catch (e: Exception) {
             Log.e("Firestore", "Purchase document of ${ purchaseReferenceDoc.id } " +

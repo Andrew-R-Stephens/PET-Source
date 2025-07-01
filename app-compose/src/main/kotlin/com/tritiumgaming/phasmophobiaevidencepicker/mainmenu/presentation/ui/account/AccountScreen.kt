@@ -172,7 +172,6 @@ private fun AccountContent(
 
             }
 
-
         }
 
         when(rememberDialog) {

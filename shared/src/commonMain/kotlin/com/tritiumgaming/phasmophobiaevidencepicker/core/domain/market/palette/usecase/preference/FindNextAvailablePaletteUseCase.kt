@@ -24,6 +24,10 @@ class FindNextAvailablePaletteUseCase(
         marketPalettes.forEach {
             Log.d("Settings", "\t$it")
         }*/
+        println("Settings: MarketPalettes ->")
+        marketPalettes.forEach {
+            println("Settings: \t$it")
+        }
 
         val accountPalettes: List<AccountMarketPalette> =
             accountRepository.fetchUnlockedPalettes()
@@ -33,6 +37,10 @@ class FindNextAvailablePaletteUseCase(
         accountPalettes.forEach {
             Log.d("Settings", "\t$it")
         }*/
+        println("Settings: AccountPalettes ->")
+        accountPalettes.forEach {
+            println("Settings: \t$it")
+        }
 
         val mergedMarketAccountPalettes =
             accountPalettes.fold(marketPalettes) { marketPs, accountP ->
@@ -55,6 +63,10 @@ class FindNextAvailablePaletteUseCase(
         mergedMarketAccountPalettes.forEach {
             Log.d("Settings", "\t$it")
         }*/
+        println("Settings: MarketAccountPalettes ->")
+        mergedMarketAccountPalettes.forEach {
+            println("Settings: \t$it")
+        }
 
         val filteredMergedMarketAccountPalettes =
             mergedMarketAccountPalettes.filter { it.isUnlocked }
@@ -62,6 +74,10 @@ class FindNextAvailablePaletteUseCase(
         /*filteredMergedMarketAccountPalettes.forEach {
             Log.d("Settings", "\t$it")
         }*/
+        println("Settings: Filtered MarketAccountPalettes ->")
+        filteredMergedMarketAccountPalettes.forEach {
+            println("Settings: \t$it")
+        }
 
         val uuidsFiltered = filteredMergedMarketAccountPalettes.map { it.uuid }
         val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }

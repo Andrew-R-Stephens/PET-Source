@@ -157,7 +157,7 @@ class FirestoreAccountRepositoryImpl(
         if(result.isFailure) {
             Log.e("Firestore", "Error fetching unlocked palettes", result.exceptionOrNull())
         } else {
-            Log.d("Firestore", "Success fetching unlocked palettes")
+            Log.d("Firestore", "Success fetching unlocked palettes (size: ${result.getOrNull()?.size})")
         }
 
         return result.map { dto -> dto.toDomain() }
