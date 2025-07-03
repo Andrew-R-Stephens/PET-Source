@@ -40,15 +40,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResour
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.admob.AdmobBanner
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.AccountIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.LanguageIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.AccountIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon.LanguageIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownClickPair
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownNavPair
@@ -232,24 +232,18 @@ private fun StartButton(
                     .fillMaxSize()
             )
 
-            Box(
+            BasicText(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(8.dp),
-                contentAlignment = Alignment.Center
-            ) {
-
-                BasicText(
-                    text = stringResource(R.string.titlescreen_button),
-                    style = LocalTypography.current.primary.regular.copy(
-                        color = LocalPalette.current.textFamily.body,
-                        textAlign = TextAlign.Center
-                    ),
-                    maxLines = 1,
-                    autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-                )
-
-            }
+                text = stringResource(R.string.titlescreen_button),
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.body,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
 
         }
 

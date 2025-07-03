@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions.PermissionsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.AccountScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appinfo.InfoScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.applanguages.LanguageScreen
@@ -38,6 +39,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.ut
 fun RootNavigation(
     globalPreferencesViewModel: GlobalPreferencesViewModel =
         viewModel(factory = GlobalPreferencesViewModel.Factory),
+    permissionsViewModel: PermissionsViewModel =
+        viewModel(factory = PermissionsViewModel.Factory),
     accountViewModel: AccountViewModel =
         viewModel(factory = AccountViewModel.Factory),
     newsletterViewModel: NewsletterViewModel =
@@ -56,6 +59,7 @@ fun RootNavigation(
         mainMenuNavigation(
             navController = navController,
             globalPreferencesViewModel = globalPreferencesViewModel,
+            permissionsViewModel = permissionsViewModel,
             accountViewModel = accountViewModel,
             newsletterViewModel = newsletterViewModel
         )
@@ -68,6 +72,7 @@ fun RootNavigation(
 private fun NavGraphBuilder.mainMenuNavigation(
     navController: NavHostController,
     globalPreferencesViewModel: GlobalPreferencesViewModel,
+    permissionsViewModel: PermissionsViewModel,
     accountViewModel: AccountViewModel,
     newsletterViewModel: NewsletterViewModel
 ) {
@@ -92,7 +97,8 @@ private fun NavGraphBuilder.mainMenuNavigation(
         composable(route = NavRoute.SCREEN_SETTINGS.route) {
             SettingsScreen(
                 navController = navController,
-                globalPreferencesViewModel = globalPreferencesViewModel
+                globalPreferencesViewModel = globalPreferencesViewModel,
+                permissionsViewModel = permissionsViewModel
             )
         }
 

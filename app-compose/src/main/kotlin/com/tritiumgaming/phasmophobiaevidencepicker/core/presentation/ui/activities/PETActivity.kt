@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
@@ -12,40 +13,42 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
-import com.google.android.ump.ConsentInformation
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.RootNavigation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.AppUpdateManagerService
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.ConsentManagementService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.impl.FirebaseAnalyticsService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions.PermissionsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ThemeConfigurationControl
-import java.util.concurrent.atomic.AtomicBoolean
+import kotlinx.coroutines.launch
 
 class PETActivity : AppCompatActivity(),
-    AppUpdateManagerService, FirebaseAnalyticsService,
-    ConsentManagementService {
+    AppUpdateManagerService, FirebaseAnalyticsService/*, ConsentManagementService*/ {
 
     private val globalPreferencesViewModel: GlobalPreferencesViewModel
         by viewModels { GlobalPreferencesViewModel.Factory }
+
+    private val permissionsViewModel: PermissionsViewModel
+            by viewModels { PermissionsViewModel.Factory }
 
     /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth
     override var firebaseAnalytics: FirebaseAnalytics? = null
 
     /* Consent */
-    override var consentInformation: ConsentInformation? = null
+    //override var consentInformation: ConsentInformation? = null
     // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
-    override val isMobileAdsInitializeCalled = AtomicBoolean(false)
+    //override val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
     /* Update */
     override var appUpdateManager: AppUpdateManager? = null
@@ -109,8 +112,15 @@ class PETActivity : AppCompatActivity(),
 
         }
 
-        initializeMobileAdsSdk(this)
-        createConsentInformation(this)
+        // Initialize the view model. This will gather consent and initialize Google Mobile Ads.
+        if (!permissionsViewModel.isInitCalled) {
+            lifecycleScope.launch {
+                permissionsViewModel.init(this@PETActivity)
+            }
+        }
+
+        //initializeMobileAdsSdk(this)
+        //createConsentInformation(this)
         initFirebaseAnalytics(this)
 
         checkForAppUpdate(this@PETActivity)

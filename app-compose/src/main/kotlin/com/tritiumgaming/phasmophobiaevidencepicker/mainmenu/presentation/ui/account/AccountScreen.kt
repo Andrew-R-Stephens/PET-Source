@@ -53,6 +53,7 @@ import com.google.firebase.ktx.Firebase
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.AccountManagerService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.SignInOptions
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.indicators.IndeterminateCircularIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation.PETImageButtonType
@@ -63,8 +64,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.AccountBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.Dialog
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.IndeterminateCircularIndicator
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuFirebaseScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
 import kotlinx.coroutines.launch
 
@@ -85,7 +85,7 @@ fun AccountScreen(
     accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory)
 ) {
 
-    MainMenuFirebaseScreen(
+    MainMenuScreen(
         content = {
             AccountContent(
                 navController = navController,
@@ -95,7 +95,6 @@ fun AccountScreen(
     )
 
 }
-
 
 @Composable
 private fun AccountContent(
@@ -580,7 +579,7 @@ private fun DeactivateAccountButton(
 }
 
 @Composable
-fun DeactivateAccountDialog(
+private fun DeactivateAccountDialog(
     onConfirm: () -> Unit = { },
     onCancel: () -> Unit = { }
 ) {
@@ -687,7 +686,7 @@ fun DeactivateAccountDialog(
 }
 
 @Composable
-fun LogoutDialog(
+private fun LogoutDialog(
     onConfirm: () -> Unit = { },
     onCancel: () -> Unit = { }
 ) {
@@ -760,12 +759,6 @@ fun LogoutDialog(
     )
 }
 
-private enum class AccountOverviewDialog {
-    NONE,
-    SIGN_OUT,
-    DEACTIVATE_ACCOUNT
-}
-
 @Preview
 @Composable
 fun AccountComponentPreview() {
@@ -797,4 +790,10 @@ fun DeactivateAccountButtonPreview() {
     ) {
         DeactivateAccountButton()
     }
+}
+
+private enum class AccountOverviewDialog {
+    NONE,
+    SIGN_OUT,
+    DEACTIVATE_ACCOUNT
 }

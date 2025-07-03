@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.ma
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuFirebaseScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 
 
 @Composable
@@ -16,7 +16,7 @@ fun MarketplaceBillingScreen(
     //content: @Composable () -> Unit
 ) {
 
-    MainMenuFirebaseScreen(
+    MainMenuScreen(
         content = { MarketplaceBillingContent() }
     )
 
