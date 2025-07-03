@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountCreditsDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountPaletteDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.AccountTypographyDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto.toDomain
@@ -17,7 +16,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.Accou
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
