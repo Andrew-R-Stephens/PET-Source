@@ -68,7 +68,7 @@
     <string name="settings_fontstylesettings">Стиль шрифту</string>
     <string name="settings_adsconsentcontrolsection">Оголошення / Налаштування GDPR</string>
     <string name="settings_adsconsentcontrolsettings">Налаштування GDPR</string>
-    <string name="settings_adsconsentcontrolsettings_button">Налаштування GDPR</string>
+    <string name="settings_adsconsentcontrolsettings_button">Редагувати</string>
     <string name="settings_screenalwayson">Завжди тримайте екран увімкненим</string>
     <string name="settings_networktitle">Дозволити мобільні дані</string>
     <string name="settings_huntwarningflashtimeout">Тривалість попередження про полювання</string>
