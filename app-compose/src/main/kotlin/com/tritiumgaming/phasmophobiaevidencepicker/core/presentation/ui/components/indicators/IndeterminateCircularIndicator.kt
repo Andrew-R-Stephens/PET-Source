@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.indicators
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.indicators
 
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable

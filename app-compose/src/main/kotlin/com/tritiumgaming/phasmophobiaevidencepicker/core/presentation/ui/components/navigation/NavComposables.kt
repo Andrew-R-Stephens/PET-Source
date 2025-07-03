@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.common.navigation
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
