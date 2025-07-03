@@ -29,7 +29,7 @@ fun ButtonScratchedIcon(
             )
         ),
         contentDescription = null,
-        contentScale = ContentScale.Fit
+        contentScale = ContentScale.FillBounds
     )
 }
 

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.EaseOutQuad

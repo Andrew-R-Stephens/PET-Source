@@ -35,17 +35,8 @@ fun NewsletterIcon.toIconResource(): IconResource =
 @Composable
 fun NewsletterIcon.ToComposable(
     modifier: Modifier = Modifier
-) =
-    when (this) {
+) = when (this) {
         NewsletterIcon.GENERAL_NEWS -> IconResource.NEWS.ToComposable(modifier = modifier)
         NewsletterIcon.PET_CHANGELOG -> IconResource.ICON_LOGO_APP.ToComposable(modifier = modifier)
         NewsletterIcon.PHASMOPHOBIA_CHANGELOG -> IconResource.ICON_LOGO_PHASMOPHOBIA.ToComposable(modifier = modifier)
     }
-
-/*
-@Composable fun NewsletterIcon.toComposable(): () -> Unit =
-    when (this) {
-        NewsletterIcon.GENERAL_NEWS ->
-        NewsletterIcon.PET_CHANGELOG ->
-        NewsletterIcon.PHASMOPHOBIA_CHANGELOG ->
-    }*/

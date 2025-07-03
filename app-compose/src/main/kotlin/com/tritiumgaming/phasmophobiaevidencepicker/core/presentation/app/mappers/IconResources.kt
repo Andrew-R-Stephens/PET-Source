@@ -13,9 +13,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.i
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.GearIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.GlobeIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.HamburgerMenuIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.InfoIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.LogoAppIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.LogoPhasmophobiaIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.InfoIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.NewsIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.NotifyIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.OpenInNewIcon

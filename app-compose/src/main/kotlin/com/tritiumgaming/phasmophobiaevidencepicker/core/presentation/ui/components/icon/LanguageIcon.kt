@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -46,7 +46,7 @@ fun LanguageIcon(
 @Preview
 @Composable
 @TestOnly
-fun TestLanguageIcon() {
+fun LanguageIconPreview() {
 
     SelectiveTheme(
         palette = ClassicPalette

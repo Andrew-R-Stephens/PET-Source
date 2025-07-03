@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.common.icon
+package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -49,7 +49,7 @@ fun DiscordIcon(
 @Preview
 @Composable
 @TestOnly
-fun TestDiscordIcon() {
+fun DiscordIconPreview() {
 
     SelectiveTheme(
         palette = ClassicPalette
