@@ -1,8 +1,4 @@
 *.java linguist-detectable=true linguist-language=Java
-*.json linguist-detectable=true linguist-language=Json
-*.html linguist-detectable=true linguist-language=Html5
 *.xml linguist-detectable=true linguist-language=XML
 *.kt linguist-detectable=true linguist-language=Kotlin
-*.kts linguist-detectable=true linguist-language=Kotlin DSL
-*.gradle* linguist-detectable=true linguist-language=Gradle
-*.toml linguist-detectable=true linguist-language=TOML
+*.swift linguist-detectable=true linguist-language=Swift
