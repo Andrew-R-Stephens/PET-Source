@@ -200,6 +200,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.w
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.white_A75
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.white_M10
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.white_M100
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.white_M150
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.white_M20
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.white_M200
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.white_M25
@@ -666,145 +667,6 @@ val Tritanomaly = Colorblind.copy(
     neutralSelColor = white,
     mapPoiFillColor = red_A75,
     buttonFilterOnPrimary = white,
-)
-
-val Whiteboard = Skin.copy(
-    extrasFamily = Skin.extrasFamily.copy(
-        title = title_whiteboard,
-        isLightMode = true
-    ),
-    themeFamily = Skin.themeFamily.copy(),
-    coreFamily = Skin.coreFamily.copy(
-        primary = black,
-        color_1 = black,
-        color_2 = Color(0xFF383839),
-        color_3 = white_M500,
-        color_4 = Color(0xFFafb7be),
-        color_5 = white_M50,
-        color_6 = Color(0xFFf55656),
-        color_7 = Color(0xFF1cb981),
-        color_8 = Color(0xFF394494),
-    ),
-    primary = Skin.primary.copy(
-        color = white_M50,
-        onColor = white_M50
-    ),
-    secondary = Skin.secondary.copy(
-        color = white_M50,
-        onColor = white_M50
-    ),
-    tertiary = Skin.tertiary.copy(),
-
-    background = Skin.background.copy(
-        color = Color(0xFFafb7be)
-    ),
-    surface = Skin.surface.copy(
-        color = white_M50,
-        onColor = white_M50,
-    ),
-
-    codexFamily = Skin.codexFamily.copy(
-        codex1 = black_A75,
-        codex3 = white_M50,
-        codex2 = Color(0xFF383839),
-        codex4 = Color(0xFFf55656),
-        codex5 = black_A75,
-        codex6_gridBackground = white_M50,
-    ),
-    switchTheme = Skin.switchTheme.copy(
-        trackActive = black_M50,
-        trackInactive = black_M50,
-        thumbActive = Color(0xFFf55656),
-        thumbInactive = Color(0xFFafb7be)
-    ),
-    textFamily = Skin.textFamily.copy(
-        primary = Color(0xFF383839),
-        secondary = Color(0xFF383839),
-        tertiary = Color(0xFF383839),
-        body = Color(0xFF383839),
-        emphasis = Color(0xFFf55656),
-    ),
-
-    //foregroundColor = white_M50,
-    //middlegroundColor = white_M50,
-    statusBarColor = white_M50,
-    navigationBarColor = white_M50,
-    windowBackgroundColor = white_M50,
-    windowStrokeColor = Color(0xFF383839),
-
-    navigationFooterIcon = white_M500,
-    navigationFooterIconAlt = red_M300,
-
-    backgroundColor_mapviewOverlay = Color(0xFFafb7be),
-
-    splashTextColor = Color(0xFF383839),
-
-    light_active = Color(0xFF383839),
-    light_inactive = Color(0xFF383839),
-    light_off = Color(0xFFafb7be),
-
-    sanityPieStartColor = white_M50,
-    sanityPieEndColor = Color(0xFFf55656),
-
-    progressBarColorStart = Color(0xFF383839),
-    progressBarColorEnd = Color(0xFF383839),
-    sanityHeadBrainColor = black,
-    sanityHeadSkullColor = Color(0xFF383839),
-    sanityBorderColor = black,
-
-
-    inboxNotification = Color(0xFFf55656),
-
-    selectedColor = Color(0xFFf55656),
-    selectedColor2 = Color(0xFFf55656),
-    unselectedColor = Color(0xFFafb7be),
-
-    strikethroughColor = Color(0xFFf55656),
-    circleColor = Color(0xFF383839),
-
-    positiveSelColor = Color(0xFFf55656),
-    neutralSelColor = Color(0xFF383839),
-    negativeSelColor = Color(0xFFafb7be),
-
-    mapPoiFillColor = red_M300_A75,
-    mapRoomBorderColor = red_M300_A58,
-    mapRoomFillColor = red_A75,
-
-    buttonFilterOnPrimary = white_M50,
-    buttonColor = Color(0xFF383839),
-    colorOnButton = Color(0xFF383839),
-
-    actionMenuTextColor = Color(0xFF383839),
-
-    /*android:windowLightStatusBar = true),
-
-    android:colorBackground = #383839),
-    android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary),
-    android:navigationBarColor = M3ColorFamily(
-        color = white_M50),
-    colorSecondary = M3ColorFamily(
-        color = white_M50
-    ),
-    colorOnSecondary = M3ColorFamily(
-        onColor = white_M50
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = white_M50
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = white_M50
-    ),
-
-    android:textColor = M3ColorFamily(
-        color = primary),
-    android:color = M3ColorFamily(
-        color = primary),
-    android:titleTextColor = M3ColorFamily(
-        color = primary),
-    android:subtitleTextColor = M3ColorFamily(
-        color = body),
-    */
 )
 
 val Recruit = Prestige.copy(
@@ -3612,6 +3474,145 @@ val Artist = Community.copy(
         color = Color(0xFF0A0C0C)
     ),*/
 
+)
+
+val Whiteboard = Skin.copy(
+    extrasFamily = Skin.extrasFamily.copy(
+        title = title_whiteboard,
+        isLightMode = true
+    ),
+    themeFamily = Skin.themeFamily.copy(),
+    coreFamily = Skin.coreFamily.copy(
+        primary = black,
+        color_1 = black,
+        color_2 = Color(0xFF383839),
+        color_3 = white_M500,
+        color_4 = Color(0xFFafb7be),
+        color_5 = white_M50,
+        color_6 = Color(0xFFf55656),
+        color_7 = Color(0xFF1cb981),
+        color_8 = Color(0xFF394494),
+    ),
+    primary = Skin.primary.copy(
+        color = white_M50,
+        onColor = white_M50
+    ),
+    secondary = Skin.secondary.copy(
+        color = white_M50,
+        onColor = white_M50
+    ),
+    tertiary = Skin.tertiary.copy(),
+
+    background = Skin.background.copy(
+        color = Color(0xFFafb7be)
+    ),
+    surface = Skin.surface.copy(
+        color = white_M50,
+        onColor = white_M150,
+    ),
+
+    codexFamily = Skin.codexFamily.copy(
+        codex1 = black_A75,
+        codex3 = white_M50,
+        codex2 = Color(0xFF383839),
+        codex4 = Color(0xFFf55656),
+        codex5 = black_A75,
+        codex6_gridBackground = white_M50,
+    ),
+    switchTheme = Skin.switchTheme.copy(
+        trackActive = black_M50,
+        trackInactive = black_M50,
+        thumbActive = Color(0xFFf55656),
+        thumbInactive = Color(0xFFafb7be)
+    ),
+    textFamily = Skin.textFamily.copy(
+        primary = Color(0xFF383839),
+        secondary = Color(0xFF383839),
+        tertiary = Color(0xFF383839),
+        body = Color(0xFF383839),
+        emphasis = Color(0xFFf55656),
+    ),
+
+    //foregroundColor = white_M50,
+    //middlegroundColor = white_M50,
+    statusBarColor = white_M50,
+    navigationBarColor = white_M50,
+    windowBackgroundColor = white_M50,
+    windowStrokeColor = Color(0xFF383839),
+
+    navigationFooterIcon = white_M500,
+    navigationFooterIconAlt = red_M300,
+
+    backgroundColor_mapviewOverlay = Color(0xFFafb7be),
+
+    splashTextColor = Color(0xFF383839),
+
+    light_active = Color(0xFF383839),
+    light_inactive = Color(0xFF383839),
+    light_off = Color(0xFFafb7be),
+
+    sanityPieStartColor = white_M50,
+    sanityPieEndColor = Color(0xFFf55656),
+
+    progressBarColorStart = Color(0xFF383839),
+    progressBarColorEnd = Color(0xFF383839),
+    sanityHeadBrainColor = black,
+    sanityHeadSkullColor = Color(0xFF383839),
+    sanityBorderColor = black,
+
+
+    inboxNotification = Color(0xFFf55656),
+
+    selectedColor = Color(0xFFf55656),
+    selectedColor2 = Color(0xFFf55656),
+    unselectedColor = Color(0xFFafb7be),
+
+    strikethroughColor = Color(0xFFf55656),
+    circleColor = Color(0xFF383839),
+
+    positiveSelColor = Color(0xFFf55656),
+    neutralSelColor = Color(0xFF383839),
+    negativeSelColor = Color(0xFFafb7be),
+
+    mapPoiFillColor = red_M300_A75,
+    mapRoomBorderColor = red_M300_A58,
+    mapRoomFillColor = red_A75,
+
+    buttonFilterOnPrimary = white_M50,
+    buttonColor = Color(0xFF383839),
+    colorOnButton = Color(0xFF383839),
+
+    actionMenuTextColor = Color(0xFF383839),
+
+    /*android:windowLightStatusBar = true),
+
+    android:colorBackground = #383839),
+    android:statusBarColor = M3ColorFamily(
+        color = colorOnSecondary),
+    android:navigationBarColor = M3ColorFamily(
+        color = white_M50),
+    colorSecondary = M3ColorFamily(
+        color = white_M50
+    ),
+    colorOnSecondary = M3ColorFamily(
+        onColor = white_M50
+    ),
+    colorPrimaryVariant = M3ColorFamily(
+        color = white_M50
+    ),
+    colorSecondaryVariant = M3ColorFamily(
+        color = white_M50
+    ),
+
+    android:textColor = M3ColorFamily(
+        color = primary),
+    android:color = M3ColorFamily(
+        color = primary),
+    android:titleTextColor = M3ColorFamily(
+        color = primary),
+    android:subtitleTextColor = M3ColorFamily(
+        color = body),
+    */
 )
 
 val StrategemHero = Special.copy(
