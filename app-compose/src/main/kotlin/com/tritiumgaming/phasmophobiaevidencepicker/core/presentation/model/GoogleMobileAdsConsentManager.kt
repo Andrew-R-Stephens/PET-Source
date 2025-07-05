@@ -8,7 +8,6 @@ import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.FormError
 import com.google.android.ump.UserMessagingPlatform
-import com.google.firebase.auth.FirebaseAuth
 
 /**
  * The Google Mobile Ads SDK provides the User Messaging Platform (Google's

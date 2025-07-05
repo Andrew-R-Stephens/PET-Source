@@ -22,9 +22,9 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.RootNavigation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model.AppUpdateManagerService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model.FirebaseAnalyticsService
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.RootNavigation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions.PermissionsViewModel
