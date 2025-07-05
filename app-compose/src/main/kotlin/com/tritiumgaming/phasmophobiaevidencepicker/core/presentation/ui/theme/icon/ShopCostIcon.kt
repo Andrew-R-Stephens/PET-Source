@@ -15,7 +15,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 
 @Composable
-fun ShopCost(
+fun ShopCostIcon(
     modifier: Modifier = Modifier
 ) {
 
@@ -34,7 +34,7 @@ fun ShopCost(
     )
 }
 
-@Preview
+@Preview(showSystemUi = false)
 @Composable
 private fun Preview() {
     SelectiveTheme(
@@ -42,7 +42,7 @@ private fun Preview() {
         typography = ClassicTypography
     ) {
         Box(modifier = Modifier.padding(12.dp)) {
-            ShopCost()
+            ShopCostIcon()
         }
     }
 }

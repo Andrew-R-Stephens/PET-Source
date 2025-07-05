@@ -21,8 +21,8 @@ fun StoreIcon(
 
     val vector = getStoreVector(
         listOf(
+            LocalPalette.current.textFamily.body,
             LocalPalette.current.background.color,
-            LocalPalette.current.textFamily.body
         )
     )
 
