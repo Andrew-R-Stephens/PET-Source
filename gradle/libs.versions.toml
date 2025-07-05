@@ -1,5 +1,5 @@
 [versions]
-android-billing = "7.1.1" # Latest: 6.2.1
+android-billing = "8.0.0" # Latest: 7.1.1
 android-play-core-review = "2.0.2"
 android-play-core-update = "2.1.0"
 android-gif-drawable = "1.2.29"
@@ -17,23 +17,25 @@ androidx-leanback-core = "1.2.0" # Latest 1.2.0
 androidx-leanback-paging = "1.1.0" # Latest 1.1.0-rc01
 androidx-leanback-tab = "1.1.0" # Latest 1.1.0-rc01
 androidx-lifecycle = "2.9.1" # Latest: 2.9.0
-androidx-navigation-fragment-ktx = "2.9.0" # Latest: 2.8.9
+androidx-navigation-fragment-ktx = "2.9.1" # Latest: 2.9.0
 androidx-room = "2.7.2" # Latest: 2.7.1
 appcompat = "1.7.1" # Latest 1.6.1
 cardview = "1.0.0"
 coil3 = "3.2.0" # Latest: 3.0.4
-compose-material3 = "1.4.0-alpha16" # Latest: 1.4.0-alpha15
+compose-material3 = "1.4.0-alpha17" # Latest: 1.4.0-alpha15
+compose-material3-window-size = "1.4.0-alpha16" # Latest: 1.4.0-alpha15
+compose-material3-adaptive = "1.2.0-alpha08"
 constraintlayout = "2.2.1" # Latest 2.2.0
 kotlin-coroutines = "1.10.2" # Latest: 1.10.1
 kotlinx-coroutines-test = "1.10.2" # 1.10.1
 androidx-compose-foundation = "1.8.3" # Latest 1.8.2
 espresso-core = "3.6.1" # Latest: 3.5.1
-firebase-bom = "33.15.0" # Latest 33.13.0
+firebase-bom = "33.16.0" # Latest 33.15.0
 firebase-crashlytics-gradle = "3.0.4" # Latest 3.0.3
 firebaseUi-auth = "8.0.2"
 firebase-perf-plugin = "1.4.2"
 fragment-ktx = "1.8.8" # Latest 1.8.6
-google-services = "4.4.2" # Latest 4.4.1
+google-services = "4.4.3" # Latest 4.4.1
 gson = "2.11.0"
 junit = "4.13.2"
 kotlin-stdlib = "2.1.20" # Latest "2.1.20
@@ -47,7 +49,7 @@ realm-kotlin = "3.0.0" # Latest: 1.16.0
 realm-kotlin-base = "3.0.0"
 realm-kotlin-sync = "2.3.0"
 
-agp = "8.10.1" # Latest: 8.8.1
+agp = "8.10.1" # Latest: 8.10.1
 kotlin = "2.1.20"
 composeMP = "1.8.0"
 ksp = "2.1.20-2.0.0"
@@ -78,7 +80,8 @@ androidx-activityCompose = { group = "androidx.activity", name = "activity-compo
 androidx-compose-bom = { group="androidx.compose", name = "compose-bom", version.ref = "androidx-compose-bom"}
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "androidx-compose-foundation" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "compose-material3" }
-androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "compose-material3-window-size-class", version.ref="compose-material3-window-size" }
+androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive", version.ref="compose-material3-adaptive" }
 androidx-compose-runtime-liveData = { group = "androidx.compose.runtime", name = "runtime-livedata" }
 androidx-compose-runtime-rxJava2 = { group = "androidx.compose.runtime", name = "runtime-rxjava2" }
 androidx-compose-ui-core = { group = "androidx.compose.ui", name = "ui", version.ref = "androidx-composeUi" }
