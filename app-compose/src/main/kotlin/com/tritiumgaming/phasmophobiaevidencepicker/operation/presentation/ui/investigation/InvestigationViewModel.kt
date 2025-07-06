@@ -1,16 +1,11 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation
 
 import android.os.CountDownTimer
-import android.util.Log
-import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
@@ -41,13 +36,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.model
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.GhostScore
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.RuledEvidence.Ruling
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils.millisToTime
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.text.NumberFormat
-import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
 
@@ -73,7 +67,7 @@ class InvestigationViewModel(
     private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
     private val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
     private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
-): ViewModel() {
+): androidx.lifecycle.ViewModel() {
 
     private val evidences = fetchEvidencesUseCase()
     private val ghostEvidences = fetchGhostEvidencesUseCase()
@@ -121,7 +115,8 @@ class InvestigationViewModel(
         setInvestigationToolsDrawerState(!isInvestigationToolsDrawerCollapsed.value)
     }
 
-    private val _investigationToolsCategory: MutableStateFlow<Int> = MutableStateFlow(TOOL_SANITY)
+    private val _investigationToolsCategory: MutableStateFlow<Int> =
+        MutableStateFlow(TOOL_SANITY)
     val investigationToolsCategory = _investigationToolsCategory.asStateFlow()
     fun setInvestigationToolsCategory(categoryIndex: Int) {
         _investigationToolsCategory.value = categoryIndex
@@ -137,18 +132,21 @@ class InvestigationViewModel(
     * Ghost Score Handler
     */
     private val _ghostScores : MutableStateFlow<SnapshotStateList<GhostScore>> =
-        MutableStateFlow(mutableStateListOf())
+        MutableStateFlow(androidx.compose.runtime.mutableStateListOf())
     val ghostScores = _ghostScores.asStateFlow()
     private fun initGhostScores() {
-        _ghostScores.update { mutableStateListOf() }
+        _ghostScores.update { androidx.compose.runtime.mutableStateListOf() }
 
         val str = StringBuilder()
         ghostEvidences.forEach {
-            val ghostScore = GhostScore(it)
+            val ghostScore =
+                GhostScore(
+                    it
+                )
             str.append("${ghostScore.ghostEvidence.ghost.id} ${ghostScore.score}, ")
             _ghostScores.value.add(ghostScore)
         }
-        Log.d("GhostScores", "Creating New:\n${str}")
+        android.util.Log.d("GhostScores", "Creating New:\n${str}")
 
         initOrder()
     }
@@ -166,7 +164,7 @@ class InvestigationViewModel(
     /** Order of Ghost IDs **/
     private val _ghostOrder: MutableStateFlow<SnapshotStateList<String>> =
         MutableStateFlow(mutableStateListOf())
-    @Stable
+    @androidx.compose.runtime.Stable
     val ghostOrder = _ghostOrder.asStateFlow()
     private fun initOrder() {
         _ghostOrder.update { mutableStateListOf() }
@@ -176,7 +174,7 @@ class InvestigationViewModel(
             str.append("${it.ghostEvidence.ghost.id} ${it.score}, ")
             _ghostOrder.value.add(it.ghostEvidence.ghost.id)
         }
-        Log.d("GhostOrder", "Creating New:\n${str}")
+        android.util.Log.d("GhostOrder", "Creating New:\n${str}")
 
         reorderGhostScores()
     }
@@ -198,7 +196,7 @@ class InvestigationViewModel(
             str2.append("[$orderModel: " + "${ghostScores.value.find { scoreModel ->
                 scoreModel.ghostEvidence.ghost.id ==  orderModel}?.score}] ")
         }
-        Log.d("GhostOrder", "Reordered to:$str2")
+        android.util.Log.d("GhostOrder", "Reordered to:$str2")
 
     }
 
@@ -247,11 +245,15 @@ class InvestigationViewModel(
     * Evidence Ruling Handler
     */
 
-    private val _ruledEvidence = MutableStateFlow(SnapshotStateList<RuledEvidence>())
+    private val _ruledEvidence =
+        MutableStateFlow(SnapshotStateList<RuledEvidence>())
     val ruledEvidence = _ruledEvidence.asStateFlow()
     private fun initRuledEvidence() {
         val list = evidences.map {
-            RuledEvidence(it).apply { setRuling(Ruling.NEUTRAL) }
+            RuledEvidence(
+                it
+            )
+                .apply { setRuling(Ruling.NEUTRAL) }
         }
         _ruledEvidence.update { list.toMutableStateList() }
     }
@@ -409,7 +411,8 @@ class InvestigationViewModel(
         val tickMultiplier = .001f
         val startTime = max(
             startTime.value,
-            TIME_MIN)
+            TIME_MIN
+        )
 
         val drainMultiplier = sanityDrainModifier.value * tickMultiplier
         val timeDifference = startTime - System.currentTimeMillis()
@@ -426,7 +429,8 @@ class InvestigationViewModel(
     }
 
     /** the sanity level missing, in percent.**/
-    private val _sanityLevel = MutableStateFlow(currentMaxSanity.value - insanityLevel.value)
+    private val _sanityLevel =
+        MutableStateFlow(currentMaxSanity.value - insanityLevel.value)
     val sanityLevel: StateFlow<Float> = _sanityLevel.asStateFlow()
     private fun updateSanityLevel() {
 
@@ -491,7 +495,7 @@ class InvestigationViewModel(
         try { percentNum = percentStr.toInt() }
         catch (e: NumberFormatException) { e.printStackTrace() }
 
-        val input = String.format(Locale.US,"%3d", percentNum)
+        val input = String.Companion.format(java.util.Locale.US,"%3d", percentNum)
 
         val output = StringBuilder()
         var i = 0
@@ -523,7 +527,8 @@ class InvestigationViewModel(
      * Timer Handler
      */
 
-    private val _currentTimerPhase: MutableStateFlow<Phase> = MutableStateFlow(Phase.SETUP)
+    private val _currentTimerPhase: MutableStateFlow<Phase> =
+        MutableStateFlow(Phase.SETUP)
     val currentTimerPhase = _currentTimerPhase.asStateFlow()
     private  fun updateCurrentTimerPhase(
         sanityLevel: Float
@@ -550,7 +555,8 @@ class InvestigationViewModel(
         _startTime.update { TIME_DEFAULT }
     }
 
-    private val _timeRemaining: MutableStateFlow<Long> = MutableStateFlow(TIME_DEFAULT)
+    private val _timeRemaining: MutableStateFlow<Long> =
+        MutableStateFlow(TIME_DEFAULT)
     private val timeRemaining = _timeRemaining.asStateFlow()
     private fun setTimeRemaining(
         value: Long
@@ -560,7 +566,10 @@ class InvestigationViewModel(
 
     fun displayTime(): String {
         val breakdown = timeRemaining.value / SECOND_IN_MILLIS
-        return millisToTime("%s:%s", breakdown)
+        return FormatterUtils.millisToTime(
+            "%s:%s",
+            breakdown
+        )
     }
 
     private var liveTimer: CountDownTimer? = null
@@ -632,7 +641,8 @@ class InvestigationViewModel(
     private var flashTimeStart: Long = DEFAULT
     private var flashTimeMax: Long = FOREVER
 
-    private val _timeElapsed: MutableStateFlow<Long> = MutableStateFlow(DEFAULT)
+    private val _timeElapsed: MutableStateFlow<Long> =
+        MutableStateFlow(DEFAULT)
     private val timeElapsed = _timeElapsed.asStateFlow()
     private fun updateTimeElapsed() {
         _timeElapsed.update { System.currentTimeMillis() - flashTimeStart }
@@ -644,7 +654,8 @@ class InvestigationViewModel(
      * either if the Flash Timeout is infinite
      * or if there is no time remaining on the countdown timer.
      * @return if the Warning indicator can flash */
-    private val _canFlash: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    private val _canFlash: MutableStateFlow<Boolean> =
+        MutableStateFlow(true)
     val canFlash = _canFlash.asStateFlow()
     private fun updateCanFlash() {
 
@@ -654,7 +665,7 @@ class InvestigationViewModel(
         }
 
         if (flashTimeStart == DEFAULT) {
-            Log.d("Flash", "Start time is default.. now setting to current time")
+            android.util.Log.d("Flash", "Start time is default.. now setting to current time")
             flashTimeStart = System.currentTimeMillis()
             updateTimeElapsed()
             return
@@ -673,7 +684,8 @@ class InvestigationViewModel(
      */
 
     /* Index */
-    private val _currentMapIndex: MutableStateFlow<Int> = MutableStateFlow(0)
+    private val _currentMapIndex: MutableStateFlow<Int> =
+        MutableStateFlow(0)
     private val currentMapIndex = _currentMapIndex.asStateFlow()
     private fun setCurrentMapIndex(
         index: Int
@@ -746,9 +758,9 @@ class InvestigationViewModel(
         private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
         private val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
         private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
-    ) : ViewModelProvider.Factory {
+    ) : androidx.lifecycle.ViewModelProvider.Factory {
 
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(InvestigationViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return InvestigationViewModel(
@@ -781,57 +793,61 @@ class InvestigationViewModel(
 
     companion object {
 
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val container = (this[APPLICATION_KEY] as PETApplication).operationsContainer
+        val Factory: androidx.lifecycle.ViewModelProvider.Factory =
+            androidx.lifecycle.viewmodel.viewModelFactory {
+                initializer {
+                    val container =
+                        (this[APPLICATION_KEY] as PETApplication).operationsContainer
 
-                val fetchEvidencesUseCase = container.fetchEvidencesUseCase
-                val getEvidenceByIdUseCase = container.getEvidenceByIdUseCase
-                val fetchGhostsUseCase = container.fetchGhostsUseCase
-                val getGhostByIdUseCase = container.getGhostByIdUseCase
-                val fetchGhostEvidencesUseCase = container.fetchGhostEvidencesUseCase
-                val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
-                val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
-                val getSimpleMapNameUseCase = container.getSimpleMapNameUseCase
-                val getSimpleMapSizeUseCase = container.getSimpleMapSizeUseCase
-                val getSimpleMapSetupModifierUseCase = container.getSimpleMapSetupModifierUseCase
-                val getSimpleMapNormalModifierUseCase = container.getSimpleMapNormalModifierUseCase
-                val getMapModifierUseCase = container.getMapModifierUseCase
-                val incrementMapIndexUseCase = container.incrementMapIndexUseCase
-                val decrementMapIndexUseCase = container.decrementMapIndexUseCase
-                val incrementMapFloorIndexUseCase = container.incrementMapFloorIndexUseCase
-                val decrementMapFloorIndexUseCase = container.decrementMapFloorIndexUseCase
-                val fetchMapModifiersUseCase = container.fetchMapModifiersUseCase
-                val fetchMapThumbnailsUseCase = container.fetchMapThumbnailsUseCase
-                val fetchCodexAchievementsUseCase = container.fetchCodexAchievementsUseCase
-                val fetchCodexPossessionsUseCase = container.fetchCodexPossessionsUseCase
-                val fetchCodexEquipmentUseCase = container.fetchCodexEquipmentUseCase
+                    val fetchEvidencesUseCase = container.fetchEvidencesUseCase
+                    val getEvidenceByIdUseCase = container.getEvidenceByIdUseCase
+                    val fetchGhostsUseCase = container.fetchGhostsUseCase
+                    val getGhostByIdUseCase = container.getGhostByIdUseCase
+                    val fetchGhostEvidencesUseCase = container.fetchGhostEvidencesUseCase
+                    val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
+                    val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
+                    val getSimpleMapNameUseCase = container.getSimpleMapNameUseCase
+                    val getSimpleMapSizeUseCase = container.getSimpleMapSizeUseCase
+                    val getSimpleMapSetupModifierUseCase =
+                        container.getSimpleMapSetupModifierUseCase
+                    val getSimpleMapNormalModifierUseCase =
+                        container.getSimpleMapNormalModifierUseCase
+                    val getMapModifierUseCase = container.getMapModifierUseCase
+                    val incrementMapIndexUseCase = container.incrementMapIndexUseCase
+                    val decrementMapIndexUseCase = container.decrementMapIndexUseCase
+                    val incrementMapFloorIndexUseCase = container.incrementMapFloorIndexUseCase
+                    val decrementMapFloorIndexUseCase = container.decrementMapFloorIndexUseCase
+                    val fetchMapModifiersUseCase = container.fetchMapModifiersUseCase
+                    val fetchMapThumbnailsUseCase = container.fetchMapThumbnailsUseCase
+                    val fetchCodexAchievementsUseCase = container.fetchCodexAchievementsUseCase
+                    val fetchCodexPossessionsUseCase = container.fetchCodexPossessionsUseCase
+                    val fetchCodexEquipmentUseCase = container.fetchCodexEquipmentUseCase
 
-                InvestigationViewModel(
-                    fetchEvidencesUseCase = fetchEvidencesUseCase,
-                    getEvidenceByIdUseCase = getEvidenceByIdUseCase,
-                    fetchGhostsUseCase = fetchGhostsUseCase,
-                    getGhostByIdUseCase = getGhostByIdUseCase,
-                    fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
-                    fetchDifficultiesUseCase = fetchDifficultiesUseCase,
-                    fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
-                    getSimpleMapNameUseCase = getSimpleMapNameUseCase,
-                    getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
-                    getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
-                    getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
-                    getMapModifierUseCase = getMapModifierUseCase,
-                    incrementMapIndexUseCase = incrementMapIndexUseCase,
-                    decrementMapIndexUseCase = decrementMapIndexUseCase,
-                    incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
-                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
-                    fetchMapModifiersUseCase = fetchMapModifiersUseCase,
-                    fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
-                    fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
-                    fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
-                    fetchCodexEquipmentUseCase = fetchCodexEquipmentUseCase
-                )
+                    InvestigationViewModel(
+                        fetchEvidencesUseCase = fetchEvidencesUseCase,
+                        getEvidenceByIdUseCase = getEvidenceByIdUseCase,
+                        fetchGhostsUseCase = fetchGhostsUseCase,
+                        getGhostByIdUseCase = getGhostByIdUseCase,
+                        fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
+                        fetchDifficultiesUseCase = fetchDifficultiesUseCase,
+                        fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
+                        getSimpleMapNameUseCase = getSimpleMapNameUseCase,
+                        getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
+                        getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
+                        getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
+                        getMapModifierUseCase = getMapModifierUseCase,
+                        incrementMapIndexUseCase = incrementMapIndexUseCase,
+                        decrementMapIndexUseCase = decrementMapIndexUseCase,
+                        incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
+                        decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
+                        fetchMapModifiersUseCase = fetchMapModifiersUseCase,
+                        fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
+                        fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
+                        fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
+                        fetchCodexEquipmentUseCase = fetchCodexEquipmentUseCase
+                    )
+                }
             }
-        }
 
         const val TOOL_SANITY = 0
         const val TOOL_MODIFIER_DETAILS = 1
