@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local
 
 import android.content.Context
+import android.util.Log
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostDto
@@ -365,7 +366,7 @@ class GhostLocalDataSource(
         ghostResourceDto.forEach { resDto ->
             result.add(resDto.toGhostDto())
         }
-        return Result.success(emptyList())
+        return Result.success(result)
 
     }
 

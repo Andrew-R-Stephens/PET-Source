@@ -6,11 +6,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.rep
 class FetchGhostEvidencesUseCase(
     private val journalRepository: JournalRepository
 ) {
-    operator fun invoke(): List<GhostEvidence> {
+    operator fun invoke(): Result<List<GhostEvidence>> {
         val result = journalRepository.fetchGhostEvidence()
 
         result.exceptionOrNull()?.printStackTrace()
 
-        return result.getOrDefault(emptyList())
+        return result
     }
 }

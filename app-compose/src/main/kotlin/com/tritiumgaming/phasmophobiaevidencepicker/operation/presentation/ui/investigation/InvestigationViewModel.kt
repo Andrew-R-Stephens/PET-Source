@@ -1,18 +1,24 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation
 
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
@@ -67,11 +73,22 @@ class InvestigationViewModel(
     private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
     private val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
     private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
-): androidx.lifecycle.ViewModel() {
+): ViewModel() {
 
-    private val evidences = fetchEvidencesUseCase()
-    private val ghostEvidences = fetchGhostEvidencesUseCase()
-    private val difficulties = fetchDifficultiesUseCase()
+    private val evidences = fetchEvidencesUseCase().also { it: List<EvidenceType> ->
+        Log.d("InvestigationViewModel", "EvidenceType")
+        it.forEach { Log.d("InvestigationViewModel", "\tEvidence: $it") } }
+    private val ghostEvidences = fetchGhostEvidencesUseCase().let {
+        it.exceptionOrNull()?.printStackTrace()
+        it.getOrNull()?.let {
+            Log.d("InvestigationViewModel", "GhostEvidence")
+            it.forEach { Log.d("InvestigationViewModel", "	GhostEvidence: $it") }
+        }
+        it.getOrDefault(emptyList())
+    }
+    private val difficulties = fetchDifficultiesUseCase().also { it: List<DifficultyModel> ->
+        Log.d("InvestigationViewModel", "DifficultyModel")
+        it.forEach { Log.d("InvestigationViewModel", "\tDifficultyModel: $it") } }
     private val codexAchievements = fetchCodexAchievementsUseCase()
     private val codexPossessions = fetchCodexPossessionsUseCase()
     private val codexEquipment = fetchCodexEquipmentUseCase()
@@ -100,7 +117,7 @@ class InvestigationViewModel(
     }
 
     /*
-     * InvestigationJournal
+     * InvestigationJournal ---------------------------
      */
 
     private val _isInvestigationToolsDrawerCollapsed: MutableStateFlow<Boolean> =
@@ -129,24 +146,21 @@ class InvestigationViewModel(
     }
 
     /*
-    * Ghost Score Handler
+    * Ghost Score Handler ---------------------------
     */
     private val _ghostScores : MutableStateFlow<SnapshotStateList<GhostScore>> =
-        MutableStateFlow(androidx.compose.runtime.mutableStateListOf())
+        MutableStateFlow(mutableStateListOf())
     val ghostScores = _ghostScores.asStateFlow()
     private fun initGhostScores() {
-        _ghostScores.update { androidx.compose.runtime.mutableStateListOf() }
+        _ghostScores.update { mutableStateListOf() }
 
         val str = StringBuilder()
         ghostEvidences.forEach {
-            val ghostScore =
-                GhostScore(
-                    it
-                )
+            val ghostScore = GhostScore(it)
             str.append("${ghostScore.ghostEvidence.ghost.id} ${ghostScore.score}, ")
             _ghostScores.value.add(ghostScore)
         }
-        android.util.Log.d("GhostScores", "Creating New:\n${str}")
+        Log.d("GhostScores", "Creating New:\n${str}")
 
         initOrder()
     }
@@ -174,12 +188,13 @@ class InvestigationViewModel(
             str.append("${it.ghostEvidence.ghost.id} ${it.score}, ")
             _ghostOrder.value.add(it.ghostEvidence.ghost.id)
         }
-        android.util.Log.d("GhostOrder", "Creating New:\n${str}")
+        Log.d("GhostOrder", "Creating New:\n${str}")
 
         reorderGhostScores()
     }
     private fun reorderGhostScores() {
         val orderedScores = mutableListOf<GhostScore>()
+
         ghostScores.value.forEach {
             it.setScore ( getEvidenceScore(
                 it.ghostEvidence.ghost
@@ -196,7 +211,7 @@ class InvestigationViewModel(
             str2.append("[$orderModel: " + "${ghostScores.value.find { scoreModel ->
                 scoreModel.ghostEvidence.ghost.id ==  orderModel}?.score}] ")
         }
-        android.util.Log.d("GhostOrder", "Reordered to:$str2")
+        Log.d("GhostOrder", "Reordered to:$str2")
 
     }
 
@@ -242,7 +257,7 @@ class InvestigationViewModel(
     }
 
     /*
-    * Evidence Ruling Handler
+    * Evidence Ruling Handler ---------------------------
     */
 
     private val _ruledEvidence =
@@ -250,9 +265,7 @@ class InvestigationViewModel(
     val ruledEvidence = _ruledEvidence.asStateFlow()
     private fun initRuledEvidence() {
         val list = evidences.map {
-            RuledEvidence(
-                it
-            )
+            RuledEvidence(it)
                 .apply { setRuling(Ruling.NEUTRAL) }
         }
         _ruledEvidence.update { list.toMutableStateList() }
@@ -295,7 +308,7 @@ class InvestigationViewModel(
 
 
     /*
-     * Difficulty Handler
+     * Difficulty Handler ---------------------------
      */
 
     /* Index */
@@ -376,13 +389,13 @@ class InvestigationViewModel(
         }
 
     init {
-        reorderGhostScores()
         initGhostScores()
         initRuledEvidence()
+        reorderGhostScores()
     }
 
     /*
-     * Sanity Handler
+     * Sanity Handler ---------------------------
      */
 
     private val _currentMaxSanity = MutableStateFlow(MAX_SANITY)
@@ -524,7 +537,7 @@ class InvestigationViewModel(
 
 
     /*
-     * Timer Handler
+     * Timer Handler ---------------------------
      */
 
     private val _currentTimerPhase: MutableStateFlow<Phase> =
@@ -631,7 +644,7 @@ class InvestigationViewModel(
 
 
     /*
-     * Phase Handler
+     * Phase Handler ---------------------------
      */
 
     /** If the warning is within the appropriate range and condition for activation */
@@ -665,7 +678,7 @@ class InvestigationViewModel(
         }
 
         if (flashTimeStart == DEFAULT) {
-            android.util.Log.d("Flash", "Start time is default.. now setting to current time")
+            Log.d("Flash", "Start time is default.. now setting to current time")
             flashTimeStart = System.currentTimeMillis()
             updateTimeElapsed()
             return
@@ -680,7 +693,7 @@ class InvestigationViewModel(
     }
 
     /*
-     * MapCarouselHandler
+     * MapCarouselHandler ---------------------------
      */
 
     /* Index */
@@ -732,7 +745,6 @@ class InvestigationViewModel(
         timeRemaining: Long = 0L
     ): Float = getMapModifierUseCase(currentMapSize.value, timeRemaining)
 
-
     /*
      * VIEWMODEL FACTORIES
      */
@@ -758,9 +770,9 @@ class InvestigationViewModel(
         private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
         private val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
         private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
-    ) : androidx.lifecycle.ViewModelProvider.Factory {
+    ) : ViewModelProvider.Factory {
 
-        override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(InvestigationViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return InvestigationViewModel(
@@ -793,8 +805,8 @@ class InvestigationViewModel(
 
     companion object {
 
-        val Factory: androidx.lifecycle.ViewModelProvider.Factory =
-            androidx.lifecycle.viewmodel.viewModelFactory {
+        val Factory: ViewModelProvider.Factory =
+            viewModelFactory {
                 initializer {
                     val container =
                         (this[APPLICATION_KEY] as PETApplication).operationsContainer

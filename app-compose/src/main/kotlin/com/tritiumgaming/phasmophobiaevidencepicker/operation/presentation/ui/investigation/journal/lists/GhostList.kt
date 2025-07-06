@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -42,7 +43,8 @@ private fun GhostListPreview() {
 
 @Composable
 fun GhostList(
-    investigationViewModel: InvestigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel =
+        viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
     val context = LocalContext.current
@@ -52,6 +54,8 @@ fun GhostList(
 
     val ghostsScoreState = investigationViewModel.ghostScores.collectAsStateWithLifecycle()
     val ghostsOrderState = investigationViewModel.ghostOrder.collectAsStateWithLifecycle()
+
+    Log.d("GhostList", "Ghost Scores: ${ghostsScoreState.value.size}")
 
     val rememberOrderState by remember { ghostsOrderState }
 
@@ -78,6 +82,8 @@ fun GhostList(
 
             investigationViewModel.getGhostById(it)?.let { ghostModel ->
 
+                Log.d("GhostList", "Ghost Found: ${ghostModel.id}")
+
                 GhostListItem(
                     modifier = Modifier
                         .animateItem(),
@@ -85,7 +91,8 @@ fun GhostList(
                         it.ghostEvidence.ghost.id == ghostModel.id }
                 )
 
-            }
+            } ?: Log.d("GhostList", "Ghost Found for id: $it")
+
 
         }
 

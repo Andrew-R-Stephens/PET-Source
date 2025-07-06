@@ -6,7 +6,13 @@ data class GhostEvidenceDto(
     val ghostDto: GhostDto,
     val normalEvidences: List<EvidenceTypeDto>,
     val strictEvidences: List<EvidenceTypeDto>
-)
+) {
+    override fun toString(): String {
+        return "GhostEvidenceDto(ghostDto=$ghostDto, " +
+                "normalEvidences=$normalEvidences, " +
+                "strictEvidences=$strictEvidences)"
+    }
+}
 
 fun GhostEvidenceDto.toGhostEvidence() = GhostEvidence(
     ghost = ghostDto.toDomain(),

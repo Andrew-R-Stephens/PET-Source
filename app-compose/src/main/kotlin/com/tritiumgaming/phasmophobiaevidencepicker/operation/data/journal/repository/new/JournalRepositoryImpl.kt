@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.new
 
+import android.util.Log
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostEvidenceDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.toEvidenceType
@@ -35,13 +36,19 @@ class JournalRepositoryImpl(
 
     override fun fetchGhostEvidence(): Result<List<GhostEvidence>> {
 
+        Log.d("JournalRepositoryImpl", "Fetching GhostEvidence")
+
         val ghostsResult = ghostLocalDataSource.get()
-        ghostsResult.exceptionOrNull()?.printStackTrace()
+        ghostsResult.exceptionOrNull()?.let { return Result.failure(it) }
         val ghostList = ghostsResult.getOrDefault(emptyList())
+        Log.d("JournalRepositoryImpl", "Ghosts: ${ghostList.size}")
 
         val evidenceResult = evidenceLocalDataSource.get()
-        evidenceResult.exceptionOrNull()?.printStackTrace()
+        evidenceResult.exceptionOrNull()?.let { return Result.failure(it) }
         val evidenceList = evidenceResult.getOrDefault(emptyList())
+        Log.d("JournalRepositoryImpl", "Evidence: ${evidenceList.size}")
+
+        Log.d("JournalRepositoryImpl", "Gathering GhostEvidence")
 
         val ghostEvidenceDtoList: List<GhostEvidenceDto> = ghostList.map { ghostDto ->
 
@@ -53,12 +60,15 @@ class JournalRepositoryImpl(
                 evidenceList.first { it.id == evidence }.toEvidenceTypeDto()
             }
 
-            GhostEvidenceDto(
+            val ghostEvidenceDto = GhostEvidenceDto(
                 ghostDto = ghostDto,
                 normalEvidences = normalEvidence,
                 strictEvidences = strictEvidence
             )
 
+            Log.d("JournalRepositoryImpl", "GhostEvidence: $ghostEvidenceDto")
+
+            ghostEvidenceDto
         }
 
         return Result.success(ghostEvidenceDtoList.toGhostEvidence())
