@@ -43,9 +43,6 @@ fun AccountCredits(
     modifier: Modifier = Modifier,
     credits: Int = 100
 ) {
-    val rememberCredits = remember {
-        mutableIntStateOf(credits)
-    }
 
     Card(
         modifier = modifier
@@ -73,7 +70,7 @@ fun AccountCredits(
             )
             
             Text(
-                text = rememberCredits.intValue.toString(),
+                text = credits.toString(),
                 fontSize = 24.sp,
                 color = LocalPalette.current.textFamily.emphasis,
                 maxLines = 1,

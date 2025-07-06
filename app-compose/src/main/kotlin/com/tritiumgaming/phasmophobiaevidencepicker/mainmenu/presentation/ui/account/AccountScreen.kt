@@ -142,6 +142,7 @@ private fun AccountContent(
 
                 if (rememberAccount == null) {
                     SignInComponent(
+                        accountViewModel = accountViewModel,
                         onClick = {
                             loadingState = true
                         }
@@ -160,6 +161,7 @@ private fun AccountContent(
                     }
                 } else {
                     AccountComponent(
+                        accountViewModel = accountViewModel,
                         onLogoutClicked = {
                             rememberDialog = AccountOverviewDialog.SIGN_OUT
                         },
@@ -229,6 +231,7 @@ private fun AccountContent(
 
 @Composable
 private fun AccountComponent(
+    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
     onLogoutClicked: () -> Unit = {},
     onDeactivateClicked: () -> Unit = {}
 ) {
@@ -241,7 +244,9 @@ private fun AccountComponent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        AccountDetailsComponent()
+        AccountDetailsComponent(
+            accountViewModel = accountViewModel
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 

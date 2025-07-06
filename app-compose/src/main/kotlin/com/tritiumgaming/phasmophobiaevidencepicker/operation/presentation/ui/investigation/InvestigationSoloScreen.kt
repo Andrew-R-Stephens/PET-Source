@@ -40,7 +40,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ResetButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolBarItemPair
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.viewmodel.InvestigationViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 
 @Composable
 @Preview
@@ -49,11 +49,8 @@ private fun InvestigationSoloScreenPreview() {
         palette = Holiday22,
         typography = ClassicTypography
     ) {
-        Surface(
-            color = LocalPalette.current.surface.color,
-        ) {
-            InvestigationSoloScreen()
-        }
+
+        InvestigationSoloScreen()
 
     }
 

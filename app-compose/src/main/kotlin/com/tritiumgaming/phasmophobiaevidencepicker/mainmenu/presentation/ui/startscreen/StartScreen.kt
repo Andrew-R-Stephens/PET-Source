@@ -77,7 +77,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mai
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownClickPair
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownNavPair
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.IconDropdownMenu
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.newsletter.NewsletterViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsletterViewModel
 import java.util.Locale
 
 @Composable
@@ -462,7 +462,6 @@ private fun HeaderNavBar(
     }
 
     reviewIcon
-
 
     IconDropdownMenu(
         accountIcon,
