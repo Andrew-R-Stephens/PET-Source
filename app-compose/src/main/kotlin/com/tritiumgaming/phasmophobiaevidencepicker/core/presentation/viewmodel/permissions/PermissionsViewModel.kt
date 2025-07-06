@@ -35,8 +35,8 @@ class PermissionsViewModel: ViewModel() {
     private var _isMobileAdsInitializeCalled = AtomicBoolean(false)
 
     /** UIState for the ViewModel. */
-    private val _uiState = MutableStateFlow(MainUiState())
-    val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(PermissionsUiState())
+    val uiState: StateFlow<PermissionsUiState> = _uiState.asStateFlow()
 
     /** Sets initial UIState for the ViewModel. */
     suspend fun init(activity: Activity) {

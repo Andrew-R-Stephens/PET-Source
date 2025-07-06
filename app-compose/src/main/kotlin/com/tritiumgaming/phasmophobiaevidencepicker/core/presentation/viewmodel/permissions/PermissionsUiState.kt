@@ -1,5 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions
-data class MainUiState(
+data class PermissionsUiState(
     /** Represents current initialization states for the Google Mobile Ads SDK. */
     val isMobileAdsInitialized: Boolean = false,
     /** Indicates whether the app has completed the steps for gathering updated user consent. */
