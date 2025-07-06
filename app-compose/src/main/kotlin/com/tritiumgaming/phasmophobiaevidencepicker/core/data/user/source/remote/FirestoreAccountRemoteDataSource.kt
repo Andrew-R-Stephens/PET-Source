@@ -517,8 +517,8 @@ class FirestoreAccountRemoteDataSource(
 
         // Account Credits Document
         private const val DOCUMENT_CREDITS: String = "Credits"
-        private const val FIELD_CREDITS_SPENT: String = "spentCredits"
         private const val FIELD_CREDITS_EARNED: String = "earnedCredits"
+        private const val FIELD_CREDITS_SPENT: String = "spentCredits"
 
     }
 
