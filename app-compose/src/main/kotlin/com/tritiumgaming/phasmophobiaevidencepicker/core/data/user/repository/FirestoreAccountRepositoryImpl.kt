@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.update
 
 class FirestoreAccountRepositoryImpl(
     private val authRemoteDataSource: FirestoreAuthRemoteDataSource,
@@ -83,8 +82,6 @@ class FirestoreAccountRepositoryImpl(
             flow -> flow.map { dto -> dto.toDomain() } }
 
     }
-
-    //TODO: Get Credit Snapshot Observer
 
     override suspend fun setMarketplaceAgreementState(
         marketAgreement: AccountMarketAgreement
@@ -178,14 +175,33 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
-    suspend fun observeUnlockedPalettes() {
+    override fun observeUnlockedPalettes(): Flow<Result<List<AccountPalette>>> {
 
-        accountRemoteDataSource.observeUnlockedPaletteDocuments().collect { result ->
-            val paletteDtoList = result.getOrNull()
-            paletteDtoList?.let { list ->
-                unlockedPalettes.update { list }
-            }
-        }
+        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
+        if(uid == null)
+            return flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
+        if(userDocumentRef == null)
+            return flowOf(Result.failure(Exception("The authorized user's data could not be located!")))
+
+        return accountRemoteDataSource.observeUnlockedPaletteDocuments().map { flow ->
+            flow.map { dto -> dto.toDomain() } }
+
+    }
+
+    override fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>> {
+
+        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
+        if(uid == null)
+            return flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
+        if(userDocumentRef == null)
+            return flowOf(Result.failure(Exception("The authorized user's data could not be located!")))
+
+        return accountRemoteDataSource.observeUnlockedTypographyDocuments().map { flow ->
+            flow.map { dto -> dto.toDomain() } }
 
     }
 

@@ -405,6 +405,59 @@ class FirestoreAccountRemoteDataSource(
             }
     }
 
+    fun observeUnlockedTypographyDocuments(): Flow<Result<List<AccountTypographyDto>>> =
+
+        callbackFlow {
+
+            val docRef = unlockHistoryCollectionRef
+
+            if (docRef == null) {
+                trySend(Result.failure(Exception("Unlock history collection not found!")))
+                close()
+                return@callbackFlow
+            }
+
+            // Keep track of the listener registration to remove it when the flow is cancelled
+            var listenerRegistration: ListenerRegistration? = null
+
+            try {
+                listenerRegistration = docRef
+                    .addSnapshotListener { snapshot, error ->
+                        if (error != null) {
+                            val customError = FirebaseFirestoreException(
+                                "Error listening to unlocked typography documents: ${error.message}",
+                                error.code
+                            )
+                            trySend(Result.failure(customError))
+
+                            return@addSnapshotListener
+                        }
+
+                        if (snapshot != null) {
+                            val accountTypographyDtoList = mutableListOf<AccountTypographyDto>()
+
+                            snapshot.documents.forEach { documentSnapshot ->
+                                val uid = documentSnapshot.id
+                                accountTypographyDtoList.add(AccountTypographyDto(uuid = uid))
+                            }
+
+                            trySend(Result.success(accountTypographyDtoList))
+
+                        } else {
+                            trySend(Result.success(emptyList()))
+                        }
+                    }
+            } catch (e: Exception) {
+                trySend(Result.failure(Exception("Failed to attach snapshot listener: ${e.message}")))
+                close(e)
+            }
+
+            awaitClose {
+                listenerRegistration?.remove()
+                println("SnapshotListener for UnlockedTypographyDocuments removed.")
+            }
+    }
+
     suspend fun addPurchaseDocument(
         orderID: String
     ): Result<String> {

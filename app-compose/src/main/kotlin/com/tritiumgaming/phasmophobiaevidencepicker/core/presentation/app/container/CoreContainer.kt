@@ -77,6 +77,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.us
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import kotlinx.coroutines.Dispatchers
@@ -159,6 +161,12 @@ class CoreContainer(
         repository = firestoreAccountRepository)
     internal val observeAccountCreditsUseCase = ObserveAccountCreditsUseCase(
         repository = firestoreAccountRepository)
+    internal val observeAccountUnlockedPalettesUseCase =
+        ObserveAccountUnlockedPalettesUseCase(
+            repository = firestoreAccountRepository)
+    internal val observeAccountUnlockedTypographiesUseCase =
+        ObserveAccountUnlockedTypographiesUseCase(
+            repository = firestoreAccountRepository)
 
     /**
      * Review Tracker

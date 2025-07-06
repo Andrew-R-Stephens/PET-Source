@@ -9,13 +9,17 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
@@ -36,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -59,7 +64,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalettesMap
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.AccountBanner
@@ -258,6 +265,12 @@ private fun AccountComponent(
                 onDeactivateClicked()
             }
         )
+
+        Column {
+            UnlockHistoryPalettesComponent(
+                accountViewModel = accountViewModel
+            )
+        }
     }
 }
 
@@ -271,7 +284,7 @@ private fun AccountDetailsComponent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        val accountUiState = accountViewModel.accountUiState.collectAsStateWithLifecycle()
+        val accountUiState = accountViewModel.accountCreditsUiState.collectAsStateWithLifecycle()
 
         AccountBanner(
             credits = accountUiState.value.earnedCredits.toInt()
@@ -380,6 +393,88 @@ private fun AccountDetailsComponent(
 
     }
 
+}
+
+@Composable
+private fun UnlockHistoryPalettesComponent(
+    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory)
+) {
+
+    val accountPalettes = accountViewModel.accountUnlockedPalettesUiState.collectAsStateWithLifecycle()
+
+    LazyColumn {
+
+        items(items = accountPalettes.value.unlockedPalettes) { palette ->
+
+            val palette = LocalPalettesMap[palette.uuid]
+
+            if(palette != null) {
+                PaletteListItem(palette = palette)
+            }
+
+        }
+
+    }
+
+}
+
+@Preview
+@Composable
+private fun AccountDetailsComponentPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        PaletteListItem(ClassicPalette)
+    }
+
+}
+
+@Composable
+private fun PaletteListItem(
+    palette: ExtendedPalette
+) {
+    Surface(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        color = LocalPalette.current.surface.onColor,
+        shape = RoundedCornerShape(8.dp),
+    ) {
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Image(
+                modifier = Modifier
+                    .size(48.dp)
+                    .aspectRatio(1f),
+                painter = painterResource(palette.extrasFamily.badge),
+                contentDescription = "",
+                contentScale = ContentScale.Inside
+            )
+
+            Spacer(modifier = Modifier.width(32.dp))
+
+            BasicText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                text = stringResource(palette.extrasFamily.title),
+                style = LocalTypography.current.quaternary.bold.copy(
+                    color = LocalPalette.current.textFamily.body,
+                    textAlign = TextAlign.Start,
+                    fontSize = 24.sp
+                ),
+            )
+        }
+    }
 }
 
 @Composable

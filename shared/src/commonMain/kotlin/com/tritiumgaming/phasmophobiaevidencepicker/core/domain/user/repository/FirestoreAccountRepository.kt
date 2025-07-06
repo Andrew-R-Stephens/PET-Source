@@ -36,6 +36,9 @@ interface FirestoreAccountRepository {
         forceUpdate: Boolean = false
     ): Result<List<AccountTypography>>
 
+    fun observeUnlockedPalettes(): Flow<Result<List<AccountPalette>>>
+    fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>>
+
     suspend fun addPurchasedDocument(
         orderID: String
     ): Result<String>
