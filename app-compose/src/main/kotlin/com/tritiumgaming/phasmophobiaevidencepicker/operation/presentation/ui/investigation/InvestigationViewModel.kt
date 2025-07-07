@@ -41,6 +41,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.model.SanityRunnable
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.DEFAULT
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.FOREVER
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.TIME_DEFAULT
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.TOOL_SANITY
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.GhostScore
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -94,17 +98,17 @@ class InvestigationViewModel(
     /*
      * UI STATES
      */
-    private val _mapConfigUiState = MutableStateFlow(OperationMapUiState())
-    val mapConfigUiState = _mapConfigUiState.asStateFlow()
+    private val _mapUiState = MutableStateFlow(OperationMapUiState())
+    val mapUiState = _mapUiState.asStateFlow()
 
-    private val _difficultyConfigUiState = MutableStateFlow(OperationDifficultyUiState())
-    val difficultyConfigUiState = _difficultyConfigUiState.asStateFlow()
+    private val _difficultyUiState = MutableStateFlow(OperationDifficultyUiState())
+    val difficultyUiState = _difficultyUiState.asStateFlow()
 
-    private val _operationConfigToolUiState = MutableStateFlow(OperationConfigUiState(
-        mapConfig = _mapConfigUiState.value,
-        difficultyConfig = _difficultyConfigUiState.value
-    ))
-    val operationConfigToolUiState = _operationConfigToolUiState.asStateFlow()
+    private val _timerUiState = MutableStateFlow(OperationTimerUiState())
+    val timerUiState = _timerUiState.asStateFlow()
+
+    private val _phaseUiState = MutableStateFlow(OperationPhaseUiState())
+    val phaseUiState = _phaseUiState.asStateFlow()
 
     /*
      * COROUTINES
@@ -129,23 +133,14 @@ class InvestigationViewModel(
      * InvestigationJournal ---------------------------
      */
 
-    private val _isInvestigationToolsDrawerCollapsed: MutableStateFlow<Boolean> =
-        MutableStateFlow(false)
-    val isInvestigationToolsDrawerCollapsed = _isInvestigationToolsDrawerCollapsed.asStateFlow()
-    fun setInvestigationToolsDrawerState(
-        isCollapsed: Boolean
-    ) {
-        _isInvestigationToolsDrawerCollapsed.update { isCollapsed }
-    }
+    private val _investigationToolbarUiState: MutableStateFlow<InvestigationToolbarUiState> =
+        MutableStateFlow(InvestigationToolbarUiState())
+    val investigationToolbarUiState = _investigationToolbarUiState.asStateFlow()
     fun toggleInvestigationToolsDrawerState() {
-        setInvestigationToolsDrawerState(!isInvestigationToolsDrawerCollapsed.value)
+        _investigationToolbarUiState.update { it.copy(isCollapsed = !it.isCollapsed) }
     }
-
-    private val _investigationToolsCategory: MutableStateFlow<Int> =
-        MutableStateFlow(TOOL_SANITY)
-    val investigationToolsCategory = _investigationToolsCategory.asStateFlow()
     fun setInvestigationToolsCategory(categoryIndex: Int) {
-        _investigationToolsCategory.value = categoryIndex
+        _investigationToolbarUiState.update { it.copy(category = categoryIndex) }
     }
 
     /** Resets the Ruling for each Evidence type */
@@ -222,7 +217,7 @@ class InvestigationViewModel(
         return getGhostScores(ghostModel)
             ?.getEvidenceScore(
                 ruledEvidence = ruledEvidence.value,
-                currentDifficulty = currentDifficulty
+                currentDifficulty = DifficultyType.entries[difficultyUiState.value.selectedIndex]
             ) ?: 1
     }
 
@@ -306,9 +301,12 @@ class InvestigationViewModel(
     private fun setDifficultyIndex(
         index: Int
     ) {
-        _currentDifficultyIndex.update { index }
-
-        updateCurrentDifficultyName()
+        _difficultyUiState.update {
+            it.copy(
+                selectedIndex = index,
+                selectedName = difficulties[currentDifficultyIndex.value].name.toStringResource()
+            )
+        }
 
         setTimeRemaining(currentDifficultyTime)
         resetTimer()
@@ -338,14 +336,6 @@ class InvestigationViewModel(
 
     private val currentDifficulty: DifficultyType
         get() = DifficultyType.entries[currentDifficultyIndex.value]
-
-    private val _currentDifficultyName = MutableStateFlow(
-        difficulties[currentDifficultyIndex.value].name
-    )
-    val currentDifficultyName = _currentDifficultyName.asStateFlow()
-    private fun updateCurrentDifficultyName() {
-        _currentDifficultyName.update { difficulties[currentDifficultyIndex.value].name }
-    }
 
     fun getDifficultyNameAt(
         index: Int
@@ -405,7 +395,7 @@ class InvestigationViewModel(
 
         val tickMultiplier = .001f
         val startTime = max(
-            startTime.value,
+            timerUiState.value.startTime,
             TIME_MIN
         )
 
@@ -440,7 +430,7 @@ class InvestigationViewModel(
     private fun updateSanityDrainModifier(
         currentDifficultyModifier: Float
     ) {
-        val mapModifier = getCurrentMapModifier(timeRemaining.value)
+        val mapModifier = getCurrentMapModifier(timerUiState.value.timeRemaining)
         _sanityDrainModifier.update { currentDifficultyModifier * mapModifier }
     }
 
@@ -471,7 +461,11 @@ class InvestigationViewModel(
         val timeAddition = (progressOverride / sanityDrainModifier.value / multiplier).toLong()
         val newStartTime = (System.currentTimeMillis() + timeAddition)
 
-        setStartTime(newStartTime)
+        _timerUiState.update {
+            it.copy(
+                startTime = newStartTime
+            )
+        }
     }
 
     fun displaySanityAsPercent(): String {
@@ -528,7 +522,7 @@ class InvestigationViewModel(
         sanityLevel: Float
     ) {
         _currentTimerPhase.update {
-            if (timeRemaining.value > TIME_MIN) { Phase.SETUP }
+            if (timerUiState.value.timeRemaining > TIME_MIN) { Phase.SETUP }
             else {
                 if (sanityLevel < SAFE_MIN_BOUNDS) { Phase.HUNT }
                 else { Phase.ACTION }
@@ -538,28 +532,32 @@ class InvestigationViewModel(
 
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
-    private val _startTime = MutableStateFlow(TIME_DEFAULT)
+    /*private val _startTime = MutableStateFlow(TIME_DEFAULT)
     private val startTime = _startTime.asStateFlow()
     private fun setStartTime(
         time: Long
     ) {
         _startTime.update { time }
-    }
+    }*/
     private fun resetStartTime() {
-        _startTime.update { TIME_DEFAULT }
+        _timerUiState.update {
+            it.copy(
+                startTime = TIME_DEFAULT
+            )
+        }
     }
 
-    private val _timeRemaining: MutableStateFlow<Long> =
+    /*private val _timeRemaining: MutableStateFlow<Long> =
         MutableStateFlow(TIME_DEFAULT)
-    private val timeRemaining = _timeRemaining.asStateFlow()
+    private val timeRemaining = _timeRemaining.asStateFlow()*/
     private fun setTimeRemaining(
         value: Long
     ) {
-        _timeRemaining.update { value }
+        _timerUiState.update { it.copy(timeRemaining = value) }
     }
 
     fun displayTime(): String {
-        val breakdown = timeRemaining.value / SECOND_IN_MILLIS
+        val breakdown = timerUiState.value.timeRemaining / SECOND_IN_MILLIS
         return FormatterUtils.millisToTime(
             "%s:%s",
             breakdown
@@ -568,7 +566,7 @@ class InvestigationViewModel(
 
     private var liveTimer: CountDownTimer? = null
     private fun setLiveTimer(
-        millisInFuture: Long = timeRemaining.value,
+        millisInFuture: Long = timerUiState.value.timeRemaining,
         countDownInterval: Long = 100L
     ) {
         liveTimer = object : CountDownTimer(millisInFuture, countDownInterval) {
@@ -630,19 +628,6 @@ class InvestigationViewModel(
 
     /** If the warning is within the appropriate range and condition for activation */
     private var audioWarnTriggered = false
-
-    /** The starting flash time, in milliseconds, for the hunt warning */
-    private var flashTimeStart: Long = DEFAULT
-    private var flashTimeMax: Long = FOREVER
-
-    private val _timeElapsed: MutableStateFlow<Long> =
-        MutableStateFlow(DEFAULT)
-    private val timeElapsed = _timeElapsed.asStateFlow()
-    private fun updateTimeElapsed() {
-        _timeElapsed.update { System.currentTimeMillis() - flashTimeStart }
-        updateCanFlash()
-    }
-
     /** Allow the Warning indicator to flash either off or on if:
      * The player's sanity is less than 70%
      * either if the Flash Timeout is infinite
@@ -653,24 +638,34 @@ class InvestigationViewModel(
     val canFlash = _canFlash.asStateFlow()
     private fun updateCanFlash() {
 
-        if (flashTimeMax == FOREVER) {
+        if (timerUiState.value.flashTimeMax == FOREVER) {
             _canFlash.update { isSanityInsane }
             return
         }
 
-        if (flashTimeStart == DEFAULT) {
+        if (timerUiState.value.flashTimeStart == DEFAULT) {
             Log.d("Flash", "Start time is default.. now setting to current time")
-            flashTimeStart = System.currentTimeMillis()
-            updateTimeElapsed()
+            _timerUiState.update {
+                it.copy(
+                    flashTimeStart = System.currentTimeMillis(),
+                    timeElapsed = System.currentTimeMillis() - it.flashTimeStart
+                )
+            }
+            updateCanFlash()
             return
         }
 
-        _canFlash.update { timeElapsed.value <= flashTimeMax }
+        _canFlash.update { timerUiState.value.timeElapsed <=  timerUiState.value.flashTimeMax }
     }
 
     private fun resetTimerPhase() {
-        flashTimeStart = DEFAULT
-        updateTimeElapsed()
+        _timerUiState.update {
+            it.copy(
+                flashTimeStart = DEFAULT,
+                timeElapsed = System.currentTimeMillis() - it.flashTimeStart
+            )
+        }
+        updateCanFlash()
     }
 
     /*
@@ -680,18 +675,18 @@ class InvestigationViewModel(
     private fun setCurrentMapIndex(
         index: Int
     ) {
-        _mapConfigUiState.update {
+        _mapUiState.update {
             it.copy(
                 selectedIndex = index,
-                selectedName = getSimpleMapSizeUseCase(index)?.toStringResource() ?: 0,
+                selectedName = getSimpleMapNameUseCase(index)?.toStringResource() ?: 0,
                 selectedSize = getSimpleMapSizeUseCase(index)?.toStringResource() ?: 0
             )
         }
     }
     fun incrementMapIndex() =
-        setCurrentMapIndex(incrementMapIndexUseCase(_mapConfigUiState.value.selectedIndex))
+        setCurrentMapIndex(incrementMapIndexUseCase(_mapUiState.value.selectedIndex))
     fun decrementMapIndex() =
-        setCurrentMapIndex(decrementMapIndexUseCase(_mapConfigUiState.value.selectedIndex))
+        setCurrentMapIndex(decrementMapIndexUseCase(_mapUiState.value.selectedIndex))
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation
      * (Setup vs Hunt)
@@ -699,11 +694,11 @@ class InvestigationViewModel(
      * @returns the drop rate multiplier. */
     private fun getCurrentMapModifier(
         timeRemaining: Long = 0L
-    ): Float = getMapModifierUseCase(_mapConfigUiState.value.selectedSize, timeRemaining)
+    ): Float = getMapModifierUseCase(_mapUiState.value.selectedSize, timeRemaining)
 
     init {
         Log.d("InvestigationViewModel", "init")
-        Log.d("InvestigationViewModel", "collapsed: ${isInvestigationToolsDrawerCollapsed.value}")
+        Log.d("InvestigationViewModel", "collapsed: ${investigationToolbarUiState.value}")
         initGhostScores()
         initRuledEvidence()
         reorderGhostScores()
@@ -865,9 +860,9 @@ class InvestigationViewModel(
 
 }
 
-data class OperationConfigUiState(
-    val mapConfig: OperationMapUiState? = null,
-    val difficultyConfig: OperationDifficultyUiState? = null,
+data class InvestigationToolbarUiState(
+    val isCollapsed: Boolean = false,
+    val category: Int = TOOL_SANITY
 )
 
 data class OperationMapUiState(
@@ -880,4 +875,18 @@ data class OperationMapUiState(
 data class OperationDifficultyUiState(
     val selectedIndex: Int = 0,
     val selectedName: Int = 0
+)
+
+data class OperationTimerUiState(
+    val startTime: Long = TIME_DEFAULT,
+    val timeElapsed: Long = DEFAULT,
+    val timeRemaining: Long = 0L,
+    val flashTimeStart: Long = DEFAULT,
+    val flashTimeMax: Long = FOREVER,
+)
+
+data class OperationPhaseUiState(
+    val currentDifficultyTime: Long = 0L,
+    val currentDifficultyStartSanity: Float = 0f,
+    val currentDifficultyModifier: Float = 0f
 )

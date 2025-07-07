@@ -217,17 +217,12 @@ fun ResetButton(
 @Preview
 fun CollapseButton(
     modifier: Modifier = Modifier,
-    isCollapsedState: StateFlow<Boolean> = MutableStateFlow(false),
+    isCollapsed: Boolean = false,
     onClick: () -> Unit = {}
 ) {
-    val collapsedState by isCollapsedState.collectAsStateWithLifecycle()
-    var rememberCollapsedState by remember { mutableStateOf(collapsedState) }
-    LaunchedEffect(collapsedState) {
-        rememberCollapsedState = collapsedState
-    }
 
     val rotation by animateFloatAsState(
-        targetValue = if(rememberCollapsedState) 1f else 0f,
+        targetValue = if(isCollapsed) 1f else 0f,
         animationSpec = spring(
             stiffness = StiffnessLow,
             dampingRatio = DampingRatioNoBouncy

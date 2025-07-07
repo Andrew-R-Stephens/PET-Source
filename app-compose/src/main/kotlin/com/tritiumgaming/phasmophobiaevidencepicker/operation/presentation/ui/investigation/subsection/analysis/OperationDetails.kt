@@ -32,7 +32,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils.getColorFromAttribute
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import org.jetbrains.annotations.TestOnly
 
@@ -92,7 +91,7 @@ fun MapModifierDetails(
         viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
-    val mapConfigUiState = investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
+    val mapConfigUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
     val rememberMapName by remember { mutableIntStateOf(mapConfigUiState.value.selectedName) }
 
     CategoryColumn {
@@ -124,8 +123,9 @@ fun DifficultyModifierDetails(
         viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
-    val difficultyNameState = investigationViewModel.currentDifficultyName.collectAsStateWithLifecycle()
-    val rememberDifficultyName by remember { mutableIntStateOf(difficultyNameState.value.toStringResource()) }
+    val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+    val rememberDifficultyName by remember {
+        mutableIntStateOf(difficultyUiState.value.selectedName) }
 
     CategoryColumn {
         Row(

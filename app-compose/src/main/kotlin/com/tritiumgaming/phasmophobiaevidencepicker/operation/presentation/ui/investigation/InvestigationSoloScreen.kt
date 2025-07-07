@@ -80,8 +80,8 @@ private fun InvestigationSoloContent(
         viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
-    val collapsedState =
-        investigationViewModel.isInvestigationToolsDrawerCollapsed.collectAsStateWithLifecycle()
+    val investigationToolbarUiState =
+        investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
     //var rememberCollapsed by remember { mutableStateOf(collapsedState) }
     /*LaunchedEffect(collapsedState) {
         rememberCollapsed = collapsedState
@@ -93,14 +93,14 @@ private fun InvestigationSoloContent(
         ) {
             Investigation(
                 investigationViewModel = investigationViewModel,
-                collapsedState = collapsedState.value
+                collapsedState = investigationToolbarUiState.value.isCollapsed
             )
         }
     } else {
         Row {
             Investigation(
                 investigationViewModel = investigationViewModel,
-                collapsedState = collapsedState.value
+                collapsedState = investigationToolbarUiState.value.isCollapsed
             )
         }
     }
@@ -180,6 +180,8 @@ private fun Toolbar(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel,
 ) {
+    val investigationToolbarUiState =
+        investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
 
     Row(
         modifier = modifier
@@ -190,7 +192,7 @@ private fun Toolbar(
         val toolsList: Array<ToolBarItemPair> = arrayOf(
             ToolBarItemPair(@Composable {
                 CollapseButton(
-                    isCollapsedState = investigationViewModel.isInvestigationToolsDrawerCollapsed
+                    isCollapsed = investigationToolbarUiState.value.isCollapsed
                 ) {
                     investigationViewModel.toggleInvestigationToolsDrawerState()
                 }
