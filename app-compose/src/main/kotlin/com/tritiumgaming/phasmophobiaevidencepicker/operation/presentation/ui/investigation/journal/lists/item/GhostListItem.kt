@@ -34,10 +34,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.RuledEvidence.Ruling
 
 @Composable
 fun GhostListItem(
@@ -155,10 +155,8 @@ private fun RowScope.EvidenceIcon(
     evidence: EvidenceType
 ) {
 
-    val rulingState = investigationViewModel.getRuledEvidence(evidence)?.ruling?.collectAsStateWithLifecycle()
-    val rememberRuling by remember {
-        mutableStateOf(rulingState)
-    }
+    val rulingState = investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
+    val evidenceRuling = rulingState.value.find { it.evidence.id == evidence.id }?.ruling
 
     Image(
         modifier = Modifier
@@ -169,7 +167,7 @@ private fun RowScope.EvidenceIcon(
         painter = painterResource(id = evidence.icon.toDrawableResource()),
         contentDescription = "Evidence Icon",
         colorFilter = ColorFilter.tint(
-            when (rememberRuling?.value) {
+            when (evidenceRuling) {
                 Ruling.NEGATIVE -> LocalPalette.current.negativeSelColor
                 Ruling.POSITIVE -> LocalPalette.current.positiveSelColor
                 else -> LocalPalette.current.neutralSelColor

@@ -40,6 +40,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.use
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetEvidenceByIdUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetGhostByIdUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.InitRuledEvidenceUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.repsitory.MapModifiersRepository
@@ -79,6 +80,7 @@ class OperationContainer(
     internal val fetchGhostEvidencesUseCase = FetchGhostEvidencesUseCase(journalRepository)
     internal val getGhostByIdUseCase = GetGhostByIdUseCase(journalRepository)
     internal val getEvidenceByIdUseCase = GetEvidenceByIdUseCase(journalRepository)
+    internal val initRuledEvidenceUseCase = InitRuledEvidenceUseCase(fetchEvidencesUseCase)
 
     // Difficulty
     private val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(applicationContext)

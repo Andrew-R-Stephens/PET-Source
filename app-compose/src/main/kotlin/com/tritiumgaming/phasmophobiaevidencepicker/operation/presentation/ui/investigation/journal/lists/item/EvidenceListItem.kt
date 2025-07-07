@@ -46,9 +46,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.EvidenceResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.RuledEvidence.Ruling
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -77,7 +77,7 @@ fun EvidenceListItem(
     onNameClick: () -> Unit = {},
 ) {
 
-    val rulingState = investigationViewModel.getRuledEvidence(evidence)?.ruling?.collectAsStateWithLifecycle()
+    val rulingState = investigationViewModel.getRuledEvidence(evidence)?.ruling
     //var rememberRuling by remember { mutableStateOf(rulingState?.value) }
 
     Card(
@@ -156,7 +156,7 @@ fun EvidenceListItem(
                             content = {
                                 RulingIcon(
                                     ruling = rulingType,
-                                    isSelected = rulingState?.value?.ordinal == rulingType.ordinal,
+                                    isSelected = rulingState?.ordinal == rulingType.ordinal,
                                     //isSelected = rememberRuling?.ordinal == rulingType.ordinal
                                 )
                             }
@@ -227,7 +227,7 @@ fun EvidenceListItem(
                             content = {
                                 RulingIcon(
                                     ruling = rulingType,
-                                    isSelected = rulingState?.value?.ordinal == rulingType.ordinal
+                                    isSelected = rulingState?.ordinal == rulingType.ordinal
                                 )
                             }
                         )
@@ -262,7 +262,13 @@ private fun RowScope.RulingIcon(
         ) {
             Image(
                 modifier = Modifier.padding(4.dp),
-                painter = painterResource(id = ruling.icon),
+                painter = painterResource(
+                    id = when(ruling) {
+                        Ruling.NEGATIVE -> R.drawable.ic_selector_neg_unsel
+                        Ruling.POSITIVE -> R.drawable.ic_selector_pos_unsel
+                        else -> R.drawable.ic_selector_inc_unsel
+                    }
+                ),
                 contentScale = ContentScale.Fit,
                 contentDescription = "Evidence Icon",
                 colorFilter = ColorFilter.tint(

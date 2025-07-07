@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -71,7 +72,7 @@ data class GhostScore(
 
             val normalRuledEvidence = ruledEvidence.find { it.isEvidence(normalEvidence) }
 
-            normalRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling ->
+            normalRuledEvidence?.ruling?.let { ruling: RuledEvidence.Ruling ->
 
                 when (ruling) {
                     RuledEvidence.Ruling.POSITIVE -> { if (index < 3) { posScore++ } }
@@ -91,7 +92,7 @@ data class GhostScore(
 
             val strictRuledEvidence = ruledEvidence.find { it.isEvidence(strictEvidence) }
 
-            strictRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling ->
+            strictRuledEvidence?.ruling?.let { ruling: RuledEvidence.Ruling ->
 
                 if (ruling == RuledEvidence.Ruling.NEGATIVE) { return -8 }
             }
@@ -109,7 +110,7 @@ data class GhostScore(
 
                 val strictRuledEvidence = ruledEvidence.find { it.isEvidence(strictEvidence) }
 
-                strictRuledEvidence?.ruling?.value?.let { ruling: RuledEvidence.Ruling ->
+                strictRuledEvidence?.ruling?.let { ruling: RuledEvidence.Ruling ->
 
                     if (ruling != RuledEvidence.Ruling.POSITIVE) { return -10 }
                 }

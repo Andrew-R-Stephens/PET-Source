@@ -20,11 +20,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetEvidenceByIdUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetGhostByIdUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.InitRuledEvidenceUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.GetMapModifierUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
@@ -40,8 +43,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.model.SanityRunnable
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.GhostScore
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.RuledEvidence
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -55,6 +56,7 @@ class InvestigationViewModel(
     private val fetchGhostsUseCase: FetchGhostsUseCase,
     private val fetchEvidencesUseCase: FetchEvidencesUseCase,
     private val getEvidenceByIdUseCase: GetEvidenceByIdUseCase,
+    private val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
     private val getGhostByIdUseCase: GetGhostByIdUseCase,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
@@ -75,9 +77,6 @@ class InvestigationViewModel(
     private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
 ): ViewModel() {
 
-    private val evidences = fetchEvidencesUseCase().also { it: List<EvidenceType> ->
-        Log.d("InvestigationViewModel", "EvidenceType")
-        it.forEach { Log.d("InvestigationViewModel", "\tEvidence: $it") } }
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
         it.getOrNull()?.let {
@@ -261,27 +260,27 @@ class InvestigationViewModel(
     */
 
     private val _ruledEvidence =
-        MutableStateFlow(SnapshotStateList<RuledEvidence>())
+        MutableStateFlow(listOf<RuledEvidence>())
     val ruledEvidence = _ruledEvidence.asStateFlow()
     private fun initRuledEvidence() {
-        val list = evidences.map {
-            RuledEvidence(it)
-                .apply { setRuling(Ruling.NEUTRAL) }
-        }
-        _ruledEvidence.update { list.toMutableStateList() }
+        _ruledEvidence.update { initRuledEvidenceUseCase() }
     }
     fun setEvidenceRuling(
         evidenceIndex: Int,
         ruling: Ruling
     ) {
-        ruledEvidence.value[evidenceIndex].setRuling(ruling)
+        _ruledEvidence.update {
+            it.apply { it[evidenceIndex].copy(ruling = ruling) }
+        }
         reorderGhostScores()
     }
     fun setEvidenceRuling(
         evidence: EvidenceType,
         ruling: Ruling
     ) {
-        getRuledEvidence(evidence)?.setRuling(ruling)
+        _ruledEvidence.update {
+            it.map { e -> if(evidence.id == e.evidence.id) e.copy(ruling = ruling) else e }
+        }
         reorderGhostScores()
     }
     fun getRuledEvidence(
@@ -292,10 +291,7 @@ class InvestigationViewModel(
 
     /** Resets the Ruling for each Evidence type */
     private fun resetEvidenceRulingHandler() {
-        //initRuledEvidence()
-        ruledEvidence.value.forEach {
-            it.setRuling( Ruling.NEUTRAL)
-        }
+        initRuledEvidence()
     }
 
     /*override fun toString(): String {
@@ -387,12 +383,6 @@ class InvestigationViewModel(
             }
             return 1f
         }
-
-    init {
-        initGhostScores()
-        initRuledEvidence()
-        reorderGhostScores()
-    }
 
     /*
      * Sanity Handler ---------------------------
@@ -745,6 +735,14 @@ class InvestigationViewModel(
         timeRemaining: Long = 0L
     ): Float = getMapModifierUseCase(currentMapSize.value, timeRemaining)
 
+    init {
+        Log.d("InvestigationViewModel", "init")
+        Log.d("InvestigationViewModel", "collapsed: ${isInvestigationToolsDrawerCollapsed.value}")
+        initGhostScores()
+        initRuledEvidence()
+        reorderGhostScores()
+    }
+
     /*
      * VIEWMODEL FACTORIES
      */
@@ -754,6 +752,7 @@ class InvestigationViewModel(
         private val getEvidenceByIdUseCase: GetEvidenceByIdUseCase,
         private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
         private val getGhostByIdUseCase: GetGhostByIdUseCase,
+        private val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
         private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
         private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
         private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
@@ -781,6 +780,7 @@ class InvestigationViewModel(
                     fetchGhostsUseCase = fetchGhostsUseCase,
                     fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
                     getGhostByIdUseCase = getGhostByIdUseCase,
+                    initRuledEvidenceUseCase = initRuledEvidenceUseCase,
                     fetchDifficultiesUseCase = fetchDifficultiesUseCase,
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
                     getSimpleMapNameUseCase = getSimpleMapNameUseCase,
@@ -816,6 +816,7 @@ class InvestigationViewModel(
                     val fetchGhostsUseCase = container.fetchGhostsUseCase
                     val getGhostByIdUseCase = container.getGhostByIdUseCase
                     val fetchGhostEvidencesUseCase = container.fetchGhostEvidencesUseCase
+                    val initRuledEvidenceUseCase = container.initRuledEvidenceUseCase
                     val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
                     val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
                     val getSimpleMapNameUseCase = container.getSimpleMapNameUseCase
@@ -840,6 +841,7 @@ class InvestigationViewModel(
                         getEvidenceByIdUseCase = getEvidenceByIdUseCase,
                         fetchGhostsUseCase = fetchGhostsUseCase,
                         getGhostByIdUseCase = getGhostByIdUseCase,
+                        initRuledEvidenceUseCase = initRuledEvidenceUseCase,
                         fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
                         fetchDifficultiesUseCase = fetchDifficultiesUseCase,
                         fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
