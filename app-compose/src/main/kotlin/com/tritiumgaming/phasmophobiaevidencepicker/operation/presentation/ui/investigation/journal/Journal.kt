@@ -33,6 +33,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.EvidenceList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.GhostList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.popups.EvidencePopup
@@ -46,34 +47,35 @@ private fun JournalListsPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        Journal()
+        Journal(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 }
 
 @Composable
 fun Journal(
-    modifier: Modifier = Modifier
-        .fillMaxSize()
-        .padding(8.dp),
+    modifier: Modifier = Modifier,
     globalPreferencesViewModel: GlobalPreferencesViewModel =
-        viewModel(factory = GlobalPreferencesViewModel.Factory)
+        viewModel(factory = GlobalPreferencesViewModel.Factory),
+    investigationViewModel: InvestigationViewModel
 ) {
 
     val rtlState = globalPreferencesViewModel.rTLPreference.collectAsStateWithLifecycle()
     val rememberRTL by remember { mutableStateOf(rtlState.value) }
 
     Row(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxSize()
+            .padding(8.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.Top
     ) {
 
         if(rememberRTL) {
-            EvidenceListColumn()
-            GhostListColumn()
+            EvidenceListColumn(investigationViewModel = investigationViewModel)
+            GhostListColumn(investigationViewModel = investigationViewModel)
         } else {
-            GhostListColumn()
-            EvidenceListColumn()
+            GhostListColumn(investigationViewModel = investigationViewModel)
+            EvidenceListColumn(investigationViewModel = investigationViewModel)
         }
 
     }
@@ -81,7 +83,9 @@ fun Journal(
 }
 
 @Composable
-private fun RowScope.GhostListColumn() {
+private fun RowScope.GhostListColumn(
+    investigationViewModel: InvestigationViewModel
+) {
     Column(
         modifier = Modifier
             .weight(1f)
@@ -106,12 +110,16 @@ private fun RowScope.GhostListColumn() {
             )
         }
 
-        GhostList()
+        GhostList(
+            investigationViewModel = investigationViewModel
+        )
     }
 }
 
 @Composable
-private fun RowScope.EvidenceListColumn() {
+private fun RowScope.EvidenceListColumn(
+    investigationViewModel: InvestigationViewModel
+) {
 
     var rememberPopupEvidence by remember { mutableStateOf<EvidenceType?>(null) }
 
@@ -147,7 +155,9 @@ private fun RowScope.EvidenceListColumn() {
                 )
             }
 
-            EvidenceList {
+            EvidenceList(
+                investigationViewModel = investigationViewModel
+            ) {
                 rememberPopupEvidence = it
             }
 

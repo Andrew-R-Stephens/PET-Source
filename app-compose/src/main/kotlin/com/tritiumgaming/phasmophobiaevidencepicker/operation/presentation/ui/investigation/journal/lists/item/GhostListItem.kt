@@ -42,7 +42,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 @Composable
 fun GhostListItem(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel = viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationViewModel,
     ghostScore: GhostScore? = null,
     label: String = ghostScore?.let {
         stringResource(ghostScore.ghostEvidence.ghost.name.toStringResource()) } ?: "Test"

@@ -73,5 +73,4 @@ fun getHamburgerMenuVector(groupColors: List<Color>): ImageVector =
                 close()
             }
         }
-    }
-        .build()
+    }.build()

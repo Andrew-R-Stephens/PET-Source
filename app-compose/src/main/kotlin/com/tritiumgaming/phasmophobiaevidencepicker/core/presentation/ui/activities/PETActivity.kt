@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
@@ -29,6 +30,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions.PermissionsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ThemeConfigurationControl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import kotlinx.coroutines.launch
 
 class PETActivity : AppCompatActivity(),
@@ -39,6 +41,9 @@ class PETActivity : AppCompatActivity(),
 
     private val permissionsViewModel: PermissionsViewModel
             by viewModels { PermissionsViewModel.Factory }
+
+    private val investigationViewModel: InvestigationViewModel
+            by viewModels { InvestigationViewModel.Factory }
 
     /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth

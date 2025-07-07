@@ -2,7 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.screens.PETScreen
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 
 @Composable
@@ -13,11 +14,14 @@ private fun OperationScreenPreview() {
 
 @Composable
 fun OperationScreen(
+    navController: NavHostController = rememberNavController(),
     content: @Composable () -> Unit
 ) {
 
-    PETScreen(
-        content = content
-    )
+    OperationBottomNavBar(
+        navController = navController
+    ) {
+        content()
+    }
 
 }

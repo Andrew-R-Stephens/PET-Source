@@ -3,7 +3,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigatio
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -27,6 +29,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.new
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.MissionsScreen
@@ -53,7 +56,9 @@ fun RootNavigation(
         navController = navController,
         startDestination = NavRoute.NAVIGATION_MAIN_MENU.route,
         enterTransition = { EnterTransition.None },
-        exitTransition = { ExitTransition.None }
+        exitTransition = { ExitTransition.None },
+        popEnterTransition = { EnterTransition.None },
+        popExitTransition = { ExitTransition.None },
     ) {
 
         mainMenuNavigation(
@@ -64,7 +69,9 @@ fun RootNavigation(
             newsletterViewModel = newsletterViewModel
         )
 
-        investigationNavigation(navController)
+        investigationNavigation(
+            navController = navController
+        )
 
     }
 }
@@ -190,11 +197,16 @@ private fun NavGraphBuilder.investigationNavigation(
     ) {
 
         composable(route = NavRoute.SCREEN_INVESTIGATION.route) {
-            InvestigationSoloScreen()
+            InvestigationSoloScreen(
+                navController = navController,
+                investigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
+            )
         }
 
         composable(route = NavRoute.SCREEN_MISSIONS.route) {
-            MissionsScreen()
+            MissionsScreen(
+                navController = navController
+            )
         }
 
         navigation(
@@ -203,11 +215,15 @@ private fun NavGraphBuilder.investigationNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_MAPS_MENU.route) {
-                MapMenuScreen()
+                MapMenuScreen(
+                    navController = navController
+                )
             }
 
             composable(route = NavRoute.SCREEN_MAP_VIEWER.route) {
-                MapViewerScreen()
+                MapViewerScreen(
+                    navController = navController
+                )
             }
 
         }
@@ -218,19 +234,27 @@ private fun NavGraphBuilder.investigationNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_CODEX_MENU.route) {
-                CodexMenuScreen()
+                CodexMenuScreen(
+                    navController = navController
+                )
             }
 
             composable(route = NavRoute.SCREEN_CODEX_EQUIPMENT.route) {
-                CodexEquipmentScreen()
+                CodexEquipmentScreen(
+                    navController = navController
+                )
             }
 
             composable(route = NavRoute.SCREEN_CODEX_POSSESSIONS.route) {
-                CodexPossessionsScreen()
+                CodexPossessionsScreen(
+                    navController = navController
+                )
             }
 
             composable(route = NavRoute.SCREEN_CODEX_ACHIEVEMENTS.route) {
-                CodexAchievementScreen()
+                CodexAchievementScreen(
+                    navController = navController
+                )
             }
 
         }

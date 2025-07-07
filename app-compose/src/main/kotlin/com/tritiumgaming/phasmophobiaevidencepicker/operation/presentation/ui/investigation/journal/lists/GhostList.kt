@@ -35,7 +35,7 @@ private fun GhostListPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        GhostList()
+        GhostList(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
 
         val arrayList = ArrayList<Int>()
     }
@@ -43,8 +43,7 @@ private fun GhostListPreview() {
 
 @Composable
 fun GhostList(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
 
     val context = LocalContext.current
@@ -87,6 +86,7 @@ fun GhostList(
                 GhostListItem(
                     modifier = Modifier
                         .animateItem(),
+                    investigationViewModel = investigationViewModel,
                     ghostScore = ghostsScoreState.value.find {
                         it.ghostEvidence.ghost.id == ghostModel.id }
                 )

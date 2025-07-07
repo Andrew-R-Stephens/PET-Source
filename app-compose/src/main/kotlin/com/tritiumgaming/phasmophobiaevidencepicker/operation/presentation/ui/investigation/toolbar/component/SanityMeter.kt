@@ -29,8 +29,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 @Composable
 fun SanityMeterView(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
     val sanityLevel = investigationViewModel.sanityLevel.collectAsStateWithLifecycle()
     val sanityPercent = sanityLevel.value * .01f

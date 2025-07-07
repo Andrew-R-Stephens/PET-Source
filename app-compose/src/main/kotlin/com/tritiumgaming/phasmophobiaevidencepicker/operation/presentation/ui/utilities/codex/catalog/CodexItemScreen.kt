@@ -2,6 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.u
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.CodexScreen
 
 
@@ -13,10 +15,12 @@ private fun CodexItemScreenPreview() {
 
 @Composable
 fun CodexItemScreen(
+    navController: NavHostController = rememberNavController(),
     content: @Composable () -> Unit
 ) {
 
     CodexScreen(
+        navController = navController,
         content = content
     )
 

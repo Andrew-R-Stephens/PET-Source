@@ -31,7 +31,8 @@ private fun EvidenceListPreview() {
 
 @Composable
 fun EvidenceList(
-    investigationViewModel: InvestigationViewModel = viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationViewModel =
+        viewModel(factory = InvestigationViewModel.Factory),
     onTriggerPopup: (evidence: EvidenceType) -> Unit = {},
 ) {
 

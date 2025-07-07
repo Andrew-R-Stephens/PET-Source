@@ -28,9 +28,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.Holiday22
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.DifficultyConfig
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.MapConfig
@@ -47,7 +50,8 @@ private fun InvestigationSoloScreenPreview() {
         typography = ClassicTypography
     ) {
 
-        InvestigationSoloScreen()
+        InvestigationSoloScreen(
+            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
 
     }
 
@@ -55,35 +59,49 @@ private fun InvestigationSoloScreenPreview() {
 
 @Composable
 fun InvestigationSoloScreen(
-    //content: @Composable () -> Unit
+    navController: NavHostController = rememberNavController(),
+    investigationViewModel: InvestigationViewModel =
+        viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
-    InvestigationScreen (
-        content = { InvestigationSoloContent() }
-    )
+    OperationScreen(
+        navController = navController
+    ) {
+        InvestigationSoloContent(
+            investigationViewModel = investigationViewModel
+        )
+    }
 
 }
 
 @Composable
 private fun InvestigationSoloContent(
-    investigationViewModel: InvestigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel =
+        viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
-    val collapsedState = investigationViewModel.isInvestigationToolsDrawerCollapsed.collectAsStateWithLifecycle()
-    var rememberCollapsed by remember { mutableStateOf(collapsedState) }
-    LaunchedEffect(collapsedState) {
+    val collapsedState =
+        investigationViewModel.isInvestigationToolsDrawerCollapsed.collectAsStateWithLifecycle()
+    //var rememberCollapsed by remember { mutableStateOf(collapsedState) }
+    /*LaunchedEffect(collapsedState) {
         rememberCollapsed = collapsedState
-    }
+    }*/
 
     if(LocalConfiguration.current.orientation == ORIENTATION_PORTRAIT) {
         Column(
             verticalArrangement = Arrangement.Top
         ) {
-            Investigation(collapsedState.value)
+            Investigation(
+                investigationViewModel = investigationViewModel,
+                collapsedState = collapsedState.value
+            )
         }
     } else {
         Row {
-            Investigation(collapsedState.value)
+            Investigation(
+                investigationViewModel = investigationViewModel,
+                collapsedState = collapsedState.value
+            )
         }
     }
 
@@ -92,15 +110,18 @@ private fun InvestigationSoloContent(
 
 @Composable
 private fun ColumnScope.Investigation(
-    collapsedState: Boolean
+    investigationViewModel: InvestigationViewModel,
+    collapsedState: Boolean,
 ) {
     Journal(
         modifier = Modifier
-            .weight(1f, false)
+            .weight(1f, false),
+        investigationViewModel = investigationViewModel
     )
     Toolbar(
         modifier = Modifier
-            .height(48.dp)
+            .height(48.dp),
+        investigationViewModel = investigationViewModel
     )
     Column(
         modifier = Modifier
@@ -112,14 +133,19 @@ private fun ColumnScope.Investigation(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        MapConfig()
-        DifficultyConfig()
+        MapConfig(
+            investigationViewModel = investigationViewModel
+        )
+        DifficultyConfig(
+            investigationViewModel = investigationViewModel
+        )
     }
 }
 
 @Composable
 private fun RowScope.Investigation(
-    collapsedState: Boolean
+    investigationViewModel: InvestigationViewModel,
+    collapsedState: Boolean,
 ) {
 
     Column(
@@ -132,20 +158,27 @@ private fun RowScope.Investigation(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        MapConfig()
-        DifficultyConfig()
+        MapConfig(
+            investigationViewModel = investigationViewModel
+        )
+        DifficultyConfig(
+            investigationViewModel = investigationViewModel
+        )
     }
     Toolbar(
         modifier = Modifier
-            .width(48.dp)
+            .width(48.dp),
+        investigationViewModel = investigationViewModel
     )
-    Journal()
+    Journal(
+        investigationViewModel = investigationViewModel,
+    )
 }
 
 @Composable
 private fun Toolbar(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel = viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationViewModel,
 ) {
 
     Row(

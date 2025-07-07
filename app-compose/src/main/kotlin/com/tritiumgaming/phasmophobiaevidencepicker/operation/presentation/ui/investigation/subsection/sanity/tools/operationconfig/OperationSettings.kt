@@ -37,18 +37,17 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 
 @Composable
 @Preview
-private fun SanityCarouselPreview(
-) {
+private fun SanityCarouselPreview() {
     SelectiveTheme(ClassicPalette, ClassicTypography) {
         SanityConfig(labelRes = R.string.map_name_prison, onClickLeft = {}, onClickRight = {})
-        DifficultyConfig()
-        MapConfig()
+        DifficultyConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        MapConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
         SanityConfig(labelRes = R.string.map_name_prison, onClickLeft = {}, onClickRight = {})
-        DifficultyConfig()
-        MapConfig()
+        DifficultyConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        MapConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 }
 
@@ -125,8 +124,7 @@ private fun SanityConfig(
 @Composable
 fun DifficultyConfig(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
     SanityConfig(
         modifier = modifier,
@@ -142,8 +140,7 @@ fun DifficultyConfig(
 @Composable
 fun MapConfig(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
     SanityConfig(
         modifier = modifier,
