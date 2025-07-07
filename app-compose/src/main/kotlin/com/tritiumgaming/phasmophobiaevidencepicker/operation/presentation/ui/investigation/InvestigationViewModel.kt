@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 import android.os.CountDownTimer
 import android.util.Log
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
@@ -18,7 +19,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
@@ -147,21 +147,16 @@ class InvestigationViewModel(
     /*
     * Ghost Score Handler ---------------------------
     */
-    private val _ghostScores : MutableStateFlow<SnapshotStateList<GhostScore>> =
-        MutableStateFlow(mutableStateListOf())
+    private val _ghostScores : MutableStateFlow<List<GhostScore>> =
+        MutableStateFlow(listOf())
     val ghostScores = _ghostScores.asStateFlow()
     private fun initGhostScores() {
-        _ghostScores.update { mutableStateListOf() }
-
-        val str = StringBuilder()
-        ghostEvidences.forEach {
-            val ghostScore = GhostScore(it)
-            str.append("${ghostScore.ghostEvidence.ghost.id} ${ghostScore.score}, ")
-            _ghostScores.value.add(ghostScore)
+        _ghostScores.update {
+            ghostEvidences.map { GhostScore(it) }
         }
-        Log.d("GhostScores", "Creating New:\n${str}")
+        Log.d("GhostScores", "Creating New")
 
-        initOrder()
+        initGhostOrder()
     }
     private fun getGhostScores(
         ghostModel: GhostType
@@ -175,19 +170,15 @@ class InvestigationViewModel(
     }
 
     /** Order of Ghost IDs **/
-    private val _ghostOrder: MutableStateFlow<SnapshotStateList<String>> =
+    private val _ghostOrder: MutableStateFlow<List<String>> =
         MutableStateFlow(mutableStateListOf())
-    @androidx.compose.runtime.Stable
+    @Stable
     val ghostOrder = _ghostOrder.asStateFlow()
-    private fun initOrder() {
-        _ghostOrder.update { mutableStateListOf() }
-
-        val str = StringBuilder()
-        ghostScores.value.forEachIndexed { index, it ->
-            str.append("${it.ghostEvidence.ghost.id} ${it.score}, ")
-            _ghostOrder.value.add(it.ghostEvidence.ghost.id)
+    private fun initGhostOrder() {
+        _ghostOrder.update {
+            ghostEvidences.map { it.ghost.id }
         }
-        Log.d("GhostOrder", "Creating New:\n${str}")
+        Log.d("GhostOrder", "Creating New")
 
         reorderGhostScores()
     }
