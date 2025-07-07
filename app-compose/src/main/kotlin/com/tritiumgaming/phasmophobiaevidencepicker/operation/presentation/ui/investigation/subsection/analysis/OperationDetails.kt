@@ -92,8 +92,8 @@ fun MapModifierDetails(
         viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
-    val mapNameState = investigationViewModel.currentMapName.collectAsStateWithLifecycle()
-    val rememberMapName by remember { mutableIntStateOf(mapNameState.value) }
+    val mapConfigUiState = investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
+    val rememberMapName by remember { mutableIntStateOf(mapConfigUiState.value.selectedName) }
 
     CategoryColumn {
         Row(

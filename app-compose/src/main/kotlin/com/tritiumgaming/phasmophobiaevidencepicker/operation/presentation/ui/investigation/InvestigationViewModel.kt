@@ -4,7 +4,6 @@ import android.os.CountDownTimer
 import android.util.Log
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -95,6 +94,17 @@ class InvestigationViewModel(
     /*
      * UI STATES
      */
+    private val _mapConfigUiState = MutableStateFlow(OperationMapUiState())
+    val mapConfigUiState = _mapConfigUiState.asStateFlow()
+
+    private val _difficultyConfigUiState = MutableStateFlow(OperationDifficultyUiState())
+    val difficultyConfigUiState = _difficultyConfigUiState.asStateFlow()
+
+    private val _operationConfigToolUiState = MutableStateFlow(OperationConfigUiState(
+        mapConfig = _mapConfigUiState.value,
+        difficultyConfig = _difficultyConfigUiState.value
+    ))
+    val operationConfigToolUiState = _operationConfigToolUiState.asStateFlow()
 
     /*
      * COROUTINES
@@ -284,15 +294,6 @@ class InvestigationViewModel(
     private fun resetEvidenceRulingHandler() {
         initRuledEvidence()
     }
-
-    /*override fun toString(): String {
-        val str = StringBuilder()
-        ruledEvidence.value.forEach {
-            str.append(" [${it.evidence.id}:${it.ruling.value}] ")
-        }
-        return "$str"
-    }*/
-
 
     /*
      * Difficulty Handler ---------------------------
@@ -516,7 +517,6 @@ class InvestigationViewModel(
         tickSanity()
     }
 
-
     /*
      * Timer Handler ---------------------------
      */
@@ -677,46 +677,21 @@ class InvestigationViewModel(
      * MapCarouselHandler ---------------------------
      */
 
-    /* Index */
-    private val _currentMapIndex: MutableStateFlow<Int> =
-        MutableStateFlow(0)
-    private val currentMapIndex = _currentMapIndex.asStateFlow()
     private fun setCurrentMapIndex(
         index: Int
     ) {
-        _currentMapIndex.value = index
-
-        setCurrentMapName()
-        setCurrentMapSize()
-    }
-
-    fun incrementMapIndex() {
-        setCurrentMapIndex(incrementMapIndexUseCase(currentMapIndex.value))
-    }
-
-    fun decrementMapIndex() {
-        setCurrentMapIndex(decrementMapIndexUseCase(currentMapIndex.value))
-    }
-
-    private val _currentMapName = MutableStateFlow<Int>(
-        getSimpleMapNameUseCase(currentMapIndex.value)?.toStringResource() ?: 0
-    )
-    val currentMapName = _currentMapName.asStateFlow()
-    private fun setCurrentMapName() {
-        _currentMapName.update {
-            getSimpleMapNameUseCase(currentMapIndex.value)?.toStringResource() ?: 0
+        _mapConfigUiState.update {
+            it.copy(
+                selectedIndex = index,
+                selectedName = getSimpleMapSizeUseCase(index)?.toStringResource() ?: 0,
+                selectedSize = getSimpleMapSizeUseCase(index)?.toStringResource() ?: 0
+            )
         }
     }
-
-    private val _currentMapSize = MutableStateFlow<Int>(
-        getSimpleMapSizeUseCase(currentMapIndex.value)?.toStringResource() ?: 0
-    )
-    private val currentMapSize = _currentMapSize.asStateFlow()
-    private fun setCurrentMapSize() {
-        _currentMapSize.update {
-            getSimpleMapSizeUseCase(currentMapIndex.value)?.toStringResource() ?: 0
-        }
-    }
+    fun incrementMapIndex() =
+        setCurrentMapIndex(incrementMapIndexUseCase(_mapConfigUiState.value.selectedIndex))
+    fun decrementMapIndex() =
+        setCurrentMapIndex(decrementMapIndexUseCase(_mapConfigUiState.value.selectedIndex))
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation
      * (Setup vs Hunt)
@@ -724,7 +699,7 @@ class InvestigationViewModel(
      * @returns the drop rate multiplier. */
     private fun getCurrentMapModifier(
         timeRemaining: Long = 0L
-    ): Float = getMapModifierUseCase(currentMapSize.value, timeRemaining)
+    ): Float = getMapModifierUseCase(_mapConfigUiState.value.selectedSize, timeRemaining)
 
     init {
         Log.d("InvestigationViewModel", "init")
@@ -889,3 +864,20 @@ class InvestigationViewModel(
     }
 
 }
+
+data class OperationConfigUiState(
+    val mapConfig: OperationMapUiState? = null,
+    val difficultyConfig: OperationDifficultyUiState? = null,
+)
+
+data class OperationMapUiState(
+    val selectedIndex: Int = 0,
+    val selectedName: Int = 0,
+    val selectedSize: Int = 0,
+    val selectedModifier: Int = 0
+)
+
+data class OperationDifficultyUiState(
+    val selectedIndex: Int = 0,
+    val selectedName: Int = 0
+)
