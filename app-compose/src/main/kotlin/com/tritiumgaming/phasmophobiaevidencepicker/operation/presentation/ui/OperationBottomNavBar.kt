@@ -262,7 +262,7 @@ private enum class Destination(
         NavRoute.SCREEN_MISSIONS.route,
         R.drawable.icon_nav_tasks,
         NavOptions.Builder()
-            .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = true)
+            .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = false)
             .setLaunchSingleTop(true)
             .setEnterAnim(0)
             .setExitAnim(0)
@@ -282,7 +282,7 @@ private enum class Destination(
         NavRoute.SCREEN_MAPS_MENU.route,
         R.drawable.icon_nav_mapmenu2,
         NavOptions.Builder()
-            .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = true)
+            .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = false)
             .setLaunchSingleTop(true)
             .setEnterAnim(0)
             .setExitAnim(0)
