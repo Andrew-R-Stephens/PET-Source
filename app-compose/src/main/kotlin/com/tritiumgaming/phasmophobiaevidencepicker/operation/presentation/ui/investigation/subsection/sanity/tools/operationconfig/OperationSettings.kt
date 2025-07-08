@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButton
@@ -126,9 +127,13 @@ fun DifficultyConfig(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel
 ) {
+
+    val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+
     SanityConfig(
         modifier = modifier,
         primaryIcon = R.drawable.ic_puzzle,
+        labelRes = difficultyUiState.value.selectedName,
         onClickLeft = {
             investigationViewModel.decrementDifficultyIndex()
         }, onClickRight = {
@@ -142,9 +147,13 @@ fun MapConfig(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel
 ) {
+
+    val mapUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
+
     SanityConfig(
         modifier = modifier,
         primaryIcon = R.drawable.icon_nav_mapmenu2,
+        labelRes = mapUiState.value.selectedName,
         onClickLeft = {
             investigationViewModel.decrementMapIndex()
         }, onClickRight = {

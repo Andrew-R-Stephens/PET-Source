@@ -103,6 +103,7 @@ fun ToolbarItemList(
 
         Box(modifier = Modifier.padding(4.dp)) {
             val onClick = contentArray[index].onClick
+            
             when(val content = contentArray[index].content) {
                 is Int -> ToolbarItem(content, onClick)
                 is View -> ToolbarItem(contentView = content, onClick)

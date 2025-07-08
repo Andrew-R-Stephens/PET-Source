@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
@@ -867,14 +868,14 @@ data class InvestigationToolbarUiState(
 
 data class OperationMapUiState(
     val selectedIndex: Int = 0,
-    val selectedName: Int = 0,
+    val selectedName: Int = R.string.map_name_campwoodwind,
     val selectedSize: Int = 0,
     val selectedModifier: Int = 0
 )
 
 data class OperationDifficultyUiState(
     val selectedIndex: Int = 0,
-    val selectedName: Int = 0
+    val selectedName: Int = R.string.difficulty_title_default
 )
 
 data class OperationTimerUiState(

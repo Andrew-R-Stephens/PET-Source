@@ -47,7 +47,9 @@ fun RootNavigation(
     accountViewModel: AccountViewModel =
         viewModel(factory = AccountViewModel.Factory),
     newsletterViewModel: NewsletterViewModel =
-        viewModel(factory = NewsletterViewModel.Factory)
+        viewModel(factory = NewsletterViewModel.Factory),
+    investigationViewModel: InvestigationViewModel =
+        viewModel(factory = InvestigationViewModel.Factory)
 ) {
 
     val navController = rememberNavController()
@@ -70,7 +72,8 @@ fun RootNavigation(
         )
 
         investigationNavigation(
-            navController = navController
+            navController = navController,
+            investigationViewModel = investigationViewModel
         )
 
     }
@@ -189,7 +192,8 @@ private fun NavGraphBuilder.mainMenuNavigation(
 }
 
 private fun NavGraphBuilder.investigationNavigation(
-    navController: NavHostController
+    navController: NavHostController,
+    investigationViewModel: InvestigationViewModel
 ) {
     navigation(
         route = NavRoute.NAVIGATION_INVESTIGATION.route,
@@ -199,7 +203,7 @@ private fun NavGraphBuilder.investigationNavigation(
         composable(route = NavRoute.SCREEN_INVESTIGATION.route) {
             InvestigationSoloScreen(
                 navController = navController,
-                investigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
+                investigationViewModel = investigationViewModel
             )
         }
 

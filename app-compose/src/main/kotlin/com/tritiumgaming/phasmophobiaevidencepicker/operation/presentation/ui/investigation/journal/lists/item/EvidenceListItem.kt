@@ -59,15 +59,17 @@ private fun EvidenceItemPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        EvidenceListItem(label = "Test")
+        EvidenceListItem(
+            label = "Test",
+            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
+        )
     }
 }
 
 @Composable
 fun EvidenceListItem(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationViewModel,
     evidence: EvidenceType = EvidenceType(
         id = "test",
         name = EvidenceResources.EvidenceTitle.DOTS,

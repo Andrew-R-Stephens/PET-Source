@@ -25,14 +25,15 @@ private fun EvidenceListPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        EvidenceList()
+        EvidenceList(
+            investigationViewModel = viewModel()
+        )
     }
 }
 
 @Composable
 fun EvidenceList(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationViewModel,
     onTriggerPopup: (evidence: EvidenceType) -> Unit = {},
 ) {
 
@@ -46,6 +47,7 @@ fun EvidenceList(
         items(items = evidenceState.value, key = { it.evidence.id }) { ruledEvidence ->
 
             EvidenceListItem(
+                investigationViewModel = investigationViewModel,
                 evidence = ruledEvidence.evidence
             ) {
                 onTriggerPopup(ruledEvidence.evidence)

@@ -132,6 +132,7 @@ fun OperationBottomNavBar(
                             .sizeIn(maxWidth = 48.dp, maxHeight = 48.dp)
                             .padding(8.dp),
                         selected = navController.currentDestination?.route == destination.route,
+                        enabled = navController.currentDestination?.route != destination.route,
                         onClick = {
                             navController.navigate(
                                 route = destination.route,
@@ -261,7 +262,8 @@ private enum class Destination(
         NavRoute.SCREEN_MISSIONS.route,
         R.drawable.icon_nav_tasks,
         NavOptions.Builder()
-            .setPopUpTo(NavRoute.SCREEN_MISSIONS.route, inclusive = true)
+            .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = true)
+            .setLaunchSingleTop(true)
             .setEnterAnim(0)
             .setExitAnim(0)
             .setPopEnterAnim(0)
@@ -273,13 +275,15 @@ private enum class Destination(
         R.drawable.icon_nav_evidence,
         NavOptions.Builder()
             .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = true)
+            .setLaunchSingleTop(true)
             .build()
     ),
     MAPS(
         NavRoute.SCREEN_MAPS_MENU.route,
         R.drawable.icon_nav_mapmenu2,
         NavOptions.Builder()
-            .setPopUpTo(NavRoute.SCREEN_MAPS_MENU.route, inclusive = true)
+            .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = true)
+            .setLaunchSingleTop(true)
             .setEnterAnim(0)
             .setExitAnim(0)
             .setPopEnterAnim(0)

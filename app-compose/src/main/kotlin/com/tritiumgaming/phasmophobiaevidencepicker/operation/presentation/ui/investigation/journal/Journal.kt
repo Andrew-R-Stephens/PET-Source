@@ -130,6 +130,7 @@ private fun RowScope.EvidenceListColumn(
     ) {
 
         EvidencePopup(
+            investigationViewModel = investigationViewModel,
             evidence = rememberPopupEvidence
         )
 

@@ -50,8 +50,7 @@ fun EvidencePopupPreview() {
 
 @Composable
 fun EvidencePopup(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationViewModel,
     evidence: EvidenceType? = null,
     onDismiss: () -> Unit = {}
 ) {

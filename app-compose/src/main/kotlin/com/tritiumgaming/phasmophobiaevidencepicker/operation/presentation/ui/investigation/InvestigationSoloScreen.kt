@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
@@ -60,8 +61,7 @@ private fun InvestigationSoloScreenPreview() {
 @Composable
 fun InvestigationSoloScreen(
     navController: NavHostController = rememberNavController(),
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
 
     OperationScreen(
@@ -76,19 +76,16 @@ fun InvestigationSoloScreen(
 
 @Composable
 private fun InvestigationSoloContent(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
 
     val investigationToolbarUiState =
         investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
-    //var rememberCollapsed by remember { mutableStateOf(collapsedState) }
-    /*LaunchedEffect(collapsedState) {
-        rememberCollapsed = collapsedState
-    }*/
 
     if(LocalConfiguration.current.orientation == ORIENTATION_PORTRAIT) {
         Column(
+            modifier = Modifier
+                .padding(bottom = 8.dp),
             verticalArrangement = Arrangement.Top
         ) {
             Investigation(
@@ -97,7 +94,11 @@ private fun InvestigationSoloContent(
             )
         }
     } else {
-        Row {
+        Row(
+            modifier = Modifier
+                .padding(start = 8.dp),
+            horizontalArrangement = Arrangement.Start
+        ) {
             Investigation(
                 investigationViewModel = investigationViewModel,
                 collapsedState = investigationToolbarUiState.value.isCollapsed
