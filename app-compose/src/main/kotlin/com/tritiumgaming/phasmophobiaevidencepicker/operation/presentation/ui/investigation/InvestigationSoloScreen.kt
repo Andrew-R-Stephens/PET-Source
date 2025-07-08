@@ -2,6 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.view.View
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -114,19 +116,23 @@ private fun ColumnScope.Investigation(
     investigationViewModel: InvestigationViewModel,
     collapsedState: Boolean,
 ) {
+
     Journal(
         modifier = Modifier
             .weight(1f, false),
         investigationViewModel = investigationViewModel
     )
+
     Toolbar(
         modifier = Modifier
             .height(48.dp),
         investigationViewModel = investigationViewModel
     )
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .animateContentSize()
             .then(
                 if(!collapsedState) Modifier.wrapContentHeight()
                 else Modifier.height(0.dp).alpha(0f)
@@ -155,7 +161,8 @@ private fun RowScope.Investigation(
                 if(collapsedState) Modifier.fillMaxWidth(0f).alpha(0f)
                 else Modifier.fillMaxWidth(.25f)
             )
-            .fillMaxHeight(),
+            .fillMaxHeight()
+            .animateContentSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
