@@ -417,14 +417,14 @@ private fun HeaderNavBar(
     val menuIcon: @Composable () -> Unit = { HamburgerMenuIcon() }
     val infoIcon: @Composable () -> Unit = { InfoIcon() }
     val gearIcon: @Composable () -> Unit = { GearIcon() }
-    val languageIcon: @Composable () -> Unit = { LanguageIcon() }
+    val languageIcon: @Composable () -> Unit = { LanguageIcon {
+        navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
+    } }
     val discordIcon: @Composable () -> Unit = { DiscordIcon() }
     val reviewIcon: @Composable () -> Unit = { ReviewIcon() }
     val accountIcon: @Composable () -> Unit = { AccountIcon() }
     val personIcon: @Composable () -> Unit = { PersonIcon() }
     val storeIcon: @Composable () -> Unit = { StoreIcon() }
-
-    val rememberNewsUpToDate = newsletterViewModel.mainNotificationState.collectAsStateWithLifecycle()
 
     IconDropdownMenu(
         menuIcon,
@@ -432,7 +432,7 @@ private fun HeaderNavBar(
         arrayOf(
             DropdownNavPair(infoIcon, NavRoute.SCREEN_APP_INFO),
             DropdownNavPair(gearIcon, NavRoute.SCREEN_SETTINGS),
-            DropdownNavPair(languageIcon, NavRoute.SCREEN_LANGUAGE),
+            DropdownClickPair(languageIcon),
             DropdownClickPair(discordIcon) {
                 context.startActivity(
                     Intent(
@@ -442,6 +442,8 @@ private fun HeaderNavBar(
             }
         )
     ) { false }
+
+    val rememberNewsUpToDate = newsletterViewModel.mainNotificationState.collectAsStateWithLifecycle()
 
     // News Button
     NotificationIndicator(
