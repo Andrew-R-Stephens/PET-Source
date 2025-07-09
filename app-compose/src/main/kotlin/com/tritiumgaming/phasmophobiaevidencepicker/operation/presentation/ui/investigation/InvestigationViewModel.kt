@@ -10,14 +10,24 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyModifier
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyInitialSanityUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyModifierUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyNameUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyResponseTypeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence
@@ -28,10 +38,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.use
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetEvidenceByIdUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetGhostByIdUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.InitRuledEvidenceUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.GetMapModifierUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.GetSimpleMapSetupModifierUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
@@ -64,6 +76,13 @@ class InvestigationViewModel(
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
     private val getGhostByIdUseCase: GetGhostByIdUseCase,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
+    private val getDifficultyNameUseCase: GetDifficultyNameUseCase,
+    private val getDifficultyModifierUseCase: GetDifficultyModifierUseCase,
+    private val getDifficultyTimeUseCase: GetDifficultyTimeUseCase,
+    private val getDifficultyResponseTypeUseCase: GetDifficultyResponseTypeUseCase,
+    private val getDifficultyInitialSanityUseCase: GetDifficultyInitialSanityUseCase,
+    private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase,
+    private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase,
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
     private val incrementMapIndexUseCase: IncrementMapIndexUseCase,
     private val decrementMapIndexUseCase: DecrementMapIndexUseCase,
@@ -89,9 +108,12 @@ class InvestigationViewModel(
         }
         it.getOrDefault(emptyList())
     }
-    private val difficulties = fetchDifficultiesUseCase().also { it: List<DifficultyModel> ->
-        Log.d("InvestigationViewModel", "DifficultyModel")
-        it.forEach { Log.d("InvestigationViewModel", "\tDifficultyModel: $it") } }
+    /*private val difficulties = fetchDifficultiesUseCase()
+        .getOrDefault(emptyList())
+        .also { it: List<DifficultyModel> ->
+            Log.d("InvestigationViewModel", "DifficultyModel")
+            it.forEach { Log.d("InvestigationViewModel", "\tDifficultyModel: $it") }
+        }*/
     private val codexAchievements = fetchCodexAchievementsUseCase()
     private val codexPossessions = fetchCodexPossessionsUseCase()
     private val codexEquipment = fetchCodexEquipmentUseCase()
@@ -124,7 +146,7 @@ class InvestigationViewModel(
     fun getEvidenceById(evidenceId: String): EvidenceType? = getEvidenceByIdUseCase(evidenceId)
 
     fun reset() {
-        resetTimer(currentDifficultyTime)
+        resetTimer(difficultyUiState.value.time)
         resetInvestigationJournal()
         resetSanity()
         resetTimerPhase()
@@ -157,7 +179,7 @@ class InvestigationViewModel(
         MutableStateFlow(listOf())
     val ghostScores = _ghostScores.asStateFlow()
     private fun initGhostScores() {
-        _ghostScores.update {
+        _ghostScores.update { scores ->
             ghostEvidences.map { GhostScore(it) }
         }
         Log.d("GhostScores", "Creating New")
@@ -218,7 +240,7 @@ class InvestigationViewModel(
         return getGhostScores(ghostModel)
             ?.getEvidenceScore(
                 ruledEvidence = ruledEvidence.value,
-                currentDifficulty = DifficultyType.entries[difficultyUiState.value.selectedIndex]
+                currentDifficulty = DifficultyType.entries[difficultyUiState.value.index]
             ) ?: 1
     }
 
@@ -296,75 +318,36 @@ class InvestigationViewModel(
      */
 
     /* Index */
-    private val _currentDifficultyIndex: MutableStateFlow<Int> =
-        MutableStateFlow(DifficultyType.AMATEUR.ordinal)
-    private val currentDifficultyIndex = _currentDifficultyIndex.asStateFlow()
     private fun setDifficultyIndex(
         index: Int
     ) {
         _difficultyUiState.update {
             it.copy(
-                selectedIndex = index,
-                selectedName = difficulties[currentDifficultyIndex.value].name.toStringResource()
+                index = index,
+                name = getDifficultyNameUseCase(index).getOrDefault(it.name),
+                modifier = getDifficultyModifierUseCase(index).getOrDefault(it.modifier),
+                time = getDifficultyTimeUseCase(index).getOrDefault(it.time),
+                initialSanity = getDifficultyInitialSanityUseCase(index).getOrDefault(it.initialSanity),
+                responseType = getDifficultyResponseTypeUseCase(index).getOrDefault(it.responseType)
             )
         }
 
-        setTimeRemaining(currentDifficultyTime)
+        setTimeRemaining(difficultyUiState.value.time)
         resetTimer()
 
         updateCurrentMaxSanity(DifficultyType.entries[index])
-        updateSanityDrainModifier(currentDifficultyModifier)
+        updateSanityDrainModifier(difficultyUiState.value.modifier)
 
-        updateDifficultyResponseTypeUi()
-    }
-
-    fun incrementDifficultyIndex() {
-
-        var i = currentDifficultyIndex.value + 1
-        if (i >= difficulties.size) { i = 0 }
-
-        setDifficultyIndex(i)
-        audioWarnTriggered = false
-    }
-    fun decrementDifficultyIndex() {
-
-        var i = currentDifficultyIndex.value - 1
-        if (i < 0) { i = difficulties.size - 1 }
-
-        setDifficultyIndex(i)
         audioWarnTriggered = false
     }
 
-    private val currentDifficulty: DifficultyType
-        get() = DifficultyType.entries[currentDifficultyIndex.value]
-
-    fun getDifficultyNameAt(
-        index: Int
-    ): Int {
-        return difficulties[index].name.toStringResource()
-    }
-
-    private val currentDifficultyTime: Long
-        get() = difficulties[currentDifficultyIndex.value].time
-
-    private val currentDifficultyStartSanity: Float
-        get() = difficulties[currentDifficultyIndex.value].initialSanity
-
-    private val _difficultyResponseTypeUi = MutableStateFlow(false)
-    val difficultyResponseTypeUi = _difficultyResponseTypeUi.asStateFlow()
-    private fun updateDifficultyResponseTypeUi() {
-        _difficultyResponseTypeUi.update { currentDifficultyIndex.value < DifficultyType.PROFESSIONAL.ordinal }
-    }
-
-    /** Defaults if the selected index is out of range of available indexes.
-     * @return the difficulty rate multiplier. 1 - default. 0-2 Depending on Map Size. */
-    private val currentDifficultyModifier: Float
-        get() {
-            val diffIndex = currentDifficultyIndex.value
-            if (diffIndex >= 0 && diffIndex < difficulties.size) {
-                return difficulties[diffIndex].modifier
-            }
-            return 1f
+    fun incrementDifficultyIndex() =
+        incrementDifficultyIndexUseCase(difficultyUiState.value.index).getOrNull()?.let { index ->
+            setDifficultyIndex(index)
+        }
+    fun decrementDifficultyIndex() =
+        decrementDifficultyIndexUseCase(difficultyUiState.value.index).getOrNull()?.let { index ->
+            setDifficultyIndex(index)
         }
 
     /*
@@ -431,7 +414,7 @@ class InvestigationViewModel(
     private fun updateSanityDrainModifier(
         currentDifficultyModifier: Float
     ) {
-        val mapModifier = getCurrentMapModifier(timerUiState.value.timeRemaining)
+        val mapModifier = getCurrentMapModifier(timerUiState.value.remainingTime)
         _sanityDrainModifier.update { currentDifficultyModifier * mapModifier }
     }
 
@@ -507,8 +490,7 @@ class InvestigationViewModel(
     /** Defaults all persistent data. */
     private fun resetSanity() {
         //TODO warnTriggered = false
-        setSanityStartTimeByProgress(
-            MAX_SANITY - (currentDifficultyStartSanity))
+        setSanityStartTimeByProgress(MAX_SANITY - difficultyUiState.value.initialSanity)
         tickSanity()
     }
 
@@ -523,7 +505,7 @@ class InvestigationViewModel(
         sanityLevel: Float
     ) {
         _currentTimerPhase.update {
-            if (timerUiState.value.timeRemaining > TIME_MIN) { Phase.SETUP }
+            if (timerUiState.value.remainingTime > TIME_MIN) { Phase.SETUP }
             else {
                 if (sanityLevel < SAFE_MIN_BOUNDS) { Phase.HUNT }
                 else { Phase.ACTION }
@@ -554,11 +536,11 @@ class InvestigationViewModel(
     private fun setTimeRemaining(
         value: Long
     ) {
-        _timerUiState.update { it.copy(timeRemaining = value) }
+        _timerUiState.update { it.copy(remainingTime = value) }
     }
 
     fun displayTime(): String {
-        val breakdown = timerUiState.value.timeRemaining / SECOND_IN_MILLIS
+        val breakdown = timerUiState.value.remainingTime / SECOND_IN_MILLIS
         return FormatterUtils.millisToTime(
             "%s:%s",
             breakdown
@@ -567,7 +549,7 @@ class InvestigationViewModel(
 
     private var liveTimer: CountDownTimer? = null
     private fun setLiveTimer(
-        millisInFuture: Long = timerUiState.value.timeRemaining,
+        millisInFuture: Long = timerUiState.value.remainingTime,
         countDownInterval: Long = 100L
     ) {
         liveTimer = object : CountDownTimer(millisInFuture, countDownInterval) {
@@ -639,31 +621,31 @@ class InvestigationViewModel(
     val canFlash = _canFlash.asStateFlow()
     private fun updateCanFlash() {
 
-        if (timerUiState.value.flashTimeMax == FOREVER) {
+        if (timerUiState.value.maxFlashTime == FOREVER) {
             _canFlash.update { isSanityInsane }
             return
         }
 
-        if (timerUiState.value.flashTimeStart == DEFAULT) {
+        if (timerUiState.value.startFlashTime == DEFAULT) {
             Log.d("Flash", "Start time is default.. now setting to current time")
             _timerUiState.update {
                 it.copy(
-                    flashTimeStart = System.currentTimeMillis(),
-                    timeElapsed = System.currentTimeMillis() - it.flashTimeStart
+                    startFlashTime = System.currentTimeMillis(),
+                    elapsedTime = System.currentTimeMillis() - it.startFlashTime
                 )
             }
             updateCanFlash()
             return
         }
 
-        _canFlash.update { timerUiState.value.timeElapsed <=  timerUiState.value.flashTimeMax }
+        _canFlash.update { timerUiState.value.elapsedTime <=  timerUiState.value.maxFlashTime }
     }
 
     private fun resetTimerPhase() {
         _timerUiState.update {
             it.copy(
-                flashTimeStart = DEFAULT,
-                timeElapsed = System.currentTimeMillis() - it.flashTimeStart
+                startFlashTime = DEFAULT,
+                elapsedTime = System.currentTimeMillis() - it.startFlashTime
             )
         }
         updateCanFlash()
@@ -675,19 +657,19 @@ class InvestigationViewModel(
 
     private fun setCurrentMapIndex(
         index: Int
-    ) {
-        _mapUiState.update {
-            it.copy(
-                selectedIndex = index,
-                selectedName = getSimpleMapNameUseCase(index)?.toStringResource() ?: 0,
-                selectedSize = getSimpleMapSizeUseCase(index)?.toStringResource() ?: 0
-            )
-        }
+    ) = _mapUiState.update {
+        mapUiState.value.copy(
+            index = index,
+            name = getSimpleMapNameUseCase(index) ?: it.name,
+            size = getSimpleMapSizeUseCase(index) ?: it.size
+        )
     }
-    fun incrementMapIndex() =
-        setCurrentMapIndex(incrementMapIndexUseCase(_mapUiState.value.selectedIndex))
+
+    fun incrementMapIndex() {
+        setCurrentMapIndex(incrementMapIndexUseCase(mapUiState.value.index))
+    }
     fun decrementMapIndex() =
-        setCurrentMapIndex(decrementMapIndexUseCase(_mapUiState.value.selectedIndex))
+        setCurrentMapIndex(decrementMapIndexUseCase(mapUiState.value.index))
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation
      * (Setup vs Hunt)
@@ -695,11 +677,12 @@ class InvestigationViewModel(
      * @returns the drop rate multiplier. */
     private fun getCurrentMapModifier(
         timeRemaining: Long = 0L
-    ): Float = getMapModifierUseCase(_mapUiState.value.selectedSize, timeRemaining)
+    ): Float = getMapModifierUseCase(
+        _mapUiState.value.size.toStringResource(),
+        timeRemaining
+    )
 
     init {
-        Log.d("InvestigationViewModel", "init")
-        Log.d("InvestigationViewModel", "collapsed: ${investigationToolbarUiState.value}")
         initGhostScores()
         initRuledEvidence()
         reorderGhostScores()
@@ -716,6 +699,13 @@ class InvestigationViewModel(
         private val getGhostByIdUseCase: GetGhostByIdUseCase,
         private val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
         private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
+        private val getDifficultyNameUseCase: GetDifficultyNameUseCase,
+        private val getDifficultyModifierUseCase: GetDifficultyModifierUseCase,
+        private val getDifficultyTimeUseCase: GetDifficultyTimeUseCase,
+        private val getDifficultyResponseTypeUseCase: GetDifficultyResponseTypeUseCase,
+        private val getDifficultyInitialSanityUseCase: GetDifficultyInitialSanityUseCase,
+        private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase,
+        private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase,
         private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
         private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
         private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
@@ -744,6 +734,13 @@ class InvestigationViewModel(
                     getGhostByIdUseCase = getGhostByIdUseCase,
                     initRuledEvidenceUseCase = initRuledEvidenceUseCase,
                     fetchDifficultiesUseCase = fetchDifficultiesUseCase,
+                    incrementDifficultyIndexUseCase = incrementDifficultyIndexUseCase,
+                    decrementDifficultyIndexUseCase = decrementDifficultyIndexUseCase,
+                    getDifficultyNameUseCase = getDifficultyNameUseCase,
+                    getDifficultyModifierUseCase = getDifficultyModifierUseCase,
+                    getDifficultyTimeUseCase = getDifficultyTimeUseCase,
+                    getDifficultyResponseTypeUseCase = getDifficultyResponseTypeUseCase,
+                    getDifficultyInitialSanityUseCase = getDifficultyInitialSanityUseCase,
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
                     getSimpleMapNameUseCase = getSimpleMapNameUseCase,
                     getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
@@ -780,6 +777,13 @@ class InvestigationViewModel(
                     val fetchGhostEvidencesUseCase = container.fetchGhostEvidencesUseCase
                     val initRuledEvidenceUseCase = container.initRuledEvidenceUseCase
                     val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
+                    val getDifficultyNameUseCase = container.getDifficultyNamesUseCase
+                    val getDifficultyModifierUseCase = container.getDifficultyModifierUseCase
+                    val getDifficultyTimeUseCase = container.getDifficultyTimeUseCase
+                    val getDifficultyResponseTypeUseCase = container.getDifficultyResponseTypeUseCase
+                    val getDifficultyInitialSanityUseCase = container.getDifficultyInitialSanityUseCase
+                    val incrementDifficultyIndexUseCase = container.incrementDifficultyIndexUseCase
+                    val decrementDifficultyIndexUseCase = container.decrementDifficultyIndexUseCase
                     val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
                     val getSimpleMapNameUseCase = container.getSimpleMapNameUseCase
                     val getSimpleMapSizeUseCase = container.getSimpleMapSizeUseCase
@@ -806,6 +810,13 @@ class InvestigationViewModel(
                         initRuledEvidenceUseCase = initRuledEvidenceUseCase,
                         fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
                         fetchDifficultiesUseCase = fetchDifficultiesUseCase,
+                        getDifficultyNameUseCase = getDifficultyNameUseCase,
+                        getDifficultyModifierUseCase = getDifficultyModifierUseCase,
+                        getDifficultyTimeUseCase = getDifficultyTimeUseCase,
+                        getDifficultyResponseTypeUseCase = getDifficultyResponseTypeUseCase,
+                        getDifficultyInitialSanityUseCase = getDifficultyInitialSanityUseCase,
+                        incrementDifficultyIndexUseCase = incrementDifficultyIndexUseCase,
+                        decrementDifficultyIndexUseCase = decrementDifficultyIndexUseCase,
                         fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
                         getSimpleMapNameUseCase = getSimpleMapNameUseCase,
                         getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
@@ -862,32 +873,38 @@ class InvestigationViewModel(
 }
 
 data class InvestigationToolbarUiState(
-    val isCollapsed: Boolean = false,
-    val category: Int = TOOL_SANITY
+    internal val isCollapsed: Boolean = false,
+    internal val category: Int = TOOL_SANITY
 )
 
 data class OperationMapUiState(
-    val selectedIndex: Int = 0,
-    val selectedName: Int = R.string.map_name_campwoodwind,
-    val selectedSize: Int = 0,
-    val selectedModifier: Int = 0
+    internal val index: Int = 0,
+    internal val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
+    internal val size: MapSize = MapSize.SMALL,
+    internal val modifier: Int = 0
 )
 
 data class OperationDifficultyUiState(
-    val selectedIndex: Int = 0,
-    val selectedName: Int = R.string.difficulty_title_default
+    internal val index: Int = 0,
+    internal val name: DifficultyTitle = DifficultyTitle.AMATEUR,
+    internal val modifier: Float = 0f,
+    internal val time: Long = 0L,
+    internal val initialSanity: Float = 0f,
+    internal val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN
 )
 
 data class OperationTimerUiState(
-    val startTime: Long = TIME_DEFAULT,
-    val timeElapsed: Long = DEFAULT,
-    val timeRemaining: Long = 0L,
-    val flashTimeStart: Long = DEFAULT,
-    val flashTimeMax: Long = FOREVER,
+    internal val startTime: Long = TIME_DEFAULT,
+    internal val elapsedTime: Long = DEFAULT,
+    internal val remainingTime: Long = 0L,
+    internal val startFlashTime: Long = DEFAULT,
+    internal val maxFlashTime: Long = FOREVER,
+    internal val paused: Boolean = true
 )
 
 data class OperationPhaseUiState(
-    val currentDifficultyTime: Long = 0L,
-    val currentDifficultyStartSanity: Float = 0f,
-    val currentDifficultyModifier: Float = 0f
+    internal val difficultyTime: Long = 0L,
+    internal val difficultyStartSanity: Float = 0f,
+    internal val difficultyModifier: Float = 0f
 )
+

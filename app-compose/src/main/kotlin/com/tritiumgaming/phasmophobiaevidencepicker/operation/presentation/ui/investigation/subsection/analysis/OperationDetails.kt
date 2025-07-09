@@ -32,6 +32,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import org.jetbrains.annotations.TestOnly
 
@@ -92,13 +93,13 @@ fun MapModifierDetails(
 ) {
 
     val mapConfigUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
-    val rememberMapName by remember { mutableIntStateOf(mapConfigUiState.value.selectedName) }
+    val mapName = mapConfigUiState.value.name.toStringResource()
 
     CategoryColumn {
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             TextCategoryTitle(text = "Map:")
-            TextSubTitle(text = stringResource(rememberMapName))
+            TextSubTitle(text = stringResource(mapName))
         }
         Column(
             modifier = Modifier.padding(PaddingValues(8.dp)),
@@ -124,15 +125,14 @@ fun DifficultyModifierDetails(
 ) {
 
     val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
-    val rememberDifficultyName by remember {
-        mutableIntStateOf(difficultyUiState.value.selectedName) }
+    val difficultyName = difficultyUiState.value.name.toStringResource()
 
     CategoryColumn {
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             TextSubTitle(text = "Difficulty:")
-            TextSubTitle(text = stringResource(rememberDifficultyName))
+            TextSubTitle(text = stringResource(difficultyName))
         }
         Column(
             modifier = Modifier.padding(PaddingValues(8.dp)),

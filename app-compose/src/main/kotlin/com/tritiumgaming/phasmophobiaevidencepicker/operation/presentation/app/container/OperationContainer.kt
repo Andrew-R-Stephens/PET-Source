@@ -33,7 +33,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.useca
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyInitialSanityUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyModifierUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyNameUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyResponseTypeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
@@ -89,6 +96,13 @@ class OperationContainer(
             localSource = difficultyLocalDataSource
         )
     internal val fetchDifficultiesUseCase = FetchDifficultiesUseCase(difficultyRepository)
+    internal val getDifficultyNamesUseCase = GetDifficultyNameUseCase(difficultyRepository)
+    internal val getDifficultyModifierUseCase = GetDifficultyModifierUseCase(difficultyRepository)
+    internal val getDifficultyTimeUseCase = GetDifficultyTimeUseCase(difficultyRepository)
+    internal val getDifficultyResponseTypeUseCase = GetDifficultyResponseTypeUseCase(difficultyRepository)
+    internal val getDifficultyInitialSanityUseCase = GetDifficultyInitialSanityUseCase(difficultyRepository)
+    internal val incrementDifficultyIndexUseCase = IncrementDifficultyIndexUseCase(difficultyRepository)
+    internal val decrementDifficultyIndexUseCase = DecrementDifficultyIndexUseCase(difficultyRepository)
 
     // Mission
     private val missionLocalDataSource: MissionDataSource = MissionLocalDataSource()

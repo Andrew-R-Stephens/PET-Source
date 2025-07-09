@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig
 
+import android.util.Log
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -34,33 +34,35 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 
 @Composable
 @Preview
-private fun SanityCarouselPreview() {
+private fun OperationCarouselPreview() {
     SelectiveTheme(ClassicPalette, ClassicTypography) {
-        SanityConfig(labelRes = R.string.map_name_prison, onClickLeft = {}, onClickRight = {})
+        OperationConfig(label = stringResource(R.string.map_name_prison), onClickLeft = {}, onClickRight = {})
         DifficultyConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
         MapConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
-        SanityConfig(labelRes = R.string.map_name_prison, onClickLeft = {}, onClickRight = {})
+        OperationConfig(label = stringResource(R.string.map_name_prison), onClickLeft = {}, onClickRight = {})
         DifficultyConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
         MapConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 }
 
 @Composable
-private fun SanityConfig(
+private fun OperationConfig(
     modifier: Modifier = Modifier,
     @DrawableRes primaryIcon: Int = R.drawable.ic_selector_inc_unsel,
-    @StringRes labelRes: Int = R.string.difficulty_title_default,
-    label: String = stringResource(labelRes),
+    label: String = stringResource(R.string.difficulty_title_default),
     onClickLeft: () -> Unit,
     onClickRight: () -> Unit
 ) {
+
+    Log.d("SanityConfig", "Label: $label")
 
     Row(
         modifier = modifier
@@ -129,14 +131,16 @@ fun DifficultyConfig(
 ) {
 
     val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+    val difficultyName = difficultyUiState.value.name.toStringResource()
 
-    SanityConfig(
+    OperationConfig(
         modifier = modifier,
         primaryIcon = R.drawable.ic_puzzle,
-        labelRes = difficultyUiState.value.selectedName,
+        label = stringResource(difficultyName),
         onClickLeft = {
             investigationViewModel.decrementDifficultyIndex()
-        }, onClickRight = {
+        },
+        onClickRight = {
             investigationViewModel.incrementDifficultyIndex()
         }
     )
@@ -149,14 +153,16 @@ fun MapConfig(
 ) {
 
     val mapUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
+    val mapName = mapUiState.value.name.toStringResource()
 
-    SanityConfig(
+    OperationConfig(
         modifier = modifier,
         primaryIcon = R.drawable.icon_nav_mapmenu2,
-        labelRes = mapUiState.value.selectedName,
+        label = stringResource(mapName),
         onClickLeft = {
             investigationViewModel.decrementMapIndex()
-        }, onClickRight = {
+        },
+        onClickRight = {
             investigationViewModel.incrementMapIndex()
         }
     )
