@@ -119,10 +119,10 @@ class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
     }
 
     private fun createBillingClient() {
-        billingClient = BillingClient.newBuilder(requireContext())
+        /*billingClient = BillingClient.newBuilder(requireContext())
             .setListener(purchasesUpdatedListener)
             .enablePendingPurchases()
-            .build()
+            .build()*/
 
         Log.d("Billing", "Pending purchases will be handled.")
     }
@@ -330,7 +330,7 @@ class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
                     QueryProductDetailsParams.newBuilder()
                         .setProductList(productsQueryList)
                         .build()
-                billingClient?.queryProductDetailsAsync(queryProductDetailsParams) {
+                /*billingClient?.queryProductDetailsAsync(queryProductDetailsParams) {
                     billingResult: BillingResult, productDetailsList: List<ProductDetails?> ->
                     // check if billingResult process returned productDetailsList
                     if (billingResult.responseCode ==
@@ -343,7 +343,7 @@ class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
                                 buildMtxProductsList(productDetailsList) }
                         } catch (e: Exception) { e.printStackTrace() }
                     }
-                }
+                }*/
             })
             .addOnFailureListener { e: Exception ->
                 Log.d("Billing", "Microtransaction query failed!")

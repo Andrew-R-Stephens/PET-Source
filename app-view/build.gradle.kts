@@ -194,7 +194,7 @@ dependencies {
     /* Material Design 3 */
     implementation(libs.androidx.compose.material3)
     // Optional - Add window size utils
-    implementation(libs.androidx.compose.material3.windowSizeClass)
+    //implementation(libs.androidx.compose.material3.windowSizeClass)
 
     // Compose UI
     implementation(libs.androidx.compose.ui.core)
