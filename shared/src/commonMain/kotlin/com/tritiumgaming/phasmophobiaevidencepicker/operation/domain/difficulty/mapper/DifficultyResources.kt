@@ -42,4 +42,9 @@ class DifficultyResources {
         INSANITY
     }
 
+    enum class DifficultyResponseType {
+        KNOWN,
+        UNKNOWN
+    }
+
 }

@@ -33,4 +33,8 @@ class SimpleWorldMap(
         }
     }
 
+    override fun toString(): String {
+        return "SimpleWorldMap(mapId='$mapId', mapName=$mapName, mapSize=$mapSize, thumbnailImage=$thumbnailImage, mapFloors=$mapFloors, defaultFloor=$defaultFloor)\n"
+    }
+
 }

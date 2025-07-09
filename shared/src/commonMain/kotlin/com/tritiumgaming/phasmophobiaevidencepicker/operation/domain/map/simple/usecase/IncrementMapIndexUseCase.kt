@@ -10,10 +10,11 @@ class IncrementMapIndexUseCase(
         val result = simpleMapsRepository.getMaps()
 
         result.exceptionOrNull()?.printStackTrace()
+        val maps = result.getOrNull()
 
         var newIndex = currentIndex
-        result.getOrNull()?.let { list ->
-            var newIndex = currentIndex + 1
+        maps?.let { list ->
+            newIndex ++
             if (newIndex >= list.size) { newIndex = 0 }
         }
         return newIndex

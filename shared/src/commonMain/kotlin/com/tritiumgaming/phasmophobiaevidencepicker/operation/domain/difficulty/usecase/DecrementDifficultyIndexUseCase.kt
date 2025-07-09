@@ -1,16 +1,26 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
 
-class FetchDifficultiesUseCase(
+class DecrementDifficultyIndexUseCase(
     private val difficultyRepository: DifficultyRepository
 ) {
-    operator fun invoke(): Result<List<DifficultyModel>> {
+    operator fun invoke(
+        currentIndex: Int
+    ): Result<Int> {
+
         val result = difficultyRepository.getDifficulties()
 
         result.exceptionOrNull()?.printStackTrace()
 
-        return result
+        val difficulties = result.getOrNull()
+        var newIndex = currentIndex
+        difficulties?.let { list ->
+            newIndex --
+            if (newIndex < 0) { newIndex = list.size - 1 }
+        }
+
+        return Result.success(newIndex)
+
     }
 }

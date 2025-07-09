@@ -1,16 +1,23 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
 
-class FetchDifficultiesUseCase(
+class GetDifficultyTimeUseCase(
     private val difficultyRepository: DifficultyRepository
 ) {
-    operator fun invoke(): Result<List<DifficultyModel>> {
+    operator fun invoke(index: Int): Result<Long> {
         val result = difficultyRepository.getDifficulties()
 
         result.exceptionOrNull()?.printStackTrace()
 
-        return result
+        return try {
+            val time = result.getOrNull()?.let {
+                it[index].time
+            } ?: 0L
+
+            Result.success(time)
+        } catch (e: Exception) {
+            Result.failure(Exception("Could not acquire difficulty name", e))
+        }
     }
 }
