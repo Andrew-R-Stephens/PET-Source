@@ -19,88 +19,191 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 
 @Composable
 fun OperationNavDrawer(
+    navController: NavHostController = rememberNavController(),
     content: @Composable () -> Unit,
     drawerState: DrawerState = DrawerState(DrawerValue.Closed)
 ) {
 
     ModalNavigationDrawer(
+
         gesturesEnabled = false,
         drawerContent = {
-            ModalDrawerSheet {
+            ModalDrawerSheet(
+                drawerContainerColor = LocalPalette.current.surface.onColor,
+                drawerTonalElevation = 16.dp
+            ) {
                 Column(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
                     Spacer(Modifier.height(12.dp))
-                    Text("Drawer Title", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleLarge)
-                    HorizontalDivider()
 
-                    Text("Section 1", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleMedium)
                     NavigationDrawerItem(
                         modifier = Modifier
                             .height(48.dp)
                             .wrapContentWidth()
                             .padding(4.dp),
-                        label = { Text("Settings") },
+                        label = {
+                            Text(
+                                text = stringResource(R.string.general_navigation_home),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    fontSize = 18.sp,
+                                    color = LocalPalette.current.textFamily.body
+                                )
+                            )
+                        },
                         selected = false,
                         icon = {
                             Icon(
-                                painter = painterResource(R.drawable.icon_nav_tasks),
-                                contentDescription = null) },
-                        badge = { Text("20") }, // Placeholder
-                        onClick = { /* Handle click */ }
+                                painter = painterResource(R.drawable.ic_nav_home),
+                                contentDescription = null,
+                                tint = LocalPalette.current.textFamily.body
+                            )
+                        },
+                        onClick = {
+                            navController.navigate(NavRoute.SCREEN_INVESTIGATION.route)
+                        }
                     )
+
+                    Text(
+                        text = stringResource(R.string.general_navigation_primary),
+                        modifier = Modifier.padding(16.dp),
+                        style = LocalTypography.current.primary.bold.copy (
+                            fontSize = 24.sp,
+                        ),
+                        color = LocalPalette.current.textFamily.primary
+                    )
+
                     NavigationDrawerItem(
                         modifier = Modifier
                             .height(48.dp)
                             .wrapContentWidth()
                             .padding(4.dp),
-                        label = { Text("Settings") },
+                        label = {
+                            Text(
+                                text = stringResource(R.string.investigation_section_title_evidence),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    fontSize = 18.sp,
+                                    color = LocalPalette.current.textFamily.body
+                                )
+                            )
+                        },
+                        selected = false,
+                        icon = {
+                            Icon(
+                                painter = painterResource(R.drawable.icon_nav_evidence),
+                                contentDescription = null,
+                                tint = LocalPalette.current.textFamily.body
+                            )
+                        },
+                        onClick = {
+                            navController.navigate(NavRoute.SCREEN_INVESTIGATION.route)
+                        }
+                    )
+
+                    NavigationDrawerItem(
+                        modifier = Modifier
+                            .height(48.dp)
+                            .wrapContentWidth()
+                            .padding(4.dp),
+                        label = {
+                            Text(
+                                text = stringResource(R.string.general_tasks_button),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    fontSize = 18.sp,
+                                    color = LocalPalette.current.textFamily.body
+                                )
+                            )
+                        },
                         selected = false,
                         icon = {
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_tasks),
-                                contentDescription = null) },
-                        badge = { Text("20") }, // Placeholder
-                        onClick = { /* Handle click */ }
+                                contentDescription = null,
+                                tint = LocalPalette.current.textFamily.body
+                            )
+                        },
+                        onClick = {
+                            navController.navigate(NavRoute.SCREEN_MISSIONS.route)
+                        }
+                    )
+
+                    NavigationDrawerItem(
+                        modifier = Modifier
+                            .height(48.dp)
+                            .wrapContentWidth()
+                            .padding(4.dp),
+                        label = {
+                            Text(
+                                text = stringResource(R.string.general_maps_button),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    fontSize = 18.sp,
+                                    color = LocalPalette.current.textFamily.body
+                                )
+                            )
+                        },
+                        selected = false,
+                        icon = {
+                            Icon(
+                                painter = painterResource(R.drawable.icon_nav_mapmenu2),
+                                contentDescription = null,
+                                tint = LocalPalette.current.textFamily.body
+                            )
+                        },
+                        onClick = {
+                            navController.navigate(NavRoute.SCREEN_MAPS_MENU.route)
+                        }
                     )
 
                     HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
 
-                    Text("Section 2", modifier = Modifier.padding(16.dp), style = MaterialTheme.typography.titleMedium)
-                    NavigationDrawerItem(
-                        modifier = Modifier
-                            .height(48.dp)
-                            .wrapContentWidth()
-                            .padding(4.dp),
-                        label = { Text("Settings") },
-                        selected = false,
-                        icon = {
-                            Icon(
-                                painter = painterResource(R.drawable.icon_nav_tasks),
-                                contentDescription = null) },
-                        badge = { Text("20") }, // Placeholder
-                        onClick = { /* Handle click */ }
+                    Text(
+                        text = stringResource(R.string.general_navigation_tools),
+                        modifier = Modifier.padding(16.dp),
+                        style = LocalTypography.current.primary.bold.copy (
+                            fontSize = 24.sp,
+                        ),
+                        color = LocalPalette.current.textFamily.primary
                     )
+
                     NavigationDrawerItem(
                         modifier = Modifier
                             .height(48.dp)
                             .wrapContentWidth()
                             .padding(4.dp),
-                        label = { Text("Settings") },
+                        label = {
+                            Text(
+                                text = stringResource(R.string.general_codex_button),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    fontSize = 18.sp,
+                                    color = LocalPalette.current.textFamily.body
+                                )
+                            )
+                        },
                         selected = false,
                         icon = {
                             Icon(
-                                painter = painterResource(R.drawable.icon_nav_tasks),
-                                contentDescription = null) },
-                        badge = { Text("20") }, // Placeholder
-                        onClick = { /* Handle click */ }
+                                painter = painterResource(R.drawable.icon_nav_codex),
+                                contentDescription = null,
+                                tint = LocalPalette.current.textFamily.body
+                            )
+                        },
+                        onClick = {
+                            navController.navigate(NavRoute.SCREEN_MAPS_MENU.route)
+                        }
                     )
 
                     Spacer(Modifier.height(12.dp))

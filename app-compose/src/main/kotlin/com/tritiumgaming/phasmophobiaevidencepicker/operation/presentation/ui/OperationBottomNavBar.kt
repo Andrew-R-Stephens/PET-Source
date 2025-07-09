@@ -3,9 +3,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarDefaults
@@ -55,11 +58,14 @@ fun OperationBottomNavBar(
 
     Scaffold(
         bottomBar = {
+
             NavigationBar(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                contentColor = LocalPalette.current.surface.onColor,
-                containerColor = LocalPalette.current.surface.onColor,
+                    .fillMaxWidth()
+                    .heightIn(min = 48.dp, max = 80.dp)
+                    .wrapContentHeight(),
+                contentColor = LocalPalette.current.surface.color,
+                containerColor = LocalPalette.current.surface.color,
                 windowInsets = NavigationBarDefaults.windowInsets,
             ) {
 
@@ -71,8 +77,7 @@ fun OperationBottomNavBar(
                     ),
                     modifier = Modifier
                         .weight(1f, true)
-                        .sizeIn(maxWidth = 48.dp, maxHeight = 48.dp)
-                        .padding(8.dp),
+                        .sizeIn(maxWidth = 24.dp, maxHeight = 24.dp),
                     selected = rememberDrawerState.isOpen,
                     onClick = {
                         scope.launch {
@@ -117,8 +122,7 @@ fun OperationBottomNavBar(
                         ),
                         modifier = Modifier
                             .weight(1f, true)
-                            .sizeIn(maxWidth = 48.dp, maxHeight = 48.dp)
-                            .padding(8.dp),
+                            .sizeIn(maxWidth = 28.dp, maxHeight = 28.dp),
                         selected = navController.currentDestination?.route == destination.route,
                         enabled = navController.currentDestination?.route != destination.route,
                         onClick = {
@@ -153,6 +157,7 @@ fun OperationBottomNavBar(
         ) {
 
             OperationNavDrawer(
+                navController = navController,
                 content = content,
                 drawerState = rememberDrawerState
             )
@@ -167,6 +172,14 @@ private enum class Destination(
     @DrawableRes val icon: Int,
     val navOptions: NavOptions? = null
 ) {
+    INVESTIGATION(
+        NavRoute.SCREEN_INVESTIGATION.route,
+        R.drawable.icon_nav_evidence,
+        NavOptions.Builder()
+            .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = true)
+            .setLaunchSingleTop(true)
+            .build()
+    ),
     MISSIONS(
         NavRoute.SCREEN_MISSIONS.route,
         R.drawable.icon_nav_tasks,
@@ -177,14 +190,6 @@ private enum class Destination(
             .setExitAnim(0)
             .setPopEnterAnim(0)
             .setPopExitAnim(0)
-            .build()
-    ),
-    INVESTIGATION(
-        NavRoute.SCREEN_INVESTIGATION.route,
-        R.drawable.icon_nav_evidence,
-        NavOptions.Builder()
-            .setPopUpTo(NavRoute.SCREEN_INVESTIGATION.route, inclusive = true)
-            .setLaunchSingleTop(true)
             .build()
     ),
     MAPS(

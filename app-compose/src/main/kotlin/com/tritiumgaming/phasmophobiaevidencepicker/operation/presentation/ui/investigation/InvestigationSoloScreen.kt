@@ -134,8 +134,13 @@ private fun ColumnScope.Investigation(
             .fillMaxWidth()
             .animateContentSize()
             .then(
-                if(!collapsedState) Modifier.wrapContentHeight()
-                else Modifier.height(0.dp).alpha(0f)
+                if(!collapsedState)
+                    Modifier
+                        .wrapContentHeight()
+                else
+                    Modifier
+                        .height(0.dp)
+                        .alpha(0f)
             ),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
