@@ -9,8 +9,17 @@ class DifficultyRepositoryImpl(
     val localSource: DifficultyDataSource
 ): DifficultyRepository {
 
+    var difficulties: List<DifficultyModel> = emptyList()
+
     override fun getDifficulties(): Result<List<DifficultyModel>> {
-        return localSource.fetchDifficulties().map { dto -> dto.toDomain() }
+
+        if(difficulties.isEmpty()) {
+            difficulties = localSource.fetchDifficulties()
+                .map { dto -> dto.toDomain() }
+                .getOrDefault(emptyList())
+        }
+
+        return Result.success(difficulties)
     }
 
 }
