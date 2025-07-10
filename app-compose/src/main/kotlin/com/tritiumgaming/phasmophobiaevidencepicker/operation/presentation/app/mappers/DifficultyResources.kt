@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyInitialSanity
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyModifier
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTime
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
 
@@ -42,4 +43,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
         DifficultyInitialSanity.PROFESSIONAL -> R.fraction.difficulty_initialSanity_professional
         DifficultyInitialSanity.NIGHTMARE -> R.fraction.difficulty_initialSanity_nightmare
         DifficultyInitialSanity.INSANITY -> R.fraction.difficulty_initialSanity_insanity
+    }
+
+@StringRes fun DifficultyResponseType.toStringResource(): Int =
+    when (this) {
+        DifficultyResponseType.KNOWN -> R.string.difficulty_response_known
+        DifficultyResponseType.UNKNOWN -> R.string.difficulty_response_unknown
     }

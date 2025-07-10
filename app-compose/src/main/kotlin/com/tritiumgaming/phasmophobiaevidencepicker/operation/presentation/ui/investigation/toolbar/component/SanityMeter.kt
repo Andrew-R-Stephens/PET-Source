@@ -31,8 +31,8 @@ fun SanityMeterView(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel
 ) {
-    val sanityLevel = investigationViewModel.sanityLevel.collectAsStateWithLifecycle()
-    val sanityPercent = sanityLevel.value * .01f
+    val sanityLevel = investigationViewModel.sanityUiState.collectAsStateWithLifecycle()
+    val sanityPercent = sanityLevel.value.sanityLevel * .01f
 
     Box(
         modifier = modifier

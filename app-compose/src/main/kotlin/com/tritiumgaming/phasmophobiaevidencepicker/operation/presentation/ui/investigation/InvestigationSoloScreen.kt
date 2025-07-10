@@ -2,8 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.view.View
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -14,14 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -33,17 +27,22 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import androidx.room.util.TableInfo
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.GearIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.InfoIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.Holiday22
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.DifficultyConfig
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.MapConfig
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.analysis.OperationDetails
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.DifficultyConfigCarousel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.MapConfigCarousel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.CollapseButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ResetButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolBarItemPair
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.component.SanityMeterView
 
 @Composable
 @Preview
@@ -117,13 +116,17 @@ private fun ColumnScope.Investigation(
     collapsedState: Boolean,
 ) {
 
+    val investigationToolbarUiState =
+        investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
+    val section = investigationToolbarUiState.value.category
+
     Journal(
         modifier = Modifier
             .weight(1f, false),
         investigationViewModel = investigationViewModel
     )
 
-    Toolbar(
+    OperationToolbar(
         modifier = Modifier
             .height(48.dp),
         investigationViewModel = investigationViewModel
@@ -132,10 +135,10 @@ private fun ColumnScope.Investigation(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .animateContentSize()
             .then(
-                if(!collapsedState)
+                if (!collapsedState)
                     Modifier
+                        .alpha(1f)
                         .wrapContentHeight()
                 else
                     Modifier
@@ -145,12 +148,10 @@ private fun ColumnScope.Investigation(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        MapConfig(
-            investigationViewModel = investigationViewModel
-        )
-        DifficultyConfig(
-            investigationViewModel = investigationViewModel
-        )
+        when(section) {
+            0 -> ToolbarConfigurationSection(investigationViewModel = investigationViewModel)
+            1 -> ToolbarOperationAnalysis(investigationViewModel = investigationViewModel)
+        }
     }
 }
 
@@ -160,25 +161,28 @@ private fun RowScope.Investigation(
     collapsedState: Boolean,
 ) {
 
+    val investigationToolbarUiState =
+        investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
+    val section = investigationToolbarUiState.value.category
+
     Column(
         modifier = Modifier
             .then(
-                if(collapsedState) Modifier.fillMaxWidth(0f).alpha(0f)
+                if (collapsedState) Modifier
+                    .fillMaxWidth(0f)
+                    .alpha(0f)
                 else Modifier.fillMaxWidth(.25f)
             )
-            .fillMaxHeight()
-            .animateContentSize(),
+            .fillMaxHeight(),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        MapConfig(
-            investigationViewModel = investigationViewModel
-        )
-        DifficultyConfig(
-            investigationViewModel = investigationViewModel
-        )
+        when(section) {
+            0 -> ToolbarConfigurationSection(investigationViewModel = investigationViewModel)
+            1 -> ToolbarOperationAnalysis(investigationViewModel = investigationViewModel)
+        }
     }
-    Toolbar(
+    OperationToolbar(
         modifier = Modifier
             .width(48.dp),
         investigationViewModel = investigationViewModel
@@ -189,12 +193,40 @@ private fun RowScope.Investigation(
 }
 
 @Composable
-private fun Toolbar(
+private fun ColumnScope.ToolbarConfigurationSection(
+    investigationViewModel: InvestigationViewModel,
+) {
+    MapConfigCarousel(
+        investigationViewModel = investigationViewModel
+    )
+    DifficultyConfigCarousel(
+        investigationViewModel = investigationViewModel
+    )
+    SanityMeterView(
+        modifier = Modifier
+            .size(64.dp),
+        investigationViewModel = investigationViewModel
+    )
+}
+
+@Composable
+private fun ColumnScope.ToolbarOperationAnalysis(
+    investigationViewModel: InvestigationViewModel
+) {
+    OperationDetails(
+        investigationViewModel = investigationViewModel
+    )
+}
+
+
+@Composable
+private fun OperationToolbar(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel,
 ) {
     val investigationToolbarUiState =
         investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
+    val section = investigationToolbarUiState.value.category
 
     Row(
         modifier = modifier
@@ -211,10 +243,20 @@ private fun Toolbar(
                 }
             }),
             ToolBarItemPair(@Composable {
-                ResetButton(
-                    onClick = { investigationViewModel.resetInvestigationJournal() }
-                )
+                ResetButton {
+                    investigationViewModel.resetInvestigationJournal()
+                }
             }),
+            ToolBarItemPair(@Composable {
+                GearIcon()
+            }) {
+                investigationViewModel.setInvestigationToolsCategory(0)
+            },
+            ToolBarItemPair(@Composable {
+                InfoIcon()
+            }) {
+                investigationViewModel.setInvestigationToolsCategory(1)
+            },
             ToolBarItemPair(View(LocalContext.current))
         )
 

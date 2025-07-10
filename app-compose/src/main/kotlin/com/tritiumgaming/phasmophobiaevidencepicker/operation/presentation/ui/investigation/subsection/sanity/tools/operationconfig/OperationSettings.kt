@@ -12,8 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.text.BasicText
-import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,20 +40,20 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 @Preview
 private fun OperationCarouselPreview() {
     SelectiveTheme(ClassicPalette, ClassicTypography) {
-        OperationConfig(label = stringResource(R.string.map_name_prison), onClickLeft = {}, onClickRight = {})
-        DifficultyConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
-        MapConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        OperationConfigCarousel(label = stringResource(R.string.map_name_prison), onClickLeft = {}, onClickRight = {})
+        DifficultyConfigCarousel(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        MapConfigCarousel(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
-        OperationConfig(label = stringResource(R.string.map_name_prison), onClickLeft = {}, onClickRight = {})
-        DifficultyConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
-        MapConfig(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        OperationConfigCarousel(label = stringResource(R.string.map_name_prison), onClickLeft = {}, onClickRight = {})
+        DifficultyConfigCarousel(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        MapConfigCarousel(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 }
 
 @Composable
-private fun OperationConfig(
+private fun OperationConfigCarousel(
     modifier: Modifier = Modifier,
     @DrawableRes primaryIcon: Int = R.drawable.ic_selector_inc_unsel,
     label: String = stringResource(R.string.difficulty_title_default),
@@ -98,18 +97,24 @@ private fun OperationConfig(
             Box(
                 modifier = Modifier
                     .weight(1f)
+                    .wrapContentHeight()
+                    .fillMaxWidth()
                     .align(Alignment.CenterVertically),
                 contentAlignment = Alignment.Center
             ) {
 
-                BasicText(
+                Text(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .wrapContentHeight()
+                        .fillMaxWidth(),
                     text = label,
-                    style = LocalTypography.current.secondary.regular.copy(
-                        color = LocalPalette.current.textFamily.body,
-                        textAlign = TextAlign.Center
-                    ),
-                    autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, maxFontSize = 18.sp, stepSize = 2.sp)
+                    style = LocalTypography.current.secondary.regular,
+                    textAlign = TextAlign.Center,
+                    color = LocalPalette.current.textFamily.body,
+                    fontSize = 18.sp
                 )
+
             }
 
             PETImageButton(
@@ -125,7 +130,7 @@ private fun OperationConfig(
 }
 
 @Composable
-fun DifficultyConfig(
+fun DifficultyConfigCarousel(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel
 ) {
@@ -133,7 +138,7 @@ fun DifficultyConfig(
     val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
     val difficultyName = difficultyUiState.value.name.toStringResource()
 
-    OperationConfig(
+    OperationConfigCarousel(
         modifier = modifier,
         primaryIcon = R.drawable.ic_puzzle,
         label = stringResource(difficultyName),
@@ -147,7 +152,7 @@ fun DifficultyConfig(
 }
 
 @Composable
-fun MapConfig(
+fun MapConfigCarousel(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel
 ) {
@@ -155,7 +160,7 @@ fun MapConfig(
     val mapUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
     val mapName = mapUiState.value.name.toStringResource()
 
-    OperationConfig(
+    OperationConfigCarousel(
         modifier = modifier,
         primaryIcon = R.drawable.icon_nav_mapmenu2,
         label = stringResource(mapName),

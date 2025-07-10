@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -35,6 +37,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.Color
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import org.jetbrains.annotations.TestOnly
+import java.util.Locale
 
 @Composable
 @Preview
@@ -48,52 +51,51 @@ private fun OperationDetailsPreview(
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        OperationDetails()
+        OperationDetails(investigationViewModel = investigationViewModel)
     }
 }
 
 @Composable
-fun OperationDetails() {
-    Box(
+fun OperationDetails(
+    investigationViewModel: InvestigationViewModel
+) {
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .background(LocalPalette.current.surface.color)
+            /*.verticalScroll(rememberScrollState())*/
     ) {
-        Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
-        ) {
-            PhaseModifierDetails()
-            MapModifierDetails()
-            DifficultyModifierDetails()
-            ActiveGhostModifierDetails()
-        }
+        PhaseModifierDetails(investigationViewModel = investigationViewModel)
+        MapModifierDetails(investigationViewModel = investigationViewModel)
+        DifficultyModifierDetails(investigationViewModel = investigationViewModel)
+        ActiveGhostModifierDetails(investigationViewModel = investigationViewModel)
     }
 }
 
 @Composable
 fun PhaseModifierDetails(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
 
-    val phaseState = investigationViewModel.currentTimerPhase.collectAsStateWithLifecycle()
+    val phaseState = investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
     val rememberPhase by remember { mutableStateOf(phaseState.value) }
 
     CategoryRow {
         TextCategoryTitle(text = "Phase:")
-        TextSubTitle(text = rememberPhase.name)
+        TextSubTitle(text = rememberPhase.currentPhase.name)
     }
 
 }
 
 @Composable
 fun MapModifierDetails(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
 
     val mapConfigUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
     val mapName = mapConfigUiState.value.name.toStringResource()
+    val mapSize = mapConfigUiState.value.size.toStringResource()
+    val mapModifiers = mapConfigUiState.value.modifier
 
     CategoryColumn {
         Row(
@@ -107,11 +109,19 @@ fun MapModifierDetails(
         ) {
             SubRow {
                 TextSubTitle(text = "Size:")
-                TextSubTitle(text = "<size-name>")
+                TextSubTitle(text = stringResource(mapSize))
             }
             SubRow {
-                TextSubTitle(text = "Modifier:")
-                TextSubTitle(text = "<size-modifier>")
+                TextSubTitle(text = "Setup Modifier:")
+                TextSubTitle(
+                    text = String.format(Locale.getDefault(), "%.2f", mapModifiers.setupModifier)
+                )
+            }
+            SubRow {
+                TextSubTitle(text = "Action Modifier:")
+                TextSubTitle(
+                    text = String.format(Locale.getDefault(), "%.2f", mapModifiers.normalModifier)
+                )
             }
         }
     }
@@ -120,12 +130,14 @@ fun MapModifierDetails(
 
 @Composable
 fun DifficultyModifierDetails(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
 
     val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
     val difficultyName = difficultyUiState.value.name.toStringResource()
+    val difficultyTime = difficultyUiState.value.time
+    val difficultyModifier = difficultyUiState.value.modifier
+    val difficultyResponseType = difficultyUiState.value.responseType
 
     CategoryColumn {
         Row(
@@ -138,12 +150,16 @@ fun DifficultyModifierDetails(
             modifier = Modifier.padding(PaddingValues(8.dp)),
             verticalArrangement = Arrangement.spacedBy(8.dp)) {
             SubRow {
-                TextSubTitle(text = "Setup Phase:")
-                TextSubTitle(text = "<setup-modifier>")
+                TextSubTitle(text = "Sanity Drain Modifier:")
+                TextSubTitle(text = "$difficultyModifier")
             }
             SubRow {
-                TextSubTitle(text = "Action Phase:")
-                TextSubTitle(text = "<action-modifier>")
+                TextSubTitle(text = "Setup Time:")
+                TextSubTitle(text = "${difficultyTime / 60000} minutes")
+            }
+            SubRow {
+                TextSubTitle(text = "Ghost Response Type:")
+                TextSubTitle(text = stringResource(difficultyResponseType.toStringResource()))
             }
         }
     }
@@ -151,38 +167,47 @@ fun DifficultyModifierDetails(
 
 @Composable
 fun ActiveGhostModifierDetails(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+    investigationViewModel: InvestigationViewModel
 ) {
+    val ghosts = investigationViewModel.ghostScores.collectAsStateWithLifecycle()
+
     CategoryColumn {
+
         TextCategoryTitle(text = "Ghosts")
 
-        Column(
+        LazyColumn(
             modifier = Modifier.padding(PaddingValues(8.dp))
         ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                TextSubTitle(text = "Hunt Sanity Threshold:")
-            }
-            Column(
-                modifier = Modifier.padding(PaddingValues(8.dp)),
-                verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                SubRow {
-                    TextSubTitle(text = "Earliest:")
-                    TextSubTitle(text = "<setup-modifier>")
+            items(
+                items = ghosts.value.filter { score ->
+                    score.score.value >= 0 &&
+                            !score.forcefullyRejected.value }
+            ) { ghost ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    TextSubTitle(text = "Hunt Sanity Threshold:")
                 }
-                SubRow {
-                    TextSubTitle(text = "Latest:")
-                    TextSubTitle(text = "<action-modifier>")
+                Column(
+                    modifier = Modifier.padding(PaddingValues(8.dp)),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    SubRow {
+                        TextSubTitle(text = "Earliest:")
+                        TextSubTitle(text = "<setup-modifier>")
+                    }
+                    SubRow {
+                        TextSubTitle(text = "Latest:")
+                        TextSubTitle(text = "<action-modifier>")
+                    }
                 }
             }
+
         }
     }
 }
 
 @Composable
-fun CategoryColumn(
+private fun CategoryColumn(
     content: @Composable () -> Unit = {}
 ) {
     Column(
@@ -206,7 +231,7 @@ fun CategoryColumn(
 }
 
 @Composable
-fun CategoryRow(
+private fun CategoryRow(
     content: @Composable () -> Unit = {}
 ) {
     Row(
@@ -230,7 +255,7 @@ fun CategoryRow(
 }
 
 @Composable
-fun SubRow(
+private fun SubRow(
     content: @Composable () -> Unit = {}
 ) {
     Row(
@@ -242,7 +267,7 @@ fun SubRow(
 }
 
 @Composable
-fun TextCategoryTitle(text: String) {
+private fun TextCategoryTitle(text: String) {
     Text(
         text = text,
         color = LocalPalette.current.textFamily.body
@@ -250,7 +275,7 @@ fun TextCategoryTitle(text: String) {
 }
 
 @Composable
-fun TextSubTitle(text: String) {
+private fun TextSubTitle(text: String) {
     Text(
         text = text,
         color = LocalPalette.current.textFamily.body

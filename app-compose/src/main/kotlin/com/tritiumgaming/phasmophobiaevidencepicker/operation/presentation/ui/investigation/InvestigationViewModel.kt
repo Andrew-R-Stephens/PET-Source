@@ -14,12 +14,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApp
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyModifier
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyInitialSanityUseCase
@@ -39,6 +36,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.use
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.GetGhostByIdUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.InitRuledEvidenceUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.model.WorldMapModifier
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.GetMapModifierUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
@@ -56,8 +54,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.m
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.model.SanityRunnable
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.DEFAULT
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.FOREVER
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.MAX_SANITY
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.SAFE_MIN_BOUNDS
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.TIME_DEFAULT
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.TOOL_SANITY
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Phase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.GhostScore
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -65,6 +66,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.text.NumberFormat
+import kotlin.Boolean
+import kotlin.Float
+import kotlin.Int
 import kotlin.math.max
 import kotlin.math.min
 
@@ -108,30 +112,65 @@ class InvestigationViewModel(
         }
         it.getOrDefault(emptyList())
     }
-    /*private val difficulties = fetchDifficultiesUseCase()
-        .getOrDefault(emptyList())
-        .also { it: List<DifficultyModel> ->
-            Log.d("InvestigationViewModel", "DifficultyModel")
-            it.forEach { Log.d("InvestigationViewModel", "\tDifficultyModel: $it") }
-        }*/
-    private val codexAchievements = fetchCodexAchievementsUseCase()
-    private val codexPossessions = fetchCodexPossessionsUseCase()
-    private val codexEquipment = fetchCodexEquipmentUseCase()
 
     /*
      * UI STATES
      */
-    private val _mapUiState = MutableStateFlow(OperationMapUiState())
+    private val _mapUiState = MutableStateFlow(
+        OperationMapUiState(
+            index = 0,
+            name = getSimpleMapNameUseCase(0).getOrDefault(MapTitle.BLEASDALE_FARMHOUSE),
+            size = getSimpleMapSizeUseCase(0).getOrDefault(MapSize.SMALL),
+            modifier = fetchMapModifiersUseCase(0).getOrDefault(
+                WorldMapModifier(
+                    name = MapSize.SMALL,
+                    setupModifier = getSimpleMapSetupModifierUseCase(0).getOrDefault(0f),
+                    normalModifier = getSimpleMapNormalModifierUseCase(0).getOrDefault(0f)
+                )
+            )
+        )
+    )
     val mapUiState = _mapUiState.asStateFlow()
 
-    private val _difficultyUiState = MutableStateFlow(OperationDifficultyUiState())
+    private val _difficultyUiState = MutableStateFlow(OperationDifficultyUiState(
+        index = 0,
+        name = getDifficultyNameUseCase(0).getOrDefault(DifficultyTitle.AMATEUR),
+        modifier = getDifficultyModifierUseCase(0).getOrDefault(0f),
+        time = getDifficultyTimeUseCase(0).getOrDefault(TIME_DEFAULT),
+        initialSanity = MAX_SANITY,
+        responseType = getDifficultyResponseTypeUseCase(0).getOrDefault(DifficultyResponseType.KNOWN)
+    ))
     val difficultyUiState = _difficultyUiState.asStateFlow()
 
-    private val _timerUiState = MutableStateFlow(OperationTimerUiState())
+    private val _timerUiState = MutableStateFlow(OperationTimerUiState(
+        startTime = TIME_DEFAULT,
+        elapsedTime = DEFAULT,
+        remainingTime = 0L,
+        startFlashTime = DEFAULT,
+        maxFlashTime = FOREVER,
+        paused = true
+    ))
     val timerUiState = _timerUiState.asStateFlow()
 
-    private val _phaseUiState = MutableStateFlow(OperationPhaseUiState())
+    private val _phaseUiState = MutableStateFlow(OperationPhaseUiState(
+        currentPhase = Phase.SETUP,
+        canFlash = true,
+        canAlertAudio = false
+    ))
     val phaseUiState = _phaseUiState.asStateFlow()
+
+    private val _sanityUiState = MutableStateFlow(OperationSanityUiState(
+        sanityLevel = MAX_SANITY,
+        sanityMax = MAX_SANITY,
+        drainModifier = 1f,
+        insanityLevel = 0f,
+        isInsane = false
+    ))
+    val sanityUiState = _sanityUiState.asStateFlow()
+
+    private val _investigationToolbarUiState: MutableStateFlow<InvestigationToolbarUiState> =
+        MutableStateFlow(InvestigationToolbarUiState())
+    val investigationToolbarUiState = _investigationToolbarUiState.asStateFlow()
 
     /*
      * COROUTINES
@@ -153,23 +192,23 @@ class InvestigationViewModel(
     }
 
     /*
-     * InvestigationJournal ---------------------------
+     * Journal ------------------------
      */
-
-    private val _investigationToolbarUiState: MutableStateFlow<InvestigationToolbarUiState> =
-        MutableStateFlow(InvestigationToolbarUiState())
-    val investigationToolbarUiState = _investigationToolbarUiState.asStateFlow()
-    fun toggleInvestigationToolsDrawerState() {
-        _investigationToolbarUiState.update { it.copy(isCollapsed = !it.isCollapsed) }
-    }
-    fun setInvestigationToolsCategory(categoryIndex: Int) {
-        _investigationToolbarUiState.update { it.copy(category = categoryIndex) }
-    }
 
     /** Resets the Ruling for each Evidence type */
     fun resetInvestigationJournal() {
         resetEvidenceRulingHandler()
         resetGhostScoreHandler()
+    }
+
+    /*
+     * Investigation ---------------------------
+     */
+    fun toggleInvestigationToolsDrawerState() {
+        _investigationToolbarUiState.update { it.copy(isCollapsed = !it.isCollapsed) }
+    }
+    fun setInvestigationToolsCategory(categoryIndex: Int) {
+        _investigationToolbarUiState.update { it.copy(category = categoryIndex) }
     }
 
     /*
@@ -335,10 +374,19 @@ class InvestigationViewModel(
         setTimeRemaining(difficultyUiState.value.time)
         resetTimer()
 
-        updateCurrentMaxSanity(DifficultyType.entries[index])
-        updateSanityDrainModifier(difficultyUiState.value.modifier)
+        _sanityUiState.update {
+            it.copy(
+                sanityMax = difficultyUiState.value.initialSanity,
+                drainModifier = difficultyUiState.value.modifier *
+                        getCurrentMapModifier(timerUiState.value.remainingTime)
+            )
+        }
 
-        audioWarnTriggered = false
+        _phaseUiState.update {
+            it.copy(
+                canAlertAudio = false
+            )
+        }
     }
 
     fun incrementDifficultyIndex() =
@@ -354,25 +402,17 @@ class InvestigationViewModel(
      * Sanity Handler ---------------------------
      */
 
-    private val _currentMaxSanity = MutableStateFlow(MAX_SANITY)
-    private val currentMaxSanity = _currentMaxSanity.asStateFlow()
-    private fun updateCurrentMaxSanity(
-        difficulty: DifficultyType
-    ) {
-        _currentMaxSanity.update {
-            if(difficulty == DifficultyType.INSANITY) THREE_FOURTH_SANITY else MAX_SANITY
-        }
-    }
-
     /** The level can be between 0 and 100. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual. */
-    private val _insanityLevel = MutableStateFlow(0f)
-    private val insanityLevel = _insanityLevel.asStateFlow()
     fun setInsanityLevel(
         value: Float
     ) {
+        _sanityUiState.update {
+            it.copy(
+                insanityLevel = max(min(MAX_SANITY, value), MIN_SANITY)
+            )
+        }
 
-        _insanityLevel.update { (max(min(MAX_SANITY, value), MIN_SANITY)) }
         updateSanityLevel()
     }
     private fun timeRemainingToInsanityLevel() {
@@ -383,7 +423,7 @@ class InvestigationViewModel(
             TIME_MIN
         )
 
-        val drainMultiplier = sanityDrainModifier.value * tickMultiplier
+        val drainMultiplier = sanityUiState.value.drainModifier * tickMultiplier
         val timeDifference = startTime - System.currentTimeMillis()
         setInsanityLevel(
             MAX_SANITY - (timeDifference * drainMultiplier)
@@ -392,34 +432,26 @@ class InvestigationViewModel(
     private fun skipInsanity(
         newLevel: Float = HALF_SANITY
     ) {
-
-        setInsanityLevel(newLevel.coerceAtLeast(insanityLevel.value))
-        setSanityStartTimeByProgress(insanityLevel.value)
+        setInsanityLevel(newLevel.coerceAtLeast(sanityUiState.value.insanityLevel))
+        setSanityStartTimeByProgress(sanityUiState.value.insanityLevel)
     }
 
     /** the sanity level missing, in percent.**/
-    private val _sanityLevel =
-        MutableStateFlow(currentMaxSanity.value - insanityLevel.value)
-    val sanityLevel: StateFlow<Float> = _sanityLevel.asStateFlow()
     private fun updateSanityLevel() {
 
-        val level = (MAX_SANITY - insanityLevel.value)
-        _sanityLevel.value = max(min(MAX_SANITY, level), MIN_SANITY)
+        val level = (MAX_SANITY - sanityUiState.value.insanityLevel)
 
-        updateCurrentTimerPhase(sanityLevel.value)
+        _sanityUiState.update {
+            it.copy(
+                sanityLevel = max(min(MAX_SANITY, level), MIN_SANITY)
+            )
+        }
+
+        updateCurrentTimerPhase()
     }
 
-    private val _sanityDrainModifier = MutableStateFlow(1f)
-    private val sanityDrainModifier = _sanityDrainModifier.asStateFlow()
-    private fun updateSanityDrainModifier(
-        currentDifficultyModifier: Float
-    ) {
-        val mapModifier = getCurrentMapModifier(timerUiState.value.remainingTime)
-        _sanityDrainModifier.update { currentDifficultyModifier * mapModifier }
-    }
-
-    private val isSanityInsane: Boolean
-        get() = sanityLevel.value < SAFE_MIN_BOUNDS
+    /*private val isSanityInsane: Boolean
+        get() = sanityUiState.value.sanityLevel < SAFE_MIN_BOUNDS*/
 
     /**
      * Reduces player sanity level each doTick. Sanity cannot drop below 50% if the clock still has
@@ -427,7 +459,7 @@ class InvestigationViewModel(
      */
     private fun tickSanity() {
         timeRemainingToInsanityLevel()
-        updateCurrentTimerPhase(sanityLevel.value)
+        updateCurrentTimerPhase()
     }
 
     /** @param progress specify the progress 0 - 100
@@ -435,14 +467,14 @@ class InvestigationViewModel(
      * Sets the Start Time of the Sanity Drain, based on remaining time,
      * sanity, difficulty and map size. */
     private fun setSanityStartTimeByProgress(
-        progress: Float = insanityLevel.value
+        progress: Float = sanityUiState.value.insanityLevel
     ) {
         val progressOverride =
             MAX_SANITY - max(MIN_SANITY, min(MAX_SANITY, progress))
 
         val multiplier = .001f
 
-        val timeAddition = (progressOverride / sanityDrainModifier.value / multiplier).toLong()
+        val timeAddition = (progressOverride / sanityUiState.value.drainModifier / multiplier).toLong()
         val newStartTime = (System.currentTimeMillis() + timeAddition)
 
         _timerUiState.update {
@@ -455,7 +487,7 @@ class InvestigationViewModel(
     fun displaySanityAsPercent(): String {
         val percentageFormat = NumberFormat.getPercentInstance()
         percentageFormat.minimumFractionDigits = 0
-        val percent = sanityLevel.value * .01f
+        val percent = sanityUiState.value.sanityLevel * .01f
 
         val formattedPercent = percentageFormat.format(percent).replace("%", "")
 
@@ -497,45 +529,28 @@ class InvestigationViewModel(
     /*
      * Timer Handler ---------------------------
      */
-
-    private val _currentTimerPhase: MutableStateFlow<Phase> =
-        MutableStateFlow(Phase.SETUP)
-    val currentTimerPhase = _currentTimerPhase.asStateFlow()
-    private  fun updateCurrentTimerPhase(
-        sanityLevel: Float
-    ) {
-        _currentTimerPhase.update {
-            if (timerUiState.value.remainingTime > TIME_MIN) { Phase.SETUP }
-            else {
-                if (sanityLevel < SAFE_MIN_BOUNDS) { Phase.HUNT }
-                else { Phase.ACTION }
-            }
+    private fun updateCurrentTimerPhase() =
+        _phaseUiState.update {
+            it.copy(
+                currentPhase =
+                    if (timerUiState.value.remainingTime > TIME_MIN) { Phase.SETUP }
+                    else {
+                        if (sanityUiState.value.sanityLevel < SAFE_MIN_BOUNDS) { Phase.HUNT }
+                        else { Phase.ACTION }
+                    }
+            )
         }
-    }
 
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
-    /*private val _startTime = MutableStateFlow(TIME_DEFAULT)
-    private val startTime = _startTime.asStateFlow()
-    private fun setStartTime(
-        time: Long
-    ) {
-        _startTime.update { time }
-    }*/
-    private fun resetStartTime() {
+    private fun resetStartTime() =
         _timerUiState.update {
             it.copy(
                 startTime = TIME_DEFAULT
             )
         }
-    }
 
-    /*private val _timeRemaining: MutableStateFlow<Long> =
-        MutableStateFlow(TIME_DEFAULT)
-    private val timeRemaining = _timeRemaining.asStateFlow()*/
-    private fun setTimeRemaining(
-        value: Long
-    ) {
+    private fun setTimeRemaining(value: Long) {
         _timerUiState.update { it.copy(remainingTime = value) }
     }
 
@@ -561,19 +576,25 @@ class InvestigationViewModel(
         }
     }
 
-    private val _timerPaused = MutableStateFlow(true)
-    private val timerPaused = _timerPaused.asStateFlow()
     private fun pauseTimer() {
-        _timerPaused.update { true }
+        _timerUiState.update {
+            it.copy(
+                paused = true
+            )
+        }
         liveTimer?.cancel()
     }
     private fun playTimer() {
-        _timerPaused.update { false }
+        _timerUiState.update {
+            it.copy(
+                paused = false
+            )
+        }
         setLiveTimer()
         liveTimer?.start()
     }
     fun toggleTimer() {
-        if (timerPaused.value) {
+        if (timerUiState.value.paused) {
             playTimer()
             setSanityStartTimeByProgress()
         } else {
@@ -609,20 +630,19 @@ class InvestigationViewModel(
      * Phase Handler ---------------------------
      */
 
-    /** If the warning is within the appropriate range and condition for activation */
-    private var audioWarnTriggered = false
     /** Allow the Warning indicator to flash either off or on if:
      * The player's sanity is less than 70%
      * either if the Flash Timeout is infinite
      * or if there is no time remaining on the countdown timer.
      * @return if the Warning indicator can flash */
-    private val _canFlash: MutableStateFlow<Boolean> =
-        MutableStateFlow(true)
-    val canFlash = _canFlash.asStateFlow()
     private fun updateCanFlash() {
 
         if (timerUiState.value.maxFlashTime == FOREVER) {
-            _canFlash.update { isSanityInsane }
+            _phaseUiState.update {
+                it.copy(
+                    canFlash = sanityUiState.value.isInsane
+                )
+            }
             return
         }
 
@@ -634,11 +654,18 @@ class InvestigationViewModel(
                     elapsedTime = System.currentTimeMillis() - it.startFlashTime
                 )
             }
+
             updateCanFlash()
+
             return
         }
 
-        _canFlash.update { timerUiState.value.elapsedTime <=  timerUiState.value.maxFlashTime }
+        _phaseUiState.update {
+            it.copy(
+                canFlash = timerUiState.value.elapsedTime <=  timerUiState.value.maxFlashTime
+            )
+        }
+
     }
 
     private fun resetTimerPhase() {
@@ -657,14 +684,24 @@ class InvestigationViewModel(
 
     private fun setCurrentMapIndex(
         index: Int
-    ) = _mapUiState.update {
-        mapUiState.value.copy(
-            index = index,
-            name = getSimpleMapNameUseCase(index) ?: it.name,
-            size = getSimpleMapSizeUseCase(index) ?: it.size
-        )
-    }
+    ) {
+        try {
+            val name = getSimpleMapNameUseCase(index).getOrThrow()
+            val size = getSimpleMapSizeUseCase(index).getOrThrow()
+            val modifier = fetchMapModifiersUseCase(size.ordinal).getOrThrow()
 
+            _mapUiState.update {
+                it.copy(
+                    index = index,
+                    name = name,
+                    size = size,
+                    modifier = modifier
+                )
+            }
+        } catch (e: Exception) {
+            Log.e("InvestigationViewModel", "Error setting map index")
+            e.printStackTrace() }
+    }
     fun incrementMapIndex() {
         setCurrentMapIndex(incrementMapIndexUseCase(mapUiState.value.index))
     }
@@ -677,11 +714,18 @@ class InvestigationViewModel(
      * @returns the drop rate multiplier. */
     private fun getCurrentMapModifier(
         timeRemaining: Long = 0L
-    ): Float = getMapModifierUseCase(
-        _mapUiState.value.size.toStringResource(),
-        timeRemaining
-    )
+    ): Float {
+        val modifier = getMapModifierUseCase(
+            _mapUiState.value.size.toStringResource(),
+            timeRemaining
+        )
+        modifier.exceptionOrNull()?.let {
+            Log.e("InvestigationViewModel", "Error getting map modifier")
+            it.printStackTrace()
+        }
 
+        return modifier.getOrDefault(1f)
+    }
     init {
         initGhostScores()
         initRuledEvidence()
@@ -787,10 +831,8 @@ class InvestigationViewModel(
                     val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
                     val getSimpleMapNameUseCase = container.getSimpleMapNameUseCase
                     val getSimpleMapSizeUseCase = container.getSimpleMapSizeUseCase
-                    val getSimpleMapSetupModifierUseCase =
-                        container.getSimpleMapSetupModifierUseCase
-                    val getSimpleMapNormalModifierUseCase =
-                        container.getSimpleMapNormalModifierUseCase
+                    val getSimpleMapSetupModifierUseCase = container.getSimpleMapSetupModifierUseCase
+                    val getSimpleMapNormalModifierUseCase = container.getSimpleMapNormalModifierUseCase
                     val getMapModifierUseCase = container.getMapModifierUseCase
                     val incrementMapIndexUseCase = container.incrementMapIndexUseCase
                     val decrementMapIndexUseCase = container.decrementMapIndexUseCase
@@ -881,7 +923,12 @@ data class OperationMapUiState(
     internal val index: Int = 0,
     internal val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
     internal val size: MapSize = MapSize.SMALL,
-    internal val modifier: Int = 0
+    internal val modifier: WorldMapModifier =
+        WorldMapModifier(
+            name = MapSize.SMALL,
+            setupModifier = 1f,
+            normalModifier = 1f
+        )
 )
 
 data class OperationDifficultyUiState(
@@ -903,8 +950,15 @@ data class OperationTimerUiState(
 )
 
 data class OperationPhaseUiState(
-    internal val difficultyTime: Long = 0L,
-    internal val difficultyStartSanity: Float = 0f,
-    internal val difficultyModifier: Float = 0f
+    internal val currentPhase: Phase = Phase.SETUP,
+    internal val canFlash: Boolean = true,
+    internal val canAlertAudio: Boolean = false
 )
 
+data class OperationSanityUiState(
+    internal val sanityMax: Float = MAX_SANITY,
+    internal val drainModifier: Float = 1f,
+    internal val insanityLevel: Float = 0f,
+    internal val sanityLevel: Float = sanityMax - insanityLevel,
+    internal val isInsane: Boolean = sanityLevel < SAFE_MIN_BOUNDS
+)
