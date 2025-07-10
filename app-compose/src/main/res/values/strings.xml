@@ -98,6 +98,10 @@
     <string name="difficulty_title_nightmare">Nightmare</string>
     <string name="difficulty_title_insanity">Insanity</string>
 
+    <!-- Difficulty Response Type -->
+    <string name="difficulty_response_known" translatable="false">Known</string>
+    <string name="difficulty_response_unknown" translatable="false">Unknown</string>
+
     <!-- Map Size Modifiers -->
     <item name="maps_size_modifier_small_setup" type="fraction">09%</item>
     <item name="maps_size_modifier_small_normal" type="fraction">12%</item>
