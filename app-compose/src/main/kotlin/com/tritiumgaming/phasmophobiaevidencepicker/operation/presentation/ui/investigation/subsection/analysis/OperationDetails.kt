@@ -57,13 +57,14 @@ private fun OperationDetailsPreview(
 
 @Composable
 fun OperationDetails(
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationViewModel,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .background(LocalPalette.current.surface.color)
-            /*.verticalScroll(rememberScrollState())*/
+            .verticalScroll(rememberScrollState())
     ) {
         PhaseModifierDetails(investigationViewModel = investigationViewModel)
         MapModifierDetails(investigationViewModel = investigationViewModel)
@@ -175,14 +176,13 @@ fun ActiveGhostModifierDetails(
 
         TextCategoryTitle(text = "Ghosts")
 
-        LazyColumn(
+        Column(
             modifier = Modifier.padding(PaddingValues(8.dp))
         ) {
-            items(
-                items = ghosts.value.filter { score ->
+            ghosts.value.filter { score ->
                     score.score.value >= 0 &&
-                            !score.forcefullyRejected.value }
-            ) { ghost ->
+                            !score.forcefullyRejected.value
+            }.forEach { ghost ->
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {

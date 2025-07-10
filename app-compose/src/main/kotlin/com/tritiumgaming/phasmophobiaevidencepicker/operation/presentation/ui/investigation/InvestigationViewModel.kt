@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 import android.os.CountDownTimer
 import android.util.Log
+import androidx.annotation.FloatRange
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.toMutableStateList
@@ -205,10 +206,16 @@ class InvestigationViewModel(
      * Investigation ---------------------------
      */
     fun toggleInvestigationToolsDrawerState() {
-        _investigationToolbarUiState.update { it.copy(isCollapsed = !it.isCollapsed) }
+        _investigationToolbarUiState.update {
+            it.copy(isCollapsed = !it.isCollapsed) }
     }
     fun setInvestigationToolsCategory(categoryIndex: Int) {
-        _investigationToolbarUiState.update { it.copy(category = categoryIndex) }
+        _investigationToolbarUiState.update {
+            it.copy(
+                isCollapsed = false,
+                category = categoryIndex
+            )
+        }
     }
 
     /*
@@ -317,7 +324,7 @@ class InvestigationViewModel(
     * Evidence Ruling Handler ---------------------------
     */
 
-    private val _ruledEvidence =
+    private val _ruledEvidence: MutableStateFlow<List<RuledEvidence>> =
         MutableStateFlow(listOf<RuledEvidence>())
     val ruledEvidence = _ruledEvidence.asStateFlow()
     private fun initRuledEvidence() {
@@ -337,7 +344,11 @@ class InvestigationViewModel(
         ruling: Ruling
     ) {
         _ruledEvidence.update {
-            it.map { e -> if(evidence.id == e.evidence.id) e.copy(ruling = ruling) else e }
+            ruledEvidence.value.map { e ->
+                if (evidence.id == e.evidence.id)
+                    e.copy(ruling = ruling)
+                else e
+            }
         }
         reorderGhostScores()
     }
@@ -916,7 +927,9 @@ class InvestigationViewModel(
 
 data class InvestigationToolbarUiState(
     internal val isCollapsed: Boolean = false,
-    internal val category: Int = TOOL_SANITY
+    internal val category: Int = TOOL_SANITY,
+    @FloatRange(from = 0.0, to = 1.0)
+    internal val openWidth: Float = 0.5f
 )
 
 data class OperationMapUiState(

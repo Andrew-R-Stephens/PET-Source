@@ -138,7 +138,10 @@ fun GhostListItem(
             val evidenceList = ghostScore?.ghostEvidence?.normalEvidenceList
 
             evidenceList?.forEach {
-                EvidenceIcon(evidence = it)
+                EvidenceIcon(
+                    investigationViewModel = investigationViewModel,
+                    evidence = it
+                )
             }
 
         }
@@ -147,8 +150,7 @@ fun GhostListItem(
 
 @Composable
 private fun RowScope.EvidenceIcon(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationViewModel,
     evidence: EvidenceType
 ) {
 

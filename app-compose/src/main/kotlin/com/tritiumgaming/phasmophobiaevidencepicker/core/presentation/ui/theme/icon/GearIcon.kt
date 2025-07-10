@@ -17,9 +17,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 
 @Composable
 fun GearIcon(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-
     Image(
         modifier = modifier,
         imageVector = getGearVector(

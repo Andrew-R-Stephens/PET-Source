@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.view.View
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -19,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,11 +29,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import androidx.room.util.TableInfo
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.GearIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.InfoIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getGearVector
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getInfoVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.Holiday22
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
@@ -139,7 +141,7 @@ private fun ColumnScope.Investigation(
                 if (!collapsedState)
                     Modifier
                         .alpha(1f)
-                        .wrapContentHeight()
+                        .fillMaxHeight()
                 else
                     Modifier
                         .height(0.dp)
@@ -149,8 +151,14 @@ private fun ColumnScope.Investigation(
         horizontalAlignment = Alignment.Start
     ) {
         when(section) {
-            0 -> ToolbarConfigurationSection(investigationViewModel = investigationViewModel)
-            1 -> ToolbarOperationAnalysis(investigationViewModel = investigationViewModel)
+            0 -> ToolbarConfigurationSection(
+                investigationViewModel = investigationViewModel
+            )
+            1 -> ToolbarOperationAnalysis(
+                investigationViewModel = investigationViewModel,
+                modifier = Modifier
+                    .wrapContentHeight(align = Alignment.Bottom),
+            )
         }
     }
 }
@@ -172,14 +180,19 @@ private fun RowScope.Investigation(
                     .fillMaxWidth(0f)
                     .alpha(0f)
                 else Modifier.fillMaxWidth(.25f)
-            )
-            .fillMaxHeight(),
+            ),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
         when(section) {
-            0 -> ToolbarConfigurationSection(investigationViewModel = investigationViewModel)
-            1 -> ToolbarOperationAnalysis(investigationViewModel = investigationViewModel)
+            0 -> ToolbarConfigurationSection(
+                investigationViewModel = investigationViewModel
+            )
+            1 -> ToolbarOperationAnalysis(
+                investigationViewModel = investigationViewModel,
+                modifier = Modifier
+                    .wrapContentHeight(align = Alignment.Bottom),
+            )
         }
     }
     OperationToolbar(
@@ -194,7 +207,7 @@ private fun RowScope.Investigation(
 
 @Composable
 private fun ColumnScope.ToolbarConfigurationSection(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationViewModel
 ) {
     MapConfigCarousel(
         investigationViewModel = investigationViewModel
@@ -211,10 +224,12 @@ private fun ColumnScope.ToolbarConfigurationSection(
 
 @Composable
 private fun ColumnScope.ToolbarOperationAnalysis(
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationViewModel,
+    modifier: Modifier = Modifier
 ) {
     OperationDetails(
-        investigationViewModel = investigationViewModel
+        investigationViewModel = investigationViewModel,
+        modifier = modifier
     )
 }
 
@@ -248,12 +263,46 @@ private fun OperationToolbar(
                 }
             }),
             ToolBarItemPair(@Composable {
-                GearIcon()
+                Image(
+                    modifier = modifier,
+                    imageVector = getGearVector(
+                        if(section == 0) {
+                            listOf(
+                                LocalPalette.current.textFamily.primary,
+                                LocalPalette.current.background.color,
+                            )
+                        } else {
+                            listOf(
+                                LocalPalette.current.background.color,
+                                LocalPalette.current.textFamily.body,
+                            )
+                        }
+                    ),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit
+                )
             }) {
                 investigationViewModel.setInvestigationToolsCategory(0)
             },
             ToolBarItemPair(@Composable {
-                InfoIcon()
+                Image(
+                    modifier = modifier,
+                    imageVector = getInfoVector(
+                        if(section == 1) {
+                            listOf(
+                                LocalPalette.current.textFamily.primary,
+                                LocalPalette.current.background.color,
+                            )
+                        } else {
+                            listOf(
+                                LocalPalette.current.background.color,
+                                LocalPalette.current.textFamily.body,
+                            )
+                        }
+                    ),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit
+                )
             }) {
                 investigationViewModel.setInvestigationToolsCategory(1)
             },
