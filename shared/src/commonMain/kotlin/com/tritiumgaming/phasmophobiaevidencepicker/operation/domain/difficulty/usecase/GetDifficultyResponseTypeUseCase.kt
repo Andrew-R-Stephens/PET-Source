@@ -11,14 +11,14 @@ class GetDifficultyResponseTypeUseCase(
 
         result.exceptionOrNull()?.printStackTrace()
 
-        return try {
+        try {
             val sanity = result.getOrNull()?.let {
                 it[index].responseType
-            } ?: DifficultyResponseType.KNOWN
+            } ?: return Result.failure(Exception("Could not get difficulty response type"))
 
-            Result.success(sanity)
+            return Result.success(sanity)
         } catch (e: Exception) {
-            Result.failure(Exception("Could not acquire difficulty name", e))
+            return Result.failure(Exception("Could not acquire difficulty response type", e))
         }
     }
 }

@@ -8,16 +8,18 @@ class GetDifficultyInitialSanityUseCase(
     operator fun invoke(index: Int): Result<Float> {
         val result = difficultyRepository.getDifficulties()
 
-        result.exceptionOrNull()?.printStackTrace()
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get difficulty initial sanity", it))
+        }
 
-        return try {
+        try {
             val sanity = result.getOrNull()?.let {
                 it[index].initialSanity
-            } ?: 0f
+            } ?: return Result.failure(Exception("Could not get difficulty initial sanity"))
 
-            Result.success(sanity)
+            return Result.success(sanity)
         } catch (e: Exception) {
-            Result.failure(Exception("Could not acquire difficulty name", e))
+            return Result.failure(Exception("Could not acquire difficulty initial sanity", e))
         }
     }
 }

@@ -9,7 +9,9 @@ class FetchDifficultiesUseCase(
     operator fun invoke(): Result<List<DifficultyModel>> {
         val result = difficultyRepository.getDifficulties()
 
-        result.exceptionOrNull()?.printStackTrace()
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get difficulties", it))
+        }
 
         return result
     }

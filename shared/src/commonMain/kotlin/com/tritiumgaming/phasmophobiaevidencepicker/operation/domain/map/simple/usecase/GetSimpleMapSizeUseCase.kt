@@ -6,11 +6,16 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 class GetSimpleMapSizeUseCase(
     private val simpleMapsRepository: SimpleMapRepository
 ) {
-    operator fun invoke(index: Int): MapSize? {
+    operator fun invoke(index: Int): Result<MapSize> {
         val result = simpleMapsRepository.getMaps()
 
-        result.exceptionOrNull()
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get map size", it))
+        }
 
-        return result.getOrNull()?.getOrNull(index)?.mapSize
+        val mapSize = result.getOrNull()?.getOrNull(index)?.mapSize
+            ?: return Result.failure(Exception("Could not get map size"))
+
+        return Result.success(mapSize)
     }
 }

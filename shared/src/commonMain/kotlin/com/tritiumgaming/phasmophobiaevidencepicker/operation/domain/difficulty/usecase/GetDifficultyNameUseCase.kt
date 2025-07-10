@@ -9,16 +9,18 @@ class GetDifficultyNameUseCase(
         operator fun invoke(index: Int): Result<DifficultyTitle> {
             val result = difficultyRepository.getDifficulties()
 
-            result.exceptionOrNull()?.printStackTrace()
+            result.exceptionOrNull()?.let {
+                return Result.failure(Exception("Could not get difficulty name"))
+            }
 
-            return try {
+            try {
                 val title = result.getOrNull()?.let {
                     it[index].name
-                } ?: DifficultyTitle.AMATEUR
+                } ?: return Result.failure(Exception("Could not get difficulty name"))
 
-                Result.success(title)
+                return Result.success(title)
             } catch (e: Exception) {
-                Result.failure(Exception("Could not acquire difficulty name", e))
+                return Result.failure(Exception("Could not acquire difficulty name", e))
             }
         }
     }

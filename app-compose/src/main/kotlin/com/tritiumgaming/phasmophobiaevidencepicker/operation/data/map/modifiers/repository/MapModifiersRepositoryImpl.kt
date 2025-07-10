@@ -11,14 +11,12 @@ class MapModifiersRepositoryImpl(
 
     var simpleModifiers: List<WorldMapModifier> = emptyList()
 
-    override fun getModifiers(): Result<List<WorldMapModifier>> = Result.success(simpleModifiers)
+    override fun getModifiers(): Result<List<WorldMapModifier>> {
+        if(simpleModifiers.isEmpty()) {
+            simpleModifiers = localSource.fetchSizeModifiers().getOrDefault(emptyList()).toDomain()
+        }
 
-    fun sync() {
-        simpleModifiers = localSource.fetchSizeModifiers().getOrDefault(emptyList()).toDomain()
-    }
-
-    init {
-        sync()
+        return Result.success(simpleModifiers)
     }
 
 }

@@ -6,14 +6,19 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 class GetSimpleMapNameUseCase(
     private val simpleMapsRepository: SimpleMapRepository
 ) {
-    operator fun invoke(index: Int): MapTitle? {
+    operator fun invoke(index: Int): Result<MapTitle> {
 
         val result = simpleMapsRepository.getMaps()
 
-        result.exceptionOrNull()
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get map names", it)) }
 
         val mapResultList = result.getOrNull()
 
-        return mapResultList?.getOrNull(index)?.mapName
+        val name = mapResultList?.getOrNull(index)?.mapName
+
+        if(name == null) return Result.failure(Exception("Could not get map name"))
+
+        return Result.success(name)
     }
 }

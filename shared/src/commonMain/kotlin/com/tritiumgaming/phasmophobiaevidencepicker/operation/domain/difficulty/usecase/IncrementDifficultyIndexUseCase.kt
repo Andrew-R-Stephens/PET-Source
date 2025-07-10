@@ -11,7 +11,9 @@ class IncrementDifficultyIndexUseCase(
 
         val result = difficultyRepository.getDifficulties()
 
-        result.exceptionOrNull()?.printStackTrace()
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get difficulty", it))
+        }
 
         val difficulties = result.getOrNull()
         var newIndex = currentIndex

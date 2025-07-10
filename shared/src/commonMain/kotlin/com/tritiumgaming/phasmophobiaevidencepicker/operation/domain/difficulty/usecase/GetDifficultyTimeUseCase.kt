@@ -8,16 +8,18 @@ class GetDifficultyTimeUseCase(
     operator fun invoke(index: Int): Result<Long> {
         val result = difficultyRepository.getDifficulties()
 
-        result.exceptionOrNull()?.printStackTrace()
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get difficulty time"))
+        }
 
-        return try {
+        try {
             val time = result.getOrNull()?.let {
                 it[index].time
-            } ?: 0L
+            } ?: return Result.failure(Exception("Could not get difficulty time"))
 
-            Result.success(time)
+            return Result.success(time)
         } catch (e: Exception) {
-            Result.failure(Exception("Could not acquire difficulty name", e))
+            return Result.failure(Exception("Could not acquire difficulty name", e))
         }
     }
 }

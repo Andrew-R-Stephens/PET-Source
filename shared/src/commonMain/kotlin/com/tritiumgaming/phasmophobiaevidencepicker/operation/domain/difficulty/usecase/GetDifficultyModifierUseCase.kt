@@ -8,16 +8,18 @@ class GetDifficultyModifierUseCase(
         operator fun invoke(index: Int): Result<Float> {
             val result = difficultyRepository.getDifficulties()
 
-            result.exceptionOrNull()?.printStackTrace()
+            result.exceptionOrNull()?.let {
+                return Result.failure(Exception("Could not get difficulty modifier"))
+            }
 
-            return try {
+            try {
                 val modifier = result.getOrNull()?.let {
                     it[index].modifier
-                } ?: 0f
+                } ?: return Result.failure(Exception("Could not get difficulty modifier"))
 
-                Result.success(modifier)
+                return Result.success(modifier)
             } catch (e: Exception) {
-                Result.failure(Exception("Could not acquire difficulty name", e))
+                return Result.failure(Exception("Could not acquire difficulty modifier", e))
             }
         }
     }

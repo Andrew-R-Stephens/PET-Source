@@ -7,10 +7,20 @@ class GetMapModifierUseCase(
     operator fun invoke(
         mapSize: Int,
         timeRemaining: Long = 0L
-    ): Float {
-        if (timeRemaining <= 0L) {
-            return getSimpleMapNormalModifierUseCase(mapSize)
-        }
-        return getSimpleMapSetupModifierUseCase(mapSize)
+    ): Result<Float> {
+        val result = if (timeRemaining <= 0L) {
+            getSimpleMapNormalModifierUseCase(mapSize) }
+        else { getSimpleMapSetupModifierUseCase(mapSize) }
+
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get map modifier", it)) }
+
+        val modifier = result.getOrNull()
+            ?: return Result.failure(Exception("Could not get map modifier"))
+
+        return Result.success(modifier)
+
+
     }
 }
+
