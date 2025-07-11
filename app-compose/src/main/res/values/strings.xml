@@ -124,12 +124,27 @@
     <string name="objectives_title_ghost_name">Ghost\'s Name:</string>
     <string name="objectives_ghostname_note">Enter Ghost Name Here</string>
     <string name="objectives_title_response">Responds to People who are:</string>
+    <string name="objectives_title_optional_objective" translatable="false">Objective</string>
     <string name="objectives_title_optional_objective_1">Objective 1</string>
     <string name="objectives_title_optional_objective_2">Objective 2</string>
     <string name="objectives_title_optional_objective_3">Objective 3</string>
     <string name="objectives_title_response_alone">Alone</string>
     <string name="objectives_title_response_everyone">Grouped Up</string>
-    <!-- Objective Description -->
+
+    <!-- Mission IDs -->
+    <string name="objective_id_ghostevent" translatable="false">976caba69673421df691ce46c7c1759b</string>
+    <string name="objective_id_ghostphotograph" translatable="false">722257f83708b6615be4c7f9366dcfae</string>
+    <string name="objective_id_emfreader" translatable="false">e8977370de859faecc0dbc0f0e2138f1</string>
+    <string name="objective_id_motionsensor" translatable="false">e1ba565485bcdf93b0805f77870bb9a1</string>
+    <string name="objective_id_smudgestick" translatable="false">442711ce89277a26a126be88b623bae5</string>
+    <string name="objective_id_crucifix" translatable="false">c0ac924b26a786485356ca1ba026d8d1</string>
+    <string name="objective_id_salt" translatable="false">c72c4bc990b2bf341ebc06f8ecba0f80</string>
+    <string name="objective_id_escapehunt" translatable="false">6b4fcdde134b7a77ffded2065c833ccb</string>
+    <string name="objective_id_repelwithsmudge" translatable="false">d2a8fcffd7c3132d1e6d17952f0941c6</string>
+    <string name="objective_id_extinguishcandle" translatable="false">71f28ba9ef0f327f234be19a20b8743c</string>
+    <string name="objective_id_lowsanity" translatable="false">5333d5740e23d8b5d729e33378f2958c</string>
+
+    <!-- Mission Description -->
     <string name="objective_info_ghostevent">Witness a Ghost Event</string>
     <string name="objective_info_ghostphotograph">Photograph the Ghost</string>
     <string name="objective_info_emfreader">Get any EMF Reader activity</string>

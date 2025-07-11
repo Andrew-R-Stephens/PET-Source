@@ -165,7 +165,9 @@ private fun RowScope.EvidenceIcon(
             .padding(2.dp)
             .weight(.25f, false),
         contentScale = ContentScale.Fit,
-        painter = painterResource(id = evidence.icon.toDrawableResource()),
+        painter = painterResource(
+            id = evidence.icon.toDrawableResource()
+        ),
         contentDescription = "Evidence Icon",
         colorFilter = ColorFilter.tint(
             when (evidenceRuling) {

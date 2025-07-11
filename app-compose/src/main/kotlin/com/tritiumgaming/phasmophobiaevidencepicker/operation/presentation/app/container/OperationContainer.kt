@@ -65,6 +65,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.repository.MissionRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.usecase.FetchAllMissionsUseCase
 
 class OperationContainer(
     applicationContext: Context,
@@ -105,11 +106,14 @@ class OperationContainer(
     internal val decrementDifficultyIndexUseCase = DecrementDifficultyIndexUseCase(difficultyRepository)
 
     // Mission
-    private val missionLocalDataSource: MissionDataSource = MissionLocalDataSource()
+    private val missionLocalDataSource: MissionDataSource = MissionLocalDataSource(
+        applicationContext = applicationContext,
+    )
     internal val missionRepository: MissionRepository =
         MissionRepositoryImpl(
             localSource = missionLocalDataSource
         )
+    internal val fetchAllMissionsUseCase = FetchAllMissionsUseCase(missionRepository)
 
     // Map Modifiers
     private val mapModifiersLocalDataSource: MapModifiersDataSource =

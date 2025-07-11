@@ -3,9 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigatio
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -32,7 +30,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.MissionsScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexAchievementScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexEquipmentScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexPossessionsScreen
@@ -49,7 +48,9 @@ fun RootNavigation(
     newsletterViewModel: NewsletterViewModel =
         viewModel(factory = NewsletterViewModel.Factory),
     investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory)
+        viewModel(factory = InvestigationViewModel.Factory),
+    objectivesViewModel: ObjectivesViewModel =
+        viewModel(factory = ObjectivesViewModel.Factory)
 ) {
 
     val navController = rememberNavController()
@@ -73,7 +74,8 @@ fun RootNavigation(
 
         investigationNavigation(
             navController = navController,
-            investigationViewModel = investigationViewModel
+            investigationViewModel = investigationViewModel,
+            objectivesViewModel = objectivesViewModel
         )
 
     }
@@ -193,7 +195,8 @@ private fun NavGraphBuilder.mainMenuNavigation(
 
 private fun NavGraphBuilder.investigationNavigation(
     navController: NavHostController,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationViewModel,
+    objectivesViewModel: ObjectivesViewModel
 ) {
     navigation(
         route = NavRoute.NAVIGATION_INVESTIGATION.route,
@@ -208,8 +211,9 @@ private fun NavGraphBuilder.investigationNavigation(
         }
 
         composable(route = NavRoute.SCREEN_MISSIONS.route) {
-            MissionsScreen(
-                navController = navController
+            ObjectivesScreen(
+                navController = navController,
+                objectivesViewModel = objectivesViewModel
             )
         }
 

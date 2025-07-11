@@ -42,7 +42,6 @@ fun FootstepTool() {
 
     val bpms = bps * scale
 
-
     Box(
         Modifier
             .fillMaxWidth()

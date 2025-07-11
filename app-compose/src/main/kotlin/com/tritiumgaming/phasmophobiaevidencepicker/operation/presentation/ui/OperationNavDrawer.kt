@@ -74,7 +74,7 @@ fun OperationNavDrawer(
                             )
                         },
                         onClick = {
-                            navController.navigate(NavRoute.SCREEN_INVESTIGATION.route)
+                            navController.navigate(NavRoute.SCREEN_START.route)
                         }
                     )
 

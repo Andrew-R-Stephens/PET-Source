@@ -4,11 +4,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.map
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
 
 data class MissionDto(
-    val mission: MissionContent
+    val id: String,
+    val content: MissionContent,
 )
 
 fun MissionDto.toDomain() = Mission(
-    mission = mission
+    id = id,
+    content = content,
 )
 
 fun List<MissionDto>.toDomain() = map {

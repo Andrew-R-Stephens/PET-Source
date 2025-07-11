@@ -80,7 +80,6 @@ fun EvidenceListItem(
 ) {
 
     val rulingState = investigationViewModel.getRuledEvidence(evidence)?.ruling
-    //var rememberRuling by remember { mutableStateOf(rulingState?.value) }
 
     Card(
         modifier = modifier
