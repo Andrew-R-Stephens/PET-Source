@@ -398,6 +398,8 @@ class InvestigationViewModel(
                 canAlertAudio = false
             )
         }
+
+        reorderGhostScores()
     }
 
     fun incrementDifficultyIndex() =

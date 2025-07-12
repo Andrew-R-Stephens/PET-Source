@@ -4,8 +4,10 @@ import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -16,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getGearVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getInfoVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.Holiday22
@@ -85,6 +89,22 @@ private fun InvestigationSoloContent(
     val investigationToolbarUiState =
         investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
 
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+/*
+    when(deviceConfiguration) {
+        DeviceConfiguration.MOBILE_PORTRAIT -> { StartContentCompactPortrait(
+            navController = navController) }
+        DeviceConfiguration.MOBILE_LANDSCAPE -> { StartContentCompactLandscape(
+            navController = navController) }
+        DeviceConfiguration.TABLET_PORTRAIT -> { StartContentCompactPortrait(
+            navController = navController) }
+        DeviceConfiguration.TABLET_LANDSCAPE -> { StartContentCompactLandscape(
+            navController = navController) }
+        DeviceConfiguration.DESKTOP -> { StartContentCompactLandscape(
+            navController = navController) }
+    }*/
+
     if(LocalConfiguration.current.orientation == ORIENTATION_PORTRAIT) {
         Column(
             modifier = Modifier
@@ -108,9 +128,20 @@ private fun InvestigationSoloContent(
             )
         }
     }
+}
 
+@Composable
+fun InvestigationCompactPortrait() {
 
 }
+
+@Composable
+fun InvestigationCompactLandscape() {
+
+}
+
+
+
 
 @Composable
 private fun ColumnScope.Investigation(
@@ -141,24 +172,24 @@ private fun ColumnScope.Investigation(
                 if (!collapsedState)
                     Modifier
                         .alpha(1f)
-                        .fillMaxHeight()
+                        .wrapContentHeight()
                 else
                     Modifier
                         .height(0.dp)
                         .alpha(0f)
             ),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Bottom),
         horizontalAlignment = Alignment.Start
     ) {
         when(section) {
             0 -> ToolbarConfigurationSection(
-                investigationViewModel = investigationViewModel
-            )
+                investigationViewModel = investigationViewModel,
+                modifier = Modifier
+                    .height(IntrinsicSize.Max))
             1 -> ToolbarOperationAnalysis(
                 investigationViewModel = investigationViewModel,
                 modifier = Modifier
-                    .wrapContentHeight(align = Alignment.Bottom),
-            )
+                    .fillMaxHeight(.5f))
         }
     }
 }
@@ -179,20 +210,21 @@ private fun RowScope.Investigation(
                 if (collapsedState) Modifier
                     .fillMaxWidth(0f)
                     .alpha(0f)
-                else Modifier.fillMaxWidth(.25f)
+                else Modifier.fillMaxWidth(.35f)
             ),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
         when(section) {
             0 -> ToolbarConfigurationSection(
-                investigationViewModel = investigationViewModel
+                investigationViewModel = investigationViewModel,
+                modifier = Modifier
+                    .height(IntrinsicSize.Max)
             )
             1 -> ToolbarOperationAnalysis(
                 investigationViewModel = investigationViewModel,
                 modifier = Modifier
-                    .wrapContentHeight(align = Alignment.Bottom),
-            )
+                    .wrapContentHeight(align = Alignment.Bottom))
         }
     }
     OperationToolbar(
@@ -207,30 +239,41 @@ private fun RowScope.Investigation(
 
 @Composable
 private fun ColumnScope.ToolbarConfigurationSection(
-    investigationViewModel: InvestigationViewModel
-) {
-    MapConfigCarousel(
-        investigationViewModel = investigationViewModel
-    )
-    DifficultyConfigCarousel(
-        investigationViewModel = investigationViewModel
-    )
-    SanityMeterView(
-        modifier = Modifier
-            .size(64.dp),
-        investigationViewModel = investigationViewModel
-    )
-}
-
-@Composable
-private fun ColumnScope.ToolbarOperationAnalysis(
     investigationViewModel: InvestigationViewModel,
     modifier: Modifier = Modifier
 ) {
-    OperationDetails(
-        investigationViewModel = investigationViewModel,
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalAlignment = Alignment.Start
+    ) {
+
+        MapConfigCarousel(
+            investigationViewModel = investigationViewModel
+        )
+        DifficultyConfigCarousel(
+            investigationViewModel = investigationViewModel
+        )
+        SanityMeterView(
+            modifier = Modifier
+                .size(64.dp),
+            investigationViewModel = investigationViewModel
+        )
+    }
+}
+
+@Composable
+private fun ToolbarOperationAnalysis(
+    investigationViewModel: InvestigationViewModel,
+    modifier: Modifier = Modifier
+) {
+    Box (
         modifier = modifier
-    )
+    ) {
+        OperationDetails(
+            investigationViewModel = investigationViewModel
+        )
+    }
 }
 
 
