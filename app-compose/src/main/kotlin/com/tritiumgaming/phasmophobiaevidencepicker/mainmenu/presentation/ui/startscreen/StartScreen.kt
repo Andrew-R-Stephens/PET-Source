@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -15,6 +16,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.BasicText
@@ -28,6 +32,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -35,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -71,22 +77,19 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.sta
 import java.util.Locale
 
 @Composable
-@Preview
-private fun StartScreenPreview() {
+@Preview(locale = "uk")
+private fun StartButtonPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        StartScreen(
-            rememberNavController()
-        )
+        StartButton()
     }
-
 }
 
 @Composable
 @Preview
-private fun StartButtonPreview() {
+private fun StartButtonPreview2() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
@@ -360,15 +363,16 @@ private fun StartButton(
     Button(
         modifier = modifier
             .height(48.dp)
-            .wrapContentWidth(),
+            .width(IntrinsicSize.Max),
         onClick = { onClick() },
         enabled = true,
         shape = RectangleShape,
         contentPadding = PaddingValues(0.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = LocalPalette.current.background.color,
-            contentColor = LocalPalette.current.textFamily.body
-        )
+            contentColor = LocalPalette.current.textFamily.body,
+        ),
+
     ) {
 
         Box(
@@ -378,26 +382,25 @@ private fun StartButton(
             contentAlignment = Alignment.Center,
         ) {
 
-            Box(
+            ButtonScratchedIcon(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .wrapContentWidth()
-            ) {
+                    .width(IntrinsicSize.Max)
+            )
 
-                ButtonScratchedIcon()
-
-            }
             BasicText(
                 modifier = Modifier
-                    .padding(8.dp),
-                text = stringResource(R.string.titlescreen_button),
+                    .padding(vertical = 8.dp)
+                    .fillMaxWidth(),
+                text = stringResource(R.string.titlescreen_button).uppercase(),
                 style = LocalTypography.current.primary.regular.copy(
                     color = LocalPalette.current.textFamily.body,
                     textAlign = TextAlign.Center,
                 ),
                 maxLines = 1,
-                autoSize = TextAutoSize.StepBased(minFontSize = 5.sp, maxFontSize = 48.sp, stepSize = 5.sp)
+                autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 5.sp)
             )
+
 
         }
 
