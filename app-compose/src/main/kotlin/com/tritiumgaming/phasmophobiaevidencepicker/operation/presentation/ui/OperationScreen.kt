@@ -18,7 +18,7 @@ fun OperationScreen(
     content: @Composable () -> Unit
 ) {
 
-    OperationBottomNavBar(
+    OperationNavigationBar(
         navController = navController
     ) {
         content()

@@ -11,7 +11,6 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -30,14 +29,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 
 @Composable
-fun OperationNavDrawer(
+fun OperationNavigationDrawer(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
+    drawerState: DrawerState = DrawerState(DrawerValue.Closed),
     content: @Composable () -> Unit,
-    drawerState: DrawerState = DrawerState(DrawerValue.Closed)
 ) {
 
     ModalNavigationDrawer(
-
+        modifier = modifier,
         gesturesEnabled = false,
         drawerContent = {
             ModalDrawerSheet(
