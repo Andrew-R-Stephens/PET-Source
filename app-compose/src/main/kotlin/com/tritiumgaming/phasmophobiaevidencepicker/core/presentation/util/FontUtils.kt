@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util
 
 import android.text.Html
 import android.text.Spanned
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import androidx.compose.runtime.Composable
@@ -44,15 +45,17 @@ object FontUtils {
 
         val startTag = "<font color="
         val endTag = ">"
-        val targetTag = startTag + oldColor + endTag
-        msg = msg.replace(targetTag.toRegex(), startTag + newColor + endTag)
+        val targetTag = "$startTag#$oldColor$endTag"
+        Log.d("FontUtils", "Color fixed from $targetTag to: $startTag$newColor$endTag")
+        msg = msg.replace(targetTag.toRegex(), "$startTag$newColor$endTag")
+        Log.d("FontUtils", "Color fix: $msg")
 
         return msg
     }
 
     fun replaceHTMLFontColor(msg: String, oldColor: String, newColor: Color): String {
         return replaceHTMLFontColor(
-            msg, oldColor, "#${newColor.toArgb().toHexString()}"
+            msg, oldColor, "#${newColor.toArgb().toHexString().substring(2)}"
         )
     }
 
