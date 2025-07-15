@@ -48,7 +48,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-
 @Composable
 fun OperationNavigationBar(
     navController: NavHostController = rememberNavController(),
