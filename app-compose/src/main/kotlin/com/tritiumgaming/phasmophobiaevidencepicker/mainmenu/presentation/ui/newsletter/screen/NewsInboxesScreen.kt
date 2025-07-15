@@ -5,11 +5,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,6 +23,7 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -43,6 +48,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
@@ -76,69 +82,122 @@ fun NewsInboxesScreen(
     newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
 ) {
 
-    MainMenuScreen(
-        content = {
-            NewsInboxesContent(
-                navController = navController,
-                newsletterViewModel = newsletterViewModel
-            ) { navController.popBackStack() }
+    MainMenuScreen {
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            NavigationHeaderComposable(
+                NavHeaderComposableParams(
+                    leftType = PETImageButtonType.BACK,
+                    rightType = PETImageButtonType.NONE,
+                    centerTitleRes = R.string.newsletter_title,
+                    leftOnClick = { navController.popBackStack() }
+                )
+            )
+
+            HorizontalDivider()
+
+            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+            val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+            when(deviceConfiguration) {
+                DeviceConfiguration.MOBILE_PORTRAIT -> {
+                    NewsInboxesContentPortrait(
+                        navController = navController,
+                        newsletterViewModel = newsletterViewModel
+                    )
+                }
+                DeviceConfiguration.MOBILE_LANDSCAPE,
+                DeviceConfiguration.TABLET_PORTRAIT,
+                DeviceConfiguration.TABLET_LANDSCAPE,
+                DeviceConfiguration.DESKTOP -> {
+                    NewsInboxesContentLandscape(
+                        navController = navController
+                    )
+                }
+            }
+
+            AdmobBanner()
         }
-    )
+
+    }
 
 }
 
 
 @Composable
-private fun NewsInboxesContent(
+private fun ColumnScope.NewsInboxesContentPortrait(
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
-    onBack: () -> Unit = {}
+    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
 ) {
 
     val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
 
-    Column(
+    LazyColumn(
         modifier = Modifier
-            .fillMaxSize()
+            .weight(1f)
             .padding(8.dp),
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.Top,
     ) {
 
-        NavigationHeaderComposable(
-            NavHeaderComposableParams(
-                leftType = PETImageButtonType.BACK,
-                rightType = PETImageButtonType.NONE,
-                centerTitleRes = R.string.newsletter_title,
-                leftOnClick = onBack
+        items(items = inboxes.value) { inbox ->
+
+            InboxCard(
+                modifier = Modifier
+                    .padding(vertical = 4.dp),
+                title = inbox.title.toStringResource(),
+                icon = inbox.icon,
+                isActive = false,
+                onClick = {
+                    navController.navigate(
+                        route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
+                }
             )
-        )
-
-        HorizontalDivider()
-
-        LazyColumn(
-            modifier = Modifier
-                .weight(1f)
-                .padding(8.dp),
-            verticalArrangement = Arrangement.Top,
-        ) {
-
-            items(items = inboxes.value) { inbox ->
-
-                InboxCard(
-                    title = inbox.title.toStringResource(),
-                    icon = inbox.icon,
-                    isActive = false,
-                    onClick = {
-                        navController.navigate(
-                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
-                    }
-                )
-
-            }
 
         }
 
-        AdmobBanner()
+    }
+
+}
+
+@Composable
+private fun ColumnScope.NewsInboxesContentLandscape(
+    navController: NavController = rememberNavController(),
+    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
+) {
+
+    val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
+
+    LazyColumn(
+        modifier = Modifier
+            .weight(1f)
+            .widthIn(max = 600.dp)
+            .padding(8.dp),
+        verticalArrangement = Arrangement.Top
+    ) {
+
+        items(items = inboxes.value) { inbox ->
+
+            InboxCard(
+                modifier = Modifier
+                    .padding(vertical = 4.dp),
+                title = inbox.title.toStringResource(),
+                icon = inbox.icon,
+                isActive = false,
+                onClick = {
+                    navController.navigate(
+                        route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
+                }
+            )
+
+        }
+
     }
 
 }
