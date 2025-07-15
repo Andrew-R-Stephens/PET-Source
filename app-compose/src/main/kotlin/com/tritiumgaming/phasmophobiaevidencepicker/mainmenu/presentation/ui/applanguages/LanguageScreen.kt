@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -48,49 +49,48 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mai
 @Composable
 @Preview
 private fun LanguageScreenPreview() {
-    LanguageScreen()
+    LanguageScreen(
+        globalPreferencesViewModel = viewModel( factory = GlobalPreferencesViewModel.Factory ))
 }
 
 @Composable
 fun LanguageScreen(
-    navController: NavController = rememberNavController()
+    navController: NavController = rememberNavController(),
+    globalPreferencesViewModel: GlobalPreferencesViewModel
 ) {
 
-    MainMenuScreen(
-        content = {
+    MainMenuScreen {
 
-            LanguageContent(
-                navController = navController
+        Column(
+            modifier = Modifier
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            NavigationHeaderComposable(
+                params = NavHeaderComposableParams(
+                    centerTitleRes = R.string.titlescreen_languages_label,
+                    leftType = PETImageButtonType.BACK,
+                    leftOnClick = {
+                        navController.popBackStack()
+                    }
+                )
             )
 
+            LanguageContent(
+                globalPreferencesViewModel = globalPreferencesViewModel
+            )
         }
-    )
+
+    }
 
 }
 
 
 @Composable
-private fun LanguageContent(
-    navController: NavController = rememberNavController(),
-    globalPreferencesViewModel: GlobalPreferencesViewModel =
-        viewModel( factory = GlobalPreferencesViewModel.Factory )
+private fun ColumnScope.LanguageContent(
+    globalPreferencesViewModel: GlobalPreferencesViewModel
 ) {
-
-    Column(
-        modifier = Modifier
-            .fillMaxHeight(),
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
-
-        NavigationHeaderComposable(
-            params = NavHeaderComposableParams(
-                centerTitleRes = R.string.titlescreen_languages_label,
-                leftType = PETImageButtonType.BACK,
-                leftOnClick = {
-                    navController.popBackStack()
-                }
-            )
-        )
 
         val columnState = rememberLazyListState()
         LazyColumn(
@@ -116,9 +116,6 @@ private fun LanguageContent(
             }
 
         }
-
-    }
-
 }
 
 @Composable
