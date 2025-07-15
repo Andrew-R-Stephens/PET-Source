@@ -26,6 +26,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.new
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen.NewsMessagesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
@@ -43,6 +44,8 @@ fun RootNavigation(
         viewModel(factory = GlobalPreferencesViewModel.Factory),
     permissionsViewModel: PermissionsViewModel =
         viewModel(factory = PermissionsViewModel.Factory),
+    mainMenuViewModel: MainMenuViewModel =
+        viewModel(factory = MainMenuViewModel.Factory),
     accountViewModel: AccountViewModel =
         viewModel(factory = AccountViewModel.Factory),
     newsletterViewModel: NewsletterViewModel =
@@ -68,6 +71,7 @@ fun RootNavigation(
             navController = navController,
             globalPreferencesViewModel = globalPreferencesViewModel,
             permissionsViewModel = permissionsViewModel,
+            mainMenuViewModel = mainMenuViewModel,
             accountViewModel = accountViewModel,
             newsletterViewModel = newsletterViewModel
         )
@@ -85,6 +89,7 @@ private fun NavGraphBuilder.mainMenuNavigation(
     navController: NavHostController,
     globalPreferencesViewModel: GlobalPreferencesViewModel,
     permissionsViewModel: PermissionsViewModel,
+    mainMenuViewModel: MainMenuViewModel,
     accountViewModel: AccountViewModel,
     newsletterViewModel: NewsletterViewModel
 ) {
@@ -99,11 +104,17 @@ private fun NavGraphBuilder.mainMenuNavigation(
         }
 
         composable(route = NavRoute.SCREEN_LANGUAGE.route) {
-            LanguageScreen(navController = navController)
+            LanguageScreen(
+                navController = navController,
+                globalPreferencesViewModel = globalPreferencesViewModel
+            )
         }
 
         composable(route = NavRoute.SCREEN_APP_INFO.route) {
-            InfoScreen(navController = navController)
+            InfoScreen(
+                navController = navController,
+                mainMenuViewModel = mainMenuViewModel
+            )
         }
 
         composable(route = NavRoute.SCREEN_SETTINGS.route) {
