@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteResources.PaletteType
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketPalette
 
 data class MarketPalette(
     val uuid: String,

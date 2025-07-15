@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketTypography
 
 data class MarketTypography (
     val uuid: String,

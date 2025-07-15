@@ -67,9 +67,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.text.NumberFormat
-import kotlin.Boolean
-import kotlin.Float
-import kotlin.Int
 import kotlin.math.max
 import kotlin.math.min
 

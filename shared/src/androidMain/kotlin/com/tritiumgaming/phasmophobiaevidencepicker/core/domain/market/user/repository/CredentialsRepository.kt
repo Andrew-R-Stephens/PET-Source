@@ -2,11 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.user.rep
 
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.GetCustomCredentialOption
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCreditTransaction
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketAgreement
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.SignInOptions
 
 interface CredentialsRepository {
