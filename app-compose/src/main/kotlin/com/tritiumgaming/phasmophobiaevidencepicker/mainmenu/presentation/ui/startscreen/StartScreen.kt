@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -171,7 +172,7 @@ private fun ColumnScope.StartContentCompactPortrait(
 }
 
 @Composable
-private fun ColumnScope.StartContentCompactLandscape(
+internal fun ColumnScope.StartContentCompactLandscape(
     navController: NavController = rememberNavController()
 ) {
     Row(
@@ -208,16 +209,17 @@ private fun ColumnScope.StartContentOther(
 private fun ColumnScope.LogoSection() {
     Column(
         modifier = Modifier
-            .weight(1f),
+            .weight(1f)
+            .fillMaxWidth(.75f),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
 
         IconResource.ICON_LOGO_APP.ToComposable(
             modifier = Modifier
+                .heightIn(max = 256.dp)
                 .aspectRatio(1f)
                 .weight(1f)
-                .fillMaxSize()
                 .padding(16.dp)
         )
 
@@ -231,7 +233,8 @@ private fun ColumnScope.LogoSection() {
                 textAlign = TextAlign.Center
             ),
             maxLines = 2,
-            autoSize = TextAutoSize.StepBased(minFontSize = 14.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+            autoSize = TextAutoSize.StepBased(
+                minFontSize = 12.sp, maxFontSize = 36.sp, stepSize = 2.sp)
         )
 
     }
@@ -242,13 +245,15 @@ private fun RowScope.LogoSection() {
     Column(
         modifier = Modifier
             .weight(1f)
-            .padding(32.dp),
+            .fillMaxSize(.9f)
+            .padding(vertical = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
 
         IconResource.ICON_LOGO_APP.ToComposable(
             modifier = Modifier
+                .heightIn(max = 256.dp)
                 .aspectRatio(1f, false)
                 .weight(1f, false)
         )
@@ -257,8 +262,10 @@ private fun RowScope.LogoSection() {
 
         BasicText(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
+                .fillMaxWidth(.75f)
+                .wrapContentWidth()
+                .heightIn(max = 48.dp)
+                .wrapContentHeight(),
             text = stringResource(R.string.titlescreen_description),
             style = LocalTypography.current.primary.regular.copy(
                 color = LocalPalette.current.splashTextColor,
