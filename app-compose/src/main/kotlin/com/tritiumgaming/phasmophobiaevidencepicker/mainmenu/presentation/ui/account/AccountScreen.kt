@@ -3,9 +3,14 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.ac
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.MarqueeAnimationMode
+import androidx.compose.foundation.MarqueeDefaults.Iterations
+import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,10 +19,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -41,14 +49,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.SubcomposeLayout
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.height
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.width
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -59,6 +73,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.AccountManagerService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.SignInOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.indicators.IndeterminateCircularIndicator
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentRow
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
@@ -74,6 +89,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.acc
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 @Composable
 @Preview
@@ -307,92 +323,73 @@ private fun AccountDetailsComponent(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            color = LocalPalette.current.surface.onColor,
-            shape = RoundedCornerShape(8.dp),
-        ) {
-
-            Row(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .wrapContentHeight()
-            ) {
-                Text(
-                    modifier = Modifier
-                        .weight(1f),
-                    text = "${stringResource(R.string.account_label_name)}:",
-                    style = LocalTypography.current.quaternary.bold,
-                    color = LocalPalette.current.textFamily.body,
-                    fontSize = 18.sp,
-                    maxLines = 1,
-                    textAlign = TextAlign.Start
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Text(
-                    modifier = Modifier
-                        .weight(1f),
-                    text = Firebase.auth.currentUser?.displayName ?: "",
-                    style = LocalTypography.current.quaternary.bold,
-                    color = LocalPalette.current.textFamily.body,
-                    fontSize = 18.sp,
-                    maxLines = 1,
-                    textAlign = TextAlign.End
-                )
-
-            }
-
-        }
+        LabeledValue(
+            title = "${stringResource(R.string.account_label_name)}:",
+            value = Firebase.auth.currentUser?.displayName ?: ""
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Surface(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            color = LocalPalette.current.surface.onColor,
-            shape = RoundedCornerShape(8.dp),
-        ) {
-
-            Row(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .wrapContentHeight()
-            ) {
-                Text(
-                    modifier = Modifier
-                        .weight(1f),
-                    text = "${stringResource(R.string.account_label_email)}:",
-                    style = LocalTypography.current.quaternary.bold,
-                    color = LocalPalette.current.textFamily.body,
-                    fontSize = 18.sp,
-                    maxLines = 1,
-                    textAlign = TextAlign.Start
-                )
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Text(
-                    modifier = Modifier
-                        .weight(1f),
-                    text = Firebase.auth.currentUser?.email ?: "",
-                    style = LocalTypography.current.quaternary.bold,
-                    color = LocalPalette.current.textFamily.body,
-                    fontSize = 18.sp,
-                    maxLines = 1,
-                    textAlign = TextAlign.End
-                )
-
-            }
-
-        }
+        LabeledValue(
+            title = "${stringResource(R.string.account_label_email)}:",
+            value = Firebase.auth.currentUser?.email ?: ""
+        )
 
     }
 
+}
+
+@Composable
+private fun LabeledValue(
+    modifier: Modifier = Modifier,
+    title: String = "",
+    value: String = ""
+) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        color = LocalPalette.current.surface.onColor,
+        shape = RoundedCornerShape(8.dp),
+    ) {
+        DynamicContentRow(
+            modifier = Modifier
+                .padding(horizontal = 12.dp, vertical = 8.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            startComponent = {
+                Text(
+                    text = title,
+                    style = LocalTypography.current.quaternary.bold,
+                    color = LocalPalette.current.textFamily.body,
+                    fontSize = 18.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier
+                        .padding(end = 4.dp)
+                )
+            },
+            endComponent = {
+                Text(
+                    text = value,
+                    style = LocalTypography.current.quaternary.bold,
+                    color = LocalPalette.current.textFamily.body,
+                    fontSize = 18.sp,
+                    maxLines = 1,
+                    textAlign = TextAlign.End,
+                    overflow = TextOverflow.Clip,
+                    modifier = Modifier.basicMarquee(
+                        animationMode = MarqueeAnimationMode.Immediately,
+                        iterations = Integer.MAX_VALUE,
+                        initialDelayMillis = 3000,
+                        repeatDelayMillis = 3000
+                    )
+                        .padding(start = 4.dp)
+                )
+            }
+        )
+    }
 }
 
 @Composable
@@ -426,6 +423,28 @@ private fun AccountDetailsComponentPreview() {
         typography = ClassicTypography
     ) {
         PaletteListItem(ClassicPalette)
+    }
+
+}
+
+@Preview
+@Composable
+private fun LabeledValuePreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+
+        Column {
+
+            Spacer(modifier = Modifier.height(128.dp))
+
+            LabeledValue(
+                title = "ds:",
+                value = "d"
+            )
+
+        }
     }
 
 }

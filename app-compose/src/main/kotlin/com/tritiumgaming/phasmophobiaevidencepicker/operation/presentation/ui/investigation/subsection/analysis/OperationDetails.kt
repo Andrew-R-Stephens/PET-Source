@@ -56,6 +56,7 @@ fun OperationDetails(
     investigationViewModel: InvestigationViewModel,
     modifier: Modifier = Modifier
 ) {
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -67,6 +68,8 @@ fun OperationDetails(
         DifficultyModifierDetails(investigationViewModel = investigationViewModel)
         ActiveGhostModifierDetails(investigationViewModel = investigationViewModel)
     }
+
+
 }
 
 @Composable
