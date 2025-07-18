@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Page Details -->
+    <string name="maps_size_title_large">Великий</string>
+    <string name="objectives_title_optional_objectives">Додаткові цілі</string>
+    <string name="objectives_title_investigation_debrief">Звіт про розслідування</string>
+    <string name="objectives_title_ghost_name">Ім\'я Привида</string>
+    <string name="objectives_ghostname_note">Введіть ім\'я привида тут</string>
+    <string name="objectives_title_optional_objective_1">Ціль 1</string>
+    <string name="objectives_title_optional_objective_2">Ціль 2</string>
+    <string name="objectives_title_optional_objective_3">Ціль 3</string>
+    <string name="objectives_title_response">Відповідає людям, які є</string>
+    <string name="objectives_title_response_alone">Наодинці</string>
+    <string name="objectives_title_response_everyone">Згруповані</string>
+    <!-- Objective Description -->
+    <string name="objective_info_ghostevent">Станьте свідком примарної події</string>
+    <string name="objective_info_ghostphotograph">Сфотографуй привида</string>
+    <string name="objective_info_emfreader">Отримуйте будь-яку активність EMF Reader</string>
+    <string name="objective_info_motionsensor">Отримуйте інформацію про активність датчика руху</string>
+    <string name="objective_info_smudgestick">Розмазати пахощі місцезнаходження Привида</string>
+    <string name="objective_info_crucifix">Запобігти полюванню з Розп\'яттям</string>
+    <string name="objective_info_salt">Попросіть Привида пройти через Сіль</string>
+    <string name="objective_info_escapehunt">Втечіть від привида, поки він полює</string>
+    <string name="objective_info_repelwithsmudge">Відштовхніть мисливського привида палицею Smudge </string>
+    <string name="objective_info_extinguishcandle">Нехай привид задує свічку</string>
+    <string name="objective_info_lowsanity">Отримайте середню командну осудність 25% або менше</string>
+</resources>

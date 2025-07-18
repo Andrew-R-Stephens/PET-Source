@@ -717,9 +717,9 @@
     <string name="maps_size_title_large">Большой</string>
     <string name="objectives_title_optional_objectives">Дополнительные цели</string>
     <string name="objectives_title_investigation_debrief">Отчет о расследовании</string>
-    <string name="objectives_title_ghost_name">Имя призрака:</string>
+    <string name="objectives_title_ghost_name">Имя призрака</string>
     <string name="objectives_ghostname_note">Введите здесь имя призрака</string>
-    <string name="objectives_title_response">Отвечает людям, которые:</string>
+    <string name="objectives_title_response">Отвечает людям, которые</string>
     <string name="objectives_title_optional_objective_1">Цель 1</string>
     <string name="objectives_title_optional_objective_2">Цель 2</string>
     <string name="objectives_title_optional_objective_3">Цель 3</string>

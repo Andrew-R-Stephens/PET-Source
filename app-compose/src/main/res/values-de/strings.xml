@@ -755,8 +755,7 @@
     <string name="maps_size_title_large">Groß</string>
     <string name="objectives_title_optional_objectives">Optionale Ziele</string>
     <string name="objectives_title_investigation_debrief">Untersuchungsbesprechung</string>
-    <string name="objectives_title_ghost_name">Name des Geistes:</string>
-    <string name="objectives_title_response">Reagiert auf Personen, die:</string>
+    <string name="objectives_title_response">Reagiert auf Personen, die</string>
     <string name="objectives_title_optional_objective_1">Ziel 1</string>
     <string name="objectives_title_optional_objective_2">Ziel 2</string>
     <string name="objectives_title_optional_objective_3">Ziel 3</string>
@@ -855,6 +854,7 @@
     <string name="settings_colorblindnessmode_note">(Wird wirksam, nachdem Sie die Einstellungen verlassen haben.)</string>
     <string name="settings_enableGhostReorder">Neuanordnung der Ghost-Liste aktivieren</string>
     <string name="settings_colorblindnessmode_title">Farbenblindmodus</string>
+    <string name="objectives_title_ghost_name">Name des Geistes</string>
     <string name="objectives_ghostname_note">Geben Sie hier den Geisternamen ein</string>
 
     <!--

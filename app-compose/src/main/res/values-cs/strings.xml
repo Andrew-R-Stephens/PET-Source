@@ -873,9 +873,9 @@
     <string name="maps_size_title_large">Velký</string>
     <string name="objectives_title_optional_objectives">Volitelné cíle</string>
     <string name="objectives_title_investigation_debrief">Shrnutí vyšetřování</string>
-    <string name="objectives_title_ghost_name">Jméno ducha:</string>
+    <string name="objectives_title_ghost_name">Jméno ducha</string>
     <string name="objectives_ghostname_note">Sem zadejte jméno ducha</string>
-    <string name="objectives_title_response">Odpovídá lidem, kteří jsou:</string>
+    <string name="objectives_title_response">Odpovídá lidem, kteří jsou</string>
     <string name="objectives_title_optional_objective_1">Cíl 1</string>
     <string name="objectives_title_optional_objective_2">Cíl 2</string>
     <string name="objectives_title_optional_objective_3">Cíl 3</string>

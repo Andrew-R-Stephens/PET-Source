@@ -762,8 +762,8 @@
     <string name="maps_size_title_large">Grande</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionales</string>
     <string name="objectives_title_investigation_debrief">Informe de investigacion</string>
-    <string name="objectives_title_ghost_name">Nombre del fantasma:</string>
-    <string name="objectives_title_response">Responde a las personas que son:</string>
+    <string name="objectives_title_ghost_name">Nombre del fantasma</string>
+    <string name="objectives_title_response">Responde a las personas que son</string>
     <string name="objectives_title_optional_objective_1">Objetivo 1</string>
     <string name="objectives_title_optional_objective_2">Objetivo 2</string>
     <string name="objectives_title_optional_objective_3">Objetivo 3</string>

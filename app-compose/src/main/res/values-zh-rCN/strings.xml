@@ -133,9 +133,9 @@
     <string name="maps_size_title_large">大的</string>
     <string name="objectives_title_optional_objectives">可选目标</string>
     <string name="objectives_title_investigation_debrief">调查汇报</string>
-    <string name="objectives_title_ghost_name">鬼魂的名字：</string>
+    <string name="objectives_title_ghost_name">鬼魂的名字</string>
     <string name="objectives_ghostname_note">在此输入幽灵名称</string>
-    <string name="objectives_title_response">回应以下人士：</string>
+    <string name="objectives_title_response">回应以下人士</string>
     <string name="objectives_title_optional_objective_1">目标 1</string>
     <string name="objectives_title_optional_objective_2">目标 2</string>
     <string name="objectives_title_optional_objective_3">目标 3</string>
