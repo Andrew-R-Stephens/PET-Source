@@ -10,6 +10,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.DifficultyDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.local.DifficultyLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.repository.GhostNameRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.source.GhostNameDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.source.local.GhostNameLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.new.JournalRepositoryImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.EvidenceDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.GhostDataSource
@@ -41,6 +44,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyResponseTypeUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.repository.GhostNameRepository
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.usecase.FetchAllFemaleNamesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.usecase.FetchAllFirstNamesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.usecase.FetchAllMaleNamesUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.usecase.FetchAllSurnamesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.repository.JournalRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
@@ -114,6 +122,19 @@ class OperationContainer(
             localSource = missionLocalDataSource
         )
     internal val fetchAllMissionsUseCase = FetchAllMissionsUseCase(missionRepository)
+
+    // Ghost Name
+    private val ghostNameLocalDataSource: GhostNameDataSource = GhostNameLocalDataSource(
+        applicationContext = applicationContext,
+    )
+    internal val ghostNameRepository: GhostNameRepository =
+        GhostNameRepositoryImpl(
+            localSource = ghostNameLocalDataSource
+        )
+    internal val fetchAllFirstNamesUseCase = FetchAllFirstNamesUseCase(ghostNameRepository)
+    internal val fetchAllMaleNamesUseCase = FetchAllMaleNamesUseCase(ghostNameRepository)
+    internal val fetchAllFemaleNamesUseCase = FetchAllFemaleNamesUseCase(ghostNameRepository)
+    internal val fetchAllSurnamesUseCase = FetchAllSurnamesUseCase(ghostNameRepository)
 
     // Map Modifiers
     private val mapModifiersLocalDataSource: MapModifiersDataSource =
