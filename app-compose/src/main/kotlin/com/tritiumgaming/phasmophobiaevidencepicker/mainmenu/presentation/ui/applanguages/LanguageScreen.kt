@@ -5,11 +5,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -37,6 +40,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.LanguageEntity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toStringResource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentRow
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
@@ -64,7 +68,8 @@ fun LanguageScreen(
         Column(
             modifier = Modifier
                 .fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             NavigationHeaderComposable(
@@ -97,6 +102,7 @@ private fun ColumnScope.LanguageContent(
             modifier = Modifier
                 .padding(all = 8.dp)
                 .weight(1f)
+                .widthIn(max = 600.dp)
                 .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -146,7 +152,42 @@ private fun LanguageItem(
         shape = RoundedCornerShape(8.dp),
         color = LocalPalette.current.surface.onColor,
     ) {
-        Row(
+
+        DynamicContentRow(
+            modifier = Modifier
+                .padding(vertical = 8.dp, horizontal = 16.dp)
+                .wrapContentHeight()
+                .fillMaxWidth(),
+            startComponent = {
+                Text(
+                    modifier = Modifier
+                        .wrapContentWidth(Alignment.Start),
+                    text = stringResource(rememberName),
+                    style = LocalTypography.current.secondary.regular.copy(
+                        color = color,
+                        textAlign = TextAlign.Start
+                    ),
+                    maxLines = 1,
+                    fontSize = 18.sp
+                )
+            },
+            endComponent = {
+                Text(
+                    modifier = Modifier
+                        .wrapContentWidth(Alignment.End)
+                        .alpha(.75f),
+                    text = "( ${stringResource(language.nativeName.toStringResource())} )",
+                    style = LocalTypography.current.secondary.regular.copy(
+                        color = color,
+                        textAlign = TextAlign.End
+                    ),
+                    maxLines = 1,
+                    fontSize = 18.sp
+                )
+            }
+        )
+
+        /*Row(
             modifier = Modifier
                 .padding(vertical = 8.dp, horizontal = 16.dp)
                 .wrapContentHeight()
@@ -182,7 +223,7 @@ private fun LanguageItem(
                 fontSize = 18.sp
             )
 
-        }
+        }*/
     }
 
 }
