@@ -24,7 +24,7 @@ class DifficultyLocalDataSource(
             ),
             DifficultyResourceDto(
                 index = 1,
-                name = DifficultyTitle.INSANITY,
+                name = DifficultyTitle.INTERMEDIATE,
                 time = R.integer.difficulty_time_intermediate,
                 modifier = R.fraction.difficulty_modifier_intermediate,
                 initialSanity = R.fraction.difficulty_initialSanity_intermediate,
