@@ -224,7 +224,8 @@ private fun NavGraphBuilder.investigationNavigation(
         composable(route = NavRoute.SCREEN_MISSIONS.route) {
             ObjectivesScreen(
                 navController = navController,
-                objectivesViewModel = objectivesViewModel
+                objectivesViewModel = objectivesViewModel,
+                investigationViewModel = investigationViewModel
             )
         }
 
