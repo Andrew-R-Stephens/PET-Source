@@ -1,7 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists
 
 import android.util.Log
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -9,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -43,6 +48,7 @@ private fun GhostListPreview() {
 
 @Composable
 fun GhostList(
+    modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel
 ) {
 
@@ -67,10 +73,10 @@ fun GhostList(
         }
     }
 
-
     LazyColumn(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = modifier
+            .fillMaxHeight()
+            .wrapContentWidth(Alignment.CenterHorizontally),
         state = listState
     ) {
 
@@ -85,10 +91,12 @@ fun GhostList(
 
                 GhostListItem(
                     modifier = Modifier
+                        .padding(horizontal = 2.dp)
+                        .wrapContentWidth(Alignment.CenterHorizontally)
                         .animateItem(),
                     investigationViewModel = investigationViewModel,
-                    ghostScore = ghostsScoreState.value.find {
-                        it.ghostEvidence.ghost.id == ghostModel.id }
+                    ghostScore = ghostsScoreState.value.find { score ->
+                        score.ghostEvidence.ghost.id == ghostModel.id }
                 )
 
             } ?: Log.d("GhostList", "Ghost Found for id: $it")

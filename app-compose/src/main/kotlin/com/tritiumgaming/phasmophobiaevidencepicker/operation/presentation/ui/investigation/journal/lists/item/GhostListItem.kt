@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
@@ -58,11 +60,11 @@ fun GhostListItem(
 
     Row(
         modifier = modifier
-            .fillMaxWidth()
+            .wrapContentWidth(Alignment.CenterHorizontally)
             .height(48.dp)
-            .padding(vertical = 8.dp),
+            .padding(vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         Box(
             modifier = Modifier
@@ -126,10 +128,12 @@ fun GhostListItem(
 
         Row(
             modifier = Modifier
-                .weight(1f, false)
-                .wrapContentWidth(),
+                .weight(1f, true)
+                .fillMaxHeight()
+                /*.wrapContentWidth()*/
+                /*.width(IntrinsicSize.Max)*/,
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceAround,
+            horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.CenterHorizontally),
         ) {
 
             val evidenceList = ghostScore?.ghostEvidence?.normalEvidenceList

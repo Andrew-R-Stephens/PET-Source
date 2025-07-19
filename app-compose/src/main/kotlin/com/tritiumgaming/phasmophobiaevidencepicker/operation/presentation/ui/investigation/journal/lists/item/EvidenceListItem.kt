@@ -1,35 +1,39 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item
 
-import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -39,6 +43,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
@@ -94,155 +99,216 @@ fun EvidenceListItem(
         shape = RoundedCornerShape(8.dp)
     ) {
 
-        if(LocalConfiguration.current.orientation == ORIENTATION_PORTRAIT) {
-            Column(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(Alignment.Top),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
-            ) {
 
-                Box(
-                    modifier = Modifier
-                        .height(48.dp)
-                        .fillMaxWidth()
-                        .padding(2.dp)
-                        .clickable(onClick = {
-                            onNameClick()
-                        }),
-                    contentAlignment = Alignment.Center
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+        when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                EvidenceRowTall(
+                    modifier = modifier,
+                    investigationViewModel = investigationViewModel,
+                    label = label,
+                    evidence = evidence,
+                    rulingState = rulingState
                 ) {
-
-                    BasicText(
-                        text = label,
-                        style = LocalTypography.current.primary.regular.copy(
-                            color = LocalPalette.current.textFamily.body,
-                            textAlign = TextAlign.Center
-                        ),
-                        maxLines = 1,
-                        autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, maxFontSize = 36.sp, stepSize = 5.sp)
-                    )
-
-                }
-
-                Row(
-                    modifier = Modifier
-                        .height(48.dp)
-                        .fillMaxWidth()
-                        .padding(2.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-
-                    for (rulingType in Ruling.entries) {
-
-                        Button(
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxHeight(),
-                            onClick = {
-                                //rememberRuling = rulingType
-                                investigationViewModel.setEvidenceRuling(evidence, rulingType)
-                            },
-                            colors = ButtonDefaults.buttonColors().copy(
-                                containerColor = Color.Transparent,
-                                contentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent,
-                                disabledContentColor = Color.Transparent,
-                            ),
-                            contentPadding = PaddingValues(8.dp),
-                            shape = CircleShape,
-                            content = {
-                                RulingIcon(
-                                    ruling = rulingType,
-                                    isSelected = rulingState?.ordinal == rulingType.ordinal,
-                                    //isSelected = rememberRuling?.ordinal == rulingType.ordinal
-                                )
-                            }
-                        )
-                    }
-
-
+                    onNameClick()
                 }
             }
-        } else {
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(Alignment.Top),
-                verticalAlignment = Alignment.Top,
-                horizontalArrangement = Arrangement.Center
-            ) {
-
-                Box(
-                    modifier = Modifier
-                        .height(48.dp)
-                        .fillMaxWidth(.5f)
-                        .padding(8.dp)
-                        .clickable(onClick = {
-                            onNameClick()
-                        }),
-                    contentAlignment = Alignment.Center
+            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                EvidenceRowFlat(
+                    modifier = modifier,
+                    investigationViewModel = investigationViewModel,
+                    label = label,
+                    evidence = evidence,
+                    rulingState = rulingState
                 ) {
-
-                    BasicText(
-                        text = label,
-                        style = LocalTypography.current.primary.regular.copy(
-                            color = LocalPalette.current.textFamily.body,
-                            textAlign = TextAlign.Center
-                        ),
-                        maxLines = 1,
-                        autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-                    )
-
-                }
-
-                Row(
-                    modifier = Modifier
-                        .height(48.dp)
-                        .fillMaxWidth(.75f),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-
-                    for (rulingType in Ruling.entries) {
-
-                        Button(
-                            modifier = Modifier
-                                .weight(1f)
-                                .fillMaxHeight(),
-                            onClick = {
-                                //rememberRuling = rulingType
-                                investigationViewModel.setEvidenceRuling(evidence, rulingType)
-                            },
-                            colors = ButtonDefaults.buttonColors().copy(
-                                containerColor = Color.Transparent,
-                                contentColor = Color.Transparent,
-                                disabledContainerColor = Color.Transparent,
-                                disabledContentColor = Color.Transparent,
-                            ),
-                            contentPadding = PaddingValues(2.dp),
-                            shape = CircleShape,
-                            content = {
-                                RulingIcon(
-                                    ruling = rulingType,
-                                    isSelected = rulingState?.ordinal == rulingType.ordinal
-                                )
-                            }
-                        )
-                    }
-
-
+                    onNameClick()
                 }
             }
         }
+
     }
 
 }
 
 @Composable
+private fun EvidenceRowFlat(
+    modifier: Modifier,
+    investigationViewModel: InvestigationViewModel,
+    label: String,
+    evidence: EvidenceType,
+    rulingState: Ruling?,
+    onNameClick: () -> Unit,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(Alignment.Top),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+
+        Box(
+            modifier = Modifier
+                .height(48.dp)
+                .weight(1f)
+                .clickable(onClick = {
+                    onNameClick()
+                })
+                .padding(vertical = 4.dp),
+            contentAlignment = Alignment.Center
+        ) {
+
+            Text(
+                text = label,
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.body,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
+
+        }
+
+        Row(
+            modifier = Modifier
+                .weight(1f)
+                .wrapContentHeight(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+
+            for (rulingType in Ruling.entries) {
+
+                Button(
+                    modifier = Modifier
+                        .weight(1f, false)
+                        .sizeIn(maxWidth = 48.dp, maxHeight = 48.dp)
+                        .aspectRatio(1f)
+                        .wrapContentSize(),
+                    onClick = {
+                        //rememberRuling = rulingType
+                        investigationViewModel.setEvidenceRuling(evidence, rulingType)
+                    },
+                    colors = ButtonDefaults.buttonColors().copy(
+                        containerColor = Color.Transparent,
+                        contentColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
+                        disabledContentColor = Color.Transparent,
+                    ),
+                    contentPadding = PaddingValues(horizontal = 2.dp, vertical = 0.dp),
+                    shape = CircleShape,
+                    content = {
+                        RulingIcon(
+                            ruling = rulingType,
+                            isSelected = rulingState?.ordinal == rulingType.ordinal
+                        )
+                    }
+                )
+            }
+
+
+        }
+    }
+}
+
+@Composable
+private fun EvidenceRowTall(
+    modifier: Modifier,
+    investigationViewModel: InvestigationViewModel,
+    label: String,
+    evidence: EvidenceType,
+    rulingState: Ruling?,
+    onNameClick: () -> Unit,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    ) {
+
+        Box(
+            modifier = Modifier
+                .height(48.dp)
+                .fillMaxWidth()
+                .padding(vertical = 4.dp)
+                .clickable(onClick = {
+                    onNameClick()
+                }),
+            contentAlignment = Alignment.Center
+        ) {
+
+            Text(
+                text = label,
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.body,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(
+                    minFontSize = 1.sp,
+                    maxFontSize = 36.sp,
+                    stepSize = 5.sp
+                )
+            )
+
+        }
+
+        Row(
+            modifier = Modifier
+                .height(48.dp)
+                .fillMaxWidth()
+                .padding(2.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+
+            for (rulingType in Ruling.entries) {
+
+                Button(
+                    modifier = Modifier
+                        .weight(1f, false)
+                        .aspectRatio(1f)
+                        .wrapContentSize(),
+                    onClick = {
+                        //rememberRuling = rulingType
+                        investigationViewModel.setEvidenceRuling(evidence, rulingType)
+                    },
+                    colors = ButtonDefaults.buttonColors().copy(
+                        containerColor = Color.Transparent,
+                        contentColor = Color.Transparent,
+                        disabledContainerColor = Color.Transparent,
+                        disabledContentColor = Color.Transparent,
+                    ),
+                    contentPadding = PaddingValues(2.dp),
+                    shape = CircleShape,
+                    content = {
+                        RulingIcon(
+                            modifier = Modifier
+                                .size(48.dp),
+                            ruling = rulingType,
+                            isSelected = rulingState?.ordinal == rulingType.ordinal,
+                            //isSelected = rememberRuling?.ordinal == rulingType.ordinal
+                        )
+                    }
+                )
+            }
+
+
+        }
+    }
+}
+
+@Composable
 private fun RowScope.RulingIcon(
+    modifier: Modifier = Modifier,
     ruling: Ruling? = Ruling.NEUTRAL,
     isSelected: Boolean = false
 ) {
@@ -256,12 +322,12 @@ private fun RowScope.RulingIcon(
 
     ruling?.let { ruling ->
         Box(
-            modifier = Modifier
-                .weight(.3f)
-                .aspectRatio(1f)
+            modifier = modifier
+                .align(Alignment.CenterVertically)
         ) {
             Image(
-                modifier = Modifier.padding(4.dp),
+                modifier = Modifier
+                    .aspectRatio(1f),
                 painter = painterResource(
                     id = when(ruling) {
                         Ruling.NEGATIVE -> R.drawable.ic_selector_neg_unsel
@@ -280,6 +346,8 @@ private fun RowScope.RulingIcon(
             )
             if(isSelected) {
                 Image(
+                    modifier = Modifier
+                        .aspectRatio(1f),
                     painter = painterResource(id = R.drawable.ic_selector_selected),
                     contentScale = ContentScale.Fit,
                     contentDescription = "Evidence Icon",

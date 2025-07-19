@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -88,18 +91,24 @@ private fun RowScope.GhostListColumn(
 ) {
     Column(
         modifier = Modifier
-            .weight(1f)
-            .fillMaxSize(),
-        verticalArrangement = Arrangement.Top
+            .weight(1f, false)
+            .wrapContentWidth(Alignment.CenterHorizontally)
+            //.wrapContentWidth(Alignment.CenterHorizontally)
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box(
+        Row(
             modifier = Modifier
                 .height(48.dp)
-                .fillMaxWidth()
+                .wrapContentWidth(Alignment.CenterHorizontally)
                 .padding(2.dp),
-            contentAlignment = Alignment.Center
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            BasicText(
+            Text(
+                modifier = Modifier
+                    .wrapContentWidth(),
                 text = stringResource(R.string.investigation_section_title_ghosts),
                 style = LocalTypography.current.primary.regular.copy(
                     color = LocalPalette.current.textFamily.tertiary,
