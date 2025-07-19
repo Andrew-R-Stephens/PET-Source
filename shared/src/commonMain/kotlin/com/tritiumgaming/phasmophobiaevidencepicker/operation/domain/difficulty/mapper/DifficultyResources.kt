@@ -47,4 +47,12 @@ class DifficultyResources {
         UNKNOWN
     }
 
+    enum class Frequency {
+        NONE,
+        LOW,
+        MEDIUM,
+        HIGH,
+        VERY_HIGH
+    }
+
 }
