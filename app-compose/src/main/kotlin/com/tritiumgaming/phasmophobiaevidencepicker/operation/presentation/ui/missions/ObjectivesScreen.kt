@@ -96,7 +96,11 @@ private fun ObjectivesContentPortrait(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Column {
+        Column(
+            modifier = Modifier
+                .wrapContentHeight()
+                .padding(8.dp)
+        ) {
 
             BasicText(
                 modifier = Modifier
@@ -193,7 +197,8 @@ private fun ObjectivesContentLandscape(
 
             MissionsContent(
                 modifier = Modifier
-                    .wrapContentHeight(Alignment.Top),
+                    .wrapContentHeight(Alignment.Top)
+                    .padding(8.dp),
                 objectivesViewModel = objectivesViewModel
             )
 

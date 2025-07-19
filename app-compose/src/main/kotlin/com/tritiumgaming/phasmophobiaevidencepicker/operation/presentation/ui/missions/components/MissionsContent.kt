@@ -147,7 +147,7 @@ fun MissionWrapper(
                         value = stringResource(state.mission.content.toStringResource()),
                         textStyle = LocalTypography.current.quaternary.regular.copy(
                             color = LocalPalette.current.textFamily.body,
-                            fontSize = 18.sp
+                            fontSize = 14.sp
                         ),
                         placeholder = {
                             Text(
@@ -158,14 +158,13 @@ fun MissionWrapper(
                                 text = title,
                                 style = LocalTypography.current.quaternary.regular,
                                 color = LocalPalette.current.textFamily.body.copy(alpha = 0.5f),
-                                fontSize = 18.sp
+                                fontSize = 14.sp
                             )
                         },
                         trailingIcon = {
                             ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                         },
-                        maxLines = 1,
-                        singleLine = true,
+                        maxLines = 2,
                         colors = TextFieldDefaults.colors().copy(
                             focusedContainerColor = Color.Transparent,
                             unfocusedContainerColor = Color.Transparent,
