@@ -689,6 +689,7 @@
 
     <!-- Deactivate -->
 
+    <string name="account_button_get_skins">Ottieni altre skin!</string>
     <string name="account_deactivate_title">Disattivazione dell\'account</string>
 
     <string name="account_deactivate_warning">Scegliendo di disattivare il tuo account, accetti quanto segue:</string>
@@ -1021,4 +1022,14 @@
     <string name="language_name_localized_pt">Portoghese</string>
     <string name="language_name_localized_ru">Russo</string>
     <string name="language_name_localized_uk">Ucraino</string>
+    <string name="difficulty_response_unknown">Sconosciuto</string>
+    <string name="difficulty_frequency_none">Nessuno</string>
+    <string name="difficulty_frequency_low">Basso</string>
+    <string name="difficulty_frequency_medium">Medio</string>
+    <string name="difficulty_frequency_high">Alto</string>
+    <string name="difficulty_frequency_veryHigh">Molto alto</string>
+    <string name="difficulty_response_known">Conosciuto</string>
+    <string name="alert_gui_palette_error">Palette non impostata!</string>
+    <string name="alert_gui_typography_error">Tipografia non impostata!</string>
+    <string name="account_button_visit_marketplace">Visita il Marketplace</string>
 </resources>

@@ -680,6 +680,7 @@
 
     <!-- Deactivate -->
 
+    <string name="account_button_get_skins">获取更多皮肤！</string>
     <string name="account_deactivate_title">帐号停用</string>
     <string name="account_deactivate_warning">通过选择停用您的帐号，您同意以下事项：</string>
     <string name="account_deactivate_warning_list_1">所有 P.E.T. 帐号数据将无法恢复。</string>
@@ -895,4 +896,14 @@
     <string name="language_name_localized_pt">葡萄牙语</string>
     <string name="language_name_localized_ru">俄语</string>
     <string name="language_name_localized_uk">乌克兰语</string>
+    <string name="difficulty_response_unknown">未知</string>
+    <string name="difficulty_frequency_none">无</string>
+    <string name="difficulty_frequency_low">低</string>
+    <string name="difficulty_frequency_medium">中</string>
+    <string name="difficulty_frequency_high">高</string>
+    <string name="difficulty_frequency_veryHigh">非常高</string>
+    <string name="difficulty_response_known">已知</string>
+    <string name="alert_gui_palette_error">调色板未设置！</string>
+    <string name="alert_gui_typography_error">字体未设置！</string>
+    <string name="account_button_visit_marketplace">访问市场</string>
 </resources>

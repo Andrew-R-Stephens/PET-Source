@@ -2308,6 +2308,7 @@
     <string name="account_button_deactivate">Deaktivovat účet</string>
 
     <!-- Deactivate -->
+    <string name="account_button_get_skins">Získejte další skiny!</string>
     <string name="account_deactivate_title">Deaktivace účtu</string>
     <string name="account_deactivate_warning">Výběrem deaktivace účtu vyjadřujete souhlas s následujícím:</string>
     <string name="account_deactivate_warning_list_1">Všechny P.E.T. data účtu budou neobnovitelná.</string>
@@ -2382,4 +2383,14 @@
     <string name="language_name_localized_fr">Francouzština</string>
     <string name="language_name_localized_ru">Ruština</string>
     <string name="language_name_localized_uk">Ukrajinština</string>
+    <string name="difficulty_response_unknown">Neznámý</string>
+    <string name="difficulty_frequency_none">Žádné</string>
+    <string name="difficulty_frequency_low">Nízké</string>
+    <string name="difficulty_frequency_medium">Střední</string>
+    <string name="difficulty_frequency_high">Vysoké</string>
+    <string name="difficulty_frequency_veryHigh">Velmi vysoké</string>
+    <string name="difficulty_response_known">Známý</string>
+    <string name="alert_gui_palette_error">Paleta není nastavena!</string>
+    <string name="alert_gui_typography_error">Typografie není nastavena!</string>
+    <string name="account_button_visit_marketplace">Navštivte Marketplace</string>
 </resources>

@@ -22,4 +22,5 @@
     <integer name="difficulty_time_professional" translatable="false">0</integer>
     <integer name="difficulty_time_nightmare" translatable="false">0</integer>
     <integer name="difficulty_time_insanity" translatable="false">0</integer>
+
 </resources>

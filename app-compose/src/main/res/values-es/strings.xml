@@ -1229,6 +1229,7 @@
 
     <!-- Deactivate -->
 
+    <string name="account_button_get_skins">¡Consigue más diseños!</string>
     <string name="account_deactivate_title">Desactivación de cuenta</string>
 
     <string name="account_deactivate_warning">Al elegir desactivar su cuenta, acepta lo siguiente:</string>
@@ -1560,5 +1561,15 @@
     <string name="language_name_localized_pt">Portugués</string>
     <string name="language_name_localized_ru">Ruso</string>
     <string name="language_name_localized_uk">Ucraniano</string>
+    <string name="difficulty_response_unknown">Desconocido</string>
+    <string name="difficulty_frequency_none">Ninguno</string>
+    <string name="difficulty_frequency_low">Bajo</string>
+    <string name="difficulty_frequency_medium">Medio</string>
+    <string name="difficulty_frequency_high">Alto</string>
+    <string name="difficulty_frequency_veryHigh">Muy alto</string>
+    <string name="difficulty_response_known">Conocido</string>
+    <string name="alert_gui_palette_error">¡Paleta sin definir!</string>
+    <string name="alert_gui_typography_error">¡Tipografía sin definir!</string>
+    <string name="account_button_visit_marketplace">Visita Marketplace</string>
 
 </resources>

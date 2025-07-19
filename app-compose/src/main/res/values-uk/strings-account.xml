@@ -8,6 +8,7 @@
     <string name="account_button_logout">Вийти</string>
     <string name="account_button_deactivate">Деактивувати Обліковий запис</string>
     <!-- Deactivate -->
+    <string name="account_button_get_skins">Отримайте більше скінів!</string>
     <string name="account_deactivate_title">Деактивація Облікового запису</string>
     <string name="account_deactivate_warning">Вирішуючи деактивувати обліковий запис, ви погоджуєтеся з наступним:</string>
     <string name="account_deactivate_warning_list_1">Усі P.E.T. дані облікового запису стануть неможливими для відновлення.</string>
@@ -20,4 +21,5 @@
     <string name="account_logout_warning">Ви впевнені, що бажаєте вийти?</string>
     <string name="account_logout_button_confirm">Вийти</string>
     <string name="account_logout_button_cancel">Скасувати</string>
+    <string name="account_button_visit_marketplace">Відвідайте Marketplace</string>
 </resources>

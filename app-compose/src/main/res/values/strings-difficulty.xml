@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Difficulty Titles -->
+    <string name="difficulty_title_default">None</string>
+    <string name="difficulty_title_amateur">Amateur</string>
+    <string name="difficulty_title_intermediate">Intermediate</string>
+    <string name="difficulty_title_professional">Professional</string>
+    <string name="difficulty_title_nightmare">Nightmare</string>
+    <string name="difficulty_title_insanity">Insanity</string>
+
+    <!-- Difficulty Response Type -->
+    <string name="difficulty_response_known">Known</string>
+    <string name="difficulty_response_unknown">Unknown</string>
+
+    <!-- Difficulty Frequency -->
+    <string name="difficulty_frequency_none">None</string>
+    <string name="difficulty_frequency_low">Low</string>
+    <string name="difficulty_frequency_medium">Medium</string>
+    <string name="difficulty_frequency_high">High</string>
+    <string name="difficulty_frequency_veryHigh">Very High</string>
+
+</resources>

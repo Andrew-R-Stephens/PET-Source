@@ -2317,6 +2317,7 @@
     <string name="account_button_deactivate">Деактивировать учетную запись</string>
 
     <!-- Деактивировать -->
+    <string name="account_button_get_skins">Получить больше скинов!</string>
     <string name="account_deactivate_title">Деактивация аккаунта</string>
     <string name="account_deactivate_warning">Выбирая деактивацию своей учетной записи, вы соглашаетесь со следующим:</string>
     <string name="account_deactivate_warning_list_1">Все P.E.T. данные аккаунта станут невосстановимыми.</string>
@@ -2390,4 +2391,14 @@
     <string name="language_name_localized_pt">Португальский язык</string>
     <string name="language_name_localized_ru">Русский язык</string>
     <string name="language_name_localized_uk">Украинский</string>
+    <string name="difficulty_response_unknown">Неизвестно</string>
+    <string name="difficulty_frequency_none">Нет</string>
+    <string name="difficulty_frequency_low">Низкий</string>
+    <string name="difficulty_frequency_medium">Средний</string>
+    <string name="difficulty_frequency_high">Высокий</string>
+    <string name="difficulty_frequency_veryHigh">Очень высокий</string>
+    <string name="difficulty_response_known">Известно</string>
+    <string name="alert_gui_palette_error">Палитра не задана!</string>
+    <string name="alert_gui_typography_error">Типографика не задана!</string>
+    <string name="account_button_visit_marketplace">Перейти в магазин</string>
 </resources>

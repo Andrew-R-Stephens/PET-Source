@@ -8,8 +8,8 @@
     <string name="account_button_logout">Log Out</string>
     <string name="account_button_deactivate">Deactivate Account</string>
 
-    <string name="account_button_visit_marketplace" translatable="false">Visit Marketplace</string>
-    <string name="account_button_get_skins" translatable="false">Get More Skins!</string>
+    <string name="account_button_visit_marketplace">Visit Marketplace</string>
+    <string name="account_button_get_skins">Get More Skins!</string>
 
     <!-- Deactivate -->
     <string name="account_deactivate_title">Account Deactivation</string>

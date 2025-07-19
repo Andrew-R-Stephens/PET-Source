@@ -690,6 +690,7 @@
 
     <!-- Deactivate -->
 
+    <string name="account_button_get_skins">スキンをもっとゲット！</string>
     <string name="account_deactivate_title">アカウントの無効化</string>
 
     <string name="account_deactivate_warning">アカウントを無効にすることを選択すると、以下のことに同意したことになります。</string>
@@ -1020,4 +1021,14 @@
     <string name="language_name_localized_fr">"フランス語 "</string>
     <string name="language_name_localized_ru">"ロシア語 "</string>
     <string name="language_name_localized_uk">ウクライナ語</string>
+    <string name="difficulty_response_unknown">未知</string>
+    <string name="difficulty_frequency_none">なし</string>
+    <string name="difficulty_frequency_low">低</string>
+    <string name="difficulty_frequency_medium">中</string>
+    <string name="difficulty_frequency_high">高</string>
+    <string name="difficulty_frequency_veryHigh">非常に高</string>
+    <string name="difficulty_response_known">既知</string>
+    <string name="alert_gui_palette_error">パレットが設定されていません！</string>
+    <string name="alert_gui_typography_error">タイポグラフィが設定されていません！</string>
+    <string name="account_button_visit_marketplace">マーケットプレイスにアクセスしてください</string>
 </resources>

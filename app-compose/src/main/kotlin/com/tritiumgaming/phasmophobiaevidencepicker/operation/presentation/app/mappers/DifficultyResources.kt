@@ -3,11 +3,13 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 import androidx.annotation.FractionRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyInitialSanity
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyModifier
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTime
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.Frequency
 
 @StringRes fun DifficultyTitle.toStringResource(): Int =
     when (this) {
@@ -49,4 +51,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
     when (this) {
         DifficultyResponseType.KNOWN -> R.string.difficulty_response_known
         DifficultyResponseType.UNKNOWN -> R.string.difficulty_response_unknown
+    }
+
+@StringRes fun Frequency.toStringResource(): Int =
+    when (this) {
+        Frequency.NONE -> R.string.difficulty_frequency_none
+        Frequency.LOW -> R.string.difficulty_frequency_low
+        Frequency.MEDIUM -> R.string.difficulty_frequency_medium
+        Frequency.HIGH -> R.string.difficulty_frequency_high
+        Frequency.VERY_HIGH -> R.string.difficulty_frequency_veryHigh
     }

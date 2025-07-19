@@ -1435,7 +1435,7 @@
     <string name="shop_cursedpossessions_voodoodoll_data_info"><![CDATA[<p>Piquer la poupée vaudou force une interaction!</p><p>Vous pouvez piquer la poupée vaudou jusqu\'à 10fois. Chaque piqûre a une chance de piquer le cœur, ce qui déclenchera une chasse maudite.</p><p>Réduire votre santé mentale à 0\\% en utilisant la poupée activera toutes les épingles et lancera une chasse maudite.</p>]]></string>
 
 
-    <string name="account_title">Mon compte</string>
+    <string name="account_title">Connu</string>
 
     <string name="account_label_information">Information sur le compte</string>
 
@@ -1451,6 +1451,7 @@
 
     <!-- Deactivate -->
 
+    <string name="account_button_get_skins">Obtenez plus de skins !</string>
     <string name="account_deactivate_title">Désactivation du compte</string>
 
     <string name="account_deactivate_warning">En choisissant de désactiver votre compte, vous acceptez ce qui suit:</string>
@@ -1550,5 +1551,15 @@
     <string name="language_name_localized_pt">Portugais</string>
     <string name="language_name_localized_ru">Russe</string>
     <string name="language_name_localized_uk">Ukrainien</string>
+    <string name="difficulty_response_unknown">Inconnu</string>
+    <string name="difficulty_frequency_none">Aucun</string>
+    <string name="difficulty_frequency_low">Faible</string>
+    <string name="difficulty_frequency_medium">Moyen</string>
+    <string name="difficulty_frequency_high">Élevé</string>
+    <string name="difficulty_frequency_veryHigh">Très élevé</string>
+    <string name="difficulty_response_known">Connu</string>
+    <string name="alert_gui_palette_error">Palette non définie !</string>
+    <string name="alert_gui_typography_error">Typographie non définie !</string>
+    <string name="account_button_visit_marketplace">Visitez la Marketplace</string>
 
 </resources>

@@ -213,4 +213,6 @@
     <string name="language_name_localized_uk">українська</string>
     <string name="language_name_localized_zh_Hans">Китайська мова (Спрощена)</string>
     <string name="language_name_localized_cs">Чеська мова</string>
+    <string name="alert_gui_palette_error">Палітра не встановлена!</string>
+    <string name="alert_gui_typography_error">Типографіка не встановлена!</string>
 </resources>

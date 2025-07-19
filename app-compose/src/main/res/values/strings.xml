@@ -90,18 +90,6 @@
     <string name="investigation_section_title_ghosts">Ghosts</string>
     <string name="investigation_section_title_evidence">Evidence</string>
 
-    <!-- Difficulty Titles -->
-    <string name="difficulty_title_default">None</string>
-    <string name="difficulty_title_amateur">Amateur</string>
-    <string name="difficulty_title_intermediate">Intermediate</string>
-    <string name="difficulty_title_professional">Professional</string>
-    <string name="difficulty_title_nightmare">Nightmare</string>
-    <string name="difficulty_title_insanity">Insanity</string>
-
-    <!-- Difficulty Response Type -->
-    <string name="difficulty_response_known" translatable="false">Known</string>
-    <string name="difficulty_response_unknown" translatable="false">Unknown</string>
-
     <!-- Map Size Modifiers -->
     <item name="maps_size_modifier_small_setup" type="fraction">09%</item>
     <item name="maps_size_modifier_small_normal" type="fraction">12%</item>
@@ -154,7 +142,7 @@
     <string name="alert_marketplace_purchase_success_skin">Skin purchased!</string>
     <string name="alert_marketplace_purchase_success_generic">Purchase successful!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Not enough credits for purchase!</string>
-    <string name="alert_gui_palette_error" translatable="false">Palette not set!</string>
-    <string name="alert_gui_typography_error" translatable="false">Typography not set!</string>
+    <string name="alert_gui_palette_error">Palette not set!</string>
+    <string name="alert_gui_typography_error">Typography not set!</string>
 
 </resources>

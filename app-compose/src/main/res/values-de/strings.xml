@@ -1449,6 +1449,7 @@
 
     <!-- Deactivate -->
 
+    <string name="account_button_get_skins">Mehr Skins holen!</string>
     <string name="account_deactivate_title">Kontodeaktivierung</string>
 
     <string name="account_deactivate_warning">Indem Sie Ihr Konto deaktivieren, stimmen Sie Folgendem zu:</string>
@@ -1548,5 +1549,15 @@
     <string name="language_name_localized_ru">Russisch</string>
     <string name="language_name_localized_es">Spanisch</string>
     <string name="language_name_localized_uk">Ukrainisch</string>
+    <string name="difficulty_response_unknown">Unbekannt</string>
+    <string name="difficulty_frequency_none">Keine</string>
+    <string name="difficulty_frequency_low">Niedrig</string>
+    <string name="difficulty_frequency_medium">Mittel</string>
+    <string name="difficulty_frequency_high">Hoch</string>
+    <string name="difficulty_frequency_veryHigh">Sehr hoch</string>
+    <string name="difficulty_response_known">Bekannt</string>
+    <string name="alert_gui_palette_error">Palette nicht festgelegt!</string>
+    <string name="alert_gui_typography_error">Typografie nicht festgelegt!</string>
+    <string name="account_button_visit_marketplace">Marktplatz besuchen</string>
 
 </resources>
