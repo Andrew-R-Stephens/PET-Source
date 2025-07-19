@@ -7,12 +7,15 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -56,6 +59,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.model.SpecialThanksContributor
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
 import org.jetbrains.annotations.TestOnly
@@ -66,14 +70,16 @@ private fun InfoScreenPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        InfoScreen()
+        InfoScreen(
+            mainMenuViewModel = viewModel(factory = MainMenuViewModel.Factory)
+        )
     }
 }
 
 @Composable
 fun InfoScreen(
     navController: NavController = rememberNavController(),
-    mainMenuViewModel: MainMenuViewModel = viewModel ( factory = MainMenuViewModel.Factory )
+    mainMenuViewModel: MainMenuViewModel
 ) {
 
     MainMenuScreen {
@@ -98,7 +104,7 @@ fun InfoScreen(
             when(deviceConfiguration) {
                 DeviceConfiguration.MOBILE_PORTRAIT -> {
                     InfoContentPortrait(
-                        mainMenuViewModel = mainMenuViewModel
+                        contributors = mainMenuViewModel.specialThanksList
                     )
                 }
                 DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -106,7 +112,7 @@ fun InfoScreen(
                 DeviceConfiguration.TABLET_LANDSCAPE,
                 DeviceConfiguration.DESKTOP -> {
                     InfoContentLandscape(
-                        mainMenuViewModel = mainMenuViewModel
+                        contributors = mainMenuViewModel.specialThanksList
                     )
                 }
             }
@@ -118,7 +124,7 @@ fun InfoScreen(
 
 @Composable
 private fun ColumnScope.InfoContentPortrait(
-    mainMenuViewModel: MainMenuViewModel = viewModel ( factory = MainMenuViewModel.Factory )
+    contributors: List<SpecialThanksContributor>
 ) {
 
     val context = LocalContext.current
@@ -266,8 +272,6 @@ private fun ColumnScope.InfoContentPortrait(
             ),
             autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
         )
-
-        val contributors = mainMenuViewModel.specialThanksList
 
         LazyColumn(
             modifier = Modifier
@@ -299,7 +303,7 @@ private fun ColumnScope.InfoContentPortrait(
 
 @Composable
 private fun ColumnScope.InfoContentLandscape(
-    mainMenuViewModel: MainMenuViewModel = viewModel ( factory = MainMenuViewModel.Factory )
+    contributors: List<SpecialThanksContributor>,
 ) {
 
     val context = LocalContext.current
@@ -311,166 +315,187 @@ private fun ColumnScope.InfoContentLandscape(
         )
     }
 
-    Column(
-        modifier = Modifier
-            .padding(all = 8.dp),
-        verticalArrangement = Arrangement.Top
-    ) {
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(24.dp),
-            text = "${stringResource(R.string.aboutinfo_version)} $versionSequence",
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-        Text(
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .verticalScroll(rememberScrollState())
-                .weight(.35f, false),
-            style = LocalTypography.current.secondary.regular,
-            fontSize = 24.sp,
-            text =
-                AnnotatedString.Companion.fromHtml(
-                    FontUtils.replaceHTMLFontColor(
-                        stringResource(R.string.aboutinfo_aboutapp_info),
-                        "CC3C3C",
-                        LocalPalette.current.textFamily.emphasis
-                    )
-                ),
-            color = LocalPalette.current.textFamily.body,
-            textAlign = TextAlign.Center
-        )
-    }
-
     BasicText(
         modifier = Modifier
-            .padding(top = 16.dp)
-            .height(36.dp)
-            .fillMaxWidth(),
-        text = stringResource(R.string.aboutinfo_developerinfo_title),
-        style = LocalTypography.current.primary.regular.copy(
-            color = LocalPalette.current.textFamily.primary,
+            .fillMaxWidth()
+            .height(24.dp)
+            .align(Alignment.CenterHorizontally),
+        text = "${stringResource(R.string.aboutinfo_version)} $versionSequence",
+        style = LocalTypography.current.secondary.regular.copy(
+            color = LocalPalette.current.textFamily.body,
             textAlign = TextAlign.Center
         ),
         maxLines = 1,
         autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
     )
 
-    VisitDiscordButton(
+    Row(
         modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 16.dp)
-            .align(Alignment.CenterHorizontally)
-    )
-
-    Column(
-        modifier = Modifier
-            .padding(bottom = 16.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.Top
+            .fillMaxSize(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.Top
     ) {
 
-        BasicText(
+        val rememberScrollStateStart = rememberScrollState()
+
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(24.dp),
-            text = stringResource(R.string.aboutinfo_developerinfo_developer),
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(18.dp),
-            text = stringResource(R.string.aboutinfo_developerinfo_devname),
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(24.dp),
-            text = stringResource(R.string.aboutinfo_developerinfo_contact),
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(18.dp),
-            text = stringResource(R.string.aboutinfo_developerinfo_address),
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-    }
-
-    Column(
-        verticalArrangement = Arrangement.Bottom
-    ) {
-
-        BasicText(
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .height(36.dp)
-                .fillMaxWidth(),
-            text = stringResource(R.string.aboutinfo_specialthanks_title),
-            style = LocalTypography.current.primary.regular.copy(
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center
-            ),
-            autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
-        )
-
-        val contributors = mainMenuViewModel.specialThanksList
-
-        LazyColumn(
-            modifier = Modifier
-                .weight(.2f, fill = true)
+                .weight(1f, false)
+                .fillMaxHeight()
+                .padding(all = 8.dp)
+                .verticalScroll(rememberScrollStateStart),
+            verticalArrangement = Arrangement.Center,
         ) {
 
-            items(items = contributors) { contributor ->
+            Text(
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .wrapContentHeight()
+                    .padding(8.dp),
+                style = LocalTypography.current.secondary.regular,
+                fontSize = 24.sp,
+                text =
+                    AnnotatedString.Companion.fromHtml(
+                        FontUtils.replaceHTMLFontColor(
+                            stringResource(R.string.aboutinfo_aboutapp_info),
+                            "CC3C3C",
+                            LocalPalette.current.textFamily.emphasis
+                        )
+                    ),
+                color = LocalPalette.current.textFamily.body,
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            Column(
+                modifier = Modifier
+                    .wrapContentHeight(),
+                verticalArrangement = Arrangement.Center,
+            ) {
 
                 BasicText(
                     modifier = Modifier
+                        .padding(top = 16.dp)
+                        .height(36.dp)
+                        .fillMaxWidth(),
+                    text = stringResource(R.string.aboutinfo_specialthanks_title),
+                    style = LocalTypography.current.primary.regular.copy(
+                        color = LocalPalette.current.textFamily.primary,
+                        textAlign = TextAlign.Center
+                    ),
+                    autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
+                )
+
+                Column(
+                    modifier = Modifier
+                ) {
+
+                    contributors.forEach { contributor ->
+
+                        BasicText(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(24.dp),
+                            text = contributor.username,
+                            style = LocalTypography.current.quaternary.regular.copy(
+                                color = LocalPalette.current.textFamily.body,
+                                textAlign = TextAlign.Center
+                            ),
+                            maxLines = 1,
+                            autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
+                        )
+
+                    }
+
+                }
+
+            }
+        }
+
+        val rememberScrollStateEnd = rememberScrollState()
+
+        Column(
+            modifier = Modifier
+                .weight(1f, false)
+                .fillMaxHeight()
+                .padding(all = 8.dp)
+                .verticalScroll(rememberScrollStateEnd),
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            Column(
+                modifier = Modifier
+                    .wrapContentHeight(),
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Text(
+                    modifier = Modifier
                         .fillMaxWidth()
-                        .height(24.dp),
-                    text = contributor.username,
+                        .wrapContentHeight()
+                        .padding(horizontal = 8.dp, vertical = 12.dp),
+                    text = stringResource(R.string.aboutinfo_developerinfo_developer),
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        color = LocalPalette.current.textFamily.primary,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 1,
+                    fontSize = 18.sp
+                )
+
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(horizontal = 8.dp),
+                    text = stringResource(R.string.aboutinfo_developerinfo_devname),
                     style = LocalTypography.current.quaternary.regular.copy(
                         color = LocalPalette.current.textFamily.body,
                         textAlign = TextAlign.Center
                     ),
                     maxLines = 1,
-                    autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
+                    fontSize = 18.sp
                 )
 
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(horizontal = 8.dp, vertical = 12.dp),
+                    text = stringResource(R.string.aboutinfo_developerinfo_contact),
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        color = LocalPalette.current.textFamily.primary,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 1,
+                    fontSize = 18.sp
+                )
+
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(horizontal = 8.dp),
+                    text = stringResource(R.string.aboutinfo_developerinfo_address),
+                    style = LocalTypography.current.quaternary.regular.copy(
+                        color = LocalPalette.current.textFamily.body,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 1,
+                    fontSize = 18.sp
+                )
             }
+
+            Spacer(modifier = Modifier.height(32.dp))
+
+            VisitDiscordButton(
+                modifier = Modifier
+                    .wrapContentHeight()
+                    .padding(horizontal = 16.dp, vertical = 16.dp)
+                    .align(Alignment.CenterHorizontally)
+            )
 
         }
 
@@ -551,6 +576,34 @@ private fun VisitDiscordButtonPreview() {
         typography = ClassicTypography
     ) {
         VisitDiscordButton()
+    }
+
+}
+
+@Composable
+@Preview(showSystemUi = false, apiLevel = 35, device = "spec:parent=pixel_5,orientation=landscape")
+@TestOnly
+private fun LandscapePreview() {
+
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        Column {
+            InfoContentLandscape(
+                listOf(
+                    SpecialThanksContributor("AAAAAA"),
+                    SpecialThanksContributor("AAAAAA"),
+                    SpecialThanksContributor("AAAAAA"),
+                    SpecialThanksContributor("AAAAAA"),
+                    SpecialThanksContributor("AAAAAA"),
+                    SpecialThanksContributor("AAAAAA"),
+                    SpecialThanksContributor("AAAAAA"),
+                    SpecialThanksContributor("AAAAAA"),
+                    SpecialThanksContributor("AAAAAA")
+                )
+            )
+        }
     }
 
 }
