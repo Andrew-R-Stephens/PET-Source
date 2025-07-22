@@ -60,9 +60,9 @@ fun OperationNavigationBar(
         mutableStateOf(navController.currentDestination?.route)
     }
 
-    var destinations = listOf<Destination>(
-        Destination.MISSIONS,
+    val destinations = listOf(
         Destination.INVESTIGATION,
+        Destination.MISSIONS,
         Destination.MAPS
     )
 
@@ -70,7 +70,7 @@ fun OperationNavigationBar(
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     Log.d("Device Config", deviceConfiguration.name)
-    var bottomNavigationBarEnabled =
+    val bottomNavigationBarEnabled =
         when(deviceConfiguration) {
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE,
