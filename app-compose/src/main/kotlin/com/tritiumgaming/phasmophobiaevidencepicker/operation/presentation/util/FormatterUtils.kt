@@ -5,13 +5,22 @@ import android.text.Spanned
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import androidx.annotation.ColorInt
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.SECOND_IN_MILLIS
 import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
 
 object FormatterUtils {
 
-    fun millisToTime(format: String, millis: Long): String {
+    fun formatMillisToTime(millis: Long): String {
+        val breakdown = millis / SECOND_IN_MILLIS
+        return millisToTime(
+            "%s:%s",
+            breakdown
+        )
+    }
+
+    private fun millisToTime(format: String, millis: Long): String {
         val minutes = millis / 60L
         val seconds = millis % 60L
         return String.format(

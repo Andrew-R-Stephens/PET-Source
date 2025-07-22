@@ -33,6 +33,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapTitleLength
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 
@@ -40,15 +41,27 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 @Preview
 private fun OperationCarouselPreview() {
     SelectiveTheme(ClassicPalette, ClassicTypography) {
-        OperationConfigCarousel(label = stringResource(R.string.map_name_prison), onClickLeft = {}, onClickRight = {})
-        DifficultyConfigCarousel(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
-        MapConfigCarousel(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        OperationConfigCarousel(
+            label = stringResource(R.string.map_name_short_prison),
+            onClickLeft = {},
+            onClickRight = {}
+        )
+        DifficultyConfigCarousel(
+            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        MapConfigCarousel(
+            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
-        OperationConfigCarousel(label = stringResource(R.string.map_name_prison), onClickLeft = {}, onClickRight = {})
-        DifficultyConfigCarousel(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
-        MapConfigCarousel(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        OperationConfigCarousel(
+            label = stringResource(R.string.map_name_short_prison),
+            onClickLeft = {},
+            onClickRight = {}
+        )
+        DifficultyConfigCarousel(
+            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        MapConfigCarousel(
+            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
     }
 }
 
@@ -158,7 +171,7 @@ fun MapConfigCarousel(
 ) {
 
     val mapUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
-    val mapName = mapUiState.value.name.toStringResource()
+    val mapName = mapUiState.value.name.toStringResource(MapTitleLength.ABBREVIATED)
 
     OperationConfigCarousel(
         modifier = modifier,
