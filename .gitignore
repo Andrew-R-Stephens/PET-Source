@@ -16,6 +16,11 @@
 /app-view/upload_certificate.pem
 /app-view/google-services.json
 
+/app-legacy/build/
+/app-legacy/release/
+/app-legacy/upload_certificate.pem
+/app-legacy/google-services.json
+
 /app-compose/build/
 /app-compose/release/
 /app-compose/google-services.json

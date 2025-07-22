@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
@@ -77,9 +78,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
+    /*kotlinOptions {
         jvmTarget = "17"
+    }*/
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
     }
+
     buildToolsVersion = "36.0.0"
 
 }
