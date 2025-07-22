@@ -23,21 +23,37 @@
     <string name="map_id_ridgeview" translatable="false">dd39781db2e86f31ea3506e45398b4b2</string>
     <string name="map_id_prison" translatable="false">eeb0d23d0361f80384bb6a58b0102d94</string>
 
-    <!-- Map Names -->
+    <!-- Map Full Names -->
     <!--<string name="map_name_asylum" translatable="false">Asylum</string>-->
-    <string name="map_name_meadows" translatable="false">Sunny Meadows</string>
-    <string name="map_name_meadows_r" translatable="false">Sunny(R)</string>
-    <string name="map_name_pointhope" translatable="false">Point Hope Lighthouse</string>
-    <string name="map_name_campmaple" translatable="false">Maple Lodge</string>
-    <string name="map_name_campwoodwind" translatable="false">Woodwind</string>
-    <string name="map_name_bleasdale" translatable="false">Bleasdale Farmhouse</string>
-    <string name="map_name_grafton" translatable="false">Grafton Farmhouse</string>
-    <string name="map_name_brownstone" translatable="false">Brownstone Highschool</string>
-    <string name="map_name_edgefield" translatable="false">Edgefield Streethouse</string>
-    <string name="map_name_tanglewood" translatable="false">Tanglewood Streethouse</string>
-    <string name="map_name_willow" translatable="false">Willow Streethouse</string>
-    <string name="map_name_ridgeview" translatable="false">Ridgeview Roadhouse</string>
-    <string name="map_name_prison" translatable="false">Prison</string>
+    <string name="map_name_full_meadows" translatable="false">Sunny Meadows Mental Institution</string>
+    <string name="map_name_full_meadows_r" translatable="false">Sunny Meadows Mental Institution (Restricted)</string>
+    <string name="map_name_full_pointhope" translatable="false">Point Hope</string>
+    <string name="map_name_full_campmaple" translatable="false">Maple Lodge Campsite</string>
+    <string name="map_name_full_campwoodwind" translatable="false">Camp Woodwind</string>
+    <string name="map_name_full_bleasdale" translatable="false">Bleasdale Farmhouse</string>
+    <string name="map_name_full_grafton" translatable="false">Grafton Farmhouse</string>
+    <string name="map_name_full_brownstone" translatable="false">Brownstone Highschool</string>
+    <string name="map_name_full_edgefield" translatable="false">42 Edgefield Streethouse</string>
+    <string name="map_name_full_tanglewood" translatable="false">6 Tanglewood Streethouse</string>
+    <string name="map_name_full_willow" translatable="false">13 Willow Streethouse</string>
+    <string name="map_name_full_ridgeview" translatable="false">10 Ridgeview Roadhouse</string>
+    <string name="map_name_full_prison" translatable="false">Prison</string>
+
+    <!-- Map Full Names -->
+    <!--<string name="map_name_asylum" translatable="false">Asylum</string>-->
+    <string name="map_name_short_meadows" translatable="false">Sunny Meadows</string>
+    <string name="map_name_short_meadows_r" translatable="false">Sunny Meadows (R)</string>
+    <string name="map_name_short_pointhope" translatable="false">Point Hope</string>
+    <string name="map_name_short_campmaple" translatable="false">Maple Lodge</string>
+    <string name="map_name_short_campwoodwind" translatable="false">Woodwind</string>
+    <string name="map_name_short_bleasdale" translatable="false">Bleasdale</string>
+    <string name="map_name_short_grafton" translatable="false">Grafton</string>
+    <string name="map_name_short_brownstone" translatable="false">Brownstone</string>
+    <string name="map_name_short_edgefield" translatable="false">Edgefield</string>
+    <string name="map_name_short_tanglewood" translatable="false">Tanglewood</string>
+    <string name="map_name_short_willow" translatable="false">Willow</string>
+    <string name="map_name_short_ridgeview" translatable="false">Ridgeview</string>
+    <string name="map_name_short_prison" translatable="false">Prison</string>
 
     <!-- Building Floor Names -->
     <string name="map_floor_name_ground">Ground Floor</string>
