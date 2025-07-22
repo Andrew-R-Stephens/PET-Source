@@ -18,6 +18,11 @@ class SimpleMapResources {
         PRISON
     }
 
+    enum class MapTitleLength {
+        ABBREVIATED,
+        FULL
+    }
+
     enum class MapThumbnail {
         SUNNY_MEADOWS,
         SUNNY_MEADOWS_RESTRICTED,

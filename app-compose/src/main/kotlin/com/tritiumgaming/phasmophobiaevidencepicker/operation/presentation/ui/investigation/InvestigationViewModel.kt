@@ -564,14 +564,6 @@ class InvestigationViewModel(
         _timerUiState.update { it.copy(remainingTime = value) }
     }
 
-    fun displayTime(): String {
-        val breakdown = timerUiState.value.remainingTime / SECOND_IN_MILLIS
-        return FormatterUtils.millisToTime(
-            "%s:%s",
-            breakdown
-        )
-    }
-
     private var liveTimer: CountDownTimer? = null
     private fun setLiveTimer(
         millisInFuture: Long = timerUiState.value.remainingTime,
