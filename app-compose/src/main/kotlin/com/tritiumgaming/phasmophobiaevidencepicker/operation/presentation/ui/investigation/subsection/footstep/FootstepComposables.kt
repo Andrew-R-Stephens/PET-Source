@@ -7,12 +7,26 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -22,36 +36,62 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils.getColorFromAttribute
 import kotlin.math.absoluteValue
+import kotlin.math.max
 
 @Composable
 @Preview
-fun FootstepTool() {
+fun FootstepTool(
+    modifier: Modifier = Modifier,
+    bpm: Float = 1f,
+) {
 
     val millisPerMinute = 60000f
     val timeWindowMillis = 120000f
 
-    val bpm = 10f
-    val bps = bpm / 60f
+    val bps = bpm
 
     val scale = (timeWindowMillis / millisPerMinute).coerceAtLeast(millisPerMinute / timeWindowMillis)
 
     val bpms = bps * scale
 
     Box(
-        Modifier
+        modifier
             .fillMaxWidth()
-            .height(200.dp)
     ) {
         Background()
         Grid(scale)
         FootIcons(bpms, scale)
         Scanline(scale)
-        Foreground()
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(horizontal = 8.dp),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            Text(
+                text = "$bpm",
+                fontSize = 12.sp,
+                color = LocalPalette.current.textFamily.body
+            )
+
+            Text(
+                text = "$bpms",
+                fontSize = 12.sp,
+                color = LocalPalette.current.textFamily.body
+            )
+        }
+        //Foreground()
     }
 
 }
@@ -111,12 +151,13 @@ fun FootIcons(
     val footCount = bpms * scale
 
     val lineColor = LocalPalette.current.coreFamily.primary
+
     Canvas(modifier = Modifier.fillMaxSize()) {
         val count = (footCount).toInt() * 2
         for(i in -count ..count) {
             drawCircle(
                 lineColor,
-                radius = size.height * .05f,
+                radius = max(size.height * .05f, 5f),
                 Offset(
                     (size.width * .5f) + (i * (size.width / footCount)),
                     size.height / 2f
@@ -124,6 +165,7 @@ fun FootIcons(
                 style = Fill
             )
         }
+
     }
 }
 
@@ -174,3 +216,31 @@ fun Foreground() {
     }
 }
 
+@Preview
+@Composable
+fun FootstepToolPreview() {
+
+    var bpm by remember { mutableFloatStateOf(0f) }
+
+    SelectiveTheme {
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(top = 32.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            FootstepTool(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp)
+                    .clickable(onClick = {
+                        bpm = bpm + 1
+                    }),
+                bpm = bpm
+            )
+        }
+    }
+}

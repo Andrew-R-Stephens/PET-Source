@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import android.view.View
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,11 +19,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -34,6 +41,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getActionPanVector
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getExitVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getGearVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getInfoVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.Holiday22
@@ -42,13 +51,16 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.analysis.OperationDetails
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.footstep.FootstepMeter
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.footstep.FootstepTool
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.DifficultyConfigCarousel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.MapConfigCarousel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.CollapseButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ResetButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolBarItemPair
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.component.SanityMeterView
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.sanitywarn.SanityMeterView
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.timer.TimerDisplay
 
 @Composable
 @Preview
@@ -190,6 +202,10 @@ private fun ColumnScope.Investigation(
                 investigationViewModel = investigationViewModel,
                 modifier = Modifier
                     .fillMaxHeight(.5f))
+            2 -> ToolbarFootsteps(
+                modifier = Modifier,
+                investigationViewModel = investigationViewModel
+            )
         }
     }
 }
@@ -225,6 +241,10 @@ private fun RowScope.Investigation(
                 investigationViewModel = investigationViewModel,
                 modifier = Modifier
                     .wrapContentHeight(align = Alignment.Bottom))
+            2 -> ToolbarFootsteps(
+                modifier = Modifier,
+                investigationViewModel = investigationViewModel
+            )
         }
     }
     OperationToolbar(
@@ -263,6 +283,46 @@ private fun ColumnScope.ToolbarConfigurationSection(
 }
 
 @Composable
+private fun ToolbarFootsteps(
+    investigationViewModel: InvestigationViewModel,
+    modifier: Modifier = Modifier
+) {
+    var bpm by remember { mutableFloatStateOf(0f) }
+
+    Box (
+        modifier = modifier
+    ) {
+        FootstepTool(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+                .clickable(onClick = {
+                    bpm++
+                })
+                .clip(RoundedCornerShape(8.dp)),
+            bpm = bpm
+        )
+    }
+}
+
+@Composable
+private fun ToolbarTimer(
+    investigationViewModel: InvestigationViewModel,
+    modifier: Modifier = Modifier
+) {
+    val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
+    val timeMillis = timerUiState.value.remainingTime
+
+    Box (
+        modifier = modifier
+    ) {
+        TimerDisplay(
+            timeMillis = timeMillis
+        )
+    }
+}
+
+@Composable
 private fun ToolbarOperationAnalysis(
     investigationViewModel: InvestigationViewModel,
     modifier: Modifier = Modifier
@@ -275,7 +335,6 @@ private fun ToolbarOperationAnalysis(
         )
     }
 }
-
 
 @Composable
 private fun OperationToolbar(
@@ -349,7 +408,28 @@ private fun OperationToolbar(
             }) {
                 investigationViewModel.setInvestigationToolsCategory(1)
             },
-            ToolBarItemPair(View(LocalContext.current))
+            ToolBarItemPair(@Composable {
+                Image(
+                    modifier = modifier,
+                    imageVector = getExitVector(
+                        if(section == 2) {
+                            listOf(
+                                LocalPalette.current.textFamily.primary,
+                                LocalPalette.current.background.color,
+                            )
+                        } else {
+                            listOf(
+                                LocalPalette.current.background.color,
+                                LocalPalette.current.textFamily.body,
+                            )
+                        }
+                    ),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit
+                )
+            }) {
+                investigationViewModel.setInvestigationToolsCategory(2)
+            }
         )
 
         InvestigationToolbar(

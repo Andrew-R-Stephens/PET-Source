@@ -54,7 +54,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.Color
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-data class ToolBarItemPair(val content: Any, val onClick: () -> Unit = {})
+data class ToolBarItemPair(
+    val content: @Composable () -> Unit,
+    val onClick: () -> Unit = {}
+)
 
 @Composable
 fun InvestigationToolbar(
@@ -98,60 +101,19 @@ fun InvestigationToolbar(
 fun ToolbarItemList(
     contentArray: Array<ToolBarItemPair> = arrayOf()
 ) {
-    for (index in contentArray.indices) {
+    contentArray.forEach { pair ->
 
         Box(modifier = Modifier.padding(4.dp)) {
-            val onClick = contentArray[index].onClick
-            
-            when(val content = contentArray[index].content) {
-                is Int -> ToolbarItem(content, onClick)
-                is View -> ToolbarItem(contentView = content, onClick)
-                else -> {
-                    (content as? @Composable () -> Unit)?.let { composable ->
-                        ToolbarItem(composable = composable, onClick)
-                    }
+            val onClick = pair.onClick
 
-                }
-            }
+            ToolbarItem(content = { pair.content }, onClick)
         }
     }
 }
 
 @Composable
 fun ToolbarItem(
-    image: Int = R.drawable.ic_expand_circle_up,
-    onClick: () -> Unit = { }
-) {
-    Image(
-        painter = painterResource(id = image),
-        contentDescription = "",
-        modifier = Modifier
-            .size(48.dp)
-            .clickable { onClick() }
-    )
-}
-
-@Composable
-fun ToolbarItem(
-    contentView: View,
-    onClick: () -> Unit = { }
-) {
-    AndroidView(
-        modifier = Modifier
-            .size(48.dp)
-            .clickable { onClick() },
-        factory = {
-            contentView
-        },
-        update = { view ->
-            view.invalidate()
-        }
-    )
-}
-
-@Composable
-fun ToolbarItem(
-    composable: @Composable () -> Unit,
+    content: @Composable () -> Unit,
     onClick: () -> Unit = { }
 ) {
     Box(
@@ -159,7 +121,7 @@ fun ToolbarItem(
             .size(48.dp)
             .clickable { onClick() },
     ) {
-        composable()
+        content()
     }
 }
 

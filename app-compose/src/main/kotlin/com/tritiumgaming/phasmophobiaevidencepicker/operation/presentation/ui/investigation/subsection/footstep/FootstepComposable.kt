@@ -38,18 +38,21 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import kotlin.math.cos
 import kotlin.math.sin
 
 @Composable
 @Preview
 fun Test() {
-    InvestigationFootstepComposable(1f)
+    SelectiveTheme {
+        FootstepMeter(1f)
+    }
 }
 
 @SuppressLint("DefaultLocale")
 @Composable
-fun InvestigationFootstepComposable(
+fun FootstepMeter(
     metersPerSecond: Float = 0f
 ) {
     var currentBPM by remember {

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.component
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.sanitywarn
 
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
