@@ -136,167 +136,186 @@ private fun ColumnScope.InfoContentPortrait(
         )
     }
 
-    Column(
-        modifier = Modifier
-            .padding(all = 8.dp),
-        verticalArrangement = Arrangement.Top
-    ) {
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(24.dp),
-            text = "${stringResource(R.string.aboutinfo_version)} $versionSequence",
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-        Text(
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .verticalScroll(rememberScrollState())
-                .weight(.35f, false),
-            style = LocalTypography.current.secondary.regular,
-            fontSize = 24.sp,
-            text =
-                AnnotatedString.Companion.fromHtml(
-                    FontUtils.replaceHTMLFontColor(
-                        stringResource(R.string.aboutinfo_aboutapp_info),
-                        "CC3C3C",
-                        LocalPalette.current.textFamily.emphasis
-                    )
-                ),
-            color = LocalPalette.current.textFamily.body,
-            textAlign = TextAlign.Center
-        )
-    }
-
     BasicText(
         modifier = Modifier
-            .padding(top = 16.dp)
-            .height(36.dp)
-            .fillMaxWidth(),
-        text = stringResource(R.string.aboutinfo_developerinfo_title),
-        style = LocalTypography.current.primary.regular.copy(
-            color = LocalPalette.current.textFamily.primary,
+            .fillMaxWidth()
+            .height(24.dp),
+        text = "${stringResource(R.string.aboutinfo_version)} $versionSequence",
+        style = LocalTypography.current.secondary.regular.copy(
+            color = LocalPalette.current.textFamily.body,
             textAlign = TextAlign.Center
         ),
         maxLines = 1,
         autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
     )
 
-    VisitDiscordButton(
-        modifier = Modifier
-            .padding(horizontal = 16.dp, vertical = 16.dp)
-            .align(Alignment.CenterHorizontally)
-    )
-
     Column(
         modifier = Modifier
-            .padding(bottom = 16.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.Top
+            .weight(1f, fill = true)
+            .padding(all = 8.dp),
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
 
-        BasicText(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(24.dp),
-            text = stringResource(R.string.aboutinfo_developerinfo_developer),
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(18.dp),
-            text = stringResource(R.string.aboutinfo_developerinfo_devname),
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(24.dp),
-            text = stringResource(R.string.aboutinfo_developerinfo_contact),
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-        BasicText(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(18.dp),
-            text = stringResource(R.string.aboutinfo_developerinfo_address),
-            style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-        )
-
-    }
-
-    Column(
-        verticalArrangement = Arrangement.Bottom
-    ) {
-
-        BasicText(
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .height(36.dp)
-                .fillMaxWidth(),
-            text = stringResource(R.string.aboutinfo_specialthanks_title),
-            style = LocalTypography.current.primary.regular.copy(
-                color = LocalPalette.current.textFamily.primary,
-                textAlign = TextAlign.Center
-            ),
-            autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
-        )
-
-        LazyColumn(
-            modifier = Modifier
-                .weight(.2f, fill = true)
+                .padding(all = 8.dp),
+            verticalArrangement = Arrangement.Center
         ) {
 
-            items(items = contributors) { contributor ->
-
-                BasicText(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(24.dp),
-                    text = contributor.username,
-                    style = LocalTypography.current.quaternary.regular.copy(
-                        color = LocalPalette.current.textFamily.body,
-                        textAlign = TextAlign.Center
+            Text(
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .verticalScroll(rememberScrollState())
+                    .weight(.35f, false),
+                style = LocalTypography.current.secondary.regular,
+                fontSize = 24.sp,
+                text =
+                    AnnotatedString.Companion.fromHtml(
+                        FontUtils.replaceHTMLFontColor(
+                            stringResource(R.string.aboutinfo_aboutapp_info),
+                            "CC3C3C",
+                            LocalPalette.current.textFamily.emphasis
+                        )
                     ),
-                    maxLines = 1,
-                    autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
+                color = LocalPalette.current.textFamily.body,
+                textAlign = TextAlign.Center
+            )
+        }
+
+        VisitDiscordButton(
+            modifier = Modifier
+                .weight(1f, fill = false)
+                .padding(horizontal = 16.dp, vertical = 16.dp)
+                .align(Alignment.CenterHorizontally)
+        )
+
+        Column(
+            modifier = Modifier
+                .weight(1f, fill = false)
+                .padding(bottom = 16.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            BasicText(
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .height(36.dp)
+                    .fillMaxWidth(),
+                text = stringResource(R.string.aboutinfo_developerinfo_title),
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.primary,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
+
+            BasicText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(24.dp),
+                text = stringResource(R.string.aboutinfo_developerinfo_developer),
+                style = LocalTypography.current.secondary.regular.copy(
+                    color = LocalPalette.current.textFamily.primary,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
+
+            BasicText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(18.dp),
+                text = stringResource(R.string.aboutinfo_developerinfo_devname),
+                style = LocalTypography.current.secondary.regular.copy(
+                    color = LocalPalette.current.textFamily.body,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
+
+            BasicText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(24.dp),
+                text = stringResource(R.string.aboutinfo_developerinfo_contact),
+                style = LocalTypography.current.secondary.regular.copy(
+                    color = LocalPalette.current.textFamily.primary,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
+
+            BasicText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(18.dp),
+                text = stringResource(R.string.aboutinfo_developerinfo_address),
+                style = LocalTypography.current.secondary.regular.copy(
+                    color = LocalPalette.current.textFamily.body,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
+
+        }
+
+        Column(
+            modifier = Modifier
+                .weight(1f, fill = true),
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            BasicText(
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .height(36.dp)
+                    .fillMaxWidth(),
+                text = stringResource(R.string.aboutinfo_specialthanks_title),
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.textFamily.primary,
+                    textAlign = TextAlign.Center
+                ),
+                autoSize = TextAutoSize.StepBased(
+                    minFontSize = 10.sp,
+                    maxFontSize = 48.sp,
+                    stepSize = 1.6.sp
                 )
+            )
+
+            LazyColumn(
+                modifier = Modifier
+            ) {
+
+                items(items = contributors) { contributor ->
+
+                    BasicText(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(24.dp),
+                        text = contributor.username,
+                        style = LocalTypography.current.quaternary.regular.copy(
+                            color = LocalPalette.current.textFamily.body,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 10.sp,
+                            maxFontSize = 48.sp,
+                            stepSize = 1.6.sp
+                        )
+                    )
+
+                }
 
             }
 
         }
-
     }
 
 }
@@ -340,8 +359,8 @@ private fun ColumnScope.InfoContentLandscape(
 
         Column(
             modifier = Modifier
-                .weight(1f, false)
-                .fillMaxHeight()
+                .weight(1f, true)
+                //.fillMaxHeight()
                 .padding(all = 8.dp)
                 .verticalScroll(rememberScrollStateStart),
             verticalArrangement = Arrangement.Center,
@@ -417,8 +436,8 @@ private fun ColumnScope.InfoContentLandscape(
 
         Column(
             modifier = Modifier
-                .weight(1f, false)
-                .fillMaxHeight()
+                .weight(1f, true)
+                //.fillMaxHeight()
                 .padding(all = 8.dp)
                 .verticalScroll(rememberScrollStateEnd),
             verticalArrangement = Arrangement.Center

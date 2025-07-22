@@ -160,11 +160,18 @@ private fun ColumnScope.StartContentCompactPortrait(
             .weight(1f)
             .fillMaxSize(1f)
             .padding(PaddingValues(vertical = 16.dp)),
-        verticalArrangement = Arrangement.SpaceEvenly,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
     ) {
-        LogoSection()
-        StartSection(navController)
+        LogoSection(
+            modifier = Modifier
+                .weight(.6f, false)
+        )
+        StartSection(
+            modifier = Modifier
+                .weight(.4f, true),
+            navController = navController
+        )
     }
 }
 
@@ -181,7 +188,7 @@ internal fun ColumnScope.StartContentCompactLandscape(
         verticalAlignment = Alignment.CenterVertically
     ) {
         LogoSection()
-        StartSection(navController)
+        StartSection(navController = navController)
     }
 }
 
@@ -198,16 +205,19 @@ private fun ColumnScope.StartContentOther(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LogoSection()
-        StartSection(navController)
+        StartSection(navController = navController,)
     }
 }
 
 @Composable
-private fun ColumnScope.LogoSection() {
+private fun ColumnScope.LogoSection(
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .weight(1f)
-            .fillMaxWidth(.75f),
+            .fillMaxWidth(.75f)
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -217,7 +227,6 @@ private fun ColumnScope.LogoSection() {
                 .heightIn(max = 256.dp)
                 .aspectRatio(1f)
                 .weight(1f)
-                .padding(16.dp)
         )
 
         BasicText(
@@ -238,9 +247,11 @@ private fun ColumnScope.LogoSection() {
 }
 
 @Composable
-private fun RowScope.LogoSection() {
+private fun RowScope.LogoSection(
+    modifier: Modifier = Modifier,
+) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .weight(1f)
             .fillMaxSize(.9f)
             .padding(vertical = 8.dp),
@@ -277,12 +288,13 @@ private fun RowScope.LogoSection() {
 
 @Composable
 private fun ColumnScope.StartSection(
-    navController: NavController = rememberNavController()
+    modifier: Modifier = Modifier,
+    navController: NavController = rememberNavController(),
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .weight(1f, false),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         StartButton {
@@ -300,10 +312,11 @@ private fun ColumnScope.StartSection(
 
 @Composable
 private fun RowScope.StartSection(
+    modifier: Modifier = Modifier,
     navController: NavController = rememberNavController()
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .weight(1f),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
