@@ -1,8 +1,14 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account
 
+import android.app.Activity
+import android.content.Context
 import android.util.Log
+import androidx.credentials.CredentialManager
+import androidx.credentials.CredentialOption
+import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.GetCustomCredentialOption
+import androidx.credentials.exceptions.GetCredentialException
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -21,13 +27,16 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.acc
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class AccountViewModel(
     private val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
@@ -63,9 +72,25 @@ class AccountViewModel(
     ) = viewModelScope.launch {
         getSignInCredentialsUseCase(signInOption).getOrNull()?.let { onComplete(it) } }
 
+    suspend fun signInWithCredentials(
+        activity: Activity,
+        context: Context,
+        credentialOption: GetCustomCredentialOption,
+        onComplete: (Boolean) -> Unit
+    ) {
+        val credentialResponse =
+            signInWithCredential(
+                activity = activity,
+                context = context,
+                credentialOption = credentialOption
+            ).getOrThrow()
+
+        signInAccount(credentialResponse = credentialResponse) { result -> onComplete(result) }
+    }
+
     fun signInAccount(
         credentialResponse: GetCredentialResponse,
-        onComplete: (Boolean) -> Unit
+        onComplete: (Boolean) -> Unit = {}
     ) = viewModelScope.launch {
         val result = signInAccountUseCase(credentialResponse).getOrDefault(false)
         onComplete(result)
@@ -91,6 +116,7 @@ class AccountViewModel(
         }
 
     private fun startObservingCredits() {
+        observeCreditsJob?.cancel("Ending old observeCreditsJob")
         observeCreditsJob = viewModelScope.launch {
             observeAccountCreditsUseCase()
                 .onCompletion {
@@ -112,7 +138,7 @@ class AccountViewModel(
     }
 
     private fun stopObservingCredits() {
-        observeCreditsJob?.cancel()
+        observeCreditsJob?.cancel("Ending old observeCreditsJob")
 
         setAccountUiStateDefault()
 
@@ -120,6 +146,7 @@ class AccountViewModel(
     }
 
     private fun startObservingUnlockedPalettes() {
+        observeUnlockedPalettesJob?.cancel("Ending old observeUnlockedPalettesJob")
         observeUnlockedPalettesJob = viewModelScope.launch {
             observeAccountUnlockedPalettesUseCase()
                 .onCompletion {
@@ -141,14 +168,14 @@ class AccountViewModel(
     }
 
     private fun stopObservingUnlockedPalettes() {
-        observeUnlockedPalettesJob?.cancel()
-
+        observeUnlockedPalettesJob?.cancel("Ending old observeUnlockedPalettesJob")
         setUnlockedPalettesUiStatDefault()
 
         Log.d("AccountViewModel", "observeUnlockedPalettesJob stopping")
     }
 
     private fun startObservingUnlockedTypographies() {
+        observeUnlockedTypographiesJob?.cancel("Ending old observeUnlockedTypographiesJob")
         observeUnlockedTypographiesJob = viewModelScope.launch {
             observeAccountUnlockedTypographiesUseCase()
                 .onCompletion {
@@ -170,7 +197,7 @@ class AccountViewModel(
     }
 
     private fun stopObservingUnlockedTypographies() {
-        observeUnlockedTypographiesJob?.cancel()
+        observeUnlockedTypographiesJob?.cancel("Ending old observeUnlockedTypographiesJob")
 
         setUnlockedTypographiesUiStatDefault()
 
@@ -188,6 +215,41 @@ class AccountViewModel(
         stopObservingUnlockedPalettes()
         stopObservingUnlockedTypographies()
     }
+
+    private suspend fun signInWithCredential(
+        activity: Activity,
+        context: Context,
+        credentialOption: CredentialOption
+    ): Result<GetCredentialResponse> = withContext(Dispatchers.IO) {
+
+        Log.e("FirebaseAuth", "Attempting to obtain credentials.")
+
+        val request = GetCredentialRequest.Builder()
+            .addCredentialOption(credentialOption)
+            .build()
+
+        try {
+
+            Log.d("FirebaseAuth", "Attempting create credentials manager.")
+            val credentialManager = CredentialManager.create(context = context)
+
+            Log.d("FirebaseAuth", "Attempting to obtain credentials.")
+            val credentialResponse = credentialManager.getCredential(
+                request = request,
+                context = activity
+            )
+            Log.d("FirebaseAuth", "Obtaining credentials successful.")
+
+            Result.success(credentialResponse)
+
+        } catch (e: GetCredentialException) {
+            e.printStackTrace()
+
+            Result.failure(Exception("Failure obtaining credentials.", e))
+        }
+
+    }
+
 
     init {
         startObservingAccount()
