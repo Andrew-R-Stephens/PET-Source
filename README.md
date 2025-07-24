@@ -110,22 +110,33 @@
 <div align='left' style="display:float">
   <h3>High-Level Design</h3>
   <div align='center'><label><b>Native Android -> Kotlin Multiplatform (Android / iOS) Integration Pattern</b></label></div>
-  &emsp;<img src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet_migration_flow_stage3.png" alt=""/>
-  <blockquote>P.E.T. has become kotlin-first! Major code migration started in May 2024 and finished in July 2024. Planned migration to KMP will commence after confirmation of build stability and feature refinement.</blockquote>
+  &emsp;<img src="https://raw.githubusercontent.com/Andrew-R-Stephens/Andrew-R-Stephens/master/assets/pet_migration_flow_stage4.png" alt=""/>
+  <blockquote>P.E.T. has become Kotlin-first! Major code migration started in May 2024 and finished in July 2024. Planned migration to KMP will commence after confirmation of build stability and feature refinement.</blockquote>
   <ul>
-    <li><h5>Refactor from Java to Kotlin ✔️</h5></li>
-    <li><h5>Refactor to Clean Code ♻️</h5></li>
-    <li><h5>Migrate from View to Compose ♻️</h5></li>
     <li>
-        <h5>Prepare with KMP for iOS ♻️</h5>
+        <h5>Build for Android ♻️</h5>
         <ul>
-            <li><h5>Add KMP and iOS project module ✔️</h5></li>
-            <li><h5>Build shared interfaces ♻️</h5></li>
+            <li>Refactor from Java to Kotlin ✔️</li>
+            <li>Refactor to Clean Code ✔️</li>
+            <li>Migrate from Views to Jetpack Compose ♻️</li>
         </ul>
     </li>
-    <li><h5>Begin fixes for iOS/SwiftUI 🔳</h5></li>
-    <li><h5>Test for iOS 🔳</h5></li>
-    <li><h5>Publish on iOS App Store 🔳</h5></li>
+    <li>
+        <h5>Prepare KMP ✔️</h5>
+        <ul>
+            <li>Add KMP and iOS project module ✔️</li>
+            <li>Build shared domain layer✔️</li>
+        </ul>
+    </li>
+    <li>
+        <h5>Build for iOS ♻️</h5>
+        <ul>
+            <li>Begin migration to iOS/SwiftUI ♻️</li>
+            <li>(Interim steps) ♻️</li>
+            <li>Test for iOS 🔳</li>
+            <li>Publish on iOS App Store 🔳</li>
+        </ul>
+    </li>
   </ul>
 </div>
 
