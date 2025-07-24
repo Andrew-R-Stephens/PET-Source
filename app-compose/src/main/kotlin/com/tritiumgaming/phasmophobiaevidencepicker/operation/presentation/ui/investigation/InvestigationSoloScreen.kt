@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation
 
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
-import android.view.View
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -30,9 +29,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -41,7 +40,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getActionPanVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getExitVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getGearVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getInfoVector
@@ -51,16 +49,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.analysis.OperationDetails
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.footstep.FootstepMeter
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.footstep.FootstepTool
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.DifficultyConfigCarousel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.MapConfigCarousel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.sanitywarn.SanityMeterView
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.timer.TimerDisplay
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.CollapseButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ResetButton
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolBarItemPair
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.sanitywarn.SanityMeterView
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.timer.TimerDisplay
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolbarItem
 
 @Composable
 @Preview
@@ -345,95 +342,109 @@ private fun OperationToolbar(
         investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
     val section = investigationToolbarUiState.value.category
 
-    Row(
+
+    InvestigationToolbar(
         modifier = modifier
             .heightIn(min = 48.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.Top
-    ) {
-        val toolsList: Array<ToolBarItemPair> = arrayOf(
-            ToolBarItemPair(@Composable {
+        stickyContentStart = {
+
+            ToolbarItem(
+                onClick = {}
+            ){
                 CollapseButton(
                     isCollapsed = investigationToolbarUiState.value.isCollapsed
                 ) {
                     investigationViewModel.toggleInvestigationToolsDrawerState()
                 }
-            }),
-            ToolBarItemPair(@Composable {
+            }
+
+        },
+        stickyContentEnd = {
+
+            ToolbarItem(
+                onClick = {}
+            ){
                 ResetButton {
                     investigationViewModel.resetInvestigationJournal()
                 }
-            }),
-            ToolBarItemPair(@Composable {
-                Image(
-                    modifier = modifier,
-                    imageVector = getGearVector(
-                        if(section == 0) {
-                            listOf(
-                                LocalPalette.current.textFamily.primary,
-                                LocalPalette.current.background.color,
-                            )
-                        } else {
-                            listOf(
-                                LocalPalette.current.background.color,
-                                LocalPalette.current.textFamily.body,
-                            )
-                        }
-                    ),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit
-                )
-            }) {
+            }
+
+        }
+    ) {
+
+        ToolbarItem(
+            onClick = {
                 investigationViewModel.setInvestigationToolsCategory(0)
-            },
-            ToolBarItemPair(@Composable {
-                Image(
-                    modifier = modifier,
-                    imageVector = getInfoVector(
-                        if(section == 1) {
-                            listOf(
-                                LocalPalette.current.textFamily.primary,
-                                LocalPalette.current.background.color,
-                            )
-                        } else {
-                            listOf(
-                                LocalPalette.current.background.color,
-                                LocalPalette.current.textFamily.body,
-                            )
-                        }
-                    ),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit
-                )
-            }) {
+            }
+        ){
+            Image(
+                modifier = modifier,
+                imageVector = getGearVector(
+                    if(section == 0) {
+                        listOf(
+                            Color.Transparent,
+                            LocalPalette.current.textFamily.primary,
+                        )
+                    } else {
+                        listOf(
+                            Color.Transparent,
+                            LocalPalette.current.textFamily.body,
+                        )
+                    }
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.Fit
+            )
+        }
+
+        ToolbarItem(
+            onClick = {
                 investigationViewModel.setInvestigationToolsCategory(1)
-            },
-            ToolBarItemPair(@Composable {
-                Image(
-                    modifier = modifier,
-                    imageVector = getExitVector(
-                        if(section == 2) {
-                            listOf(
-                                LocalPalette.current.textFamily.primary,
-                                LocalPalette.current.background.color,
-                            )
-                        } else {
-                            listOf(
-                                LocalPalette.current.background.color,
-                                LocalPalette.current.textFamily.body,
-                            )
-                        }
-                    ),
-                    contentDescription = null,
-                    contentScale = ContentScale.Fit
-                )
-            }) {
+            }
+        ){
+            Image(
+                modifier = modifier,
+                imageVector = getInfoVector(
+                    if(section == 1) {
+                        listOf(
+                            Color.Transparent,
+                            LocalPalette.current.textFamily.primary,
+                        )
+                    } else {
+                        listOf(
+                            Color.Transparent,
+                            LocalPalette.current.textFamily.body,
+                        )
+                    }
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.Fit
+            )
+        }
+
+        ToolbarItem(
+            onClick = {
                 investigationViewModel.setInvestigationToolsCategory(2)
             }
-        )
-
-        InvestigationToolbar(
-            toolsList
-        )
+        ){
+            Image(
+                modifier = modifier,
+                imageVector = getExitVector(
+                    if(section == 2) {
+                        listOf(
+                            LocalPalette.current.textFamily.primary,
+                            Color.Transparent,
+                        )
+                    } else {
+                        listOf(
+                            Color.Transparent,
+                            LocalPalette.current.textFamily.body,
+                        )
+                    }
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.Fit
+            )
+        }
     }
 }

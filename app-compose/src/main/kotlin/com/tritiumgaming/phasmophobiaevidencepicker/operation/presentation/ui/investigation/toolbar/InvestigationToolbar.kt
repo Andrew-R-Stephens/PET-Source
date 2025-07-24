@@ -16,15 +16,19 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -41,6 +45,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.booleanResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,77 +54,127 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers.DisplayOrientation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers.fadingEdges
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils.getColorFromAttribute
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-data class ToolBarItemPair(
-    val content: @Composable () -> Unit,
-    val onClick: () -> Unit = {}
-)
-
 @Composable
 fun InvestigationToolbar(
-    items: Array<ToolBarItemPair> = arrayOf()
+    modifier: Modifier = Modifier,
+    stickyContentStart: @Composable () -> Unit = {},
+    stickyContentEnd: @Composable () -> Unit = {},
+    scrollContent: @Composable () -> Unit,
 ) {
+    val scrollState = rememberScrollState()
+
     when (LocalConfiguration.current.orientation) {
         ORIENTATION_PORTRAIT -> {
-            val scrollState = rememberScrollState()
             Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .wrapContentHeight()
-                    .background(LocalPalette.current.surface.onColor, RoundedCornerShape(8.dp))
-                    .horizontalScroll(scrollState)
-                    .fadingEdges(scrollState, DisplayOrientation.HORIZONTAL, 64.dp, 64.dp)
-                    .padding(4.dp)
+                    .wrapContentHeight(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                ToolbarItemList(items)
+                Box(
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .wrapContentSize()
+                        .background(LocalPalette.current.surface.onColor, CircleShape)
+                ) {
+                    stickyContentStart()
+                }
+
+                Row(
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .weight(1f, fill = true)
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .background(LocalPalette.current.surface.onColor, RoundedCornerShape(8.dp))
+                        .horizontalScroll(scrollState)
+                        .padding(4.dp)
+                        .fadingEdges(
+                            scrollState = scrollState,
+                            orientation =
+                                DisplayOrientation.HORIZONTAL,
+                            topEdgeHeight = 64.dp,
+                            bottomEdgeHeight = 64.dp
+                        ),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                ) {
+                    scrollContent()
+                }
+
+                Box(
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .wrapContentSize()
+                        .background(LocalPalette.current.surface.onColor, CircleShape)
+                ) {
+                    stickyContentEnd()
+                }
             }
+
         }
         else -> {
-            val scrollState = rememberScrollState()
             Column(
-                verticalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
                     .fillMaxHeight()
-                    .wrapContentWidth()
-                    .background(LocalPalette.current.surface.onColor, RoundedCornerShape(8.dp))
-                    .verticalScroll(scrollState)
-                    .fadingEdges(scrollState, DisplayOrientation.VERTICAL, 64.dp, 64.dp)
-                    .padding(4.dp)
+                    .wrapContentWidth(),
+                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                ToolbarItemList(items)
+                Box(
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .wrapContentSize()
+                        .background(LocalPalette.current.surface.onColor, CircleShape)
+                ) {
+                    stickyContentStart()
+                }
+
+                Column(
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .weight(1f, fill = true)
+                        .fillMaxHeight()
+                        .wrapContentWidth()
+                        .background(LocalPalette.current.surface.onColor, RoundedCornerShape(8.dp))
+                        .verticalScroll(scrollState)
+                        .fadingEdges(scrollState, DisplayOrientation.VERTICAL, 64.dp, 64.dp),
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                ) {
+                    scrollContent()
+                }
+
+                Box(
+                    modifier = Modifier
+                        .padding(4.dp)
+                        .wrapContentSize()
+                        .background(LocalPalette.current.surface.onColor, CircleShape)
+                ) {
+                    stickyContentEnd()
+                }
             }
-        }
-    }
-}
 
-@Composable
-fun ToolbarItemList(
-    contentArray: Array<ToolBarItemPair> = arrayOf()
-) {
-    contentArray.forEach { pair ->
-
-        Box(modifier = Modifier.padding(4.dp)) {
-            val onClick = pair.onClick
-
-            ToolbarItem(content = { pair.content }, onClick)
         }
     }
 }
 
 @Composable
 fun ToolbarItem(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = { },
     content: @Composable () -> Unit,
-    onClick: () -> Unit = { }
 ) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(48.dp)
-            .clickable { onClick() },
+            .clickable { onClick() }
+            .padding(8.dp),
     ) {
         content()
     }
@@ -144,12 +199,12 @@ fun ResetButton(
         label = "",
     )
 
-    val foregroundColor = getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
+    val foregroundColor = LocalPalette.current.textFamily.body
 
     Box(
         modifier = modifier
             .size(48.dp)
-            .border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
+            //.border(1.5.dp, foregroundColor, RoundedCornerShape(percent = 25))
             .clickable {
                 onClick()
                 isRunning = true
@@ -159,9 +214,9 @@ fun ResetButton(
         Image(
             painterResource(id = R.drawable.ic_control_reset),
             contentDescription = "Reset Drawable",
-            colorFilter = ColorFilter.tint(Color(foregroundColor)),
+            colorFilter = ColorFilter.tint(foregroundColor),
             modifier = Modifier
-                .fillMaxSize(.55f)
+                .fillMaxSize()
                 .align(Alignment.Center)
                 .clip(RectangleShape)
                 .rotate(
@@ -171,12 +226,12 @@ fun ResetButton(
                         0f
                     }
                 )
+                .padding(6.dp)
         )
     }
 }
 
 @Composable
-@Preview
 fun CollapseButton(
     modifier: Modifier = Modifier,
     isCollapsed: Boolean = false,
@@ -192,7 +247,7 @@ fun CollapseButton(
         label = "",
     )
 
-    val foregroundColor = getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
+    val foregroundColor = LocalPalette.current.textFamily.body
 
     Box(
         modifier = modifier
@@ -212,7 +267,7 @@ fun CollapseButton(
         Image(
             painterResource(id = R.drawable.ic_arrow_chevron_right),
             contentDescription = "Reset Drawable",
-            colorFilter = ColorFilter.tint(Color(foregroundColor)),
+            colorFilter = ColorFilter.tint(foregroundColor),
             modifier = Modifier
                 .fillMaxSize(/*.55f*/)
                 .align(Alignment.Center)
@@ -223,7 +278,6 @@ fun CollapseButton(
 }
 
 @Composable
-@Preview
 fun SanityButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
@@ -231,7 +285,7 @@ fun SanityButton(
 ) {
     val enabledState by isShownState.collectAsStateWithLifecycle()
 
-    val foregroundColor = getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
+    val foregroundColor = LocalPalette.current.textFamily.body
 
     Box(
         modifier = modifier
@@ -251,7 +305,7 @@ fun SanityButton(
         Image(
             painterResource(id = R.drawable.icon_sanityhead_skull),
             contentDescription = "Sanity Drawable",
-            colorFilter = ColorFilter.tint(Color(foregroundColor)),
+            colorFilter = ColorFilter.tint(foregroundColor),
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center)
@@ -261,7 +315,6 @@ fun SanityButton(
 }
 
 @Composable
-@Preview
 fun ModifiersButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
@@ -269,7 +322,7 @@ fun ModifiersButton(
 ) {
     val enabledState by isShownState.collectAsStateWithLifecycle()
 
-    val foregroundColor = getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
+    val foregroundColor = LocalPalette.current.textFamily.body
 
     Box(
         modifier = modifier
@@ -289,11 +342,27 @@ fun ModifiersButton(
         Image(
             painterResource(id = R.drawable.ic_eraser),
             contentDescription = "Modifiers Drawable",
-            colorFilter = ColorFilter.tint(Color(foregroundColor)),
+            colorFilter = ColorFilter.tint(foregroundColor),
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center)
                 .clip(RectangleShape)
         )
     }
+}
+
+@Composable
+@Preview
+fun IconPreview() {
+
+    SelectiveTheme {
+
+        Column{
+
+            SanityButton()
+            ResetButton()
+            CollapseButton()
+        }
+    }
+
 }
