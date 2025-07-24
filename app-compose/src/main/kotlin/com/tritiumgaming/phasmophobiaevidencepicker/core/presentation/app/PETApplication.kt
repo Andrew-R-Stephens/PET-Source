@@ -4,10 +4,10 @@ import android.app.Application
 import android.content.Context
 import androidx.datastore.preferences.SharedPreferencesMigration
 import androidx.datastore.preferences.preferencesDataStore
-import com.google.firebase.auth.ktx.auth
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.firestore
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.container.CoreContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.container.MainMenuContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.container.OperationContainer

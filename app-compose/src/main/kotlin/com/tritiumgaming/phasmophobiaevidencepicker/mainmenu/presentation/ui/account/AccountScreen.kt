@@ -1,16 +1,14 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account
 
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.MarqueeAnimationMode
-import androidx.compose.foundation.MarqueeDefaults.Iterations
-import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,13 +17,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,6 +33,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -49,28 +46,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.SubcomposeLayout
-import androidx.compose.ui.layout.layout
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.height
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.unit.width
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.AccountManagerService
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.SignInOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.indicators.IndeterminateCircularIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentRow
@@ -78,6 +70,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
@@ -89,44 +82,48 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.acc
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
 import kotlinx.coroutines.launch
-import kotlin.math.roundToInt
-
-@Composable
-@Preview
-private fun AccountScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        AccountScreen()
-    }
-}
 
 @Composable
 fun AccountScreen(
     navController: NavController = rememberNavController(),
-    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory)
+    accountViewModel: AccountViewModel
 ) {
 
-    MainMenuScreen(
-        content = {
-            AccountContent(
-                navController = navController,
-                accountViewModel = accountViewModel
-            )
+    MainMenuScreen {
+
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+        when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                AccountContentPortrait(
+                    navController = navController,
+                    accountViewModel = accountViewModel
+                )
+            }
+            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                AccountContentLandscape(
+                    navController = navController,
+                    accountViewModel = accountViewModel
+                )
+            }
         }
-    )
+
+    }
 
 }
 
 @Composable
-private fun AccountContent(
+private fun AccountContentPortrait(
     navController: NavController = rememberNavController(),
-    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory)
+    accountViewModel: AccountViewModel
 ) {
     val activity = LocalActivity.current
 
-    var rememberAccount by remember { mutableStateOf<String?>(Firebase.auth.currentUser?.uid) }
+    var rememberAccount by remember { mutableStateOf(Firebase.auth.currentUser?.uid) }
 
     var rememberDialog by remember { mutableStateOf(AccountOverviewDialog.NONE) }
 
@@ -168,6 +165,9 @@ private fun AccountContent(
                         accountViewModel = accountViewModel,
                         onClick = {
                             loadingState = true
+                        },
+                        onFailure = {
+                            loadingState = false
                         }
                     ) { result ->
                         rememberAccount = Firebase.auth.currentUser?.uid
@@ -183,7 +183,7 @@ private fun AccountContent(
 
                     }
                 } else {
-                    AccountComponent(
+                    AccountComponentPortrait(
                         accountViewModel = accountViewModel,
                         onLogoutClicked = {
                             rememberDialog = AccountOverviewDialog.SIGN_OUT
@@ -253,8 +253,144 @@ private fun AccountContent(
 }
 
 @Composable
-private fun AccountComponent(
-    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
+private fun AccountContentLandscape(
+    navController: NavController = rememberNavController(),
+    accountViewModel: AccountViewModel
+) {
+    val activity = LocalActivity.current
+
+    var rememberAccount by remember { mutableStateOf(Firebase.auth.currentUser?.uid) }
+
+    var rememberDialog by remember { mutableStateOf(AccountOverviewDialog.NONE) }
+
+    var loadingState = false
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Top
+        ) {
+
+            NavigationHeaderComposable(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                params = NavHeaderComposableParams(
+                    leftType = PETImageButtonType.BACK,
+                    centerTitleRes = R.string.account_title,
+                    leftOnClick = {
+                        navController.popBackStack()
+                    }
+                )
+            )
+
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+
+                if (rememberAccount == null) {
+                    SignInComponent(
+                        accountViewModel = accountViewModel,
+                        onClick = {
+                            loadingState = true
+                        },
+                        onFailure = {
+                            loadingState = false
+                        }
+                    ) { result ->
+                        rememberAccount = Firebase.auth.currentUser?.uid
+                        loadingState = false
+
+                        if(result) {
+                            Toast.makeText(activity,
+                                "${activity?.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}",
+                                Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(activity, activity?.getString(R.string.alert_account_login_failure), Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
+                } else {
+                    AccountComponentLandscape(
+                        accountViewModel = accountViewModel,
+                        onLogoutClicked = {
+                            rememberDialog = AccountOverviewDialog.SIGN_OUT
+                        },
+                        onDeactivateClicked = {
+                            rememberDialog = AccountOverviewDialog.DEACTIVATE_ACCOUNT
+                        }
+                    )
+                }
+
+            }
+
+        }
+
+        when(rememberDialog) {
+            AccountOverviewDialog.DEACTIVATE_ACCOUNT ->
+                DeactivateAccountDialog(
+                    onConfirm = {
+
+                        accountViewModel.deactivateAccount { result ->
+
+                            rememberAccount = Firebase.auth.currentUser?.uid
+                            rememberDialog = AccountOverviewDialog.NONE
+
+                            if(result) {
+                                Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_success), Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_failure), Toast.LENGTH_SHORT).show()
+                            }
+
+                        }
+
+                    },
+                    onCancel = {
+                        rememberDialog = AccountOverviewDialog.NONE
+                    }
+                )
+            AccountOverviewDialog.SIGN_OUT ->
+                LogoutDialog(
+                    onConfirm = {
+                        accountViewModel.signOutAccount { value ->
+
+                            rememberAccount = Firebase.auth.currentUser?.uid
+                            rememberDialog = AccountOverviewDialog.NONE
+
+                            if(value) {
+                                Toast.makeText(activity, activity?.getString(R.string.alert_account_logout_success), Toast.LENGTH_SHORT).show()
+                            }
+
+                        }
+
+                    },
+                    onCancel = {
+                        rememberDialog = AccountOverviewDialog.NONE
+                    }
+                )
+            AccountOverviewDialog.NONE -> {}
+        }
+
+        IndeterminateCircularIndicator(
+            color1 = LocalPalette.current.textFamily.body,
+            color2 = LocalPalette.current.surface.onColor,
+            isLoading = loadingState
+        )
+
+    }
+}
+
+@Composable
+private fun AccountComponentPortrait(
+    accountViewModel: AccountViewModel,
     onLogoutClicked: () -> Unit = {},
     onDeactivateClicked: () -> Unit = {}
 ) {
@@ -268,7 +404,7 @@ private fun AccountComponent(
     ) {
 
         AccountDetailsComponent(
-            accountViewModel = accountViewModel
+            accountViewModel = accountViewModel,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -279,7 +415,7 @@ private fun AccountComponent(
             },
             onDeactivateClicked = {
                 onDeactivateClicked()
-            }
+            },
         )
 
         Column {
@@ -291,11 +427,48 @@ private fun AccountComponent(
 }
 
 @Composable
+private fun AccountComponentLandscape(
+    accountViewModel: AccountViewModel,
+    onLogoutClicked: () -> Unit = {},
+    onDeactivateClicked: () -> Unit = {}
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
+        verticalAlignment = Alignment.Top,
+        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
+    ) {
+
+        AccountDetailsComponent(
+            modifier = Modifier
+                .weight(1f, fill = true),
+            accountViewModel = accountViewModel
+        )
+
+        SignOutComponent(
+            modifier = Modifier
+                .weight(1f, fill = true)
+                .align(Alignment.CenterVertically),
+            onLogoutClicked = {
+                onLogoutClicked()
+            },
+            onDeactivateClicked = {
+                onDeactivateClicked()
+            }
+        )
+
+    }
+}
+
+@Composable
 private fun AccountDetailsComponent(
-    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory)
+    modifier: Modifier = Modifier,
+    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
 ) {
 
     Column (
+        modifier = modifier,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -379,12 +552,13 @@ private fun LabeledValue(
                     maxLines = 1,
                     textAlign = TextAlign.End,
                     overflow = TextOverflow.Clip,
-                    modifier = Modifier.basicMarquee(
-                        animationMode = MarqueeAnimationMode.Immediately,
-                        iterations = Integer.MAX_VALUE,
-                        initialDelayMillis = 3000,
-                        repeatDelayMillis = 3000
-                    )
+                    modifier = Modifier
+                        .basicMarquee(
+                            animationMode = MarqueeAnimationMode.Immediately,
+                            iterations = Integer.MAX_VALUE,
+                            initialDelayMillis = 3000,
+                            repeatDelayMillis = 3000
+                        )
                         .padding(start = 4.dp)
                 )
             }
@@ -500,15 +674,21 @@ private fun PaletteListItem(
 private fun SignInComponent(
     accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
     onClick: () -> Unit = {},
+    onFailure: () -> Unit = {},
     onSignIn: (result: Boolean) -> Unit = {}
 ) {
+
+    val rememberCoroutineScope = rememberCoroutineScope()
+
+    val activity = LocalActivity.current
+    val context = LocalContext.current
 
     Spacer(modifier = Modifier.height(16.dp))
 
     Surface(
         modifier = Modifier
             .padding(horizontal = 8.dp)
-            .fillMaxWidth()
+            .widthIn(max = 600.dp)
             .wrapContentHeight()
             .padding(8.dp),
         color = LocalPalette.current.surface.onColor,
@@ -536,10 +716,6 @@ private fun SignInComponent(
                 maxLines = 2
             )
 
-            val rememberCoroutineScope = rememberCoroutineScope()
-
-            val activity = LocalActivity.current
-
             SignInWithGoogleButton {
 
                 onClick()
@@ -547,19 +723,29 @@ private fun SignInComponent(
                 accountViewModel.getSignInCredentials(
                     signInOption = SignInOptions.GOOGLE
                 ) { credentialOption ->
+                    Log.d("AccountScreen", "Attempting Sign-in init.")
 
                     rememberCoroutineScope.launch {
+                        activity ?: return@launch
 
-                        val credentialResponse = AccountManagerService().signInWithCredential(
-                            activity = activity,
-                            credentialOption = credentialOption
-                        )
-                        credentialResponse.exceptionOrNull()?.printStackTrace()
+                        try {
 
-                        credentialResponse.getOrNull()?.let { response ->
-                            accountViewModel.signInAccount(response) { result ->
+                            accountViewModel.signInWithCredentials(
+                                activity = activity,
+                                context = context,
+                                credentialOption = credentialOption
+                            ) { result ->
                                 onSignIn(result)
                             }
+
+                        } catch (e: Exception) {
+                            Toast.makeText(activity,
+                                "Sign-in failed.",
+                                Toast.LENGTH_SHORT)
+                                .show()
+                            e.printStackTrace()
+
+                            onFailure()
                         }
 
                     }
@@ -576,8 +762,9 @@ private fun SignInComponent(
 
 @Composable
 private fun SignOutComponent(
+    modifier: Modifier = Modifier,
     onLogoutClicked: () -> Unit = {},
-    onDeactivateClicked: () -> Unit = {}
+    onDeactivateClicked: () -> Unit = {},
 ) {
 
     Spacer(modifier = Modifier.height(16.dp))
@@ -585,7 +772,7 @@ private fun SignOutComponent(
     val rememberMaxWidth = remember { mutableIntStateOf(200) }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .padding(8.dp)
             .width(rememberMaxWidth.intValue.dp)
             .wrapContentHeight()
@@ -689,7 +876,9 @@ private fun DeactivateAccountButton(
 
         Text(
             text = stringResource(R.string.account_button_deactivate),
-            style = LocalTypography.current.quaternary.bold,
+            style = LocalTypography.current.quaternary.bold.copy(
+                textAlign = TextAlign.Center
+            ),
             color = LocalPalette.current.background.color,
             fontSize = 18.sp
         )
@@ -878,6 +1067,19 @@ private fun LogoutDialog(
     )
 }
 
+@Composable
+@Preview
+private fun AccountScreenPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        AccountScreen(
+            accountViewModel = viewModel(factory = AccountViewModel.Factory)
+        )
+    }
+}
+
 @Preview
 @Composable
 fun AccountComponentPreview() {
@@ -885,7 +1087,9 @@ fun AccountComponentPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        AccountComponent()
+        AccountComponentPortrait(
+            accountViewModel = viewModel(factory = AccountViewModel.Factory)
+        )
     }
 }
 

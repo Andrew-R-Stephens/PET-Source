@@ -55,7 +55,7 @@ fun OperationNavigationDrawer(
                         modifier = Modifier
                             .height(48.dp)
                             .wrapContentWidth()
-                            .padding(4.dp),
+                            .padding(8.dp),
                         label = {
                             Text(
                                 text = stringResource(R.string.general_navigation_home),
@@ -91,7 +91,7 @@ fun OperationNavigationDrawer(
                         modifier = Modifier
                             .height(48.dp)
                             .wrapContentWidth()
-                            .padding(4.dp),
+                            .padding(8.dp),
                         label = {
                             Text(
                                 text = stringResource(R.string.investigation_section_title_evidence),
@@ -118,7 +118,7 @@ fun OperationNavigationDrawer(
                         modifier = Modifier
                             .height(48.dp)
                             .wrapContentWidth()
-                            .padding(4.dp),
+                            .padding(8.dp),
                         label = {
                             Text(
                                 text = stringResource(R.string.general_tasks_button),
@@ -145,7 +145,7 @@ fun OperationNavigationDrawer(
                         modifier = Modifier
                             .height(48.dp)
                             .wrapContentWidth()
-                            .padding(4.dp),
+                            .padding(8.dp),
                         label = {
                             Text(
                                 text = stringResource(R.string.general_maps_button),
@@ -183,7 +183,7 @@ fun OperationNavigationDrawer(
                         modifier = Modifier
                             .height(48.dp)
                             .wrapContentWidth()
-                            .padding(4.dp),
+                            .padding(8.dp),
                         label = {
                             Text(
                                 text = stringResource(R.string.general_codex_button),
