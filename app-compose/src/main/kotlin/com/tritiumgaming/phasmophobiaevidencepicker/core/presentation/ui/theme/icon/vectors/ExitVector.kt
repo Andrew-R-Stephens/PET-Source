@@ -21,8 +21,8 @@ fun getExitVector(groupColors: List<Color>): ImageVector =
     ).apply {
         group {
             path(
-                fill = SolidColor(Color(0xFFffffff)), stroke =
-                    SolidColor(Color(0xFF000000)), strokeLineWidth = 0.0f, strokeLineCap =
+                fill = SolidColor(groupColors[0]), stroke =
+                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
                     Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
                     NonZero
             ) {
@@ -157,8 +157,8 @@ fun getExitVector(groupColors: List<Color>): ImageVector =
                 close()
             }
             path(
-                fill = SolidColor(Color(0xFFffffff)), stroke =
-                    SolidColor(Color(0xFF000000)), strokeLineWidth = 0.0f, strokeLineCap =
+                fill = SolidColor(groupColors[0]), stroke =
+                    SolidColor(groupColors[0]), strokeLineWidth = 0.0f, strokeLineCap =
                     Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
                     NonZero
             ) {
@@ -173,8 +173,8 @@ fun getExitVector(groupColors: List<Color>): ImageVector =
         }
         group {
             path(
-                fill = SolidColor(Color(0xFF000000)), stroke =
-                    SolidColor(Color(0xFF000000)), strokeLineWidth = 0.0f, strokeLineCap =
+                fill = SolidColor(groupColors[1]), stroke =
+                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
                     Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
                     NonZero
             ) {
@@ -375,8 +375,8 @@ fun getExitVector(groupColors: List<Color>): ImageVector =
                 close()
             }
             path(
-                fill = SolidColor(Color(0xFF000000)), stroke =
-                    SolidColor(Color(0xFF000000)), strokeLineWidth = 0.0f, strokeLineCap =
+                fill = SolidColor(groupColors[1]), stroke =
+                    SolidColor(groupColors[1]), strokeLineWidth = 0.0f, strokeLineCap =
                     Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType =
                     NonZero
             ) {
