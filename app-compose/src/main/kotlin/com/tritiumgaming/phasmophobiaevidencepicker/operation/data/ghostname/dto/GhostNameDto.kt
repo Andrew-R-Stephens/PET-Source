@@ -2,8 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.dt
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.mappers.GhostNameResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.model.GhostName
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mappers.MissionResources.MissionContent
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
 
 data class GhostNameDto(
     val name: GhostNameResources.Name,

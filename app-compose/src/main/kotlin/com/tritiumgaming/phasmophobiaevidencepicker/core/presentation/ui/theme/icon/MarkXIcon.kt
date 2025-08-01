@@ -12,7 +12,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.S
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getActionPanVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getMarkXVector
 
 @Composable

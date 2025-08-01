@@ -43,8 +43,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.screens.PETScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.HamburgerMenuIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getHamburgerMenuVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getHamburgerMenuVector
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

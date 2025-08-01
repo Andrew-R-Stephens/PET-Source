@@ -1,8 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.marketplace
 
 import android.util.Log
-import androidx.credentials.GetCredentialResponse
-import androidx.credentials.GetCustomCredentialOption
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -16,7 +14,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.user.usec
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCredits
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.SignInOptions
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
