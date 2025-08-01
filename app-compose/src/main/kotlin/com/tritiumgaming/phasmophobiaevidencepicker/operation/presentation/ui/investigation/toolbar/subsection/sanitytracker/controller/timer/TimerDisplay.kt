@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.text.FormatterUtils
 
 @Composable
 fun TimerDisplay(

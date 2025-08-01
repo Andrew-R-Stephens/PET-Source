@@ -42,8 +42,6 @@ data class GhostScore(
         currentDifficulty: DifficultyResources.DifficultyType? = DifficultyResources.DifficultyType.AMATEUR
     ): Int {
 
-        //if (forcefullyRejected.value) { return -5 }
-
         val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
         val isInsanity = currentDifficulty == DifficultyResources.DifficultyType.INSANITY
 
@@ -65,7 +63,8 @@ data class GhostScore(
                 }
             }
             if (!isContained) {
-                if (ruledEvidence.isRuling(RuledEvidence.Ruling.POSITIVE)) { return -5 } }
+                if (ruledEvidence.isRuling(RuledEvidence.Ruling.POSITIVE)) {
+                    return NORMAL_EVIDENCE_NOT_FOUND } }
         }
 
         ghostEvidence.normalEvidenceList.forEachIndexed { index, normalEvidence ->
@@ -77,9 +76,9 @@ data class GhostScore(
                 when (ruling) {
                     RuledEvidence.Ruling.POSITIVE -> { if (index < 3) { posScore++ } }
                     RuledEvidence.Ruling.NEGATIVE -> {
-                        if (!(isNightmare || isInsanity)) return -6
+                        if (!(isNightmare || isInsanity)) return NORMAL_NEGATION_MINIMUM_REACHED
                         negScore++
-                        if (index >= 3) { return -7 }
+                        if (index >= 3) { return NORMAL_NEGATION_MAXIMUM_REACHED }
                     }
 
                     RuledEvidence.Ruling.NEUTRAL -> {}
@@ -94,12 +93,12 @@ data class GhostScore(
 
             strictRuledEvidence?.ruling?.let { ruling: RuledEvidence.Ruling ->
 
-                if (ruling == RuledEvidence.Ruling.NEGATIVE) { return -8 }
+                if (ruling == RuledEvidence.Ruling.NEGATIVE) { return STRICT_EVIDENCE_FOUND }
             }
         }
 
-        if (posScore > maxPosScore) return -8
-        if (negScore > 3 - maxPosScore) return -9
+        if (posScore > maxPosScore) return POSITIVE_COUNT_OVER_MAXIMUM
+        if (negScore > (3 - maxPosScore)) return NEGATIVE_COUNT_UNDER_MINIMUM
 
         if (!(isNightmare || isInsanity)) {
             return posScore - negScore
@@ -108,11 +107,12 @@ data class GhostScore(
         if (posScore == maxPosScore - (3 - ghostEvidence.normalEvidenceList.size)) {
             ghostEvidence.strictEvidenceList.forEach { strictEvidence ->
 
-                val strictRuledEvidence = ruledEvidence.find { it.isEvidence(strictEvidence) }
+                val strictRuledEvidence = ruledEvidence.find {
+                    it.isEvidence(strictEvidence) }
 
                 strictRuledEvidence?.ruling?.let { ruling: RuledEvidence.Ruling ->
 
-                    if (ruling != RuledEvidence.Ruling.POSITIVE) { return -10 }
+                    if (ruling != RuledEvidence.Ruling.POSITIVE) { return STRICT_EVIDENCE_NOT_FOUND }
                 }
             }
 
@@ -125,5 +125,15 @@ data class GhostScore(
     /** Resets the Ruling for each Evidence type  */
     fun resetGhostScore() {
         setForcefullyRejected(false)
+    }
+
+    private companion object {
+        private const val NORMAL_EVIDENCE_NOT_FOUND = -5
+        private const val NORMAL_NEGATION_MINIMUM_REACHED = -6
+        private const val NORMAL_NEGATION_MAXIMUM_REACHED = -7
+        private const val STRICT_EVIDENCE_FOUND = -8
+        private const val POSITIVE_COUNT_OVER_MAXIMUM = -9
+        private const val NEGATIVE_COUNT_UNDER_MINIMUM = -10
+        private const val STRICT_EVIDENCE_NOT_FOUND = -11
     }
 }

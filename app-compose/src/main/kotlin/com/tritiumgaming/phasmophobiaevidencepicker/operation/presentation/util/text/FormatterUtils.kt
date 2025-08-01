@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.text
 
 import android.text.SpannableString
 import android.text.Spanned

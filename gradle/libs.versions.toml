@@ -49,7 +49,7 @@ realm-kotlin = "3.0.0" # Latest: 1.16.0
 realm-kotlin-base = "3.0.0"
 realm-kotlin-sync = "2.3.0"
 
-agp = "8.11.1" # Latest: 8.10.1
+agp = "8.12.0" # Latest: 8.10.1
 kotlin = "2.2.0" # Latest: 2.1.20
 ksp = "2.2.0-2.0.2" # Latest: 2.1.20-2.0.0
 composeMP = "1.8.2" # Latest: 1.8.0
