@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.timer
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.timer
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -26,7 +26,7 @@ fun TimerDisplay(
         text = FormatterUtils.formatMillisToTime(timeMillis),
         style = DigitalDreamTextStyle,
         color = LocalPalette.current.textFamily.body,
-        autoSize = TextAutoSize.StepBased(12.sp, stepSize = 1.sp)
+        autoSize = TextAutoSize.StepBased(12.sp, maxFontSize = 24.sp, stepSize = 1.sp)
     )
 
 }

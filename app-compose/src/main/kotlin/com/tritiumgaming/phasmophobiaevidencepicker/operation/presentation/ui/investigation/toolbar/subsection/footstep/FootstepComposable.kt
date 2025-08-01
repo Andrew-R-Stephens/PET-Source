@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.footstep
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.footstep
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.Animatable

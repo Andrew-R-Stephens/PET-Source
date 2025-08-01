@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.analysis
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.analysis
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -169,7 +169,11 @@ fun DifficultyModifierDetails(
 fun ActiveGhostModifierDetails(
     investigationViewModel: InvestigationViewModel
 ) {
-    val ghosts = investigationViewModel.ghostScores.collectAsStateWithLifecycle()
+    val ghosts by investigationViewModel.ghostScores.collectAsStateWithLifecycle()
+    val filteredGhosts = ghosts.filter { score ->
+            score.score.value >= 0 &&
+                    !score.forcefullyRejected.value }
+    val rememberGhosts by remember { mutableStateOf(filteredGhosts) }
 
     CategoryColumn {
 
@@ -178,10 +182,10 @@ fun ActiveGhostModifierDetails(
         Column(
             modifier = Modifier.padding(PaddingValues(8.dp))
         ) {
-            ghosts.value.filter { score ->
-                    score.score.value >= 0 &&
-                            !score.forcefullyRejected.value
-            }.forEach { ghost ->
+
+            rememberGhosts.forEach { ghost ->
+                TextCategoryTitle(
+                    stringResource(ghost.ghostEvidence.ghost.name.toStringResource()))
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {

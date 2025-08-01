@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.sanitywarn
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity
 
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,11 +20,14 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
+import kotlin.math.min
 
 @Composable
 fun SanityMeterView(
@@ -31,7 +35,7 @@ fun SanityMeterView(
     investigationViewModel: InvestigationViewModel
 ) {
     val sanityLevel = investigationViewModel.sanityUiState.collectAsStateWithLifecycle()
-    val sanityPercent = sanityLevel.value.sanityLevel * .01f
+    val sanityPercent = sanityLevel.value.sanityLevel
 
     Box(
         modifier = modifier
@@ -72,6 +76,13 @@ fun SanityMeterView(
                 startColor = LocalPalette.current.sanityBorderColor.toArgb(),
                 endColor = LocalPalette.current.sanityBorderColor.toArgb(),
                 interpolation = sanityPercent
+            )
+            Text(
+                modifier = Modifier.align(Alignment.Center),
+                text = "$sanityPercent".substring(0, min(4, sanityPercent.toString().length)),
+                style = LocalTypography.current.quaternary.regular,
+                color = LocalPalette.current.textFamily.primary,
+                fontSize = 18.sp,
             )
         }
 
