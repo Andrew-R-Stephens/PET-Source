@@ -180,11 +180,15 @@ class InvestigationViewModel(
         _timerUiState.update {
             it.copy(
                 startTime = TIME_DEFAULT,
-                elapsedTime = 0L,
                 remainingTime = _difficultyUiState.value.time,
+                paused = true
+            )
+        }
+        _phaseUiState.update {
+            it.copy(
+                elapsedFlashTime = 0L,
                 startFlashTime = DEFAULT,
                 maxFlashTime = FOREVER,
-                paused = true
             )
         }
     }
@@ -485,7 +489,8 @@ class InvestigationViewModel(
             TIME_MIN
         )
 
-        val drainMultiplier = sanityUiState.value.drainModifier * tickMultiplier
+        val drainModifier = sanityUiState.value.drainModifier
+        val drainMultiplier = drainModifier * tickMultiplier
         val timeDifference = startTime - System.currentTimeMillis()
         setInsanityLevel(
             MAX_SANITY - (timeDifference * drainMultiplier)
@@ -494,19 +499,24 @@ class InvestigationViewModel(
     private fun skipInsanity(
         newLevel: Float = HALF_SANITY
     ) {
-        setInsanityLevel(newLevel.coerceAtLeast(sanityUiState.value.insanityLevel))
-        setSanityStartTimeByProgress(sanityUiState.value.insanityLevel)
+        val insanityLevel = sanityUiState.value.insanityLevel
+
+        setInsanityLevel(newLevel.coerceAtLeast(insanityLevel))
+        setSanityStartTimeByProgress(insanityLevel)
     }
 
     /** the sanity level missing, in percent.**/
     private fun updateSanityLevel() {
 
         _sanityUiState.update {
+
+            val insanityLevel = sanityUiState.value.insanityLevel
+
             it.copy(
                 sanityLevel = max(
                     min(
                         MAX_SANITY,
-                        MAX_SANITY - sanityUiState.value.insanityLevel),
+                        MAX_SANITY - insanityLevel),
                     MIN_SANITY)
             )
         }
@@ -528,12 +538,14 @@ class InvestigationViewModel(
      * Sets the Start Time of the Sanity Drain, based on remaining time,
      * sanity, difficulty and map size. */
     private fun setSanityStartTimeByProgress(progress: Float) {
+        val drainModifier = sanityUiState.value.drainModifier
+
         val progressOverride =
             MAX_SANITY - max(MIN_SANITY, min(MAX_SANITY, progress))
 
         val multiplier = .001f
 
-        val timeAddition = (progressOverride / sanityUiState.value.drainModifier / multiplier).toLong()
+        val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
         val newStartTime = (System.currentTimeMillis() + timeAddition)
 
         _timerUiState.update {
@@ -546,6 +558,7 @@ class InvestigationViewModel(
     fun displaySanityAsPercent(): String {
         val percentageFormat = NumberFormat.getPercentInstance()
         percentageFormat.minimumFractionDigits = 0
+
         val percent = sanityUiState.value.sanityLevel * .01f
 
         val formattedPercent = percentageFormat.format(percent).replace("%", "")
@@ -687,7 +700,7 @@ class InvestigationViewModel(
      * @return if the Warning indicator can flash */
     private fun updateCanFlash() {
 
-        if (timerUiState.value.maxFlashTime == FOREVER) {
+        if (phaseUiState.value.maxFlashTime == FOREVER) {
             _phaseUiState.update {
                 it.copy(
                     canFlash = sanityUiState.value.isInsane
@@ -696,12 +709,12 @@ class InvestigationViewModel(
             return
         }
 
-        if (timerUiState.value.startFlashTime == DEFAULT) {
+        if (phaseUiState.value.startFlashTime == DEFAULT) {
             Log.d("Flash", "Start time is default.. now setting to current time")
-            _timerUiState.update {
+            _phaseUiState.update {
                 it.copy(
                     startFlashTime = System.currentTimeMillis(),
-                    elapsedTime = System.currentTimeMillis() - it.startFlashTime
+                    elapsedFlashTime = System.currentTimeMillis() - it.startFlashTime
                 )
             }
 
@@ -712,17 +725,17 @@ class InvestigationViewModel(
 
         _phaseUiState.update {
             it.copy(
-                canFlash = timerUiState.value.elapsedTime <=  timerUiState.value.maxFlashTime
+                canFlash = phaseUiState.value.elapsedFlashTime <=  phaseUiState.value.maxFlashTime
             )
         }
 
     }
 
     private fun resetTimerPhase() {
-        _timerUiState.update {
+        _phaseUiState.update {
             it.copy(
                 startFlashTime = DEFAULT,
-                elapsedTime = System.currentTimeMillis() - it.startFlashTime
+                elapsedFlashTime = System.currentTimeMillis() - it.startFlashTime
             )
         }
         updateCanFlash()
@@ -788,80 +801,6 @@ class InvestigationViewModel(
         initGhostScores()
         initRuledEvidence()
         reorderGhostScores()
-    }
-
-    /*
-     * VIEWMODEL FACTORIES
-     */
-    class InvestigationFactory(
-        private val fetchEvidencesUseCase: FetchEvidencesUseCase,
-        private val fetchGhostsUseCase: FetchGhostsUseCase,
-        private val getEvidenceByIdUseCase: GetEvidenceByIdUseCase,
-        private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
-        private val getGhostByIdUseCase: GetGhostByIdUseCase,
-        private val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
-        private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
-        private val getDifficultyNameUseCase: GetDifficultyNameUseCase,
-        private val getDifficultyModifierUseCase: GetDifficultyModifierUseCase,
-        private val getDifficultyTimeUseCase: GetDifficultyTimeUseCase,
-        private val getDifficultyResponseTypeUseCase: GetDifficultyResponseTypeUseCase,
-        private val getDifficultyInitialSanityUseCase: GetDifficultyInitialSanityUseCase,
-        private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase,
-        private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase,
-        private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
-        private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
-        private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
-        private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase,
-        private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
-        private val getMapModifierUseCase: GetMapModifierUseCase,
-        private val incrementMapIndexUseCase: IncrementMapIndexUseCase,
-        private val decrementMapIndexUseCase: DecrementMapIndexUseCase,
-        private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
-        private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
-        private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
-        private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
-        private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
-        private val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
-        private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase
-    ) : ViewModelProvider.Factory {
-
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(InvestigationViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return InvestigationViewModel(
-                    fetchEvidencesUseCase = fetchEvidencesUseCase,
-                    getEvidenceByIdUseCase = getEvidenceByIdUseCase,
-                    fetchGhostsUseCase = fetchGhostsUseCase,
-                    fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
-                    getGhostByIdUseCase = getGhostByIdUseCase,
-                    initRuledEvidenceUseCase = initRuledEvidenceUseCase,
-                    fetchDifficultiesUseCase = fetchDifficultiesUseCase,
-                    incrementDifficultyIndexUseCase = incrementDifficultyIndexUseCase,
-                    decrementDifficultyIndexUseCase = decrementDifficultyIndexUseCase,
-                    getDifficultyNameUseCase = getDifficultyNameUseCase,
-                    getDifficultyModifierUseCase = getDifficultyModifierUseCase,
-                    getDifficultyTimeUseCase = getDifficultyTimeUseCase,
-                    getDifficultyResponseTypeUseCase = getDifficultyResponseTypeUseCase,
-                    getDifficultyInitialSanityUseCase = getDifficultyInitialSanityUseCase,
-                    fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
-                    getSimpleMapNameUseCase = getSimpleMapNameUseCase,
-                    getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
-                    getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
-                    getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
-                    getMapModifierUseCase = getMapModifierUseCase,
-                    incrementMapIndexUseCase = incrementMapIndexUseCase,
-                    decrementMapIndexUseCase = decrementMapIndexUseCase,
-                    incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
-                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
-                    fetchMapModifiersUseCase = fetchMapModifiersUseCase,
-                    fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
-                    fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
-                    fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
-                    fetchCodexEquipmentUseCase = fetchCodexEquipmentUseCase
-                ) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
     }
 
     companion object {

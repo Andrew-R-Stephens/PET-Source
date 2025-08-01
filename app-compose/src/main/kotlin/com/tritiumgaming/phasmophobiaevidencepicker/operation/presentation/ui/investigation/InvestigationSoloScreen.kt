@@ -18,7 +18,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
@@ -33,12 +37,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.Holiday22
@@ -48,6 +54,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getExitVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getGearVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getInfoVector
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.CollapseButton
@@ -284,39 +291,54 @@ private fun ColumnScope.ToolbarConfigurationSection(
 
         val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
 
-        Text(
-            text = "Start Time",
-            style = LocalTypography.current.primary.regular,
-            color = LocalPalette.current.textFamily.body
-        )
-        TimerDisplay(
-            modifier = Modifier
-                .height(48.dp)
-                .fillMaxWidth(),
-            timeMillis = timerUiState.value.startTime
-        )
-        Text(
-            text = "Elapsed Time",
-            style = LocalTypography.current.primary.regular,
-            color = LocalPalette.current.textFamily.body
-        )
-        TimerDisplay(
-            modifier = Modifier
-                .height(48.dp)
-                .fillMaxWidth(),
-            timeMillis = timerUiState.value.elapsedTime
-        )
-        Text(
-            text = "Remaining Time",
-            style = LocalTypography.current.primary.regular,
-            color = LocalPalette.current.textFamily.body
-        )
-        TimerDisplay(
-            modifier = Modifier
-                .height(48.dp)
-                .fillMaxWidth(),
-            timeMillis = timerUiState.value.remainingTime
-        )
+        Row {
+            Column(
+                modifier = Modifier
+                    .weight(1f, false)
+            ) {
+                Text(
+                    text = "Remaining Time",
+                    style = LocalTypography.current.primary.regular,
+                    color = LocalPalette.current.textFamily.body
+                )
+                TimerDisplay(
+                    modifier = Modifier
+                        .height(24.dp)
+                        .fillMaxWidth(),
+                    timeMillis = timerUiState.value.remainingTime
+                )
+            }
+
+            Button(
+                modifier = Modifier
+                    .weight(1f, false)
+                    .wrapContentSize()
+                    .padding(start = 8.dp),
+                onClick = { investigationViewModel.toggleTimer() },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Transparent,
+                    contentColor = LocalPalette.current.textFamily.body
+                )
+            ) {
+                if(timerUiState.value.paused) {
+                    Icon(
+                        modifier = Modifier
+                            .size(48.dp),
+                        painter = painterResource(R.drawable.ic_control_play),
+                        contentDescription = null,
+                        tint = LocalPalette.current.textFamily.body
+                    )
+                } else {
+                    Icon(
+                        modifier = Modifier
+                            .size(48.dp),
+                        painter = painterResource(R.drawable.ic_control_pause),
+                        contentDescription = null,
+                        tint = LocalPalette.current.textFamily.body
+                    )
+                }
+            }
+        }
     }
 }
 

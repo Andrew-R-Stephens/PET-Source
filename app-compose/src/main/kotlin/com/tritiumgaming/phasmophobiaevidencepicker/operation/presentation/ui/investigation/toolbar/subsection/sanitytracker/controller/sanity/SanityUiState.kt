@@ -1,4 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity
+
 data class SanityUiState(
     internal val sanityMax: Float = MAX_SANITY,
     internal val drainModifier: Float = 1f,

@@ -2,10 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 data class TimerUiState(
     internal val startTime: Long = TIME_DEFAULT,
-    internal val elapsedTime: Long = DEFAULT,
     internal val remainingTime: Long = 0L,
-    internal val startFlashTime: Long = DEFAULT,
-    internal val maxFlashTime: Long = FOREVER,
     internal val paused: Boolean = true
 ) {
 
