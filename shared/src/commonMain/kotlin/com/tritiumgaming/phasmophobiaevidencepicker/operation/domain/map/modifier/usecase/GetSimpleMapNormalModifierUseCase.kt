@@ -7,7 +7,7 @@ class GetSimpleMapNormalModifierUseCase(
         val result = fetchMapModifiersUseCase()
 
         result.exceptionOrNull()?.let {
-            return Result.failure(Exception("", it)) }
+            return Result.failure(Exception("Could not get map modifiers", it)) }
 
         val modifier = result.getOrNull()?.getOrNull(index)?.normalModifier
             ?: return Result.failure(Exception("Could not get map modifier"))

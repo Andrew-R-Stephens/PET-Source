@@ -13,7 +13,7 @@ class GetMapModifierUseCase(
         else { getSimpleMapSetupModifierUseCase(mapSize) }
 
         result.exceptionOrNull()?.let {
-            return Result.failure(Exception("Could not get map modifier", it)) }
+            return Result.failure(Exception("Could not get map modifiers", it)) }
 
         val modifier = result.getOrNull()
             ?: return Result.failure(Exception("Could not get map modifier"))

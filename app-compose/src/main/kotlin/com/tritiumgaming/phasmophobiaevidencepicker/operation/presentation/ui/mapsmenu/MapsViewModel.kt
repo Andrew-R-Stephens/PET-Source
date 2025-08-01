@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -34,8 +35,10 @@ class MapsViewModel(
 
     var imageDisplayThread: Thread? = null
 
-    val mapThumbnails: List<SimpleMapResources.MapThumbnail> = fetchMapThumbnailsUseCase()
-    private val allMaps = fetchSimpleMapsUseCase()
+    val mapThumbnails: List<SimpleMapResources.MapThumbnail>
+        get() = fetchMapThumbnailsUseCase()
+    private val allMaps
+        get() = fetchSimpleMapsUseCase()
 
     var currentComplexMap: ComplexWorldMap? = null
     val currentSimpleMap: SimpleWorldMap
@@ -60,14 +63,16 @@ class MapsViewModel(
     }
 
 
-    fun fetchComplexMapsUseCase() {
+    fun fetchComplexMaps() {
         viewModelScope.launch {
+            Log.d("MapsViewModel", "fetchComplexMapsUseCase starting")
             fetchComplexMapsUseCase()
         }
     }
 
     init {
-        fetchComplexMapsUseCase()
+        Log.d("MapsViewModel", "initializing")
+        fetchComplexMaps()
     }
 
     class MapsFactory(
