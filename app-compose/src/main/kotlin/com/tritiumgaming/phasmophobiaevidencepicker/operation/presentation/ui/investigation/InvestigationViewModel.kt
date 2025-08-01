@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 import android.os.CountDownTimer
 import android.util.Log
-import androidx.annotation.FloatRange
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.toMutableStateList
@@ -52,16 +51,21 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.model.SanityRunnable
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.DEFAULT
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.FOREVER
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.MAX_SANITY
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.SAFE_MIN_BOUNDS
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.TIME_DEFAULT
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.TOOL_SANITY
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Phase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.GhostScore
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.FormatterUtils
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolbarUiState
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapUiState
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.phase.Phase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.phase.PhaseUiState
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity.SanityUiState
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity.SanityUiState.Companion.HALF_SANITY
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity.SanityUiState.Companion.MAX_SANITY
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity.SanityUiState.Companion.MIN_SANITY
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity.SanityUiState.Companion.SAFE_MIN_BOUNDS
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.timer.TimerUiState
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DEFAULT
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.FOREVER
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -114,66 +118,134 @@ class InvestigationViewModel(
     /*
      * UI STATES
      */
-    private val _mapUiState = MutableStateFlow(
-        OperationMapUiState(
-            index = 0,
-            name = getSimpleMapNameUseCase(0).getOrDefault(MapTitle.BLEASDALE_FARMHOUSE),
-            size = getSimpleMapSizeUseCase(0).getOrDefault(MapSize.SMALL),
-            modifier = fetchMapModifiersUseCase(0).getOrDefault(
-                WorldMapModifier(
-                    name = MapSize.SMALL,
-                    setupModifier = getSimpleMapSetupModifierUseCase(0).getOrDefault(0f),
-                    normalModifier = getSimpleMapNormalModifierUseCase(0).getOrDefault(0f)
-                )
-            )
-        )
-    )
+    private val _mapUiState = MutableStateFlow(MapUiState())
     val mapUiState = _mapUiState.asStateFlow()
 
-    private val _difficultyUiState = MutableStateFlow(OperationDifficultyUiState(
-        index = 0,
-        name = getDifficultyNameUseCase(0).getOrDefault(DifficultyTitle.AMATEUR),
-        modifier = getDifficultyModifierUseCase(0).getOrDefault(0f),
-        time = getDifficultyTimeUseCase(0).getOrDefault(TIME_DEFAULT),
-        initialSanity = MAX_SANITY,
-        responseType = getDifficultyResponseTypeUseCase(0).getOrDefault(DifficultyResponseType.KNOWN)
-    ))
+    private val _difficultyUiState = MutableStateFlow(DifficultyUiState())
     val difficultyUiState = _difficultyUiState.asStateFlow()
 
-    private val _timerUiState = MutableStateFlow(OperationTimerUiState(
-        startTime = TIME_DEFAULT,
-        elapsedTime = DEFAULT,
-        remainingTime = 0L,
-        startFlashTime = DEFAULT,
-        maxFlashTime = FOREVER,
-        paused = true
-    ))
+    private val _timerUiState = MutableStateFlow(TimerUiState())
     val timerUiState = _timerUiState.asStateFlow()
 
-    private val _phaseUiState = MutableStateFlow(OperationPhaseUiState(
-        currentPhase = Phase.SETUP,
-        canFlash = true,
-        canAlertAudio = false
-    ))
+    private val _phaseUiState = MutableStateFlow(PhaseUiState())
     val phaseUiState = _phaseUiState.asStateFlow()
 
-    private val _sanityUiState = MutableStateFlow(OperationSanityUiState(
-        sanityLevel = MAX_SANITY,
-        sanityMax = MAX_SANITY,
-        drainModifier = 1f,
-        insanityLevel = 0f,
-        isInsane = false
-    ))
+    private val _sanityUiState = MutableStateFlow(SanityUiState())
     val sanityUiState = _sanityUiState.asStateFlow()
 
-    private val _investigationToolbarUiState: MutableStateFlow<InvestigationToolbarUiState> =
-        MutableStateFlow(InvestigationToolbarUiState())
-    val investigationToolbarUiState = _investigationToolbarUiState.asStateFlow()
+    private val _toolbarUiState: MutableStateFlow<ToolbarUiState> =
+        MutableStateFlow(ToolbarUiState())
+    val toolbarUiState = _toolbarUiState.asStateFlow()
+
+    /*
+     * Map Ui Functions
+     */
+    fun initMapUiState() {
+        _mapUiState.update {
+            it.copy(
+                index = 0,
+                name = getSimpleMapNameUseCase(0).getOrDefault(MapTitle.BLEASDALE_FARMHOUSE),
+                size = getSimpleMapSizeUseCase(0).getOrDefault(MapSize.SMALL),
+                modifier = fetchMapModifiersUseCase(0).getOrDefault(
+                    WorldMapModifier(
+                        name = MapSize.SMALL,
+                        setupModifier = getSimpleMapSetupModifierUseCase(0).getOrDefault(0f),
+                        normalModifier = getSimpleMapNormalModifierUseCase(0).getOrDefault(0f)
+                    )
+                )
+            )
+        }
+    }
+
+    /*
+     * Difficulty Ui Functions
+     */
+    fun initDifficultyUiState() {
+        _difficultyUiState.update {
+            it.copy(
+                index = 0,
+                name = getDifficultyNameUseCase(0).getOrDefault(DifficultyTitle.AMATEUR),
+                modifier = getDifficultyModifierUseCase(0).getOrDefault(0f),
+                time = getDifficultyTimeUseCase(0).getOrDefault(TIME_DEFAULT),
+                initialSanity = getDifficultyInitialSanityUseCase(0).getOrDefault(MAX_SANITY * .01f) * 100f,
+                responseType = getDifficultyResponseTypeUseCase(0).getOrDefault(DifficultyResponseType.KNOWN)
+            )
+        }
+    }
+
+    /*
+     * Timer Ui Functions
+     */
+    fun initTimerUiState() {
+        _timerUiState.update {
+            it.copy(
+                startTime = TIME_DEFAULT,
+                elapsedTime = 0L,
+                remainingTime = _difficultyUiState.value.time,
+                startFlashTime = DEFAULT,
+                maxFlashTime = FOREVER,
+                paused = true
+            )
+        }
+    }
+
+    /*
+     * Phase Ui Functions
+     */
+    fun initPhaseUiState() {
+        _phaseUiState.update {
+            it.copy(
+                currentPhase = Phase.SETUP,
+                canFlash = true,
+                canAlertAudio = false
+            )
+        }
+    }
+
+    /*
+     * Sanity Ui Functions
+     */
+    fun initSanityUiState() {
+        _sanityUiState.update {
+            it.copy(
+                sanityLevel = MAX_SANITY,
+                sanityMax = MAX_SANITY,
+                drainModifier = 1f,
+                insanityLevel = 0f,
+                isInsane = false
+            )
+        }
+    }
+
+    /*
+     * Toolbar Ui Functions
+     */
+    fun initToolbarUiState() {
+        _toolbarUiState.update {
+            it.copy(
+                isCollapsed = false,
+                category = ToolbarUiState.Category.TOOL_CONFIG,
+                openWidth = 0.5f
+            )
+        }
+    }
+    fun toggleToolbarState() {
+        _toolbarUiState.update {
+            it.copy(isCollapsed = !it.isCollapsed) }
+    }
+    fun setToolbarCategory(category: ToolbarUiState.Category) {
+        _toolbarUiState.update {
+            it.copy(
+                isCollapsed = false,
+                category = category
+            )
+        }
+    }
 
     /*
      * COROUTINES
      */
-    var sanityRunnable: SanityRunnable? = null
+    var sanityJob: Job? = null
 
     /*
      * FUNCTIONS
@@ -184,9 +256,9 @@ class InvestigationViewModel(
 
     fun reset() {
         resetTimer(difficultyUiState.value.time)
-        resetInvestigationJournal()
-        resetSanity()
+        resetJournal()
         resetTimerPhase()
+        resetSanity()
     }
 
     /*
@@ -194,29 +266,13 @@ class InvestigationViewModel(
      */
 
     /** Resets the Ruling for each Evidence type */
-    fun resetInvestigationJournal() {
-        resetEvidenceRulingHandler()
-        resetGhostScoreHandler()
+    fun resetJournal() {
+        initRuledEvidence()
+        initGhostScores()
     }
 
     /*
-     * Investigation ---------------------------
-     */
-    fun toggleInvestigationToolsDrawerState() {
-        _investigationToolbarUiState.update {
-            it.copy(isCollapsed = !it.isCollapsed) }
-    }
-    fun setInvestigationToolsCategory(categoryIndex: Int) {
-        _investigationToolbarUiState.update {
-            it.copy(
-                isCollapsed = false,
-                category = categoryIndex
-            )
-        }
-    }
-
-    /*
-    * Ghost Score Handler ---------------------------
+    * Ghost Score ---------------------------
     */
     private val _ghostScores : MutableStateFlow<List<GhostScore>> =
         MutableStateFlow(listOf())
@@ -233,11 +289,6 @@ class InvestigationViewModel(
         ghostModel: GhostType
     ): GhostScore? {
         return _ghostScores.value.find { it.ghostEvidence.ghost.id == ghostModel.id }
-    }
-    fun getGhostScores(
-        index: Int
-    ): GhostScore? {
-        return _ghostScores.value.getOrNull(index)
     }
 
     /** Order of Ghost IDs **/
@@ -262,8 +313,9 @@ class InvestigationViewModel(
             ))
             orderedScores.add(it)
         }
-        orderedScores.sortByDescending { it.score.value }
-        val orderedTemp = orderedScores.map { it.ghostEvidence.ghost.id }.toMutableStateList()
+        val orderedTemp = orderedScores
+            .sortedByDescending { it.score.value }
+            .map { it.ghostEvidence.ghost.id }.toMutableStateList()
 
         _ghostOrder.update { orderedTemp }
 
@@ -313,10 +365,6 @@ class InvestigationViewModel(
         return ghostScore?.score
     }
 
-    private fun resetGhostScoreHandler() {
-        initGhostScores()
-    }
-
     /*
     * Evidence Ruling Handler ---------------------------
     */
@@ -355,29 +403,27 @@ class InvestigationViewModel(
         return ruledEvidence.value.find { it.isEvidence(evidenceModel) }
     }
 
-    /** Resets the Ruling for each Evidence type */
-    private fun resetEvidenceRulingHandler() {
-        initRuledEvidence()
-    }
-
     /*
      * Difficulty Handler ---------------------------
      */
 
     /* Index */
+
+    fun incrementDifficultyIndex() =
+        incrementDifficultyIndexUseCase(difficultyUiState.value.index)
+            .getOrNull()?.let { index ->
+            setDifficultyIndex(index)
+        }
+    fun decrementDifficultyIndex() =
+        decrementDifficultyIndexUseCase(difficultyUiState.value.index)
+            .getOrNull()?.let { index ->
+            setDifficultyIndex(index)
+        }
+
     private fun setDifficultyIndex(
         index: Int
     ) {
-        _difficultyUiState.update {
-            it.copy(
-                index = index,
-                name = getDifficultyNameUseCase(index).getOrDefault(it.name),
-                modifier = getDifficultyModifierUseCase(index).getOrDefault(it.modifier),
-                time = getDifficultyTimeUseCase(index).getOrDefault(it.time),
-                initialSanity = getDifficultyInitialSanityUseCase(index).getOrDefault(it.initialSanity),
-                responseType = getDifficultyResponseTypeUseCase(index).getOrDefault(it.responseType)
-            )
-        }
+        updateDifficulty(index)
 
         setTimeRemaining(difficultyUiState.value.time)
         resetTimer()
@@ -386,7 +432,9 @@ class InvestigationViewModel(
             it.copy(
                 sanityMax = difficultyUiState.value.initialSanity,
                 drainModifier = difficultyUiState.value.modifier *
-                        getCurrentMapModifier(timerUiState.value.remainingTime)
+                        getCurrentMapModifier(timerUiState.value.remainingTime),
+                sanityLevel = difficultyUiState.value.initialSanity,
+                insanityLevel = 1f - difficultyUiState.value.initialSanity
             )
         }
 
@@ -399,14 +447,18 @@ class InvestigationViewModel(
         reorderGhostScores()
     }
 
-    fun incrementDifficultyIndex() =
-        incrementDifficultyIndexUseCase(difficultyUiState.value.index).getOrNull()?.let { index ->
-            setDifficultyIndex(index)
+    private fun updateDifficulty(index: Int) {
+        _difficultyUiState.update {
+            it.copy(
+                index = index,
+                name = getDifficultyNameUseCase(index).getOrDefault(it.name),
+                modifier = getDifficultyModifierUseCase(index).getOrDefault(it.modifier),
+                time = getDifficultyTimeUseCase(index).getOrDefault(it.time),
+                initialSanity = getDifficultyInitialSanityUseCase(index).getOrDefault(it.initialSanity),
+                responseType = getDifficultyResponseTypeUseCase(index).getOrDefault(it.responseType)
+            )
         }
-    fun decrementDifficultyIndex() =
-        decrementDifficultyIndexUseCase(difficultyUiState.value.index).getOrNull()?.let { index ->
-            setDifficultyIndex(index)
-        }
+    }
 
     /*
      * Sanity Handler ---------------------------
@@ -449,19 +501,18 @@ class InvestigationViewModel(
     /** the sanity level missing, in percent.**/
     private fun updateSanityLevel() {
 
-        val level = (MAX_SANITY - sanityUiState.value.insanityLevel)
-
         _sanityUiState.update {
             it.copy(
-                sanityLevel = max(min(MAX_SANITY, level), MIN_SANITY)
+                sanityLevel = max(
+                    min(
+                        MAX_SANITY,
+                        MAX_SANITY - sanityUiState.value.insanityLevel),
+                    MIN_SANITY)
             )
         }
 
         updateCurrentTimerPhase()
     }
-
-    /*private val isSanityInsane: Boolean
-        get() = sanityUiState.value.sanityLevel < SAFE_MIN_BOUNDS*/
 
     /**
      * Reduces player sanity level each doTick. Sanity cannot drop below 50% if the clock still has
@@ -476,9 +527,7 @@ class InvestigationViewModel(
      * Resets the Warning Indicator to start flashing again, if necessary
      * Sets the Start Time of the Sanity Drain, based on remaining time,
      * sanity, difficulty and map size. */
-    private fun setSanityStartTimeByProgress(
-        progress: Float = sanityUiState.value.insanityLevel
-    ) {
+    private fun setSanityStartTimeByProgress(progress: Float) {
         val progressOverride =
             MAX_SANITY - max(MIN_SANITY, min(MAX_SANITY, progress))
 
@@ -598,7 +647,7 @@ class InvestigationViewModel(
     fun toggleTimer() {
         if (timerUiState.value.paused) {
             playTimer()
-            setSanityStartTimeByProgress()
+            setSanityStartTimeByProgress(progress = sanityUiState.value.insanityLevel)
         } else {
             pauseTimer()
         }
@@ -626,7 +675,6 @@ class InvestigationViewModel(
         skipInsanity(HALF_SANITY)
         playTimer()
     }
-
 
     /*
      * Phase Handler ---------------------------
@@ -728,7 +776,15 @@ class InvestigationViewModel(
 
         return modifier.getOrDefault(1f)
     }
+
     init {
+        initMapUiState()
+        initDifficultyUiState()
+        initTimerUiState()
+        initPhaseUiState()
+        initSanityUiState()
+        initToolbarUiState()
+
         initGhostScores()
         initRuledEvidence()
         reorderGhostScores()
@@ -880,26 +936,11 @@ class InvestigationViewModel(
                 }
             }
 
-        const val TOOL_SANITY = 0
-        const val TOOL_MODIFIER_DETAILS = 1
 
-        const val MIN_SANITY = 0f
-        const val HALF_SANITY = 50f
-        const val THREE_FOURTH_SANITY = 75f
-        const val MAX_SANITY = 100f
+        private const val TIME_MIN = 0L
+        private const val TIME_DEFAULT = 0L
 
-        const val SAFE_MIN_BOUNDS = 70f
-
-        const val TIME_MIN = 0L
-        const val SECOND_IN_MILLIS = 1000L
-        const val TIME_DEFAULT = -1L
-
-        const val MIN_TIME = 0L
-        const val MAX_TIME = 300000L
-
-        const val NEVER = MIN_TIME
-        const val FOREVER = MAX_TIME
-        const val DEFAULT = FOREVER
+        private const val MAX_TIME = 300000L
 
         fun percentAsTime(percent: Float, maxTime: Long = MAX_TIME): Long {
             return (percent * maxTime).toLong()
@@ -910,59 +951,4 @@ class InvestigationViewModel(
         }
     }
 
-    enum class Phase {
-        SETUP, ACTION, HUNT
-    }
-
 }
-
-data class InvestigationToolbarUiState(
-    internal val isCollapsed: Boolean = false,
-    internal val category: Int = TOOL_SANITY,
-    @FloatRange(from = 0.0, to = 1.0)
-    internal val openWidth: Float = 0.5f
-)
-
-data class OperationMapUiState(
-    internal val index: Int = 0,
-    internal val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
-    internal val size: MapSize = MapSize.SMALL,
-    internal val modifier: WorldMapModifier =
-        WorldMapModifier(
-            name = MapSize.SMALL,
-            setupModifier = 1f,
-            normalModifier = 1f
-        )
-)
-
-data class OperationDifficultyUiState(
-    internal val index: Int = 0,
-    internal val name: DifficultyTitle = DifficultyTitle.AMATEUR,
-    internal val modifier: Float = 0f,
-    internal val time: Long = 0L,
-    internal val initialSanity: Float = 0f,
-    internal val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN
-)
-
-data class OperationTimerUiState(
-    internal val startTime: Long = TIME_DEFAULT,
-    internal val elapsedTime: Long = DEFAULT,
-    internal val remainingTime: Long = 0L,
-    internal val startFlashTime: Long = DEFAULT,
-    internal val maxFlashTime: Long = FOREVER,
-    internal val paused: Boolean = true
-)
-
-data class OperationPhaseUiState(
-    internal val currentPhase: Phase = Phase.SETUP,
-    internal val canFlash: Boolean = true,
-    internal val canAlertAudio: Boolean = false
-)
-
-data class OperationSanityUiState(
-    internal val sanityMax: Float = MAX_SANITY,
-    internal val drainModifier: Float = 1f,
-    internal val insanityLevel: Float = 0f,
-    internal val sanityLevel: Float = sanityMax - insanityLevel,
-    internal val isInsane: Boolean = sanityLevel < SAFE_MIN_BOUNDS
-)

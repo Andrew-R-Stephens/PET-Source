@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,24 +41,26 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getExitVector
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getGearVector
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.vectors.getInfoVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.Holiday22
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getExitVector
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getGearVector
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getInfoVector
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.analysis.OperationDetails
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.footstep.FootstepTool
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.DifficultyConfigCarousel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.operationconfig.MapConfigCarousel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.sanitywarn.SanityMeterView
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.subsection.sanity.tools.timer.TimerDisplay
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.CollapseButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ResetButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolbarItem
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolbarUiState
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.analysis.OperationDetails
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.footstep.FootstepTool
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.DifficultyConfigCarousel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.MapConfigCarousel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity.SanityMeterView
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.timer.TimerDisplay
 
 @Composable
 @Preview
@@ -96,7 +99,7 @@ private fun InvestigationSoloContent(
 ) {
 
     val investigationToolbarUiState =
-        investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
+        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
@@ -159,7 +162,7 @@ private fun ColumnScope.Investigation(
 ) {
 
     val investigationToolbarUiState =
-        investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
+        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
     val section = investigationToolbarUiState.value.category
 
     Journal(
@@ -191,18 +194,19 @@ private fun ColumnScope.Investigation(
         horizontalAlignment = Alignment.Start
     ) {
         when(section) {
-            0 -> ToolbarConfigurationSection(
+            ToolbarUiState.Category.TOOL_CONFIG -> ToolbarConfigurationSection(
                 investigationViewModel = investigationViewModel,
                 modifier = Modifier
                     .height(IntrinsicSize.Max))
-            1 -> ToolbarOperationAnalysis(
+            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
                 investigationViewModel = investigationViewModel,
                 modifier = Modifier
                     .fillMaxHeight(.5f))
-            2 -> ToolbarFootsteps(
+            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootsteps(
                 modifier = Modifier,
                 investigationViewModel = investigationViewModel
             )
+
         }
     }
 }
@@ -214,7 +218,7 @@ private fun RowScope.Investigation(
 ) {
 
     val investigationToolbarUiState =
-        investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
+        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
     val section = investigationToolbarUiState.value.category
 
     Column(
@@ -229,19 +233,20 @@ private fun RowScope.Investigation(
         horizontalAlignment = Alignment.Start
     ) {
         when(section) {
-            0 -> ToolbarConfigurationSection(
+            ToolbarUiState.Category.TOOL_CONFIG -> ToolbarConfigurationSection(
                 investigationViewModel = investigationViewModel,
                 modifier = Modifier
                     .height(IntrinsicSize.Max)
             )
-            1 -> ToolbarOperationAnalysis(
+            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
                 investigationViewModel = investigationViewModel,
                 modifier = Modifier
                     .wrapContentHeight(align = Alignment.Bottom))
-            2 -> ToolbarFootsteps(
+            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootsteps(
                 modifier = Modifier,
                 investigationViewModel = investigationViewModel
             )
+
         }
     }
     OperationToolbar(
@@ -275,6 +280,42 @@ private fun ColumnScope.ToolbarConfigurationSection(
             modifier = Modifier
                 .size(64.dp),
             investigationViewModel = investigationViewModel
+        )
+
+        val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
+
+        Text(
+            text = "Start Time",
+            style = LocalTypography.current.primary.regular,
+            color = LocalPalette.current.textFamily.body
+        )
+        TimerDisplay(
+            modifier = Modifier
+                .height(48.dp)
+                .fillMaxWidth(),
+            timeMillis = timerUiState.value.startTime
+        )
+        Text(
+            text = "Elapsed Time",
+            style = LocalTypography.current.primary.regular,
+            color = LocalPalette.current.textFamily.body
+        )
+        TimerDisplay(
+            modifier = Modifier
+                .height(48.dp)
+                .fillMaxWidth(),
+            timeMillis = timerUiState.value.elapsedTime
+        )
+        Text(
+            text = "Remaining Time",
+            style = LocalTypography.current.primary.regular,
+            color = LocalPalette.current.textFamily.body
+        )
+        TimerDisplay(
+            modifier = Modifier
+                .height(48.dp)
+                .fillMaxWidth(),
+            timeMillis = timerUiState.value.remainingTime
         )
     }
 }
@@ -339,7 +380,7 @@ private fun OperationToolbar(
     investigationViewModel: InvestigationViewModel,
 ) {
     val investigationToolbarUiState =
-        investigationViewModel.investigationToolbarUiState.collectAsStateWithLifecycle()
+        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
     val section = investigationToolbarUiState.value.category
 
 
@@ -354,7 +395,7 @@ private fun OperationToolbar(
                 CollapseButton(
                     isCollapsed = investigationToolbarUiState.value.isCollapsed
                 ) {
-                    investigationViewModel.toggleInvestigationToolsDrawerState()
+                    investigationViewModel.toggleToolbarState()
                 }
             }
 
@@ -365,7 +406,7 @@ private fun OperationToolbar(
                 onClick = {}
             ){
                 ResetButton {
-                    investigationViewModel.resetInvestigationJournal()
+                    investigationViewModel.reset()
                 }
             }
 
@@ -374,13 +415,13 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                investigationViewModel.setInvestigationToolsCategory(0)
+                investigationViewModel.setToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
             }
         ){
             Image(
                 modifier = modifier,
                 imageVector = getGearVector(
-                    if(section == 0) {
+                    if(section == ToolbarUiState.Category.TOOL_CONFIG) {
                         listOf(
                             Color.Transparent,
                             LocalPalette.current.textFamily.primary,
@@ -399,13 +440,13 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                investigationViewModel.setInvestigationToolsCategory(1)
+                investigationViewModel.setToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
             }
         ){
             Image(
                 modifier = modifier,
                 imageVector = getInfoVector(
-                    if(section == 1) {
+                    if(section == ToolbarUiState.Category.TOOL_ANALYZER) {
                         listOf(
                             Color.Transparent,
                             LocalPalette.current.textFamily.primary,
@@ -424,13 +465,13 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                investigationViewModel.setInvestigationToolsCategory(2)
+                investigationViewModel.setToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
             }
         ){
             Image(
                 modifier = modifier,
                 imageVector = getExitVector(
-                    if(section == 2) {
+                    if(section == ToolbarUiState.Category.TOOL_FOOTSTEP) {
                         listOf(
                             LocalPalette.current.textFamily.primary,
                             Color.Transparent,
