@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util
 
 import android.text.Html
 import android.text.Spanned
-import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import androidx.compose.runtime.Composable

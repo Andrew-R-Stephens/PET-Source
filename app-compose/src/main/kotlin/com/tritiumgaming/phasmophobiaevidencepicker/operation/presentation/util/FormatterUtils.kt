@@ -5,12 +5,13 @@ import android.text.Spanned
 import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import androidx.annotation.ColorInt
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel.Companion.SECOND_IN_MILLIS
 import java.text.DecimalFormat
 import kotlin.math.max
 import kotlin.math.min
 
 object FormatterUtils {
+
+    private const val SECOND_IN_MILLIS = 1000L
 
     fun formatMillisToTime(millis: Long): String {
         val breakdown = millis / SECOND_IN_MILLIS
@@ -64,4 +65,5 @@ object FormatterUtils {
 
         return emailObfuscated
     }
+
 }
