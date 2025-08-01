@@ -1,22 +1,17 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.text.BasicText
@@ -34,6 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.MarkCheckCircleIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.MarkPriorityCircleIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.MarkXCircleIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
@@ -79,7 +77,8 @@ fun LazyItemScope.GhostListItem(
                         onDragEnd = {
                             ghostScore?.let {
                                 investigationViewModel.toggleGhostNegation(
-                                    ghostScore.ghostEvidence.ghost)
+                                    ghostScore.ghostEvidence.ghost
+                                )
                             }
                         }
                     ) { change, dragAmount ->
@@ -139,13 +138,30 @@ fun LazyItemScope.GhostListItem(
             horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.CenterHorizontally),
         ) {
 
-            val evidenceList = ghostScore?.ghostEvidence?.normalEvidenceList
+            val allEvidence = ghostScore?.ghostEvidence
+            val evidenceList = allEvidence?.normalEvidenceList
+            val strictEvidenceList = allEvidence?.strictEvidenceList
 
-            evidenceList?.forEach {
-                EvidenceIcon(
-                    investigationViewModel = investigationViewModel,
-                    evidence = it
+            evidenceList
+                ?.sortedWith (
+                    compareBy(
+                        { evidence ->
+                            investigationViewModel.getRuledEvidence(evidence)
+                                ?.ruling?.ordinal
+                        },
+                        { evidence ->
+                            evidence.id
+                        },
+                    )
                 )
+                ?.forEach { normal ->
+                    EvidenceIcon(
+                        investigationViewModel = investigationViewModel,
+                        evidence = normal,
+                        isStrict = strictEvidenceList?.find { strict ->
+                            strict.id == normal.id
+                        }?.let { true } ?: false
+                    )
             }
 
         }
@@ -155,30 +171,70 @@ fun LazyItemScope.GhostListItem(
 @Composable
 private fun RowScope.EvidenceIcon(
     investigationViewModel: InvestigationViewModel,
-    evidence: EvidenceType
+    evidence: EvidenceType,
+    isStrict: Boolean = false
 ) {
 
     val rulingState = investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
     val evidenceRuling = rulingState.value.find { it.evidence.id == evidence.id }?.ruling
 
-    Log.d("EvidenceIcon", "Evidence: ${evidence.name}, Ruling: ${evidenceRuling?.name}")
+    //Log.d("EvidenceIcon", "Evidence: ${evidence.name}, Ruling: ${evidenceRuling?.name}")
 
-    Image(
+    Box(
         modifier = Modifier
             .aspectRatio(1f)
             .padding(2.dp)
-            .weight(.25f, false),
-        contentScale = ContentScale.Fit,
-        painter = painterResource(
-            id = evidence.icon.toDrawableResource()
-        ),
-        contentDescription = "Evidence Icon",
-        colorFilter = ColorFilter.tint(
-            when (evidenceRuling) {
-                Ruling.NEGATIVE -> LocalPalette.current.negativeSelColor
-                Ruling.POSITIVE -> LocalPalette.current.positiveSelColor
-                else -> LocalPalette.current.neutralSelColor
-            }
+            .weight(.25f, false)
+    ) {
+        Image(
+            contentScale = ContentScale.Fit,
+            painter = painterResource(
+                id = evidence.icon.toDrawableResource()
+            ),
+            contentDescription = "Evidence Icon",
+            colorFilter = ColorFilter.tint(
+                when (evidenceRuling) {
+                    Ruling.NEGATIVE -> LocalPalette.current.negativeSelColor
+                    Ruling.POSITIVE -> LocalPalette.current.positiveSelColor
+                    else -> LocalPalette.current.neutralSelColor
+                }
+            )
         )
-    )
+
+        if(isStrict) {
+            when (evidenceRuling) {
+                Ruling.NEUTRAL -> {
+                    MarkPriorityCircleIcon(
+                        modifier = Modifier
+                            .fillMaxSize(.5f)
+                            .widthIn(min = 16.dp)
+                            .align(Alignment.TopEnd),
+                        backgroundColor = LocalPalette.current.surface.onColor,
+                        foregroundColor = LocalPalette.current.negativeSelColor
+                    )
+                }
+                Ruling.NEGATIVE -> {
+                    MarkXCircleIcon(
+                        modifier = Modifier
+                            .fillMaxSize(.5f)
+                            .widthIn(min = 16.dp)
+                            .align(Alignment.TopEnd),
+                        foregroundColor = LocalPalette.current.surface.onColor,
+                        backgroundColor = LocalPalette.current.negativeSelColor
+                    )
+                }
+                else -> {
+                    MarkCheckCircleIcon(
+                        modifier = Modifier
+                            .fillMaxSize(.5f)
+                            .widthIn(min = 16.dp)
+                            .align(Alignment.TopEnd),
+                        foregroundColor = LocalPalette.current.surface.onColor,
+                        backgroundColor = LocalPalette.current.positiveSelColor
+                    )
+                }
+            }
+
+        }
+    }
 }

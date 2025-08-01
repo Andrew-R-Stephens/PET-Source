@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation
 
+import android.util.Log
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
@@ -30,6 +31,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmo
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesViewModel
@@ -53,7 +55,9 @@ fun RootNavigation(
     investigationViewModel: InvestigationViewModel =
         viewModel(factory = InvestigationViewModel.Factory),
     objectivesViewModel: ObjectivesViewModel =
-        viewModel(factory = ObjectivesViewModel.Factory)
+        viewModel(factory = ObjectivesViewModel.Factory),
+    mapsViewModel: MapsViewModel =
+        viewModel(factory = MapsViewModel.Factory)
 ) {
 
     val navController = rememberNavController()
@@ -79,7 +83,8 @@ fun RootNavigation(
         investigationNavigation(
             navController = navController,
             investigationViewModel = investigationViewModel,
-            objectivesViewModel = objectivesViewModel
+            objectivesViewModel = objectivesViewModel,
+            mapsViewModel = mapsViewModel
         )
 
     }
@@ -207,7 +212,8 @@ private fun NavGraphBuilder.mainMenuNavigation(
 private fun NavGraphBuilder.investigationNavigation(
     navController: NavHostController,
     investigationViewModel: InvestigationViewModel,
-    objectivesViewModel: ObjectivesViewModel
+    objectivesViewModel: ObjectivesViewModel,
+    mapsViewModel: MapsViewModel
 ) {
     navigation(
         route = NavRoute.NAVIGATION_INVESTIGATION.route,
@@ -236,14 +242,29 @@ private fun NavGraphBuilder.investigationNavigation(
 
             composable(route = NavRoute.SCREEN_MAPS_MENU.route) {
                 MapMenuScreen(
-                    navController = navController
+                    navController = navController,
+                    mapsViewModel = mapsViewModel
                 )
             }
 
-            composable(route = NavRoute.SCREEN_MAP_VIEWER.route) {
-                MapViewerScreen(
-                    navController = navController
-                )
+            composable(route = "${NavRoute.SCREEN_MAP_VIEWER.route}/{mapId}",
+                arguments = listOf(
+                    navArgument("mapId") { type = NavType.StringType }
+                )) { navBackStackEntry ->
+
+                val mapId = navBackStackEntry.arguments?.getString("mapId")
+
+                Log.d("MainNavigation", "mapId: $mapId")
+
+                if(mapId != null) {
+                    MapViewerScreen(
+                        navController = navController,
+                        mapsViewModel = mapsViewModel,
+                        mapId = mapId
+                    )
+                } else {
+                    navController.popBackStack()
+                }
             }
 
         }

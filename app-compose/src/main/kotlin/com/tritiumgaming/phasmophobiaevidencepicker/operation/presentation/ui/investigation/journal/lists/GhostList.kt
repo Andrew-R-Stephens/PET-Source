@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.i
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,7 +13,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -52,7 +50,6 @@ fun GhostList(
     investigationViewModel: InvestigationViewModel
 ) {
 
-    val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
 
     val listState = rememberLazyListState()
@@ -87,7 +84,7 @@ fun GhostList(
 
             investigationViewModel.getGhostById(it)?.let { ghostModel ->
 
-                Log.d("GhostList", "Ghost Found: ${ghostModel.id}")
+                //Log.d("GhostList", "Ghost Found: ${ghostModel.id}")
 
                 GhostListItem(
                     modifier = Modifier
@@ -99,7 +96,7 @@ fun GhostList(
                         score.ghostEvidence.ghost.id == ghostModel.id }
                 )
 
-            } ?: Log.d("GhostList", "Ghost Found for id: $it")
+            } ?: Log.d("GhostList", "No ghost found for id: $it")
 
 
         }

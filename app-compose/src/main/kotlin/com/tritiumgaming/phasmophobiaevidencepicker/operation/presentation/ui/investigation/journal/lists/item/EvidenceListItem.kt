@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -15,10 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
@@ -55,20 +52,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.m
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import org.jetbrains.annotations.TestOnly
 
-@Composable
-@Preview
-@TestOnly
-private fun EvidenceItemPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        EvidenceListItem(
-            label = "Test",
-            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
-        )
-    }
-}
 
 @Composable
 fun EvidenceListItem(
@@ -327,7 +310,8 @@ private fun RowScope.RulingIcon(
         ) {
             Image(
                 modifier = Modifier
-                    .aspectRatio(1f),
+                    .aspectRatio(1f)
+                    .padding(4.dp),
                 painter = painterResource(
                     id = when(ruling) {
                         Ruling.NEGATIVE -> R.drawable.ic_selector_neg_unsel
@@ -357,4 +341,54 @@ private fun RowScope.RulingIcon(
         }
     }
 
+}
+
+@Preview
+@Composable
+private fun RulingIconPreview() {
+
+    SelectiveTheme {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            RulingIcon(
+                modifier = Modifier
+                    .weight(1f),
+                ruling = Ruling.NEGATIVE,
+                isSelected = true
+            )
+            RulingIcon(
+                modifier = Modifier
+                    .weight(1f),
+                ruling = Ruling.NEUTRAL,
+                isSelected = false
+            )
+            RulingIcon(
+                modifier = Modifier
+                    .weight(1f),
+                ruling = Ruling.POSITIVE,
+                isSelected = false
+            )
+        }
+    }
+
+}
+
+@Composable
+@Preview
+@TestOnly
+private fun EvidenceItemPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        EvidenceListItem(
+            label = "Test",
+            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
+        )
+    }
 }
