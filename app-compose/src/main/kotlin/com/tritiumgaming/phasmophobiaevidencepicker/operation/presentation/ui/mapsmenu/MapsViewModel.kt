@@ -75,31 +75,6 @@ class MapsViewModel(
         fetchComplexMaps()
     }
 
-    class MapsFactory(
-        private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
-        private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
-        private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
-        private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
-        private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
-        private val fetchComplexMapsUseCase: FetchComplexMapsUseCase
-    ) : ViewModelProvider.Factory {
-
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return MapsViewModel(
-                    fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
-                    incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
-                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
-                    fetchMapModifiersUseCase = fetchMapModifiersUseCase,
-                    fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
-                    fetchComplexMapsUseCase = fetchComplexMapsUseCase
-                ) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
-
     companion object {
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
