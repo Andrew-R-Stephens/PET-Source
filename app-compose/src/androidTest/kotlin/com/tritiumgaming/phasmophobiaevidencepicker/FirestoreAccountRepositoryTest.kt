@@ -2,12 +2,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker
 
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
-import com.google.firebase.Firebase
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import org.junit.After
