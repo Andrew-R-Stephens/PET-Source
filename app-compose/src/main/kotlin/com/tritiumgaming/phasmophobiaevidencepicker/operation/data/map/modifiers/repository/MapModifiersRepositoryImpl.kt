@@ -13,7 +13,8 @@ class MapModifiersRepositoryImpl(
 
     override fun getModifiers(): Result<List<WorldMapModifier>> {
         if(simpleModifiers.isEmpty()) {
-            simpleModifiers = localSource.fetchSizeModifiers().getOrDefault(emptyList()).toDomain()
+            simpleModifiers = localSource.fetchSizeModifiers()
+                .getOrDefault(emptyList()).toDomain()
         }
 
         return Result.success(simpleModifiers)

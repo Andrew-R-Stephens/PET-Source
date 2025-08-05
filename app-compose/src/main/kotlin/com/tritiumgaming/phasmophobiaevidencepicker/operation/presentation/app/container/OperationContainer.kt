@@ -43,6 +43,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyNameUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyResponseTypeUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.GetDifficultyTypeUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.repository.GhostNameRepository
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.usecase.FetchAllFemaleNamesUseCase
@@ -68,6 +69,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapIdUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
@@ -105,7 +107,8 @@ class OperationContainer(
             localSource = difficultyLocalDataSource
         )
     internal val fetchDifficultiesUseCase = FetchDifficultiesUseCase(difficultyRepository)
-    internal val getDifficultyNamesUseCase = GetDifficultyNameUseCase(difficultyRepository)
+    internal val getDifficultyTypeUseCase = GetDifficultyTypeUseCase(difficultyRepository)
+    internal val getDifficultyNameUseCase = GetDifficultyNameUseCase(difficultyRepository)
     internal val getDifficultyModifierUseCase = GetDifficultyModifierUseCase(difficultyRepository)
     internal val getDifficultyTimeUseCase = GetDifficultyTimeUseCase(difficultyRepository)
     internal val getDifficultyResponseTypeUseCase = GetDifficultyResponseTypeUseCase(difficultyRepository)
@@ -156,6 +159,7 @@ class OperationContainer(
     internal val decrementMapIndexUseCase = DecrementMapIndexUseCase(simpleMapRepository)
     internal val incrementMapFloorIndexUseCase = IncrementMapFloorIndexUseCase(simpleMapRepository)
     internal val decrementMapFloorIndexUseCase = DecrementMapFloorIndexUseCase(simpleMapRepository)
+    internal val getSimpleMapIdUseCase = GetSimpleMapIdUseCase(simpleMapRepository)
     internal val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(simpleMapRepository)
     internal val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(simpleMapRepository)
     internal val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(fetchMapModifiersUseCase)

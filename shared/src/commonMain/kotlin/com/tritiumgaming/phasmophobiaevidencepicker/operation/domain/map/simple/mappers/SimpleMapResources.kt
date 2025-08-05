@@ -18,11 +18,6 @@ class SimpleMapResources {
         PRISON
     }
 
-    enum class MapTitleLength {
-        ABBREVIATED,
-        FULL
-    }
-
     enum class MapThumbnail {
         SUNNY_MEADOWS,
         SUNNY_MEADOWS_RESTRICTED,
@@ -93,6 +88,11 @@ class SimpleMapResources {
         RIDGEVIEW_SECOND_FLOOR,
         PRISON_FIRST_FLOOR,
         PRISON_SECOND_FLOOR
+    }
+
+    enum class MapTitleLength {
+        ABBREVIATED,
+        FULL
     }
 
 }
