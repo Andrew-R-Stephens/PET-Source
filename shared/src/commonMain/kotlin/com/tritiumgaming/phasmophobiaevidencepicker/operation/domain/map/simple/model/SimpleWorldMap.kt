@@ -13,15 +13,15 @@ class SimpleWorldMap(
     val defaultFloor: Int
 ) {
 
-    var currentFloor: Int = 0 // TODO("Move to ViewModel")
     val floorNames = mutableListOf<Int>()
     val allFloorLayers: ArrayList<ArrayList<Int>> = ArrayList()
 
     val floorCount: Int
         get() = floorNames.size
 
-    val floorName: Int
-        get() = floorNames[currentFloor]
+    fun getFloorName(floorIndex: Int): Int {
+        return floorNames[floorIndex]
+    }
 
     fun addFloorLayer(floorIndex: Int, layer: Int) {
         if (allFloorLayers.isEmpty() || floorIndex >= allFloorLayers.size) {

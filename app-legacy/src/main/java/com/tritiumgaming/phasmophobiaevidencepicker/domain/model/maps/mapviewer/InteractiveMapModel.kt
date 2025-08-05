@@ -179,7 +179,7 @@ class InteractiveMapModel {
         matrix.postTranslate(panX - (imgW * scale * .5f), panY - (imgH * scale * .5f))
     }
 
-    fun setAutoInSampleSize(reqWidth: Int, reqHeight: Int) {
+    private fun setAutoInSampleSize(reqWidth: Int, reqHeight: Int) {
         // Raw height and width of image
         val height = bitmapFactoryOptions.outHeight
         val width = bitmapFactoryOptions.outWidth

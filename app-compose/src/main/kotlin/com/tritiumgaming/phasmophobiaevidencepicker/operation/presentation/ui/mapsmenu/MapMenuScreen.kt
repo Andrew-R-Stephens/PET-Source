@@ -16,6 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -80,15 +81,14 @@ private fun MapMenuContentPortrait(
         columns = GridCells.Fixed(2),
 
     ) {
-        itemsIndexed(mapsViewModel.mapThumbnails) { index, thumbnail ->
+        itemsIndexed(mapsViewModel.simpleMaps) { index, map ->
             MapCard(
-                drawableResource = thumbnail.toDrawableResource()
+                drawableResource = map.thumbnailImage.toDrawableResource()
             ) {
                 Log.d("MapMenuScreen", "click!!")
-                mapsViewModel.currentMapIndex = index
-                val id = mapsViewModel.currentSimpleMap.mapId
-                Log.d("MapMenuScreen", "mapId: $id")
-                navController.navigate(route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${id}")
+                mapsViewModel.setCurrentMapId(map.mapId)
+                Log.d("MapMenuScreen", "mapId: ${map.mapId}")
+                navController.navigate(route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}")
             }
         }
     }
@@ -103,19 +103,20 @@ private fun MapMenuContentLandscape(
 ) {
     val rememberLazyGridState = rememberLazyGridState()
 
+    val mapUiState = mapsViewModel.mapDisplayUiState.collectAsStateWithLifecycle()
+
     LazyHorizontalGrid(
         state = rememberLazyGridState,
         rows = GridCells.Adaptive(minSize = 128.dp)
     ) {
-        itemsIndexed(mapsViewModel.mapThumbnails) { index, thumbnail ->
+        itemsIndexed(mapsViewModel.simpleMaps) { index, map ->
             MapCard(
-                drawableResource = thumbnail.toDrawableResource()
+                drawableResource = map.thumbnailImage.toDrawableResource()
             ) {
                 Log.d("MapMenuScreen", "click!!")
-                mapsViewModel.currentMapIndex = index
-                val id = mapsViewModel.currentSimpleMap.mapId
-                Log.d("MapMenuScreen", "mapId: $id")
-                navController.navigate(route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${id}")
+                mapsViewModel.setCurrentMapId(map.mapId)
+                Log.d("MapMenuScreen", "mapId: ${map.mapId}")
+                navController.navigate(route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}")
             }
 
         }

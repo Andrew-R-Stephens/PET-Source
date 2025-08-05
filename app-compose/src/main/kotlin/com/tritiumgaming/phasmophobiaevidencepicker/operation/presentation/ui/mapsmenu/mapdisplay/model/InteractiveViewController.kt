@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.m
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.util.Log
+import android.util.Size
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
 import kotlin.math.max
 import kotlin.math.min
@@ -21,34 +22,30 @@ class InteractiveViewController {
         get() {
             val values = FloatArray(9)
             matrix.getValues(values)
-            values[Matrix.MSCALE_X] *= imgW.toFloat()
-            values[Matrix.MSCALE_Y] *= imgH.toFloat()
+            values[Matrix.MSCALE_X] *= imageDim.width.toFloat()
+            values[Matrix.MSCALE_Y] *= imageDim.height.toFloat()
 
             return values
         }
 
-    var selectedPoint: Point2D.Point2DFloat? = null
-        private set
+    private var imageDim = Size(0, 0)
+    private var containerDim = Size(0, 0)
+
+    private var pan = Point2D.Point2DFloat(x = 1f, y = 1f)
 
     private var canSetDefaultZoomLevel = true
-    private var zoomLevel: Float = 1f
-    private var panX = 1f
-    private var panY = 1f
-
-    private var imgW = 0
-    private var imgH = 0
-    private var w = 0
-    private var h = 0
-
+    private var zoom: Float = 1f
     private var zoomMin = .8f
     private var zoomMax = 4f
 
+    var selectedPoint: Point2D.Point2DFloat? = null
+        private set
 
     fun deepCopy(otherData: InteractiveViewController) {
         this.canSetDefaultZoomLevel = otherData.canSetDefaultZoomLevel
-        this.zoomLevel = otherData.zoomLevel
-        this.panX = otherData.panX
-        this.panY = otherData.panY
+        this.zoom = otherData.zoom
+
+        pan.setLocation(x = otherData.pan.x, y = otherData.pan.y)
 
         val matrixVals = FloatArray(9)
         otherData.matrix.getValues(matrixVals)
@@ -59,56 +56,51 @@ class InteractiveViewController {
         bitmapFactoryOptions.outHeight = otherData.bitmapFactoryOptions.outHeight
         bitmapFactoryOptions.inSampleSize = otherData.bitmapFactoryOptions.inSampleSize
 
-        this.imgW = otherData.imgW
-        this.imgH = otherData.imgH
-        this.w = otherData.w
-        this.h = otherData.h
+        setImageSize(otherData.imageDim.width, otherData.imageDim.height)
+        setContainerSize(otherData.containerDim.width, otherData.containerDim.height)
+        setZoomConstraints(otherData.zoomMin, otherData.zoomMax)
 
         if (otherData.selectedPoint != null) {
             val selPoint = otherData.selectedPoint
-            this.selectedPoint = Point2D.Point2DFloat(selPoint!!.x.toFloat(), selPoint.y.toFloat())
+            this.selectedPoint = Point2D.Point2DFloat(
+                x = selPoint!!.x.toFloat(),
+                y = selPoint.y.toFloat()
+            )
         }
 
-        this.zoomMin = otherData.zoomMin
-        this.zoomMax = otherData.zoomMax
     }
 
-    fun updateZoomLevel(zoom: Double) {
-        val zoomSense = 2f //1.5f;
+    fun addZoom(zoom: Float) {
+        val zoomSense = 1.5f
+        val zoomDiff = (zoom - 1)
+        val zoomNormal = zoomDiff * 2 * zoomSense
 
-        zoomMin = w.toFloat() / imgW.toFloat()
-        Log.d("Zoom", "$w $h $zoomMin")
+        this.zoom = (this.zoom + zoomNormal)
+            .coerceIn(minimumValue = zoomMin, maximumValue = zoomMax)
 
-        if (((zoom * zoomSense).toFloat()
-                .let { this.zoomLevel += it; this.zoomLevel }) < zoomMin
-        ) {
-            this.zoomLevel = zoomMin
-        } else if (zoomLevel > zoomMax) {
-            this.zoomLevel = zoomMax
-        }
+        Log.d("InteractiveViewController",
+            "\tZoom: $zoom -> [$zoomMin...$zoomMax = ${this.zoom}")
 
         updateMatrix()
     }
 
-    fun incrementPan(addX: Double, addY: Double) {
-        val panSense = 1.5f
+    fun incrementPan(addX: Float, addY: Float) {
+        val panSense = 1f
 
-        this.panX += (-addX * panSense).toFloat()
-        this.panY += (-addY * panSense).toFloat()
+        pan.apply {
+            setLocation(
+                pan.x + (addX * panSense),
+                pan.y + (addY * panSense)
+            )
+        }
 
         updateMatrix()
     }
 
     fun setPan(x: Float, y: Float) {
-        this.panX = x
-        this.panY = y
+        pan.setLocation(x, y)
 
         updateMatrix()
-    }
-
-    fun setDisplaySize(w: Int, h: Int) {
-        this.w = w
-        this.h = h
     }
 
     fun setPressedPoint(point: Point2D.Point2DFloat?) {
@@ -116,7 +108,7 @@ class InteractiveViewController {
     }
 
     fun updateMatrix() {
-        setAutoInSampleSize(w, h)
+        setAutoInSampleSize(containerDim.width, containerDim.height)
         bitmapFactoryOptions.inJustDecodeBounds = false
     }
 
@@ -124,15 +116,15 @@ class InteractiveViewController {
         if (canSetDefaultZoomLevel) {
             val zoomW = viewportW / imgW
             val zoomH = viewportH / imgH
-            zoomLevel = min(zoomW.toDouble(), zoomH.toDouble()).toFloat()
+            zoom = min(zoomW.toDouble(), zoomH.toDouble()).toFloat()
 
             canSetDefaultZoomLevel = false
         }
 
-        matrix.setScale(zoomLevel, zoomLevel)
+        matrix.setScale(zoom, zoom)
         matrix.postTranslate(
-            (viewportW / 2f) - (imgW / 2f * zoomLevel) + (panX * zoomLevel),
-            (viewportH / 2f) - (imgH / 2f * zoomLevel) + (panY * zoomLevel)
+            (viewportW / 2f) - (imgW / 2f * zoom) + (pan.x.toFloat() * zoom),
+            (viewportH / 2f) - (imgH / 2f * zoom) + (pan.y.toFloat() * zoom)
         )
 
         val vals = FloatArray(9)
@@ -142,24 +134,32 @@ class InteractiveViewController {
 
         //RIGHT
         val boundsPadding = .2f
-        if ((((vals[2]) + (imgW * zoomLevel)).also {
+        if ((((vals[2]) + (imgW * zoom)).also {
                 distance = it
             }) < viewportW * boundsPadding) {
-            panX -= distance - (viewportW * boundsPadding)
+            pan.apply {
+                x -= distance - (viewportW * boundsPadding)
+            }
         }
         //LEFT
         if ((vals[2]) > viewportW - (viewportW * boundsPadding)) {
-            panX += ((viewportW) - (vals[2])) - (viewportW * boundsPadding)
+            pan.apply {
+                x += ((viewportW) - (vals[2])) - (viewportW * boundsPadding)
+            }
         }
         //BOTTOM
-        if ((((vals[5]) + (imgH * zoomLevel)).also {
+        if ((((vals[5]) + (imgH * zoom)).also {
                 distance = it
             }) < viewportH * boundsPadding) {
-            panY -= distance - (viewportH * boundsPadding)
+            pan.apply {
+                y -= distance - (viewportH * boundsPadding)
+            }
         }
         //TOP
         if ((vals[5]) > viewportH - (viewportH * boundsPadding)) {
-            panY += ((viewportH) - (vals[5])) - (viewportH * boundsPadding)
+            pan.apply {
+                y += ((viewportH) - (vals[5])) - (viewportH * boundsPadding)
+            }
         }
     }
 
@@ -177,7 +177,9 @@ class InteractiveViewController {
             scale = max(scale.toDouble(), (75 / viewportH).toDouble()).toFloat()
         }
         matrix.setScale(scale, scale)
-        matrix.postTranslate(panX - (imgW * scale * .5f), panY - (imgH * scale * .5f))
+        matrix.postTranslate(
+            pan.x.toFloat() - (imgW * scale * .5f),
+            pan.y.toFloat() - (imgH * scale * .5f))
     }
 
     fun setAutoInSampleSize(reqWidth: Int, reqHeight: Int) {
@@ -199,9 +201,44 @@ class InteractiveViewController {
         bitmapFactoryOptions.inSampleSize = inSampleSize
     }
 
-    fun setImageSize(w: Int, h: Int) {
-        this.imgW = w
-        this.imgH = h
+    fun setContainerSize(w: Int, h: Int) {
+        Log.d("InteractiveViewController", "Display Size: $w $h")
+
+        containerDim = Size(w, h)
+
+        updateZoomConstraints()
     }
 
+    fun setImageSize(w: Int, h: Int) {
+        Log.d("InteractiveViewController", "Image Size: $w $h")
+
+        imageDim = Size(w, h)
+
+        updateZoomConstraints()
+    }
+
+    fun setZoomConstraints(min: Float, max: Float) {
+        Log.d("InteractiveViewController", "ZoomConstraints: $min $max")
+
+        this.zoomMin = min
+        this.zoomMax = max
+    }
+
+    private fun updateZoomConstraints() {
+
+        val wConstr1 = containerDim.width.toFloat() / imageDim.width.toFloat()
+        val wConstr2 = imageDim.width.toFloat() / containerDim.width.toFloat()
+
+        val hConstr1 = containerDim.height.toFloat() / imageDim.height.toFloat()
+        val hConstr2 = imageDim.height.toFloat() / containerDim.height.toFloat()
+
+        zoomMin = min(
+            min(wConstr1, wConstr2),
+            min(hConstr1, hConstr2))
+        zoomMax =
+            max(
+            max(wConstr1, hConstr1),
+            max(hConstr2, wConstr2)).coerceAtLeast(zoomMin * 4f)
+
+    }
 }
