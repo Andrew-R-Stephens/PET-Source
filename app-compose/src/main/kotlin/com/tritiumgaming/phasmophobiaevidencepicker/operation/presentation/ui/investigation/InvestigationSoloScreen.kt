@@ -19,11 +19,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -271,6 +274,8 @@ private fun ColumnScope.ToolbarConfigurationSection(
     investigationViewModel: InvestigationViewModel,
     modifier: Modifier = Modifier
 ) {
+    val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
+
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -289,9 +294,12 @@ private fun ColumnScope.ToolbarConfigurationSection(
             investigationViewModel = investigationViewModel
         )
 
-        val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
-
-        Row {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
             Column(
                 modifier = Modifier
                     .weight(1f, false)
@@ -309,33 +317,38 @@ private fun ColumnScope.ToolbarConfigurationSection(
                 )
             }
 
-            Button(
+            Column(
                 modifier = Modifier
                     .weight(1f, false)
-                    .wrapContentSize()
-                    .padding(start = 8.dp),
-                onClick = { investigationViewModel.toggleTimer() },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent,
-                    contentColor = LocalPalette.current.textFamily.body
-                )
             ) {
-                if(timerUiState.value.paused) {
-                    Icon(
-                        modifier = Modifier
-                            .size(48.dp),
-                        painter = painterResource(R.drawable.ic_control_play),
-                        contentDescription = null,
-                        tint = LocalPalette.current.textFamily.body
+                Button(
+                    modifier = Modifier
+                        .weight(1f, false)
+                        .wrapContentSize()
+                        .padding(start = 8.dp),
+                    onClick = { investigationViewModel.toggleTimer() },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Transparent,
+                        contentColor = LocalPalette.current.textFamily.body
                     )
-                } else {
-                    Icon(
-                        modifier = Modifier
-                            .size(48.dp),
-                        painter = painterResource(R.drawable.ic_control_pause),
-                        contentDescription = null,
-                        tint = LocalPalette.current.textFamily.body
-                    )
+                ) {
+                    if (timerUiState.value.paused) {
+                        Icon(
+                            modifier = Modifier
+                                .size(48.dp),
+                            painter = painterResource(R.drawable.ic_control_play),
+                            contentDescription = null,
+                            tint = LocalPalette.current.textFamily.body
+                        )
+                    } else {
+                        Icon(
+                            modifier = Modifier
+                                .size(48.dp),
+                            painter = painterResource(R.drawable.ic_control_pause),
+                            contentDescription = null,
+                            tint = LocalPalette.current.textFamily.body
+                        )
+                    }
                 }
             }
         }
@@ -363,6 +376,7 @@ private fun ToolbarFootsteps(
             bpm = bpm
         )
     }
+
 }
 
 @Composable

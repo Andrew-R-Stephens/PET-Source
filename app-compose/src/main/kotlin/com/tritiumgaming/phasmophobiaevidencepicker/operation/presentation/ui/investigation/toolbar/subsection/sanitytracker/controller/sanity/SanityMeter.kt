@@ -34,7 +34,7 @@ fun SanityMeterView(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationViewModel
 ) {
-    val sanityLevel = investigationViewModel.sanityUiState.collectAsStateWithLifecycle()
+    val sanityLevel = investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val sanityPercent = sanityLevel.value.sanityLevel
 
     Box(
@@ -93,8 +93,8 @@ fun SanityMeterView(
 fun SanityImageLayer(
     modifier: Modifier = Modifier,
     @DrawableRes image: Int = R.drawable.icon_sanityhead_brain,
-    @ColorInt startColor: Int = (Color.Yellow).toArgb(),
-    @ColorInt endColor: Int = (Color.Red).toArgb(),
+    @ColorInt startColor: Int,
+    @ColorInt endColor: Int,
     interpolation: Float = 1f
 ) {
     Image(
@@ -117,8 +117,8 @@ fun SanityImageLayer(
 @Composable
 fun SanityPie(
     modifier: Modifier = Modifier,
-    @ColorInt startColor: Int = Color.White.toArgb(),
-    @ColorInt endColor: Int = Color.Red.toArgb(),
+    @ColorInt startColor: Int,
+    @ColorInt endColor: Int,
     interpolation: Float = 1f
 ) {
     Box(

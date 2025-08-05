@@ -95,7 +95,8 @@ fun MapModifierDetails(
     val mapConfigUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
     val mapName = mapConfigUiState.value.name.toStringResource()
     val mapSize = mapConfigUiState.value.size.toStringResource()
-    val mapModifiers = mapConfigUiState.value.modifier
+    val setupMapModifier = mapConfigUiState.value.setupModifier
+    val normalMapModifier = mapConfigUiState.value.normalModifier
 
     CategoryColumn {
         Row(
@@ -114,13 +115,15 @@ fun MapModifierDetails(
             SubRow {
                 TextSubTitle(text = "Setup Modifier:")
                 TextSubTitle(
-                    text = String.format(Locale.getDefault(), "%.2f", mapModifiers.setupModifier)
+                    text = String.format(Locale.getDefault(), "%.2f",
+                        setupMapModifier)
                 )
             }
             SubRow {
                 TextSubTitle(text = "Action Modifier:")
                 TextSubTitle(
-                    text = String.format(Locale.getDefault(), "%.2f", mapModifiers.normalModifier)
+                    text = String.format(Locale.getDefault(), "%.2f",
+                        normalMapModifier)
                 )
             }
         }
