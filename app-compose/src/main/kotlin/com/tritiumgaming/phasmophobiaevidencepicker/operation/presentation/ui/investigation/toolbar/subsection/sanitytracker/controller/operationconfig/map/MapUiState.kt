@@ -8,10 +8,6 @@ data class MapUiState(
     internal val index: Int = 0,
     internal val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
     internal val size: MapSize = MapSize.SMALL,
-    internal val modifier: WorldMapModifier =
-        WorldMapModifier(
-            name = MapSize.SMALL,
-            setupModifier = 1f,
-            normalModifier = 1f
-        )
+    internal val setupModifier: Float = 1f,
+    internal val normalModifier: Float = 1f
 )
