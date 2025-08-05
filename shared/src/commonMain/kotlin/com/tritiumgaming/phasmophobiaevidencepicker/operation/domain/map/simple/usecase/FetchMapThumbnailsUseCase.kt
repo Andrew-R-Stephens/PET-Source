@@ -6,13 +6,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 class FetchMapThumbnailsUseCase(
     private val simpleMapRepository: SimpleMapRepository
 ) {
-    operator fun invoke(): List<MapThumbnail> {
+    operator fun invoke(): Result<List<MapThumbnail>> {
 
         val result = simpleMapRepository.getMaps()
 
-        result.exceptionOrNull()?.printStackTrace()
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get simple map thumbnails", it)) }
 
-        return result.getOrDefault(emptyList()).map { map -> map.thumbnailImage }
-
+        return result.map { it.map { map -> map.thumbnailImage } }
     }
 }

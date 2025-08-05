@@ -6,11 +6,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 class FetchSimpleMapsUseCase(
     private val simpleMapRepository: SimpleMapRepository
 ) {
-    operator fun invoke(): List<SimpleWorldMap> {
+    operator fun invoke(): Result<List<SimpleWorldMap>> {
         val result = simpleMapRepository.getMaps()
 
-        result.exceptionOrNull()?.printStackTrace()
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get simple maps", it)) }
 
-        return result.getOrNull() ?: emptyList()
+        return result
     }
 }
