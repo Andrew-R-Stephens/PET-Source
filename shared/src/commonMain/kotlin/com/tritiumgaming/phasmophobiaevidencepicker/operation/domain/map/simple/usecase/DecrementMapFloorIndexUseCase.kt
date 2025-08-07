@@ -5,17 +5,21 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 class DecrementMapFloorIndexUseCase(
     private val simpleMapsRepository: SimpleMapRepository
 ) {
-    operator fun invoke(currentIndex: Int): Int {
+    operator fun invoke(currentMapId: String, currentFloorIndex: Int): Result<Int> {
         val result = simpleMapsRepository.getMaps()
-        result.exceptionOrNull()?.printStackTrace()
+
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Maps could not be obtained", it))
+        }
 
         return result.getOrNull()?.let { map ->
-            val floorCount = map[currentIndex].floorCount
+            val floorCount = map.first{ m -> m.mapId == currentMapId }.floorCount
+            println("Maps Floor Count: $floorCount")
 
-            var newIndex: Int = currentIndex - 1
+            var newIndex: Int = currentFloorIndex - 1
             if (newIndex < 0) { newIndex = floorCount - 1 }
-            newIndex
-        } ?: currentIndex
+            Result.success(newIndex)
+        } ?: Result.failure(Exception("Index could not be decremented"))
 
     }
 
