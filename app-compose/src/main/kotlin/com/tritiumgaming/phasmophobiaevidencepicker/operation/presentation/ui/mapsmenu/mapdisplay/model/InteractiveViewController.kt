@@ -35,11 +35,8 @@ class InteractiveViewController {
 
     private var canSetDefaultZoomLevel = true
     private var zoom: Float = 1f
-    private var zoomMin = .8f
-    private var zoomMax = 4f
-
-    var selectedPoint: Point2D.Point2DFloat? = null
-        private set
+    private var zoomMin = 1f
+    private var zoomMax = 1f
 
     fun deepCopy(otherData: InteractiveViewController) {
         this.canSetDefaultZoomLevel = otherData.canSetDefaultZoomLevel
@@ -59,18 +56,9 @@ class InteractiveViewController {
         setImageSize(otherData.imageDim.width, otherData.imageDim.height)
         setContainerSize(otherData.containerDim.width, otherData.containerDim.height)
         setZoomConstraints(otherData.zoomMin, otherData.zoomMax)
-
-        if (otherData.selectedPoint != null) {
-            val selPoint = otherData.selectedPoint
-            this.selectedPoint = Point2D.Point2DFloat(
-                x = selPoint!!.x.toFloat(),
-                y = selPoint.y.toFloat()
-            )
-        }
-
     }
 
-    fun addZoom(zoom: Float) {
+    fun doZoom(zoom: Float) {
         val zoomSense = 1.5f
         val zoomDiff = (zoom - 1)
         val zoomNormal = zoomDiff * 2 * zoomSense
@@ -78,13 +66,10 @@ class InteractiveViewController {
         this.zoom = (this.zoom + zoomNormal)
             .coerceIn(minimumValue = zoomMin, maximumValue = zoomMax)
 
-        Log.d("InteractiveViewController",
-            "\tZoom: $zoom -> [$zoomMin...$zoomMax = ${this.zoom}")
-
         updateMatrix()
     }
 
-    fun incrementPan(addX: Float, addY: Float) {
+    fun doPan(addX: Float, addY: Float) {
         val panSense = 1f
 
         pan.apply {
@@ -101,10 +86,6 @@ class InteractiveViewController {
         pan.setLocation(x, y)
 
         updateMatrix()
-    }
-
-    fun setPressedPoint(point: Point2D.Point2DFloat?) {
-        selectedPoint = point
     }
 
     fun updateMatrix() {
@@ -202,24 +183,18 @@ class InteractiveViewController {
     }
 
     fun setContainerSize(w: Int, h: Int) {
-        Log.d("InteractiveViewController", "Display Size: $w $h")
-
         containerDim = Size(w, h)
 
         updateZoomConstraints()
     }
 
     fun setImageSize(w: Int, h: Int) {
-        Log.d("InteractiveViewController", "Image Size: $w $h")
-
         imageDim = Size(w, h)
 
         updateZoomConstraints()
     }
 
     fun setZoomConstraints(min: Float, max: Float) {
-        Log.d("InteractiveViewController", "ZoomConstraints: $min $max")
-
         this.zoomMin = min
         this.zoomMax = max
     }
