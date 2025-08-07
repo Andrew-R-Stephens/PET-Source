@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
 
@@ -13,15 +14,17 @@ class SimpleWorldMap(
     val defaultFloor: Int
 ) {
 
-    val floorNames = mutableListOf<Int>()
     val allFloorLayers: ArrayList<ArrayList<Int>> = ArrayList()
 
     val floorCount: Int
-        get() = floorNames.size
+        get() = mapFloors.size
 
-    fun getFloorName(floorIndex: Int): Int {
-        return floorNames[floorIndex]
+    fun getFloorName(floorIndex: Int): SimpleMapResources.MapFloorTitle {
+        return mapFloors[floorIndex].layerName
     }
+
+    fun getFloorImage(floorIndex: Int): SimpleMapResources.MapFloorImage =
+        mapFloors[floorIndex].image
 
     fun addFloorLayer(floorIndex: Int, layer: Int) {
         if (allFloorLayers.isEmpty() || floorIndex >= allFloorLayers.size) {

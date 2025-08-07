@@ -18,6 +18,9 @@ data class ComplexWorldMapFloor(
             return floorRooms[floorRooms.size - 1]
         }
 
+    val rooms: List<ComplexWorldRoom>
+        get() = floorRooms
+
     fun getRoomById(id: Int): ComplexWorldRoom? = floorRooms.find { room -> room.id == id }
 
     fun getRoomIndexById(id: Int): Int = floorRooms.indexOfFirst { room -> room.id == id }
