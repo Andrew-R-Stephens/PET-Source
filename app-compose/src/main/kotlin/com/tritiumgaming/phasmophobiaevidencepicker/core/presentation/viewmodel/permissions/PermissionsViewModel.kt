@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.android.gms.ads.MobileAds
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -36,35 +38,41 @@ class PermissionsViewModel: ViewModel() {
 
     /** UIState for the ViewModel. */
     private val _uiState = MutableStateFlow(PermissionsUiState())
-    val uiState: StateFlow<PermissionsUiState> = _uiState.asStateFlow()
+    val uiState = _uiState.asStateFlow()
 
     /** Sets initial UIState for the ViewModel. */
-    suspend fun init(activity: Activity) {
-        _isInitCalled = true
-        _googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(activity)
+    /*suspend*/ fun initMobileAdsConsentManager(activity: Activity) {
 
-        // Initializes the consent manager and calls the UMP SDK methods to request consent information
-        // and load/show a consent form if necessary.
-        gatherConsent(activity) { error ->
-            if (error != null) {
-                // Consent not obtained in current session.
-                Log.d("PermissionsViewModel", "${error.errorCode}: ${error.message}")
+        viewModelScope.launch {
+            withContext(Dispatchers.Main) {
+
+                _isInitCalled = true
+                _googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(activity)
+
+                // Initializes the consent manager and calls the UMP SDK methods to request consent information
+                // and load/show a consent form if necessary.
+                gatherConsent(activity) { error ->
+                    if (error != null) {
+                        // Consent not obtained in current session.
+                        Log.d("PermissionsViewModel", "${error.errorCode}: ${error.message}")
+                    }
+                    // canRequestAds can be updated when gatherConsent is completed.
+                    _uiState.update { it.copy(canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
+                }
+                // canRequestAds can be updated when gatherConsent is called.
+                _uiState.update { it.copy(canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
+
+                uiState.collect { state ->
+                    // when canRequestAds is true initializeMobileAdsSdk
+                    if (state.canRequestAds) {
+                        initializeMobileAdsSdk(activity)
+                    } else {
+                        // when canRequestAds is false, show the consent form
+                        showPrivacyOptionsForm(activity) {}
+                    }
+
+                }
             }
-            // canRequestAds can be updated when gatherConsent is completed.
-            _uiState.update { it.copy(canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
-        }
-        // canRequestAds can be updated when gatherConsent is called.
-        _uiState.update { it.copy(canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
-
-        uiState.collect { state ->
-            // when canRequestAds is true initializeMobileAdsSdk
-            if (state.canRequestAds) {
-                initializeMobileAdsSdk(activity)
-            } else {
-                // when canRequestAds is false, show the consent form
-                showPrivacyOptionsForm(activity) {}
-            }
-
         }
 
     }
