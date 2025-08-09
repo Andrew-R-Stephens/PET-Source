@@ -33,16 +33,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 import kotlinx.coroutines.launch
 
 class PETActivity : AppCompatActivity(),
-    AppUpdateManagerService, FirebaseAnalyticsService/*, ConsentManagementService*/ {
+    AppUpdateManagerService, FirebaseAnalyticsService {
 
     private val globalPreferencesViewModel: GlobalPreferencesViewModel
         by viewModels { GlobalPreferencesViewModel.Factory }
 
     private val permissionsViewModel: PermissionsViewModel
             by viewModels { PermissionsViewModel.Factory }
-
-    private val investigationViewModel: InvestigationViewModel
-            by viewModels { InvestigationViewModel.Factory }
 
     /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth
@@ -66,30 +63,11 @@ class PETActivity : AppCompatActivity(),
             }
         }
 
-    /* Navigation Components */
-    /*private var drawerLayout: DrawerLayout? = null
-    private var actionBarDrawerToggle: ActionBarDrawerToggle? = null
-    private var navigationBarView: NavigationBarView? = null*/
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        /*window.decorView*/
         enableEdgeToEdge()
 
         auth = Firebase.auth
-
-        //signOut(activity = this@PETActivity)
-        /*signIn(
-            activity = this,
-            option = SignInCredentialManager.SignInOptions.SILENT,
-            onSuccess = {
-                Log.d("Firebase",
-                    "Signed in as: ${Firebase.auth.currentUser?.displayName}")
-            },
-            onFailure = {
-                Log.d("Firebase", "Failed to sign in.")
-            }
-        )*/
 
         super.onCreate(savedInstanceState)
 
@@ -106,7 +84,10 @@ class PETActivity : AppCompatActivity(),
                             .background(LocalPalette.current.surface.color)
                             .padding(it)
                     ) {
-                        RootNavigation()
+                        RootNavigation(
+                            globalPreferencesViewModel = globalPreferencesViewModel,
+                            permissionsViewModel = permissionsViewModel
+                        )
                     }
 
                 }
@@ -117,9 +98,9 @@ class PETActivity : AppCompatActivity(),
 
         // Initialize the view model. This will gather consent and initialize Google Mobile Ads.
         if (!permissionsViewModel.isInitCalled) {
-            lifecycleScope.launch {
-                permissionsViewModel.init(this@PETActivity)
-            }
+            //lifecycleScope.launch {
+                permissionsViewModel.initMobileAdsConsentManager(this@PETActivity)
+            //}
         }
 
         //initializeMobileAdsSdk(this)
@@ -128,120 +109,6 @@ class PETActivity : AppCompatActivity(),
 
         checkForAppUpdate(this@PETActivity)
 
-    }
-
-    @Deprecated("Deprecated with Jetpack Compose")
-    //TODO "Replace with Jetpack Compose components"
-    fun initNavigationComponents() {
-        /*val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment?
-
-        Log.d("NavHostFragment", if (navHostFragment == null) "null" else "not null")
-
-        navHostFragment?.navController?.let { navController ->
-            val navBarView = findViewById<NavigationBarView>(R.id.item_navigation_bar)
-            Log.d("Bar", if (navBarView == null) "null" else "not null")
-            setNavigationBarBehavior(navBarView, navController)
-
-            val navDrawerView = findViewById<NavigationView>(R.id.layout_navigation_drawer_view)
-            Log.d("Drawer", if (navDrawerView == null) "null" else "not null")
-            buildNavigationDrawer(navDrawerView, navController)
-        }*/
-
-    }
-
-    @Deprecated("Deprecated with Jetpack Compose")
-    //TODO "Replace with Jetpack Compose components"
-    private fun buildNavigationDrawer(navView: NavigationView?, navController: NavController) {
-        /*drawerLayout = findViewById(R.id.layout_navigation_drawer)
-
-        drawerLayout?.let { drawerLayout ->
-            actionBarDrawerToggle = ActionBarDrawerToggle(
-                this, drawerLayout,
-                R.string.navigation_open_state,
-                R.string.navigation_closed_state
-            )
-
-            // pass the Open and Close toggle for the drawer layout listener
-            // to toggle the button
-            actionBarDrawerToggle?.let { actionBarDrawerToggle ->
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                drawerLayout.addDrawerListener(actionBarDrawerToggle)
-                actionBarDrawerToggle.syncState()
-            }
-
-            // to make the Navigation drawer icon always appear on the action bar
-            //getActivity().getSupportFragmentManager().setDisplayHomeAsUpEnabled(true);
-            drawerLayout.closeDrawer(GravityCompat.START)
-        }
-
-        setNavigationDrawerBehavior(navView, navController)*/
-    }
-
-    @Deprecated("Deprecated with Jetpack Compose")
-    //TODO "Replace with Jetpack Compose components"
-    private fun setNavigationDrawerBehavior(
-        navView: NavigationView?, navController: NavController
-    ) {
-        /*navView?.let {
-            setupWithNavController(navView, navController)
-            navView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener { item: MenuItem ->
-                drawerLayout?.let { drawerLayout ->
-                    if (onNavDestinationSelected(item, navController)) {
-                        drawerLayout.closeDrawer(GravityCompat.START)
-                        return@OnNavigationItemSelectedListener true
-                    }
-                    if (item.itemId == (R.id.action_home)) {
-                        finish()
-                    }
-                }
-                true
-            })
-        }*/
-    }
-
-    @Deprecated("Deprecated with Jetpack Compose")
-    //TODO "Replace with Jetpack Compose components"
-    private fun setNavigationBarBehavior(navView: NavigationBarView?, navController: NavController) {
-        /*navView?.let {
-            this.navigationBarView = navView
-
-            setupWithNavController(navView, navController)
-
-            navView.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item: MenuItem ->
-                if (onNavDestinationSelected(item, navController)) {
-                    if (drawerLayout != null) {
-                        drawerLayout!!.closeDrawer(GravityCompat.START)
-                    }
-
-                    return@OnItemSelectedListener true
-                }
-                if (item.itemId == (R.id.open_menu)) {
-                    drawerLayout?.let { drawerLayout ->
-                        when (drawerLayout.isOpen) {
-                            true -> drawerLayout.closeDrawer(GravityCompat.START)
-                            false -> drawerLayout.openDrawer(GravityCompat.START)
-                        }
-                    }
-                }
-                true
-            })
-
-            navView.itemIconTintList = null
-        }*/
-    }
-
-    @Deprecated("Deprecated with Jetpack Compose")
-    //TODO "Replace with Jetpack Compose components"
-    fun closeNavigationDrawer(): Boolean {
-        /*drawerLayout?.let { drawerLayout ->
-            if (drawerLayout.isOpen) {
-                drawerLayout.closeDrawer(GravityCompat.START)
-                return true
-            }
-        }
-        return false*/
-        return false
     }
 
     override fun onRequestPermissionsResult(
