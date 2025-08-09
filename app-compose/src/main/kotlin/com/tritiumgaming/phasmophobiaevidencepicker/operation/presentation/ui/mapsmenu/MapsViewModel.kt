@@ -12,11 +12,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMaps
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.SimpleWorldMap
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapFloorIndexUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapDisplayUiState
@@ -39,9 +37,7 @@ class MapsViewModel(
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
     private val fetchComplexMapsUseCase: FetchComplexMapsUseCase,
     private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
-    private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
-    private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
-    private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase
+    private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase
 ) : ViewModel() {
 
     private val _mapDisplayUiState = MutableStateFlow(MapDisplayUiState())
@@ -55,9 +51,6 @@ class MapsViewModel(
         get() =
             try { fetchSimpleMapsUseCase().getOrThrow() }
             catch (e: Exception) { e.printStackTrace(); emptyList() }
-
-    val mapThumbnails: List<SimpleMapResources.MapThumbnail>
-        get() = simpleMaps.map { map -> map.thumbnailImage }
 
     val currentComplexMap: ComplexWorldMap?
         get() = complexMaps?.getMapById(mapDisplayUiState.value.mapId)
@@ -73,6 +66,14 @@ class MapsViewModel(
             map.getFloor(mapDisplayUiState.value.floorIndex).rooms[0]
         }
     }
+
+    fun getRooms(): List<ComplexWorldRoom> =
+        currentComplexMap?.mapFloors[mapDisplayUiState.value.floorIndex]?.rooms?.map { room ->
+            room
+        } ?: emptyList()
+
+    fun getRoomNameById(id: Int): String? =
+        currentComplexMap?.mapFloors[mapDisplayUiState.value.floorIndex]?.rooms?.first{ it.id == id }?.name
 
     fun getRoomById(id: Int): ComplexWorldRoom? {
         return currentComplexMap?.let { map: ComplexWorldMap ->
@@ -94,17 +95,17 @@ class MapsViewModel(
 
             currentComplexMap?.let { map: ComplexWorldMap ->
                 map.getFloor(mapDisplayUiState.value.floorIndex).rooms.forEach { room ->
-                    val shape = Polygon()
+                    val roomShape = Polygon()
                     for (p in room.roomArea.points) {
                         val x = ((p.x * scaleX) + (translateX)).toInt()
                         val y = ((p.y * scaleY) + (translateY)).toInt()
-                        shape.addPoint(x, y)
+                        roomShape.addPoint(x, y)
                     }
 
-                    if (shape.contains(point)) {
+                    if (roomShape.contains(point)) {
                         setCurrentRoomId(
                             if (room.id != mapDisplayUiState.value.roomId) room.id
-                            else null
+                            else 0
                         )
                         return@forEach
                     }
@@ -114,43 +115,17 @@ class MapsViewModel(
 
     }
 
-    /*fun getSelectedRoom() {
-        currentComplexMap?.let { map: ComplexWorldMap ->
-            val rooms = map.getFloor(mapDisplayUiState.value.currentFloor).rooms
-            for (room in rooms) {
-                val shape = Polygon()
-                for (p in room.roomArea.points) {
-                    val x = ((p.x * scaleX) + (panX)).toInt()
-                    val y = ((p.y * scaleY) + (panY)).toInt()
-                    shape.addPoint(x, y)
-                }
-
-                if (shape.contains(Point2D.Point2DFloat(touchX, touchY))) {
-                    Log.d("Tap", "setting temp room")
-
-                    if (room != selectedRoomModel) {
-                        selectedRoomModel = room
-                        selectedRoomModel!!.print()
-                    } else {
-                        resetRoomSelection()
-                    }
-
-                    return
-                }
-            }
-        }
-    }*/
-
     fun setCurrentMapId(id: String) {
         _mapDisplayUiState.update {
             it.copy(
                 mapId = id,
-                floorIndex = simpleMaps.first { map -> map.mapId == id }.defaultFloor
+                floorIndex = simpleMaps.first { map -> map.mapId == id }.defaultFloor,
+                roomId = 0
             )
         }
     }
 
-    fun setCurrentRoomId(id: Int?) {
+    fun setCurrentRoomId(id: Int) {
         _mapDisplayUiState.update {
             it.copy(
                 roomId = id
@@ -181,7 +156,7 @@ class MapsViewModel(
     fun decrementFloorIndex() {
         _mapDisplayUiState.update {
             try {
-                val newIndex = incrementMapFloorIndexUseCase(
+                val newIndex = decrementMapFloorIndexUseCase(
                     it.mapId,
                     it.floorIndex
                 ).getOrThrow()
@@ -223,16 +198,12 @@ class MapsViewModel(
                 val fetchComplexMapsUseCase = container.fetchComplexMapsUseCase
                 val incrementMapFloorIndexUseCase = container.incrementMapFloorIndexUseCase
                 val decrementMapFloorIndexUseCase = container.decrementMapFloorIndexUseCase
-                val fetchMapModifiersUseCase = container.fetchMapModifiersUseCase
-                val fetchMapThumbnailsUseCase = container.fetchMapThumbnailsUseCase
 
                 MapsViewModel(
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
                     fetchComplexMapsUseCase = fetchComplexMapsUseCase,
                     incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
-                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
-                    fetchMapModifiersUseCase = fetchMapModifiersUseCase,
-                    fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase
+                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase
                 )
             }
         }

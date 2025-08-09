@@ -21,9 +21,6 @@ class ComplexWorldRoomArea(
             return ComplexWorldPoint(x, y)
         }
 
-    val lastPoint: ComplexWorldPoint
-        get() = points.last()
-
     override fun toString(): String {
         val s = StringBuilder()
         points.forEach { p ->
