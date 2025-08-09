@@ -193,9 +193,11 @@ fun PossessionItem(
 }
 
 @Composable
-fun GridPattern() {
+fun GridPattern(
+    modifier: Modifier = Modifier
+) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .aspectRatio(1f)
     ) {
         Image(

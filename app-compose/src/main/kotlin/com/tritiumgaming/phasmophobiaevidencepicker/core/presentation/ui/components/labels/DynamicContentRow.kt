@@ -11,6 +11,8 @@ import kotlin.math.roundToInt
 @Composable
 fun DynamicContentRow (
     modifier: Modifier = Modifier,
+    alignment: Alignment.Vertical = Alignment.CenterVertically,
+    maxPercentage: DynamicContentAlignmentPercentage = DynamicContentAlignmentPercentage(),
     startComponent: @Composable () -> Unit,
     endComponent: @Composable () -> Unit,
 ) {
@@ -18,7 +20,14 @@ fun DynamicContentRow (
         modifier = modifier
     ) { constraints ->
 
-        val startComponentMaxAllowedWidth = (constraints.maxWidth * 0.5f).roundToInt()
+        val startPercentage =
+            when(maxPercentage.alignment) {
+                Alignment.Start -> maxPercentage.maxPercentage
+                Alignment.End -> 1f - maxPercentage.maxPercentage
+                else -> .5f
+            }
+
+        val startComponentMaxAllowedWidth = (constraints.maxWidth * startPercentage).roundToInt()
         val startComponentPlaceable = subcompose("startComponent") {
             startComponent()
         }[0].measure(Constraints(maxWidth = startComponentMaxAllowedWidth))
@@ -37,14 +46,19 @@ fun DynamicContentRow (
         layout(width = constraints.maxWidth, height = rowHeight) {
             startComponentPlaceable.placeRelative(
                 x = 0,
-                y = Alignment.CenterVertically.align(
+                y = alignment.align(
                     startComponentPlaceable.height, rowHeight)
             )
             endComponentPlaceable.placeRelative(
                 x = constraints.maxWidth - endComponentActualWidth,
-                y = Alignment.CenterVertically.align(
+                y = alignment.align(
                     endComponentPlaceable.height, rowHeight)
             )
         }
     }
 }
+
+data class DynamicContentAlignmentPercentage(
+    val maxPercentage: Float = .5f,
+    val alignment: Alignment.Horizontal = Alignment.CenterHorizontally
+)
