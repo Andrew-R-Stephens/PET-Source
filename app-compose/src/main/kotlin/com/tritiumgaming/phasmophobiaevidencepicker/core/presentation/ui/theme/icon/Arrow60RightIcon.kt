@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -17,15 +18,14 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.v
 
 @Composable
 fun Arrow60RightIcon(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    tint: List<Color>
 ) {
 
     Image(
         modifier = modifier,
         imageVector = getArrow60RightVector(
-            listOf(
-                LocalPalette.current.textFamily.body
-            )
+            tint
         ),
         contentDescription = null,
         contentScale = ContentScale.Fit
@@ -40,7 +40,7 @@ private fun Preview() {
         typography = ClassicTypography
     ) {
         Box(modifier = Modifier.padding(12.dp)) {
-            Arrow60RightIcon()
+            Arrow60RightIcon(tint = listOf(LocalPalette.current.textFamily.body))
         }
     }
 }

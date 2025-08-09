@@ -32,8 +32,8 @@ fun IconResource.ToComposable(
     when (this) {
         IconResource.ACTION_PAN -> ActionPanIcon(modifier)
         IconResource.ACTION_ZOOM -> ActionZoomIcon(modifier)
-        IconResource.ARROW_60_LEFT -> Arrow60LeftIcon(modifier)
-        IconResource.ARROW_60_RIGHT -> Arrow60RightIcon(modifier)
+        IconResource.ARROW_60_LEFT -> Arrow60LeftIcon(modifier, colors)
+        IconResource.ARROW_60_RIGHT -> Arrow60RightIcon(modifier, colors)
         IconResource.BUTTON_SCRATCHED -> ButtonScratchedIcon(modifier)
         IconResource.DISCORD -> DiscordIcon(modifier, colors)
         IconResource.GEAR -> GearIcon(modifier)
