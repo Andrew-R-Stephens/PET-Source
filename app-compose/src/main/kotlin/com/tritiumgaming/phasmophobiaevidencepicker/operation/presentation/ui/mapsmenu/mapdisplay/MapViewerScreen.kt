@@ -11,33 +11,40 @@ import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectTransformGestures
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MenuDefaults
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -48,6 +55,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ImageBitmap
@@ -62,8 +70,8 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -74,26 +82,23 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentAlignmentPercentage
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentRow
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButton
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.Arrow60LeftIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.Arrow60RightIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.transparent
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getArrow60LeftVector
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoint
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ModifiersButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.model.InteractiveViewController
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.component.GridPattern
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
-import kotlin.collections.forEach
+import kotlin.math.floor
 
 
 @Composable
@@ -102,7 +107,7 @@ fun MapViewerScreen(
     mapsViewModel: MapsViewModel,
     mapId: String
 ) {
-    mapsViewModel.setCurrentMapId(mapId)
+    mapsViewModel.setCurrentMap(mapId)
 
     OperationScreen(
         navController = navController,
@@ -119,13 +124,12 @@ private fun MapViewerContent(
     mapsViewModel: MapsViewModel
 ) {
 
-    val mapDisplayUiState = mapsViewModel.mapDisplayUiState.collectAsStateWithLifecycle()
-    val selectedFloorIndex = mapDisplayUiState.value.floorIndex
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black)
     ) {
         BackgroundGrid(
             modifier = Modifier
@@ -136,12 +140,27 @@ private fun MapViewerContent(
             mapsViewModel = mapsViewModel
         )
 
-        UiController(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            mapsViewModel = mapsViewModel
-        )
+        when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                UiControllerPortrait(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight(),
+                    mapsViewModel = mapsViewModel
+                )
+            }
+            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                UiControllerLandscape(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    mapsViewModel = mapsViewModel
+                )
+            }
+        }
+
     }
 
 }
@@ -152,8 +171,7 @@ private fun MapCanvas(
 ) {
     val context = LocalContext.current
 
-    val mapDisplayUiState = mapsViewModel.mapDisplayUiState.collectAsStateWithLifecycle()
-    val selectedFloorIndex = mapDisplayUiState.value.floorIndex
+    val mapDisplayUiState = mapsViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
 
     val selectedRoom = mapDisplayUiState.value.roomId.let { roomId ->
         mapsViewModel.getRoomById(roomId)
@@ -371,12 +389,12 @@ private fun Modifier.mapControlInput(
 }
 
 @Composable
-private fun UiController(
+private fun UiControllerPortrait(
     modifier: Modifier = Modifier,
     mapsViewModel: MapsViewModel,
 ) {
 
-    val mapDisplayUiState = mapsViewModel.mapDisplayUiState.collectAsStateWithLifecycle()
+    val mapDisplayUiState = mapsViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
     val floorIndex = mapDisplayUiState.value.floorIndex
 
     val currentMap = mapsViewModel.getSimpleMap()
@@ -472,7 +490,7 @@ private fun UiController(
                     modifier = Modifier
                         .size(48.dp)
                         .clickable(onClick = {
-                            mapsViewModel.decrementFloorIndex()
+                            mapsViewModel.decrementFloor()
                         })
                         .padding(8.dp),
                     tint = listOf(LocalPalette.current.textFamily.body)
@@ -489,7 +507,7 @@ private fun UiController(
                     modifier = Modifier
                         .size(48.dp)
                         .clickable(onClick = {
-                            mapsViewModel.incrementFloorIndex()
+                            mapsViewModel.incrementFloor()
                         })
                         .padding(8.dp),
                     tint = listOf(LocalPalette.current.textFamily.body)
@@ -529,6 +547,224 @@ private fun UiController(
 }
 
 @Composable
+private fun UiControllerLandscape(
+    modifier: Modifier = Modifier,
+    mapsViewModel: MapsViewModel = viewModel(factory = MapsViewModel.Factory),
+) {
+
+    val mapDisplayUiState = mapsViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
+    val floorIndex = mapDisplayUiState.value.floorIndex
+
+    val currentMap = mapsViewModel.getSimpleMap()
+    val floorCount: Int = currentMap.floorCount
+    val mapTitle: SimpleMapResources.MapTitle = currentMap.mapName
+    val floorTitle: SimpleMapResources.MapFloorTitle = currentMap.mapFloors[floorIndex].layerName
+
+    Column(
+        modifier = modifier
+            .fillMaxHeight(),
+        horizontalAlignment = Alignment.End,
+        verticalArrangement = Arrangement.Top
+    ) {
+
+        Row(
+            modifier = Modifier
+                .height(48.dp)
+                .background(LocalPalette.current.backgroundColor_mapviewOverlay)
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Image(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .aspectRatio(1f)
+                    .padding(end = 8.dp),
+                painter = painterResource(android.R.drawable.ic_menu_revert),
+                contentScale = ContentScale.Fit,
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+            )
+
+            Text(
+                modifier = Modifier
+                    .weight(1f, true)
+                    .fillMaxHeight()
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        initialDelayMillis = 1000,
+                        repeatDelayMillis = 5000
+                    )
+                    .padding(end = 8.dp),
+                text = stringResource(mapTitle.toStringResource()),
+                style = LocalTypography.current.quaternary.bold,
+                textAlign = TextAlign.Start,
+                fontSize = 24.sp,
+                color = LocalPalette.current.textFamily.body
+            )
+
+            Text(
+                modifier = Modifier
+                    .weight(1f, true)
+                    .fillMaxHeight()
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        initialDelayMillis = 1000,
+                        repeatDelayMillis = 5000
+                    )
+                    .padding(start = 8.dp, end = 16.dp),
+                text = stringResource(floorTitle.toStringResource()),
+                style = LocalTypography.current.quaternary.bold,
+                textAlign = TextAlign.End,
+                fontSize = 24.sp,
+                color = LocalPalette.current.textFamily.body
+            )
+
+            Image(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .aspectRatio(1f),
+                painter = painterResource(R.drawable.ic_stairs),
+                contentScale = ContentScale.Fit,
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+            )
+        }
+
+        Row(
+            modifier = Modifier
+                .weight(1f),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Column(
+                modifier = Modifier
+                    .width(48.dp)
+                    .fillMaxHeight()
+                    .background(LocalPalette.current.backgroundColor_mapviewOverlay)
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Arrow60LeftIcon(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
+                        .clickable(onClick = {
+                            mapsViewModel.incrementFloor()
+                        })
+                        .rotate(90f),
+                    tint = listOf(LocalPalette.current.textFamily.body)
+                )
+
+                val rememberLazyListState = rememberLazyListState()
+                LaunchedEffect(floorIndex) {
+                    rememberLazyListState.animateScrollToItem(floorCount-1-floorIndex)
+                }
+
+                LazyColumn (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .weight(1f, false)
+                        .padding(vertical = 8.dp),
+                    state = rememberLazyListState,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Top
+                ) {
+                    items(floorCount) { index ->
+                        val icon = if(floorIndex == floorCount-1-index) R.drawable.ic_selector_sel
+                        else R.drawable.ic_selector_unsel
+
+                        Image(
+                            modifier = Modifier
+                                .size(24.dp)
+                                .padding(5.dp, 2.dp, 5.dp, 2.dp),
+                            painter = painterResource(icon),
+                            contentDescription = null,
+                            contentScale = ContentScale.Fit,
+                            colorFilter = ColorFilter.tint(
+                                LocalPalette.current.textFamily.body)
+                        )
+                    }
+
+                }
+
+                Arrow60RightIcon(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
+                        .clickable(onClick = {
+                            mapsViewModel.decrementFloor()
+                        })
+                        .rotate(90f),
+                    tint = listOf(LocalPalette.current.textFamily.body)
+                )
+
+            }
+        }
+
+        Row(
+            modifier = Modifier
+                //.height(48.dp)
+                .wrapContentHeight()
+                .background(LocalPalette.current.backgroundColor_mapviewOverlay),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            Row(
+                modifier = Modifier
+                    .weight(1f, true)
+                    //.fillMaxHeight()
+                    .wrapContentHeight()
+                    .padding(start = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(24.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Image(
+                    modifier = Modifier
+                        //.fillMaxHeight()
+                        .height(48.dp)
+                        .aspectRatio(1f)
+                        .padding(8.dp),
+                    painter = painterResource(R.drawable.ic_room),
+                    contentScale = ContentScale.Fit,
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+                )
+
+                RoomDropdownWrapper(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth(.5f),
+                    mapsViewModel = mapsViewModel
+                )
+
+            }
+
+            Image(
+                modifier = Modifier
+                    //.fillMaxHeight()
+                    .height(48.dp)
+                    .aspectRatio(1f)
+                    .padding(8.dp),
+                painter = painterResource(R.drawable.ic_selector_inc_unsel),
+                contentScale = ContentScale.Fit,
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+            )
+
+        }
+
+    }
+
+}
+
+@Composable
 private fun BackgroundGrid(
     modifier: Modifier = Modifier
 ) {
@@ -543,45 +779,6 @@ private fun BackgroundGrid(
 
 }
 
-@Preview
-@Composable
-private fun UiControllerPreview(
-
-) {
-    SelectiveTheme {
-
-        UiController(
-            modifier = Modifier
-                .fillMaxSize(),
-            mapsViewModel = viewModel(factory = MapsViewModel.Factory)
-        )
-
-    }
-}
-
-@Preview
-@Composable
-private fun BackgroundGridPreview(
-
-) {
-    SelectiveTheme {
-
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(LocalPalette.current.background.color)
-        ) {
-
-            BackgroundGrid(
-                modifier = Modifier
-                    .fillMaxSize()
-            )
-
-        }
-
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RoomDropdownWrapper(
@@ -589,11 +786,9 @@ fun RoomDropdownWrapper(
     mapsViewModel: MapsViewModel
 ) {
 
-    val mapDisplayUiState = mapsViewModel.mapDisplayUiState.collectAsStateWithLifecycle()
-    val roomName = mapsViewModel.getRoomNameById(mapDisplayUiState.value.roomId) ?: ""
-
-    val roomList = mapsViewModel.getRooms().filterNot {
-        room -> room.id == mapDisplayUiState.value.roomId }
+    val mapDisplayUiState = mapsViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
+    val roomName = mapDisplayUiState.value.roomName
+    val roomList = mapDisplayUiState.value.roomDropdownList
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -608,21 +803,26 @@ fun RoomDropdownWrapper(
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
+
             TextField(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, true)
-                    .padding(horizontal = 4.dp),
+                    .menuAnchor(
+                        ExposedDropdownMenuAnchorType.PrimaryNotEditable,
+                        true),
                 value = roomName,
                 textStyle = LocalTypography.current.quaternary.regular.copy(
                     color = LocalPalette.current.textFamily.body,
                     fontSize = 14.sp
                 ),
                 trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                    ExposedDropdownMenuDefaults.TrailingIcon(
+                        modifier = Modifier,
+                        expanded = expanded
+                    )
                 },
-                maxLines = 2,
+                maxLines = 1,
                 colors = TextFieldDefaults.colors().copy(
                     focusedContainerColor = Color.Transparent,
                     unfocusedContainerColor = Color.Transparent,
@@ -632,6 +832,8 @@ fun RoomDropdownWrapper(
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent,
                     errorIndicatorColor = Color.Transparent,
+                    unfocusedTrailingIconColor = LocalPalette.current.textFamily.body,
+                    focusedTrailingIconColor = LocalPalette.current.textFamily.body
                 ),
                 onValueChange = {},
                 readOnly = true,
@@ -641,7 +843,6 @@ fun RoomDropdownWrapper(
 
         ExposedDropdownMenu(
             modifier = Modifier
-                .fillMaxWidth()
                 .wrapContentHeight()
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             expanded = expanded,
@@ -667,10 +868,11 @@ fun RoomDropdownWrapper(
                     },
                     colors = MenuDefaults.itemColors().copy(
                         textColor = LocalPalette.current.textFamily.body,
+                        trailingIconColor = LocalPalette.current.textFamily.body,
                     ),
                     onClick = {
                         expanded = false
-                        mapsViewModel.setCurrentRoomId(it.id)
+                        mapsViewModel.setCurrentRoom(it.id)
                     },
                 )
             }

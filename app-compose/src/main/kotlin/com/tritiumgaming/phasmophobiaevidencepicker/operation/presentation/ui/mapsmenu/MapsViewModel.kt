@@ -17,7 +17,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.DecrementMapFloorIndexUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapDisplayUiState
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.InteractiveMapUiState
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Polygon
 import kotlinx.coroutines.Dispatchers
@@ -40,8 +40,8 @@ class MapsViewModel(
     private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase
 ) : ViewModel() {
 
-    private val _mapDisplayUiState = MutableStateFlow(MapDisplayUiState())
-    val mapDisplayUiState = _mapDisplayUiState.asStateFlow()
+    private val _interactiveMapUiState = MutableStateFlow(InteractiveMapUiState())
+    val interactiveMapUiState = _interactiveMapUiState.asStateFlow()
 
     var displayJob: Job? = null
 
@@ -53,33 +53,34 @@ class MapsViewModel(
             catch (e: Exception) { e.printStackTrace(); emptyList() }
 
     val currentComplexMap: ComplexWorldMap?
-        get() = complexMaps?.getMapById(mapDisplayUiState.value.mapId)
+        get() = complexMaps?.getMapById(interactiveMapUiState.value.mapId)
 
     fun getSimpleMap(): SimpleWorldMap = simpleMaps
-        .first { map -> map.mapId == mapDisplayUiState.value.mapId }
+        .first { map -> map.mapId == interactiveMapUiState.value.mapId }
 
     fun getFloorImage(): SimpleMapResources.MapFloorImage = getSimpleMap()
-        .getFloorImage(mapDisplayUiState.value.floorIndex)
+        .getFloorImage(interactiveMapUiState.value.floorIndex)
 
     fun getSelectedRoom(): ComplexWorldRoom? {
         return currentComplexMap?.let { map: ComplexWorldMap ->
-            map.getFloor(mapDisplayUiState.value.floorIndex).rooms[0]
+            map.getFloor(interactiveMapUiState.value.floorIndex).rooms[0]
         }
     }
 
-    fun getRooms(): List<ComplexWorldRoom> =
-        currentComplexMap?.mapFloors[mapDisplayUiState.value.floorIndex]?.rooms?.map { room ->
-            room
+    private fun getRooms(): List<ComplexWorldRoom> =
+        currentComplexMap?.mapFloors[interactiveMapUiState.value.floorIndex]
+            ?.rooms?.map { room -> room
         } ?: emptyList()
 
-    fun getRoomNameById(id: Int): String? =
-        currentComplexMap?.mapFloors[mapDisplayUiState.value.floorIndex]?.rooms?.first{ it.id == id }?.name
+    private fun getRoomNameById(id: Int): String? =
+        currentComplexMap?.mapFloors[interactiveMapUiState.value.floorIndex]
+            ?.rooms?.first{ it.id == id }?.name
 
     fun getRoomById(id: Int): ComplexWorldRoom? {
         return currentComplexMap?.let { map: ComplexWorldMap ->
-            map.getFloor(mapDisplayUiState.value.floorIndex).rooms.firstOrNull { room ->
-                room.id == id
-            }
+            map.getFloor(interactiveMapUiState.value.floorIndex)
+                .rooms.firstOrNull { room ->
+                room.id == id }
         }
     }
 
@@ -94,7 +95,8 @@ class MapsViewModel(
         viewModelScope.launch { withContext(Dispatchers.IO) {
 
             currentComplexMap?.let { map: ComplexWorldMap ->
-                map.getFloor(mapDisplayUiState.value.floorIndex).rooms.forEach { room ->
+                map.getFloor(interactiveMapUiState.value.floorIndex)
+                    .rooms.forEach { room ->
                     val roomShape = Polygon()
                     for (p in room.roomArea.points) {
                         val x = ((p.x * scaleX) + (translateX)).toInt()
@@ -103,8 +105,8 @@ class MapsViewModel(
                     }
 
                     if (roomShape.contains(point)) {
-                        setCurrentRoomId(
-                            if (room.id != mapDisplayUiState.value.roomId) room.id
+                        setCurrentRoom(
+                            if (room.id != interactiveMapUiState.value.roomId) room.id
                             else 0
                         )
                         return@forEach
@@ -115,36 +117,59 @@ class MapsViewModel(
 
     }
 
-    fun setCurrentMapId(id: String) {
-        _mapDisplayUiState.update {
+    fun setCurrentMap(id: String) {
+        _interactiveMapUiState.update {
+
+            val simpleMap = simpleMaps.first{ map -> map.mapId == id }
+            val complexMapFloors = complexMaps?.getMapById(id)?.mapFloors[simpleMap.defaultFloor]
+
             it.copy(
                 mapId = id,
-                floorIndex = simpleMaps.first { map -> map.mapId == id }.defaultFloor,
-                roomId = 0
+                floorIndex = simpleMap.defaultFloor,
+                roomId = 0,
+                roomName = complexMapFloors
+                    ?.floorRoomNames[0] ?: "",
+                roomDropdownList = complexMapFloors
+                    ?.rooms?.filter {
+                        room -> room.id != 0 } ?: emptyList()
             )
+
         }
     }
 
-    fun setCurrentRoomId(id: Int) {
-        _mapDisplayUiState.update {
+    fun setCurrentRoom(id: Int) {
+        _interactiveMapUiState.update {
+            val complexMapFloors = currentComplexMap?.mapFloors[it.floorIndex]
+
             it.copy(
-                roomId = id
+                roomId = id,
+                roomName = complexMapFloors?.rooms?.find { room ->
+                    room.id == id }?.name ?: "",
+                roomDropdownList = complexMapFloors?.rooms?.filter { room ->
+                    room.id != id } ?: emptyList()
             )
         }
     }
 
-    fun incrementFloorIndex() {
-        _mapDisplayUiState.update {
+    fun incrementFloor() {
+        _interactiveMapUiState.update {
             try {
                 val newIndex = incrementMapFloorIndexUseCase(
                     it.mapId,
                     it.floorIndex
                 ).getOrThrow()
 
+                val complexMapFloors = currentComplexMap?.mapFloors[newIndex]
+
                 it.copy(
                     floorIndex = newIndex,
-                    roomId = 0
+                    roomId = 0,
+                    roomName = complexMapFloors?.rooms?.find { room ->
+                        room.id == 0 }?.name ?: "",
+                    roomDropdownList = complexMapFloors?.rooms?.filter { room ->
+                        room.id != 0 } ?: emptyList()
                 )
+
             } catch (e: Exception) {
                 e.printStackTrace()
                 it
@@ -153,18 +178,25 @@ class MapsViewModel(
         }
     }
 
-    fun decrementFloorIndex() {
-        _mapDisplayUiState.update {
+    fun decrementFloor() {
+        _interactiveMapUiState.update {
             try {
                 val newIndex = decrementMapFloorIndexUseCase(
                     it.mapId,
                     it.floorIndex
                 ).getOrThrow()
 
+                val complexMapFloors = currentComplexMap?.mapFloors[newIndex]
+
                 it.copy(
                     floorIndex = newIndex,
-                    roomId = 0
+                    roomId = 0,
+                    roomName = complexMapFloors?.rooms?.find { room ->
+                        room.id == 0 }?.name ?: "",
+                    roomDropdownList = complexMapFloors?.rooms?.filter { room ->
+                        room.id != 0 } ?: emptyList()
                 )
+
             } catch (e: Exception) {
                 e.printStackTrace()
                 it
