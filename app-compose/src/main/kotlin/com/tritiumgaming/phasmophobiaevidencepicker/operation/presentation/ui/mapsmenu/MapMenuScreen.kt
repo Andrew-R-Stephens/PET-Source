@@ -3,12 +3,18 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.m
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
@@ -22,13 +28,23 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -70,16 +86,30 @@ fun MapMenuScreen(
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 MapMenuContentPortrait(
                     navController = navController,
-                    mapsViewModel = mapsViewModel
+                    mapsViewModel = mapsViewModel,
+                    rows = 2
                 )
             }
-            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.MOBILE_LANDSCAPE -> {
+                MapMenuContentLandscape(
+                    navController = navController,
+                    mapsViewModel = mapsViewModel,
+                    columns = 2
+                )
+            }
             DeviceConfiguration.TABLET_PORTRAIT,
-            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.TABLET_LANDSCAPE -> {
+                MapMenuContentLandscape(
+                    navController = navController,
+                    mapsViewModel = mapsViewModel,
+                    columns = 3
+                )
+            }
             DeviceConfiguration.DESKTOP -> {
                 MapMenuContentLandscape(
                     navController = navController,
-                    mapsViewModel = mapsViewModel
+                    mapsViewModel = mapsViewModel,
+                    columns = 4
                 )
             }
         }
@@ -91,17 +121,19 @@ fun MapMenuScreen(
 private fun MapMenuContentPortrait(
     navController: NavHostController,
     mapsViewModel: MapsViewModel,
+    rows: Int = 2
 ) {
     val rememberLazyGridState = rememberLazyGridState()
 
     LazyVerticalGrid(
         state = rememberLazyGridState,
-        columns = GridCells.Fixed(2),
-
+        columns = GridCells.Fixed(rows)
     ) {
         mapCardGrid(
             navController = navController,
-            mapsViewModel = mapsViewModel
+            mapsViewModel = mapsViewModel,
+            maxWidth = Dp.Unspecified,
+            maxHeight = Dp.Unspecified,
         )
     }
 
@@ -111,16 +143,25 @@ private fun MapMenuContentPortrait(
 private fun MapMenuContentLandscape(
     navController: NavHostController,
     mapsViewModel: MapsViewModel,
+    columns: Int = 2
 ) {
     val rememberLazyGridState = rememberLazyGridState()
 
+    var maxWidth by remember { mutableStateOf(Dp.Unspecified) }
+    val density = LocalDensity.current
+
     LazyHorizontalGrid(
         state = rememberLazyGridState,
-        rows = GridCells.Adaptive(minSize = 128.dp)
+        rows = GridCells.Fixed(count = columns)
     ) {
         mapCardGrid(
             navController = navController,
-            mapsViewModel = mapsViewModel
+            mapsViewModel = mapsViewModel,
+            onCardSizeChanged = { width, height ->
+                maxWidth = with(density) { width.toDp() }
+            },
+            maxWidth = maxWidth,
+            maxHeight = Dp.Unspecified
         )
     }
 
@@ -128,14 +169,22 @@ private fun MapMenuContentLandscape(
 
 private fun LazyGridScope.mapCardGrid(
     navController: NavHostController,
-    mapsViewModel: MapsViewModel
+    mapsViewModel: MapsViewModel,
+    onCardSizeChanged: (Int, Int) -> Unit = {w, h ->},
+    maxWidth: Dp = Dp.Unspecified,
+    maxHeight: Dp = Dp.Unspecified
 ) {
     itemsIndexed(mapsViewModel.simpleMaps) { index, map ->
+
         MapCard(
             title = map.mapName,
-            thumbnail = map.thumbnailImage
+            thumbnail = map.thumbnailImage,
+            onCardSizeChanged = { width, height ->
+                onCardSizeChanged(width, height)
+            },
+            maxWidth = maxWidth,
+            maxHeight = maxHeight
         ) {
-            Log.d("MapMenuScreen", "mapId: ${map.mapId}")
             navController.navigate(route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}")
         }
 
@@ -147,14 +196,24 @@ private fun MapCard(
     modifier: Modifier = Modifier,
     title: SimpleMapResources.MapTitle,
     thumbnail: SimpleMapResources.MapThumbnail,
+    onCardSizeChanged: (Int, Int) -> Unit = {w, h ->},
+    maxWidth: Dp = Dp.Unspecified,
+    maxHeight: Dp = Dp.Unspecified,
     onClick: () -> Unit = {}
 ) {
 
     Card (
         modifier = modifier
-            .padding(8.dp),
+            .padding(8.dp)
+            .then(
+                if(maxWidth == Dp.Unspecified) Modifier
+                else Modifier.width(maxWidth)
+            )
+            .then (
+                if(maxHeight == Dp.Unspecified) Modifier
+                else Modifier.height(maxHeight)
+            ),
         onClick = {
-            Log.d("MapMenuScreen", "click!")
             onClick()
         },
         shape = RoundedCornerShape(16.dp),
@@ -164,7 +223,14 @@ private fun MapCard(
     ) {
         Image(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .then(
+                    if(maxWidth == Dp.Unspecified) Modifier
+                    else Modifier.weight(1f, true)
+                )
+                .onSizeChanged { newSize ->
+                    onCardSizeChanged(newSize.width, newSize.height)
+                },
             painter = painterResource(thumbnail.toDrawableResource()),
             contentDescription = null,
             contentScale = ContentScale.Crop
@@ -174,13 +240,20 @@ private fun MapCard(
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .background(LocalPalette.current.surface.onColor)
-                .padding(8.dp),
+                .padding(8.dp)
+                .basicMarquee(
+                    iterations = Int.MAX_VALUE,
+                    initialDelayMillis = 1000,
+                    repeatDelayMillis = 1000,
+                )
+                .align(Alignment.CenterHorizontally),
             text = stringResource(title.toStringResource()),
             style = LocalTypography.current.primary.bold.copy(
                 textAlign = TextAlign.Center
             ),
             color = LocalPalette.current.textFamily.body,
-            fontSize = 24.sp
+            fontSize = 24.sp,
+            maxLines = 1
         )
     }
 
