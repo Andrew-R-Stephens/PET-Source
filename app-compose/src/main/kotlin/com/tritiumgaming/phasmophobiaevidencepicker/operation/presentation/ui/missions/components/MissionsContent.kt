@@ -174,6 +174,8 @@ fun MissionWrapper(
                             unfocusedIndicatorColor = Color.Transparent,
                             disabledIndicatorColor = Color.Transparent,
                             errorIndicatorColor = Color.Transparent,
+                            unfocusedTrailingIconColor = LocalPalette.current.textFamily.body,
+                            focusedTrailingIconColor = LocalPalette.current.textFamily.body
                         ),
                         onValueChange = {},
                         readOnly = true,
@@ -196,7 +198,6 @@ fun MissionWrapper(
 
                 ExposedDropdownMenu(
                     modifier = Modifier
-                        .fillMaxWidth()
                         .wrapContentHeight()
                         .padding(horizontal = 8.dp, vertical = 4.dp),
                     expanded = expanded,
