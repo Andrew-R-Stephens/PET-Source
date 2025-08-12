@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoiType
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.poi.mappers.MapPoiResources
 
 enum class ComplexPoiTypeDto {
     FUSE_BOX,
@@ -11,4 +11,4 @@ enum class ComplexPoiTypeDto {
     MATCH
 }
 
-fun ComplexPoiTypeDto.toDomain() = ComplexWorldPoiType.valueOf(name)
+fun ComplexPoiTypeDto.toDomain() = MapPoiResources.Poi.valueOf(name)

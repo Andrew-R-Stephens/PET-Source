@@ -21,6 +21,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.m
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto.RoomPointSerializerDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.WorldDimensionsSerializerDto
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.poi.mappers.MapPoiResources
 
 @Keep
 class WorldMapsSerializerDto {
@@ -135,7 +136,7 @@ fun List<POISerializerDto>.toPoiDto() = map {
 fun POISerializerDto.toPoiDto() = ComplexPoiDto(
     id = poiId,
     name = poiName,
-    type = ComplexPoiTypeDto.entries[poiType],
+    type = MapPoiResources.Poi.entries[poiType],
     point = PointF(x, y)
 )
 

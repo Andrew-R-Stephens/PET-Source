@@ -31,7 +31,13 @@ data class ComplexFloorDto(
             )
         },
         floorPOIs = floor.floorPOIs.map { poiSDto ->
-            ComplexPoiDto(poiSDto.poiId, poiSDto.poiName, poiSDto.poiType, poiSDto.x, poiSDto.y)
+            ComplexPoiDto(
+                id = poiSDto.poiId,
+                name = poiSDto.poiName,
+                type = poiSDto.poiType,
+                x = poiSDto.x,
+                y = poiSDto.y
+            )
         }
     ) {
         floor.floorRooms.map { roomSDto ->
