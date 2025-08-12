@@ -25,6 +25,8 @@ data class ComplexWorldMapFloor(
 
     fun getRoomIndexById(id: Int): Int = floorRooms.indexOfFirst { room -> room.id == id }
 
+    fun getPois(): List<ComplexWorldPoi> = floorPOIs
+
     override fun toString(): String {
         val builder = StringBuilder()
         builder.append("[Floor ID: $floorId] [Floor Name: $floorName] " +

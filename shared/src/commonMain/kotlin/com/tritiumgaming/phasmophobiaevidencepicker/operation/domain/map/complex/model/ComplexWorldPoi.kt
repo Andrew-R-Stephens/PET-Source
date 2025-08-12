@@ -1,9 +1,11 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model
 
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.poi.mappers.MapPoiResources
+
 data class ComplexWorldPoi(
     val id: Int,
     val name: String,
-    val type: ComplexWorldPoiType,
+    val type: MapPoiResources.Poi,
     val point: ComplexWorldPoint?
 ) {
 
