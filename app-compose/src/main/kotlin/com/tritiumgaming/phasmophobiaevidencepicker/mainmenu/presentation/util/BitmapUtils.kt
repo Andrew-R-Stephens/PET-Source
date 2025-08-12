@@ -233,7 +233,9 @@ class BitmapUtils {
         }
 
         fun getBitmapFromVector(
-            context: Context, drawableId: Int, options: BitmapFactory.Options
+            context: Context,
+            drawableId: Int,
+            options: BitmapFactory.Options = BitmapFactory.Options()
         ): Bitmap? {
             val drawable = ContextCompat.getDrawable(context, drawableId) ?: return null
 
