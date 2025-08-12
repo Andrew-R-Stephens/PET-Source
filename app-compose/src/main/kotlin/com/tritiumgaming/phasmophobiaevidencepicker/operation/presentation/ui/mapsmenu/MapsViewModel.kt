@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMap
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMapFloor
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMaps
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
@@ -43,8 +44,6 @@ class MapsViewModel(
     private val _interactiveMapUiState = MutableStateFlow(InteractiveMapUiState())
     val interactiveMapUiState = _interactiveMapUiState.asStateFlow()
 
-    var displayJob: Job? = null
-
     private var complexMaps: ComplexWorldMaps? = null
 
     val simpleMaps
@@ -57,6 +56,9 @@ class MapsViewModel(
 
     fun getSimpleMap(): SimpleWorldMap = simpleMaps
         .first { map -> map.mapId == interactiveMapUiState.value.mapId }
+
+    fun getFloorByIndex(index: Int): ComplexWorldMapFloor? =
+        currentComplexMap?.mapFloors[interactiveMapUiState.value.floorIndex]
 
     fun getFloorImage(): SimpleMapResources.MapFloorImage = getSimpleMap()
         .getFloorImage(interactiveMapUiState.value.floorIndex)

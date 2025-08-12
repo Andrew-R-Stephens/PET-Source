@@ -56,8 +56,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.asImageBitmap
@@ -89,7 +91,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.i
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.transparent
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.util.BitmapUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoint
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.poi.mappers.MapPoiResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
@@ -171,8 +175,12 @@ private fun MapCanvas(
 ) {
     val context = LocalContext.current
 
-    val mapDisplayUiState = mapsViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
+    val poiFillColor = LocalPalette.current.mapPoiFillColor
 
+    val mapDisplayUiState = mapsViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
+    val selectedFloor = mapDisplayUiState.value.floorIndex.let { floorIndex ->
+        mapsViewModel.getFloorByIndex(floorIndex)
+    }
     val selectedRoom = mapDisplayUiState.value.roomId.let { roomId ->
         mapsViewModel.getRoomById(roomId)
     }
@@ -182,9 +190,23 @@ private fun MapCanvas(
     val floorImage: ImageBitmap =
         BitmapFactory.decodeResource(context.resources, floorImageRes).asImageBitmap()
 
-    val inputController by remember{ mutableStateOf( InteractiveViewController()) }
-    inputController.setImageSize(floorImage.width, floorImage.height)
-    inputController.updateMatrix()
+    val poiImages: Map<MapPoiResources.Poi, ImageBitmap?>? =
+        MapPoiResources.Poi.entries.associateWith { type ->
+            val res = type.toDrawableResource()
+            val bitmap = context.resources?.let { resources ->
+                BitmapUtils.getBitmapFromVector(context, res)?.asImageBitmap() ?:
+                BitmapFactory.decodeResource(resources, res).asImageBitmap()
+            }
+            bitmap
+        }
+
+    val mapTransformationManager by remember{ mutableStateOf( InteractiveViewController()) }
+    mapTransformationManager.setImageSize(floorImage.width, floorImage.height)
+    mapTransformationManager.updateMatrix()
+
+    val poiTransformationManager by remember{ mutableStateOf( InteractiveViewController()) }
+    mapTransformationManager.setImageSize(floorImage.width, floorImage.height)
+    mapTransformationManager.updateMatrix()
 
     var interactionSourceMillis by remember {
         mutableLongStateOf(System.currentTimeMillis())
@@ -207,13 +229,13 @@ private fun MapCanvas(
             .onSizeChanged {
                 displayWidth = it.width
                 displayHeight = it.height
-                inputController.setContainerSize(it.width, it.height)
+                mapTransformationManager.setContainerSize(it.width, it.height)
             }
             .mapControlInput(
-                interactiveViewController = inputController,
+                interactiveViewController = mapTransformationManager,
                 onTap = { x, y ->
 
-                    val matrix = inputController.matrixValues
+                    val matrix = mapTransformationManager.matrixValues
                     val scaleX = matrix[Matrix.MSCALE_X]
                     val scaleY = matrix[Matrix.MSCALE_Y]
                     val translateX = matrix[Matrix.MTRANS_X]
@@ -234,21 +256,21 @@ private fun MapCanvas(
     ) {
         Log.d("MapCanvas", "$interactionSourceMillis")
 
-        inputController.postCenterTranslateMatrix(
+        mapTransformationManager.postCenterTranslateMatrix(
             floorImage.width.toFloat(),
             floorImage.height.toFloat(),
             displayWidth.toFloat(),
             displayHeight.toFloat()
         )
 
-        val matrix: FloatArray = inputController.matrixValues
+        val matrix: FloatArray = mapTransformationManager.matrixValues
         val scaleX = matrix[Matrix.MSCALE_X]
         val scaleY = matrix[Matrix.MSCALE_Y]
         val panX = matrix[Matrix.MTRANS_X]
         val panY = matrix[Matrix.MTRANS_Y]
 
         drawContext.canvas.save()
-        drawContext.canvas.nativeCanvas.concat(inputController.matrix)
+        drawContext.canvas.nativeCanvas.concat(mapTransformationManager.matrix)
         drawImage(
             image = floorImage
         )
@@ -293,6 +315,41 @@ private fun MapCanvas(
                     width = 3f
                 )
             )
+        }
+
+        selectedFloor?.let { currentFloor ->
+
+            currentFloor.getPois().forEach { poi ->
+
+                var x = panX
+                var y = panY
+                poi.point?.let { point ->
+                    x = (panX) + point.x * scaleX
+                    y = (panY) + point.y * scaleY
+                }
+
+                poiImages?.let { poiImages ->
+                    poiImages[poi.type]?.let { poiImage ->
+                        poiTransformationManager.deepCopy(mapTransformationManager)
+                        poiTransformationManager.setPan(x, y)
+                        poiTransformationManager.postTranslateOriginMatrix(
+                            poiImage.width.toFloat(), poiImage.height.toFloat(),
+                            displayWidth.toFloat(), displayHeight.toFloat()
+                        )
+                        drawContext.canvas.save()
+                        drawContext.canvas.nativeCanvas.concat(
+                            poiTransformationManager.matrix)
+                        drawImage(
+                            image = poiImage,
+                            filterQuality = FilterQuality.Low,
+                            colorFilter = ColorFilter.tint(poiFillColor)
+                        )
+                        drawContext.canvas.restore()
+                    }
+
+                }
+
+            }
         }
 
         /*val fontSize = (scaleX / width) * 24
@@ -549,7 +606,7 @@ private fun UiControllerPortrait(
 @Composable
 private fun UiControllerLandscape(
     modifier: Modifier = Modifier,
-    mapsViewModel: MapsViewModel = viewModel(factory = MapsViewModel.Factory),
+    mapsViewModel: MapsViewModel,
 ) {
 
     val mapDisplayUiState = mapsViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
@@ -781,7 +838,7 @@ private fun BackgroundGrid(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RoomDropdownWrapper(
+private fun RoomDropdownWrapper(
     modifier: Modifier = Modifier,
     mapsViewModel: MapsViewModel
 ) {
@@ -810,7 +867,8 @@ fun RoomDropdownWrapper(
                     .wrapContentHeight()
                     .menuAnchor(
                         ExposedDropdownMenuAnchorType.PrimaryNotEditable,
-                        true),
+                        true
+                    ),
                 value = roomName,
                 textStyle = LocalTypography.current.quaternary.regular.copy(
                     color = LocalPalette.current.textFamily.body,
