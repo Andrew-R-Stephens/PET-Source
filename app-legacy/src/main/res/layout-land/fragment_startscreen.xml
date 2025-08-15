@@ -78,24 +78,38 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_review"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_info"
+                app:layout_constraintEnd_toStartOf="@+id/button_patreon"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/button_inbox"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.compose.ui.platform.ComposeView
-                android:id="@+id/button_info"
-                tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:maxWidth="48dp"
-                android:maxHeight="48dp"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/button_patreon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:adjustViewBounds="true"
-                app:layout_constraintDimensionRatio="1"
+                android:contentDescription="@string/app_name"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_logo_patreon"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_info"
                 app:layout_constraintStart_toEndOf="@+id/button_review"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/button_info"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="48dp"
+                android:maxHeight="48dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_patreon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:composableName="com.tritiumgaming.phasmophobiaevidencepicker.views.composables.PETMenusKt.IconDropdownMenu" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

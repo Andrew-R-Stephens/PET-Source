@@ -276,6 +276,7 @@
     <integer-array name= "map_grafton_layerName_array">
         <item>@string/map_floor_name_first</item>
         <item>@string/map_floor_name_second</item>
+        <item>@string/map_floor_name_attic</item>
     </integer-array>
     <integer-array name= "map_brownstone_layerName_array">
         <item>@string/map_floor_name_first</item>
@@ -345,6 +346,7 @@
     <integer-array name= "map_grafton_image_array">
         <item>@drawable/map_grafton_firstfloor</item>
         <item>@drawable/map_grafton_secondfloor</item>
+        <item>@drawable/map_grafton_thirdfloor</item>
     </integer-array>
     <integer-array name= "map_brownstone_image_array">
         <item>@drawable/map_brownstone_firstfloor</item>
