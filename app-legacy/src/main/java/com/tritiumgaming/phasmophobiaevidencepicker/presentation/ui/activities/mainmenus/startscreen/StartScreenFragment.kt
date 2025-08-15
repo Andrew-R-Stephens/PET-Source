@@ -29,6 +29,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.Drop
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.IconDropdownMenu
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.LanguageIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.PatreonIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountIconView
 import java.util.Locale
 
@@ -60,6 +61,7 @@ class StartScreenFragment : MainMenuFragment() {
         val buttonMenu = view.findViewById<ComposeView>(R.id.button_settings)
         val languageIcon = view.findViewById<ComposeView>(R.id.icon_language)
         val buttonReview = view.findViewById<AppCompatImageView>(R.id.button_review)
+        val buttonPatreon = view.findViewById<AppCompatImageView>(R.id.button_patreon)
         buttonMsgInbox = view.findViewById(R.id.button_inbox)
         val buttonLanguage = view.findViewById<View>(R.id.listener_language)
 
@@ -76,10 +78,29 @@ class StartScreenFragment : MainMenuFragment() {
         newsIcon = ComposeView(requireContext())
         newsIcon?.setContent { NewsAlert(false) }
 
+        buttonPatreon.setOnClickListener {
+            try {
+                try {
+                    startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            "https://patreon.com/ ${getString(R.string.link_patronInvite)}"
+                                .toUri()
+                        )
+                    )
+                } catch (e: IllegalStateException) {
+                    e.printStackTrace()
+                }
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
+        }
+
         languageIcon?.setContent { LanguageIcon() }
 
         buttonMenu.setContent {
             val translationIcon: @Composable () -> Unit = { LanguageIcon() }
+            val patreonIcon: @Composable () -> Unit = { PatreonIcon() }
 
             IconDropdownMenu(
                 R.drawable.ic_menu,
@@ -100,7 +121,20 @@ class StartScreenFragment : MainMenuFragment() {
                         } catch (e: IllegalStateException) {
                             e.printStackTrace()
                         }
-                    }
+                    },
+                    DropdownClickPair(patreonIcon) {
+                        try {
+                            startActivity(
+                                Intent(
+                                    Intent.ACTION_VIEW,
+                                    "https://patreon.com/ ${getString(R.string.link_patronInvite)}"
+                                        .toUri()
+                                )
+                            )
+                        } catch (e: IllegalStateException) {
+                            e.printStackTrace()
+                        }
+                    },
                 )
             ) { false }
 
@@ -180,12 +214,14 @@ class StartScreenFragment : MainMenuFragment() {
         try {
             findNavController(v).navigate(R.id.action_titleScreenFragment_to_inboxFragment)
         } catch (e: IllegalStateException) { e.printStackTrace() }
+        catch (e: IllegalArgumentException) { e.printStackTrace() }
     }
 
     private fun gotoLanguagesFragment(v: View) {
         try {
             findNavController(v).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment)
         } catch (e: IllegalStateException) { e.printStackTrace() }
+        catch (e: IllegalArgumentException) { e.printStackTrace() }
     }
 
     private fun initReviewRequest(buttonReview: AppCompatImageView) {

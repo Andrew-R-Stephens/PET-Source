@@ -137,14 +137,18 @@ interface SignInCredentialManager {
             return
         }
 
-        val googleIdOption = GetSignInWithGoogleOption
-            .Builder(
-                serverClientId = activity.getString(R.string.default_web_client_id))
-            .build()
+        try {
+            val googleIdOption = GetSignInWithGoogleOption
+                .Builder(
+                    serverClientId = activity.getString(R.string.default_web_client_id))
+                .build()
+            finalizeAuthWithCredential(
+                activity, googleIdOption, onSuccess, onFailure, onComplete
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
-        finalizeAuthWithCredential(
-            activity, googleIdOption, onSuccess, onFailure, onComplete
-        )
     }
 
     /** For signing in with the bottom sheet. Attempts silent sign in. */
@@ -258,12 +262,6 @@ interface SignInCredentialManager {
         onComplete: () -> Unit = {}
     ) {
 
-        val request = GetCredentialRequest.Builder()
-            .addCredentialOption(credentialOption)
-            .build()
-
-        val credentialManager = CredentialManager.create(context = activity)
-
         fun handleSignIn(
             credentialResponse: GetCredentialResponse,
             onSuccess: () -> Unit = {},
@@ -334,6 +332,13 @@ interface SignInCredentialManager {
         CoroutineScope(Dispatchers.IO).launch {
 
             try{
+
+                val request = GetCredentialRequest.Builder()
+                    .addCredentialOption(credentialOption)
+                    .build()
+
+                val credentialManager = CredentialManager.create(context = activity)
+
                 val credentialResponse = credentialManager.getCredential(
                     request = request,
                     context = activity

@@ -189,11 +189,15 @@ class BitmapUtils {
 
         if (baseLayer == null && bitmapExists(topLayer)) {
             topLayer.config?.let { config ->
-                baseLayer = Bitmap.createBitmap(
-                    topLayer.width,
-                    topLayer.height,
-                    config
-                )
+                try {
+                    baseLayer = Bitmap.createBitmap(
+                        topLayer.width,
+                        topLayer.height,
+                        config
+                    )
+                } catch (e: OutOfMemoryError) {
+                    e.printStackTrace()
+                }
             }
 
         }
@@ -204,7 +208,7 @@ class BitmapUtils {
                     var paint: Paint? = null
                     if (mode != null) {
                         paint = Paint()
-                        paint?.setXfermode(PorterDuffXfermode(mode))
+                        paint.xfermode = PorterDuffXfermode(mode)
                     }
                     canvas.drawBitmap(topLayer, Matrix(), paint)
                     topLayer.recycle()
@@ -218,7 +222,7 @@ class BitmapUtils {
                     var paint: Paint? = null
                     if (mode != null) {
                         paint = Paint()
-                        paint?.setXfermode(PorterDuffXfermode(mode))
+                        paint.xfermode = PorterDuffXfermode(mode)
                     }
                     canvas.drawBitmap(topLayer, Matrix(), paint)
                     topLayer.recycle()

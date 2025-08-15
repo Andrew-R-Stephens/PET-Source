@@ -139,3 +139,27 @@ fun DiscordIcon() {
 
     }
 }
+
+@Composable
+@Preview
+fun PatreonIcon() {
+    val size = 48.dp
+
+    Box(
+        modifier = Modifier
+            .size(size)
+    ) {
+        val contentScale = ContentScale.Inside
+        val contentDescription = "Outer Box"
+
+        Image(
+            painter = painterResource(id = R.drawable.ic_logo_patreon),
+            contentDescription = contentDescription,
+            contentScale = contentScale,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+        )
+
+    }
+}
