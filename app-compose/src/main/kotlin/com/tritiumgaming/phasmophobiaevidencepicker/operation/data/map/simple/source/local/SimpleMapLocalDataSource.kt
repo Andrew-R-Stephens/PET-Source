@@ -177,6 +177,10 @@ class SimpleMapLocalDataSource(
                         layerName = MapFloorTitle.SECOND_FLOOR,
                         image = MapFloorImage.GRAFTON_FARMHOUSE_SECOND_FLOOR
                     ),
+                    MapFloorResourceDto(
+                        layerName = MapFloorTitle.ATTIC,
+                        image = MapFloorImage.GRAFTON_FARMHOUSE_THIRD_FLOOR
+                    ),
                 ),
                 defaultFloor = 0
             ),

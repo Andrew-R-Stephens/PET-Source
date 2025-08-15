@@ -112,6 +112,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
         MapFloorImage.BLEASDALE_FARMHOUSE_ATTIC -> R.drawable.map_bleasdale_thirdfloor
         MapFloorImage.GRAFTON_FARMHOUSE_FIRST_FLOOR -> R.drawable.map_grafton_firstfloor
         MapFloorImage.GRAFTON_FARMHOUSE_SECOND_FLOOR -> R.drawable.map_grafton_secondfloor
+        MapFloorImage.GRAFTON_FARMHOUSE_THIRD_FLOOR -> R.drawable.map_grafton_thirdfloor
         MapFloorImage.BROWNSTONE_HIGHSCHOOL_FIRST_FLOOR -> R.drawable.map_brownstone_firstfloor
         MapFloorImage.BROWNSTONE_HIGHSCHOOL_SECOND_FLOOR -> R.drawable.map_brownstone_secondfloor
         MapFloorImage.EDGEFIELD_BASEMENT -> R.drawable.map_edgefield_basement
