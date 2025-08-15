@@ -9,6 +9,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.i
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 /**
  * InvestigationData class
@@ -67,10 +68,10 @@ class InvestigationModel(
     private val _isSanityDrawerCollapsed: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val isSanityDrawerCollapsed = _isSanityDrawerCollapsed.asStateFlow()
     fun setDrawerState(isCollapsed: Boolean) {
-        _isSanityDrawerCollapsed.value = isCollapsed
+        _isSanityDrawerCollapsed.update { isCollapsed }
     }
     fun toggleDrawerState() {
-        _isSanityDrawerCollapsed.value = !isSanityDrawerCollapsed.value
+        _isSanityDrawerCollapsed.update { !isSanityDrawerCollapsed.value }
     }
 
     init {

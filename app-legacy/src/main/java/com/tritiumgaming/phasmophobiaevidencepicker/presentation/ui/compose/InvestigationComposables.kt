@@ -36,6 +36,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.InvestigationModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence.EvidenceModel
@@ -100,10 +101,11 @@ fun ResetButton(
 @Preview
 fun CollapseButton(
     modifier: Modifier = Modifier,
+    isCollapsedState: StateFlow<Boolean> = MutableStateFlow(false),
     onClick: () -> Unit = {},
-    isCollapsedState: StateFlow<Boolean> = MutableStateFlow(false)
+    onUpdate: (Boolean) -> Unit = {}
 ) {
-    val collapsedState by isCollapsedState.collectAsState()
+    val collapsedState by isCollapsedState.collectAsStateWithLifecycle()
 
     val rotation by animateFloatAsState(
         targetValue = if(collapsedState) 1f else 0f,
@@ -114,7 +116,8 @@ fun CollapseButton(
         label = "",
     )
 
-    val foregroundColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.textColorBody)
+    val foregroundColor = ColorUtils.getColorFromAttribute(
+        LocalContext.current, R.attr.textColorBody)
 
     Box(
         modifier = modifier
@@ -122,6 +125,7 @@ fun CollapseButton(
             //.border(1.5.dp, Color(foregroundColor), RoundedCornerShape(percent = 25))
             .clickable {
                 onClick()
+                onUpdate(collapsedState)
             }
     ) {
 

@@ -51,11 +51,11 @@ class EvidencePopupModel(context: Context) : InvestigationPopupModel() {
     @JvmRecord
     data class EvidencePopupRecord(
         @JvmField val index: Int,
-        @StringRes val name: Int,
-        @IntegerRes val cost: Int,
-        @IntegerRes val unlock_level: IntArray,
-        @StringRes val descriptions: IntArray,
-        @DrawableRes val animations: IntArray
+        @get:StringRes val name: Int,
+        @get:IntegerRes val cost: Int,
+        @get:IntegerRes val unlock_level: IntArray,
+        @get:StringRes val descriptions: IntArray,
+        @get:DrawableRes val animations: IntArray
     ) {
         fun getName(c: Context): String {
             return c.getString(name)

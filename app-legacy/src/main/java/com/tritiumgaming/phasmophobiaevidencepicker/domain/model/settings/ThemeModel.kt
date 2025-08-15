@@ -9,8 +9,8 @@ class ThemeModel
 @JvmOverloads
 constructor(
     val iD: String?,
-    @StringRes val name: Int,
-    @StyleRes val style: Int,
+    @get:StringRes val name: Int,
+    @get:StyleRes val style: Int,
     unlocked: Boolean = false
 ) {
 

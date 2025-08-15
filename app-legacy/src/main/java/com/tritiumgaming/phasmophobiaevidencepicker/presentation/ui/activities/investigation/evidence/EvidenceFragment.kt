@@ -11,7 +11,10 @@ import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import android.widget.ScrollView
+import android.widget.Toast
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.lifecycleScope
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
@@ -21,7 +24,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.section.lists.EvidenceListView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.section.lists.GhostListView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.CollapseButton
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.InvestigationToolbar
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.ResetButton
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.ToolBarItemPair
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -94,50 +99,71 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         ghostScrollview?.addView(ghostList)
         evidenceScrollview?.addView(evidenceList)
 
-        /*val toggleCollapseButton: ComposeView? = view.findViewById(R.id.button_sanity_toggle)
-        initCollapsible(toggleCollapseButton)*/
+        /*val buttonReset = view.findViewById<ComposeView?>(R.id.button_reset)
+        initResetButton(buttonReset)*/
 
-        val buttonReset = view.findViewById<ComposeView?>(R.id.button_reset)
-        initResetButton(buttonReset)
+        val collapseButton: @Composable () -> Unit = {
+            investigationViewModel?.investigationModel?.let { investigationModel ->
 
-        /*
-        val setupToolbarJob = CoroutineScope(Dispatchers.Main).launch {
-            val sanityToolbarComposable: ComposeView? =
-                view.findViewById(R.id.sanityToolbarComposable)
-            sanityToolbarComposable?.setContent {
-                val collapseButton: @Composable () -> Unit = {
-                    investigationViewModel?.investigationModel?.let { investigationModel ->
-                        CollapseButton(
-                            isCollapsedState = investigationModel.isSanityDrawerCollapsed,
-                            onClick = { investigationModel.toggleDrawerState() }
-                        )
+                CollapseButton(
+                    isCollapsedState = investigationModel.isSanityDrawerCollapsed,
+                    onClick = { investigationModel.toggleDrawerState() }
+                ) { state ->
+                    when (state) {
+                        true ->
+                            sanityToolsLayout?.animate()
+                                ?.setListener(object : AnimatorListenerAdapter() {
+                                    override fun onAnimationStart(animation: Animator) {
+                                        super.onAnimationStart(animation)
+                                        sanityToolsLayout?.visibility = View.GONE
+                                    }
+                                    override fun onAnimationEnd(animation: Animator) {
+                                        super.onAnimationEnd(animation)
+                                        sanityToolsLayout?.visibility = View.VISIBLE
+                                    }
+                                })?.start()
+
+                        false -> {
+                            sanityToolsLayout?.animate()
+                                ?.setListener(object : AnimatorListenerAdapter() {
+                                    override fun onAnimationStart(animation: Animator) {
+                                        super.onAnimationStart(animation)
+                                        sanityToolsLayout?.visibility = View.VISIBLE
+                                    }
+
+                                    override fun onAnimationEnd(animation: Animator) {
+                                        super.onAnimationStart(animation)
+                                        sanityToolsLayout?.visibility = View.GONE
+                                    }
+                                })?.start()
+                        }
                     }
                 }
 
-                val resetButton: @Composable () -> Unit = {
-                    ResetButton(
-                        onClick = { reset() }
-                    )
-                }
-
-                val toolsList: Array<ToolBarItemPair> = arrayOf(
-                    ToolBarItemPair(collapseButton) {
-                        try {
-                            Toast.makeText(requireActivity(), "Hi!", Toast.LENGTH_SHORT).show()
-                        } catch (e: IllegalStateException) {
-                            e.printStackTrace()
-                        }
-                    },
-                    ToolBarItemPair(resetButton),
-                    ToolBarItemPair(View(LocalContext.current))
-                )
-                InvestigationToolbar(
-                    toolsList
-                )
             }
         }
-        setupToolbarJob.start()
-        */
+
+        val resetButton: @Composable () -> Unit = {
+            ResetButton(
+                onClick = { reset() }
+            )
+        }
+
+        val toolsList: Array<ToolBarItemPair> = arrayOf(
+            ToolBarItemPair(collapseButton),
+            ToolBarItemPair(resetButton),
+            ToolBarItemPair(View(context))
+        )
+
+        val toolbarComposable: @Composable () -> Unit = {
+            InvestigationToolbar(
+            toolsList
+            )
+        }
+
+        val sanityToolbarComposable: ComposeView? =
+            view.findViewById(R.id.sanityToolbarComposable)
+        sanityToolbarComposable?.setContent { toolbarComposable() }
 
         popupWindow = PopupWindow(
             RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -150,70 +176,6 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
         Thread { ghostList?.createViews() }.start()
         Thread { evidenceList?.createViews() }.start()
 
-    }
-
-    private fun initResetButton(buttonReset: ComposeView?) {
-        buttonReset?.setContent {
-            ResetButton(
-                onClick = { reset() }
-            )
-        }
-
-    }
-
-    private fun initCollapsible(toggleCollapseButton: ComposeView?) {
-        investigationViewModel?.investigationModel?.let { investigationModel ->
-            toggleCollapseButton?.setContent {
-                CollapseButton(
-                    isCollapsedState = investigationModel.isSanityDrawerCollapsed,
-                    onClick = { investigationModel.toggleDrawerState() }
-                )
-            }
-        }
-
-        lifecycleScope.launch {
-            investigationViewModel?.investigationModel?.isSanityDrawerCollapsed
-                ?.collectLatest { state ->
-                sanityToolsLayout?.visibility = when (state) {
-                    true -> View.GONE
-                    false -> View.VISIBLE
-                }
-            }
-        }
-
-        // SANITY COLLAPSIBLE
-        toggleCollapseButton?.setOnClickListener {
-            when (investigationViewModel?.investigationModel?.isSanityDrawerCollapsed?.value == true) {
-                true ->
-                    sanityToolsLayout?.animate()
-                        ?.setListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationStart(animation: Animator) {
-                                super.onAnimationStart(animation)
-                                sanityToolsLayout?.visibility = View.GONE
-                            }
-                            override fun onAnimationEnd(animation: Animator) {
-                                super.onAnimationEnd(animation)
-                                sanityToolsLayout?.visibility = View.VISIBLE
-                                investigationViewModel?.investigationModel?.setDrawerState(false)
-                            }
-                        })?.start()
-                false -> {
-                    sanityToolsLayout?.animate()
-                        ?.setListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationStart(animation: Animator) {
-                                super.onAnimationStart(animation)
-                                sanityToolsLayout?.visibility = View.VISIBLE
-                            }
-
-                            override fun onAnimationEnd(animation: Animator) {
-                                super.onAnimationStart(animation)
-                                sanityToolsLayout?.visibility = View.GONE
-                                investigationViewModel?.investigationModel?.setDrawerState(true)
-                            }
-                        })?.start()
-                }
-            }
-        }
     }
 
     override fun reset() {

@@ -9,7 +9,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 class EvidenceModel(
     var id: Int = 0,
     var name: Int = 0,
-    @DrawableRes var icon: Int = R.drawable.ic_ev_dots
+    @get:DrawableRes var icon: Int = R.drawable.ic_ev_dots
 ) {
 
     var ruling: Ruling = Ruling.NEUTRAL

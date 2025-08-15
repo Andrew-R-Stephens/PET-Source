@@ -184,11 +184,11 @@ open class InvestigationActivity : PETActivity() {
         return false
     }
 
-    override fun onBackPressed() {
+    /*override fun onBackPressed() {
         resetViewModels()
 
         super.onBackPressed()
-    }
+    }*/
 
     override fun finish() {
         resetViewModels()
