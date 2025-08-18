@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        SETTINGS FRAGMENT
+    -->
+    <!-- Page Details -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_confirm">Bestätigen Sie</string>
+    <string name="settings_cancel">Abbrechen</string>
+    <string name="settings_extrasettings">Zusätzliche Einstellungen</string>
+    <string name="settings_generalsettings">Einstellungen</string>
+    <string name="settings_appearancesettings">Aussehen</string>
+    <string name="settings_fontstylesettings">Schriftstil</string>
+    <string name="settings_adsconsentcontrolsection">Anzeigen / DSGVO-Einstellungen</string>
+    <string name="settings_adsconsentcontrolsettings">GDPR-Konfiguration</string>
+    <string name="settings_adsconsentcontrolsettings_button">Bearbeiten</string>
+    <string name="settings_screenalwayson">Lassen Sie den Bildschirm immer eingeschaltet</string>
+    <string name="settings_networktitle">Mobile Datennutzung zulassen</string>
+    <string name="settings_huntwarningflashtimeout">Zeitüberschreitung für Jagdwarnblitze</string>
+    <string name="settings_huntwarningflashtimeout_never">Niemals eine Auszeit</string>
+    <string name="settings_enableLeftHandSupport">Linkshändermodus Aktivieren</string>
+    <string name="settings_enablehuntaudioqueue">Aktivieren Sie Hunt Audio Warning</string>
+    <string name="settings_enableGhostReorder">Neuanordnung der Ghost-Liste aktivieren</string>
+    <string name="settings_colorblindnessmode_note">(Wird wirksam, nachdem Sie die Einstellungen verlassen haben.)</string>
+    <string name="settings_colorblindnessmode_title">Farbenblindmodus</string>
+    <string name="settings_colortheme_title">Haut</string>
+    <string name="settings_colortheme_note">(Die Auswahl bei Farbenblindheit hat Vorrang)</string>
+
+    <!-- Colorblindness Types -->
+    <string name="settings_colorblindnessmode_normal">Keiner</string>
+
+</resources>

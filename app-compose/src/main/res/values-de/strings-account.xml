@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_title">Mein Konto</string>
+    <string name="account_label_information">Kontoinformationen</string>
+    <string name="account_label_name">Name</string>
+    <string name="account_label_email">Email</string>
+    <string name="account_button_login">Anmeldung</string>
+    <string name="account_button_logout">Ausloggen</string>
+    <string name="account_button_deactivate">Benutzerkonto deaktivieren</string>
+
+    <string name="account_button_visit_marketplace">Marktplatz besuchen</string>
+    <string name="account_button_get_skins">Mehr Skins holen!</string>
+
+    <!-- Deactivate -->
+    <string name="account_deactivate_title">Kontodeaktivierung</string>
+    <string name="account_deactivate_warning">Indem Sie Ihr Konto deaktivieren, stimmen Sie Folgendem zu:</string>
+    <string name="account_deactivate_warning_list_1">Sämtliche P.E.T.-Kontodaten können nicht wiederhergestellt werden.</string>
+    <string name="account_deactivate_warning_list_2">Sie verlieren den Zugriff auf Käufe, Freischaltungen und alle anderen zugehörigen Elemente.</string>
+    <string name="account_deactivate_warning_list_3">Sollten Sie sich mit denselben Anmeldedaten erneut anmelden, werden die vorherigen Kontodaten nicht übertragen.</string>
+    <string name="account_deactivate_button_confirm">Deaktivierung bestätigen</string>
+    <string name="account_deactivate_button_cancel">Egal</string>
+
+    <!-- Logout -->
+    <string name="account_logout_title">Ausloggen</string>
+    <string name="account_logout_warning">Möchten Sie sich wirklich abmelden?</string>
+    <string name="account_logout_button_confirm">Ausloggen</string>
+    <string name="account_logout_button_cancel">Stornieren</string>
+
+</resources>

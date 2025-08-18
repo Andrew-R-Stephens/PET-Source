@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="store_title_cursedpossessions">Prokletý majetek</string>
+
+    <string name="cursedpossessions_info_name_mirror">Haunted Mirror</string>
+    <string name="cursedpossessions_info_name_monkeypaw">opičí tlapka</string>
+    <string name="cursedpossessions_info_name_musicbox">Hudební skříň</string>
+    <string name="cursedpossessions_info_name_ouijaboard">Nástěnka Ouija</string>
+    <string name="cursedpossessions_info_name_summoningcircle">Svolávací kruh</string>
+    <string name="cursedpossessions_info_name_tarotcards">Tarotové karty</string>
+    <string name="cursedpossessions_info_name_voodoodoll">Voodoo panenka</string>
+
+    <!--
+        Flavor Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_flavortext">
+     <![CDATA[
+     <a>Velké kulaté zrcadlo. Když je držen, je držitel přitahován, aby se do něj podíval… ale za cenu.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_flavortext">
+     <![CDATA[
+     <a>Předmět vytažený přímo z folklóru, tato položka je fyzickým projevem „zkaženého přání“.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext">
+     <![CDATA[
+     <a>Není známo, jak je Opičí tlapka schopna porozumět přáním, ale toto je jedno z nich. Zapsal je tvůrce Opičí tlapky, nebo oběť?</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_musicbox_data_flavortext">
+     <![CDATA[
+     <a>Dřevěná krabička s vnitřními mechanismy, které jí umožňují hrát melodii. Hraje melodii s názvem \"Adrift\".</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_flavortext">
+     <![CDATA[
+     <a>Popsaná dřevěná deska, která je spárována s odpovídající planžetou. Z nějakého důvodu máte pocit, že by se s tím opravdu nemělo zahrávat.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_flavortext">
+     <![CDATA[
+     <a>Pentagram, který byl namalován na zemi něčím, co vypadá jako krev. Je doplněna pěti červenými svíčkami, které vypadají, že byly dříve používány.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem muže visícího za nohu z velké větve stromu.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem andělských křídel.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem vyděšené osoby v nouzi.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem číhající, stínové postavy.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem slunce a měsíce vedle sebe.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem osoby zabalené ve svěrací kazajce.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem středověkého blázna.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem Měsíce.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem Slunce.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower">
+     <![CDATA[
+     <a>Tarotová hrací karta označená obrázkem hradní věže.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_flavortext">
+     <![CDATA[
+     <a>Malá panenka, která byla prodchnuta esencí ducha a navždy spojuje dvě entity dohromady.</a>
+     ]]>
+     </string>
+
+    <!--
+        Info Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_info">
+     <![CDATA[
+     <p>Strašidelné zrcadlo vám ukáže, co je místnost duchů/oblíbená místnost! Pomáhá také potvrdit, zda duch během vyšetřování změní svou oblíbenou místnost.</p>
+
+     <p>NEUKÁŽE vám, kde se duch aktuálně nachází.</p>
+     <p>Při pohledu do zrcadla vyčerpá 7 % duševního zdraví za sekundu a minimálně 20 % při každém použití.</p>
+     <p>Pokud vám dojde zdravý rozum, zrcadlo se rozbije a spustí se lov prokletých.</p>
+     ]]>
+     </string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_info">
+     <![CDATA[
+     <h2>Počet přání, která máte, bude záviset na vaší obtížnosti nebo násobiteli odměn následovně…</h2>
+
+     <a>
+     <br>
+     0x - 1,9x Násobitel = 5 přání<br>
+     2x - 2,9x Násobitel = 4 přání<br>
+     3x a vyšší Násobitel = 3 přání
+     </a>
+
+     <h2>Všechna přání</h2>
+
+     <h4>Přeji si vidět ducha:</h4>
+     <a>
+     + Spustí událost ducha v umístění ducha.<br>
+     - Okamžitě uzamkne únikové dveře.<br>
+     - Zahájí lov bezprostředně po události ducha.<br>
+     - Snižuje vidění hráče po zbytek lovu s černou mlhou.
+     </a>
+
+     <h4>Přeji si aktivitu.</h4>
+     <a>
+     + Zdvojnásobí veškerou aktivitu duchů na 2 minuty, což zahrnuje interakce, roaming a schopnosti.<br>
+     - Rozbije pojistkovou skříňku a zamkne výstupní dveře na 2 minuty.
+     </a>
+
+     <h4>Přeji si zdravý rozum.</h4>
+     <a>
+     ~ Průměruje týmovou příčetnost na 50\%<br>
+     - Nastaví oblíbenou místnost duchů na novou, náhodnou místnost<br>
+     - Zvyšuje odliv zdravého rozumu o +50\% aktuální sazby pro celou skupinu.<br>
+     - Poznámka: Toto přání potlačí Goryovu slabost. To znamená, že navzdory tomu, že Goryo není schopen sám změnit pokoje, MŮŽE, pokud je použito přání zdravého rozumu.
+     </a>
+
+     <h4>Přeji si, aby byl duch uvězněn.</h4>
+     <a>
+     + Teleportuje ducha do jeho pokoje a na 1 minutu zamkne všechny jeho dveře.<br>
+     + Ghost nemůže lovit, toulat se ani provádět schopnosti, když je zavřený ve své místnosti.<br>
+     - Na 1 minutu uzamkne všechny dveře do místnosti, ve které se aktuálně nachází hráč, který vyslovil přání.<br>
+     - Duch po 1 minutě odemkne všechny dveře a zahájí lov.<br>
+     ~ 25\% šance na odemknutí dveří PO uplynutí doby odkladu.
+     </a>
+
+     <h4>Přeji si život. / Přeji si oživit svého přítele.</h4>
+     <a>
+     + Oživí mrtvého hráče.<br>
+     - 50\% šance zabít hráče, který použije přání.
+     </a>
+
+     <h4>Chci být v bezpečí</h4>
+     <a>
+     + Otevře nejbližší úkryt.<br>
+     - Rozbije světla v místnosti.<br>
+     - Duch může po zbytek běhu slyšet a cítit vybavení hráče, který během lovu vyslovil přání, odkudkoli na mapě.<br>
+     + Poznámka: Toho lze využít ve svůj prospěch k úmyslnému nalákání ducha do bezpečnější oblasti pro splnění cílů lovu.
+     </a>
+
+     <h4>Chci odejít.</h4>
+     <a>
+     + Kdykoli odemkne všechny únikové dveře, včetně během honů.<br>
+     - Zabrání vám v okamžitém pohybu a poté pomalu vrátí rychlost pohybu po dobu 5 sekund.<br>
+     - Snižuje vidění na 5 sekund pro osobu, která si přeje.
+     </a>
+
+     <h4>Přeji si znalosti.</h4>
+     <a>
+     + Odstraní 1 nesprávný důkaz a odpovídající typy duchů z vašeho deníku, čímž zúží vaše možnosti.<br>
+     - Zahájí lov v blízkosti hráče.<br>
+     - Po zbytek kola bude mít hráč, který přání vyslovil, snížený zrak a tlumený zvuk.<br>
+     - Poznámka: Dying resetuje zvukové a vizuální redukce zpět do normálu a zůstane normální, pokud bude oživen.
+     </a>
+
+     <h4>Přeji si [počasí].</h4>
+     <a>
+     + Pokud vám počasí nevyhovuje, můžete jej změnit na Déšť (2x), Sníh, Jasno, Mlha nebo Východ slunce.<br>
+     - Snižuje příčetnost o 25 % u osoby, která si to přeje.<br>
+     ~ Poznámka: Pokud si přejete déšť, získáte 50% šanci, že zažijete slabý nebo silný déšť.
+     </a>
+
+     <h4>Přeji si cokoliv.</h4>
+     <a>
+     + Nemůžete se rozhodnout, co si chcete přát? Nechte tlapku rozhodnout za vás. Přání si čehokoli vám splní jedno ze zbývajících (nevyužitých) přání pro dané kolo.<br>
+     ~ Poznámka: I když přání Anything můžete použít více než jednou, nesplní vám přání, které již bylo v daném běhu použito.
+     </a>
+     ]]>
+     </string>
+
+    <string name="shop_cursedpossessions_monkeypawwish_data_info">
+     <![CDATA[
+     <a>Na Sunny Meadows jsou skryté štítky, které vám poskytnou představu o tom, co si můžete přát při používání prokletého vlastnictví opičí tlapky. Chcete-li je najít, stačí jít do Sunny Meadows a rozhlédnout se. Jakmile bude nalezen, bude trvale přidán na stránku 12 vašeho deníku.</a>
+     <ul>
+     <li>Přeji si vidět ducha.</li>
+     <li>Přeji si aktivitu.</li>
+     <li>Přeji si zdravý rozum.</li>
+     <li>Přeji si, aby byl duch uvězněn.</li>
+     <li>Přeji si život.</li>
+     <li>Chci být v bezpečí.</li>
+     <li>Chci odejít.</li>
+     <li>Přeji si znalosti.</li>
+     <li>Přeji si (počasí).</li>
+     <li>Přeji si cokoliv.</li>
+     </ul>
+     <a>Poznámka: Abyste mohli přání použít, nemusíte hledat značky. Jsou zde pouze proto, aby vás provedli seznamem možností.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_musicbox_data_info">
+     <![CDATA[
+     <p>Hudební skříňka láká ducha! Během hraní bude duch hledat hudební skříňku. Skvělé pro fotografie a ovládání/vynucení lovu.</p>
+
+     <p>Být blízko hrací skříňky při jejím přehrávání vám vyčerpá zdravý rozum.</p>
+     <p>Pokud hrací skříňku místo umístění hodíte, rozbije se a spustí prokletý hon.</p>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_info">
+     <![CDATA[
+     <p>Nástěnku Ouija lze použít k vynucení lovu, nalezení místnosti duchů, fotografiím interakce s farmou atd.</p>
+
+     <p>Aktivujte nástěnku a poté pokládejte otázky nebo zadávejte požadavky. Deska bude aktivní, když je přítomna planžeta. Řekněte "sbohem" pro deaktivaci desky a planžeta bude vyzvednuta.</p>
+     <p>VŽDY SE ROZLOUČTE! Pokud se osoba, která vyvolala planžetu, vzdálí příliš daleko od aktivní desky ouija, zničí se a spustí prokletý lov.</p>
+     <p>Kdokoli v okolí může mluvit s tabulí.</p>
+     <p>Různé otázky nebo požadavky vyžadují více rozumu než jiné.</p>
+
+     <a>Můžete si položit několik otázek</a>
+     <ul>
+     <li>Kde jsi?</li>
+     <li>Kde je kost?</li>
+     <li>Jak jsi zemřel?</li>
+     <li>Jsem blázen?</li>
+     <li>Kolik lidí je v místnosti?</li>
+     <li>Kolik je vám let?</li>
+     <li>Jaký je můj zdravý rozum?</li>
+     </ul>
+
+     <p>Lov prokletí můžete spustit vyslovením „Hide and Seek“. Budete mít 5 sekund na to, abyste se dostali pryč, než bude mít duch šanci lovit.</p>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_info">
+     <![CDATA[
+     <p>Kdokoli v blízkosti svolávacího kruhu, když jsou zapálené svíčky, také ztratí zdravý rozum</p>
+     <p>Když jsou zapáleny všechny svíčky, spustí se Cursed Hunt. Duch bude chycen v kruhu na 1 nebo více sekund, než se začne pohybovat.</p>
+     <p>Doporučujeme pořídit fotografie ducha během doby lapení.</p>
+     <p>Prokletý lov lze zrušit krucifixem 3. úrovně.</p>
+     ]]>
+     </string>
+
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman">
+     <![CDATA[
+     <a>Okamžitě vás zabije</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_priestess">
+     <![CDATA[
+     <a>Vzkřísí mrtvého hráče. Pokud je více než jeden mrtvý hráč, karta vzkřísí náhodného mrtvého hráče. Pokud nejsou žádní mrtví hráči, karta vzkřísí dalšího hráče, který zemře.
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_death">
+     <![CDATA[
+     <a>Vynutí hon na duchy.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_devil">
+     <![CDATA[
+     <a>Vynutí událost ducha.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_fortune">
+     <![CDATA[
+     <a>Získejte 25 % zdravého rozumu [Green Burn], ztraťte 25 % zdravého rozumu [Red Burn]</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_hermit">
+     <![CDATA[
+     <a>Teleportuje a na minutu uvězní ducha v jeho oblíbené místnosti.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_joker">
+     <![CDATA[
+     <a>Nedělá nic. Blázen je technicky již vylosován a hra náhodně hodí o 1/9, aby zjistila, kterou kartu zobrazí, než blázna odhalí.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_moon">
+     <![CDATA[
+     <a>Sníží vaše duševní zdraví na 0 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_sun">
+     <![CDATA[
+     <a>Obnovte svůj zdravý rozum na 100 %.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_tower">
+     <![CDATA[
+     <a>Vynutí interakci a zdvojnásobí aktivitu duchů na 20 sekund.</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_info">
+     <![CDATA[
+     <p>Píchání do voodoo panenky si vynutí interakci!</p>
+     <p>Do voodoo panenky můžete píchnout až 10krát. Každé píchnutí má šanci píchnout do srdce, což spustí prokletý lov.</p>
+     <p>Snížením své příčetnosti na 0 % pomocí panenky aktivujete všechny odznaky a spustíte prokletý lov.</p>
+     ]]>
+     </string>
+
+    <!--
+        Sanity Drain Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_sanitydrain">
+ <![CDATA[
+ <a>7 %/s</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">
+ <![CDATA[
+ <a>0–25 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_musicbox_data_sanitydrain">
+ <![CDATA[
+ <a>2,5 %/s do 2,5 m</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">
+ <![CDATA[
+ <a>0–50 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">
+ <![CDATA[
+ <a>16 % za zapálenou svíčku</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">
+ <![CDATA[
+ <a>Okamžitá smrt</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess">
+ <![CDATA[
+ <a>0 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death">
+ <![CDATA[
+ <a>0 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil">
+ <![CDATA[
+ <a>0 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune">
+ <![CDATA[
+ <a>+25 % nebo -25 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit">
+ <![CDATA[
+ <a>0 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker">
+ <![CDATA[
+ <a>0 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon">
+ <![CDATA[
+ <a>0 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun">
+ <![CDATA[
+ <a>Nastavit na 100 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower">
+ <![CDATA[
+ <a>Nastavit na 0 %</a>
+ ]]>
+ </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain">
+ <![CDATA[
+ <a>5 % za použití</a>
+ ]]>
+ </string>
+
+
+    <!--
+        Alt Name Text
+    -->
+
+    <string name="shop_cursedpossessions_monkeypaw_data_altname">
+     <![CDATA[
+     <a>Základní ruka</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_altname">
+     <![CDATA[
+     <a>Sběratelství přání</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman">
+     <![CDATA[
+     <a>Oběšenec</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess">
+     <![CDATA[
+     <a>Vekněžka</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_death">
+     <![CDATA[
+     <a>Smrt</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_devil">
+     <![CDATA[
+     <a>Ďábel</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune">
+     <![CDATA[
+     <a>Kolo štěstí</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit">
+     <![CDATA[
+     <a>Poustevník</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_joker">
+     <![CDATA[
+     <a>Blázen</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_moon">
+     <![CDATA[
+     <a>Měsíc</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_sun">
+     <![CDATA[
+     <a>Slunce</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_tower">
+     <![CDATA[
+     <a>Věž</a>
+     ]]>
+     </string>
+
+
+    <!--
+        Attributes Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_attribute">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_musicbox_data_attribute">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute">
+     <![CDATA[
+     <a></a>
+     ]]>
+     </string>
+
+    <!--
+        Draw Chance Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_drawchance">
+     <![CDATA[
+     <a>-</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance">
+     <![CDATA[
+     <a>11–55 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">
+     <![CDATA[
+     <a>11–55 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_musicbox_data_drawchance">
+     <![CDATA[
+     <a>-</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance">
+     <![CDATA[
+     <a>-</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance">
+     <![CDATA[
+     <a>-</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman">
+     <![CDATA[
+     <a>1 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess">
+     <![CDATA[
+     <a>2 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">
+     <![CDATA[
+     <a>10 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">
+     <![CDATA[
+     <a>10 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">
+     <![CDATA[
+     <a>20 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">
+     <![CDATA[
+     <a>10 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">
+     <![CDATA[
+     <a>17 % / 100 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">
+     <![CDATA[
+     <a>5 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">
+     <![CDATA[
+     <a>5 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">
+     <![CDATA[
+     <a>20 %</a>
+     ]]>
+     </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_drawchance"><![CDATA[<a>10 %</a>]]></string>
+
+</resources>

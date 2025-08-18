@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Difficulty Titles -->
+    <string name="difficulty_title_default">Ninguna</string>
+    <string name="difficulty_title_amateur">Aficionado</string>
+    <string name="difficulty_title_intermediate">Intermedia</string>
+    <string name="difficulty_title_professional">Profesional</string>
+    <string name="difficulty_title_nightmare">Pesadilla</string>
+    <string name="difficulty_title_insanity">Locura</string>
+
+    <!-- Difficulty Response Type -->
+    <string name="difficulty_response_unknown">Desconocido</string>
+    <string name="difficulty_response_known">Conocido</string>
+
+    <!-- Difficulty Frequency -->
+
+    <string name="difficulty_frequency_none">Ninguno</string>
+    <string name="difficulty_frequency_low">Bajo</string>
+    <string name="difficulty_frequency_medium">Medio</string>
+    <string name="difficulty_frequency_high">Alto</string>
+    <string name="difficulty_frequency_veryHigh">Muy alto</string>
+</resources>

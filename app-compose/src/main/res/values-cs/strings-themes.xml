@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Color-Style Types -->
+    <string name="theme_palette_colorblind_monochromacy">Achromatopsie</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Deuteranopie</string>
+    <string name="theme_palette_colorblind_protanomaly">Protanopie</string>
+    <string name="theme_palette_colorblind_tritanomaly">Tritanopie</string>
+
+    <!-- Font-Style Types -->
+    <string name="theme_typography_classic">P.E.T. Klasický</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Časopis</string>
+    <string name="theme_typography_brick">Cihlový</string>
+    <string name="theme_typography_clean">Čistý</string>
+
+</resources>

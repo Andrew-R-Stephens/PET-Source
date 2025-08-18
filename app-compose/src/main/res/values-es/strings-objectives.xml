@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Page Details -->
+    <string name="objectives_ghostname_note">Ingrese el nombre del fantasma aquí</string>
+    <string name="objectives_title_optional_objectives">Objetivos Opcionales</string>
+    <string name="objectives_title_investigation_debrief">Informe de investigacion</string>
+    <string name="objectives_title_ghost_name">Nombre del fantasma</string>
+    <string name="objectives_title_response">Responde a las personas que son</string>
+    <string name="objectives_title_optional_objective_1">Objetivo 1</string>
+    <string name="objectives_title_optional_objective_2">Objetivo 2</string>
+    <string name="objectives_title_optional_objective_3">Objetivo 3</string>
+    <string name="objectives_title_response_alone">Sola</string>
+    <string name="objectives_title_response_everyone">Agrupados</string>
+
+    <!-- Mission Description -->
+    <string name="objective_info_ghostevent">Atestigue un evento fantasmal</string>
+    <string name="objective_info_ghostphotograph">Fotografie al fantasma</string>
+    <string name="objective_info_emfreader">Obtenga cualquier actividad del lector EMF</string>
+    <string name="objective_info_motionsensor">Obtenga actividad del sensor de movimiento</string>
+    <string name="objective_info_smudgestick">Barrer en la ubicación del fantasma</string>
+    <string name="objective_info_crucifix">Evita un ataque con el crucifijo</string>
+    <string name="objective_info_salt">Haz que el fantasma camine en la Sal</string>
+    <string name="objective_info_escapehunt">Escapa del fantasma mientras está cazando</string>
+    <string name="objective_info_repelwithsmudge">Repele al fantasma de la caza con un palo difuminado</string>
+    <string name="objective_info_extinguishcandle">Haz que el fantasma apague una vela</string>
+    <string name="objective_info_lowsanity">Obtenga una cordura de equipo promedio del 25% o menos</string>
+
+</resources>

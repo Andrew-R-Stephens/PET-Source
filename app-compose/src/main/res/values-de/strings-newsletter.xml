@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Page Details -->
+    <string name="newsletter_title">Nachrichtenzentrum</string>
+
+    <string name="newsletter_inbox_title_pet">P.E.T.-Änderungsprotokoll</string>
+    <string name="newsletter_inbox_title_phasmophobia">Phasmophobia-Änderungsprotokoll</string>
+    <string name="newsletter_inbox_title_general">Allgemeine Nachrichten</string>
+
+</resources>

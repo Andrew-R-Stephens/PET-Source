@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Page Details -->
+    <string name="objectives_title_optional_objectives">Optionale Ziele</string>
+    <string name="objectives_title_investigation_debrief">Untersuchungsbesprechung</string>
+    <string name="objectives_title_ghost_name">Name des Geistes</string>
+    <string name="objectives_ghostname_note">Geben Sie hier den Geisternamen ein</string>
+    <string name="objectives_title_response">Reagiert auf Personen, die</string>
+    <string name="objectives_title_optional_objective_1">Ziel 1</string>
+    <string name="objectives_title_optional_objective_2">Ziel 2</string>
+    <string name="objectives_title_optional_objective_3">Ziel 3</string>
+    <string name="objectives_title_response_alone">"Alleine "</string>
+    <string name="objectives_title_response_everyone">Gruppen</string>
+
+    <!-- Mission Description -->
+    <string name="objective_info_ghostevent">Werden Sie Zeuge eines Geisterevents</string>
+    <string name="objective_info_ghostphotograph">Fotografieren Sie den Geist</string>
+    <string name="objective_info_emfreader">Messen Sie die Geisteraktivität mit einem EMF-Reader</string>
+    <string name="objective_info_motionsensor">Stellen Sie die Anwesenheit des Geistes mit einem Bewegungssensor fest</string>
+    <string name="objective_info_smudgestick">Reinigen Sie den Bereich in der Nähe des Geistes mit Räucherstäbchen</string>
+    <string name="objective_info_crucifix">Verhindern Sie eine Jagd mit dem Kruzifix</string>
+    <string name="objective_info_salt">Lassen Sie den Geist durch Salz gehen</string>
+    <string name="objective_info_lowsanity">Erhalten Sie eine durchschnittliche Team-Vernunft von 25% oder weniger</string>
+    <string name="objective_info_extinguishcandle">Lassen Sie den Geist eine Kerze ausblasen</string>
+    <string name="objective_info_repelwithsmudge">Den Jagdgeist mit einem Wischstock abwehren</string>
+    <string name="objective_info_escapehunt">Échappez au fantastôme Anhänger qu\'il chasse</string>
+
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        SPIRITBOX TOOL PAGE
+    -->
+
+    <!-- All Entries -->
+    <!-- Personal Statements -->
+    <string name="spiritbox_entry_q01">Bloody Mary.</string>
+    <string name="spiritbox_entry_q02">Bojím se!</string>
+    <string name="spiritbox_entry_q03">Skryjte se!</string>
+    <string name="spiritbox_entry_q04">Panika!</string>
+    <string name="spiritbox_entry_q05">Utíkej!</string>
+    <!-- Mental State Questions -->
+    <string name="spiritbox_entry_q06">Zlobíte se?</string>
+    <string name="spiritbox_entry_q07">Jsi šťastný?</string>
+    <string name="spiritbox_entry_q08">Jste přátelští?</string>
+    <string name="spiritbox_entry_q09">Chcete nám ublížit?</string>
+    <string name="spiritbox_entry_q10">Chcete nás tady?</string>
+    <!-- Name Questions -->
+    <string name="spiritbox_entry_q11">Jak se jmenujete?</string>
+    <!-- Age Questions -->
+    <string name="spiritbox_entry_q12">Kolik je vám let?</string>
+    <!-- Location Questions -->
+    <string name="spiritbox_entry_q13">Kde jsi?</string>
+    <string name="spiritbox_entry_q14">Jste tady?</string>
+    <string name="spiritbox_entry_q15">Jste tu jediný?</string>
+    <string name="spiritbox_entry_q16">Kde jste?</string>
+    <!-- Interaction Questions -->
+    <string name="spiritbox_entry_q17">Napadněte nás!</string>
+    <string name="spiritbox_entry_q18">Můžete s námi mluvit?</string>
+    <string name="spiritbox_entry_q19">Udělejte něco.</string>
+    <string name="spiritbox_entry_q20">Dejte nám znamení!</string>
+    <string name="spiritbox_entry_q21">Lovte nás!</string>
+    <string name="spiritbox_entry_q22">Dejte nám vědět, že jste zde.</string>
+    <string name="spiritbox_entry_q23">Udělejte hluk.</string>
+    <string name="spiritbox_entry_q24">Otevřete dveře.</string>
+    <string name="spiritbox_entry_q25">Ukažte se!</string>
+    <string name="spiritbox_entry_q26">Něco hoďte.</string>
+    <string name="spiritbox_entry_q27">Vypněte světlo.</string>
+    <string name="spiritbox_entry_q28">Zapněte světlo.</string>
+    <!-- General Questions -->
+    <string name="spiritbox_entry_q29">Dobrý den?</string>
+    <string name="spiritbox_entry_q30">Můžeme s něčím pomoci?</string>
+    <string name="spiritbox_entry_q31">Co chcete?</string>
+    <string name="spiritbox_entry_q32">Proč jste tady?</string>
+    <string name="difficulty_title_nightmare">Noční můra</string>
+    <string name="settings_networktitle">Povolit využití Mobilních Dat</string>
+    <string name="spiritbox_entry_q33">Jaký je můj zdravý rozum?</string>
+    <string name="spiritbox_entry_q34">Jak moc jsem blázen?</string>
+    <string name="spiritbox_entry_q35">Jak moc jsem blázen?</string>
+    <string name="spiritbox_entry_q36">Jsem blázen?</string>
+
+</resources>

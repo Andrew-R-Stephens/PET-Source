@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Difficulty Titles -->
+    <string name="difficulty_title_default">Žádné</string>
+    <string name="difficulty_title_amateur">Amatér</string>
+    <string name="difficulty_title_intermediate">Středně pokročilý</string>
+    <string name="difficulty_title_professional">Profesionál</string>
+    <string name="difficulty_title_nightmare">Noční můra</string>
+    <string name="difficulty_title_insanity">Šílenství</string>
+
+    <!-- Difficulty Response Type -->
+    <string name="difficulty_response_known">Známý</string>
+    <string name="difficulty_response_unknown">Neznámý</string>
+
+    <!-- Difficulty Frequency -->
+    <string name="difficulty_frequency_none">Žádné</string>
+    <string name="difficulty_frequency_low">Nízké</string>
+    <string name="difficulty_frequency_medium">Střední</string>
+    <string name="difficulty_frequency_high">Vysoké</string>
+    <string name="difficulty_frequency_veryHigh">Velmi vysoké</string>
+
+</resources>

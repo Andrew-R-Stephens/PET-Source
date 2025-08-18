@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Page Details -->
+    <string name="objectives_ghostname_note">Entrez le nom du fantôme ici</string>
+    <string name="objectives_title_optional_objectives">Objectifs optionnels</string>
+    <string name="objectives_title_investigation_debrief">Compte rendu d\'enquête</string>
+    <string name="objectives_title_ghost_name">Nom du fantôme</string>
+    <string name="objectives_title_response">"Réponds aux personnes qui sont "</string>
+    <string name="objectives_title_optional_objective_1">Objectif 1</string>
+    <string name="objectives_title_optional_objective_2">Objectif 2</string>
+    <string name="objectives_title_optional_objective_3">Objectif 3</string>
+    <string name="objectives_title_response_alone">Seule</string>
+    <string name="objectives_title_response_everyone">Groupe</string>
+
+    <!-- Mission Description -->
+    <string name="objective_info_ghostevent">Avoir un membre de votre équipe assister à un événement paranormal</string>
+    <string name="objective_info_ghostphotograph">Prenez une photo du fantôme</string>
+    <string name="objective_info_emfreader">Trouvez des preuves du paranormal avec un lecteur EMF</string>
+    <string name="objective_info_motionsensor">Détectez une présence de fantômes avec un capteur de mouvement</string>
+    <string name="objective_info_smudgestick">Nettoyez la zone près du fantôme à l\'aide de bâton d\'encens</string>
+    <string name="objective_info_crucifix">Empêchez le fantôme de chasser avec un crucifix</string>
+    <string name="objective_info_salt">Faites marcher un fantôme dans du sel</string>
+    <string name="objective_info_escapehunt">Échappez au fantôme pendant qu\'il chasse</string>
+    <string name="objective_info_repelwithsmudge">Repoussez le fantôme de chasse avec un bâton de smudge</string>
+    <string name="objective_info_extinguishcandle">Faire souffler une bougie par le fantôme</string>
+    <string name="objective_info_lowsanity">Obtenez une santé mentale moyenne de l\'équipe de 25% ou moins</string>
+
+</resources>

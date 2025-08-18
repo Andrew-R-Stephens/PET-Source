@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="marketplace_title">Marktplatz</string>
+    <string name="marketplace_list_bundles">Themenpakete</string>
+    <string name="marketplace_list_prestige">Prestige-Themen</string>
+    <string name="marketplace_list_event">Event-Themen</string>
+    <string name="marketplace_list_community">Community-Themen</string>
+    <string name="marketplace_connection_error">Oh oh! Beim Verbinden mit dem Marktplatz ist ein Fehler aufgetreten.</string>
+    <string name="marketplace_error_login_required">Bitte melden Sie sich an, um Marketplace-Inhalte anzufordern.</string>
+    <string name="marketplace_button_watch_ad">Credits verdienen</string>
+    <string name="marketplace_button_item_get">Holen Sie sich</string>
+    <string name="marketplace_button_purchase_credits">Credits kaufen</string>
+    <string name="marketplace_label_purchased">Freigeschaltet</string>
+    <string name="marketplace_label_bundle_includes">Beinhaltet</string>
+    <string name="marketplace_purchase_equip">Mit %1$s Thema ausstatten?</string>
+
+    <plurals name="marketplace_description_watch_ad">
+        <item quantity="one">Begleiterguthaben</item>
+        <item quantity="other">Begleiterguthaben</item>
+    </plurals>
+
+    <string name="marketplace_description_watch_ad">Sehen Sie sich eine Anzeige an, um %s %s zu verdienen.</string>
+    <string name="marketplace_description_purchase_credits">Kaufen Sie Guthaben direkt.</string>
+
+    <!-- Acknowledgement -->
+    <string name="marketplace_acknowledgement_title">Marktplatzvereinbarung</string>
+    <string name="marketplace_acknowledgement_warning">Indem Sie den „Markt“ des Phasmophobia Evidence Tools verwenden, stimmen Sie implizit Folgendem zu:</string>
+    <string name="marketplace_acknowledgement_warning_list_1">Die Begriffe „Inhalt“, „Elemente“ und „Freischaltungen“ beziehen sich auf Bilder, Namen und andere Assets. Der Begriff „Entwickler“ bezieht sich auf Tritium Studios. Der Begriff „P.E.T.“ oder „diese App“ bezieht sich auf die App „Phasmophobia Evidence Tool“.</string>
+    <string name="marketplace_acknowledgement_warning_list_2">„P.E.T.“ ist mit keiner anderen Entität verbunden, die möglicherweise Ähnlichkeiten mit den bereitgestellten Inhalten aufweist oder nicht.</string>
+    <string name="marketplace_acknowledgement_warning_list_3">Alle Inhalte, ob früher oder aktuell, dienen innerhalb von „P.E.T.“ ausschließlich kosmetischen Zwecken. Inhalte können außerhalb von „P.E.T.“ nicht eingelöst oder übertragen werden und haben keine Auswirkungen auf externe Einheiten, wie beispielsweise (jedoch nicht beschränkt auf) Spiele wie „Phasmophobia“.</string>
+    <string name="marketplace_acknowledgement_warning_list_4">Alle Transaktionen sind endgültig. Der Inhalt kann teilweise vollständig, defekt oder fehlerhaft sein. Inhalte können künftig vom Entwickler deaktiviert, entfernt oder geändert werden. Die Anerkennung des Verlusts des Zugriffs auf Inhalte durch Ihr Konto oder jeglicher Änderungen an Inhalten obliegt dem Entwickler.</string>
+    <string name="marketplace_acknowledgement_button_confirm">Habe es!</string>
+</resources>
