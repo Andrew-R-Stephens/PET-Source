@@ -19,7 +19,6 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.StartScreenAnimationView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewLauncher
@@ -88,7 +87,7 @@ class StartScreenFragment : MainMenuFragment() {
                                 .toUri()
                         )
                     )
-                } catch (e: IllegalStateException) {
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
             } catch (e: IllegalStateException) {
@@ -118,7 +117,7 @@ class StartScreenFragment : MainMenuFragment() {
                                         .toUri()
                                 )
                             )
-                        } catch (e: IllegalStateException) {
+                        } catch (e: Exception) {
                             e.printStackTrace()
                         }
                     },
@@ -160,12 +159,15 @@ class StartScreenFragment : MainMenuFragment() {
 
         super.initAdView(view.findViewById(R.id.adView))
 
-        try { if (!(requireActivity() as MainMenuActivity).checkForAppUpdate()) {
-                initReviewRequest(buttonReview) } }
-        catch (e: IllegalStateException) { e.printStackTrace() }
-        catch (e: SendIntentException) { e.printStackTrace() }
+        try {
+            initReviewRequest(buttonReview)
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
+        }
 
-        try { doReviewRequest() }
+        try {
+            doReviewRequest()
+        }
         catch (e: SendIntentException) { e.printStackTrace() }
     }
 

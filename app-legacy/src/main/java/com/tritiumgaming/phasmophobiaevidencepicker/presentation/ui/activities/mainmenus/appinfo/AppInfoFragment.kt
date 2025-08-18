@@ -22,6 +22,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.FontUtils.replaceHTMLFontColor
+import androidx.core.net.toUri
 
 class AppInfoFragment : MainMenuFragment() {
     override fun onCreateView(
@@ -54,8 +55,13 @@ class AppInfoFragment : MainMenuFragment() {
                 catch (e: IllegalStateException) { e.printStackTrace() } }
         }
         discordButton.setOnClickListener { v: View? ->
-            startActivity(
-                Intent(Intent.ACTION_VIEW, Uri.parse("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite))))
+            try {
+                startActivity(
+                    Intent(Intent.ACTION_VIEW,
+                        ("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)).toUri()))
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
 
         // INITIALIZE FONT EMPHASIS COLOR
