@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_title">Мій Обліковий запис</string>
+    <string name="account_label_information">Інформація про Обліковий запис</string>
+    <string name="account_label_name">Ім\'я</string>
+    <string name="account_label_email">Електронна пошта</string>
+    <string name="account_button_login">Авторизуватися</string>
+    <string name="account_button_logout">Вийти</string>
+    <string name="account_button_deactivate">Деактивувати Обліковий запис</string>
+    <!-- Deactivate -->
+    <string name="account_button_get_skins">Отримайте більше скінів!</string>
+    <string name="account_deactivate_title">Деактивація Облікового запису</string>
+    <string name="account_deactivate_warning">Вирішуючи деактивувати обліковий запис, ви погоджуєтеся з наступним:</string>
+    <string name="account_deactivate_warning_list_1">Усі P.E.T. дані облікового запису стануть неможливими для відновлення.</string>
+    <string name="account_deactivate_warning_list_2">Ви втратите доступ до покупок, розблокувань та всіх інших пов’язаних елементів.</string>
+    <string name="account_deactivate_warning_list_3">Якщо ви повторно приєднаєтеся з тим самим входом, дані попереднього облікового запису не буде перенесено.</string>
+    <string name="account_deactivate_button_confirm">Підтвердити деактивацію</string>
+    <string name="account_deactivate_button_cancel">Неважливо</string>
+    <!-- Logout -->
+    <string name="account_logout_title">Вийти</string>
+    <string name="account_logout_warning">Ви впевнені, що бажаєте вийти?</string>
+    <string name="account_logout_button_confirm">Вийти</string>
+    <string name="account_logout_button_cancel">Скасувати</string>
+    <string name="account_button_visit_marketplace">Відвідайте Marketplace</string>
+</resources>

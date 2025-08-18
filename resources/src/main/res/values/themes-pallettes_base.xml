@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Base application theme. -->
+
+    <style name="Theme.PhasmophobiaEvidenceTool" parent="Theme.AppCompat">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="android:statusBarColor">?attr/colorOnSecondary</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="backgroundColor" >@color/black</item>
+        <!--<item name="backgroundColorOnBackground" >@color/black_M50</item>-->
+        <item name="backgroundColorOnBackground" >#191616</item>
+        <item name="windowBackgroundColor">@color/black</item>
+        <item name="windowStrokeColor">@color/white</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+
+        <item name="textColorBody">@color/white</item>
+
+        <item name="progressBarColorThumbOutline">#CCCCCC</item>
+
+        <item name="buttonFilterOnPrimary">@color/white</item>
+
+        <!-- Codex Colors -->
+        <item name="codex6_gridBackground">#40161C1C</item>
+        <item name="codex7_gridStroke">#40FFFFFF</item>
+
+        <item name="colorActionPrimary">?attr/textColorBody</item> <!-- DONE -->
+    </style>
+
+</resources>

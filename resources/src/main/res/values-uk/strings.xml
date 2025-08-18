@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        UNIVERSAL DETAILS
+    -->
+    <!-- Toast Messages -->
+    <string name="toast_discardchanges">Зміни скасовано</string>
+    <!-- Navigation Labels -->
+    <string name="navigation_open_state">Панель навігації відкрито.</string>
+    <string name="navigation_closed_state">Панель навігації закрита.</string>
+    <string name="general_evidence_button">Докази</string>
+    <string name="general_maps_button">Карти</string>
+    <string name="general_tasks_button">Завдання</string>
+    <string name="general_codex_button">Кодекс</string>
+    <string name="general_navigation_menu">Меню</string>
+    <string name="general_navigation_home">Додому</string>
+    <string name="general_navigation_primary">Первинний</string>
+    <string name="general_navigation_secondary">Вторинний</string>
+    <string name="general_navigation_alternative">Альтернатива</string>
+    <string name="general_navigation_tools">Інструменти</string>
+    <string name="general_navigation_settings">Налаштування</string>
+    <string name="general_navigation_system">Система</string>
+    <string name="general_evidence_reset_button">Скинути</string>
+    <!--
+        TITLESCREEN FRAGMENT
+    -->
+    <!-- Page Details -->
+    <string name="titlescreen_beta_label">Бета</string>
+    <string name="titlescreen_description">Найкращий доказовий інструмент</string>
+    <string name="titlescreen_button">Почати полювання</string>
+    <string name="titlescreen_languages_label">Виберіть мову</string>
+    <!--
+         REVIEW POPUP
+    -->
+    <!-- Page Details -->
+    <string name="review_requesttitle">Будь ласка, враховуйте рейтинг P.E.T.!</string>
+    <string name="review_accept">Звичайно!</string>
+    <string name="review_decline">Ні, дякую</string>
+    <!--
+        LANGUAGE FRAGMENT
+    -->
+    <!-- Languages -->
+    <!--
+        ABOUT FRAGMENT
+    -->
+    <!-- Page Details -->
+    <string name="aboutinfo_title_about">Про</string>
+    <string name="aboutinfo_version">Версія</string>
+    <string name="aboutinfo_aboutapp_info"><![CDATA[<p><font color=#CC3C3C>Phasmophobia</font> \- це унікальна гра жахів, розроблена <font color=#CC3C3C>Kinetic Games</font>.</p>
+            <p><font color=#CC3C3C>P.E.T.</font> є неофіційним допоміжним інструментом\-\-, який діє як посібник для нових гравців і як помічник для ветеранів.</p>
+            <p><font color=#CC3C3C>Щиро дякуємо за використання P.E.T.!</font></p>
+        ]]></string>
+    <string name="aboutinfo_developerinfo_title">Інформація про розробника</string>
+    <string name="aboutinfo_developerinfo_developer">Розробник</string>
+    <string name="aboutinfo_developerinfo_contact">Контакт</string>
+    <string name="aboutinfo_discord_join">Приєднуйтесь до Discord</string>
+    <string name="aboutinfo_specialthanks_title">Особлива подяка</string>
+    <!--
+        SETTINGS FRAGMENT
+    -->
+    <!-- Page Details -->
+    <string name="settings_title">Налаштування</string>
+    <string name="settings_confirm">Підтвердити</string>
+    <string name="settings_cancel">Скасувати</string>
+    <string name="settings_generalsettings">Загальні налаштування</string>
+    <string name="settings_extrasettings">Додаткові налаштування</string>
+    <string name="settings_appearancesettings">Зовнішній вигляд</string>
+    <string name="settings_fontstylesettings">Стиль шрифту</string>
+    <string name="settings_adsconsentcontrolsection">Оголошення / Налаштування GDPR</string>
+    <string name="settings_adsconsentcontrolsettings">Налаштування GDPR</string>
+    <string name="settings_adsconsentcontrolsettings_button">Редагувати</string>
+    <string name="settings_screenalwayson">Завжди тримайте екран увімкненим</string>
+    <string name="settings_networktitle">Дозволити мобільні дані</string>
+    <string name="settings_huntwarningflashtimeout">Тривалість попередження про полювання</string>
+    <string name="settings_huntwarningflashtimeout_never">Ніколи тайм-аут</string>
+    <string name="settings_enableLeftHandSupport">Увімкнути режим лівої руки</string>
+    <string name="settings_enablehuntaudioqueue">Увімкнути звук попередження про пошук</string>
+    <string name="settings_enableGhostReorder">Увімкнути перевпорядкування списку привидів</string>
+    <string name="settings_colorblindnessmode_title">Режим дальтоніка</string>
+    <string name="settings_colorblindnessmode_note">(Набуде чинності після виходу з налаштувань)</string>
+    <string name="settings_colortheme_title">Скін</string>
+    <string name="settings_colortheme_note">(Вибір дальтонізму має перевагу)</string>
+    <!-- Colorblindness Types -->
+    <string name="settings_colorblindnessmode_normal">Жодного</string>
+    <string name="theme_palette_colorblind_monochromacy">Ахроматопсія</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Дейтеранопія</string>
+    <string name="theme_palette_colorblind_protanomaly">Протанопія</string>
+    <string name="theme_palette_colorblind_tritanomaly">Тританопія</string>
+    <!-- Font-Style Types -->
+    <string name="theme_typography_classic">P.E.T. класичний</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Журнал</string>
+    <string name="theme_typography_brick">Brick</string>
+    <string name="theme_typography_clean">Clean</string>
+    <!--
+        MESSAGE CENTER FRAGMENTS
+    -->
+    <!-- Page Details -->
+    <string name="newsletter_title">Центр повідомлень</string>
+    <string name="newsletter_inbox_title_general">Загальні новини</string>
+    <string name="newsletter_inbox_title_pet">P.E.T. Журнал змін</string>
+    <string name="newsletter_inbox_title_phasmophobia">Список змін Phasmophobia</string>
+    <!--
+        EVIDENCE FRAGMENT
+    -->
+    <!-- Page Details -->
+    <!-- Team Data -->
+    <!-- Solo/Team Data -->
+    <string name="investigation_your_sanity_level_title">Ваш рівень здорового глузду</string>
+    <string name="investigation_timer_label">Час підготовки:</string>
+    <string name="difficulty_title_default">Жодного</string>
+    <string name="difficulty_title_amateur">Любитий</string>
+    <string name="difficulty_title_intermediate">Середня</string>
+    <string name="difficulty_title_professional">Професіонал</string>
+    <string name="difficulty_title_nightmare">Кошмар</string>
+    <string name="difficulty_title_insanity">Божевілля</string>
+    <string name="investigation_timer_difficulty_label">Складність</string>
+    <string name="investigation_timer_maplabel">Карта</string>
+    <string name="investigation_timer_actionlabel">Дія</string>
+    <string name="investigation_timer_setuplabel">Налаштування</string>
+    <string name="investigation_sanity_huntwarn">Полювання Попереджує</string>
+    <string name="investigation_sanitymeter_title">Макс Саніті</string>
+    <string name="investigation_section_title_ghosts">Привиди</string>
+    <string name="investigation_section_title_evidence">Докази</string>
+
+    <!--
+        TOOLS PAGE
+    -->
+    <!--
+        SPIRITBOX TOOL PAGE
+    -->
+    <!-- All Entries -->
+    <!-- Personal Statements -->
+    <string name="spiritbox_entry_q01">Кривава Мері.</string>
+    <string name="spiritbox_entry_q02">Мені страшно!</string>
+    <string name="spiritbox_entry_q03">Сховайся!</string>
+    <string name="spiritbox_entry_q04">Паніка!</string>
+    <string name="spiritbox_entry_q05">Біжи!</string>
+    <!-- Preferential Questions -->
+    <string name="spiritbox_entry_q06">Ти сердишся?</string>
+    <string name="spiritbox_entry_q07">Ти щасливий?</string>
+    <string name="spiritbox_entry_q08">Ти товариський?</string>
+    <string name="spiritbox_entry_q09">Ти хочеш зробити нам боляче?</string>
+    <string name="spiritbox_entry_q10">Ти хочеш, щоб ми були тут?</string>
+    <!-- Name Questions -->
+    <string name="spiritbox_entry_q11">Як тебе звуть?</string>
+    <!-- Age Questions -->
+    <string name="spiritbox_entry_q12">Скільки років тобі?</string>
+    <!-- Location Questions -->
+    <string name="spiritbox_entry_q13">Де ти є?</string>
+    <string name="spiritbox_entry_q14">Ти тут?</string>
+    <string name="spiritbox_entry_q15">Ти один тут?</string>
+    <string name="spiritbox_entry_q16">Де ти?</string>
+    <!-- Interaction Questions -->
+    <string name="spiritbox_entry_q17">Атакуйте нас!</string>
+    <string name="spiritbox_entry_q18">Ти можеш поговорити з нами?</string>
+    <string name="spiritbox_entry_q19">Зроби щось.</string>
+    <string name="spiritbox_entry_q20">Дай нам знак!</string>
+    <string name="spiritbox_entry_q21">Полюй на нас!</string>
+    <string name="spiritbox_entry_q22">Чому ти тут?</string>
+    <string name="spiritbox_entry_q23">Пошуми.</string>
+    <string name="spiritbox_entry_q24">Відкрий двері.</string>
+    <string name="spiritbox_entry_q25">Покажи себе!</string>
+    <string name="spiritbox_entry_q26">Кинь щось.</string>
+    <string name="spiritbox_entry_q27">Виключи світло.</string>
+    <string name="spiritbox_entry_q28">Включи світло.</string>
+    <!-- General Questions -->
+    <string name="spiritbox_entry_q29">Привіт?</string>
+    <string name="spiritbox_entry_q30">Чим ми можемо допомогти?</string>
+    <string name="spiritbox_entry_q31">Що ти хочеш?</string>
+    <string name="spiritbox_entry_q32">Чому ти тут?</string>
+    <!-- Sanity Questions -->
+    <string name="spiritbox_entry_q33">Який мій розум?</string>
+    <string name="spiritbox_entry_q34">Наскільки я божевільний?</string>
+    <string name="spiritbox_entry_q35">Наскільки я збожеволів?</string>
+    <string name="spiritbox_entry_q36">Я божевільний?</string>
+    <!--
+        Codex Fragment
+    -->
+    <string name="codex_section_equipment">Обладнання</string>
+    <string name="codex_section_more">Незабаром буде більше</string>
+    <!--
+        File names
+    -->
+    <string name="newsletter_markallread">Позначити все прочитане</string>
+    <!--
+        Toast and other alerts
+    -->
+    <string name="alert_error_generic">Помилка!</string>
+    <string name="alert_success_generic">Успіху!</string>
+    <string name="alert_account_welcome">Ласкаво просимо</string>
+    <string name="alert_account_data_failure">Дані не вдалося отримати.</string>
+    <string name="alert_account_remove_success">Обліковий запис успішно видалено.</string>
+    <string name="alert_account_remove_failure">Видалення облікового запису не вдалося.</string>
+    <string name="alert_account_logout_success">Користувач вийшов з системи.</string>
+    <string name="alert_account_login_failure">Помилка входу.</string>
+    <string name="alert_internet_unavailable">Інтернет недоступний.</string>
+    <string name="alert_marketplace_access_failure">Не міг отримати доступ до ринку.</string>
+    <string name="alert_marketplace_transaction_failure">Помилка з транзакцією на маркетплейсі.</string>
+    <string name="alert_marketplace_purchase_success_skin">Скін придбаний!</string>
+    <string name="alert_marketplace_purchase_success_generic">Покупка успішна!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Недостатньо кредитів для покупки!</string>
+    <string name="maps_size_title_small">Маленький</string>
+    <string name="maps_size_title_medium">Середній</string>
+    <string name="language_name_localized_de">Німецька мова</string>
+    <string name="language_name_localized_en">англійська мова</string>
+    <string name="language_name_localized_es">Іспанська мова</string>
+    <string name="language_name_localized_fr">Французька мова</string>
+    <string name="language_name_localized_it">Португальська мова</string>
+    <string name="language_name_localized_ja">Японська мова</string>
+    <string name="language_name_localized_pt">Португальська мова</string>
+    <string name="language_name_localized_ru">Російська мова</string>
+    <string name="language_name_localized_uk">українська</string>
+    <string name="language_name_localized_zh_Hans">Китайська мова (Спрощена)</string>
+    <string name="language_name_localized_cs">Чеська мова</string>
+    <string name="alert_gui_palette_error">Палітра не встановлена!</string>
+    <string name="alert_gui_typography_error">Типографіка не встановлена!</string>
+</resources>

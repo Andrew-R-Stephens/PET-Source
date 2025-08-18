@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="store_title_cursedpossessions">Cursed Possessions</string>
+    <string name="cursedpossessions_info_name_mirror">Haunted Mirror</string>
+    <string name="cursedpossessions_info_name_monkeypaw">Monkey\'s Paw</string>
+    <string name="cursedpossessions_info_name_musicbox">Music Box</string>
+    <string name="cursedpossessions_info_name_ouijaboard">Ouija Board</string>
+    <string name="cursedpossessions_info_name_summoningcircle">Summoning Circle</string>
+    <string name="cursedpossessions_info_name_tarotcards">Tarot Cards</string>
+    <string name="cursedpossessions_info_name_voodoodoll">Voodoo Doll</string>
+
+
+    <!--
+        Flavor Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_flavortext">
+        <![CDATA[
+            <a>A large, round mirror. When held, the wielder is drawn to look into it… but at a cost.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_flavortext">
+        <![CDATA[
+            <a>An object pulled straight out of folklore, this item is the physical manifestation of "a wish gone bad".</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_flavortext">
+        <![CDATA[
+            <a>It\'s unknown how the Monkey Paw is able to understand wishes, but this is one of them. Were these written down by the Monkey Paw\'s creator, or a victim?</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_musicbox_data_flavortext">
+        <![CDATA[
+            <a>A wooden box with internal mechanisms that enable it to play a melody. This one plays a melody named \"Adrift\".</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_flavortext">
+        <![CDATA[
+            <a>An inscribed wooden board that\'s paired with a matching planchette. For some reason, you get the sense that it really shouldn\'t be messed with.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_flavortext">
+        <![CDATA[
+            <a>A pentagram that\'s been painted on the ground with what looks like blood. It\'s completed with five encompassing red candles that look to have been previously used.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hangedman">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of a man hanging by his foot from a large tree branch.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_priestess">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of an angel\'s wings.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_death">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of a terrified person in distress.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_devil">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of a lurking, shadowy figure.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_fortune">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of the sun and moon in juxtaposition.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_hermit">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of a person wrapped in a straitjacket.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_joker">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of a medieval fool.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_moon">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of the Moon.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_sun">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of the Sun.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_flavortext_tower">
+        <![CDATA[
+            <a>A Tarot playing card, marked with the image of a Castle Tower.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_flavortext">
+        <![CDATA[
+            <a>A small doll that has been imbued with the ghost\'s essence, forever tethering the two entities together.</a>
+        ]]>
+    </string>
+
+
+    <!--
+        Info Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_info">
+        <![CDATA[
+            <p>The haunted mirror shows you what the ghost room/favorite room is! It also helps confirm if the ghost changes its favorite room during an investigation.</p>
+
+            <p>It DOES NOT show you where the ghost currently is.</p>
+            <p>While looking into the mirror, it drains 7% sanity per second and a minimum of 20% per use.</p>
+            <p>If you run out of sanity, the mirror will break and a cursed hunt will start.</p>
+        ]]>
+    </string>
+
+    <string name="shop_cursedpossessions_monkeypaw_data_info">
+        <![CDATA[
+            <h2>The number of wishes you have will depend on your difficulty or reward multiplier as follows:</h2>
+
+            <a>
+                <br>
+                0x - 1.9x Multiplier = 5 wishes<br>
+                2x - 2.9x Multiplier = 4 wishes<br>
+                3x and higher Multiplier = 3 wishes
+            </a>
+
+            <h2>ALL WISHES</h2>
+
+            <h4>I wish to see the ghost:</h4>
+            <a>
+                + Triggers a ghost event at the ghost location.<br>
+                - Instantly locks the exit doors.<br>
+                - Initiates a hunt immediately following the ghost event.<br>
+                - Reduces player vision for the remainder of that hunt with a black fog.
+            </a>
+
+            <h4>I wish for Activity.</h4>
+            <a>
+                + Doubles all ghost activity for 2 minutes which includes interactions, roaming and abilities.<br>
+                - Breaks the fuse box and locks the exit doors for 2 minutes.
+            </a>
+
+            <h4>I wish for sanity.</h4>
+            <a>
+                ~ Averages the team sanity to 50\%<br>
+                - Sets the ghosts favorite room to a new, random room<br>
+                - Increases sanity drain by +50\% of the current rate for the entire group.<br>
+                - Note: This wish will override Goryo\'s weakness. Meaning that despite the Goryo not being able to change rooms on it\'s own, it CAN if sanity wish is used.
+            </a>
+
+            <h4>I wish the ghost was trapped.</h4>
+            <a>
+                + Teleports the ghost to its room and locks all of its doors for 1 minute.<br>
+                + Ghost cannot hunt, roam, or do abilities while locked in its room.<br>
+                - Locks all doors to the room that the player who made the wish is currently in for 1 minute.<br>
+                - The ghost will unlock all doors after 1 minute, and start a hunt.<br>
+                ~ 25\% chance for the doors to unlock AFTER the grace period.
+            </a>
+
+            <h4>I wish for life. / I wish to revive my friend.</h4>
+            <a>
+                + Revives a dead player.<br>
+                - 50\% chance to kill the player who uses the wish.
+            </a>
+
+            <h4>I wish to be safe</h4>
+            <a>
+                + Opens up the nearest hiding spot.<br>
+                - Smashes the lights in the room.<br>
+                - The ghost can hear and sense the equipment of the player who made the wish during hunts from anywhere on the map for the remainder of the run.<br>
+                + Note: This can be used to your advantage to lure a ghost intentionally to a safer area for completing hunt objectives.
+            </a>
+
+            <h4>I wish to leave.</h4>
+            <a>
+                + Unlocks all exit doors at any time, including during hunts.<br>
+                - Prevents you from moving instantly, then slowly returns movement speed over 5 seconds.<br>
+                - Reduces vision for 5 seconds for the person making the wish.
+            </a>
+
+            <h4>I wish for knowledge.</h4>
+            <a>
+                + Removes 1 incorrect evidence and corresponding ghost types from your journal, narrowing down your choices.<br>
+                - Starts a hunt near the player.<br>
+                - For the rest of the round, the player who made the wish will have reduced vision and muffled audio.<br>
+                - Note: Dying will reset audio and visual reductions back to normal and will remain normal if revived.
+            </a>
+
+            <h4>I wish for [weather].</h4>
+            <a>
+                + If the weather is not to your liking, you may wish to change it to Rain (x2), Snow, Clear, Fog, or Sunrise.<br>
+                - Reduces Sanity by 25\% for the person who makes the wish.<br>
+                ~ Note: Wishing for rain will give you a 50\% chance to get either light or heavy rain.
+            </a>
+
+            <h4>I wish for Anything.</h4>
+            <a>
+                + Can\'t decide what you want to wish for? Let the paw decide for you. Wishing for anything will grant you one of the remaining (unused) wishes for that round.<br>
+                ~ Note: While you can use Anything wish more than once, it will not grant you a wish that has already been used in that run.
+            </a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_info">
+        <![CDATA[
+            <a>Hidden throughout Sunny Meadows are tags which will give you ideas of what you can wish for when using the Monkey Paw cursed possession. To find them, simply go into Sunny Meadows and look around. Once found, it will permanently be added to page 12 of your journal.</a>
+            <ul>
+                <li>I wish to see the ghost.</li>
+                <li>I wish for activity.</li>
+                <li>I wish for sanity.</li>
+                <li>I wish the ghost was trapped.</li>
+                <li>I wish for life.</li>
+                <li>I wish to be safe.</li>
+                <li>I wish to leave.</li>
+                <li>I wish for knowledge.</li>
+                <li>I wish for (weather).</li>
+                <li>I wish for Anything.</li>
+            </ul>
+            <a>Note: You do not need to find the tags in order to use the wishes. They are only there to guide you with a list of possibilities.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_musicbox_data_info">
+        <![CDATA[
+            <p>The music box lures the ghost! While playing, the ghost will seek out the music box. Great for photos and controlling/forcing a hunt.</p>
+
+            <p>Being close to the music box while it is playing will drain your sanity.</p>
+            <p>If you throw the music box instead of placing it, it will break and start a cursed hunt.</p>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_info">
+        <![CDATA[
+            <p>The Ouija Board can be used to force a hunt, find the ghost room, farm interaction photos, etc.</p>
+
+            <p>Activate the board, then ask questions or make requests. The board will be active when the planchette is present. Say "goodbye" to deactivate the board, and the planchette will be retrieved.</p>
+            <p>ALWAYS SAY GOODBYE! If the person who summoned the planchette walks too far away from an active ouija board, it will destroy itself and start a cursed hunt.</p>
+            <p>Anyone in the vicinity can speak to the board.</p>
+            <p>Different questions or requests will use more sanity than others.</p>
+
+            <a>Some questions you can ask it</a>
+            <ul>
+                <li>Where are you?</li>
+                <li>Where\'s the bone?</li>
+                <li>How did you die?</li>
+                <li>Am I insane?</li>
+                <li>How many people are in the room?</li>
+                <li>How old are you?</li>
+                <li>What is my sanity?</li>
+            </ul>
+
+            <p>You can trigger a Cursed Hunt by saying "Hide and Seek". You\'ll have 5 seconds to get away before the ghost has a chance to hunt.</p>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_info">
+        <![CDATA[
+             <p>Anyone near the summoning circle when candles are lit will also lose sanity</p>
+             <p>When all candles are lit, a Cursed Hunt will be triggered. The ghost will be ensnared in the circle for 1 or more seconds before it begins roaming.</p>
+             <p>It is suggested to take photos of the ghost during the ensnaring period.</p>
+             <p>The Cursed Hunt can be cancelled by a Tier 3 Crucifix.</p>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_hangedman">
+        <![CDATA[
+            <a>Kills you instantly</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_priestess">
+        <![CDATA[
+            <a>Resurrects a dead player. If there is more than one dead player the card will resurrect a random dead player. If there are no dead players then the card will resurrect the next player to die.
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_death">
+        <![CDATA[
+            <a>Forces a ghost hunt.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_devil">
+        <![CDATA[
+            <a>Forces a ghost event.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_fortune">
+        <![CDATA[
+            <a>Gain 25\% sanity [Green Burn], Lose 25\% sanity [Red Burn]</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_hermit">
+        <![CDATA[
+            <a>Teleports and traps the ghost in its favorite room for a minute.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_joker">
+        <![CDATA[
+            <a>Does nothing. The Fool is technically already drawn and the game rolls 1/9 randomly to see which card it will display before revealing the fool.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_moon">
+        <![CDATA[
+            <a>Reduces your sanity to 0%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_sun">
+        <![CDATA[
+            <a>Restore your sanity to 100%.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_info_tower">
+        <![CDATA[
+            <a>Forces an interaction and doubles ghost activity for 20 seconds.</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_info">
+        <![CDATA[
+            <p>Pricking the voodoo doll forces an interaction!</p>
+            <p>You can prick the voodoo doll up to 10 times. Each prick has a chance to prick the heart, which will start a cursed hunt.</p>
+            <p>Reducing your sanity to 0\% by using the Doll will activate all pins and start a cursed hunt.</p>
+        ]]>
+    </string>
+
+
+    <!--
+        Sanity Drain Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_sanitydrain">
+        <![CDATA[
+            <a>7%/s</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_sanitydrain">
+        <![CDATA[
+            <a>0 - 25%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_musicbox_data_sanitydrain">
+        <![CDATA[
+            <a>2.5%/s within ~2.5m</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_sanitydrain">
+        <![CDATA[
+            <a>0 - 50%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_sanitydrain">
+        <![CDATA[
+            <a>16% per candle lit</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hangedman">
+        <![CDATA[
+            <a>Instant Death</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_priestess">
+        <![CDATA[
+            <a>0%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_death">
+        <![CDATA[
+            <a>0%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_devil">
+        <![CDATA[
+            <a>0%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_fortune">
+        <![CDATA[
+            <a>+25% or -25%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_hermit">
+        <![CDATA[
+            <a>0%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_joker">
+        <![CDATA[
+            <a>0%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_moon">
+        <![CDATA[
+            <a>0%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_sun">
+        <![CDATA[
+            <a>Set to 100%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_sanitydrain_tower">
+        <![CDATA[
+            <a>Set to 0%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_sanitydrain">
+        <![CDATA[
+            <a>5% per use</a>
+        ]]>
+    </string>
+
+
+    <!--
+        Alt Name Text
+    -->
+
+    <string name="shop_cursedpossessions_monkeypaw_data_altname">
+        <![CDATA[
+            <a>Base Hand</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_altname">
+        <![CDATA[
+            <a>Wish Collectible</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hangedman">
+        <![CDATA[
+            <a>The Hanged Man</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_priestess">
+        <![CDATA[
+            <a>The High Priestess</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_death">
+        <![CDATA[
+            <a>Death</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_devil">
+        <![CDATA[
+            <a>The Devil</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_fortune">
+        <![CDATA[
+            <a>The Wheel of Fortune</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_hermit">
+        <![CDATA[
+            <a>The Hermit</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_joker">
+        <![CDATA[
+            <a>The Fool</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_moon">
+        <![CDATA[
+            <a>The Moon</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_sun">
+        <![CDATA[
+            <a>The Sun</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_altname_tower">
+        <![CDATA[
+            <a>The Tower</a>
+        ]]>
+    </string>
+
+
+    <!--
+        Attributes Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_musicbox_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hangedman">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_priestess">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_death">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_devil">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_fortune">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_hermit">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_joker">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_moon">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_sun">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_attribute_tower">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_attribute">
+        <![CDATA[
+            <a></a>
+        ]]>
+    </string>
+
+    <!--
+        Draw Chance Text
+    -->
+    <string name="shop_cursedpossessions_mirror_data_drawchance">
+        <![CDATA[
+            <a>-</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypaw_data_drawchance">
+        <![CDATA[
+            <a>11 - 55%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_monkeypawwish_data_drawchance">
+        <![CDATA[
+            <a>11 - 55%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_musicbox_data_drawchance">
+        <![CDATA[
+            <a>-</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_ouijaboard_data_drawchance">
+        <![CDATA[
+            <a>-</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_summoningcircle_data_drawchance">
+        <![CDATA[
+            <a>-</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hangedman">
+        <![CDATA[
+            <a>1%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_priestess">
+        <![CDATA[
+            <a>2%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_death">
+        <![CDATA[
+            <a>10%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_devil">
+        <![CDATA[
+            <a>10%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_fortune">
+        <![CDATA[
+            <a>20%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_hermit">
+        <![CDATA[
+            <a>10%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_joker">
+        <![CDATA[
+            <a>17% / 100%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_moon">
+        <![CDATA[
+            <a>5%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_sun">
+        <![CDATA[
+            <a>5%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_tarotcards_data_drawchance_tower">
+        <![CDATA[
+            <a>20%</a>
+        ]]>
+    </string>
+    <string name="shop_cursedpossessions_voodoodoll_data_drawchance">
+        <![CDATA[
+            <a>10%</a>
+        ]]>
+    </string>
+
+</resources>

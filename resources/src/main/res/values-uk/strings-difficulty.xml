@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="difficulty_response_unknown">Невідомий</string>
+    <string name="difficulty_frequency_none">Немає</string>
+    <string name="difficulty_frequency_low">Низький</string>
+    <string name="difficulty_frequency_medium">Середній</string>
+    <string name="difficulty_frequency_high">Високий</string>
+    <string name="difficulty_frequency_veryHigh">Дуже високий</string>
+    <string name="difficulty_response_known">Відомий</string>
+</resources>

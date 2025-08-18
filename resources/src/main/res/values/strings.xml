@@ -1,0 +1,148 @@
+<resources>
+
+    <!--
+        UNIVERSAL DETAILS
+    -->
+    <!-- Page Details -->
+    <string name="app_name" translatable="false">P.E.T.</string>
+
+    <!-- Navigation Labels -->
+    <string name="navigation_open_state">Navigation Drawer opened.</string>
+    <string name="navigation_closed_state">Navigation Drawer closed.</string>
+
+    <string name="general_evidence_button">Evidence</string>
+    <string name="general_maps_button">Maps</string>
+    <string name="general_tasks_button">Tasks</string>
+    <string name="general_codex_button">Codex</string>
+    <string name="general_navigation_menu">Menu</string>
+    <string name="general_navigation_home">Home</string>
+    <string name="general_navigation_primary">Primary</string>
+    <string name="general_navigation_secondary">Secondary</string>
+    <string name="general_navigation_alternative">Alternative</string>
+    <string name="general_navigation_tools">Tools</string>
+    <string name="general_navigation_settings">Settings</string>
+    <string name="general_navigation_system">System</string>
+    <string name="general_evidence_reset_button">Reset</string>
+
+    <!--
+        TITLESCREEN FRAGMENT
+    -->
+    <!-- Page Details -->
+    <string name="titlescreen_beta_label">Beta</string>
+    <string name="titlescreen_description">The ultimate evidence tool</string>
+    <string name="titlescreen_button">Start Hunting</string>
+    <string name="titlescreen_languages_label">Select Language</string>
+
+    <!--
+         REVIEW POPUP
+    -->
+    <!-- Page Details -->
+    <string name="review_requesttitle">Please consider rating P.E.T.!</string>
+    <string name="review_accept">Sure!</string>
+    <string name="review_decline">No thanks</string>
+    <string name="review_storelink_app" translatable="false">market://details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
+    <string name="review_storelink_website" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
+
+    <!--
+        ABOUT FRAGMENT
+    -->
+    <!-- Page Details -->
+    <string name="aboutinfo_discordInvite" translatable="false">RawQP9H7y7</string>
+    <string name="aboutinfo_title_petstylized" translatable="false">
+        <![CDATA[
+                <font color=#FF0000>P</font>.<font color=#FF0000>E</font>.<font color=#FF0000>T</font>.
+            ]]>
+    </string>
+    <string name="aboutinfo_developerinfo_devname" translatable="false">Tritium Studios</string>
+    <string name="aboutinfo_developerinfo_address" translatable="false">TritiumGamingStudiosDM@gmail.com</string>
+    <string name="aboutinfo_title_about">About</string>
+    <string name="aboutinfo_version">Version</string>
+    <string name="aboutinfo_aboutapp_info">
+        <![CDATA[
+            <p><font color=#CC3C3C>Phasmophobia</font> is a unique horror game developed by <font color=#CC3C3C>Kinetic Games</font>.</p>
+            <p><font color=#CC3C3C>P.E.T.</font> is an unofficial companion tool\-\- acting both as a guide for new players and as an assistant for the veterans.</p>
+            <p><font color=#CC3C3C>Thank you so much for using P.E.T.!</font></p>
+        ]]>
+    </string>
+    <string name="aboutinfo_developerinfo_title">Developer Info</string>
+    <string name="aboutinfo_developerinfo_developer">Developer</string>
+    <string name="aboutinfo_developerinfo_contact">Contact</string>
+    <string name="aboutinfo_discord_join">Join the Discord</string>
+    <string name="aboutinfo_specialthanks_title">Special Thanks</string>
+
+    <!--
+        EVIDENCE FRAGMENT
+    -->
+
+    <!-- Team Data -->
+    <string name="investigation_average_sanity_title" translatable="false">Average Sanity</string>
+    <string name="investigation_prep_time_title" translatable="false">Prep Time</string>
+    <string name="investigation_your_sanity_level_title">Your Sanity level</string>
+
+    <!-- Solo/Team Data -->
+    <string name="investigation_timer_label">Preparation Time:</string>
+    <string name="investigation_timer_difficulty_label">Difficulty</string>
+    <string name="investigation_timer_maplabel">Map</string>
+    <string name="investigation_timer_actionlabel">Action</string>
+    <string name="investigation_timer_setuplabel">Setup</string>
+    <string name="investigation_sanity_huntwarn">Hunt Warn</string>
+    <string name="investigation_sanitymeter_title">Max Sanity</string>
+    <string name="investigation_section_title_ghosts">Ghosts</string>
+    <string name="investigation_section_title_evidence">Evidence</string>
+
+    <!-- Map Size Modifiers -->
+    <item name="maps_size_modifier_small_setup" type="fraction">09%</item>
+    <item name="maps_size_modifier_small_normal" type="fraction">12%</item>
+    <item name="maps_size_modifier_medium_setup" type="fraction">05%</item>
+    <item name="maps_size_modifier_medium_normal" type="fraction">08%</item>
+    <item name="maps_size_modifier_large_setup" type="fraction">03%</item>
+    <item name="maps_size_modifier_large_normal" type="fraction">05%</item>
+
+    <!-- Map Size Titles -->
+    <string name="maps_size_title_small">Small</string>
+    <string name="maps_size_title_medium">Medium</string>
+    <string name="maps_size_title_large">Large</string>
+
+    <!--
+        TOOLS PAGE
+    -->
+
+    <!--
+        Codex Fragment
+    -->
+    <string name="codex_section_equipment">Equipment</string>
+    <string name="codex_section_more">More coming soon</string>
+    <string name="codex_label_gh_ost" translatable="false">
+        <![CDATA[
+            <a><font color="#99AEB3">GH</font><font color="#FFB43D">//OS.T</font></a>
+        ]]>
+    </string>
+
+    <!--
+        File names
+    -->
+    <string name="mapsJson" translatable="false">maps.json</string>
+    <string name="newsletter_markallread">Mark All Read</string>
+
+    <!--
+        Toast and other alerts
+    -->
+    <string name="toast_discardchanges">Changes discarded</string>
+    <string name="alert_error_generic">Error!</string>
+    <string name="alert_success_generic">Success!</string>
+    <string name="alert_account_welcome">Welcome</string>
+    <string name="alert_account_data_failure">Data could not be acquired.</string>
+    <string name="alert_account_remove_success">Successfully removed account.</string>
+    <string name="alert_account_remove_failure">Account removal failed.</string>
+    <string name="alert_account_logout_success">User signed out.</string>
+    <string name="alert_account_login_failure">Login Error.</string>
+    <string name="alert_internet_unavailable">Internet not available.</string>
+    <string name="alert_marketplace_access_failure">Could not access the marketplace.</string>
+    <string name="alert_marketplace_transaction_failure">Error with marketplace transaction.</string>
+    <string name="alert_marketplace_purchase_success_skin">Skin purchased!</string>
+    <string name="alert_marketplace_purchase_success_generic">Purchase successful!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Not enough credits for purchase!</string>
+    <string name="alert_gui_palette_error">Palette not set!</string>
+    <string name="alert_gui_typography_error">Typography not set!</string>
+
+</resources>

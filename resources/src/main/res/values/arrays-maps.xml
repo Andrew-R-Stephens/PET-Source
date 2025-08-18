@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        POI Icons
+        {
+            FUSE_BOX,
+            CAR_KEY, CABIN_KEY, BONE,
+            MUSIC_BOX, HAUNTED_MIRROR, OUIJA_BOARD, SUMMONING_CIRCLE,
+            TAROT_CARDS, VOODOO_DOLL, MONKEY_PAW_BASE, MONKEY_PAW_WISH,
+            HIDING_LOCATION, MAIN_ENTRANCE,
+            MATCH
+        }
+    -->
+    <integer-array name="poi_resources_array">
+        <item>@drawable/ic_map_power</item>
+        <item>@drawable/ic_map_key_car</item>
+        <item>@drawable/ic_map_key_cabin</item>
+        <item>@drawable/icon_difficulties</item>
+        <item>@drawable/ic_map_cp_musicbox</item>
+        <item>@drawable/ic_map_cp_mirror</item>
+        <item>@drawable/ic_map_cp_ouija</item>
+        <item>@drawable/ic_map_cp_candle</item>
+        <item>@drawable/ic_map_cp_tarot</item>
+        <item>@drawable/ic_map_cp_doll</item>
+        <item>@drawable/ic_map_cp_paw</item>
+        <item>@drawable/ic_map_cp_pawwish</item>
+        <item>@drawable/icon_difficulties</item>
+        <item>@drawable/ic_map_truck</item>
+        <item>@drawable/icon_difficulties</item>
+    </integer-array>
+
+</resources>

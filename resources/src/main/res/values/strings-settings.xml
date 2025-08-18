@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        SETTINGS FRAGMENT
+    -->
+    <!-- Page Details -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_confirm">Confirm</string>
+    <string name="settings_cancel">Cancel</string>
+    <string name="settings_generalsettings">General Settings</string>
+    <string name="settings_extrasettings">Extra Settings</string>
+    <string name="settings_appearancesettings">Appearance</string>
+    <string name="settings_fontstylesettings">Font Style</string>
+    <string name="settings_adsconsentcontrolsection">Ads / GDPR Settings</string>
+    <string name="settings_adsconsentcontrolsettings">GDPR Settings</string>
+    <string name="settings_adsconsentcontrolsettings_button">Edit</string>
+    <string name="settings_screenalwayson">Always keep the screen on</string>
+    <string name="settings_networktitle">Allow Mobile Data</string>
+    <string name="settings_huntwarningflashtimeout">Hunt Warning Duration</string>
+    <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
+    <string name="settings_enableLeftHandSupport">Enable Left-Handed Mode</string>
+    <string name="settings_enablehuntaudioqueue">Enable Hunt Warning Audio</string>
+    <string name="settings_enableGhostReorder">Enable Ghost List Reordering</string>
+    <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
+    <string name="settings_colorblindnessmode_note">(Will take effect after leaving Settings)</string>
+    <string name="settings_colortheme_title">Skin</string>
+    <string name="settings_colortheme_note">(Colorblindness selection takes precedence)</string>
+
+    <!-- Colorblindness Types -->
+    <string name="settings_colorblindnessmode_normal">None</string>
+    <string name="settings_colorblindnessmode_defaultName" translatable="false">Default</string>
+    <string name="settings_colorblindnessmode_defaultID" translatable="false">CzjtxSbXRwIpX8SYR0ttngAND</string>
+
+</resources>

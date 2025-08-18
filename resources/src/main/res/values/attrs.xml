@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="buttonColor" format="reference|color" />
+    <attr name="light_active" format="reference|color" />
+    <attr name="backgroundColorOnBackground" format="reference|color" />
+    <attr name="colorActionPrimary" format="reference|color" />
+    <attr name="textColorBody" format="reference|color" />
+    <attr name="buttonFilterOnPrimary" format="reference|color" />
+    <attr name="neutralSelColor" format="reference|color" />
+    <attr name="strikethroughColor" format="reference|color" />
+    <attr name="backgroundColor_mapviewOverlay" format="reference|color" />
+    <attr name="navigationFooterIcon" format="reference|color" />
+    <attr name="navigationFooterIconAlt" format="reference|color" />
+    <attr name="inboxNotification" format="reference|color" />
+    <attr name="circleColor" format="reference|color" />
+    <attr name="windowStrokeColor" format="reference|color" />
+    <attr name="windowBackgroundColor" format="reference|color" />
+    <attr name="progressBarColorStart" format="reference|color" />
+    <attr name="progressBarColorEnd" format="reference|color" />
+    <attr name="selectedColor2" format="reference|color" />
+    <attr name="progressBarColorThumbOutline" format="reference|color" />
+
+
+    <attr name="codex1_itemBackground" format="reference|color" />
+    <attr name="codex2_headerBackground" format="reference|color" />
+    <attr name="codex2_tierNormal" format="reference|color" />
+    <attr name="codex2_itemBorder" format="reference|color" />
+    <attr name="codex3_itemBorder" format="reference|color" />
+    <attr name="codex3_tierBackground" format="reference|color" />
+    <attr name="codex4_border" format="reference|color" />
+    <attr name="codex6_gridBackground" format="reference|color" />
+    <attr name="codex7_gridStroke" format="reference|color" />
+
+    <attr name="state_selected" format="boolean" />
+
+</resources>

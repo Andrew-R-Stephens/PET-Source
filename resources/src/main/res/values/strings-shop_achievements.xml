@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Names -->
+    <string name="achievements_trainingwheels_name" translatable="false">No more training wheels</string>
+    <string name="achievements_rookie_name" translatable="false">Rookie</string>
+    <string name="achievements_professional_name" translatable="false">Professional</string>
+    <string name="achievements_boss_name" translatable="false">Boss</string>
+    <string name="achievements_extramile_name" translatable="false">Extra Mile</string>
+    <string name="achievements_dedicated_name" translatable="false">Dedicated</string>
+    <string name="achievements_devoted_name" translatable="false">Devoted</string>
+    <string name="achievements_challenger_name" translatable="false">Challenger Approaching</string>
+    <string name="achievements_risechallenge_name" translatable="false">Rise to the Challenge</string>
+    <string name="achievements_takingchallenges_name" translatable="false">Taking All Challenges</string>
+    <string name="achievements_chumpchange_name" translatable="false">Chump Change</string>
+    <string name="achievements_fatstock_name" translatable="false">Fat Stack</string>
+    <string name="achievements_cashcow_name" translatable="false">Cash Cow</string>
+    <string name="achievements_breakthebank_name" translatable="false">Break The Bank</string>
+    <string name="achievements_bareessentials_name" translatable="false">Bare Essentials</string>
+    <string name="achievements_toolsofthetrade_name" translatable="false">Tools of the Trade</string>
+    <string name="achievements_fullyloaded_name" translatable="false">Fully Loaded</string>
+    <string name="achievements_director_name" translatable="false">Directo</string>
+    <string name="achievements_bronzehunter_name" translatable="false">Bronze Hunter</string>
+    <string name="achievements_silverhunter_name" translatable="false">Silver Hunter</string>
+    <string name="achievements_goldhunter_name" translatable="false">Gold Hunter</string>
+    <string name="achievements_banshee_name" translatable="false">Banshee Discovered</string>
+    <string name="achievements_demon_name" translatable="false">Demon Discovered</string>
+    <string name="achievements_deogen_name" translatable="false">Deogen Discovered</string>
+    <string name="achievements_goryo_name" translatable="false">Goryo Discovered</string>
+    <string name="achievements_hantu_name" translatable="false">Hantu Discovered</string>
+    <string name="achievements_jinn_name" translatable="false">Jinn Discovered</string>
+    <string name="achievements_mare_name" translatable="false">Mare Discovered</string>
+    <string name="achievements_moroi_name" translatable="false">Moroi Discovered</string>
+    <string name="achievements_myling_name" translatable="false">Myling Discovered</string>
+    <string name="achievements_obake_name" translatable="false">Obake Discovered</string>
+    <string name="achievements_oni_name" translatable="false">Oni Discovered</string>
+    <string name="achievements_onryo_name" translatable="false">Onryo Discovered</string>
+    <string name="achievements_phantom_name" translatable="false">Phantom Discovered</string>
+    <string name="achievements_poltergeist_name" translatable="false">Poltergeist Discovered</string>
+    <string name="achievements_raiju_name" translatable="false">Raiju Discovered</string>
+    <string name="achievements_revenant_name" translatable="false">Revenant Discovered</string>
+    <string name="achievements_shade_name" translatable="false">Shade Discovered</string>
+    <string name="achievements_spirit_name" translatable="false">Spirit Discovered</string>
+    <string name="achievements_thaye_name" translatable="false">Thaye Discovered</string>
+    <string name="achievements_mimic_name" translatable="false">The Mimic Discovered</string>
+    <string name="achievements_twins_name" translatable="false">The Twins Discovered</string>
+    <string name="achievements_wraith_name" translatable="false">Wraith Discovered</string>
+    <string name="achievements_yokai_name" translatable="false">Yokai Discovered</string>
+    <string name="achievements_yurei_name" translatable="false">Yurei Discovered</string>
+    <string name="achievements_prestige1_name" translatable="false">I</string>
+    <string name="achievements_prestige2_name" translatable="false">II</string>
+    <string name="achievements_prestige3_name" translatable="false">III</string>
+    <string name="achievements_workexperience_name" translatable="false">Work Experience</string>
+    <string name="achievements_flawlessexecution_name" translatable="false">Flawless Execution</string>
+    <string name="achievements_theyrehere_name" translatable="false">They\'re here</string>
+    <string name="achievements_escapeartist_name" translatable="false">Escape Artist</string>
+    <string name="achievements_bait_name" translatable="false">The Bait</string>
+    <string name="achievements_doomslayed_name" translatable="false">Doom Slayed</string>
+
+    <!-- Information -->
+    <string name="achievements_trainingwheels_info" translatable="false">Complete Training</string>
+    <string name="achievements_rookie_info" translatable="false">Complete 10 contracts</string>
+    <string name="achievements_professional_info" translatable="false">Complete 50 contracts</string>
+    <string name="achievements_boss_info" translatable="false">Complete 100 contracts</string>
+    <string name="achievements_extramile_info" translatable="false">Complete 50 optional objectives</string>
+    <string name="achievements_dedicated_info" translatable="false">Complete 30 daily tasks</string>
+    <string name="achievements_devoted_info" translatable="false">Complete 10 weekly tasks</string>
+    <string name="achievements_challenger_info" translatable="false">Complete a weekly challenge mode</string>
+    <string name="achievements_risechallenge_info" translatable="false">Complete the weekly challenge mode 5 times</string>
+    <string name="achievements_takingchallenges_info" translatable="false">Complete the weekly challenge mode 10 times</string>
+    <string name="achievements_chumpchange_info" translatable="false">Spend $1</string>
+    <string name="achievements_fatstock_info" translatable="false">Spend $10,000</string>
+    <string name="achievements_cashcow_info" translatable="false">Spend $50,000</string>
+    <string name="achievements_breakthebank_info" translatable="false">Spend $100,000</string>
+    <string name="achievements_bareessentials_info" translatable="false">Unlock all tier one equipment</string>
+    <string name="achievements_toolsofthetrade_info" translatable="false">Unlock all tier two equipment</string>
+    <string name="achievements_fullyloaded_info" translatable="false">Unlock all tier three equipment</string>
+    <string name="achievements_director_info" translatable="false">Create a custom difficulty</string>
+    <string name="achievements_bronzehunter_info" translatable="false">Obtain the Bronze Apocalypse Trophy</string>
+    <string name="achievements_silverhunter_info" translatable="false">Obtain the Silver Apocalypse Trophy</string>
+    <string name="achievements_goldhunter_info" translatable="false">Obtain the Gold Apocalypse Trophy</string>
+    <string name="achievements_banshee_info" translatable="false">Successfully identify your first Banshee and survive</string>
+    <string name="achievements_demon_info" translatable="false">Successfully identify your first Demon and survive</string>
+    <string name="achievements_deogen_info" translatable="false">Successfully identify your first Deogen and survive</string>
+    <string name="achievements_goryo_info" translatable="false">Successfully identify your first Goryo and survive</string>
+    <string name="achievements_hantu_info" translatable="false">Successfully identify your first Hantu and survive</string>
+    <string name="achievements_jinn_info" translatable="false">Successfully identify your first Jinn and survive</string>
+    <string name="achievements_mare_info" translatable="false">Successfully identify your first Mare and survive</string>
+    <string name="achievements_moroi_info" translatable="false">Successfully identify your first Moroi and survive</string>
+    <string name="achievements_myling_info" translatable="false">Successfully identify your first Myling and survive</string>
+    <string name="achievements_obake_info" translatable="false">Successfully identify your first Obake and survive</string>
+    <string name="achievements_oni_info" translatable="false">Successfully identify your first Oni and survive</string>
+    <string name="achievements_onryo_info" translatable="false">Successfully identify your first Onryo and survive</string>
+    <string name="achievements_phantom_info" translatable="false">Successfully identify your first Phantom and survive</string>
+    <string name="achievements_poltergeist_info" translatable="false">Successfully identify your first Poltergeist and survive</string>
+    <string name="achievements_raiju_info" translatable="false">Successfully identify your first Raiju and survive</string>
+    <string name="achievements_revenant_info" translatable="false">Successfully identify your first Revenant and survive</string>
+    <string name="achievements_shade_info" translatable="false">Successfully identify your first Shade and survive</string>
+    <string name="achievements_spirit_info" translatable="false">Successfully identify your first Spirit and survive</string>
+    <string name="achievements_thaye_info" translatable="false">Successfully identify your first Thaye and survive</string>
+    <string name="achievements_mimic_info" translatable="false">Successfully identify The Mimic for the first time[1]</string>
+    <string name="achievements_twins_info" translatable="false">Successfully identify The Twins for the first time[1]</string>
+    <string name="achievements_wraith_info" translatable="false">Successfully identify your first Wraith and survive</string>
+    <string name="achievements_yokai_info" translatable="false">Successfully identify your first Yokai and survive</string>
+    <string name="achievements_yurei_info" translatable="false">Successfully identify your first Yurei and survive</string>
+    <string name="achievements_prestige1_info" translatable="false">Reach Prestige I</string>
+    <string name="achievements_prestige2_info" translatable="false">Reach Prestige II</string>
+    <string name="achievements_prestige3_info" translatable="false">Reach Prestige III</string>
+    <string name="achievements_workexperience_info" translatable="false">Complete your first contract</string>
+    <string name="achievements_flawlessexecution_info" translatable="false">Complete a perfect investigation</string>
+    <string name="achievements_theyrehere_info" translatable="false">Witness a Poltergeist ability</string>
+    <string name="achievements_escapeartist_info" translatable="false">Escape a Revenant</string>
+    <string name="achievements_bait_info" translatable="false">Get killed by a Banshee in multiplayer</string>
+    <string name="achievements_doomslayed_info" translatable="false">Get killed by a Demon ability within the first minute</string>
+
+</resources>
