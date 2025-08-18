@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.android.application)
@@ -37,8 +39,8 @@ android {
 
         minSdk = 23
         targetSdk = 36
-        versionCode = 121
-        versionName = "9.2.1"
+        versionCode = 133
+        versionName = "9.2.3"
 
         ndk {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
@@ -69,10 +71,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+        }
     }
-    buildToolsVersion = "35.0.0"
+
+    buildToolsVersion = "36.0.0"
 
 }
 
@@ -223,8 +229,8 @@ dependencies {
     /*
      * Realms DB
      */
-    implementation(libs.realm.kotlin.library.base)
-    implementation(libs.realm.kotlin.library.sync)
+    // implementation(libs.realm.kotlin.library.base)
+    // implementation(libs.realm.kotlin.library.sync)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
@@ -244,5 +250,5 @@ dependencies {
     /* New */
 
     implementation(libs.androidx.ui.graphics)
-
+    //implementation(project(":resources"))
 }

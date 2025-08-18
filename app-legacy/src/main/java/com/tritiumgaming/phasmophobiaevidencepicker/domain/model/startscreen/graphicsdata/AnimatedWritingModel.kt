@@ -99,7 +99,10 @@ class AnimatedWritingModel(
      */
     @Throws(IllegalStateException::class, NullPointerException::class)
     override fun rotateBitmap(original: Bitmap?): Bitmap? {
-        val width = original!!.width
+        if (original == null) {
+            throw NullPointerException("Bitmap is null")
+        }
+        val width = original.width
         val height = original.height
         val matrix = Matrix()
         matrix.preRotate(rotation)

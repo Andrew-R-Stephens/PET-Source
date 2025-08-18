@@ -44,3 +44,7 @@
 -keep class androidx.credentials.playservices.** {
   *;
 }
+
+# Potentially prevent problems with XMLPullParser.next()
+#-keep class org.xmlpull.v1.** { *; }
+#-keep interface org.xmlpull.v1.** { *; }
