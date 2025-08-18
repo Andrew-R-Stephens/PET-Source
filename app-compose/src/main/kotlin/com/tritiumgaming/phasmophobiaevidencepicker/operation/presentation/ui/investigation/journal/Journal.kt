@@ -93,7 +93,6 @@ private fun RowScope.GhostListColumn(
         modifier = Modifier
             .weight(1f, false)
             .wrapContentWidth(Alignment.CenterHorizontally)
-            //.wrapContentWidth(Alignment.CenterHorizontally)
             .fillMaxHeight(),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
