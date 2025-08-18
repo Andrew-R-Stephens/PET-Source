@@ -275,5 +275,6 @@ dependencies {
      * Include Shared Module for KMP
      */
     implementation(project(":shared"))
+    //implementation(project(":resources"))
 
 }
