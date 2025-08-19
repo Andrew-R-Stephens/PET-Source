@@ -95,14 +95,14 @@ class ReviewTrackerDatastoreDataSource(
         return timesOpened
     }
 
-    override fun initialSetupEvent() {
-        liveData { emit(fetchInitialPreferences()) }
+    override fun initializeDatastoreLiveData() {
+        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initFlow(onUpdate: (ReviewTrackerPreferences) -> Unit) =
+    override suspend fun initDatastoreFlow(onUpdate: (ReviewTrackerPreferences) -> Unit) =
         flow.collect { onUpdate(it) }
 
-    override suspend fun fetchInitialPreferences() =
+    override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
     private fun mapPreferences(preferences: Preferences): ReviewTrackerPreferences {

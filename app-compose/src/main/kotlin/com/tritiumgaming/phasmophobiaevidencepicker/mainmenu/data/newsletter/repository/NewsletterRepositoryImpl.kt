@@ -23,14 +23,13 @@ class NewsletterRepositoryImpl(
     coroutineDispatcher: CoroutineDispatcher
 ): NewsletterRepository {
 
-    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
+    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initFlow(
+    override suspend fun initDatastoreFlow(
         onUpdate: (NewsletterPreferences) -> Unit
-    ) = dataStoreSource.initFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow(onUpdate)
 
-
-    private var cache: List<FlattenedNewsletterInboxDto> = emptyList()
+    private var localCache: List<FlattenedNewsletterInboxDto> = emptyList()
 
     private fun getLocalInboxes(): Result<List<FlattenedNewsletterInboxDto>> {
         val result = localDataSource.fetchInboxes()
@@ -53,7 +52,7 @@ class NewsletterRepositoryImpl(
             return Result.failure(Exception("ABORTING remote inbox fetch.", e))
         }
 
-        cache.map { inbox ->
+        localCache.map { inbox ->
             inbox.url?.let { rawURL ->
                 val result = fetchRemoteInbox(Url(rawURL))
                 result.getOrNull()?.let { remote ->
@@ -62,51 +61,38 @@ class NewsletterRepositoryImpl(
             }
         }
 
-        return Result.success(cache)
+        return Result.success(localCache)
     }
 
-    override suspend fun synchronizeInboxes(
-        forceUpdate: Boolean
-    ): Result<Boolean> {
+    override suspend fun fetchInboxes(): Result<List<NewsletterInbox>> {
 
         // Accept Synchronization:
         // Initialize the Inboxes with locally. Fetch remote data if possible
-        if(cache.isEmpty()) {
-            cache = getLocalInboxes().getOrDefault(emptyList())
+        if(localCache.isEmpty()) {
+            localCache = getLocalInboxes().getOrDefault(emptyList())
         }
 
-        // Now that the cache is initialized locally, Fetch remote data if possible
-        val cacheMessageSum = cache.sumOf { it.channel?.messages?.size ?: 0 } // Count saved messages
-        if(forceUpdate || cacheMessageSum == 0) {
-            // Check for internet connection. Exit if no connection
-            val connection = connectivityManagerHelper.getActiveNetworkTransport()
-            connection.exceptionOrNull()?.let { e ->
-                return Result.failure(Exception("ABORTING remote inbox synchronization.", e))
-            }
-
-            // Update inboxes. Exit if failure
-            val result = fetchRemoteInboxes()
-            result.exceptionOrNull()?.let { e ->
-                return Result.failure(Exception("Remote synchronization failed.", e))
-            }
-
-            return Result.success(true) // Successful initialization
-
+        // Check for internet connection. Exit if no connection
+        val connection = connectivityManagerHelper.getActiveNetworkTransport()
+        connection.exceptionOrNull()?.let { e ->
+            return Result.failure(Exception("ABORTING remote inbox synchronization.", e))
         }
-        // Reject resynchronization if not allowed to force update
-        Log.w("Newsletter", "SKIPPING remote inbox synchronization. " +
-                "ForceUpdate: $forceUpdate or cacheMessageSum: $cacheMessageSum != 0")
-        return Result.success(false) // Unsuccessful update
+
+        // Update inboxes. Exit if failure
+        val result = fetchRemoteInboxes()
+        result.exceptionOrNull()?.let { e ->
+            return Result.failure(Exception("Remote synchronization failed.", e))
+        }
+
+        return Result.success(result.getOrThrow().toExternal()) // Successful initialization
 
     }
-
-    override fun getInboxes(): List<NewsletterInbox> = cache.toExternal()
 
     override suspend fun saveInboxLastReadDate(id: String, date: Long) =
         dataStoreSource.setLastReadDate(id, date)
 
     init {
-        initialSetupEvent()
+        initializeDatastoreLiveData()
     }
 
 }

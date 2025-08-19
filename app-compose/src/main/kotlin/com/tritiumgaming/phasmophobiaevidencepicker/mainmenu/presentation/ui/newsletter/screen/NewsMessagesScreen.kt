@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -33,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -90,8 +92,11 @@ fun NewsMessagesScreen(
 ) {
     val rememberInboxID by remember{ mutableStateOf(inboxID) }
 
-    val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
-    val inbox = inboxes.value.first { inbox -> inbox.id == rememberInboxID }
+    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val inboxes = inboxesUiState.value.inboxes
+
+    val inboxUiState = inboxes.first { inboxUiState -> inboxUiState.inbox.id == rememberInboxID }
+    val inbox = inboxUiState.inbox
 
     MainMenuScreen {
 
@@ -163,52 +168,79 @@ fun ColumnScope.NewsMessagesContentCompactPortrait(
     newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
     inbox: NewsletterInbox,
 ) {
-    val activeState = inbox.inboxNotificationState
+    val context = LocalContext.current
+
+    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+
+    val inboxUiState = inboxesUiState.value.inboxes.first { inboxUiState ->
+        inboxUiState.inbox.id == inbox.id }
+    val lastReadDate = inboxUiState.lastReadDate
+
+    val refreshUiState = newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
+    val isRefreshing = refreshUiState.value.isRefreshing
 
     val messages = inbox.channel?.messages
-    var inboxLastReadDateState = inbox.inboxLastReadDate
+
+    val rememberListState = rememberLazyListState()
 
     Box(
         modifier = Modifier
             .padding(PaddingValues(top = 8.dp, bottom = 8.dp, start = 16.dp, end = 16.dp))
             .align(Alignment.End)
     ) {
-        MarkAsReadButton(newsletterViewModel, activeState, inbox, messages)
+        MarkAsReadButton(
+            newsletterViewModel,
+            inboxesUiState.value.inboxes.firstOrNull {
+                it.inbox.compareDates(lastReadDate) } != null,
+            inbox,
+            messages
+        )
     }
 
-    val rememberListState = rememberLazyListState()
-    LazyColumn(
+    PullToRefresh(
         modifier = Modifier
             .weight(1f)
             .padding(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        state = rememberListState
-    ) {
-
-        items(items = messages ?: listOf()) { message ->
-
-            val rememberMessage by remember { mutableStateOf(message) }
-
-            MessageCard(
-                message = rememberMessage,
-                isActive = rememberMessage.dateEpoch - inboxLastReadDateState > 0,
-                onClick = {
-                    inbox.id?.let { id ->
-                        newsletterViewModel.saveInboxLastReadDate(
-                            id, rememberMessage.dateEpoch
-                        )
-                        navController.navigate(
-                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
-                                    "${id}/${rememberMessage.id}"
-                        )
-                    }
-                },
-                modifier = Modifier
-                    .padding(vertical = 4.dp)
+        onRefresh = {
+            newsletterViewModel.refreshInboxes(
+                onFailure = { message ->
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                }
             )
 
-        }
+        },
+        isRefreshing = isRefreshing
+    ) {
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+            state = rememberListState
+        ) {
 
+            items(items = messages ?: listOf()) { message ->
+
+                val rememberMessage by remember { mutableStateOf(message) }
+
+                MessageCard(
+                    message = rememberMessage,
+                    isActive = rememberMessage.compareDate(lastReadDate) > 0,
+                    onClick = {
+                        inbox.id?.let { id ->
+                            newsletterViewModel.saveInboxLastReadDate(
+                                id, rememberMessage.dateEpoch
+                            )
+                            navController.navigate(
+                                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
+                                        "${id}/${rememberMessage.id}"
+                            )
+                        }
+                    },
+                    modifier = Modifier
+                        .padding(vertical = 4.dp)
+                )
+
+            }
+
+        }
     }
 
 }
@@ -219,11 +251,18 @@ fun ColumnScope.NewsMessagesContentCompactLandscape(
     newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
     inbox: NewsletterInbox,
 ) {
+    val context = LocalContext.current
 
-    val activeState = inbox.inboxNotificationState
+    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+
+    val inboxUiState = inboxesUiState.value.inboxes.first { inboxUiState ->
+        inboxUiState.inbox.id == inbox.id }
+    val lastReadDate = inboxUiState.lastReadDate
+
+    val refreshUiState = newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
+    val isRefreshing = refreshUiState.value.isRefreshing
 
     val messages = inbox.channel?.messages
-    var inboxLastReadDateState = inbox.inboxLastReadDate
 
     val rememberListState = rememberLazyListState()
 
@@ -234,38 +273,50 @@ fun ColumnScope.NewsMessagesContentCompactLandscape(
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
 
-        LazyColumn(
+        PullToRefresh(
             modifier = Modifier
                 .widthIn(max = 600.dp)
                 .fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-            state = rememberListState
-        ) {
-
-            items(items = messages ?: listOf()) { message ->
-
-                val rememberMessage by remember { mutableStateOf(message) }
-
-                MessageCard(
-                    modifier = Modifier,
-                    message = rememberMessage,
-                    isActive = rememberMessage.dateEpoch - inboxLastReadDateState > 0,
-                    onClick = {
-                        inbox.id?.let { id ->
-                            newsletterViewModel.saveInboxLastReadDate(
-                                id, rememberMessage.dateEpoch)
-
-                            navController.navigate(
-                                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
-                                        "${id}/${rememberMessage.id}"
-                            )
-                        }
-
+            onRefresh = {
+                newsletterViewModel.refreshInboxes(
+                    onFailure = { message ->
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     }
                 )
 
-            }
+            },
+            isRefreshing = isRefreshing
+        ) {
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+                state = rememberListState
+            ) {
 
+                items(items = messages ?: listOf()) { message ->
+
+                    val rememberMessage by remember { mutableStateOf(message) }
+
+                    MessageCard(
+                        message = rememberMessage,
+                        isActive = rememberMessage.compareDate(lastReadDate) > 0,
+                        onClick = {
+                            inbox.id?.let { id ->
+                                newsletterViewModel.saveInboxLastReadDate(
+                                    id, rememberMessage.dateEpoch
+                                )
+                                navController.navigate(
+                                    route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
+                                            "${id}/${rememberMessage.id}"
+                                )
+                            }
+                        },
+                        modifier = Modifier
+                            .padding(vertical = 4.dp)
+                    )
+
+                }
+
+            }
         }
 
         Row(
@@ -276,7 +327,12 @@ fun ColumnScope.NewsMessagesContentCompactLandscape(
             horizontalArrangement = Arrangement.End
         ) {
             MarkAsReadButton(
-                newsletterViewModel, activeState, inbox, messages)
+                newsletterViewModel,
+                inboxesUiState.value.inboxes.firstOrNull {
+                    it.inbox.compareDates(lastReadDate) } != null,
+                inbox,
+                messages
+            )
         }
     }
 }

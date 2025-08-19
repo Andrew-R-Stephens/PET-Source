@@ -17,7 +17,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.u
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SetupNewsletterUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SyncNewsletterInboxesUseCase
 import kotlinx.coroutines.Dispatchers
 
 class MainMenuContainer(
@@ -58,8 +57,6 @@ class MainMenuContainer(
     internal val initFlowNewsletterUseCase = InitFlowNewsletterUseCase(
         repository = newsletterRepository)
     internal val getNewsletterInboxesUseCase = FetchNewsletterInboxesUseCase(
-        repository = newsletterRepository)
-    internal val syncNewsletterInboxesUseCase = SyncNewsletterInboxesUseCase(
         repository = newsletterRepository)
     internal val saveNewsletterInboxLastReadDateUseCase = SaveNewsletterInboxLastReadDateUseCase(
         repository = newsletterRepository)

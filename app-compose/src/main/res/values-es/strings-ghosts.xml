@@ -2,7 +2,6 @@
 <resources>
 
     <!-- Ghost information Popup Labels -->
-    <string name="settings_enableLeftHandSupport">Habilitar el Modo Para Zurdos</string>
     <string name="popup_ghost_strength">Fortalezas</string>
     <string name="popup_ghost_weakness">Debilidades</string>
     <string name="popup_ghost_info">Información</string>

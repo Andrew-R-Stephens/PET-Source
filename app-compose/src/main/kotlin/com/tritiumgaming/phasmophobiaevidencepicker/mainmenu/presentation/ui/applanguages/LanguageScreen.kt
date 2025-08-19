@@ -159,7 +159,7 @@ private fun LanguageItem(
                     modifier = Modifier
                         .wrapContentWidth(Alignment.Start),
                     text = stringResource(rememberName),
-                    style = LocalTypography.current.secondary.regular.copy(
+                    style = LocalTypography.current.quaternary.regular.copy(
                         color = color,
                         textAlign = TextAlign.Start
                     ),
@@ -173,7 +173,7 @@ private fun LanguageItem(
                         .wrapContentWidth(Alignment.End)
                         .alpha(.75f),
                     text = "( ${stringResource(language.nativeName.toStringResource())} )",
-                    style = LocalTypography.current.secondary.regular.copy(
+                    style = LocalTypography.current.quaternary.regular.copy(
                         color = color,
                         textAlign = TextAlign.End
                     ),
@@ -183,43 +183,6 @@ private fun LanguageItem(
             }
         )
 
-        /*Row(
-            modifier = Modifier
-                .padding(vertical = 8.dp, horizontal = 16.dp)
-                .wrapContentHeight()
-                .fillMaxWidth(),
-            verticalAlignment = CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
-        ) {
-
-            Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentWidth(Alignment.Start),
-                text = stringResource(rememberName),
-                style = LocalTypography.current.secondary.regular.copy(
-                    color = color,
-                    textAlign = TextAlign.Start
-                ),
-                maxLines = 1,
-                fontSize = 18.sp
-            )
-
-            Text(
-                modifier = Modifier
-                    .weight(1f)
-                    .wrapContentWidth(Alignment.End)
-                    .alpha(.75f),
-                text = "( ${stringResource(language.nativeName.toStringResource())} )",
-                style = LocalTypography.current.secondary.regular.copy(
-                    color = color,
-                    textAlign = TextAlign.End
-                ),
-                maxLines = 1,
-                fontSize = 18.sp
-            )
-
-        }*/
     }
 
 }

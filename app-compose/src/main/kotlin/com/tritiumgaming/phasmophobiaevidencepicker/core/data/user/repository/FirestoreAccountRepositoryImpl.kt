@@ -124,7 +124,7 @@ class FirestoreAccountRepositoryImpl(
     }*/
 
     override suspend fun addUnlockedDocuments (
-        unlockUUIDs: ArrayList<String>?,
+        unlockUUIDs: List<String>?,
         type: String
     ): Result<String> {
 
@@ -205,12 +205,6 @@ class FirestoreAccountRepositoryImpl(
 
     }
 
-    fun getUnlockedPalettes(): Result<List<AccountPalette>> =
-        Result.success(unlockedPalettes.value.toDomain())
-
-
-    fun getUnlockedTypographies(): Result<List<AccountTypography>> =
-        Result.success(unlockedTypographies.value.toDomain())
 
     //TODO: Get Unlock History Snapshot Observer
     /*try {

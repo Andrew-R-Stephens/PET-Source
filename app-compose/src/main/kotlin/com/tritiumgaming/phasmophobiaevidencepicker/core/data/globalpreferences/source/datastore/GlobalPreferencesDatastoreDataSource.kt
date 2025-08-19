@@ -145,17 +145,17 @@ class GlobalPreferencesDatastoreDataSource(
         return allowed
     }
 
-    override fun initialSetupEvent() {
-        liveData { emit(fetchInitialPreferences()) }
+    override fun initializeDatastoreLiveData() {
+        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initFlow(onUpdate: (preferences: GlobalPreferences) -> Unit) {
+    override suspend fun initDatastoreFlow(onUpdate: (preferences: GlobalPreferences) -> Unit) {
         flow.collect { preferences ->
             onUpdate(preferences)
         }
     }
 
-    override suspend fun fetchInitialPreferences() =
+    override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
     private fun mapPreferences(preferences: Preferences): GlobalPreferences {

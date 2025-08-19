@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -463,11 +464,16 @@ private fun HeaderNavBar(
         )
     ) { false }
 
-    val rememberNewsUpToDate = newsletterViewModel.mainNotificationState.collectAsStateWithLifecycle()
+    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val notificationState = inboxesUiState.value.inboxes
+        .sortedByDescending { it.lastReadDate }
+        .firstOrNull { inboxUiState ->
+            inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
+        } != null
 
     // News Button
     NotificationIndicator(
-        isActive = rememberNewsUpToDate.value,
+        isActive = notificationState,
         alertIcon = IconResource.NOTIFY,
     ) {
         navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)

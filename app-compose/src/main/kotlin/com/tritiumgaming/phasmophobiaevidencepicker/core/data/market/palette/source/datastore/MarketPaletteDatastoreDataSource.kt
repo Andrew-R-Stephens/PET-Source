@@ -41,14 +41,14 @@ class MarketPaletteDatastoreDataSource(
         }
     }
 
-    override fun initialSetupEvent() {
-        liveData { emit(fetchInitialPreferences()) }
+    override fun initializeDatastoreLiveData() {
+        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initFlow(onUpdate: (PaletteDatastore.PalettePreferences) -> Unit) =
+    override suspend fun initDatastoreFlow(onUpdate: (PaletteDatastore.PalettePreferences) -> Unit) =
         flow.collect { onUpdate(it) }
 
-    override suspend fun fetchInitialPreferences() =
+    override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
     private fun mapPreferences(preferences: Preferences): PaletteDatastore.PalettePreferences {

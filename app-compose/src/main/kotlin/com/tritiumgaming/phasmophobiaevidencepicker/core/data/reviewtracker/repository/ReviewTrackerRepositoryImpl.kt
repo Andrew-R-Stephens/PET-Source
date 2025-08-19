@@ -8,11 +8,11 @@ class ReviewTrackerRepositoryImpl(
     private val dataStoreSource: ReviewTrackerDatastore,
 ): ReviewTrackerRepository {
 
-    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
+    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initFlow(
+    override suspend fun initDatastoreFlow(
         onUpdate: (ReviewTrackerPreferences) -> Unit
-    ) = dataStoreSource.initFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow(onUpdate)
 
     override suspend fun saveWasRequestedStatus(wasRequested: Boolean) =
         dataStoreSource.saveWasRequestedState(wasRequested)

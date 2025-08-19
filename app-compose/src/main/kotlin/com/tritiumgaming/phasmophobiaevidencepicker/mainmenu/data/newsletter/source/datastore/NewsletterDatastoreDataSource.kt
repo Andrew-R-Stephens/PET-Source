@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
@@ -20,7 +21,14 @@ class NewsletterDatastoreDataSource(
     private val dataStore: DataStore<Preferences>
 ): NewsletterDatastore {
 
-    private val keyList: Map<String, Preferences.Key<Long>> = mapOf()
+    private val keyList: Map<String, Preferences.Key<Long>> = mapOf(
+        context.getString(R.string.newsletter_inbox_id_general) to
+                longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_general)),
+        context.getString(R.string.newsletter_inbox_id_pet) to
+                longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_pet)),
+        context.getString(R.string.newsletter_inbox_id_phasmophobia) to
+                longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_phas))
+    )
 
     val flow: Flow<NewsletterDatastore.NewsletterPreferences> = dataStore.data
         .catch { exception ->
@@ -34,15 +42,6 @@ class NewsletterDatastoreDataSource(
             mapPreferences(preferences)
         }
 
-    init {
-        keyList.apply {
-            "1" to longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_general))
-            "2" to longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_pet))
-            "3" to longPreferencesKey(context.getString(R.string.preference_newsletter_lastreaddate_phas))
-        }
-
-    }
-
     override suspend fun setLastReadDate(id: String, date: Long) {
         val key = keyList[id]
         key?.let { it ->
@@ -52,14 +51,14 @@ class NewsletterDatastoreDataSource(
         }
     }
 
-    override fun initialSetupEvent() {
-        liveData { emit(fetchInitialPreferences()) }
+    override fun initializeDatastoreLiveData() {
+        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initFlow(onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit) =
+    override suspend fun initDatastoreFlow(onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit) =
         flow.collect { onUpdate(it) }
 
-    override suspend fun fetchInitialPreferences() =
+    override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
     fun mapPreferences(preferences: Preferences): NewsletterDatastore.NewsletterPreferences {

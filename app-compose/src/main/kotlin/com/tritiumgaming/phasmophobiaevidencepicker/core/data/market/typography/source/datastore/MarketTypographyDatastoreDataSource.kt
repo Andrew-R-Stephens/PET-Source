@@ -41,14 +41,14 @@ class MarketTypographyDatastoreDataSource(
         }
     }
 
-    override fun initialSetupEvent() {
-        liveData { emit(fetchInitialPreferences()) }
+    override fun initializeDatastoreLiveData() {
+        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initFlow(onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit) =
+    override suspend fun initDatastoreFlow(onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit) =
         flow.collect { onUpdate(it) }
 
-    override suspend fun fetchInitialPreferences() =
+    override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
     private fun mapPreferences(preferences: Preferences): MarketTypographyDatastore.TypographyPreferences {

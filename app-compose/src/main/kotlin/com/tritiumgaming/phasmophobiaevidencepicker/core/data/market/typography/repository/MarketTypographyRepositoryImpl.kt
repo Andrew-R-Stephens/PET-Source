@@ -21,11 +21,11 @@ class MarketTypographyRepositoryImpl(
     coroutineDispatcher: CoroutineDispatcher
 ): MarketTypographyRepository {
 
-    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
+    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initFlow(
+    override suspend fun initDatastoreFlow(
         onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit
-    ) = dataStoreSource.initFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow(onUpdate)
 
     private var cache: List<MarketTypographyDto> = emptyList()
 
@@ -103,7 +103,7 @@ class MarketTypographyRepositoryImpl(
     }
 
     init {
-        initialSetupEvent()
+        initializeDatastoreLiveData()
 
         CoroutineScope(coroutineDispatcher).launch {
             synchronizeCache()

@@ -16,7 +16,7 @@
     <string name="settings_adsconsentcontrolsettings">Konfigurace GDPR</string>
     <string name="settings_adsconsentcontrolsettings_button">Upravit</string>
     <string name="settings_screenalwayson">Vždy mějte obrazovku zapnutou</string>
-    <string name="settings_networktitle"></string>
+    <string name="settings_networktitle">Povolit využití Mobilních Dat</string>
     <string name="settings_huntwarningflashtimeout">Vypršel časový limit blesku upozornění na lov</string>
     <string name="settings_huntwarningflashtimeout_never">Nikdy vypršel časový limit</string>
     <string name="settings_enableLeftHandSupport">Povolit Režim Pro Leváky</string>

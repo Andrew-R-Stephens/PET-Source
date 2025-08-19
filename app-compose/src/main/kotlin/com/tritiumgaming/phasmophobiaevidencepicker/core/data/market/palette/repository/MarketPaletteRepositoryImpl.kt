@@ -21,11 +21,11 @@ class MarketPaletteRepositoryImpl(
     coroutineDispatcher: CoroutineDispatcher
 ): MarketPaletteRepository {
 
-    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
+    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initFlow(
+    override suspend fun initDatastoreFlow(
         onUpdate: (PaletteDatastore.PalettePreferences) -> Unit
-    ) = dataStoreSource.initFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow(onUpdate)
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
@@ -103,7 +103,7 @@ class MarketPaletteRepositoryImpl(
     }
 
     init {
-        initialSetupEvent()
+        initializeDatastoreLiveData()
 
         CoroutineScope(coroutineDispatcher).launch {
             synchronizeCache()

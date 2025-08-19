@@ -91,8 +91,11 @@ private fun NewsMessageContent(
     val rememberInboxID by remember { mutableStateOf(inboxID) }
     val rememberMessageID by remember { mutableStateOf(messageID) }
 
-    val inbox = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
-    val channel = inbox.value.find { inbox -> inbox.id == rememberInboxID }?.channel
+    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val inboxes = inboxesUiState.value.inboxes
+
+    val channel = inboxes.find { inboxUiState ->
+        inboxUiState.inbox.id == rememberInboxID }?.inbox?.channel
     val messages = channel?.messages
     val message = messages?.find { message -> message.id == rememberMessageID }
 

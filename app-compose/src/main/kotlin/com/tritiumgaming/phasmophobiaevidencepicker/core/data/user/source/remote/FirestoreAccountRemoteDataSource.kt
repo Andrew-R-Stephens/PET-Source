@@ -280,7 +280,7 @@ class FirestoreAccountRemoteDataSource(
         }
 
     suspend fun addUnlockedDocuments(
-        unlockUUIDs: ArrayList<String>?,
+        unlockUUIDs: List<String>?,
         type: String
     ): Result<String> {
 
@@ -292,7 +292,6 @@ class FirestoreAccountRemoteDataSource(
             return Result.failure(Exception("No UUIDs found!"))
 
         return try {
-
 
             val documentData: MutableMap<String, Any> = HashMap()
             documentData[FIELD_TYPE] = type

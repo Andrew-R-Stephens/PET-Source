@@ -1,5 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen
 
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -20,15 +21,21 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,6 +63,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.ma
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsletterViewModel
+import kotlinx.coroutines.launch
 
 @Composable
 @Preview
@@ -80,6 +88,9 @@ fun NewsInboxesScreen(
     newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
 ) {
 
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
     MainMenuScreen {
 
         Column(
@@ -101,9 +112,6 @@ fun NewsInboxesScreen(
 
             HorizontalDivider()
 
-            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-            val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
             when(deviceConfiguration) {
                 DeviceConfiguration.MOBILE_PORTRAIT -> {
                     NewsInboxesContentPortrait(
@@ -121,6 +129,7 @@ fun NewsInboxesScreen(
                 }
             }
 
+
             AdmobBanner()
         }
 
@@ -134,32 +143,52 @@ private fun ColumnScope.NewsInboxesContentPortrait(
     navController: NavController = rememberNavController(),
     newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
 ) {
+    val context = LocalContext.current
 
-    val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
+    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val inboxes = inboxesUiState.value.inboxes
 
-    LazyColumn(
+    val refreshUiState = newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
+    val isRefreshing = refreshUiState.value.isRefreshing
+
+    PullToRefresh(
         modifier = Modifier
             .weight(1f)
             .padding(8.dp),
-        verticalArrangement = Arrangement.Top,
-    ) {
-
-        items(items = inboxes.value) { inbox ->
-
-            InboxCard(
-                modifier = Modifier
-                    .padding(vertical = 4.dp),
-                title = inbox.title.toStringResource(),
-                icon = inbox.icon,
-                isActive = false,
-                onClick = {
-                    navController.navigate(
-                        route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
+        onRefresh = {
+            newsletterViewModel.refreshInboxes(
+                onFailure = { message ->
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                 }
             )
 
-        }
+        },
+        isRefreshing = isRefreshing
+    ) {
+        LazyColumn(
+            verticalArrangement = Arrangement.Top,
+        ) {
 
+            items(items = inboxes) { inboxUiState ->
+
+                val inbox = inboxUiState.inbox
+                val notificationState = inbox.compareDates(inboxUiState.lastReadDate)
+
+                InboxCard(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp),
+                    title = inbox.title.toStringResource(),
+                    icon = inbox.icon,
+                    isActive = notificationState,
+                    onClick = {
+                        navController.navigate(
+                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
+                    }
+                )
+
+            }
+
+        }
     }
 
 }
@@ -169,33 +198,53 @@ private fun ColumnScope.NewsInboxesContentLandscape(
     navController: NavController = rememberNavController(),
     newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
 ) {
+    val context = LocalContext.current
 
-    val inboxes = newsletterViewModel.inboxes.collectAsStateWithLifecycle()
+    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val inboxes = inboxesUiState.value.inboxes
 
-    LazyColumn(
+    val refreshUiState = newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
+    val isRefreshing = refreshUiState.value.isRefreshing
+
+    PullToRefresh(
         modifier = Modifier
             .weight(1f)
             .widthIn(max = 600.dp)
             .padding(8.dp),
-        verticalArrangement = Arrangement.Top
-    ) {
-
-        items(items = inboxes.value) { inbox ->
-
-            InboxCard(
-                modifier = Modifier
-                    .padding(vertical = 4.dp),
-                title = inbox.title.toStringResource(),
-                icon = inbox.icon,
-                isActive = false,
-                onClick = {
-                    navController.navigate(
-                        route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
+        onRefresh = {
+            newsletterViewModel.refreshInboxes(
+                onFailure = { message ->
+                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                 }
             )
+        },
+        isRefreshing = isRefreshing
+    ) {
+        LazyColumn(
+            verticalArrangement = Arrangement.Top
+        ) {
+
+            items(items = inboxes) { inboxUiState ->
+
+                val inbox = inboxUiState.inbox
+                val notificationState = inbox.compareDates(inboxUiState.lastReadDate)
+
+                InboxCard(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp),
+                    title = inbox.title.toStringResource(),
+                    icon = inbox.icon,
+                    isActive = notificationState,
+                    onClick = {
+                        navController.navigate(
+                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}"
+                        )
+                    }
+                )
+
+            }
 
         }
-
     }
 
 }
@@ -343,6 +392,25 @@ private fun InboxCard(
 
         }
 
+    }
+}
+
+@Composable
+fun PullToRefresh(
+    isRefreshing: Boolean,
+    onRefresh: () -> Unit,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    val state = rememberPullToRefreshState()
+
+    PullToRefreshBox(
+        modifier = modifier,
+        state = state,
+        isRefreshing = isRefreshing,
+        onRefresh = onRefresh,
+    ) {
+        content()
     }
 }
 

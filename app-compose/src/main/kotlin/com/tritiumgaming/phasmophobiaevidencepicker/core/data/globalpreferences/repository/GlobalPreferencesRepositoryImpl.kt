@@ -7,11 +7,11 @@ class GlobalPreferencesRepositoryImpl(
     private val dataStoreSource: GlobalPreferencesDatastore
 ): GlobalPreferencesRepository {
 
-    override fun initialSetupEvent() = dataStoreSource.initialSetupEvent()
+    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initFlow(
+    override suspend fun initDatastoreFlow(
         onUpdate: (preferences: GlobalPreferencesDatastore.GlobalPreferences) -> Unit
-    ) = dataStoreSource.initFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow(onUpdate)
 
     override suspend fun setDisableScreenSaver(disable: Boolean) =
         dataStoreSource.setDisableScreenSaver(disable)
