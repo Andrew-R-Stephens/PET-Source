@@ -49,7 +49,7 @@ realm-kotlin = "3.0.0" # Latest: 1.16.0
 realm-kotlin-base = "3.0.0"
 realm-kotlin-sync = "2.3.0"
 
-agp = "8.12.0" # Latest: 8.10.1
+agp = "8.12.1" # Latest: 8.12.0
 kotlin = "2.2.10" # Latest: 2.2.0
 ksp = "2.2.10-2.0.2" # Latest: 2.1.20-2.0.0
 composeMP = "1.8.2" # Latest: 1.8.0
@@ -180,8 +180,8 @@ jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serializati
 
 io-realm-kotlin = { id = "io.realm.kotlin", version.ref = "realm-kotlin" }
 devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-gms-services = { id = "com.google.gms.google-services" }
-firebase-crashlytics = { id = "com.google.firebase.crashlytics" }
-firebase-perf = { id = "com.google.firebase.firebase-perf" }
+gms-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics-gradle" }
+firebase-perf = { id = "com.google.firebase.firebase-perf", version.ref = "firebase-perf-plugin" }
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
