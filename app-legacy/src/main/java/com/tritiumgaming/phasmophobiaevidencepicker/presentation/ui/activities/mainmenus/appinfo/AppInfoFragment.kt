@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.text.Html
 import android.text.Spannable
@@ -15,6 +14,7 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.net.toUri
 import androidx.navigation.Navigation.findNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
@@ -22,7 +22,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.FontUtils.replaceHTMLFontColor
-import androidx.core.net.toUri
 
 class AppInfoFragment : MainMenuFragment() {
     override fun onCreateView(

@@ -11,11 +11,8 @@ import android.widget.FrameLayout
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import android.widget.ScrollView
-import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.lifecycleScope
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.InvestigationSectionWrapper
@@ -29,7 +26,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.Rese
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.ToolBarItemPair
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
