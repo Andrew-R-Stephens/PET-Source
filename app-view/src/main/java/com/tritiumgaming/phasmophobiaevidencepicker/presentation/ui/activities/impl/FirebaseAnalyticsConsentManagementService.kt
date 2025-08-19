@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.impl
 
 import android.util.Log
+import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics.ConsentStatus
-import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.analytics.analytics
 import com.google.firebase.analytics.setConsent
-import com.google.firebase.ktx.Firebase
 
 
 interface FirebaseAnalyticsConsentManagementService {

@@ -54,9 +54,8 @@ abstract class PETActivity : AppCompatActivity(),
         //Obtain FirebaseAnalytics instance
         try { firebaseAnalytics = FirebaseAnalytics.getInstance(this)
             Log.d("Firebase", "Obtained instance.")
+            initializeFirebaseAnalyticsConsent()
         } catch (e: IllegalStateException) { e.printStackTrace() }
-
-        initializeFirebaseAnalyticsConsent()
 
     }
 

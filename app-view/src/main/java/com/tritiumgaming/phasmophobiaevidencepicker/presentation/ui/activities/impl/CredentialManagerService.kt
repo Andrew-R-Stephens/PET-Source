@@ -142,9 +142,9 @@ interface SignInCredentialManager {
                 serverClientId = activity.getString(R.string.default_web_client_id))
             .build()
 
-        finalizeAuthWithCredential(
+        /*finalizeAuthWithCredential(
             activity, googleIdOption, onSuccess, onFailure, onComplete
-        )
+        )*/
     }
 
     /** For signing in with the bottom sheet. Attempts silent sign in. */
