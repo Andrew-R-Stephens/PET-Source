@@ -8,7 +8,6 @@ interface NewsletterRepository: DatastoreRepository<NewsletterPreferences> {
 
     suspend fun saveInboxLastReadDate(id: String, date: Long)
 
-    suspend fun synchronizeInboxes(forceUpdate: Boolean = false): Result<Boolean>
-    fun getInboxes(): List<NewsletterInbox>
+    suspend fun fetchInboxes(): Result<List<NewsletterInbox>>
 
 }

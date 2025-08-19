@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
 
-class NewsletterInbox(
+data class NewsletterInbox(
     val id: String? = "",
     val title: NewsletterTitle = NewsletterTitle.GENERAL_NEWS,
     val url: String? = "",
@@ -11,32 +11,20 @@ class NewsletterInbox(
     val channel: NewsletterChannel? = null
 ) {
 
-    var inboxNotificationState = true
-    private fun updateRequiresNotify() {
-        inboxNotificationState = compareDates()
-    }
-
-    var inboxLastReadDate: Long = 1L
-        set(value) {
-            field = value.coerceAtLeast(inboxLastReadDate)
-
-            updateRequiresNotify()
-        }
-
     /** @return evaluates the age of one message compared to another
      * 1 if specifiedDate is newer than the lastReadDate,
      * -1 if specifiedDate is older than the lastReadDate,
      * 0 if specifiedDate is ths same age as lastReadDate **/
-    fun compareDate(specifiedDate: Long = inboxLastReadDate): Int {
-        return (specifiedDate - inboxLastReadDate).coerceIn(-1L, 1L).toInt()
+    fun compareDate(checkDate: Long, lastReadDate: Long): Int {
+        return (checkDate - lastReadDate).coerceIn(-1L, 1L).toInt()
     }
 
-    fun compareDates(): Boolean {
+    fun compareDates(lastReadDate: Long): Boolean {
 
         channel ?: return false
 
         channel.messages.forEach { message ->
-            if(compareDate(message.dateEpoch) > 0L) {
+            if(message.compareDate(lastReadDate) > 0L) {
                 return true
             }
         }

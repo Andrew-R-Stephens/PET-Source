@@ -5,5 +5,5 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreference
 class SetupGlobalPreferencesUseCase(
     private val repository: GlobalPreferencesRepository
 ) {
-    operator fun invoke() = repository.initialSetupEvent()
+    operator fun invoke() = repository.initializeDatastoreLiveData()
 }

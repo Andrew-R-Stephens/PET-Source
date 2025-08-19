@@ -7,5 +7,5 @@ class InitFlowNewsletterUseCase(
     private val repository: NewsletterRepository
 ) {
     suspend operator fun invoke(onUpdate: (NewsletterPreferences) -> Unit) =
-        repository.initFlow(onUpdate)
+        repository.initDatastoreFlow(onUpdate)
 }

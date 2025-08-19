@@ -6,6 +6,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.r
 class FetchNewsletterInboxesUseCase(
     private val repository: NewsletterRepository
 ) {
-    operator fun invoke(): List<NewsletterInbox> =
-        repository.getInboxes()
+    suspend operator fun invoke(): Result<List<NewsletterInbox>> {
+
+        val result = repository.fetchInboxes()
+
+        result.exceptionOrNull()?.let { e ->
+            throw Exception("Failed to fetch inboxes.", e)}
+
+        return result
+    }
 }

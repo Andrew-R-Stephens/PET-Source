@@ -24,7 +24,7 @@ interface FirestoreAccountRepository {
     ): Result<AccountMarketAgreement>
 
     suspend fun addUnlockedDocuments(
-        unlockUUIDs: ArrayList<String>?,
+        unlockUUIDs: List<String>?,
         type: String
     ): Result<String>
 

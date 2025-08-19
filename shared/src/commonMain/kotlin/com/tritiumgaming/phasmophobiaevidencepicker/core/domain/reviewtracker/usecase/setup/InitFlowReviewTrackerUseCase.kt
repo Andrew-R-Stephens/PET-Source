@@ -7,6 +7,6 @@ class InitFlowReviewTrackerUseCase(
         private val repository: ReviewTrackerRepository
     ) {
     suspend operator fun invoke(onUpdate: (ReviewTrackerPreferences) -> Unit) =
-        repository.initFlow(onUpdate)
+        repository.initDatastoreFlow(onUpdate)
     }
     

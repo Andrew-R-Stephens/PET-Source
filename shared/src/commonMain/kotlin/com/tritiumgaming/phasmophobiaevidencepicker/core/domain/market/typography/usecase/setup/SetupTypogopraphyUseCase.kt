@@ -6,5 +6,5 @@ class SetupTypographyUseCase(
     private val repository: MarketTypographyRepository
 ) {
     @Suppress("unused")
-    operator fun invoke() = repository.initialSetupEvent()
+    operator fun invoke() = repository.initializeDatastoreLiveData()
 }

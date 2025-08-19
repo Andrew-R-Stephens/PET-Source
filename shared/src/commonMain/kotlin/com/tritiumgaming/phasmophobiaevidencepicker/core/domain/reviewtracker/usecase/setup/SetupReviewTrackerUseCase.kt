@@ -6,5 +6,5 @@ class SetupReviewTrackerUseCase(
     private val repository: ReviewTrackerRepository
 ) {
     @Suppress("unused")
-    operator fun invoke() = repository.initialSetupEvent()
+    operator fun invoke() = repository.initializeDatastoreLiveData()
 }

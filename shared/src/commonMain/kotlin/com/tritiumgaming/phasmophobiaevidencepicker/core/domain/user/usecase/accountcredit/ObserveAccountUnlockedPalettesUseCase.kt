@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.map
 class ObserveAccountUnlockedPalettesUseCase (
     private val repository: FirestoreAccountRepository
 ) {
-    operator fun invoke(): Flow<Result<List<AccountPalette>>> {
+    suspend operator fun invoke(): Flow<Result<List<AccountPalette>>> {
         val result = repository.observeUnlockedPalettes()
 
-        result.map { it.exceptionOrNull()?.printStackTrace() }
+        result.collect { r -> r.exceptionOrNull()?.printStackTrace() }
 
         return result
     }

@@ -5,5 +5,5 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.r
 class SetupPaletteUseCase(
     private val repository: MarketPaletteRepository
 ) {
-    operator fun invoke() = repository.initialSetupEvent()
+    operator fun invoke() = repository.initializeDatastoreLiveData()
 }

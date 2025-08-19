@@ -6,5 +6,5 @@ class SetupLanguageUseCase(
     private val repository: LanguageRepository
 ) {
     @Suppress("unused")
-    operator fun invoke() = repository.initialSetupEvent()
+    operator fun invoke() = repository.initializeDatastoreLiveData()
 }

@@ -5,7 +5,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.r
 class SetupNewsletterUseCase(
     private val repository: NewsletterRepository
 ) {
-    operator fun invoke() = repository.initialSetupEvent()
+    operator fun invoke() = repository.initializeDatastoreLiveData()
 }
 
     

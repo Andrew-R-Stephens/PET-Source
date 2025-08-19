@@ -2,11 +2,11 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.datastore
 
 interface DatastoreDataSource<T> {
 
-    fun initialSetupEvent()
+    fun initializeDatastoreLiveData()
 
-    suspend fun initFlow(onUpdate: (T) -> Unit)
+    suspend fun initDatastoreFlow(onUpdate: (T) -> Unit)
 
-    suspend fun fetchInitialPreferences(): T
+    suspend fun fetchDatastoreInitialPreferences(): T
 
     companion object PreferenceKeys
 

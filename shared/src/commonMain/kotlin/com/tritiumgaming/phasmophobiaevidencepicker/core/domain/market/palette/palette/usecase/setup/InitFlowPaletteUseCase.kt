@@ -7,5 +7,5 @@ class InitFlowPaletteUseCase(
     private val repository: MarketPaletteRepository
 ) {
     suspend operator fun invoke(onUpdate: (PalettePreferences) -> Unit) =
-        repository.initFlow(onUpdate)
+        repository.initDatastoreFlow(onUpdate)
 }

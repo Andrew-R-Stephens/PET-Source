@@ -7,5 +7,5 @@ class InitFlowTypographyUseCase(
     private val repository: MarketTypographyRepository
 ) {
     suspend operator fun invoke(onUpdate: (TypographyPreferences) -> Unit) =
-        repository.initFlow(onUpdate)
+        repository.initDatastoreFlow(onUpdate)
 }
