@@ -153,21 +153,26 @@ open class InvestigationActivity : PETActivity() {
 
             nv.setOnItemSelectedListener(
                 NavigationBarView.OnItemSelectedListener { item: MenuItem ->
-                if (onNavDestinationSelected(item, navController)) {
-                    drawerLayout?.closeDrawer(GravityCompat.START)
+                    try {
+                        if (onNavDestinationSelected(item, navController)) {
+                            drawerLayout?.closeDrawer(GravityCompat.START)
 
-                    return@OnItemSelectedListener true
-                }
-                if (item.itemId == (R.id.open_menu)) {
-                    drawerLayout?.let { drawerLayout ->
-                        when (drawerLayout.isOpen) {
-                            true -> drawerLayout.closeDrawer(GravityCompat.START)
-                            false -> drawerLayout.openDrawer(GravityCompat.START)
+                            return@OnItemSelectedListener true
                         }
+                        if (item.itemId == (R.id.open_menu)) {
+                            drawerLayout?.let { drawerLayout ->
+                                when (drawerLayout.isOpen) {
+                                    true -> drawerLayout.closeDrawer(GravityCompat.START)
+                                    false -> drawerLayout.openDrawer(GravityCompat.START)
+                                }
+                            }
+                        }
+                        true
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        false
                     }
-                }
-                true
-            })
+                })
 
             nv.itemIconTintList = null
         }

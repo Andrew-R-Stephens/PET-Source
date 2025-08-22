@@ -33,6 +33,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import kotlin.math.max
 import kotlin.math.min
+import androidx.core.graphics.toColorInt
+import androidx.core.view.isVisible
 
 abstract class ItemStoreFragment : CodexFragment() {
     protected val storeData: ItemStoreListModel = ItemStoreListModel()
@@ -44,8 +46,8 @@ abstract class ItemStoreFragment : CodexFragment() {
 
     protected var dataView: View? = null
 
-    private var selColor = Color.parseColor("#2D3635")
-    private var unselColor = Color.parseColor("#FFB43D")
+    private var selColor = "#2D3635".toColorInt()
+    private var unselColor = "#FFB43D".toColorInt()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -234,28 +236,38 @@ abstract class ItemStoreFragment : CodexFragment() {
 
     protected fun doScrollItemStoreScrollView(paginatorGrid: GridLayout, paginatorChildCount: Int) {
 
-        scrollView?.let { scrollView ->
-            val isPortrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
-            val scrollableLength =
-                if (isPortrait) scrollView.getChildAt(0).measuredHeight - scrollView.measuredHeight
-                else scrollView.getChildAt(0).measuredWidth - scrollView.measuredWidth
-            val scrollPos = (if (isPortrait) scrollView.scrollY else scrollView.scrollX).toFloat()
+        try {
+            scrollView?.let { scrollView ->
+                val isPortrait =
+                    resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+                val scrollableLength =
+                    if (isPortrait) scrollView.getChildAt(0).measuredHeight - scrollView.measuredHeight
+                    else scrollView.getChildAt(0).measuredWidth - scrollView.measuredWidth
+                val scrollPos =
+                    (if (isPortrait) scrollView.scrollY else scrollView.scrollX).toFloat()
 
-            val maxDimPercentage = scrollPos / scrollableLength
-            val markIndex = max(0.0, min((paginatorChildCount - 1).toDouble(),
-                (paginatorChildCount * maxDimPercentage).toInt().toDouble())).toInt()
+                val maxDimPercentage = scrollPos / scrollableLength
+                val markIndex = max(
+                    0.0, min(
+                        (paginatorChildCount - 1).toDouble(),
+                        (paginatorChildCount * maxDimPercentage).toInt().toDouble()
+                    )
+                ).toInt()
 
-            Log.d("Scroll", "$paginatorChildCount $markIndex")
+                Log.d("Scroll", "$paginatorChildCount $markIndex")
 
-            for (j in 0 until paginatorChildCount) {
-                val icon = paginatorGrid.getChildAt(j)
+                for (j in 0 until paginatorChildCount) {
+                    val icon = paginatorGrid.getChildAt(j)
+                        .findViewById<ImageView>(R.id.image_equipmentIcon)
+                    setIconFilter(icon, selColor, 1f)
+                }
+                val icon = paginatorGrid.getChildAt(markIndex)
                     .findViewById<ImageView>(R.id.image_equipmentIcon)
-                setIconFilter(icon, selColor, 1f)
-            }
-            val icon = paginatorGrid.getChildAt(markIndex)
-                .findViewById<ImageView>(R.id.image_equipmentIcon)
 
-            setIconFilter(icon, unselColor, 1f)
+                setIconFilter(icon, unselColor, 1f)
+            }
+        } catch (e: IllegalStateException) {
+            e.printStackTrace()
         }
     }
 
@@ -301,7 +313,7 @@ abstract class ItemStoreFragment : CodexFragment() {
         }
 
         protected fun openItemDataView(dataView: View) {
-            if (dataView.visibility == View.VISIBLE) { return }
+            if (dataView.isVisible) { return }
 
             val isPortrait = dataView.context.resources.configuration.orientation ==
                     Configuration.ORIENTATION_PORTRAIT
@@ -353,7 +365,7 @@ abstract class ItemStoreFragment : CodexFragment() {
         }
 
         private fun setIconFilter(icon: ImageView, colorString: String, alpha: Float) {
-            setIconFilter(icon, Color.parseColor(colorString), alpha)
+            setIconFilter(icon, colorString.toColorInt(), alpha)
         }
     }
 
@@ -375,7 +387,7 @@ abstract class ItemStoreFragment : CodexFragment() {
     abstract override fun reset()
 
     fun handleBackAction(dataView: View) {
-        if (dataView.visibility == View.VISIBLE) {
+        if (dataView.isVisible) {
             closeItemDataView(dataView)
             return
         }

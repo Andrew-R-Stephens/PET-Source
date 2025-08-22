@@ -47,12 +47,18 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
 
             var isUpToDate = true
             inboxMessageList?.let { inboxMessageList ->
-                for (inbox in inboxMessageList) {
-                    if (inbox?.ready == false) {
-                        isUpToDate = false
-                        break
+                try {
+                    for (inbox in inboxMessageList) {
+                        if (inbox?.ready == false) {
+                            isUpToDate = false
+                            break
+                        }
                     }
-                } }
+                } catch (e: ConcurrentModificationException) {
+                    e.printStackTrace()
+                    isUpToDate = false
+                }
+            }
 
             return isUpToDate
         }

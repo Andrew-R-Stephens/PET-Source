@@ -88,7 +88,11 @@ class GhostListView : InvestigationListView {
                 for (j in currOrder) {
                     val childView = this.findViewById<View>(j)
                     this.removeView(childView)
-                    this.addView(childView)
+                    try {
+                        this.addView(childView)
+                    } catch (e: IllegalArgumentException) {
+                        e.printStackTrace()
+                    }
                 }
             }
         }

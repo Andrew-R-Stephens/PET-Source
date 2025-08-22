@@ -228,8 +228,8 @@ dependencies {
     /*
      * Realms DB
      */
-    implementation(libs.realm.kotlin.library.base)
-    implementation(libs.realm.kotlin.library.sync)
+    //implementation(libs.realm.kotlin.library.base)
+    //implementation(libs.realm.kotlin.library.sync)
 
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
