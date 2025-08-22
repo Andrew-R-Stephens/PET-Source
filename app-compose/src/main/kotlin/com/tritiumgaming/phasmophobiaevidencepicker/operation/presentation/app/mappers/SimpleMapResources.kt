@@ -56,7 +56,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
         MapThumbnail.SUNNY_MEADOWS -> R.drawable.thumbnail_meadows
         MapThumbnail.SUNNY_MEADOWS_RESTRICTED -> R.drawable.thumbnail_meadows
         MapThumbnail.POINT_HOPE -> R.drawable.thumbnail_pointhope
-        MapThumbnail.CAMP_WOODWIND -> R.drawable.thumbnail_campmaple
+        MapThumbnail.CAMP_WOODWIND -> R.drawable.thumbnail_woodwind
         MapThumbnail.CAMP_MAPLE -> R.drawable.thumbnail_campmaple
         MapThumbnail.BLEASDALE_FARMHOUSE -> R.drawable.thumbnail_bleasedale
         MapThumbnail.GRAFTON_FARMHOUSE -> R.drawable.thumbnail_grafton

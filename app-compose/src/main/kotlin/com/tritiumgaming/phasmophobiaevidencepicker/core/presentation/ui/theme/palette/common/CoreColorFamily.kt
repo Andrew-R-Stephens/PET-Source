@@ -17,4 +17,16 @@ data class CoreColorFamily(
     val color_7: Color = color_6, //  color_7
     val color_8: Color = color_7, //  color_8
 
-)
+) {
+    val list: List<Color>
+        get() = listOf(
+            color_1,
+            color_2,
+            color_3,
+            color_4,
+            color_5,
+            color_6,
+            color_7,
+            color_8
+        )
+}

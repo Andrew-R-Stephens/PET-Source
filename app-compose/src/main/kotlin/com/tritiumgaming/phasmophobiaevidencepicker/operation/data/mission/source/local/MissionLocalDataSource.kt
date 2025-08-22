@@ -19,9 +19,6 @@ class MissionLocalDataSource(
                 id = applicationContext.getString(R.string.objective_id_ghostphotograph),
                 content = MissionContent.PHOTOGRAPH_THE_GHOST),
             MissionResourceDto(
-                id = applicationContext.getString(R.string.objective_id_emfreader),
-                content = MissionContent.GET_EMF_READING),
-            MissionResourceDto(
                 id = applicationContext.getString(R.string.objective_id_motionsensor),
                 content = MissionContent.GET_MOTION_SENSOR_ACTIVITY),
             MissionResourceDto(
@@ -30,9 +27,6 @@ class MissionLocalDataSource(
             MissionResourceDto(
                 id = applicationContext.getString(R.string.objective_id_crucifix),
                 content = MissionContent.PREVENT_HUNT_WITH_CRUCIFIX),
-            MissionResourceDto(
-                id = applicationContext.getString(R.string.objective_id_salt),
-                content = MissionContent.GHOST_WALKS_THROUGH_SALT),
             MissionResourceDto(
                 id = applicationContext.getString(R.string.objective_id_escapehunt),
                 content = MissionContent.ESCAPE_A_GHOST_HUNT),
@@ -44,7 +38,25 @@ class MissionLocalDataSource(
                 content = MissionContent.GHOST_BLOW_OUT_CANDLE),
             MissionResourceDto(
                 id = applicationContext.getString(R.string.objective_id_lowsanity),
-                content = MissionContent.GET_AVERAGE_SANITY_AT_OR_BELOW_25)
+                content = MissionContent.GET_AVERAGE_SANITY_AT_OR_BELOW_25),
+            MissionResourceDto(
+                id = applicationContext.getString(R.string.objective_id_paranormalsound),
+                content = MissionContent.DETECT_SOUND_PARABOLIC_MICROPHONE),
+            MissionResourceDto(
+                id = applicationContext.getString(R.string.objective_id_uniqueaudio),
+                content = MissionContent.CAPTURE_UNIQUE_AUDIO),
+            MissionResourceDto(
+                id = applicationContext.getString(R.string.objective_id_uniquephotograph),
+                content = MissionContent.CAPTURE_UNIQUE_PHOTOGRAPH),
+            MissionResourceDto(
+                id = applicationContext.getString(R.string.objective_id_uniquevideo),
+                content = MissionContent.CAPTURE_UNIQUE_VIDEO),
+            MissionResourceDto(
+                id = applicationContext.getString(R.string.objective_id_emfphotograph),
+                content = MissionContent.CAPTURE_EMF_PHOTOGRAPH),
+            MissionResourceDto(
+                id = applicationContext.getString(R.string.objective_id_ghostvideo),
+                content = MissionContent.CAPTURE_GHOST_VIDEO)
         )
 
     override fun get(): Result<List<MissionDto>> {
