@@ -24,5 +24,5 @@ include(":app-view",
     ":app-compose",
     ":app-legacy",
     ":shared",
-    /*":resources"*/
+    ":resources"
 )
