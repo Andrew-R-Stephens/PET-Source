@@ -324,8 +324,10 @@
     </string>
     <string name="ghost_weaknesses_mare" >
         <![CDATA[
-            <a>Wenn das Licht im Bereich einer Stute eingeschaltet bleibt, sinkt ihre Präferenz für geistige Gesundheit beim Jagen von durchschnittlich 60 % auf 40 %. Bleiben Sie daher in beleuchteten Bereichen, um seine Aggression zu begrenzen. Eine Stute kann den Unterbrecher nicht ausschalten, aber sie hat die Fähigkeit, Lichtschalter sofort auszuschalten, wenn sie von einem Spieler aktiviert werden, was ein Ereignis ist, das sehr leicht erkannt werden kann.</a>
-        ]]>
+<a>Wenn das Licht im Revier einer Mare eingeschaltet bleibt, sinkt ihre geistige Präferenz für die Jagd von 60\% auf 40\% der durchschnittlichen geistigen Gesundheit. Bleiben Sie daher in beleuchteten Bereichen, um ihre Aggressivität zu begrenzen.</a>
+<a>Eine Mare berührt Lichtschalter nicht direkt, sondern betätigt sie nur per Fernzugriff. Daher hinterlässt sie keine Fingerabdrücke auf Lichtschaltern.</a>
+<a>Eine Mare kann Lichtschalter sofort ausschalten, wenn sie von einem Spieler betätigt werden. Dieses Ereignis ist sehr leicht zu erkennen.</a>
+]]>
     </string>
     <string name="ghost_weaknesses_moroi">
         <![CDATA[

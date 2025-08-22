@@ -333,7 +333,13 @@
     <string name="ghost_weaknesses_goryo"><![CDATA[<a>高丽通常会呆在它们出没的地点内或非常靠近它们出没的地点。这样可以更轻松地收集证据。</a>]]></string>
     <string name="ghost_weaknesses_hantu"><![CDATA[<a>在温暖的地区，汉图人的移动速度会比正常情况下慢。狩猎时，如果断路器关闭，Hantu 会像玩家一样产生冰冻气息，但这种效果不仅限于幽灵房间或房间的温度。</a>]]></string>
     <string name="ghost_weaknesses_jinn"><![CDATA[<a>精灵依靠地图的电源来实现高速，因此玩家应该寻找建筑物的断路器以消除精灵的能力。精灵无法自行开启电源。</a>]]></string>
-    <string name="ghost_weaknesses_mare"><![CDATA[<a>让母马所在区域的灯一直亮着，会将其狩猎时的理智偏好从 60\% to 40\% a 平均理智值降低。因此，留在明亮的地方以限制其攻击性。母马无法关闭断路器，但它确实能够在玩家激活电灯开关时立即关闭电灯开关，这是一个很容易识别的事件。</a>]]></string>
+    <string name="ghost_weaknesses_mare">
+        <![CDATA[
+<a>在母马活动区域内持续开灯会将其狩猎时的理智值偏好从 60\% 降至 40\%。因此，请留在光照充足的区域以限制其攻击性。</a>
+<a>母马不会直接触摸电灯开关，只会远程操控。因此，它不会在电灯开关上留下指纹。</a>
+<a>母马拥有在玩家激活电灯开关时立即关闭的能力，这是一个很容易被察觉的事件。</a>
+]]>
+    </string>
     <string name="ghost_weaknesses_moroi"><![CDATA[<a>诸井人对涂抹棒非常敏感。点燃附近的一个会使诸井失明 12 秒。</a>]]></string>
     <string name="ghost_weaknesses_myling"><![CDATA[<a>Mylings 会更频繁地在抛物面麦克风中发出超自然声音。</a>]]></string>
     <string name="ghost_weaknesses_obake"><![CDATA[<a>Obake 有时可能会偶然留下 <font color=#ff6161>6 个手指的手印</font>，而不是通常的 5 个。不应使用 5 个手指的手印来排除奥贝克。奥巴克还可以在狩猎过程中随时短暂改变其幽灵模型。如果 Obake 接触某个表面，指纹有可能不会出现；如果任何后续交互产生指纹，这可以用作鬼魂的证据。</a>]]></string>

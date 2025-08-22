@@ -313,7 +313,9 @@
     </string>
     <string name="ghost_weaknesses_mare" >
         <![CDATA[
-            <a>Keeping the lights on in a Mare\'s area will lower its sanity preference for hunting from 60\% to 40\% average sanity. Therefore, remain in lit areas to limit its aggression. A Mare cannot turn the breaker off, but it does have the ability to instantly turn off light switches when they\'re activated by a player, which is an event that can be recognized very easily.</a>
+            <a>Keeping the lights on in a Mare\'s area will lower its sanity preference for hunting from 60\% to 40\% average sanity. Therefore, remain in lit areas to limit its aggression.</a>
+            <a>A Mare will not touch light switches directly, and will only manipulate them remotely. Thus, it will not leave fingerprints on light switches.</a>
+            <a>A Mare has the ability to instantly turn off light switches when they\'re activated by a player, which is an event that can be recognized very easily.</a>
         ]]>
     </string>
     <string name="ghost_weaknesses_moroi">

@@ -325,8 +325,10 @@
     </string>
     <string name="ghost_weaknesses_mare" >
         <![CDATA[
-            <a>Mantener las luces encendidas en el área de una Pesadilla reducirá su preferencia de cordura por la caza del 60\% al 40\% de cordura promedio. Por lo tanto, permanezca en áreas iluminadas para limitar su agresión. Una Pesadilla no puede apagar el interruptor, pero tiene la capacidad de apagar instantáneamente los interruptores de luz cuando los activa un jugador, lo cual es un evento que se puede reconocer muy fácilmente.</a>
-        ]]>
+<a>Mantener las luces encendidas en el área de una Yegua reducirá su preferencia de cordura para cazar del 60\% al 40\% de cordura promedio. Por lo tanto, permanezca en áreas iluminadas para limitar su agresividad.</a>
+<a>Una Yegua no tocará los interruptores de luz directamente, solo los manipulará a distancia. Por lo tanto, no dejará huellas en los interruptores.</a>
+<a>Una Yegua tiene la capacidad de apagar instantáneamente los interruptores de luz cuando un jugador los activa, lo cual es un evento que se puede reconocer muy fácilmente.</a>
+]]>
     </string>
     <string name="ghost_weaknesses_moroi">
         <![CDATA[

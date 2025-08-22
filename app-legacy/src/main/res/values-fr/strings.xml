@@ -330,8 +330,10 @@
     </string>
     <string name="ghost_weaknesses_mare" >
         <![CDATA[
-            <a>Laisser les lumières allumées dans la zone d\'une jument réduira sa préférence de santé mentale pour la chasse de 60\% à 40\% de santé mentale moyenne. Par conséquent, restez dans des zones éclairées pour limiter son agression. Une jument ne peut pas éteindre le disjoncteur, mais elle a la capacité d\'éteindre instantanément les interrupteurs d\'éclairage lorsqu\'ils sont activés par un joueur, ce qui est un événement qui peut être reconnu très facilement.</a>
-        ]]>
+<a>Laisser les lumières allumées dans la zone d\'une Jument réduira sa préférence de santé mentale pour la chasse de 60\% à 40\% de santé mentale moyenne. Par conséquent, restez dans les zones éclairées pour limiter son agressivité.</a>
+<a>Une Jument ne touchera pas directement les interrupteurs et ne les manipulera qu\'à distance. Ainsi, elle ne laissera pas d\'empreintes digitales dessus.</a>
+<a>Une Jument a la capacité d\'éteindre instantanément les interrupteurs lorsqu\'ils sont activés par un joueur, ce qui est un événement très facile à reconnaître.</a>
+]]>
     </string>
     <string name="ghost_weaknesses_moroi">
         <![CDATA[

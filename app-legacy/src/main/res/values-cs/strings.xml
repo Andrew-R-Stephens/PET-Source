@@ -402,8 +402,10 @@
      </string>
     <string name="ghost_weaknesses_mare" >
          <![CDATA[
-             <a>Ponecháním rozsvícených světel v oblasti klisny snížíte její příčetnost při lovu z 60 % na 40 % průměrné příčetnosti. Zůstaňte proto v osvětlených prostorách, abyste omezili jeho agresivitu. Mare nemůže vypnout jistič, ale má schopnost okamžitě vypnout spínače světel, když je hráč aktivuje, což je událost, kterou lze velmi snadno rozpoznat.</a>
-         ]]>
+<a>Pokud v oblasti klisny svítí světla, sníží se její preference duševní pohody pro lov z 60\% na 40\% průměrné duševní pohody. Proto zůstaňte v osvětlených oblastech, abyste omezili její agresi.</a>
+<a>Klisna se přímo nedotýká vypínačů a manipuluje s nimi pouze na dálku. Na vypínačích tak nezanechává otisky prstů.</a>
+<a>Klisna má schopnost okamžitě vypnout vypínače, když je hráč aktivuje, což je událost, kterou lze velmi snadno rozpoznat.</a>
+]]>
      </string>
     <string name="ghost_weaknesses_moroi">
          <![CDATA[

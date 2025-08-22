@@ -338,7 +338,13 @@
     <string name="ghost_weaknesses_goryo"><![CDATA[<a>Os Goryos normalmente ficam dentro ou muito perto do local que estão assombrando. Isso facilita a coleta de evidências.</a>]]></string>
     <string name="ghost_weaknesses_hantu"><![CDATA[<a>O movimento de um Hantu será mais lento que o normal em áreas mais quentes. Durante a caça, e se o disjuntor estiver desligado, o Hantu produzirá um hálito gelado, assim como um jogador, mas esse efeito não se limita à sala fantasma ou à temperatura de uma sala.</a>]]></string>
     <string name="ghost_weaknesses_jinn"><![CDATA[<a>Os Jinns dependem da fonte de energia do mapa para atingir altas velocidades, então os jogadores devem procurar o disjuntor do prédio para remover a habilidade dos Jinn. Um Jinn não conseguirá ligar a energia sozinho.</a>]]></string>
-    <string name="ghost_weaknesses_mare"><![CDATA[<a>Manter as luzes acesas na área de uma égua reduzirá sua preferência de sanidade para caçar de 60 \% to para 40 \% asanidade média. Portanto, permaneça em áreas iluminadas para limitar a sua agressividade. Uma Mare não pode desligar o disjuntor, mas tem a capacidade de desligar instantaneamente os interruptores de luz quando eles são ativados por um jogador, um evento que pode ser reconhecido facilmente.</a>]]></string>
+    <string name="ghost_weaknesses_mare">
+        <![CDATA[
+<a>Manter as luzes acesas na área de uma Mare reduzirá sua preferência de sanidade para caça de 60\% para 40\% da sanidade média. Portanto, permaneça em áreas iluminadas para limitar sua agressividade.</a>
+<a>Uma Mare não tocará em interruptores de luz diretamente e apenas os manipulará remotamente. Portanto, ela não deixará impressões digitais nos interruptores de luz.</a>
+<a>Uma Mare tem a capacidade de desligar interruptores de luz instantaneamente quando são ativados por um jogador, o que é um evento que pode ser reconhecido com muita facilidade.</a>
+]]>
+    </string>
     <string name="ghost_weaknesses_moroi"><![CDATA[<a>Os Moroi são hipersensíveis ao Smudge Stick. Acender um objeto próximo cegará o Moroi por 12 segundos.</a>]]></string>
     <string name="ghost_weaknesses_myling"><![CDATA[<a>Mylings emitem sons paranormais com mais frequência no microfone parabólico.</a>]]></string>
     <string name="ghost_weaknesses_obake"><![CDATA[<a>Por acaso, um Obake às vezes pode deixar <font color=#ff6161>impressões de mãos com seis dedos</font> em vez dos cinco normais. Impressões de mãos com cinco dedos não devem ser usadas para descartar o Obake. O Obake também pode mudar seu modelo fantasma por um breve segundo a qualquer momento durante uma caçada. Se o Obake tocar uma superfície, há uma chance de que as impressões digitais não apareçam; Isso pode ser usado como prova do fantasma se alguma interação subsequente produzir impressões digitais.</a>]]></string>
