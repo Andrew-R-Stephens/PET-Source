@@ -132,7 +132,7 @@
         <item>@array/map_campwoodwind_layerName_array</item>
         <item>0</item>
         <item>0</item>
-        <item>@drawable/thumbnail_campmaple</item>
+        <item>@drawable/thumbnail_campwoodwind</item>
         <item>@array/map_campwoodwind_image_array</item>
     </integer-array>
     <integer-array name= "map_campmaple_array">

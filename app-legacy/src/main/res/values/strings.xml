@@ -229,18 +229,23 @@
     <string name="objectives_title_optional_objective_3">- OBJECTIVE 3</string>
     <string name="objectives_title_response_alone">Alone</string>
     <string name="objectives_title_response_everyone">Grouped Up</string>
+
     <!-- Objective Description -->
-    <string name="objective_info_ghostevent">Witness a Ghost Event</string>
-    <string name="objective_info_ghostphotograph">Photograph the Ghost</string>
-    <string name="objective_info_emfreader">Get any EMF Reader activity</string>
-    <string name="objective_info_motionsensor">Get Motion Sensor activity</string>
-    <string name="objective_info_smudgestick">Smudge Stick the Ghost\'s location</string>
-    <string name="objective_info_crucifix">Prevent a hunt with the Crucifix</string>
-    <string name="objective_info_salt">Have the Ghost walk through Salt</string>
-    <string name="objective_info_escapehunt">Escape the ghost while it\'s hunting</string>
-    <string name="objective_info_repelwithsmudge">Repel the hunting ghost with a Smudge stick </string>
-    <string name="objective_info_extinguishcandle">Have the ghost blow out a candle</string>
-    <string name="objective_info_lowsanity">Get an Average Team Sanity of 25% or lower</string>
+    <string name="objective_info_ghostevent">Have a member of your team witness a Ghost event</string>
+    <string name="objective_info_ghostphotograph">Capture a photo of the ghost</string>
+    <string name="objective_info_motionsensor">Detect a ghost\'s presence with a Motion Sensor</string>
+    <string name="objective_info_smudgestick">Cleanse the area near the ghost using Incense</string>
+    <string name="objective_info_crucifix">Prevent a ghost from hunting with a Crucifix</string>
+    <string name="objective_info_escapehunt">Have a member of the team escape the Ghost during a Hunt</string>
+    <string name="objective_info_repelwithsmudge">Repel the Ghost with Incense while it\'s chasing someone</string>
+    <string name="objective_info_extinguishcandle">Get the Ghost to blow out a Firelight</string>
+    <string name="objective_info_lowsanity">Get an average Team Sanity below 25\%</string>
+    <string name="objective_info_paranormalsound">Detect a paranormal sound with a Parabolic Microphone</string>
+    <string name="objective_info_uniqueaudio">Capture 2 unique paranormal sounds with a Sound Recorder</string>
+    <string name="objective_info_uniquephotograph">Capture 3 unique photos with a Photo Camera</string>
+    <string name="objective_info_uniquevideo">Capture 3 unique videos with a Video Camera</string>
+    <string name="objective_info_emfphotograph">Capture a Photo of any successful reading on an EMF Reader</string>
+    <string name="objective_info_ghostvideo">Capture a video of a Ghost</string>
 
     <!--
         TOOLS PAGE

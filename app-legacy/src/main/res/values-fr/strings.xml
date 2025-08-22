@@ -669,17 +669,21 @@
     <string name="settings_screenalwayson">Maintenir l\'écran allumé</string>
     <string name="aboutinfo_joindiscord">Rejoignez-nous sur Discord</string>
 
-    <string name="objective_info_ghostevent">Avoir un membre de votre équipe assister à un événement paranormal</string>
+    <string name="objective_info_ghostevent">Demandez à un membre de votre équipe d\'assister à un événement fantôme</string>
     <string name="objective_info_ghostphotograph">Prenez une photo du fantôme</string>
-    <string name="objective_info_emfreader">Trouvez des preuves du paranormal avec un lecteur EMF</string>
-    <string name="objective_info_motionsensor">Détectez une présence de fantômes avec un capteur de mouvement</string>
-    <string name="objective_info_smudgestick">Nettoyez la zone près du fantôme à l\'aide de bâton d\'encens</string>
-    <string name="objective_info_crucifix">Empêchez le fantôme de chasser avec un crucifix</string>
-    <string name="objective_info_salt">Faites marcher un fantôme dans du sel</string>
-    <string name="objective_info_escapehunt">Échappez au fantôme pendant qu\'il chasse</string>
-    <string name="objective_info_repelwithsmudge">Repoussez le fantôme de chasse avec un bâton de smudge</string>
-    <string name="objective_info_extinguishcandle">Faire souffler une bougie par le fantôme</string>
-    <string name="objective_info_lowsanity">Obtenez une santé mentale moyenne de l\'équipe de 25% ou moins</string>
+    <string name="objective_info_motionsensor">Détectez la présence d\'un fantôme grâce à un détecteur de mouvement</string>
+    <string name="objective_info_smudgestick">Purifiez la zone autour du fantôme avec de l\'encens</string>
+    <string name="objective_info_crucifix">Empêchez un fantôme de chasser avec un crucifix</string>
+    <string name="objective_info_escapehunt">Demandez à un membre de votre équipe d\'échapper au fantôme pendant une chasse</string>
+    <string name="objective_info_repelwithsmudge">Repoussez le fantôme avec de l\'encens lorsqu\'il poursuit quelqu\'un</string>
+    <string name="objective_info_extinguishcandle">Demandez au fantôme d\'éteindre un feu</string>
+    <string name="objective_info_lowsanity">Obtenez une santé mentale moyenne de l\'équipe inférieure à 25\%</string>
+    <string name="objective_info_emfphotograph">Photographiez toute lecture réussie avec un lecteur EMF</string>
+    <string name="objective_info_ghostvideo">Vidéo d\'un fantôme</string>
+    <string name="objective_info_paranormalsound">Détectez un son paranormal avec un microphone parabolique</string>
+    <string name="objective_info_uniqueaudio">Capturez 2 sons paranormaux uniques avec un enregistreur de sons</string>
+    <string name="objective_info_uniquephotograph">Capturez 3 photos uniques avec un appareil photo</string>
+    <string name="objective_info_uniquevideo">Capturez 3 vidéos uniques avec une caméra vidéo</string>
 
     <string name="investigation_timer_maplabel">Carte :</string>
     <string name="investigation_sanity_huntwarn">Avertissement de chasse</string>
@@ -869,12 +873,12 @@
          ]]>
      </string>
 
-    <string name="shop_equipment_uvlight_data_info_1">
+    <string name="shop_equipment_uvlight_data_info_2">
          <![CDATA[
              <a>Le bâton lumineux UV classique. Après l\'avoir cliqué pour l\'allumer, il projette une lumière de zone à courte portée qui dure environ une minute avant de s\'assombrir. Vous pouvez toujours lui donner une autre secousse pour revigorer sa lumière.</a><br><br><a>Cet appareil chargera un point UV dans les 10 secondes suivant l\'exposition.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_info_2">
+    <string name="shop_equipment_uvlight_data_info_1">
          <![CDATA[
              <a>La lampe de poche UV classique qui émet un faisceau plus lumineux et étroit avec une portée plus longue, offrant un temps de charge UV beaucoup plus rapide!</a><br><br><a>Cet appareil chargera un spot UV dans les 5 secondes suivant l\'exposition.</a>
          ]]>
@@ -975,6 +979,25 @@
     <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>Placez ce détecteur de mouvement sur les murs ou sur le sol et il clignotera chaque fois que quelque chose bouge devant lui, même les choses que vous ne pouvez pas voir.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Avec deux modes différents, une portée plus longue et un indicateur sonore, ce capteur est parfait pour le suivi paranormal.</a><br><br><a>Vous pouvez changer la forme du laser en interagissant avec le capteur une fois qu\'il a été placé.{ /3}</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>Placez cette caméra à détection de mouvement sur le sol, à proximité de toute activité fantôme que vous pourriez trouver. Lorsqu\'il est activé, il s\'allume et fait clignoter une lumière vive chaque fois qu\'un fantôme entre ou sort de sa plage de détection.</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+<![CDATA[
+<a>Utilisez cet enregistreur de sons pour trouver et enregistrer des sons paranormaux lors d\'enquêtes. Les enregistrements réussis vous rapporteront une prime à la fin du contrat.</a><br><br>
+<a>Vous pouvez même réécouter le son enregistré dans le Journal!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+<![CDATA[
+<a>Cet enregistreur de sons a été amélioré avec une précision accrue, une meilleure portée et une interface moderne. Il devrait faciliter la recherche de sons paranormaux!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+<![CDATA[
+<a>Lorsqu\'il est activé, cet enregistreur de sons fournit des informations supplémentaires sur le paranormal. Sons.</a><br><br>
+<a>Les indicateurs de direction et de portée ajoutés rendent la recherche et l\'enregistrement des phénomènes paranormaux efficaces et satisfaisants!</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Placez ces capteurs sonores aux endroits où vous souhaitez suivre les interactions audio.</a><br><br><a>Une fois placés, retournez au camion, vous pouvez écouter la lecture à distance tout en vérifiant l\'écran du capteur sonore pour voir si aucun des capteurs ne reçoit des valeurs.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>Ce capteur sonore a été amélioré pour proposer trois paramètres de taille différents, modifiables à l\'aide d\'un bouton de taille sur l\'écran du capteur sonore dans le camion.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>Le trépied est doté d\'articulations rotatives qui vous permettent d\'interagir avec lui pour modifier la forme du capteur de son.</a><br><br><a>Chaque forme est représentée par les directions vers lesquelles font face les microphones:</a><br><br><a>Avant: Cône / Vers l\'extérieur: Côtés / Vers l\'intérieur: Sphère</a>]]></string>
@@ -1009,8 +1032,8 @@
     <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>Un vieux bougeoir rouillé supportant une petite bougie. J\'espère qu\'il durera assez longtemps s\'il n\'y a pas d\'autre lumière. N\'oubliez pas de quoi l\'éclairer!</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>Candélabre auquel sont attachées trois grandes bougies. Le métal orné et la cire de bougie de meilleure qualité garantissent une protection mentale bien plus fiable!</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>Elle peut paraître vieille, mais cette lanterne à essence est la lampe de feu la plus fiable que nous ayons trouvée: elle peut durer des heures.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Un petit bâton lumineux rempli d\'un liquide huileux clair, mélangé à un colorant fluorescent. En cassant le bâton, une réaction illumine la zone environnante d\'une couleur vive.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Une petite lampe de poche UV tactique avec un clip ceinture pratique.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Un petit bâton lumineux rempli d\'un liquide huileux clair, mélangé à un colorant fluorescent. En cassant le bâton, une réaction illumine la zone environnante d\'une couleur vive.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Une petite lampe de poche UV tactique avec un clip ceinture pratique.</a>]]></string>
     <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>La lampe de poche UV LightPro comprend près de 80 ampoules individuelles, éclairant de vastes zones avec de la lumière.</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>Juste deux morceaux de bois attachés ensemble. La forme à elle seule semble suffire à éloigner certaines entités paranormales.</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>Améliorée du bois à la fonte, cette croix offre une défense beaucoup plus fiable.</a>]]></string>
@@ -1036,6 +1059,19 @@
     <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>Auparavant, il s\'agissait d\'une caméra animalière. Le capteur a été modifié pour suivre les entités paranormales se déplaçant devant lui.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>D\'après ce que nous avons appris en modifiant la version précédente, nous avons réussi à améliorer une caméra plus avancée pour nos besoins de suivi paranormal.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>Une caméra de sécurité qui a été démontée et reconstruite de fond en comble, lui permettant de voir le monde paranormal.</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+<![CDATA[
+<a>Vieux, cabossé et recollé. Ce vieil enregistreur de son en paracorde a connu des jours bien meilleurs, heureusement, il fonctionne toujours…</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+<![CDATA[
+<a>L\'enregistreur de son de Ghost Huntin\' Distribution. Plus performant que son prédécesseur, son écran numérique et sa nouvelle interface facilitent la recherche de ces sons étranges.</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+<![CDATA[
+<a>Le dernier né des enregistreurs de son de BONY. Cet appareil est équipé de plusieurs fonctionnalités pour simplifier au maximum les sons de chasse. La configuration à double microphone facilite grandement le suivi et accélère les enregistrements, même ceux à peine audibles.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>Un petit microphone fixé à un mini trépied, bon marché et efficace.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>Deuxmicros de meilleure qualité sont fixés ensemble sur un support de trépied sur mesure. Ils ont consacré plus de temps et d\'argent à la création de celui-ci.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>Des microphones canon coûteux sont connectés à un petit récepteur, permettant de renvoyer des flux audio de haute qualité vers le camion.</a>]]></string>
@@ -1179,6 +1215,7 @@
     <string name="equipment_info_name_incense">Encens</string>
     <string name="equipment_info_name_tripod">Trépied</string>
     <string name="equipment_info_name_motionsensor">Détecteur de Mouvement</string>
+    <string name="equipment_info_name_soundrecorder">Enregistreur de son</string>
     <string name="equipment_info_name_soundsensor">Capteur de Sonore</string>
     <string name="equipment_info_name_sanitymedication">Médicaments pour la santé mentale</string>
     <string name="equipment_info_name_ghostwritingbook">Livre d\'Ecriture Fantômatique</string>

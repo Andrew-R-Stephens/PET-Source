@@ -137,17 +137,22 @@
     <string name="objectives_title_response_alone">Наодинці</string>
     <string name="objectives_title_response_everyone">Згруповані</string>
     <!-- Objective Description -->
-    <string name="objective_info_ghostevent">Станьте свідком примарної події</string>
-    <string name="objective_info_ghostphotograph">Сфотографуй привида</string>
-    <string name="objective_info_emfreader">Отримуйте будь-яку активність EMF Reader</string>
-    <string name="objective_info_motionsensor">Отримуйте інформацію про активність датчика руху</string>
-    <string name="objective_info_smudgestick">Розмазати пахощі місцезнаходження Привида</string>
-    <string name="objective_info_crucifix">Запобігти полюванню з Розп\'яттям</string>
-    <string name="objective_info_salt">Попросіть Привида пройти через Сіль</string>
-    <string name="objective_info_escapehunt">Втечіть від привида, поки він полює</string>
-    <string name="objective_info_repelwithsmudge">Відштовхніть мисливського привида палицею Smudge </string>
-    <string name="objective_info_extinguishcandle">Нехай привид задує свічку</string>
-    <string name="objective_info_lowsanity">Отримайте середню командну осудність 25% або менше</string>
+    <string name="objective_info_ghostevent">Нехай член вашої команди стане свідком події з привидами.</string>
+    <string name="objective_info_ghostphotograph">Зробіть фотографію привида.</string>
+    <string name="objective_info_motionsensor">Виявіть присутність привида за допомогою датчика руху.</string>
+    <string name="objective_info_smudgestick">Очистіть територію поблизу привида за допомогою ладану.</string>
+    <string name="objective_info_crucifix">Запобігайте полюванню привида за допомогою розп\'яття.</string>
+    <string name="objective_info_escapehunt">Нехай член команди втече від привида під час полювання.</string>
+    <string name="objective_info_repelwithsmudge">Відлякуйте привида ладаном, поки він когось переслідує.</string>
+    <string name="objective_info_extinguishcandle">Змусьте привида задувати вогонь.</string>
+    <string name="objective_info_lowsanity">Зробіть середній рівень розсудливості команди нижче 25%.</string>
+    <string name="objective_info_emfphotograph">Зробіть фотографію будь-якого успішного зчитування на зчитувачі електромагнітних полів</string>
+    <string name="objective_info_ghostvideo">Зробіть відео з привидом</string>
+    <string name="objective_info_paranormalsound">Виявіть паранормальний звук за допомогою параболічного мікрофона</string>
+    <string name="objective_info_uniqueaudio">Зробіть 2 унікальних паранормальних звуки за допомогою звукозаписувача</string>
+    <string name="objective_info_uniquephotograph">Зробіть 3 унікальних фотографії за допомогою фотокамери</string>
+    <string name="objective_info_uniquevideo">Зробіть 3 унікальних відео за допомогою відеокамери</string>
+
     <!--
         TOOLS PAGE
     -->

@@ -751,13 +751,13 @@
          ]]>
      </string>
 
-    <string name="shop_equipment_uvlight_data_info_1">
+    <string name="shop_equipment_uvlight_data_info_2">
          <![CDATA[
              <a>Klasická UV glowstick. Po přicvaknutí, aby se rozsvítila, promítá světlo s krátkým dosahem, které trvá přibližně jednu minutu, než se ztlumí. Vždy s ním můžete znovu zatřást, abyste oživili jeho světlo.</a>
              <a>Toto zařízení nabije UV bod do 10 sekund po expozici.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_info_2">
+    <string name="shop_equipment_uvlight_data_info_1">
          <![CDATA[
              <a>Klasická UV svítilna, která vysílá jasnější, úzký paprsek s delším dosahem a může se pochlubit mnohem rychlejší dobou nabíjení UV zářením!</a>
              <a>Toto zařízení nabije UV bod do 5 sekund po expozici.</a>
@@ -881,17 +881,22 @@
     <string name="objectives_title_response_alone">Sám</string>
     <string name="objectives_title_response_everyone">Seskupeno</string>
     <!-- Popis cíle -->
-    <string name="objective_info_ghostevent">Staňte se svědkem události ducha</string>
+
+    <string name="objective_info_ghostevent">Nechte člena svého týmu být svědkem události s duchem</string>
     <string name="objective_info_ghostphotograph">Vyfoťte ducha</string>
-    <string name="objective_info_emfreader">Získejte jakoukoli aktivitu čtečky EMF</string>
-    <string name="objective_info_motionsensor">Získat aktivitu pohybového senzoru</string>
-    <string name="objective_info_smudgestick">Umístění ducha Smudge Stick</string>
-    <string name="objective_info_crucifix">Zabraňte lovu pomocí krucifixu</string>
-    <string name="objective_info_salt">Nechte ducha projít solí</string>
-    <string name="objective_info_escapehunt">Unikněte duchovi, když je na lovu</string>
-    <string name="objective_info_repelwithsmudge">Odžeňte loveckého ducha pomocí Smudge stick </string>
-    <string name="objective_info_extinguishcandle">Nechte ducha sfouknout svíčku</string>
-    <string name="objective_info_lowsanity">Získejte průměrný týmový rozum 25 \% nebo méně</string>
+    <string name="objective_info_motionsensor">Detekujte přítomnost ducha pomocí pohybového senzoru</string>
+    <string name="objective_info_smudgestick">Vyčistěte oblast v blízkosti ducha pomocí kadidla</string>
+    <string name="objective_info_crucifix">Zabraňte duchovi v lovu pomocí krucifixu</string>
+    <string name="objective_info_escapehunt">Nechte člena týmu uniknout duchovi během lovu</string>
+    <string name="objective_info_repelwithsmudge">Odpuďte ducha kadidlem, když někoho pronásleduje</string>
+    <string name="objective_info_extinguishcandle">Nechte ducha sfouknout oheň</string>
+    <string name="objective_info_lowsanity">Dosáhněte průměrného duševního zdraví týmu pod 25 %</string>
+    <string name="objective_info_emfphotograph">Pořiďte fotografii jakéhokoli úspěšného čtení na EMF čtečce</string>
+    <string name="objective_info_ghostvideo">Pořiďte video ducha</string>
+    <string name="objective_info_paranormalsound">Detekujte paranormální zvuk pomocí parabolického mikrofonu</string>
+    <string name="objective_info_uniqueaudio">Pořiďte 2 unikátní paranormální zvuky pomocí zvukového záznamníku</string>
+    <string name="objective_info_uniquephotograph">Pořiďte 3 unikátní fotografie fotoaparátem</string>
+    <string name="objective_info_uniquevideo">Natočte 3 unikátní videa videokamerou</string>
 
     <!--
         TOOLS PAGE
@@ -1123,7 +1128,25 @@
              <a>Umístěte tuto kameru Motion Sensing na podlahu poblíž jakékoli aktivity duchů, kterou můžete najít. Když je aktivován, bude se otáčet a blikat jasným světlem, kdykoli duch vstoupí nebo opustí jeho detekční rozsah.</a>
          ]]>
      </string>
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+<![CDATA[
+<a>Použijte tento zvukový záznamník k nalezení a nahrávání paranormálních zvuků během vyšetřování. Úspěšné nahrávky vám na konci smlouvy přinesou peníze navíc.</a><br><br>
+<a>Nahraný zvuk si můžete dokonce poslechnout v deníku!</a>
+]]>
+</string>
 
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+<![CDATA[
+<a>Tento zvukový záznamník byl vylepšen o vyšší přesnost, lepší dosah a moderní rozhraní. Měl by usnadnit vyhledávání paranormálních zvuků!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+<![CDATA[
+<a>Po aktivaci poskytuje tento zvukový záznamník další informace o paranormálních zucích.</a><br><br>
+<a>Přidané směrové a dosahové indikátory usnadňují vyhledávání a… nahrávání paranormálních jevů efektivní a uspokojivé!</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_info_1" >
          <![CDATA[
              <a>Umístěte tyto zvukové senzory na místa, kde chcete sledovat jakékoli zvukové interakce.</a>
@@ -1287,12 +1310,12 @@
              <a>Může to vypadat staře, ale tato benzinová lucerna je nejspolehlivější ohniště, jaké jsme našli, může vydržet celé hodiny.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_flavortext_1" >
+    <string name="shop_equipment_uvlight_data_flavortext_2" >
          <![CDATA[
              <a>Malá svítící tyčinka naplněná čirou olejovou tekutinou smíchanou s fluorescenčním barvivem. Zaklapnutí tyče způsobí reakci, která osvětlí okolní oblast jasnou barvou.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_flavortext_2" >
+    <string name="shop_equipment_uvlight_data_flavortext_1" >
          <![CDATA[
              <a>Taktická malá UV svítilna s praktickou sponou na opasek.</a>
          ]]>
@@ -1422,6 +1445,21 @@
              <a>Bezpečnostní kamera, která byla rozebrána a od základu přestavěna, což jí poskytlo výhled do paranormální říše.</a>
          ]]>
      </string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+<![CDATA[
+<a>Starý, rozbitý a slepený dohromady. Tento starý Paracord Sound Recorder má za sebou mnohem lepší časy, naštěstí stále funguje…</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+<![CDATA[
+<a>Vlastní značka zvukového rekordéru od Ghost Huntin\' Distribution. Je efektivnější než jeho předchůdce, digitální obrazovka a nové rozhraní usnadňují lov strašidelných zvuků.</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+<![CDATA[
+<a>Nejnovější hardware pro nahrávání zvuku od BONY. Toto zařízení je vybaveno několika funkcemi, které usnadňují lov zvuků. Díky duálnímu mikrofonu je sledování mnohem snazší a nahrávání je rychlé, a to i v těch sotva slyšitelných podmínkách.</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_flavortext_1" >
          <![CDATA[
              <a>Malý mikrofon připojený k ministativu, levný a účinný.</a>
@@ -1625,6 +1663,7 @@
     <string name="equipment_info_name_incense">Vykuřovadlo</string>
     <string name="equipment_info_name_tripod">Stativ</string>
     <string name="equipment_info_name_motionsensor">Pohybový Senzor</string>
+    <string name="equipment_info_name_soundrecorder">Záznam zvuku</string>
     <string name="equipment_info_name_soundsensor">Snímač Zvuku</string>
     <string name="equipment_info_name_sanitymedication">Léky na zdravý rozum</string>
     <string name="equipment_info_name_ghostwritingbook">Kniha Pro Psaní Duchú</string>

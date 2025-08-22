@@ -119,8 +119,8 @@
 
     <string-array name="equipment_tiers_ultraviolet_description">
         <item>@string/evidence_info_overview_ultraviolet</item>
-        <item>@string/shop_equipment_uvlight_data_info_1</item>
         <item>@string/shop_equipment_uvlight_data_info_2</item>
+        <item>@string/shop_equipment_uvlight_data_info_1</item>
         <item>@string/shop_equipment_uvlight_data_info_3</item>
     </string-array>
 

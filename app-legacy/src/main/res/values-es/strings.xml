@@ -660,13 +660,13 @@
          ]]>
      </string>
 
-    <string name="shop_equipment_uvlight_data_info_1">
+    <string name="shop_equipment_uvlight_data_info_2">
          <![CDATA[
              <a>La clásica barra luminosa UV. Después de ajustarlo para encenderlo, proyecta una luz de área de corto alcance que dura alrededor de un minuto antes de atenuarse. Siempre puedes darle otra sacudida para revitalizar su luz.</a>
              <a>Este dispositivo cargará un punto UV dentro de los 10 segundos posteriores a la exposición.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_info_2">
+    <string name="shop_equipment_uvlight_data_info_1">
          <![CDATA[
              <a>La clásica linterna UV que emite un haz más brillante y angosto con un alcance más largo, ¡con un tiempo de carga UV mucho más rápido!</a>
              <a>Este dispositivo cargará un punto UV dentro de los 5 segundos posteriores a la exposición.</a>
@@ -838,18 +838,23 @@
     <string name="settings_title">Configuraciones</string>
     <string name="settings_screenalwayson">Mantenga siempre la pantalla encendida</string>
 
-    <string name="objective_info_ghostevent">Atestigue un evento fantasmal</string>
-    <string name="objective_info_ghostphotograph">Fotografie al fantasma</string>
-    <string name="objective_info_emfreader">Obtenga cualquier actividad del lector EMF</string>
-    <string name="objective_info_motionsensor">Obtenga actividad del sensor de movimiento</string>
-    <string name="objective_info_smudgestick">Barrer en la ubicación del fantasma</string>
-    <string name="objective_info_crucifix">Evita un ataque con el crucifijo</string>
-    <string name="objective_info_salt">Haz que el fantasma camine en la Sal</string>
-    <string name="objective_info_escapehunt">Escapa del fantasma mientras está cazando</string>
-    <string name="objective_info_repelwithsmudge">Repele al fantasma de la caza con un palo difuminado</string>
-    <string name="objective_info_extinguishcandle">Haz que el fantasma apague una vela</string>
-    <string name="objective_info_lowsanity">Obtenga una cordura de equipo promedio del 25% o menos</string>
     <string name="objectives_ghostname_note">Ingrese el nombre del fantasma aquí</string>
+
+    <string name="objective_info_ghostevent">Haz que un miembro de tu equipo sea testigo de un evento fantasmal.</string>
+    <string name="objective_info_ghostphotograph">Toma una foto del fantasma.</string>
+    <string name="objective_info_motionsensor">Detecta su presencia con un sensor de movimiento.</string>
+    <string name="objective_info_smudgestick">Purifica el área cercana al fantasma con incienso.</string>
+    <string name="objective_info_crucifix">Evita que un fantasma cace con un crucifijo.</string>
+    <string name="objective_info_escapehunt">Haz que un miembro del equipo escape del fantasma durante una cacería.</string>
+    <string name="objective_info_repelwithsmudge">Repelen al fantasma con incienso mientras persigue a alguien.</string>
+    <string name="objective_info_extinguishcandle">Haz que el fantasma apague una hoguera.</string>
+    <string name="objective_info_lowsanity">Consigue una cordura de equipo promedio inferior al 25%.</string>
+    <string name="objective_info_paranormalsound">Detecta un sonido paranormal con un micrófono parabólico</string>
+    <string name="objective_info_uniqueaudio">Captura 2 sonidos paranormales únicos con una grabadora de sonido</string>
+    <string name="objective_info_uniquephotograph">Captura 3 fotos únicas con una cámara de fotos</string>
+    <string name="objective_info_uniquevideo">Captura 3 videos únicos con una videocámara</string>
+    <string name="objective_info_emfphotograph">Captura una foto de cualquier lectura exitosa en un lector EMF</string>
+    <string name="objective_info_ghostvideo">Captura un video de un fantasma</string>
 
     <string name="investigation_timer_maplabel">Mapa:</string>
     <string name="investigation_sanity_huntwarn">Advertencia de caza</string>
@@ -986,6 +991,25 @@
     <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>Coloca este sensor de movimiento en las paredes o en el suelo y parpadeará cada vez que algo se mueva frente a él, incluso cosas que no puedas ver.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Con dos modos diferentes, un alcance mayor y un indicador de sonido, este sensor es perfecto para el seguimiento paranormal.</a><br><br><a>Puedes alternar la forma del láser interactuando con el sensor después de haberlo colocado.{ /3}</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>Coloca esta cámara con sensor de movimiento en el suelo, cerca de cualquier actividad fantasma que puedas encontrar. Cuando se activa, girará y emitirá una luz brillante cada vez que un fantasma entre o salga de su rango de detección.</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+<![CDATA[
+<a>Usa esta grabadora de sonidos para encontrar y grabar sonidos paranormales durante las investigaciones. Las grabaciones exitosas te recompensarán con dinero extra al finalizar el contrato.</a><br><br>
+<a>¡Incluso puedes escuchar el sonido grabado en el diario!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+<![CDATA[
+<a>Esta grabadora de sonidos se ha mejorado con mayor precisión, mejor alcance y una interfaz moderna. ¡Debería facilitar la búsqueda de sonidos paranormales!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+<![CDATA[
+<a>Cuando está activada, esta grabadora de sonidos proporciona información adicional sobre sonidos paranormales.</a><br><br>
+<a>El añadido ¡Los indicadores de dirección y alcance hacen que encontrar y registrar fenómenos paranormales sea eficiente y satisfactorio!</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Coloca estos sensores de sonido en lugares donde quieras rastrear cualquier interacción de audio.</a><br><br><a>Una vez colocados, regresa al camión y podrás escuchar la reproducción remota mientras revisas la pantalla del sensor de sonido para ver si cualquiera de los sensores recibe lecturas.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>Este sensor de sonido se ha mejorado para incluir tres configuraciones de tamaño diferentes, que se pueden alternar con un botón de tamaño en la pantalla del sensor de sonido del camión.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>El trípode tiene articulaciones giratorias, lo que te permite interactuar con él para cambiar la forma del sensor de sonido.</a><br><br><a>Cada forma está representada por las direcciones en las que miran los micrófonos:</a><br><br><a>Adelante: cono/Afuera: lados/Adentro: esfera</a>]]></string>
@@ -1020,8 +1044,8 @@
     <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>Un candelabro viejo y oxidado que sostiene una vela pequeña; con suerte, durará lo suficiente si no hay otra luz. ¡No olvides algo para iluminarlo!</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>Candelabro con tres velas altas adjuntas. ¡El metal adornado y la cera de vela de mayor calidad son un salvavidas mucho más fiable!</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>Puede que parezca antiguo, pero esta linterna que funciona con gasolina es la luz de fuego más fiable que hemos encontrado y puede durar horas.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Una pequeña barra luminosa llena de un líquido aceitoso transparente mezclado con tinte fluorescente. Al romper el palo se provoca una reacción que ilumina el área circundante con un color brillante.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Una pequeña linterna UV táctica con un práctico clip para cinturón.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Una pequeña barra luminosa llena de un líquido aceitoso transparente mezclado con tinte fluorescente. Al romper el palo se provoca una reacción que ilumina el área circundante con un color brillante.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Una pequeña linterna UV táctica con un práctico clip para cinturón.</a>]]></string>
     <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>La linterna UV Light Pro cuenta con casi 80 bombillas individuales que iluminan grandes áreas con luz.</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>Solo dos trozos de madera atados. La forma por sí sola parece suficiente para protegerse de algunas entidades paranormales.</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>Esta cruz, mejorada de madera a hierro fundido, proporciona una defensa mucho más fiable.</a>]]></string>
@@ -1047,6 +1071,21 @@
     <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>El sensor, que antes era una cámara de vida silvestre, se ha modificado para rastrear entidades paranormales que se mueven frente a él.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>A partir de lo que aprendimos al modificar la versión anterior, hemos logrado mejorar una cámara más avanzada para nuestras necesidades de seguimiento paranormal.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>Una cámara de seguridad que fue desarmada y reconstruida desde cero, lo que le otorga visión del reino paranormal.</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+<![CDATA[
+<a>Vieja, golpeada y unida con cinta adhesiva. Esta vieja grabadora de sonido Paracord ha tenido mejores tiempos, por suerte todavía funciona…</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+<![CDATA[
+<a>La grabadora de sonido propia de Ghost Huntin\' Distribution. Es más eficiente que su predecesora; la pantalla digital y la nueva interfaz facilitan la búsqueda de esos sonidos espeluznantes.</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+<![CDATA[
+<a>Lo último en hardware de grabación de sonido de BONY. Este dispositivo está equipado con varias funciones para que la búsqueda de sonidos sea lo más sencilla posible. La configuración de micrófono dual facilita mucho el seguimiento y agiliza las grabaciones, incluso las que son apenas audibles.</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>Un pequeño micrófono acoplado a un minitrípode, económico y eficaz.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>Dos micrófonos de mayor calidad están unidos a un soporte para trípode hecho a medida. Han invertido más tiempo y dinero en crear este.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>Se conectan costosos micrófonos de cañón a un pequeño receptor, lo que permite transmitir audio de alta calidad al camión.</a>]]></string>
@@ -1190,6 +1229,7 @@
     <string name="equipment_info_name_incense">Incienso</string>
     <string name="equipment_info_name_tripod">Trípode</string>
     <string name="equipment_info_name_motionsensor">Sensor de Movimiento</string>
+    <string name="equipment_info_name_soundrecorder">Grabadora de Sonido</string>
     <string name="equipment_info_name_soundsensor">Sensor de Sonido</string>
     <string name="equipment_info_name_sanitymedication">Medicamentos para la cordura</string>
     <string name="equipment_info_name_ghostwritingbook">Libro de Escritura Fantasma</string>

@@ -725,17 +725,21 @@
     <string name="objectives_title_response_alone">Один</string>
     <string name="objectives_title_response_everyone">Сгруппированы</string>
     <!-- Objective Description -->
-    <string name="objective_info_ghostevent">Станьте свидетелем призрачного события</string>
-    <string name="objective_info_ghostphotograph">Сфотографировать призрака</string>
-    <string name="objective_info_emfreader">Получить любую активность чтения EMF</string>
-    <string name="objective_info_motionsensor">Получить активность датчика движения</string>
-    <string name="objective_info_smudgestick">Размазать местоположение Призрака</string>
-    <string name="objective_info_crucifix">Предотвратите охоту с помощью Распятия</string>
-    <string name="objective_info_salt">Пусть призрак пройдет по Солю</string>
-    <string name="objective_info_escapehunt">Убежать от призрака, пока он охотится</string>
-    <string name="objective_info_repelwithsmudge">Отгоните охотящегося призрака с помощью палочки Smudge </string>
-    <string name="objective_info_extinguishcandle">Пусть призрак задует свечу</string>
-    <string name="objective_info_lowsanity">Получите среднее командное здравомыслие 25\% или ниже</string>
+    <string name="objective_info_ghostevent">Пусть член вашей команды станет свидетелем встречи с Призраком</string>
+    <string name="objective_info_ghostphotograph">Сфотографируйте Призрака</string>
+    <string name="objective_info_motionsensor">Обнаружьте присутствие Призрака с помощью Датчика движения</string>
+    <string name="objective_info_smudgestick">Очистите область рядом с Призраком с помощью Благовоний</string>
+    <string name="objective_info_crucifix">Не дайте Призраку охотиться с помощью Распятия</string>
+    <string name="objective_info_escapehunt">Попросите члена команды сбежать от Призрака во время Охоты</string>
+    <string name="objective_info_repelwithsmudge">Отпугните Призрака с помощью Благовоний, пока он гонится за кем-то</string>
+    <string name="objective_info_extinguishcandle">Заставьте Призрака задуть Факел</string>
+    <string name="objective_info_lowsanity">Достигните среднего уровня Разума команды ниже 25\%</string>
+    <string name="objective_info_emfphotograph">Сделайте фотографию любого успешного измерения на считывателе электромагнитного поля.</string>
+    <string name="objective_info_ghostvideo">Снимите видео с привидением.</string>
+    <string name="objective_info_paranormalsound">Обнаружьте паранормальный звук с помощью параболического микрофона.</string>
+    <string name="objective_info_uniqueaudio">Запишите 2 уникальных паранормальных звука с помощью диктофона.</string>
+    <string name="objective_info_uniquephotograph">Сделайте 3 уникальных фотографии с помощью фотокамеры.</string>
+    <string name="objective_info_uniquevideo">Снимите 3 уникальных видео с помощью видеокамеры.</string>
 
     <!--
         SPIRITBOX TOOL PAGE
@@ -885,13 +889,13 @@
          ]]>
      </string>
 
-    <string name="shop_equipment_uvlight_data_info_1">
+    <string name="shop_equipment_uvlight_data_info_2">
          <![CDATA[
              <a>Классический ультрафиолетовый светящийся стержень. После щелчка, чтобы включить его, он излучает ближний свет, который длится около одной минуты, а затем затемняется. Вы всегда можете встряхнуть его еще раз, чтобы оживить его свет.</a>
              <a>Это устройство заряжает пятно ультрафиолетом в течение 10 секунд после воздействия.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_info_2">
+    <string name="shop_equipment_uvlight_data_info_1">
          <![CDATA[
              <a>Классический УФ-фонарик, который излучает более яркий узкий луч с большим радиусом действия и гораздо быстрее заряжается УФ-излучением!</a>
              <a>Это устройство заряжает пятно ультрафиолетом в течение 5 секунд после воздействия.</a>
@@ -1130,6 +1134,26 @@
          ]]>
      </string>
 
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+<![CDATA[
+<a>Используйте этот диктофон для поиска и записи паранормальных звуков во время расследований. Успешные записи принесут вам дополнительную награду по окончании контракта.</a><br><br>
+<a>Вы даже можете прослушать записанный звук в журнале!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+<![CDATA[
+<a>Этот диктофон обновлён, теперь он более точный, с расширенным диапазоном и современным интерфейсом. Он должен упростить поиск паранормальных звуков!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+<![CDATA[
+<a>Включённый диктофон предоставляет дополнительную информацию о паранормальных явлениях. Звуки.</a><br><br>
+<a>Добавленные индикаторы направления и дальности делают поиск и запись паранормальных явлений эффективными и приятными!</a>
+]]>
+</string>
+
     <string name="shop_equipment_soundsensor_data_info_1" >
          <![CDATA[
              <a>Разместите эти звуковые датчики в местах, где вы хотите отслеживать любые звуковые взаимодействия.</a>
@@ -1290,12 +1314,12 @@
              <a>Он может выглядеть старым, но этот бензиновый фонарь — самый надежный источник света, который мы нашли, он может работать часами подряд.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_flavortext_1" >
+    <string name="shop_equipment_uvlight_data_flavortext_2" >
          <![CDATA[
              <a>Небольшая светящаяся палочка, наполненная прозрачной маслянистой жидкостью, смешанной с флуоресцентным красителем. Щелчок палкой вызывает реакцию освещения окружающей области ярким цветом.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_flavortext_2" >
+    <string name="shop_equipment_uvlight_data_flavortext_1" >
          <![CDATA[
              <a>Небольшой тактический УФ-фонарик с удобным зажимом для ремня.</a>
          ]]>
@@ -1425,6 +1449,21 @@
              <a>Камера наблюдения, которую разобрали и перестроили с нуля, предоставив ей возможность заглянуть в паранормальный мир.</a>
          ]]>
      </string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+<![CDATA[
+<a>Старый, потрёпанный и склеенный. Этот старый диктофон Paracord пережил гораздо лучшие времена, к счастью, он всё ещё работает…</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+<![CDATA[
+<a>Фирменный диктофон Ghost Huntin\' Distribution. Он эффективнее своего предшественника, цифровой экран и новый интерфейс облегчают поиск этих жутких звуков.</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+<![CDATA[
+<a>Новинка от BONY в области звукозаписи. Это устройство оснащено несколькими функциями, максимально упрощающими запись звуков охоты. Двойной микрофон значительно упрощает отслеживание и быструю запись даже самых тихих звуков.</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_flavortext_1" >
          <![CDATA[
              <a>Небольшой микрофон, прикрепленный к мини-штативу, дешево и эффективно.</a>
@@ -1627,6 +1666,7 @@
     <string name="equipment_info_name_incense">Благовония</string>
     <string name="equipment_info_name_tripod">Штатив</string>
     <string name="equipment_info_name_motionsensor">Датчик движения</string>
+    <string name="equipment_info_name_soundrecorder">Звукозапись</string>
     <string name="equipment_info_name_soundsensor">Датчик звука</string>
     <string name="equipment_info_name_sanitymedication">Медицинские препараты</string>
     <string name="equipment_info_name_ghostwritingbook">Книга-призрак</string>

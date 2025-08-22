@@ -657,13 +657,13 @@
          ]]>
      </string>
 
-    <string name="shop_equipment_uvlight_data_info_1">
+    <string name="shop_equipment_uvlight_data_info_2">
          <![CDATA[
              <a>Der klassische UV-Leuchtstab. Nach dem Einrasten zum Einschalten projiziert es ein Flächenlicht mit kurzer Reichweite, das etwa eine Minute lang anhält, bevor es gedimmt wird. Sie können es jederzeit noch einmal schütteln, um sein Licht wiederzubeleben.</a>
              <a>Dieses Gerät lädt einen UV-Spot innerhalb von 10 Sekunden nach der Belichtung auf.</a>
          ]]>
      </string>
-    <string name="shop_equipment_uvlight_data_info_2">
+    <string name="shop_equipment_uvlight_data_info_1">
          <![CDATA[
              <a>Die klassische UV-Taschenlampe, die einen helleren, schmaleren Strahl mit größerer Reichweite aussendet und sich durch eine viel schnellere UV-Ladezeit auszeichnet!</a>
              <a>Dieses Gerät lädt einen UV-Spot innerhalb von 5 Sekunden nach der Belichtung auf.</a>
@@ -826,17 +826,21 @@
     <string name="settings_screenalwayson">Lassen Sie den Bildschirm immer eingeschaltet</string>
     <string name="aboutinfo_joindiscord">Tritt unserer Discord bei</string>
 
-    <string name="objective_info_ghostevent">Werden Sie Zeuge eines Geisterevents</string>
-    <string name="objective_info_ghostphotograph">Fotografieren Sie den Geist</string>
-    <string name="objective_info_emfreader">Messen Sie die Geisteraktivität mit einem EMF-Reader</string>
-    <string name="objective_info_motionsensor">Stellen Sie die Anwesenheit des Geistes mit einem Bewegungssensor fest</string>
-    <string name="objective_info_smudgestick">Reinigen Sie den Bereich in der Nähe des Geistes mit Räucherstäbchen</string>
-    <string name="objective_info_crucifix">Verhindern Sie eine Jagd mit dem Kruzifix</string>
-    <string name="objective_info_salt">Lassen Sie den Geist durch Salz gehen</string>
-    <string name="objective_info_lowsanity">Erhalten Sie eine durchschnittliche Team-Vernunft von 25% oder weniger</string>
-    <string name="objective_info_extinguishcandle">Lassen Sie den Geist eine Kerze ausblasen</string>
-    <string name="objective_info_repelwithsmudge">Den Jagdgeist mit einem Wischstock abwehren</string>
-    <string name="objective_info_escapehunt">Échappez au fantastôme Anhänger qu\'il chasse</string>
+    <string name="objective_info_ghostevent">Lass ein Mitglied deines Teams Zeuge eines Geisterereignisses werden</string>
+    <string name="objective_info_ghostphotograph">Mach ein Foto des Geistes</string>
+    <string name="objective_info_motionsensor">Erkenne die Anwesenheit eines Geistes mit einem Bewegungsmelder</string>
+    <string name="objective_info_smudgestick">Reinige den Bereich um den Geist mit Weihrauch</string>
+    <string name="objective_info_crucifix">Verhindere die Jagd eines Geistes mit einem Kruzifix</string>
+    <string name="objective_info_escapehunt">Lass ein Mitglied deines Teams dem Geist während einer Jagd entkommen</string>
+    <string name="objective_info_repelwithsmudge">Vertreibe den Geist mit Weihrauch, während er jemanden verfolgt</string>
+    <string name="objective_info_extinguishcandle">Bringe den Geist dazu, ein Feuerlicht auszublasen</string>
+    <string name="objective_info_lowsanity">Sorge dafür, dass die durchschnittliche geistige Gesundheit deines Teams unter 25\% sinkt</string>
+    <string name="objective_info_paranormalsound">Erkenne ein paranormales Geräusch mit einem Parabolmikrofon</string>
+    <string name="objective_info_uniqueaudio">Nimm 2 einzigartige paranormale Geräusche mit einem Tonrekorder auf</string>
+    <string name="objective_info_uniquephotograph">Nimm 3 einzigartige Fotos mit einer Fotokamera auf</string>
+    <string name="objective_info_uniquevideo">Nimm 3 einzigartige Videos mit einer Videokamera auf</string>
+    <string name="objective_info_emfphotograph">Nimm ein Foto von jeder erfolgreichen Messung mit einem EMF-Lesegerät auf</string>
+    <string name="objective_info_ghostvideo">Nimm ein Video von einem Geist auf</string>
 
     <string name="investigation_timer_maplabel">Karte:</string>
     <string name="investigation_sanity_huntwarn">Jagdwarnung</string>
@@ -977,6 +981,25 @@
     <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>Platzieren Sie diesen Bewegungssensor an Wänden oder am Boden und er blinkt jedes Mal, wenn sich etwas vor ihm bewegt, auch wenn Sie Dinge nicht sehen können.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Mit zwei verschiedenen Modi, einer größeren Reichweite und einer akustischen Anzeige eignet sich dieser Sensor perfekt für die paranormale Verfolgung.</a><br><br><a>Sie können die Laserform umschalten, indem Sie mit dem Sensor interagieren, nachdem er platziert wurde.{ /3}</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>Platzieren Sie diese Kamera mit Bewegungserkennung auf dem Boden in der Nähe von Geisteraktivitäten, die Sie möglicherweise entdecken. Wenn es aktiviert ist, schaltet es sich um und blinkt ein helles Licht, wenn ein Geist seinen Erfassungsbereich betritt oder verlässt.</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+<![CDATA[
+<a>Nutze diesen Soundrekorder, um bei Ermittlungen paranormale Geräusche zu finden und aufzunehmen. Erfolgreiche Aufnahmen belohnen dich am Ende eines Auftrags mit zusätzlichem Geld.</a><br><br>
+<a>Du kannst die aufgenommenen Geräusche sogar im Tagebuch anhören!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+<![CDATA[
+<a>Dieser Soundrekorder wurde verbessert und bietet nun eine höhere Genauigkeit, eine größere Reichweite und eine moderne Benutzeroberfläche. Er sollte das Aufspüren paranormaler Geräusche erleichtern!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+<![CDATA[
+<a>Bei Aktivierung liefert dieser Soundrekorder zusätzliche Informationen zu paranormalen Geräuschen.</a><br><br>
+<a>Der hinzugefügte Richtungs- und Reichweitenanzeigen machen das Auffinden und Aufzeichnen paranormaler Ereignisse effizient und zufriedenstellend!</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Platzieren Sie diese Schallsensoren an Orten, an denen Sie Audio-Interaktionen verfolgen möchten.</a><br><br><a>Sobald Sie sie platziert haben, kehren Sie zum LKW zurück und können der Remote-Wiedergabe zuhören, während Sie auf dem Bildschirm des Schallsensors prüfen, ob dies der Fall ist Jeder der Sensoren empfängt Messwerte.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>Dieser Geräuschsensor wurde verbessert und verfügt nun über drei verschiedene Größeneinstellungen, die mit einer Größentaste auf dem Geräuschsensor-Bildschirm im LKW umgeschaltet werden können.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_3" tools:ignore="Typos"><![CDATA[<a>Das Stativ verfügt über Drehgelenke, sodass Sie mit ihm interagieren können, um die Form des Schallsensors zu ändern.</a><br><br><a>Jede Form wird durch die Richtungen dargestellt, in die die Mikrofone zeigen:</a><br><br><a>Vorwärts: Kegel / Nach außen: Seiten / Nach innen: Kugel</a>]]></string>
@@ -1011,8 +1034,8 @@
     <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>Ein alter, rostiger Kerzenhalter, der eine kleine Kerze trägt. Hoffentlich hält er lange genug, wenn es kein anderes Licht gibt. Vergessen Sie nicht, etwas zum Anzünden zu verwenden!</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>Kerzenleuchter mit drei daran befestigten hohen Kerzen. Das verzierte Metall und das hochwertigere Kerzenwachs sorgen für einen viel zuverlässigeren Schutz vor geistiger Gesundheit!</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>Sie sieht vielleicht alt aus, aber diese benzinbetriebene Laterne ist der zuverlässigste Feueranzünder, den wir je gefunden haben. Sie kann stundenlang halten.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Ein kleiner Leuchtstab, gefüllt mit einer klaren, öligen Flüssigkeit, gemischt mit fluoreszierendem Farbstoff. Durch das Klicken des Sticks wird eine Reaktion ausgelöst, die den umliegenden Bereich mit einer hellen Farbe beleuchtet.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Eine taktische kleine UV-Taschenlampe mit praktischem Gürtelclip.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Ein kleiner Leuchtstab, gefüllt mit einer klaren, öligen Flüssigkeit, gemischt mit fluoreszierendem Farbstoff. Durch das Klicken des Sticks wird eine Reaktion ausgelöst, die den umliegenden Bereich mit einer hellen Farbe beleuchtet.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Eine taktische kleine UV-Taschenlampe mit praktischem Gürtelclip.</a>]]></string>
     <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>Die UV Light Pro-Taschenlampe verfügt über fast 80 einzelne Glühbirnen, die große Flächen mit Licht beleuchten.</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>Nur zwei zusammengebundene Holzstücke. Die Form allein scheint auszureichen, um einige paranormale Wesen abzuwehren.</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>Dieses Kreuz wurde von Holz auf Gusseisen umgestellt und bietet eine viel zuverlässigere Verteidigung.</a>]]></string>
@@ -1038,6 +1061,21 @@
     <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>Der Sensor, der früher eine Wildtierkamera war, wurde so modifiziert, dass er paranormale Wesen, die sich vor ihm bewegen, verfolgen kann.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>Aufgrund der Erkenntnisse aus der Änderung der Vorgängerversion ist es uns gelungen, eine fortschrittlichere Kamera für unsere paranormalen Tracking-Anforderungen zu verbessern.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>Eine Überwachungskamera, die auseinandergenommen und von Grund auf neu aufgebaut wurde, um einen Blick in die paranormale Welt zu ermöglichen.</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+<![CDATA[
+<a>Alt, kaputt und zusammengeklebt. Dieser alte Paracord-Soundrekorder hat schon bessere Zeiten erlebt, zum Glück funktioniert er noch…</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+<![CDATA[
+<a>Ghost Huntin\' Distributions eigener Soundrekorder. Er ist effizienter als sein Vorgänger, der digitale Bildschirm und die neue Benutzeroberfläche erleichtern die Suche nach gruseligen Geräuschen.</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+<![CDATA[
+<a>BONYs neueste Soundrekorder-Hardware. Dieses Gerät ist mit mehreren Funktionen ausgestattet, die die Suche nach Geräuschen so einfach wie möglich machen. Die Doppelmikrofon-Konfiguration vereinfacht die Nachverfolgung und ermöglicht schnelle Aufnahmen, selbst bei kaum hörbaren Geräuschen.</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>Ein kleines Mikrofon, das an einem Ministativ befestigt ist, günstig und effizient.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>Zwei hochwertigere Mikrofone werden zusammen auf einer speziell angefertigten Stativhalterung befestigt. Sie haben etwas mehr Zeit und Geld in die Erstellung dieses Exemplars investiert.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>Teure Richtrohrmikrofone sind an einen kleinen Empfänger angeschlossen und ermöglichen hochwertige Audiostreams zurück zum Truck.</a>]]></string>
@@ -1180,6 +1218,7 @@
     <string name="equipment_info_name_incense">Räucherwerk</string>
     <string name="equipment_info_name_tripod">Stativ</string>
     <string name="equipment_info_name_motionsensor">Bewegungssensor</string>
+    <string name="equipment_info_name_soundrecorder">Tonaufnahmegerät</string>
     <string name="equipment_info_name_soundsensor">Schallsensor</string>
     <string name="equipment_info_name_sanitymedication">Gesundheitsmedikamente</string>
     <string name="equipment_info_name_ghostwritingbook">Geisterbuch</string>
