@@ -144,17 +144,21 @@
 
     <!-- Objective Description -->
 
-    <string name="objective_info_ghostevent">幽霊イベントを目撃する</string>
-    <string name="objective_info_ghostphotograph">幽霊を写真に撮る</string>
-    <string name="objective_info_emfreader">EMF Reader アクティビティを取得する</string>
-    <string name="objective_info_motionsensor">モーションセンサーアクティビティの取得</string>
-    <string name="objective_info_smudgestick">スマッジスティック・ザ・ゴーストの場所</string>
-    <string name="objective_info_crucifix">十字架で狩りを阻止する</string>
-    <string name="objective_info_salt">ゴーストに塩の中を歩いてもらいます</string>
-    <string name="objective_info_escapehunt">幽霊が狩りをしている間に逃げよう</string>
-    <string name="objective_info_repelwithsmudge">スマッジスティックでハンティングゴーストを撃退する</string>
-    <string name="objective_info_extinguishcandle">幽霊にろうそくの火を吹き消してもらう</string>
-    <string name="objective_info_lowsanity">チームの平均正気度を 25\% o 低くします</string>
+    <string name="objective_info_ghostevent">チームメンバーにゴーストの出現を目撃させる</string>
+    <string name="objective_info_ghostphotograph">ゴーストの写真を撮影する</string>
+    <string name="objective_info_motionsensor">モーションセンサーでゴーストの存在を検知する</string>
+    <string name="objective_info_smudgestick">お香を使ってゴーストの近くを浄化する</string>
+    <string name="objective_info_crucifix">十字架を使ってゴーストの狩りを阻止する</string>
+    <string name="objective_info_escapehunt">狩りの最中に、チームメンバーにゴーストから逃げさせる</string>
+    <string name="objective_info_repelwithsmudge">誰かを追いかけているゴーストをお香で撃退する</string>
+    <string name="objective_info_extinguishcandle">ゴーストに火の灯りを吹き消す</string>
+    <string name="objective_info_lowsanity">チームの平均正気度を25\%未満にする</string>
+    <string name="objective_info_emfphotograph">EMFリーダーで読み取った音を写真に撮る</string>
+    <string name="objective_info_ghostvideo">幽霊の動画を撮影する</string>
+    <string name="objective_info_paranormalsound">パラボラマイクで超常現象の音を検出する</string>
+    <string name="objective_info_uniqueaudio">サウンドレコーダーでユニークな超常現象の音を2つ録音する</string>
+    <string name="objective_info_uniquephotograph">フォトカメラでユニークな写真を3枚撮影する</string>
+    <string name="objective_info_uniquevideo">ビデオカメラでユニークな動画を3本撮影する</string>
 
     <!-- All Entries -->
 
@@ -221,7 +225,7 @@
     <string name="store_title_equipment">装備品店</string>
     <string name="equipment_section_tiers">階層</string>
     <string name="evidence_requirement_level_title">ロック解除レベル:</string>
-    <string name="evidence_requirement_cost_title">料金：</string>
+    <string name="evidence_requirement_cost_title">料金:</string>
 
 
     <!-- Evidence Names -->

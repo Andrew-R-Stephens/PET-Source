@@ -17,16 +17,20 @@
     <string name="objectives_title_response_everyone">Seskupeno</string>
 
     <!-- Mission Description -->
-    <string name="objective_info_ghostevent">Staňte se svědkem události ducha</string>
+    <string name="objective_info_ghostevent">Nechte člena svého týmu být svědkem události s duchem</string>
     <string name="objective_info_ghostphotograph">Vyfoťte ducha</string>
-    <string name="objective_info_emfreader">Získejte jakoukoli aktivitu čtečky EMF</string>
-    <string name="objective_info_motionsensor">Získat aktivitu pohybového senzoru</string>
-    <string name="objective_info_smudgestick">Umístění ducha Smudge Stick</string>
-    <string name="objective_info_crucifix">Zabraňte lovu pomocí krucifixu</string>
-    <string name="objective_info_salt">Nechte ducha projít solí</string>
-    <string name="objective_info_escapehunt">Unikněte duchovi, když je na lovu</string>
-    <string name="objective_info_repelwithsmudge">Odžeňte loveckého ducha pomocí Smudge stick </string>
-    <string name="objective_info_extinguishcandle">Nechte ducha sfouknout svíčku</string>
-    <string name="objective_info_lowsanity">Získejte průměrný týmový rozum 25 \% nebo méně</string>
+    <string name="objective_info_motionsensor">Detekujte přítomnost ducha pomocí pohybového senzoru</string>
+    <string name="objective_info_smudgestick">Vyčistěte oblast v blízkosti ducha pomocí kadidla</string>
+    <string name="objective_info_crucifix">Zabraňte duchovi v lovu pomocí krucifixu</string>
+    <string name="objective_info_escapehunt">Nechte člena týmu uniknout duchovi během lovu</string>
+    <string name="objective_info_repelwithsmudge">Odpuďte ducha kadidlem, když někoho pronásleduje</string>
+    <string name="objective_info_extinguishcandle">Nechte ducha sfouknout oheň</string>
+    <string name="objective_info_lowsanity">Dosáhněte průměrného duševního zdraví týmu pod 25 %</string>
+    <string name="objective_info_emfphotograph">Pořiďte fotografii jakéhokoli úspěšného čtení na EMF čtečce</string>
+    <string name="objective_info_ghostvideo">Pořiďte video ducha</string>
+    <string name="objective_info_paranormalsound">Detekujte paranormální zvuk pomocí parabolického mikrofonu</string>
+    <string name="objective_info_uniqueaudio">Pořiďte 2 unikátní paranormální zvuky pomocí zvukového záznamníku</string>
+    <string name="objective_info_uniquephotograph">Pořiďte 3 unikátní fotografie fotoaparátem</string>
+    <string name="objective_info_uniquevideo">Natočte 3 unikátní videa videokamerou</string>
 
 </resources>

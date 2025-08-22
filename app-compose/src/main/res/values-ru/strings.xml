@@ -726,17 +726,21 @@
     <string name="objectives_title_response_alone">Один</string>
     <string name="objectives_title_response_everyone">Сгруппированы</string>
     <!-- Objective Description -->
-    <string name="objective_info_ghostevent">Станьте свидетелем призрачного события</string>
-    <string name="objective_info_ghostphotograph">Сфотографировать призрака</string>
-    <string name="objective_info_emfreader">Получить любую активность чтения EMF</string>
-    <string name="objective_info_motionsensor">Получить активность датчика движения</string>
-    <string name="objective_info_smudgestick">Размазать местоположение Призрака</string>
-    <string name="objective_info_crucifix">Предотвратите охоту с помощью Распятия</string>
-    <string name="objective_info_salt">Пусть призрак пройдет по Солю</string>
-    <string name="objective_info_escapehunt">Убежать от призрака, пока он охотится</string>
-    <string name="objective_info_repelwithsmudge">Отгоните охотящегося призрака с помощью палочки Smudge </string>
-    <string name="objective_info_extinguishcandle">Пусть призрак задует свечу</string>
-    <string name="objective_info_lowsanity">Получите среднее командное здравомыслие 25\% или ниже</string>
+    <string name="objective_info_ghostevent">Пусть член вашей команды станет свидетелем встречи с Призраком</string>
+    <string name="objective_info_ghostphotograph">Сфотографируйте Призрака</string>
+    <string name="objective_info_motionsensor">Обнаружьте присутствие Призрака с помощью Датчика движения</string>
+    <string name="objective_info_smudgestick">Очистите область рядом с Призраком с помощью Благовоний</string>
+    <string name="objective_info_crucifix">Не дайте Призраку охотиться с помощью Распятия</string>
+    <string name="objective_info_escapehunt">Попросите члена команды сбежать от Призрака во время Охоты</string>
+    <string name="objective_info_repelwithsmudge">Отпугните Призрака с помощью Благовоний, пока он гонится за кем-то</string>
+    <string name="objective_info_extinguishcandle">Заставьте Призрака задуть Факел</string>
+    <string name="objective_info_lowsanity">Достигните среднего уровня Разума команды ниже 25\%</string>
+    <string name="objective_info_emfphotograph">Сделайте фотографию любого успешного измерения на считывателе электромагнитного поля.</string>
+    <string name="objective_info_ghostvideo">Снимите видео с привидением.</string>
+    <string name="objective_info_paranormalsound">Обнаружьте паранормальный звук с помощью параболического микрофона.</string>
+    <string name="objective_info_uniqueaudio">Запишите 2 уникальных паранормальных звука с помощью диктофона.</string>
+    <string name="objective_info_uniquephotograph">Сделайте 3 уникальных фотографии с помощью фотокамеры.</string>
+    <string name="objective_info_uniquevideo">Снимите 3 уникальных видео с помощью видеокамеры.</string>
 
     <!--
         SPIRITBOX TOOL PAGE

@@ -142,17 +142,21 @@
 
     <!-- Objective Description -->
 
-    <string name="objective_info_ghostevent">Assisti a un evento fantasma</string>
-    <string name="objective_info_ghostphotograph">Fotografa il fantasma</string>
-    <string name="objective_info_emfreader">Ottieni qualsiasi attività di EMF Reader</string>
-    <string name="objective_info_motionsensor">Ottieni l\'attività del sensore di movimento</string>
-    <string name="objective_info_smudgestick">Sfuma la posizione del fantasma</string>
-    <string name="objective_info_crucifix">Previeni una caccia con il Crocifisso</string>
-    <string name="objective_info_salt">Fai camminare il fantasma attraverso Salt</string>
-    <string name="objective_info_escapehunt">Fuggi dal fantasma mentre sta cacciando</string>
-    <string name="objective_info_repelwithsmudge">Respingi il fantasma da caccia con uno sfumino </string>
-    <string name="objective_info_extinguishcandle">Chiedi al fantasma di spegnere una candela</string>
-    <string name="objective_info_lowsanity">Ottieni una sanità mentale media della squadra inferiore di 25\% or</string>
+    <string name="objective_info_ghostevent">Fai in modo che un membro della tua squadra assista a un evento Fantasma</string>
+    <string name="objective_info_ghostphotograph">Scatta una foto del fantasma</string>
+    <string name="objective_info_motionsensor">Rileva la presenza di un fantasma con un sensore di movimento</string>
+    <string name="objective_info_smudgestick">Purifica l\'area vicino al fantasma usando l\'incenso</string>
+    <string name="objective_info_crucifix">Impedisci a un fantasma di cacciare con un crocifisso</string>
+    <string name="objective_info_escapehunt">Fai in modo che un membro della squadra sfugga al fantasma durante una caccia</string>
+    <string name="objective_info_repelwithsmudge">Respingi il fantasma con l\'incenso mentre insegue qualcuno</string>
+    <string name="objective_info_extinguishcandle">Fai in modo che il fantasma spenga una luce di fuoco</string>
+    <string name="objective_info_lowsanity">Ottieni una sanità mentale media della squadra inferiore al 25\%</string>
+    <string name="objective_info_paranormalsound">Rileva un suono paranormale con un microfono parabolico</string>
+    <string name="objective_info_uniqueaudio">Cattura 2 suoni paranormali unici con un registratore di suoni</string>
+    <string name="objective_info_uniquephotograph">Cattura 3 foto uniche con una macchina fotografica</string>
+    <string name="objective_info_uniquevideo">Cattura 3 video unici con una videocamera</string>
+    <string name="objective_info_emfphotograph">Cattura una foto di qualsiasi lettura riuscita su un lettore EMF</string>
+    <string name="objective_info_ghostvideo">Cattura un video di un fantasma</string>
 
     <!-- All Entries -->
 

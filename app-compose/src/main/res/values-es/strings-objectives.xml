@@ -17,16 +17,20 @@
     <string name="objectives_title_response_everyone">Agrupados</string>
 
     <!-- Mission Description -->
-    <string name="objective_info_ghostevent">Atestigue un evento fantasmal</string>
-    <string name="objective_info_ghostphotograph">Fotografie al fantasma</string>
-    <string name="objective_info_emfreader">Obtenga cualquier actividad del lector EMF</string>
-    <string name="objective_info_motionsensor">Obtenga actividad del sensor de movimiento</string>
-    <string name="objective_info_smudgestick">Barrer en la ubicación del fantasma</string>
-    <string name="objective_info_crucifix">Evita un ataque con el crucifijo</string>
-    <string name="objective_info_salt">Haz que el fantasma camine en la Sal</string>
-    <string name="objective_info_escapehunt">Escapa del fantasma mientras está cazando</string>
-    <string name="objective_info_repelwithsmudge">Repele al fantasma de la caza con un palo difuminado</string>
-    <string name="objective_info_extinguishcandle">Haz que el fantasma apague una vela</string>
-    <string name="objective_info_lowsanity">Obtenga una cordura de equipo promedio del 25% o menos</string>
+    <string name="objective_info_ghostevent">Haz que un miembro de tu equipo sea testigo de un evento fantasmal.</string>
+    <string name="objective_info_ghostphotograph">Toma una foto del fantasma.</string>
+    <string name="objective_info_motionsensor">Detecta su presencia con un sensor de movimiento.</string>
+    <string name="objective_info_smudgestick">Purifica el área cercana al fantasma con incienso.</string>
+    <string name="objective_info_crucifix">Evita que un fantasma cace con un crucifijo.</string>
+    <string name="objective_info_escapehunt">Haz que un miembro del equipo escape del fantasma durante una cacería.</string>
+    <string name="objective_info_repelwithsmudge">Repelen al fantasma con incienso mientras persigue a alguien.</string>
+    <string name="objective_info_extinguishcandle">Haz que el fantasma apague una hoguera.</string>
+    <string name="objective_info_lowsanity">Consigue una cordura de equipo promedio inferior al 25%.</string>
+    <string name="objective_info_paranormalsound">Detecta un sonido paranormal con un micrófono parabólico</string>
+    <string name="objective_info_uniqueaudio">Captura 2 sonidos paranormales únicos con una grabadora de sonido</string>
+    <string name="objective_info_uniquephotograph">Captura 3 fotos únicas con una cámara de fotos</string>
+    <string name="objective_info_uniquevideo">Captura 3 videos únicos con una videocámara</string>
+    <string name="objective_info_emfphotograph">Captura una foto de cualquier lectura exitosa en un lector EMF</string>
+    <string name="objective_info_ghostvideo">Captura un video de un fantasma</string>
 
 </resources>

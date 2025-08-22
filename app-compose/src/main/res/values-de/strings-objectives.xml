@@ -17,16 +17,20 @@
     <string name="objectives_title_response_everyone">Gruppen</string>
 
     <!-- Mission Description -->
-    <string name="objective_info_ghostevent">Werden Sie Zeuge eines Geisterevents</string>
-    <string name="objective_info_ghostphotograph">Fotografieren Sie den Geist</string>
-    <string name="objective_info_emfreader">Messen Sie die Geisteraktivität mit einem EMF-Reader</string>
-    <string name="objective_info_motionsensor">Stellen Sie die Anwesenheit des Geistes mit einem Bewegungssensor fest</string>
-    <string name="objective_info_smudgestick">Reinigen Sie den Bereich in der Nähe des Geistes mit Räucherstäbchen</string>
-    <string name="objective_info_crucifix">Verhindern Sie eine Jagd mit dem Kruzifix</string>
-    <string name="objective_info_salt">Lassen Sie den Geist durch Salz gehen</string>
-    <string name="objective_info_lowsanity">Erhalten Sie eine durchschnittliche Team-Vernunft von 25% oder weniger</string>
-    <string name="objective_info_extinguishcandle">Lassen Sie den Geist eine Kerze ausblasen</string>
-    <string name="objective_info_repelwithsmudge">Den Jagdgeist mit einem Wischstock abwehren</string>
-    <string name="objective_info_escapehunt">Échappez au fantastôme Anhänger qu\'il chasse</string>
+    <string name="objective_info_ghostevent">Lass ein Mitglied deines Teams Zeuge eines Geisterereignisses werden</string>
+    <string name="objective_info_ghostphotograph">Mach ein Foto des Geistes</string>
+    <string name="objective_info_motionsensor">Erkenne die Anwesenheit eines Geistes mit einem Bewegungsmelder</string>
+    <string name="objective_info_smudgestick">Reinige den Bereich um den Geist mit Weihrauch</string>
+    <string name="objective_info_crucifix">Verhindere die Jagd eines Geistes mit einem Kruzifix</string>
+    <string name="objective_info_escapehunt">Lass ein Mitglied deines Teams dem Geist während einer Jagd entkommen</string>
+    <string name="objective_info_repelwithsmudge">Vertreibe den Geist mit Weihrauch, während er jemanden verfolgt</string>
+    <string name="objective_info_extinguishcandle">Bringe den Geist dazu, ein Feuerlicht auszublasen</string>
+    <string name="objective_info_lowsanity">Sorge dafür, dass die durchschnittliche geistige Gesundheit deines Teams unter 25\% sinkt</string>
+    <string name="objective_info_paranormalsound">Erkenne ein paranormales Geräusch mit einem Parabolmikrofon</string>
+    <string name="objective_info_uniqueaudio">Nimm 2 einzigartige paranormale Geräusche mit einem Tonrekorder auf</string>
+    <string name="objective_info_uniquephotograph">Nimm 3 einzigartige Fotos mit einer Fotokamera auf</string>
+    <string name="objective_info_uniquevideo">Nimm 3 einzigartige Videos mit einer Videokamera auf</string>
+    <string name="objective_info_emfphotograph">Nimm ein Foto von jeder erfolgreichen Messung mit einem EMF-Lesegerät auf</string>
+    <string name="objective_info_ghostvideo">Nimm ein Video von einem Geist auf</string>
 
 </resources>

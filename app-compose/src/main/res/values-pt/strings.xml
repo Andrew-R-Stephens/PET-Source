@@ -143,17 +143,21 @@
 
     <!-- Objective Description -->
 
-    <string name="objective_info_ghostevent">Testemunhe um evento fantasma</string>
-    <string name="objective_info_ghostphotograph">Fotografe o Fantasma</string>
-    <string name="objective_info_emfreader">Obtenha qualquer atividade do EMF Reader</string>
-    <string name="objective_info_motionsensor">Obtenha atividade do sensor de movimento</string>
-    <string name="objective_info_smudgestick">Smudge Stick a localização do Fantasma</string>
-    <string name="objective_info_crucifix">Evite uma caçada com o Crucifixo</string>
-    <string name="objective_info_salt">Faça o Fantasma caminhar pelo Sal</string>
-    <string name="objective_info_escapehunt">Fuja do fantasma enquanto ele caça</string>
-    <string name="objective_info_repelwithsmudge">Repelir o fantasma caçador com um bastão de manchas </string>
-    <string name="objective_info_extinguishcandle">Faça o fantasma apagar uma vela</string>
-    <string name="objective_info_lowsanity">Obtenha uma sanidade média da equipe de 25\% oou menos</string>
+    <string name="objective_info_ghostevent">Faça com que um membro da sua equipe testemunhe um evento Fantasma</string>
+    <string name="objective_info_ghostphotograph">Tire uma foto do fantasma</string>
+    <string name="objective_info_motionsensor">Detecte a presença de um fantasma com um Sensor de Movimento</string>
+    <string name="objective_info_smudgestick">Limpe a área próxima ao fantasma usando Incenso</string>
+    <string name="objective_info_crucifix">Impeda um fantasma de caçar com um Crucifixo</string>
+    <string name="objective_info_escapehunt">Faça com que um membro da equipe escape do Fantasma durante uma Caçada</string>
+    <string name="objective_info_repelwithsmudge">Afaste o Fantasma com Incenso enquanto ele estiver perseguindo alguém</string>
+    <string name="objective_info_extinguishcandle">Faça com que o Fantasma apague uma Luz de Fogo</string>
+    <string name="objective_info_lowsanity">Mantenha a Sanidade da Equipe média abaixo de 25\%</string>
+    <string name="objective_info_emfphotograph">Capture uma foto de qualquer leitura bem-sucedida em um leitor de EMF</string>
+    <string name="objective_info_ghostvideo">Capture um vídeo de um fantasma</string>
+    <string name="objective_info_paranormalsound">Detecte um som paranormal com um microfone parabólico</string>
+    <string name="objective_info_uniqueaudio">Capture 2 sons paranormais exclusivos com um gravador de som</string>
+    <string name="objective_info_uniquephotograph">Capture 3 fotos exclusivas com uma câmera fotográfica</string>
+    <string name="objective_info_uniquevideo">Capture 3 vídeos exclusivos com uma câmera de vídeo</string>
 
     <!-- All Entries -->
 

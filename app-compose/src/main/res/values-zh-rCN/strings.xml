@@ -144,17 +144,21 @@
 
     <!-- Objective Description -->
 
-    <string name="objective_info_ghostevent">目睹幽灵事件</string>
-    <string name="objective_info_ghostphotograph">拍摄鬼魂</string>
-    <string name="objective_info_emfreader">获取任何 EMF 阅读器活动</string>
-    <string name="objective_info_motionsensor">获取运动传感器活动</string>
-    <string name="objective_info_smudgestick">涂抹幽灵的位置</string>
-    <string name="objective_info_crucifix">用十字架阻止狩猎</string>
-    <string name="objective_info_salt">让幽灵穿过盐</string>
-    <string name="objective_info_escapehunt">在幽灵狩猎时逃离它</string>
-    <string name="objective_info_repelwithsmudge">用涂抹棒击退狩猎幽灵</string>
-    <string name="objective_info_extinguishcandle">让鬼魂吹灭蜡烛</string>
-    <string name="objective_info_lowsanity">团队平均理智度降低 25% or</string>
+    <string name="objective_info_ghostevent">让你的团队成员目睹一次幽灵事件</string>
+    <string name="objective_info_ghostphotograph">拍摄一张幽灵的照片</string>
+    <string name="objective_info_motionsensor">使用运动传感器探测幽灵的存在</string>
+    <string name="objective_info_smudgestick">使用熏香净化幽灵附近的区域</string>
+    <string name="objective_info_crucifix">使用十字架阻止幽灵狩猎</string>
+    <string name="objective_info_escapehunt">让你的团队成员在狩猎期间逃离幽灵</string>
+    <string name="objective_info_repelwithsmudge">在幽灵追逐某人时，使用熏香驱赶它</string>
+    <string name="objective_info_extinguishcandle">让幽灵吹灭火光</string>
+    <string name="objective_info_lowsanity">使团队平均理智值低于 25\%</string>
+    <string name="objective_info_emfphotograph">用电磁场读取器记录任何成功读数的照片</string>
+    <string name="objective_info_ghostvideo">拍摄鬼魂的视频</string>
+    <string name="objective_info_paranormalsound">用抛物面麦克风探测超自然声音</string>
+    <string name="objective_info_uniqueaudio">用录音机录制两声独特的超自然声音</string>
+    <string name="objective_info_uniquephotograph">用照相机拍摄三张独特的照片</string>
+    <string name="objective_info_uniquevideo">用摄像机拍摄三段独特的视频</string>
 
     <!-- All Entries -->
 
@@ -221,7 +225,7 @@
     <string name="store_title_equipment">装备店</string>
     <string name="equipment_section_tiers">层级</string>
     <string name="evidence_requirement_level_title">解锁等级：</string>
-    <string name="evidence_requirement_cost_title">成本：</string>
+    <string name="evidence_requirement_cost_title">成本:</string>
 
     
     <!-- Equipment Tiers -->
@@ -571,18 +575,18 @@
     <string name="shop_equipment_attribute_indicator_distance" >距离指示器</string>
     <string name="shop_equipment_attribute_indicator_directional" >方向指示器</string>
 
-    <string name="shop_equipment_attribute_range_1_7" >范围（米）：1.7</string>
-    <string name="shop_equipment_attribute_range_2" >范围（M）：2</string>
-    <string name="shop_equipment_attribute_range_2_5" >范围（M）：2.5</string>
-    <string name="shop_equipment_attribute_range_3" >范围（M）：3</string>
-    <string name="shop_equipment_attribute_range_3_5" >范围（M）：3.5</string>
-    <string name="shop_equipment_attribute_range_4" >范围（M）：4</string>
-    <string name="shop_equipment_attribute_range_5" >范围 (M)：5</string>
-    <string name="shop_equipment_attribute_range_7" >范围 (M)：7</string>
-    <string name="shop_equipment_attribute_range_20" >范围（M）：20</string>
-    <string name="shop_equipment_attribute_range_30" >范围（M）：30</string>
-    <string name="shop_equipment_attribute_range_5_10" >范围（M）：5、10</string>
-    <string name="shop_equipment_attribute_range_5_10_15" >范围（M）：5、10、15</string>
+    <string name="shop_equipment_attribute_range_1_7" >范围 (M): 1.7</string>
+    <string name="shop_equipment_attribute_range_2" >范围 (M) :2</string>
+    <string name="shop_equipment_attribute_range_2_5" >范围 (M): 2.5</string>
+    <string name="shop_equipment_attribute_range_3" >范围 (M): 3</string>
+    <string name="shop_equipment_attribute_range_3_5" >范围 (M): 3.5</string>
+    <string name="shop_equipment_attribute_range_4" >范围 (M): 4</string>
+    <string name="shop_equipment_attribute_range_5" >范围 (M): 5</string>
+    <string name="shop_equipment_attribute_range_7" >范围 (M): 7</string>
+    <string name="shop_equipment_attribute_range_20" >范围 (M): 20</string>
+    <string name="shop_equipment_attribute_range_30" >范围 (M): 30</string>
+    <string name="shop_equipment_attribute_range_5_10" >范围 (M): 5、10</string>
+    <string name="shop_equipment_attribute_range_5_10_15" >范围 (M): 5、10、15</string>
 
     <string name="shop_equipment_attribute_uvchargetime_1_5" >紫外线充电时间：1.5</string>
     <string name="shop_equipment_attribute_uvchargetime_5" >紫外线充电时间：5</string>
@@ -596,24 +600,24 @@
     <string name="shop_equipment_attribute_sanitydrainreduction_50" >理智消耗减少 (%)：50</string>
     <string name="shop_equipment_attribute_sanitydrainreduction_66" >理智消耗减少 (%)：66</string>
 
-    <string name="shop_equipment_attribute_sanityrestoration_10" >理智恢复睡眠（S）：10</string>
-    <string name="shop_equipment_attribute_sanityrestoration_20" >理智恢复睡眠（S）：20</string>
-    <string name="shop_equipment_attribute_sanityrestoration_30" >理智恢复睡眠（S）：30</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10" >理智恢复睡眠 (S): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >理智恢复睡眠 (S): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >理智恢复睡眠 (S): 30</string>
 
     <string name="shop_equipment_attribute_sensorshape_line" >传感器形状：线</string>
     <string name="shop_equipment_attribute_sensorshape_line_cone" >传感器形状：圆锥</string>
     <string name="shop_equipment_attribute_sensorshape_circle" >传感器形状：圆形</string>
     <string name="shop_equipment_attribute_sensorshape_circle_cone_sides" >传感器形状：圆形、圆锥形、侧面</string>
 
-    <string name="shop_equipment_attribute_duration_3_s" >持续时间（S）：7</string>
-    <string name="shop_equipment_attribute_duration_5_s" >持续时间（S）：5</string>
-    <string name="shop_equipment_attribute_duration_6_s" >持续时间（S）：6</string>
-    <string name="shop_equipment_attribute_duration_7_s" >持续时间（S）：7</string>
-    <string name="shop_equipment_attribute_duration_10_s" >持续时间（S）：10</string>
-    <string name="shop_equipment_attribute_duration_60_s" >持续时间（S）：60</string>
-    <string name="shop_equipment_attribute_duration_3_m" >持续时间（M）：3</string>
-    <string name="shop_equipment_attribute_duration_5_m" >持续时间（M）：5</string>
-    <string name="shop_equipment_attribute_duration_10_m" >持续时间（M）：10</string>
+    <string name="shop_equipment_attribute_duration_3_s" >持续时间 (S): 7</string>
+    <string name="shop_equipment_attribute_duration_5_s" >持续时间 (S): 5</string>
+    <string name="shop_equipment_attribute_duration_6_s" >持续时间 (S): 6</string>
+    <string name="shop_equipment_attribute_duration_7_s" >持续时间 (S): 7</string>
+    <string name="shop_equipment_attribute_duration_10_s" >持续时间 (S): 10</string>
+    <string name="shop_equipment_attribute_duration_60_s" >持续时间 (S): 60</string>
+    <string name="shop_equipment_attribute_duration_3_m" >持续时间 (M): 3</string>
+    <string name="shop_equipment_attribute_duration_5_m" >持续时间 (M): 5</string>
+    <string name="shop_equipment_attribute_duration_10_m" >持续时间 (M): 10</string>
 
     <string name="shop_equipment_attribute_uses_1" >使用：1</string>
     <string name="shop_equipment_attribute_uses_2" >使用：2</string>
@@ -633,7 +637,7 @@
     <string name="shop_equipment_attribute_property_waterproof" >防水</string>
     <string name="shop_equipment_attribute_property_headslot" >头部插槽</string>
     <string name="shop_equipment_attribute_property_nightvision" >夜视仪</string>
-    <string name="shop_equipment_attribute_property_sprintboost" >冲刺加速 (S)：10</string>
+    <string name="shop_equipment_attribute_property_sprintboost" >冲刺加速 (S): 10</string>
     <string name="shop_equipment_attribute_property_rotationcontrol" >旋转控制</string>
     <string name="shop_equipment_attribute_property_scanning" >扫描</string>
 
