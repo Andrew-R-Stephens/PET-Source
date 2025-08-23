@@ -29,19 +29,30 @@
     <string name="objective_id_repelwithsmudge" translatable="false">d2a8fcffd7c3132d1e6d17952f0941c6</string>
     <string name="objective_id_extinguishcandle" translatable="false">71f28ba9ef0f327f234be19a20b8743c</string>
     <string name="objective_id_lowsanity" translatable="false">5333d5740e23d8b5d729e33378f2958c</string>
+    <string name="objective_id_paranormalsound" translatable="false">9f1f5413a88357e8a592988e39eed041</string>
+    <string name="objective_id_uniqueaudio" translatable="false">fd155827d611dc9e5d44e27ee98dbe32</string>
+    <string name="objective_id_uniquephotograph" translatable="false">6adac2c97379fa350971f673631749c3</string>
+    <string name="objective_id_uniquevideo" translatable="false">f768abf59eaa5fa9be6b069cd5f994fe</string>
+    <string name="objective_id_emfphotograph" translatable="false">6cf28290d18f7322c6d3474686209f8b</string>
+    <string name="objective_id_ghostvideo" translatable="false">e9ecc47726ad125fad5f0fbf926a8ece</string>
 
     <!-- Mission Description -->
-    <string name="objective_info_ghostevent">Witness a Ghost Event</string>
-    <string name="objective_info_ghostphotograph">Photograph the Ghost</string>
-    <string name="objective_info_emfreader">Get any EMF Reader activity</string>
-    <string name="objective_info_motionsensor">Get Motion Sensor activity</string>
-    <string name="objective_info_smudgestick">Smudge Stick the Ghost\'s location</string>
-    <string name="objective_info_crucifix">Prevent a hunt with the Crucifix</string>
-    <string name="objective_info_salt">Have the Ghost walk through Salt</string>
-    <string name="objective_info_escapehunt">Escape the ghost while it\'s hunting</string>
-    <string name="objective_info_repelwithsmudge">Repel the hunting ghost with a Smudge stick </string>
-    <string name="objective_info_extinguishcandle">Have the ghost blow out a candle</string>
-    <string name="objective_info_lowsanity">Get an Average Team Sanity of 25% or lower</string>
+    <!-- Objective Description -->
+    <string name="objective_info_ghostevent">Have a member of your team witness a Ghost event</string>
+    <string name="objective_info_ghostphotograph">Capture a photo of the ghost</string>
+    <string name="objective_info_motionsensor">Detect a ghost\'s presence with a Motion Sensor</string>
+    <string name="objective_info_smudgestick">Cleanse the area near the ghost using Incense</string>
+    <string name="objective_info_crucifix">Prevent a ghost from hunting with a Crucifix</string>
+    <string name="objective_info_escapehunt">Have a member of the team escape the Ghost during a Hunt</string>
+    <string name="objective_info_repelwithsmudge">Repel the Ghost with Incense while it\'s chasing someone</string>
+    <string name="objective_info_extinguishcandle">Get the Ghost to blow out a Firelight</string>
+    <string name="objective_info_lowsanity">Get an average Team Sanity below 25\%</string>
+    <string name="objective_info_paranormalsound">Detect a paranormal sound with a Parabolic Microphone</string>
+    <string name="objective_info_uniqueaudio">Capture 2 unique paranormal sounds with a Sound Recorder</string>
+    <string name="objective_info_uniquephotograph">Capture 3 unique photos with a Photo Camera</string>
+    <string name="objective_info_uniquevideo">Capture 3 unique videos with a Video Camera</string>
+    <string name="objective_info_emfphotograph">Capture a Photo of any successful reading on an EMF Reader</string>
+    <string name="objective_info_ghostvideo">Capture a video of a Ghost</string>
 
     <string name="ghost_name_alex" translatable="false">Alex</string>
     <string name="ghost_name_amit" translatable="false">Amit</string>

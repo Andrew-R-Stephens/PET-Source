@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Page Details -->
+
+    <string name="newsletter_title">Centre de Messagerie</string>
+    <string name="newsletter_inbox_title_pet">Journal des Modifications P.E.T.</string>
+    <string name="newsletter_inbox_title_phasmophobia">Journal des Modifications Phasmophobia</string>
+    <string name="newsletter_inbox_title_general">Les nouvelles Générales</string>
+
+</resources>

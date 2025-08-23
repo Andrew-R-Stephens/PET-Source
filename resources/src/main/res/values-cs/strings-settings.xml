@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        SETTINGS FRAGMENT
+    -->
+    <!-- Page Details -->
+    <string name="settings_title">Nastavení</string>
+    <string name="settings_confirm">Potvrdit</string>
+    <string name="settings_cancel">Zrušení</string>
+    <string name="settings_generalsettings">Obecné</string>
+    <string name="settings_extrasettings">Další nastavení</string>
+    <string name="settings_appearancesettings">Vzhled</string>
+    <string name="settings_fontstylesettings">Styl písma</string>
+    <string name="settings_adsconsentcontrolsection">Nastavení reklam / GDPR</string>
+    <string name="settings_adsconsentcontrolsettings">Konfigurace GDPR</string>
+    <string name="settings_adsconsentcontrolsettings_button">Upravit</string>
+    <string name="settings_screenalwayson">Vždy mějte obrazovku zapnutou</string>
+    <string name="settings_networktitle">Povolit využití Mobilních Dat</string>
+    <string name="settings_huntwarningflashtimeout">Vypršel časový limit blesku upozornění na lov</string>
+    <string name="settings_huntwarningflashtimeout_never">Nikdy vypršel časový limit</string>
+    <string name="settings_enableLeftHandSupport">Povolit Režim Pro Leváky</string>
+    <string name="settings_enablehuntaudioqueue">Povolit zvukové varování lovu</string>
+    <string name="settings_enableGhostReorder">Povolit změnu pořadí seznamu duchů</string>
+    <string name="settings_colorblindnessmode_title">Režim barvoslepé</string>
+    <string name="settings_colorblindnessmode_note">(vstoupí v platnost po opuštění Nastavení)</string>
+    <string name="settings_colortheme_title">Kůže</string>
+    <string name="settings_colortheme_note">(Výběr barvosleposti má přednost)</string>
+
+    <!-- Colorblindness Types -->
+    <string name="settings_colorblindnessmode_normal">Žádné</string>
+
+</resources>

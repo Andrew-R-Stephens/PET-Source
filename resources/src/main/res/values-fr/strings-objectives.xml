@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Page Details -->
+    <string name="objectives_ghostname_note">Entrez le nom du fantôme ici</string>
+    <string name="objectives_title_optional_objectives">Objectifs optionnels</string>
+    <string name="objectives_title_investigation_debrief">Compte rendu d\'enquête</string>
+    <string name="objectives_title_ghost_name">Nom du fantôme</string>
+    <string name="objectives_title_response">"Réponds aux personnes qui sont "</string>
+    <string name="objectives_title_optional_objective_1">Objectif 1</string>
+    <string name="objectives_title_optional_objective_2">Objectif 2</string>
+    <string name="objectives_title_optional_objective_3">Objectif 3</string>
+    <string name="objectives_title_response_alone">Seule</string>
+    <string name="objectives_title_response_everyone">Groupe</string>
+
+    <!-- Mission Description -->
+    <string name="objective_info_ghostevent">Demandez à un membre de votre équipe d\'assister à un événement fantôme</string>
+    <string name="objective_info_ghostphotograph">Prenez une photo du fantôme</string>
+    <string name="objective_info_motionsensor">Détectez la présence d\'un fantôme grâce à un détecteur de mouvement</string>
+    <string name="objective_info_smudgestick">Purifiez la zone autour du fantôme avec de l\'encens</string>
+    <string name="objective_info_crucifix">Empêchez un fantôme de chasser avec un crucifix</string>
+    <string name="objective_info_escapehunt">Demandez à un membre de votre équipe d\'échapper au fantôme pendant une chasse</string>
+    <string name="objective_info_repelwithsmudge">Repoussez le fantôme avec de l\'encens lorsqu\'il poursuit quelqu\'un</string>
+    <string name="objective_info_extinguishcandle">Demandez au fantôme d\'éteindre un feu</string>
+    <string name="objective_info_lowsanity">Obtenez une santé mentale moyenne de l\'équipe inférieure à 25\%</string>
+    <string name="objective_info_emfphotograph">Photographiez toute lecture réussie avec un lecteur EMF</string>
+    <string name="objective_info_ghostvideo">Vidéo d\'un fantôme</string>
+    <string name="objective_info_paranormalsound">Détectez un son paranormal avec un microphone parabolique</string>
+    <string name="objective_info_uniqueaudio">Capturez 2 sons paranormaux uniques avec un enregistreur de sons</string>
+    <string name="objective_info_uniquephotograph">Capturez 3 photos uniques avec un appareil photo</string>
+    <string name="objective_info_uniquevideo">Capturez 3 vidéos uniques avec une caméra vidéo</string>
+
+</resources>

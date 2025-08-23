@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        OBJECTIVES PAGE
+    -->
+    <!-- Page Details -->
+    <string name="objectives_title_optional_objectives">Optionale Ziele</string>
+    <string name="objectives_title_investigation_debrief">Untersuchungsbesprechung</string>
+    <string name="objectives_title_ghost_name">Name des Geistes</string>
+    <string name="objectives_ghostname_note">Geben Sie hier den Geisternamen ein</string>
+    <string name="objectives_title_response">Reagiert auf Personen, die</string>
+    <string name="objectives_title_optional_objective_1">Ziel 1</string>
+    <string name="objectives_title_optional_objective_2">Ziel 2</string>
+    <string name="objectives_title_optional_objective_3">Ziel 3</string>
+    <string name="objectives_title_response_alone">"Alleine "</string>
+    <string name="objectives_title_response_everyone">Gruppen</string>
+
+    <!-- Mission Description -->
+    <string name="objective_info_ghostevent">Lass ein Mitglied deines Teams Zeuge eines Geisterereignisses werden</string>
+    <string name="objective_info_ghostphotograph">Mach ein Foto des Geistes</string>
+    <string name="objective_info_motionsensor">Erkenne die Anwesenheit eines Geistes mit einem Bewegungsmelder</string>
+    <string name="objective_info_smudgestick">Reinige den Bereich um den Geist mit Weihrauch</string>
+    <string name="objective_info_crucifix">Verhindere die Jagd eines Geistes mit einem Kruzifix</string>
+    <string name="objective_info_escapehunt">Lass ein Mitglied deines Teams dem Geist während einer Jagd entkommen</string>
+    <string name="objective_info_repelwithsmudge">Vertreibe den Geist mit Weihrauch, während er jemanden verfolgt</string>
+    <string name="objective_info_extinguishcandle">Bringe den Geist dazu, ein Feuerlicht auszublasen</string>
+    <string name="objective_info_lowsanity">Sorge dafür, dass die durchschnittliche geistige Gesundheit deines Teams unter 25\% sinkt</string>
+    <string name="objective_info_paranormalsound">Erkenne ein paranormales Geräusch mit einem Parabolmikrofon</string>
+    <string name="objective_info_uniqueaudio">Nimm 2 einzigartige paranormale Geräusche mit einem Tonrekorder auf</string>
+    <string name="objective_info_uniquephotograph">Nimm 3 einzigartige Fotos mit einer Fotokamera auf</string>
+    <string name="objective_info_uniquevideo">Nimm 3 einzigartige Videos mit einer Videokamera auf</string>
+    <string name="objective_info_emfphotograph">Nimm ein Foto von jeder erfolgreichen Messung mit einem EMF-Lesegerät auf</string>
+    <string name="objective_info_ghostvideo">Nimm ein Video von einem Geist auf</string>
+
+</resources>

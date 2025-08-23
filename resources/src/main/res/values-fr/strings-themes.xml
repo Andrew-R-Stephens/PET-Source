@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Color-Style Types -->
+    <string name="theme_palette_colorblind_monochromacy">Achromatopsie</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Deutéranopie</string>
+    <string name="theme_palette_colorblind_protanomaly">Protanopie</string>
+    <string name="theme_palette_colorblind_tritanomaly">Tritanopie</string>
+
+    <!-- Font-Style Types -->
+    <string name="theme_typography_classic">P.E.T. Classic</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Journal</string>
+    <string name="theme_typography_brick">Brique</string>
+    <string name="theme_typography_clean">Faire le Ménage</string>
+
+</resources>

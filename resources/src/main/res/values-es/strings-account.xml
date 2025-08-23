@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="account_title">Mi cuenta</string>
+    <string name="account_label_information">Información de la cuenta</string>
+    <string name="account_label_name">Nombre</string>
+    <string name="account_label_email">Correo electrónico</string>
+    <string name="account_button_login">Acceso</string>
+    <string name="account_button_logout">Cerrar sesión</string>
+    <string name="account_button_deactivate">desactivar cuenta</string>
+
+    <!-- Deactivate -->
+
+    <string name="account_button_get_skins">¡Consigue más diseños!</string>
+    <string name="account_deactivate_title">Desactivación de cuenta</string>
+    <string name="account_deactivate_warning">Al elegir desactivar su cuenta, acepta lo siguiente:</string>
+    <string name="account_deactivate_warning_list_1">Todo PET Los datos de la cuenta se volverán irrecuperables.</string>
+    <string name="account_deactivate_warning_list_2">Perderá el acceso a compras, desbloqueos y todos los demás elementos asociados.</string>
+    <string name="account_deactivate_warning_list_3">Si vuelve a unirse con el mismo inicio de sesión, los datos de la cuenta anterior no se transferirán.</string>
+    <string name="account_deactivate_button_confirm">Confirmar desactivación</string>
+    <string name="account_deactivate_button_cancel">No importa</string>
+
+    <!-- Logout -->
+
+    <string name="account_logout_title">Cerrar sesión</string>
+    <string name="account_logout_warning">¿Está seguro de que desea cerrar sesión?</string>
+    <string name="account_logout_button_confirm">Cerrar sesión</string>
+    <string name="account_logout_button_cancel">Cancelar</string>
+
+</resources>

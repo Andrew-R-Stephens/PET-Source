@@ -144,17 +144,21 @@
 
     <!-- Objective Description -->
 
-    <string name="objective_info_ghostevent">目睹幽灵事件</string>
-    <string name="objective_info_ghostphotograph">拍摄鬼魂</string>
-    <string name="objective_info_emfreader">获取任何 EMF 阅读器活动</string>
-    <string name="objective_info_motionsensor">获取运动传感器活动</string>
-    <string name="objective_info_smudgestick">涂抹幽灵的位置</string>
-    <string name="objective_info_crucifix">用十字架阻止狩猎</string>
-    <string name="objective_info_salt">让幽灵穿过盐</string>
-    <string name="objective_info_escapehunt">在幽灵狩猎时逃离它</string>
-    <string name="objective_info_repelwithsmudge">用涂抹棒击退狩猎幽灵</string>
-    <string name="objective_info_extinguishcandle">让鬼魂吹灭蜡烛</string>
-    <string name="objective_info_lowsanity">团队平均理智度降低 25% or</string>
+    <string name="objective_info_ghostevent">让你的团队成员目睹一次幽灵事件</string>
+    <string name="objective_info_ghostphotograph">拍摄一张幽灵的照片</string>
+    <string name="objective_info_motionsensor">使用运动传感器探测幽灵的存在</string>
+    <string name="objective_info_smudgestick">使用熏香净化幽灵附近的区域</string>
+    <string name="objective_info_crucifix">使用十字架阻止幽灵狩猎</string>
+    <string name="objective_info_escapehunt">让你的团队成员在狩猎期间逃离幽灵</string>
+    <string name="objective_info_repelwithsmudge">在幽灵追逐某人时，使用熏香驱赶它</string>
+    <string name="objective_info_extinguishcandle">让幽灵吹灭火光</string>
+    <string name="objective_info_lowsanity">使团队平均理智值低于 25\%</string>
+    <string name="objective_info_emfphotograph">用电磁场读取器记录任何成功读数的照片</string>
+    <string name="objective_info_ghostvideo">拍摄鬼魂的视频</string>
+    <string name="objective_info_paranormalsound">用抛物面麦克风探测超自然声音</string>
+    <string name="objective_info_uniqueaudio">用录音机录制两声独特的超自然声音</string>
+    <string name="objective_info_uniquephotograph">用照相机拍摄三张独特的照片</string>
+    <string name="objective_info_uniquevideo">用摄像机拍摄三段独特的视频</string>
 
     <!-- All Entries -->
 
@@ -221,7 +225,7 @@
     <string name="store_title_equipment">装备店</string>
     <string name="equipment_section_tiers">层级</string>
     <string name="evidence_requirement_level_title">解锁等级：</string>
-    <string name="evidence_requirement_cost_title">成本：</string>
+    <string name="evidence_requirement_cost_title">成本:</string>
 
     
     <!-- Equipment Tiers -->
@@ -399,8 +403,8 @@
     <string name="shop_equipment_emf_data_info_2"><![CDATA[<a>值得信赖的 K2 Meter 具有更大的范围和五个用于检测 EMF 读数的 LED 灯，以及一个额外的扬声器模块。当您激活设备时，一盏灯会亮起。当在 K2 的 EMF 点检测范围内移动时，它会显示 2 到 5 的准确值，并发出清晰可听的声音。</a>]]></string>
     <string name="shop_equipment_emf_data_info_3"><![CDATA[<a>高科技 ParaReader。该设备一次最多可以跟踪三个 EMF 点，并且具有最远的检测范围。</a><a>它将同时显示每个读数的方向、范围和值。每次检测到 EMF 时，它都会播放声音，这样您就可以从远处听到读数的数量和强度。</a><a>如果 EMF 点消失，则较新的 EMF 点将放置在底部列表中的。</a>]]></string>
 
-    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>经典的紫外线荧光棒。打开它后，它会投射出短距离区域光，持续约一分钟，然后变暗。您随时可以再次摇晃它，使其重新焕发光彩。</a><a>此设备会在曝光后 10 秒内为紫外线点充电。</a>]]></string>
-    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>经典的紫外线手电筒，可发出更亮、更窄的光束，射程更远，并拥有更快的紫外线充电时间！</a><a>此设备将在曝光后 5 秒内为紫外线点充电。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>经典的紫外线荧光棒。打开它后，它会投射出短距离区域光，持续约一分钟，然后变暗。您随时可以再次摇晃它，使其重新焕发光彩。</a><a>此设备会在曝光后 10 秒内为紫外线点充电。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>经典的紫外线手电筒，可发出更亮、更窄的光束，射程更远，并拥有更快的紫外线充电时间！</a><a>此设备将在曝光后 5 秒内为紫外线点充电。</a>]]></string>
     <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>UV Light Pro 是一款厚实的手电筒，具有更亮、更宽的光锥，并且充电时间更快。它非常适合在更大范围内快速定位紫外线证据。</a><br><br><a>该设备将在曝光后 1.5 秒内为紫外线点充电。</a>]]></string>
 
     <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>一个老房子温度计，直接从调查员客厅的墙上撕下来。该温度计的采样率较慢，这意味着您必须等待更长的时间才能获得准确的读数。您可能需要带一份过来，并在合同中稍后再检查。</a>]]></string>
@@ -449,6 +453,25 @@
     <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>将此运动传感器放置在墙壁或地板上，每当有物体在其前面移动时，即使是您看不到的物体，它也会闪烁。</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>该传感器具有两种不同的模式、更远的范围和声音指示器，非常适合超自然现象跟踪。</a><a>放置传感器后，您可以通过与传感器交互来切换激光形状。{ /3}</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>将此动作感应摄像头放置在您可能发现的任何幽灵活动附近的地板上。激活后，只要有鬼魂进入或退出其检测范围，它就会转动并闪烁强光。</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+<![CDATA[
+<a>使用此录音机在调查过程中查找和录制超自然声音。成功录制将在合同结束时奖励额外资金。</a><br><br>
+<a>您甚至可以在日志中收听录制的声音！</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+<![CDATA[
+<a>此录音机已升级，精度更高、范围更广，界面更现代化，应该可以更轻松地找到那些超自然声音！</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+<![CDATA[
+<a>激活后，此录音机提供有关超自然声音的更多信息。</a><br><br>
+<a>新增的方向性和范围指示器使寻找和记录超自然现象变得高效且令人满意！</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>将这些声音传感器放置在您想要跟踪任何音频交互的位置。</a><a>放置后，返回卡车，您可以收听远程播放，同时检查声音传感器屏幕，看看是否有声音任何传感器都会收到任何读数。</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>该声音传感器经过改进，具有三种不同的尺寸设置，可通过卡车声音传感器屏幕上的尺寸按钮进行切换。</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>三脚架上有旋转接头，让您可以与其互动以改变声音传感器的形状。</a><a>每种形状都由麦克风面向的方向表示</a>：<a>向前：圆锥体 / 向外：侧面 / 向内：球体</a>]]></string>
@@ -483,8 +506,8 @@
     <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>一个生锈的旧烛台，上面支撑着一支小蜡烛，希望在没有其他光源的情况下，它能够持续足够长的时间。不要忘记用什么东西来照亮它！</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>带有三根高蜡烛的烛台。华丽的金属和更高品质的蜡烛蜡是更可靠的理智保护者！</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>它可能看起来很旧，但这款汽油灯是我们发现的最可靠的火灯，它可以连续持续几个小时。</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>一种小荧光棒，里面充满透明的油状液体，并与荧光染料混合。折断棍子会引起反应，用明亮的颜色照亮周围区域。</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>带有方便皮带夹的战术小型紫外线手电筒。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>一种小荧光棒，里面充满透明的油状液体，并与荧光染料混合。折断棍子会引起反应，用明亮的颜色照亮周围区域。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>带有方便皮带夹的战术小型紫外线手电筒。</a>]]></string>
     <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>UV Light Pro 手电筒配有近 80 个独立灯泡，可照亮大面积区域。</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>只是将两块木头绑在一起。仅凭形状似乎就足以抵御一些超自然实体。</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>这种十字架从木质升级为铸铁，提供了更可靠的防御。</a>]]></string>
@@ -510,6 +533,21 @@
     <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>该传感器以前是野生动物相机，经过修改可以跟踪在其前面移动的超自然实体。</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>根据修改之前版本的经验，我们成功改进了更先进的摄像头，以满足我们的超自然跟踪需求。</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>一个安全摄像头被拆解并从头开始重建，使其能够看到超自然领域。</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+<![CDATA[
+<a>破旧不堪，用胶带粘在一起。这款老式 Paracord 录音机曾经风光无限，谢天谢地还能用……</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+<![CDATA[
+<a>Ghost Huntin\' Distribution 旗下的录音机品牌。它比上一代产品更高效，数字屏幕和全新界面让捕捉那些诡异声音更加轻松。</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+<![CDATA[
+<a>BONY 最新的录音硬件。这款设备配备了多种功能，让捕捉声音变得尽可能简单。双麦克风设置使跟踪更加轻松，录制速度更快，即使是声音微弱的声音也能轻松录制。</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>连接到迷你三脚架的小型麦克风，便宜且高效。</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>两个更高质量的麦克风一起安装在定制的三脚架上。他们花费了一些额外的时间和金钱来创建这个。</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>昂贵的枪式麦克风连接到小型接收器，将高质量的音频流传回卡车。</a>]]></string>
@@ -571,18 +609,18 @@
     <string name="shop_equipment_attribute_indicator_distance" >距离指示器</string>
     <string name="shop_equipment_attribute_indicator_directional" >方向指示器</string>
 
-    <string name="shop_equipment_attribute_range_1_7" >范围（米）：1.7</string>
-    <string name="shop_equipment_attribute_range_2" >范围（M）：2</string>
-    <string name="shop_equipment_attribute_range_2_5" >范围（M）：2.5</string>
-    <string name="shop_equipment_attribute_range_3" >范围（M）：3</string>
-    <string name="shop_equipment_attribute_range_3_5" >范围（M）：3.5</string>
-    <string name="shop_equipment_attribute_range_4" >范围（M）：4</string>
-    <string name="shop_equipment_attribute_range_5" >范围 (M)：5</string>
-    <string name="shop_equipment_attribute_range_7" >范围 (M)：7</string>
-    <string name="shop_equipment_attribute_range_20" >范围（M）：20</string>
-    <string name="shop_equipment_attribute_range_30" >范围（M）：30</string>
-    <string name="shop_equipment_attribute_range_5_10" >范围（M）：5、10</string>
-    <string name="shop_equipment_attribute_range_5_10_15" >范围（M）：5、10、15</string>
+    <string name="shop_equipment_attribute_range_1_7" >范围 (M): 1.7</string>
+    <string name="shop_equipment_attribute_range_2" >范围 (M) :2</string>
+    <string name="shop_equipment_attribute_range_2_5" >范围 (M): 2.5</string>
+    <string name="shop_equipment_attribute_range_3" >范围 (M): 3</string>
+    <string name="shop_equipment_attribute_range_3_5" >范围 (M): 3.5</string>
+    <string name="shop_equipment_attribute_range_4" >范围 (M): 4</string>
+    <string name="shop_equipment_attribute_range_5" >范围 (M): 5</string>
+    <string name="shop_equipment_attribute_range_7" >范围 (M): 7</string>
+    <string name="shop_equipment_attribute_range_20" >范围 (M): 20</string>
+    <string name="shop_equipment_attribute_range_30" >范围 (M): 30</string>
+    <string name="shop_equipment_attribute_range_5_10" >范围 (M): 5、10</string>
+    <string name="shop_equipment_attribute_range_5_10_15" >范围 (M): 5、10、15</string>
 
     <string name="shop_equipment_attribute_uvchargetime_1_5" >紫外线充电时间：1.5</string>
     <string name="shop_equipment_attribute_uvchargetime_5" >紫外线充电时间：5</string>
@@ -596,24 +634,24 @@
     <string name="shop_equipment_attribute_sanitydrainreduction_50" >理智消耗减少 (%)：50</string>
     <string name="shop_equipment_attribute_sanitydrainreduction_66" >理智消耗减少 (%)：66</string>
 
-    <string name="shop_equipment_attribute_sanityrestoration_10" >理智恢复睡眠（S）：10</string>
-    <string name="shop_equipment_attribute_sanityrestoration_20" >理智恢复睡眠（S）：20</string>
-    <string name="shop_equipment_attribute_sanityrestoration_30" >理智恢复睡眠（S）：30</string>
+    <string name="shop_equipment_attribute_sanityrestoration_10" >理智恢复睡眠 (S): 10</string>
+    <string name="shop_equipment_attribute_sanityrestoration_20" >理智恢复睡眠 (S): 20</string>
+    <string name="shop_equipment_attribute_sanityrestoration_30" >理智恢复睡眠 (S): 30</string>
 
     <string name="shop_equipment_attribute_sensorshape_line" >传感器形状：线</string>
     <string name="shop_equipment_attribute_sensorshape_line_cone" >传感器形状：圆锥</string>
     <string name="shop_equipment_attribute_sensorshape_circle" >传感器形状：圆形</string>
     <string name="shop_equipment_attribute_sensorshape_circle_cone_sides" >传感器形状：圆形、圆锥形、侧面</string>
 
-    <string name="shop_equipment_attribute_duration_3_s" >持续时间（S）：7</string>
-    <string name="shop_equipment_attribute_duration_5_s" >持续时间（S）：5</string>
-    <string name="shop_equipment_attribute_duration_6_s" >持续时间（S）：6</string>
-    <string name="shop_equipment_attribute_duration_7_s" >持续时间（S）：7</string>
-    <string name="shop_equipment_attribute_duration_10_s" >持续时间（S）：10</string>
-    <string name="shop_equipment_attribute_duration_60_s" >持续时间（S）：60</string>
-    <string name="shop_equipment_attribute_duration_3_m" >持续时间（M）：3</string>
-    <string name="shop_equipment_attribute_duration_5_m" >持续时间（M）：5</string>
-    <string name="shop_equipment_attribute_duration_10_m" >持续时间（M）：10</string>
+    <string name="shop_equipment_attribute_duration_3_s" >持续时间 (S): 7</string>
+    <string name="shop_equipment_attribute_duration_5_s" >持续时间 (S): 5</string>
+    <string name="shop_equipment_attribute_duration_6_s" >持续时间 (S): 6</string>
+    <string name="shop_equipment_attribute_duration_7_s" >持续时间 (S): 7</string>
+    <string name="shop_equipment_attribute_duration_10_s" >持续时间 (S): 10</string>
+    <string name="shop_equipment_attribute_duration_60_s" >持续时间 (S): 60</string>
+    <string name="shop_equipment_attribute_duration_3_m" >持续时间 (M): 3</string>
+    <string name="shop_equipment_attribute_duration_5_m" >持续时间 (M): 5</string>
+    <string name="shop_equipment_attribute_duration_10_m" >持续时间 (M): 10</string>
 
     <string name="shop_equipment_attribute_uses_1" >使用：1</string>
     <string name="shop_equipment_attribute_uses_2" >使用：2</string>
@@ -633,7 +671,7 @@
     <string name="shop_equipment_attribute_property_waterproof" >防水</string>
     <string name="shop_equipment_attribute_property_headslot" >头部插槽</string>
     <string name="shop_equipment_attribute_property_nightvision" >夜视仪</string>
-    <string name="shop_equipment_attribute_property_sprintboost" >冲刺加速 (S)：10</string>
+    <string name="shop_equipment_attribute_property_sprintboost" >冲刺加速 (S): 10</string>
     <string name="shop_equipment_attribute_property_rotationcontrol" >旋转控制</string>
     <string name="shop_equipment_attribute_property_scanning" >扫描</string>
 
@@ -652,6 +690,7 @@
     <string name="equipment_info_name_incense">香</string>
     <string name="equipment_info_name_tripod">三脚架</string>
     <string name="equipment_info_name_motionsensor">运动传感器</string>
+    <string name="equipment_info_name_soundrecorder">录音机</string>
     <string name="equipment_info_name_soundsensor">声音传感器</string>
     <string name="equipment_info_name_sanitymedication">理智药物</string>
     <string name="equipment_info_name_ghostwritingbook">幽灵写作书</string>

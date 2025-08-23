@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        LANGUAGE FRAGMENT
+    -->
+    <!-- Localized Title -->
+    <string name="language_name_localized_zh_Hans">Chinesisch (Vereinfacht)</string>
+    <string name="language_name_localized_de">Deutsch</string>
+    <string name="language_name_localized_en">Englisch</string>
+    <string name="language_name_localized_cs">Tschechisch</string>
+    <string name="language_name_localized_fr">Französisch</string>
+    <string name="language_name_localized_it">Italienisch</string>
+    <string name="language_name_localized_ja">Japanisch</string>
+    <string name="language_name_localized_pt">Portugiesisch</string>
+    <string name="language_name_localized_ru">Russisch</string>
+    <string name="language_name_localized_es">Spanisch</string>
+    <string name="language_name_localized_uk">Ukrainisch</string>
+
+</resources>

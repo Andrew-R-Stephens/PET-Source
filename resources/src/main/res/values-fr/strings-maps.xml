@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        MAPS PAGE
+    -->
+    <!-- Page Details -->
+    <string name="mapview_instruction_pan">Déplacer: Faites glisser un doigt</string>
+    <string name="mapview_instruction_zoom">Agrandir: Pincez avec deux doigts</string>
+
+    <!-- Building Floor Names -->
+    <string name="map_floor_name_ground">"Rez-de-chaussée "</string>
+    <string name="map_floor_name_first">Premier étage</string>
+    <string name="map_floor_name_second">Deuxième étage</string>
+    <string name="map_floor_name_third">Troisième étage</string>
+    <string name="map_floor_name_fourth">Quatrième étage</string>
+    <string name="map_floor_name_fifth">Cinquième étage</string>
+    <string name="map_floor_name_sixth">Sixième étage</string>
+    <string name="map_floor_name_seventh">Septième étage</string>
+    <string name="map_floor_name_eighth">Huitième étage</string>
+    <string name="map_floor_name_ninth">Neuvième étage</string>
+    <string name="map_floor_name_tenth">Dixième étage</string>
+    <string name="map_floor_name_attic">Grenier</string>
+    <string name="map_floor_name_basement">Sous-sol</string>
+
+    <!-- Map Interaction Help -->
+    <string name="map_info_help_title">Aide sur la carte interactive</string>
+    <string name="map_info_help_pan">Déplacez une carte avec un seul doigt.</string>
+    <string name="map_info_help_zoom">Effectuez un zoom avant et arrière sur une carte en pinçant ou en écartant deux doigts.</string>
+    <string name="map_info_help_click">Appuyez avec un doigt sur n\'importe quelle carte pour obtenir le nom et les limites de n\'importe quelle pièce.</string>
+    <string name="map_info_help_rooms">Sélectionnez une pièce dans le menu déroulant Pièces pour afficher l\'emplacement et les limites de cette pièce.</string>
+    <string name="map_info_help_floors">Parcourez les étages pour les visualiser et interagir avec eux.</string>
+    <string name="map_info_help_pois">Les positions des boîtes à fusibles et des objets maudits sont indiquées par des icônes pertinentes.</string>
+
+</resources>

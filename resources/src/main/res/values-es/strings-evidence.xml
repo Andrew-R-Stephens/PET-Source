@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="evidence_section_overview">Descripción General</string>
+
+    <!-- Evidence Names -->
+    <string name="evidence_type_dots">D.O.T.S</string>
+    <string name="evidence_type_emf">EMF 5</string>
+    <string name="evidence_type_temperatures">Temperatura Helada</string>
+    <string name="evidence_type_box">Spirit Box</string>
+    <string name="evidence_type_book">Escritura Fantasmal</string>
+    <string name="evidence_type_orbs">Orbes Espectrales</string>
+    <string name="evidence_type_ultraviolet">Ultravioleta</string>
+    <!-- Evidence Description -->
+
+    <string name="evidence_info_overview_emf">
+        <![CDATA[
+				<a>EMF-5 es la lectura de nivel mas alto de un <font color=#ff6161>Lector de EMF</font>.</a>
+				<a>Un fantasma produce emisiones de EMF de los niveles 1 a 5 cuando interactua de algúna manera con la habitacion o la tabla Ouija. Los parpadeos de luz, los pasos y otras interacciones pasivas mas pequenas normalmente daran una lectura mas baja. Las interacciones mas intensas, como una aparicion o el timbre de un telefono, casi siempre daran una lectura mas alta. Los fantasmas que llevan esta evidencia daran EMF Nivel 5 solo por casualidad, por lo que esta evidencia <font color=#ff6161>puede llevar algún tiempo adquirir</font>.</a>
+		]]>
+    </string>
+    <string name="evidence_info_overview_dots" >
+		<![CDATA[
+             <a>El D.O.T.S. El proyector es un dispositivo que se puede colocar en las paredes o en el suelo. Proyecta una matriz de puntos brillantes, proyectando los puntos sobre las superficies cercanas a su alrededor.</a>
+             <a>Para identificar positivamente esta Evidencia, <font color=#ff6161>se verá una silueta del fantasma corriendo, o arrastrándose rápidamente, a través de los rayos de la proyección</font>. La silueta se puede ver a simple vista oa través de una cámara de video, pero se ve más fácilmente <font color=#ff6161>de forma remota a través de las térmicas de la cámara de video</font>. Lo mejor es intentar encontrar esta evidencia de forma remota, ya que el comportamiento de un Goryo puede causar conflictos de evidencia de lo contrario. La ubicación real del Fantasma no determinará cuándo se producirán las animaciones de la silueta.</a>
+              <a>El D.O.T.S. las imágenes ahora son el fantasma real, lo que significa que deberá encender sus luces infrarrojas cerca de la posición real del fantasma. Esto crea un juego mucho más atractivo para los jugadores, puedes usar D.O.T.S. para ver dónde está su fantasma, o si tiene dificultades para obtener la evidencia, use sensores de sal, de movimiento u otros equipos para encontrar un lugar mejor para su proyector. Fantasmas con D.O.T.S. evidencia ahora puede ingresar un \“D.O.T.S. estado\” cuando deambula; Durante el cual, son visibles temporalmente con luz infrarroja, durante este tiempo deambularán hacia el jugador más cercano (o hacia un lugar aleatorio en la habitación si está vacío) antes de desaparecer.</a>
+         ]]>
+	</string>
+    <string name="evidence_info_overview_thermometer">
+        <![CDATA[
+             <a>Las temperaturas bajo cero están <font color=#ff6161>por debajo de 0 Celsius</font>. La temperatura se puede determinar utilizando el <font color=#ff6161>termómetro</font>.</a>
+             <a>A medida que los fantasmas absorben el calor del área circundante, las temperaturas disminuyen en la habitación o los pasillos donde el <font color=#ff6161>fantasma pasa la mayor parte del tiempo</font>. Todos los fantasmas eventualmente causarán temperaturas por debajo de los 13 grados Celsius, pero solo ciertos tipos de fantasmas bajarán las temperaturas por debajo de los 0 C.</a>
+             <a>Aliento frío se ha rediseñado. A 5\-7 C o menos, cualquier persona dentro del área embrujada podrá <font color=#ff6161>ver su aliento</font>. Si está nevando y la caja de fusibles se enciende, encontrarás Cold Breath instantáneamente en todas partes, incluso en el Camión. Alternativamente, si la caja de fusibles está encendida, para que la casa esté agradable y calentita, verás que Cold Breath aparece solo en las habitaciones donde el fantasma ha estado lo suficiente como para bajar su temperatura.</a>
+             <a>El enfriamiento de una habitación, aunque sea un poco, puede llevar más tiempo que los primeros minutos de una investigación. Es una buena idea tomar nota de las temperaturas extrañamente bajas en las primeras habitaciones y luego volver a ellas.</a>
+         ]]>
+    </string>
+    <string name="evidence_info_overview_sbox">
+        <![CDATA[
+				<a>La caja de espiritus se utiliza para <font color=#ff6161>comunicarse con el fantasma</font>.</a>
+				<a>Un jugador debe <font color=#ff6161>hacer preguntas en el Chat de proximidad a una caja de espiritus activa, tanto mientras esta cerca del fantasma como cuando las luces están apagadas</font>. Antes de intentar esto, verifique los parametros de respuesta del fantasma, como \"Responde a las personas que están solas\" o \"Responde a todos\" que figuran en la pizarra del Camion. Si el fantasma responde, la caja de espiritus es una prueba confirmada. Preguntas puntuales como \"¿Cuantos anos tienes?\" O \"¿Donde estas?\" Son preguntas plausibles. Tenga en cuenta que el fantasma siempre esta escuchando, independientemente de si un jugador esta hablando en un Spirit Box o no, por lo que los jugadores deben tener cuidado al hablar en el chat de alrededores. Hacer que un fantasma se revele se puede hacer diciendo su nombre de pila varias veces (por lo tanto, enfureciendolo), y dandole ordenes como \"Muestrate\" o \"Danos una senal\" parecen ser ordenes plausibles.</a>
+		]]>
+    </string>
+    <string name="evidence_info_overview_book">
+        <![CDATA[
+				<a>Determinado usando el Libro de escritura fantasmal.</a>
+				<a>Los fantasmas pueden escribir en el libro <font color=#ff6161>Independientemente de si el libro esta colocado o sostenido en la mano</font>. Si el fantasma escribe en el libro, esta es una prueba para ese tipo de fantasma. Si se presentan simbolos demoniacos, esto puede ser evidencia de un demonio, pero esto no es en absoluto definitivo ya que los estilos de escritura fantasmal tienden a ser al azar.</a>
+		]]>
+    </string>
+    <string name="evidence_info_overview_vcam">
+        <![CDATA[
+				<a>Una esfera pequena y flotante que esta presente solo en la habitacion donde un fantasma esta presente. Puede ser <font color=#ff6161>visto solo a traves de visión nocturna a traves de la cámara del camion<font> desde camaras de video o camaras montadas en la cabeza.</a>
+				<a>Los orbes fantasmas se pueden detectar rapidamente, pero descartarlos demasiado rápido podria significar problemas en el futuro.</a>
+		]]>
+    </string>
+    <string name="evidence_info_overview_ultraviolet">
+        <![CDATA[
+             <a>La evidencia ultravioleta solo se puede <font color=#ff6161>ver al hacer brillar la luz ultravioleta o una barra luminosa sobre las superficies afectadas</font>. Las piezas de evidencia ultravioleta brillarán en verde mientras se cargan con la luz ultravioleta y se desvanecerán con el tiempo.</a>
+             <a>Dejado en objetos y superficies por fantasmas, la evidencia ultravioleta puede ser difícil de ver en objetos más pequeños o en habitaciones grandes. Las huellas que han sido rastreadas por montones de sal también cuentan como evidencia ultravioleta.</a>
+             <a>Al proyectar una luz ultravioleta sobre huellas dactilares o huellas, aún lo verá de inmediato, pero además, la luz cargará la impresión. Después de guardar la luz ultravioleta, la impresión permanecerá visible durante un período corto (dependiendo de cuánto tiempo la haya cargado), \¡lo que le permitirá tomar una foto!</a>
+             <a>Se puede encontrar una huella de mano de 6 dedos que identificará el tipo Fantasma inmediatamente como un Obake.</a>
+         ]]>
+    </string>
+
+
+</resources>
