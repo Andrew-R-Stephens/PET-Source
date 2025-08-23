@@ -789,6 +789,57 @@ class CodexEquipmentLocalDataSource {
                     )
                 )
             ),
+            // Sound Recorder
+            CodexEquipmentGroupResourceDto(
+                name = EquipmentTitles.SOUND_RECORDER,
+                icon = EquipmentIcon.SOUND_RECORDER,
+                buyCostData = EquipmentBuyCost.COST_30,
+                items = listOf(
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SOUND_RECORDER_1,
+                        flavor = TierFlavorText.SOUND_RECORDER_1,
+                        info = TierInformation.SOUND_RECORDER_1,
+                        upgradeCostData = UpgradeCost.COST_0,
+                        upgradeLevelData = UnlockLevel.LEVEL_4,
+                        positiveAttributes = listOf(
+                            EquipmentAttribute.RANGE_3,
+                        ),
+                        negativeAttributes = listOf(
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
+                        )
+                    ),
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SOUND_RECORDER_2,
+                        flavor = TierFlavorText.SOUND_RECORDER_2,
+                        info = TierInformation.SOUND_RECORDER_2,
+                        upgradeCostData = UpgradeCost.COST_3000,
+                        upgradeLevelData = UnlockLevel.LEVEL_39,
+                        positiveAttributes = listOf(
+                            EquipmentAttribute.RANGE_5,
+                            EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
+                        ),
+                        negativeAttributes = listOf(
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
+                        )
+                    ),
+                    CodexEquipmentGroupItemResourceDto(
+                        image = TierImage.SOUND_RECORDER_3,
+                        flavor = TierFlavorText.SOUND_RECORDER_3,
+                        info = TierInformation.SOUND_RECORDER_3,
+                        upgradeCostData = UpgradeCost.COST_5000,
+                        upgradeLevelData = UnlockLevel.LEVEL_60,
+                        positiveAttributes = listOf(
+                            EquipmentAttribute.RANGE_5,
+                            EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
+                            EquipmentAttribute.INDICATOR_DISTANCE,
+                            EquipmentAttribute.INDICATOR_DIRECTIONAL,
+                        ),
+                        negativeAttributes = listOf(
+                            EquipmentAttribute.PROPERTY_ELECTRONIC
+                        )
+                    )
+                )
+            ),
             // Sound Sensor
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.SOUND_SENSOR,

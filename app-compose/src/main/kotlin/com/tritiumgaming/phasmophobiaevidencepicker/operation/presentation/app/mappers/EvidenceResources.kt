@@ -75,8 +75,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.map
         EvidenceTierDescription.EMF_5_1 -> R.string.shop_equipment_emf_data_info_1
         EvidenceTierDescription.EMF_5_2 -> R.string.shop_equipment_emf_data_info_2
         EvidenceTierDescription.EMF_5_3 -> R.string.shop_equipment_emf_data_info_3
-        EvidenceTierDescription.ULTRAVIOLET_LIGHT_1 -> R.string.shop_equipment_uvlight_data_info_1
-        EvidenceTierDescription.ULTRAVIOLET_LIGHT_2 -> R.string.shop_equipment_uvlight_data_info_2
+        EvidenceTierDescription.ULTRAVIOLET_LIGHT_1 -> R.string.shop_equipment_uvlight_data_info_2
+        EvidenceTierDescription.ULTRAVIOLET_LIGHT_2 -> R.string.shop_equipment_uvlight_data_info_1
         EvidenceTierDescription.ULTRAVIOLET_LIGHT_3 -> R.string.shop_equipment_uvlight_data_info_3
         EvidenceTierDescription.FREEZING_TEMPERATURE_1 -> R.string.shop_equipment_thermometer_data_info_1
         EvidenceTierDescription.FREEZING_TEMPERATURE_2 -> R.string.shop_equipment_thermometer_data_info_2

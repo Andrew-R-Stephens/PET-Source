@@ -31,6 +31,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         EquipmentTitles.INCENSE -> R.string.equipment_info_name_incense
         EquipmentTitles.TRIPOD -> R.string.equipment_info_name_tripod
         EquipmentTitles.MOTION_SENSOR -> R.string.equipment_info_name_motionsensor
+        EquipmentTitles.SOUND_RECORDER -> R.string.equipment_info_name_soundrecorder
         EquipmentTitles.SOUND_SENSOR -> R.string.equipment_info_name_soundsensor
         EquipmentTitles.SANITY_MEDICATION -> R.string.equipment_info_name_sanitymedication
         EquipmentTitles.GHOST_WRITING_BOOK -> R.string.equipment_info_name_ghostwritingbook
@@ -40,26 +41,27 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
 
 @DrawableRes fun CodexEquipmentResources.EquipmentIcon.toDrawableResource(): Int =
     when (this) {
-        EquipmentIcon.DOTS -> TODO()
-        EquipmentIcon.EMF -> TODO()
-        EquipmentIcon.FLASHLIGHT -> TODO()
-        EquipmentIcon.PHOTO_CAMERA -> TODO()
-        EquipmentIcon.IGNITER -> TODO()
-        EquipmentIcon.FIRELIGHT -> TODO()
-        EquipmentIcon.UV_LIGHT -> TODO()
-        EquipmentIcon.CRUCIFIX -> TODO()
-        EquipmentIcon.VIDEO_CAMERA -> TODO()
-        EquipmentIcon.SPIRIT_BOX -> TODO()
-        EquipmentIcon.THERMOMETER -> TODO()
-        EquipmentIcon.SALT -> TODO()
-        EquipmentIcon.INCENSE -> TODO()
-        EquipmentIcon.TRIPOD -> TODO()
-        EquipmentIcon.MOTION_SENSOR -> TODO()
-        EquipmentIcon.SOUND_SENSOR -> TODO()
-        EquipmentIcon.SANITY_MEDICATION -> TODO()
-        EquipmentIcon.GHOST_WRITING_BOOK -> TODO()
-        EquipmentIcon.PARABOLIC_MICROPHONE -> TODO()
-        EquipmentIcon.HEAD_GEAR -> TODO()
+        EquipmentIcon.DOTS -> R.drawable.icon_sh_dotsprojector
+        EquipmentIcon.EMF -> R.drawable.icon_sh_emf
+        EquipmentIcon.FLASHLIGHT -> R.drawable.icon_sh_flashlight
+        EquipmentIcon.PHOTO_CAMERA -> R.drawable.icon_sh_photocamera
+        EquipmentIcon.IGNITER -> R.drawable.icon_sh_igniter
+        EquipmentIcon.FIRELIGHT -> R.drawable.icon_sh_firelight
+        EquipmentIcon.UV_LIGHT -> R.drawable.icon_sh_uvlight
+        EquipmentIcon.CRUCIFIX -> R.drawable.icon_sh_crucifix
+        EquipmentIcon.VIDEO_CAMERA -> R.drawable.icon_sh_videocamera
+        EquipmentIcon.SPIRIT_BOX -> R.drawable.icon_sh_spiritbox
+        EquipmentIcon.THERMOMETER -> R.drawable.icon_sh_thermometer
+        EquipmentIcon.SALT -> R.drawable.icon_sh_salt
+        EquipmentIcon.INCENSE -> R.drawable.icon_sh_smudge
+        EquipmentIcon.TRIPOD -> R.drawable.icon_sh_tripod
+        EquipmentIcon.MOTION_SENSOR -> R.drawable.icon_sh_motionsensor
+        EquipmentIcon.SOUND_RECORDER -> R.drawable.icon_sh_soundrecorder
+        EquipmentIcon.SOUND_SENSOR -> R.drawable.icon_sh_soundsensor
+        EquipmentIcon.SANITY_MEDICATION -> R.drawable.icon_sh_sanitymedication
+        EquipmentIcon.GHOST_WRITING_BOOK -> R.drawable.icon_sh_ghostwritingbook
+        EquipmentIcon.PARABOLIC_MICROPHONE -> R.drawable.icon_sh_parabolicmicrophone
+        EquipmentIcon.HEAD_GEAR -> R.drawable.icon_sh_headgear
     }
 
 @StringRes fun CodexEquipmentResources.EquipmentAttribute.toStringResource(): Int =
@@ -157,66 +159,69 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
 
 @DrawableRes fun CodexEquipmentResources.TierImage.toDrawableResource(): Int =
     when (this) {
-        CodexEquipmentResources.TierImage.DOTS_1 -> TODO()
-        CodexEquipmentResources.TierImage.DOTS_2 -> TODO()
-        CodexEquipmentResources.TierImage.DOTS_3 -> TODO()
-        CodexEquipmentResources.TierImage.EMF_1 -> TODO()
-        CodexEquipmentResources.TierImage.EMF_2 -> TODO()
-        CodexEquipmentResources.TierImage.EMF_3 -> TODO()
-        CodexEquipmentResources.TierImage.FLASHLIGHT_1 -> TODO()
-        CodexEquipmentResources.TierImage.FLASHLIGHT_2 -> TODO()
-        CodexEquipmentResources.TierImage.FLASHLIGHT_3 -> TODO()
-        CodexEquipmentResources.TierImage.PHOTO_CAMERA_1 -> TODO()
-        CodexEquipmentResources.TierImage.PHOTO_CAMERA_2 -> TODO()
-        CodexEquipmentResources.TierImage.PHOTO_CAMERA_3 -> TODO()
-        CodexEquipmentResources.TierImage.IGNITER_1 -> TODO()
-        CodexEquipmentResources.TierImage.IGNITER_2 -> TODO()
-        CodexEquipmentResources.TierImage.IGNITER_3 -> TODO()
-        CodexEquipmentResources.TierImage.FIRELIGHT_1 -> TODO()
-        CodexEquipmentResources.TierImage.FIRELIGHT_2 -> TODO()
-        CodexEquipmentResources.TierImage.FIRELIGHT_3 -> TODO()
-        CodexEquipmentResources.TierImage.UV_LIGHT_1 -> TODO()
-        CodexEquipmentResources.TierImage.UV_LIGHT_2 -> TODO()
-        CodexEquipmentResources.TierImage.UV_LIGHT_3 -> TODO()
-        CodexEquipmentResources.TierImage.CRUCIFIX_1 -> TODO()
-        CodexEquipmentResources.TierImage.CRUCIFIX_2 -> TODO()
-        CodexEquipmentResources.TierImage.CRUCIFIX_3 -> TODO()
-        CodexEquipmentResources.TierImage.VIDEO_CAMERA_1 -> TODO()
-        CodexEquipmentResources.TierImage.VIDEO_CAMERA_2 -> TODO()
-        CodexEquipmentResources.TierImage.VIDEO_CAMERA_3 -> TODO()
-        CodexEquipmentResources.TierImage.SPIRIT_BOX_1 -> TODO()
-        CodexEquipmentResources.TierImage.SPIRIT_BOX_2 -> TODO()
-        CodexEquipmentResources.TierImage.SPIRIT_BOX_3 -> TODO()
-        CodexEquipmentResources.TierImage.THERMOMETER_1 -> TODO()
-        CodexEquipmentResources.TierImage.THERMOMETER_2 -> TODO()
-        CodexEquipmentResources.TierImage.THERMOMETER_3 -> TODO()
-        CodexEquipmentResources.TierImage.SALT_1 -> TODO()
-        CodexEquipmentResources.TierImage.SALT_2 -> TODO()
-        CodexEquipmentResources.TierImage.SALT_3 -> TODO()
-        CodexEquipmentResources.TierImage.INCENSE_1 -> TODO()
-        CodexEquipmentResources.TierImage.INCENSE_2 -> TODO()
-        CodexEquipmentResources.TierImage.INCENSE_3 -> TODO()
-        CodexEquipmentResources.TierImage.TRIPOD_1 -> TODO()
-        CodexEquipmentResources.TierImage.TRIPOD_2 -> TODO()
-        CodexEquipmentResources.TierImage.TRIPOD_3 -> TODO()
-        CodexEquipmentResources.TierImage.MOTION_SENSOR_1 -> TODO()
-        CodexEquipmentResources.TierImage.MOTION_SENSOR_2 -> TODO()
-        CodexEquipmentResources.TierImage.MOTION_SENSOR_3 -> TODO()
-        CodexEquipmentResources.TierImage.SOUND_SENSOR_1 -> TODO()
-        CodexEquipmentResources.TierImage.SOUND_SENSOR_2 -> TODO()
-        CodexEquipmentResources.TierImage.SOUND_SENSOR_3 -> TODO()
-        CodexEquipmentResources.TierImage.SANITY_MEDICATION_1 -> TODO()
-        CodexEquipmentResources.TierImage.SANITY_MEDICATION_2 -> TODO()
-        CodexEquipmentResources.TierImage.SANITY_MEDICATION_3 -> TODO()
-        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_1 -> TODO()
-        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_2 -> TODO()
-        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_3 -> TODO()
-        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_1 -> TODO()
-        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_2 -> TODO()
-        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_3 -> TODO()
-        CodexEquipmentResources.TierImage.HEAD_GEAR_1 -> TODO()
-        CodexEquipmentResources.TierImage.HEAD_GEAR_2 -> TODO()
-        CodexEquipmentResources.TierImage.HEAD_GEAR_3 -> TODO()
+        CodexEquipmentResources.TierImage.DOTS_1 -> R.drawable.icon_shop_dots_1
+        CodexEquipmentResources.TierImage.DOTS_2 -> R.drawable.icon_shop_dots_2
+        CodexEquipmentResources.TierImage.DOTS_3 -> R.drawable.icon_shop_dots_3
+        CodexEquipmentResources.TierImage.EMF_1 -> R.drawable.icon_shop_emf_1
+        CodexEquipmentResources.TierImage.EMF_2 -> R.drawable.icon_shop_emf_2
+        CodexEquipmentResources.TierImage.EMF_3 -> R.drawable.icon_shop_emf_3
+        CodexEquipmentResources.TierImage.FLASHLIGHT_1 -> R.drawable.icon_shop_flashlight_1
+        CodexEquipmentResources.TierImage.FLASHLIGHT_2 -> R.drawable.icon_shop_flashlight_2
+        CodexEquipmentResources.TierImage.FLASHLIGHT_3 -> R.drawable.icon_shop_flashlight_3
+        CodexEquipmentResources.TierImage.PHOTO_CAMERA_1 -> R.drawable.icon_shop_photocam_1
+        CodexEquipmentResources.TierImage.PHOTO_CAMERA_2 -> R.drawable.icon_shop_photocam_2
+        CodexEquipmentResources.TierImage.PHOTO_CAMERA_3 -> R.drawable.icon_shop_photocam_3
+        CodexEquipmentResources.TierImage.IGNITER_1 -> R.drawable.icon_shop_igniter_1
+        CodexEquipmentResources.TierImage.IGNITER_2 -> R.drawable.icon_shop_igniter_2
+        CodexEquipmentResources.TierImage.IGNITER_3 -> R.drawable.icon_shop_igniter_3
+        CodexEquipmentResources.TierImage.FIRELIGHT_1 -> R.drawable.icon_shop_firelight_1
+        CodexEquipmentResources.TierImage.FIRELIGHT_2 -> R.drawable.icon_shop_firelight_2
+        CodexEquipmentResources.TierImage.FIRELIGHT_3 -> R.drawable.icon_shop_firelight_3
+        CodexEquipmentResources.TierImage.UV_LIGHT_1 -> R.drawable.icon_shop_uv_1
+        CodexEquipmentResources.TierImage.UV_LIGHT_2 -> R.drawable.icon_shop_uv_2
+        CodexEquipmentResources.TierImage.UV_LIGHT_3 -> R.drawable.icon_shop_uv_3
+        CodexEquipmentResources.TierImage.CRUCIFIX_1 -> R.drawable.icon_shop_crucifix_1
+        CodexEquipmentResources.TierImage.CRUCIFIX_2 -> R.drawable.icon_shop_crucifix_2
+        CodexEquipmentResources.TierImage.CRUCIFIX_3 -> R.drawable.icon_shop_crucifix_3
+        CodexEquipmentResources.TierImage.VIDEO_CAMERA_1 -> R.drawable.icon_shop_vidcam_1
+        CodexEquipmentResources.TierImage.VIDEO_CAMERA_2 -> R.drawable.icon_shop_vidcam_2
+        CodexEquipmentResources.TierImage.VIDEO_CAMERA_3 -> R.drawable.icon_shop_vidcam_3
+        CodexEquipmentResources.TierImage.SPIRIT_BOX_1 -> R.drawable.icon_shop_spiritbox_1
+        CodexEquipmentResources.TierImage.SPIRIT_BOX_2 -> R.drawable.icon_shop_spiritbox_2
+        CodexEquipmentResources.TierImage.SPIRIT_BOX_3 -> R.drawable.icon_shop_spiritbox_3
+        CodexEquipmentResources.TierImage.THERMOMETER_1 -> R.drawable.icon_shop_thermo_1
+        CodexEquipmentResources.TierImage.THERMOMETER_2 -> R.drawable.icon_shop_thermo_2
+        CodexEquipmentResources.TierImage.THERMOMETER_3 -> R.drawable.icon_shop_thermo_3
+        CodexEquipmentResources.TierImage.SALT_1 -> R.drawable.icon_shop_salt_1
+        CodexEquipmentResources.TierImage.SALT_2 -> R.drawable.icon_shop_salt_2
+        CodexEquipmentResources.TierImage.SALT_3 -> R.drawable.icon_shop_salt_3
+        CodexEquipmentResources.TierImage.INCENSE_1 -> R.drawable.icon_shop_repellant_1
+        CodexEquipmentResources.TierImage.INCENSE_2 -> R.drawable.icon_shop_repellant_2
+        CodexEquipmentResources.TierImage.INCENSE_3 -> R.drawable.icon_shop_repellant_3
+        CodexEquipmentResources.TierImage.TRIPOD_1 -> R.drawable.icon_shop_tripod_1
+        CodexEquipmentResources.TierImage.TRIPOD_2 -> R.drawable.icon_shop_tripod_2
+        CodexEquipmentResources.TierImage.TRIPOD_3 -> R.drawable.icon_shop_tripod_3
+        CodexEquipmentResources.TierImage.MOTION_SENSOR_1 -> R.drawable.icon_shop_motion_1
+        CodexEquipmentResources.TierImage.MOTION_SENSOR_2 -> R.drawable.icon_shop_motion_2
+        CodexEquipmentResources.TierImage.MOTION_SENSOR_3 -> R.drawable.icon_shop_motion_3
+        CodexEquipmentResources.TierImage.SOUND_RECORDER_1 -> R.drawable.icon_shop_soundrecorder_1
+        CodexEquipmentResources.TierImage.SOUND_RECORDER_2 -> R.drawable.icon_shop_soundrecorder_2
+        CodexEquipmentResources.TierImage.SOUND_RECORDER_3 -> R.drawable.icon_shop_soundrecorder_3
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_1 -> R.drawable.icon_shop_sound_1
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_2 -> R.drawable.icon_shop_sound_2
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_3 -> R.drawable.icon_shop_sound_3
+        CodexEquipmentResources.TierImage.SANITY_MEDICATION_1 -> R.drawable.icon_shop_sanity_1
+        CodexEquipmentResources.TierImage.SANITY_MEDICATION_2 -> R.drawable.icon_shop_sanity_2
+        CodexEquipmentResources.TierImage.SANITY_MEDICATION_3 -> R.drawable.icon_shop_sanity_3
+        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_1 -> R.drawable.icon_shop_writing_1
+        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_2 -> R.drawable.icon_shop_writing_2
+        CodexEquipmentResources.TierImage.GHOST_WRITING_BOOK_3 -> R.drawable.icon_shop_writing_3
+        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_1 -> R.drawable.icon_shop_para_1
+        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_2 -> R.drawable.icon_shop_para_2
+        CodexEquipmentResources.TierImage.PARABOLIC_MICROPHONE_3 -> R.drawable.icon_shop_para_3
+        CodexEquipmentResources.TierImage.HEAD_GEAR_1 -> R.drawable.icon_shop_headgear_1
+        CodexEquipmentResources.TierImage.HEAD_GEAR_2 -> R.drawable.icon_shop_headgear_2
+        CodexEquipmentResources.TierImage.HEAD_GEAR_3 -> R.drawable.icon_shop_headgear_3
     }
 
 @StringRes fun TierInformation.toStringResource(): Int =
@@ -239,8 +244,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         TierInformation.FIRELIGHT_1 -> R.string.shop_equipment_firelight_data_info_1
         TierInformation.FIRELIGHT_2 -> R.string.shop_equipment_firelight_data_info_2
         TierInformation.FIRELIGHT_3 -> R.string.shop_equipment_firelight_data_info_3
-        TierInformation.UV_LIGHT_1 -> R.string.shop_equipment_uvlight_data_info_1
-        TierInformation.UV_LIGHT_2 -> R.string.shop_equipment_uvlight_data_info_2
+        TierInformation.UV_LIGHT_1 -> R.string.shop_equipment_uvlight_data_info_2
+        TierInformation.UV_LIGHT_2 -> R.string.shop_equipment_uvlight_data_info_1
         TierInformation.UV_LIGHT_3 -> R.string.shop_equipment_uvlight_data_info_3
         TierInformation.CRUCIFIX_1 -> R.string.shop_equipment_crucifix_data_info_1
         TierInformation.CRUCIFIX_2 -> R.string.shop_equipment_crucifix_data_info_2
@@ -266,6 +271,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         TierInformation.MOTION_SENSOR_1 -> R.string.shop_equipment_motionsensor_data_info_1
         TierInformation.MOTION_SENSOR_2 -> R.string.shop_equipment_motionsensor_data_info_2
         TierInformation.MOTION_SENSOR_3 -> R.string.shop_equipment_motionsensor_data_info_3
+        TierInformation.SOUND_RECORDER_1 -> R.string.shop_equipment_soundrecorder_data_info_1
+        TierInformation.SOUND_RECORDER_2 -> R.string.shop_equipment_soundrecorder_data_info_2
+        TierInformation.SOUND_RECORDER_3 -> R.string.shop_equipment_soundrecorder_data_info_3
         TierInformation.SOUND_SENSOR_1 -> R.string.shop_equipment_soundsensor_data_info_1
         TierInformation.SOUND_SENSOR_2 -> R.string.shop_equipment_soundsensor_data_info_2
         TierInformation.SOUND_SENSOR_3 -> R.string.shop_equipment_soundsensor_data_info_3
@@ -303,8 +311,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         TierFlavorText.FIRELIGHT_1 -> R.string.shop_equipment_firelight_data_flavortext_1
         TierFlavorText.FIRELIGHT_2 -> R.string.shop_equipment_firelight_data_flavortext_2
         TierFlavorText.FIRELIGHT_3 -> R.string.shop_equipment_firelight_data_flavortext_3
-        TierFlavorText.UV_LIGHT_1 -> R.string.shop_equipment_uvlight_data_flavortext_1
-        TierFlavorText.UV_LIGHT_2 -> R.string.shop_equipment_uvlight_data_flavortext_2
+        TierFlavorText.UV_LIGHT_1 -> R.string.shop_equipment_uvlight_data_flavortext_2
+        TierFlavorText.UV_LIGHT_2 -> R.string.shop_equipment_uvlight_data_flavortext_1
         TierFlavorText.UV_LIGHT_3 -> R.string.shop_equipment_uvlight_data_flavortext_3
         TierFlavorText.CRUCIFIX_1 -> R.string.shop_equipment_crucifix_data_flavortext_1
         TierFlavorText.CRUCIFIX_2 -> R.string.shop_equipment_crucifix_data_flavortext_2
@@ -330,6 +338,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         TierFlavorText.MOTION_SENSOR_1 -> R.string.shop_equipment_motionsensor_data_flavortext_1
         TierFlavorText.MOTION_SENSOR_2 -> R.string.shop_equipment_motionsensor_data_flavortext_2
         TierFlavorText.MOTION_SENSOR_3 -> R.string.shop_equipment_motionsensor_data_flavortext_3
+        TierFlavorText.SOUND_RECORDER_1 -> R.string.shop_equipment_soundrecorder_data_flavortext_1
+        TierFlavorText.SOUND_RECORDER_2 -> R.string.shop_equipment_soundrecorder_data_flavortext_2
+        TierFlavorText.SOUND_RECORDER_3 -> R.string.shop_equipment_soundrecorder_data_flavortext_3
         TierFlavorText.SOUND_SENSOR_1 -> R.string.shop_equipment_soundsensor_data_flavortext_1
         TierFlavorText.SOUND_SENSOR_2 -> R.string.shop_equipment_soundsensor_data_flavortext_2
         TierFlavorText.SOUND_SENSOR_3 -> R.string.shop_equipment_soundsensor_data_flavortext_3
@@ -387,6 +398,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
     when (this) {
         UnlockLevel.LEVEL_0 -> R.integer.equipment_requirement_level_0
         UnlockLevel.LEVEL_3 -> R.integer.equipment_requirement_level_3
+        UnlockLevel.LEVEL_4 -> R.integer.equipment_requirement_level_4
         UnlockLevel.LEVEL_5 -> R.integer.equipment_requirement_level_5
         UnlockLevel.LEVEL_7 -> R.integer.equipment_requirement_level_7
         UnlockLevel.LEVEL_8 -> R.integer.equipment_requirement_level_8
