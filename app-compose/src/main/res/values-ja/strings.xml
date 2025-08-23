@@ -265,8 +265,8 @@
     <string name="shop_equipment_emf_data_info_2"><![CDATA[<a>信頼できる K2 メーターには、より広い範囲と、EMF 測定値を検出するための 5 つの LED ライト、および追加のスピーカー モジュールが備わっています。デバイスを起動すると、ライトが 1 つ点灯します。K2 の EMF スポットの検出範囲内を移動すると、2 ～ 5 の正確な値が表示され、クリアで聞こえる音が鳴ります。</a>]]></string>
     <string name="shop_equipment_emf_data_info_3"><![CDATA[<a>ハイテク パラリーダー。このデバイスは、一度に最大 3 つの EMF スポットを追跡でき、最も遠い検出範囲を備えています。</a><br><br><a>各読み取り値の方向、範囲、値が同時に表示されます。EMF 検出ごとに音が鳴るので、遠くからでも測定値の数と強さを聞くことができます。</a><br><br><a>EMF スポットが消えていくと、より新しい EMF スポットが一番下に配置されます。リストの一部です。</a>]]></string>
 
-    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>古典的な UV サイリウム。スナップして電源をオンにすると、短距離エリア ライトが投影され、それが約 1 分間続いてから暗くなります。いつでももう一度振って光を再び活性化できます。</a><br><br><a>このデバイスは、照射後 10 秒以内に UV スポットを充電します。</a>]]></string>
-    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>古典的な UV フラッシュライトは、より明るく、より長い範囲の狭いビームを放射し、はるかに速い UV 充電時間を誇ります。</a><br><br><a>このデバイスは、露光後 5 秒以内に UV スポットをチャージします。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>古典的な UV サイリウム。スナップして電源をオンにすると、短距離エリア ライトが投影され、それが約 1 分間続いてから暗くなります。いつでももう一度振って光を再び活性化できます。</a><br><br><a>このデバイスは、照射後 10 秒以内に UV スポットを充電します。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>古典的な UV フラッシュライトは、より明るく、より長い範囲の狭いビームを放射し、はるかに速い UV 充電時間を誇ります。</a><br><br><a>このデバイスは、露光後 5 秒以内に UV スポットをチャージします。</a>]]></string>
     <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>UV ライト プロは、より明るく広い範囲の光の円錐形を備え、充電時間がさらに短い分厚い懐中電灯です。これは、紫外線の証拠を大規模に迅速に特定するのに最適です。</a><br><br><a>このデバイスは、紫外線にさらされてから 1.5 秒以内に UV スポットをチャージします。</a>]]></string>
 
     <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>古い家の温度計。捜査官のリビング ルームの壁から直接剥ぎ取られました。この温度計はサンプルレートが遅いため、正確な測定値を取得するまでに長時間待つ必要があります。持参して、契約の後半でもう一度確認するとよいでしょう。</a>]]></string>
@@ -456,6 +456,25 @@
     <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>このモーション センサーを壁や床に設置すると、目に見えないものであっても、その前で何かが動くとセンサーが点滅します。</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>2 つの異なるモード、長距離、サウンド インジケーターを備えたこのセンサーは、超常現象の追跡に最適です。</a><br><br><a>設置後にセンサーを操作することで、レーザーの形状を切り替えることができます。{ /3}</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>このモーション センシング カメラを、幽霊の動きを見つけた近くの床に置きます。有効にすると、ゴーストが検出範囲に出入りするたびに回転して明るいライトが点滅します。</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+<![CDATA[
+<a>このサウンドレコーダーを使って、調査中に超常現象の音を探し出し、録音しましょう。録音に成功すると、契約終了時に追加報酬が支払われます。</a><br><br>
+<a>録音した音はジャーナルで聞くこともできます！</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+<![CDATA[
+<a>このサウンドレコーダーは、精度、範囲、そして最新のインターフェースにアップグレードされました。超常現象の音の追跡がより容易になります！</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+<![CDATA[
+<a>このサウンドレコーダーを起動すると、超常現象の音に関する追加情報が提供されます。</a><br><br>
+<a>追加された方向と距離のインジケーターにより、超常現象の発見と記録が効率的かつ満足のいくものになります！</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>これらのサウンド センサーを、音声インタラクションを追跡したい場所に配置します。</a><br><br><a>配置したら、トラックに戻り、サウンド センサー画面をチェックしながらリモート再生を聞くことができます。いずれかのセンサーが測定値を受信します。</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>このサウンド センサーは 3 つの異なるサイズ設定を備え、トラックのサウンド センサー画面にあるサイズ ボタンで切り替えられるように改良されました。</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>三脚には回転ジョイントが付いており、これを操作してサウンド センサーの形状を変更できます。</a><br><br><a>各形状は、マイクが向いている方向によって表されます。</a><br><br><a>前方: 円錐 / 外側: 側面 / 内側: 球体</a>]]></string>
@@ -490,8 +509,8 @@
     <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>小さなキャンドルを支える古くて錆びたキャンドル ホルダー。他に明かりがなければ、十分長持ちすることを願っています。火をつけるものを忘れないでください。</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>背の高いろうそくが 3 本取り付けられた燭台。華やかな金属と高品質のキャンドルワックスにより、より信頼性の高い正気度セーバーが実現します。</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>古く見えるかもしれませんが、このガソリン燃料のランタンは、私たちが見つけた中で最も信頼性の高い焚き火台で、何時間も使い続けることができます。</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>蛍光染料を混ぜた透明な油状の液体で満たされた小さなサイリウム。スティックをスナップすると反応が起こり、周囲が明るい色で照らされます。</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>便利なベルト クリップが付いた戦術的な小型 UV フラッシュライト。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>蛍光染料を混ぜた透明な油状の液体で満たされた小さなサイリウム。スティックをスナップすると反応が起こり、周囲が明るい色で照らされます。</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>便利なベルト クリップが付いた戦術的な小型 UV フラッシュライト。</a>]]></string>
     <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>UV Light Pro 懐中電灯には、約 80 個の個別の電球が搭載されており、広い範囲を光で照らします。</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>2 つの木片をつなぎ合わせただけです。この形状だけでも、いくつかの超常現象を防ぐのに十分であるようです。</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>木材から鋳鉄にアップグレードされたこのクロスは、より信頼性の高い防御を提供します。</a>]]></string>
@@ -517,6 +536,21 @@
     <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>以前は野生動物カメラであったこのセンサーは、前を移動する超常現象を追跡するように改良されました。</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>以前のバージョンを修正して学んだことから、超常現象追跡のニーズに合わせてより高度なカメラを改良することができました。</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>解体して一から再構築し、超常現象の領域への視野を与えたセキュリティ カメラ。</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+<![CDATA[
+<a>古くて傷んでいて、テープでくっつけられたパラコード製サウンドレコーダー。この古いパラコード製サウンドレコーダーは、かつてはもっと良い状態でしたが、ありがたいことにまだ動きます…</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+<![CDATA[
+<a>Ghost Huntin\' Distributionのオリジナルブランドのサウンドレコーダーです。前モデルよりも効率が向上し、デジタル画面と新しいインターフェースにより、不気味な音の検出が容易になりました。</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+<![CDATA[
+<a>BONYの最新サウンドレコーディングハードウェア。このデバイスには、狩猟音を可能な限り簡単に録音するための機能がいくつか搭載されています。デュアルマイク構成により、追跡がはるかに容易になり、かすかな音でも素早く録音できます。</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>ミニ三脚に取り付けられた小型マイク。安価で効率的です。</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>2 つの高品質マイクがカスタム製の三脚マウントに取り付けられています。彼らはこれを作成するために余分な時間とお金を費やしました。</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>小型の受信機に高価なショットガン マイクが取り付けられており、高品質の音声ストリームがトラックに戻されます。</a>]]></string>
@@ -659,6 +693,7 @@
     <string name="equipment_info_name_incense">お香</string>
     <string name="equipment_info_name_tripod">三脚</string>
     <string name="equipment_info_name_motionsensor">モーションセンサー</string>
+    <string name="equipment_info_name_soundrecorder">サウンドレコーダー</string>
     <string name="equipment_info_name_soundsensor">サウンドセンサー</string>
     <string name="equipment_info_name_sanitymedication">正気の薬</string>
     <string name="equipment_info_name_ghostwritingbook">ゴーストライティングブック</string>

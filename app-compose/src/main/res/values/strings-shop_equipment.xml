@@ -17,6 +17,7 @@
     <string name="equipment_info_name_incense">Incense</string>
     <string name="equipment_info_name_tripod">Tripod</string>
     <string name="equipment_info_name_motionsensor">Motion Sensor</string>
+    <string name="equipment_info_name_soundrecorder">Sound Recorder</string>
     <string name="equipment_info_name_soundsensor">Sound Sensor</string>
     <string name="equipment_info_name_sanitymedication">Sanity Medication</string>
     <string name="equipment_info_name_ghostwritingbook">Ghost Writing Book</string>
@@ -201,14 +202,14 @@
 
     <string name="shop_equipment_uvlight_data_info_1">
         <![CDATA[
-            <a>The classic UV glowstick. After snapping it to turn it on, it projects a short\-range area light that lasts around one minute before dimming. You can always give it another shake to reinvigorate its light.</a><br><br>
-            <a>This device will charge up a UV spot within 10 seconds of exposure.</a>
+            <a>The classic UV Flashlight which emits a brighter, narrow beam with a longer range, boasting a much faster UV charge time!</a><br><br>
+            <a>This device will charge up a UV spot within 5 seconds of exposure.</a>
         ]]>
     </string>
     <string name="shop_equipment_uvlight_data_info_2">
         <![CDATA[
-            <a>The classic UV Flashlight which emits a brighter, narrow beam with a longer range, boasting a much faster UV charge time!</a><br><br>
-            <a>This device will charge up a UV spot within 5 seconds of exposure.</a>
+            <a>The classic UV glowstick. After snapping it to turn it on, it projects a short\-range area light that lasts around one minute before dimming. You can always give it another shake to reinvigorate its light.</a><br><br>
+            <a>This device will charge up a UV spot within 10 seconds of exposure.</a>
         ]]>
     </string>
     <string name="shop_equipment_uvlight_data_info_3">
@@ -444,6 +445,24 @@
         ]]>
     </string>
 
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+        <![CDATA[
+            <a>Use this Sound Recorder to find and record paranormal sounds during investigations Successful recordings will reward extra money at the end of a contract.</a><br><br>
+            <a>You can even listen back to the recorded sound in the Journal!</a>
+        ]]>
+    </string>
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+        <![CDATA[
+            <a>This Sound Recorder has been upgraded with higher accuracy, better range, and a modern interface, It should make tracking down those paranormal sounds easier to find!</a>
+        ]]>
+    </string>
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+        <![CDATA[
+            <a>While activated, this Sound Recorder provides additional information on paranormal sounds.</a><br><br>
+            <a>The added directional and range indicators make finding and recording paranormal efficient and satisfying!</a>
+        ]]>
+    </string>
+
     <string name="shop_equipment_soundsensor_data_info_1" >
         <![CDATA[
             <a>Place these sound sensors down in locations where you want to track any audio interactions.</a><br><br>
@@ -611,12 +630,12 @@
     </string>
     <string name="shop_equipment_uvlight_data_flavortext_1" >
         <![CDATA[
-            <a>A small glow stick filled with a clear, oily liquid, mixed with fluorescent dye. Snapping the stick causes a reaction to illuminate the surrounding area with a bright color.</a>
+            <a>A tactical small UV flashlight with a handy belt clip.</a>
         ]]>
     </string>
     <string name="shop_equipment_uvlight_data_flavortext_2" >
         <![CDATA[
-            <a>A tactical small UV flashlight with a handy belt clip.</a>
+            <a>A small glow stick filled with a clear, oily liquid, mixed with fluorescent dye. Snapping the stick causes a reaction to illuminate the surrounding area with a bright color.</a>
         ]]>
     </string>
     <string name="shop_equipment_uvlight_data_flavortext_3" >
@@ -742,6 +761,21 @@
     <string name="shop_equipment_motionsensor_data_flavortext_3" >
         <![CDATA[
             <a>A security camera that was stripped apart and rebuilt from the ground up, granting it vision into the paranormal realm.</a>
+        ]]>
+    </string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+        <![CDATA[
+            <a>Old, banged up and taped together. This old Paracord Sound Recorder has scen much better days, thankfully it still works…</a>
+        ]]>
+    </string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+        <![CDATA[
+            <a>Ghost Huntin\' Distribution\'s very own brand of Sound Recorder. It\'s more efficient than it\'s predecessor, the digital screen and new interface makes for an easier time hunting those spooky sounds.</a>
+        ]]>
+    </string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+        <![CDATA[
+            <a>BONY\'s latest in Sound Recording hardware. This device is equipped with several features to make hunting sounds as easy as can be. The dual microphone setup makes for much easier tracking, and quick recordings, even those that are barely audible.</a>
         ]]>
     </string>
     <string name="shop_equipment_soundsensor_data_flavortext_1" >

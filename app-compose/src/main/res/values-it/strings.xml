@@ -405,8 +405,8 @@
     <string name="shop_equipment_emf_data_info_2"><![CDATA[<a>L\'affidabile misuratore K2 ha una portata più ampia e cinque luci LED per rilevare le letture dei campi elettromagnetici, oltre a un modulo altoparlante aggiuntivo. Una luce si accenderà quando attivi il dispositivo. Quando ci si sposta all\'interno del raggio di rilevamento dei punti EMF, il K2 visualizzerà un valore accurato compreso tra due e cinque ed emetterà un suono chiaro e udibile.</a>]]></string>
     <string name="shop_equipment_emf_data_info_3"><![CDATA[<a>Un ParaReader high-tech. Questo dispositivo può monitorare fino a tre punti EMF contemporaneamente e ha il raggio di rilevamento più ampio.</a><br><br><a>Mostrerà la direzione, la portata e il valore di ciascuna lettura contemporaneamente. Riproduce suoni per ogni rilevamento di campi elettromagnetici in modo da poter sentire, a distanza, quante e quanto sono forti le letture.</a><br><br><a>Se un punto EMF svanisce, un punto EMF più recente verrà posizionato in basso dell\'elenco.</a>]]></string>
 
-    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>Il classico bastoncino fluorescente UV. Dopo averlo fatto scattare per accenderlo, proietta una luce a corto raggio che dura circa un minuto prima di attenuarsi. Puoi sempre scuoterlo nuovamente per rinvigorire la sua luce.</a><br><br><a>Questo dispositivo caricherà uno spot UV entro 10 secondi dall\'esposizione.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>La classica torcia UV che emette un raggio più luminoso e stretto con una portata più lunga, vantando un tempo di ricarica UV molto più veloce!</a><br><br><a>Questo dispositivo caricherà uno spot UV entro 5 secondi dall\'esposizione.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_2"><![CDATA[<a>Il classico bastoncino fluorescente UV. Dopo averlo fatto scattare per accenderlo, proietta una luce a corto raggio che dura circa un minuto prima di attenuarsi. Puoi sempre scuoterlo nuovamente per rinvigorire la sua luce.</a><br><br><a>Questo dispositivo caricherà uno spot UV entro 10 secondi dall\'esposizione.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_info_1"><![CDATA[<a>La classica torcia UV che emette un raggio più luminoso e stretto con una portata più lunga, vantando un tempo di ricarica UV molto più veloce!</a><br><br><a>Questo dispositivo caricherà uno spot UV entro 5 secondi dall\'esposizione.</a>]]></string>
     <string name="shop_equipment_uvlight_data_info_3"><![CDATA[<a>UV Light Pro è una torcia robusta che ha un cono di luce molto più luminoso e più ampio, oltre a un tempo di ricarica ancora più rapido. È perfetto per individuare rapidamente prove ultraviolette su scala più ampia.</a><br><br><a>Questo dispositivo caricherà un punto UV entro 1,5 secondi dall\'esposizione.</a>]]></string>
 
     <string name="shop_equipment_thermometer_data_info_1"><![CDATA[<a>Un vecchio termometro domestico, strappato direttamente dal muro del soggiorno del tuo investigatore. Questo termometro ha una frequenza di campionamento lenta, il che significa che dovrai attendere più a lungo per ottenere una lettura accurata. Ti consigliamo di portarne uno e di ricontrollarlo più avanti nel contratto.</a>]]></string>
@@ -452,6 +452,25 @@
     <string name="shop_equipment_motionsensor_data_info_1"><![CDATA[<a>Posiziona questo sensore di movimento sulle pareti o sul pavimento e lampeggerà ogni volta che qualcosa si muove davanti a lui, anche se non puoi vedere.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_2"><![CDATA[<a>Con due diverse modalità, una portata più lunga e un indicatore sonoro, questo sensore è perfetto per il tracciamento paranormale.</a><br><br><a>Puoi alternare la forma del laser interagendo con il sensore dopo averlo posizionato.{ /3}</a>]]></string>
     <string name="shop_equipment_motionsensor_data_info_3"><![CDATA[<a>Posiziona questa videocamera con rilevamento del movimento sul pavimento vicino a qualsiasi attività fantasma che potresti trovare. Una volta attivato, si accende e lampeggia con una luce intensa ogni volta che un fantasma entra o esce dal suo raggio di rilevamento.</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_info_1" >
+<![CDATA[
+<a>Usa questo registratore di suoni per trovare e registrare suoni paranormali durante le indagini. Le registrazioni andate a buon fine daranno diritto a denaro extra alla fine del contratto.</a><br><br>
+<a>Puoi persino riascoltare il suono registrato nel Diario!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_2" >
+<![CDATA[
+<a>Questo registratore di suoni è stato aggiornato con maggiore precisione, una portata migliore e un\'interfaccia moderna. Dovrebbe rendere più facile rintracciare quei suoni paranormali!</a>
+]]>
+</string>
+
+    <string name="shop_equipment_soundrecorder_data_info_3" >
+<![CDATA[
+<a>Quando è attivato, questo registratore di suoni fornisce informazioni aggiuntive sui suoni paranormali.</a><br><br>
+<a>Gli indicatori direzionali e di portata aggiuntivi rendono la ricerca e la registrazione di fenomeni paranormali efficienti e soddisfacenti!</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_info_1"><![CDATA[<a>Posiziona questi sensori sonori nei punti in cui vuoi monitorare eventuali interazioni audio.</a><br><br><a>Una volta posizionati, torna al camion e puoi ascoltare la riproduzione remota mentre controlli la schermata del sensore sonoro per vedere se uno qualsiasi dei sensori riceve delle letture.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_2"><![CDATA[<a>Questo sensore sonoro è stato migliorato per presentare tre diverse impostazioni di dimensione, selezionabili con un pulsante delle dimensioni sulla schermata Sensore sonoro nel camion.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_info_3"><![CDATA[<a>Il treppiede è dotato di giunti rotazionali che ti consentono di interagire con esso per modificare la forma del sensore sonoro.</a><br><br><a>Ogni forma è rappresentata dalle direzioni verso cui sono rivolti i microfoni:</a><br><br><a>Avanti: cono / verso l\'esterno: lati / verso l\'interno: sfera</a>]]></string>
@@ -487,8 +506,8 @@
     <string name="shop_equipment_firelight_data_flavortext_1"><![CDATA[<a>Un vecchio portacandele arrugginito che sostiene una piccola candela che, si spera, durerà abbastanza a lungo se non c\'è altra luce. Non dimenticare qualcosa con cui accenderlo!</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_2"><![CDATA[<a>Candelabro con tre alte candele attaccate. Il metallo decorato e la cera delle candele di qualità superiore garantiscono un risparmio di sanità mentale molto più affidabile!</a>]]></string>
     <string name="shop_equipment_firelight_data_flavortext_3"><![CDATA[<a>Potrebbe sembrare vecchia, ma questa lanterna alimentata a benzina è la luce da fuoco più affidabile che abbiamo trovato e può durare per ore.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Un piccolo bastoncino luminoso riempito con un liquido trasparente e oleoso, mescolato con colorante fluorescente. Lo scatto del bastoncino provoca una reazione che illumina l\'area circostante con un colore brillante.</a>]]></string>
-    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Una piccola torcia UV tattica con una pratica clip da cintura.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_2"><![CDATA[<a>Un piccolo bastoncino luminoso riempito con un liquido trasparente e oleoso, mescolato con colorante fluorescente. Lo scatto del bastoncino provoca una reazione che illumina l\'area circostante con un colore brillante.</a>]]></string>
+    <string name="shop_equipment_uvlight_data_flavortext_1"><![CDATA[<a>Una piccola torcia UV tattica con una pratica clip da cintura.</a>]]></string>
     <string name="shop_equipment_uvlight_data_flavortext_3"><![CDATA[<a>La torcia UV Light Pro è dotata di quasi 80 lampadine singole, che illuminano vaste aree con la luce.</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_1"><![CDATA[<a>Solo due pezzi di legno legati insieme. La forma da sola sembra essere sufficiente a tenere lontane alcune entità paranormali.</a>]]></string>
     <string name="shop_equipment_crucifix_data_flavortext_2"><![CDATA[<a>Passata dal legno alla ghisa, questa croce fornisce una difesa molto più affidabile.</a>]]></string>
@@ -515,6 +534,21 @@
     <string name="shop_equipment_motionsensor_data_flavortext_1"><![CDATA[<a>Il sensore, precedentemente utilizzato come fotocamera per la fauna selvatica, è stato modificato per monitorare le entità paranormali che si muovono davanti ad esso.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_2"><![CDATA[<a>Da ciò che abbiamo imparato modificando la versione precedente, siamo riusciti a migliorare una fotocamera più avanzata per le nostre esigenze di monitoraggio paranormale.</a>]]></string>
     <string name="shop_equipment_motionsensor_data_flavortext_3"><![CDATA[<a>Una telecamera di sicurezza che è stata smontata e ricostruita da zero, garantendole la visione del regno paranormale.</a>]]></string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_1" >
+<![CDATA[
+<a>Vecchio, ammaccato e rimesso insieme con del nastro adesivo. Questo vecchio registratore di suoni in paracord ha vissuto giorni migliori, per fortuna funziona ancora…</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_2" >
+<![CDATA[
+<a>Il marchio di registratori di suoni di Ghost Huntin\' Distribution. È più efficiente del suo predecessore, lo schermo digitale e la nuova interfaccia semplificano la ricerca di quei suoni spettrali.</a>
+]]>
+</string>
+    <string name="shop_equipment_soundrecorder_data_flavortext_3" >
+<![CDATA[
+<a>L\'ultimo ritrovato di BONY in fatto di hardware per la registrazione dei suoni. Questo dispositivo è dotato di diverse funzionalità per rendere i suoni di caccia il più semplici possibile. La configurazione a doppio microfono semplifica notevolmente il tracciamento e velocizza le registrazioni, anche quelle appena udibili.</a>
+]]>
+</string>
     <string name="shop_equipment_soundsensor_data_flavortext_1"><![CDATA[<a>Un piccolo microfono collegato a un mini treppiede, economico ed efficiente.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_2"><![CDATA[<a>Due microfoni di qualità superiore sono fissati insieme su un supporto per treppiede personalizzato. Hanno speso tempo e denaro extra per crearlo.</a>]]></string>
     <string name="shop_equipment_soundsensor_data_flavortext_3"><![CDATA[<a>I costosi microfoni a fucile sono collegati a un piccolo ricevitore, trasmettendo flussi audio di alta qualità al camion.</a>]]></string>
@@ -658,6 +692,7 @@
     <string name="equipment_info_name_incense">Incenso</string>
     <string name="equipment_info_name_tripod">Treppiede</string>
     <string name="equipment_info_name_motionsensor">Sensore di Movimento</string>
+    <string name="equipment_info_name_soundrecorder">Registratore di Suoni</string>
     <string name="equipment_info_name_soundsensor">Sensore Sonoro</string>
     <string name="equipment_info_name_sanitymedication">Farmaci per la sanità mentale</string>
     <string name="equipment_info_name_ghostwritingbook">Libro Spiritico</string>

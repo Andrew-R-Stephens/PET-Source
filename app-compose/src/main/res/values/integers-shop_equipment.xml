@@ -3,6 +3,7 @@
 
     <integer name="equipment_requirement_level_0">0</integer>
     <integer name="equipment_requirement_level_3">3</integer>
+    <integer name="equipment_requirement_level_4">4</integer>
     <integer name="equipment_requirement_level_5">5</integer>
     <integer name="equipment_requirement_level_7">7</integer>
     <integer name="equipment_requirement_level_8">8</integer>
