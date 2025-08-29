@@ -2,8 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.model.GhostName
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.repository.GhostNameRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.repository.MissionRepository
 
 class FetchAllMaleNamesUseCase(
     private val repository: GhostNameRepository

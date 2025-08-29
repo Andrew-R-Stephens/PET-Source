@@ -4,7 +4,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.ac
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.repository.FirestoreAccountRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 
 class ObserveAccountUnlockedPalettesUseCase (
     private val repository: FirestoreAccountRepository

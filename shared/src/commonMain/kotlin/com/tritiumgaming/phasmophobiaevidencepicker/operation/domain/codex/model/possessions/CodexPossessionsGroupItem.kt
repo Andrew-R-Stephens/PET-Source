@@ -9,11 +9,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemSanityDrain
 
 data class CodexPossessionsGroupItem(
+    val altName: PossessionItemAltName? = null,
     val image: PossessionItemImage,
     val flavorText: PossessionItemFlavorText,
     val infoText: PossessionItemInfoText,
     val attributesText: PossessionItemAttribute,
     val sanityDrain: PossessionItemSanityDrain,
     val drawChance: PossessionItemDrawChance,
-    val altName: PossessionItemAltName? = null
 )

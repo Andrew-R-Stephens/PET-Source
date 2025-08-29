@@ -1,6 +1,5 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.usecase
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.repository.SimpleMapRepository
 
 class GetSimpleMapIdUseCase(
