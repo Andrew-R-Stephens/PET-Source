@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +19,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.graphics.toColorInt
+import androidx.core.view.isVisible
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreGroupModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreListModel
@@ -33,8 +34,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.i
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import kotlin.math.max
 import kotlin.math.min
-import androidx.core.graphics.toColorInt
-import androidx.core.view.isVisible
 
 abstract class ItemStoreFragment : CodexFragment() {
     protected val storeData: ItemStoreListModel = ItemStoreListModel()
