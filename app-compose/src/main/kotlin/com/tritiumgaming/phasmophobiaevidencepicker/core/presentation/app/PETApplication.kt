@@ -21,7 +21,7 @@ val Context.dataStore by preferencesDataStore(
     }
 )
 
-class PETApplication : Application()/*, AccountManagementService*/ {
+class PETApplication : Application() {
 
     /*val db = Room.databaseBuilder(
         applicationContext,
@@ -46,14 +46,6 @@ class PETApplication : Application()/*, AccountManagementService*/ {
         coreContainer = CoreContainer(applicationContext, dataStore, firestore, firebaseAuth)
         mainMenuContainer = MainMenuContainer(applicationContext, dataStore)
         operationsContainer = OperationContainer(applicationContext, dataStore)
-
-        /*signIn(
-            option = SignInCredentialManager.SignInOptions.SILENT,
-            onSuccess = {
-                Log.d("Firebase",
-                    "Signed in as: ${Firebase.auth.currentUser?.displayName}")
-            }
-        )*/
 
     }
 

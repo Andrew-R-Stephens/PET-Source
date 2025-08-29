@@ -68,7 +68,10 @@ private val RobotoMono = FontFamily(
     Font(R.font.roboto_mono, FontWeight.W700)
 )
 
-private val SerifMonospace = FontFamily.Monospace
+//private val SerifMonospace = FontFamily.Monospace
+private val CutiveMono = FontFamily(
+    Font(R.font.cutivemono_regular, FontWeight.W400)
+)
 
 private val YggDrasil = FontFamily(
     Font(R.font.yggdrasil_regular, FontWeight.W400)
@@ -130,7 +133,7 @@ val RobotoMonoTextStyle = DefaultTextStyle.copy(
 )
 
 val TypewriterTextStyle = DefaultTextStyle.copy(
-    fontFamily = SerifMonospace
+    fontFamily = CutiveMono
 )
 
 val YggDrasilTextStyle = DefaultTextStyle.copy(

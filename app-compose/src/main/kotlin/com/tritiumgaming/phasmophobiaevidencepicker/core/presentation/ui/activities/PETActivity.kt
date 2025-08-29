@@ -12,10 +12,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
-import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.navigation.NavigationView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.firebase.Firebase
@@ -29,8 +25,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.p
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions.PermissionsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ThemeConfigurationControl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
-import kotlinx.coroutines.launch
 
 class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService {

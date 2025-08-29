@@ -28,6 +28,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.new
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
@@ -35,9 +36,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.ma
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexAchievementScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexEquipmentScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.pages.CodexPossessionsScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.CodexViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.CodexItemstoreScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.menu.CodexMenuScreen
 
 @Composable
@@ -57,7 +57,9 @@ fun RootNavigation(
     objectivesViewModel: ObjectivesViewModel =
         viewModel(factory = ObjectivesViewModel.Factory),
     mapsViewModel: MapsViewModel =
-        viewModel(factory = MapsViewModel.Factory)
+        viewModel(factory = MapsViewModel.Factory),
+    codexViewModel: CodexViewModel =
+        viewModel(factory = CodexViewModel.Factory)
 ) {
 
     val navController = rememberNavController()
@@ -84,7 +86,8 @@ fun RootNavigation(
             navController = navController,
             investigationViewModel = investigationViewModel,
             objectivesViewModel = objectivesViewModel,
-            mapsViewModel = mapsViewModel
+            mapsViewModel = mapsViewModel,
+            codexViewModel = codexViewModel
         )
 
     }
@@ -213,7 +216,8 @@ private fun NavGraphBuilder.investigationNavigation(
     navController: NavHostController,
     investigationViewModel: InvestigationViewModel,
     objectivesViewModel: ObjectivesViewModel,
-    mapsViewModel: MapsViewModel
+    mapsViewModel: MapsViewModel,
+    codexViewModel: CodexViewModel
 ) {
     navigation(
         route = NavRoute.NAVIGATION_INVESTIGATION.route,
@@ -280,22 +284,27 @@ private fun NavGraphBuilder.investigationNavigation(
                 )
             }
 
-            composable(route = NavRoute.SCREEN_CODEX_EQUIPMENT.route) {
-                CodexEquipmentScreen(
-                    navController = navController
-                )
-            }
+            composable(
+                route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/{categoryId}",
+                arguments = listOf(
+                    navArgument("categoryId") { type = NavType.IntType }
+                )) { navBackStackEntry ->
 
-            composable(route = NavRoute.SCREEN_CODEX_POSSESSIONS.route) {
-                CodexPossessionsScreen(
-                    navController = navController
-                )
-            }
+                val categoryId = navBackStackEntry.arguments?.getInt("categoryId")
 
-            composable(route = NavRoute.SCREEN_CODEX_ACHIEVEMENTS.route) {
-                CodexAchievementScreen(
-                    navController = navController
-                )
+                Log.d("MainNavigation", "categoryId: $categoryId")
+
+                val category = CodexResources.Category.entries.firstOrNull { entry ->
+                    entry.id == categoryId }
+
+                category?.let {
+                    CodexItemstoreScreen(
+                        navController = navController,
+                        codexViewModel = codexViewModel,
+                        category = category
+                    )
+                } ?: navController.popBackStack()
+
             }
 
         }
@@ -324,9 +333,7 @@ enum class NavRoute(val route: String) {
     SCREEN_MAP_VIEWER("MapViewerScreen"),
 
     SCREEN_CODEX_MENU("CodexMenuScreen"),
-    SCREEN_CODEX_EQUIPMENT("CodexEquipmentScreen"),
-    SCREEN_CODEX_POSSESSIONS("CodexPossessionsScreen"),
-    SCREEN_CODEX_ACHIEVEMENTS("CodexAchievementsScreen"),
+    SCREEN_CODEX_ITEM_SCREEN("CodexItemstoreScreen"),
     
     SCREEN_NEWSLETTER_INBOX("NewsInboxScreen"),
     SCREEN_NEWSLETTER_MESSAGES("NewsMessagesScreen"),
