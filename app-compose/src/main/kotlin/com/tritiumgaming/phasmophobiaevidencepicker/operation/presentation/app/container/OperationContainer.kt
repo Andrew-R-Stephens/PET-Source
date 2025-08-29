@@ -203,6 +203,7 @@ class OperationContainer(
             equipmentLocalDataSource = codexEquipmentLocalDataSource,
             possessionsLocalDataSource = codexPossessionsLocalDataSource
         )
+
     internal val fetchCodexAchievementsUseCase = FetchCodexAchievementsUseCase(codexRepository)
     internal val fetchCodexEquipmentUseCase = FetchCodexEquipmentUseCase(codexRepository)
     internal val fetchCodexPossessionsUseCase = FetchCodexPossessionsUseCase(codexRepository)

@@ -202,7 +202,7 @@ fun OperationNavigationDrawer(
                             )
                         },
                         onClick = {
-                            navController.navigate(NavRoute.SCREEN_MAPS_MENU.route)
+                            navController.navigate(NavRoute.SCREEN_CODEX_MENU.route)
                         }
                     )
 

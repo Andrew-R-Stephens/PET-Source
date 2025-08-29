@@ -10,22 +10,22 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.possessions.CodexPossessionsGroupItem
 
 data class CodexPossessionGroupItemDto(
+    val altName: PossessionItemAltName? = null,
     val image: PossessionItemImage,
     val flavorText: PossessionItemFlavorText,
     val infoText: PossessionItemInfoText,
     val attributesText: PossessionItemAttribute,
     val sanityDrain: PossessionItemSanityDrain,
     val drawChance: PossessionItemDrawChance,
-    val altName: PossessionItemAltName? = null
 )
 
 fun CodexPossessionGroupItemDto.toDomain() =
     CodexPossessionsGroupItem(
+        altName = altName,
         image = image,
         flavorText = flavorText,
         infoText = infoText,
         attributesText = attributesText,
         sanityDrain = sanityDrain,
         drawChance = drawChance,
-        altName = altName
     )

@@ -9,7 +9,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.d
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexFloorLayerTypeDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexMapDimensionsDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexPoiDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexPoiTypeDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexRoomAreaDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexRoomDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto.ComplexWorldMapDto

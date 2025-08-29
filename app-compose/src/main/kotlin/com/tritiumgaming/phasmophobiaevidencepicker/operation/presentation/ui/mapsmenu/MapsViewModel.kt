@@ -22,7 +22,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.ma
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Polygon
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

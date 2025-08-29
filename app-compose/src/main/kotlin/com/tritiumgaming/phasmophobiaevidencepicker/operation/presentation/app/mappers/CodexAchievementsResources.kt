@@ -123,7 +123,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         AchievementContent.DOOM_SLAYED -> R.string.achievements_doomslayed_info
     }
 
-@DrawableRes fun AchievementIcon.toStringResource(): Int =
+@DrawableRes fun AchievementIcon.toDrawableResource(): Int =
     when (this) {
         AchievementIcon.TRAINING_WHEELS -> R.drawable.ic_achievement_banshee
         AchievementIcon.ROOKIE -> R.drawable.ic_achievement_banshee

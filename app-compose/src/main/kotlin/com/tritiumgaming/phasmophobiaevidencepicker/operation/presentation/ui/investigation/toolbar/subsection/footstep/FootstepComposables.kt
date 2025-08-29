@@ -95,7 +95,7 @@ fun FootstepTool(
 }
 
 @Composable
-fun Background() {
+private fun Background() {
     Canvas(modifier = Modifier
         .fillMaxSize()) {
         drawRect(Color.Black, Offset(0f, 0f), Size(size.width, size.height))
@@ -103,7 +103,7 @@ fun Background() {
 }
 
 @Composable
-fun Grid(
+private fun Grid(
     scale: Float = 1f
 ) {
     val linesPerSecond = ((5 + 1) * scale).toInt()
@@ -142,7 +142,7 @@ fun Grid(
 }
 
 @Composable
-fun FootIcons(
+private fun FootIcons(
     bpms: Float = 1f,
     scale: Float = 1f
 ) {
@@ -168,7 +168,7 @@ fun FootIcons(
 }
 
 @Composable
-fun Scanline(
+private fun Scanline(
     scale: Float = 3f
 ) {
     val time = (1000 * scale).toInt()
@@ -199,7 +199,7 @@ fun Scanline(
 }
 
 @Composable
-fun Foreground() {
+private fun Foreground() {
     Canvas(modifier = Modifier
         .fillMaxSize()) {
         drawRect(
@@ -216,7 +216,7 @@ fun Foreground() {
 
 @Preview
 @Composable
-fun FootstepToolPreview() {
+private fun FootstepToolPreview() {
 
     var bpm by remember { mutableFloatStateOf(0f) }
 

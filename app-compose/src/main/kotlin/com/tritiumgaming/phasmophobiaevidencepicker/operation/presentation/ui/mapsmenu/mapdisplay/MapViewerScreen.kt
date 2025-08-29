@@ -11,30 +11,24 @@ import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectTransformGestures
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
@@ -56,7 +50,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.FilterQuality
@@ -70,26 +63,22 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentAlignmentPercentage
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentRow
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.Arrow60LeftIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.Arrow60RightIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.transparent
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.util.BitmapUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoint
@@ -98,11 +87,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ModifiersButton
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.model.InteractiveViewController
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
-import kotlin.math.floor
 
 
 @Composable
@@ -174,6 +161,7 @@ private fun MapCanvas(
     mapsViewModel: MapsViewModel
 ) {
     val context = LocalContext.current
+    val resources = LocalResources.current
 
     val poiFillColor = LocalPalette.current.mapPoiFillColor
 
@@ -188,12 +176,12 @@ private fun MapCanvas(
     val floorImageRef: SimpleMapResources.MapFloorImage = mapsViewModel.getFloorImage()
     @DrawableRes val floorImageRes: Int = floorImageRef.toDrawableResource()
     val floorImage: ImageBitmap =
-        BitmapFactory.decodeResource(context.resources, floorImageRes).asImageBitmap()
+        BitmapFactory.decodeResource(resources, floorImageRes).asImageBitmap()
 
     val poiImages: Map<MapPoiResources.Poi, ImageBitmap?>? =
         MapPoiResources.Poi.entries.associateWith { type ->
             val res = type.toDrawableResource()
-            val bitmap = context.resources?.let { resources ->
+            val bitmap = resources.let { resources ->
                 BitmapUtils.getBitmapFromVector(context, res)?.asImageBitmap() ?:
                 BitmapFactory.decodeResource(resources, res).asImageBitmap()
             }

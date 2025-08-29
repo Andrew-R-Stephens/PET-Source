@@ -19,14 +19,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -57,7 +54,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.t
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getExitVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getGearVector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.vector.getInfoVector
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.ColorUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.CollapseButton

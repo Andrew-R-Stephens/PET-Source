@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexEquipmentGroupDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexEquipmentGroupItemDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
@@ -1116,7 +1115,7 @@ class CodexEquipmentLocalDataSource {
         val flavor: TierFlavorText,
         val info: TierInformation,
         var upgradeCostData: UpgradeCost,
-        var upgradeLevelData: CodexEquipmentResources.UnlockLevel,
+        var upgradeLevelData: UnlockLevel,
         val positiveAttributes: List<EquipmentAttribute>,
         val negativeAttributes: List<EquipmentAttribute>
     )
