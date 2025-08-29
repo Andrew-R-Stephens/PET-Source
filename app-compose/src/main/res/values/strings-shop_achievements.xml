@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="store_title_achievements" translatable="false">Achievements</string>
     <!-- Names -->
     <string name="achievements_trainingwheels_name" translatable="false">No more training wheels</string>
     <string name="achievements_rookie_name" translatable="false">Rookie</string>
