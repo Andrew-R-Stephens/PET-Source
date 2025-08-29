@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.datastore
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
