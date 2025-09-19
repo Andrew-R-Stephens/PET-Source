@@ -1,0 +1,12 @@
+package com.tritiumgaming.shared.core.domain.market.typography.usecase.preference
+
+import com.tritiumgaming.shared.core.domain.market.typography.repository.MarketTypographyRepository
+
+class SaveCurrentTypographyUseCase(
+    private val repository: MarketTypographyRepository
+) {
+
+    @Suppress("unused")
+    suspend operator fun invoke(uuid: String) = repository.saveCurrent(uuid)
+
+}
