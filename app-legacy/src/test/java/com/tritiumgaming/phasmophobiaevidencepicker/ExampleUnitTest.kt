@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker
+package com.tritiumgaming.compose
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

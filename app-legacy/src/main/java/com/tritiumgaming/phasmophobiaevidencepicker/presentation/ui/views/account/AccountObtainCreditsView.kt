@@ -91,8 +91,8 @@ class AccountObtainCreditsView : ConstraintLayout {
         @ColorInt val disabledColor = setColor(defaultColor, 50, -1, -1, -1)
 
         val states = arrayOf(
-            intArrayOf(android.R.attr.state_enabled),
-            intArrayOf(-android.R.attr.state_enabled)
+            intArrayOf(R.attr.state_enabled),
+            intArrayOf(-R.attr.state_enabled)
         )
         val colors = intArrayOf(defaultColor, disabledColor)
         colorStateList = ColorStateList(states, colors)
