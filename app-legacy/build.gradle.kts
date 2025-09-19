@@ -250,5 +250,5 @@ dependencies {
     /* New */
 
     implementation(libs.androidx.ui.graphics)
-    //implementation(project(":resources"))
+    implementation(project(":core-resources"))
 }
