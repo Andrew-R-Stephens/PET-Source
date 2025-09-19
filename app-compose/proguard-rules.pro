@@ -37,7 +37,7 @@
 
 # Application classes that will be serialized/deserialized over Gson
 -keep class com.google.gson.examples.android.model.** { *; }
--keep class com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto.** { *; }
+-keep class com.tritiumgaming.compose.operation.data.map.complex.mappers.WorldMapsSerializerDto.** { *; }
 
 # Credential Manager directives
 -if class androidx.credentials.CredentialManager
