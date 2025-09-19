@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
+import com.tritiumgaming.shared.operation.domain.journal.model.GhostEvidence
 
 data class GhostEvidenceDto(
     val ghostDto: GhostDto,

@@ -19,8 +19,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.acc
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appinfo.InfoScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.applanguages.LanguageScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.SettingsScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.MarketplaceScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.marketplace.billing.MarketplaceBillingScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.marketplace.MarketplaceScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.marketplace.billing.MarketplaceBillingScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsletterViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen.NewsInboxesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen.NewsMessageScreen
@@ -28,7 +28,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.new
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexResources
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.CodexViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.catalog.CodexItemstoreScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.menu.CodexMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
@@ -36,9 +38,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.ma
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.CodexViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.catalog.CodexItemstoreScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.menu.CodexMenuScreen
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
 
 @Composable
 fun RootNavigation(

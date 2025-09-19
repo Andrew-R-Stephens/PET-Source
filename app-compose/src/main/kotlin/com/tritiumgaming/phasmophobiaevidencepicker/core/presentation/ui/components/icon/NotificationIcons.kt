@@ -22,15 +22,15 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.app.mappers.toIconResource
+import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterResources
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -120,7 +120,7 @@ fun NotificationIndicator(
 fun NotificationIndicator(
     modifier: Modifier = Modifier,
     isActive: Boolean = false,
-    baseIcon: IconResource? = NewsletterIcon.GENERAL_NEWS.toIconResource(),
+    baseIcon: IconResource? = NewsletterResources.NewsletterIcon.GENERAL_NEWS.toIconResource(),
     alertIcon: IconResource = IconResource.NOTIFY,
     onClick: () -> Unit = {}
 ) {

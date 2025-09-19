@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountMarketAgreement
+import com.tritiumgaming.shared.core.domain.user.model.AccountMarketAgreement
+
 
 data class MarketAgreementDto(
     val isAgreementShown: Boolean = false

@@ -31,56 +31,56 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.SignOutAccountUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetDisableScreenSaverUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetEnableGhostReorderUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetEnableRTLUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetAvailableLanguagesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.GetCurrentLanguageUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.InitFlowLanguageUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.LoadCurrentLanguageUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SaveCurrentLanguageUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.usecase.SetupLanguageUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.usecase.setup.SetupPaletteUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.usecase.setup.SetupTypographyUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.user.usecase.SignInAccountUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.GetReviewRequestStatusUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.LoadReviewRequestStatusUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.status.SetReviewRequestStatusUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.GetAppTimeAliveUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.LoadAppTimeAliveUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timealive.SetAppTimeAliveUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.RemoveAccountCreditsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.repository.GlobalPreferencesRepository
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetDisableScreenSaverUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetEnableRTLUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
+import com.tritiumgaming.shared.core.domain.language.repository.LanguageRepository
+import com.tritiumgaming.shared.core.domain.language.usecase.GetAvailableLanguagesUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.GetCurrentLanguageUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.InitFlowLanguageUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.LoadCurrentLanguageUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.SaveCurrentLanguageUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.SetupPaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.repository.MarketTypographyRepository
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.SetupTypographyUseCase
+import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.repository.ReviewTrackerRepository
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.status.GetReviewRequestStatusUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.status.LoadReviewRequestStatusUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.status.SetReviewRequestStatusUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timealive.GetAppTimeAliveUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timealive.LoadAppTimeAliveUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timealive.SetAppTimeAliveUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
+import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.RemoveAccountCreditsUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import kotlinx.coroutines.Dispatchers
 
 class CoreContainer(
@@ -103,7 +103,8 @@ class CoreContainer(
     internal val initFlowGlobalPreferencesUseCase = InitFlowGlobalPreferencesUseCase(
         repository = globalPreferencesRepository)
     internal val setAllowCellularDataUseCase = SetAllowCellularDataUseCase(
-        repository = globalPreferencesRepository)
+        repository = globalPreferencesRepository
+    )
     internal val setAllowHuntWarnAudioUseCase = SetAllowHuntWarnAudioUseCase(
         repository = globalPreferencesRepository)
     internal val setAllowIntroductionUseCase = SetAllowIntroductionUseCase(
@@ -129,7 +130,8 @@ class CoreContainer(
     internal val getSignInCredentialsUseCase = GetSignInCredentialsUseCase(
         credentialsRepository = credentialsRepository)
     internal val signInAccountUseCase = SignInAccountUseCase(
-        credentialsRepository = credentialsRepository)
+        credentialsRepository = credentialsRepository
+    )
     internal val signOutAccountUseCase = SignOutAccountUseCase(
         credentialsRepository = credentialsRepository)
     internal val deactivateAccountUseCase = DeactivateAccountUseCase(
@@ -154,19 +156,25 @@ class CoreContainer(
         accountRemoteDataSource = firestoreAccountDataSource
     )
     internal val setMarketplaceAgreementStateUseCase = SetMarketplaceAgreementStateUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     internal val addAccountCreditsUseCase = AddAccountCreditsUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     internal val removeAccountCreditsUseCase = RemoveAccountCreditsUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     internal val observeAccountCreditsUseCase = ObserveAccountCreditsUseCase(
-        repository = firestoreAccountRepository)
+        repository = firestoreAccountRepository
+    )
     internal val observeAccountUnlockedPalettesUseCase =
         ObserveAccountUnlockedPalettesUseCase(
-            repository = firestoreAccountRepository)
+            repository = firestoreAccountRepository
+        )
     internal val observeAccountUnlockedTypographiesUseCase =
         ObserveAccountUnlockedTypographiesUseCase(
-            repository = firestoreAccountRepository)
+            repository = firestoreAccountRepository
+        )
 
     /**
      * Review Tracker
@@ -179,27 +187,38 @@ class CoreContainer(
             )
         )
     internal val getReviewRequestStatusUseCase = GetReviewRequestStatusUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val loadReviewRequestStatusUseCase = LoadReviewRequestStatusUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val initializeReviewTrackerUseCase = InitFlowReviewTrackerUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val setReviewRequestStatusUseCase = SetReviewRequestStatusUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val setAppTimeAliveUseCase = SetAppTimeAliveUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val getAppTimeAliveUseCase = GetAppTimeAliveUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val loadAppTimeAliveUseCase = LoadAppTimeAliveUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val setAppTimesOpenedUseCase = SetAppTimesOpenedUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val getAppTimesOpenedUseCase = GetAppTimesOpenedUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
     internal val loadAppTimesOpenedUseCase = LoadAppTimesOpenedUseCase(
-        repository = reviewTrackerRepository)
+        repository = reviewTrackerRepository
+    )
 
     /**
      *  Market Bundle
@@ -233,15 +252,20 @@ class CoreContainer(
         accountRepository = firestoreAccountRepository
     )
     internal val setupTypographyUseCase = SetupTypographyUseCase(
-        repository = typographyRepository)
+        repository = typographyRepository
+    )
     internal val initFlowTypographyUseCase = InitFlowTypographyUseCase(
-        repository = typographyRepository)
+        repository = typographyRepository
+    )
     internal val saveCurrentTypographyUseCase = SaveCurrentTypographyUseCase(
-        repository = typographyRepository)
+        repository = typographyRepository
+    )
     internal val getAvailableTypographiesUseCase = GetAvailableTypographiesUseCase(
-        repository = typographyRepository)
+        repository = typographyRepository
+    )
     internal val getTypographyByUUIDUseCase = GetTypographyByUUIDUseCase(
-        repository = typographyRepository)
+        repository = typographyRepository
+    )
 
     /**
      * Market Palette
@@ -271,9 +295,11 @@ class CoreContainer(
     internal val saveCurrentPaletteUseCase = SaveCurrentPaletteUseCase(
         repository = paletteRepository)
     internal val getAvailablePalettesUseCase = GetAvailablePalettesUseCase(
-        repository = paletteRepository)
+        repository = paletteRepository
+    )
     internal val getPaletteByUUIDUseCase = GetPaletteByUUIDUseCase(
-        repository = paletteRepository)
+        repository = paletteRepository
+    )
 
 
     /**
@@ -289,16 +315,22 @@ class CoreContainer(
         dataStoreSource = languageDatastoreDataSource
     )
     internal val getLanguagesUseCase = GetAvailableLanguagesUseCase(
-        repository = languageRepository)
+        repository = languageRepository
+    )
     internal val setupLanguageUseCase = SetupLanguageUseCase(
-        repository = languageRepository)
+        repository = languageRepository
+    )
     internal val initializeLanguageUseCase = InitFlowLanguageUseCase(
-        repository = languageRepository)
+        repository = languageRepository
+    )
     internal val setCurrentLanguageUseCase = SaveCurrentLanguageUseCase(
-        repository = languageRepository)
+        repository = languageRepository
+    )
     internal val getCurrentLanguageUseCase = GetCurrentLanguageUseCase(
-        repository = languageRepository)
+        repository = languageRepository
+    )
     internal val loadCurrentLanguageUseCase = LoadCurrentLanguageUseCase(
-        repository = languageRepository)
+        repository = languageRepository
+    )
 
 }

@@ -3,9 +3,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementContent
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementTitle
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources.AchievementContent
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources.AchievementIcon
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources.AchievementTitle
 
 @StringRes fun AchievementTitle.toStringResource(): Int =
     when (this) {

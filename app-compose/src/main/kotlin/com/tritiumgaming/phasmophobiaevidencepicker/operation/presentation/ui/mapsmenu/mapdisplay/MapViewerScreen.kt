@@ -72,24 +72,24 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.ui.icon.Arrow60LeftIcon
+import com.tritiumgaming.core.ui.icon.Arrow60RightIcon
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentAlignmentPercentage
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentRow
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.Arrow60LeftIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.Arrow60RightIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.util.BitmapUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoint
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.poi.mappers.MapPoiResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.model.InteractiveViewController
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
+import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldPoint
+import com.tritiumgaming.shared.operation.domain.map.poi.mappers.MapPoiResources
+import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources
 
 
 @Composable

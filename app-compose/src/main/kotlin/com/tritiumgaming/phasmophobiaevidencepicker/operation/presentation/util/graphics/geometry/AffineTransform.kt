@@ -26,9 +26,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Path2D.Path2DDouble
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D.Point2DDouble
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D.Point2DFloat
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
@@ -2743,10 +2740,10 @@ class AffineTransform : Cloneable, Serializable {
     fun transform(ptSrc: Point2D, ptDst: Point2D?): Point2D {
         var ptDst = ptDst
         if (ptDst == null) {
-            ptDst = if (ptSrc is Point2DDouble) {
-                Point2DDouble()
+            ptDst = if (ptSrc is Point2D.Point2DDouble) {
+                Point2D.Point2DDouble()
             } else {
-                Point2DFloat()
+                Point2D.Point2DFloat()
             }
         }
         // Copy source coords into local variables in case src == dst
@@ -2799,7 +2796,7 @@ class AffineTransform : Cloneable, Serializable {
             else -> {
                 stateError()
                 /* NOTREACHED */
-                return Point2DDouble()
+                return Point2D.Point2DDouble()
             }
         }        /* NOTREACHED */
     }
@@ -2853,10 +2850,10 @@ class AffineTransform : Cloneable, Serializable {
             val y = src.y
             var dst = ptDst[dstOff++]
             if (dst == null) {
-                dst = if (src is Point2DDouble) {
-                    Point2DDouble()
+                dst = if (src is Point2D.Point2DDouble) {
+                    Point2D.Point2DDouble()
                 } else {
-                    Point2DFloat()
+                    Point2D.Point2DFloat()
                 }
                 ptDst[dstOff - 1] = dst
             }
@@ -3486,10 +3483,10 @@ class AffineTransform : Cloneable, Serializable {
     fun inverseTransform(ptSrc: Point2D, ptDst: Point2D?): Point2D {
         var ptDst = ptDst
         if (ptDst == null) {
-            ptDst = if (ptSrc is Point2DDouble) {
-                Point2DDouble()
+            ptDst = if (ptSrc is Point2D.Point2DDouble) {
+                Point2D.Point2DDouble()
             } else {
-                Point2DFloat()
+                Point2D.Point2DFloat()
             }
         }
         // Copy source coords into local variables in case src == dst
@@ -3805,10 +3802,10 @@ class AffineTransform : Cloneable, Serializable {
     fun deltaTransform(ptSrc: Point2D, ptDst: Point2D?): Point2D {
         var ptDst = ptDst
         if (ptDst == null) {
-            ptDst = if (ptSrc is Point2DDouble) {
-                Point2DDouble()
+            ptDst = if (ptSrc is Point2D.Point2DDouble) {
+                Point2D.Point2DDouble()
             } else {
-                Point2DFloat()
+                Point2D.Point2DFloat()
             }
         }
         // Copy source coords into local variables in case src == dst
@@ -3838,7 +3835,7 @@ class AffineTransform : Cloneable, Serializable {
             else -> {
                 stateError()
                 /* NOTREACHED */
-                return Point2DDouble()
+                return Point2D.Point2DDouble()
             }
         }        /* NOTREACHED */
     }
@@ -3966,7 +3963,7 @@ class AffineTransform : Cloneable, Serializable {
         if (pSrc == null) {
             return null
         }
-        return Path2DDouble(pSrc, this)
+        return Path2D.Path2DDouble(pSrc, this)
     }
 
     /**

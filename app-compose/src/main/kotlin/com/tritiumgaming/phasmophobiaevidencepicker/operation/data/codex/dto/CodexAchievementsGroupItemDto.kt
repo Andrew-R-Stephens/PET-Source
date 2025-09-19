@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementContent
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements.CodexAchievementsGroupItem
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources.AchievementContent
+import com.tritiumgaming.shared.operation.domain.codex.model.achievements.CodexAchievementsGroupItem
 
 data class CodexAchievementsGroupItemDto(
     val infoText: AchievementContent

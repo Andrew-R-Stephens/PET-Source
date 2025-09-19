@@ -28,17 +28,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.MarkCheckCircleIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.MarkPriorityCircleIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.MarkXCircleIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.EvidenceType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence.Ruling
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.shared.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling.NEGATIVE
+import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling.NEUTRAL
+import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling.POSITIVE
 
 @Composable
 fun LazyItemScope.GhostListItem(
@@ -194,8 +196,8 @@ private fun RowScope.EvidenceIcon(
             contentDescription = "Evidence Icon",
             colorFilter = ColorFilter.tint(
                 when (evidenceRuling) {
-                    Ruling.NEGATIVE -> LocalPalette.current.negativeSelColor
-                    Ruling.POSITIVE -> LocalPalette.current.positiveSelColor
+                    NEGATIVE -> LocalPalette.current.negativeSelColor
+                    POSITIVE -> LocalPalette.current.positiveSelColor
                     else -> LocalPalette.current.neutralSelColor
                 }
             )
@@ -203,7 +205,7 @@ private fun RowScope.EvidenceIcon(
 
         if(isStrict) {
             when (evidenceRuling) {
-                Ruling.NEUTRAL -> {
+                NEUTRAL -> {
                     MarkPriorityCircleIcon(
                         modifier = Modifier
                             .fillMaxSize(.5f)
@@ -213,7 +215,7 @@ private fun RowScope.EvidenceIcon(
                         foregroundColor = LocalPalette.current.negativeSelColor
                     )
                 }
-                Ruling.NEGATIVE -> {
+                NEGATIVE -> {
                     MarkXCircleIcon(
                         modifier = Modifier
                             .fillMaxSize(.5f)

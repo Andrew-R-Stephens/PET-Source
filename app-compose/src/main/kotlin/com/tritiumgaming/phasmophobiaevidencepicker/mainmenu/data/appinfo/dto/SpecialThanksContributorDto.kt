@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.appinfo.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.model.SpecialThanksContributor
+import com.tritiumgaming.shared.mainmenu.domain.appinfo.model.SpecialThanksContributor
 
 data class SpecialThanksContributorDto(
     val username: String

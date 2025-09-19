@@ -3,8 +3,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.GetCustomCredentialOption
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.CredentialsDataSourceImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.user.repository.CredentialsRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.SignInOptions
+import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
+import com.tritiumgaming.shared.core.domain.user.model.SignInOptions
 
 class CredentialsRepositoryImpl(
     private val credentialsDataSource: CredentialsDataSourceImpl

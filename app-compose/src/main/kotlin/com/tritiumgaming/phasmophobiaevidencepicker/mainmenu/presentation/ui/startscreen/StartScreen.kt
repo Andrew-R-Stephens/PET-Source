@@ -45,33 +45,32 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.ui.icon.ButtonScratchedIcon
+import com.tritiumgaming.core.ui.icon.DiscordIcon
+import com.tritiumgaming.core.ui.icon.GearIcon
+import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
+import com.tritiumgaming.core.ui.icon.InfoIcon
+import com.tritiumgaming.core.ui.icon.PersonIcon
+import com.tritiumgaming.core.ui.icon.ReviewIcon
+import com.tritiumgaming.core.ui.icon.StoreIcon
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
+import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.AccountIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.DiscordIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.LanguageIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.config.DeviceConfiguration
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.ButtonScratchedIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.GearIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.HamburgerMenuIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.InfoIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.PersonIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.ReviewIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.icon.StoreIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.ClassicTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus.MainMenuScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownClickPair
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.DropdownNavPair
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.IconDropdownMenu
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.SecondarySelector
+import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import java.util.Locale
 
 @Composable
@@ -433,6 +432,13 @@ private fun HeaderNavBar(
     val context = LocalContext.current
     val discordInvitation = stringResource(R.string.aboutinfo_discordInvite)
 
+    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val notificationState = inboxesUiState.value.inboxes
+        .sortedByDescending { it.lastReadDate }
+        .firstOrNull { inboxUiState ->
+            inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
+        } != null
+
     val menuIcon: @Composable () -> Unit = { HamburgerMenuIcon() }
     val infoIcon: @Composable () -> Unit = { InfoIcon() }
     val gearIcon: @Composable () -> Unit = { GearIcon() }
@@ -446,28 +452,32 @@ private fun HeaderNavBar(
     val storeIcon: @Composable () -> Unit = { StoreIcon() }
 
     IconDropdownMenu(
-        menuIcon,
-        navController,
-        arrayOf(
-            DropdownNavPair(infoIcon, NavRoute.SCREEN_APP_INFO),
-            DropdownNavPair(gearIcon, NavRoute.SCREEN_SETTINGS),
-            DropdownClickPair(languageIcon),
-            DropdownClickPair(discordIcon) {
-                context.startActivity(
-                    Intent(
-                        Intent.ACTION_VIEW, "https://discord.gg/ $discordInvitation".toUri()
-                    )
-                )
+        primaryContent = menuIcon,
+        dropdownContent = @Composable {
+            SecondarySelector(
+                onClick = { navController.navigate(NavRoute.SCREEN_APP_INFO.route) }) {
+                infoIcon()
             }
-        )
+            SecondarySelector(
+                onClick = { navController.navigate(NavRoute.SCREEN_SETTINGS.route) }) {
+                gearIcon()
+            }
+            SecondarySelector(
+                onClick = { navController.navigate(NavRoute.SCREEN_SETTINGS.route) }) {
+                languageIcon()
+            }
+            SecondarySelector(
+                onClick = {
+                    context.startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW, "https://discord.gg/ $discordInvitation".toUri()
+                        )
+                    )
+                }) {
+                discordIcon()
+            }
+        }
     ) { false }
-
-    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val notificationState = inboxesUiState.value.inboxes
-        .sortedByDescending { it.lastReadDate }
-        .firstOrNull { inboxUiState ->
-            inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
-        } != null
 
     // News Button
     NotificationIndicator(
@@ -477,15 +487,19 @@ private fun HeaderNavBar(
         navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
     }
 
-    reviewIcon
+    reviewIcon()
 
     IconDropdownMenu(
-        accountIcon,
-        navController,
-        arrayOf(
-            DropdownNavPair(personIcon, NavRoute.SCREEN_ACCOUNT_OVERVIEW),
-            DropdownNavPair(storeIcon, NavRoute.SCREEN_MARKETPLACE_UNLOCKS)
-        )
-    )
-
+        primaryContent = accountIcon,
+        dropdownContent = @Composable {
+            SecondarySelector(
+                onClick = { navController.navigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }) {
+                personIcon()
+            }
+            SecondarySelector(
+                onClick = { navController.navigate(NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) }) {
+                storeIcon()
+            }
+        }
+    ) { false }
 }

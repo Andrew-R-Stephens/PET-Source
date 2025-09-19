@@ -1,19 +1,19 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierImage
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment.CodexEquipmentGroupItem
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.TierImage
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
+import com.tritiumgaming.shared.operation.domain.codex.model.equipment.CodexEquipmentGroupItem
 
 data class CodexEquipmentGroupItemDto(
     val image: TierImage,
     val flavor: TierFlavorText,
     val info: TierInformation,
-    val upgradeCostData: UpgradeCost,
-    val upgradeLevelData: UnlockLevel,
+    val upgradeCost: UpgradeCost,
+    val upgradeLevel: UnlockLevel,
     val positiveAttributes: List<EquipmentAttribute>,
     val negativeAttributes: List<EquipmentAttribute>
 )
@@ -23,8 +23,8 @@ fun CodexEquipmentGroupItemDto.toDomain() =
         image = image,
         flavor = flavor,
         info = info,
-        upgradeCostData = upgradeCostData,
-        upgradeLevelData = upgradeLevelData,
+        upgradeCostData = upgradeCost,
+        upgradeLevelData = upgradeLevel,
         positiveAttributes = positiveAttributes,
         negativeAttributes = negativeAttributes
     )

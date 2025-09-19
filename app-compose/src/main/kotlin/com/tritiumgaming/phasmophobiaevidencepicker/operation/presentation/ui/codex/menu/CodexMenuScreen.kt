@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.menu
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.menu
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,16 +40,17 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.ui.theme.black
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
+import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.theme.white
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.black
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.JetBrainsMonoTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.white
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.CodexScreen
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.CodexScreen
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
 
 @Composable
 fun CodexMenuScreen(
@@ -58,16 +60,40 @@ fun CodexMenuScreen(
     CodexScreen(
         navController = navController
     ) {
-        CodexMenuContent(
-            navController = navController
-        )
+
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+        when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                CodexMenuContentPortrait(
+                    navController = navController
+                )
+            }
+            DeviceConfiguration.MOBILE_LANDSCAPE -> {
+                CodexMenuContentLandscape(
+                    navController = navController
+                )
+            }
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE -> {
+                CodexMenuContentLandscape(
+                    navController = navController
+                )
+            }
+            DeviceConfiguration.DESKTOP -> {
+                CodexMenuContentLandscape(
+                    navController = navController
+                )
+            }
+        }
+
     }
 
 }
 
-
 @Composable
-private fun CodexMenuContent(
+private fun CodexMenuContentPortrait(
     navController: NavController
 ) {
     Column(
@@ -126,6 +152,66 @@ private fun CodexMenuContent(
                             "${CodexResources.Category.ACHIEVEMENTS.id}")
             }
         }
+    }
+
+}
+
+@Composable
+private fun CodexMenuContentLandscape(
+    navController: NavController
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(
+                8.dp,
+                Alignment.CenterHorizontally
+            )
+        ) {
+            CodexMenuItem(
+                modifier = Modifier
+                    .weight(.4f)
+                    .height(64.dp),
+                title = R.string.codex_section_equipment,
+                image = R.drawable.thumbnail_shop
+            ) {
+                navController.navigate(
+                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                            "${CodexResources.Category.EQUIPMENT.id}")
+            }
+
+            CodexMenuItem(
+                modifier = Modifier
+                    .weight(.3f)
+                    .height(64.dp),
+                title = R.string.store_title_cursedpossessions,
+                image = R.drawable.thumbnail_possessions
+            ) {
+                navController.navigate(
+                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                            "${CodexResources.Category.POSSESSIONS.id}")
+            }
+
+            CodexMenuItem(
+                modifier = Modifier
+                    .weight(.3f)
+                    .height(64.dp),
+                title = R.string.codex_section_more,
+                image = null
+            ) {
+                navController.navigate(
+                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                            "${CodexResources.Category.ACHIEVEMENTS.id}")
+            }
+
+        }
+
     }
 
 }

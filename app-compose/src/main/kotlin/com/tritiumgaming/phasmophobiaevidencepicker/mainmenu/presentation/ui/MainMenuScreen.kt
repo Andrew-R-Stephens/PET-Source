@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.mainmenus
+package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

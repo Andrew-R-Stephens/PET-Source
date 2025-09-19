@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.model.WorldMapModifier
+import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources
+import com.tritiumgaming.shared.operation.domain.map.modifier.model.WorldMapModifier
 
 data class WorldMapModifierDto(
     val name: MapModifierResources.MapSize,

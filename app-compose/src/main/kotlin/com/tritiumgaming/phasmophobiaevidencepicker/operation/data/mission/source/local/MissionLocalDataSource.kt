@@ -4,7 +4,7 @@ import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto.MissionDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.MissionDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mappers.MissionResources.MissionContent
+import com.tritiumgaming.shared.operation.domain.mission.mappers.MissionResources.MissionContent
 
 class MissionLocalDataSource(
     private val applicationContext: Context

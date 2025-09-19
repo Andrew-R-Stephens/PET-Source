@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.reposito
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.dto.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.model.LanguageEntity
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.repository.LanguageRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.language.source.LanguageDatastore
+import com.tritiumgaming.shared.core.domain.language.model.LanguageEntity
+import com.tritiumgaming.shared.core.domain.language.repository.LanguageRepository
+import com.tritiumgaming.shared.core.domain.language.source.LanguageDatastore
 
 class LanguageRepositoryImpl(
     private val localDataSource: LanguageDataSource,

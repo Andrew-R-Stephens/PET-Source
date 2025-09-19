@@ -1,7 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.map
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
+
 
 data class MapUiState(
     internal val index: Int = 0,

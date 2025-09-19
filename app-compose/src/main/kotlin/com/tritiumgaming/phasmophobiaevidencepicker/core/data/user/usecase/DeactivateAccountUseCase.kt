@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.user.repository.CredentialsRepository
+import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
+
 
 class DeactivateAccountUseCase(
     private val credentialsRepository: CredentialsRepository

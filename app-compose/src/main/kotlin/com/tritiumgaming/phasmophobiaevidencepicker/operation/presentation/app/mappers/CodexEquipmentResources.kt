@@ -4,15 +4,15 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentTitles
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentTitles
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
 
 @StringRes fun EquipmentTitles.toStringResource(): Int =
     when (this) {
@@ -365,6 +365,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         EquipmentBuyCost.COST_20 -> R.integer.equipment_requirement_buycost_20
         EquipmentBuyCost.COST_25 -> R.integer.equipment_requirement_buycost_25
         EquipmentBuyCost.COST_30 -> R.integer.equipment_requirement_buycost_30
+        EquipmentBuyCost.COST_35 -> R.integer.equipment_requirement_buycost_35
         EquipmentBuyCost.COST_40 -> R.integer.equipment_requirement_buycost_40
         EquipmentBuyCost.COST_45 -> R.integer.equipment_requirement_buycost_45
         EquipmentBuyCost.COST_50 -> R.integer.equipment_requirement_buycost_50
@@ -397,6 +398,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
 @IntegerRes fun UnlockLevel.toIntegerResource(): Int =
     when (this) {
         UnlockLevel.LEVEL_0 -> R.integer.equipment_requirement_level_0
+        UnlockLevel.LEVEL_2 -> R.integer.equipment_requirement_level_2
         UnlockLevel.LEVEL_3 -> R.integer.equipment_requirement_level_3
         UnlockLevel.LEVEL_4 -> R.integer.equipment_requirement_level_4
         UnlockLevel.LEVEL_5 -> R.integer.equipment_requirement_level_5
@@ -408,7 +410,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         UnlockLevel.LEVEL_12 -> R.integer.equipment_requirement_level_12
         UnlockLevel.LEVEL_13 -> R.integer.equipment_requirement_level_13
         UnlockLevel.LEVEL_14 -> R.integer.equipment_requirement_level_14
-        UnlockLevel.LEVEL_16 -> R.integer.equipment_requirement_level_16
+        UnlockLevel.LEVEL_18 -> R.integer.equipment_requirement_level_18
         UnlockLevel.LEVEL_19 -> R.integer.equipment_requirement_level_19
         UnlockLevel.LEVEL_20 -> R.integer.equipment_requirement_level_20
         UnlockLevel.LEVEL_21 -> R.integer.equipment_requirement_level_21
@@ -428,10 +430,12 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         UnlockLevel.LEVEL_42 -> R.integer.equipment_requirement_level_42
         UnlockLevel.LEVEL_43 -> R.integer.equipment_requirement_level_43
         UnlockLevel.LEVEL_45 -> R.integer.equipment_requirement_level_45
+        UnlockLevel.LEVEL_46 -> R.integer.equipment_requirement_level_46
         UnlockLevel.LEVEL_47 -> R.integer.equipment_requirement_level_47
         UnlockLevel.LEVEL_49 -> R.integer.equipment_requirement_level_49
         UnlockLevel.LEVEL_52 -> R.integer.equipment_requirement_level_52
         UnlockLevel.LEVEL_54 -> R.integer.equipment_requirement_level_54
+        UnlockLevel.LEVEL_55 -> R.integer.equipment_requirement_level_55
         UnlockLevel.LEVEL_56 -> R.integer.equipment_requirement_level_56
         UnlockLevel.LEVEL_57 -> R.integer.equipment_requirement_level_57
         UnlockLevel.LEVEL_58 -> R.integer.equipment_requirement_level_58
@@ -440,11 +444,15 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappe
         UnlockLevel.LEVEL_62 -> R.integer.equipment_requirement_level_62
         UnlockLevel.LEVEL_63 -> R.integer.equipment_requirement_level_63
         UnlockLevel.LEVEL_64 -> R.integer.equipment_requirement_level_64
+        UnlockLevel.LEVEL_65 -> R.integer.equipment_requirement_level_65
         UnlockLevel.LEVEL_68 -> R.integer.equipment_requirement_level_68
+        UnlockLevel.LEVEL_70 -> R.integer.equipment_requirement_level_70
         UnlockLevel.LEVEL_72 -> R.integer.equipment_requirement_level_72
         UnlockLevel.LEVEL_74 -> R.integer.equipment_requirement_level_74
+        UnlockLevel.LEVEL_75 -> R.integer.equipment_requirement_level_75
         UnlockLevel.LEVEL_77 -> R.integer.equipment_requirement_level_77
         UnlockLevel.LEVEL_79 -> R.integer.equipment_requirement_level_79
+        UnlockLevel.LEVEL_80 -> R.integer.equipment_requirement_level_80
         UnlockLevel.LEVEL_82 -> R.integer.equipment_requirement_level_82
         UnlockLevel.LEVEL_85 -> R.integer.equipment_requirement_level_85
         UnlockLevel.LEVEL_90 -> R.integer.equipment_requirement_level_90

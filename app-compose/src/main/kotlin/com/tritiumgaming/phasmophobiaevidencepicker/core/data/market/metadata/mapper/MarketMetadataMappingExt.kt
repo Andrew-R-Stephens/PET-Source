@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.metadata.mapper
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.metadata.dto.MarketMetadataDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.metadata.model.MarketMetadata
+import com.tritiumgaming.shared.core.domain.market.metadata.model.MarketMetadata
 
 fun MarketMetadataDto.toDomain(): MarketMetadata =
     MarketMetadata(

@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountTypography
+import com.tritiumgaming.shared.core.domain.user.model.AccountTypography
+
 
 data class AccountTypographyDto(
     internal val uuid: String,

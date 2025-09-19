@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mappers.MissionResources.MissionContent
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.model.Mission
+import com.tritiumgaming.shared.operation.domain.mission.mappers.MissionResources.MissionContent
+import com.tritiumgaming.shared.operation.domain.mission.model.Mission
 
 data class MissionDto(
     val id: String,

@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.poi.mappers.MapPoiResources.Poi
+import com.tritiumgaming.shared.operation.domain.map.poi.mappers.MapPoiResources.Poi
 
 @StringRes
 fun Poi.toStringResource(): Int {

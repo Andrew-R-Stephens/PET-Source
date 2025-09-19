@@ -6,10 +6,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper.toLocal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.MarketTypographyLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyQueryOptions
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.repository.MarketTypographyRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.source.MarketTypographyDatastore
+import com.tritiumgaming.shared.core.domain.market.typography.model.MarketTypography
+import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyQueryOptions
+import com.tritiumgaming.shared.core.domain.market.typography.repository.MarketTypographyRepository
+import com.tritiumgaming.shared.core.domain.market.typography.source.MarketTypographyDatastore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

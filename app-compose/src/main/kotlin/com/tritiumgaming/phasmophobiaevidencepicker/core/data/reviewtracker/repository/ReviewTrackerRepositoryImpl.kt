@@ -1,8 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.repository.ReviewTrackerRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
+import com.tritiumgaming.shared.core.domain.reviewtracker.repository.ReviewTrackerRepository
+import com.tritiumgaming.shared.core.domain.reviewtracker.source.ReviewTrackerDatastore
+import com.tritiumgaming.shared.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
 
 class ReviewTrackerRepositoryImpl(
     private val dataStoreSource: ReviewTrackerDatastore,

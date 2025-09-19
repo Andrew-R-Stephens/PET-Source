@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.SimpleWorldMaps
+import com.tritiumgaming.shared.operation.domain.map.simple.model.SimpleWorldMaps
 
 data class SimpleWorldMapsDto(
     internal var maps: List<SimpleWorldMapDto>

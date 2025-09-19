@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexAchievementsGroupDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexAchievementsGroupItemDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementContent
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources.AchievementTitle
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources.AchievementContent
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources.AchievementIcon
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources.AchievementTitle
 
 class CodexAchievementsLocalDataSource() {
 

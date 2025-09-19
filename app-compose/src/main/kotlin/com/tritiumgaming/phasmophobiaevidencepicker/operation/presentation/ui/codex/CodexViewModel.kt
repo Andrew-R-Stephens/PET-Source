@@ -1,5 +1,6 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -7,20 +8,20 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexAchievementsResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexPossessionsResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements.CodexAchievementsGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements.CodexAchievementsGroupItem
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment.CodexEquipmentGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment.CodexEquipmentGroupItem
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.possessions.CodexPossessionsGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.possessions.CodexPossessionsGroupItem
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
+import com.tritiumgaming.shared.operation.domain.codex.model.achievements.CodexAchievementsGroup
+import com.tritiumgaming.shared.operation.domain.codex.model.achievements.CodexAchievementsGroupItem
+import com.tritiumgaming.shared.operation.domain.codex.model.equipment.CodexEquipmentGroup
+import com.tritiumgaming.shared.operation.domain.codex.model.equipment.CodexEquipmentGroupItem
+import com.tritiumgaming.shared.operation.domain.codex.model.possessions.CodexPossessionsGroup
+import com.tritiumgaming.shared.operation.domain.codex.model.possessions.CodexPossessionsGroupItem
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -39,6 +40,9 @@ class CodexViewModel(
 
     private val _achievementsUiState = MutableStateFlow(CodexAchievementUiState())
     val achievementsUiState = _achievementsUiState.asStateFlow()
+
+    private val _scrollUiState = MutableStateFlow(ScrollUiState())
+    val scrollUiState = _scrollUiState.asStateFlow()
 
     fun cacheCategory(category: CodexResources.Category) {
         when(category) {
@@ -159,6 +163,16 @@ class CodexViewModel(
         }
     }
 
+    fun setScrollOffset(offset: Float? = null, index: Int? = null) {
+        _scrollUiState.update {
+            it.copy(
+                offset = offset ?: it.offset,
+                itemIndex = index ?: it.itemIndex
+            )
+        }
+        Log.d("CodexViewModel", "setScrollOffset: $offset")
+    }
+
     companion object {
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
@@ -195,6 +209,11 @@ class CodexViewModel(
         val list: List<CodexAchievementsGroup> = emptyList(),
         val selectedGroup: CodexAchievementsGroup? = null,
         val selectedItem: CodexAchievementsGroupItem? = null,
+    )
+
+    data class ScrollUiState(
+        val offset: Float = 0f,
+        val itemIndex: Int = 0
     )
 
 }

@@ -10,11 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
+import com.tritiumgaming.shared.core.domain.icons.IconResources
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -30,13 +30,13 @@ fun DiscordIcon(
         modifier = modifier
             .size(48.dp)
     ) {
-        IconResource.DISCORD.ToComposable(
+        IconResources.IconResource.DISCORD.ToComposable(
             modifier = Modifier
                 .fillMaxSize(),
             colors = colors
         )
 
-        IconResource.OPEN_IN_NEW.ToComposable(
+        IconResources.IconResource.OPEN_IN_NEW.ToComposable(
             modifier = Modifier
                 .padding(4.dp)
                 .fillMaxSize(.4f)

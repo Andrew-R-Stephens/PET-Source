@@ -1,8 +1,8 @@
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository.FirestoreAccountRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCreditTransaction
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCredits
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.compose.core.data.user.repository.FirestoreAccountRepositoryImpl
+import com.tritiumgaming.compose.core.domain.user.model.AccountCreditTransaction
+import com.tritiumgaming.compose.core.domain.user.model.AccountCredits
+import com.tritiumgaming.compose.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert

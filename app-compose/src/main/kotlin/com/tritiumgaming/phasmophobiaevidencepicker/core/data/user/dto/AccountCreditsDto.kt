@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCredits
+import com.tritiumgaming.shared.core.domain.user.model.AccountCredits
+
 
 data class AccountCreditsDto(
     val earnedCredits: Long = 0L,

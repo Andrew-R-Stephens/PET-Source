@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex
+package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,18 +29,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.admob.AdmobBanner
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.utilities.codex.menu.CodexMenuGhostLabel
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.menu.CodexMenuGhostLabel
 
 @Composable
 fun CodexScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
     headerTitle: Int = R.string.general_codex_button,
     showBackButton: Boolean = false,
     onBackClicked: () -> Unit = {},
@@ -51,9 +50,8 @@ fun CodexScreen(
         navController = navController
     ) {
         CodexScreenContent(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize(),
-            navController = navController,
             headerTitle = headerTitle,
             showBackButton = showBackButton,
             onBackClicked = onBackClicked
@@ -67,7 +65,6 @@ fun CodexScreen(
 @Composable
 private fun CodexScreenContent(
     modifier: Modifier = Modifier,
-    navController: NavHostController,
     headerTitle: Int,
     showBackButton: Boolean = false,
     onBackClicked: () -> Unit = {},
@@ -118,7 +115,7 @@ private fun CodexScreenContent(
                     modifier = Modifier
                         .fillMaxHeight()
                         .aspectRatio(1f)
-                ) {}
+                ) { }
             }
         }
 

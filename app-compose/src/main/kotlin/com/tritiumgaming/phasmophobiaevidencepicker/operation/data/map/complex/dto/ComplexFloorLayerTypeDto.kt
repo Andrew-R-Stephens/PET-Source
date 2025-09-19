@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldMapFloorLayerType
+import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldMapFloorLayerType
 
 enum class ComplexFloorLayerTypeDto {
     BASEMENT, FIRST_FLOOR, SECOND_FLOOR, THIRD_FLOOR, // BETA RELEASE FLOORS

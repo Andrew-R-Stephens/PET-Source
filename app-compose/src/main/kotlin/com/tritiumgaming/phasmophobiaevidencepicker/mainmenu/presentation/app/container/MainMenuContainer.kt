@@ -12,11 +12,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.sou
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSourceImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.api.NewsletterService
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SetupNewsletterUseCase
+import com.tritiumgaming.shared.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.SetupNewsletterUseCase
 import kotlinx.coroutines.Dispatchers
 
 class MainMenuContainer(
@@ -53,12 +53,16 @@ class MainMenuContainer(
             coroutineDispatcher = Dispatchers.IO
         )
     internal val setupNewsletterUseCase = SetupNewsletterUseCase(
-        repository = newsletterRepository)
+        repository = newsletterRepository
+    )
     internal val initFlowNewsletterUseCase = InitFlowNewsletterUseCase(
-        repository = newsletterRepository)
+        repository = newsletterRepository
+    )
     internal val getNewsletterInboxesUseCase = FetchNewsletterInboxesUseCase(
-        repository = newsletterRepository)
+        repository = newsletterRepository
+    )
     internal val saveNewsletterInboxLastReadDateUseCase = SaveNewsletterInboxLastReadDateUseCase(
-        repository = newsletterRepository)
+        repository = newsletterRepository
+    )
 
 }

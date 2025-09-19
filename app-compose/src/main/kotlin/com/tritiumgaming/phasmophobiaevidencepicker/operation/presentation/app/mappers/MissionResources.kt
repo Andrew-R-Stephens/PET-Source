@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers
 
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.mission.mappers.MissionResources
+import com.tritiumgaming.shared.operation.domain.mission.mappers.MissionResources
 
 fun MissionResources.MissionContent.toStringResource(): Int =
     when (this) {

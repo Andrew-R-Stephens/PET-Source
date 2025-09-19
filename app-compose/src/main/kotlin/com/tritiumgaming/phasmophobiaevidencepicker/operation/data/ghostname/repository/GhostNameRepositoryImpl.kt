@@ -2,8 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.re
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.dto.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.source.GhostNameDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.model.GhostName
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.repository.GhostNameRepository
+import com.tritiumgaming.shared.operation.domain.ghostname.model.GhostName
+import com.tritiumgaming.shared.operation.domain.ghostname.repository.GhostNameRepository
 
 class GhostNameRepositoryImpl(
     private val localSource: GhostNameDataSource

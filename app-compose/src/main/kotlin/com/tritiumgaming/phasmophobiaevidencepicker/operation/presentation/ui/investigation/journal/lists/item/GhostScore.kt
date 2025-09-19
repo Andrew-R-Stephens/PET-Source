@@ -1,8 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostEvidence
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.RuledEvidence
+import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.shared.operation.domain.journal.model.GhostEvidence
+import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

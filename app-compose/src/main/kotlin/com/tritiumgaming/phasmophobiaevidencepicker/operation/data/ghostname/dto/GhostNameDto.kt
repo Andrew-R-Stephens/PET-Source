@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.mappers.GhostNameResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.model.GhostName
+import com.tritiumgaming.shared.operation.domain.ghostname.mappers.GhostNameResources
+import com.tritiumgaming.shared.operation.domain.ghostname.model.GhostName
 
 data class GhostNameDto(
     val name: GhostNameResources.Name,

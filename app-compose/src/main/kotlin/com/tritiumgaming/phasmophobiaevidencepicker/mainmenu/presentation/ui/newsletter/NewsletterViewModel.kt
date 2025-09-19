@@ -7,11 +7,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.usecase.SetupNewsletterUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.model.NewsletterInbox
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.SetupNewsletterUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

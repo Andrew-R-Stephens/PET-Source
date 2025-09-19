@@ -6,10 +6,11 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.map
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.mapper.toLocal
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.MarketPaletteLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteFirestoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.MarketPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteQueryOptions
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.repository.MarketPaletteRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.source.PaletteDatastore
+import com.tritiumgaming.shared.core.domain.market.palette.model.MarketPalette
+import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteQueryOptions
+import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository
+import com.tritiumgaming.shared.core.domain.market.palette.source.PaletteDatastore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -35,7 +36,7 @@ class MarketPaletteRepositoryImpl(
         val result = localDataSource.getPalettes()
         result.exceptionOrNull()?.let { e ->
             Log.d("Palette", "Error getting local palettes: $e") }
-        val list: List<MarketPaletteDto> = result.getOrDefault(emptyMap()).toLocal()
+        val list: List<MarketPaletteDto> = result.getOrDefault(emptyMap<String, PaletteResources.PaletteType>()).toLocal()
 
         return Result.success(list)
     }

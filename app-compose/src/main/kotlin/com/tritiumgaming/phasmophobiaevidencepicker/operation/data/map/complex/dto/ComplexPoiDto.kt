@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import android.graphics.PointF
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoi
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoint
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.poi.mappers.MapPoiResources
+import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldPoi
+import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldPoint
+import com.tritiumgaming.shared.operation.domain.map.poi.mappers.MapPoiResources
 
 data class ComplexPoiDto(
     var id: Int,

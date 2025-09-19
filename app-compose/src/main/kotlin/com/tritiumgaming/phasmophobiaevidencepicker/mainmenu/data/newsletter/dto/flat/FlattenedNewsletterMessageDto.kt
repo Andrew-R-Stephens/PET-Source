@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterMessage
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.model.NewsletterMessage
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale

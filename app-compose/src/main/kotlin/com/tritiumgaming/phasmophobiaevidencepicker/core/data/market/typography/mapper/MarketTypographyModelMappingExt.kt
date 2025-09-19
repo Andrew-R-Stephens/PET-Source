@@ -1,8 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.mapper
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto.MarketTypographyDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.MarketTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.shared.core.domain.market.typography.model.MarketTypography
+import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType
 
 fun MarketTypographyDto.toDomain() = MarketTypography(
     uuid = uuid,

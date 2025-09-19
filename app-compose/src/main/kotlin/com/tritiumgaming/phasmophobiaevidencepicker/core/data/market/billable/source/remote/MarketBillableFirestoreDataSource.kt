@@ -11,7 +11,7 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.dto.MarketBillableDto
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.source.MarketBillableRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.model.BillableQueryOptions
+import com.tritiumgaming.shared.core.domain.market.billable.model.BillableQueryOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext

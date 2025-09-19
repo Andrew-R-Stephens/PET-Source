@@ -4,10 +4,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.toD
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexAchievementsLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexEquipmentLocalDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexPossessionsLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.achievements.CodexAchievementsGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.equipment.CodexEquipmentGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.model.possessions.CodexPossessionsGroup
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.repository.CodexRepository
+import com.tritiumgaming.shared.operation.domain.codex.model.achievements.CodexAchievementsGroup
+import com.tritiumgaming.shared.operation.domain.codex.model.equipment.CodexEquipmentGroup
+import com.tritiumgaming.shared.operation.domain.codex.model.possessions.CodexPossessionsGroup
+import com.tritiumgaming.shared.operation.domain.codex.repository.CodexRepository
 
 class CodexRepositoryImpl(
     private val achievementsLocalDataSource: CodexAchievementsLocalDataSource,

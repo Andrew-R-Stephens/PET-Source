@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.dto
 
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.simple.model.SimpleWorldMap
+import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail
+import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.shared.operation.domain.map.simple.model.SimpleWorldMap
 
 data class SimpleWorldMapDto(
     val mapId: String,

@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType
 
 data class MarketTypographyDto(
     internal val uuid: String,

@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.rep
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.mapper.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.model.BundleQueryOptions
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.model.MarketBundle
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.repository.MarketBundleRemoteRepository
+import com.tritiumgaming.shared.core.domain.market.bundle.model.BundleQueryOptions
+import com.tritiumgaming.shared.core.domain.market.bundle.model.MarketBundle
+import com.tritiumgaming.shared.core.domain.market.bundle.repository.MarketBundleRemoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

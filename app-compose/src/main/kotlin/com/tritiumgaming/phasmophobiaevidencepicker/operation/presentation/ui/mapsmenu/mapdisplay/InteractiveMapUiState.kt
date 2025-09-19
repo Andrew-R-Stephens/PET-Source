@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldRoom
+import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldRoom
+
 
 data class InteractiveMapUiState(
     val mapId: String = "",

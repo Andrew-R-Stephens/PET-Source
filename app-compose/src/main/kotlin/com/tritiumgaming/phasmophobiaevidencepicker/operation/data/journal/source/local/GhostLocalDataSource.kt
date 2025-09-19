@@ -5,11 +5,11 @@ import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.GhostDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostDescription
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostHuntInfo
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostStrength
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostDescription
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostStrength
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostWeakness
 
 class GhostLocalDataSource(
     private val applicationContext: Context

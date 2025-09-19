@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.flat
 
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterChannel
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.model.NewsletterChannel
 
 data class FlattenedNewsletterChannelDto(
     val language: String,

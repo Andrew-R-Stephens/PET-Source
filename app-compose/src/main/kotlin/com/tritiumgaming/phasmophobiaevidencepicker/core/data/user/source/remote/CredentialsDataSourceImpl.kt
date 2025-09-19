@@ -15,8 +15,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.user.source.CredentialsDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.SignInOptions
+import com.tritiumgaming.shared.core.domain.market.user.source.CredentialsDataSource
+import com.tritiumgaming.shared.core.domain.user.model.SignInOptions
 import kotlinx.coroutines.tasks.await
 
 class CredentialsDataSourceImpl(

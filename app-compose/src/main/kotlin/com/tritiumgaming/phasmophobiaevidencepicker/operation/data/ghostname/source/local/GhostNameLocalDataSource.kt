@@ -3,8 +3,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.so
 import android.content.Context
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.dto.GhostNameDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.source.GhostNameDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.mappers.GhostNameResources
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.model.GhostName
+import com.tritiumgaming.shared.operation.domain.ghostname.mappers.GhostNameResources
+import com.tritiumgaming.shared.operation.domain.ghostname.model.GhostName
 
 class GhostNameLocalDataSource(
     private val applicationContext: Context

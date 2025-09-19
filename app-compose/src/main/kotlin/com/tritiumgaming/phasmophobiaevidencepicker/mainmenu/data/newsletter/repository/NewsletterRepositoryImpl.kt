@@ -7,10 +7,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.remote.toInternal
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.local.NewsletterLocalDataSourceImpl
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.repository.NewsletterRepository
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.domain.newsletter.source.NewsletterDatastore.NewsletterPreferences
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.model.NewsletterInbox
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.source.NewsletterDatastore
 import io.ktor.http.Url
 import kotlinx.coroutines.CoroutineDispatcher
 
@@ -25,7 +24,7 @@ class NewsletterRepositoryImpl(
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
     override suspend fun initDatastoreFlow(
-        onUpdate: (NewsletterPreferences) -> Unit
+        onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit
     ) = dataStoreSource.initDatastoreFlow(onUpdate)
 
     private var localCache: List<FlattenedNewsletterInboxDto> = emptyList()

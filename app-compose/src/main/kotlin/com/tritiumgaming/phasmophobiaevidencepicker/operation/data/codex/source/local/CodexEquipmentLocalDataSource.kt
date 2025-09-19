@@ -2,15 +2,15 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source
 
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexEquipmentGroupDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.dto.CodexEquipmentGroupItemDto
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentTitles
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierImage
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentIcon
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentTitles
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.TierFlavorText
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.TierImage
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.TierInformation
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.UnlockLevel
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.UpgradeCost
 
 class CodexEquipmentLocalDataSource {
 
@@ -19,14 +19,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.DOTS,
                 icon = EquipmentIcon.DOTS,
-                buyCostData = EquipmentBuyCost.COST_65,
+                buyCost = EquipmentBuyCost.COST_65,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.DOTS_1,
                         flavor = TierFlavorText.DOTS_1,
                         info = TierInformation.DOTS_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_0,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SPOTLIGHT_NARROW,
                             EquipmentAttribute.RANGE_5,
@@ -40,8 +40,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.DOTS_2,
                         flavor = TierFlavorText.DOTS_2,
                         info = TierInformation.DOTS_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_29,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_27,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SPOTLIGHT_AREA,
                             EquipmentAttribute.RANGE_2_5,
@@ -55,8 +55,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.DOTS_3,
                         flavor = TierFlavorText.DOTS_3,
                         info = TierInformation.DOTS_3,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_60,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_49,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SPOTLIGHT_WIDE,
                             EquipmentAttribute.RANGE_7,
@@ -73,14 +73,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.EMF,
                 icon = EquipmentIcon.EMF,
-                buyCostData = EquipmentBuyCost.COST_45,
+                buyCost = EquipmentBuyCost.COST_45,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.EMF_1,
                         flavor = TierFlavorText.EMF_1,
                         info = TierInformation.EMF_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_0,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_1_7,
                             EquipmentAttribute.ACCURACY_LOW
@@ -93,8 +93,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.EMF_2,
                         flavor = TierFlavorText.EMF_2,
                         info = TierInformation.EMF_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_20,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_18,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_1_7,
                             EquipmentAttribute.ACCURACY_HIGH,
@@ -108,8 +108,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.EMF_3,
                         flavor = TierFlavorText.EMF_3,
                         info = TierInformation.EMF_3,
-                        upgradeCostData = UpgradeCost.COST_4500,
-                        upgradeLevelData = UnlockLevel.LEVEL_52,
+                        upgradeCost = UpgradeCost.COST_4500,
+                        upgradeLevel = UnlockLevel.LEVEL_46,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_3_5,
                             EquipmentAttribute.ACCURACY_HIGH,
@@ -128,14 +128,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.FLASHLIGHT,
                 icon = EquipmentIcon.FLASHLIGHT,
-                buyCostData = EquipmentBuyCost.COST_30,
+                buyCost = EquipmentBuyCost.COST_30,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.FLASHLIGHT_1,
                         flavor = TierFlavorText.FLASHLIGHT_1,
                         info = TierInformation.FLASHLIGHT_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_0,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SPOTLIGHT_NARROW
                         ),
@@ -148,8 +148,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.FLASHLIGHT_2,
                         flavor = TierFlavorText.FLASHLIGHT_2,
                         info = TierInformation.FLASHLIGHT_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_19,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_18,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SPOTLIGHT_NARROW,
                             EquipmentAttribute.INTENSITY_MED
@@ -162,8 +162,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.FLASHLIGHT_3,
                         flavor = TierFlavorText.FLASHLIGHT_3,
                         info = TierInformation.FLASHLIGHT_3,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_35,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_34,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SPOTLIGHT_WIDE,
                             EquipmentAttribute.INTENSITY_HIGH
@@ -178,14 +178,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.PHOTO_CAMERA,
                 icon = EquipmentIcon.PHOTO_CAMERA,
-                buyCostData = EquipmentBuyCost.COST_40,
+                buyCost = EquipmentBuyCost.COST_40,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.PHOTO_CAMERA_1,
                         flavor = TierFlavorText.PHOTO_CAMERA_1,
                         info = TierInformation.PHOTO_CAMERA_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_3,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_2,
                         positiveAttributes = emptyList(/* NONE */),
                         negativeAttributes = listOf(
                             EquipmentAttribute.PHOTO_TIME_HIGH
@@ -195,8 +195,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.PHOTO_CAMERA_2,
                         flavor = TierFlavorText.PHOTO_CAMERA_2,
                         info = TierInformation.PHOTO_CAMERA_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_25,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_23,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PHOTO_TIME_MED,
                             EquipmentAttribute.PROPERTY_DISPLAY_SCREEN
@@ -210,8 +210,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.PHOTO_CAMERA_3,
                         flavor = TierFlavorText.PHOTO_CAMERA_3,
                         info = TierInformation.PHOTO_CAMERA_3,
-                        upgradeCostData = UpgradeCost.COST_5000,
-                        upgradeLevelData = UnlockLevel.LEVEL_57,
+                        upgradeCost = UpgradeCost.COST_5000,
+                        upgradeLevel = UnlockLevel.LEVEL_55,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PHOTO_TIME_LOW,
                             EquipmentAttribute.PROPERTY_DISPLAY_SCREEN
@@ -227,14 +227,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.IGNITER,
                 icon = EquipmentIcon.IGNITER,
-                buyCostData = EquipmentBuyCost.COST_10,
+                buyCost = EquipmentBuyCost.COST_10,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.IGNITER_1,
                         flavor = TierFlavorText.IGNITER_1,
                         info = TierInformation.IGNITER_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_12,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_12,
                         positiveAttributes = listOf(
                             EquipmentAttribute.DURATION_10_S,
                             EquipmentAttribute.USES_10
@@ -247,8 +247,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.IGNITER_2,
                         flavor = TierFlavorText.IGNITER_2,
                         info = TierInformation.IGNITER_2,
-                        upgradeCostData = UpgradeCost.COST_500,
-                        upgradeLevelData = UnlockLevel.LEVEL_41,
+                        upgradeCost = UpgradeCost.COST_500,
+                        upgradeLevel = UnlockLevel.LEVEL_37,
                         positiveAttributes = listOf(
                             EquipmentAttribute.DURATION_5_M
                         ),
@@ -260,8 +260,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.IGNITER_3,
                         flavor = TierFlavorText.IGNITER_3,
                         info = TierInformation.IGNITER_3,
-                        upgradeCostData = UpgradeCost.COST_750,
-                        upgradeLevelData = UnlockLevel.LEVEL_57,
+                        upgradeCost = UpgradeCost.COST_750,
+                        upgradeLevel = UnlockLevel.LEVEL_52,
                         positiveAttributes = listOf(
                             EquipmentAttribute.DURATION_10_M,
                             EquipmentAttribute.PROPERTY_WATERPROOF
@@ -276,14 +276,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.FIRELIGHT,
                 icon = EquipmentIcon.FIRELIGHT,
-                buyCostData = EquipmentBuyCost.COST_15,
+                buyCost = EquipmentBuyCost.COST_15,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.FIRELIGHT_1,
                         flavor = TierFlavorText.FIRELIGHT_1,
                         info = TierInformation.FIRELIGHT_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_12,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_12,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_2,
                             EquipmentAttribute.DURATION_3_M,
@@ -298,8 +298,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.FIRELIGHT_2,
                         flavor = TierFlavorText.FIRELIGHT_2,
                         info = TierInformation.FIRELIGHT_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_47,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_37,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_2,
                             EquipmentAttribute.DURATION_5_M,
@@ -314,8 +314,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.FIRELIGHT_3,
                         flavor = TierFlavorText.FIRELIGHT_3,
                         info = TierInformation.FIRELIGHT_3,
-                        upgradeCostData = UpgradeCost.COST_10000,
-                        upgradeLevelData = UnlockLevel.LEVEL_79,
+                        upgradeCost = UpgradeCost.COST_10000,
+                        upgradeLevel = UnlockLevel.LEVEL_75,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_2,
                             EquipmentAttribute.SANITY_DRAIN_REDUCTION_66,
@@ -332,14 +332,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.UV_LIGHT,
                 icon = EquipmentIcon.UV_LIGHT,
-                buyCostData = EquipmentBuyCost.COST_20,
+                buyCost = EquipmentBuyCost.COST_35,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.UV_LIGHT_1,
                         flavor = TierFlavorText.UV_LIGHT_1,
                         info = TierInformation.UV_LIGHT_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_0,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
                             EquipmentAttribute.DURATION_60_S,
                             EquipmentAttribute.UV_CHARGE_TIME_10,
@@ -351,8 +351,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.UV_LIGHT_2,
                         flavor = TierFlavorText.UV_LIGHT_2,
                         info = TierInformation.UV_LIGHT_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_21,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_18,
                         positiveAttributes = listOf(
                             EquipmentAttribute.UV_CHARGE_TIME_5,
                             EquipmentAttribute.SPOTLIGHT_NARROW,
@@ -365,8 +365,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.UV_LIGHT_3,
                         flavor = TierFlavorText.UV_LIGHT_3,
                         info = TierInformation.UV_LIGHT_3,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_56,
+                        upgradeCost = UpgradeCost.COST_2000,
+                        upgradeLevel = UnlockLevel.LEVEL_46,
                         positiveAttributes = listOf(
                             EquipmentAttribute.UV_CHARGE_TIME_1_5,
                             EquipmentAttribute.SPOTLIGHT_WIDE,
@@ -381,14 +381,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.CRUCIFIX,
                 icon = EquipmentIcon.CRUCIFIX,
-                buyCostData = EquipmentBuyCost.COST_30,
+                buyCost = EquipmentBuyCost.COST_30,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.CRUCIFIX_1,
                         flavor = TierFlavorText.CRUCIFIX_1,
                         info = TierInformation.CRUCIFIX_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_8,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_7,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_3,
                             EquipmentAttribute.USES_1,
@@ -402,8 +402,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.CRUCIFIX_2,
                         flavor = TierFlavorText.CRUCIFIX_2,
                         info = TierInformation.CRUCIFIX_2,
-                        upgradeCostData = UpgradeCost.COST_4000,
-                        upgradeLevelData = UnlockLevel.LEVEL_37,
+                        upgradeCost = UpgradeCost.COST_4000,
+                        upgradeLevel = UnlockLevel.LEVEL_34,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_4,
                             EquipmentAttribute.USES_2,
@@ -417,8 +417,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.CRUCIFIX_3,
                         flavor = TierFlavorText.CRUCIFIX_3,
                         info = TierInformation.CRUCIFIX_3,
-                        upgradeCostData = UpgradeCost.COST_20000,
-                        upgradeLevelData = UnlockLevel.LEVEL_90,
+                        upgradeCost = UpgradeCost.COST_20000,
+                        upgradeLevel = UnlockLevel.LEVEL_80,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PROPERTY_PREVENT_CURSED_HUNT,
                             EquipmentAttribute.RANGE_4,
@@ -435,14 +435,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.VIDEO_CAMERA,
                 icon = EquipmentIcon.VIDEO_CAMERA,
-                buyCostData = EquipmentBuyCost.COST_50,
+                buyCost = EquipmentBuyCost.COST_50,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.VIDEO_CAMERA_1,
                         flavor = TierFlavorText.VIDEO_CAMERA_1,
                         info = TierInformation.VIDEO_CAMERA_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_0,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_0,
                         positiveAttributes = emptyList(/* NONE */),
                         negativeAttributes = listOf(
                             EquipmentAttribute.INTERFERENCE_HIGH,
@@ -454,8 +454,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.VIDEO_CAMERA_2,
                         flavor = TierFlavorText.VIDEO_CAMERA_2,
                         info = TierInformation.VIDEO_CAMERA_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_33,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_27,
                         positiveAttributes = listOf(
                             EquipmentAttribute.IMAGE_QUALITY_MED
                         ),
@@ -469,8 +469,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.VIDEO_CAMERA_3,
                         flavor = TierFlavorText.VIDEO_CAMERA_3,
                         info = TierInformation.VIDEO_CAMERA_3,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_61,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_49,
                         positiveAttributes = listOf(
                             EquipmentAttribute.IMAGE_QUALITY_HIGH
                         ),
@@ -486,14 +486,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.SPIRIT_BOX,
                 icon = EquipmentIcon.SPIRIT_BOX,
-                buyCostData = EquipmentBuyCost.COST_50,
+                buyCost = EquipmentBuyCost.COST_50,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.SPIRIT_BOX_1,
                         flavor = TierFlavorText.SPIRIT_BOX_1,
                         info = TierInformation.SPIRIT_BOX_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_0,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_3
                         ),
@@ -507,8 +507,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SPIRIT_BOX_2,
                         flavor = TierFlavorText.SPIRIT_BOX_2,
                         info = TierInformation.SPIRIT_BOX_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_27,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_23,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_4,
                             EquipmentAttribute.AUDIO_QUALITY_MED,
@@ -523,8 +523,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SPIRIT_BOX_3,
                         flavor = TierFlavorText.SPIRIT_BOX_3,
                         info = TierInformation.SPIRIT_BOX_3,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_54,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_46,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_5,
                             EquipmentAttribute.AUDIO_QUALITY_HIGH,
@@ -540,14 +540,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.THERMOMETER,
                 icon = EquipmentIcon.THERMOMETER,
-                buyCostData = EquipmentBuyCost.COST_30,
+                buyCost = EquipmentBuyCost.COST_30,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.THERMOMETER_1,
                         flavor = TierFlavorText.THERMOMETER_1,
                         info = TierInformation.THERMOMETER_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_0,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
                             EquipmentAttribute.ACCURACY_MED
                         ),
@@ -559,8 +559,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.THERMOMETER_2,
                         flavor = TierFlavorText.THERMOMETER_2,
                         info = TierInformation.THERMOMETER_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_36,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_27,
                         positiveAttributes = listOf(
                             EquipmentAttribute.ACCURACY_HIGH,
                             EquipmentAttribute.SAMPLE_SPEED_HIGH
@@ -573,8 +573,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.THERMOMETER_3,
                         flavor = TierFlavorText.THERMOMETER_3,
                         info = TierInformation.THERMOMETER_3,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_64,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_65,
                         positiveAttributes = listOf(
                             EquipmentAttribute.ACCURACY_HIGH,
                             EquipmentAttribute.SAMPLE_SPEED_HIGH
@@ -589,14 +589,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.SALT,
                 icon = EquipmentIcon.SALT,
-                buyCostData = EquipmentBuyCost.COST_15,
+                buyCost = EquipmentBuyCost.COST_15,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.SALT_1,
                         flavor = TierFlavorText.SALT_1,
                         info = TierInformation.SALT_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_9,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_8,
                         positiveAttributes = listOf(
                             EquipmentAttribute.USES_2
                         ),
@@ -608,8 +608,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SALT_2,
                         flavor = TierFlavorText.SALT_2,
                         info = TierInformation.SALT_2,
-                        upgradeCostData = UpgradeCost.COST_2500,
-                        upgradeLevelData = UnlockLevel.LEVEL_43,
+                        upgradeCost = UpgradeCost.COST_2500,
+                        upgradeLevel = UnlockLevel.LEVEL_39,
                         positiveAttributes = listOf(
                             EquipmentAttribute.USES_3
                         ),
@@ -621,8 +621,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SALT_3,
                         flavor = TierFlavorText.SALT_3,
                         info = TierInformation.SALT_3,
-                        upgradeCostData = UpgradeCost.COST_5000,
-                        upgradeLevelData = UnlockLevel.LEVEL_68,
+                        upgradeCost = UpgradeCost.COST_5000,
+                        upgradeLevel = UnlockLevel.LEVEL_65,
                         positiveAttributes = listOf(
                             EquipmentAttribute.USES_3,
                             EquipmentAttribute.PROPERTY_GHOST_EFFECT_SLOWS
@@ -637,14 +637,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.INCENSE,
                 icon = EquipmentIcon.INCENSE,
-                buyCostData = EquipmentBuyCost.COST_15,
+                buyCost = EquipmentBuyCost.COST_15,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.INCENSE_1,
                         flavor = TierFlavorText.INCENSE_1,
                         info = TierInformation.INCENSE_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_14,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_14,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_3,
                             EquipmentAttribute.DURATION_5_S,
@@ -657,8 +657,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.INCENSE_2,
                         flavor = TierFlavorText.INCENSE_2,
                         info = TierInformation.INCENSE_2,
-                        upgradeCostData = UpgradeCost.COST_3500,
-                        upgradeLevelData = UnlockLevel.LEVEL_42,
+                        upgradeCost = UpgradeCost.COST_3500,
+                        upgradeLevel = UnlockLevel.LEVEL_37,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_4,
                             EquipmentAttribute.DURATION_6_S,
@@ -672,8 +672,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.INCENSE_3,
                         flavor = TierFlavorText.INCENSE_3,
                         info = TierInformation.INCENSE_3,
-                        upgradeCostData = UpgradeCost.COST_15000,
-                        upgradeLevelData = UnlockLevel.LEVEL_85,
+                        upgradeCost = UpgradeCost.COST_15000,
+                        upgradeLevel = UnlockLevel.LEVEL_80,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_5,
                             EquipmentAttribute.DURATION_7_S,
@@ -687,14 +687,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.TRIPOD,
                 icon = EquipmentIcon.TRIPOD,
-                buyCostData = EquipmentBuyCost.COST_25,
+                buyCost = EquipmentBuyCost.COST_25,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.TRIPOD_1,
                         flavor = TierFlavorText.TRIPOD_1,
                         info = TierInformation.TRIPOD_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_10,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_9,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PLACEABLE
                         ),
@@ -706,8 +706,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.TRIPOD_2,
                         flavor = TierFlavorText.TRIPOD_2,
                         info = TierInformation.TRIPOD_2,
-                        upgradeCostData = UpgradeCost.COST_5000,
-                        upgradeLevelData = UnlockLevel.LEVEL_34,
+                        upgradeCost = UpgradeCost.COST_5000,
+                        upgradeLevel = UnlockLevel.LEVEL_34,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PLACEABLE,
                             EquipmentAttribute.PROPERTY_ROTATION_CONTROL,
@@ -720,8 +720,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.TRIPOD_3,
                         flavor = TierFlavorText.TRIPOD_3,
                         info = TierInformation.TRIPOD_3,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_62,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_60,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PLACEABLE,
                             EquipmentAttribute.PROPERTY_ROTATION_CONTROL,
@@ -736,14 +736,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.MOTION_SENSOR,
                 icon = EquipmentIcon.MOTION_SENSOR,
-                buyCostData = EquipmentBuyCost.COST_100,
+                buyCost = EquipmentBuyCost.COST_100,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.MOTION_SENSOR_1,
                         flavor = TierFlavorText.MOTION_SENSOR_1,
                         info = TierInformation.MOTION_SENSOR_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_5,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_3,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SENSOR_SHAPE_LINE,
                             EquipmentAttribute.INDICATOR_LIGHT,
@@ -757,8 +757,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.MOTION_SENSOR_2,
                         flavor = TierFlavorText.MOTION_SENSOR_2,
                         info = TierInformation.MOTION_SENSOR_2,
-                        upgradeCostData = UpgradeCost.COST_2500,
-                        upgradeLevelData = UnlockLevel.LEVEL_45,
+                        upgradeCost = UpgradeCost.COST_2500,
+                        upgradeLevel = UnlockLevel.LEVEL_42,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SENSOR_SHAPE_LINE_CONE,
                             EquipmentAttribute.INDICATOR_LIGHT,
@@ -773,8 +773,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.MOTION_SENSOR_3,
                         flavor = TierFlavorText.MOTION_SENSOR_3,
                         info = TierInformation.MOTION_SENSOR_3,
-                        upgradeCostData = UpgradeCost.COST_8000,
-                        upgradeLevelData = UnlockLevel.LEVEL_74,
+                        upgradeCost = UpgradeCost.COST_8000,
+                        upgradeLevel = UnlockLevel.LEVEL_70,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SENSOR_SHAPE_CIRCLE,
                             EquipmentAttribute.PROPERTY_SCANNING,
@@ -792,14 +792,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.SOUND_RECORDER,
                 icon = EquipmentIcon.SOUND_RECORDER,
-                buyCostData = EquipmentBuyCost.COST_30,
+                buyCost = EquipmentBuyCost.COST_30,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.SOUND_RECORDER_1,
                         flavor = TierFlavorText.SOUND_RECORDER_1,
                         info = TierInformation.SOUND_RECORDER_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_4,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_4,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_3,
                         ),
@@ -811,8 +811,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SOUND_RECORDER_2,
                         flavor = TierFlavorText.SOUND_RECORDER_2,
                         info = TierInformation.SOUND_RECORDER_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_39,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_39,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_5,
                             EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
@@ -825,8 +825,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SOUND_RECORDER_3,
                         flavor = TierFlavorText.SOUND_RECORDER_3,
                         info = TierInformation.SOUND_RECORDER_3,
-                        upgradeCostData = UpgradeCost.COST_5000,
-                        upgradeLevelData = UnlockLevel.LEVEL_60,
+                        upgradeCost = UpgradeCost.COST_5000,
+                        upgradeLevel = UnlockLevel.LEVEL_60,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_5,
                             EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
@@ -843,14 +843,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.SOUND_SENSOR,
                 icon = EquipmentIcon.SOUND_SENSOR,
-                buyCostData = EquipmentBuyCost.COST_80,
+                buyCost = EquipmentBuyCost.COST_80,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.SOUND_SENSOR_1,
                         flavor = TierFlavorText.SOUND_SENSOR_1,
                         info = TierInformation.SOUND_SENSOR_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_11,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_10,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_5_10,
                             EquipmentAttribute.SENSOR_SHAPE_CIRCLE,
@@ -864,8 +864,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SOUND_SENSOR_2,
                         flavor = TierFlavorText.SOUND_SENSOR_2,
                         info = TierInformation.SOUND_SENSOR_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_32,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_32,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_5_10_15,
                             EquipmentAttribute.SENSOR_SHAPE_CIRCLE,
@@ -879,8 +879,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SOUND_SENSOR_3,
                         flavor = TierFlavorText.SOUND_SENSOR_3,
                         info = TierInformation.SOUND_SENSOR_3,
-                        upgradeCostData = UpgradeCost.COST_1500,
-                        upgradeLevelData = UnlockLevel.LEVEL_58,
+                        upgradeCost = UpgradeCost.COST_1500,
+                        upgradeLevel = UnlockLevel.LEVEL_52,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_5_10_15,
                             EquipmentAttribute.SENSOR_SHAPE_CIRCLE_CONE_SIDES,
@@ -896,14 +896,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.SANITY_MEDICATION,
                 icon = EquipmentIcon.SANITY_MEDICATION,
-                buyCostData = EquipmentBuyCost.COST_20,
+                buyCost = EquipmentBuyCost.COST_20,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.SANITY_MEDICATION_1,
                         flavor = TierFlavorText.SANITY_MEDICATION_1,
                         info = TierInformation.SANITY_MEDICATION_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_16,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_14,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SANITY_RESTORATION_30
                         ),
@@ -915,8 +915,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SANITY_MEDICATION_2,
                         flavor = TierFlavorText.SANITY_MEDICATION_2,
                         info = TierInformation.SANITY_MEDICATION_2,
-                        upgradeCostData = UpgradeCost.COST_2000,
-                        upgradeLevelData = UnlockLevel.LEVEL_39,
+                        upgradeCost = UpgradeCost.COST_2000,
+                        upgradeLevel = UnlockLevel.LEVEL_39,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SANITY_RESTORATION_20
                         ),
@@ -928,8 +928,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.SANITY_MEDICATION_3,
                         flavor = TierFlavorText.SANITY_MEDICATION_3,
                         info = TierInformation.SANITY_MEDICATION_3,
-                        upgradeCostData = UpgradeCost.COST_5000,
-                        upgradeLevelData = UnlockLevel.LEVEL_77,
+                        upgradeCost = UpgradeCost.COST_5000,
+                        upgradeLevel = UnlockLevel.LEVEL_75,
                         positiveAttributes = listOf(
                             EquipmentAttribute.SANITY_RESTORATION_10,
                             EquipmentAttribute.PROPERTY_SPRINT_BOOST,
@@ -944,14 +944,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.GHOST_WRITING_BOOK,
                 icon = EquipmentIcon.GHOST_WRITING_BOOK,
-                buyCostData = EquipmentBuyCost.COST_40,
+                buyCost = EquipmentBuyCost.COST_40,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.GHOST_WRITING_BOOK_1,
                         flavor = TierFlavorText.GHOST_WRITING_BOOK_1,
                         info = TierInformation.GHOST_WRITING_BOOK_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_0,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_0,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_3
                         ),
@@ -963,8 +963,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.GHOST_WRITING_BOOK_2,
                         flavor = TierFlavorText.GHOST_WRITING_BOOK_2,
                         info = TierInformation.GHOST_WRITING_BOOK_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_23,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_23,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_4,
                             EquipmentAttribute.INTERACTION_RATE_MED,
@@ -975,8 +975,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.GHOST_WRITING_BOOK_3,
                         flavor = TierFlavorText.GHOST_WRITING_BOOK_3,
                         info = TierInformation.GHOST_WRITING_BOOK_3,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_63,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_55,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_5,
                             EquipmentAttribute.INTERACTION_RATE_HIGH,
@@ -989,14 +989,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.PARABOLIC_MICROPHONE,
                 icon = EquipmentIcon.PARABOLIC_MICROPHONE,
-                buyCostData = EquipmentBuyCost.COST_50,
+                buyCost = EquipmentBuyCost.COST_50,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.PARABOLIC_MICROPHONE_1,
                         flavor = TierFlavorText.PARABOLIC_MICROPHONE_1,
                         info = TierInformation.PARABOLIC_MICROPHONE_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_7,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_5,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_20
                         ),
@@ -1008,8 +1008,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.PARABOLIC_MICROPHONE_2,
                         flavor = TierFlavorText.PARABOLIC_MICROPHONE_2,
                         info = TierInformation.PARABOLIC_MICROPHONE_2,
-                        upgradeCostData = UpgradeCost.COST_3000,
-                        upgradeLevelData = UnlockLevel.LEVEL_31,
+                        upgradeCost = UpgradeCost.COST_3000,
+                        upgradeLevel = UnlockLevel.LEVEL_32,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_30,
                             EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
@@ -1022,8 +1022,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.PARABOLIC_MICROPHONE_3,
                         flavor = TierFlavorText.PARABOLIC_MICROPHONE_3,
                         info = TierInformation.PARABOLIC_MICROPHONE_3,
-                        upgradeCostData = UpgradeCost.COST_5000,
-                        upgradeLevelData = UnlockLevel.LEVEL_72,
+                        upgradeCost = UpgradeCost.COST_5000,
+                        upgradeLevel = UnlockLevel.LEVEL_70,
                         positiveAttributes = listOf(
                             EquipmentAttribute.RANGE_30,
                             EquipmentAttribute.PROPERTY_DISPLAY_SCREEN,
@@ -1040,14 +1040,14 @@ class CodexEquipmentLocalDataSource {
             CodexEquipmentGroupResourceDto(
                 name = EquipmentTitles.HEAD_GEAR,
                 icon = EquipmentIcon.HEAD_GEAR,
-                buyCostData = EquipmentBuyCost.COST_60,
+                buyCost = EquipmentBuyCost.COST_60,
                 items = listOf(
                     CodexEquipmentGroupItemResourceDto(
                         image = TierImage.HEAD_GEAR_1,
                         flavor = TierFlavorText.HEAD_GEAR_1,
                         info = TierInformation.HEAD_GEAR_1,
-                        upgradeCostData = UpgradeCost.COST_0,
-                        upgradeLevelData = UnlockLevel.LEVEL_13,
+                        upgradeCost = UpgradeCost.COST_0,
+                        upgradeLevel = UnlockLevel.LEVEL_13,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PROPERTY_HEAD_SLOT,
                             EquipmentAttribute.IMAGE_QUALITY_MED,
@@ -1061,8 +1061,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.HEAD_GEAR_2,
                         flavor = TierFlavorText.HEAD_GEAR_2,
                         info = TierInformation.HEAD_GEAR_2,
-                        upgradeCostData = UpgradeCost.COST_10000,
-                        upgradeLevelData = UnlockLevel.LEVEL_49,
+                        upgradeCost = UpgradeCost.COST_10000,
+                        upgradeLevel = UnlockLevel.LEVEL_42,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PROPERTY_HEAD_SLOT,
                             EquipmentAttribute.INTENSITY_LOW,
@@ -1076,8 +1076,8 @@ class CodexEquipmentLocalDataSource {
                         image = TierImage.HEAD_GEAR_3,
                         flavor = TierFlavorText.HEAD_GEAR_3,
                         info = TierInformation.HEAD_GEAR_3,
-                        upgradeCostData = UpgradeCost.COST_10000,
-                        upgradeLevelData = UnlockLevel.LEVEL_82,
+                        upgradeCost = UpgradeCost.COST_10000,
+                        upgradeLevel = UnlockLevel.LEVEL_80,
                         positiveAttributes = listOf(
                             EquipmentAttribute.PROPERTY_HEAD_SLOT,
                             EquipmentAttribute.PROPERTY_NIGHT_VISION,
@@ -1106,7 +1106,7 @@ class CodexEquipmentLocalDataSource {
     private data class CodexEquipmentGroupResourceDto(
         val name: EquipmentTitles,
         val icon: EquipmentIcon,
-        val buyCostData: EquipmentBuyCost,
+        val buyCost: EquipmentBuyCost,
         val items: List<CodexEquipmentGroupItemResourceDto>
     )
 
@@ -1114,8 +1114,8 @@ class CodexEquipmentLocalDataSource {
         val image: TierImage,
         val flavor: TierFlavorText,
         val info: TierInformation,
-        var upgradeCostData: UpgradeCost,
-        var upgradeLevelData: UnlockLevel,
+        var upgradeCost: UpgradeCost,
+        var upgradeLevel: UnlockLevel,
         val positiveAttributes: List<EquipmentAttribute>,
         val negativeAttributes: List<EquipmentAttribute>
     )
@@ -1123,7 +1123,7 @@ class CodexEquipmentLocalDataSource {
     private fun CodexEquipmentGroupResourceDto.toLocal() = CodexEquipmentGroupDto(
         name = name,
         icon = icon,
-        buyCostData = buyCostData,
+        buyCost = buyCost,
         items = items.toLocal()
     )
 
@@ -1131,8 +1131,8 @@ class CodexEquipmentLocalDataSource {
         image = image,
         flavor = flavor,
         info = info,
-        upgradeCostData = upgradeCostData,
-        upgradeLevelData = upgradeLevelData,
+        upgradeCost = upgradeCost,
+        upgradeLevel = upgradeLevel,
         positiveAttributes = positiveAttributes,
         negativeAttributes = negativeAttributes
     )

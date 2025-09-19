@@ -2,8 +2,8 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.
 
 import android.graphics.PointF
 import android.util.Log
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldPoint
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.map.complex.model.ComplexWorldRoomArea
+import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldPoint
+import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldRoomArea
 
 data class ComplexRoomAreaDto(
     val points: List<PointF>

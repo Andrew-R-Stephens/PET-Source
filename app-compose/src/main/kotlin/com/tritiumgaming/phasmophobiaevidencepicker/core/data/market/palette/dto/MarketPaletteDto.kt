@@ -1,6 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.palette.model.PaletteResources.PaletteType
+import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources.PaletteType
 
 data class MarketPaletteDto(
     internal val uuid: String,

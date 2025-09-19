@@ -1,12 +1,12 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostDescription
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostHuntInfo
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostStrength
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.mapper.GhostResources.GhostWeakness
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.journal.model.GhostType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.popup.model.GhostPopupRecord
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostDescription
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostStrength
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.operation.domain.journal.model.GhostType
+import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
 
 data class GhostDto(
     val id: String,

@@ -12,8 +12,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
+import com.tritiumgaming.shared.core.domain.reviewtracker.source.ReviewTrackerDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -29,7 +28,7 @@ class ReviewTrackerDatastoreDataSource(
     private val dataStore: DataStore<Preferences>
 ): ReviewTrackerDatastore {
 
-    val flow: Flow<ReviewTrackerPreferences> = dataStore.data
+    val flow: Flow<ReviewTrackerDatastore.ReviewTrackerPreferences> = dataStore.data
         .catch { exception ->
             if (exception is IOException) {
                 emit(emptyPreferences())
@@ -99,17 +98,17 @@ class ReviewTrackerDatastoreDataSource(
         liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initDatastoreFlow(onUpdate: (ReviewTrackerPreferences) -> Unit) =
+    override suspend fun initDatastoreFlow(onUpdate: (ReviewTrackerDatastore.ReviewTrackerPreferences) -> Unit) =
         flow.collect { onUpdate(it) }
 
     override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
 
-    private fun mapPreferences(preferences: Preferences): ReviewTrackerPreferences {
-        return ReviewTrackerPreferences(
+    private fun mapPreferences(preferences: Preferences): ReviewTrackerDatastore.ReviewTrackerPreferences {
+        return ReviewTrackerDatastore.ReviewTrackerPreferences(
             timeActive = preferences[KEY_TIME_ACTIVE] ?: 0L,
             timesOpened = preferences[KEY_TIMES_OPENED] ?: 0,
-            allowRequestReview =  preferences[KEY_ALLOW_REQUEST_REVIEW] == true,
+            allowRequestReview = preferences[KEY_ALLOW_REQUEST_REVIEW] == true,
         )
     }
 

@@ -1,10 +1,10 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.mapper.DifficultyResources.Frequency
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.difficulty.model.DifficultyModel
+import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.Frequency
+import com.tritiumgaming.shared.operation.domain.difficulty.model.DifficultyModel
 
 data class DifficultyModelDto(
     val index: Int,

@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.mapper
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.dto.MarketBundleDto
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.bundle.model.MarketBundle
+import com.tritiumgaming.shared.core.domain.market.bundle.model.MarketBundle
 
 fun MarketBundleDto.toDomain(): MarketBundle =
     MarketBundle(

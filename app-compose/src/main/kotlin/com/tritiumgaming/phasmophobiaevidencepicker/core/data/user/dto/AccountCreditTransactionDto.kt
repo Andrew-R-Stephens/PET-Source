@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountCreditTransaction
+import com.tritiumgaming.shared.core.domain.user.model.AccountCreditTransaction
+
 
 data class AccountCreditTransactionDto(
     val credits: Long

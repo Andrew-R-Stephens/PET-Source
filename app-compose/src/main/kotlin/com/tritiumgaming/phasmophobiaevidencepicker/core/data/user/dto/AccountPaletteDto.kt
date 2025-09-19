@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.dto
 
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.user.model.AccountPalette
+import com.tritiumgaming.shared.core.domain.user.model.AccountPalette
+
 
 data class AccountPaletteDto(
     internal val uuid: String,

@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.domain.ghostname.mappers.GhostNameResources
+import com.tritiumgaming.shared.operation.domain.ghostname.mappers.GhostNameResources
 
 @StringRes fun GhostNameResources.Name.toStringResource(): Int =
     when (this) {

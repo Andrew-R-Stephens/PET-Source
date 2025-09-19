@@ -2,9 +2,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.r
 
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.mapper.toDomain
 import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.billable.source.remote.MarketBillableFirestoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.model.BillableQueryOptions
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.model.MarketBillable
-import com.tritiumgaming.phasmophobiaevidencepicker.core.domain.market.billable.repository.MarketBillableRepository
+import com.tritiumgaming.shared.core.domain.market.billable.model.BillableQueryOptions
+import com.tritiumgaming.shared.core.domain.market.billable.model.MarketBillable
+import com.tritiumgaming.shared.core.domain.market.billable.repository.MarketBillableRepository
 
 class MarketBillableRepositoryImpl(
     private val billableFirestoreDataSource: MarketBillableFirestoreDataSource,
