@@ -1,0 +1,13 @@
+<resources>
+
+    <string name="theme_palette_colorblind_monochromacy">Ахроматопсия</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Дейтеранопия</string>
+    <string name="theme_palette_colorblind_protanomaly">протанопия</string>
+    <string name="theme_palette_colorblind_tritanomaly">Тританопия</string>
+    <string name="theme_typography_classic">P.E.T. Классический</string>
+    <string name="theme_typography_android">Андроид</string>
+    <string name="theme_typography_journal">Журнал</string>
+    <string name="theme_typography_brick">Кирпич</string>
+    <string name="theme_typography_clean">Чистый</string>
+
+</resources>

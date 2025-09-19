@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_palette_colorblind_monochromacy">Ахроматопсія</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Дейтеранопія</string>
+    <string name="theme_palette_colorblind_protanomaly">Протанопія</string>
+    <string name="theme_palette_colorblind_tritanomaly">Тританопія</string>
+    <string name="theme_typography_classic">P.E.T. класичний</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Журнал</string>
+    <string name="theme_typography_brick">Brick</string>
+    <string name="theme_typography_clean">Clean</string>
+</resources>

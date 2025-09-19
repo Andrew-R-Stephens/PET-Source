@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <string name="theme_palette_colorblind_monochromacy">アクロマトプシア</string>
+    <string name="theme_palette_colorblind_deuteranomaly">第二盲</string>
+    <string name="theme_palette_colorblind_protanomaly">第一色覚</string>
+    <string name="theme_palette_colorblind_tritanomaly">トリタノピア</string>
+    <string name="theme_typography_classic">P.E.T. クラシック</string>
+    <string name="theme_typography_android">アンドロイド</string>
+    <string name="theme_typography_journal">ジャーナル</string>
+    <string name="theme_typography_brick">レンガ</string>
+    <string name="theme_typography_clean">清らか</string>
+
+</resources>

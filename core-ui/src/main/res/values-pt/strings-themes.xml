@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <string name="theme_palette_colorblind_monochromacy">Acromatopsia</string>
+    <string name="theme_palette_colorblind_deuteranomaly">Deuteranopia</string>
+    <string name="theme_palette_colorblind_protanomaly">Protanopia</string>
+    <string name="theme_palette_colorblind_tritanomaly">Tritanopia</string>
+    <string name="theme_typography_classic">P.E.T. Clássico</string>
+    <string name="theme_typography_android">Android</string>
+    <string name="theme_typography_journal">Diária</string>
+    <string name="theme_typography_brick">Tijolo</string>
+    <string name="theme_typography_clean">Limpo</string>
+
+</resources>

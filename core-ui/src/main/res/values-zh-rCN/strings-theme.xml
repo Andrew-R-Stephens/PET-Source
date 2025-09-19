@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="theme_palette_colorblind_monochromacy">色盲</string>
+    <string name="theme_palette_colorblind_deuteranomaly">绿盲</string>
+    <string name="theme_palette_colorblind_protanomaly">红色盲</string>
+    <string name="theme_palette_colorblind_tritanomaly">蓝色盲</string>
+    <string name="theme_typography_classic">P.E.T. 经典的</string>
+    <string name="theme_typography_android">安卓</string>
+    <string name="theme_typography_journal">杂志</string>
+    <string name="theme_typography_brick">砖</string>
+    <string name="theme_typography_clean">干净</string>
+
+</resources>
