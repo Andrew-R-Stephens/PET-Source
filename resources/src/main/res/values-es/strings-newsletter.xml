@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!-- Page Details -->
-    <string name="newsletter_title">Centro de Mensajes</string>
-    <string name="newsletter_inbox_title_pet">Registro de Cambios de P.E.T.</string>
-    <string name="newsletter_inbox_title_phasmophobia">Registro de Cambios de Phasmophobia</string>
-    <string name="newsletter_inbox_title_general">Noticias Generales</string>
-</resources>
