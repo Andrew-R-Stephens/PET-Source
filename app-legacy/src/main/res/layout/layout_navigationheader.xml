@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <com.tritiumgaming.compose.presentation.ui.views.global.PETImageButton
+        <com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
             android:id="@+id/button_left"
             android:layout_width="48dp"
             android:layout_height="48dp"

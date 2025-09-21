@@ -97,7 +97,7 @@
     <integer-array name="messagecenter_inboxicons">
         <item>@drawable/ic_news</item>
         <item>@drawable/icon_logo_app</item>
-        <item>@drawable/icon_logo_phas</item>
+        <item>@drawable/icon_logo_phasmophobia</item>
     </integer-array>
 
     <!--
