@@ -39,8 +39,8 @@ android {
 
         minSdk = 23
         targetSdk = 36
-        versionCode = 133
-        versionName = "9.2.3"
+        versionCode = 134
+        versionName = "10.0.1-legacy.b.0"
 
         ndk {
             abiFilters.addAll(arrayOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
@@ -250,5 +250,7 @@ dependencies {
     /* New */
 
     implementation(libs.androidx.ui.graphics)
+
     implementation(project(":core-resources"))
+    implementation(project(":core-ui"))
 }

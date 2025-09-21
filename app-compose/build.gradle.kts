@@ -16,7 +16,7 @@ plugins {
 
 android {
 
-    namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
+    namespace = "com.tritiumgaming.core"
     compileSdk = 36
 
     /*
@@ -45,7 +45,7 @@ android {
 
         minSdk = 23
         targetSdk = 36
-        versionCode = 119
+        versionCode = 134
         versionName = "10.0.1-compose.a.2"
 
         ndk {
