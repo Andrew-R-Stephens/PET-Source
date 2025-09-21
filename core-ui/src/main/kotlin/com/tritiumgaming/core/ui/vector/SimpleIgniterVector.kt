@@ -1,6 +1,5 @@
 package com.tritiumgaming.core.ui.vector
 
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.SolidColor
@@ -10,6 +9,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 
 fun getSimpleIgniterVector(colors: IconVectorColors = IconVectorColors.defaults()): ImageVector =
     Builder(
