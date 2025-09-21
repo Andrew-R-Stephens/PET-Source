@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.menus
+package com.tritiumgaming.core.ui.common.menus
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

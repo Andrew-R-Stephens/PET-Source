@@ -25,6 +25,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions.PermissionsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ThemeConfigurationControl
+import com.tritiumgaming.shared.core.domain.icons.IconResources
 
 class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService {

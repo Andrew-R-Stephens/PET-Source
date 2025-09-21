@@ -21,6 +21,7 @@ import org.jetbrains.annotations.TestOnly
 @Composable
 fun LanguageIcon(
     modifier: Modifier = Modifier,
+    colors: IconVectorColors = IconVectorColors.defaults(),
     onClick: () -> Unit = {}
 ) {
 
@@ -33,10 +34,7 @@ fun LanguageIcon(
             modifier = Modifier
                 .fillMaxSize(),
 
-            colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.background.color,
-                strokeColor = LocalPalette.current.textFamily.body
-            )
+            colors = colors
         )
 
         IconResource.TRANSLATE.ToComposable(
@@ -44,10 +42,7 @@ fun LanguageIcon(
                 .padding(4.dp)
                 .fillMaxSize(.5f)
                 .align(Alignment.BottomEnd),
-            colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.background.color,
-                strokeColor = LocalPalette.current.textFamily.body
-            )
+            colors = colors
         )
 
     }
@@ -63,7 +58,11 @@ fun LanguageIconPreview() {
     ) {
         LanguageIcon(
             modifier = Modifier
-                .size(48.dp)
+                .size(48.dp),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
     }
 }

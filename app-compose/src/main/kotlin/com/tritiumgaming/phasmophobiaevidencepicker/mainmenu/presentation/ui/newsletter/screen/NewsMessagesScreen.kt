@@ -47,6 +47,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
@@ -409,7 +410,15 @@ private fun MessageCard(
                     modifier = Modifier
                         .fillMaxHeight(),
                     isActive = true,
-                    baseIcon = null
+                    baseIcon = null,
+                    baseTint = IconVectorColors(
+                        fillColor = LocalPalette.current.background.color,
+                        strokeColor = LocalPalette.current.textFamily.body
+                    ),
+                    alertTint = IconVectorColors(
+                        fillColor = LocalPalette.current.background.color,
+                        strokeColor = LocalPalette.current.inboxNotification
+                    )
                 )
             }
 

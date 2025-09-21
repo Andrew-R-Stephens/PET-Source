@@ -20,10 +20,7 @@ import org.jetbrains.annotations.TestOnly
 @Composable
 fun DiscordIcon(
     modifier: Modifier = Modifier,
-    colors: IconVectorColors = IconVectorColors.defaults(
-        fillColor = LocalPalette.current.background.color,
-        strokeColor = LocalPalette.current.textFamily.primary
-    )
+    colors: IconVectorColors = IconVectorColors.defaults()
 ) {
 
     Box(
@@ -41,10 +38,7 @@ fun DiscordIcon(
                 .padding(4.dp)
                 .fillMaxSize(.4f)
                 .align(Alignment.BottomEnd),
-            colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.background.color,
-                strokeColor = LocalPalette.current.textFamily.body
-            )
+            colors = colors
         )
     }
 
@@ -53,11 +47,18 @@ fun DiscordIcon(
 @Preview
 @Composable
 @TestOnly
-fun DiscordIconPreview() {
+fun DiscordIconPreview(
+    colors: IconVectorColors = IconVectorColors.defaults(
+        fillColor = LocalPalette.current.background.color,
+        strokeColor = LocalPalette.current.textFamily.primary
+    )
+) {
 
     SelectiveTheme(
         palette = ClassicPalette
     ) {
-        DiscordIcon()
+        DiscordIcon(
+            colors = colors
+        )
     }
 }

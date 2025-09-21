@@ -127,6 +127,8 @@ fun NotificationIndicator(
     isActive: Boolean = false,
     baseIcon: IconResource? = null,
     alertIcon: IconResource = IconResource.NOTIFY,
+    baseTint: IconVectorColors = IconVectorColors.defaults(),
+    alertTint: IconVectorColors = IconVectorColors.defaults(),
     onClick: () -> Unit = {}
 ) {
 
@@ -142,10 +144,7 @@ fun NotificationIndicator(
             modifier = Modifier
                 .fillMaxSize(),
 
-            colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.background.color,
-                strokeColor = LocalPalette.current.textFamily.body
-            )
+            colors = baseTint
         )
 
         val opacity by rememberInfiniteTransition().animateFloat(
@@ -173,11 +172,7 @@ fun NotificationIndicator(
                 .align(Alignment.BottomEnd)
         ) {
             alertIcon.ToComposable(
-
-                colors = IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.background.color,
-                    strokeColor = LocalPalette.current.textFamily.body
-                )
+                colors = alertTint
             )
         }
 

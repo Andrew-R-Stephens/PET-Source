@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers
+package com.tritiumgaming.core.ui.common.modifiers
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Box
@@ -14,8 +14,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers.DisplayOrientation.HORIZONTAL
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers.DisplayOrientation.VERTICAL
+import com.tritiumgaming.core.ui.common.modifiers.DisplayOrientation.HORIZONTAL
+import com.tritiumgaming.core.ui.common.modifiers.DisplayOrientation.VERTICAL
 
 object DisplayOrientation {
     const val HORIZONTAL: Int = 0

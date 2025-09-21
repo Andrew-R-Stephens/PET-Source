@@ -48,6 +48,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.common.menus.IconDropdownMenu
+import com.tritiumgaming.core.ui.common.menus.IconDropdownMenuColors
+import com.tritiumgaming.core.ui.common.menus.SecondarySelector
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.ButtonScratchedIcon
 import com.tritiumgaming.core.ui.icon.DiscordIcon
@@ -68,9 +71,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.AccountIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.LanguageIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.NotificationIndicator
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.menus.IconDropdownMenu
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.menus.IconDropdownMenuColors
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.menus.SecondarySelector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsletterViewModel
@@ -357,7 +357,11 @@ private fun LanguageButton(
 
         LanguageIcon(
             modifier = Modifier
-                .size(48.dp)
+                .size(48.dp),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         ) {
             onClick()
         }
@@ -483,9 +487,13 @@ private fun HeaderNavBar(
     val languageIcon: @Composable () -> Unit = {
         LanguageIcon(
             modifier = Modifier
-                .size(48.dp)
+                .size(48.dp),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         ) {
-        navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
+            navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
         }
     }
     val discordIcon: @Composable () -> Unit = { DiscordIcon(
@@ -557,6 +565,10 @@ private fun HeaderNavBar(
     NotificationIndicator(
         isActive = notificationState,
         alertIcon = IconResource.NOTIFY,
+        alertTint = IconVectorColors(
+            fillColor = LocalPalette.current.background.color,
+            strokeColor = LocalPalette.current.inboxNotification
+        )
     ) {
         navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
     }

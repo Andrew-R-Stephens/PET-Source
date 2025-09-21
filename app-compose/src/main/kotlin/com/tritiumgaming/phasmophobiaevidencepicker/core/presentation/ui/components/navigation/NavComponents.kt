@@ -84,16 +84,6 @@ fun NavigationHeaderComposable(
 
 }
 
-data class NavHeaderComposableParams(
-    var leftType: PETImageButtonType = PETImageButtonType.NONE,
-    var rightType: PETImageButtonType = PETImageButtonType.NONE,
-    @param:StringRes var centerTitleRes: Int? = null,
-    @param:StringRes var leftTitleRes: Int = leftType.labelRes,
-    @param:StringRes var rightTitleRes: Int = rightType.labelRes,
-    var leftOnClick: () -> Unit = {},
-    var rightOnClick: () -> Unit = {},
-)
-
 @Composable
 private fun RowScope.SideButton(
     modifier: Modifier = Modifier,
@@ -131,15 +121,6 @@ private fun RowScope.SideButton(
 }
 
 @Composable
-@TestOnly
-@Preview
-private fun TestPreview() {
-    PETImageButton(
-        type = PETImageButtonType.BACK
-    )
-}
-
-@Composable
 fun PETImageButton(
     modifier: Modifier = Modifier,
     type: PETImageButtonType = PETImageButtonType.NONE,
@@ -170,6 +151,25 @@ fun PETImageButton(
         }
     }
 }
+
+@Composable
+@TestOnly
+@Preview
+private fun TestPreview() {
+    PETImageButton(
+        type = PETImageButtonType.BACK
+    )
+}
+
+data class NavHeaderComposableParams(
+    var leftType: PETImageButtonType = PETImageButtonType.NONE,
+    var rightType: PETImageButtonType = PETImageButtonType.NONE,
+    @param:StringRes var centerTitleRes: Int? = null,
+    @param:StringRes var leftTitleRes: Int = leftType.labelRes,
+    @param:StringRes var rightTitleRes: Int = rightType.labelRes,
+    var leftOnClick: () -> Unit = {},
+    var rightOnClick: () -> Unit = {},
+)
 
 enum class PETImageButtonType(
     @param:DrawableRes val imageRes: Int = 0,

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels
+package com.tritiumgaming.core.ui.common.labels
 
 
 import androidx.compose.runtime.Composable

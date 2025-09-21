@@ -44,9 +44,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.common.modifiers.DisplayOrientation
+import com.tritiumgaming.core.ui.common.modifiers.fadingEdges
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers.DisplayOrientation
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers.fadingEdges
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -43,6 +43,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
@@ -50,6 +51,7 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.NotificationIndicator
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.NotificationIndicatorColors
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
@@ -276,7 +278,15 @@ private fun InboxCard(
                 modifier = Modifier
                     .size(98.dp),
                 isActive = isActive,
-                baseIcon = icon.toIconResource()
+                baseIcon = icon.toIconResource(),
+                baseTint = IconVectorColors(
+                    fillColor = LocalPalette.current.background.color,
+                    strokeColor = LocalPalette.current.textFamily.body
+                ),
+                alertTint = IconVectorColors(
+                    fillColor = LocalPalette.current.background.color,
+                    strokeColor = LocalPalette.current.inboxNotification
+                )
             ) {
                 onClick()
             }
