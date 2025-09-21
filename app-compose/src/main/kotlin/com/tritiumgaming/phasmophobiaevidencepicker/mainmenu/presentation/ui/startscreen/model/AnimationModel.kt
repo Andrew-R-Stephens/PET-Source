@@ -6,7 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.PorterDuff
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.util.BitmapUtils
 
 class AnimationModel {

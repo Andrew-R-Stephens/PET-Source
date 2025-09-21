@@ -11,7 +11,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.lifecycle.liveData
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.core.domain.reviewtracker.source.ReviewTrackerDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

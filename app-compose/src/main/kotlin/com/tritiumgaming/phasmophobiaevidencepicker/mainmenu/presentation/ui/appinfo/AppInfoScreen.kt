@@ -47,13 +47,14 @@ import androidx.core.net.toUri
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.DiscordIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
@@ -559,9 +560,10 @@ private fun VisitDiscordButton(
                 modifier = Modifier
                     .aspectRatio(1f)
                     .fillMaxHeight(),
-                colors = listOf(
-                    LocalPalette.current.textFamily.primary,
-                    LocalPalette.current.background.color
+
+                colors = IconVectorColors.defaults(
+                    fillColor = LocalPalette.current.textFamily.primary,
+                    strokeColor = LocalPalette.current.background.color
                 )
             )
 

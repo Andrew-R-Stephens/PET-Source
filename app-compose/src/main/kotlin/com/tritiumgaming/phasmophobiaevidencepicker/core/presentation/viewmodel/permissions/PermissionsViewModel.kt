@@ -40,7 +40,8 @@ class PermissionsViewModel: ViewModel() {
     val uiState = _uiState.asStateFlow()
 
     /** Sets initial UIState for the ViewModel. */
-    /*suspend*/ fun initMobileAdsConsentManager(activity: Activity) {
+    fun initMobileAdsConsentManager(activity: Activity) {
+        if(isInitCalled) return
 
         viewModelScope.launch {
             withContext(Dispatchers.Main) {

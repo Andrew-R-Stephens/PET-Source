@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.EvidenceDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.EvidenceTierDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.EvidenceDataSource

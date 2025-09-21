@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.sour
 
 import android.content.Context
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.dto.GhostDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.GhostDataSource
 import com.tritiumgaming.shared.operation.domain.journal.mapper.GhostResources.GhostDescription

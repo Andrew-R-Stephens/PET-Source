@@ -16,7 +16,7 @@ import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 
 @Composable
 fun AdmobBanner(

@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceAnimation
 import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceCost
 import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceDescription

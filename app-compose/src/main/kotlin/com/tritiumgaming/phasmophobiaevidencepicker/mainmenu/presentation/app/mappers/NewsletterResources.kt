@@ -4,11 +4,12 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
 import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
+import com.tritiumgaming.core.resources.R as CoreRDrawables
 
 @StringRes fun NewsletterTitle.toStringResource(): Int =
     when (this) {
@@ -19,9 +20,9 @@ import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterReso
 
 @DrawableRes fun NewsletterIcon.toDrawableResource(): Int =
     when (this) {
-        NewsletterIcon.GENERAL_NEWS -> R.drawable.ic_news
-        NewsletterIcon.PET_CHANGELOG -> R.drawable.icon_logo_app
-        NewsletterIcon.PHASMOPHOBIA_CHANGELOG -> R.drawable.icon_logo_phasmophobia
+        NewsletterIcon.GENERAL_NEWS -> CoreRDrawables.drawable.ic_news
+        NewsletterIcon.PET_CHANGELOG -> CoreRDrawables.drawable.icon_logo_app
+        NewsletterIcon.PHASMOPHOBIA_CHANGELOG -> CoreRDrawables.drawable.icon_logo_phasmophobia
     }
 
 @Composable

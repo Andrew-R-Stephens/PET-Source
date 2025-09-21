@@ -37,9 +37,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities.PETActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
@@ -116,7 +116,7 @@ private fun SettingsContent(
             verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.Top),
         ) {
             NavigationHeaderComposable(
-                NavHeaderComposableParams(
+                params = NavHeaderComposableParams(
                     leftType = PETImageButtonType.BACK,
                     centerTitleRes = R.string.settings_title,
                     leftOnClick = { onBack() }

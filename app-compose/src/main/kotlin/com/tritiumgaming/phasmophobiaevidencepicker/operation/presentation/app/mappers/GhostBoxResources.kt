@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers
 
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.operation.domain.ghostbox.mapper.GhostBoxResources
 
 @StringRes fun GhostBoxResources.Response.toStringResource(): Int =

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.AccountIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
@@ -45,7 +46,10 @@ fun AccountBanner(
             )
         }
 
-        AccountIcon()
+        AccountIcon(
+            borderColor =  LocalPalette.current.textFamily.body,
+            backgroundColor = LocalPalette.current.surface.onColor
+        )
     }
 
 }

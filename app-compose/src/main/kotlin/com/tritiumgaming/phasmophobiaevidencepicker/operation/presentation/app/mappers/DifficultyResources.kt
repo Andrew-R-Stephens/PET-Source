@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 
 import androidx.annotation.FractionRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyInitialSanity
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyModifier
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType

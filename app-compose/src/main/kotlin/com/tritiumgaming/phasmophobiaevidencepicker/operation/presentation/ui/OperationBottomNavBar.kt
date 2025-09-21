@@ -38,11 +38,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.vector.getHamburgerMenuVector
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.screens.PETScreen
 import kotlinx.coroutines.CoroutineScope
@@ -183,16 +184,16 @@ private fun OperationNavigationBottomBar(
                     modifier = Modifier,
                     imageVector =
                         getHamburgerMenuVector(
-                            groupColors =
+                            colors =
                                 if (rememberDrawerState.isOpen) {
-                                    listOf(
-                                        LocalPalette.current.surface.color,
-                                        LocalPalette.current.textFamily.primary
+                                    IconVectorColors.defaults(
+                                        fillColor =LocalPalette.current.surface.color,
+                                        strokeColor = LocalPalette.current.textFamily.primary
                                     )
                                 } else {
-                                    listOf(
-                                        LocalPalette.current.surface.color,
-                                        LocalPalette.current.textFamily.body
+                                    IconVectorColors.defaults(
+                                        fillColor =LocalPalette.current.surface.color,
+                                        strokeColor = LocalPalette.current.textFamily.body
                                     )
                                 }
                         ),
@@ -286,16 +287,16 @@ private fun OperationNavigationRail(
                         modifier = Modifier,
                         imageVector =
                             getHamburgerMenuVector(
-                                groupColors =
+                                colors =
                                     if (rememberDrawerState.isOpen) {
-                                        listOf(
-                                            LocalPalette.current.surface.color,
-                                            LocalPalette.current.textFamily.primary
+                                        IconVectorColors.defaults(
+                                            fillColor =LocalPalette.current.surface.color,
+                                            strokeColor = LocalPalette.current.textFamily.primary
                                         )
                                     } else {
-                                        listOf(
-                                            LocalPalette.current.surface.color,
-                                            LocalPalette.current.textFamily.body
+                                        IconVectorColors.defaults(
+                                            fillColor =LocalPalette.current.surface.color,
+                                            strokeColor = LocalPalette.current.textFamily.body
                                         )
                                     }
                             ),

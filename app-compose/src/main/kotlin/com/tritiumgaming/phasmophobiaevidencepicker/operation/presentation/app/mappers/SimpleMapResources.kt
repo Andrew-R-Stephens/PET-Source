@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapFloorImage
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapFloorTitle
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail

@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers
 
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.LocalizationCode
 import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.LocalizedTitle
 import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.NativeTitle

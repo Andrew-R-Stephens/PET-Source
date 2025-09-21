@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
@@ -42,8 +43,8 @@ fun MarkCheckCircleIcon(
                 .fillMaxSize(.8f)
                 .align(Alignment.Center),
             imageVector = getMarkCheckVector(
-                listOf(
-                    foregroundColor
+                colors = IconVectorColors.defaults(
+                    fillColor = foregroundColor
                 )
             ),
             contentDescription = null,
@@ -70,8 +71,8 @@ fun MarkXCircleIcon(
                 .fillMaxSize(.8f)
                 .align(Alignment.Center),
             imageVector = getMarkXVector(
-                listOf(
-                    foregroundColor
+                colors = IconVectorColors.defaults(
+                    fillColor = foregroundColor
                 )
             ),
             contentDescription = null,
@@ -98,8 +99,8 @@ fun MarkPriorityCircleIcon(
                 .fillMaxSize(.8f)
                 .align(Alignment.Center),
             imageVector = getMarkPriorityVector(
-                listOf(
-                    foregroundColor
+                colors = IconVectorColors.defaults(
+                    fillColor = foregroundColor
                 )
             ),
             contentDescription = null,

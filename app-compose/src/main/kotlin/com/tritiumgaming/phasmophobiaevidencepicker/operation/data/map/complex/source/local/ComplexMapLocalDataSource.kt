@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.mappers.WorldMapsSerializerDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.ComplexMapService

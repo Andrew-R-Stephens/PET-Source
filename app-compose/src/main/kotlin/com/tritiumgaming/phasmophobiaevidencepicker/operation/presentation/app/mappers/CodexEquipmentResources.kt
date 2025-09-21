@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources
 import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentAttribute
 import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources.EquipmentBuyCost
@@ -207,9 +207,9 @@ import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentRes
         CodexEquipmentResources.TierImage.SOUND_RECORDER_1 -> R.drawable.icon_shop_soundrecorder_1
         CodexEquipmentResources.TierImage.SOUND_RECORDER_2 -> R.drawable.icon_shop_soundrecorder_2
         CodexEquipmentResources.TierImage.SOUND_RECORDER_3 -> R.drawable.icon_shop_soundrecorder_3
-        CodexEquipmentResources.TierImage.SOUND_SENSOR_1 -> R.drawable.icon_shop_sound_1
-        CodexEquipmentResources.TierImage.SOUND_SENSOR_2 -> R.drawable.icon_shop_sound_2
-        CodexEquipmentResources.TierImage.SOUND_SENSOR_3 -> R.drawable.icon_shop_sound_3
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_1 -> R.drawable.icon_shop_soundsensor_1
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_2 -> R.drawable.icon_shop_soundsensor_2
+        CodexEquipmentResources.TierImage.SOUND_SENSOR_3 -> R.drawable.icon_shop_soundsensor_3
         CodexEquipmentResources.TierImage.SANITY_MEDICATION_1 -> R.drawable.icon_shop_sanity_1
         CodexEquipmentResources.TierImage.SANITY_MEDICATION_2 -> R.drawable.icon_shop_sanity_2
         CodexEquipmentResources.TierImage.SANITY_MEDICATION_3 -> R.drawable.icon_shop_sanity_3

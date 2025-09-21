@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.local
 
 import android.content.Context
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.dto.MissionDto
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.MissionDataSource
 import com.tritiumgaming.shared.operation.domain.mission.mappers.MissionResources.MissionContent

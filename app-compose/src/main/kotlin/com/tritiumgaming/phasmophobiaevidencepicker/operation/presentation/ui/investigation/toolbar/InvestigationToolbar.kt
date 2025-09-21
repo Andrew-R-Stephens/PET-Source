@@ -43,8 +43,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers.DisplayOrientation
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.modifiers.fadingEdges
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme

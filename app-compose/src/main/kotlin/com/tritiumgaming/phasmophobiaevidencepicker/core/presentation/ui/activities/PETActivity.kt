@@ -91,14 +91,8 @@ class PETActivity : AppCompatActivity(),
         }
 
         // Initialize the view model. This will gather consent and initialize Google Mobile Ads.
-        if (!permissionsViewModel.isInitCalled) {
-            //lifecycleScope.launch {
-                permissionsViewModel.initMobileAdsConsentManager(this@PETActivity)
-            //}
-        }
+        permissionsViewModel.initMobileAdsConsentManager(this@PETActivity)
 
-        //initializeMobileAdsSdk(this)
-        //createConsentInformation(this)
         initFirebaseAnalytics(this)
 
         checkForAppUpdate(this@PETActivity)

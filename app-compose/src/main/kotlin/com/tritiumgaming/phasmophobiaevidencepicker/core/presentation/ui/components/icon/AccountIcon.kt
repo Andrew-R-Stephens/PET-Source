@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -44,16 +46,20 @@ fun TestAccountIcon() {
     SelectiveTheme(
         palette = ClassicPalette
     ) {
-        AccountIcon()
+        AccountIcon(
+            borderColor =  LocalPalette.current.textFamily.body,
+            backgroundColor = LocalPalette.current.surface.onColor
+        )
     }
 
 }
 
 @Composable
-fun AccountIcon() {
-
-    val borderColor =  LocalPalette.current.textFamily.body
-    val backgroundColor = LocalPalette.current.surface.onColor
+fun AccountIcon(
+    modifier: Modifier = Modifier,
+    borderColor: Color = Color.Unspecified,
+    backgroundColor: Color = Color.Unspecified,
+) {
 
     Box(
         modifier = Modifier
@@ -71,6 +77,10 @@ fun AccountIcon() {
                 modifier = Modifier
                     .padding(8.dp)
                     .fillMaxSize(),
+                colors = IconVectorColors.defaults(
+                    fillColor = LocalPalette.current.background.color,
+                    strokeColor = LocalPalette.current.textFamily.body
+                )
             )
 
         } else {

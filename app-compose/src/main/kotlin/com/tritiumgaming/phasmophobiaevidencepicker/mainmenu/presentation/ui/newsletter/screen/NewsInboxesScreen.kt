@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen
 
 import android.widget.Toast
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -42,12 +41,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.NotificationIndicator
@@ -79,7 +78,6 @@ private fun NewsInboxesScreenPreview() {
 
 @Composable
 fun NewsInboxesScreen(
-    //content: @Composable () -> Unit
     navController: NavController = rememberNavController(),
     newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
 ) {
@@ -98,7 +96,7 @@ fun NewsInboxesScreen(
         ) {
 
             NavigationHeaderComposable(
-                NavHeaderComposableParams(
+                params = NavHeaderComposableParams(
                     leftType = PETImageButtonType.BACK,
                     rightType = PETImageButtonType.NONE,
                     centerTitleRes = R.string.newsletter_title,
@@ -243,79 +241,6 @@ private fun ColumnScope.NewsInboxesContentLandscape(
         }
     }
 
-}
-
-@Composable
-private fun InboxCard(
-    modifier: Modifier = Modifier,
-    title: Int = R.string.newsletter_title,
-    @DrawableRes icon: Int = R.drawable.ic_notify,
-    isActive: Boolean = true,
-    onClick: () -> Unit = {}
-) {
-
-    Surface(
-        modifier = modifier
-            .padding(8.dp)
-            .clickable {
-                onClick()
-            },
-        color = LocalPalette.current.surface.onColor,
-        shape = RoundedCornerShape(CornerSize(16.dp)),
-        onClick = { onClick() }
-    ) {
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            NotificationIndicator(
-                modifier = Modifier
-                    .size(98.dp),
-                isActive = isActive,
-                baseDrawableId = icon
-            ) {
-                onClick()
-            }
-
-            var rememberOverflow by remember { mutableStateOf(false) }
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .then(
-                        if (rememberOverflow) Modifier.wrapContentHeight()
-                        else Modifier
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-
-                BasicText(
-                    text = stringResource(title),
-                    style = LocalTypography.current.primary.regular.copy(
-                        color = LocalPalette.current.textFamily.primary,
-                        textAlign = TextAlign.Center
-                    ),
-                    softWrap = true,
-                    maxLines = if (rememberOverflow) 2 else 1,
-                    autoSize = TextAutoSize.StepBased(
-                        minFontSize = 24.sp, maxFontSize = 36.sp, stepSize = 5.sp),
-                    onTextLayout = { textLayoutResult ->
-                        if (textLayoutResult.hasVisualOverflow) {
-                            rememberOverflow = true
-                        }
-                    },
-                )
-
-            }
-
-        }
-
-    }
 }
 
 @Composable

@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
@@ -20,9 +21,9 @@ import org.jetbrains.annotations.TestOnly
 @Composable
 fun DiscordIcon(
     modifier: Modifier = Modifier,
-    colors: List<Color> = listOf(
-        LocalPalette.current.background.color,
-        LocalPalette.current.textFamily.primary
+    colors: IconVectorColors = IconVectorColors.defaults(
+        fillColor = LocalPalette.current.background.color,
+        strokeColor = LocalPalette.current.textFamily.primary
     )
 ) {
 
@@ -40,7 +41,11 @@ fun DiscordIcon(
             modifier = Modifier
                 .padding(4.dp)
                 .fillMaxSize(.4f)
-                .align(Alignment.BottomEnd)
+                .align(Alignment.BottomEnd),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
     }
 

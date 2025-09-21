@@ -44,7 +44,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.Holiday22
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
@@ -52,7 +54,6 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.getExitVector
 import com.tritiumgaming.core.ui.vector.getGearVector
 import com.tritiumgaming.core.ui.vector.getInfoVector
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.Journal
@@ -454,14 +455,14 @@ private fun OperationToolbar(
                 modifier = modifier,
                 imageVector = getGearVector(
                     if(section == ToolbarUiState.Category.TOOL_CONFIG) {
-                        listOf(
-                            Color.Transparent,
-                            LocalPalette.current.textFamily.primary,
+                        IconVectorColors.defaults(
+                            fillColor = Color.Transparent,
+                            strokeColor = LocalPalette.current.textFamily.primary,
                         )
                     } else {
-                        listOf(
-                            Color.Transparent,
-                            LocalPalette.current.textFamily.body,
+                        IconVectorColors.defaults(
+                            fillColor =Color.Transparent,
+                            strokeColor = LocalPalette.current.textFamily.body,
                         )
                     }
                 ),
@@ -479,14 +480,14 @@ private fun OperationToolbar(
                 modifier = modifier,
                 imageVector = getInfoVector(
                     if(section == ToolbarUiState.Category.TOOL_ANALYZER) {
-                        listOf(
-                            Color.Transparent,
-                            LocalPalette.current.textFamily.primary,
+                        IconVectorColors.defaults(
+                            fillColor = Color.Transparent,
+                            strokeColor = LocalPalette.current.textFamily.primary,
                         )
                     } else {
-                        listOf(
-                            Color.Transparent,
-                            LocalPalette.current.textFamily.body,
+                        IconVectorColors.defaults(
+                            fillColor = Color.Transparent,
+                            strokeColor = LocalPalette.current.textFamily.body,
                         )
                     }
                 ),
@@ -504,14 +505,14 @@ private fun OperationToolbar(
                 modifier = modifier,
                 imageVector = getExitVector(
                     if(section == ToolbarUiState.Category.TOOL_FOOTSTEP) {
-                        listOf(
-                            LocalPalette.current.textFamily.primary,
-                            Color.Transparent,
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.textFamily.primary,
+                            strokeColor = Color.Transparent,
                         )
                     } else {
-                        listOf(
-                            Color.Transparent,
-                            LocalPalette.current.textFamily.body,
+                        IconVectorColors.defaults(
+                            fillColor = Color.Transparent,
+                            strokeColor = LocalPalette.current.textFamily.body,
                         )
                     }
                 ),

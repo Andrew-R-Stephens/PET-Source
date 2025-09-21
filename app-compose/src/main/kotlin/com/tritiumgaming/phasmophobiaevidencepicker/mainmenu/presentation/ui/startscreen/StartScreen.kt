@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
@@ -32,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -45,6 +47,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.ButtonScratchedIcon
 import com.tritiumgaming.core.ui.icon.DiscordIcon
@@ -54,22 +57,23 @@ import com.tritiumgaming.core.ui.icon.InfoIcon
 import com.tritiumgaming.core.ui.icon.PersonIcon
 import com.tritiumgaming.core.ui.icon.ReviewIcon
 import com.tritiumgaming.core.ui.icon.StoreIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.AccountIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.LanguageIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.NotificationIndicator
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.menus.IconDropdownMenu
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.menus.IconDropdownMenuColors
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.menus.SecondarySelector
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.IconDropdownMenu
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.menus.SecondarySelector
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import java.util.Locale
 
@@ -224,7 +228,12 @@ private fun ColumnScope.LogoSection(
             modifier = Modifier
                 .heightIn(max = 256.dp)
                 .aspectRatio(1f)
-                .weight(1f)
+                .weight(1f),
+
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
 
         BasicText(
@@ -261,7 +270,12 @@ private fun RowScope.LogoSection(
             modifier = Modifier
                 .heightIn(max = 256.dp)
                 .aspectRatio(1f, false)
-                .weight(1f, false)
+                .weight(1f, false),
+
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -341,7 +355,10 @@ private fun LanguageButton(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        LanguageIcon {
+        LanguageIcon(
+            modifier = Modifier
+                .size(48.dp)
+        ) {
             onClick()
         }
 
@@ -384,8 +401,8 @@ private fun StartButton(
         shape = RectangleShape,
         contentPadding = PaddingValues(0.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = LocalPalette.current.background.color,
-            contentColor = LocalPalette.current.textFamily.body,
+            containerColor = Color.Transparent,
+            contentColor = Color.Transparent,
         ),
 
     ) {
@@ -400,7 +417,11 @@ private fun StartButton(
             ButtonScratchedIcon(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .width(IntrinsicSize.Max)
+                    .width(IntrinsicSize.Max),
+                colors = IconVectorColors.defaults(
+                    fillColor = LocalPalette.current.background.color,
+                    strokeColor = LocalPalette.current.textFamily.body
+                )
             )
 
             BasicText(
@@ -439,17 +460,66 @@ private fun HeaderNavBar(
             inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
         } != null
 
-    val menuIcon: @Composable () -> Unit = { HamburgerMenuIcon() }
-    val infoIcon: @Composable () -> Unit = { InfoIcon() }
-    val gearIcon: @Composable () -> Unit = { GearIcon() }
-    val languageIcon: @Composable () -> Unit = { LanguageIcon {
+    val menuIcon: @Composable () -> Unit = { HamburgerMenuIcon(
+
+        colors = IconVectorColors.defaults(
+            fillColor = LocalPalette.current.background.color,
+            strokeColor = LocalPalette.current.textFamily.body
+        )
+    ) }
+    val infoIcon: @Composable () -> Unit = { InfoIcon(
+        colors = IconVectorColors.defaults(
+            fillColor = LocalPalette.current.background.color,
+            strokeColor = LocalPalette.current.textFamily.body
+        )
+    ) }
+    val gearIcon: @Composable () -> Unit = { GearIcon(
+
+        colors = IconVectorColors.defaults(
+            fillColor = LocalPalette.current.background.color,
+            strokeColor = LocalPalette.current.textFamily.body
+        )
+    ) }
+    val languageIcon: @Composable () -> Unit = {
+        LanguageIcon(
+            modifier = Modifier
+                .size(48.dp)
+        ) {
         navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
-    } }
-    val discordIcon: @Composable () -> Unit = { DiscordIcon() }
-    val reviewIcon: @Composable () -> Unit = { ReviewIcon() }
-    val accountIcon: @Composable () -> Unit = { AccountIcon() }
-    val personIcon: @Composable () -> Unit = { PersonIcon() }
-    val storeIcon: @Composable () -> Unit = { StoreIcon() }
+        }
+    }
+    val discordIcon: @Composable () -> Unit = { DiscordIcon(
+
+        colors = IconVectorColors.defaults(
+            fillColor = LocalPalette.current.background.color,
+            strokeColor = LocalPalette.current.textFamily.body
+        )
+    ) }
+    val reviewIcon: @Composable () -> Unit = { ReviewIcon(
+
+        colors = IconVectorColors.defaults(
+            fillColor = LocalPalette.current.background.color,
+            strokeColor = LocalPalette.current.textFamily.body
+        )
+    ) }
+    val accountIcon: @Composable () -> Unit = { AccountIcon(
+        borderColor =  LocalPalette.current.textFamily.body,
+        backgroundColor = LocalPalette.current.surface.onColor
+    ) }
+    val personIcon: @Composable () -> Unit = { PersonIcon(
+
+        colors = IconVectorColors.defaults(
+            fillColor = LocalPalette.current.background.color,
+            strokeColor = LocalPalette.current.textFamily.body
+        )
+    ) }
+    val storeIcon: @Composable () -> Unit = { StoreIcon(
+
+        colors = IconVectorColors.defaults(
+            fillColor = LocalPalette.current.background.color,
+            strokeColor = LocalPalette.current.textFamily.body
+        )
+    ) }
 
     IconDropdownMenu(
         primaryContent = menuIcon,
@@ -476,7 +546,11 @@ private fun HeaderNavBar(
                 }) {
                 discordIcon()
             }
-        }
+        },
+        colors = IconDropdownMenuColors(
+            primaryContentBackground = LocalPalette.current.surface.onColor,
+            dropdownContentBackground = LocalPalette.current.surface.onColor
+        )
     ) { false }
 
     // News Button
@@ -500,6 +574,10 @@ private fun HeaderNavBar(
                 onClick = { navController.navigate(NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) }) {
                 storeIcon()
             }
-        }
+        },
+        colors = IconDropdownMenuColors(
+            primaryContentBackground = LocalPalette.current.surface.onColor,
+            dropdownContentBackground = LocalPalette.current.surface.onColor
+        )
     ) { false }
 }

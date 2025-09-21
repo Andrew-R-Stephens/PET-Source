@@ -107,7 +107,7 @@ private fun NewsMessageContent(
     ) {
 
         NavigationHeaderComposable(
-            NavHeaderComposableParams(
+            params = NavHeaderComposableParams(
                 leftType = PETImageButtonType.BACK,
                 rightType = PETImageButtonType.NONE,
                 leftOnClick = { navController.popBackStack() }

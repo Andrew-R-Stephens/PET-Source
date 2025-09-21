@@ -10,7 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
@@ -18,26 +20,34 @@ import org.jetbrains.annotations.TestOnly
 
 @Composable
 fun LanguageIcon(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
-    val size = 48.dp
 
     Box(
-        modifier = Modifier
-            .size(size)
+        modifier = modifier
             .clickable(true) { onClick() }
     ) {
 
         IconResource.GLOBE.ToComposable(
             modifier = Modifier
-            .fillMaxSize()
+                .fillMaxSize(),
+
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
 
         IconResource.TRANSLATE.ToComposable(
             modifier = Modifier
                 .padding(4.dp)
                 .fillMaxSize(.5f)
-                .align(Alignment.BottomEnd)
+                .align(Alignment.BottomEnd),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
 
     }
@@ -51,6 +61,9 @@ fun LanguageIconPreview() {
     SelectiveTheme(
         palette = ClassicPalette
     ) {
-        LanguageIcon()
+        LanguageIcon(
+            modifier = Modifier
+                .size(48.dp)
+        )
     }
 }

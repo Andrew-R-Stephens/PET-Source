@@ -2,7 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.so
 
 import android.content.Context
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.data.newsletter.dto.local.LocalNewsletterInboxDto
 import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
 import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle

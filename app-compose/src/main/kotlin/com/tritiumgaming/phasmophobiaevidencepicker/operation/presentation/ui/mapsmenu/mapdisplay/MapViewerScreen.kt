@@ -76,6 +76,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.Arrow60LeftIcon
 import com.tritiumgaming.core.ui.icon.Arrow60RightIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.labels.DynamicContentAlignmentPercentage
@@ -538,7 +539,9 @@ private fun UiControllerPortrait(
                             mapsViewModel.decrementFloor()
                         })
                         .padding(8.dp),
-                    tint = listOf(LocalPalette.current.textFamily.body)
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.textFamily.body
+                    )
                 )
 
                 Text(
@@ -555,7 +558,9 @@ private fun UiControllerPortrait(
                             mapsViewModel.incrementFloor()
                         })
                         .padding(8.dp),
-                    tint = listOf(LocalPalette.current.textFamily.body)
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.textFamily.body
+                    )
                 )
 
             }
@@ -701,7 +706,9 @@ private fun UiControllerLandscape(
                             mapsViewModel.incrementFloor()
                         })
                         .rotate(90f),
-                    tint = listOf(LocalPalette.current.textFamily.body)
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.textFamily.body
+                    )
                 )
 
                 val rememberLazyListState = rememberLazyListState()
@@ -745,7 +752,9 @@ private fun UiControllerLandscape(
                             mapsViewModel.decrementFloor()
                         })
                         .rotate(90f),
-                    tint = listOf(LocalPalette.current.textFamily.body)
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.textFamily.body
+                    )
                 )
 
             }
