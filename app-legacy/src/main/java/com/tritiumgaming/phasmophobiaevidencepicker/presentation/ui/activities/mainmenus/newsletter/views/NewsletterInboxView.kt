@@ -6,6 +6,7 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.ui.platform.ComposeView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.withStyledAttributes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
@@ -26,11 +27,13 @@ class NewsletterInboxView : ConstraintLayout {
         var title: String? = ""
         @DrawableRes var icon: Int? = null
         attrs?.let {
-            val a = context.obtainStyledAttributes(attrs, R.styleable.NewsletterInboxView)
-            title = a.getString(R.styleable.NewsletterInboxView_inbox_title)
-            icon = a.getResourceId(
-                R.styleable.NewsletterInboxView_inbox_icon, R.drawable.icon_logo_app)
-            a.recycle()
+            context.withStyledAttributes(attrs, R.styleable.NewsletterInboxView) {
+                title = getString(R.styleable.NewsletterInboxView_inbox_title)
+                icon = getResourceId(
+                    R.styleable.NewsletterInboxView_inbox_icon,
+                    com.tritiumgaming.core.resources.R.drawable.icon_logo_app
+                )
+            }
         }
         title?.let { setTitle(it) }
         //icon?.let { this.icon = it }

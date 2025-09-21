@@ -18,7 +18,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
 
 @Composable
@@ -63,7 +62,7 @@ fun ToggleButton(
     state: Boolean = false
 ) {
     Image(
-        painterResource(id = R.drawable.icon_sanityhead_top),
+        painterResource(id = com.tritiumgaming.core.resources.R.drawable.icon_sanityhead_top),
         contentDescription = "",
         modifier = modifier
             .border(2.dp, Color.White, RoundedCornerShape(4.dp))

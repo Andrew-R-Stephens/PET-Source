@@ -459,7 +459,7 @@ fun Dialog(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.icon_logo_app),
+                        painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.icon_logo_app),
                         contentDescription = "Phasmophobia Evidence Tool Logo",
                         modifier = Modifier
                             .size(64.dp)
@@ -671,7 +671,7 @@ fun EquipConfirmationDialog (
                             .wrapContentWidth()
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.ic_arrow_chevron_right),
+                            painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.ic_arrow_chevron_right),
                             colorFilter = ColorFilter.tint(Color(getColorFromAttribute(
                                 LocalContext.current, R.attr.textColorBody))),
                             contentDescription = ""

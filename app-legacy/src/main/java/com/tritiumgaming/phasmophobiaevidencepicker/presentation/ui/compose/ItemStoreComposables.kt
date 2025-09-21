@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.ItemStoreType.Companion.Equipment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.ItemStoreType.Companion.Possession
 
@@ -44,9 +43,9 @@ fun TestPossessionGroup() {
 @Composable
 fun EquipmentGroup(
     icons: ArrayList<Int> = arrayListOf(
-        R.drawable.icon_shop_crucifix_1,
-        R.drawable.icon_shop_crucifix_2,
-        R.drawable.icon_shop_crucifix_3
+        com.tritiumgaming.core.resources.R.drawable.icon_shop_crucifix_1,
+        com.tritiumgaming.core.resources.R.drawable.icon_shop_crucifix_2,
+        com.tritiumgaming.core.resources.R.drawable.icon_shop_crucifix_3
     )
 ) {
     Row(
@@ -84,8 +83,8 @@ fun EquipmentGroup(
 @Composable
 fun PossessionGroup(
     icons: ArrayList<Int> = arrayListOf(
-        R.drawable.icon_cursedpossessions_monkeyspawhand,
-        R.drawable.icon_cursedpossessions_monkeyspawwish
+        com.tritiumgaming.core.resources.R.drawable.icon_cursedpossessions_monkeyspawhand,
+        com.tritiumgaming.core.resources.R.drawable.icon_cursedpossessions_monkeyspawwish
     )
 ) {
     Row(

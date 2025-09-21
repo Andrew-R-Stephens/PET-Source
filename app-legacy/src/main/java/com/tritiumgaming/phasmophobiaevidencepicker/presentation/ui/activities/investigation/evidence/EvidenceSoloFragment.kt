@@ -68,11 +68,11 @@ class EvidenceSoloFragment : EvidenceFragment(R.layout.fragment_evidence) {
                     var p: MediaPlayer? = null
                     try {
                         p = when (language) {
-                            "es" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_es)
-                            "fr" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_fr)
-                            "de" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_de)
-                            "en" -> MediaPlayer.create(requireContext(), R.raw.huntwarning_en)
-                            else -> MediaPlayer.create(requireContext(), R.raw.huntwarning_en)
+                            "es" -> MediaPlayer.create(requireContext(), com.tritiumgaming.core.resources.R.raw.huntwarning_es)
+                            "fr" -> MediaPlayer.create(requireContext(), com.tritiumgaming.core.resources.R.raw.huntwarning_fr)
+                            "de" -> MediaPlayer.create(requireContext(), com.tritiumgaming.core.resources.R.raw.huntwarning_de)
+                            "en" -> MediaPlayer.create(requireContext(), com.tritiumgaming.core.resources.R.raw.huntwarning_en)
+                            else -> MediaPlayer.create(requireContext(), com.tritiumgaming.core.resources.R.raw.huntwarning_en)
                         }
                     } catch (e: IllegalStateException) { e.printStackTrace() }
                     return p

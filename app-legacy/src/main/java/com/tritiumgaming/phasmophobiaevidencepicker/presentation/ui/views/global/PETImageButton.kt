@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
+import androidx.core.content.withStyledAttributes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 
 open class PETImageButton : AppCompatImageButton {
@@ -21,22 +22,22 @@ open class PETImageButton : AppCompatImageButton {
         setDefaults()
 
         if (attrs != null) {
-            val attrArray = context.obtainStyledAttributes(attrs, R.styleable.PETImageButton)
+            context.withStyledAttributes(attrs, R.styleable.PETImageButton) {
 
-            if(drawable == null) {
-                setImageResource(
-                    attrArray.getResourceId(
-                        R.styleable.PETImageButton_PETImageButtonBackground,
-                        R.drawable.ic_button_designs
+                if (drawable == null) {
+                    setImageResource(
+                        getResourceId(
+                            R.styleable.PETImageButton_PETImageButtonBackground,
+                            R.drawable.ic_button_designs
+                        )
                     )
-                )
 
-                setImageLevel(
-                    attrArray.getInt(R.styleable.PETImageButton_PETImageButtonType, 0)
-                )
+                    setImageLevel(
+                        getInt(R.styleable.PETImageButton_PETImageButtonType, 0)
+                    )
+                }
+
             }
-
-            attrArray.recycle()
         }
     }
 

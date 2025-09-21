@@ -53,7 +53,7 @@ fun AccountIcon() {
 
         if (FirestoreUser.currentFirebaseUser == null) {
             Image(
-                painter = painterResource(id = R.drawable.ic_person),
+                painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.ic_person),
                 //colorFilter = ColorFilter.tint(personTint),
                 contentDescription = contentDescription,
                 contentScale = contentScale,
@@ -87,7 +87,7 @@ fun LanguageIcon() {
         val contentDescription = "Outer Box"
 
         Image(
-            painter = painterResource(id = R.drawable.ic_globe),
+            painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.ic_globe),
             contentDescription = contentDescription,
             contentScale = contentScale,
             modifier = Modifier
@@ -95,7 +95,7 @@ fun LanguageIcon() {
         )
 
         Image(
-            painter = painterResource(id = R.drawable.ic_translate),
+            painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.ic_translate),
             contentDescription = contentDescription,
             contentScale = contentScale,
             modifier = Modifier
@@ -120,7 +120,7 @@ fun DiscordIcon() {
         val contentDescription = "Outer Box"
 
         Image(
-            painter = painterResource(id = R.drawable.ic_discord),
+            painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.ic_discord),
             contentDescription = contentDescription,
             contentScale = contentScale,
             modifier = Modifier
@@ -128,7 +128,7 @@ fun DiscordIcon() {
         )
 
         Image(
-            painter = painterResource(id = R.drawable.ic_open_in_new),
+            painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.ic_open_in_new),
             contentDescription = contentDescription,
             contentScale = contentScale,
             modifier = Modifier
@@ -153,7 +153,7 @@ fun PatreonIcon() {
         val contentDescription = "Outer Box"
 
         Image(
-            painter = painterResource(id = R.drawable.ic_logo_patreon),
+            painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.ic_logo_patreon),
             contentDescription = contentDescription,
             contentScale = contentScale,
             modifier = Modifier

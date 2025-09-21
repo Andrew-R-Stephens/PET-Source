@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.net.toUri
 import androidx.navigation.Navigation.findNavController
@@ -23,12 +22,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.m
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.StartScreenAnimationView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewLauncher
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.DropdownClickPair
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.DropdownNavigationPair
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.IconDropdownMenu
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.LanguageIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.PatreonIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountIconView
 import java.util.Locale
 
@@ -98,17 +95,19 @@ class StartScreenFragment : MainMenuFragment() {
         languageIcon?.setContent { LanguageIcon() }
 
         buttonMenu.setContent {
-            val translationIcon: @Composable () -> Unit = { LanguageIcon() }
+
+
+            /*val translationIcon: @Composable () -> Unit = { LanguageIcon() }
             val patreonIcon: @Composable () -> Unit = { PatreonIcon() }
 
             IconDropdownMenu(
-                R.drawable.ic_menu,
+                com.tritiumgaming.core.resources.R.drawable.ic_menu,
                 R.navigation.titlescreen_navgraph,
                 arrayOf(
-                    DropdownNavigationPair(R.drawable.ic_info, R.id.appInfoFragment),
-                    DropdownNavigationPair(R.drawable.ic_gear, R.id.appSettingsFragment),
+                    DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_info, R.id.appInfoFragment),
+                    DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_gear, R.id.appSettingsFragment),
                     DropdownNavigationPair(translationIcon, R.id.appLanguageFragment),
-                    DropdownClickPair(R.drawable.ic_discord) {
+                    DropdownClickPair(com.tritiumgaming.core.resources.R.drawable.ic_discord) {
                         try {
                             startActivity(
                                 Intent(
@@ -135,7 +134,7 @@ class StartScreenFragment : MainMenuFragment() {
                         }
                     },
                 )
-            ) { false }
+            ) { false }*/
 
         }
 
@@ -145,8 +144,8 @@ class StartScreenFragment : MainMenuFragment() {
                 AccountIconView(requireContext()),
                 R.navigation.titlescreen_navgraph,
                 arrayOf(
-                    DropdownNavigationPair(R.drawable.ic_person, R.id.accountOverviewFragment),
-                        DropdownNavigationPair(R.drawable.ic_store, R.id.marketplaceFragment)
+                    DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_person, R.id.accountOverviewFragment),
+                        DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_store, R.id.marketplaceFragment)
                 )
             )
 

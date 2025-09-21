@@ -52,12 +52,12 @@ data class DropdownNavigationPair(val content: Any, val navigationRoute: Int):
 fun TestMenuIcons() {
 
     IconDropdownMenu(
-        R.drawable.ic_menu,
+        com.tritiumgaming.core.resources.R.drawable.ic_menu,
         R.navigation.titlescreen_navgraph,
         arrayOf(
-            DropdownNavigationPair(R.drawable.ic_gear, R.id.appSettingsFragment),
-            DropdownNavigationPair(R.drawable.ic_person, R.id.appLanguageFragment),
-            DropdownClickPair(R.drawable.ic_discord) { }
+            DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_gear, R.id.appSettingsFragment),
+            DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_person, R.id.appLanguageFragment),
+            DropdownClickPair(com.tritiumgaming.core.resources.R.drawable.ic_discord) { }
         ),
     ) { false }
 }
@@ -98,8 +98,8 @@ fun IconDropdownMenu(
 
             if(showExpandIcon()) {
                 val arrowImage: Int =
-                    if (expanded) R.drawable.ic_expand_circle_up
-                    else R.drawable.ic_expand_circle_down
+                    if (expanded) com.tritiumgaming.core.resources.R.drawable.ic_expand_circle_up
+                    else com.tritiumgaming.core.resources.R.drawable.ic_expand_circle_down
 
                 Box(
                     modifier = Modifier

@@ -29,7 +29,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFrom
 
 @Composable
 fun EquipmentSimple(
-    image: Int = R.drawable.icon_shop_crucifix_2,
+    image: Int = com.tritiumgaming.core.resources.R.drawable.icon_shop_crucifix_2,
     tierLevel: TierLevel = One
 ) {
     EquipmentTierItem(
@@ -42,7 +42,7 @@ fun EquipmentSimple(
 @Composable
 @Preview
 fun EquipmentButton(
-    image: Int = R.drawable.icon_shop_crucifix_3,
+    image: Int = com.tritiumgaming.core.resources.R.drawable.icon_shop_crucifix_3,
     tierLevel: TierLevel = One,
     selected: Boolean = false,
     onClick: () -> Unit = {}
@@ -61,7 +61,7 @@ fun EquipmentButton(
 
 @Composable
 fun PossessionSimple(
-    image: Int = R.drawable.icon_cursedpossessions_mirror
+    image: Int = com.tritiumgaming.core.resources.R.drawable.icon_cursedpossessions_mirror
 ) {
     PossessionItem(
         image = image
@@ -71,7 +71,7 @@ fun PossessionSimple(
 @Composable
 @Preview
 fun PossessionButton(
-    image: Int = R.drawable.icon_cursedpossessions_mirror,
+    image: Int = com.tritiumgaming.core.resources.R.drawable.icon_cursedpossessions_mirror,
     selected: Boolean = false,
     onClick: () -> Unit = {}
 ) {
@@ -87,7 +87,7 @@ fun PossessionButton(
 @Composable
 @Preview
 fun EquipmentTierItem(
-    image: Int = R.drawable.icon_shop_crucifix_1,
+    image: Int = com.tritiumgaming.core.resources.R.drawable.icon_shop_crucifix_1,
     style: EquipmentTierItemStyle = Bordered,
     tierLevel: TierLevel = One,
     selected: Boolean = false,
@@ -154,7 +154,7 @@ fun EquipmentTierItem(
 
 @Composable
 fun PossessionItem(
-    image: Int = R.drawable.icon_cursedpossessions_mirror,
+    image: Int = com.tritiumgaming.core.resources.R.drawable.icon_cursedpossessions_mirror,
     selected: Boolean = true,
     onClick: () -> Unit = {}
 ) {
@@ -198,7 +198,7 @@ fun GridPattern() {
             .aspectRatio(1f)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.itemstore_grid),
+            painter = painterResource(id = com.tritiumgaming.core.resources.R.drawable.itemstore_grid),
             contentDescription = "Tier Image",
             modifier = Modifier
                 .fillMaxSize()
@@ -208,7 +208,7 @@ fun GridPattern() {
 
 @Composable
 fun EquipmentImage(
-    image: Int = R.drawable.icon_shop_crucifix_1
+    image: Int = com.tritiumgaming.core.resources.R.drawable.icon_shop_crucifix_1
 ) {
     Image(
         painter = painterResource(id = image),
@@ -220,7 +220,7 @@ fun EquipmentImage(
 
 @Composable
 fun PossessionImage(
-    image: Int = R.drawable.icon_cursedpossessions_mirror
+    image: Int = com.tritiumgaming.core.resources.R.drawable.icon_cursedpossessions_mirror
 ) {
     Image(
         painter = painterResource(id = image),
@@ -283,9 +283,9 @@ fun TierEmblem(
     tintMode: BlendMode = BlendMode.SrcIn
 ) {
     val image = when(tierLevel) {
-        TierLevel.One -> R.drawable.ic_tier_1
-        Two -> R.drawable.ic_tier_2
-        Three -> R.drawable.ic_tier_3
+        TierLevel.One -> com.tritiumgaming.core.resources.R.drawable.ic_tier_1
+        Two -> com.tritiumgaming.core.resources.R.drawable.ic_tier_2
+        Three -> com.tritiumgaming.core.resources.R.drawable.ic_tier_3
         else -> { 0 }
     }
 

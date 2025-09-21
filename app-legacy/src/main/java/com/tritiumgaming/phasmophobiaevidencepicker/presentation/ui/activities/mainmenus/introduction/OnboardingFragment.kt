@@ -14,7 +14,7 @@ class OnboardingFragment : OnboardingSupportFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        logoResourceId = R.drawable.icon_logo_app
+        logoResourceId = com.tritiumgaming.core.resources.R.drawable.icon_logo_app
 
         arrowColor = resources.getColor(R.color.white_M200)
         arrowBackgroundColor = resources.getColor(R.color.red_M200)

@@ -1,7 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.investigationmodels.investigationtype.evidence
 
 import androidx.annotation.DrawableRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.core.resources.R
 
 /**
  * Evidence enums

@@ -69,7 +69,7 @@ class AchievementsFragment : ItemStoreFragment() {
 
     override fun createGroup(parent: LinearLayoutCompat, group: ItemStoreGroupModel) {
         val itemStoreGroupList = ItemStoreGroupListView(requireContext())
-        itemStoreGroupList.build(R.drawable.ic_achievement_banshee, group)
+        itemStoreGroupList.build(com.tritiumgaming.core.resources.R.drawable.ic_achievement_banshee, group)
         parent.addView(itemStoreGroupList)
     }
 

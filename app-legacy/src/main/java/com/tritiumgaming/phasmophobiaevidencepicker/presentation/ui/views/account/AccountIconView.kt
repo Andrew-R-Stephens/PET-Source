@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.accou
 import android.content.Context
 import android.util.AttributeSet
 import androidx.compose.ui.platform.ComposeView
+import androidx.core.content.withStyledAttributes
 import com.google.android.material.card.MaterialCardView
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser
@@ -30,10 +31,11 @@ class AccountIconView : MaterialCardView {
         inflate(context, R.layout.item_account_icon, this)
         setDefaults()
         if (attrs != null) {
-            val a = context.obtainStyledAttributes(attrs, R.styleable.AccountIconView)
-            setAccountInitials(
-                a.getResourceId(R.styleable.AccountIconView_accountInitials, 0))
-            a.recycle()
+            context.withStyledAttributes(attrs, R.styleable.AccountIconView) {
+                setAccountInitials(
+                    getResourceId(R.styleable.AccountIconView_accountInitials, 0)
+                )
+            }
         }
     }
 

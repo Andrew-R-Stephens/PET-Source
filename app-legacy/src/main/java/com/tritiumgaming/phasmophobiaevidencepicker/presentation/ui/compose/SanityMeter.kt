@@ -59,19 +59,19 @@ fun SanityMeterView(
         ) {
 
             SanityImageLayer(
-                image = R.drawable.icon_sanityhead_skull,
+                image = com.tritiumgaming.core.resources.R.drawable.icon_sanityhead_skull,
                 startColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityHeadSkullColor),
                 endColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityHeadSkullColor),
                 interpolation = sanityPercent
             )
             SanityImageLayer(
-                image = R.drawable.icon_sanityhead_brain,
+                image = com.tritiumgaming.core.resources.R.drawable.icon_sanityhead_brain,
                 startColor = (Color.Gray).toArgb(),
                 endColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityPieEndColor),
                 interpolation = sanityPercent
             )
             SanityImageLayer(
-                image = R.drawable.icon_sanityhead_border,
+                image = com.tritiumgaming.core.resources.R.drawable.icon_sanityhead_border,
                 startColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityBorderColor),
                 endColor = ColorUtils.getColorFromAttribute(LocalContext.current, R.attr.sanityBorderColor),
                 interpolation = sanityPercent
@@ -84,7 +84,7 @@ fun SanityMeterView(
 @Composable
 fun SanityImageLayer(
     modifier: Modifier = Modifier,
-    @DrawableRes image: Int = R.drawable.icon_sanityhead_brain,
+    @DrawableRes image: Int = com.tritiumgaming.core.resources.R.drawable.icon_sanityhead_brain,
     @ColorInt startColor: Int = (Color.Yellow).toArgb(),
     @ColorInt endColor: Int = (Color.Red).toArgb(),
     interpolation: Float = 1f

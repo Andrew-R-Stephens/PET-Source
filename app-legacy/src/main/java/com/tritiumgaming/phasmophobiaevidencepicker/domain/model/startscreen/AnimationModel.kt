@@ -67,11 +67,11 @@ class AnimationModel {
     
     fun initImages(context: Context) {
         try { bitmapOrb = bitmapUtils.setResource(
-            R.drawable.anim_ghostorb).compileBitmaps(context)
+            com.tritiumgaming.core.resources.R.drawable.anim_ghostorb).compileBitmaps(context)
         } catch (e: Exception) { e.printStackTrace() }
 
         try { bitmapFrost = bitmapUtils.setResource(
-            R.drawable.anim_frost).compileBitmaps(context)
+            com.tritiumgaming.core.resources.R.drawable.anim_frost).compileBitmaps(context)
         } catch (e: Exception) { e.printStackTrace() }
 
         try { bitmapHand = bitmapUtils.setResource(
@@ -82,9 +82,9 @@ class AnimationModel {
             writingResIds[selectedWriting]).compileBitmaps(context)
         } catch (e: Exception) { e.printStackTrace() }
 
-        try { bitmapMirror = bitmapUtils.setResource(R.drawable.anim_mirror_crack)
+        try { bitmapMirror = bitmapUtils.setResource(com.tritiumgaming.core.resources.R.drawable.anim_mirror_crack)
             .addResource(R.drawable.anim_mirror_gradient, PorterDuff.Mode.MULTIPLY)
-            .addResource(R.drawable.anim_mirror_crack, PorterDuff.Mode.MULTIPLY)
+            .addResource(com.tritiumgaming.core.resources.R.drawable.anim_mirror_crack, PorterDuff.Mode.MULTIPLY)
             .compileBitmaps(context)
         } catch (e: Exception) { e.printStackTrace() }
     }

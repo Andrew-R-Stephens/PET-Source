@@ -42,7 +42,7 @@ fun TestPortrait() {
 
     val contentArray: Array<ToolBarItemPair> = arrayOf(
         ToolBarItemPair(composable),
-        ToolBarItemPair(R.drawable.ic_gear)
+        ToolBarItemPair(com.tritiumgaming.core.resources.R.drawable.ic_gear)
     )
 
     InvestigationToolbar(contentArray)
@@ -56,7 +56,7 @@ fun TestLandscape() {
 
     val contentArray: Array<ToolBarItemPair> = arrayOf(
         ToolBarItemPair(composable),
-        ToolBarItemPair(R.drawable.ic_gear)
+        ToolBarItemPair(com.tritiumgaming.core.resources.R.drawable.ic_gear)
     )
 
     InvestigationToolbar(contentArray)
@@ -129,7 +129,7 @@ fun ToolbarItemList(
 
 @Composable
 fun ToolbarItem(
-    image: Int = R.drawable.ic_expand_circle_up,
+    image: Int = com.tritiumgaming.core.resources.R.drawable.ic_expand_circle_up,
     onClick: () -> Unit = { }
 ) {
     Image(
