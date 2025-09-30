@@ -2,6 +2,7 @@ package com.tritiumgaming.core.ui.theme.palette
 
 import androidx.compose.ui.graphics.Color
 import com.tritiumgaming.core.ui.theme.ExtendedTheme
+import com.tritiumgaming.core.ui.theme.palette.common.BrandingColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CodexColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CoreColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ExtrasFamily
@@ -31,74 +32,72 @@ data class ExtendedPalette(
     val inverse: M3ColorFamily = M3ColorFamily(),
     val error: M3ColorFamily = M3ColorFamily(),
 
-    //val background: M3ColorFamily = M3ColorFamily(),
     val outline: Color = Color.Unspecified,
 
     val surfaceTint: Color = Color.Unspecified,
 
-    val splashTextColor: Color = Color.Unspecified, // splashTextColor
+    val splashTextColor: Color = Color.Unspecified,
 
-    /*val //foregroundColor: Color = Color.Unspecified, // //foregroundColor
-    val //middlegroundColor: Color = Color.Unspecified, // //middlegroundColor*/
-    val backgroundColor_mapviewOverlay: Color = Color.Unspecified, // backgroundColor_mapviewOverlay
+    val backgroundColor_mapviewOverlay: Color = Color.Unspecified,
 
-    val navigationBarColor: Color = surface.color, // navigationBarColor
-    val statusBarColor: Color = surface.color, // statusBarColor
+    val navigationBarColor: Color = surface.color,
+    val statusBarColor: Color = surface.color,
 
-    val colorActionPrimary: Color = textFamily.body, // colorActionPrimary
-    val colorActionSecondary: Color = Color.Unspecified, // colorActionSecondary
-    val colorActionTertiary: Color = Color.Unspecified, // colorActionTertiary
+    val colorActionPrimary: Color = textFamily.body,
+    val colorActionSecondary: Color = Color.Unspecified,
+    val colorActionTertiary: Color = Color.Unspecified,
 
-    val windowStrokeColor: Color = Color.Unspecified, // windowStrokeColor
-    val windowBackgroundColor: Color = Color.Unspecified, // windowBackgroundColor
-    val fragmentBackgroundColor: Color = Color.Unspecified, // fragmentBackgroundColor
+    val windowStrokeColor: Color = Color.Unspecified,
+    val windowBackgroundColor: Color = Color.Unspecified,
+    val fragmentBackgroundColor: Color = Color.Unspecified,
 
-    val light_active: Color = Color.Unspecified, // light_active
-    val light_inactive: Color = Color.Unspecified, // light_inactive
-    val light_off: Color = Color.Unspecified, // light_off
+    val light_active: Color = Color.Unspecified,
+    val light_inactive: Color = Color.Unspecified,
+    val light_off: Color = Color.Unspecified,
 
-    val inboxNotification: Color = Color.Unspecified, // inboxNotification
+    val inboxNotification: Color = Color.Unspecified,
 
-    val buttonFilterOnPrimary: Color = Color.Unspecified, // buttonFilterOnPrimary
-    val buttonBorderOnPrimary: Color = Color.Unspecified, // buttonBorderOnPrimary
-    val buttonBackgroundOnPrimary: Color = Color.Unspecified, // buttonBackgroundOnPrimary
+    val buttonFilterOnPrimary: Color = Color.Unspecified,
+    val buttonBorderOnPrimary: Color = Color.Unspecified,
+    val buttonBackgroundOnPrimary: Color = Color.Unspecified,
 
-    val progressBarColorStart: Color = Color.Unspecified, // progressBarColorStart
-    val progressBarColorEnd: Color = Color.Unspecified, // progressBarColorEnd
-    val progressBarColorThumbGradientStart: Color =
-        Color.Unspecified, // progressBarColorThumbGradientStart
-    val progressBarColorThumbGradientEnd: Color =
-        Color.Unspecified, // progressBarColorThumbGradientEnd
-    val progressBarColorThumbOutline: Color = Color.Unspecified, // progressBarColorThumbOutline
+    val progressBarColorStart: Color = Color.Unspecified,
+    val progressBarColorEnd: Color = Color.Unspecified,
+    val progressBarColorThumbGradientStart: Color = Color.Unspecified,
+    val progressBarColorThumbGradientEnd: Color = Color.Unspecified,
+    val progressBarColorThumbOutline: Color = Color.Unspecified,
 
-    val selectedColor: Color = Color.Unspecified, // selectedColor
-    val selectedColor2: Color = Color.Unspecified, // selectedColor2
-    val unselectedColor: Color = Color.Unspecified, // unselectedColor
+    val selectedColor: Color = Color.Unspecified,
+    val selectedColor2: Color = Color.Unspecified,
+    val unselectedColor: Color = Color.Unspecified,
 
-    val navigationFooterIcon: Color = unselectedColor, // navigationFooterIcon
-    val navigationFooterIconAlt: Color = Color.Unspecified, // navigationFooterIconAlt
+    val navigationFooterIcon: Color = unselectedColor,
+    val navigationFooterIconAlt: Color = Color.Unspecified,
 
-    val positiveSelColor: Color = Color.Unspecified, // positiveSelColor
-    val negativeSelColor: Color = Color.Unspecified, // negativeSelColor
-    val neutralSelColor: Color = Color.Unspecified, // neutralSelColor
+    val positiveSelColor: Color = Color.Unspecified,
+    val negativeSelColor: Color = Color.Unspecified,
+    val neutralSelColor: Color = Color.Unspecified,
 
-    val strikethroughColor: Color = Color.Unspecified, // strikethroughColor
-    val circleColor: Color = Color.Unspecified, // circleColor
+    val strikethroughColor: Color = Color.Unspecified,
+    val circleColor: Color = Color.Unspecified,
 
-    val mapPoiFillColor: Color = Color.Unspecified, // mapPoiFillColor
-    val mapRoomFillColor: Color = Color.Unspecified, // mapRoomFillColor
-    val mapRoomBorderColor: Color = Color.Unspecified, // mapRoomBorderColor
+    val mapPoiFillColor: Color = Color.Unspecified,
+    val mapRoomFillColor: Color = Color.Unspecified,
+    val mapRoomBorderColor: Color = Color.Unspecified,
 
-    val sanityPieStartColor: Color = Color.Unspecified, // sanityPieStartColor
-    val sanityPieEndColor: Color = Color.Unspecified, // sanityPieEndColor
-    val sanityHeadBrainColor: Color = primary.color, // sanityHeadBrainColor
-    val sanityHeadSkullColor: Color = Color.Unspecified, // sanityHeadSkullColor
-    val sanityBorderColor: Color = Color.Unspecified, // sanityBorderColor
+    val sanityPieStartColor: Color = Color.Unspecified,
+    val sanityPieEndColor: Color = Color.Unspecified,
+    val sanityHeadBrainColor: Color = primary.color,
+    val sanityHeadSkullColor: Color = Color.Unspecified,
+    val sanityBorderColor: Color = Color.Unspecified,
 
-    val buttonColor: Color = light_inactive, // buttonColor
-    val colorOnButton: Color = textFamily.body, // colorOnButton
+    val buttonColor: Color = light_inactive,
+    val colorOnButton: Color = textFamily.body,
 
-    val actionMenuTextColor: Color = Color.Unspecified
+    val actionMenuTextColor: Color = Color.Unspecified,
+
+    val discordColor: BrandingColorFamily = BrandingColorFamily(),
+    val patreonColor: BrandingColorFamily = BrandingColorFamily()
 
     /*val colorPrimary: M3ColorFamily = M3ColorFamily(), // colorPrimary
     val colorOnPrimary: M3ColorFamily = M3ColorFamily(), // colorOnPrimary

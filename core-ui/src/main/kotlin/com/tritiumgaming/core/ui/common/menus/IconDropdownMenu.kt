@@ -77,11 +77,11 @@ fun IconDropdownMenu(
         MaterialTheme(
             colorScheme = MaterialTheme.colorScheme.copy(
                 surface = colors.dropdownContentBackground,
-                background = Color.Transparent,
-                onBackground = Color.Transparent,
-                surfaceContainer = Color.Transparent,
-                onPrimary = Color.Transparent,
-                surfaceContainerLowest = Color.Transparent
+                background = colors.dropdownContentBackground,
+                onBackground = colors.dropdownContentBackground,
+                surfaceContainer = colors.dropdownContentBackground,
+                onPrimary = colors.dropdownContentBackground,
+                surfaceContainerLowest = colors.dropdownContentBackground,
             ),
             shapes = MaterialTheme.shapes.copy(medium = RoundedCornerShape(20))
         ) {

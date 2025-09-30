@@ -11,7 +11,6 @@ data class ExtendedTypography(
     val extrasFamily: ExtrasFamily = ExtrasFamily(
         title = title_classic
     ),
-
     val primary: CustomFontFamily = CustomFontFamily(),
     val secondary: CustomFontFamily = CustomFontFamily(),
     val tertiary: CustomFontFamily = CustomFontFamily(),

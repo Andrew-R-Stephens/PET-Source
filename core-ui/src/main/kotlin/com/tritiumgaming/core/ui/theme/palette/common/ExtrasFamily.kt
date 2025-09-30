@@ -8,7 +8,7 @@ import com.tritiumgaming.core.ui.theme.title_default
 
 @Immutable
 data class ExtrasFamily(
-    @StringRes val title: Int = title_default,
-    @DrawableRes val badge: Int = badge_default,
+    @field:StringRes val title: Int = title_default,
+    @field:DrawableRes val badge: Int = badge_default,
     val isLightMode: Boolean = false
 )

@@ -19,8 +19,8 @@ fun getOpenInNewVector(colors: IconVectorColors = IconVectorColors.defaults()): 
         viewportHeight = 960.0f
     ).apply {
         path(
-            fill = SolidColor(colors.fillColor), stroke = SolidColor(colors.fillColor),
-            strokeLineWidth = 30.0f, strokeLineCap = Butt, strokeLineJoin = Round,
+            fill = SolidColor(colors.fillColor), stroke = SolidColor(colors.strokeColor),
+            strokeLineWidth = 40.0f, strokeLineCap = Butt, strokeLineJoin = Round,
             strokeLineMiter = 4.0f, pathFillType = NonZero
         ) {
             moveTo(200.0f, 840.0f)

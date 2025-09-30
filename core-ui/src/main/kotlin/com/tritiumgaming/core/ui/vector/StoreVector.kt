@@ -22,7 +22,7 @@ fun getStoreVector(colors: IconVectorColors = IconVectorColors.defaults()): Imag
 
         group {
             path(
-                fill = SolidColor(colors.fillColor), stroke = null, strokeLineWidth = 0.0f,
+                fill = SolidColor(colors.fillColor), stroke = SolidColor(colors.strokeColor), strokeLineWidth = 0.0f,
                 strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
                 pathFillType = NonZero
             ) {

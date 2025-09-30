@@ -6,5 +6,5 @@ import com.tritiumgaming.core.ui.theme.title_classic
 
 @Immutable
 data class ExtrasFamily(
-    @StringRes val title: Int = title_classic
+    @field:StringRes val title: Int = title_classic
 )

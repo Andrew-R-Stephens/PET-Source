@@ -1,6 +1,6 @@
 package com.tritiumgaming.core.ui.theme
 
-import com.tritiumgaming.core.ui.R
+import com.tritiumgaming.core.resources.R
 
 val title_default = R.string.theme_palette_classic
 val title_monochromacy = R.string.theme_palette_colorblind_monochromacy

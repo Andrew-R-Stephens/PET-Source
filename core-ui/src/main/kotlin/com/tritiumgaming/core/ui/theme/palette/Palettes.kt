@@ -1,7 +1,5 @@
 package com.tritiumgaming.core.ui.theme.palette
 
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.tritiumgaming.core.ui.theme.badge_10_commissioner
@@ -43,6 +41,13 @@ import com.tritiumgaming.core.ui.theme.blue_M850
 import com.tritiumgaming.core.ui.theme.blue_M90
 import com.tritiumgaming.core.ui.theme.blue_M900
 import com.tritiumgaming.core.ui.theme.blue_M950
+import com.tritiumgaming.core.ui.theme.discord_color_black
+import com.tritiumgaming.core.ui.theme.discord_color_blurple
+import com.tritiumgaming.core.ui.theme.discord_color_fuchsia
+import com.tritiumgaming.core.ui.theme.discord_color_green
+import com.tritiumgaming.core.ui.theme.discord_color_red
+import com.tritiumgaming.core.ui.theme.discord_color_white
+import com.tritiumgaming.core.ui.theme.discord_color_yellow
 import com.tritiumgaming.core.ui.theme.green
 import com.tritiumgaming.core.ui.theme.green_M150
 import com.tritiumgaming.core.ui.theme.green_M150_A10
@@ -56,60 +61,6 @@ import com.tritiumgaming.core.ui.theme.green_M825
 import com.tritiumgaming.core.ui.theme.green_M850
 import com.tritiumgaming.core.ui.theme.green_M875
 import com.tritiumgaming.core.ui.theme.green_M950
-import com.tritiumgaming.core.ui.theme.md_theme_dark_background
-import com.tritiumgaming.core.ui.theme.md_theme_dark_error
-import com.tritiumgaming.core.ui.theme.md_theme_dark_errorContainer
-import com.tritiumgaming.core.ui.theme.md_theme_dark_inverseOnSurface
-import com.tritiumgaming.core.ui.theme.md_theme_dark_inversePrimary
-import com.tritiumgaming.core.ui.theme.md_theme_dark_inverseSurface
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onBackground
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onError
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onErrorContainer
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onPrimary
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onPrimaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onSecondary
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onSecondaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onSurface
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onSurfaceVariant
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onTertiary
-import com.tritiumgaming.core.ui.theme.md_theme_dark_onTertiaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_dark_outline
-import com.tritiumgaming.core.ui.theme.md_theme_dark_primary
-import com.tritiumgaming.core.ui.theme.md_theme_dark_primaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_dark_secondary
-import com.tritiumgaming.core.ui.theme.md_theme_dark_secondaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_dark_surface
-import com.tritiumgaming.core.ui.theme.md_theme_dark_surfaceTint
-import com.tritiumgaming.core.ui.theme.md_theme_dark_surfaceVariant
-import com.tritiumgaming.core.ui.theme.md_theme_dark_tertiary
-import com.tritiumgaming.core.ui.theme.md_theme_dark_tertiaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_light_background
-import com.tritiumgaming.core.ui.theme.md_theme_light_error
-import com.tritiumgaming.core.ui.theme.md_theme_light_errorContainer
-import com.tritiumgaming.core.ui.theme.md_theme_light_inverseOnSurface
-import com.tritiumgaming.core.ui.theme.md_theme_light_inversePrimary
-import com.tritiumgaming.core.ui.theme.md_theme_light_inverseSurface
-import com.tritiumgaming.core.ui.theme.md_theme_light_onBackground
-import com.tritiumgaming.core.ui.theme.md_theme_light_onError
-import com.tritiumgaming.core.ui.theme.md_theme_light_onErrorContainer
-import com.tritiumgaming.core.ui.theme.md_theme_light_onPrimary
-import com.tritiumgaming.core.ui.theme.md_theme_light_onPrimaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_light_onSecondary
-import com.tritiumgaming.core.ui.theme.md_theme_light_onSecondaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_light_onSurface
-import com.tritiumgaming.core.ui.theme.md_theme_light_onSurfaceVariant
-import com.tritiumgaming.core.ui.theme.md_theme_light_onTertiary
-import com.tritiumgaming.core.ui.theme.md_theme_light_onTertiaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_light_outline
-import com.tritiumgaming.core.ui.theme.md_theme_light_primary
-import com.tritiumgaming.core.ui.theme.md_theme_light_primaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_light_secondary
-import com.tritiumgaming.core.ui.theme.md_theme_light_secondaryContainer
-import com.tritiumgaming.core.ui.theme.md_theme_light_surface
-import com.tritiumgaming.core.ui.theme.md_theme_light_surfaceTint
-import com.tritiumgaming.core.ui.theme.md_theme_light_surfaceVariant
-import com.tritiumgaming.core.ui.theme.md_theme_light_tertiary
-import com.tritiumgaming.core.ui.theme.md_theme_light_tertiaryContainer
 import com.tritiumgaming.core.ui.theme.orange
 import com.tritiumgaming.core.ui.theme.orange_M05
 import com.tritiumgaming.core.ui.theme.orange_M10
@@ -129,12 +80,15 @@ import com.tritiumgaming.core.ui.theme.orange_M75
 import com.tritiumgaming.core.ui.theme.orange_M85
 import com.tritiumgaming.core.ui.theme.orange_M900
 import com.tritiumgaming.core.ui.theme.orange_M950
+import com.tritiumgaming.core.ui.theme.palette.common.BrandingColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CodexColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CoreColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ExtrasFamily
 import com.tritiumgaming.core.ui.theme.palette.common.M3ColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.SwitchColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.TextColorFamily
+import com.tritiumgaming.core.ui.theme.patreon_color_black
+import com.tritiumgaming.core.ui.theme.patreon_color_white
 import com.tritiumgaming.core.ui.theme.purple
 import com.tritiumgaming.core.ui.theme.purple_A10
 import com.tritiumgaming.core.ui.theme.purple_M150
@@ -220,6 +174,7 @@ import com.tritiumgaming.core.ui.theme.yellow_M300
 import com.tritiumgaming.core.ui.theme.yellow_M500
 import com.tritiumgaming.core.ui.theme.yellow_M50_A10
 
+/*
 val DefaultLightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
@@ -279,9 +234,9 @@ val DefaultDarkColors = darkColorScheme(
     inversePrimary = md_theme_dark_inversePrimary,
     surfaceTint = md_theme_dark_surfaceTint
 )
+*/
 
 private val ExtendedDefaultLight = ExtendedPalette()
-// private val ExtendedDefaultDark = ExtendedColorScheme()
 
 private val PET_Base = ExtendedDefaultLight.copy(
 
@@ -336,8 +291,6 @@ private val PET_Base = ExtendedDefaultLight.copy(
         emphasis = red_M250,
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = white_M400,
     windowBackgroundColor = black,
     windowStrokeColor = white,
     navigationFooterIconAlt = white_M200,
@@ -371,6 +324,15 @@ private val PET_Base = ExtendedDefaultLight.copy(
     mapRoomBorderColor = red_M300_A58,
     mapRoomFillColor = yellow_A10,
     buttonFilterOnPrimary = white,
+
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_blurple
+    ),
+    patreonColor = BrandingColorFamily(
+        color = patreon_color_black,
+        onColor = patreon_color_white
+    )
 )
 
 private val Colorblind = PET_Base.copy(
@@ -385,7 +347,6 @@ private val Colorblind = PET_Base.copy(
     switchTheme = PET_Base.switchTheme.copy(),
     textFamily = PET_Base.textFamily.copy(),
 )
-
 private val Non_Colorblind = Colorblind.copy(
     extrasFamily = Colorblind.extrasFamily.copy(),
     themeFamily = Colorblind.themeFamily.copy(),
@@ -528,6 +489,14 @@ val Monochromacy = Colorblind.copy(
     navigationFooterIconAlt = white_M200,
     splashTextColor = white_M200,
     buttonFilterOnPrimary = white,
+
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_white,
+    ),
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 )
 
 val Deuteranomaly = Colorblind.copy(
@@ -667,6 +636,11 @@ val Tritanomaly = Colorblind.copy(
     neutralSelColor = white,
     mapPoiFillColor = red_A75,
     buttonFilterOnPrimary = white,
+
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_red,
+    )
 )
 
 val Recruit = Prestige.copy(
@@ -738,8 +712,6 @@ val Recruit = Prestige.copy(
         emphasis = orange_M250,
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = Color(0xFF818180),
     statusBarColor = orange_M950,
     navigationBarColor = orange_M950,
     windowBackgroundColor = orange_M950,
@@ -772,31 +744,16 @@ val Recruit = Prestige.copy(
     navigationFooterIconAlt = orange_M150,
 
     buttonFilterOnPrimary = white_M50,
-    inboxNotification = orange_M150
+    inboxNotification = orange_M150,
 
-    /*
-    colorBackground = M3ColorFamily(
-        color = orange_M950
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_yellow,
     ),
-    statusBarColor = M3ColorFamily(
-        color = orange_M950
-    ),
-    navigationBarColor = M3ColorFamily(
-        color = orange_M950
-    ),
-    colorprimary = Prestige.primary.copy(
-        color = orange_M950
-    ),
-    colorOnprimary = Prestige.primary.copy(
-        color = orange_M950
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = orange_M950
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = orange_M950
-    ),*/
 
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 )
 
 val Investigator = Prestige.copy(
@@ -870,8 +827,6 @@ val Investigator = Prestige.copy(
         emphasis = purple_M250,
     ),
 
-    //foregroundColor = white_M10,
-    //middlegroundColor = purple_M250,
     statusBarColor = purple_M950,
     navigationBarColor = purple_M950,
     windowBackgroundColor = purple_M950,
@@ -906,37 +861,15 @@ val Investigator = Prestige.copy(
     navigationFooterIconAlt = purple_M250,
 
     buttonFilterOnPrimary = white_M300,
-    inboxNotification = purple_M75
+    inboxNotification = purple_M75,
 
-    /*
-    colorBackground = M3ColorFamily(
-        color = orange_M950
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_fuchsia,
     ),
-    statusBarColor = M3ColorFamily(
-        color = orange_M950
-    ),
-    navigationBarColor = M3ColorFamily(
-        color = orange_M950
-    ),
-
-    colorprimary = Prestige.primary.copy(
-        color = orange_M950
-    ),
-    colorOnprimary = Prestige.primary.copy(
-        color = orange_M950
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = orange_M950
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = orange_M950
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = orange_M950
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = orange_M950
-    ),*/
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 
 )
 
@@ -1008,9 +941,6 @@ val PrivateInvestigator = Prestige.copy(
         onColor = black_M50,
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = orange_M510,
-
     statusBarColor = black,
     navigationBarColor = black,
     windowBackgroundColor = black,
@@ -1044,34 +974,15 @@ val PrivateInvestigator = Prestige.copy(
     navigationFooterIconAlt = orange_M10,
 
     buttonFilterOnPrimary = orange_M20,
-    inboxNotification = orange_M10
+    inboxNotification = orange_M10,
 
-    /*
-    colorBackground = M3ColorFamily(
-        color = black
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_red,
     ),
-    statusBarColor = M3ColorFamily(
-        color = black
-    ),
-    navigationBarColor = M3ColorFamily(
-        color = black
-    ),
-    colorprimary = Prestige.primary.copy(
-        color = black
-    ),
-    colorOnprimary = Prestige.primary.copy(
-        color = black
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = black
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = black
-    ),colorPrimaryVariant = M3ColorFamily(
-        color = black
-    ),colorSecondaryVariant = M3ColorFamily(
-        color = black
-    ),*/
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 
 )
 
@@ -1145,9 +1056,6 @@ val Detective = Prestige.copy(
         trackInactive = green_M825,
     ),
 
-    //foregroundColor = white_M20,
-    //middlegroundColor = white_M400,
-
     statusBarColor = green_M875,
     navigationBarColor = green_M875,
     windowBackgroundColor = green_M875,
@@ -1181,37 +1089,15 @@ val Detective = Prestige.copy(
     navigationFooterIconAlt = green_M25,
 
     buttonFilterOnPrimary = white_M20,
-    inboxNotification = green_M25
+    inboxNotification = green_M25,
 
-    /*
-    colorBackground = M3ColorFamily(
-        color =
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_green
     ),
-    statusBarColor = M3ColorFamily(
-        color =
-    ),
-    navigationBarColor = M3ColorFamily(
-        color =
-    ),
-
-    colorprimary = Prestige.primary.copy(
-        color = green_M875
-    ),
-    colorOnprimary = Prestige.primary.copy(
-        color = green_M875
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = green_M875
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = green_M875
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = green_M875
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = green_M875
-    ),*/
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 
 )
 
@@ -1288,8 +1174,6 @@ val Technician = Prestige.copy(
         trackInactive = black,
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = white_M400,
     statusBarColor = Color(0xFF050C04),
     navigationBarColor = Color(0xFF081204),
     windowBackgroundColor = Color(0xFF050C04),
@@ -1325,37 +1209,15 @@ val Technician = Prestige.copy(
     navigationFooterIconAlt = red_M375,
 
     buttonFilterOnPrimary = Color(0xFFE0E0E0),
-    inboxNotification = red_M375
+    inboxNotification = red_M375,
 
-    /*
-    colorBackground = M3ColorFamily(
-        color = Color(0xFFFF050C04)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_red
     ),
-    statusBarColor = M3ColorFamily(
-        color = Color(0xFFFf050C04)
-    ),
-    navigationBarColor = M3ColorFamily(
-        color = Color(0xFFFF050C04)
-    ),
-
-    colorprimary = Prestige.primary.copy(
-        color = Color(0xFF050C04)
-    ),
-    colorOnprimary = Prestige.primary.copy(
-        color = Color(0xFF050C04)
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = Color(0xFF050C04)
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = Color(0xFF050C04)
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF050C04)
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF050C04)
-    ),*/
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
+    )
 
 )
 val Specialist = Prestige.copy(
@@ -1432,8 +1294,6 @@ val Specialist = Prestige.copy(
         trackInactive = black,
     ),
 
-    //foregroundColor = Color(0xFFFEFEFE),
-    //middlegroundColor = Color(0xFFC9CCC8),
     statusBarColor = Color(0xFF070C05),
     navigationBarColor = Color(0xFF070C05),
     windowBackgroundColor = Color(0xFF070C05),
@@ -1467,34 +1327,15 @@ val Specialist = Prestige.copy(
     navigationFooterIconAlt = green_M150,
 
     buttonFilterOnPrimary = Color(0xBF070C05),
-    inboxNotification = green_M150
+    inboxNotification = green_M150,
 
-    /*
-    colorBackground = M3ColorFamily(
-        color = Color(0xFF070C05)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_green
     ),
-    statusBarColor = M3ColorFamily(
-        color = Color(0xFF070C05)
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    navigationBarColor = M3ColorFamily(
-        color = Color(0xFF070C05)
-    ),
-    colorprimary = Prestige.primary.copy(
-        color = Color(0xFF070C05)
-    ),
-    colorOnprimary = Prestige.primary.copy(
-        color = Color(0xFF070C05)
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = Color(0xFF070C05)
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = Color(0xFF070C05)
-    ),colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF070C05)
-    ),colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF070C05)
-    ),*/
 
 )
 
@@ -1570,9 +1411,6 @@ val Analyst = Prestige.copy(
         trackInactive = black,
     ),
 
-    //foregroundColor = Color(0xFFA7968C),
-    //middlegroundColor = Color(0xFF84736A),
-
     statusBarColor = red_M850,
     navigationBarColor = red_M850,
     windowBackgroundColor = red_M850,
@@ -1609,33 +1447,14 @@ val Analyst = Prestige.copy(
 
     inboxNotification = Color(0xFFD3C9C3),
 
-    /*android:colorBackground = M3ColorFamily(
-    color = red_M850
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_blurple
     ),
-    android:statusBarColor = M3ColorFamily(
-            color = colorOnSecondary
-    ),
-    android:navigationBarColor = M3ColorFamily(
-    color = red_M850
-    ),
-    colorprimary = Prestige.primary.copy(
-        color = red_M850
-    ),
-    colorOnprimary = Prestige.primary.copy(
-        color = red_M850
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = red_M850
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = red_M850
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = red_M850
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = red_M850
-    ),*/
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
+    )
+
 )
 val Agent = Prestige.copy(
     extrasFamily = Prestige.extrasFamily.copy(
@@ -1710,9 +1529,6 @@ val Agent = Prestige.copy(
         onColor = Color(0xFF131919),
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = Color(0xFF868586),
-
     statusBarColor = Color(0xFF101515),
     navigationBarColor = Color(0xFF101515),
     windowBackgroundColor = Color(0xFF0E1212),
@@ -1748,34 +1564,13 @@ val Agent = Prestige.copy(
 
     inboxNotification = blue_M90,
 
-    /*android:colorBackground = M3ColorFamily(
-    color = Color(0xFF101515)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_green,
     ),
-    android:statusBarColor = M3ColorFamily(
-            color = colorOnSecondary
-    ),
-    android:navigationBarColor = M3ColorFamily(
-    color = Color(0xFF101515)
-    ),
-
-    colorprimary = Prestige.primary.copy(
-        color = Color(0xFF101515)
-    ),
-    colorOnprimary = Prestige.primary.copy(
-        color = Color(0xFF101515)
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = Color(0xFF101515)
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = Color(0xFF101515)
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF101515)
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF101515)
-    ),*/
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 
 )
 val Operator = Prestige.copy(
@@ -1849,9 +1644,6 @@ val Operator = Prestige.copy(
         onColor = blue_M900,
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = blue_M150,
-
     statusBarColor = blue_M950,
     navigationBarColor = blue_M950,
     windowBackgroundColor = blue_M950,
@@ -1886,30 +1678,13 @@ val Operator = Prestige.copy(
 
     backgroundColor_mapviewOverlay = Color(0xBF00000E),
 
-    /*android:colorBackground = M3ColorFamily(
-        color = blue_M950
-        ),
-android:statusBarColor = M3ColorFamily(
-color = blue_M950
-),
-android:navigationBarColor = M3ColorFamily(
-color = blue_M950
-),colorprimary = Prestige.primary.copy(
-        color = blue_M950
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_blurple,
     ),
-    colorOnprimary = Prestige.primary.copy(
-        color = blue_M950
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = blue_M950
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = blue_M950
-    ),colorPrimaryVariant = M3ColorFamily(
-        color = blue_M950
-    ),colorSecondaryVariant = M3ColorFamily(
-        color = blue_M950
-    ),*/
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 
 )
 val Commissioner = Prestige.copy(
@@ -1983,9 +1758,6 @@ val Commissioner = Prestige.copy(
         onColor = purple_M825,
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = white_M400,
-
     statusBarColor = black_M50,
     navigationBarColor = black_M50,
     windowBackgroundColor = black_M50,
@@ -2019,35 +1791,15 @@ val Commissioner = Prestige.copy(
     navigationFooterIcon = Color(0xFFACAAAC),
     navigationFooterIconAlt = Color(0xFFE5A348),
 
-    backgroundColor_mapviewOverlay = Color(0xBF080808)
+    backgroundColor_mapviewOverlay = Color(0xBF080808),
 
-    /*android:colorBackground = M3ColorFamily(
-        color = black_M50
-        ),
-android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary
-),
-android:navigationBarColor = M3ColorFamily(
-color = black_M50
-),
-colorprimary = Prestige.primary.copy(
-        color = black_M50
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_yellow,
     ),
-    colorOnprimary = Prestige.primary.copy(
-        color = black_M50
-    ),
-    colorsecondary = Prestige.secondary.copy(
-        color = black_M50
-    ),
-    colorOnsecondary = Prestige.secondary.copy(
-        color = black_M50
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = black_M50
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = black_M50
-    ),*/
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 )
 
 val Easter = Event.copy(
@@ -2123,9 +1875,6 @@ val Easter = Event.copy(
         onColor = Color(0xFF061915),
     ),
 
-    //foregroundColor = Color(0xFFE1EBE5),
-    //middlegroundColor = Color(0xFF7CAB91),
-
     statusBarColor = Color(0xFF030C0A),
     navigationBarColor = Color(0xFF030C0A),
     windowBackgroundColor = Color(0xFF030C0A),
@@ -2159,37 +1908,17 @@ val Easter = Event.copy(
 
     backgroundColor_mapviewOverlay = Color(0xBF030C0A),
 
-    colorOnButton = Color(0xFF030C0A)
+    colorOnButton = Color(0xFF030C0A),
 
-    /*android:colorBackground = M3ColorFamily(
-        color = Color(0x030C0A)
-        ),
-android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary
-),
-android:navigationBarColor = M3ColorFamily(
-color = Color(0x030C0A)
-),
-colorprimary = Event.primary.copy(
-        color = Color(0xFF030C0A)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_yellow,
     ),
-    colorOnprimary = Event.primary.copy(
-        color = Color(0xFF030C0A)
-    ),
-    colorsecondary = Event.secondary.copy(
-        color = Color(0xFF030C0A)
-    ),
-    colorOnsecondary = Event.secondary.copy(
-        color = Color(0xFF030C0A)
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF030C0A)
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF030C0A)
-    ),*/
-
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white,
+    )
 )
+
 val Halloween23 = Event.copy(
     extrasFamily = Event.extrasFamily.copy(
         title = title_halloween23,
@@ -2263,9 +1992,6 @@ val Halloween23 = Event.copy(
         onColor = Color(0xFF3F1602),
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = Color(0xFFD7CCC3),
-
     statusBarColor = Color(0xFF0C0400),
     navigationBarColor = Color(0xFF0C0400),
     windowBackgroundColor = Color(0xFF0C0400),
@@ -2300,31 +2026,13 @@ val Halloween23 = Event.copy(
 
     inboxNotification = Color(0xFFEC700D),
 
-    /*android:colorBackground = M3ColorFamily(
-        color = Color(0x0C0400)
-        ),
-    android:statusBarColor = M3ColorFamily(
-            color = colorOnSecondary
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_yellow
     ),
-    android:navigationBarColor = M3ColorFamily(
-    color = Color(0x0C0400)
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    colorprimary = Event.primary.copy(
-        color = Color(0xFF0C0400)
-    ),
-    colorOnprimary = Event.primary.copy(
-        color = Color(0xFF0C0400)
-    ),
-    colorsecondary = Event.secondary.copy(
-        color = Color(0xFF0C0400)
-    ),
-    colorOnsecondary = Event.secondary.copy(
-        color = Color(0xFF0C0400)
-    ),colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF0C0400)
-    ),colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF0C0400)
-    ),*/
 
 )
 val Holiday22 = Event.copy(
@@ -2400,9 +2108,6 @@ val Holiday22 = Event.copy(
         onColor = Color(0xFF151529),
     ),
 
-    //foregroundColor = Color(0xFFFEFEFE),
-    //middlegroundColor = Color(0xFF645956),
-
     statusBarColor = Color(0xFF0D0E19),
     navigationBarColor = Color(0xFF0D0E19),
     windowBackgroundColor = Color(0xFF0D0E19),
@@ -2438,34 +2143,13 @@ val Holiday22 = Event.copy(
 
     inboxNotification = Color(0xFF6996E4),
 
-    /*android:colorBackground = M3ColorFamily(
-        color = Color(0x0D0E19)
-        ),
-android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary
-),
-android:navigationBarColor = M3ColorFamily(
-color = Color(0x0D0E19)
-),
-
-    colorprimary = Event.primary.copy(
-        color = Color(0xFF0D0E19)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_blurple
     ),
-    colorOnprimary = Event.primary.copy(
-        color = Color(0xFF0D0E19)
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    colorsecondary = Event.secondary.copy(
-        color = Color(0xFF0D0E19)
-    ),
-    colorOnsecondary = Event.secondary.copy(
-        color = Color(0xFF0D0E19)
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF0D0E19)
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF0D0E19)
-    ),*/
 
 )
 val Holiday23 = Event.copy(
@@ -2537,9 +2221,6 @@ val Holiday23 = Event.copy(
         onColor = Color(0xFF131423),
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = Color(0xFF645956),
-
     statusBarColor = Color(0xFF1B1C33),
     navigationBarColor = Color(0xFF1B1C33),
     windowBackgroundColor = Color(0xFF1B1C33),
@@ -2574,33 +2255,13 @@ val Holiday23 = Event.copy(
 
     inboxNotification = Color(0xFFE9AD4C),
 
-    /*
-    android:colorBackground = M3ColorFamily(
-        color = Color(0x1B1C33)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_blurple
     ),
-    android:statusBarColor = M3ColorFamily(
-            color = colorOnSecondary
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    android:navigationBarColor = M3ColorFamily(
-        color = Color(0x1B1C33)
-    ),
-    colorPrimary = M3ColorFamily(
-        color = Color(0xFF1B1C33)
-    ),
-    colorOnPrimary = M3ColorFamily(
-        color = Color(0xFF1B1C33)
-    ),
-    colorSecondary = M3ColorFamily(
-        color = Color(0xFF1B1C33)
-    ),
-    colorOnSecondary = M3ColorFamily(
-        color = Color(0xFF1B1C33)
-    ),colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF1B1C33)
-    ),colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF1B1C33)
-    ),*/
-
 
 )
 
@@ -2683,9 +2344,6 @@ val Discord = Community.copy(
         onColor = blue_M850,
     ),
 
-    //foregroundColor = Color(0xFFF3F3F7),
-    //middlegroundColor = Color(0xFFC3C4C6),
-
     statusBarColor = Color(0xFF131517),
     navigationBarColor = Color(0xFF131517),
     windowBackgroundColor = Color(0xFF131517),
@@ -2721,34 +2379,13 @@ val Discord = Community.copy(
 
     inboxNotification = Color(0xFFF3F3F7),
 
-    /*
-    android:colorBackground = M3ColorFamily(
-        color = Color(0x131517)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_blurple
     ),
-    android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    android:navigationBarColor = M3ColorFamily(
-        color = Color(0x131517)
-    ),
-    colorprimary = Community.primary.copy(
-        color = Color(0xFF131517)
-    ),
-    colorOnprimary = Community.primary.copy(
-        color = Color(0xFF131517)
-    ),
-    colorsecondary = Community.secondary.copy(
-        color = Color(0xFF131517)
-    ),
-    colorOnsecondary = Community.secondary.copy(
-        color = Color(0xFF131517)
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF131517)
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF131517)
-    ),*/
 
 )
 
@@ -2824,9 +2461,6 @@ val ContentCreator = Community.copy(
         onColor = Color(0xFF190509),
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = Color(0xFFCACACA),
-
     statusBarColor = black_M50,
     navigationBarColor = black_M50,
     windowBackgroundColor = black_M50,
@@ -2863,35 +2497,13 @@ val ContentCreator = Community.copy(
 
     inboxNotification = red_M225,
 
-    /*
-    android:colorBackground = M3ColorFamily(
-        color = black_M50
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_red
     ),
-    android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    android:navigationBarColor = M3ColorFamily(
-        color = black_M50
-    )
-
-    colorprimary = Community.primary.copy(
-        color = black_M50
-    ),
-    colorOnprimary = Community.primary.copy(
-        color = black_M50
-    ),
-    colorsecondary = Community.secondary.copy(
-        color = black_M50
-    ),
-    colorOnsecondary = Community.secondary.copy(
-        color = black_M50
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = black_M50
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = black_M50
-    ),*/
 
 )
 val Developer = Community.copy(
@@ -2964,9 +2576,6 @@ val Developer = Community.copy(
         onColor = Color(0xFF171502),
     ),
 
-
-    //foregroundColor = Color(0xFFE2E2DF),
-    //middlegroundColor = white_M400,
     statusBarColor = black_M50,
     navigationBarColor = black_M50,
     windowBackgroundColor = black_M50,
@@ -3001,33 +2610,13 @@ val Developer = Community.copy(
 
     inboxNotification = Color(0xFFE2E2DF),
 
-    /*
-    android:colorBackground = M3ColorFamily(
-        color = black_M50
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_yellow
     ),
-    android:statusBarColor = M3ColorFamily(
-            color = colorOnSecondary
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    android:navigationBarColor = M3ColorFamily(
-    color = black_M50
-    ),
-    colorprimary = Community.primary.copy(
-        color = black_M50
-    ),
-    colorOnprimary = Community.primary.copy(
-        color = black_M50
-    ),
-    colorsecondary = Community.secondary.copy(
-        color = black_M50
-    ),
-    colorOnsecondary = Community.secondary.copy(
-        color = black_M50
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = black_M50
-    ),colorSecondaryVariant = M3ColorFamily(
-        color = black_M50
-    ),*/
 
 )
 val Translator = Community.copy(
@@ -3103,9 +2692,6 @@ val Translator = Community.copy(
         onColor = black_M50,
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = white_M400,
-
     statusBarColor = black,
     navigationBarColor = black,
     windowBackgroundColor = black,
@@ -3142,34 +2728,13 @@ val Translator = Community.copy(
 
     inboxNotification = Color(0xFFDA7F88),
 
-    /*
-    android:colorBackground = M3ColorFamily(
-    color = black
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_fuchsia
     ),
-    android:statusBarColor = M3ColorFamily(
-            color = colorOnSecondary
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    android:navigationBarColor = M3ColorFamily(
-    color = black
-
-    colorPrimary = M3ColorFamily(
-        color = black
-    ),
-    colorOnPrimary = M3ColorFamily(
-        color = black
-    ),
-    colorSecondary = M3ColorFamily(
-        color = black
-    ),
-    colorOnSecondary = M3ColorFamily(
-        color = black
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = black
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = black
-    ),*/
 
 )
 
@@ -3242,9 +2807,6 @@ val Winner = Community.copy(
         emphasis = Color(0xFFDABA80)
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = white_M400,
-
     statusBarColor = Color(0xFF060C10),
     navigationBarColor = Color(0xFF060C10),
     windowBackgroundColor = Color(0xFF060C10),
@@ -3282,33 +2844,13 @@ val Winner = Community.copy(
 
     inboxNotification = Color(0xFFDABA80),
 
-    /*android:colorBackground = M3ColorFamily(
-    color = Color(0x060C10)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_yellow
     ),
-    android:statusBarColor = M3ColorFamily(
-            color = colorOnSecondary
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    android:navigationBarColor = M3ColorFamily(
-    color = Color(0x060C10)
-    ),
-    colorPrimary = M3ColorFamily(
-        color = Color(0xFF060C10)
-    ),
-    colorOnPrimary = M3ColorFamily(
-        color = Color(0xFF060C10)
-    ),
-    colorSecondary = M3ColorFamily(
-        color = Color(0xFF060C10)
-    ),
-    colorOnSecondary = M3ColorFamily(
-        color = Color(0xFF060C10)
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF060C10)
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF060C10)
-    ),*/
 )
 val Artist = Community.copy(
     extrasFamily = Community.extrasFamily.copy(
@@ -3380,9 +2922,6 @@ val Artist = Community.copy(
         emphasis = Color(0xFFE3D6F7),
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = white_M400,
-
     statusBarColor = Color(0xFF0A0C0C),
     navigationBarColor = Color(0xFF0A0C0C),
     windowBackgroundColor = Color(0xFF0A0C0C),
@@ -3418,62 +2957,13 @@ val Artist = Community.copy(
 
     inboxNotification = Color(0xFFE3D6F7),
 
-    /*
-    theme_colorPrimary = M3ColorFamily(
-        color = Color(0xFFAA7FFD)
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_blurple
     ),
-    color_1 = M3ColorFamily(
-        color = Color(0xFFE3D6F7)
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    color_2 = M3ColorFamily(
-        color = Color(0xFFAA7FFD)
-    ),
-    color_3 = M3ColorFamily(
-        color = purple_M550
-    ),
-    color_4 = M3ColorFamily(
-        color = Color(0xFF432878)
-    ),
-    color_5 = M3ColorFamily(
-        color = white
-    ),
-    color_6 = M3ColorFamily(
-        color = Color(0xFFB0ACBA)
-    ),
-    color_7 = M3ColorFamily(
-        color = blue_M850
-    ),
-    color_8 = M3ColorFamily(
-        color = black
-    ),
-    android:colorBackground = M3ColorFamily(
-        color = Color(0x0A0C0C)
-    ),
-    android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary
-    ),
-    android:navigationBarColor = M3ColorFamily(
-    color = Color(0x0A0C0C)),
-
-    colorPrimary = M3ColorFamily(
-        color = Color(0xFF0A0C0C)
-    ),
-    colorOnPrimary = M3ColorFamily(
-        color = Color(0xFF0A0C0C)
-    ),
-    colorSecondary = M3ColorFamily(
-        color = Color(0xFF0A0C0C)
-    ),
-    colorOnSecondary = M3ColorFamily(
-        color = Color(0xFF0A0C0C)
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF0A0C0C)
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF0A0C0C)
-    ),*/
-
 )
 
 val Whiteboard = Skin.copy(
@@ -3533,8 +3023,6 @@ val Whiteboard = Skin.copy(
         emphasis = Color(0xFFf55656),
     ),
 
-    //foregroundColor = white_M50,
-    //middlegroundColor = white_M50,
     statusBarColor = white_M50,
     navigationBarColor = white_M50,
     windowBackgroundColor = white_M50,
@@ -3584,35 +3072,13 @@ val Whiteboard = Skin.copy(
 
     actionMenuTextColor = Color(0xFF383839),
 
-    /*android:windowLightStatusBar = true),
-
-    android:colorBackground = #383839),
-    android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary),
-    android:navigationBarColor = M3ColorFamily(
-        color = white_M50),
-    colorSecondary = M3ColorFamily(
-        color = white_M50
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_red
     ),
-    colorOnSecondary = M3ColorFamily(
-        onColor = white_M50
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_black
     ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = white_M50
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = white_M50
-    ),
-
-    android:textColor = M3ColorFamily(
-        color = primary),
-    android:color = M3ColorFamily(
-        color = primary),
-    android:titleTextColor = M3ColorFamily(
-        color = primary),
-    android:subtitleTextColor = M3ColorFamily(
-        color = body),
-    */
 )
 
 val StrategemHero = Special.copy(
@@ -3694,9 +3160,6 @@ val StrategemHero = Special.copy(
         onColor = Color(0xFF000E1E),
     ),
 
-    //foregroundColor = white,
-    //middlegroundColor = Color(0xFF645956),
-
     statusBarColor = Color(0xFF000B17),
     navigationBarColor = Color(0xFF000B17),
     windowBackgroundColor = Color(0xFF000B17),
@@ -3737,65 +3200,15 @@ val StrategemHero = Special.copy(
     buttonBorderOnPrimary = white,
     buttonBackgroundOnPrimary = Color(0xFFB7CBDC),
 
-    colorActionPrimary = Color(0xFFFFD608)
+    colorActionPrimary = Color(0xFFFFD608),
 
-    /*
-    theme_colorPrimary = M3ColorFamily(
-        color = white
+    discordColor = BrandingColorFamily(
+        color = discord_color_black,
+        onColor = discord_color_yellow
     ),
-    color_1 = M3ColorFamily(
-        color = Color(0xFFA3A3A3)
+    patreonColor = BrandingColorFamily(
+        onColor = patreon_color_white
     ),
-    color_2 = M3ColorFamily(
-        color = Color(0xFFFFD608)
-    ),
-    color_3 = M3ColorFamily(
-        color = Color(0xFFA04907)
-    ),
-    color_4 = M3ColorFamily(
-        color = Color(0xFFDE2C38)
-    ),
-    color_5 = M3ColorFamily(
-        color = Color(0xFFB7CBDC)
-    ),
-    color_6 = M3ColorFamily(
-        color = Color(0xFF95D2C8)
-    ),
-    color_7 = M3ColorFamily(
-        color = Color(0xFF0D3A63)
-    ),
-    color_8 = M3ColorFamily(
-        color = Color(0xFF000B17)
-    ),
-
-    android:colorBackground = M3ColorFamily(
-        color = Color(0x001021)
-    ),
-    android:statusBarColor = M3ColorFamily(
-        color = colorOnSecondary
-    ),
-    android:navigationBarColor = M3ColorFamily(
-    color = Color(0x000B17)
-    ),
-
-    colorPrimary = M3ColorFamily(
-        color = Color(0xFF000B17)
-    ),
-    colorOnPrimary = M3ColorFamily(
-        color = Color(0xFF000B17)
-    ),
-    colorSecondary = M3ColorFamily(
-        color = Color(0xFF000B17)
-    ),
-    colorOnSecondary = M3ColorFamily(
-        color = Color(0xFF000B17)
-    ),
-    colorPrimaryVariant = M3ColorFamily(
-        color = Color(0xFF000B17)
-    ),
-    colorSecondaryVariant = M3ColorFamily(
-        color = Color(0xFF000B17)
-    ),*/
 
 )
 

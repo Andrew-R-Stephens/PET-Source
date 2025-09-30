@@ -2,6 +2,7 @@ package com.tritiumgaming.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+/*
 val md_theme_light_primary = Color(0xFFBF0031)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFFFDAD9)
@@ -57,6 +58,7 @@ val md_theme_dark_inverseOnSurface = Color(0xFF201A1A)
 val md_theme_dark_inverseSurface = Color(0xFFECE0DF)
 val md_theme_dark_inversePrimary = Color(0xFFBF0031)
 val md_theme_dark_surfaceTint = Color(0xFFFFB3B4)
+*/
 
 /* Other */
 val transparent = Color(0x00FFFFFF)
@@ -253,3 +255,6 @@ val discord_color_fuchsia = Color(0xFFEB459E)
 val discord_color_red = Color(0xFFED4245)
 val discord_color_white = Color(0xFFFFFFFF)
 val discord_color_black = Color(0xFF000000)
+
+val patreon_color_white = white
+val patreon_color_black = black
