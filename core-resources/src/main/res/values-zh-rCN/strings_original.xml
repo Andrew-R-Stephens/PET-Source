@@ -945,4 +945,5 @@
     <string name="alert_gui_palette_error">调色板未设置！</string>
     <string name="alert_gui_typography_error">字体未设置！</string>
     <string name="account_button_visit_marketplace">访问市场</string>
+
 </resources>

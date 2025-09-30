@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Map Size Modifiers -->
+    <item name="maps_size_modifier_small_setup" type="fraction">09%</item>
+    <item name="maps_size_modifier_small_normal" type="fraction">12%</item>
+    <item name="maps_size_modifier_medium_setup" type="fraction">05%</item>
+    <item name="maps_size_modifier_medium_normal" type="fraction">08%</item>
+    <item name="maps_size_modifier_large_setup" type="fraction">03%</item>
+    <item name="maps_size_modifier_large_normal" type="fraction">05%</item>
+
+</resources>

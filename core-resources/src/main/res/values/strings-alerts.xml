@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="toast_discardchanges">Changes discarded</string>
+
+    <string name="alert_error_generic">Error!</string>
+    <string name="alert_success_generic">Success!</string>
+    <string name="alert_account_welcome">Welcome</string>
+    <string name="alert_account_data_failure">Data could not be acquired.</string>
+    <string name="alert_account_remove_success">Successfully removed account.</string>
+    <string name="alert_account_remove_failure">Account removal failed.</string>
+    <string name="alert_account_logout_success">User signed out.</string>
+    <string name="alert_account_login_failure">Login Error.</string>
+    <string name="alert_internet_unavailable">Internet not available.</string>
+    <string name="alert_marketplace_access_failure">Could not access the marketplace.</string>
+    <string name="alert_marketplace_transaction_failure">Error with marketplace transaction.</string>
+    <string name="alert_marketplace_purchase_success_skin">Skin purchased!</string>
+    <string name="alert_marketplace_purchase_success_generic">Purchase successful!</string>
+    <string name="alert_marketplace_purchase_failure_skin_credits">Not enough credits for purchase!</string>
+    <string name="alert_gui_palette_error">Palette not set!</string>
+    <string name="alert_gui_typography_error">Typography not set!</string>
+
+</resources>

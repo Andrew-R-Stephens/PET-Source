@@ -61,35 +61,6 @@
     <integer name="equipment_requirement_level_82">82</integer>
     <integer name="equipment_requirement_level_85">85</integer>
     <integer name="equipment_requirement_level_90">90</integer>
-    
-    <!-- Equipment Unlock Level Requirements -->
-    <integer name="equipment_requirement_level_dots_1" >0</integer>
-    <integer name="equipment_requirement_level_dots_2" >29</integer>
-    <integer name="equipment_requirement_level_dots_3" >60</integer>
-
-    <integer name="equipment_requirement_level_emf_1" >0</integer>
-    <integer name="equipment_requirement_level_emf_2" >20</integer>
-    <integer name="equipment_requirement_level_emf_3" >52</integer>
-
-    <integer name="equipment_requirement_level_ultraviolet_1" >0</integer>
-    <integer name="equipment_requirement_level_ultraviolet_2" >21</integer>
-    <integer name="equipment_requirement_level_ultraviolet_3" >56</integer>
-
-    <integer name="equipment_requirement_level_thermometer_1" >0</integer>
-    <integer name="equipment_requirement_level_thermometer_2" >36</integer>
-    <integer name="equipment_requirement_level_thermometer_3" >64</integer>
-
-    <integer name="equipment_requirement_level_book_1" >0</integer>
-    <integer name="equipment_requirement_level_book_2" >23</integer>
-    <integer name="equipment_requirement_level_book_3" >63</integer>
-
-    <integer name="equipment_requirement_level_vcam_1" >0</integer>
-    <integer name="equipment_requirement_level_vcam_2" >33</integer>
-    <integer name="equipment_requirement_level_vcam_3" >61</integer>
-
-    <integer name="equipment_requirement_level_box_1" >0</integer>
-    <integer name="equipment_requirement_level_box_2" >27</integer>
-    <integer name="equipment_requirement_level_box_3" >54</integer>
 
     <!-- Equipment Buy Cost -->
 
@@ -124,5 +95,199 @@
     <integer name="equipment_requirement_upgradecost_10000">10000</integer>
     <integer name="equipment_requirement_upgradecost_15000">15000</integer>
     <integer name="equipment_requirement_upgradecost_20000">20000</integer>
+
+
+    <!-- Equipment Unlock Level Requirements -->
+    <integer name="equipment_requirement_level_dots_1" >0</integer>
+    <integer name="equipment_requirement_level_dots_2" >27</integer>
+    <integer name="equipment_requirement_level_dots_3" >49</integer>
+
+    <integer name="equipment_requirement_level_emf_1" >0</integer>
+    <integer name="equipment_requirement_level_emf_2" >18</integer>
+    <integer name="equipment_requirement_level_emf_3" >46</integer>
+
+    <integer name="equipment_requirement_level_ultraviolet_1" >0</integer>
+    <integer name="equipment_requirement_level_ultraviolet_2" >18</integer>
+    <integer name="equipment_requirement_level_ultraviolet_3" >46</integer>
+
+    <integer name="equipment_requirement_level_thermometer_1" >0</integer>
+    <integer name="equipment_requirement_level_thermometer_2" >27</integer>
+    <integer name="equipment_requirement_level_thermometer_3" >65</integer>
+
+    <integer name="equipment_requirement_level_book_1" >0</integer>
+    <integer name="equipment_requirement_level_book_2" >23</integer>
+    <integer name="equipment_requirement_level_book_3" >55</integer>
+
+    <integer name="equipment_requirement_level_vcam_1" >0</integer>
+    <integer name="equipment_requirement_level_vcam_2" >27</integer>
+    <integer name="equipment_requirement_level_vcam_3" >49</integer>
+
+    <integer name="equipment_requirement_level_box_1" >0</integer>
+    <integer name="equipment_requirement_level_box_2" >23</integer>
+    <integer name="equipment_requirement_level_box_3" >46</integer>
+
+    <integer name="equipment_requirement_level_flashlight_1" >0</integer>
+    <integer name="equipment_requirement_level_flashlight_2" >18</integer>
+    <integer name="equipment_requirement_level_flashlight_3" >34</integer>
+
+    <integer name="equipment_requirement_level_photocamera_1" >2</integer>
+    <integer name="equipment_requirement_level_photocamera_2" >23</integer>
+    <integer name="equipment_requirement_level_photocamera_3" >55</integer>
+
+    <integer name="equipment_requirement_level_igniter_1" >12</integer>
+    <integer name="equipment_requirement_level_igniter_2" >37</integer>
+    <integer name="equipment_requirement_level_igniter_3" >52</integer>
+
+    <integer name="equipment_requirement_level_firelight_1" >12</integer>
+    <integer name="equipment_requirement_level_firelight_2" >37</integer>
+    <integer name="equipment_requirement_level_firelight_3" >75</integer>
+
+    <integer name="equipment_requirement_level_crucifix_1" >7</integer>
+    <integer name="equipment_requirement_level_crucifix_2" >34</integer>
+    <integer name="equipment_requirement_level_crucifix_3" >80</integer>
+
+    <integer name="equipment_requirement_level_salt_1" >8</integer>
+    <integer name="equipment_requirement_level_salt_2" >39</integer>
+    <integer name="equipment_requirement_level_salt_3" >65</integer>
+
+    <integer name="equipment_requirement_level_incense_1" >14</integer>
+    <integer name="equipment_requirement_level_incense_2" >37</integer>
+    <integer name="equipment_requirement_level_incense_3" >80</integer>
+
+    <integer name="equipment_requirement_level_tripod_1" >9</integer>
+    <integer name="equipment_requirement_level_tripod_2" >34</integer>
+    <integer name="equipment_requirement_level_tripod_3" >60</integer>
+
+    <integer name="equipment_requirement_level_motionsensor_1" >3</integer>
+    <integer name="equipment_requirement_level_motionsensor_2" >42</integer>
+    <integer name="equipment_requirement_level_motionsensor_3" >70</integer>
+
+    <integer name="equipment_requirement_level_soundrecorder_1" >4</integer>
+    <integer name="equipment_requirement_level_soundrecorder_2" >39</integer>
+    <integer name="equipment_requirement_level_soundrecorder_3" >60</integer>
+
+    <integer name="equipment_requirement_level_soundsensor_1" >10</integer>
+    <integer name="equipment_requirement_level_soundsensor_2" >32</integer>
+    <integer name="equipment_requirement_level_soundsensor_3" >52</integer>
+
+    <integer name="equipment_requirement_level_sanitymedication_1" >14</integer>
+    <integer name="equipment_requirement_level_sanitymedication_2" >39</integer>
+    <integer name="equipment_requirement_level_sanitymedication_3" >75</integer>
+
+    <integer name="equipment_requirement_level_parabolicmicrophone_1" >5</integer>
+    <integer name="equipment_requirement_level_parabolicmicrophone_2" >32</integer>
+    <integer name="equipment_requirement_level_parabolicmicrophone_3" >70</integer>
+
+    <integer name="equipment_requirement_level_headgear_1" >13</integer>
+    <integer name="equipment_requirement_level_headgear_2" >42</integer>
+    <integer name="equipment_requirement_level_headgear_3" >80</integer>
+
+    <!-- Equipment Buy Cost -->
+    <integer name="equipment_requirement_buycost_dots" >65</integer>
+    <integer name="equipment_requirement_buycost_emf" >45</integer>
+    <integer name="equipment_requirement_buycost_ultraviolet" >35</integer>
+    <integer name="equipment_requirement_buycost_thermometer" >30</integer>
+    <integer name="equipment_requirement_buycost_book" >40</integer>
+    <integer name="equipment_requirement_buycost_vcam" >50</integer>
+    <integer name="equipment_requirement_buycost_box" >50</integer>
+    <integer name="equipment_requirement_buycost_flashlight" >30</integer>
+    <integer name="equipment_requirement_buycost_photocamera" >40</integer>
+    <integer name="equipment_requirement_buycost_igniter" >10</integer>
+    <integer name="equipment_requirement_buycost_firelight" >15</integer>
+    <integer name="equipment_requirement_buycost_crucifix" >30</integer>
+    <integer name="equipment_requirement_buycost_salt" >15</integer>
+    <integer name="equipment_requirement_buycost_incense" >15</integer>
+    <integer name="equipment_requirement_buycost_tripod" >25</integer>
+    <integer name="equipment_requirement_buycost_motionsensor" >100</integer>
+    <integer name="equipment_requirement_buycost_soundrecorder" >30</integer>
+    <integer name="equipment_requirement_buycost_soundsensor" >80</integer>
+    <integer name="equipment_requirement_buycost_sanitymedication" >20</integer>
+    <integer name="equipment_requirement_buycost_parabolicmicrophone" >50</integer>
+    <integer name="equipment_requirement_buycost_headgear" >60</integer>
+
+    <!-- Equipment Upgrade Cost -->
+    <integer name="equipment_requirement_upgradecost_dots_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_dots_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_dots_3" >3000</integer>
+
+    <integer name="equipment_requirement_upgradecost_emf_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_emf_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_emf_3" >4500</integer>
+
+    <integer name="equipment_requirement_upgradecost_ultraviolet_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_ultraviolet_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_ultraviolet_3" >2000</integer>
+
+    <integer name="equipment_requirement_upgradecost_thermometer_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_thermometer_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_thermometer_3" >3000</integer>
+
+    <integer name="equipment_requirement_upgradecost_book_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_book_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_book_3" >3000</integer>
+
+    <integer name="equipment_requirement_upgradecost_vcam_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_vcam_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_vcam_3" >3000</integer>
+
+    <integer name="equipment_requirement_upgradecost_box_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_box_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_box_3" >3000</integer>
+
+    <integer name="equipment_requirement_upgradecost_flashlight_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_flashlight_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_flashlight_3" >3000</integer>
+
+    <integer name="equipment_requirement_upgradecost_photocamera_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_photocamera_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_photocamera_3" >5000</integer>
+
+    <integer name="equipment_requirement_upgradecost_igniter_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_igniter_2" >500</integer>
+    <integer name="equipment_requirement_upgradecost_igniter_3" >750</integer>
+
+    <integer name="equipment_requirement_upgradecost_firelight_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_firelight_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_firelight_3" >10000</integer>
+
+    <integer name="equipment_requirement_upgradecost_crucifix_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_crucifix_2" >4000</integer>
+    <integer name="equipment_requirement_upgradecost_crucifix_3" >20000</integer>
+
+    <integer name="equipment_requirement_upgradecost_salt_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_salt_2" >2500</integer>
+    <integer name="equipment_requirement_upgradecost_salt_3" >5000</integer>
+
+    <integer name="equipment_requirement_upgradecost_incense_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_incense_2" >3500</integer>
+    <integer name="equipment_requirement_upgradecost_incense_3" >15000</integer>
+
+    <integer name="equipment_requirement_upgradecost_tripod_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_tripod_2" >5000</integer>
+    <integer name="equipment_requirement_upgradecost_tripod_3" >3000</integer>
+
+    <integer name="equipment_requirement_upgradecost_motionsensor_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_motionsensor_2" >2500</integer>
+    <integer name="equipment_requirement_upgradecost_motionsensor_3" >8000</integer>
+
+    <integer name="equipment_requirement_upgradecost_soundrecorder_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_soundrecorder_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_soundrecorder_3" >5000</integer>
+
+    <integer name="equipment_requirement_upgradecost_soundsensor_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_soundsensor_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_soundsensor_3" >1500</integer>
+
+    <integer name="equipment_requirement_upgradecost_sanitymedication_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_sanitymedication_2" >2000</integer>
+    <integer name="equipment_requirement_upgradecost_sanitymedication_3" >5000</integer>
+
+    <integer name="equipment_requirement_upgradecost_parabolicmicrophone_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_parabolicmicrophone_2" >3000</integer>
+    <integer name="equipment_requirement_upgradecost_parabolicmicrophone_3" >5000</integer>
+
+    <integer name="equipment_requirement_upgradecost_headgear_1" >0</integer>
+    <integer name="equipment_requirement_upgradecost_headgear_2" >10000</integer>
+    <integer name="equipment_requirement_upgradecost_headgear_3" >10000</integer>
 
 </resources>

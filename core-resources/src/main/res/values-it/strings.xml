@@ -1071,4 +1071,5 @@
     <string name="alert_gui_palette_error">Palette non impostata!</string>
     <string name="alert_gui_typography_error">Tipografia non impostata!</string>
     <string name="account_button_visit_marketplace">Visita il Marketplace</string>
+
 </resources>

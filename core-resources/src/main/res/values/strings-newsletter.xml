@@ -12,4 +12,6 @@
     <string name="newsletter_inbox_id_pet" translatable="false">b00112717590b7a5c402e330de07149c</string>
     <string name="newsletter_inbox_id_phasmophobia" translatable="false">a38736638c6c4f59c87e6adc691127a8</string>
 
+    <string name="newsletter_markallread">Mark All Read</string>
+
 </resources>

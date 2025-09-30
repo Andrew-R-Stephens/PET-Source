@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="default_web_client_id" translatable="false">83595434940-jack6s8tii5u6rltqb69uahare5gf3ut.apps.googleusercontent.com</string>
+    <string name="web_client_id" translatable="false">856655760718-3cdovai12i4l8pv9g09pch05eva35e10.apps.googleusercontent.com</string>
+
+    <string name="link_news_general" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/GeneralNews</string>
+    <string name="link_news_changelog" translatable="false">https://raw.githubusercontent.com/TRITIUMNITR0X/PET-MessageCenter/master/Changelog</string>
+    <string name="link_news_phasmophobiaOfficial" translatable="false">https://steamcommunity.com/games/739630/rss/</string>
+
+    <string name="link_termsofservice" translatable="false">sites.google.com/view/tritium-studios-terms/home</string>
+    <string name="link_privacypolicy" translatable="false">sites.google.com/view/tritium-studios-privacy-policy/home</string>
+
+    <string name="link_market_app" translatable="false">market://details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
+    <string name="link_appstore_review" translatable="false">https://play.google.com/store/apps/details?id=com.TritiumGaming.phasmophobiaevidencepicker</string>
+
+    <!-- Page Details -->
+    <string name="link_discordInvite" translatable="false">RawQP9H7y7</string>
+    <string name="link_patreonInvite" translatable="false">u49522113</string>
+</resources>
