@@ -47,6 +47,10 @@
 
 <div align='center'><h2>Design and Architecture</h2></div>
 
+<br>
+<img title="Project Modules" src="https://github.com/Andrew-R-Stephens/Andrew-R-Stephens/blob/master/assets/pet_modularization.png" alt="graph" />
+<br>
+
 <div align='left'><h3>Modules</h3></div> 
 [ <code>active</code> ]
 <ul>
