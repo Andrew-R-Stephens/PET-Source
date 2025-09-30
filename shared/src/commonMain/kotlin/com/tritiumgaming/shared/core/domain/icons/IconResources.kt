@@ -18,6 +18,7 @@ class IconResources {
         NEWS,
         NOTIFY,
         OPEN_IN_NEW,
+        PATREON,
         PERSON,
         REVIEW,
         STORE,
