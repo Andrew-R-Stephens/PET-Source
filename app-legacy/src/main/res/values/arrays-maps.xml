@@ -76,23 +76,23 @@
 
     <!-- Generic array of map names -->
     <string-array name="map_names_array">
-        <item>@string/map_name_meadows</item>
-        <item>@string/map_name_meadows_r</item>
-        <item>@string/map_name_pointhope</item>
-        <item>@string/map_name_campmaple</item>
-        <item>@string/map_name_campwoodwind</item>
-        <item>@string/map_name_bleasdale</item>
-        <item>@string/map_name_grafton</item>
-        <item>@string/map_name_brownstone</item>
-        <item>@string/map_name_edgefield</item>
-        <item>@string/map_name_tanglewood</item>
-        <item>@string/map_name_willow</item>
-        <item>@string/map_name_ridgeview</item>
-        <item>@string/map_name_prison</item>
+        <item>@string/map_name_full_meadows</item>
+        <item>@string/map_name_full_meadows_r</item>
+        <item>@string/map_name_full_pointhope</item>
+        <item>@string/map_name_full_campmaple</item>
+        <item>@string/map_name_full_campwoodwind</item>
+        <item>@string/map_name_full_bleasdale</item>
+        <item>@string/map_name_full_grafton</item>
+        <item>@string/map_name_full_brownstone</item>
+        <item>@string/map_name_full_edgefield</item>
+        <item>@string/map_name_full_tanglewood</item>
+        <item>@string/map_name_full_willow</item>
+        <item>@string/map_name_full_ridgeview</item>
+        <item>@string/map_name_full_prison</item>
     </string-array>
 
     <integer-array name= "map_meadows_array">
-        <item>@string/map_name_meadows</item>
+        <item>@string/map_name_full_meadows</item>
         <item>@array/map_meadows_image_array</item>
         <item>@array/map_meadows_image_array</item>
         <item>@array/map_meadows_image_array</item>
@@ -103,7 +103,7 @@
         <item>@array/map_meadows_image_array</item>
     </integer-array>
     <integer-array name= "map_meadows_r_array">
-        <item>@string/map_name_meadows_r</item>
+        <item>@string/map_name_full_meadows_r</item>
         <item>@array/map_meadows_r_image_array</item>
         <item>@array/map_meadows_r_image_array</item>
         <item>@array/map_meadows_r_image_array</item>
@@ -114,7 +114,7 @@
         <item>@array/map_meadows_r_image_array</item>
     </integer-array>
     <integer-array name= "map_pointhope_array">
-        <item>@string/map_name_pointhope</item>
+        <item>@string/map_name_full_pointhope</item>
         <item>@array/map_pointhope_image_array</item>
         <item>@array/map_pointhope_image_array</item>
         <item>@array/map_pointhope_image_array</item>
@@ -125,7 +125,7 @@
         <item>@array/map_pointhope_image_array</item>
     </integer-array>
     <integer-array name= "map_campwoodwind_array">
-        <item>@string/map_name_campwoodwind</item>
+        <item>@string/map_name_full_campwoodwind</item>
         <item>@array/map_campwoodwind_image_array</item>
         <item>@array/map_campwoodwind_image_array</item>
         <item>@array/map_campwoodwind_image_array</item>
@@ -136,7 +136,7 @@
         <item>@array/map_campwoodwind_image_array</item>
     </integer-array>
     <integer-array name= "map_campmaple_array">
-        <item>@string/map_name_campmaple</item>
+        <item>@string/map_name_full_campmaple</item>
         <item>@array/map_campmaple_image_array</item>
         <item>@array/map_campmaple_image_array</item>
         <item>@array/map_campmaple_image_array</item>
@@ -147,7 +147,7 @@
         <item>@array/map_campmaple_image_array</item>
     </integer-array>
     <integer-array name= "map_bleasdale_array">
-        <item>@string/map_name_bleasdale</item>
+        <item>@string/map_name_full_bleasdale</item>
         <item>@array/map_bleasdale_image_array</item>
         <item>@array/map_bleasdale_image_array</item>
         <item>@array/map_bleasdale_image_array</item>
@@ -158,7 +158,7 @@
         <item>@array/map_bleasdale_image_array</item>
     </integer-array>
     <integer-array name= "map_grafton_array">
-        <item>@string/map_name_grafton</item>
+        <item>@string/map_name_full_grafton</item>
         <item>@array/map_grafton_image_array</item>
         <item>@array/map_grafton_image_array</item>
         <item>@array/map_grafton_image_array</item>
@@ -169,7 +169,7 @@
         <item>@array/map_grafton_image_array</item>
     </integer-array>
     <integer-array name= "map_brownstone_array">
-        <item>@string/map_name_brownstone</item>
+        <item>@string/map_name_full_brownstone</item>
         <item>@array/map_brownstone_image_array</item>
         <item>@array/map_brownstone_image_array</item>
         <item>@array/map_brownstone_image_array</item>
@@ -180,7 +180,7 @@
         <item>@array/map_brownstone_image_array</item>
     </integer-array>
     <integer-array name= "map_edgefield_array">
-        <item>@string/map_name_edgefield</item>
+        <item>@string/map_name_full_edgefield</item>
         <item>@array/map_edgefield_image_array</item>
         <item>@array/map_edgefield_image_array</item>
         <item>@array/map_edgefield_image_array</item>
@@ -191,7 +191,7 @@
         <item>@array/map_edgefield_image_array</item>
     </integer-array>
     <integer-array name= "map_tanglewood_array">
-        <item>@string/map_name_tanglewood</item>
+        <item>@string/map_name_full_tanglewood</item>
         <item>@array/map_tanglewood_image_array</item>
         <item>@array/map_tanglewood_image_array</item>
         <item>@array/map_tanglewood_image_array</item>
@@ -202,7 +202,7 @@
         <item>@array/map_tanglewood_image_array</item>
     </integer-array>
     <integer-array name= "map_willow_array">
-        <item>@string/map_name_willow</item>
+        <item>@string/map_name_full_willow</item>
         <item>@array/map_willow_image_array</item>
         <item>@array/map_willow_image_array</item>
         <item>@array/map_willow_image_array</item>
@@ -213,7 +213,7 @@
         <item>@array/map_willow_image_array</item>
     </integer-array>
     <integer-array name= "map_ridgeview_array">
-        <item>@string/map_name_ridgeview</item>
+        <item>@string/map_name_full_ridgeview</item>
         <item>@array/map_ridgeview_image_array</item>
         <item>@array/map_ridgeview_image_array</item>
         <item>@array/map_ridgeview_image_array</item>
@@ -224,7 +224,7 @@
         <item>@array/map_ridgeview_image_array</item>
     </integer-array>
     <integer-array name= "map_prison_array">
-        <item>@string/map_name_prison</item>
+        <item>@string/map_name_full_prison</item>
         <item>@array/map_prison_image_array</item>
         <item>@array/map_prison_image_array</item>
         <item>@array/map_prison_image_array</item>

@@ -34,8 +34,8 @@ class ItemStoreEquipmentItemModel : ItemStoreItemModel() {
     }
 
     override fun getAllAttributesAsFormattedHTML(c: Context): String {
-        val pos = c.getString(R.string.shop_equipment_attribute_opinion_positive)
-        val neg = c.getString(R.string.shop_equipment_attribute_opinion_negative)
+        val pos = c.getString(com.tritiumgaming.core.resources.R.string.shop_equipment_attribute_opinion_positive)
+        val neg = c.getString(com.tritiumgaming.core.resources.R.string.shop_equipment_attribute_opinion_negative)
         val invsp = "&nbsp;"
 
         val out = StringBuilder()

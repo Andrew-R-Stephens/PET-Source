@@ -61,12 +61,12 @@ fun MarketplaceDialog(
     onConfirm: () -> Unit = { }
 ) {
 
-    val title = stringResource(id = R.string.marketplace_acknowledgement_title)
+    val title = stringResource(id = com.tritiumgaming.core.resources.R.string.marketplace_acknowledgement_title)
 
     val content: @Composable () -> Unit = {
 
         Text(
-            text = stringResource(id = R.string.marketplace_acknowledgement_warning),
+            text = stringResource(id = com.tritiumgaming.core.resources.R.string.marketplace_acknowledgement_warning),
             style = TextStyle(
                 fontSize = 14.sp,
                 color = Color(
@@ -84,7 +84,7 @@ fun MarketplaceDialog(
                 .padding(8.dp)
         ) {
             Text(
-                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_1),
+                text = stringResource(id = com.tritiumgaming.core.resources.R.string.marketplace_acknowledgement_warning_list_1),
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color(
@@ -96,7 +96,7 @@ fun MarketplaceDialog(
             )
 
             Text(
-                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_2),
+                text = stringResource(id = com.tritiumgaming.core.resources.R.string.marketplace_acknowledgement_warning_list_2),
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color(
@@ -108,7 +108,7 @@ fun MarketplaceDialog(
             )
 
             Text(
-                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_3),
+                text = stringResource(id = com.tritiumgaming.core.resources.R.string.marketplace_acknowledgement_warning_list_3),
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color(
@@ -120,7 +120,7 @@ fun MarketplaceDialog(
             )
 
             Text(
-                text = stringResource(id = R.string.marketplace_acknowledgement_warning_list_4),
+                text = stringResource(id = com.tritiumgaming.core.resources.R.string.marketplace_acknowledgement_warning_list_4),
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color(
@@ -138,7 +138,7 @@ fun MarketplaceDialog(
         TextButton(
             content = {
                 Text(
-                    text = stringResource(id = R.string.marketplace_acknowledgement_button_confirm),
+                    text = stringResource(id = com.tritiumgaming.core.resources.R.string.marketplace_acknowledgement_button_confirm),
                     maxLines = 1,
                     style = TextStyle(fontSize = 18.sp)
                 )
@@ -182,11 +182,11 @@ fun LogoutDialog(
     onCancel: () -> Unit = { }
 ) {
 
-    val title = stringResource(id = R.string.account_logout_title)
+    val title = stringResource(id =com.tritiumgaming.core.resources.R.string.account_logout_title)
 
     val content: @Composable () -> Unit = {
         Text(
-            text = stringResource(id = R.string.account_logout_warning),
+            text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_logout_warning),
             style = TextStyle(
                 fontSize = 18.sp,
                 color = Color(
@@ -202,7 +202,7 @@ fun LogoutDialog(
         TextButton(
             content = {
                 Text(
-                    text = stringResource(id = R.string.account_logout_button_cancel),
+                    text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_logout_button_cancel),
                     maxLines = 1,
                     style = TextStyle(fontSize = 18.sp)
                 )
@@ -236,7 +236,7 @@ fun LogoutDialog(
         TextButton(
             content = {
                 Text(
-                    text = stringResource(id = R.string.account_logout_button_confirm),
+                    text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_logout_button_confirm),
                     maxLines = 1,
                     style = TextStyle(fontSize = 18.sp)
                 )
@@ -280,12 +280,12 @@ fun DeleteAccountDialog(
     onCancel: () -> Unit = { }
 ) {
 
-    val title = stringResource(id = R.string.account_deactivate_title)
+    val title = stringResource(id =com.tritiumgaming.core.resources.R.string.account_deactivate_title)
 
     val content: @Composable () -> Unit = {
 
         Text(
-            text = stringResource(id = R.string.account_deactivate_warning),
+            text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_deactivate_warning),
             style = TextStyle(
                 fontSize = 14.sp,
                 color = Color(
@@ -303,7 +303,7 @@ fun DeleteAccountDialog(
                 .padding(8.dp)
         ) {
             Text(
-                text = stringResource(id = R.string.account_deactivate_warning_list_1),
+                text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_deactivate_warning_list_1),
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color(
@@ -315,7 +315,7 @@ fun DeleteAccountDialog(
             )
 
             Text(
-                text = stringResource(id = R.string.account_deactivate_warning_list_2),
+                text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_deactivate_warning_list_2),
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color(
@@ -327,7 +327,7 @@ fun DeleteAccountDialog(
             )
 
             Text(
-                text = stringResource(id = R.string.account_deactivate_warning_list_3),
+                text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_deactivate_warning_list_3),
                 style = TextStyle(
                     fontSize = 14.sp,
                     color = Color(
@@ -344,7 +344,7 @@ fun DeleteAccountDialog(
         TextButton(
             content = {
                 Text(
-                    text = stringResource(id = R.string.account_deactivate_button_cancel),
+                    text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_deactivate_button_cancel),
                     maxLines = 1,
                     style = TextStyle(fontSize = 18.sp)
                 )
@@ -378,7 +378,7 @@ fun DeleteAccountDialog(
         TextButton(
             content = {
                 Text(
-                    text = stringResource(id = R.string.account_deactivate_button_confirm),
+                    text = stringResource(id =com.tritiumgaming.core.resources.R.string.account_deactivate_button_confirm),
                     maxLines = 1,
                     style = TextStyle(fontSize = 18.sp)
                 )

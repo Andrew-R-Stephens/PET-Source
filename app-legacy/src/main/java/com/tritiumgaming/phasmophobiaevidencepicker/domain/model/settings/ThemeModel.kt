@@ -51,7 +51,7 @@ constructor(
         val defaultTheme: ThemeModel
             get() = ThemeModel(
                 "CzjtxSbXRwIpX8SYR0ttngAND",
-                R.string.settings_colorblindnessmode_defaultName,
+                com.tritiumgaming.core.resources.R.string.settings_colorblindnessmode_defaultName,
                 R.style.Theme_PhasmophobiaEvidenceTool
             )
     }

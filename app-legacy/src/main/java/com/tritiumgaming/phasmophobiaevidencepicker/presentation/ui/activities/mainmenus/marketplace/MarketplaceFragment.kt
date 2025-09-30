@@ -132,7 +132,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         accountLoginButton.setOnClickListener {
 
             currentFirebaseUser?.let { user ->
-                val message = "${requireActivity().getString(R.string.alert_account_welcome)} ${user.displayName}"
+                val message = "${requireActivity().getString(com.tritiumgaming.core.resources.R.string.alert_account_welcome)} ${user.displayName}"
                 val toast = Toast.makeText(activity, message, Toast.LENGTH_LONG)
                 toast.show()
 
@@ -333,7 +333,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     try {
                         Toast.makeText(requireActivity(),
-                            getString(R.string.alert_marketplace_access_failure),
+                            getString(com.tritiumgaming.core.resources.R.string.alert_marketplace_access_failure),
                             Toast.LENGTH_SHORT).show()
                     }
                     catch (e: IllegalStateException) { e.printStackTrace() }
@@ -373,7 +373,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         listener.onFailure()
 
                         Toast.makeText(requireActivity(),
-                            getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
+                            getString(com.tritiumgaming.core.resources.R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: IllegalStateException) { e.printStackTrace() }
@@ -418,7 +418,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                     try {
                         Toast.makeText(requireActivity(),
-                            getString(R.string.alert_marketplace_access_failure),
+                            getString(com.tritiumgaming.core.resources.R.string.alert_marketplace_access_failure),
                             Toast.LENGTH_SHORT).show()
                     }
                     catch (e: IllegalStateException) { e.printStackTrace() }
@@ -442,7 +442,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
         try {
             if (!isNetworkAvailable(requireContext(), globalPreferencesViewModel!!.networkPreference)) {
                 Toast.makeText(requireActivity(),
-                    getString(R.string.alert_internet_unavailable),
+                    getString(com.tritiumgaming.core.resources.R.string.alert_internet_unavailable),
                     Toast.LENGTH_SHORT).show()
 
                 processCompleteListener.onFailure()
@@ -685,7 +685,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                                                 "Could not add/retrieve purchase document!")
                                             try {
                                                 Toast.makeText(requireActivity(),
-                                                    getString(R.string.alert_marketplace_transaction_failure),
+                                                    getString(com.tritiumgaming.core.resources.R.string.alert_marketplace_transaction_failure),
                                                     Toast.LENGTH_SHORT).show()
                                             }
                                             catch (e: IllegalStateException) { e.printStackTrace() }
@@ -697,7 +697,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                             try {
                                 Toast.makeText(requireActivity(),
-                                    getString(R.string.alert_marketplace_purchase_success_skin), Toast.LENGTH_SHORT).show()
+                                    getString(com.tritiumgaming.core.resources.R.string.alert_marketplace_purchase_success_skin), Toast.LENGTH_SHORT).show()
                             }
                             catch (e: IllegalStateException) { e.printStackTrace() }
                         }
@@ -705,7 +705,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         override fun onFailure() {
                             try {
                                 Toast.makeText(requireActivity(),
-                                    getString(R.string.alert_marketplace_purchase_failure_skin_credits),
+                                    getString(com.tritiumgaming.core.resources.R.string.alert_marketplace_purchase_failure_skin_credits),
                                     Toast.LENGTH_SHORT).show()
                             }
                             catch (e: IllegalStateException) { e.printStackTrace() }
@@ -765,7 +765,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
                             try {
                                 Toast.makeText(
-                                    requireActivity(), getString(R.string.alert_marketplace_purchase_success_skin), Toast.LENGTH_SHORT).show()
+                                    requireActivity(), getString(com.tritiumgaming.core.resources.R.string.alert_marketplace_purchase_success_skin), Toast.LENGTH_SHORT).show()
                             }
                             catch (e: IllegalStateException) { e.printStackTrace() }
                         }
@@ -773,7 +773,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                         override fun onFailure() {
                             try {
                                 Toast.makeText(
-                                    requireActivity(), getString(R.string.alert_marketplace_purchase_failure_skin_credits),
+                                    requireActivity(), getString(com.tritiumgaming.core.resources.R.string.alert_marketplace_purchase_failure_skin_credits),
                                     Toast.LENGTH_SHORT).show()
                             }
                             catch (e: IllegalStateException) { e.printStackTrace() }
@@ -801,7 +801,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 EquipConfirmationDialog(
                     onConfirm = { gotoSettingsMarketplace(dialog) },
                     targetTitle = String.format(
-                        Locale.getDefault(), getString(R.string.marketplace_purchase_equip),
+                        Locale.getDefault(), getString(com.tritiumgaming.core.resources.R.string.marketplace_purchase_equip),
                         bundleModel.name),
                     timeout = 3000L
                 )
@@ -815,7 +815,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                 EquipConfirmationDialog(
                     onConfirm = { gotoSettingsMarketplace(dialog) },
                     targetTitle = String.format(
-                        Locale.getDefault(), getString(R.string.marketplace_purchase_equip),
+                        Locale.getDefault(), getString(com.tritiumgaming.core.resources.R.string.marketplace_purchase_equip),
                         themeModel.name),
                     timeout = 3000L
                 )
@@ -848,7 +848,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
 
     private fun loadRewardedAd(listener: OnAdLoadedListener?) {
         try {
-            RewardedAd.load(requireActivity(), getString(R.string.ad_rewarded_1),
+            RewardedAd.load(requireActivity(), getString(com.tritiumgaming.core.resources.R.string.ad_rewarded_1),
                 AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
                     override fun onAdLoaded(ad: RewardedAd) {
                         Log.d("RewardedAd", "Ad was loaded.")
@@ -902,7 +902,7 @@ class MarketplaceFragment : MainMenuFirebaseFragment() {
                             override fun onAdLoaded() { showRewardedAd() } })
                     } else {
                         Toast.makeText(
-                            requireActivity(), getString(R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
+                            requireActivity(), getString(com.tritiumgaming.core.resources.R.string.alert_internet_unavailable), Toast.LENGTH_SHORT).show()
                     }
                 }
             } catch (e: IllegalStateException) { e.printStackTrace() }

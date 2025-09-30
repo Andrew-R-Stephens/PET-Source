@@ -67,7 +67,7 @@
             android:ems="4"
             android:gravity="center"
             android:maxLines="1"
-            android:text="@string/investigation_timer_time_3"
+            android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/evidence_sanitymeter_seekbar"

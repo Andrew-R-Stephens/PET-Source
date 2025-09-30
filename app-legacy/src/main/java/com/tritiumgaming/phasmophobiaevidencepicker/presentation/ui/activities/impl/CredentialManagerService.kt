@@ -140,7 +140,7 @@ interface SignInCredentialManager {
         try {
             val googleIdOption = GetSignInWithGoogleOption
                 .Builder(
-                    serverClientId = activity.getString(R.string.default_web_client_id))
+                    serverClientId = activity.getString(com.tritiumgaming.core.resources.R.string.default_web_client_id))
                 .build()
             finalizeAuthWithCredential(
                 activity, googleIdOption, onSuccess, onFailure, onComplete
@@ -178,7 +178,7 @@ interface SignInCredentialManager {
             .setAutoSelectEnabled(true)
             .setNonce("")
             .setServerClientId(
-                serverClientId = activity.getString(R.string.default_web_client_id)
+                serverClientId = activity.getString(com.tritiumgaming.core.resources.R.string.default_web_client_id)
             )
             .build()
 
@@ -213,7 +213,7 @@ interface SignInCredentialManager {
             .setFilterByAuthorizedAccounts(false)
             .setNonce("")
             .setServerClientId(
-                serverClientId = activity.getString(R.string.default_web_client_id)
+                serverClientId = activity.getString(com.tritiumgaming.core.resources.R.string.default_web_client_id)
             )
             .build()
 

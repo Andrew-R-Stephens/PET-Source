@@ -44,6 +44,7 @@
             android:spinnerMode="dropdown"
             android:textColor="?attr/textColorBody"
             android:saveEnabled="false"
+            android:scrollbarThumbVertical="@drawable/verticalscrollbar"
             app:layout_constraintBottom_toBottomOf="@+id/evidence_button_completed"
             app:layout_constraintEnd_toStartOf="@+id/evidence_button_completed"
             app:layout_constraintStart_toStartOf="parent"

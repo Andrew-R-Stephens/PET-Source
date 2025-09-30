@@ -63,9 +63,9 @@ class MapMenuFragment : InvestigationFragment() {
                         }
                     }
             } ?:  Toast.makeText(requireContext(),
-                getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
+                getString(com.tritiumgaming.core.resources.R.string.alert_error_generic), Toast.LENGTH_LONG).show()
         } ?: Toast.makeText(requireContext(),
-            getString(R.string.alert_error_generic), Toast.LENGTH_LONG).show()
+            getString(com.tritiumgaming.core.resources.R.string.alert_error_generic), Toast.LENGTH_LONG).show()
     }
 
     @Throws(Exception::class)
@@ -73,7 +73,7 @@ class MapMenuFragment : InvestigationFragment() {
         val mapFileIO = MapFileIO()
         val reader = mapFileIO.mapFileReader
 
-        mapFileIO.readFile(requireActivity().assets, getString(R.string.mapsJson), reader)
+        mapFileIO.readFile(requireActivity().assets, getString(com.tritiumgaming.core.resources.R.string.mapsJson), reader)
         mapListModel = MapListModel(reader.worldMapDeserializer)
         mapListModel?.orderRooms()
 

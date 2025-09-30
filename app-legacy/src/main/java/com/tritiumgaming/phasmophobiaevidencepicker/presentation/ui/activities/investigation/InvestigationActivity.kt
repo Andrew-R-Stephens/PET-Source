@@ -106,8 +106,8 @@ open class InvestigationActivity : PETActivity() {
         drawerLayout?.let { drawerLayout ->
             actionBarDrawerToggle = ActionBarDrawerToggle(
                 this, drawerLayout,
-                R.string.navigation_open_state,
-                R.string.navigation_closed_state
+                com.tritiumgaming.core.resources.R.string.navigation_open_state,
+                com.tritiumgaming.core.resources.R.string.navigation_closed_state
             )
 
             // pass the Open and Close toggle for the drawer layout listener

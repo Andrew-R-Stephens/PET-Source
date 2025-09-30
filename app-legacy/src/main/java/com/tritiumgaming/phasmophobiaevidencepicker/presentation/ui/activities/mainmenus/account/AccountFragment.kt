@@ -98,7 +98,7 @@ class AccountFragment : MainMenuFirebaseFragment() {
                             try {
                                 currentFirebaseUser?.let { user ->
                                     val message =
-                                        "${requireActivity().getString(R.string.alert_account_welcome)} ${user.displayName}"
+                                        "${requireActivity().getString(com.tritiumgaming.core.resources.R.string.alert_account_welcome)} ${user.displayName}"
                                     val toast = Toast.makeText(activity, message, Toast.LENGTH_LONG)
                                     toast.show()
                                 }

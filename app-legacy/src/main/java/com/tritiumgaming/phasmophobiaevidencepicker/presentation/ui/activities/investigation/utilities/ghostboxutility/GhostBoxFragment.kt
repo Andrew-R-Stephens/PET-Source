@@ -49,16 +49,18 @@ class GhostBoxFragment :
         val promptList3 = view.findViewById<LinearLayout>(R.id.linearlayout_scrollview_list3)
         waveFormView = view.findViewById(R.id.waveFormView)
 
-        title?.text = getString(R.string.ghostbox_title)
+        //title?.text = getString(com.tritiumgaming.core.resources.R.string.ghostbox_title)
 
         prev.setOnClickListener { v: View? -> v?.let { findNavController(v).popBackStack() } }
 
+        /*
         setScrollListEntries(
             requireContext(), view, R.array.ghostspeaktool_general_array, promptList1)
         setScrollListEntries(
             requireContext(), view, R.array.ghostspeaktool_spiritbox_array, promptList2)
         setScrollListEntries(
             requireContext(), view, R.array.ghostspeaktool_oijaboard_array, promptList3)
+        */
 
         if (permissionsViewModel?.isRecordAudioAllowed == false) {
             try { requestAudioPermissions(requireContext(), requireActivity()) }

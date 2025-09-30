@@ -26,7 +26,7 @@
         android:layout_height="3dp"
         android:layout_marginStart="8dp"
         android:background="@drawable/icon_strikethrough_1"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="?attr/textColorBody"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapmenu_title" />
@@ -82,6 +82,7 @@
                 android:paddingHorizontal="32sp"
                 android:requiresFadingEdge="vertical"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarThumbVertical="@drawable/verticalscrollbar"
                 android:scrollbarStyle="outsideOverlay"
                 android:verticalSpacing="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"

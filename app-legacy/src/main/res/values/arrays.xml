@@ -6,30 +6,30 @@
     -->
     <!-- Language Data -->
     <string-array name="language_names">
-        <item>@string/language_fullName_chinese_s</item>
-        <item>@string/language_fullName_czech</item>
-        <item>@string/language_fullName_german</item>
-        <item>@string/language_fullName_english</item>
-        <item>@string/language_fullName_spanish</item>
-        <item>@string/language_fullName_french</item>
-        <item>@string/language_fullName_italian</item>
-        <item>@string/language_fullName_japanese</item>
-        <item>@string/language_fullName_portuguese</item>
-        <item>@string/language_fullName_russian</item>
-        <item>@string/language_fullName_ukrainian</item>
+        <item>@string/language_name_native_zh_Hans</item>
+        <item>@string/language_name_native_cs</item>
+        <item>@string/language_name_native_de</item>
+        <item>@string/language_name_native_en</item>
+        <item>@string/language_name_native_es</item>
+        <item>@string/language_name_native_fr</item>
+        <item>@string/language_name_native_it</item>
+        <item>@string/language_name_native_ja</item>
+        <item>@string/language_name_native_pt</item>
+        <item>@string/language_name_native_ru</item>
+        <item>@string/language_name_native_uk</item>
     </string-array>
     <string-array name="language_codes">
-        <item>@string/language_abbrName_chinese_simplified</item>
-        <item>@string/language_abbrName_czech</item>
-        <item>@string/language_abbrName_german</item>
-        <item>@string/language_abbrName_english</item>
-        <item>@string/language_abbrName_spanish</item>
-        <item>@string/language_abbrName_french</item>
-        <item>@string/language_abbrName_italian</item>
-        <item>@string/language_abbrName_japanese</item>
-        <item>@string/language_abbrName_portuguese</item>
-        <item>@string/language_abbrName_russian</item>
-        <item>@string/language_abbrName_ukrainian</item>
+        <item>@string/language_code_zh_Hans</item>
+        <item>@string/language_code_cs</item>
+        <item>@string/language_code_de</item>
+        <item>@string/language_code_en</item>
+        <item>@string/language_code_es</item>
+        <item>@string/language_code_fr</item>
+        <item>@string/language_code_it</item>
+        <item>@string/language_code_ja</item>
+        <item>@string/language_code_pt</item>
+        <item>@string/language_code_ru</item>
+        <item>@string/language_code_uk</item>
     </string-array>
 
     <!-- Book Writing Images -->
@@ -90,9 +90,9 @@
     -->
     <!-- Developer Info -->
     <string-array name="messagecenter_inboxtitles">
-        <item>@string/messagecenter_inbox_general</item>
-        <item>@string/messagecenter_inbox_pet</item>
-        <item>@string/messagecenter_inbox_phas</item>
+        <item>@string/newsletter_inbox_title_general</item>
+        <item>@string/newsletter_inbox_title_pet</item>
+        <item>@string/newsletter_inbox_title_phasmophobia</item>
     </string-array>
     <integer-array name="messagecenter_inboxicons">
         <item>@drawable/ic_news</item>
@@ -109,8 +109,8 @@
         <item>@string/aboutinfo_developerinfo_contact</item>
     </string-array>
     <string-array name="aboutinfo_developerinfo_subinfo">
-        <item>@string/aboutinfo_developerinfo_devname</item>
-        <item>@string/aboutinfo_developerinfo_address</item>
+        <item>@string/contact_developerName</item>
+        <item>@string/contact_developerEmail</item>
     </string-array>
 
     <!-- Special Thanks -->
@@ -142,18 +142,18 @@
 
     <!-- Timer Data -->
     <string-array name="evidence_timer_difficulty_names_array">
-        <item>@string/investigation_timer_difficulty_1</item>
-        <item>@string/investigation_timer_difficulty_2</item>
-        <item>@string/investigation_timer_difficulty_3</item>
-        <item>@string/investigation_timer_difficulty_4</item>
-        <item>@string/investigation_timer_difficulty_5</item>
+        <item>@string/difficulty_title_amateur</item>
+        <item>@string/difficulty_title_intermediate</item>
+        <item>@string/difficulty_title_professional</item>
+        <item>@string/difficulty_title_nightmare</item>
+        <item>@string/difficulty_title_insanity</item>
     </string-array>
     <string-array name="evidence_timer_difficulty_times_array">
-        <item>@string/investigation_timer_time_1</item>
-        <item>@string/investigation_timer_time_2</item>
-        <item>@string/investigation_timer_time_3</item>
-        <item>@string/investigation_timer_time_3</item>
-        <item>@string/investigation_timer_time_3</item>
+        <item>@integer/difficulty_time_amateur</item>
+        <item>@integer/difficulty_time_intermediate</item>
+        <item>@integer/difficulty_time_professional</item>
+        <item>@integer/difficulty_time_nightmare</item>
+        <item>@integer/difficulty_time_insanity</item>
     </string-array>
 
 

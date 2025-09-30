@@ -10,23 +10,61 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.Navigation.findNavController
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.tritiumgaming.core.ui.common.menus.IconDropdownMenu
+import com.tritiumgaming.core.ui.common.menus.IconDropdownMenuColors
+import com.tritiumgaming.core.ui.common.menus.SecondarySelector
+import com.tritiumgaming.core.ui.icon.GearIcon
+import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
+import com.tritiumgaming.core.ui.icon.InfoIcon
+import com.tritiumgaming.core.ui.icon.OpenInNewIcon
+import com.tritiumgaming.core.ui.icon.PersonIcon
+import com.tritiumgaming.core.ui.icon.ReviewIcon
+import com.tritiumgaming.core.ui.icon.StoreIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.StartScreenAnimationView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewLauncher
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.DropdownNavigationPair
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.IconDropdownMenu
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.LanguageIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.account.AccountIconView
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.AccountIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.AccountIconPrimaryContent
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.BadgeIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.LanguageIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.NotificationIndicator
+import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getDrawableFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getTextStyleFromAttribute
+import com.tritiumgaming.shared.core.domain.icons.IconResources
 import java.util.Locale
 
 class StartScreenFragment : MainMenuFragment() {
@@ -53,12 +91,8 @@ class StartScreenFragment : MainMenuFragment() {
 
         val labelLanguageName = view.findViewById<AppCompatTextView>(R.id.label_languageName)
         val buttonStart = view.findViewById<View>(R.id.button_start_solo)
-        val buttonInfo = view.findViewById<ComposeView>(R.id.button_info)
-        val buttonMenu = view.findViewById<ComposeView>(R.id.button_settings)
-        val languageIcon = view.findViewById<ComposeView>(R.id.icon_language)
-        val buttonReview = view.findViewById<AppCompatImageView>(R.id.button_review)
-        val buttonPatreon = view.findViewById<AppCompatImageView>(R.id.button_patreon)
-        buttonMsgInbox = view.findViewById(R.id.button_inbox)
+        val headerBar = view.findViewById<ComposeView>(R.id.headerbar)
+        val languageButton = view.findViewById<ComposeView>(R.id.icon_language)
         val buttonLanguage = view.findViewById<View>(R.id.listener_language)
 
         // LISTENERS
@@ -71,98 +105,348 @@ class StartScreenFragment : MainMenuFragment() {
             } catch (e: IllegalStateException) { e.printStackTrace() }
         }
 
-        newsIcon = ComposeView(requireContext())
-        newsIcon?.setContent { NewsAlert(false) }
-
-        buttonPatreon.setOnClickListener {
-            try {
+        val languageIcon: @Composable () -> Unit = {
+            LanguageIcon(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
+                colors = IconVectorColors.defaults(
+                    fillColor = Color(getColorFromAttribute(requireActivity(), R.attr.textColorBody)),
+                    strokeColor = Color(getColorFromAttribute(requireActivity(), R.attr.backgroundColor))
+                )
+            ) {
                 try {
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            "https://patreon.com/ ${getString(R.string.link_patronInvite)}"
-                                .toUri()
-                        )
-                    )
-                } catch (e: Exception) {
+                    findNavController(view).navigate(R.id.action_titleScreenFragment_to_appLanguageFragment)
+                } catch (e: IllegalStateException) {
                     e.printStackTrace()
                 }
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
             }
         }
+        languageButton?.setContent { languageIcon() }
 
-        languageIcon?.setContent { LanguageIcon() }
+        headerBar?.setContent {
 
-        buttonMenu.setContent {
+            val context = LocalContext.current
+            val discordInvitation = stringResource(com.tritiumgaming.core.resources.R.string.link_discordInvite)
 
+            val menuIcon: @Composable () -> Unit = { HamburgerMenuIcon(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
 
-            /*val translationIcon: @Composable () -> Unit = { LanguageIcon() }
-            val patreonIcon: @Composable () -> Unit = { PatreonIcon() }
-
-            IconDropdownMenu(
-                com.tritiumgaming.core.resources.R.drawable.ic_menu,
-                R.navigation.titlescreen_navgraph,
-                arrayOf(
-                    DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_info, R.id.appInfoFragment),
-                    DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_gear, R.id.appSettingsFragment),
-                    DropdownNavigationPair(translationIcon, R.id.appLanguageFragment),
-                    DropdownClickPair(com.tritiumgaming.core.resources.R.drawable.ic_discord) {
-                        try {
-                            startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    "https://discord.gg/ ${getString(R.string.aboutinfo_discordInvite)}"
-                                        .toUri()
-                                )
-                            )
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                        }
-                    },
-                    DropdownClickPair(patreonIcon) {
-                        try {
-                            startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    "https://patreon.com/ ${getString(R.string.link_patronInvite)}"
-                                        .toUri()
-                                )
-                            )
-                        } catch (e: IllegalStateException) {
-                            e.printStackTrace()
-                        }
-                    },
+                colors = IconVectorColors.defaults(
+                    fillColor = Color(getColorFromAttribute(context, R.attr.backgroundColor)),
+                    strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody))
                 )
-            ) { false }*/
+            ) }
+            val infoIcon: @Composable () -> Unit = { InfoIcon(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
+                colors = IconVectorColors.defaults(
+                    fillColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
+                    strokeColor = Color(getColorFromAttribute(context, R.attr.backgroundColor))
+                )
+            ) }
+            val gearIcon: @Composable () -> Unit = { GearIcon(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
+                colors = IconVectorColors.defaults(
+                    fillColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
+                    strokeColor = Color(getColorFromAttribute(context, R.attr.backgroundColor))
+                )
+            ) }
+            val discordIcon: @Composable () -> Unit = {
+                BadgeIcon(
+                    modifier = Modifier
+                        .size(48.dp),
+                    baseComponent = {
+                        IconResources.IconResource.DISCORD.ToComposable(
+                            colors = IconVectorColors.defaults(
+                                fillColor = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground)),
+                                strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
+                            )
+                        )
+                    }
+                ) {
+                    OpenInNewIcon(
+                        colors = IconVectorColors.defaults(
+                            fillColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
+                            strokeColor = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground)),
+                        )
+                    )
+                }
+            }
+            val patreonIcon: @Composable () -> Unit = {
+                BadgeIcon(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .padding(4.dp),
+                    baseComponent = {
+                        IconResources.IconResource.PATREON.ToComposable(
+                            colors = IconVectorColors.defaults(
+                                fillColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
+                                strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
+                            )
+                        )
+                    }
+                )
+            }
+            val reviewIcon: @Composable () -> Unit = { ReviewIcon(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
+                colors = IconVectorColors.defaults(
+                    fillColor = Color(getColorFromAttribute(context, R.attr.backgroundColor)),
+                    strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody))
+                )
+            ) }
+
+            val accountIcon: @Composable () -> Unit = {
+                AccountIcon(
+                    modifier = Modifier
+                        .size(48.dp),
+                    user = Firebase.auth.currentUser,
+                    borderColor =  LocalPalette.current.textFamily.body,
+                    backgroundColor = LocalPalette.current.surface.onColor,
+                    placeholder = {
+                        IconResources.IconResource.PERSON.ToComposable(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(8.dp),
+                            colors = IconVectorColors.defaults(
+                                fillColor = LocalPalette.current.background.color,
+                                strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody))
+                            )
+                        )
+                    },
+                    content = {
+                        val authUser = Firebase.auth.currentUser
+                        val authUserName = authUser?.displayName ?: ""
+
+                        val names: List<String?> = (authUserName).split(" ")
+
+                        val textStyle = getTextStyleFromAttribute(
+                            context, R.attr.primaryFont_Bold_Auto)
+
+                        AccountIconPrimaryContent(
+                            firstName = names.getOrNull(0) ?: "",
+                            lastName = names.getOrNull(1) ?: "",
+                            textStyle = textStyle.copy(
+                                color = Color(getColorFromAttribute(
+                                    context, R.attr.textColorBody)),
+                                textAlign = TextAlign.Center,
+                                shadow = Shadow(
+                                    color = Color(getColorFromAttribute(
+                                        context, R.attr.backgroundColorOnBackground)),
+                                    blurRadius = 8f
+                                ),
+                            )
+                        ){
+                            getDrawableFromAttribute(
+                                context = context,
+                                attribute = R.attr.theme_badge
+                            )?.let { drawableRes ->
+                                Image(
+                                    painter = painterResource(id = drawableRes),
+                                    contentDescription = "",
+                                    contentScale = ContentScale.Inside,
+                                    alpha = .5f
+                                )
+                            }
+                        }
+                    }
+                )
+            }
+            val personIcon: @Composable () -> Unit = {
+                PersonIcon(
+                    modifier = Modifier,
+                    colors = IconVectorColors.defaults(
+                        strokeColor = Color(getColorFromAttribute(
+                            context, R.attr.textColorBody))
+                    )
+                )
+            }
+            val storeIcon: @Composable () -> Unit = {
+                StoreIcon(
+                    modifier = Modifier,
+                    colors = IconVectorColors.defaults(
+                        fillColor = Color(getColorFromAttribute(
+                            context, R.attr.textColorBody)),
+                        strokeColor = Color(getColorFromAttribute(
+                            context, R.attr.textColorBody))
+                    )
+                )
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                IconDropdownMenu(
+                    modifier = Modifier,
+                    colors = IconDropdownMenuColors(
+                        primaryContentBackground = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground)),
+                        dropdownContentBackground = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground))
+                    ),
+                    primaryContent = menuIcon,
+                    dropdownContent = @Composable {
+                        SecondarySelector(
+                            onClick = {
+                                try {
+                                    findNavController(view).navigate(
+                                        R.id.action_titleScreenFragment_to_appInfoFragment)
+                                } catch (e: IllegalStateException) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        ) {
+                            infoIcon()
+                        }
+                        SecondarySelector(
+                            onClick = {
+                                try {
+                                    findNavController(view).navigate(
+                                        R.id.action_titleScreenFragment_to_appSettingsFragment)
+                                } catch (e: IllegalStateException) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        ) {
+                            gearIcon()
+                        }
+                        SecondarySelector(
+                            onClick = {
+                                try {
+                                    findNavController(view).navigate(
+                                        R.id.action_titleScreenFragment_to_appLanguageFragment)
+                                } catch (e: IllegalStateException) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        ) {
+                            languageIcon()
+                        }
+                        SecondarySelector(
+                            onClick = {
+                                try {
+                                    startActivity(
+                                        Intent(
+                                            Intent.ACTION_VIEW,
+                                            "https://patreon.com/ ${getString(com.tritiumgaming.core.resources.R.string.link_patreonInvite)}"
+                                                .toUri()
+                                        )
+                                    )
+                                } catch (e: IllegalStateException) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        ) {
+                            patreonIcon()
+                        }
+                        SecondarySelector(
+                            onClick = {
+                                context.startActivity(
+                                    Intent(
+                                        Intent.ACTION_VIEW,
+                                        "https://discord.gg/ $discordInvitation".toUri()
+                                    )
+                                )
+                            }) {
+                            discordIcon()
+                        }
+                    }
+                ) { false }
+
+                val notificationState = newsLetterViewModel?.requiresNotify?.collectAsStateWithLifecycle()
+                // News Button
+                NotificationIndicator(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .padding(4.dp),
+                    isActive = notificationState?.value ?: false,
+                    baseIcon = IconResources.IconResource.NEWS,
+                    baseTint = IconVectorColors(
+                        fillColor = Color(
+                            getColorFromAttribute(context, R.attr.backgroundColor)),
+                        strokeColor = Color(
+                            getColorFromAttribute(context, R.attr.textColorBody))
+                    ),
+                    alertIcon = IconResources.IconResource.NOTIFY,
+                    alertTint = IconVectorColors(
+                        fillColor = Color(
+                            getColorFromAttribute(
+                                context, R.attr.backgroundColor)),
+                        strokeColor = Color(
+                            getColorFromAttribute(
+                                context, R.attr.inboxNotification))
+                    )
+                ) {
+                    try {
+                        findNavController(view).navigate(
+                            R.id.action_titleScreenFragment_to_inboxFragment)
+                    } catch (e: IllegalStateException) {
+                        e.printStackTrace()
+                    }
+                }
+
+                reviewIcon()
+
+                IconDropdownMenu(
+                    modifier = Modifier,
+                    colors = IconDropdownMenuColors(
+                        primaryContentBackground = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground)),
+                        dropdownContentBackground = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground))
+                    ),
+                    primaryContent = accountIcon,
+                    dropdownContent = @Composable {
+                        SecondarySelector(
+                            modifier = Modifier
+                                .size(48.dp)
+                                .padding(4.dp),
+                            onClick = {
+                                try {
+                                    findNavController(view).navigate(R.id.action_titleScreenFragment_to_accountOverviewFragment)
+                                } catch (e: IllegalStateException) {
+                                    e.printStackTrace()
+                                }
+                            }) {
+                            personIcon()
+                        }
+                        SecondarySelector(
+                            modifier = Modifier
+                                .size(48.dp)
+                                .padding(4.dp),
+                            onClick = {
+                                try {
+                                    findNavController(view).navigate(R.id.action_titleScreenFragment_to_marketplaceFragment)
+                                } catch (e: IllegalStateException) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        ) {
+                            storeIcon()
+                        }
+                    }
+                ) { false }
+            }
 
         }
-
-        buttonInfo.setContent {
-
-            IconDropdownMenu(
-                AccountIconView(requireContext()),
-                R.navigation.titlescreen_navgraph,
-                arrayOf(
-                    DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_person, R.id.accountOverviewFragment),
-                        DropdownNavigationPair(com.tritiumgaming.core.resources.R.drawable.ic_store, R.id.marketplaceFragment)
-                )
-            )
-
-        }
-
-        buttonMsgInbox?.setContent { NewsAlert(false) }
 
         //setBackgroundLogo(iconApp)
         setLanguageName(labelLanguageName)
 
         super.initAdView(view.findViewById(R.id.adView))
 
-        try {
+        /*try {
             initReviewRequest(buttonReview)
         } catch (e: IllegalStateException) {
             e.printStackTrace()
-        }
+        }*/
 
         try {
             doReviewRequest()
@@ -304,24 +588,11 @@ class StartScreenFragment : MainMenuFragment() {
             }
     }
 
-    private fun doNewsletterNotification() {
-        Log.d("MessageCenter", "Starting animation")
-        try {
-            buttonMsgInbox?.setContent { NewsAlert(true) }
-            newsIcon?.setContent { NewsAlert(true) }
-        } catch (e: IllegalStateException) { e.printStackTrace() }
-    }
-
     private fun startInitNewsletterThread() {
         if (checkInternetConnection()) { startLoadNewsletterThread() }
         else {
             Log.d("MessageCenter", "Could not connect to the internet.")
-            newsLetterViewModel?.let { newsLetterViewModel ->
-                newsLetterViewModel.compareAllInboxDates()
-                if (newsLetterViewModel.requiresNotify) {
-                    doNewsletterNotification()
-                }
-            }
+            newsLetterViewModel?.compareAllInboxDates()
         }
     }
 
@@ -353,9 +624,6 @@ class StartScreenFragment : MainMenuFragment() {
 
                 try {
                     newsLetterViewModel.compareAllInboxDates()
-                    if (newsLetterViewModel.requiresNotify) {
-                        requireActivity().runOnUiThread { this.doNewsletterNotification() }
-                    }
                 } catch (e: IllegalStateException) { e.printStackTrace() }
             }
         }

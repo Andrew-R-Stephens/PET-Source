@@ -15,7 +15,7 @@ abstract class CodexFragment : InvestigationFragment() {
         val color2Hex = String.format("#%06X", (0xFFFFFF and color2))
 
         ghostOSLabel?.text = Html.fromHtml(
-            getString(R.string.codex_label_gh_ost)
+            getString(com.tritiumgaming.core.resources.R.string.codex_label_gh_ost)
                 .replace("#99AEB3".toRegex(), color1Hex)
                 .replace("#FFB43D".toRegex(), color2Hex)
         )

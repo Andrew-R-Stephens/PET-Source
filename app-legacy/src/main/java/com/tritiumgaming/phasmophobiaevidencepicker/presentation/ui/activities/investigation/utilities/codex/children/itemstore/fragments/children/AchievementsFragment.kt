@@ -57,7 +57,7 @@ class AchievementsFragment : ItemStoreFragment() {
     }
 
     override fun setPageTitle(titleView: AppCompatTextView) {
-        titleView.setText(R.string.store_title_achievements)
+        titleView.setText(com.tritiumgaming.core.resources.R.string.store_title_achievements)
     }
 
     override fun setDataViewLayout(view: View) {

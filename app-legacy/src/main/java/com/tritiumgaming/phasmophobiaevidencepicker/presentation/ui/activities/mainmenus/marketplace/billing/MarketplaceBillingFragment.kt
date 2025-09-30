@@ -182,7 +182,7 @@ class MarketplaceBillingFragment : MainMenuFirebaseFragment() {
                     requireActivity().runOnUiThread {
                         Toast.makeText(
                             requireActivity(),
-                            getString(R.string.alert_marketplace_purchase_success_generic),
+                            getString(com.tritiumgaming.core.resources.R.string.alert_marketplace_purchase_success_generic),
                             Toast.LENGTH_LONG
                         ).show()
                     }

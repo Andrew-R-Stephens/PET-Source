@@ -9,6 +9,9 @@ import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessageModel
 import com.tritiumgaming.phasmophobiaevidencepicker.util.RSSParserUtils
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import org.xmlpull.v1.XmlPullParserException
 import org.xmlpull.v1.XmlPullParserFactory
 
@@ -24,7 +27,8 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
 
     private var inboxMessageList: ArrayList<NewsletterInboxModel?>? = null
 
-    var requiresNotify = false
+    private var _requiresNotify = MutableStateFlow(false)
+    val requiresNotify = _requiresNotify.asStateFlow()
 
     val currentInbox: NewsletterInboxModel?
         get() {
@@ -78,7 +82,7 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
     }
 
     override fun setFileName() {
-        fileName = R.string.preferences_newsletterFile_name
+        fileName = com.tritiumgaming.core.resources.R.string.preferences_newsletterFile_name
     }
 
     fun init(context: Context) {
@@ -86,9 +90,9 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
 
         val sharedPref = getSharedPreferences(context)
 
-        KEY_INBOX_GENERAL = context.getString(R.string.preference_newsletter_lastreaddate_general)
-        KEY_INBOX_PET = context.getString(R.string.preference_newsletter_lastreaddate_pet)
-        KEY_INBOX_PHASMOPHOBIA = context.getString(R.string.preference_newsletter_lastreaddate_phas)
+        KEY_INBOX_GENERAL = context.getString(com.tritiumgaming.core.resources.R.string.preference_newsletter_lastreaddate_general)
+        KEY_INBOX_PET = context.getString(com.tritiumgaming.core.resources.R.string.preference_newsletter_lastreaddate_pet)
+        KEY_INBOX_PHASMOPHOBIA = context.getString(com.tritiumgaming.core.resources.R.string.preference_newsletter_lastreaddate_phas)
 
         getInbox(InboxType.GENERAL)?.let{ inbox ->
             val date = sharedPref.getLong(KEY_INBOX_GENERAL, inbox.lastReadDate)
@@ -113,21 +117,21 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
             Log.d("MessageCenter", "Starting Phasmophobia inbox")
             RSSParserUtils(
                 XmlPullParserFactory.newInstance(),
-                context.getString(R.string.preference_phasmophobia_changelog_link),
+                context.getString(com.tritiumgaming.core.resources.R.string.link_news_phasmophobiaOfficial),
                 InboxType.PHASMOPHOBIA, this
             )
 
             Log.d("MessageCenter", "Starting General inbox")
             RSSParserUtils(
                 XmlPullParserFactory.newInstance(),
-                context.getString(R.string.preference_general_news_link),
+                context.getString(com.tritiumgaming.core.resources.R.string.link_news_general),
                 InboxType.GENERAL, this
             )
 
             Log.d("MessageCenter", "Starting PET inbox")
             RSSParserUtils(
                 XmlPullParserFactory.newInstance(),
-                context.getString(R.string.preference_pet_changelog_link),
+                context.getString(com.tritiumgaming.core.resources.R.string.link_news_changelog),
                 InboxType.PET, this
             )
         } catch (e: XmlPullParserException) {
@@ -165,7 +169,7 @@ class NewsletterViewModel(application: Application): SharedViewModel(application
         val pet = getInbox(InboxType.PET)?.compareDates() ?: false
         val phasmophobia = getInbox(InboxType.PHASMOPHOBIA)?.compareDates() ?: false
 
-        requiresNotify = general || pet || phasmophobia
+        _requiresNotify.update { general || pet || phasmophobia }
     }
 
     private fun saveLastReadDate(

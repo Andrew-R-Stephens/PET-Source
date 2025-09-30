@@ -70,8 +70,8 @@ open class EvidenceFragment(layout: Int) : InvestigationFragment(layout) {
             }
         }
 
-        ghostSection?.setLabel(getString(R.string.investigation_section_title_ghosts))
-        evidenceSection?.setLabel(getString(R.string.investigation_section_title_evidence))
+        ghostSection?.setLabel(getString(com.tritiumgaming.core.resources.R.string.investigation_section_title_ghosts))
+        evidenceSection?.setLabel(getString(com.tritiumgaming.core.resources.R.string.investigation_section_title_evidence))
 
         ghostList = GhostListView(requireContext())
         evidenceList = EvidenceListView(requireContext())

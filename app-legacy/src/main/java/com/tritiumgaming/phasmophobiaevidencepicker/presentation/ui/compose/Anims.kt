@@ -18,13 +18,14 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.resources.R
 
 @Composable
 @Preview
 fun NewsAlert(
     isActive: Boolean = false,
-    @DrawableRes baseDrawableId: Int? = com.tritiumgaming.core.resources.R.drawable.ic_news,
-    @DrawableRes alertDrawableRes: Int = com.tritiumgaming.core.resources.R.drawable.ic_notify
+    @DrawableRes baseDrawableId: Int? = R.drawable.ic_news,
+    @DrawableRes alertDrawableRes: Int = R.drawable.ic_notify
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "")
 

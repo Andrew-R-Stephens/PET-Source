@@ -57,7 +57,7 @@ class AppInfoFragment : MainMenuFragment() {
             try {
                 startActivity(
                     Intent(Intent.ACTION_VIEW,
-                        ("https://discord.gg/" + getString(R.string.aboutinfo_discordInvite)).toUri()))
+                        ("https://discord.gg/" + getString(com.tritiumgaming.core.resources.R.string.link_discordInvite)).toUri()))
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -67,15 +67,15 @@ class AppInfoFragment : MainMenuFragment() {
         @ColorInt val color =
             getColorFromAttribute(requireContext(), R.attr.textColorBodyEmphasis)
         // ABOUT APP - TITLE
-        val abouttitle = resources.getString(R.string.aboutinfo_title_about)
+        val abouttitle = resources.getString(com.tritiumgaming.core.resources.R.string.aboutinfo_title_about)
         val aboutPET = Html.fromHtml(replaceHTMLFontColor(
-                resources.getString(R.string.aboutinfo_title_petstylized),
+                resources.getString(com.tritiumgaming.core.resources.R.string.aboutinfo_title_petstylized),
                 "#FF0000", color.toString())) as Spannable
         title.text = TextUtils.concat(abouttitle, " ", aboutPET)
 
         // ABOUT APP - VERSION
         val versionData: StringBuilder =
-            StringBuilder("${resources.getString(R.string.aboutinfo_version)}: ")
+            StringBuilder("${resources.getString(com.tritiumgaming.core.resources.R.string.aboutinfo_version)}: ")
         try { val pInfo =
                 requireContext().packageManager.getPackageInfo(requireContext().packageName, 0)
             versionData.append(pInfo.versionName)
@@ -90,7 +90,7 @@ class AppInfoFragment : MainMenuFragment() {
         // ABOUT APP - DESCRIPTION
         aboutInfoTextView.text = Html.fromHtml(
             replaceHTMLFontColor(
-                resources.getString(R.string.aboutinfo_aboutapp_info),
+                resources.getString(com.tritiumgaming.core.resources.R.string.aboutinfo_aboutapp_info),
                 "#CC3C3C",
                 color.toString())
         )

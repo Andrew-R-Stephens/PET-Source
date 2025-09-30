@@ -61,6 +61,7 @@
         android:scrollbarFadeDuration="-1"
         android:scrollbarStyle="insideInset"
         android:verticalScrollbarPosition="left"
+        android:scrollbarThumbVertical="@drawable/verticalscrollbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import com.google.android.gms.tasks.Task
@@ -11,6 +10,7 @@ import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.tritiumgaming.phasmophobiaevidencepicker.R
+import androidx.core.net.toUri
 
 class ReviewLauncher {
     companion object {
@@ -38,7 +38,7 @@ class ReviewLauncher {
 
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.setData(
-                            Uri.parse(activity.resources.getString(R.string.review_storelink_website))
+                            activity.resources.getString(com.tritiumgaming.core.resources.R.string.link_appstore_review).toUri()
                         )
                         intent.setPackage("com.android.vending")
 

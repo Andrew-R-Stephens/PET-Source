@@ -69,7 +69,7 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         get() = fontThemeControl.currentTheme
 
     override fun setFileName() {
-        fileName = R.string.preferences_globalFile_name
+        fileName = com.tritiumgaming.core.resources.R.string.preferences_globalFile_name
     }
 
     fun init(context: Context) {
@@ -97,47 +97,47 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         val sharedPref = getSharedPreferences(context)
 
         currentLanguageAbbr = sharedPref.getString(
-            context.resources.getString(R.string.preference_language), DEFAULT_LANGUAGE
+            context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_language), DEFAULT_LANGUAGE
         ) ?: DEFAULT_LANGUAGE
 
 
         networkPreference =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_network), networkPreference)
+            sharedPref.getBoolean(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_network), networkPreference)
 
         isAlwaysOn =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn)
+            sharedPref.getBoolean(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isAlwaysOn), isAlwaysOn)
 
         setHuntWarnAudioAllowed(
             sharedPref.getBoolean(
-                context.resources.getString(R.string.preference_isHuntAudioWarningAllowed),
+                context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isHuntAudioWarningAllowed),
                 isHuntWarnAudioAllowed.value))
         setHuntWarningFlashTimeMax(
             sharedPref.getLong(
-                context.resources.getString(R.string.preference_huntWarningFlashTimeout),
+                context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_huntWarningFlashTimeout),
                 huntWarnFlashTimeMax.value))
 
         isLeftHandSupportEnabled =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled)
+            sharedPref.getBoolean(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled)
         canShowIntroduction =
-            sharedPref.getBoolean(context.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction)
+            sharedPref.getBoolean(context.resources.getString(com.tritiumgaming.core.resources.R.string.tutorialTracking_canShowIntroduction), canShowIntroduction)
 
         reorderGhostViews =
-            sharedPref.getBoolean(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews)
+            sharedPref.getBoolean(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_enableReorderGhostViews), reorderGhostViews)
 
         reviewRequestData = ReviewTrackingModel(
-            sharedPref.getBoolean(context.resources.getString(R.string.reviewtracking_canRequestReview), false),
-            sharedPref.getLong(context.resources.getString(R.string.reviewtracking_appTimeAlive), 0),
-            sharedPref.getInt(context.resources.getString(R.string.reviewtracking_appTimesOpened), 0)
+            sharedPref.getBoolean(context.resources.getString(com.tritiumgaming.core.resources.R.string.reviewtracking_canRequestReview), false),
+            sharedPref.getLong(context.resources.getString(com.tritiumgaming.core.resources.R.string.reviewtracking_appTimeAlive), 0),
+            sharedPref.getInt(context.resources.getString(com.tritiumgaming.core.resources.R.string.reviewtracking_appTimesOpened), 0)
         )
 
         fontThemeControl = FontThemeControl(context)
         fontThemeControl.init(sharedPref.getString(
-            context.resources.getString(R.string.preference_savedFont), fontThemeID) ?: ""
+            context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedFont), fontThemeID) ?: ""
         )
 
         colorThemeControl = ColorThemeControl(context)
         colorThemeControl.init(sharedPref.getString(
-            context.resources.getString(R.string.preference_savedTheme), colorThemeID) ?: ""
+            context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedTheme), colorThemeID) ?: ""
         )
 
         saveToFile(context)
@@ -148,7 +148,7 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
 
         try {
             save(
-                context.resources.getString(R.string.reviewtracking_appTimesOpened),
+                context.resources.getString(com.tritiumgaming.core.resources.R.string.reviewtracking_appTimesOpened),
                 reviewRequestData.timesOpened,
                 getEditor(context))
         } catch (e: NullPointerException) {
@@ -183,19 +183,19 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
     override fun saveToFile(context: Context) {
         val editor = getEditor(context)
 
-        save(context.resources.getString(R.string.preference_network), networkPreference, editor)
-        save(context.resources.getString(R.string.preference_language), currentLanguageAbbr, editor)
-        save(context.resources.getString(R.string.preference_isAlwaysOn), isAlwaysOn, editor)
-        save(context.resources.getString(R.string.preference_isHuntAudioWarningAllowed), isHuntWarnAudioAllowed.value, editor)
-        save(context.resources.getString(R.string.preference_huntWarningFlashTimeout), huntWarnFlashTimeMax.value, editor)
-        save(context.resources.getString(R.string.preference_savedTheme), colorThemeID, editor)
-        save(context.resources.getString(R.string.preference_savedFont), fontThemeID, editor)
-        save(context.resources.getString(R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled, editor)
-        save(context.resources.getString(R.string.preference_enableReorderGhostViews), reorderGhostViews, editor)
-        save(context.resources.getString(R.string.reviewtracking_canRequestReview),reviewRequestData.wasRequested, editor)
-        save(context.resources.getString(R.string.reviewtracking_appTimesOpened), reviewRequestData.timesOpened, editor)
-        save(context.resources.getString(R.string.reviewtracking_appTimeAlive), reviewRequestData.timeActive, editor)
-        save(context.resources.getString(R.string.tutorialTracking_canShowIntroduction), canShowIntroduction, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_network), networkPreference, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_language), currentLanguageAbbr, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isAlwaysOn), isAlwaysOn, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isHuntAudioWarningAllowed), isHuntWarnAudioAllowed.value, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_huntWarningFlashTimeout), huntWarnFlashTimeMax.value, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedTheme), colorThemeID, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedFont), fontThemeID, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_enableReorderGhostViews), reorderGhostViews, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.reviewtracking_canRequestReview),reviewRequestData.wasRequested, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.reviewtracking_appTimesOpened), reviewRequestData.timesOpened, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.reviewtracking_appTimeAlive), reviewRequestData.timeActive, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.tutorialTracking_canShowIntroduction), canShowIntroduction, editor)
 
         editor.apply()
     }

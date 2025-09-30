@@ -41,7 +41,7 @@ class MissionsCompletedButton : PETImageButton {
         if(isComplete)
             setColorFilter(getColorFromAttribute(context, R.attr.selectedColor))
         else {
-            clearColorFilter()
+            setColorFilter(getColorFromAttribute(context, R.attr.textColorBody))
             invalidate()
         }
     }

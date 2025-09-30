@@ -69,9 +69,9 @@ class GhostPopupWindow :
         val huntDataTextView = huntDataScrollView.findViewById<AppCompatTextView>(R.id.label_info)
 
         val titles = arrayOf(
-            resources.getString(R.string.popup_ghost_info),
-            resources.getString(R.string.popup_ghost_strength),
-            resources.getString(R.string.popup_ghost_weakness)
+            resources.getString(com.tritiumgaming.core.resources.R.string.popup_ghost_info),
+            resources.getString(com.tritiumgaming.core.resources.R.string.popup_ghost_strength),
+            resources.getString(com.tritiumgaming.core.resources.R.string.popup_ghost_weakness)
         )
 
         investigationModel.ghostListModel.getAt(groupIndex).let { ghostModel ->

@@ -45,7 +45,7 @@
                 app:autoSizeMaxTextSize="30sp"
                 android:gravity="center"
                 android:maxLines="2"
-                android:text="@string/messagecenter_inbox_general"
+                android:text="@string/newsletter_inbox_title_general"
                 android:textColor="?attr/textColorPrimary"
                 app:layout_constraintBottom_toBottomOf="@+id/notificationComposable"
                 app:layout_constraintEnd_toEndOf="parent"

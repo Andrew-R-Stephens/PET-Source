@@ -48,7 +48,7 @@
                 app:layout_constraintHeight_min="36dp"
                 app:layout_constraintHeight_max="48dp"
                 app:layout_constraintHeight_percent=".2"
-                android:text="@string/messagecenter_inbox_general"
+                android:text="@string/newsletter_inbox_title_general"
                 android:textColor="?attr/textColorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

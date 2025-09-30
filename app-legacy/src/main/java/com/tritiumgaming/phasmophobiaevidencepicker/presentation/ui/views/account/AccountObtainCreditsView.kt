@@ -64,7 +64,7 @@ class AccountObtainCreditsView : ConstraintLayout {
 
         val descriptionQuantity =
             try { resources.getQuantityString(
-                    R.plurals.marketplace_description_watch_ad,
+                com.tritiumgaming.core.resources.R.plurals.marketplace_description_watch_ad,
                     quantity, quantity)
             } catch (_: Exception) { quantity }
         val colorHex = intToHex(color)
@@ -78,7 +78,7 @@ class AccountObtainCreditsView : ConstraintLayout {
         quantityStrTemp.append("</font>")
 
         val descriptionFormat = context.getString(
-            R.string.marketplace_description_watch_ad,
+            com.tritiumgaming.core.resources.R.string.marketplace_description_watch_ad,
             quantityStrTemp.toString(), descriptionQuantity
         )
         descriptionLabel.text = Html.fromHtml(descriptionFormat)

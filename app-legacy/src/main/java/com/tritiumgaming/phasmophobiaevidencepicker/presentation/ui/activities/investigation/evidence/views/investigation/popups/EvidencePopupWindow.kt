@@ -80,7 +80,7 @@ class EvidencePopupWindow :
         // Init
         label_cost.text = Html.fromHtml(
             replaceHTMLFontColor(
-                context.getString(R.string.evidence_requirement_cost_title) + " $" + evidenceRecord.getCost(
+                context.getString(com.tritiumgaming.core.resources.R.string.evidence_requirement_cost_title) + " $" + evidenceRecord.getCost(
                     context
                 ),
                 "#ff6161", fontEmphasisColor.toString()
@@ -222,7 +222,7 @@ class EvidencePopupWindow :
         )
         levelView.text = Html.fromHtml(
             replaceHTMLFontColor(
-                context.getString(R.string.evidence_requirement_level_title) + " " + level,
+                context.getString(com.tritiumgaming.core.resources.R.string.evidence_requirement_level_title) + " " + level,
                 "#ff6161", fontEmphasisColor.toString()
             )
         )

@@ -52,7 +52,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:padding="2sp"
-            android:text="@string/map_name_bleasdale"
+            android:text="@string/map_name_full_bleasdale"
             android:textColor="?attr/textColorBody"
             android:textAlignment="center"
             app:layout_constraintHeight_min="24dp"

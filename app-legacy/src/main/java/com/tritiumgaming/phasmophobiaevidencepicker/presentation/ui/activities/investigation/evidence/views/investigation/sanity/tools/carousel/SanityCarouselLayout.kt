@@ -2,6 +2,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -9,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
+import androidx.core.content.withStyledAttributes
 
 abstract class SanityCarouselLayout : ConstraintLayout {
 
@@ -36,20 +38,20 @@ abstract class SanityCarouselLayout : ConstraintLayout {
         rightButton = findViewById(R.id.carousel_next)
 
         if (attrs != null) {
-            val a = context.obtainStyledAttributes(attrs, R.styleable.SanityCarouselLayout)
+            context.withStyledAttributes(attrs, R.styleable.SanityCarouselLayout) {
 
-            val title =
-                a.getString(R.styleable.SanityCarouselLayout_SanityCarouselLayoutTitle)
-            val name =
-                a.getString(R.styleable.SanityCarouselLayout_SanityCarouselLayoutName)
-            val image =
-                a.getResourceId(R.styleable.SanityCarouselLayout_SanityCarouselLayoutImage, -1)
+                val title =
+                    getString(R.styleable.SanityCarouselLayout_SanityCarouselLayoutTitle)
+                val name =
+                    getString(R.styleable.SanityCarouselLayout_SanityCarouselLayoutName)
+                val image =
+                    getResourceId(R.styleable.SanityCarouselLayout_SanityCarouselLayoutImage, -1)
 
-            setTitle(title)
-            setName(name)
-            setImage(image)
+                setTitle(title)
+                setName(name)
+                setImage(image)
 
-            a.recycle()
+            }
         }
 
         setDefaults()

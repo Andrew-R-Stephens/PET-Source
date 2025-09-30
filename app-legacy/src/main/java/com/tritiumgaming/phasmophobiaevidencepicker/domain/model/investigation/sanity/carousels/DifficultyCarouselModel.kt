@@ -100,10 +100,13 @@ class DifficultyCarouselModel(
 
         val times = mutableListOf<Long>()
         val timesListOut =
-            context.resources.getStringArray(R.array.evidence_timer_difficulty_times_array)
-        timesListOut.forEachIndexed { index, it ->
-            times.add(index, it.toLong())
+            context.resources.obtainTypedArray(R.array.evidence_timer_difficulty_times_array)
+        for (i in 0 until timesListOut.length()) {
+            val res = timesListOut.getResourceId(i, 0)
+            val time = context.resources.getInteger(res)
+            times.add(i, time.toLong())
         }
+        timesListOut.recycle()
 
         setList(names, times)
 

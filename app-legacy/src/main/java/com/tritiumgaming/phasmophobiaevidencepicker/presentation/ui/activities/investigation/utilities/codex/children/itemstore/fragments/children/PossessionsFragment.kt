@@ -108,7 +108,7 @@ class PossessionsFragment : ItemStoreFragment() {
     }
 
     override fun setPageTitle(titleView: AppCompatTextView) {
-        titleView.setText(R.string.store_title_cursedpossessions)
+        titleView.setText(com.tritiumgaming.core.resources.R.string.store_title_cursedpossessions)
     }
 
     override fun setDataViewLayout(view: View) {

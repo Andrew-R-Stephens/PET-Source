@@ -122,7 +122,7 @@ class EquipmentFragment : ItemStoreFragment() {
     }
 
     override fun setPageTitle(titleView: AppCompatTextView) {
-        titleView.setText(R.string.store_title_equipment)
+        titleView.setText(com.tritiumgaming.core.resources.R.string.store_title_equipment)
     }
 
     override fun setDataViewLayout(view: View) {

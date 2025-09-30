@@ -102,7 +102,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/aboutinfo_joindiscord"
+                    android:text="@string/aboutinfo_discord_join"
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -185,7 +185,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
                         android:gravity="center"
-                        android:text="@string/aboutinfo_developerinfo_devname" />
+                        android:text="@string/contact_developerName" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/textview_devEmail_label"
@@ -203,7 +203,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="18dp"
                         android:gravity="center"
-                        android:text="@string/aboutinfo_developerinfo_address" />
+                        android:text="@string/contact_developerEmail" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </ScrollView>

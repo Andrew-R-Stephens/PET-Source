@@ -1977,7 +1977,7 @@
 
         <item name="mapPoiFillColor">@color/red_M300_A75</item>
         <item name="mapRoomBorderColor">@color/red_M300_A58</item>
-        <item name="mapRoomFillColor">@color/red_A75</item>
+        <item name="mapRoomFillColor">@color/red_A40</item>
 
         <item name="buttonFilterOnPrimary">@color/white_M50</item>
 
@@ -2178,7 +2178,7 @@
         <item name="codex6_gridBackground">#40001021</item>
 
         <item name="theme_badge">@drawable/theme_badge_strategemhero</item>
-        <item name="theme_title">@string/theme_palette_special_strategemHero</item>
+        <item name="theme_title">@string/theme_palette_special_stratagemHero</item>
 
         <item name="navigationFooterIcon">@color/white</item>
         <item name="navigationFooterIconAlt">#FFD608</item>

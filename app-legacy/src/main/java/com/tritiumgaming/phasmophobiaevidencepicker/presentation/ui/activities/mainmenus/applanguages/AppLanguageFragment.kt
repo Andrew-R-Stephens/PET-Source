@@ -102,7 +102,7 @@ class AppLanguageFragment : MainMenuFragment() {
     override fun backPressedHandler() {
         handleDiscardChanges()
 
-        val message = getString(R.string.toast_discardchanges)
+        val message = getString(com.tritiumgaming.core.resources.R.string.toast_discardchanges)
         try { Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show() }
         catch (e: IllegalStateException) { e.printStackTrace() }
     }

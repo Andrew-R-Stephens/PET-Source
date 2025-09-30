@@ -4,7 +4,7 @@
         SPIRIT BOX PAGE
     -->
     <!-- General Entries -->
-    <string-array name="ghostspeaktool_general_array">
+    <!--<string-array name="ghostspeaktool_general_array">
         <item>@string/spiritbox_entry_q6_8</item>
         <item>@string/spiritbox_entry_q6_7</item>
         <item>@string/spiritbox_entry_q6_9</item>
@@ -21,9 +21,9 @@
         <item>@string/spiritbox_entry_q0_8</item>
         <item>@string/spiritbox_entry_q0_9</item>
         <item>@string/spiritbox_entry_q0_3</item>
-    </string-array>
+    </string-array>-->
     <!-- Spirit Box Entries -->
-    <string-array name="ghostspeaktool_spiritbox_array">
+    <!--<string-array name="ghostspeaktool_spiritbox_array">
         <item>@string/spiritbox_entry_q5_7</item>
         <item>@string/spiritbox_entry_q3_5</item>
         <item>@string/spiritbox_entry_q5_1</item>
@@ -35,9 +35,9 @@
         <item>@string/spiritbox_entry_q6_5</item>
         <item>@string/spiritbox_entry_q7_9</item>
         <item>@string/spiritbox_entry_q7_11</item>
-    </string-array>
+    </string-array>-->
     <!-- Ouija Board Entries -->
-    <string-array name="ghostspeaktool_oijaboard_array">
+    <!--<string-array name="ghostspeaktool_oijaboard_array">
         <item>@string/spiritbox_entry_q5_7</item>
         <item>@string/spiritbox_entry_q6_5</item>
         <item>@string/spiritbox_entry_q6_9</item>
@@ -66,6 +66,6 @@
         <item>@string/spiritbox_entry_q8_2</item>
         <item>@string/spiritbox_entry_q8_3</item>
         <item>@string/spiritbox_entry_q8_4</item>
-    </string-array>
+    </string-array>-->
 
 </resources>
