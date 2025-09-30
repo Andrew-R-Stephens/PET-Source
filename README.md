@@ -50,37 +50,45 @@
 <div align='left'><h3>Modules</h3></div> 
 [ <code>active</code> ]
 <ul>
-    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/app-compose"><code>:app-compose</code></a> : The Android core module.<br>
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/app-compose"><code>:app:compose</code></a> : The Android core module.<br>
         <ul>
             <li>Implements the <em>shared</em> KMP module.</li>
-            <li>It is a completely reworked <em>app-legacy  / app-view</em>.</li>
+            <li>It is a completely reworked <em>app-legacy</em>.</li>
             <li>Adopts modern Jetpack Compose / Clean Code approach.</li>
         </ul>
     </li>
-    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/shared"><code>shared</code></a> : The KMP project module.
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/core-resources"><code>:core:resources</code></a> : App core resources.<br>
         <ul>
+            <li>Contains core resources that can be shared between features and core app.</li>
+            <li>Currently ongoing integration with <em>app-compose</em> and <em>app-legacy</em> modules.</li>
+        </ul>
+    </li>
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/core-ui"><code>:core:ui</code></a> : App core UI.<br>
+        <ul>
+            <li>Implements <em>:core:resources</em> module.</li>
+            <li>Currently ongoing integration with <em>app-compose</em> module.</li>
+        </ul>
+    </li>
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/shared"><code>:shared</code></a> : The KMP project module.
+        <ul>
+            <li>Shared KMP domain layer.</li>
             <li>Currently ongoing integration with <em>app-compose</em> module.</li>
         </ul>
     </li>
 </ul>
 [ <code>incubating</code> ]
 <ul>
-    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/iosApp"><code>iosApp</code></a> : The iOS project files.
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/iosApp"><code>:iosApp</code></a> : The iOS project files.
         <ul>
             <li>Dependent on the <em>shared</em> module.</li>
         </ul>
     </li>
 </ul>
-[ <code>sunset</code> ]
+[ <code>sunset (production)</code> ]
 <ul>
-    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/app-legacy"><code>:app-legacy</code></a> : Current Live module.
+    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/app-legacy"><code>:app:legacy</code></a> : Current Live module.
         <ul>
             <li>Maintained for live hotfixes.</li>
-        </ul>
-    </li>
-    <li><a href="https://github.com/Andrew-R-Stephens/PET-Source/tree/master/app-view"><code>:app-view</code></a> : Sandbox build.
-        <ul>
-            <li>used to both propose future <em>app-legacy</em> features and fixes and migrate <em>app-legacy</em> features to <em>app-compose</em>.</li>
         </ul>
     </li>
 </ul>
