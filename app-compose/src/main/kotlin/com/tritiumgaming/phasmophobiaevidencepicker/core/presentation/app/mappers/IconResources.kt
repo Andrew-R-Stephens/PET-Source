@@ -13,6 +13,7 @@ import com.tritiumgaming.core.ui.icon.GlobeIcon
 import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
 import com.tritiumgaming.core.ui.icon.InfoIcon
 import com.tritiumgaming.core.ui.icon.LogoAppIcon
+import com.tritiumgaming.core.ui.icon.LogoPatreonIcon
 import com.tritiumgaming.core.ui.icon.LogoPhasmophobiaIcon
 import com.tritiumgaming.core.ui.icon.NewsIcon
 import com.tritiumgaming.core.ui.icon.NotifyIcon
@@ -51,5 +52,6 @@ fun IconResource.ToComposable(
         IconResource.REVIEW -> ReviewIcon(modifier, colors)
         IconResource.STORE -> StoreIcon(modifier, colors)
         IconResource.TRANSLATE -> TranslateIcon(modifier, colors)
+        IconResource.PATREON -> LogoPatreonIcon(modifier, colors)
     }
 }

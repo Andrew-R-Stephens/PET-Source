@@ -41,6 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -57,6 +58,7 @@ import com.tritiumgaming.core.ui.icon.DiscordIcon
 import com.tritiumgaming.core.ui.icon.GearIcon
 import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
 import com.tritiumgaming.core.ui.icon.InfoIcon
+import com.tritiumgaming.core.ui.icon.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.PersonIcon
 import com.tritiumgaming.core.ui.icon.ReviewIcon
 import com.tritiumgaming.core.ui.icon.StoreIcon
@@ -69,11 +71,13 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mapper
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.NavRoute
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.admob.AdmobBanner
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.AccountIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.BadgeIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.LanguageIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsletterViewModel
+import com.tritiumgaming.shared.core.domain.icons.IconResources
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import java.util.Locale
 
@@ -455,7 +459,8 @@ private fun HeaderNavBar(
 ) {
 
     val context = LocalContext.current
-    val discordInvitation = stringResource(R.string.aboutinfo_discordInvite)
+    val discordInvitation = stringResource(R.string.link_discordInvite)
+    val patreonInvitation = stringResource(R.string.link_patreonInvite)
 
     val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
     val notificationState = inboxesUiState.value.inboxes
@@ -464,26 +469,38 @@ private fun HeaderNavBar(
             inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
         } != null
 
-    val menuIcon: @Composable () -> Unit = { HamburgerMenuIcon(
+    val menuIcon: @Composable () -> Unit = {
+        HamburgerMenuIcon(
+            modifier = Modifier
+                .size(48.dp)
+                .padding(4.dp),
 
-        colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.background.color,
-            strokeColor = LocalPalette.current.textFamily.body
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
-    ) }
-    val infoIcon: @Composable () -> Unit = { InfoIcon(
-        colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.background.color,
-            strokeColor = LocalPalette.current.textFamily.body
+    }
+    val infoIcon: @Composable () -> Unit = {
+        InfoIcon(
+            modifier = Modifier
+                .size(48.dp),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
-    ) }
-    val gearIcon: @Composable () -> Unit = { GearIcon(
-
-        colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.background.color,
-            strokeColor = LocalPalette.current.textFamily.body
+    }
+    val gearIcon: @Composable () -> Unit = {
+        GearIcon(
+            modifier = Modifier
+                .size(48.dp),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.background.color,
+                strokeColor = LocalPalette.current.textFamily.body
+            )
         )
-    ) }
+    }
     val languageIcon: @Composable () -> Unit = {
         LanguageIcon(
             modifier = Modifier
@@ -496,35 +513,68 @@ private fun HeaderNavBar(
             navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
         }
     }
-    val discordIcon: @Composable () -> Unit = { DiscordIcon(
-
-        colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.background.color,
-            strokeColor = LocalPalette.current.textFamily.body
+    val discordIcon: @Composable () -> Unit = {
+        BadgeIcon(
+            modifier = Modifier
+                .size(48.dp),
+            baseComponent = {
+                IconResource.DISCORD.ToComposable(
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.discordColor.color,
+                        strokeColor = LocalPalette.current.discordColor.onColor,
+                    )
+                )
+            }
+        ) {
+            OpenInNewIcon(
+                colors = IconVectorColors.defaults(
+                    fillColor = LocalPalette.current.textFamily.body,
+                    strokeColor = LocalPalette.current.surface.color,
+                )
+            )
+        }
+    }
+    val patreonIcon: @Composable () -> Unit = {
+        BadgeIcon(
+            modifier = Modifier
+                .size(48.dp)
+                .padding(4.dp),
+            baseComponent = {
+                IconResource.PATREON.ToComposable(
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.patreonColor.onColor,
+                        strokeColor = LocalPalette.current.patreonColor.color,
+                    )
+                )
+            }
         )
-    ) }
+    }
     val reviewIcon: @Composable () -> Unit = { ReviewIcon(
-
+        modifier = Modifier
+            .size(48.dp)
+            .padding(4.dp),
         colors = IconVectorColors.defaults(
             fillColor = LocalPalette.current.background.color,
             strokeColor = LocalPalette.current.textFamily.body
         )
     ) }
     val accountIcon: @Composable () -> Unit = { AccountIcon(
+        modifier = Modifier
+            .size(48.dp)
+            .padding(4.dp),
         borderColor =  LocalPalette.current.textFamily.body,
         backgroundColor = LocalPalette.current.surface.onColor
     ) }
     val personIcon: @Composable () -> Unit = { PersonIcon(
-
+        modifier = Modifier,
         colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.background.color,
             strokeColor = LocalPalette.current.textFamily.body
         )
     ) }
     val storeIcon: @Composable () -> Unit = { StoreIcon(
-
+        modifier = Modifier,
         colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.background.color,
+            fillColor = LocalPalette.current.textFamily.body,
             strokeColor = LocalPalette.current.textFamily.body
         )
     ) }
@@ -541,14 +591,31 @@ private fun HeaderNavBar(
                 gearIcon()
             }
             SecondarySelector(
-                onClick = { navController.navigate(NavRoute.SCREEN_SETTINGS.route) }) {
+                onClick = { navController.navigate(NavRoute.SCREEN_LANGUAGE.route) }) {
                 languageIcon()
+            }
+            SecondarySelector(
+                onClick = {
+                    try {
+                        context.startActivity(
+                            Intent(
+                                Intent.ACTION_VIEW,
+                                "https://patreon.com/ $patreonInvitation".toUri()
+                            )
+                        )
+                    } catch (e: IllegalStateException) {
+                        e.printStackTrace()
+                    }
+                }
+            ) {
+                patreonIcon()
             }
             SecondarySelector(
                 onClick = {
                     context.startActivity(
                         Intent(
-                            Intent.ACTION_VIEW, "https://discord.gg/ $discordInvitation".toUri()
+                            Intent.ACTION_VIEW,
+                            "https://discord.gg/ $discordInvitation".toUri()
                         )
                     )
                 }) {
@@ -579,10 +646,16 @@ private fun HeaderNavBar(
         primaryContent = accountIcon,
         dropdownContent = @Composable {
             SecondarySelector(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
                 onClick = { navController.navigate(NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) }) {
                 personIcon()
             }
             SecondarySelector(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
                 onClick = { navController.navigate(NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) }) {
                 storeIcon()
             }

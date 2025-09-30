@@ -1,11 +1,11 @@
-package com.tritiumgaming.compose
+package com.tritiumgaming.phasmophobiaevidencepicker
 
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
-import com.tritiumgaming.compose.operation.data.map.complex.repository.ComplexMapRepositoryImpl
-import com.tritiumgaming.compose.operation.data.map.complex.source.local.ComplexMapLocalDataSource
-import com.tritiumgaming.compose.operation.data.map.complex.source.service.ComplexMapLocalService
-import com.tritiumgaming.compose.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.repository.ComplexMapRepositoryImpl
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalDataSource
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.service.ComplexMapLocalService
+import com.tritiumgaming.shared.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
 import kotlinx.coroutines.test.StandardTestDispatcher
 import org.junit.Before
 

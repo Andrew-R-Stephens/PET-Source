@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
@@ -21,12 +24,12 @@ private fun AccountDetailsPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        AccountBanner()
+        AccountBannerExpanded()
     }
 }
 
 @Composable
-fun AccountBanner(
+fun AccountBannerExpanded(
     modifier: Modifier = Modifier,
     credits: Int = 100
 ) {
@@ -47,9 +50,40 @@ fun AccountBanner(
         }
 
         AccountIcon(
+            user = Firebase.auth.currentUser,
             borderColor =  LocalPalette.current.textFamily.body,
             backgroundColor = LocalPalette.current.surface.onColor
         )
+    }
+
+}
+
+@Composable
+fun AccountBannerComposite(
+    modifier: Modifier = Modifier,
+    credits: Int = 100
+) {
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        AccountIcon(
+            borderColor =  LocalPalette.current.textFamily.body,
+            backgroundColor = LocalPalette.current.surface.onColor
+        )
+
+        Box(
+            modifier = Modifier
+                .weight(1f)
+        ) {
+            AccountCredits(
+                credits = credits
+            )
+        }
+
     }
 
 }

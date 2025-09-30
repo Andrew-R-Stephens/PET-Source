@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.ui.icon.ShopCostIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
@@ -64,7 +65,11 @@ fun AccountCredits(
             ShopCostIcon(
                 modifier = Modifier
                     .wrapContentWidth()
-                    .height(36.dp)
+                    .height(36.dp),
+                colors = IconVectorColors(
+                    strokeColor = LocalPalette.current.textFamily.body,
+                    fillColor = LocalPalette.current.textFamily.body
+                )
             )
             
             Text(

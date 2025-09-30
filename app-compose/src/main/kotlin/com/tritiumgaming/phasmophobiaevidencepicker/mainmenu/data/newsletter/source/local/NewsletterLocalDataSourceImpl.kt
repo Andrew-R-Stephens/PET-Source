@@ -17,21 +17,21 @@ class NewsletterLocalDataSourceImpl(
             NewsletterInboxResourceDto(
                 id = R.string.newsletter_inbox_id_general,
                 title = NewsletterTitle.GENERAL_NEWS,
-                url = R.string.preference_general_news_link,
+                url = R.string.link_news_general,
                 icon = NewsletterIcon.GENERAL_NEWS
             ),
             // PET Inbox
             NewsletterInboxResourceDto(
                 id = R.string.newsletter_inbox_id_pet,
                 title = NewsletterTitle.PET_CHANGELOG,
-                url = R.string.preference_pet_changelog_link,
+                url = R.string.link_news_changelog,
                 icon = NewsletterIcon.PET_CHANGELOG
             ),
             // Official Phasmophobia Inbox
             NewsletterInboxResourceDto(
                 id = R.string.newsletter_inbox_id_phasmophobia,
                 title = NewsletterTitle.PHASMOPHOBIA_CHANGELOG,
-                url = R.string.preference_phasmophobia_changelog_link,
+                url = R.string.link_news_phasmophobiaOfficial,
                 icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
             )
         )

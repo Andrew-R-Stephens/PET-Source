@@ -77,7 +77,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.MainMenuScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.AccountBanner
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.AccountBannerComposite
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.AccountBannerExpanded
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.component.Dialog
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
 import com.tritiumgaming.shared.core.domain.user.model.SignInOptions
@@ -403,7 +404,7 @@ private fun AccountComponentPortrait(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        AccountDetailsComponent(
+        AccountDetailsPortraitComponent(
             accountViewModel = accountViewModel,
         )
 
@@ -440,10 +441,10 @@ private fun AccountComponentLandscape(
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
     ) {
 
-        AccountDetailsComponent(
+        AccountDetailsLandscapeComponent(
             modifier = Modifier
                 .weight(1f, fill = true),
-            accountViewModel = accountViewModel
+            accountViewModel = accountViewModel,
         )
 
         SignOutComponent(
@@ -462,7 +463,7 @@ private fun AccountComponentLandscape(
 }
 
 @Composable
-private fun AccountDetailsComponent(
+private fun AccountDetailsPortraitComponent(
     modifier: Modifier = Modifier,
     accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
 ) {
@@ -475,8 +476,59 @@ private fun AccountDetailsComponent(
 
         val accountUiState = accountViewModel.accountCreditsUiState.collectAsStateWithLifecycle()
 
-        AccountBanner(
-            credits = accountUiState.value.earnedCredits.toInt()
+        AccountBannerExpanded(
+            credits = accountUiState.value.earnedCredits
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            modifier = Modifier
+                .wrapContentHeight()
+                .fillMaxWidth()
+                .padding(8.dp),
+            text = stringResource(R.string.account_label_information),
+            style = LocalTypography.current.quaternary.bold,
+            color = LocalPalette.current.textFamily.body,
+            fontSize = 18.sp,
+            maxLines = 1,
+            textAlign = TextAlign.Start
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        LabeledValue(
+            title = "${stringResource(R.string.account_label_name)}:",
+            value = Firebase.auth.currentUser?.displayName ?: ""
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        LabeledValue(
+            title = "${stringResource(R.string.account_label_email)}:",
+            value = Firebase.auth.currentUser?.email ?: ""
+        )
+
+    }
+
+}
+
+@Composable
+private fun AccountDetailsLandscapeComponent(
+    modifier: Modifier = Modifier,
+    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
+) {
+
+    Column (
+        modifier = modifier,
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        val accountUiState = accountViewModel.accountCreditsUiState.collectAsStateWithLifecycle()
+
+        AccountBannerComposite(
+            credits = accountUiState.value.earnedCredits
         )
 
         Spacer(modifier = Modifier.height(16.dp))

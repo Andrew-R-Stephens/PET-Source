@@ -1,6 +1,8 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,47 +20,36 @@ import com.tritiumgaming.shared.core.domain.icons.IconResources
 import org.jetbrains.annotations.TestOnly
 
 @Composable
-fun DiscordIcon(
+fun BadgeIcon(
     modifier: Modifier = Modifier,
-    colors: IconVectorColors = IconVectorColors.defaults()
+    baseComponent: @Composable BoxScope.(modifier: Modifier) -> Unit = {},
+    badgeComponent: @Composable BoxScope.() -> Unit = {}
 ) {
 
     Box(
-        modifier = modifier
-            .size(48.dp)
+        modifier = modifier,
+        contentAlignment = Alignment.Center,
     ) {
-        IconResources.IconResource.DISCORD.ToComposable(
+
+        Box(
             modifier = Modifier
                 .fillMaxSize(),
-            colors = colors
-        )
+            contentAlignment = Alignment.Center,
+        ) {
+            baseComponent(Modifier
+                .fillMaxSize()
+                .aspectRatio(1f)
+            )
+        }
 
-        IconResources.IconResource.OPEN_IN_NEW.ToComposable(
+        Box(
             modifier = Modifier
                 .padding(4.dp)
                 .fillMaxSize(.4f)
-                .align(Alignment.BottomEnd),
-            colors = colors
-        )
+                .align(Alignment.BottomEnd)
+        ) {
+            badgeComponent()
+        }
     }
 
-}
-
-@Preview
-@Composable
-@TestOnly
-fun DiscordIconPreview(
-    colors: IconVectorColors = IconVectorColors.defaults(
-        fillColor = LocalPalette.current.background.color,
-        strokeColor = LocalPalette.current.textFamily.primary
-    )
-) {
-
-    SelectiveTheme(
-        palette = ClassicPalette
-    ) {
-        DiscordIcon(
-            colors = colors
-        )
-    }
 }

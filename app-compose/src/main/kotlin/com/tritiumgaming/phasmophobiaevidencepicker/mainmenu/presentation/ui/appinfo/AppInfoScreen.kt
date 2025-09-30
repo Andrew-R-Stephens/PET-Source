@@ -15,10 +15,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.window.core.layout.WindowSizeClass
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
@@ -49,12 +51,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.config.DeviceConfiguration
-import com.tritiumgaming.core.ui.icon.DiscordIcon
+import com.tritiumgaming.core.ui.icon.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.BadgeIcon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavHeaderComposableParams
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
@@ -62,6 +66,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.S
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.MainMenuScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
+import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.shared.mainmenu.domain.appinfo.model.SpecialThanksContributor
 import org.jetbrains.annotations.TestOnly
 
@@ -165,7 +170,6 @@ private fun ColumnScope.InfoContentPortrait(
 
             Text(
                 modifier = Modifier
-                    .padding(top = 16.dp)
                     .verticalScroll(rememberScrollState())
                     .weight(.35f, false),
                 style = LocalTypography.current.secondary.regular,
@@ -229,7 +233,7 @@ private fun ColumnScope.InfoContentPortrait(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(18.dp),
-                text = stringResource(R.string.aboutinfo_developerinfo_devname),
+                text = stringResource(R.string.contact_developerName),
                 style = LocalTypography.current.secondary.regular.copy(
                     color = LocalPalette.current.textFamily.body,
                     textAlign = TextAlign.Center
@@ -255,7 +259,7 @@ private fun ColumnScope.InfoContentPortrait(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(18.dp),
-                text = stringResource(R.string.aboutinfo_developerinfo_address),
+                text = stringResource(R.string.contact_developerEmail),
                 style = LocalTypography.current.secondary.regular.copy(
                     color = LocalPalette.current.textFamily.body,
                     textAlign = TextAlign.Center
@@ -364,12 +368,13 @@ private fun ColumnScope.InfoContentLandscape(
                 //.fillMaxHeight()
                 .padding(all = 8.dp)
                 .verticalScroll(rememberScrollStateStart),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Text(
                 modifier = Modifier
-                    .padding(top = 16.dp)
+                    .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp)
                     .wrapContentHeight()
                     .padding(8.dp),
                 style = LocalTypography.current.secondary.regular,
@@ -386,11 +391,15 @@ private fun ColumnScope.InfoContentLandscape(
                 textAlign = TextAlign.Center
             )
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier
+                .height(32.dp)
+                .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp)
+            )
 
             Column(
                 modifier = Modifier
-                    .wrapContentHeight(),
+                    .wrapContentHeight()
+                    .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
 
@@ -441,12 +450,14 @@ private fun ColumnScope.InfoContentLandscape(
                 //.fillMaxHeight()
                 .padding(all = 8.dp)
                 .verticalScroll(rememberScrollStateEnd),
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Column(
                 modifier = Modifier
-                    .wrapContentHeight(),
+                    .wrapContentHeight()
+                    .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp),
                 verticalArrangement = Arrangement.Center,
             ) {
                 Text(
@@ -468,7 +479,7 @@ private fun ColumnScope.InfoContentLandscape(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         .padding(horizontal = 8.dp),
-                    text = stringResource(R.string.aboutinfo_developerinfo_devname),
+                    text = stringResource(R.string.contact_developerName),
                     style = LocalTypography.current.quaternary.regular.copy(
                         color = LocalPalette.current.textFamily.body,
                         textAlign = TextAlign.Center
@@ -498,7 +509,7 @@ private fun ColumnScope.InfoContentLandscape(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         .padding(horizontal = 8.dp),
-                    text = stringResource(R.string.aboutinfo_developerinfo_address),
+                    text = stringResource(R.string.contact_developerEmail),
                     style = LocalTypography.current.quaternary.regular.copy(
                         color = LocalPalette.current.textFamily.body,
                         textAlign = TextAlign.Center
@@ -508,11 +519,15 @@ private fun ColumnScope.InfoContentLandscape(
                 )
             }
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier
+                .height(32.dp)
+                .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp)
+            )
 
             VisitDiscordButton(
                 modifier = Modifier
                     .wrapContentHeight()
+                    .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp)
                     .padding(horizontal = 16.dp, vertical = 16.dp)
                     .align(Alignment.CenterHorizontally)
             )
@@ -529,7 +544,7 @@ private fun VisitDiscordButton(
 ) {
 
     val context = LocalContext.current
-    val discordInvitation = stringResource(R.string.aboutinfo_discordInvite)
+    val discordInvitation = stringResource(R.string.link_discordInvite)
 
     Button(
         modifier = modifier
@@ -555,17 +570,25 @@ private fun VisitDiscordButton(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-
-            DiscordIcon(
+            BadgeIcon(
                 modifier = Modifier
                     .aspectRatio(1f)
                     .fillMaxHeight(),
-
-                colors = IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.textFamily.primary,
-                    strokeColor = LocalPalette.current.background.color
+                baseComponent = {
+                    IconResource.DISCORD.ToComposable(
+                        colors = IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.textFamily.primary,
+                            strokeColor = LocalPalette.current.background.color,
+                        )
+                    )
+                }
+            ) {
+                OpenInNewIcon(
+                    colors = IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.textFamily.body,
+                    )
                 )
-            )
+            }
 
             Text(
                 modifier = Modifier

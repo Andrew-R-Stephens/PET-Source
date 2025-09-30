@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
@@ -57,12 +58,13 @@ fun TestAccountIcon() {
 @Composable
 fun AccountIcon(
     modifier: Modifier = Modifier,
+    user: FirebaseUser? = null,
     borderColor: Color = Color.Unspecified,
     backgroundColor: Color = Color.Unspecified,
 ) {
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(48.dp)
             .clip(CircleShape)
             .background(backgroundColor)
@@ -71,7 +73,7 @@ fun AccountIcon(
     ) {
         val contentScale = ContentScale.Inside
 
-        if (Firebase.auth.currentUser == null) {
+        if (user == null) {
 
             IconResources.IconResource.PERSON.ToComposable(
                 modifier = Modifier
@@ -85,7 +87,7 @@ fun AccountIcon(
 
         } else {
 
-            val authUserName = Firebase.auth.currentUser?.displayName
+            val authUserName = user.displayName
 
             val names: List<String?> = (authUserName)?.split(" ") ?: listOf()
 
