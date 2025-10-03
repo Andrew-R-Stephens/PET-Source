@@ -1,4 +1,4 @@
-package com.tritiumgaming.core.ui.config
+package com.tritiumgaming.core.common.config
 
 import androidx.window.core.layout.WindowSizeClass
 import androidx.window.core.layout.WindowSizeClass.Companion.HEIGHT_DP_EXPANDED_LOWER_BOUND

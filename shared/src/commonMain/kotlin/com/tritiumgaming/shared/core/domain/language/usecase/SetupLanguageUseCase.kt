@@ -5,6 +5,5 @@ import com.tritiumgaming.shared.core.domain.language.repository.LanguageReposito
 class SetupLanguageUseCase(
     private val repository: LanguageRepository
 ) {
-    @Suppress("unused")
     operator fun invoke() = repository.initializeDatastoreLiveData()
 }

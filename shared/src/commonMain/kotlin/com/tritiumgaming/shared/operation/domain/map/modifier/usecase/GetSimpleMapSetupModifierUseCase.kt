@@ -1,5 +1,7 @@
 package com.tritiumgaming.shared.operation.domain.map.modifier.usecase
 
+import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources
+
 class GetSimpleMapSetupModifierUseCase(
     private val fetchMapModifiersUseCase: FetchMapModifiersUseCase
 ) {

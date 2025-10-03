@@ -1,11 +1,13 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model
+package com.tritiumgaming.core.common.network
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
 
-class ConnectivityManagerHelper(private val applicationContext: Context) {
+class ConnectivityManagerHelper(
+    private val applicationContext: Context
+) {
 
     fun getActiveNetworkTransport(): Result<Int> {
         val connectivityManager = applicationContext.getSystemService(

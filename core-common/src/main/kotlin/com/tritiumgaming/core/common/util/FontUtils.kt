@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util
+package com.tritiumgaming.core.common.util
 
 import android.text.Html
 import android.text.Spanned
@@ -11,7 +11,6 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
-import okhttp3.internal.toHexString
 import java.util.Locale
 
 /**

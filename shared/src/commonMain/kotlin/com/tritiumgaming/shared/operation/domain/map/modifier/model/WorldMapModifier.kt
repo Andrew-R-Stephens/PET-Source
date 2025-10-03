@@ -4,6 +4,6 @@ import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifie
 
 data class WorldMapModifier(
     val name: MapModifierResources.MapSize,
-    val setupModifier: Float = 0f,
-    val normalModifier: Float = 0f
+    val setupModifier: Float,
+    val normalModifier: Float
 )

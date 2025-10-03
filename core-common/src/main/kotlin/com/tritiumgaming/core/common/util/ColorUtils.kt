@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util
+package com.tritiumgaming.core.common.util
 
 import android.content.Context
 import android.graphics.Color

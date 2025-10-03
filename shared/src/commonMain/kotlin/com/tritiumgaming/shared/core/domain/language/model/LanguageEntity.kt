@@ -7,6 +7,6 @@ import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.N
 data class LanguageEntity(
     val localizedName: LocalizedTitle,
     val nativeName: NativeTitle,
-    val code: LocalizationCode
+    val code: String
 )
 
