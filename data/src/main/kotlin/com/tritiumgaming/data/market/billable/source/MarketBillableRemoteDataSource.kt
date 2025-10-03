@@ -1,0 +1,12 @@
+package com.tritiumgaming.data.market.billable.source
+
+import com.tritiumgaming.data.market.billable.dto.MarketBillableDto
+import com.tritiumgaming.shared.core.domain.market.billable.model.BillableQueryOptions
+
+interface MarketBillableRemoteDataSource {
+
+    suspend fun fetch(
+        billableQueryOptions: BillableQueryOptions = BillableQueryOptions()
+    ): Result<List<MarketBillableDto>>
+
+}
