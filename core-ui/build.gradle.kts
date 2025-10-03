@@ -70,8 +70,6 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     /* Material Design 3 */
     implementation(libs.androidx.compose.material3)
-    // Optional - Add window size utils
-    implementation(libs.androidx.compose.material3.adaptive)
 
     // Compose UI
     implementation(libs.androidx.compose.ui.core)
@@ -85,6 +83,7 @@ dependencies {
 
     implementation(libs.androidx.ui.graphics)
 
+    implementation(project(":core-common"))
     implementation(project(":core-resources"))
 
 }
