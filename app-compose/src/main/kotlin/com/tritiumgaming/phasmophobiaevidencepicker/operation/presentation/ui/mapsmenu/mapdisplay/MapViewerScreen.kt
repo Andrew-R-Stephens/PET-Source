@@ -76,6 +76,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.labels.DynamicContentAlignmentPercentage
 import com.tritiumgaming.core.ui.common.labels.DynamicContentRow
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.common.graphics.geometry.Point2D
 import com.tritiumgaming.core.ui.icon.Arrow60LeftIcon
 import com.tritiumgaming.core.ui.icon.Arrow60RightIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
@@ -87,7 +88,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.m
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.OperationScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.model.InteractiveViewController
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
 import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldPoint
 import com.tritiumgaming.shared.operation.domain.map.poi.mappers.MapPoiResources
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources

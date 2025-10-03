@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.core.common.graphics.geometry.Point2D
+import com.tritiumgaming.core.common.graphics.geometry.Polygon
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.InteractiveMapUiState
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Polygon
 import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldMap
 import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldMapFloor
 import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldMaps

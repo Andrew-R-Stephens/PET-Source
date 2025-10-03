@@ -4,15 +4,18 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
-import com.tritiumgaming.data.appinfo.repository.AppInfoRepositoryImpl
-import com.tritiumgaming.data.appinfo.source.AppInfoDataSource
-import com.tritiumgaming.data.appinfo.source.local.AppInfoLocalDataSource
+import com.tritiumgaming.data.contributor.repository.AppInfoRepositoryImpl
+import com.tritiumgaming.data.contributor.source.ContributorDataSource
+import com.tritiumgaming.data.contributor.source.local.ContributorLocalDataSource
 import com.tritiumgaming.data.newsletter.repository.NewsletterRepositoryImpl
 import com.tritiumgaming.data.newsletter.source.datastore.NewsletterDatastoreDataSource
+import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSourceImpl
+import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
 import com.tritiumgaming.shared.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
+import com.tritiumgaming.shared.mainmenu.domain.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.InitFlowNewsletterUseCase
 import com.tritiumgaming.shared.mainmenu.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
@@ -25,7 +28,7 @@ class MainMenuContainer(
 ) {
 
     // App Info
-    private val appInfoLocalDataSource: AppInfoDataSource = AppInfoLocalDataSource()
+    private val appInfoLocalDataSource: ContributorDataSource = ContributorLocalDataSource()
     private val appInfoRepository: AppInfoRepositoryImpl =
         AppInfoRepositoryImpl(
             localSource = appInfoLocalDataSource
@@ -33,8 +36,8 @@ class MainMenuContainer(
     internal val getSpecialThanksUseCase = GetSpecialThanksUseCase(appInfoRepository)
 
     // Newsletter
-    private val newsletterLocalDataSource: NewsletterLocalDataSourceImpl = NewsletterLocalDataSourceImpl(applicationContext)
-    private val newsletterRemoteDataSource: NewsletterRemoteDataSourceImpl = NewsletterRemoteDataSourceImpl(
+    private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSourceImpl(applicationContext)
+    private val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSourceImpl(
         newsletterApi = NewsletterService()
     )
     private val newsletterDatastore: NewsletterDatastoreDataSource =
@@ -44,7 +47,7 @@ class MainMenuContainer(
         )
     private val connectivityManagerHelper: ConnectivityManagerHelper =
         ConnectivityManagerHelper(applicationContext)
-    private val newsletterRepository: NewsletterRepositoryImpl =
+    private val newsletterRepository: NewsletterRepository =
         NewsletterRepositoryImpl(
             localDataSource = newsletterLocalDataSource,
             remoteDataSource = newsletterRemoteDataSource,

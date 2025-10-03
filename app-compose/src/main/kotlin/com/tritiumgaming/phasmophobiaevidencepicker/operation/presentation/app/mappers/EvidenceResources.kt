@@ -3,14 +3,14 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceAnimation
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceCost
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceDescription
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceIcon
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceTierAnimation
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceTierDescription
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceTierRequiredLevel
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceAnimation
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceCost
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTierDescription
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTierRequiredLevel
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTitle
 
 @StringRes fun EvidenceTitle.toStringResource(): Int =
     when (this) {

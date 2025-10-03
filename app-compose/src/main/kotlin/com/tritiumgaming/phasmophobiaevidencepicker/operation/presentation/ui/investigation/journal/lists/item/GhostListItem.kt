@@ -37,10 +37,10 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toDrawableResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
-import com.tritiumgaming.shared.operation.domain.journal.model.EvidenceType
-import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling.NEGATIVE
-import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling.NEUTRAL
-import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling.POSITIVE
+import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.NEGATIVE
+import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.NEUTRAL
+import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.POSITIVE
 
 @Composable
 fun LazyItemScope.GhostListItem(

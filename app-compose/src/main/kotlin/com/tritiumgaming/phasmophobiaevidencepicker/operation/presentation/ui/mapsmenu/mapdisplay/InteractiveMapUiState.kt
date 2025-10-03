@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.m
 
 import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldRoom
 
-
 data class InteractiveMapUiState(
     val mapId: String = "",
     val floorIndex: Int = 0,

@@ -3,10 +3,10 @@ package com.tritiumgaming.shared.operation.domain.map.simple.usecase
 import com.tritiumgaming.shared.operation.domain.map.simple.repository.SimpleMapRepository
 
 class DecrementMapFloorIndexUseCase(
-    private val simpleMapsRepository: SimpleMapRepository
+    private val simpleMapRepository: SimpleMapRepository
 ) {
     operator fun invoke(currentMapId: String, currentFloorIndex: Int): Result<Int> {
-        val result = simpleMapsRepository.getMaps()
+        val result = simpleMapRepository.getMaps()
 
         result.exceptionOrNull()?.let {
             return Result.failure(Exception("Maps could not be obtained", it))

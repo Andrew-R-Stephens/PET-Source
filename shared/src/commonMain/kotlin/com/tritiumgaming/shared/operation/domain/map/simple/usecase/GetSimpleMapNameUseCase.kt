@@ -4,11 +4,11 @@ import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapRes
 import com.tritiumgaming.shared.operation.domain.map.simple.repository.SimpleMapRepository
 
 class GetSimpleMapNameUseCase(
-    private val simpleMapsRepository: SimpleMapRepository
+    private val simpleMapRepository: SimpleMapRepository
 ) {
     operator fun invoke(index: Int): Result<MapTitle> {
 
-        val result = simpleMapsRepository.getMaps()
+        val result = simpleMapRepository.getMaps()
 
         result.exceptionOrNull()?.let {
             return Result.failure(Exception("Could not get maps", it)) }
@@ -24,7 +24,7 @@ class GetSimpleMapNameUseCase(
 
     operator fun invoke(id: String): Result<MapTitle> {
 
-        val result = simpleMapsRepository.getMaps()
+        val result = simpleMapRepository.getMaps()
 
         result.exceptionOrNull()?.let {
             return Result.failure(Exception("Could not get maps", it)) }

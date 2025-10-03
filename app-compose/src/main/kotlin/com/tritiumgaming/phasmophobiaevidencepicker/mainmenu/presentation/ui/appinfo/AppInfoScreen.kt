@@ -66,7 +66,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.MainMenuScreen
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
-import com.tritiumgaming.shared.mainmenu.domain.appinfo.model.SpecialThanksContributor
+import com.tritiumgaming.shared.mainmenu.domain.appinfo.model.Contributor
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -129,7 +129,7 @@ fun InfoScreen(
 
 @Composable
 private fun ColumnScope.InfoContentPortrait(
-    contributors: List<SpecialThanksContributor>
+    contributors: List<Contributor>
 ) {
 
     val context = LocalContext.current
@@ -326,7 +326,7 @@ private fun ColumnScope.InfoContentPortrait(
 
 @Composable
 private fun ColumnScope.InfoContentLandscape(
-    contributors: List<SpecialThanksContributor>,
+    contributors: List<Contributor>,
 ) {
 
     val context = LocalContext.current
@@ -635,15 +635,15 @@ private fun LandscapePreview() {
         Column {
             InfoContentLandscape(
                 listOf(
-                    SpecialThanksContributor("AAAAAA"),
-                    SpecialThanksContributor("AAAAAA"),
-                    SpecialThanksContributor("AAAAAA"),
-                    SpecialThanksContributor("AAAAAA"),
-                    SpecialThanksContributor("AAAAAA"),
-                    SpecialThanksContributor("AAAAAA"),
-                    SpecialThanksContributor("AAAAAA"),
-                    SpecialThanksContributor("AAAAAA"),
-                    SpecialThanksContributor("AAAAAA")
+                    Contributor("AAAAAA"),
+                    Contributor("AAAAAA"),
+                    Contributor("AAAAAA"),
+                    Contributor("AAAAAA"),
+                    Contributor("AAAAAA"),
+                    Contributor("AAAAAA"),
+                    Contributor("AAAAAA"),
+                    Contributor("AAAAAA"),
+                    Contributor("AAAAAA")
                 )
             )
         }

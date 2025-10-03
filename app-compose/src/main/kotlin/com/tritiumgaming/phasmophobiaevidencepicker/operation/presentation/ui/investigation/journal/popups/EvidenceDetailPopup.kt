@@ -33,7 +33,7 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
-import com.tritiumgaming.shared.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import org.jetbrains.annotations.TestOnly
 
 @Composable

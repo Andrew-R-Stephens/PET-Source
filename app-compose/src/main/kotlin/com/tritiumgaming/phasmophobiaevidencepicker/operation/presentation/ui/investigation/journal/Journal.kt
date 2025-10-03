@@ -39,7 +39,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.in
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.EvidenceList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.GhostList
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.popups.EvidencePopup
-import com.tritiumgaming.shared.operation.domain.journal.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import org.jetbrains.annotations.TestOnly
 
 @Composable

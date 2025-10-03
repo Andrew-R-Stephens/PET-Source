@@ -10,14 +10,15 @@ import com.tritiumgaming.data.codex.source.local.CodexPossessionsLocalDataSource
 import com.tritiumgaming.data.difficulty.repository.DifficultyRepositoryImpl
 import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
 import com.tritiumgaming.data.difficulty.source.local.DifficultyLocalDataSource
+import com.tritiumgaming.data.evidence.repository.EvidenceRepositoryImpl
+import com.tritiumgaming.data.evidence.source.EvidenceDataSource
+import com.tritiumgaming.data.evidence.source.local.EvidenceLocalDataSource
+import com.tritiumgaming.data.ghost.repository.GhostRepositoryImpl
+import com.tritiumgaming.data.ghost.source.GhostDataSource
+import com.tritiumgaming.data.ghost.source.local.GhostLocalDataSource
 import com.tritiumgaming.data.ghostname.repository.GhostNameRepositoryImpl
 import com.tritiumgaming.data.ghostname.source.GhostNameDataSource
 import com.tritiumgaming.data.ghostname.source.local.GhostNameLocalDataSource
-import com.tritiumgaming.data.journal.repository.new.JournalRepositoryImpl
-import com.tritiumgaming.data.journal.source.EvidenceDataSource
-import com.tritiumgaming.data.journal.source.GhostDataSource
-import com.tritiumgaming.data.journal.source.local.EvidenceLocalDataSource
-import com.tritiumgaming.data.journal.source.local.GhostLocalDataSource
 import com.tritiumgaming.data.map.complex.repository.ComplexMapRepositoryImpl
 import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
 import com.tritiumgaming.data.map.complex.source.local.ComplexMapLocalDataSource
@@ -45,6 +46,8 @@ import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficult
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTypeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
+import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
+import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.operation.domain.ghostname.repository.GhostNameRepository
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFemaleNamesUseCase
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFirstNamesUseCase
@@ -86,98 +89,173 @@ class OperationContainer(
      * Investigation Journal
      */
 
-    // Journal
-    private val evidenceLocalDataSource: EvidenceDataSource =
-        EvidenceLocalDataSource(applicationContext)
-    private val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(applicationContext)
-    private val journalRepository: JournalRepository = JournalRepositoryImpl(
-        ghostLocalDataSource = ghostLocalDataSource,
+    // Ghost
+    private val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(
+        applicationContext = applicationContext
+    )
+    private val ghostRepository: GhostRepository = GhostRepositoryImpl(
+        ghostLocalDataSource = ghostLocalDataSource
+    )
+    internal val fetchGhostsUseCase = FetchGhostsUseCase(
+        repository = ghostRepository
+    )
+    internal val getGhostByIdUseCase = GetGhostByIdUseCase(
+        repository = ghostRepository
+    )
+
+    // Evidence
+    private val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource(
+        applicationContext = applicationContext
+    )
+    private val evidenceRepository: EvidenceRepository = EvidenceRepositoryImpl(
         evidenceLocalDataSource = evidenceLocalDataSource
     )
-    internal val fetchGhostsUseCase = FetchGhostsUseCase(journalRepository)
-    internal val fetchEvidencesUseCase = FetchEvidencesUseCase(journalRepository)
-    internal val fetchGhostEvidencesUseCase = FetchGhostEvidencesUseCase(journalRepository)
-    internal val getGhostByIdUseCase = GetGhostByIdUseCase(journalRepository)
-    internal val getEvidenceByIdUseCase = GetEvidenceByIdUseCase(journalRepository)
-    internal val initRuledEvidenceUseCase = InitRuledEvidenceUseCase(fetchEvidencesUseCase)
+    internal val fetchEvidencesUseCase = FetchEvidencesUseCase(
+        repository = evidenceRepository
+    )
+    internal val getEvidenceByIdUseCase = GetEvidenceByIdUseCase(
+        repository = evidenceRepository
+    )
+
+    // Journal
+    internal val fetchGhostEvidencesUseCase = FetchGhostEvidencesUseCase(
+        ghostRepository = ghostRepository,
+        evidenceRepository = evidenceRepository
+    )
+    internal val initRuledEvidenceUseCase = InitRuledEvidenceUseCase(
+        fetchEvidencesUseCase = fetchEvidencesUseCase
+    )
 
     // Difficulty
-    private val difficultyLocalDataSource: DifficultyDataSource =
-        DifficultyLocalDataSource(applicationContext)
-    private val difficultyRepository: DifficultyRepository =
-        DifficultyRepositoryImpl(
-            localSource = difficultyLocalDataSource
-        )
-    internal val fetchDifficultiesUseCase = FetchDifficultiesUseCase(difficultyRepository)
-    internal val getDifficultyTypeUseCase = GetDifficultyTypeUseCase(difficultyRepository)
-    internal val getDifficultyNameUseCase = GetDifficultyNameUseCase(difficultyRepository)
-    internal val getDifficultyModifierUseCase = GetDifficultyModifierUseCase(difficultyRepository)
-    internal val getDifficultyTimeUseCase = GetDifficultyTimeUseCase(difficultyRepository)
-    internal val getDifficultyResponseTypeUseCase = GetDifficultyResponseTypeUseCase(difficultyRepository)
-    internal val getDifficultyInitialSanityUseCase = GetDifficultyInitialSanityUseCase(difficultyRepository)
-    internal val incrementDifficultyIndexUseCase = IncrementDifficultyIndexUseCase(difficultyRepository)
-    internal val decrementDifficultyIndexUseCase = DecrementDifficultyIndexUseCase(difficultyRepository)
+    private val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(
+        applicationContext = applicationContext
+    )
+    private val difficultyRepository: DifficultyRepository = DifficultyRepositoryImpl(
+        localSource = difficultyLocalDataSource
+    )
+    internal val fetchDifficultiesUseCase = FetchDifficultiesUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    internal val getDifficultyTypeUseCase = GetDifficultyTypeUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    internal val getDifficultyNameUseCase = GetDifficultyNameUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    internal val getDifficultyModifierUseCase = GetDifficultyModifierUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    internal val getDifficultyTimeUseCase = GetDifficultyTimeUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    internal val getDifficultyResponseTypeUseCase = GetDifficultyResponseTypeUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    internal val getDifficultyInitialSanityUseCase = GetDifficultyInitialSanityUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    internal val incrementDifficultyIndexUseCase = IncrementDifficultyIndexUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    internal val decrementDifficultyIndexUseCase = DecrementDifficultyIndexUseCase(
+        difficultyRepository = difficultyRepository
+    )
 
     // Mission
     private val missionLocalDataSource: MissionDataSource = MissionLocalDataSource(
         applicationContext = applicationContext,
     )
-    internal val missionRepository: MissionRepository =
-        MissionRepositoryImpl(
-            localSource = missionLocalDataSource
-        )
-    internal val fetchAllMissionsUseCase = FetchAllMissionsUseCase(missionRepository)
+    internal val missionRepository: MissionRepository = MissionRepositoryImpl(
+        localSource = missionLocalDataSource
+    )
+    internal val fetchAllMissionsUseCase = FetchAllMissionsUseCase(
+        missionRepository = missionRepository
+    )
 
     // Ghost Name
     private val ghostNameLocalDataSource: GhostNameDataSource = GhostNameLocalDataSource(
-        applicationContext = applicationContext,
+        applicationContext = applicationContext
     )
-    internal val ghostNameRepository: GhostNameRepository =
-        GhostNameRepositoryImpl(
-            localSource = ghostNameLocalDataSource
-        )
-    internal val fetchAllFirstNamesUseCase = FetchAllFirstNamesUseCase(ghostNameRepository)
-    internal val fetchAllMaleNamesUseCase = FetchAllMaleNamesUseCase(ghostNameRepository)
-    internal val fetchAllFemaleNamesUseCase = FetchAllFemaleNamesUseCase(ghostNameRepository)
-    internal val fetchAllSurnamesUseCase = FetchAllSurnamesUseCase(ghostNameRepository)
+    internal val ghostNameRepository: GhostNameRepository = GhostNameRepositoryImpl(
+        localSource = ghostNameLocalDataSource
+    )
+    internal val fetchAllFirstNamesUseCase = FetchAllFirstNamesUseCase(
+        repository = ghostNameRepository
+    )
+    internal val fetchAllMaleNamesUseCase = FetchAllMaleNamesUseCase(
+        repository = ghostNameRepository
+    )
+    internal val fetchAllFemaleNamesUseCase = FetchAllFemaleNamesUseCase(
+        repository = ghostNameRepository
+    )
+    internal val fetchAllSurnamesUseCase = FetchAllSurnamesUseCase(
+        repository = ghostNameRepository
+    )
 
     // Map Modifiers
-    private val mapModifiersLocalDataSource: MapModifiersDataSource =
-        MapModifiersLocalDataSource(applicationContext)
+    private val mapModifiersLocalDataSource: MapModifiersDataSource = MapModifiersLocalDataSource(
+        applicationContext = applicationContext
+    )
     private val mapModifiersRepository: MapModifiersRepository = MapModifiersRepositoryImpl(
         localSource = mapModifiersLocalDataSource
     )
-    internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(mapModifiersRepository)
+    internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(
+        simpleMapRepository = mapModifiersRepository
+    )
 
     // Simple Map
-    private val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(applicationContext)
-    private val simpleMapRepository: SimpleMapRepository =
-        SimpleMapRepositoryImpl(
-            localSource = simpleMapLocalDataSource
-        )
-    internal val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(simpleMapRepository)
-    internal val fetchMapThumbnailsUseCase = FetchMapThumbnailsUseCase(simpleMapRepository)
-    internal val incrementMapIndexUseCase = IncrementMapIndexUseCase(simpleMapRepository)
-    internal val decrementMapIndexUseCase = DecrementMapIndexUseCase(simpleMapRepository)
-    internal val incrementMapFloorIndexUseCase = IncrementMapFloorIndexUseCase(simpleMapRepository)
-    internal val decrementMapFloorIndexUseCase = DecrementMapFloorIndexUseCase(simpleMapRepository)
-    internal val getSimpleMapIdUseCase = GetSimpleMapIdUseCase(simpleMapRepository)
-    internal val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(simpleMapRepository)
-    internal val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(simpleMapRepository)
-    internal val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(fetchMapModifiersUseCase)
-    internal val getSimpleMapNormalModifierUseCase = GetSimpleMapNormalModifierUseCase(fetchMapModifiersUseCase)
+    private val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(
+        applicationContext = applicationContext
+    )
+    private val simpleMapRepository: SimpleMapRepository = SimpleMapRepositoryImpl(
+        localSource = simpleMapLocalDataSource
+    )
+    internal val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val fetchMapThumbnailsUseCase = FetchMapThumbnailsUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val incrementMapIndexUseCase = IncrementMapIndexUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val decrementMapIndexUseCase = DecrementMapIndexUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val incrementMapFloorIndexUseCase = IncrementMapFloorIndexUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val decrementMapFloorIndexUseCase = DecrementMapFloorIndexUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val getSimpleMapIdUseCase = GetSimpleMapIdUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    internal val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(
+        fetchMapModifiersUseCase = fetchMapModifiersUseCase
+    )
+    internal val getSimpleMapNormalModifierUseCase = GetSimpleMapNormalModifierUseCase(
+        fetchMapModifiersUseCase = fetchMapModifiersUseCase
+    )
     internal val getMapModifierUseCase = GetMapModifierUseCase(
-        getSimpleMapNormalModifierUseCase, getSimpleMapSetupModifierUseCase)
+        getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
+        getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase
+    )
 
     // Complex Map
     private val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
         applicationContext = applicationContext,
         service = ComplexMapLocalService()
     )
-    private val complexMapRepository: ComplexMapRepository =
-        ComplexMapRepositoryImpl(
-            localSource = complexMapLocalDataSource
-        )
+    private val complexMapRepository: ComplexMapRepository = ComplexMapRepositoryImpl(
+        localSource = complexMapLocalDataSource
+    )
     internal val fetchComplexMapsUseCase = FetchComplexMapsUseCase(
         complexMapRepository = complexMapRepository
     )
@@ -199,15 +277,20 @@ class OperationContainer(
         CodexPossessionsLocalDataSource()
 
     // Codex
-    private val codexRepository: CodexRepository =
-        CodexRepositoryImpl(
-            achievementsLocalDataSource = codexAchievementsLocalDataSource,
-            equipmentLocalDataSource = codexEquipmentLocalDataSource,
-            possessionsLocalDataSource = codexPossessionsLocalDataSource
-        )
+    private val codexRepository: CodexRepository = CodexRepositoryImpl(
+        achievementsLocalDataSource = codexAchievementsLocalDataSource,
+        equipmentLocalDataSource = codexEquipmentLocalDataSource,
+        possessionsLocalDataSource = codexPossessionsLocalDataSource
+    )
 
-    internal val fetchCodexAchievementsUseCase = FetchCodexAchievementsUseCase(codexRepository)
-    internal val fetchCodexEquipmentUseCase = FetchCodexEquipmentUseCase(codexRepository)
-    internal val fetchCodexPossessionsUseCase = FetchCodexPossessionsUseCase(codexRepository)
+    internal val fetchCodexAchievementsUseCase = FetchCodexAchievementsUseCase(
+        codexRepository = codexRepository
+    )
+    internal val fetchCodexEquipmentUseCase = FetchCodexEquipmentUseCase(
+        codexRepository = codexRepository
+    )
+    internal val fetchCodexPossessionsUseCase = FetchCodexPossessionsUseCase(
+        codexRepository = codexRepository
+    )
 
 }

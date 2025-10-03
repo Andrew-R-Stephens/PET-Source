@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.shared.mainmenu.domain.appinfo.model.SpecialThanksContributor
+import com.tritiumgaming.shared.mainmenu.domain.appinfo.model.Contributor
 import com.tritiumgaming.shared.mainmenu.domain.appinfo.usecase.GetSpecialThanksUseCase
 
 /**
@@ -17,7 +17,7 @@ class AppInfoViewModel(
     private val getSpecialThanksUseCase: GetSpecialThanksUseCase
 ): ViewModel() {
 
-    val specialThanksList: List<SpecialThanksContributor>
+    val specialThanksList: List<Contributor>
         get() = getSpecialThanksUseCase()
 
     companion object {

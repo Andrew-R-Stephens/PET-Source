@@ -3,7 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.m
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.util.Size
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.util.graphics.geometry.Point2D
+import com.tritiumgaming.core.common.graphics.geometry.Point2D
 import kotlin.math.max
 import kotlin.math.min
 

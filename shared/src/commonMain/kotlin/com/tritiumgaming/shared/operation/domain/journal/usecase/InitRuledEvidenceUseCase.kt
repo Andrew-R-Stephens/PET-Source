@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.operation.domain.journal.usecase
 
-import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence
-import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling
+import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence
+import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling
 
 class InitRuledEvidenceUseCase(
     private val fetchEvidencesUseCase: FetchEvidencesUseCase

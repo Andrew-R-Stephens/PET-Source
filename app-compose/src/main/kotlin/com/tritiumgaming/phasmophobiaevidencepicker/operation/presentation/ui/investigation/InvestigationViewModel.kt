@@ -12,7 +12,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toFractionResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.GhostScore
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolbarUiState
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
@@ -42,17 +41,16 @@ import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficult
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyResponseTypeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
-import com.tritiumgaming.shared.operation.domain.journal.model.EvidenceType
-import com.tritiumgaming.shared.operation.domain.journal.model.GhostType
-import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence
-import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling
+import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
+import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence
+import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchEvidencesUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostsUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceByIdUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostByIdUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.InitRuledEvidenceUseCase
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources
 import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.GetMapModifierUseCase
@@ -279,7 +277,8 @@ class InvestigationViewModel(
     private fun startPlayerSanityJob() {
         sanityJob = viewModelScope.launch {
             while(!timerUiState.value.paused) {
-                Log.d("TickSanity","--------------------------- Set Sanity-----------------------------")
+                Log.d("TickSanity",
+                    "--------------------------- Set Sanity-----------------------------")
                 tickSanity()
                 delay(1000)
             }

@@ -10,27 +10,27 @@ import com.tritiumgaming.data.globalpreferences.source.datastore.GlobalPreferenc
 import com.tritiumgaming.data.language.repository.LanguageRepositoryImpl
 import com.tritiumgaming.data.language.source.datastore.LanguageDatastoreDataSource
 import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
-import com.tritiumgaming.data.market.bundle.repository.MarketBundleRepositoryImpl
-import com.tritiumgaming.data.market.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
-import com.tritiumgaming.data.market.palette.repository.MarketPaletteRepositoryImpl
-import com.tritiumgaming.data.market.palette.source.datastore.MarketPaletteDatastoreDataSource
-import com.tritiumgaming.data.market.palette.source.local.MarketPaletteLocalDataSource
-import com.tritiumgaming.data.market.palette.source.remote.MarketPaletteFirestoreDataSource
-import com.tritiumgaming.data.market.typography.repository.MarketTypographyRepositoryImpl
-import com.tritiumgaming.data.market.typography.source.datastore.MarketTypographyDatastoreDataSource
-import com.tritiumgaming.data.market.typography.source.local.MarketTypographyLocalDataSource
-import com.tritiumgaming.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
-import com.tritiumgaming.data.reviewtracker.repository.ReviewTrackerRepositoryImpl
-import com.tritiumgaming.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
-import com.tritiumgaming.data.user.repository.CredentialsRepositoryImpl
-import com.tritiumgaming.data.user.repository.FirestoreAccountRepositoryImpl
-import com.tritiumgaming.data.user.source.remote.CredentialsDataSourceImpl
-import com.tritiumgaming.data.user.source.remote.FirestoreAccountRemoteDataSource
-import com.tritiumgaming.data.user.source.remote.FirestoreAuthRemoteDataSource
-import com.tritiumgaming.data.user.source.remote.FirestoreUserRemoteDataSource
-import com.tritiumgaming.data.user.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.data.user.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.data.user.usecase.SignOutAccountUseCase
+import com.tritiumgaming.data.marketplace.bundle.repository.MarketBundleRepositoryImpl
+import com.tritiumgaming.data.marketplace.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
+import com.tritiumgaming.data.marketplace.palette.repository.MarketPaletteRepositoryImpl
+import com.tritiumgaming.data.marketplace.palette.source.datastore.MarketPaletteDatastoreDataSource
+import com.tritiumgaming.data.marketplace.palette.source.local.MarketPaletteLocalDataSource
+import com.tritiumgaming.data.marketplace.palette.source.remote.MarketPaletteFirestoreDataSource
+import com.tritiumgaming.data.marketplace.typography.repository.MarketTypographyRepositoryImpl
+import com.tritiumgaming.data.marketplace.typography.source.datastore.MarketTypographyDatastoreDataSource
+import com.tritiumgaming.data.marketplace.typography.source.local.MarketTypographyLocalDataSource
+import com.tritiumgaming.data.marketplace.typography.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.data.account.repository.CredentialsRepositoryImpl
+import com.tritiumgaming.data.account.repository.FirestoreAccountRepositoryImpl
+import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
+import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSource
+import com.tritiumgaming.data.account.source.remote.FirestoreAuthRemoteDataSource
+import com.tritiumgaming.data.account.source.remote.FirestoreUserRemoteDataSource
+import com.tritiumgaming.data.account.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.data.account.usecase.GetSignInCredentialsUseCase
+import com.tritiumgaming.data.account.usecase.SignOutAccountUseCase
+import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
+import com.tritiumgaming.data.review.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.shared.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
@@ -171,25 +171,22 @@ class CoreContainer(
     internal val observeAccountCreditsUseCase = ObserveAccountCreditsUseCase(
         repository = firestoreAccountRepository
     )
-    internal val observeAccountUnlockedPalettesUseCase =
-        ObserveAccountUnlockedPalettesUseCase(
-            repository = firestoreAccountRepository
-        )
-    internal val observeAccountUnlockedTypographiesUseCase =
-        ObserveAccountUnlockedTypographiesUseCase(
-            repository = firestoreAccountRepository
-        )
+    internal val observeAccountUnlockedPalettesUseCase = ObserveAccountUnlockedPalettesUseCase(
+        repository = firestoreAccountRepository
+    )
+    internal val observeAccountUnlockedTypographiesUseCase = ObserveAccountUnlockedTypographiesUseCase(
+        repository = firestoreAccountRepository
+    )
 
     /**
      * Review Tracker
      */
-    private val reviewTrackerRepository: ReviewTrackerRepository =
-        ReviewTrackerRepositoryImpl(
-            dataStoreSource = ReviewTrackerDatastoreDataSource(
-                context = applicationContext,
-                dataStore = dataStore
-            )
+    private val reviewTrackerRepository: ReviewTrackerRepository = ReviewTrackerRepositoryImpl(
+        dataStoreSource = ReviewTrackerDatastoreDataSource(
+            context = applicationContext,
+            dataStore = dataStore
         )
+    )
     internal val getReviewRequestStatusUseCase = GetReviewRequestStatusUseCase(
         repository = reviewTrackerRepository
     )
@@ -309,7 +306,9 @@ class CoreContainer(
     /**
      * Language
      */
-    private val languageLocalDataSource = LanguageLocalDataSource(applicationContext)
+    private val languageLocalDataSource = LanguageLocalDataSource(
+        applicationContext = applicationContext
+    )
     private val languageDatastoreDataSource = LanguageDatastoreDataSource(
         context = applicationContext,
         dataStore = dataStore

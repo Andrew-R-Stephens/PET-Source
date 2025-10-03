@@ -47,9 +47,9 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
-import com.tritiumgaming.shared.operation.domain.journal.mapper.EvidenceResources
-import com.tritiumgaming.shared.operation.domain.journal.model.EvidenceType
-import com.tritiumgaming.shared.operation.domain.journal.model.RuledEvidence.Ruling
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling
 import org.jetbrains.annotations.TestOnly
 
 

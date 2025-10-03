@@ -9,7 +9,6 @@
     <item name="difficulty_modifier_insanity" type="fraction">200%</item>
 
     <!-- Difficulty Start Sanity -->
-    <!-- TODO(Refactor to fractions) -->
     <item name="difficulty_initialSanity_amateur" type="fraction">100%</item>
     <item name="difficulty_initialSanity_intermediate" type="fraction">100%</item>
     <item name="difficulty_initialSanity_professional" type="fraction">100%</item>

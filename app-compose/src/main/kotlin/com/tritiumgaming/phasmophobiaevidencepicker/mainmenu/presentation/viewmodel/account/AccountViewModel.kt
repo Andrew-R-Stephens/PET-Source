@@ -15,9 +15,9 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.data.user.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.data.user.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.data.user.usecase.SignOutAccountUseCase
+import com.tritiumgaming.data.account.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.data.account.usecase.GetSignInCredentialsUseCase
+import com.tritiumgaming.data.account.usecase.SignOutAccountUseCase
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
 import com.tritiumgaming.shared.core.domain.user.model.AccountCredits

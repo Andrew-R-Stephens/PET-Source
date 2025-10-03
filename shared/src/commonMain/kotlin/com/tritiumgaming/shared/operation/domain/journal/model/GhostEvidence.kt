@@ -1,5 +1,8 @@
 package com.tritiumgaming.shared.operation.domain.journal.model
 
+import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
+
 expect class GhostEvidence(
     ghost: GhostType,
     normalEvidenceList: List<EvidenceType>,

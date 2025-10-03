@@ -4,10 +4,10 @@ import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifie
 import com.tritiumgaming.shared.operation.domain.map.simple.repository.SimpleMapRepository
 
 class GetSimpleMapSizeUseCase(
-    private val simpleMapsRepository: SimpleMapRepository
+    private val simpleMapRepository: SimpleMapRepository
 ) {
     operator fun invoke(index: Int): Result<MapModifierResources.MapSize> {
-        val result = simpleMapsRepository.getMaps()
+        val result = simpleMapRepository.getMaps()
 
         result.exceptionOrNull()?.let {
             return Result.failure(Exception("Could not get maps", it))
@@ -20,7 +20,7 @@ class GetSimpleMapSizeUseCase(
     }
 
     operator fun invoke(id: String): Result<MapModifierResources.MapSize> {
-        val result = simpleMapsRepository.getMaps()
+        val result = simpleMapRepository.getMaps()
 
         result.exceptionOrNull()?.let {
             return Result.failure(Exception("Could not get maps", it))
