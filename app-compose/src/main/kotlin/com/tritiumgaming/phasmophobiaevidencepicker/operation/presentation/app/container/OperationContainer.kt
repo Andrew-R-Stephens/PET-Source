@@ -3,34 +3,34 @@ package com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.repository.CodexRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexAchievementsLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexEquipmentLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.codex.source.local.CodexPossessionsLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.repository.DifficultyRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.DifficultyDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.difficulty.source.local.DifficultyLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.repository.GhostNameRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.source.GhostNameDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.ghostname.source.local.GhostNameLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.repository.new.JournalRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.EvidenceDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.GhostDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.EvidenceLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.journal.source.local.GhostLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.repository.ComplexMapRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.ComplexMapDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.local.ComplexMapLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.complex.source.service.ComplexMapLocalService
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.repository.MapModifiersRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.source.MapModifiersDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.modifiers.source.local.MapModifiersLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.repository.SimpleMapRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.SimpleMapDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.map.simple.source.local.SimpleMapLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.repository.MissionRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.MissionDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.data.mission.source.local.MissionLocalDataSource
+import com.tritiumgaming.data.codex.repository.CodexRepositoryImpl
+import com.tritiumgaming.data.codex.source.local.CodexAchievementsLocalDataSource
+import com.tritiumgaming.data.codex.source.local.CodexEquipmentLocalDataSource
+import com.tritiumgaming.data.codex.source.local.CodexPossessionsLocalDataSource
+import com.tritiumgaming.data.difficulty.repository.DifficultyRepositoryImpl
+import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
+import com.tritiumgaming.data.difficulty.source.local.DifficultyLocalDataSource
+import com.tritiumgaming.data.ghostname.repository.GhostNameRepositoryImpl
+import com.tritiumgaming.data.ghostname.source.GhostNameDataSource
+import com.tritiumgaming.data.ghostname.source.local.GhostNameLocalDataSource
+import com.tritiumgaming.data.journal.repository.new.JournalRepositoryImpl
+import com.tritiumgaming.data.journal.source.EvidenceDataSource
+import com.tritiumgaming.data.journal.source.GhostDataSource
+import com.tritiumgaming.data.journal.source.local.EvidenceLocalDataSource
+import com.tritiumgaming.data.journal.source.local.GhostLocalDataSource
+import com.tritiumgaming.data.map.complex.repository.ComplexMapRepositoryImpl
+import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
+import com.tritiumgaming.data.map.complex.source.local.ComplexMapLocalDataSource
+import com.tritiumgaming.data.map.complex.source.service.ComplexMapLocalService
+import com.tritiumgaming.data.map.modifiers.repository.MapModifiersRepositoryImpl
+import com.tritiumgaming.data.map.modifiers.source.MapModifiersDataSource
+import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSource
+import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
+import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
+import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
+import com.tritiumgaming.data.mission.repository.MissionRepositoryImpl
+import com.tritiumgaming.data.mission.source.MissionDataSource
+import com.tritiumgaming.data.mission.source.local.MissionLocalDataSource
 import com.tritiumgaming.shared.operation.domain.codex.repository.CodexRepository
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
@@ -87,7 +87,8 @@ class OperationContainer(
      */
 
     // Journal
-    private val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource(applicationContext)
+    private val evidenceLocalDataSource: EvidenceDataSource =
+        EvidenceLocalDataSource(applicationContext)
     private val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(applicationContext)
     private val journalRepository: JournalRepository = JournalRepositoryImpl(
         ghostLocalDataSource = ghostLocalDataSource,
@@ -101,7 +102,8 @@ class OperationContainer(
     internal val initRuledEvidenceUseCase = InitRuledEvidenceUseCase(fetchEvidencesUseCase)
 
     // Difficulty
-    private val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(applicationContext)
+    private val difficultyLocalDataSource: DifficultyDataSource =
+        DifficultyLocalDataSource(applicationContext)
     private val difficultyRepository: DifficultyRepository =
         DifficultyRepositoryImpl(
             localSource = difficultyLocalDataSource

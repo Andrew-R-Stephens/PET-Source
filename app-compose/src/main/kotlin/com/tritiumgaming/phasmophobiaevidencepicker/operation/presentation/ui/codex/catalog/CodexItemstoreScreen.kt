@@ -39,7 +39,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.CodexScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.CodexViewModel

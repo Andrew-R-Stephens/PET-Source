@@ -39,7 +39,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette

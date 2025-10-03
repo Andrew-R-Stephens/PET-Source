@@ -49,8 +49,9 @@ import androidx.core.net.toUri
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.common.util.FontUtils
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
@@ -63,9 +64,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.compone
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.NavigationHeaderComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.navigation.PETImageButtonType
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.util.FontUtils
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.MainMenuScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.shared.mainmenu.domain.appinfo.model.SpecialThanksContributor
 import org.jetbrains.annotations.TestOnly
@@ -77,7 +76,7 @@ private fun InfoScreenPreview() {
         typography = ClassicTypography
     ) {
         InfoScreen(
-            mainMenuViewModel = viewModel(factory = MainMenuViewModel.Factory)
+            mainMenuViewModel = viewModel(factory = AppInfoViewModel.Factory)
         )
     }
 }
@@ -85,7 +84,7 @@ private fun InfoScreenPreview() {
 @Composable
 fun InfoScreen(
     navController: NavController = rememberNavController(),
-    mainMenuViewModel: MainMenuViewModel
+    mainMenuViewModel: AppInfoViewModel
 ) {
 
     MainMenuScreen {

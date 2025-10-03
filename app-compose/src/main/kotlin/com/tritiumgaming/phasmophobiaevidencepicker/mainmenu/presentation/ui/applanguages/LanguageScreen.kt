@@ -108,7 +108,7 @@ private fun ColumnScope.LanguageContent(
                 items = globalPreferencesViewModel.languageList.toList(),
                 key = { it.code }
             ) {
-                val languageCode = stringResource(it.code.toStringResource())
+                val languageCode = it.code
                 LanguageItem(
                     language = it
                 ) {
@@ -126,7 +126,7 @@ private fun LanguageItem(
     onClick: () -> Unit
 ) {
     val rememberName by remember{ mutableIntStateOf(language.localizedName.toStringResource()) }
-    val languageCode = stringResource(language.code.toStringResource())
+    val languageCode = language.code
 
     val color =
         if(languageCode == AppCompatDelegate.getApplicationLocales()[0]?.language) {

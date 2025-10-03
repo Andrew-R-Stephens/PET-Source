@@ -5,32 +5,32 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.repository.LanguageRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.local.LanguageLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.repository.MarketBundleRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.repository.MarketPaletteRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.datastore.MarketPaletteDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.local.MarketPaletteLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.palette.source.remote.MarketPaletteFirestoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.repository.MarketTypographyRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.datastore.MarketTypographyDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.local.MarketTypographyLocalDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.repository.ReviewTrackerRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository.CredentialsRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.repository.FirestoreAccountRepositoryImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.CredentialsDataSourceImpl
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAccountRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreAuthRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.source.remote.FirestoreUserRemoteDataSource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.user.usecase.SignOutAccountUseCase
+import com.tritiumgaming.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
+import com.tritiumgaming.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
+import com.tritiumgaming.data.language.repository.LanguageRepositoryImpl
+import com.tritiumgaming.data.language.source.datastore.LanguageDatastoreDataSource
+import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
+import com.tritiumgaming.data.market.bundle.repository.MarketBundleRepositoryImpl
+import com.tritiumgaming.data.market.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
+import com.tritiumgaming.data.market.palette.repository.MarketPaletteRepositoryImpl
+import com.tritiumgaming.data.market.palette.source.datastore.MarketPaletteDatastoreDataSource
+import com.tritiumgaming.data.market.palette.source.local.MarketPaletteLocalDataSource
+import com.tritiumgaming.data.market.palette.source.remote.MarketPaletteFirestoreDataSource
+import com.tritiumgaming.data.market.typography.repository.MarketTypographyRepositoryImpl
+import com.tritiumgaming.data.market.typography.source.datastore.MarketTypographyDatastoreDataSource
+import com.tritiumgaming.data.market.typography.source.local.MarketTypographyLocalDataSource
+import com.tritiumgaming.data.market.typography.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.data.reviewtracker.repository.ReviewTrackerRepositoryImpl
+import com.tritiumgaming.data.reviewtracker.source.datastore.ReviewTrackerDatastoreDataSource
+import com.tritiumgaming.data.user.repository.CredentialsRepositoryImpl
+import com.tritiumgaming.data.user.repository.FirestoreAccountRepositoryImpl
+import com.tritiumgaming.data.user.source.remote.CredentialsDataSourceImpl
+import com.tritiumgaming.data.user.source.remote.FirestoreAccountRemoteDataSource
+import com.tritiumgaming.data.user.source.remote.FirestoreAuthRemoteDataSource
+import com.tritiumgaming.data.user.source.remote.FirestoreUserRemoteDataSource
+import com.tritiumgaming.data.user.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.data.user.usecase.GetSignInCredentialsUseCase
+import com.tritiumgaming.data.user.usecase.SignOutAccountUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
@@ -47,6 +47,7 @@ import com.tritiumgaming.shared.core.domain.language.usecase.GetCurrentLanguageU
 import com.tritiumgaming.shared.core.domain.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SaveCurrentLanguageUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
@@ -128,14 +129,17 @@ class CoreContainer(
         credentialsDataSource = credentialsDataSource
     )
     internal val getSignInCredentialsUseCase = GetSignInCredentialsUseCase(
-        credentialsRepository = credentialsRepository)
+        credentialsRepository = credentialsRepository
+    )
     internal val signInAccountUseCase = SignInAccountUseCase(
         credentialsRepository = credentialsRepository
     )
     internal val signOutAccountUseCase = SignOutAccountUseCase(
-        credentialsRepository = credentialsRepository)
+        credentialsRepository = credentialsRepository
+    )
     internal val deactivateAccountUseCase = DeactivateAccountUseCase(
-        credentialsRepository = credentialsRepository)
+        credentialsRepository = credentialsRepository
+    )
 
     /**
      * Account
@@ -317,6 +321,7 @@ class CoreContainer(
     internal val getLanguagesUseCase = GetAvailableLanguagesUseCase(
         repository = languageRepository
     )
+    internal val setDefaultLanguageUseCase = SetDefaultLanguageUseCase()
     internal val setupLanguageUseCase = SetupLanguageUseCase(
         repository = languageRepository
     )

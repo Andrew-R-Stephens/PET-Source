@@ -27,7 +27,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.new
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen.NewsMessagesScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.mainmenu.MainMenuViewModel
+import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appinfo.AppInfoViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.CodexViewModel
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.catalog.CodexItemstoreScreen
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.menu.CodexMenuScreen
@@ -46,8 +46,8 @@ fun RootNavigation(
         viewModel(factory = GlobalPreferencesViewModel.Factory),
     permissionsViewModel: PermissionsViewModel =
         viewModel(factory = PermissionsViewModel.Factory),
-    mainMenuViewModel: MainMenuViewModel =
-        viewModel(factory = MainMenuViewModel.Factory),
+    mainMenuViewModel: AppInfoViewModel =
+        viewModel(factory = AppInfoViewModel.Factory),
     accountViewModel: AccountViewModel =
         viewModel(factory = AccountViewModel.Factory),
     newsletterViewModel: NewsletterViewModel =
@@ -97,7 +97,7 @@ private fun NavGraphBuilder.mainMenuNavigation(
     navController: NavHostController,
     globalPreferencesViewModel: GlobalPreferencesViewModel,
     permissionsViewModel: PermissionsViewModel,
-    mainMenuViewModel: MainMenuViewModel,
+    mainMenuViewModel: AppInfoViewModel,
     accountViewModel: AccountViewModel,
     newsletterViewModel: NewsletterViewModel
 ) {

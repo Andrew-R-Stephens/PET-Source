@@ -12,6 +12,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
+import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.app.mappers.toFractionResource
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.journal.lists.item.GhostScore
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.ToolbarUiState
 import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
@@ -51,6 +52,7 @@ import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostsUseC
 import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceByIdUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostByIdUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.InitRuledEvidenceUseCase
+import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources
 import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.GetMapModifierUseCase
@@ -152,7 +154,7 @@ class InvestigationViewModel(
     /*
      * Map Ui Functions
      */
-    fun initMapUiState() {
+    private fun initMapUiState() {
         _mapUiState.update {
             MapUiState(
                 index = 0,
@@ -171,7 +173,7 @@ class InvestigationViewModel(
     /*
      * Difficulty Ui Functions
      */
-    fun initDifficultyUiState() {
+    private fun initDifficultyUiState() {
         _difficultyUiState.update {
             DifficultyUiState(
                 index = 0,
@@ -192,7 +194,7 @@ class InvestigationViewModel(
     /*
      * Timer Ui Functions
      */
-    fun initTimerUiState() {
+    private fun initTimerUiState() {
         _timerUiState.update {
             TimerUiState(
                 startTime = TIME_DEFAULT,
@@ -205,7 +207,7 @@ class InvestigationViewModel(
     /*
      * Phase Ui Functions
      */
-    fun initPhaseUiState() {
+    private fun initPhaseUiState() {
         _phaseUiState.update {
             it.copy(
                 elapsedFlashTime = 0L,
@@ -221,13 +223,13 @@ class InvestigationViewModel(
     /*
      * Operation Sanity Ui Functions
      */
-    fun initOperationSanityUiState() {
+    private fun initOperationSanityUiState() {
         _operationSanityUiState.update {
             OperationSanityUiState(
                 sanityMax = MAX_SANITY,
                 drainModifier = it.getDrainModifier(
                     difficultyModifier = difficultyUiState.value.modifier,
-                    mapModifier = getCurrentMapModifier()
+                    mapModifier = 0f
                 ),
                 averageTeamSanity = 1f
             )
@@ -237,7 +239,7 @@ class InvestigationViewModel(
     /*
      * Player Sanity Ui Functions
      */
-    fun initPlayerSanityUiState() {
+    private fun initPlayerSanityUiState() {
         _playerSanityUiState.update {
             PlayerSanityUiState(
                 sanityLevel = MAX_SANITY,
@@ -249,7 +251,7 @@ class InvestigationViewModel(
     /*
      * Toolbar Ui Functions
      */
-    fun initToolbarUiState() {
+    private fun initToolbarUiState() {
         _toolbarUiState.update {
             ToolbarUiState(
                 isCollapsed = false,
@@ -892,7 +894,7 @@ class InvestigationViewModel(
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation
      * (Setup vs Hunt)
-     * Defaults if the selected index is out of range of available indexes.
+     * Defaults to Setup/Small if the selected index is out of range of available indexes.
      * @returns the drop rate multiplier. */
     private fun getCurrentMapModifier(): Float {
         val modifier = getMapModifierUseCase(

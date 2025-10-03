@@ -12,9 +12,9 @@ import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.data.language.source.datastore.LanguageDatastoreDataSource.PreferenceKeys.DEFAULT_LANGUAGE
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toPaletteResource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toStringResource
 import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toTypographyResource
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
@@ -25,11 +25,13 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preference
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
+import com.tritiumgaming.shared.core.domain.language.model.LanguageEntity
 import com.tritiumgaming.shared.core.domain.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.GetCurrentLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SaveCurrentLanguageUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.shared.core.domain.market.model.IncrementDirection
 import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources.PaletteType
@@ -77,6 +79,7 @@ class GlobalPreferencesViewModel(
     private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     // Languages
     private val getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase,
+    private val setDefaultLanguageUseCase: SetDefaultLanguageUseCase,
     private val initLanguageDataStoreUseCase: SetupLanguageUseCase,
     private val initFlowLanguageUseCase: InitFlowLanguageUseCase,
     private val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
@@ -184,7 +187,25 @@ class GlobalPreferencesViewModel(
     /**
      * Language
      */
-    val languageList = getAvailableLanguagesUseCase()
+    val languageList: List<LanguageEntity>
+        get() {
+            var languages: List<LanguageEntity> = emptyList()
+
+            try {
+                languages = getAvailableLanguagesUseCase().getOrThrow()
+
+                setDefaultLanguageUseCase(
+                    localeLanguage = Locale.getDefault().language,
+                    languages = languages
+                ).getOrNull()?.let { language ->
+                    DEFAULT_LANGUAGE = language.code
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+            return languages
+        }
 
     private var _currentLanguageCode = MutableStateFlow(DEFAULT_LANGUAGE)
     val currentLanguageCode = _currentLanguageCode.asStateFlow()
@@ -404,6 +425,7 @@ class GlobalPreferencesViewModel(
                 val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase = appKeyContainer.setMaxHuntWarnFlashTimeUseCase
                 // Languages
                 val getLanguagesUseCase: GetAvailableLanguagesUseCase = appKeyContainer.getLanguagesUseCase
+                val setDefaultLanguageUseCase: SetDefaultLanguageUseCase = appKeyContainer.setDefaultLanguageUseCase
                 val setupLanguageUseCase: SetupLanguageUseCase = appKeyContainer.setupLanguageUseCase
                 val initializeLanguageUseCase: InitFlowLanguageUseCase = appKeyContainer.initializeLanguageUseCase
                 val setCurrentLanguageUseCase: SaveCurrentLanguageUseCase = appKeyContainer.setCurrentLanguageUseCase
@@ -449,6 +471,7 @@ class GlobalPreferencesViewModel(
                     setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                     // Languages
                     getAvailableLanguagesUseCase = getLanguagesUseCase,
+                    setDefaultLanguageUseCase = setDefaultLanguageUseCase,
                     initLanguageDataStoreUseCase = setupLanguageUseCase,
                     initFlowLanguageUseCase = initializeLanguageUseCase,
                     saveCurrentLanguageUseCase = setCurrentLanguageUseCase,
@@ -479,7 +502,7 @@ class GlobalPreferencesViewModel(
                     loadAppTimeAliveUseCase = loadAppTimeAliveUseCase,
                     setAppTimesOpenedUseCase = setAppTimesOpenedUseCase,
                     getAppTimesOpenedUseCase = getAppTimesOpenedUseCase,
-                    loadAppTimesOpenedUseCase = loadAppTimesOpenedUseCase
+                    loadAppTimesOpenedUseCase = loadAppTimesOpenedUseCase,
                 )
             }
         }
@@ -488,6 +511,8 @@ class GlobalPreferencesViewModel(
         const val MAX_TIME = 300000L
 
         const val FOREVER = 300000L
+
+        private var DEFAULT_LANGUAGE = Locale.ENGLISH.language
 
     }
 

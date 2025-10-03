@@ -62,10 +62,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.indicators.IndeterminateCircularIndicator
 import com.tritiumgaming.core.ui.common.labels.DynamicContentRow
-import com.tritiumgaming.core.ui.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette

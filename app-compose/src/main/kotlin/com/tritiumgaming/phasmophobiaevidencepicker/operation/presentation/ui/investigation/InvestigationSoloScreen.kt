@@ -45,7 +45,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.Holiday22
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette

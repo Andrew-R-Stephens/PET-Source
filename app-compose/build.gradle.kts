@@ -112,7 +112,6 @@ dependencies {
     implementation(libs.androidx.cardview.core)
     implementation(libs.androidx.legacy.supportV4)
     implementation(libs.android.material)
-    implementation(libs.googleid)
 
     // Testing
     testImplementation(libs.junit)
@@ -125,6 +124,7 @@ dependencies {
     implementation(libs.android.playServices.auth)
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.playServicesAuth)
+    implementation(libs.googleid)
     // ----------------------------------
 
     // GOOGLE FIREBASE
@@ -275,7 +275,9 @@ dependencies {
      * Include Shared Module for KMP
      */
     implementation(project(":shared"))
+    implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
+    implementation(project(":data"))
 
 }

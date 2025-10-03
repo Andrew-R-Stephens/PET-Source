@@ -75,7 +75,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.labels.DynamicContentAlignmentPercentage
 import com.tritiumgaming.core.ui.common.labels.DynamicContentRow
-import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.Arrow60LeftIcon
 import com.tritiumgaming.core.ui.icon.Arrow60RightIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors

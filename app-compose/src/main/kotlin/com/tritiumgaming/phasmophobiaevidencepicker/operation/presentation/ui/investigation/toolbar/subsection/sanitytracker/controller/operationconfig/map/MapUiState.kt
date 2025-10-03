@@ -9,5 +9,5 @@ data class MapUiState(
     internal val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
     internal val size: MapSize = MapSize.SMALL,
     internal val setupModifier: Float = 1f,
-    internal val normalModifier: Float = 1f
+    internal val normalModifier: Float = 1f,
 )

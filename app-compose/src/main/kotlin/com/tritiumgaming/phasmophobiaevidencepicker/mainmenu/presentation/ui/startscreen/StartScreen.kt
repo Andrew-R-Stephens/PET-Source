@@ -52,7 +52,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.common.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.common.menus.SecondarySelector
-import com.tritiumgaming.core.ui.config.DeviceConfiguration
+import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.icon.ButtonScratchedIcon
 import com.tritiumgaming.core.ui.icon.DiscordIcon
 import com.tritiumgaming.core.ui.icon.GearIcon
