@@ -36,9 +36,6 @@ android {
             jvmTarget = JvmTarget.JVM_17
         }
     }
-
-    //buildToolsVersion = "36.0.0"
-
 }
 
 dependencies {
