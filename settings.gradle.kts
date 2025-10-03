@@ -27,3 +27,6 @@ include(
     ":core-resources",
     ":core-ui"
 )
+include(":feature-mainmenu")
+include(":core-common")
+include(":data")
