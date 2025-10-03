@@ -110,7 +110,6 @@ class DifficultyCarouselModel(
 
         setList(names, times)
 
-
         /*
         var namesList: MutableList<String> = mutableListOf()
         try {
