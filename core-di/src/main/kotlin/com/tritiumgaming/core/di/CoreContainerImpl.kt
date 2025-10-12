@@ -12,9 +12,6 @@ import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
 import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreUserRemoteDataSource
-import com.tritiumgaming.data.account.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.data.account.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.data.account.usecase.SignOutAccountUseCase
 import com.tritiumgaming.data.codex.repository.CodexRepositoryImpl
 import com.tritiumgaming.data.codex.source.local.CodexAchievementsLocalDataSource
 import com.tritiumgaming.data.codex.source.local.CodexEquipmentLocalDataSource
@@ -126,6 +123,9 @@ import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.Ge
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.shared.core.domain.user.repository.FirestoreAccountRepository
+import com.tritiumgaming.shared.core.domain.user.usecase.account.DeactivateAccountUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.account.GetSignInCredentialsUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.account.SignOutAccountUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase

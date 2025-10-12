@@ -70,7 +70,7 @@ dependencies {
     implementation(project(":data-evidence"))
     implementation(project(":data-ghost"))
     implementation(project(":data-ghostname"))
-    implementation(project(":data-globalpreferences"))
+    implementation(project(":data-preferences"))
     implementation(project(":data-language"))
     implementation(project(":data-map"))
     implementation(project(":data-marketplace"))
