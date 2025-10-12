@@ -5,12 +5,11 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.core.net.toUri
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.tritiumgaming.phasmophobiaevidencepicker.R
-import androidx.core.net.toUri
 
 class ReviewLauncher {
     companion object {

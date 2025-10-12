@@ -2,15 +2,14 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.withStyledAttributes
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.viewmodel.InvestigationViewModel
-import androidx.core.content.withStyledAttributes
 
 abstract class SanityCarouselLayout : ConstraintLayout {
 

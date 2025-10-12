@@ -40,6 +40,11 @@ import com.google.firebase.auth.auth
 import com.tritiumgaming.core.ui.common.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.common.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.common.menus.SecondarySelector
+import com.tritiumgaming.core.ui.common.prefabicon.AccountIcon
+import com.tritiumgaming.core.ui.common.prefabicon.AccountIconPrimaryContent
+import com.tritiumgaming.core.ui.common.prefabicon.BadgeIcon
+import com.tritiumgaming.core.ui.common.prefabicon.LanguageIcon
+import com.tritiumgaming.core.ui.common.prefabicon.NotificationIndicator
 import com.tritiumgaming.core.ui.icon.GearIcon
 import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
 import com.tritiumgaming.core.ui.icon.InfoIcon
@@ -56,11 +61,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.m
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.StartScreenAnimationView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewLauncher
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.review.ReviewPopupWindow
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.AccountIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.AccountIconPrimaryContent
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.BadgeIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.LanguageIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.NotificationIndicator
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getDrawableFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getTextStyleFromAttribute
@@ -207,17 +207,20 @@ class StartScreenFragment : MainMenuFragment() {
                 AccountIcon(
                     modifier = Modifier
                         .size(48.dp),
-                    user = Firebase.auth.currentUser,
-                    borderColor =  LocalPalette.current.textFamily.body,
-                    backgroundColor = LocalPalette.current.surface.onColor,
+                    borderColor =  Color(getColorFromAttribute(
+                        context, R.attr.textColorBody)),
+                    backgroundColor = Color(getColorFromAttribute(
+                        context, R.attr.backgroundColorOnBackground)),
                     placeholder = {
                         IconResources.IconResource.PERSON.ToComposable(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .padding(8.dp),
                             colors = IconVectorColors.defaults(
-                                fillColor = LocalPalette.current.background.color,
-                                strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody))
+                                fillColor = Color(getColorFromAttribute(
+                                    context, R.attr.backgroundColor)),
+                                strokeColor = Color(getColorFromAttribute(
+                                    context, R.attr.textColorBody))
                             )
                         )
                     },

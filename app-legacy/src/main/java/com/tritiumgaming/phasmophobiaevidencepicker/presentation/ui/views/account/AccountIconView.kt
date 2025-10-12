@@ -2,14 +2,35 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.accou
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.core.content.withStyledAttributes
 import com.google.android.material.card.MaterialCardView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.tritiumgaming.core.ui.common.prefabicon.AccountIcon
+import com.tritiumgaming.core.ui.common.prefabicon.AccountIconPrimaryContent
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser
 import com.tritiumgaming.phasmophobiaevidencepicker.data.remote.api.firestore.transactions.user.FirestoreUser.Companion.getCurrentFirebaseUserDisplayNameInitials
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon.AccountIcon
+import com.tritiumgaming.phasmophobiaevidencepicker.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.OutlineTextView
+import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getDrawableFromAttribute
+import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getTextStyleFromAttribute
+import com.tritiumgaming.shared.core.domain.icons.IconResources
 
 class AccountIconView : MaterialCardView {
     constructor(context: Context) :
@@ -48,7 +69,61 @@ class AccountIconView : MaterialCardView {
         val user = FirestoreUser.currentFirebaseUser
         profileIcon.setContent {
             AccountIcon(
-                user = user,
+                modifier = Modifier
+                    .size(48.dp),
+                borderColor =  Color(getColorFromAttribute(
+                    context, R.attr.textColorBody)),
+                backgroundColor = Color(getColorFromAttribute(
+                    context, R.attr.backgroundColorOnBackground)),
+                placeholder = {
+                    IconResources.IconResource.PERSON.ToComposable(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(8.dp),
+                        colors = IconVectorColors.defaults(
+                            fillColor = Color(getColorFromAttribute(
+                                context, R.attr.backgroundColor)),
+                            strokeColor = Color(getColorFromAttribute(
+                                context, R.attr.textColorBody))
+                        )
+                    )
+                },
+                content = {
+                    val authUser = Firebase.auth.currentUser
+                    val authUserName = authUser?.displayName ?: ""
+
+                    val names: List<String?> = (authUserName).split(" ")
+
+                    val textStyle = getTextStyleFromAttribute(
+                        context, R.attr.primaryFont_Bold_Auto)
+
+                    AccountIconPrimaryContent(
+                        firstName = names.getOrNull(0) ?: "",
+                        lastName = names.getOrNull(1) ?: "",
+                        textStyle = textStyle.copy(
+                            color = Color(getColorFromAttribute(
+                                context, R.attr.textColorBody)),
+                            textAlign = TextAlign.Center,
+                            shadow = Shadow(
+                                color = Color(getColorFromAttribute(
+                                    context, R.attr.backgroundColorOnBackground)),
+                                blurRadius = 8f
+                            ),
+                        )
+                    ){
+                        getDrawableFromAttribute(
+                            context = context,
+                            attribute = R.attr.theme_badge
+                        )?.let { drawableRes ->
+                            Image(
+                                painter = painterResource(id = drawableRes),
+                                contentDescription = "",
+                                contentScale = ContentScale.Inside,
+                                alpha = .5f
+                            )
+                        }
+                    }
+                }
             )
         }
 

@@ -3,7 +3,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop
 import android.content.Context
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.codex.itemshop.itemstore.ItemStoreItemModel
 
 class ItemStoreEquipmentItemModel : ItemStoreItemModel() {

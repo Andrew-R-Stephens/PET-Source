@@ -2,7 +2,6 @@ package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.
 
 import android.content.Context
 import android.util.AttributeSet
-import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.investigation.sanity.timer.PhaseTimerModel
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.evidence.views.investigation.sanity.tools.sanitywarn.SanityWarningView
 
