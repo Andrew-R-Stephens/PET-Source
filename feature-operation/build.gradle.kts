@@ -98,6 +98,14 @@ dependencies {
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 
+    implementation(project(":data-map"))
+    implementation(project(":data-ghostname"))
+    implementation(project(":data-mission"))
+    implementation(project(":data-difficulty"))
+    implementation(project(":data-evidence"))
+    implementation(project(":data-ghost"))
+    implementation(project(":data-codex"))
+
     implementation(project(":shared"))
 
 }

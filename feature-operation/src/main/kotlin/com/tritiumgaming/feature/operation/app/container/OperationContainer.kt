@@ -1,15 +1,45 @@
 package com.tritiumgaming.feature.operation.app.container
 
-/*import android.content.Context
+import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.tritiumgaming.data.codex.repository.CodexRepositoryImpl
+import com.tritiumgaming.data.codex.source.local.CodexAchievementsLocalDataSource
+import com.tritiumgaming.data.codex.source.local.CodexEquipmentLocalDataSource
+import com.tritiumgaming.data.codex.source.local.CodexPossessionsLocalDataSource
+import com.tritiumgaming.data.difficulty.repository.DifficultyRepositoryImpl
+import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
+import com.tritiumgaming.data.difficulty.source.local.DifficultyLocalDataSource
+import com.tritiumgaming.data.evidence.repository.EvidenceRepositoryImpl
+import com.tritiumgaming.data.evidence.source.EvidenceDataSource
+import com.tritiumgaming.data.evidence.source.local.EvidenceLocalDataSource
+import com.tritiumgaming.data.ghost.repository.GhostRepositoryImpl
+import com.tritiumgaming.data.ghost.source.GhostDataSource
+import com.tritiumgaming.data.ghost.source.local.GhostLocalDataSource
+import com.tritiumgaming.data.ghostname.repository.GhostNameRepositoryImpl
+import com.tritiumgaming.data.ghostname.source.GhostNameDataSource
+import com.tritiumgaming.data.ghostname.source.local.GhostNameLocalDataSource
+import com.tritiumgaming.data.map.complex.repository.ComplexMapRepositoryImpl
+import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
+import com.tritiumgaming.data.map.complex.source.local.ComplexMapLocalDataSource
+import com.tritiumgaming.data.map.complex.source.service.ComplexMapLocalService
+import com.tritiumgaming.data.map.modifiers.repository.MapModifiersRepositoryImpl
+import com.tritiumgaming.data.map.modifiers.source.MapModifiersDataSource
+import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSource
+import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
+import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
+import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
+import com.tritiumgaming.data.mission.repository.MissionRepositoryImpl
+import com.tritiumgaming.data.mission.source.MissionDataSource
+import com.tritiumgaming.data.mission.source.local.MissionLocalDataSource
 import com.tritiumgaming.shared.operation.domain.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
-import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository*/
+import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableRTLUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.operation.domain.codex.repository.CodexRepository
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
@@ -22,6 +52,7 @@ import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficult
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTypeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
+import com.tritiumgaming.shared.operation.domain.ghostname.repository.GhostNameRepository
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFemaleNamesUseCase
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFirstNamesUseCase
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllMaleNamesUseCase
@@ -32,11 +63,14 @@ import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostsUseC
 import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceByIdUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostByIdUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.InitRuledEvidenceUseCase
+import com.tritiumgaming.shared.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.shared.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
+import com.tritiumgaming.shared.operation.domain.map.modifier.repsitory.MapModifiersRepository
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.GetMapModifierUseCase
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.GetSimpleMapSetupModifierUseCase
+import com.tritiumgaming.shared.operation.domain.map.simple.repository.SimpleMapRepository
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.DecrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.DecrementMapIndexUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.FetchMapThumbnailsUseCase
@@ -46,63 +80,16 @@ import com.tritiumgaming.shared.operation.domain.map.simple.usecase.GetSimpleMap
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
+import com.tritiumgaming.shared.operation.domain.mission.repository.MissionRepository
 import com.tritiumgaming.shared.operation.domain.mission.usecase.FetchAllMissionsUseCase
 
 class OperationContainer(
-    val fetchGhostsUseCase: FetchGhostsUseCase,
-    val getGhostByIdUseCase: GetGhostByIdUseCase,
-    val fetchEvidencesUseCase: FetchEvidencesUseCase,
-    val getEvidenceByIdUseCase: GetEvidenceByIdUseCase,
-    val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
-    val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
-    val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
-    val getDifficultyTypeUseCase: GetDifficultyTypeUseCase,
-    val getDifficultyNameUseCase: GetDifficultyNameUseCase,
-    val getDifficultyModifierUseCase: GetDifficultyModifierUseCase,
-    val getDifficultyTimeUseCase: GetDifficultyTimeUseCase,
-    val getDifficultyResponseTypeUseCase: GetDifficultyResponseTypeUseCase,
-    val getDifficultyInitialSanityUseCase: GetDifficultyInitialSanityUseCase,
-    val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase,
-    val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase,
-    val fetchAllMissionsUseCase: FetchAllMissionsUseCase,
-    val fetchAllFirstNamesUseCase: FetchAllFirstNamesUseCase,
-    val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase,
-    val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase,
-    val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase,
-    val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
-    val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
-    val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
-    val incrementMapIndexUseCase: IncrementMapIndexUseCase,
-    val decrementMapIndexUseCase: DecrementMapIndexUseCase,
-    val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
-    val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
-    val getSimpleMapIdUseCase: GetSimpleMapIdUseCase,
-    val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
-    val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
-    val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase,
-    val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
-    val getMapModifierUseCase: GetMapModifierUseCase,
-    val fetchComplexMapsUseCase: FetchComplexMapsUseCase,
-    val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
-    val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase,
-    val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
+    applicationContext: Context,
     val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase,
     val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase,
     val getEnableRTLUseCase: GetEnableRTLUseCase,
     val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase,
-)
-
-/*
-class OperationContainer(
-    applicationContext: Context,
-    dataStore: DataStore<Preferences>
 ) {
-
-    */
-/*
-     * Investigation Journal
-     *//*
-
 
     // Ghost
     private val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(
@@ -275,12 +262,6 @@ class OperationContainer(
         complexMapRepository = complexMapRepository
     )
 
-     */
-/*
-      * Codex
-      *//*
-
-
     // Achievements
     private val codexAchievementsLocalDataSource: CodexAchievementsLocalDataSource =
         CodexAchievementsLocalDataSource()
@@ -311,4 +292,3 @@ class OperationContainer(
     )
 
 }
-*/
