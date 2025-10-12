@@ -1,4 +1,4 @@
-package com.tritiumgaming.data.account.usecase
+package com.tritiumgaming.shared.core.domain.user.usecase.account
 
 import androidx.credentials.GetCustomCredentialOption
 import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
