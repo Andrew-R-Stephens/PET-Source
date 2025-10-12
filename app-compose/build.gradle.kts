@@ -275,24 +275,22 @@ dependencies {
      * Include Shared Module for KMP
      */
     implementation(project(":shared"))
+
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
+    implementation(project(":core-di"))
+
+    implementation(project(":database-unknown"))
+
     implementation(project(":data-account"))
-    implementation(project(":data-codex"))
-    implementation(project(":data-contributor"))
-    implementation(project(":data-difficulty"))
-    implementation(project(":data-evidence"))
-    implementation(project(":data-ghost"))
-    implementation(project(":data-ghostbox"))
-    implementation(project(":data-ghostname"))
     implementation(project(":data-globalpreferences"))
     implementation(project(":data-language"))
-    implementation(project(":data-map"))
     implementation(project(":data-marketplace"))
-    implementation(project(":data-mission"))
-    implementation(project(":data-newsletter"))
     implementation(project(":data-review"))
-    implementation(project(":database-unknown"))
+
+    implementation(project(":feature-home"))
+    implementation(project(":feature-operation"))
+
 
 }

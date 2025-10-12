@@ -1,5 +1,6 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions
+package com.tritiumgaming.phasmophobiaevidencepicker.core.viewmodel.permissions
 
+/*
 import android.app.Activity
 import android.content.Context
 import android.util.Log
@@ -13,7 +14,8 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.OnAdInspectorClosedListener
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.ump.ConsentForm
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model.GoogleMobileAdsConsentManager
+import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
+import com.tritiumgaming.phasmophobiaevidencepicker.core.ui.activity.GoogleAdsPermissionsUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,31 +24,32 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.concurrent.atomic.AtomicBoolean
 
-class PermissionsViewModel: ViewModel() {
+class PermissionsViewModel(): ViewModel() {
 
     private lateinit var _googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
 
-    var isRecordAudioAllowed: Boolean = false
+    */
+/** Initialization state for the ViewModel. *//*
 
-    /** Initialization state for the ViewModel. */
-    private var _isInitCalled = false
-    val isInitCalled: Boolean
-        get() = _isInitCalled
-
+    private var _isGoogleAdsConsentManagerInitialized: Boolean = false
     private var _isMobileAdsInitializeCalled = AtomicBoolean(false)
 
-    /** UIState for the ViewModel. */
-    private val _uiState = MutableStateFlow(PermissionsUiState())
-    val uiState = _uiState.asStateFlow()
+    */
+/** UIState for the ViewModel. *//*
 
-    /** Sets initial UIState for the ViewModel. */
+    private val _googleAdsPermissionsUiState = MutableStateFlow(GoogleAdsPermissionsUiState())
+    val googleAdsPermissionsUiState = _googleAdsPermissionsUiState.asStateFlow()
+
+    */
+/** Sets initial UIState for the ViewModel. *//*
+
     fun initMobileAdsConsentManager(activity: Activity) {
-        if(isInitCalled) return
+        if(_isGoogleAdsConsentManagerInitialized) return
 
         viewModelScope.launch {
             withContext(Dispatchers.Main) {
 
-                _isInitCalled = true
+                _isGoogleAdsConsentManagerInitialized = true
                 _googleMobileAdsConsentManager = GoogleMobileAdsConsentManager.getInstance(activity)
 
                 // Initializes the consent manager and calls the UMP SDK methods to request consent information
@@ -57,12 +60,14 @@ class PermissionsViewModel: ViewModel() {
                         Log.d("PermissionsViewModel", "${error.errorCode}: ${error.message}")
                     }
                     // canRequestAds can be updated when gatherConsent is completed.
-                    _uiState.update { it.copy(canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
+                    _googleAdsPermissionsUiState.update { it.copy(
+                        canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
                 }
                 // canRequestAds can be updated when gatherConsent is called.
-                _uiState.update { it.copy(canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
+                _googleAdsPermissionsUiState.update { it.copy(
+                    canRequestAds = _googleMobileAdsConsentManager.canRequestAds) }
 
-                uiState.collect { state ->
+                googleAdsPermissionsUiState.collect { state ->
                     // when canRequestAds is true initializeMobileAdsSdk
                     if (state.canRequestAds) {
                         initializeMobileAdsSdk(activity)
@@ -74,70 +79,11 @@ class PermissionsViewModel: ViewModel() {
                 }
             }
         }
-
     }
 
-    /** Opens the ad inspector. */
-    fun openAdInspector(context: Context, listener: OnAdInspectorClosedListener?) {
-        MobileAds.openAdInspector(context) { error ->
-            if (error != null) {
-                val errorMessage = error.message
-                Log.e("PermissionsViewModel", errorMessage)
-                Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
-            }
-            // Notify listener of ad inspector closed.
-            listener?.onAdInspectorClosed(error)
-        }
-    }
+    */
+/** Initializes the Mobile Ads SDK. *//*
 
-    /** Calls the UMP SDK method to show the privacy options form. */
-    fun showPrivacyOptionsForm(
-        activity: Activity,
-        onConsentFormDismissedListener: ConsentForm.OnConsentFormDismissedListener?,
-    ) {
-        _googleMobileAdsConsentManager.showPrivacyOptionsForm(activity) { error ->
-            if (error != null) {
-                val errorMessage = error.message
-                Log.e("PermissionsViewModel", errorMessage)
-                Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
-            }
-            // Notify listener of consent form dismissal.
-            onConsentFormDismissedListener?.onConsentFormDismissed(error)
-        }
-    }
-
-    /** Calls the UMP SDK methods to gatherConsent. */
-    private fun gatherConsent(
-        activity: Activity,
-        onConsentGatheringCompleteListener:
-        GoogleMobileAdsConsentManager.OnConsentGatheringCompleteListener,
-    ) {
-        _googleMobileAdsConsentManager.gatherConsent(activity) { error ->
-            // Update UIState and notify listener of updated consent status.
-            _uiState.update {
-                Log.d("PermissionsViewModel", "Consent gathering from current session complete. " +
-                        "${_googleMobileAdsConsentManager.canRequestAds} / " +
-                        "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
-                it.copy(
-                    canRequestAds = _googleMobileAdsConsentManager.canRequestAds,
-                    isPrivacyOptionsRequired = _googleMobileAdsConsentManager.isPrivacyOptionsRequired,
-                )
-            }
-            onConsentGatheringCompleteListener.consentGatheringComplete(error)
-        }
-        // Update UIState based on consent obtained in the previous session.
-        _uiState.update {
-            Log.d("PermissionsViewModel", "Consent gathering from previous session complete. " +
-                    "${_googleMobileAdsConsentManager.canRequestAds} / " +
-                    "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
-            it.copy(
-                canRequestAds = _googleMobileAdsConsentManager.canRequestAds,
-                isPrivacyOptionsRequired = _googleMobileAdsConsentManager.isPrivacyOptionsRequired,
-            )
-        }
-    }
-
-    /** Initializes the Mobile Ads SDK. */
     private suspend fun initializeMobileAdsSdk(context: Context) {
 
         // Ensure that MobileAdsInitialize is called only once.
@@ -152,9 +98,75 @@ class PermissionsViewModel: ViewModel() {
 
         // Initialize the Google Mobile Ads SDK on a background thread.
         withContext(Dispatchers.IO) {
-            MobileAds.initialize(context) { _uiState.update { it.copy(isMobileAdsInitialized = true) } }
+            MobileAds.initialize(context) { _googleAdsPermissionsUiState.update { it.copy(isMobileAdsInitialized = true) } }
 
             Log.d("PermissionsViewModel", "Mobile Ads SDK initialized.")
+        }
+    }
+
+    */
+/** Opens the ad inspector. *//*
+
+    fun openAdInspector(context: Context, listener: OnAdInspectorClosedListener?) {
+        MobileAds.openAdInspector(context) { error ->
+            if (error != null) {
+                val errorMessage = error.message
+                Log.e("PermissionsViewModel", errorMessage)
+                Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+            // Notify listener of ad inspector closed.
+            listener?.onAdInspectorClosed(error)
+        }
+    }
+
+    */
+/** Calls the UMP SDK method to show the privacy options form. *//*
+
+    private fun showPrivacyOptionsForm(
+        activity: Activity,
+        onConsentFormDismissedListener: ConsentForm.OnConsentFormDismissedListener?,
+    ) {
+        _googleMobileAdsConsentManager.showPrivacyOptionsForm(activity) { error ->
+            if (error != null) {
+                val errorMessage = error.message
+                Log.e("PermissionsViewModel", errorMessage)
+                Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+            // Notify listener of consent form dismissal.
+            onConsentFormDismissedListener?.onConsentFormDismissed(error)
+        }
+    }
+
+    */
+/** Calls the UMP SDK methods to gatherConsent. *//*
+
+    private fun gatherConsent(
+        activity: Activity,
+        onConsentGatheringCompleteListener:
+        GoogleMobileAdsConsentManager.OnConsentGatheringCompleteListener,
+    ) {
+        _googleMobileAdsConsentManager.gatherConsent(activity) { error ->
+            // Update UIState and notify listener of updated consent status.
+            _googleAdsPermissionsUiState.update {
+                Log.d("PermissionsViewModel", "Consent gathering from current session complete. " +
+                        "${_googleMobileAdsConsentManager.canRequestAds} / " +
+                        "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
+                it.copy(
+                    canRequestAds = _googleMobileAdsConsentManager.canRequestAds,
+                    isPrivacyOptionsRequired = _googleMobileAdsConsentManager.isPrivacyOptionsRequired,
+                )
+            }
+            onConsentGatheringCompleteListener.consentGatheringComplete(error)
+        }
+        // Update UIState based on consent obtained in the previous session.
+        _googleAdsPermissionsUiState.update {
+            Log.d("PermissionsViewModel", "Consent gathering from previous session complete. " +
+                    "${_googleMobileAdsConsentManager.canRequestAds} / " +
+                    "${_googleMobileAdsConsentManager.isPrivacyOptionsRequired}")
+            it.copy(
+                canRequestAds = _googleMobileAdsConsentManager.canRequestAds,
+                isPrivacyOptionsRequired = _googleMobileAdsConsentManager.isPrivacyOptionsRequired,
+            )
         }
     }
 
@@ -180,3 +192,4 @@ class PermissionsViewModel: ViewModel() {
     }
 
 }
+*/

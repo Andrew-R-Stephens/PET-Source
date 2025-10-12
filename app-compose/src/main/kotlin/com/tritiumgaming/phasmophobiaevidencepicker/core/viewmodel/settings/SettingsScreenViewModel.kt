@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences
+package com.tritiumgaming.phasmophobiaevidencepicker.core.viewmodel.settings
 
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
@@ -8,14 +8,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.core.ui.mappers.toPaletteResource
+import com.tritiumgaming.core.ui.mappers.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.PETApplication
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toPaletteResource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toStringResource
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.toTypographyResource
+import com.tritiumgaming.phasmophobiaevidencepicker.core.ui.app.PETApplication
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
@@ -25,13 +24,12 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preference
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
-import com.tritiumgaming.shared.core.domain.language.model.LanguageEntity
 import com.tritiumgaming.shared.core.domain.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.GetCurrentLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SaveCurrentLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.SetDefaultLanguageUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.shared.core.domain.market.model.IncrementDirection
 import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources.PaletteType
@@ -40,14 +38,14 @@ import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.Ge
 import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
 import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.SetupPaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitPaletteDataStoreUseCase
 import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType
 import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
 import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
 import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.SetupTypographyUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitTypographyDataStoreUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.status.GetReviewRequestStatusUseCase
@@ -66,7 +64,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-class GlobalPreferencesViewModel(
+class SettingsScreenViewModel(
     // Global Preferences
     private val initGlobalPreferencesDataStoreUseCase: SetupGlobalPreferencesUseCase,
     private val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase,
@@ -79,21 +77,21 @@ class GlobalPreferencesViewModel(
     private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     // Languages
     private val getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase,
-    private val setDefaultLanguageUseCase: SetDefaultLanguageUseCase,
+    private val getDefaultLanguageUseCase: GetDefaultLanguageUseCase,
     private val initLanguageDataStoreUseCase: SetupLanguageUseCase,
     private val initFlowLanguageUseCase: InitFlowLanguageUseCase,
     private val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
     private val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
     private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
     // Typographies
-    private val initTypographyDataStoreUseCase: SetupTypographyUseCase,
+    private val initTypographyDataStoreUseCase: InitTypographyDataStoreUseCase,
     private val initFlowTypographyUseCase: InitFlowTypographyUseCase,
     private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     private val getAvailableTypographiesUseCase: GetAvailableTypographiesUseCase,
     private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
     private val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
     // Palettes
-    private val initPaletteDataStoreUseCase: SetupPaletteUseCase,
+    private val initPaletteDataStoreUseCase: InitPaletteDataStoreUseCase,
     private val initFlowPaletteUseCase: InitFlowPaletteUseCase,
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     private val getAvailablePalettesUseCase: GetAvailablePalettesUseCase,
@@ -187,14 +185,14 @@ class GlobalPreferencesViewModel(
     /**
      * Language
      */
-    val languageList: List<LanguageEntity>
+    /*val languageList: List<LanguageEntity>
         get() {
             var languages: List<LanguageEntity> = emptyList()
 
             try {
                 languages = getAvailableLanguagesUseCase().getOrThrow()
 
-                setDefaultLanguageUseCase(
+                getDefaultLanguageUseCase(
                     localeLanguage = Locale.getDefault().language,
                     languages = languages
                 ).getOrNull()?.let { language ->
@@ -205,7 +203,7 @@ class GlobalPreferencesViewModel(
             }
 
             return languages
-        }
+        }*/
 
     private var _currentLanguageCode = MutableStateFlow(DEFAULT_LANGUAGE)
     val currentLanguageCode = _currentLanguageCode.asStateFlow()
@@ -425,21 +423,21 @@ class GlobalPreferencesViewModel(
                 val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase = appKeyContainer.setMaxHuntWarnFlashTimeUseCase
                 // Languages
                 val getLanguagesUseCase: GetAvailableLanguagesUseCase = appKeyContainer.getLanguagesUseCase
-                val setDefaultLanguageUseCase: SetDefaultLanguageUseCase = appKeyContainer.setDefaultLanguageUseCase
+                val getDefaultLanguageUseCase: GetDefaultLanguageUseCase = appKeyContainer.getDefaultLanguageUseCase
                 val setupLanguageUseCase: SetupLanguageUseCase = appKeyContainer.setupLanguageUseCase
-                val initializeLanguageUseCase: InitFlowLanguageUseCase = appKeyContainer.initializeLanguageUseCase
-                val setCurrentLanguageUseCase: SaveCurrentLanguageUseCase = appKeyContainer.setCurrentLanguageUseCase
+                val initializeLanguageUseCase: InitFlowLanguageUseCase = appKeyContainer.initFlowLanguageUseCase
+                val setCurrentLanguageUseCase: SaveCurrentLanguageUseCase = appKeyContainer.saveCurrentLanguageUseCase
                 val getCurrentLanguageUseCase: GetCurrentLanguageUseCase = appKeyContainer.getCurrentLanguageUseCase
                 val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase = appKeyContainer.loadCurrentLanguageUseCase
                 // Typographies
-                val setupTypographyUseCase: SetupTypographyUseCase = appKeyContainer.setupTypographyUseCase
+                val setupTypographyUseCase: InitTypographyDataStoreUseCase = appKeyContainer.initTypographyDataStoreUseCase
                 val initFlowTypographyUseCase: InitFlowTypographyUseCase = appKeyContainer.initFlowTypographyUseCase
                 val setCurrentTypographyUseCase: SaveCurrentTypographyUseCase = appKeyContainer.saveCurrentTypographyUseCase
                 val getTypographiesUseCase: GetAvailableTypographiesUseCase = appKeyContainer.getAvailableTypographiesUseCase
                 val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase = appKeyContainer.getTypographyByUUIDUseCase
                 val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase = appKeyContainer.findNextAvailableTypographyUseCase
                 // Palettes
-                val setupPaletteUseCase: SetupPaletteUseCase = appKeyContainer.setupPaletteUseCase
+                val setupPaletteUseCase: InitPaletteDataStoreUseCase = appKeyContainer.initPaletteDataStoreUseCase
                 val initFlowPaletteUseCase: InitFlowPaletteUseCase = appKeyContainer.initFlowPaletteUseCase
                 val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase = appKeyContainer.saveCurrentPaletteUseCase
                 val getAvailablePalettesUseCase: GetAvailablePalettesUseCase = appKeyContainer.getAvailablePalettesUseCase
@@ -458,7 +456,7 @@ class GlobalPreferencesViewModel(
                 val getAppTimesOpenedUseCase: GetAppTimesOpenedUseCase = appKeyContainer.getAppTimesOpenedUseCase
                 val loadAppTimesOpenedUseCase: LoadAppTimesOpenedUseCase = appKeyContainer.loadAppTimesOpenedUseCase
 
-                GlobalPreferencesViewModel(
+                SettingsScreenViewModel(
                     // Global Preferences
                     initGlobalPreferencesDataStoreUseCase = setupGlobalPreferencesUseCase,
                     initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
@@ -471,7 +469,7 @@ class GlobalPreferencesViewModel(
                     setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                     // Languages
                     getAvailableLanguagesUseCase = getLanguagesUseCase,
-                    setDefaultLanguageUseCase = setDefaultLanguageUseCase,
+                    getDefaultLanguageUseCase = getDefaultLanguageUseCase,
                     initLanguageDataStoreUseCase = setupLanguageUseCase,
                     initFlowLanguageUseCase = initializeLanguageUseCase,
                     saveCurrentLanguageUseCase = setCurrentLanguageUseCase,

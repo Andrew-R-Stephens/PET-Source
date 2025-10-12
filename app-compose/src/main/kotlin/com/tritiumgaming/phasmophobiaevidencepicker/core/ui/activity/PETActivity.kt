@@ -1,6 +1,7 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.activities
+package com.tritiumgaming.phasmophobiaevidencepicker.core.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
@@ -11,30 +12,36 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.play.core.appupdate.AppUpdateManager
-import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
+import com.google.android.play.core.install.model.AppUpdateType
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.tritiumgaming.core.common.settings.analytics.FirebaseAnalyticsService
+import com.tritiumgaming.core.common.settings.updatemanager.AppUpdateManagerService
+import com.tritiumgaming.core.ui.theme.ThemeConfigurationControl
+import com.tritiumgaming.core.ui.theme.palette.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model.AppUpdateManagerService
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model.FirebaseAnalyticsService
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation.RootNavigation
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions.PermissionsViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.ThemeConfigurationControl
-import com.tritiumgaming.shared.core.domain.icons.IconResources
+import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
+import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ModifiersButton
+import com.tritiumgaming.phasmophobiaevidencepicker.core.navigation.RootNavigation
+import com.tritiumgaming.shared.core.domain.market.palette.source.PaletteDatastore
 
 class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService {
 
-    private val globalPreferencesViewModel: GlobalPreferencesViewModel
-        by viewModels { GlobalPreferencesViewModel.Factory }
+    private val petActivityViewModel: PETActivityViewModel
+        by viewModels { PETActivityViewModel.Companion.Factory }
 
+    /*
     private val permissionsViewModel: PermissionsViewModel
-            by viewModels { PermissionsViewModel.Factory }
+            by viewModels { PermissionsViewModel.Companion.Factory }
+    */
 
     /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth
@@ -47,7 +54,7 @@ class PETActivity : AppCompatActivity(),
 
     /* Update */
     override var appUpdateManager: AppUpdateManager? = null
-    override var updateType: Int = IMMEDIATE
+    override var updateType: Int = AppUpdateType.IMMEDIATE
     override var activityUpdateResultLauncher =
         registerForActivityResult(
             ActivityResultContracts.StartIntentSenderForResult()) {
@@ -68,21 +75,26 @@ class PETActivity : AppCompatActivity(),
 
         setContent {
 
+            val paletteState = petActivityViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
+            val typographyState = petActivityViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
+
+            val palette = petActivityViewModel.getPaletteByUUID(paletteState.value.uuid)
+            val typography = petActivityViewModel.getTypographyByUUID(typographyState.value.uuid)
+
             ThemeConfigurationControl(
-                globalPreferencesViewModel = globalPreferencesViewModel
+                palette = palette,
+                typography = typography
             ) {
 
                 Scaffold {
 
                     Box(
-                        modifier = Modifier
+                        modifier = Modifier.Companion
                             .background(LocalPalette.current.surface.color)
                             .padding(it)
+                            .padding(horizontal = 8.dp)
                     ) {
-                        RootNavigation(
-                            globalPreferencesViewModel = globalPreferencesViewModel,
-                            permissionsViewModel = permissionsViewModel
-                        )
+                        RootNavigation()
                     }
 
                 }
@@ -92,7 +104,7 @@ class PETActivity : AppCompatActivity(),
         }
 
         // Initialize the view model. This will gather consent and initialize Google Mobile Ads.
-        permissionsViewModel.initMobileAdsConsentManager(this@PETActivity)
+        petActivityViewModel.initMobileAdsConsentManager(this@PETActivity)
 
         initFirebaseAnalytics(this)
 

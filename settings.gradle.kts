@@ -27,7 +27,7 @@ include(
     ":core-resources",
     ":core-ui"
 )
-include(":feature-mainmenu")
+include(":feature-operation")
 include(":core-common")
 include(":data-evidence")
 include(":data-ghost")
@@ -45,3 +45,5 @@ include(":data-globalpreferences")
 include(":database-unknown")
 include(":data-review")
 include(":data-marketplace")
+include(":feature-home")
+include(":core-di")

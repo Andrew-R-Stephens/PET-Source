@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.navigation
+package com.tritiumgaming.phasmophobiaevidencepicker.core.navigation
 
 import android.util.Log
 import androidx.compose.animation.EnterTransition
@@ -13,39 +13,37 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.globalpreferences.GlobalPreferencesViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.viewmodel.permissions.PermissionsViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.account.AccountScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appinfo.InfoScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.applanguages.LanguageScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appsettings.SettingsScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.marketplace.MarketplaceScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.marketplace.billing.MarketplaceBillingScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.NewsletterViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen.NewsInboxesScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen.NewsMessageScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.newsletter.screen.NewsMessagesScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.startscreen.StartScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.viewmodel.account.AccountViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.ui.appinfo.AppInfoViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.CodexViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.catalog.CodexItemstoreScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.codex.menu.CodexMenuScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationSoloScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.investigation.InvestigationViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapMenuScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.MapsViewModel
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.mapsmenu.mapdisplay.MapViewerScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesScreen
-import com.tritiumgaming.phasmophobiaevidencepicker.operation.presentation.ui.missions.ObjectivesViewModel
+import com.tritiumgaming.feature.home.ui.account.AccountScreen
+import com.tritiumgaming.feature.home.ui.appinfo.AppInfoViewModel
+import com.tritiumgaming.feature.home.ui.appinfo.InfoScreen
+import com.tritiumgaming.feature.home.ui.applanguages.LanguageScreen
+import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreen
+import com.tritiumgaming.feature.home.ui.marketplace.MarketplaceScreen
+import com.tritiumgaming.feature.home.ui.marketplace.billing.MarketplaceBillingScreen
+import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
+import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsInboxesScreen
+import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessageScreen
+import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessagesScreen
+import com.tritiumgaming.feature.home.ui.startscreen.StartScreen
+import com.tritiumgaming.feature.home.ui.account.AccountViewModel
+import com.tritiumgaming.feature.home.ui.applanguages.LanguageScreenViewModel
+import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
+import com.tritiumgaming.feature.operation.ui.codex.catalog.CodexItemstoreScreen
+import com.tritiumgaming.feature.operation.ui.codex.menu.CodexMenuScreen
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationSoloScreen
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.mapsmenu.MapMenuScreen
+import com.tritiumgaming.feature.operation.ui.mapsmenu.MapsViewModel
+import com.tritiumgaming.feature.operation.ui.mapsmenu.mapdisplay.MapViewerScreen
+import com.tritiumgaming.feature.operation.ui.missions.ObjectivesScreen
+import com.tritiumgaming.feature.operation.ui.missions.ObjectivesViewModel
 import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
+import com.tritiumgaming.shared.core.navigation.NavRoute
 
 @Composable
 fun RootNavigation(
-    globalPreferencesViewModel: GlobalPreferencesViewModel =
-        viewModel(factory = GlobalPreferencesViewModel.Factory),
-    permissionsViewModel: PermissionsViewModel =
-        viewModel(factory = PermissionsViewModel.Factory),
+    /*permissionsViewModel: PermissionsViewModel =
+        viewModel(factory = PermissionsViewModel.Factory),*/
     mainMenuViewModel: AppInfoViewModel =
         viewModel(factory = AppInfoViewModel.Factory),
     accountViewModel: AccountViewModel =
@@ -66,23 +64,21 @@ fun RootNavigation(
 
     NavHost(
         navController = navController,
-        startDestination = NavRoute.NAVIGATION_MAIN_MENU.route,
+        startDestination = NavRoute.NAVIGATION_HOME.route,
         enterTransition = { EnterTransition.None },
         exitTransition = { ExitTransition.None },
         popEnterTransition = { EnterTransition.None },
         popExitTransition = { ExitTransition.None },
     ) {
 
-        mainMenuNavigation(
+        homeNavigation(
             navController = navController,
-            globalPreferencesViewModel = globalPreferencesViewModel,
-            permissionsViewModel = permissionsViewModel,
             mainMenuViewModel = mainMenuViewModel,
             accountViewModel = accountViewModel,
             newsletterViewModel = newsletterViewModel
         )
 
-        investigationNavigation(
+        operationNavigation(
             navController = navController,
             investigationViewModel = investigationViewModel,
             objectivesViewModel = objectivesViewModel,
@@ -93,28 +89,26 @@ fun RootNavigation(
     }
 }
 
-private fun NavGraphBuilder.mainMenuNavigation(
+private fun NavGraphBuilder.homeNavigation(
     navController: NavHostController,
-    globalPreferencesViewModel: GlobalPreferencesViewModel,
-    permissionsViewModel: PermissionsViewModel,
     mainMenuViewModel: AppInfoViewModel,
     accountViewModel: AccountViewModel,
     newsletterViewModel: NewsletterViewModel
 ) {
 
     navigation(
-        route = NavRoute.NAVIGATION_MAIN_MENU.route,
-        startDestination = NavRoute.SCREEN_START.route
+        route = NavRoute.NAVIGATION_HOME.route,
+        startDestination = NavRoute.SCREEN_HOME.route
     ) {
 
-        composable(route = NavRoute.SCREEN_START.route) {
+        composable(route = NavRoute.SCREEN_HOME.route) {
             StartScreen(navController = navController)
         }
 
         composable(route = NavRoute.SCREEN_LANGUAGE.route) {
             LanguageScreen(
                 navController = navController,
-                globalPreferencesViewModel = globalPreferencesViewModel
+                viewModel = viewModel(factory = LanguageScreenViewModel.Factory)
             )
         }
 
@@ -127,9 +121,7 @@ private fun NavGraphBuilder.mainMenuNavigation(
 
         composable(route = NavRoute.SCREEN_SETTINGS.route) {
             SettingsScreen(
-                navController = navController,
-                globalPreferencesViewModel = globalPreferencesViewModel,
-                permissionsViewModel = permissionsViewModel
+                navController = navController
             )
         }
 
@@ -212,7 +204,7 @@ private fun NavGraphBuilder.mainMenuNavigation(
     }
 }
 
-private fun NavGraphBuilder.investigationNavigation(
+private fun NavGraphBuilder.operationNavigation(
     navController: NavHostController,
     investigationViewModel: InvestigationViewModel,
     objectivesViewModel: ObjectivesViewModel,
@@ -310,36 +302,4 @@ private fun NavGraphBuilder.investigationNavigation(
         }
 
     }
-}
-
-enum class NavRoute(val route: String) {
-
-    NAVIGATION_MAIN_MENU("MainMenuNavigation"),
-    NAVIGATION_MARKETPLACE("MarketplaceNavigation"),
-    NAVIGATION_NEWSLETTER("NewsletterNavigation"),
-    NAVIGATION_INVESTIGATION("InvestigationNavigation"),
-    NAVIGATION_MAPS ("MapsNavigation"),
-    NAVIGATION_CODEX ("CodexNavigation"),
-
-    SCREEN_ACCOUNT_OVERVIEW("AccountScreen"),
-    SCREEN_APP_INFO("InfoScreen"),
-    SCREEN_LANGUAGE("LanguageScreen"),
-    SCREEN_SETTINGS("SettingsScreen"),
-    SCREEN_START("StartScreen"),
-
-    SCREEN_INVESTIGATION("InvestigationScreen"),
-    SCREEN_MISSIONS("MissionsScreen"),
-    SCREEN_MAPS_MENU("MapMenuScreen"),
-    SCREEN_MAP_VIEWER("MapViewerScreen"),
-
-    SCREEN_CODEX_MENU("CodexMenuScreen"),
-    SCREEN_CODEX_ITEM_SCREEN("CodexItemstoreScreen"),
-    
-    SCREEN_NEWSLETTER_INBOX("NewsInboxScreen"),
-    SCREEN_NEWSLETTER_MESSAGES("NewsMessagesScreen"),
-    SCREEN_NEWSLETTER_MESSAGE("NewsMessageScreen"),
-    
-    SCREEN_MARKETPLACE_UNLOCKS("MarketplaceUnlocksScreen"),
-    SCREEN_MARKETPLACE_BILLABLE("MarketplaceBillableScreen")
-
 }
