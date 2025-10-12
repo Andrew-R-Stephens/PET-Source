@@ -1,9 +1,8 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon
+package com.tritiumgaming.core.ui.common.prefabicon
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -22,16 +21,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.firebase.auth.FirebaseUser
 
 @Composable
 fun AccountIcon(
     modifier: Modifier = Modifier,
-    user: FirebaseUser? = null,
     borderColor: Color = Color.Unspecified,
     backgroundColor: Color = Color.Unspecified,
-    placeholder: @Composable () -> Unit = {},
-    content: @Composable () -> Unit = {},
+    placeholder: @Composable (() -> Unit) = {},
+    content: @Composable (() -> Unit) = {},
 ) {
 
     Box(
@@ -42,11 +39,8 @@ fun AccountIcon(
             .border(2.dp, borderColor, CircleShape),
         contentAlignment = Alignment.Center
     ) {
-        if (user == null) {
-            placeholder()
-        } else {
-            content()
-        }
+        placeholder()
+        content()
     }
 }
 
@@ -86,5 +80,3 @@ fun AccountIconPrimaryContent(
         }
     }
 }
-
-

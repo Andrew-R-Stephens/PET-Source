@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.icon
+package com.tritiumgaming.core.ui.common.prefabicon
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope

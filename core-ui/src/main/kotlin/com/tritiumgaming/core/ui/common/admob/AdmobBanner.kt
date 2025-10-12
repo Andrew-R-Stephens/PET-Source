@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.admob
+package com.tritiumgaming.core.ui.common.admob
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

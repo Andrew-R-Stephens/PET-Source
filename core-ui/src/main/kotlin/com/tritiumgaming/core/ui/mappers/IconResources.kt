@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers
+package com.tritiumgaming.core.ui.mappers
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -23,11 +23,12 @@ import com.tritiumgaming.core.ui.icon.ReviewIcon
 import com.tritiumgaming.core.ui.icon.StoreIcon
 import com.tritiumgaming.core.ui.icon.TranslateIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.shared.core.domain.icons.IconResources
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 
 @Composable
 @JvmName("IconFromComposeColor")
-fun IconResource.ToComposable(
+fun IconResources.IconResource.ToComposable(
     modifier: Modifier = Modifier,
     colors: IconVectorColors = IconVectorColors.defaults()
 ) {

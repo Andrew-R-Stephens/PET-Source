@@ -56,6 +56,9 @@ dependencies {
     androidTestImplementation(libs.androidx.testExt.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // GOOGLE ADS
+    implementation(libs.android.playServices.ads)
+
     /*
         ---- START----
         ANDROID COMPOSE
@@ -83,6 +86,7 @@ dependencies {
 
     implementation(libs.androidx.ui.graphics)
 
+    implementation(project(":shared"))
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
 

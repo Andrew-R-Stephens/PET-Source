@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers
+package com.tritiumgaming.core.ui.mappers
 
 import com.tritiumgaming.core.ui.theme.palette.Agent
 import com.tritiumgaming.core.ui.theme.palette.Analyst

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon
+package com.tritiumgaming.core.ui.common.prefabicon
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,13 +17,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.vector.getMarkCheckVector
 import com.tritiumgaming.core.ui.vector.getMarkPriorityVector
 import com.tritiumgaming.core.ui.vector.getMarkXVector
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 
 @Composable
 fun MarkCheckCircleIcon(

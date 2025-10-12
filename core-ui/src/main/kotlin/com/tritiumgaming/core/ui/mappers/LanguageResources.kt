@@ -1,7 +1,8 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers
+package com.tritiumgaming.core.ui.mappers
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources
 import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.LocalizationCode
 import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.LocalizedTitle
 import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.NativeTitle
@@ -21,9 +22,9 @@ import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.N
         LocalizedTitle.UK -> R.string.language_name_localized_uk
     }
 
-@StringRes fun NativeTitle.toStringResource(): Int =
+@StringRes fun LanguageResources.NativeTitle.toStringResource(): Int =
     when(this) {
-        NativeTitle.ZH_HANS -> R.string.language_name_native_zh_Hans
+        LanguageResources.NativeTitle.ZH_HANS -> R.string.language_name_native_zh_Hans
         NativeTitle.CS -> R.string.language_name_native_cs
         NativeTitle.DE -> R.string.language_name_native_de
         NativeTitle.EN -> R.string.language_name_native_en
@@ -36,7 +37,7 @@ import com.tritiumgaming.shared.core.domain.language.mappers.LanguageResources.N
         NativeTitle.UK -> R.string.language_name_native_uk
     }
 
-@StringRes fun LocalizationCode.toStringResource(): Int =
+@StringRes fun LanguageResources.LocalizationCode.toStringResource(): Int =
     when(this) {
         LocalizationCode.ZH_HANS -> R.string.language_code_zh_Hans
         LocalizationCode.CS -> R.string.language_code_cs

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.screens
+package com.tritiumgaming.core.ui.screens
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
