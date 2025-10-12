@@ -3,9 +3,9 @@ package com.tritiumgaming.data.evidence.source.local
 
 import android.content.Context
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.data.evidence.source.EvidenceDataSource
 import com.tritiumgaming.data.evidence.dto.EvidenceDto
 import com.tritiumgaming.data.evidence.dto.EvidenceTierDto
+import com.tritiumgaming.data.evidence.source.EvidenceDataSource
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources
 
 class EvidenceLocalDataSource(

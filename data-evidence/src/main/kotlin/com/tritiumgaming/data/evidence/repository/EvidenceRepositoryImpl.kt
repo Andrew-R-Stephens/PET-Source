@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.evidence.repository
 
-import com.tritiumgaming.data.evidence.source.EvidenceDataSource
 import com.tritiumgaming.data.evidence.dto.toEvidenceType
+import com.tritiumgaming.data.evidence.source.EvidenceDataSource
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
 
