@@ -7,9 +7,9 @@ import com.tritiumgaming.data.newsletter.dto.local.toInternal
 import com.tritiumgaming.data.newsletter.dto.remote.toInternal
 import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
-import com.tritiumgaming.shared.mainmenu.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.shared.mainmenu.domain.newsletter.repository.NewsletterRepository
-import com.tritiumgaming.shared.mainmenu.domain.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
+import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.shared.home.domain.newsletter.source.NewsletterDatastore
 import io.ktor.http.Url
 import kotlinx.coroutines.CoroutineDispatcher
 
@@ -23,9 +23,9 @@ class NewsletterRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initDatastoreFlow(
+    override fun initDatastoreFlow(
         onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow()
 
     private var localCache: List<FlattenedNewsletterInboxDto> = emptyList()
 

@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.newsletter.dto.local
 
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
-import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterResources
+import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources
 
 data class LocalNewsletterInboxDto(
     val id: String,

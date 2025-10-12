@@ -6,7 +6,7 @@ import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterMessageDto
 import com.tritiumgaming.data.newsletter.dto.remote.RemoteNewsletterInboxDto.RemoteNewsletterChannelDto
 import com.tritiumgaming.data.newsletter.dto.remote.RemoteNewsletterInboxDto.RemoteNewsletterChannelDto.RemoteNewsletterMessageDto
-import com.tritiumgaming.shared.mainmenu.domain.newsletter.model.NewsletterMessage
+import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterMessage
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlElement

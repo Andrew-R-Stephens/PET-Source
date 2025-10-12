@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.data.newsletter.dto.local.LocalNewsletterInboxDto
-import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
-import com.tritiumgaming.shared.mainmenu.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
+import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
 
 class NewsletterLocalDataSourceImpl(
     private val applicationContext: Context

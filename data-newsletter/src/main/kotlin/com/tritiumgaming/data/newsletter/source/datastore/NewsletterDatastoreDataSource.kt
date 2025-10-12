@@ -9,7 +9,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.mainmenu.domain.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.shared.home.domain.newsletter.source.NewsletterDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -54,8 +54,7 @@ class NewsletterDatastoreDataSource(
         liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initDatastoreFlow(onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
+    override fun initDatastoreFlow(): Flow<NewsletterDatastore.NewsletterPreferences> = flow
 
     override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
