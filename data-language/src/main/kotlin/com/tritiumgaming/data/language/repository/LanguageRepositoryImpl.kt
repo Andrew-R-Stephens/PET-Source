@@ -11,15 +11,23 @@ class LanguageRepositoryImpl(
     private val dataStoreSource: LanguageDatastore
 ): LanguageRepository {
 
+    private var defaultLanguage: LanguageEntity? = null
+
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initDatastoreFlow(
+    override fun initDatastoreFlow(
         onUpdate: (LanguageDatastore.LanguagePreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow()
 
     override fun getAvailableLanguages(): Result<List<LanguageEntity>> {
         return localDataSource.getAvailableLanguages().map { dto -> dto.toDomain() }
     }
+
+    override fun setDefaultLanguage(language: LanguageEntity) {
+        defaultLanguage = language
+    }
+    override fun getDefaultLanguage(): LanguageEntity? = defaultLanguage
+
     override suspend fun saveCurrentLanguageCode(languageCode: String) =
         dataStoreSource.saveCurrentLanguageCode(languageCode)
     override fun getCurrentLanguageCode(): String = dataStoreSource.getCurrentLanguageCode()

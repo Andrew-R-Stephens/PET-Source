@@ -48,8 +48,7 @@ class LanguageDatastoreDataSource(
         liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initDatastoreFlow(onUpdate: (LanguageDatastore.LanguagePreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
+    override fun initDatastoreFlow(): Flow<LanguageDatastore.LanguagePreferences> = flow
 
     override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
