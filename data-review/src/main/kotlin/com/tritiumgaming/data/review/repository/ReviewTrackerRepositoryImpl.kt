@@ -10,9 +10,9 @@ class ReviewTrackerRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initDatastoreFlow(
+    override fun initDatastoreFlow(
         onUpdate: (ReviewTrackerPreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow()
 
     override suspend fun saveWasRequestedStatus(wasRequested: Boolean) =
         dataStoreSource.saveWasRequestedState(wasRequested)

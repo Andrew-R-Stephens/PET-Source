@@ -98,8 +98,7 @@ class ReviewTrackerDatastoreDataSource(
         liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initDatastoreFlow(onUpdate: (ReviewTrackerDatastore.ReviewTrackerPreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
+    override fun initDatastoreFlow(): Flow<ReviewTrackerDatastore.ReviewTrackerPreferences> = flow
 
     override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
