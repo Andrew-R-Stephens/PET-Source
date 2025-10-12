@@ -9,7 +9,7 @@ import com.tritiumgaming.data.marketplace.typography.source.remote.MarketTypogra
 import com.tritiumgaming.shared.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyQueryOptions
 import com.tritiumgaming.shared.core.domain.market.typography.repository.MarketTypographyRepository
-import com.tritiumgaming.shared.core.domain.market.typography.source.MarketTypographyDatastore
+import com.tritiumgaming.shared.core.domain.market.typography.source.TypographyDatastore
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -17,15 +17,15 @@ import kotlinx.coroutines.launch
 class MarketTypographyRepositoryImpl(
     private val firestoreDataSource: MarketTypographyFirestoreDataSource,
     private val localDataSource: MarketTypographyLocalDataSource,
-    private val dataStoreSource: MarketTypographyDatastore,
+    private val dataStoreSource: TypographyDatastore,
     coroutineDispatcher: CoroutineDispatcher
 ): MarketTypographyRepository {
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initDatastoreFlow(
-        onUpdate: (MarketTypographyDatastore.TypographyPreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow(onUpdate)
+    override fun initDatastoreFlow(
+        onUpdate: (TypographyDatastore.TypographyPreferences) -> Unit
+    ) = dataStoreSource.initDatastoreFlow()
 
     private var cache: List<MarketTypographyDto> = emptyList()
 

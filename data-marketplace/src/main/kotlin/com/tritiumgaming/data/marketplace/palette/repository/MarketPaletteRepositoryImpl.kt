@@ -8,7 +8,6 @@ import com.tritiumgaming.data.marketplace.palette.source.local.MarketPaletteLoca
 import com.tritiumgaming.data.marketplace.palette.source.remote.MarketPaletteFirestoreDataSource
 import com.tritiumgaming.shared.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteQueryOptions
-import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources
 import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository
 import com.tritiumgaming.shared.core.domain.market.palette.source.PaletteDatastore
 import kotlinx.coroutines.CoroutineDispatcher
@@ -24,9 +23,9 @@ class MarketPaletteRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initDatastoreFlow(
+    override fun initDatastoreFlow(
         onUpdate: (PaletteDatastore.PalettePreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow(onUpdate)
+    ) = dataStoreSource.initDatastoreFlow()
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
@@ -36,7 +35,7 @@ class MarketPaletteRepositoryImpl(
         val result = localDataSource.getPalettes()
         result.exceptionOrNull()?.let { e ->
             Log.d("Palette", "Error getting local palettes: $e") }
-        val list: List<MarketPaletteDto> = result.getOrDefault(emptyMap<String, PaletteResources.PaletteType>()).toLocal()
+        val list: List<MarketPaletteDto> = result.getOrDefault(emptyMap()).toLocal()
 
         return Result.success(list)
     }

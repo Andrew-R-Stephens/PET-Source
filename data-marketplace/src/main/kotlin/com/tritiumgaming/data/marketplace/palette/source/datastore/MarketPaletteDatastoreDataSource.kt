@@ -45,8 +45,11 @@ class MarketPaletteDatastoreDataSource(
         liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
-    override suspend fun initDatastoreFlow(onUpdate: (PaletteDatastore.PalettePreferences) -> Unit) =
-        flow.collect { onUpdate(it) }
+    override fun initDatastoreFlow(): Flow<PaletteDatastore.PalettePreferences> {
+        /*flow.collect { onUpdate(it) }*/
+
+        return flow
+    }
 
     override suspend fun fetchDatastoreInitialPreferences() =
         mapPreferences(dataStore.data.first().toPreferences())
