@@ -1,16 +1,15 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model
+package com.tritiumgaming.core.common.settings.updatemanager
 
 import android.app.Activity
-import android.content.IntentSender.SendIntentException
+import android.content.IntentSender
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.appupdate.AppUpdateOptions
-import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
-import com.google.android.play.core.install.model.UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
-import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability
 import java.util.concurrent.atomic.AtomicBoolean
 
 interface AppUpdateManagerService {
@@ -28,14 +27,14 @@ interface AppUpdateManagerService {
         appUpdateManager?.appUpdateInfo
             ?.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
                 val isUpdateAvailable =
-                    appUpdateInfo.updateAvailability() == UPDATE_AVAILABLE
-                val isUpdateAllowed = updateType == IMMEDIATE
+                    appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                val isUpdateAllowed = updateType == AppUpdateType.IMMEDIATE
 
                 if (isUpdateAvailable && isUpdateAllowed) {
                     try {
                         requestAppUpdate(appUpdateInfo)
                         hasUpdate.set(true)
-                    } catch (e: SendIntentException) { throw RuntimeException(e) }
+                    } catch (e: IntentSender.SendIntentException) { throw RuntimeException(e) }
                 }
             }
 
@@ -45,7 +44,7 @@ interface AppUpdateManagerService {
     fun requestAppUpdate(appUpdateInfo: AppUpdateInfo) {
         appUpdateManager?.startUpdateFlowForResult(
             appUpdateInfo, activityUpdateResultLauncher,
-            AppUpdateOptions.newBuilder(IMMEDIATE).build())
+            AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build())
     }
 
     fun completePendingAppUpdate() {
@@ -53,11 +52,11 @@ interface AppUpdateManagerService {
             ?.addOnSuccessListener { appUpdateInfo ->
                 try {
                     val isUpdateInProgress =
-                        appUpdateInfo.updateAvailability() == DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+                        appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
                     if (isUpdateInProgress) {
                         appUpdateManager?.startUpdateFlowForResult(
                             appUpdateInfo, activityUpdateResultLauncher,
-                            AppUpdateOptions.newBuilder(IMMEDIATE).build()
+                            AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build()
                         )
                     }
                 } catch (e: IllegalStateException) {

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.mainmenu.presentation.util
+package com.tritiumgaming.core.common.util
 
 import android.content.Context
 import android.graphics.Bitmap

@@ -1,4 +1,4 @@
-package com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.model
+package com.tritiumgaming.core.common.settings.googleadsconsentmanager
 
 import android.app.Activity
 import android.content.Context
