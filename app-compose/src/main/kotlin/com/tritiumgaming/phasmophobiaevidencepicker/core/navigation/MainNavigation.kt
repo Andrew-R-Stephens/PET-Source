@@ -14,9 +14,11 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.tritiumgaming.feature.home.ui.account.AccountScreen
+import com.tritiumgaming.feature.home.ui.account.AccountViewModel
 import com.tritiumgaming.feature.home.ui.appinfo.AppInfoViewModel
 import com.tritiumgaming.feature.home.ui.appinfo.InfoScreen
 import com.tritiumgaming.feature.home.ui.applanguages.LanguageScreen
+import com.tritiumgaming.feature.home.ui.applanguages.LanguageScreenViewModel
 import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreen
 import com.tritiumgaming.feature.home.ui.marketplace.MarketplaceScreen
 import com.tritiumgaming.feature.home.ui.marketplace.billing.MarketplaceBillingScreen
@@ -25,8 +27,6 @@ import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsInboxesScreen
 import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessageScreen
 import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessagesScreen
 import com.tritiumgaming.feature.home.ui.startscreen.StartScreen
-import com.tritiumgaming.feature.home.ui.account.AccountViewModel
-import com.tritiumgaming.feature.home.ui.applanguages.LanguageScreenViewModel
 import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
 import com.tritiumgaming.feature.operation.ui.codex.catalog.CodexItemstoreScreen
 import com.tritiumgaming.feature.operation.ui.codex.menu.CodexMenuScreen
@@ -37,8 +37,8 @@ import com.tritiumgaming.feature.operation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.feature.operation.ui.mapsmenu.mapdisplay.MapViewerScreen
 import com.tritiumgaming.feature.operation.ui.missions.ObjectivesScreen
 import com.tritiumgaming.feature.operation.ui.missions.ObjectivesViewModel
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
 import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
 
 @Composable
 fun RootNavigation(

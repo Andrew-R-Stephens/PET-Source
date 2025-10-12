@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.core.common.util.TimeUtils
 import com.tritiumgaming.feature.operation.app.container.OperationContainerProvider
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.item.GhostScore
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ToolbarUiState
@@ -32,11 +31,6 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preference
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableRTLUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetEnableRTLUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexPossessionsUseCase

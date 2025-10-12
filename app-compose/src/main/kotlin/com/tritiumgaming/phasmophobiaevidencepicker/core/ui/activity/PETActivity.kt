@@ -1,7 +1,6 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
@@ -12,7 +11,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -25,12 +23,8 @@ import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.settings.analytics.FirebaseAnalyticsService
 import com.tritiumgaming.core.common.settings.updatemanager.AppUpdateManagerService
 import com.tritiumgaming.core.ui.theme.ThemeConfigurationControl
-import com.tritiumgaming.core.ui.theme.palette.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
-import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ModifiersButton
 import com.tritiumgaming.phasmophobiaevidencepicker.core.navigation.RootNavigation
-import com.tritiumgaming.shared.core.domain.market.palette.source.PaletteDatastore
 
 class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService {

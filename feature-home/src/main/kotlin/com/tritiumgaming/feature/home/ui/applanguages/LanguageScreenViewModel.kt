@@ -12,10 +12,10 @@ import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.shared.core.domain.language.model.LanguageEntity
 import com.tritiumgaming.shared.core.domain.language.source.LanguageDatastore
 import com.tritiumgaming.shared.core.domain.language.usecase.GetAvailableLanguagesUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SaveCurrentLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
 import kotlinx.coroutines.flow.SharingStarted

@@ -89,10 +89,10 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.Setu
 import com.tritiumgaming.shared.core.domain.language.repository.LanguageRepository
 import com.tritiumgaming.shared.core.domain.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.GetCurrentLanguageUseCase
+import com.tritiumgaming.shared.core.domain.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SaveCurrentLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.shared.core.domain.market.bundle.repository.MarketBundleRemoteRepository
