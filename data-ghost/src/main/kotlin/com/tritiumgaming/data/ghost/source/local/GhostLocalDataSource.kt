@@ -4,8 +4,8 @@ package com.tritiumgaming.data.ghost.source.local
 import android.content.Context
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.data.ghost.source.GhostDataSource
 import com.tritiumgaming.data.ghost.dto.GhostDto
+import com.tritiumgaming.data.ghost.source.GhostDataSource
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources
 
 class GhostLocalDataSource(
