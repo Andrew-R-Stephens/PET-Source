@@ -28,11 +28,9 @@ import com.tritiumgaming.core.ui.icon.LogoPatreonIcon
 import com.tritiumgaming.core.ui.icon.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.mappers.ToComposable
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalettesMap
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.app.mappers.ToComposable
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.components.icon.BadgeIcon
-import com.tritiumgaming.phasmophobiaevidencepicker.core.presentation.ui.theme.SelectiveTheme
 import com.tritiumgaming.shared.core.domain.icons.IconResources
 import org.jetbrains.annotations.TestOnly
 
