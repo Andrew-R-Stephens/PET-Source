@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.contributor.dto
 
-import com.tritiumgaming.shared.mainmenu.domain.appinfo.model.Contributor
+import com.tritiumgaming.shared.home.domain.appinfo.model.Contributor
 
 data class ContributorDto(
     val username: String
