@@ -279,10 +279,10 @@ dependencies {
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
-    implementation(project(":core-di"))
 
     implementation(project(":database-unknown"))
 
+    implementation(project(":feature-core"))
     implementation(project(":feature-home"))
     implementation(project(":feature-operation"))
 

@@ -20,30 +20,43 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "PhasmophobiaEvidencePicker"
+
 include(
     ":app-compose",
-    ":app-legacy",
-    ":shared",
+    ":app-legacy"
+)
+
+include(
+    ":shared"
+)
+
+include(
+    ":core-common",
     ":core-resources",
     ":core-ui"
 )
-include(":feature-operation")
-include(":core-common")
-include(":data-evidence")
-include(":data-ghost")
-include(":data-difficulty")
-include(":data-language")
-include(":data-codex")
-include(":data-map")
-include(":data-contributor")
-include(":data-account")
-include(":data-mission")
-include(":data-newsletter")
-include(":data-ghostbox")
-include(":data-ghostname")
-include(":data-preferences")
-include(":database-unknown")
-include(":data-review")
-include(":data-marketplace")
-include(":feature-home")
-include(":core-di")
+
+include(
+    ":feature-operation",
+    ":feature-home",
+    ":feature-core"
+)
+
+include(
+    ":data-evidence",
+    ":data-ghost",
+    ":data-difficulty",
+    ":data-language",
+    ":data-codex",
+    ":data-map",
+    ":data-contributor",
+    ":data-account",
+    ":data-mission",
+    ":data-newsletter",
+    ":data-ghostbox",
+    ":data-ghostname",
+    ":data-preferences",
+    ":database-unknown",
+    ":data-review",
+    ":data-marketplace"
+)

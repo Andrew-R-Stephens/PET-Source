@@ -8,7 +8,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
-import com.tritiumgaming.core.di.CoreContainerImpl
+import com.tritiumgaming.feature.core.container.CoreContainer
 import com.tritiumgaming.feature.home.app.container.HomeContainer
 import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.feature.operation.app.container.OperationContainer
@@ -39,7 +39,7 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
         Firebase.auth
     }
 
-    lateinit var coreContainer: CoreContainerImpl
+    lateinit var coreContainer: CoreContainer
 
     lateinit var appContainer: AppContainer
     lateinit var homeContainer: HomeContainer
@@ -49,7 +49,7 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
 
         super.onCreate()
 
-        coreContainer = CoreContainerImpl(applicationContext, dataStore, firestore, firebaseAuth)
+        coreContainer = CoreContainer(applicationContext, dataStore, firestore, firebaseAuth)
 
         appContainer = AppContainer(
             initTypographyDataStoreUseCase = coreContainer.initTypographyDataStoreUseCase,

@@ -103,7 +103,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
 
     implementation(project(":core-common"))
-    implementation(project(":core-di"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
 

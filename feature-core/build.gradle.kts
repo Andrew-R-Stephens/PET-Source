@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tritiumgaming.core.di"
+    namespace = "com.tritiumgaming.feature.core"
     compileSdk = 36
 
     defaultConfig {
@@ -64,17 +64,17 @@ dependencies {
     implementation(project(":core-common"))
 
     implementation(project(":data-account"))
-    implementation(project(":data-codex"))
-    implementation(project(":data-contributor"))
-    implementation(project(":data-difficulty"))
-    implementation(project(":data-evidence"))
-    implementation(project(":data-ghost"))
-    implementation(project(":data-ghostname"))
     implementation(project(":data-preferences"))
     implementation(project(":data-language"))
-    implementation(project(":data-map"))
     implementation(project(":data-marketplace"))
-    implementation(project(":data-mission"))
-    implementation(project(":data-newsletter"))
     implementation(project(":data-review"))
+    // implementation(project(":data-codex"))
+    // implementation(project(":data-contributor"))
+    // implementation(project(":data-difficulty"))
+    // implementation(project(":data-evidence"))
+    // implementation(project(":data-ghost"))
+    // implementation(project(":data-ghostname"))
+    // implementation(project(":data-map"))
+    // implementation(project(":data-mission"))
+    // implementation(project(":data-newsletter"))
 }
