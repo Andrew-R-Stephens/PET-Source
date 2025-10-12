@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
-import kotlin.map
 
 class FirestoreAccountRepositoryImpl(
     private val authRemoteDataSource: FirestoreAuthRemoteDataSource,
