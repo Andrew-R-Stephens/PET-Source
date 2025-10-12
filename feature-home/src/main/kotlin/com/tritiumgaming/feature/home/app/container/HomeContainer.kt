@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.home.app.container
 
-/*import android.content.Context
+import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
@@ -16,10 +16,7 @@ import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourc
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
 import com.tritiumgaming.shared.home.domain.appinfo.repository.ContributorRepository
 import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
-import kotlinx.coroutines.Dispatchers*/
-import com.tritiumgaming.data.account.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.data.account.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.data.account.usecase.SignOutAccountUseCase
+import kotlinx.coroutines.Dispatchers
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
@@ -61,6 +58,9 @@ import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timealive.SetA
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.account.DeactivateAccountUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.account.GetSignInCredentialsUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.account.SignOutAccountUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
@@ -71,11 +71,8 @@ import com.tritiumgaming.shared.home.domain.newsletter.usecase.SaveNewsletterInb
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SetupNewsletterUseCase
 
 class HomeContainer(
-    val getContributorsUseCase: ContributorUseCase,
-    val setupNewsletterUseCase: SetupNewsletterUseCase,
-    val initFlowNewsletterUseCase: InitFlowNewsletterUseCase,
-    val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
-    val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
+    applicationContext: Context,
+    dataStore: DataStore<Preferences>,
     val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
     val signInAccountUseCase: SignInAccountUseCase,
     val signOutAccountUseCase: SignOutAccountUseCase,
@@ -123,11 +120,6 @@ class HomeContainer(
     val setAppTimesOpenedUseCase: SetAppTimesOpenedUseCase,
     val getAppTimesOpenedUseCase: GetAppTimesOpenedUseCase,
     val loadAppTimesOpenedUseCase: LoadAppTimesOpenedUseCase
-)
-
-/*class HomeContainer(
-    applicationContext: Context,
-    dataStore: DataStore<Preferences>
 ) {
 
     // App Info
@@ -174,4 +166,4 @@ class HomeContainer(
         repository = newsletterRepository
     )
 
-}*/
+}

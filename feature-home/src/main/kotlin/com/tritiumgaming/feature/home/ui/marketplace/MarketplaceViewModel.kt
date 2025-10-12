@@ -6,9 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.data.account.usecase.DeactivateAccountUseCase
-import com.tritiumgaming.data.account.usecase.GetSignInCredentialsUseCase
-import com.tritiumgaming.data.account.usecase.SignOutAccountUseCase
 import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.feature.home.ui.account.AccountCreditsUiState
 import com.tritiumgaming.feature.home.ui.account.AccountUnlockedPalettesUiState
@@ -17,6 +14,9 @@ import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUse
 import com.tritiumgaming.shared.core.domain.user.model.AccountCredits
 import com.tritiumgaming.shared.core.domain.user.model.AccountPalette
 import com.tritiumgaming.shared.core.domain.user.model.AccountTypography
+import com.tritiumgaming.shared.core.domain.user.usecase.account.DeactivateAccountUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.account.GetSignInCredentialsUseCase
+import com.tritiumgaming.shared.core.domain.user.usecase.account.SignOutAccountUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
