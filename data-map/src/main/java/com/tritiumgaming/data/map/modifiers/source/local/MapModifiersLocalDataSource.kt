@@ -4,7 +4,6 @@ import android.content.Context
 import com.tritiumgaming.data.map.modifiers.dto.WorldMapModifierDto
 import com.tritiumgaming.data.map.modifiers.source.MapModifiersDataSource
 import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.SizePhaseModifier
 
 class MapModifiersLocalDataSource(
     private val applicationContext: Context
