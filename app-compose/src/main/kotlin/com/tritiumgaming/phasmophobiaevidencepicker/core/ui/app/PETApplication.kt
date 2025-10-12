@@ -63,11 +63,8 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
         )
 
         homeContainer = HomeContainer(
-            getContributorsUseCase = coreContainer.getContributorsUseCase,
-            setupNewsletterUseCase = coreContainer.setupNewsletterUseCase,
-            initFlowNewsletterUseCase = coreContainer.initFlowNewsletterUseCase,
-            getNewsletterInboxesUseCase = coreContainer.getNewsletterInboxesUseCase,
-            saveNewsletterInboxLastReadDateUseCase = coreContainer.saveNewsletterInboxLastReadDateUseCase,
+            applicationContext = applicationContext,
+            dataStore = dataStore,
             getSignInCredentialsUseCase = coreContainer.getSignInCredentialsUseCase,
             signInAccountUseCase = coreContainer.signInAccountUseCase,
             signOutAccountUseCase = coreContainer.signOutAccountUseCase,
@@ -123,50 +120,7 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
         )
 
         operationsContainer = OperationContainer(
-            // Ghosts
-            fetchGhostsUseCase = coreContainer.fetchGhostsUseCase,
-            getGhostByIdUseCase = coreContainer.getGhostByIdUseCase,
-            // Evidence
-            fetchEvidencesUseCase = coreContainer.fetchEvidencesUseCase,
-            getEvidenceByIdUseCase = coreContainer.getEvidenceByIdUseCase,
-            // Journal
-            fetchGhostEvidencesUseCase = coreContainer.fetchGhostEvidencesUseCase,
-            initRuledEvidenceUseCase = coreContainer.initRuledEvidenceUseCase,
-            // Difficulty
-            fetchDifficultiesUseCase = coreContainer.fetchDifficultiesUseCase,
-            getDifficultyTypeUseCase = coreContainer.getDifficultyTypeUseCase,
-            getDifficultyNameUseCase = coreContainer.getDifficultyNameUseCase,
-            getDifficultyModifierUseCase = coreContainer.getDifficultyModifierUseCase,
-            getDifficultyTimeUseCase = coreContainer.getDifficultyTimeUseCase,
-            getDifficultyResponseTypeUseCase = coreContainer.getDifficultyResponseTypeUseCase,
-            getDifficultyInitialSanityUseCase = coreContainer.getDifficultyInitialSanityUseCase,
-            incrementDifficultyIndexUseCase = coreContainer.incrementDifficultyIndexUseCase,
-            decrementDifficultyIndexUseCase = coreContainer.decrementDifficultyIndexUseCase,
-            // Objectives
-            fetchAllMissionsUseCase = coreContainer.fetchAllMissionsUseCase,
-            fetchAllFirstNamesUseCase = coreContainer.fetchAllFirstNamesUseCase,
-            fetchAllMaleNamesUseCase = coreContainer.fetchAllMaleNamesUseCase,
-            fetchAllFemaleNamesUseCase = coreContainer.fetchAllFemaleNamesUseCase,
-            fetchAllSurnamesUseCase = coreContainer.fetchAllSurnamesUseCase,
-            // Map
-            fetchMapModifiersUseCase = coreContainer.fetchMapModifiersUseCase,
-            fetchSimpleMapsUseCase = coreContainer.fetchSimpleMapsUseCase,
-            fetchMapThumbnailsUseCase = coreContainer.fetchMapThumbnailsUseCase,
-            incrementMapIndexUseCase = coreContainer.incrementMapIndexUseCase,
-            decrementMapIndexUseCase = coreContainer.decrementMapIndexUseCase,
-            incrementMapFloorIndexUseCase = coreContainer.incrementMapFloorIndexUseCase,
-            decrementMapFloorIndexUseCase = coreContainer.decrementMapFloorIndexUseCase,
-            getSimpleMapIdUseCase = coreContainer.getSimpleMapIdUseCase,
-            getSimpleMapNameUseCase = coreContainer.getSimpleMapNameUseCase,
-            getSimpleMapSizeUseCase = coreContainer.getSimpleMapSizeUseCase,
-            getSimpleMapSetupModifierUseCase = coreContainer.getSimpleMapSetupModifierUseCase,
-            getSimpleMapNormalModifierUseCase = coreContainer.getSimpleMapNormalModifierUseCase,
-            getMapModifierUseCase = coreContainer.getMapModifierUseCase,
-            // Codex
-            fetchComplexMapsUseCase = coreContainer.fetchComplexMapsUseCase,
-            fetchCodexAchievementsUseCase = coreContainer.fetchCodexAchievementsUseCase,
-            fetchCodexEquipmentUseCase = coreContainer.fetchCodexEquipmentUseCase,
-            fetchCodexPossessionsUseCase = coreContainer.fetchCodexPossessionsUseCase,
+            applicationContext = applicationContext,
             // User Preferences
             getAllowHuntWarnAudioUseCase = coreContainer.getAllowHuntWarnAudioUseCase,
             getEnableGhostReorderUseCase = coreContainer.getEnableGhostReorderUseCase,

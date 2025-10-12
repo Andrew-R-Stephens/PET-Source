@@ -283,12 +283,6 @@ dependencies {
 
     implementation(project(":database-unknown"))
 
-    implementation(project(":data-account"))
-    implementation(project(":data-globalpreferences"))
-    implementation(project(":data-language"))
-    implementation(project(":data-marketplace"))
-    implementation(project(":data-review"))
-
     implementation(project(":feature-home"))
     implementation(project(":feature-operation"))
 
