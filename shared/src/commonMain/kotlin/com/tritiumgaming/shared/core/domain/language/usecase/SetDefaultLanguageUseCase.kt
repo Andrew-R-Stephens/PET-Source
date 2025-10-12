@@ -1,10 +1,11 @@
 package com.tritiumgaming.shared.core.domain.language.usecase
 
-import androidx.compose.ui.text.intl.Locale
 import com.tritiumgaming.shared.core.domain.language.model.LanguageEntity
 import com.tritiumgaming.shared.core.domain.language.repository.LanguageRepository
 
-class SetDefaultLanguageUseCase() {
+class SetDefaultLanguageUseCase(
+    val repository: LanguageRepository
+) {
 
     operator fun invoke(
         localeLanguage: String,
@@ -15,6 +16,8 @@ class SetDefaultLanguageUseCase() {
             language.code
                 .equals(localeLanguage, ignoreCase = true)
         }?.let { languageEntity ->
+            repository.setDefaultLanguage(languageEntity)
+
             return Result.success(languageEntity)
         }
 

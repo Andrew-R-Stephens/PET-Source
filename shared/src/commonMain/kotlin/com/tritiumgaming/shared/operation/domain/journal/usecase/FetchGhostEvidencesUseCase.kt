@@ -4,7 +4,6 @@ import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRep
 import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
 import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.operation.domain.journal.model.GhostEvidence
-import com.tritiumgaming.shared.operation.domain.journal.repository.JournalRepository
 
 class FetchGhostEvidencesUseCase(
     private val ghostRepository: GhostRepository,

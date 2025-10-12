@@ -2,7 +2,6 @@ package com.tritiumgaming.shared.operation.domain.journal.usecase
 
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
-import com.tritiumgaming.shared.operation.domain.journal.repository.JournalRepository
 
 class FetchEvidencesUseCase(
         private val repository: EvidenceRepository

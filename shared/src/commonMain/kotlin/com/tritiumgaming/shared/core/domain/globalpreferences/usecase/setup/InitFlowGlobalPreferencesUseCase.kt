@@ -6,7 +6,7 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.source.GlobalPrefe
 class InitFlowGlobalPreferencesUseCase(
     private val repository: GlobalPreferencesRepository
 ) {
-    suspend operator fun invoke(
-        onUpdate: (preferences: GlobalPreferencesDatastore.GlobalPreferences) -> Unit
+    operator fun invoke(
+        onUpdate: (preferences: GlobalPreferencesDatastore.GlobalPreferences) -> Unit = {}
     ) = repository.initDatastoreFlow(onUpdate)
 }

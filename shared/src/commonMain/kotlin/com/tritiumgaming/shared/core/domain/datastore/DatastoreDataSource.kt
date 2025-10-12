@@ -1,10 +1,12 @@
 package com.tritiumgaming.shared.core.domain.datastore
 
+import kotlinx.coroutines.flow.Flow
+
 interface DatastoreDataSource<T> {
 
     fun initializeDatastoreLiveData()
 
-    suspend fun initDatastoreFlow(onUpdate: (T) -> Unit)
+    fun initDatastoreFlow(): Flow<T>
 
     suspend fun fetchDatastoreInitialPreferences(): T
 

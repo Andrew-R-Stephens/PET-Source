@@ -6,6 +6,6 @@ import com.tritiumgaming.shared.core.domain.language.source.LanguageDatastore.La
 class InitFlowLanguageUseCase(
     private val repository: LanguageRepository
 ) {
-    suspend operator fun invoke(onUpdate: (LanguagePreferences) -> Unit) =
+    operator fun invoke(onUpdate: (LanguagePreferences) -> Unit = {}) =
         repository.initDatastoreFlow(onUpdate)
 }
