@@ -2,6 +2,7 @@ package com.tritiumgaming.data.globalpreferences.repository
 
 import com.tritiumgaming.shared.core.domain.globalpreferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.shared.core.domain.globalpreferences.source.GlobalPreferencesDatastore
+import kotlinx.coroutines.flow.Flow
 
 class GlobalPreferencesRepositoryImpl(
     private val dataStoreSource: GlobalPreferencesDatastore
@@ -9,9 +10,10 @@ class GlobalPreferencesRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override suspend fun initDatastoreFlow(
+    override fun initDatastoreFlow(
         onUpdate: (preferences: GlobalPreferencesDatastore.GlobalPreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow(onUpdate)
+    ): Flow<GlobalPreferencesDatastore.GlobalPreferences> =
+        dataStoreSource.initDatastoreFlow()
 
     override suspend fun setDisableScreenSaver(disable: Boolean) =
         dataStoreSource.setDisableScreenSaver(disable)
