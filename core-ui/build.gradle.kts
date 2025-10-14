@@ -87,7 +87,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
 
     implementation(project(":shared"))
-    implementation(project(":core-common"))
+
     implementation(project(":core-resources"))
 
 }
