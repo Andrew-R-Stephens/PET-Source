@@ -1118,35 +1118,9 @@ private fun LogoutDialog(
     )
 }
 
-@Composable
-@Preview
-private fun AccountScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        AccountScreen(
-            accountViewModel = viewModel(factory = AccountViewModel.Factory)
-        )
-    }
-}
-
 @Preview
 @Composable
-fun AccountComponentPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        AccountComponentPortrait(
-            accountViewModel = viewModel(factory = AccountViewModel.Factory)
-        )
-    }
-}
-
-@Preview
-@Composable
-fun SignOutButtonPreview() {
+private fun SignOutButtonPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
@@ -1157,7 +1131,7 @@ fun SignOutButtonPreview() {
 
 @Preview
 @Composable
-fun DeactivateAccountButtonPreview() {
+private fun DeactivateAccountButtonPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
