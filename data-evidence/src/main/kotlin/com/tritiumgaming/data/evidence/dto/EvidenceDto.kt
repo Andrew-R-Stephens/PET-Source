@@ -6,6 +6,7 @@ import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResourc
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTierDescription
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTierRequiredLevel
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.shared.operation.domain.evidence.model.Evidence
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceTier
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
@@ -24,8 +25,20 @@ data class EvidenceTierDto(
     val levelRequirement: EvidenceTierRequiredLevel
 )
 
+fun List<EvidenceDto>.toDomain() = map { it.toDomain() }
+
+fun EvidenceDto.toDomain() = Evidence(
+    id = id,
+    name = name,
+    icon = icon,
+    buyCost = buyCost,
+    tiers = tiers.toDomain()
+)
+
+@JvmName("toDomainEvidenceTierListDto")
 fun List<EvidenceTierDto>.toDomain() = map { it.toDomain() }
 
+@JvmName("toDomainEvidenceTierDto")
 fun EvidenceTierDto.toDomain() = EvidenceTier(
     description = description,
     animation = animation,
@@ -54,6 +67,7 @@ fun EvidenceDto.toEvidenceType() = EvidenceType(
 
 fun EvidenceDto.toLocalPopup() = EvidencePopupRecord(
     id = id,
+    name = name,
     cost = buyCost,
     tiers = tiers.toDomain()
 )
