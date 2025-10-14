@@ -31,7 +31,7 @@ import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
 import com.tritiumgaming.feature.operation.ui.codex.catalog.CodexItemstoreScreen
 import com.tritiumgaming.feature.operation.ui.codex.menu.CodexMenuScreen
 import com.tritiumgaming.feature.operation.ui.investigation.InvestigationSoloScreen
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.feature.operation.ui.mapsmenu.MapMenuScreen
 import com.tritiumgaming.feature.operation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.feature.operation.ui.mapsmenu.mapdisplay.MapViewerScreen
@@ -50,8 +50,8 @@ fun RootNavigation(
         viewModel(factory = AccountViewModel.Factory),
     newsletterViewModel: NewsletterViewModel =
         viewModel(factory = NewsletterViewModel.Factory),
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationScreenViewModel =
+        viewModel(factory = InvestigationScreenViewModel.Factory),
     objectivesViewModel: ObjectivesViewModel =
         viewModel(factory = ObjectivesViewModel.Factory),
     mapsViewModel: MapsViewModel =
@@ -206,7 +206,7 @@ private fun NavGraphBuilder.homeNavigation(
 
 private fun NavGraphBuilder.operationNavigation(
     navController: NavHostController,
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     objectivesViewModel: ObjectivesViewModel,
     mapsViewModel: MapsViewModel,
     codexViewModel: CodexViewModel
