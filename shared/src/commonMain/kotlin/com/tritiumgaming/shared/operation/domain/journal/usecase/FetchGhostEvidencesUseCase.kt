@@ -16,7 +16,7 @@ class FetchGhostEvidencesUseCase(
         ghostsResult.exceptionOrNull()?.let { return Result.failure(it) }
         val ghostList = ghostsResult.getOrDefault(emptyList())
 
-        val evidenceResult = evidenceRepository.fetchEvidence()
+        val evidenceResult = evidenceRepository.fetchEvidenceType()
         evidenceResult.exceptionOrNull()?.let { return Result.failure(it) }
         val evidenceList = evidenceResult.getOrDefault(emptyList())
 

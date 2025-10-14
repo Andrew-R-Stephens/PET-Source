@@ -6,7 +6,7 @@ class IncrementMapIndexUseCase(
     private val simpleMapRepository: SimpleMapRepository
 ) {
 
-    operator fun invoke(currentIndex: Int): Int {
+    operator fun invoke(currentIndex: Int): Result<Int> {
         val result = simpleMapRepository.getMaps()
 
         result.exceptionOrNull()?.printStackTrace()
@@ -17,7 +17,7 @@ class IncrementMapIndexUseCase(
             newIndex ++
             if (newIndex >= list.size) { newIndex = 0 }
         }
-        return newIndex
+        return Result.success(newIndex)
 
     }
 }

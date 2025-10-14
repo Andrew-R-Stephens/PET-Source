@@ -3,7 +3,7 @@ package com.tritiumgaming.shared.operation.domain.journal.usecase
 import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
 import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository
 
-class GetGhostByIdUseCase(
+class GetGhostTypeByIdUseCase(
         private val repository: GhostRepository
     ) {
         operator fun invoke(ghostId: String): GhostType? {

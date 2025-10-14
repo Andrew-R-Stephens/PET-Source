@@ -3,14 +3,13 @@ package com.tritiumgaming.shared.operation.domain.journal.usecase
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
 
-class GetEvidenceByIdUseCase(
+class FetchEvidenceTypesUseCase(
     private val repository: EvidenceRepository
 ) {
-    operator fun invoke(evidenceId: String): EvidenceType? {
-        val result = repository.fetchEvidence()
+    operator fun invoke(): Result<List<EvidenceType>> {
+        val result = repository.fetchEvidenceType()
 
-        result.exceptionOrNull()?.printStackTrace()
-
-        return result.getOrDefault(emptyList()).find { it.id == evidenceId }
+        return result
     }
 }
+    
