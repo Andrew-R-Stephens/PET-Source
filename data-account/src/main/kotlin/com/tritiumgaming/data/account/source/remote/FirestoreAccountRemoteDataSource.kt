@@ -15,9 +15,9 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.Transaction
 import com.tritiumgaming.data.account.dto.AccountCreditTransactionDto
 import com.tritiumgaming.data.account.dto.AccountCreditsDto
+import com.tritiumgaming.data.account.dto.AccountMarketAgreementDto
 import com.tritiumgaming.data.account.dto.AccountPaletteDto
 import com.tritiumgaming.data.account.dto.AccountTypographyDto
-import com.tritiumgaming.data.account.dto.AccountMarketAgreementDto
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

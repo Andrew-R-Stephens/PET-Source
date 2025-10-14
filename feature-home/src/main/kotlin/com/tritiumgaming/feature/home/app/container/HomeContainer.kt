@@ -14,9 +14,6 @@ import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSourceI
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
-import com.tritiumgaming.shared.home.domain.appinfo.repository.ContributorRepository
-import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
-import kotlinx.coroutines.Dispatchers
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
@@ -64,11 +61,14 @@ import com.tritiumgaming.shared.core.domain.user.usecase.account.SignOutAccountU
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.home.domain.appinfo.repository.ContributorRepository
 import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorUseCase
+import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.InitFlowNewsletterUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SetupNewsletterUseCase
+import kotlinx.coroutines.Dispatchers
 
 class HomeContainer(
     applicationContext: Context,

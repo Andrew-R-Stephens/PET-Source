@@ -1,7 +1,6 @@
 package com.tritiumgaming.feature.operation.ui.investigation
 
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,10 +26,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -62,7 +59,6 @@ import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.operation.ui.investigation.journal.Journal
 import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.EvidencePopup
 import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.GhostPopup
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.InvestigationPopup
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.CollapseButton
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ResetButton
@@ -74,9 +70,6 @@ import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.s
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.MapConfigCarousel
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity.SanityMeterView
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.timer.TimerDisplay
-import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
-import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
-import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 @Preview

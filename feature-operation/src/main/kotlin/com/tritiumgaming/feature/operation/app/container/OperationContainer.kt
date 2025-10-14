@@ -30,9 +30,6 @@ import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
 import com.tritiumgaming.data.mission.repository.MissionRepositoryImpl
 import com.tritiumgaming.data.mission.source.MissionDataSource
 import com.tritiumgaming.data.mission.source.local.MissionLocalDataSource
-import com.tritiumgaming.shared.operation.domain.difficulty.repository.DifficultyRepository
-import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
-import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableRTLUseCase
@@ -41,6 +38,7 @@ import com.tritiumgaming.shared.operation.domain.codex.repository.CodexRepositor
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
+import com.tritiumgaming.shared.operation.domain.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyInitialSanityUseCase
@@ -50,6 +48,8 @@ import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficult
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTypeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
+import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
+import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.operation.domain.ghostname.repository.GhostNameRepository
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFemaleNamesUseCase
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFirstNamesUseCase

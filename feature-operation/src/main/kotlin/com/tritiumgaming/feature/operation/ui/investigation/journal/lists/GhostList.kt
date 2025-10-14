@@ -25,7 +25,6 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.item.GhostListItem
-import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

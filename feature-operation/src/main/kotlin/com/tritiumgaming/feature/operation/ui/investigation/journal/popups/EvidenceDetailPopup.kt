@@ -15,7 +15,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -23,19 +22,12 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
-import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
-import org.jetbrains.annotations.TestOnly
 
 @Composable
 fun EvidenceDetailPopup(

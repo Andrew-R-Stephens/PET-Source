@@ -30,8 +30,8 @@ import com.tritiumgaming.feature.home.ui.startscreen.StartScreen
 import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
 import com.tritiumgaming.feature.operation.ui.codex.catalog.CodexItemstoreScreen
 import com.tritiumgaming.feature.operation.ui.codex.menu.CodexMenuScreen
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationSoloScreen
 import com.tritiumgaming.feature.operation.ui.mapsmenu.MapMenuScreen
 import com.tritiumgaming.feature.operation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.feature.operation.ui.mapsmenu.mapdisplay.MapViewerScreen

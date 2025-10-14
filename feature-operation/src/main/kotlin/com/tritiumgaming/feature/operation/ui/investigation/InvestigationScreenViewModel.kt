@@ -73,10 +73,8 @@ import com.tritiumgaming.shared.operation.domain.map.simple.usecase.GetSimpleMap
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
-import com.tritiumgaming.shared.operation.domain.popup.model.EmptyPopupRecord
 import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
-import com.tritiumgaming.shared.operation.domain.popup.model.InvestigationPopupRecord
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
