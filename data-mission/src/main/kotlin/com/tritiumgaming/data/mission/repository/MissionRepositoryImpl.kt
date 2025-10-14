@@ -23,7 +23,8 @@ class MissionRepositoryImpl(
             result.getOrNull()?.let { missions = it }
         }
 
-        return localSource.get().map { dto -> dto.toDomain() }
+        return Result.success(missions)
+        //return localSource.get().map { dto -> dto.toDomain() }
     }
 
 }
