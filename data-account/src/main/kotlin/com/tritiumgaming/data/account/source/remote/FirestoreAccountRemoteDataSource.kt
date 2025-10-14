@@ -17,7 +17,7 @@ import com.tritiumgaming.data.account.dto.AccountCreditTransactionDto
 import com.tritiumgaming.data.account.dto.AccountCreditsDto
 import com.tritiumgaming.data.account.dto.AccountPaletteDto
 import com.tritiumgaming.data.account.dto.AccountTypographyDto
-import com.tritiumgaming.data.account.dto.MarketAgreementDto
+import com.tritiumgaming.data.account.dto.AccountMarketAgreementDto
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -73,8 +73,8 @@ class FirestoreAccountRemoteDataSource(
             ?.document(DOCUMENT_UNLOCKED_ITEM)
 
     suspend fun setMarketplaceAgreementState(
-        marketAgreementDto: MarketAgreementDto
-    ): Result<MarketAgreementDto> {
+        marketAgreementDto: AccountMarketAgreementDto
+    ): Result<AccountMarketAgreementDto> {
 
         return try {
 
@@ -106,7 +106,7 @@ class FirestoreAccountRemoteDataSource(
 
     }
 
-    suspend fun getMarketplaceAgreementState(): Result<MarketAgreementDto> {
+    suspend fun getMarketplaceAgreementState(): Result<AccountMarketAgreementDto> {
 
         return try {
 
@@ -119,11 +119,11 @@ class FirestoreAccountRemoteDataSource(
 
                 val snapshot = transaction.get(docRef)
                 if(snapshot.exists()) {
-                    MarketAgreementDto(
+                    AccountMarketAgreementDto(
                         isAgreementShown =
                             snapshot.getBoolean(FIELD_MARKETPLACE_AGREEMENT_SHOWN) == true
                     )
-                } else { MarketAgreementDto() }
+                } else { AccountMarketAgreementDto() }
 
             }.await()
 

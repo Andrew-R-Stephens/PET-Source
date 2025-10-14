@@ -4,7 +4,7 @@ import android.util.Log
 import com.tritiumgaming.data.account.dto.AccountCreditsDto
 import com.tritiumgaming.data.account.dto.AccountPaletteDto
 import com.tritiumgaming.data.account.dto.AccountTypographyDto
-import com.tritiumgaming.data.account.dto.MarketAgreementDto
+import com.tritiumgaming.data.account.dto.AccountMarketAgreementDto
 import com.tritiumgaming.data.account.dto.toDomain
 import com.tritiumgaming.data.account.dto.toNetwork
 import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSource
@@ -102,7 +102,7 @@ class FirestoreAccountRepositoryImpl(
         if(userDocumentRef == null)
             return Result.failure(Exception("The authorized user's data could not be located!"))
 
-        val result: Result<MarketAgreementDto> =
+        val result: Result<AccountMarketAgreementDto> =
             accountRemoteDataSource.setMarketplaceAgreementState(marketAgreement.toNetwork())
 
         return result.map { dto ->
