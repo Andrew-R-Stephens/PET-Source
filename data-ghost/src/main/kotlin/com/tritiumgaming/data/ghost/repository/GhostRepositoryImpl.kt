@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.ghost.repository
 
-import com.tritiumgaming.data.ghost.dto.toGhost
+import com.tritiumgaming.data.ghost.dto.toDomain
 import com.tritiumgaming.data.ghost.dto.toGhostType
 import com.tritiumgaming.data.ghost.source.GhostDataSource
 import com.tritiumgaming.shared.operation.domain.ghost.model.Ghost
@@ -24,7 +24,7 @@ class GhostRepositoryImpl(
 
         result.exceptionOrNull()?.printStackTrace()
 
-        return result.map { it.toGhost() }
+        return result.map { it.toDomain() }
     }
 
 }

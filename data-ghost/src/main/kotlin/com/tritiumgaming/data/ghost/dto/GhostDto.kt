@@ -28,12 +28,16 @@ fun GhostDto.toGhostType() = GhostType(
     name = name
 )
 
-fun List<GhostDto>.toGhost() = map {
-    it.toGhost()
+fun List<GhostDto>.toDomain() = map {
+    it.toDomain()
 }
-fun GhostDto.toGhost() = Ghost(
+fun GhostDto.toDomain() = Ghost(
     id = id,
     name = name,
+    info = info,
+    strengthData = strengthData,
+    weaknessData = weaknessData,
+    huntData = huntData,
     normalEvidence = normalEvidence.map { it },
     strictEvidence = strictEvidence.map { it }
 )
