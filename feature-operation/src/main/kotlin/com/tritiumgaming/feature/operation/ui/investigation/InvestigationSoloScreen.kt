@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.operation.ui.investigation
 
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,8 +27,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -57,6 +60,9 @@ import com.tritiumgaming.core.ui.vector.getGearVector
 import com.tritiumgaming.core.ui.vector.getInfoVector
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.operation.ui.investigation.journal.Journal
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.EvidencePopup
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.GhostPopup
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.InvestigationPopup
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.CollapseButton
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ResetButton
@@ -68,6 +74,9 @@ import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.s
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.MapConfigCarousel
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.sanity.SanityMeterView
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.timer.TimerDisplay
+import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
+import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
+import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 @Preview
@@ -78,7 +87,7 @@ private fun InvestigationSoloScreenPreview() {
     ) {
 
         InvestigationSoloScreen(
-            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
 
     }
 
@@ -87,7 +96,7 @@ private fun InvestigationSoloScreenPreview() {
 @Composable
 fun InvestigationSoloScreen(
     navController: NavHostController = rememberNavController(),
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     OperationScreen(
@@ -102,7 +111,7 @@ fun InvestigationSoloScreen(
 
 @Composable
 private fun InvestigationSoloContent(
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     val investigationToolbarUiState =
@@ -147,6 +156,15 @@ private fun InvestigationSoloContent(
             )
         }
     }
+
+    val popupUiState = investigationViewModel.popupUiState
+
+    GhostPopup(
+        state = popupUiState
+    ) { investigationViewModel.clearPopup() }
+    EvidencePopup(
+        state = popupUiState
+    ) { investigationViewModel.clearPopup() }
 }
 
 @Composable
@@ -159,24 +177,21 @@ fun InvestigationCompactLandscape() {
 
 }
 
-
-
-
 @Composable
 private fun ColumnScope.Investigation(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     collapsedState: Boolean,
 ) {
-
-    val investigationToolbarUiState =
-        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
-    val section = investigationToolbarUiState.value.category
 
     Journal(
         modifier = Modifier
             .weight(1f, false),
         investigationViewModel = investigationViewModel
     )
+
+    val investigationToolbarUiState =
+        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
+    val section = investigationToolbarUiState.value.category
 
     OperationToolbar(
         modifier = Modifier
@@ -220,7 +235,7 @@ private fun ColumnScope.Investigation(
 
 @Composable
 private fun RowScope.Investigation(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     collapsedState: Boolean,
 ) {
 
@@ -268,7 +283,7 @@ private fun RowScope.Investigation(
 
 @Composable
 private fun ColumnScope.ToolbarConfigurationSection(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     modifier: Modifier = Modifier
 ) {
     val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
@@ -354,7 +369,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
 
 @Composable
 private fun ToolbarFootsteps(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     modifier: Modifier = Modifier
 ) {
     var bpm by remember { mutableFloatStateOf(0f) }
@@ -378,7 +393,7 @@ private fun ToolbarFootsteps(
 
 @Composable
 private fun ToolbarTimer(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     modifier: Modifier = Modifier
 ) {
     val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
@@ -395,7 +410,7 @@ private fun ToolbarTimer(
 
 @Composable
 private fun ToolbarOperationAnalysis(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     modifier: Modifier = Modifier
 ) {
     Box (
@@ -410,7 +425,7 @@ private fun ToolbarOperationAnalysis(
 @Composable
 private fun OperationToolbar(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
 ) {
     val investigationToolbarUiState =
         investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()

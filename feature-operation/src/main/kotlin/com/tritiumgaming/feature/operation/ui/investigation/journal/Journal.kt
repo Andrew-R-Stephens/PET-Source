@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.operation.ui.investigation.journal
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,10 +16,6 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -33,11 +30,9 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.EvidenceList
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.GhostList
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.EvidencePopup
-import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -48,14 +43,14 @@ private fun JournalListsPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        Journal(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+        Journal(investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
     }
 }
 
 @Composable
 fun Journal(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     Row(
@@ -67,11 +62,11 @@ fun Journal(
     ) {
 
         if(investigationViewModel.rTLPreference) {
-            EvidenceListColumn(investigationViewModel = investigationViewModel)
-            GhostListColumn(investigationViewModel = investigationViewModel)
+            EvidenceListColumn(investigationScreenViewModel = investigationViewModel)
+            GhostListColumn(investigationScreenViewModel = investigationViewModel)
         } else {
-            GhostListColumn(investigationViewModel = investigationViewModel)
-            EvidenceListColumn(investigationViewModel = investigationViewModel)
+            GhostListColumn(investigationScreenViewModel = investigationViewModel)
+            EvidenceListColumn(investigationScreenViewModel = investigationViewModel)
         }
 
     }
@@ -80,7 +75,7 @@ fun Journal(
 
 @Composable
 private fun RowScope.GhostListColumn(
-    investigationViewModel: InvestigationViewModel
+    investigationScreenViewModel: InvestigationScreenViewModel
 ) {
     Column(
         modifier = Modifier
@@ -112,28 +107,24 @@ private fun RowScope.GhostListColumn(
         }
 
         GhostList(
-            investigationViewModel = investigationViewModel
-        )
+            investigationViewModel = investigationScreenViewModel
+        ) {
+            Log.d("GhostList", "Setting popup to ${it.name}")
+            investigationScreenViewModel.setPopup(it)
+        }
     }
 }
 
 @Composable
 private fun RowScope.EvidenceListColumn(
-    investigationViewModel: InvestigationViewModel
+    investigationScreenViewModel: InvestigationScreenViewModel
 ) {
-
-    var rememberPopupEvidence by remember { mutableStateOf<EvidenceType?>(null) }
 
     Box(
         modifier = Modifier
             .weight(1f)
             .fillMaxSize()
     ) {
-
-        EvidencePopup(
-            investigationViewModel = investigationViewModel,
-            evidence = rememberPopupEvidence
-        )
 
         Column(
             verticalArrangement = Arrangement.Top
@@ -158,9 +149,10 @@ private fun RowScope.EvidenceListColumn(
             }
 
             EvidenceList(
-                investigationViewModel = investigationViewModel
+                investigationViewModel = investigationScreenViewModel
             ) {
-                rememberPopupEvidence = it
+                Log.d("EvidenceList", "Setting popup to ${it.name}")
+                investigationScreenViewModel.setPopup(it)
             }
 
         }

@@ -29,7 +29,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.ui.OperationScreen
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.feature.operation.ui.missions.components.GhostNameContent
 import com.tritiumgaming.feature.operation.ui.missions.components.GhostResponseContent
 import com.tritiumgaming.feature.operation.ui.missions.components.MissionsContent
@@ -40,7 +40,7 @@ import com.tritiumgaming.feature.operation.ui.missions.components.MissionsConten
 private fun ObjectivesScreenPreview() {
     ObjectivesScreen(
         objectivesViewModel = viewModel(factory = ObjectivesViewModel.Factory),
-        investigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
+        investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory)
     )
 }
 
@@ -48,7 +48,7 @@ private fun ObjectivesScreenPreview() {
 fun ObjectivesScreen(
     navController: NavHostController = rememberNavController(),
     objectivesViewModel: ObjectivesViewModel,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     OperationScreen(
@@ -84,7 +84,7 @@ fun ObjectivesScreen(
 private fun ObjectivesContentPortrait(
     modifier: Modifier = Modifier,
     objectivesViewModel: ObjectivesViewModel,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
     val rememberScrollState = rememberScrollState()
 
@@ -163,7 +163,7 @@ private fun ObjectivesContentPortrait(
 private fun ObjectivesContentLandscape(
     modifier: Modifier = Modifier,
     objectivesViewModel: ObjectivesViewModel,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
     val rememberScrollState = rememberScrollState()
 

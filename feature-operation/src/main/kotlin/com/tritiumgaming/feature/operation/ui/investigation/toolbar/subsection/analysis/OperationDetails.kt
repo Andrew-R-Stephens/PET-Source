@@ -31,7 +31,7 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.feature.operation.app.mappers.toStringResource
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import org.jetbrains.annotations.TestOnly
 import java.util.Locale
 
@@ -39,8 +39,8 @@ import java.util.Locale
 @Preview
 @TestOnly
 private fun OperationDetailsPreview(
-    investigationViewModel: InvestigationViewModel =
-        viewModel(factory = InvestigationViewModel.Factory),
+    investigationViewModel: InvestigationScreenViewModel =
+        viewModel(factory = InvestigationScreenViewModel.Factory),
     onClick: () -> Unit = {}
 ) {
     SelectiveTheme(
@@ -53,7 +53,7 @@ private fun OperationDetailsPreview(
 
 @Composable
 fun OperationDetails(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     modifier: Modifier = Modifier
 ) {
 
@@ -74,7 +74,7 @@ fun OperationDetails(
 
 @Composable
 fun PhaseModifierDetails(
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     val phaseState = investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
@@ -89,7 +89,7 @@ fun PhaseModifierDetails(
 
 @Composable
 fun MapModifierDetails(
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     val mapConfigUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
@@ -133,7 +133,7 @@ fun MapModifierDetails(
 
 @Composable
 fun DifficultyModifierDetails(
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
@@ -170,7 +170,7 @@ fun DifficultyModifierDetails(
 
 @Composable
 fun ActiveGhostModifierDetails(
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
     val ghosts by investigationViewModel.ghostScores.collectAsStateWithLifecycle()
     val filteredGhosts = ghosts.filter { score ->

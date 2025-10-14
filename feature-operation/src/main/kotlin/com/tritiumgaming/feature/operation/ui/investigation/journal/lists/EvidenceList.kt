@@ -12,7 +12,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.item.EvidenceListItem
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import org.jetbrains.annotations.TestOnly
@@ -34,12 +34,11 @@ private fun EvidenceListPreview() {
 
 @Composable
 fun EvidenceList(
-    investigationViewModel: InvestigationViewModel,
-    onTriggerPopup: (evidence: EvidenceType) -> Unit = {},
+    investigationViewModel: InvestigationScreenViewModel,
+    onClickItem: (evidence: EvidenceType) -> Unit = {},
 ) {
 
     val evidenceState = investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
-    //val rememberState = remember { evidenceState.value }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -52,7 +51,7 @@ fun EvidenceList(
                 investigationViewModel = investigationViewModel,
                 evidence = ruledEvidence.evidence
             ) {
-                onTriggerPopup(ruledEvidence.evidence)
+                onClickItem(ruledEvidence.evidence)
             }
 
         }

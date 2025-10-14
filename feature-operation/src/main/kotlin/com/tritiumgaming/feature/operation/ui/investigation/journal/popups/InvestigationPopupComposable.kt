@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -39,6 +40,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.tritiumgaming.core.common.util.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.resources.R
@@ -49,25 +51,17 @@ import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.app.mappers.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
-
-@Composable
-@Preview
-private fun PopupPreviews(
-    investigationViewModel: InvestigationViewModel? = null
-) {
-
-    SelectiveTheme(
-        palette = ClassicPalette
-    ) {
-        EvidencePopup()
-    }
-
-}
+import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun InvestigationPopup(
+    onDismiss: () -> Unit = {},
     content: @Composable () -> Unit
 ) {
     Surface(
@@ -82,10 +76,12 @@ fun InvestigationPopup(
             NavigationHeaderComposable(
                 params = NavHeaderComposableParams(
                     leftType = PETImageButtonType.BACK,
-                    rightType = PETImageButtonType.FORWARD
+                    leftOnClick = { onDismiss() }
                 )
             )
+
             content()
+
             // TODO Banner Ad
         }
     }
@@ -93,24 +89,52 @@ fun InvestigationPopup(
 
 @Composable
 fun EvidencePopup(
-    evidenceRecord: EvidencePopupRecord? = null
+    state: StateFlow<InvestigationPopupUiState>,
+    onDismiss: () -> Unit
 ) {
+    val recordState by state.collectAsStateWithLifecycle()
+    if(!recordState.isShown || recordState.evidencePopupRecord == null) return
 
-    InvestigationPopup {
-        EvidencePopupContent(evidenceRecord)
+    InvestigationPopup(
+        onDismiss = { onDismiss() }
+    ) {
+        EvidencePopupContent(recordState.evidencePopupRecord!!)
     }
+}
 
+@Composable
+fun GhostPopup(
+    state: StateFlow<InvestigationPopupUiState>,
+    onDismiss: () -> Unit
+) {
+    val recordState by state.collectAsStateWithLifecycle()
+    if(!recordState.isShown || recordState.ghostPopupRecord == null) return
+
+    InvestigationPopup(
+        onDismiss = { onDismiss() }
+    ) {
+        GhostPopupContent(recordState.ghostPopupRecord!!)
+    }
 }
 
 @Composable
 private fun EvidencePopupContent(
-    evidenceRecord: EvidencePopupRecord? = null
+    evidenceRecord: EvidencePopupRecord
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
+
+        Text(
+            modifier = Modifier
+                .padding(PaddingValues(top = 8.dp))
+                .wrapContentHeight(),
+            text = stringResource(evidenceRecord.name.toStringResource()),
+            fontSize = 30.sp,
+            color = LocalPalette.current.textFamily.body,
+            style = LocalTypography.current.primary.regular
+        )
 
         var primaryPageActive = remember { mutableIntStateOf(0) }
 
@@ -145,13 +169,38 @@ private fun EvidencePopupContent(
 }
 
 @Composable
+private fun GhostPopupContent(
+    ghostRecord: GhostPopupRecord
+) {
+    ghostRecord
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+
+        Text(
+            modifier = Modifier
+                .padding(PaddingValues(top = 8.dp))
+                .wrapContentHeight(),
+            text = stringResource(ghostRecord.name.toStringResource()),
+            fontSize = 30.sp,
+            color = LocalPalette.current.textFamily.body,
+            style = LocalTypography.current.primary.regular
+        )
+
+    }
+
+}
+
+@Composable
 fun RowScope.PrimaryPageButton(
     modifier: Modifier = Modifier,
     pageType: PrimaryPageType,
     activePage: MutableIntState,
     @StringRes textRes: Int = pageType.label,
     onClick: () -> Unit = { }
-    ) {
+) {
 
     val rememberActivePage by remember { activePage }
 
@@ -197,7 +246,7 @@ fun RowScope.PrimaryPageButton(
 
 @Composable
 private fun OverviewPage(
-    evidenceRecord: EvidencePopupRecord? = null
+    evidenceRecord: EvidencePopupRecord
 ) {
 
     Column(
@@ -220,7 +269,7 @@ private fun OverviewPage(
                 modifier = Modifier
                     .padding(PaddingValues(top = 8.dp))
                     .wrapContentHeight(),
-                text = "${integerResource(R.integer.equipment_requirement_buycost_65)}",
+                text = stringResource(evidenceRecord.cost.toStringResource()),
                 fontSize = 30.sp,
                 color = LocalPalette.current.textFamily.body,
                 style = LocalTypography.current.primary.regular
@@ -228,7 +277,7 @@ private fun OverviewPage(
             
             val details = AnnotatedString.Companion.fromHtml(
                 replaceHTMLFontColor(
-                    stringResource(R.string.shop_equipment_dots_data_info_1),
+                    stringResource(evidenceRecord.tiers[0].description.toStringResource()),
                     "#CC3C3C", LocalPalette.current.textFamily.emphasis
                 )
             )
@@ -248,7 +297,7 @@ private fun OverviewPage(
             modifier = Modifier
                 .fillMaxHeight(.4f)
                 .weight(1f),
-            animatedGifRes = /*evidenceRecord?.animations[0] ?: */R.drawable.anim_dots_1
+            animatedGifRes = evidenceRecord.tiers[0].animation.toDrawableResource()
         )
 
     }
@@ -259,20 +308,6 @@ private fun EquipmentPage() {
     Column {
 
     }
-}
-
-@Composable
-fun GhostPopup() {
-
-    InvestigationPopup {
-        GhostPopupContent()
-    }
-
-}
-
-@Composable
-private fun GhostPopupContent() {
-    Text(text="Ghost Popup", color = LocalPalette.current.textFamily.body)
 }
 
 enum class PrimaryPageType(val pageIndex: Int, @StringRes val label: Int) {

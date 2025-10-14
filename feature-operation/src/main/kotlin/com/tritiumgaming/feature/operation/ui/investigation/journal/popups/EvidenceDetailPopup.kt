@@ -32,35 +32,22 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
 import org.jetbrains.annotations.TestOnly
 
 @Composable
-@Preview
-@TestOnly
-fun EvidencePopupPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    )
-    EvidencePopup()
-}
-
-@Composable
-fun EvidencePopup(
-    investigationViewModel: InvestigationViewModel,
-    evidence: EvidenceType? = null,
+fun EvidenceDetailPopup(
+    evidence: EvidencePopupRecord,
     onDismiss: () -> Unit = {}
 ) {
-
-    var rememberEvidence by remember { mutableStateOf(evidence) }
 
     var rememberSection by remember { mutableIntStateOf(0) }
 
     Column(
         modifier = Modifier
-            .alpha(if(rememberEvidence == null) 0f else 1f)
+            .alpha(1f)
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Top

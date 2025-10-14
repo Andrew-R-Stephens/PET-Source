@@ -12,6 +12,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.operation.app.container.OperationContainerProvider
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.item.GhostScore
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.InvestigationPopupUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapUiState
@@ -49,11 +50,13 @@ import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling
 import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
-import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchEvidencesUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
-import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostsUseCase
-import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceByIdUseCase
-import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostByIdUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostTypesUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceTypeByIdUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostTypeByIdUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.InitRuledEvidenceUseCase
 import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.shared.operation.domain.map.modifier.usecase.FetchMapModifiersUseCase
@@ -70,6 +73,10 @@ import com.tritiumgaming.shared.operation.domain.map.simple.usecase.GetSimpleMap
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
+import com.tritiumgaming.shared.operation.domain.popup.model.EmptyPopupRecord
+import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
+import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
+import com.tritiumgaming.shared.operation.domain.popup.model.InvestigationPopupRecord
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
@@ -83,13 +90,15 @@ import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
 
-class InvestigationViewModel(
-    private val fetchGhostsUseCase: FetchGhostsUseCase,
-    private val fetchEvidencesUseCase: FetchEvidencesUseCase,
-    private val getEvidenceByIdUseCase: GetEvidenceByIdUseCase,
+class InvestigationScreenViewModel(
+    private val getEvidenceUseCase: GetEvidenceUseCase,
+    private val fetchEvidenceTypesUseCase: FetchEvidenceTypesUseCase,
+    private val getEvidenceTypeByIdUseCase: GetEvidenceTypeByIdUseCase,
+    private val getGhostUseCase: GetGhostUseCase,
+    private val fetchGhostTypesUseCase: FetchGhostTypesUseCase,
+    private val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase,
     private val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
-    private val getGhostByIdUseCase: GetGhostByIdUseCase,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
     private val getDifficultyNameUseCase: GetDifficultyNameUseCase,
     private val getDifficultyModifierUseCase: GetDifficultyModifierUseCase,
@@ -152,6 +161,9 @@ class InvestigationViewModel(
 
     private val _toolbarUiState = MutableStateFlow(ToolbarUiState())
     val toolbarUiState = _toolbarUiState.asStateFlow()
+
+    private val _popupUiState = MutableStateFlow(InvestigationPopupUiState())
+    val popupUiState = _popupUiState.asStateFlow()
 
     /*
      * COROUTINES
@@ -270,7 +282,9 @@ class InvestigationViewModel(
 
     fun toggleToolbarState() {
         _toolbarUiState.update {
-            it.copy(isCollapsed = !it.isCollapsed)
+            it.copy(
+                isCollapsed = !it.isCollapsed
+            )
         }
     }
 
@@ -280,6 +294,77 @@ class InvestigationViewModel(
                 isCollapsed = false,
                 category = category
             )
+        }
+    }
+
+    /*
+     * Popup Ui Functions
+     */
+    private fun initPopupUiState() {
+        _popupUiState.update {
+            InvestigationPopupUiState()
+        }
+    }
+
+    fun clearPopup() {
+        try {
+            _popupUiState.update {
+                it.copy(
+                    isShown = false,
+                    evidencePopupRecord = null,
+                    ghostPopupRecord = null
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun setPopup(
+        evidenceType: EvidenceType
+    ) {
+        try {
+            val evidence = getEvidenceUseCase(evidenceType).getOrThrow()
+            val popupRecord = EvidencePopupRecord(
+                id = evidence.id,
+                name = evidence.name,
+                cost = evidence.buyCost,
+                tiers = evidence.tiers.map { it }
+            )
+
+            _popupUiState.update {
+                it.copy(
+                    isShown = true,
+                    evidencePopupRecord = popupRecord
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun setPopup(
+        ghostType: GhostType
+    ) {
+        try {
+            val ghost = getGhostUseCase(ghostType).getOrThrow()
+            val popupRecord = GhostPopupRecord(
+                id = ghost.id,
+                name = ghost.name,
+                info = ghost.info,
+                strengthData = ghost.strengthData,
+                weaknessData = ghost.weaknessData,
+                huntData = ghost.huntData,
+            )
+
+            _popupUiState.update {
+                it.copy(
+                    isShown = true,
+                    ghostPopupRecord = popupRecord
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -301,14 +386,16 @@ class InvestigationViewModel(
     /*
      * FUNCTIONS
      */
-    fun getGhostById(ghostId: String): GhostType? = getGhostByIdUseCase(ghostId)
+    fun getGhostById(ghostId: String): GhostType? = getGhostTypeByIdUseCase(ghostId)
 
-    fun getEvidenceById(evidenceId: String): EvidenceType? = getEvidenceByIdUseCase(evidenceId)
+    fun getEvidenceById(evidenceId: String): EvidenceType? = getEvidenceTypeByIdUseCase(evidenceId)
 
     fun reset() {
         resetJournal()
 
-        resetTimer(difficultyUiState.value.time)
+        resetTimer(
+            currentDifficultyTime = difficultyUiState.value.time
+        )
         resetPhase()
         resetSanity()
     }
@@ -436,10 +523,15 @@ class InvestigationViewModel(
     */
 
     private val _ruledEvidence: MutableStateFlow<List<RuledEvidence>> =
-        MutableStateFlow(listOf<RuledEvidence>())
+        MutableStateFlow(emptyList())
     val ruledEvidence = _ruledEvidence.asStateFlow()
     private fun initRuledEvidence() {
-        _ruledEvidence.update { initRuledEvidenceUseCase() }
+        try {
+            val evidence = initRuledEvidenceUseCase().getOrThrow()
+            _ruledEvidence.update { evidence }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun setEvidenceRuling(
@@ -525,11 +617,16 @@ class InvestigationViewModel(
         _difficultyUiState.update {
             it.copy(
                 index = index,
-                name = getDifficultyNameUseCase(index).getOrDefault(it.name),
-                modifier = getDifficultyModifierUseCase(index).getOrDefault(it.modifier),
-                time = getDifficultyTimeUseCase(index).getOrDefault(it.time),
-                initialSanity = getDifficultyInitialSanityUseCase(index).getOrDefault(it.initialSanity),
-                responseType = getDifficultyResponseTypeUseCase(index).getOrDefault(it.responseType)
+                name = getDifficultyNameUseCase(index)
+                    .getOrDefault(it.name),
+                modifier = getDifficultyModifierUseCase(index)
+                    .getOrDefault(it.modifier),
+                time = getDifficultyTimeUseCase(index)
+                    .getOrDefault(it.time),
+                initialSanity = getDifficultyInitialSanityUseCase(index)
+                    .getOrDefault(it.initialSanity),
+                responseType = getDifficultyResponseTypeUseCase(index)
+                    .getOrDefault(it.responseType)
             )
         }
     }
@@ -560,7 +657,9 @@ class InvestigationViewModel(
     ) {
         _playerSanityUiState.update {
             it.copy(
-                insanityLevel = max(min(MAX_SANITY, value), MIN_SANITY)
+                insanityLevel = max(
+                    min(MAX_SANITY, value),
+                    MIN_SANITY)
             )
         }
 
@@ -877,7 +976,7 @@ class InvestigationViewModel(
         try {
             val name = getSimpleMapNameUseCase(index).getOrThrow()
             val size = getSimpleMapSizeUseCase(index).getOrThrow()
-            val modifier = fetchMapModifiersUseCase(index).getOrThrow()
+            val modifier = fetchMapModifiersUseCase(size).getOrThrow()
 
             _mapUiState.update {
                 it.copy(
@@ -894,11 +993,25 @@ class InvestigationViewModel(
         }
     }
 
-    fun incrementMapIndex() =
-        setCurrentMapIndex(incrementMapIndexUseCase(mapUiState.value.index))
+    fun incrementMapIndex() {
+        try {
+            val newIndex = incrementMapIndexUseCase(
+                mapUiState.value.index).getOrThrow()
+            setCurrentMapIndex(newIndex)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
-    fun decrementMapIndex() =
-        setCurrentMapIndex(decrementMapIndexUseCase(mapUiState.value.index))
+    fun decrementMapIndex() {
+        try {
+            val newIndex = decrementMapIndexUseCase(
+                mapUiState.value.index).getOrThrow()
+            setCurrentMapIndex(newIndex)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation
      * (Setup vs Hunt)
@@ -935,6 +1048,8 @@ class InvestigationViewModel(
         initPlayerSanityUiState()
         initToolbarUiState()
 
+        initPopupUiState()
+
         initGhostScores()
         initRuledEvidence()
         reorderGhostScores()
@@ -948,10 +1063,12 @@ class InvestigationViewModel(
                     val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
                     val container = (application as OperationContainerProvider).provideOperationContainer()
 
-                    val fetchEvidencesUseCase = container.fetchEvidencesUseCase
-                    val getEvidenceByIdUseCase = container.getEvidenceByIdUseCase
-                    val fetchGhostsUseCase = container.fetchGhostsUseCase
-                    val getGhostByIdUseCase = container.getGhostByIdUseCase
+                    val getEvidenceUseCase = container.getEvidenceUseCase
+                    val fetchEvidenceTypesUseCase = container.fetchEvidenceTypesUseCase
+                    val getEvidenceByIdUseCase = container.getEvidenceTypeByIdUseCase
+                    val getGhostUseCase = container.getGhostUseCase
+                    val fetchGhostTypesUseCase = container.fetchGhostTypesUseCase
+                    val getGhostByIdUseCase = container.getGhostTypeByIdUseCase
                     val fetchGhostEvidencesUseCase = container.fetchGhostEvidencesUseCase
                     val initRuledEvidenceUseCase = container.initRuledEvidenceUseCase
                     val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
@@ -989,11 +1106,13 @@ class InvestigationViewModel(
                     val getEnableRTLUseCase = container.getEnableRTLUseCase
                     val getMaxHuntWarnFlashTimeUseCase = container.getMaxHuntWarnFlashTimeUseCase
 
-                    InvestigationViewModel(
-                        fetchEvidencesUseCase = fetchEvidencesUseCase,
-                        getEvidenceByIdUseCase = getEvidenceByIdUseCase,
-                        fetchGhostsUseCase = fetchGhostsUseCase,
-                        getGhostByIdUseCase = getGhostByIdUseCase,
+                    InvestigationScreenViewModel(
+                        getEvidenceUseCase = getEvidenceUseCase,
+                        fetchEvidenceTypesUseCase = fetchEvidenceTypesUseCase,
+                        getEvidenceTypeByIdUseCase = getEvidenceByIdUseCase,
+                        getGhostUseCase = getGhostUseCase,
+                        fetchGhostTypesUseCase = fetchGhostTypesUseCase,
+                        getGhostTypeByIdUseCase = getGhostByIdUseCase,
                         initRuledEvidenceUseCase = initRuledEvidenceUseCase,
                         fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
                         fetchDifficultiesUseCase = fetchDifficultiesUseCase,

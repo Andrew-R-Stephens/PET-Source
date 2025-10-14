@@ -23,8 +23,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.item.GhostListItem
+import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
+import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.annotations.TestOnly
@@ -38,16 +40,15 @@ private fun GhostListPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        GhostList(investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
-
-        val arrayList = ArrayList<Int>()
+        GhostList(investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
     }
 }
 
 @Composable
 fun GhostList(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel,
+    onClickItem: (ghost: GhostType) -> Unit = {},
 ) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -82,7 +83,7 @@ fun GhostList(
             key = { it }
         ) {
 
-            investigationViewModel.getGhostById(it)?.let { ghostModel ->
+            investigationViewModel.getGhostById(it)?.let { ghostType ->
 
                 //Log.d("GhostList", "Ghost Found: ${ghostModel.id}")
 
@@ -93,8 +94,10 @@ fun GhostList(
                         .animateItem(),
                     investigationViewModel = investigationViewModel,
                     ghostScore = ghostsScoreState.value.find { score ->
-                        score.ghostEvidence.ghost.id == ghostModel.id }
-                )
+                        score.ghostEvidence.ghost.id == ghostType.id }
+                ) {
+                    onClickItem(ghostType)
+                }
 
             } ?: Log.d("GhostList", "No ghost found for id: $it")
 

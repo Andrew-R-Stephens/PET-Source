@@ -26,13 +26,13 @@ import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import kotlin.math.min
 
 @Composable
 fun SanityMeterView(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
     val sanityLevel = investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val sanityPercent = sanityLevel.value.sanityLevel

@@ -2,6 +2,7 @@ package com.tritiumgaming.feature.operation.ui.investigation.journal.lists.item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -36,7 +37,7 @@ import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.toDrawableResource
 import com.tritiumgaming.feature.operation.app.mappers.toStringResource
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.NEGATIVE
 import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.NEUTRAL
@@ -45,10 +46,11 @@ import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ru
 @Composable
 fun LazyItemScope.GhostListItem(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     ghostScore: GhostScore? = null,
     label: String = ghostScore?.let {
-        stringResource(ghostScore.ghostEvidence.ghost.name.toStringResource()) } ?: "Test"
+        stringResource(ghostScore.ghostEvidence.ghost.name.toStringResource()) } ?: "Test",
+    onNameClick: () -> Unit = {},
 ) {
 
     val scoreState = ghostScore?.score?.collectAsStateWithLifecycle()
@@ -85,6 +87,11 @@ fun LazyItemScope.GhostListItem(
                         }
                     ) { change, dragAmount ->
                         change.consume()
+                    }
+                }
+                .pointerInput(Unit) {
+                    detectTapGestures {
+                        onNameClick()
                     }
                 },
             contentAlignment = Alignment.Center
@@ -172,7 +179,7 @@ fun LazyItemScope.GhostListItem(
 
 @Composable
 private fun RowScope.EvidenceIcon(
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     evidence: EvidenceType,
     isStrict: Boolean = false
 ) {

@@ -34,7 +34,7 @@ import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.toStringResource
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitleLength
 
 @Composable
@@ -47,9 +47,9 @@ private fun OperationCarouselPreview() {
             onClickRight = {}
         )
         DifficultyConfigCarousel(
-            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
         MapConfigCarousel(
-            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
     }
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
@@ -59,9 +59,9 @@ private fun OperationCarouselPreview() {
             onClickRight = {}
         )
         DifficultyConfigCarousel(
-            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
         MapConfigCarousel(
-            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory))
+            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
     }
 }
 
@@ -145,7 +145,7 @@ private fun OperationConfigCarousel(
 @Composable
 fun DifficultyConfigCarousel(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
@@ -167,7 +167,7 @@ fun DifficultyConfigCarousel(
 @Composable
 fun MapConfigCarousel(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
 
     val mapUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()

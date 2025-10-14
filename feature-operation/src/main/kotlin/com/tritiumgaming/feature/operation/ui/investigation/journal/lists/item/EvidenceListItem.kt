@@ -46,7 +46,7 @@ import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.toStringResource
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling
@@ -56,7 +56,7 @@ import org.jetbrains.annotations.TestOnly
 @Composable
 fun EvidenceListItem(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     evidence: EvidenceType = EvidenceType(
         id = "test",
         name = EvidenceResources.EvidenceTitle.DOTS,
@@ -121,7 +121,7 @@ fun EvidenceListItem(
 @Composable
 private fun EvidenceRowFlat(
     modifier: Modifier,
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     label: String,
     evidence: EvidenceType,
     rulingState: Ruling?,
@@ -203,7 +203,7 @@ private fun EvidenceRowFlat(
 @Composable
 private fun EvidenceRowTall(
     modifier: Modifier,
-    investigationViewModel: InvestigationViewModel,
+    investigationViewModel: InvestigationScreenViewModel,
     label: String,
     evidence: EvidenceType,
     rulingState: Ruling?,
@@ -388,7 +388,7 @@ private fun EvidenceItemPreview() {
     ) {
         EvidenceListItem(
             label = "Test",
-            investigationViewModel = viewModel(factory = InvestigationViewModel.Factory)
+            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory)
         )
     }
 }

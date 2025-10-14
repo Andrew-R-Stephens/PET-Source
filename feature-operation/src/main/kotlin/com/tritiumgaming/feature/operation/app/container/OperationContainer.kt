@@ -1,8 +1,6 @@
 package com.tritiumgaming.feature.operation.app.container
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import com.tritiumgaming.data.codex.repository.CodexRepositoryImpl
 import com.tritiumgaming.data.codex.source.local.CodexAchievementsLocalDataSource
 import com.tritiumgaming.data.codex.source.local.CodexEquipmentLocalDataSource
@@ -57,11 +55,13 @@ import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFemal
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFirstNamesUseCase
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllMaleNamesUseCase
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllSurnamesUseCase
-import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchEvidencesUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
-import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostsUseCase
-import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceByIdUseCase
-import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostByIdUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostTypesUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceTypeByIdUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.GetEvidenceUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostTypeByIdUseCase
+import com.tritiumgaming.shared.operation.domain.journal.usecase.GetGhostUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.InitRuledEvidenceUseCase
 import com.tritiumgaming.shared.operation.domain.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.shared.operation.domain.map.complex.usecase.FetchComplexMapsUseCase
@@ -98,10 +98,13 @@ class OperationContainer(
     private val ghostRepository: GhostRepository = GhostRepositoryImpl(
         ghostLocalDataSource = ghostLocalDataSource
     )
-    internal val fetchGhostsUseCase = FetchGhostsUseCase(
+    internal val getGhostUseCase = GetGhostUseCase(
         repository = ghostRepository
     )
-    internal val getGhostByIdUseCase = GetGhostByIdUseCase(
+    internal val fetchGhostTypesUseCase = FetchGhostTypesUseCase(
+        repository = ghostRepository
+    )
+    internal val getGhostTypeByIdUseCase = GetGhostTypeByIdUseCase(
         repository = ghostRepository
     )
 
@@ -112,10 +115,13 @@ class OperationContainer(
     private val evidenceRepository: EvidenceRepository = EvidenceRepositoryImpl(
         evidenceLocalDataSource = evidenceLocalDataSource
     )
-    internal val fetchEvidencesUseCase = FetchEvidencesUseCase(
+    internal val getEvidenceUseCase = GetEvidenceUseCase(
         repository = evidenceRepository
     )
-    internal val getEvidenceByIdUseCase = GetEvidenceByIdUseCase(
+    internal val fetchEvidenceTypesUseCase = FetchEvidenceTypesUseCase(
+        repository = evidenceRepository
+    )
+    internal val getEvidenceTypeByIdUseCase = GetEvidenceTypeByIdUseCase(
         repository = evidenceRepository
     )
 
@@ -125,7 +131,7 @@ class OperationContainer(
         evidenceRepository = evidenceRepository
     )
     internal val initRuledEvidenceUseCase = InitRuledEvidenceUseCase(
-        fetchEvidencesUseCase = fetchEvidencesUseCase
+        fetchEvidencesUseCase = fetchEvidenceTypesUseCase
     )
 
     // Difficulty
@@ -202,7 +208,7 @@ class OperationContainer(
         localSource = mapModifiersLocalDataSource
     )
     internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(
-        simpleMapRepository = mapModifiersRepository
+        repository = mapModifiersRepository
     )
 
     // Simple Map

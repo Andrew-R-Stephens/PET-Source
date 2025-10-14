@@ -27,7 +27,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationViewModel
+import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.feature.operation.ui.missions.ObjectivesViewModel
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources
 
@@ -35,7 +35,7 @@ import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyRes
 fun GhostResponseContent(
     modifier: Modifier = Modifier,
     objectivesViewModel: ObjectivesViewModel,
-    investigationViewModel: InvestigationViewModel
+    investigationViewModel: InvestigationScreenViewModel
 ) {
     val ghostDetailsUiState = objectivesViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
     val responseState = ghostDetailsUiState.value.responseState
