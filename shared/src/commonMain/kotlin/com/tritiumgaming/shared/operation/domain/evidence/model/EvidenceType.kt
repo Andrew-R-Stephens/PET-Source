@@ -1,13 +1,14 @@
 package com.tritiumgaming.shared.operation.domain.evidence.model
 
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIdentifier
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTitle
 
 /**
  * Evidence enums
  */
 data class EvidenceType(
-    val id: String,
+    val id: EvidenceIdentifier,
     val name: EvidenceTitle,
     val icon: EvidenceIcon,
 ) {

@@ -83,8 +83,8 @@ import com.tritiumgaming.core.ui.icon.Arrow60RightIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.app.mappers.toDrawableResource
-import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.operation.ui.mapsmenu.MapsViewModel
 import com.tritiumgaming.feature.operation.ui.mapsmenu.mapdisplay.model.InteractiveViewController

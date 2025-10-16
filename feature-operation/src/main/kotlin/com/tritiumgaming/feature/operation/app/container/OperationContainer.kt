@@ -2,9 +2,9 @@ package com.tritiumgaming.feature.operation.app.container
 
 import android.content.Context
 import com.tritiumgaming.data.codex.repository.CodexRepositoryImpl
-import com.tritiumgaming.data.codex.source.local.CodexAchievementsLocalDataSource
-import com.tritiumgaming.data.codex.source.local.CodexEquipmentLocalDataSource
-import com.tritiumgaming.data.codex.source.local.CodexPossessionsLocalDataSource
+import com.tritiumgaming.data.codex.source.local.AchievementsLocalDataSource
+import com.tritiumgaming.data.codex.source.local.EquipmentLocalDataSource
+import com.tritiumgaming.data.codex.source.local.PossessionsLocalDataSource
 import com.tritiumgaming.data.difficulty.repository.DifficultyRepositoryImpl
 import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
 import com.tritiumgaming.data.difficulty.source.local.DifficultyLocalDataSource
@@ -35,9 +35,9 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preference
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableRTLUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.operation.domain.codex.repository.CodexRepository
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchAchievementTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.FetchDifficultiesUseCase
@@ -49,6 +49,7 @@ import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficult
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTypeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
+import com.tritiumgaming.shared.operation.domain.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.operation.domain.ghostname.repository.GhostNameRepository
 import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFemaleNamesUseCase
@@ -109,9 +110,7 @@ class OperationContainer(
     )
 
     // Evidence
-    private val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource(
-        applicationContext = applicationContext
-    )
+    private val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource()
     private val evidenceRepository: EvidenceRepository = EvidenceRepositoryImpl(
         evidenceLocalDataSource = evidenceLocalDataSource
     )
@@ -269,32 +268,34 @@ class OperationContainer(
     )
 
     // Achievements
-    private val codexAchievementsLocalDataSource: CodexAchievementsLocalDataSource =
-        CodexAchievementsLocalDataSource()
+    private val achievementsLocalDataSource: AchievementsLocalDataSource =
+        AchievementsLocalDataSource()
 
     // Equipment
-    private val codexEquipmentLocalDataSource: CodexEquipmentLocalDataSource =
-        CodexEquipmentLocalDataSource()
+    private val equipmentLocalDataSource: EquipmentLocalDataSource =
+        EquipmentLocalDataSource()
 
     //Possessions
-    private val codexPossessionsLocalDataSource: CodexPossessionsLocalDataSource =
-        CodexPossessionsLocalDataSource()
+    private val possessionsLocalDataSource: PossessionsLocalDataSource =
+        PossessionsLocalDataSource()
 
     // Codex
     private val codexRepository: CodexRepository = CodexRepositoryImpl(
-        achievementsLocalDataSource = codexAchievementsLocalDataSource,
-        equipmentLocalDataSource = codexEquipmentLocalDataSource,
-        possessionsLocalDataSource = codexPossessionsLocalDataSource
+        achievementsLocalDataSource = achievementsLocalDataSource,
+        equipmentLocalDataSource = equipmentLocalDataSource,
+        possessionsLocalDataSource = possessionsLocalDataSource
     )
 
-    internal val fetchCodexAchievementsUseCase = FetchCodexAchievementsUseCase(
+    internal val fetchCodexAchievementsUseCase = FetchAchievementTypesUseCase(
         codexRepository = codexRepository
     )
-    internal val fetchCodexEquipmentUseCase = FetchCodexEquipmentUseCase(
+    internal val fetchCodexEquipmentUseCase = FetchEquipmentTypesUseCase(
         codexRepository = codexRepository
     )
-    internal val fetchCodexPossessionsUseCase = FetchCodexPossessionsUseCase(
+    internal val fetchCodexPossessionsUseCase = FetchPossessionTypesUseCase(
         codexRepository = codexRepository
     )
+
+    internal val getEquipmentTypeByEvidenceTypeUseCase = GetEquipmentTypeByEvidenceTypeUseCase()
 
 }

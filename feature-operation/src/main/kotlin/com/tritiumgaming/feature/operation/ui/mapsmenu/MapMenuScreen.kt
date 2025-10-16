@@ -41,8 +41,8 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.app.mappers.toDrawableResource
-import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources

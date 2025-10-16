@@ -32,9 +32,9 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preference
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableRTLUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchAchievementTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
@@ -46,9 +46,12 @@ import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficult
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyResponseTypeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.IncrementDifficultyIndexUseCase
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling
+import com.tritiumgaming.shared.operation.domain.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
+import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
@@ -118,13 +121,14 @@ class InvestigationScreenViewModel(
     private val getMapModifierUseCase: GetMapModifierUseCase,
     private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
     private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
-    private val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase,
-    private val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
-    private val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase,
+    private val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase,
+    private val fetchCodexPossessionsUseCase: FetchPossessionTypesUseCase,
+    private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase,
     private val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase,
     private val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase,
     private val getEnableRTLUseCase: GetEnableRTLUseCase,
     private val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase,
+    private val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase,
 ) : ViewModel() {
 
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
@@ -321,13 +325,22 @@ class InvestigationScreenViewModel(
     fun setPopup(
         evidenceType: EvidenceType
     ) {
+
         try {
             val evidence = getEvidenceUseCase(evidenceType).getOrThrow()
+            val equipmentList = fetchCodexEquipmentUseCase().getOrThrow()
+
+            val equipmentId = getEquipmentTypeByEvidenceTypeUseCase(evidenceType)
+            val equipment = equipmentList.first {
+                it.id == equipmentId
+            }
+
             val popupRecord = EvidencePopupRecord(
                 id = evidence.id,
                 name = evidence.name,
-                cost = evidence.buyCost,
-                tiers = evidence.tiers.map { it }
+                description = evidence.description,
+                evidenceTiers = evidence.tiers.map { it },
+                equipmentTiers = equipment
             )
 
             _popupUiState.update {
@@ -384,9 +397,11 @@ class InvestigationScreenViewModel(
     /*
      * FUNCTIONS
      */
-    fun getGhostById(ghostId: String): GhostType? = getGhostTypeByIdUseCase(ghostId)
+    fun getGhostById(ghostId: GhostResources.GhostIdentifier): GhostType? =
+        getGhostTypeByIdUseCase(ghostId)
 
-    fun getEvidenceById(evidenceId: String): EvidenceType? = getEvidenceTypeByIdUseCase(evidenceId)
+    fun getEvidenceById(evidenceId: EvidenceResources.EvidenceIdentifier): EvidenceType? =
+        getEvidenceTypeByIdUseCase(evidenceId)
 
     fun reset() {
         resetJournal()
@@ -432,7 +447,7 @@ class InvestigationScreenViewModel(
     }
 
     /** Order of Ghost IDs **/
-    private val _ghostOrder: MutableStateFlow<List<String>> =
+    private val _ghostOrder: MutableStateFlow<List<GhostResources.GhostIdentifier>> =
         MutableStateFlow(mutableStateListOf())
 
     @Stable
@@ -1103,6 +1118,8 @@ class InvestigationScreenViewModel(
                     val getEnableGhostReorderUseCase = container.getEnableGhostReorderUseCase
                     val getEnableRTLUseCase = container.getEnableRTLUseCase
                     val getMaxHuntWarnFlashTimeUseCase = container.getMaxHuntWarnFlashTimeUseCase
+                    val getEquipmentTypeByEvidenceTypeUseCase =
+                        container.getEquipmentTypeByEvidenceTypeUseCase
 
                     InvestigationScreenViewModel(
                         getEvidenceUseCase = getEvidenceUseCase,
@@ -1140,7 +1157,8 @@ class InvestigationScreenViewModel(
                         getAllowHuntWarnAudioUseCase = getAllowHuntWarnAudioUseCase,
                         getEnableGhostReorderUseCase = getEnableGhostReorderUseCase,
                         getEnableRTLUseCase = getEnableRTLUseCase,
-                        getMaxHuntWarnFlashTimeUseCase = getMaxHuntWarnFlashTimeUseCase
+                        getMaxHuntWarnFlashTimeUseCase = getMaxHuntWarnFlashTimeUseCase,
+                        getEquipmentTypeByEvidenceTypeUseCase = getEquipmentTypeByEvidenceTypeUseCase
                     )
                 }
             }

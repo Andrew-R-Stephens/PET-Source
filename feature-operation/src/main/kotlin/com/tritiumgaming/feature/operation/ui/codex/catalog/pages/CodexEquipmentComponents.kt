@@ -43,9 +43,11 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.app.mappers.toDrawableResource
-import com.tritiumgaming.feature.operation.app.mappers.toIntegerResource
-import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.codex.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.codex.toIntegerResource
+import com.tritiumgaming.feature.operation.app.mappers.codex.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexGroup
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexGroupItem

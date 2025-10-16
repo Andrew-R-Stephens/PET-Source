@@ -33,7 +33,8 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.difficulty.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitleLength
 

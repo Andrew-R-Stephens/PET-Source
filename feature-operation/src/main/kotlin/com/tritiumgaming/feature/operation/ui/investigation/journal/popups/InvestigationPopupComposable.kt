@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.integerResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.fromHtml
@@ -46,8 +47,12 @@ import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.app.mappers.toDrawableResource
-import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.codex.toIntegerResource
+import com.tritiumgaming.feature.operation.app.mappers.evidence.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.evidence.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toStringResource
 import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
 import kotlinx.coroutines.flow.StateFlow
@@ -262,7 +267,8 @@ private fun OverviewPage(
                 modifier = Modifier
                     .padding(PaddingValues(top = 8.dp))
                     .wrapContentHeight(),
-                text = stringResource(evidenceRecord.cost.toStringResource()),
+                text = "${integerResource(
+                    evidenceRecord.equipmentTiers.buyCostData.toIntegerResource())}",
                 fontSize = 30.sp,
                 color = LocalPalette.current.textFamily.body,
                 style = LocalTypography.current.primary.regular
@@ -270,7 +276,7 @@ private fun OverviewPage(
             
             val details = AnnotatedString.Companion.fromHtml(
                 replaceHTMLFontColor(
-                    stringResource(evidenceRecord.tiers[0].description.toStringResource()),
+                    stringResource(evidenceRecord.description.toStringResource()),
                     "#CC3C3C", LocalPalette.current.textFamily.emphasis
                 )
             )
@@ -290,7 +296,7 @@ private fun OverviewPage(
             modifier = Modifier
                 .fillMaxHeight(.4f)
                 .weight(1f),
-            animatedGifRes = evidenceRecord.tiers[0].animation.toDrawableResource()
+            animatedGifRes = evidenceRecord.evidenceTiers[0].animation.toDrawableResource()
         )
 
     }

@@ -1,5 +1,6 @@
 package com.tritiumgaming.shared.operation.domain.popup.model
 
+import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostStrength
@@ -7,7 +8,7 @@ import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.Gho
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostWeakness
 
 data class GhostPopupRecord(
-    val id: String = "0",
+    val id: GhostResources.GhostIdentifier,
     val name: GhostTitle,
     val info: GhostDescription,
     val strengthData: GhostStrength,

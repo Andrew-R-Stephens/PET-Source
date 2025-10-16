@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.integerResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -35,8 +36,10 @@ import com.tritiumgaming.core.ui.common.prefabicon.MarkPriorityCircleIcon
 import com.tritiumgaming.core.ui.common.prefabicon.MarkXCircleIcon
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.app.mappers.toDrawableResource
-import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.evidence.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
 import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.NEGATIVE
@@ -57,7 +60,10 @@ fun LazyItemScope.GhostListItem(
 
     val rejectionState = ghostScore?.forcefullyRejected?.collectAsStateWithLifecycle()
 
-    val strikethroughIcon = when(ghostScore?.ghostEvidence?.ghost?.id?.toFloat()?.rem(3f)) {
+    val ghostIdStr = ghostScore?.ghostEvidence?.ghost?.id?.toStringResource()?.let {
+        stringResource(it)
+    }
+    val strikethroughIcon = when(ghostIdStr?.toFloat()?.rem(3f)) {
         0f -> R.drawable.icon_strikethrough_2
         1f -> R.drawable.icon_strikethrough_3
         else ->  R.drawable.icon_strikethrough_1

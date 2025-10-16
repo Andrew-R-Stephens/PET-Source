@@ -1,19 +1,19 @@
 package com.tritiumgaming.shared.operation.domain.codex.model.possessions
 
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemAltName
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemAttribute
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemDrawChance
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemFlavorText
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemImage
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemInfoText
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources.PossessionItemSanityDrain
+import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionAttribute
+import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionDescription
+import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionDrawChance
+import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionFlavor
+import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionImage
+import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionItemAltName
+import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionSanityDrain
 
 data class CodexPossessionsGroupItem(
     val altName: PossessionItemAltName? = null,
-    val image: PossessionItemImage,
-    val flavorText: PossessionItemFlavorText,
-    val infoText: PossessionItemInfoText,
-    val attributesText: PossessionItemAttribute,
-    val sanityDrain: PossessionItemSanityDrain,
-    val drawChance: PossessionItemDrawChance,
+    val image: PossessionImage,
+    val flavorText: PossessionFlavor,
+    val infoText: PossessionDescription,
+    val attributesText: PossessionAttribute,
+    val sanityDrain: PossessionSanityDrain,
+    val drawChance: PossessionDrawChance,
 )

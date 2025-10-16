@@ -7,28 +7,28 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.operation.app.container.OperationContainerProvider
-import com.tritiumgaming.feature.operation.app.mappers.toDrawableResource
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexAchievementsResources
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexEquipmentResources
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexPossessionsResources
+import com.tritiumgaming.feature.operation.app.mappers.codex.toDrawableResource
+import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources
 import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
-import com.tritiumgaming.shared.operation.domain.codex.model.achievements.CodexAchievementsGroup
+import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources
+import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources
+import com.tritiumgaming.shared.operation.domain.codex.model.achievements.AchievementsType
 import com.tritiumgaming.shared.operation.domain.codex.model.achievements.CodexAchievementsGroupItem
-import com.tritiumgaming.shared.operation.domain.codex.model.equipment.CodexEquipmentGroup
-import com.tritiumgaming.shared.operation.domain.codex.model.equipment.CodexEquipmentGroupItem
-import com.tritiumgaming.shared.operation.domain.codex.model.possessions.CodexPossessionsGroup
+import com.tritiumgaming.shared.operation.domain.codex.model.equipment.EquipmentType
+import com.tritiumgaming.shared.operation.domain.codex.model.equipment.EquipmentTypeTier
 import com.tritiumgaming.shared.operation.domain.codex.model.possessions.CodexPossessionsGroupItem
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexAchievementsUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexEquipmentUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchCodexPossessionsUseCase
+import com.tritiumgaming.shared.operation.domain.codex.model.possessions.PossessionsType
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchAchievementTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchEquipmentTypesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class CodexViewModel(
-    val fetchCodexEquipmentUseCase: FetchCodexEquipmentUseCase,
-    val fetchCodexPossessionsUseCase: FetchCodexPossessionsUseCase,
-    val fetchCodexAchievementsUseCase: FetchCodexAchievementsUseCase
+    val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase,
+    val fetchCodexPossessionsUseCase: FetchPossessionTypesUseCase,
+    val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase
 ): ViewModel() {
 
     private val _equipmentUiState = MutableStateFlow(CodexEquipmentUiState())
@@ -66,9 +66,9 @@ class CodexViewModel(
 
     @DrawableRes fun getCategoryIcons(category: CodexResources.Category): List<Int> {
         return when(category) {
-            CodexResources.Category.EQUIPMENT -> CodexEquipmentResources.EquipmentIcon.entries.map { it.toDrawableResource() }
-            CodexResources.Category.POSSESSIONS -> CodexPossessionsResources.PossessionsIcon.entries.map { it.toDrawableResource() }
-            CodexResources.Category.ACHIEVEMENTS -> CodexAchievementsResources.AchievementIcon.entries.map { it.toDrawableResource() }
+            CodexResources.Category.EQUIPMENT -> EquipmentResources.EquipmentIcon.entries.map { it.toDrawableResource() }
+            CodexResources.Category.POSSESSIONS -> PossessionsResources.PossessionsIcon.entries.map { it.toDrawableResource() }
+            CodexResources.Category.ACHIEVEMENTS -> AchievementsResources.AchievementIcon.entries.map { it.toDrawableResource() }
         }
     }
 
@@ -127,8 +127,8 @@ class CodexViewModel(
     }
 
     fun setSelectedEquipment(
-        group: CodexEquipmentGroup? = null,
-        item: CodexEquipmentGroupItem? = null
+        group: EquipmentType? = null,
+        item: EquipmentTypeTier? = null
     ) {
         _equipmentUiState.update {
             it.copy(
@@ -139,7 +139,7 @@ class CodexViewModel(
     }
 
     fun setSelectedPossession(
-        group: CodexPossessionsGroup? = null,
+        group: PossessionsType? = null,
         item: CodexPossessionsGroupItem? = null
     ) {
         _possessionsUiState.update {
@@ -151,7 +151,7 @@ class CodexViewModel(
     }
 
     fun setSelectedAchievement(
-        group: CodexAchievementsGroup? = null,
+        group: AchievementsType? = null,
         item: CodexAchievementsGroupItem? = null
     ) {
         _achievementsUiState.update {
@@ -193,20 +193,20 @@ class CodexViewModel(
     }
 
     data class CodexEquipmentUiState(
-        val list: List<CodexEquipmentGroup> = emptyList(),
-        val selectedGroup: CodexEquipmentGroup? = null,
-        val selectedItem: CodexEquipmentGroupItem? = null,
+        val list: List<EquipmentType> = emptyList(),
+        val selectedGroup: EquipmentType? = null,
+        val selectedItem: EquipmentTypeTier? = null,
     )
 
     data class CodexPossessionUiState(
-        val list: List<CodexPossessionsGroup> = emptyList(),
-        val selectedGroup: CodexPossessionsGroup? = null,
+        val list: List<PossessionsType> = emptyList(),
+        val selectedGroup: PossessionsType? = null,
         val selectedItem: CodexPossessionsGroupItem? = null,
     )
 
     data class CodexAchievementUiState(
-        val list: List<CodexAchievementsGroup> = emptyList(),
-        val selectedGroup: CodexAchievementsGroup? = null,
+        val list: List<AchievementsType> = emptyList(),
+        val selectedGroup: AchievementsType? = null,
         val selectedItem: CodexAchievementsGroupItem? = null,
     )
 

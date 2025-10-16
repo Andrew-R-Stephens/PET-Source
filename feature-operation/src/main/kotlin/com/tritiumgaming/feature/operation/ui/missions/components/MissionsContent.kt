@@ -44,7 +44,8 @@ import com.tritiumgaming.core.ui.common.menus.PETImageButton
 import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.map.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.mission.toStringResource
 import com.tritiumgaming.feature.operation.ui.missions.ObjectivesViewModel
 import com.tritiumgaming.shared.operation.domain.mission.model.Mission
 

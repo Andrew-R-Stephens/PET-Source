@@ -45,7 +45,7 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.app.mappers.toStringResource
+import com.tritiumgaming.feature.operation.app.mappers.evidence.toStringResource
 import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
@@ -58,9 +58,9 @@ fun EvidenceListItem(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationScreenViewModel,
     evidence: EvidenceType = EvidenceType(
-        id = "test",
+        id = EvidenceResources.EvidenceIdentifier.DOTS,
         name = EvidenceResources.EvidenceTitle.DOTS,
-        icon = EvidenceResources.EvidenceIcon.DOTS
+    icon = EvidenceResources.EvidenceIcon.DOTS
     ),
     label: String = stringResource(evidence.name.toStringResource()),
     onNameClick: () -> Unit = {},

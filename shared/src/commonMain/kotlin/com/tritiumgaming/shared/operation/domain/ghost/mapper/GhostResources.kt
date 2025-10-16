@@ -3,6 +3,33 @@ package com.tritiumgaming.shared.operation.domain.ghost.mapper
 //TODO(Create all enum values)
 class GhostResources {
 
+    enum class GhostIdentifier {
+        BANSHEE,
+        DEMON,
+        DEOGEN,
+        GORYO,
+        HANTU,
+        JINN,
+        MARE,
+        MOROI,
+        MYLING,
+        OBAKE,
+        ONI,
+        ONRYO,
+        PHANTOM,
+        POLTERGEIST,
+        RAIJU,
+        REVENANT,
+        SHADE,
+        SPIRIT,
+        THAYE,
+        THE_TWINS,
+        THE_MIMIC,
+        WRAITH,
+        YOKAI,
+        YUREI
+    }
+
     enum class GhostTitle {
         BANSHEE,
         DEMON,
