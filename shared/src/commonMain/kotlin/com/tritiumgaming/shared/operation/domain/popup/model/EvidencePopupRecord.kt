@@ -7,26 +7,28 @@ import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResourc
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceDescription
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTierAnimation
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIcon
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceTier
 
 data class EvidencePopupRecord(
     val id: EvidenceResources.EvidenceIdentifier,
     val name: EvidenceTitle,
     val description: EvidenceDescription,
-    val evidenceTiers: List<EvidenceTier> = emptyList(),
-    val equipmentTiers: EquipmentType
+    val icon: EvidenceIcon,
+    val equipmentType: EquipmentType,
+    val equipmentTierAnimations: List<EvidenceTier> = emptyList(),
 ) {
 
     fun getAnimationAt(i: Int): EvidenceTierAnimation {
-        return evidenceTiers[i].animation
+        return equipmentTierAnimations[i].animation
     }
 
     fun getDescriptionAt(i: Int): EquipmentTierInformation {
-        return equipmentTiers.items[i].info
+        return equipmentType.items[i].info
     }
 
     fun getUnlockLevelAt(i: Int): EquipmentUnlockLevel {
-        return equipmentTiers.items[i].upgradeLevelData
+        return equipmentType.items[i].upgradeLevelData
     }
 
     override fun equals(other: Any?): Boolean {
@@ -39,7 +41,7 @@ data class EvidencePopupRecord(
 
     override fun hashCode(): Int {
         var result = id.hashCode()
-        result = 31 * result + evidenceTiers.hashCode()
+        result = 31 * result + equipmentTierAnimations.hashCode()
         return result
     }
 
