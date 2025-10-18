@@ -41,6 +41,8 @@ import com.tritiumgaming.core.ui.theme.blue_M850
 import com.tritiumgaming.core.ui.theme.blue_M90
 import com.tritiumgaming.core.ui.theme.blue_M900
 import com.tritiumgaming.core.ui.theme.blue_M950
+import com.tritiumgaming.core.ui.theme.cyan_M100
+import com.tritiumgaming.core.ui.theme.cyan_M100_A40
 import com.tritiumgaming.core.ui.theme.discord_color_black
 import com.tritiumgaming.core.ui.theme.discord_color_blurple
 import com.tritiumgaming.core.ui.theme.discord_color_fuchsia
@@ -259,12 +261,12 @@ private val PET_Base = ExtendedDefaultLight.copy(
     ),
 
     codexFamily = CodexColorFamily(
-        codex1 = Color(0xFF161C1C),
+        codex1 = cyan_M100,
         codex2 = Color(0xFF151B1B),
         codex3 = Color(0xFF99AEB3),
         codex4 = Color(0xFFFFB43D),
         codex5 = Color(0xFF2D3635),
-        codex6_gridBackground = Color(0x40161C1C),
+        codex6_gridBackground = cyan_M100_A40,
         codex7_gridStroke = Color(0x40FFFFFF),
     ),
 
@@ -2790,7 +2792,7 @@ val Winner = Community.copy(
         codex2 = Color(0xFF0A151C),
         codex4 = orange_M250,
         codex5 = Color(0xFF090A0B),
-        codex6_gridBackground = Color(0x40161C1C)
+        codex6_gridBackground = cyan_M100_A40
     ),
 
     switchTheme = Community.switchTheme.copy(

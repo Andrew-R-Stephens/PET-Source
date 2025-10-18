@@ -162,6 +162,10 @@ val green_M875 = Color(0xFF0F100F)
 val green_M900 = Color(0xFF000E00)
 val green_M950 = Color(0xFF000600)
 
+/* Green */
+val cyan_M100 = Color(0xFF161C1C)
+val cyan_M100_A40 = Color(0x66161C1C)
+
 /* Blue */
 val blue = Color(0xFF0000FF)
 val blue_A40 = Color(0x660000FF)
