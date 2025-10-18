@@ -139,6 +139,7 @@ fun DifficultyModifierDetails(
 ) {
 
     val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+
     val difficultyName = difficultyUiState.value.name.toStringResource()
     val difficultyTime = difficultyUiState.value.time
     val difficultyModifier = difficultyUiState.value.modifier

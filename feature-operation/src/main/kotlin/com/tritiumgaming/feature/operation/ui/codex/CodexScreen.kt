@@ -31,6 +31,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.admob.AdmobBanner
+import com.tritiumgaming.core.ui.icon.GridIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.ui.OperationScreen
@@ -124,7 +126,7 @@ private fun CodexScreenContent(
             modifier = Modifier
                 .weight(1f, true)
         ) {
-            Image(
+            /*Image(
                 modifier = Modifier
                     .fillMaxSize(),
                 painter = painterResource(R.drawable.itemstore_grid),
@@ -134,6 +136,19 @@ private fun CodexScreenContent(
                     blendMode = BlendMode.Darken,
                     color = LocalPalette.current.background.color.copy(alpha=.75f)
                 )
+            )*/
+            GridIcon(
+                modifier = Modifier
+                    .fillMaxSize(),
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                    strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                ),
+                contentScale = ContentScale.FillBounds,
+                /*colorFilter = ColorFilter.tint(
+                    blendMode = BlendMode.Darken,
+                    color = LocalPalette.current.background.color.copy(alpha=.75f)
+                )*/
             )
 
             content()

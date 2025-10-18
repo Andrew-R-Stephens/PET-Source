@@ -40,6 +40,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.GridIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.codex.toDrawableResource
@@ -239,10 +241,12 @@ fun CodexPossessionsDisplay(
 
         },
         primaryImageContent = { modifier ->
-            Image(
+            GridIcon(
                 modifier = modifier,
-                painter = painterResource(id = R.drawable.itemstore_grid),
-                contentDescription = "Primary Icon",
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                    strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                ),
                 contentScale = ContentScale.Fit
             )
             Image(

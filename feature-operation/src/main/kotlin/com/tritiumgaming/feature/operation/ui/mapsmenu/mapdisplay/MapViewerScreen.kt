@@ -49,6 +49,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -80,6 +81,7 @@ import com.tritiumgaming.core.ui.common.labels.DynamicContentAlignmentPercentage
 import com.tritiumgaming.core.ui.common.labels.DynamicContentRow
 import com.tritiumgaming.core.ui.icon.Arrow60LeftIcon
 import com.tritiumgaming.core.ui.icon.Arrow60RightIcon
+import com.tritiumgaming.core.ui.icon.GridIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -822,14 +824,22 @@ private fun UiControllerLandscape(
 private fun BackgroundGrid(
     modifier: Modifier = Modifier
 ) {
-
-    Image(
+    GridIcon(
+        modifier = modifier
+            .alpha(.4f),
+        colors = IconVectorColors(
+            fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+            strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+        ),
+        contentScale = ContentScale.FillBounds
+    )
+    /*Image(
         modifier = modifier,
         painter = painterResource(R.drawable.itemstore_grid),
         contentDescription = null,
         contentScale = ContentScale.FillBounds,
         alpha = .40f
-    )
+    )*/
 
 }
 

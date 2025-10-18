@@ -42,6 +42,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.GridIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.black
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
@@ -238,13 +240,22 @@ private fun CodexMenuItem(
                 .fillMaxSize()
         ) {
 
-            Image(
+            GridIcon(
+                modifier = Modifier
+                    .fillMaxSize(),
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                    strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                ),
+                contentScale = ContentScale.FillBounds
+            )
+            /*Image(
                 modifier = Modifier
                     .fillMaxSize(),
                 painter = painterResource(R.drawable.itemstore_grid),
                 contentDescription = "",
                 contentScale = ContentScale.FillBounds
-            )
+            )*/
 
             image?.let { background ->
                 Image(
@@ -381,7 +392,9 @@ fun CodexMenuGhostLabelPreview() {
 @Preview
 private fun CodexMenuContentPreview() {
 
-    SelectiveTheme {
+    SelectiveTheme(
+
+    ) {
         CodexMenuScreen()
     }
 

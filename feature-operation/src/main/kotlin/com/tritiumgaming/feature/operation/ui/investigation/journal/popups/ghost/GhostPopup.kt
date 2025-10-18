@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.operation.ui.investigation.journal.popups.newpopups.common
+package com.tritiumgaming.feature.operation.ui.investigation.journal.popups.ghost
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -35,11 +35,11 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.BlendMode
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
@@ -52,15 +52,48 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.GridIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.InvestigationPopupUiState
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.InvestigationPopup
+import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
+import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun CodexItemPopup(
+fun BoxScope.GhostPopup(
+    modifier: Modifier,
+    state: StateFlow<InvestigationPopupUiState>,
+    onDismiss: () -> Unit
+) {
+    val recordState by state.collectAsStateWithLifecycle()
+
+    InvestigationPopup(
+        modifier = modifier,
+        shown = recordState.isShown,
+        {
+            recordState.ghostPopupRecord?.let { record ->
+                GhostPopupContent(
+                    modifier = Modifier,
+                    ghostPopupRecord = record,
+                    onDismiss = { onDismiss() }
+                )
+            }
+        }
+    )
+
+}
+
+
+@Composable
+private fun GhostPopupContent(
     modifier: Modifier = Modifier,
+    ghostPopupRecord: GhostPopupRecord,
     primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
     secondaryTitleContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
     primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit)? = null,
@@ -73,55 +106,41 @@ fun CodexItemPopup(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    when(deviceConfiguration) {
+    when (deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
-            Box(
+            GhostTypePortraitPopup(
                 modifier = Modifier
-                    .fillMaxSize()
-            ) {
-                CodexItemPortraitPopup(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(.7f)
-                        .align(Alignment.BottomCenter),
-                    primaryTitleContent = primaryTitleContent,
-                    secondaryTitleContent = secondaryTitleContent,
-                    primaryImageContent = primaryImageContent,
-                    primaryDataContent = primaryDataContent,
-                    bodyContent = bodyContent,
-                    textFooterContent = textFooterContent,
-                    onDismiss = onDismiss
-                )
-            }
+                    .fillMaxWidth(),
+                primaryTitleContent = primaryTitleContent,
+                secondaryTitleContent = secondaryTitleContent,
+                primaryImageContent = primaryImageContent,
+                primaryDataContent = primaryDataContent,
+                bodyContent = bodyContent,
+                textFooterContent = textFooterContent,
+                onDismiss = onDismiss
+            )
         }
         DeviceConfiguration.MOBILE_LANDSCAPE,
         DeviceConfiguration.TABLET_PORTRAIT,
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-                CodexItemLandscapePopup(
-                    modifier = modifier
-                        .fillMaxWidth(.8f)
-                        .fillMaxHeight()
-                        .align(Alignment.CenterStart),
-                    primaryTitleContent = primaryTitleContent,
-                    secondaryTitleContent = secondaryTitleContent,
-                    primaryImageContent = primaryImageContent,
-                    primaryDataContent = primaryDataContent,
-                    bodyContent = bodyContent,
-                    textFooterContent = textFooterContent,
-                    onDismiss = onDismiss
-                )
-            }
+            GhostTypeLandscapePopup(
+                modifier = modifier
+                    .fillMaxSize(),
+                primaryTitleContent = primaryTitleContent,
+                secondaryTitleContent = secondaryTitleContent,
+                primaryImageContent = primaryImageContent,
+                primaryDataContent = primaryDataContent,
+                bodyContent = bodyContent,
+                textFooterContent = textFooterContent,
+                onDismiss = onDismiss
+            )
         }
     }
 }
 
 @Composable
-fun CodexItemPortraitPopup(
+private fun GhostTypePortraitPopup(
     modifier: Modifier = Modifier,
     primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
     secondaryTitleContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
@@ -220,7 +239,7 @@ fun CodexItemPortraitPopup(
                 ) {
                     content(
                         Modifier
-                                .fillMaxSize()
+                            .fillMaxSize()
                     )
                 }
             }
@@ -276,7 +295,7 @@ fun CodexItemPortraitPopup(
 }
 
 @Composable
-fun CodexItemLandscapePopup(
+private fun GhostTypeLandscapePopup(
     modifier: Modifier = Modifier,
     primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
     secondaryTitleContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
@@ -435,7 +454,7 @@ fun CodexItemLandscapePopup(
 }
 
 @Composable
-fun CodexItemPopupDataRow(
+private fun PopupDataRow(
     modifier: Modifier = Modifier,
     @DrawableRes icon: Int,
     data: String
@@ -476,7 +495,7 @@ fun CodexItemPopupDataRow(
 }
 
 @Composable
-fun CodexGroup(
+private fun CodexGroup(
     modifier: Modifier = Modifier,
     @StringRes groupTitle: Int,
     content: @Composable () -> Unit = {}
@@ -567,7 +586,6 @@ fun CodexGroupItemsLandscape(
 fun CodexGroupItem(
     modifier: Modifier = Modifier,
     @DrawableRes image: Int,
-    tierLevel: Int? = null,
     isBackground: Boolean = false,
     isBordered: Boolean = false,
     selected: Boolean = false,
@@ -619,18 +637,6 @@ fun CodexGroupItem(
             contentScale = ContentScale.Fit
         )
 
-        tierLevel?.let { tier ->
-            TierEmblem(
-                modifier = Modifier
-                    .padding(start = 4.dp, top = 4.dp)
-                    .fillMaxSize(.25f)
-                    .align(Alignment.TopStart),
-                tierLevel = tier,
-                isBordered = isBordered,
-                selected = selected
-            )
-        }
-
     }
 }
 
@@ -642,92 +648,26 @@ fun GridPattern(
         modifier = modifier
             .aspectRatio(1f)
     ) {
-        Image(
+        /*Image(
             painter = painterResource(id = R.drawable.itemstore_grid),
             contentDescription = "Tier Image",
             modifier = Modifier
                 .fillMaxSize()
-        )
-    }
-}
-
-@Composable
-fun TierEmblem(
-    modifier: Modifier,
-    tierLevel: Int,
-    isBordered: Boolean = false,
-    selected: Boolean = false
-) {
-    when(isBordered) {
-        true -> {
-            TierIcon(
-                modifier = modifier
-                    .fillMaxSize(),
-                tierLevel = tierLevel,
-                tintColor = LocalPalette.current.codexFamily.codex4_tierAlt
+        )*/
+        GridIcon(
+            modifier = Modifier
+                .fillMaxSize(),
+            colors = IconVectorColors(
+                fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
             )
-        }
-        false -> {
-            TierIcon(
-                modifier = modifier
-                    .then(
-                        Modifier
-                            .background(
-                                if (selected) {
-                                    LocalPalette.current.codexFamily.codex4_background
-                                } else {
-                                    LocalPalette.current.codexFamily.codex3_tierBackground
-                                }
-                            )
-                            .padding(8.dp)
-                    )
-                    .fillMaxSize(),
-                tierLevel = tierLevel,
-                tintColor = LocalPalette.current.codexFamily.codex2_tierNormal
-            )
-        }
-    }
-
-
-
-}
-
-@Composable
-fun TierIcon(
-    modifier: Modifier = Modifier,
-    tierLevel: Int,
-    tintColor: Color = Color.White,
-    tintMode: BlendMode = BlendMode.SrcIn
-) {
-
-    val image = when(tierLevel) {
-        1 -> R.drawable.ic_tier_1
-        2 -> R.drawable.ic_tier_2
-        3 -> R.drawable.ic_tier_3
-        else -> return
-    }
-
-    Image(
-        modifier = modifier,
-        painter = painterResource(id = image),
-        contentDescription = "Tier Image",
-        colorFilter = ColorFilter.tint(tintColor, tintMode)
-    )
-}
-
-@Preview
-@Composable
-private fun CodexGroupPreview() {
-    SelectiveTheme {
-        CodexGroup(
-            groupTitle = R.string.equipment_info_name_dots
         )
     }
 }
 
 @Preview
 @Composable
-fun CodexItemPopupPortraitPreview() {
+fun EvidenceTypePortraitPreview() {
 
     val primaryText = AnnotatedString.Companion.fromHtml(
         stringResource(R.string.shop_equipment_crucifix_data_info_1))
@@ -751,7 +691,7 @@ fun CodexItemPopupPortraitPreview() {
                 .fillMaxSize()
         ) {
 
-            CodexItemPortraitPopup(
+            GhostTypePortraitPopup(
                 modifier = Modifier
                     .fillMaxWidth()
                     .fillMaxHeight(.7f)
@@ -794,12 +734,20 @@ fun CodexItemPopupPortraitPreview() {
 
                 },
                 primaryImageContent = { modifier ->
-                    Image(
+                    GridIcon(
+                        modifier = modifier,
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                            strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                        ),
+                        contentScale = ContentScale.Fit
+                    )
+                    /*Image(
                         modifier = modifier,
                         painter = painterResource(id = R.drawable.itemstore_grid),
                         contentDescription = "Primary Icon",
                         contentScale = ContentScale.Fit
-                    )
+                    )*/
                     Image(
                         modifier = modifier
                             .padding(8.dp),
@@ -810,7 +758,7 @@ fun CodexItemPopupPortraitPreview() {
                 },
                 primaryDataContent = { modifier ->
 
-                    CodexItemPopupDataRow(
+                    PopupDataRow(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth()
@@ -819,7 +767,7 @@ fun CodexItemPopupPortraitPreview() {
                         data = "$buyCost"
                     )
 
-                    CodexItemPopupDataRow(
+                    PopupDataRow(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth()
@@ -828,7 +776,7 @@ fun CodexItemPopupPortraitPreview() {
                         data = "$unlockLevel"
                     )
 
-                    CodexItemPopupDataRow(
+                    PopupDataRow(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth()
@@ -917,7 +865,7 @@ fun CodexItemPopupPortraitPreview() {
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Composable
-fun CodexItemPopupLandscapePreview() {
+fun EvidenceTypePopupLandscapePreview() {
 
     val primaryText = AnnotatedString.Companion.fromHtml(
         stringResource(R.string.shop_equipment_crucifix_data_info_1))
@@ -941,7 +889,7 @@ fun CodexItemPopupLandscapePreview() {
                 .fillMaxSize()
         ) {
 
-            CodexItemLandscapePopup(
+            GhostTypeLandscapePopup(
                 modifier = Modifier
                     .fillMaxWidth(.7f)
                     .fillMaxHeight()
@@ -984,12 +932,20 @@ fun CodexItemPopupLandscapePreview() {
 
                 },
                 primaryImageContent = { modifier ->
-                    Image(
+                    GridIcon(
+                        modifier = modifier,
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                            strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                        ),
+                        contentScale = ContentScale.Fit
+                    )
+                    /*Image(
                         modifier = modifier,
                         painter = painterResource(id = R.drawable.itemstore_grid),
                         contentDescription = "Primary Icon",
                         contentScale = ContentScale.Fit
-                    )
+                    )*/
                     Image(
                         modifier = modifier
                             .padding(8.dp),
@@ -1000,7 +956,7 @@ fun CodexItemPopupLandscapePreview() {
                 },
                 primaryDataContent = { modifier ->
 
-                    CodexItemPopupDataRow(
+                    PopupDataRow(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth()
@@ -1009,7 +965,7 @@ fun CodexItemPopupLandscapePreview() {
                         data = "$buyCost"
                     )
 
-                    CodexItemPopupDataRow(
+                    PopupDataRow(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth()
@@ -1018,7 +974,7 @@ fun CodexItemPopupLandscapePreview() {
                         data = "$unlockLevel"
                     )
 
-                    CodexItemPopupDataRow(
+                    PopupDataRow(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth()

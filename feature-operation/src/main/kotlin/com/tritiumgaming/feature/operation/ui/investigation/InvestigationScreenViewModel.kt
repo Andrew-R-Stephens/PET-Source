@@ -33,8 +33,8 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preference
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableRTLUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchAchievementTypesUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchEquipmentTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyType
@@ -331,7 +331,7 @@ class InvestigationScreenViewModel(
             val equipmentList = fetchCodexEquipmentUseCase().getOrThrow()
 
             val equipmentId = getEquipmentTypeByEvidenceTypeUseCase(evidenceType)
-            val equipment = equipmentList.first {
+            val equipmentType = equipmentList.first {
                 it.id == equipmentId
             }
 
@@ -339,8 +339,9 @@ class InvestigationScreenViewModel(
                 id = evidence.id,
                 name = evidence.name,
                 description = evidence.description,
-                evidenceTiers = evidence.tiers.map { it },
-                equipmentTiers = equipment
+                icon = evidence.icon,
+                equipmentTierAnimations = evidence.tiers.map { it },
+                equipmentType = equipmentType
             )
 
             _popupUiState.update {

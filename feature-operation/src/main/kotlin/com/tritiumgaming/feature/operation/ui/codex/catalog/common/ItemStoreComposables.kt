@@ -54,6 +54,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.GridIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -642,11 +644,19 @@ fun GridPattern(
         modifier = modifier
             .aspectRatio(1f)
     ) {
-        Image(
+        /*Image(
             painter = painterResource(id = R.drawable.itemstore_grid),
             contentDescription = "Tier Image",
             modifier = Modifier
                 .fillMaxSize()
+        )*/
+        GridIcon(
+            modifier = Modifier
+                .fillMaxSize(),
+            colors = IconVectorColors(
+                fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+            )
         )
     }
 }
@@ -794,12 +804,19 @@ fun CodexItemPopupPortraitPreview() {
 
                 },
                 primaryImageContent = { modifier ->
-                    Image(
+                    GridIcon(
+                        modifier = modifier,
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                            strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                        )
+                    )
+                    /*Image(
                         modifier = modifier,
                         painter = painterResource(id = R.drawable.itemstore_grid),
                         contentDescription = "Primary Icon",
                         contentScale = ContentScale.Fit
-                    )
+                    )*/
                     Image(
                         modifier = modifier
                             .padding(8.dp),
@@ -984,12 +1001,19 @@ fun CodexItemPopupLandscapePreview() {
 
                 },
                 primaryImageContent = { modifier ->
-                    Image(
+                    GridIcon(
+                        modifier = modifier,
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
+                            strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                        )
+                    )
+                    /*Image(
                         modifier = modifier,
                         painter = painterResource(id = R.drawable.itemstore_grid),
                         contentDescription = "Primary Icon",
                         contentScale = ContentScale.Fit
-                    )
+                    )*/
                     Image(
                         modifier = modifier
                             .padding(8.dp),

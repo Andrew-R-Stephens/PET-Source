@@ -57,8 +57,8 @@ import com.tritiumgaming.core.ui.vector.getGearVector
 import com.tritiumgaming.core.ui.vector.getInfoVector
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.operation.ui.investigation.journal.Journal
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.EvidencePopup
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.GhostPopup
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.evidence.EvidencePopup
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.CollapseButton
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ResetButton
@@ -112,7 +112,8 @@ private fun InvestigationSoloContent(
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-/*
+
+    /*
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> { StartContentCompactPortrait(
             navController = navController) }
@@ -152,12 +153,17 @@ private fun InvestigationSoloContent(
 
     val popupUiState = investigationViewModel.popupUiState
 
-    GhostPopup(
-        state = popupUiState
-    ) { investigationViewModel.clearPopup() }
-    EvidencePopup(
-        state = popupUiState
-    ) { investigationViewModel.clearPopup() }
+    Box {
+        GhostPopup(
+            modifier = Modifier,
+            state = popupUiState
+        ) { investigationViewModel.clearPopup() }
+
+        EvidencePopup(
+            modifier = Modifier,
+            state = popupUiState
+        ) { investigationViewModel.clearPopup() }
+    }
 }
 
 @Composable
