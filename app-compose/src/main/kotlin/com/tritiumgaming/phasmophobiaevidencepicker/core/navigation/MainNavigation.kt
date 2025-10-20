@@ -14,7 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.tritiumgaming.feature.home.ui.account.AccountScreen
-import com.tritiumgaming.feature.home.ui.account.AccountViewModel
+import com.tritiumgaming.feature.home.ui.account.AccountScreenViewModel
 import com.tritiumgaming.feature.home.ui.appinfo.AppInfoViewModel
 import com.tritiumgaming.feature.home.ui.appinfo.InfoScreen
 import com.tritiumgaming.feature.home.ui.applanguages.LanguageScreen
@@ -42,12 +42,8 @@ import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
 
 @Composable
 fun RootNavigation(
-    /*permissionsViewModel: PermissionsViewModel =
-        viewModel(factory = PermissionsViewModel.Factory),*/
     mainMenuViewModel: AppInfoViewModel =
         viewModel(factory = AppInfoViewModel.Factory),
-    accountViewModel: AccountViewModel =
-        viewModel(factory = AccountViewModel.Factory),
     newsletterViewModel: NewsletterViewModel =
         viewModel(factory = NewsletterViewModel.Factory),
     investigationViewModel: InvestigationScreenViewModel =
@@ -74,7 +70,6 @@ fun RootNavigation(
         homeNavigation(
             navController = navController,
             mainMenuViewModel = mainMenuViewModel,
-            accountViewModel = accountViewModel,
             newsletterViewModel = newsletterViewModel
         )
 
@@ -92,7 +87,6 @@ fun RootNavigation(
 private fun NavGraphBuilder.homeNavigation(
     navController: NavHostController,
     mainMenuViewModel: AppInfoViewModel,
-    accountViewModel: AccountViewModel,
     newsletterViewModel: NewsletterViewModel
 ) {
 
@@ -188,7 +182,7 @@ private fun NavGraphBuilder.homeNavigation(
             composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
                 AccountScreen(
                     navController = navController,
-                    accountViewModel = accountViewModel
+                    accountViewModel = viewModel(factory = AccountScreenViewModel.Factory)
                 )
             }
 
