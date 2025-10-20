@@ -5,6 +5,18 @@ import androidx.compose.ui.graphics.Color
 
 @Immutable
 data class CodexColorFamily(
+    val codex1: Color = Color.Unspecified,
+    val codex2: Color = codex1,
+    val codex3: Color = codex2,
+    val codex4: Color = codex3,
+    val codex5: Color = codex4,
+    val codex6: Color = codex5,
+    val codex7: Color = codex2,
+)
+
+/*
+@Immutable
+data class CodexColorFamily(
     val codex1: Color = Color.Unspecified, // codex1
     val codex2: Color = codex1, // codex2
     val codex3: Color = codex2, // codex3
@@ -56,3 +68,4 @@ data class CodexColorFamily(
     val codex3_buttonBackground: Color = codex3, // codex3_buttonBackground
     val codex5_header: Color = codex5, // codex5_header
 )
+*/

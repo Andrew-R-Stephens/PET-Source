@@ -266,8 +266,8 @@ private val PET_Base = ExtendedDefaultLight.copy(
         codex3 = Color(0xFF99AEB3),
         codex4 = Color(0xFFFFB43D),
         codex5 = Color(0xFF2D3635),
-        codex6_gridBackground = cyan_M100_A40,
-        codex7_gridStroke = Color(0x40FFFFFF),
+        codex6 = cyan_M100_A40,
+        codex7 = Color(0xFFFFFFFF),
     ),
 
     background = M3ColorFamily(
@@ -668,7 +668,8 @@ val Recruit = Prestige.copy(
         codex3 = orange_M150,
         codex4 = orange_M150,
         codex5 = Color(0xFF252423),
-        codex6_gridBackground = Color(0x40232C2C),
+        codex6 = Color(0x40232C2C),
+        codex7 = white
     ),
 
     coreFamily = Prestige.coreFamily.copy(
@@ -811,7 +812,8 @@ val Investigator = Prestige.copy(
         codex3 = white_M300,
         codex4 = purple_M75,
         codex5 = Color(0xFF3C3237),
-        codex6_gridBackground = Color(0x40390721),
+        codex6 = Color(0x40390721),
+        codex7 = white
     ),
 
     switchTheme = Prestige.switchTheme.copy(
@@ -908,7 +910,8 @@ val PrivateInvestigator = Prestige.copy(
         codex3 = orange_M10,
         codex4 = orange_M10,
         codex5 = Color(0xFF3A3631),
-        codex6_gridBackground = Color(0x403E2A17),
+        codex6 = Color(0x403E2A17),
+        codex7 = white
     ),
 
     switchTheme = Prestige.switchTheme.copy(
@@ -1024,7 +1027,8 @@ val Detective = Prestige.copy(
         codex3 = Color(0xFFB0E3CE),
         codex4 = green_M25,
         codex5 = white_M850,
-        codex6_gridBackground = Color(0x401E221F),
+        codex6 = Color(0x401E221F),
+        codex7 = white
     ),
 
     textFamily = Prestige.textFamily.copy(
@@ -1141,7 +1145,8 @@ val Technician = Prestige.copy(
         codex3 = Color(0xFFE4DEDE),
         codex4 = white,
         codex5 = Color(0xFF575050),
-        codex6_gridBackground = Color(0x403E1312),
+        codex6 = Color(0x403E1312),
+        codex7 = white
     ),
 
     textFamily = Prestige.textFamily.copy(
@@ -1262,7 +1267,8 @@ val Specialist = Prestige.copy(
         codex3 = Color(0xFFD9ECAF),
         codex4 = green_M150,
         codex5 = Color(0xFF545B4D),
-        codex6_gridBackground = Color(0x40070C05),
+        codex6 = Color(0x40070C05),
+        codex7 = white
     ),
 
     textFamily = Prestige.textFamily.copy(
@@ -1378,7 +1384,8 @@ val Analyst = Prestige.copy(
         codex2 = Color(0xFF255BAF),
         codex4 = Color(0xFF7BCD26),
         codex5 = Color(0xFF101E01),
-        codex6_gridBackground = Color(0x40201B19),
+        codex6 = Color(0x40201B19),
+        codex7 = white
     ),
 
     textFamily = Prestige.textFamily.copy(
@@ -1496,7 +1503,8 @@ val Agent = Prestige.copy(
         codex2 = Color(0xFF202A29),
         codex4 = blue_M90,
         codex5 = Color(0xFF5E7E7B),
-        codex6_gridBackground = Color(0x40101515),
+        codex6 = Color(0x40101515),
+        codex7 = white
     ),
 
     textFamily = Prestige.textFamily.copy(
@@ -1611,7 +1619,8 @@ val Operator = Prestige.copy(
         codex2 = Color(0xFF370C37),
         codex4 = purple_M150,
         codex5 = Color(0xFF53425E),
-        codex6_gridBackground = Color(0x40130B29),
+        codex6 = Color(0x40130B29),
+        codex7 = white
     ),
 
     textFamily = Prestige.textFamily.copy(
@@ -1725,7 +1734,8 @@ val Commissioner = Prestige.copy(
         codex2 = Color(0xFF130B00),
         codex4 = orange_M05,
         codex5 = Color(0xFF3C3B3B),
-        codex6_gridBackground = Color(0x40232323),
+        codex6 = Color(0x40232323),
+        codex7 = white
     ),
 
     textFamily = Prestige.textFamily.copy(
@@ -1842,7 +1852,8 @@ val Easter = Event.copy(
         codex2 = Color(0xFF09231D),
         codex4 = orange_M75,
         codex5 = Color(0xFF2D3332),
-        codex6_gridBackground = Color(0x40203E36),
+        codex6 = Color(0x40203E36),
+        codex7 = white
     ),
 
     textFamily = Event.textFamily.copy(
@@ -1959,7 +1970,8 @@ val Halloween23 = Event.copy(
         codex2 = Color(0xFF130700),
         codex4 = Color(0xFFEC700D),
         codex5 = Color(0xFF373737),
-        codex6_gridBackground = Color(0x401B0A00),
+        codex6 = Color(0x401B0A00),
+        codex7 = white
     ),
 
     textFamily = Event.textFamily.copy(
@@ -2075,7 +2087,8 @@ val Holiday22 = Event.copy(
         codex2 = blue_M750,
         codex4 = orange_M50,
         codex5 = Color(0xFF2A2E45),
-        codex6_gridBackground = Color(0x40293750),
+        codex6 = Color(0x40293750),
+        codex7 = white
     ),
 
     textFamily = Event.textFamily.copy(
@@ -2188,7 +2201,8 @@ val Holiday23 = Event.copy(
         codex2 = Color(0xFF447CDE),
         codex4 = Color(0xFFE9AD4C),
         codex5 = Color(0xFF344663),
-        codex6_gridBackground = Color(0x402A487E),
+        codex6 = Color(0x402A487E),
+        codex7 = white
     ),
 
     textFamily = Event.textFamily.copy(
@@ -2311,7 +2325,8 @@ val Discord = Community.copy(
         codex2 = Color(0xFF131517),
         codex4 = blue_M75,
         codex5 = Color(0xFF2C3032),
-        codex6_gridBackground = Color(0x401D2023),
+        codex6 = Color(0x401D2023),
+        codex7 = white
     ),
 
     textFamily = Community.textFamily.copy(
@@ -2436,7 +2451,8 @@ val ContentCreator = Community.copy(
         codex2 = Color(0xFF3C0A14),
         codex4 = red_M225,
         codex5 = Color(0xFF1E1013),
-        codex6_gridBackground = Color(0x40510E1B),
+        codex6 = Color(0x40510E1B),
+        codex7 = white
     ),
 
     switchTheme = Community.switchTheme.copy(
@@ -2551,7 +2567,8 @@ val Developer = Community.copy(
         codex2 = Color(0xFF333333),
         codex4 = yellow_M25,
         codex5 = Color(0xFF332E09),
-        codex6_gridBackground = Color(0x40535353)
+        codex6 = Color(0x40535353),
+        codex7 = white
     ),
 
     switchTheme = Community.switchTheme.copy(
@@ -2659,7 +2676,8 @@ val Translator = Community.copy(
         codex2 = Color(0xFF492126),
         codex4 = red_M150,
         codex5 = purple_M850,
-        codex6_gridBackground = Color(0x4033292B)
+        codex6 = Color(0x4033292B),
+        codex7 = white
     ),
 
     textFamily = Community.textFamily.copy(
@@ -2792,7 +2810,8 @@ val Winner = Community.copy(
         codex2 = Color(0xFF0A151C),
         codex4 = orange_M250,
         codex5 = Color(0xFF090A0B),
-        codex6_gridBackground = cyan_M100_A40
+        codex6 = cyan_M100_A40,
+        codex7 = white
     ),
 
     switchTheme = Community.switchTheme.copy(
@@ -2906,7 +2925,8 @@ val Artist = Community.copy(
         codex2 = Color(0xFF1E1235),
         codex4 = Color(0xFFAA7FFD),
         codex5 = blue_M850,
-        codex6_gridBackground = Color(0x400A0C0C)
+        codex6 = Color(0x400A0C0C),
+        codex7 = white
 
     ),
 
@@ -3009,7 +3029,8 @@ val Whiteboard = Skin.copy(
         codex2 = Color(0xFF383839),
         codex4 = Color(0xFFf55656),
         codex5 = black_A75,
-        codex6_gridBackground = white_M50,
+        codex6 = Color(0xFF383839),
+        codex7 = white
     ),
     switchTheme = Skin.switchTheme.copy(
         trackActive = black_M50,
@@ -3127,7 +3148,8 @@ val StrategemHero = Special.copy(
         codex2 = Color(0xFF001021),
         codex4 = Color(0xFFFFD608),
         codex5 = Color(0xFFA3A3A3),
-        codex6_gridBackground = Color(0x40001021)
+        codex6 = Color(0x40001021),
+        codex7 = white
     ),
 
     textFamily = Special.textFamily.copy(
