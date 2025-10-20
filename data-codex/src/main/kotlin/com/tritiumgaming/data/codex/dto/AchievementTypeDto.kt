@@ -2,17 +2,22 @@ package com.tritiumgaming.data.codex.dto
 
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementIcon
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementTitle
+import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementVisibility
 import com.tritiumgaming.shared.operation.domain.codex.model.achievements.AchievementsType
 
 data class AchievementTypeDto(
     val name: AchievementTitle,
     val icon: AchievementIcon,
+    val visibility: AchievementVisibility,
+    val exclusivity: Int,
     val item: AchievementsTypeDto
 )
 
 fun AchievementTypeDto.toDomain() = AchievementsType(
     name = name,
     icon = icon,
+    visibility = visibility,
+    exclusivity = exclusivity,
     item = item.toDomain()
 )
 

@@ -5,6 +5,8 @@ import com.tritiumgaming.data.codex.dto.AchievementsTypeDto
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementContent
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementIcon
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementTitle
+import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementVisibility
+import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementExclusivity
 
 class AchievementsLocalDataSource() {
 
@@ -349,6 +351,7 @@ class AchievementsLocalDataSource() {
             AchievementTypeResourceDto(
                 name = AchievementTitle.WORK_EXPERIENCE,
                 icon = AchievementIcon.WORK_EXPERIENCE,
+                visibility = AchievementVisibility.HIDDEN,
                 item = AchievementTypeTierResourceDto(
                     infoText = AchievementContent.WORK_EXPERIENCE
                 )
@@ -356,6 +359,7 @@ class AchievementsLocalDataSource() {
             AchievementTypeResourceDto(
                 name = AchievementTitle.FLAWLESS_EXECUTION,
                 icon = AchievementIcon.FLAWLESS_EXECUTION,
+                visibility = AchievementVisibility.HIDDEN,
                 item = AchievementTypeTierResourceDto(
                     infoText = AchievementContent.FLAWLESS_EXECUTION
                 )
@@ -363,6 +367,7 @@ class AchievementsLocalDataSource() {
             AchievementTypeResourceDto(
                 name = AchievementTitle.THEYRE_HERE,
                 icon = AchievementIcon.THEYRE_HERE,
+                visibility = AchievementVisibility.HIDDEN,
                 item = AchievementTypeTierResourceDto(
                     infoText = AchievementContent.THEYRE_HERE
                 )
@@ -370,6 +375,7 @@ class AchievementsLocalDataSource() {
             AchievementTypeResourceDto(
                 name = AchievementTitle.ESCAPE_ARTIST,
                 icon = AchievementIcon.ESCAPE_ARTIST,
+                visibility = AchievementVisibility.HIDDEN,
                 item = AchievementTypeTierResourceDto(
                     infoText = AchievementContent.ESCAPE_ARTIST
                 )
@@ -377,6 +383,7 @@ class AchievementsLocalDataSource() {
             AchievementTypeResourceDto(
                 name = AchievementTitle.BAIT,
                 icon = AchievementIcon.BAIT,
+                visibility = AchievementVisibility.HIDDEN,
                 item = AchievementTypeTierResourceDto(
                     infoText = AchievementContent.BAIT
                 )
@@ -384,6 +391,15 @@ class AchievementsLocalDataSource() {
             AchievementTypeResourceDto(
                 name = AchievementTitle.DOOM_SLAYED,
                 icon = AchievementIcon.DOOM_SLAYED,
+                visibility = AchievementVisibility.HIDDEN,
+                item = AchievementTypeTierResourceDto(
+                    infoText = AchievementContent.DOOM_SLAYED
+                )
+            ),
+            AchievementTypeResourceDto(
+                name = AchievementTitle.PARANORMAL_PERFECTIONIST,
+                icon = AchievementIcon.PARANORMAL_PERFECTIONIST,
+                exclusivity = AchievementExclusivity.PLAYSTATION.value,
                 item = AchievementTypeTierResourceDto(
                     infoText = AchievementContent.DOOM_SLAYED
                 )
@@ -404,6 +420,11 @@ class AchievementsLocalDataSource() {
     private data class AchievementTypeResourceDto(
         val name: AchievementTitle,
         val icon: AchievementIcon,
+        val visibility: AchievementVisibility = AchievementVisibility.SHOWN,
+        val exclusivity: Int =
+            AchievementExclusivity.STEAM.value
+            or AchievementExclusivity.XBOX.value
+            or AchievementExclusivity.PLAYSTATION.value,
         val item: AchievementTypeTierResourceDto
     )
 
@@ -414,6 +435,8 @@ class AchievementsLocalDataSource() {
     private fun AchievementTypeResourceDto.toLocal() = AchievementTypeDto(
         name = name,
         icon = icon,
+        visibility = visibility,
+        exclusivity = exclusivity,
         item = item.toLocal()
     )
 
