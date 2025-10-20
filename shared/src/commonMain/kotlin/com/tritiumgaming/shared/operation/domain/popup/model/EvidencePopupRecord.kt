@@ -3,7 +3,8 @@ package com.tritiumgaming.shared.operation.domain.popup.model
 import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentTierInformation
 import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentUnlockLevel
 import com.tritiumgaming.shared.operation.domain.codex.model.equipment.EquipmentType
-import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceAnimation
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceDescription
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTierAnimation
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTitle
@@ -11,10 +12,11 @@ import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResourc
 import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceTier
 
 data class EvidencePopupRecord(
-    val id: EvidenceResources.EvidenceIdentifier,
+    val id: EvidenceIdentifier,
     val name: EvidenceTitle,
     val description: EvidenceDescription,
     val icon: EvidenceIcon,
+    val animation: EvidenceAnimation,
     val equipmentType: EquipmentType,
     val equipmentTierAnimations: List<EvidenceTier> = emptyList(),
 ) {

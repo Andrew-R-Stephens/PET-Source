@@ -6,10 +6,12 @@ import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.Gho
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostIcon
 
 data class GhostPopupRecord(
     val id: GhostResources.GhostIdentifier,
     val name: GhostTitle,
+    val icon: GhostIcon,
     val info: GhostDescription,
     val strengthData: GhostStrength,
     val weaknessData: GhostWeakness,

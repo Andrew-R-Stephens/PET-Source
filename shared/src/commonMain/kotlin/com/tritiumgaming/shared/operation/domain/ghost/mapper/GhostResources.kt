@@ -57,6 +57,33 @@ class GhostResources {
         YUREI
     }
 
+    enum class GhostIcon {
+        BANSHEE,
+        DEMON,
+        DEOGEN,
+        GORYO,
+        HANTU,
+        JINN,
+        MARE,
+        MOROI,
+        MYLING,
+        OBAKE,
+        ONI,
+        ONRYO,
+        PHANTOM,
+        POLTERGEIST,
+        RAIJU,
+        REVENANT,
+        SHADE,
+        SPIRIT,
+        THAYE,
+        THE_TWINS,
+        THE_MIMIC,
+        WRAITH,
+        YOKAI,
+        YUREI
+    }
+
     enum class GhostDescription {
         BANSHEE,
         DEMON,

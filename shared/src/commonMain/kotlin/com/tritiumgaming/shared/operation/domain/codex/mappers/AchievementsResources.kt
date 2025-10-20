@@ -56,7 +56,8 @@ class AchievementsResources {
         THEYRE_HERE,
         ESCAPE_ARTIST,
         BAIT,
-        DOOM_SLAYED
+        DOOM_SLAYED,
+        PARANORMAL_PERFECTIONIST
     }
 
     enum class AchievementContent {
@@ -113,7 +114,8 @@ class AchievementsResources {
         THEYRE_HERE,
         ESCAPE_ARTIST,
         BAIT,
-        DOOM_SLAYED
+        DOOM_SLAYED,
+        PARANORMAL_PERFECTIONIST
     }
 
     enum class AchievementIcon {
@@ -170,7 +172,21 @@ class AchievementsResources {
         THEYRE_HERE,
         ESCAPE_ARTIST,
         BAIT,
-        DOOM_SLAYED
+        DOOM_SLAYED,
+        PARANORMAL_PERFECTIONIST
+    }
+
+    enum class AchievementVisibility {
+        SHOWN,
+        HIDDEN
+    }
+
+    enum class AchievementExclusivity(
+        val value: Int
+    ) {
+        STEAM(1 shl 0),
+        XBOX(1 shl 1),
+        PLAYSTATION(1 shl 2)
     }
 
 }
