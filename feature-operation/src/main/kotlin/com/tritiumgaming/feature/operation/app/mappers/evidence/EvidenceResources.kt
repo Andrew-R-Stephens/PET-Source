@@ -82,9 +82,9 @@ import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResourc
         EvidenceTierAnimation.GHOST_ORBS_1 -> R.drawable.anim_orbs_1
         EvidenceTierAnimation.GHOST_ORBS_2 -> R.drawable.anim_orbs_2
         EvidenceTierAnimation.GHOST_ORBS_3 -> R.drawable.anim_orbs_3
-        EvidenceTierAnimation.GHOST_WRITING_1 -> R.drawable.anim_writing_1
-        EvidenceTierAnimation.GHOST_WRITING_2 -> R.drawable.anim_writing_2
-        EvidenceTierAnimation.GHOST_WRITING_3 -> R.drawable.anim_writing_3
+        EvidenceTierAnimation.GHOST_WRITING_1 -> R.drawable.example_ghost_writing_cropped_0
+        EvidenceTierAnimation.GHOST_WRITING_2 -> R.drawable.example_ghost_writing_cropped_0
+        EvidenceTierAnimation.GHOST_WRITING_3 -> R.drawable.example_ghost_writing_cropped_0
         EvidenceTierAnimation.SPIRIT_BOX_1 -> R.drawable.example_spirit_box_cropped_0
         EvidenceTierAnimation.SPIRIT_BOX_2 -> R.drawable.example_spirit_box_cropped_0
         EvidenceTierAnimation.SPIRIT_BOX_3 -> R.drawable.example_spirit_box_cropped_0

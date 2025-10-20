@@ -93,9 +93,7 @@ class OperationContainer(
 ) {
 
     // Ghost
-    private val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource(
-        applicationContext = applicationContext
-    )
+    private val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource()
     private val ghostRepository: GhostRepository = GhostRepositoryImpl(
         ghostLocalDataSource = ghostLocalDataSource
     )

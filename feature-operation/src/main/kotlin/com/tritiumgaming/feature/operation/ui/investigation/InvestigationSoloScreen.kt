@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -57,6 +58,7 @@ import com.tritiumgaming.core.ui.vector.getGearVector
 import com.tritiumgaming.core.ui.vector.getInfoVector
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.operation.ui.investigation.journal.Journal
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.CollapseButton
@@ -151,18 +153,25 @@ private fun InvestigationSoloContent(
         }
     }
 
-    val popupUiState = investigationViewModel.popupUiState
+    val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
+    InvestigationPopup(
+        modifier = Modifier
+            .fillMaxSize(),
+        shown = popupUiState.isShown
+    ) {
+        popupUiState.ghostPopupRecord?.let { record ->
+            GhostPopup(
+                modifier = Modifier,
+                record = record,
+            ) { investigationViewModel.clearPopup() }
+        }
 
-    Box {
-        GhostPopup(
-            modifier = Modifier,
-            state = popupUiState
-        ) { investigationViewModel.clearPopup() }
-
-        EvidencePopup(
-            modifier = Modifier,
-            state = popupUiState
-        ) { investigationViewModel.clearPopup() }
+        popupUiState.evidencePopupRecord?.let { record ->
+            EvidencePopup(
+                modifier = Modifier,
+                record = record
+            ) { investigationViewModel.clearPopup() }
+        }
     }
 }
 

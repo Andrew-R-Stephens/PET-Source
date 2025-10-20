@@ -12,9 +12,9 @@ enum class EvidenceTypePage(
 }
 
 enum class EvidenceTierPage(
-    val pageIndex: Int,
     @field:StringRes val label: Int
 ) {
-    EVIDENCE(0, R.string.evidence_section_overview),
-    EQUIPMENT(1, R.string.equipment_section_equipment)
+    TIER_1(R.string.equipment_tiers_1),
+    TIER_2(R.string.equipment_tiers_2),
+    TIER_3(R.string.equipment_tiers_3)
 }

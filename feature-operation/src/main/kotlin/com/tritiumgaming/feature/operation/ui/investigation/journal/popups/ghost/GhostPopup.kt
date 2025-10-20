@@ -1,13 +1,10 @@
 package com.tritiumgaming.feature.operation.ui.investigation.journal.popups.ghost
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -22,20 +19,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -48,75 +46,264 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.icon.GridIcon
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.InvestigationPopupUiState
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.InvestigationPopup
+import com.tritiumgaming.feature.operation.app.mappers.ghost.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.PageButton
+import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ModifiersButton
 import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
-import kotlinx.coroutines.flow.StateFlow
+
 
 @Composable
-fun BoxScope.GhostPopup(
+fun GhostPopup(
     modifier: Modifier,
-    state: StateFlow<InvestigationPopupUiState>,
+    record: GhostPopupRecord,
+    onClickPrevious: () -> Unit = {},
+    onClickNext: () -> Unit = {},
     onDismiss: () -> Unit
 ) {
-    val recordState by state.collectAsStateWithLifecycle()
-
-    InvestigationPopup(
+    GhostPopupContent(
         modifier = modifier,
-        shown = recordState.isShown,
-        {
-            recordState.ghostPopupRecord?.let { record ->
-                GhostPopupContent(
-                    modifier = Modifier,
-                    ghostPopupRecord = record,
-                    onDismiss = { onDismiss() }
-                )
-            }
-        }
+        ghostPopupRecord = record,
+        onClickPrevious = { onClickPrevious() },
+        onClickNext = { onClickNext() },
+        onDismiss = { onDismiss() }
     )
-
 }
-
 
 @Composable
 private fun GhostPopupContent(
     modifier: Modifier = Modifier,
     ghostPopupRecord: GhostPopupRecord,
-    primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
-    secondaryTitleContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
-    primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit)? = null,
-    primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
-    bodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
-    textFooterContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    onClickPrevious: () -> Unit,
+    onClickNext: () -> Unit,
     onDismiss: () -> Unit = {}
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
+    val image = ghostPopupRecord.icon.toDrawableResource()
+    val title: AnnotatedString = AnnotatedString.Companion.fromHtml(
+        stringResource(ghostPopupRecord.name.toStringResource()))
+    val description = AnnotatedString.Companion.fromHtml(
+        stringResource(ghostPopupRecord.info.toStringResource()))
+    val strengths = AnnotatedString.Companion.fromHtml(
+        stringResource(ghostPopupRecord.strengthData.toStringResource()))
+    val weakness = AnnotatedString.Companion.fromHtml(
+        stringResource(ghostPopupRecord.weaknessData.toStringResource()))
+    val huntInfo = AnnotatedString.Companion.fromHtml(
+        stringResource(ghostPopupRecord.huntData.toStringResource()))
+
+    val primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit) =
+        @Composable { modifier ->
+            Image(
+                modifier = modifier
+                    .border(
+                        width = 2.dp,
+                        shape = RectangleShape,
+                        color = LocalPalette.current.codexFamily.codex3
+                    ),
+                painter = painterResource(id = image),
+                contentDescription = "Primary Icon",
+                contentScale = ContentScale.Fit
+            )
+        }
+
+    val primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
+        @Composable { modifier ->
+            /*PopupDataRow(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .heightIn(max = 32.dp),
+                icon = R.drawable.ic_shop_cost,
+                data = "$buyCost"
+            )*/
+        }
+
+    val primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit) =
+        @Composable { modifier ->
+            Text(
+                modifier = modifier
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        initialDelayMillis = 1000,
+                        repeatDelayMillis = 1000,
+                    )
+                    .padding(horizontal = 8.dp, vertical = 4.dp),
+                style = LocalTypography.current.quaternary.bold.copy(
+                    textAlign = TextAlign.Start
+                ),
+                color = LocalPalette.current.codexFamily.codex3,
+                maxLines = 1,
+                fontSize = 20.sp,
+                text = title
+            )
+        }
+
+    val descriptionBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
+        @Composable { modifier ->
+            Column(
+                modifier = modifier
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .padding(horizontal = 4.dp, vertical = 8.dp),
+                    text = stringResource(R.string.popup_ghost_info).uppercase(),
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Center
+                    ),
+                    color = LocalPalette.current.codexFamily.codex3,
+                    fontSize = 24.sp
+                )
+
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .padding(4.dp),
+                    text = description,
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Start
+                    ),
+                    color = LocalPalette.current.codexFamily.codex3,
+                    fontSize = 20.sp
+                )
+            }
+        }
+
+    val strengthBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
+        @Composable { modifier ->
+            Column(
+                modifier = modifier
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .padding(horizontal = 4.dp, vertical = 8.dp),
+                    text = stringResource(R.string.popup_ghost_strength).uppercase(),
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Center
+                    ),
+                    color = LocalPalette.current.codexFamily.codex3,
+                    fontSize = 24.sp
+                )
+
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .padding(4.dp),
+                    text = strengths,
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Start
+                    ),
+                    color = LocalPalette.current.codexFamily.codex3,
+                    fontSize = 20.sp
+                )
+
+            }
+        }
+
+    val weaknessBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
+        @Composable { modifier ->
+            Column(
+                modifier = modifier
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .padding(horizontal = 4.dp, vertical = 8.dp),
+                    text = stringResource(R.string.popup_ghost_weakness).uppercase(),
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Center
+                    ),
+                    color = LocalPalette.current.codexFamily.codex3,
+                    fontSize = 24.sp
+                )
+
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .padding(4.dp),
+                    text = weakness,
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Start
+                    ),
+                    color = LocalPalette.current.codexFamily.codex3,
+                    fontSize = 20.sp
+                )
+
+            }
+        }
+
+    val huntBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
+        @Composable { modifier ->
+            Column(
+                modifier = modifier
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                        .padding(horizontal = 4.dp, vertical = 8.dp),
+                    text = stringResource(R.string.popup_ghost_huntdata).uppercase(),
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Center
+                    ),
+                    color = LocalPalette.current.codexFamily.codex3,
+                    fontSize = 24.sp
+                )
+
+                Text(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .padding(4.dp),
+                    text = huntInfo,
+                    style = LocalTypography.current.quaternary.bold.copy(
+                        textAlign = TextAlign.Start
+                    ),
+                    color = LocalPalette.current.codexFamily.codex3,
+                    fontSize = 20.sp
+                )
+
+            }
+        }
+
     when (deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             GhostTypePortraitPopup(
-                modifier = Modifier
+                modifier = modifier
                     .fillMaxWidth(),
-                primaryTitleContent = primaryTitleContent,
-                secondaryTitleContent = secondaryTitleContent,
-                primaryImageContent = primaryImageContent,
-                primaryDataContent = primaryDataContent,
-                bodyContent = bodyContent,
-                textFooterContent = textFooterContent,
+                primaryTitleContent,
+                primaryImageContent,
+                primaryDataContent,
+                descriptionBodyContent,
+                strengthBodyContent,
+                weaknessBodyContent,
+                huntBodyContent,
+                onClickPrevious = { onClickPrevious() },
+                onClickNext = { onClickNext() },
                 onDismiss = onDismiss
             )
         }
@@ -126,13 +313,16 @@ private fun GhostPopupContent(
         DeviceConfiguration.DESKTOP -> {
             GhostTypeLandscapePopup(
                 modifier = modifier
-                    .fillMaxSize(),
-                primaryTitleContent = primaryTitleContent,
-                secondaryTitleContent = secondaryTitleContent,
-                primaryImageContent = primaryImageContent,
-                primaryDataContent = primaryDataContent,
-                bodyContent = bodyContent,
-                textFooterContent = textFooterContent,
+                    .fillMaxWidth(),
+                primaryTitleContent,
+                primaryImageContent,
+                primaryDataContent,
+                descriptionBodyContent,
+                strengthBodyContent,
+                weaknessBodyContent,
+                huntBodyContent,
+                onClickPrevious = { onClickPrevious() },
+                onClickNext = { onClickNext() },
                 onDismiss = onDismiss
             )
         }
@@ -140,26 +330,31 @@ private fun GhostPopupContent(
 }
 
 @Composable
-private fun GhostTypePortraitPopup(
+fun GhostTypePortraitPopup(
     modifier: Modifier = Modifier,
     primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
-    secondaryTitleContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
     primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit)? = null,
     primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
-    bodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
-    textFooterContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    descriptionBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    strengthBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    weaknessBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    huntInfoBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    onClickPrevious: () -> Unit,
+    onClickNext: () -> Unit,
     onDismiss: () -> Unit = {}
 ) {
-
     Column(
         modifier = modifier
             .padding(top = 8.dp)
-            .clip(RoundedCornerShape(
-                topStart = 4.dp,
-                topEnd = 4.dp,
-                bottomStart = 0.dp,
-                bottomEnd = 0.dp))
-            .background(LocalPalette.current.codexFamily.codex4_border)
+            .clip(
+                RoundedCornerShape(
+                    topStart = 4.dp,
+                    topEnd = 4.dp,
+                    bottomStart = 0.dp,
+                    bottomEnd = 0.dp
+                )
+            )
+            .background(LocalPalette.current.codexFamily.codex4)
             .padding(top = 4.dp)
             .clip(RectangleShape)
             .background(LocalPalette.current.codexFamily.codex2),
@@ -173,9 +368,9 @@ private fun GhostTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3_itemBorder
+                    color = LocalPalette.current.codexFamily.codex3
                 )
-                .background(LocalPalette.current.codexFamily.codex3_popupCloseBackground),
+                .background(LocalPalette.current.codexFamily.codex3),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -193,30 +388,17 @@ private fun GhostTypePortraitPopup(
                     .width(48.dp)
                     .heightIn(min = 32.dp)
                     .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.codex3_popupCloseBackground)
+                    .background(LocalPalette.current.codexFamily.codex3)
                     .clickable { onDismiss() },
                 painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
                 contentDescription = "Close Button",
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex2_popupCloseIcon,
+                    color = LocalPalette.current.codexFamily.codex2,
                     blendMode = BlendMode.SrcIn
                 ),
                 contentScale = ContentScale.Fit
             )
-        }
 
-        secondaryTitleContent?.let { content ->
-            content(
-                Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .background(LocalPalette.current.codexFamily.codex2)
-                    .border(
-                        width = 1.dp,
-                        shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3_itemBorder
-                    )
-            )
         }
 
         Row(
@@ -226,11 +408,31 @@ private fun GhostTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3_itemBorder
+                    color = LocalPalette.current.codexFamily.codex3
                 ),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.Top
         ) {
+
+            /*Box(
+                modifier = Modifier
+                    .width(36.dp)
+                    .height(96.dp)
+                    .fillMaxHeight()
+                    .clickable(onClick = { onClickPrevious() })
+                    .background(LocalPalette.current.codexFamily.codex3)
+                    .padding(4.dp)
+            ) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
+                        .align(Alignment.Center),
+                    painter = painterResource(R.drawable.ic_arrow_fill_left),
+                    contentDescription = "Previous Button",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.codexFamily.codex2)
+                )
+            }*/
 
             primaryImageContent?.let { content ->
                 Box(
@@ -248,6 +450,7 @@ private fun GhostTypePortraitPopup(
                 Column(
                     modifier = Modifier
                         .height(IntrinsicSize.Max)
+                        .weight(1f)
                         .padding(2.dp),
                     horizontalAlignment = Alignment.Start,
                     verticalArrangement = Arrangement.Top
@@ -259,6 +462,27 @@ private fun GhostTypePortraitPopup(
                     )
                 }
             }
+
+            /*Box(
+                modifier = Modifier
+                    .width(36.dp)
+                    //.height(96.dp)
+                    .fillMaxHeight()
+                    .clickable(onClick = { onClickPrevious() })
+                    .background(LocalPalette.current.codexFamily.codex3)
+                    .padding(4.dp)
+            ) {
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
+                        .align(Alignment.Center),
+                    painter = painterResource(R.drawable.ic_arrow_fill_right),
+                    contentDescription = "Previous Button",
+                    colorFilter = ColorFilter.tint(LocalPalette.current.codexFamily.codex2)
+                )
+            }*/
+
         }
 
         Column(
@@ -268,53 +492,159 @@ private fun GhostTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3_itemBorder
+                    color = LocalPalette.current.codexFamily.codex3
                 )
                 .padding(2.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
         ) {
 
-            bodyContent?.let { content ->
-                content(
-                    Modifier
-                        .weight(1f, true)
-                        .fillMaxWidth()
-                )
+            var evidencePage by remember{ mutableStateOf(GhostPage.DESCRIPTION ) }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    /*.border(
+                        width = 1.dp,
+                        shape = RectangleShape,
+                        color = LocalPalette.current.codexFamily.codex3
+                    )*/,
+                horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                PageButton(
+                    isSelected = evidencePage == GhostPage.DESCRIPTION,
+                    icon = { modifier, colors ->
+                        Icon(
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(
+                                R.drawable.ic_ghost
+                            ),
+                            contentDescription = "",
+                            tint = colors.strokeColor,
+                        )
+                    }
+                ) { evidencePage = GhostPage.DESCRIPTION }
+
+                PageButton(
+                    isSelected = evidencePage == GhostPage.STRENGTH,
+                    icon = { modifier, colors ->
+                        Icon(
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(
+                                R.drawable.ic_thumb_up
+                            ),
+                            contentDescription = "",
+                            tint = colors.strokeColor,
+                        )
+                    }
+                ) { evidencePage = GhostPage.STRENGTH }
+
+                PageButton(
+                    isSelected = evidencePage == GhostPage.WEAKNESS,
+                    icon = { modifier, colors ->
+                        Icon(
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(
+                                R.drawable.ic_thumb_down
+                            ),
+                            contentDescription = "",
+                            tint = colors.strokeColor,
+                        )
+                    }
+                ) { evidencePage = GhostPage.WEAKNESS }
+
+                PageButton(
+                    isSelected = evidencePage == GhostPage.HUNT,
+                    icon = { modifier, colors ->
+                        Icon(
+                            modifier = modifier
+                                .padding(2.dp),
+                            painter = painterResource(
+                                R.drawable.ic_intelligence
+                            ),
+                            contentDescription = "",
+                            tint = colors.strokeColor,
+                        )
+                    }
+                ) { evidencePage = GhostPage.HUNT }
+
             }
 
-            textFooterContent?.let { content ->
-                content(
-                    Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                )
+            when(evidencePage) {
+                GhostPage.DESCRIPTION -> {
+                    descriptionBodyContent?.let { content ->
+                        content(
+                            Modifier
+                                .weight(1f, true)
+                                .fillMaxWidth()
+                        )
+                    }
+                }
+                GhostPage.STRENGTH -> {
+                    strengthBodyContent?.let { content ->
+                        content(
+                            Modifier
+                                .weight(1f, true)
+                                .fillMaxWidth()
+                        )
+                    }
+                }
+                GhostPage.WEAKNESS -> {
+                    weaknessBodyContent?.let { content ->
+                        content(
+                            Modifier
+                                .weight(1f, true)
+                                .fillMaxWidth()
+                        )
+                    }
+                }
+                GhostPage.HUNT -> {
+                    huntInfoBodyContent?.let { content ->
+                        content(
+                            Modifier
+                                .weight(1f, true)
+                                .fillMaxWidth()
+                        )
+                    }
+                }
             }
         }
+
     }
 }
 
 @Composable
-private fun GhostTypeLandscapePopup(
+fun GhostTypeLandscapePopup(
     modifier: Modifier = Modifier,
     primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
-    secondaryTitleContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
     primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit)? = null,
     primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
-    bodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
-    textFooterContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    descriptionBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    strengthBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    weaknessBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    huntInfoBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    onClickPrevious: () -> Unit,
+    onClickNext: () -> Unit,
     onDismiss: () -> Unit = {}
 ) {
 
     Column(
         modifier = modifier
             .padding(end = 8.dp)
-            .clip(RoundedCornerShape(
-                topStart = 0.dp,
-                topEnd = 4.dp,
-                bottomStart = 0.dp,
-                bottomEnd = 4.dp))
-            .background(LocalPalette.current.codexFamily.codex4_border)
+            .clip(
+                RoundedCornerShape(
+                    topStart = 0.dp,
+                    topEnd = 4.dp,
+                    bottomStart = 0.dp,
+                    bottomEnd = 4.dp
+                )
+            )
+            .background(LocalPalette.current.codexFamily.codex4)
             .padding(end = 4.dp)
             .clip(RectangleShape)
             .background(LocalPalette.current.codexFamily.codex2),
@@ -328,9 +658,9 @@ private fun GhostTypeLandscapePopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3_itemBorder
+                    color = LocalPalette.current.codexFamily.codex3
                 )
-                .background(LocalPalette.current.codexFamily.codex3_popupCloseBackground),
+                .background(LocalPalette.current.codexFamily.codex3),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -348,33 +678,19 @@ private fun GhostTypeLandscapePopup(
                     .width(48.dp)
                     .heightIn(min = 32.dp)
                     .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.codex3_popupCloseBackground)
+                    .background(LocalPalette.current.codexFamily.codex3)
                     .clickable { onDismiss() },
                 painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
                 contentDescription = "Close Button",
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex2_popupCloseIcon,
+                    color = LocalPalette.current.codexFamily.codex2,
                     blendMode = BlendMode.SrcIn
                 ),
                 contentScale = ContentScale.Fit
             )
         }
 
-        secondaryTitleContent?.let { content ->
-            content(
-                Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .background(LocalPalette.current.codexFamily.codex2)
-                    .border(
-                        width = 1.dp,
-                        shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3_itemBorder
-                    )
-            )
-        }
-
-        Row() {
+        Row {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -382,7 +698,7 @@ private fun GhostTypeLandscapePopup(
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3_itemBorder
+                        color = LocalPalette.current.codexFamily.codex3
                     ),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
@@ -417,6 +733,83 @@ private fun GhostTypeLandscapePopup(
                 }
             }
 
+
+            var evidencePage by remember{ mutableStateOf(GhostPage.DESCRIPTION ) }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .border(
+                        width = 1.dp,
+                        shape = RectangleShape,
+                        color = LocalPalette.current.codexFamily.codex3
+                    ),
+                horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                PageButton(
+                    isSelected = evidencePage == GhostPage.DESCRIPTION,
+                    icon = { modifier, colors ->
+                        Icon(
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(
+                                R.drawable.ic_ghost
+                            ),
+                            contentDescription = "",
+                            tint = colors.strokeColor,
+                        )
+                    }
+                ) { evidencePage = GhostPage.DESCRIPTION }
+
+                PageButton(
+                    isSelected = evidencePage == GhostPage.STRENGTH,
+                    icon = { modifier, colors ->
+                        Icon(
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(
+                                R.drawable.ic_thumb_up
+                            ),
+                            contentDescription = "",
+                            tint = colors.strokeColor,
+                        )
+                    }
+                ) { evidencePage = GhostPage.STRENGTH }
+
+                PageButton(
+                    isSelected = evidencePage == GhostPage.WEAKNESS,
+                    icon = { modifier, colors ->
+                        Icon(
+                            modifier = modifier
+                                .padding(4.dp),
+                            painter = painterResource(
+                                R.drawable.ic_thumb_down
+                            ),
+                            contentDescription = "",
+                            tint = colors.strokeColor,
+                        )
+                    }
+                ) { evidencePage = GhostPage.WEAKNESS }
+
+                PageButton(
+                    isSelected = evidencePage == GhostPage.HUNT,
+                    icon = { modifier, colors ->
+                        Icon(
+                            modifier = modifier
+                                .padding(2.dp),
+                            painter = painterResource(
+                                R.drawable.ic_intelligence
+                            ),
+                            contentDescription = "",
+                            tint = colors.strokeColor,
+                        )
+                    }
+                ) { evidencePage = GhostPage.HUNT }
+
+            }
+
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -424,639 +817,51 @@ private fun GhostTypeLandscapePopup(
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3_itemBorder
+                        color = LocalPalette.current.codexFamily.codex3
                     )
                     .padding(2.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
-
-                bodyContent?.let { content ->
-                    content(
-                        Modifier
-                            .weight(1f, true)
-                            .fillMaxWidth()
-                    )
+                when(evidencePage) {
+                    GhostPage.DESCRIPTION -> {
+                        descriptionBodyContent?.let { content ->
+                            content(
+                                Modifier
+                                    .weight(1f, true)
+                                    .fillMaxWidth()
+                            )
+                        }
+                    }
+                    GhostPage.STRENGTH -> {
+                        strengthBodyContent?.let { content ->
+                            content(
+                                Modifier
+                                    .weight(1f, true)
+                                    .fillMaxWidth()
+                            )
+                        }
+                    }
+                    GhostPage.WEAKNESS -> {
+                        weaknessBodyContent?.let { content ->
+                            content(
+                                Modifier
+                                    .weight(1f, true)
+                                    .fillMaxWidth()
+                            )
+                        }
+                    }
+                    GhostPage.HUNT -> {
+                        huntInfoBodyContent?.let { content ->
+                            content(
+                                Modifier
+                                    .weight(1f, true)
+                                    .fillMaxWidth()
+                            )
+                        }
+                    }
                 }
-
-                textFooterContent?.let { content ->
-                    content(
-                        Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                    )
-                }
-
-
             }
-        }
-    }
-}
-
-@Composable
-private fun PopupDataRow(
-    modifier: Modifier = Modifier,
-    @DrawableRes icon: Int,
-    data: String
-) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.Start,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        Image(
-            modifier = Modifier
-                .fillMaxHeight()
-                .aspectRatio(1f)
-                .padding(1.dp),
-            painter = painterResource(id = icon),
-            contentDescription = "Cost Icon",
-            contentScale = ContentScale.Fit,
-            colorFilter = ColorFilter.tint(
-                color = LocalPalette.current.codexFamily.codex3_popupAttrIcons,
-            )
-        )
-
-        Text(
-            modifier = Modifier
-                .weight(1f)
-                .padding(vertical = 8.dp, horizontal = 2.dp),
-            text = data,
-            style = LocalTypography.current.quaternary.regular.copy(
-                textAlign = TextAlign.Start
-            ),
-            color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(minFontSize = 1.sp)
-        )
-
-    }
-}
-
-@Composable
-private fun CodexGroup(
-    modifier: Modifier = Modifier,
-    @StringRes groupTitle: Int,
-    content: @Composable () -> Unit = {}
-) {
-
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
-    ) {
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .widthIn(min = 96.dp)
-                .wrapContentHeight()
-                .background(
-                    LocalPalette.current.codexFamily.codex2
-                )
-                .border(
-                    width = 2.dp,
-                    color = LocalPalette.current.codexFamily.codex3_itemBorder
-                )
-                .padding(4.dp)
-                .basicMarquee(
-                    iterations = Int.MAX_VALUE,
-                    initialDelayMillis = 1000,
-                    repeatDelayMillis = 1000,
-                )
-                .zIndex(zIndex = 1f),
-            text = stringResource( groupTitle).uppercase(),
-            style = LocalTypography.current.quaternary.bold.copy(
-                textAlign = TextAlign.Center
-            ),
-            fontSize = 18.sp,
-            color = LocalPalette.current.codexFamily.codex3_groupHeaderText,
-            maxLines = 1
-        )
-
-        content()
-    }
-
-}
-
-@Composable
-fun CodexGroupItemsPortrait(
-    modifier: Modifier = Modifier,
-    itemCount: Int = 1,
-    content: @Composable RowScope.() -> Unit = {}
-) {
-    val arrangement = when {
-        (itemCount == 1) -> Arrangement.Center
-        (itemCount == 2) -> Arrangement.SpaceEvenly
-        (itemCount > 3) -> Arrangement.spacedBy(4.dp)
-        else -> Arrangement.SpaceBetween
-    }
-
-    Row(
-        modifier = modifier
-            .offset(y = (-1).dp)
-            .horizontalScroll(rememberScrollState()),
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = arrangement,
-    ) {
-        content()
-    }
-}
-
-@Composable
-fun CodexGroupItemsLandscape(
-    modifier: Modifier = Modifier,
-    itemCount: Int = 1,
-    content: @Composable ColumnScope.() -> Unit = {}
-) {
-    val arrangement = Arrangement.spacedBy(4.dp)
-
-    Column(
-        modifier = modifier
-            .offset(y = (-1).dp)
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = arrangement,
-    ) {
-        content()
-    }
-}
-
-@Composable
-fun CodexGroupItem(
-    modifier: Modifier = Modifier,
-    @DrawableRes image: Int,
-    isBackground: Boolean = false,
-    isBordered: Boolean = false,
-    selected: Boolean = false,
-    onClick: () -> Unit = {}
-) {
-
-    Box(
-        modifier = modifier
-            .then(
-                when (isBordered) {
-                    false -> Modifier
-                    true -> Modifier
-                        .then(
-                            when (selected) {
-                                true -> Modifier
-                                    .border(
-                                        2.dp,
-                                        LocalPalette.current.codexFamily.codex4_border
-                                    )
-
-                                false -> Modifier
-                                    .border(
-                                        2.dp,
-                                        LocalPalette.current.codexFamily.codex3_itemBorder
-                                    )
-                            }
-                        )
-                }
-            )
-            .clickable { onClick() }
-    ) {
-        if(isBackground) {
-            GridPattern()
-        }
-
-        Image(
-            modifier = Modifier
-                .fillMaxSize()
-                .then(
-                    when (isBordered) {
-                        true -> Modifier
-                            .padding(8.dp)
-
-                        false -> Modifier
-                    }
-                ),
-            painter = painterResource(id = image),
-            contentDescription = null,
-            contentScale = ContentScale.Fit
-        )
-
-    }
-}
-
-@Composable
-fun GridPattern(
-    modifier: Modifier = Modifier
-) {
-    Box(
-        modifier = modifier
-            .aspectRatio(1f)
-    ) {
-        /*Image(
-            painter = painterResource(id = R.drawable.itemstore_grid),
-            contentDescription = "Tier Image",
-            modifier = Modifier
-                .fillMaxSize()
-        )*/
-        GridIcon(
-            modifier = Modifier
-                .fillMaxSize(),
-            colors = IconVectorColors(
-                fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
-                strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
-            )
-        )
-    }
-}
-
-@Preview
-@Composable
-fun EvidenceTypePortraitPreview() {
-
-    val primaryText = AnnotatedString.Companion.fromHtml(
-        stringResource(R.string.shop_equipment_crucifix_data_info_1))
-    val secondaryText = AnnotatedString.Companion.fromHtml(
-        stringResource(R.string.shop_equipment_crucifix_data_flavortext_1))
-    val footerText = listOf(
-        AnnotatedString.Companion.fromHtml(
-            stringResource(R.string.shop_equipment_crucifix_data_flavortext_1))
-    )
-    val primaryTitle = AnnotatedString.Companion.fromHtml(
-        stringResource(R.string.equipment_info_name_crucifix))
-    val secondaryTitle = AnnotatedString.Companion.fromHtml(
-        stringResource(R.string.equipment_info_name_crucifix))
-    val buyCost = 3000
-    val unlockLevel = 30
-    val upgradeCost = 30000
-
-    SelectiveTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-
-            GhostTypePortraitPopup(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(.7f)
-                    .align(Alignment.BottomCenter),
-                primaryTitleContent = { modifier ->
-                    Text(
-                        modifier = modifier
-                            .basicMarquee(
-                                iterations = Int.MAX_VALUE,
-                                initialDelayMillis = 1000,
-                                repeatDelayMillis = 1000,
-                            )
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        style = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Start
-                        ),
-                        color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                        maxLines = 1,
-                        fontSize = 20.sp,
-                        text = primaryTitle
-                    )
-                },
-                secondaryTitleContent = { modifier ->
-                    Text(
-                        modifier = modifier
-                            .basicMarquee(
-                                iterations = Int.MAX_VALUE,
-                                initialDelayMillis = 1000,
-                                repeatDelayMillis = 1000,
-                            )
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        text = secondaryTitle,
-                        style = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Start
-                        ),
-                        color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                        maxLines = 1,
-                        fontSize = 20.sp
-                    )
-
-                },
-                primaryImageContent = { modifier ->
-                    GridIcon(
-                        modifier = modifier,
-                        colors = IconVectorColors(
-                            fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
-                            strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
-                        ),
-                        contentScale = ContentScale.Fit
-                    )
-                    /*Image(
-                        modifier = modifier,
-                        painter = painterResource(id = R.drawable.itemstore_grid),
-                        contentDescription = "Primary Icon",
-                        contentScale = ContentScale.Fit
-                    )*/
-                    Image(
-                        modifier = modifier
-                            .padding(8.dp),
-                        painter = painterResource(id = R.drawable.icon_shop_para_2),
-                        contentDescription = "Primary Icon",
-                        contentScale = ContentScale.Fit
-                    )
-                },
-                primaryDataContent = { modifier ->
-
-                    PopupDataRow(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .heightIn(max = 32.dp),
-                        icon = R.drawable.ic_shop_cost,
-                        data = "$buyCost"
-                    )
-
-                    PopupDataRow(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .heightIn(max = 32.dp),
-                        icon = R.drawable.ic_shop_unlock,
-                        data = "$unlockLevel"
-                    )
-
-                    PopupDataRow(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .heightIn(max = 32.dp),
-                        icon = R.drawable.ic_shop_upgrade_cost,
-                        data = "$upgradeCost"
-                    )
-
-                },
-                bodyContent = { modifier ->
-                    Column(
-                        modifier = modifier
-                            .verticalScroll(rememberScrollState()),
-                        horizontalAlignment = Alignment.Start,
-                        verticalArrangement = Arrangement.Top
-                    ) {
-                        Text(
-                            modifier = Modifier
-                                .weight(1f, false)
-                                .wrapContentHeight()
-                                .padding(4.dp),
-                            text = secondaryText,
-                            style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Start
-                            ),
-                            color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                            fontSize = 20.sp
-                        )
-
-                        HorizontalDivider(
-                            modifier = Modifier
-                                .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3_other
-                        )
-
-                        Text(
-                            modifier = Modifier
-                                .weight(1f, false)
-                                .wrapContentHeight()
-                                .padding(4.dp),
-                            text = primaryText,
-                            style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Start
-                            ),
-                            color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                            fontSize = 18.sp
-                        )
-
-                    }
-                },
-                textFooterContent = { modifier ->
-                    Column(
-                        modifier = modifier,
-                        horizontalAlignment = Alignment.Start,
-                        verticalArrangement = Arrangement.Bottom
-                    ) {
-                        HorizontalDivider(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3_other
-                        )
-
-                        val footerTextArr = footerText.map { it }
-                        val footerText = footerTextArr.joinToString("")
-
-                        Text(
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .horizontalScroll(rememberScrollState()),
-                            text = footerText,
-                            style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Start
-                            ),
-                            color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                            maxLines = 2,
-                            fontSize = 18.sp
-                        )
-                    }
-                },
-                onDismiss = {}
-            )
-        }
-    }
-}
-
-@Preview(device = "spec:parent=pixel_5,orientation=landscape")
-@Composable
-fun EvidenceTypePopupLandscapePreview() {
-
-    val primaryText = AnnotatedString.Companion.fromHtml(
-        stringResource(R.string.shop_equipment_crucifix_data_info_1))
-    val secondaryText = AnnotatedString.Companion.fromHtml(
-        stringResource(R.string.shop_equipment_crucifix_data_flavortext_1))
-    val footerText = listOf(
-        AnnotatedString.Companion.fromHtml(
-            stringResource(R.string.shop_equipment_crucifix_data_flavortext_1))
-    )
-    val primaryTitle = AnnotatedString.Companion.fromHtml(
-        stringResource(R.string.equipment_info_name_crucifix))
-    val secondaryTitle = AnnotatedString.Companion.fromHtml(
-        stringResource(R.string.equipment_info_name_crucifix))
-    val buyCost = 3000
-    val unlockLevel = 30
-    val upgradeCost = 30000
-
-    SelectiveTheme {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-
-            GhostTypeLandscapePopup(
-                modifier = Modifier
-                    .fillMaxWidth(.7f)
-                    .fillMaxHeight()
-                    .align(Alignment.CenterStart),
-                primaryTitleContent = { modifier ->
-                    Text(
-                        modifier = modifier
-                            .basicMarquee(
-                                iterations = Int.MAX_VALUE,
-                                initialDelayMillis = 1000,
-                                repeatDelayMillis = 1000,
-                            )
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        style = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Start
-                        ),
-                        color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                        maxLines = 1,
-                        fontSize = 20.sp,
-                        text = primaryTitle
-                    )
-                },
-                secondaryTitleContent = { modifier ->
-                    Text(
-                        modifier = modifier
-                            .basicMarquee(
-                                iterations = Int.MAX_VALUE,
-                                initialDelayMillis = 1000,
-                                repeatDelayMillis = 1000,
-                            )
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        text = secondaryTitle,
-                        style = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Start
-                        ),
-                        color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                        maxLines = 1,
-                        fontSize = 20.sp
-                    )
-
-                },
-                primaryImageContent = { modifier ->
-                    GridIcon(
-                        modifier = modifier,
-                        colors = IconVectorColors(
-                            fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
-                            strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
-                        ),
-                        contentScale = ContentScale.Fit
-                    )
-                    /*Image(
-                        modifier = modifier,
-                        painter = painterResource(id = R.drawable.itemstore_grid),
-                        contentDescription = "Primary Icon",
-                        contentScale = ContentScale.Fit
-                    )*/
-                    Image(
-                        modifier = modifier
-                            .padding(8.dp),
-                        painter = painterResource(id = R.drawable.icon_shop_para_2),
-                        contentDescription = "Primary Icon",
-                        contentScale = ContentScale.Fit
-                    )
-                },
-                primaryDataContent = { modifier ->
-
-                    PopupDataRow(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .heightIn(max = 32.dp),
-                        icon = R.drawable.ic_shop_cost,
-                        data = "$buyCost"
-                    )
-
-                    PopupDataRow(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .heightIn(max = 32.dp),
-                        icon = R.drawable.ic_shop_unlock,
-                        data = "$unlockLevel"
-                    )
-
-                    PopupDataRow(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .heightIn(max = 32.dp),
-                        icon = R.drawable.ic_shop_upgrade_cost,
-                        data = "$upgradeCost"
-                    )
-
-                },
-                bodyContent = { modifier ->
-                    Column(
-                        modifier = modifier
-                            .verticalScroll(rememberScrollState()),
-                        horizontalAlignment = Alignment.Start,
-                        verticalArrangement = Arrangement.Top
-                    ) {
-                        Text(
-                            modifier = Modifier
-                                .weight(1f, false)
-                                .wrapContentHeight()
-                                .padding(4.dp),
-                            text = secondaryText,
-                            style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Start
-                            ),
-                            color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                            fontSize = 20.sp
-                        )
-
-                        HorizontalDivider(
-                            modifier = Modifier
-                                .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3_other
-                        )
-
-                        Text(
-                            modifier = Modifier
-                                .weight(1f, false)
-                                .wrapContentHeight()
-                                .padding(4.dp),
-                            text = primaryText,
-                            style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Start
-                            ),
-                            color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                            fontSize = 18.sp
-                        )
-
-                    }
-                },
-                textFooterContent = { modifier ->
-                    Column(
-                        modifier = modifier,
-                        horizontalAlignment = Alignment.Start,
-                        verticalArrangement = Arrangement.Bottom
-                    ) {
-                        HorizontalDivider(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3_other
-                        )
-
-                        val footerTextArr = footerText.map { it }
-                        val footerText = footerTextArr.joinToString("")
-
-                        Text(
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .horizontalScroll(rememberScrollState()),
-                            text = footerText,
-                            style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Start
-                            ),
-                            color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                            maxLines = 2,
-                            fontSize = 18.sp
-                        )
-                    }
-                },
-                onDismiss = {}
-            )
         }
     }
 }

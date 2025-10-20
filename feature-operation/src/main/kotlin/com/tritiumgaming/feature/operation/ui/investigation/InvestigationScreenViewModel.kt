@@ -340,6 +340,7 @@ class InvestigationScreenViewModel(
                 name = evidence.name,
                 description = evidence.description,
                 icon = evidence.icon,
+                animation = evidence.animation,
                 equipmentTierAnimations = evidence.tiers.map { it },
                 equipmentType = equipmentType
             )
@@ -363,6 +364,7 @@ class InvestigationScreenViewModel(
             val popupRecord = GhostPopupRecord(
                 id = ghost.id,
                 name = ghost.name,
+                icon = ghost.icon,
                 info = ghost.info,
                 strengthData = ghost.strengthData,
                 weaknessData = ghost.weaknessData,

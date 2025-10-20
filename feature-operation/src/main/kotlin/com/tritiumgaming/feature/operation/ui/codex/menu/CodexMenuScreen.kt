@@ -230,7 +230,7 @@ private fun CodexMenuItem(
         shape = RectangleShape,
         border = BorderStroke(
             width = 1.dp,
-            color = LocalPalette.current.codexFamily.codex3_cardBorder
+            color = LocalPalette.current.codexFamily.codex3
         ),
         onClick = { onClick() }
     ) {
@@ -244,8 +244,8 @@ private fun CodexMenuItem(
                 modifier = Modifier
                     .fillMaxSize(),
                 colors = IconVectorColors(
-                    fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
-                    strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                    fillColor = LocalPalette.current.codexFamily.codex6,
+                    strokeColor = LocalPalette.current.codexFamily.codex7
                 ),
                 contentScale = ContentScale.FillBounds
             )
@@ -325,7 +325,7 @@ private fun CodexMenuItem(
                         .wrapContentWidth()
                         .fillMaxHeight()
                         .background(
-                            LocalPalette.current.codexFamily.codex3_cardBorder
+                            LocalPalette.current.codexFamily.codex3
                         )
                         .padding(4.dp),
                     verticalArrangement = Arrangement.Top,
@@ -338,7 +338,7 @@ private fun CodexMenuItem(
                         painter = painterResource(R.drawable.ic_arrow_topright),
                         contentDescription = "",
                         colorFilter = ColorFilter.tint(
-                            color = LocalPalette.current.codexFamily.codex1_cardArrow
+                            color = LocalPalette.current.codexFamily.codex1
                         )
                     )
                 }
@@ -362,7 +362,7 @@ fun CodexMenuGhostLabel(
                 .wrapContentSize(),
             text = "GH",
             style = JetBrainsMonoTypography.primary.bold,
-            color = LocalPalette.current.codexFamily.codex3_gh0stTextNormal,
+            color = LocalPalette.current.codexFamily.codex3,
             fontSize = 12.sp,
             maxLines = 1
         )
@@ -372,7 +372,7 @@ fun CodexMenuGhostLabel(
                 .wrapContentSize(),
             text = "//OS.T",
             style = JetBrainsMonoTypography.primary.bold,
-            color = LocalPalette.current.codexFamily.codex4_gh0stTextAlt,
+            color = LocalPalette.current.codexFamily.codex4,
             fontSize = 12.sp,
             maxLines = 1
         )

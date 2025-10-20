@@ -828,8 +828,8 @@ private fun BackgroundGrid(
         modifier = modifier
             .alpha(.4f),
         colors = IconVectorColors(
-            fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
-            strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+            fillColor = LocalPalette.current.codexFamily.codex6,
+            strokeColor = LocalPalette.current.codexFamily.codex7
         ),
         contentScale = ContentScale.FillBounds
     )

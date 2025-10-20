@@ -30,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.integerResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -45,9 +46,8 @@ import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.codex.toDrawableResource
+import com.tritiumgaming.feature.operation.app.mappers.codex.toIntegerResource
 import com.tritiumgaming.feature.operation.app.mappers.codex.toStringResource
-import com.tritiumgaming.feature.operation.app.mappers.map.toDrawableResource
-import com.tritiumgaming.feature.operation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexGroup
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexGroupItem
@@ -56,21 +56,20 @@ import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexGroupIte
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexItemPopup
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexItemPopupDataRow
 
-
 @Composable
-fun CodexPossessionsListComponent(
+fun CatalogEquipmentListComponent(
     codexViewModel: CodexViewModel,
     scrollState: LazyListState
 ) {
-    val possessionUiState = codexViewModel.possessionsUiState.collectAsStateWithLifecycle()
-
-    val groups = possessionUiState.value.list
+    val equipmentUiState = codexViewModel.equipmentUiState.collectAsStateWithLifecycle()
+    val groups = equipmentUiState.value.list
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
+
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
@@ -103,7 +102,7 @@ fun CodexPossessionsListComponent(
                                     tierLevel = index + 1,
                                     image = item.image.toDrawableResource()
                                 ) {
-                                    codexViewModel.setSelectedPossession(group, item)
+                                    codexViewModel.setSelectedEquipment(group, item)
                                 }
                             }
                         }
@@ -142,7 +141,8 @@ fun CodexPossessionsListComponent(
                                     modifier = Modifier
                                         .sizeIn(
                                             minWidth = 64.dp, maxWidth = 96.dp,
-                                            minHeight = 64.dp, maxHeight = 96.dp)
+                                            minHeight = 64.dp, maxHeight = 96.dp
+                                        )
                                         .aspectRatio(1f)/*
                                         .weight(1f, false)*/,
                                     isBackground = true,
@@ -150,7 +150,7 @@ fun CodexPossessionsListComponent(
                                     tierLevel = index + 1,
                                     image = item.image.toDrawableResource()
                                 ) {
-                                    codexViewModel.setSelectedPossession(group, item)
+                                    codexViewModel.setSelectedEquipment(group, item)
                                 }
                             }
                         }
@@ -163,37 +163,38 @@ fun CodexPossessionsListComponent(
 }
 
 @Composable
-fun CodexPossessionsDisplay(
+fun CodexEquipmentDisplay(
     modifier: Modifier = Modifier,
     codexViewModel: CodexViewModel
 ) {
 
-    val possessionUiState by codexViewModel.possessionsUiState.collectAsStateWithLifecycle()
+    val equipmentUiState by codexViewModel.equipmentUiState.collectAsStateWithLifecycle()
 
-    val selectedGroup = possessionUiState.selectedGroup ?: return
-    val selectedItem = possessionUiState.selectedItem ?: return
+    val selectedGroup = equipmentUiState.selectedGroup ?: return
+    val selectedItem = equipmentUiState.selectedItem ?: return
 
     val image = selectedItem.image.toDrawableResource()
 
     val primaryTitle: AnnotatedString? = AnnotatedString.Companion.fromHtml(
         stringResource(selectedGroup.name.toStringResource()))
-    val secondaryTitle: AnnotatedString? = AnnotatedString.Companion.fromHtml(
-        selectedItem.altName?.toStringResource()?.let {
-            stringResource(it) } ?: "")
 
     val primaryText = AnnotatedString.Companion.fromHtml(
-        stringResource(selectedItem.infoText.toStringResource()))
+        stringResource(selectedItem.info.toStringResource()))
 
     val secondaryText = AnnotatedString.Companion.fromHtml(
-        stringResource(selectedItem.flavorText.toStringResource()))
+        stringResource(selectedItem.flavor.toStringResource()))
+
+    val positiveAttributes = selectedItem.positiveAttributes.map {
+        stringResource(it.toStringResource()) }.joinToString { "$it " }
+    val negativeAttributes = selectedItem.negativeAttributes.map {
+        stringResource(it.toStringResource()) }.joinToString { "$it " }
 
     val footerText = AnnotatedString.Companion.fromHtml(
-        stringResource(selectedItem.attributesText.toStringResource()))
+        "$positiveAttributes $negativeAttributes")
 
-    val sanityDrain = AnnotatedString.Companion.fromHtml(
-        stringResource(selectedItem.sanityDrain.toStringResource()))
-    val drawChance = AnnotatedString.Companion.fromHtml(
-        stringResource(selectedItem.drawChance.toStringResource()))
+    val buyCost = integerResource(selectedGroup.buyCostData.toIntegerResource())
+    val upgradeLevel = integerResource(selectedItem.upgradeLevelData.toIntegerResource())
+    val upgradeCost = integerResource(selectedItem.upgradeCostData.toIntegerResource())
 
     CodexItemPopup(
         modifier = modifier,
@@ -211,41 +212,18 @@ fun CodexPossessionsDisplay(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
+                    color = LocalPalette.current.codexFamily.codex3,
                     maxLines = 1,
                     fontSize = 20.sp
                 )
             }
         },
-        secondaryTitleContent = { modifier ->
-            secondaryTitle?.let { title ->
-                if(title.isNotBlank()) {
-                    Text(
-                        modifier = modifier
-                            .basicMarquee(
-                                iterations = Int.MAX_VALUE,
-                                initialDelayMillis = 1000,
-                                repeatDelayMillis = 1000,
-                            )
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        text = title,
-                        style = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Start
-                        ),
-                        color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
-                        maxLines = 1,
-                        fontSize = 20.sp
-                    )
-                }
-            }
-
-        },
         primaryImageContent = { modifier ->
             GridIcon(
                 modifier = modifier,
                 colors = IconVectorColors(
-                    fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
-                    strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                    fillColor = LocalPalette.current.codexFamily.codex6,
+                    strokeColor = LocalPalette.current.codexFamily.codex7
                 ),
                 contentScale = ContentScale.Fit
             )
@@ -264,8 +242,8 @@ fun CodexPossessionsDisplay(
                     .weight(1f)
                     .fillMaxWidth()
                     .heightIn(max = 32.dp),
-                icon = R.drawable.ic_shop_sanitydrain,
-                data = "$sanityDrain"
+                icon = R.drawable.ic_shop_cost,
+                data = "$buyCost"
             )
 
             CodexItemPopupDataRow(
@@ -273,8 +251,17 @@ fun CodexPossessionsDisplay(
                     .weight(1f)
                     .fillMaxWidth()
                     .heightIn(max = 32.dp),
-                icon = R.drawable.ic_shop_chance,
-                data = "$drawChance"
+                icon = R.drawable.ic_shop_upgrade,
+                data = "$upgradeLevel"
+            )
+
+            CodexItemPopupDataRow(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .heightIn(max = 32.dp),
+                icon = R.drawable.ic_shop_upgrade_cost,
+                data = "$upgradeCost"
             )
 
         },
@@ -293,14 +280,14 @@ fun CodexPossessionsDisplay(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
+                    color = LocalPalette.current.codexFamily.codex3,
                     fontSize = 20.sp
                 )
 
                 HorizontalDivider(
                     modifier = Modifier
                         .height(2.dp),
-                    color = LocalPalette.current.codexFamily.codex3_other
+                    color = LocalPalette.current.codexFamily.codex3
                 )
 
                 Text(
@@ -311,7 +298,7 @@ fun CodexPossessionsDisplay(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
+                    color = LocalPalette.current.codexFamily.codex3,
                     fontSize = 18.sp
                 )
 
@@ -329,7 +316,7 @@ fun CodexPossessionsDisplay(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(2.dp),
-                        color = LocalPalette.current.codexFamily.codex3_other
+                        color = LocalPalette.current.codexFamily.codex3
                     )
 
                     Text(
@@ -340,7 +327,7 @@ fun CodexPossessionsDisplay(
                         style = LocalTypography.current.quaternary.bold.copy(
                             textAlign = TextAlign.Start
                         ),
-                        color = LocalPalette.current.codexFamily.codex3_popupHeaderText,
+                        color = LocalPalette.current.codexFamily.codex3,
                         maxLines = 2,
                         fontSize = 18.sp
                     )
@@ -348,7 +335,7 @@ fun CodexPossessionsDisplay(
             }
         },
         onDismiss = {
-            codexViewModel.setSelectedPossession(null, null)
+            codexViewModel.setSelectedEquipment(null, null)
         }
     )
 }

@@ -44,15 +44,15 @@ import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.feature.operation.ui.codex.CodexScreen
 import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
 import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexAchievementDisplay
-import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexAchievementListComponent
+import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CatalogAchievementListComponent
 import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexEquipmentDisplay
-import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexEquipmentListComponent
+import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CatalogEquipmentListComponent
 import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexPossessionsDisplay
 import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexPossessionsListComponent
 import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
 
 @Composable
-fun CodexItemstoreScreen(
+fun CodexCatalogScreen(
     navController: NavHostController = rememberNavController(),
     codexViewModel: CodexViewModel,
     category: CodexResources.Category
@@ -159,7 +159,7 @@ private fun CodexItemScreenContentPortrait(
             contentAlignment = Alignment.TopCenter
         ) {
             when(category) {
-                CodexResources.Category.EQUIPMENT -> CodexEquipmentListComponent(
+                CodexResources.Category.EQUIPMENT -> CatalogEquipmentListComponent(
                     codexViewModel = codexViewModel,
                     scrollState = scrollState
                 )
@@ -167,7 +167,7 @@ private fun CodexItemScreenContentPortrait(
                     codexViewModel = codexViewModel,
                     scrollState = scrollState
                 )
-                CodexResources.Category.ACHIEVEMENTS -> CodexAchievementListComponent(
+                CodexResources.Category.ACHIEVEMENTS -> CatalogAchievementListComponent(
                     codexViewModel = codexViewModel,
                     scrollState = scrollState
                 )
@@ -223,7 +223,7 @@ private fun CodexItemScreenContentLandscape(
             contentAlignment = Alignment.TopCenter
         ) {
             when(category) {
-                CodexResources.Category.EQUIPMENT -> CodexEquipmentListComponent(
+                CodexResources.Category.EQUIPMENT -> CatalogEquipmentListComponent(
                     codexViewModel = codexViewModel,
                     scrollState = scrollState
                 )
@@ -231,7 +231,7 @@ private fun CodexItemScreenContentLandscape(
                     codexViewModel = codexViewModel,
                     scrollState = scrollState
                 )
-                CodexResources.Category.ACHIEVEMENTS -> CodexAchievementListComponent(
+                CodexResources.Category.ACHIEVEMENTS -> CatalogAchievementListComponent(
                     codexViewModel = codexViewModel,
                     scrollState = scrollState
                 )

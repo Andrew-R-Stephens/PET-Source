@@ -20,7 +20,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -81,7 +80,7 @@ private fun CodexScreenContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(40.dp)
-                .background(LocalPalette.current.codexFamily.codex3_navHeaderBackground)
+                .background(LocalPalette.current.codexFamily.codex3)
         ) {
             if(showBackButton) {
                 Image(
@@ -91,7 +90,7 @@ private fun CodexScreenContent(
                         .clickable(onClick = { onBackClicked() })
                         .padding(8.dp),
                     painter = painterResource(android.R.drawable.ic_menu_revert),
-                    colorFilter = ColorFilter.tint(LocalPalette.current.codexFamily.codex2_navBackIcon),
+                    colorFilter = ColorFilter.tint(LocalPalette.current.codexFamily.codex2),
                     contentDescription = "",
                     contentScale = ContentScale.FillBounds
                 )
@@ -106,7 +105,7 @@ private fun CodexScreenContent(
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Center
                 ),
-                color = LocalPalette.current.codexFamily.codex5_navHeaderText,
+                color = LocalPalette.current.codexFamily.codex5,
                 autoSize = TextAutoSize.StepBased(
                     1.sp, 50.sp, 2.sp),
                 maxLines = 1
@@ -141,8 +140,8 @@ private fun CodexScreenContent(
                 modifier = Modifier
                     .fillMaxSize(),
                 colors = IconVectorColors(
-                    fillColor = LocalPalette.current.codexFamily.codex6_gridBackground,
-                    strokeColor = LocalPalette.current.codexFamily.codex7_gridStroke
+                    fillColor = LocalPalette.current.codexFamily.codex6,
+                    strokeColor = LocalPalette.current.codexFamily.codex7
                 ),
                 contentScale = ContentScale.FillBounds,
                 /*colorFilter = ColorFilter.tint(
@@ -159,7 +158,7 @@ private fun CodexScreenContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(LocalPalette.current.codexFamily.codex1_gh0stBackground),
+                .background(LocalPalette.current.codexFamily.codex1),
             horizontalAlignment = Alignment.End,
             verticalArrangement = Arrangement.Bottom
         ) {

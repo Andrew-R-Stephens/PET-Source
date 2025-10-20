@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementContent
+import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementExclusivity
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementIcon
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementTitle
 
@@ -63,6 +64,7 @@ import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResou
         AchievementTitle.ESCAPE_ARTIST -> R.string.achievements_escapeartist_name
         AchievementTitle.BAIT -> R.string.achievements_bait_name
         AchievementTitle.DOOM_SLAYED -> R.string.achievements_doomslayed_name
+        AchievementTitle.PARANORMAL_PERFECTIONIST -> R.string.achievements_paranormal_perfectionist_name
     }
 
 @StringRes fun AchievementContent.toStringResource(): Int =
@@ -121,117 +123,78 @@ import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResou
         AchievementContent.ESCAPE_ARTIST -> R.string.achievements_escapeartist_info
         AchievementContent.BAIT -> R.string.achievements_bait_info
         AchievementContent.DOOM_SLAYED -> R.string.achievements_doomslayed_info
+        AchievementContent.PARANORMAL_PERFECTIONIST -> R.string.achievements_paranormal_perfectionist_info
     }
 
 @DrawableRes fun AchievementIcon.toDrawableResource(): Int =
     when (this) {
-        AchievementIcon.TRAINING_WHEELS -> R.drawable.ic_achievement_banshee
-        AchievementIcon.ROOKIE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.PROFESSIONAL -> R.drawable.ic_achievement_banshee
-        AchievementIcon.BOSS -> R.drawable.ic_achievement_banshee
-        AchievementIcon.EXTRA_MILE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.DEDICATED -> R.drawable.ic_achievement_banshee
-        AchievementIcon.DEVOTED -> R.drawable.ic_achievement_banshee
-        AchievementIcon.CHALLENGER -> R.drawable.ic_achievement_banshee
-        AchievementIcon.RISE_CHALLENGE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.TAKE_CHALLENGES -> R.drawable.ic_achievement_banshee
-        AchievementIcon.CHUMP_CHANGE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.FAT_STOCK -> R.drawable.ic_achievement_banshee
-        AchievementIcon.CASH_COW -> R.drawable.ic_achievement_banshee
-        AchievementIcon.BREAK_THE_BANK -> R.drawable.ic_achievement_banshee
-        AchievementIcon.BARE_ESSENTIALS -> R.drawable.ic_achievement_banshee
-        AchievementIcon.TOOLS_OF_THE_TRADE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.FULLY_LOADED -> R.drawable.ic_achievement_banshee
-        AchievementIcon.DIRECTOR -> R.drawable.ic_achievement_banshee
-        AchievementIcon.BRONZE_HUNTER -> R.drawable.ic_achievement_banshee
-        AchievementIcon.SILVER_HUNTER -> R.drawable.ic_achievement_banshee
-        AchievementIcon.GOLD_HUNTER -> R.drawable.ic_achievement_banshee
-        AchievementIcon.BANSHEE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.DEMON -> R.drawable.ic_achievement_banshee
-        AchievementIcon.DEOGEN -> R.drawable.ic_achievement_banshee
-        AchievementIcon.GORYO -> R.drawable.ic_achievement_banshee
-        AchievementIcon.HANTU -> R.drawable.ic_achievement_banshee
-        AchievementIcon.JINN -> R.drawable.ic_achievement_banshee
-        AchievementIcon.MARE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.MOROI -> R.drawable.ic_achievement_banshee
-        AchievementIcon.MYLING -> R.drawable.ic_achievement_banshee
-        AchievementIcon.OBAKE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.ONI -> R.drawable.ic_achievement_banshee
-        AchievementIcon.ONRYO -> R.drawable.ic_achievement_banshee
-        AchievementIcon.PHANTOM -> R.drawable.ic_achievement_banshee
-        AchievementIcon.POLTERGEIST -> R.drawable.ic_achievement_banshee
-        AchievementIcon.RAIJU -> R.drawable.ic_achievement_banshee
-        AchievementIcon.REVENANT -> R.drawable.ic_achievement_banshee
-        AchievementIcon.SHADE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.SPIRIT -> R.drawable.ic_achievement_banshee
-        AchievementIcon.THAYE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.MIMIC -> R.drawable.ic_achievement_banshee
-        AchievementIcon.TWINS -> R.drawable.ic_achievement_banshee
-        AchievementIcon.WRAITH -> R.drawable.ic_achievement_banshee
-        AchievementIcon.YOKAI -> R.drawable.ic_achievement_banshee
-        AchievementIcon.YUREI -> R.drawable.ic_achievement_banshee
-        AchievementIcon.PRESTIGE1 -> R.drawable.ic_achievement_banshee
-        AchievementIcon.PRESTIGE2 -> R.drawable.ic_achievement_banshee
-        AchievementIcon.PRESTIGE3 -> R.drawable.ic_achievement_banshee
-        AchievementIcon.WORK_EXPERIENCE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.FLAWLESS_EXECUTION -> R.drawable.ic_achievement_banshee
-        AchievementIcon.THEYRE_HERE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.ESCAPE_ARTIST -> R.drawable.ic_achievement_banshee
-        AchievementIcon.BAIT -> R.drawable.ic_achievement_banshee
-        AchievementIcon.DOOM_SLAYED -> R.drawable.ic_achievement_banshee
-        // TODO Replace ic_achievement_banshee with correct icon
-        /*AchievementIcon.TRAINING_WHEELS -> R.drawable.ic_achievement_trainingwheels
-        AchievementIcon.ROOKIE -> R.drawable.ic_achievement_rookie
-        AchievementIcon.PROFESSIONAL -> R.drawable.ic_achievement_professional
-        AchievementIcon.BOSS -> R.drawable.ic_achievement_boss
-        AchievementIcon.EXTRA_MILE -> R.drawable.ic_achievement_extramile
-        AchievementIcon.DEDICATED -> R.drawable.ic_achievement_dedicated
-        AchievementIcon.DEVOTED -> R.drawable.ic_achievement_devoted
-        AchievementIcon.CHALLENGER -> R.drawable.ic_achievement_challenger
-        AchievementIcon.RISE_CHALLENGE -> R.drawable.ic_achievement_risechallenge
-        AchievementIcon.TAKE_CHALLENGES -> R.drawable.ic_achievement_takingchallenges
-        AchievementIcon.CHUMP_CHANGE -> R.drawable.ic_achievement_chumpchange
-        AchievementIcon.FAT_STOCK -> R.drawable.ic_achievement_fatstock
-        AchievementIcon.CASH_COW -> R.drawable.ic_achievement_cashcow
-        AchievementIcon.BREAK_THE_BANK -> R.drawable.ic_achievement_breakthebank
-        AchievementIcon.BARE_ESSENTIALS -> R.drawable.ic_achievement_bareessentials
-        AchievementIcon.TOOLS_OF_THE_TRADE -> R.drawable.ic_achievement_toolsofthetrade
-        AchievementIcon.FULLY_LOADED -> R.drawable.ic_achievement_fullyloaded
-        AchievementIcon.DIRECTOR -> R.drawable.ic_achievement_director
-        AchievementIcon.BRONZE_HUNTER -> R.drawable.ic_achievement_bronzehunter
-        AchievementIcon.SILVER_HUNTER -> R.drawable.ic_achievement_silverhunter
-        AchievementIcon.GOLD_HUNTER -> R.drawable.ic_achievement_goldhunter
-        AchievementIcon.BANSHEE -> R.drawable.ic_achievement_banshee
-        AchievementIcon.DEMON -> R.drawable.ic_achievement_demon
-        AchievementIcon.DEOGEN -> R.drawable.ic_achievement_deogen
-        AchievementIcon.GORYO -> R.drawable.ic_achievement_goryo
-        AchievementIcon.HANTU -> R.drawable.ic_achievement_hantu
-        AchievementIcon.JINN -> R.drawable.ic_achievement_jinn
-        AchievementIcon.MARE -> R.drawable.ic_achievement_mare
-        AchievementIcon.MOROI -> R.drawable.ic_achievement_moroi
-        AchievementIcon.MYLING -> R.drawable.ic_achievement_myling
-        AchievementIcon.OBAKE -> R.drawable.ic_achievement_obake
-        AchievementIcon.ONI -> R.drawable.ic_achievement_oni
-        AchievementIcon.ONRYO -> R.drawable.ic_achievement_onryo
-        AchievementIcon.PHANTOM -> R.drawable.ic_achievement_phantom
-        AchievementIcon.POLTERGEIST -> R.drawable.ic_achievement_poltergeist
-        AchievementIcon.RAIJU -> R.drawable.ic_achievement_raiju
-        AchievementIcon.REVENANT -> R.drawable.ic_achievement_revenant
-        AchievementIcon.SHADE -> R.drawable.ic_achievement_shade
-        AchievementIcon.SPIRIT -> R.drawable.ic_achievement_spirit
-        AchievementIcon.THAYE -> R.drawable.ic_achievement_thaye
-        AchievementIcon.MIMIC -> R.drawable.ic_achievement_mimic
-        AchievementIcon.TWINS -> R.drawable.ic_achievement_twins
-        AchievementIcon.WRAITH -> R.drawable.ic_achievement_wraith
-        AchievementIcon.YOKAI -> R.drawable.ic_achievement_yokai
-        AchievementIcon.YUREI -> R.drawable.ic_achievement_yurei
-        AchievementIcon.PRESTIGE1 -> R.drawable.ic_achievement_prestige1
-        AchievementIcon.PRESTIGE2 -> R.drawable.ic_achievement_prestige2
-        AchievementIcon.PRESTIGE3 -> R.drawable.ic_achievement_prestige3
-        AchievementIcon.WORK_EXPERIENCE -> R.drawable.ic_achievement_workexperience
-        AchievementIcon.FLAWLESS_EXECUTION -> R.drawable.ic_achievement_flawlessexecution
-        AchievementIcon.THEYRE_HERE -> R.drawable.ic_achievement_theyrehere
-        AchievementIcon.ESCAPE_ARTIST -> R.drawable.ic_achievement_escapeartist
-        AchievementIcon.BAIT -> R.drawable.ic_achievement_bait
-        AchievementIcon.DOOM_SLAYED -> R.drawable.ic_achievement_doomslayed*/
+        AchievementIcon.TRAINING_WHEELS -> R.drawable.icon_achievement_no_more_training_wheels
+        AchievementIcon.ROOKIE -> R.drawable.icon_achievement_rookie
+        AchievementIcon.PROFESSIONAL -> R.drawable.icon_achievement_professional
+        AchievementIcon.BOSS -> R.drawable.icon_achievement_boss
+        AchievementIcon.EXTRA_MILE -> R.drawable.icon_achievement_extra_mile
+        AchievementIcon.DEDICATED -> R.drawable.icon_achievement_dedicated
+        AchievementIcon.DEVOTED -> R.drawable.icon_achievement_devoted
+        AchievementIcon.CHALLENGER -> R.drawable.icon_achievement_challenger_1
+        AchievementIcon.RISE_CHALLENGE -> R.drawable.icon_achievement_challenger_2
+        AchievementIcon.TAKE_CHALLENGES -> R.drawable.icon_achievement_challenger_3
+        AchievementIcon.CHUMP_CHANGE -> R.drawable.icon_achievement_chump_change
+        AchievementIcon.FAT_STOCK -> R.drawable.icon_achievement_cash_1
+        AchievementIcon.CASH_COW -> R.drawable.icon_achievement_cash_2
+        AchievementIcon.BREAK_THE_BANK -> R.drawable.icon_achievement_cash_3
+        AchievementIcon.BARE_ESSENTIALS -> R.drawable.icon_achievement_shop_1
+        AchievementIcon.TOOLS_OF_THE_TRADE -> R.drawable.icon_achievement_shop_2
+        AchievementIcon.FULLY_LOADED -> R.drawable.icon_achievement_shop_3
+        AchievementIcon.DIRECTOR -> R.drawable.icon_achievement_director
+        AchievementIcon.BRONZE_HUNTER -> R.drawable.icon_achievement_hunter_1
+        AchievementIcon.SILVER_HUNTER -> R.drawable.icon_achievement_hunter_2
+        AchievementIcon.GOLD_HUNTER -> R.drawable.icon_achievement_hunter_3
+        AchievementIcon.BANSHEE -> R.drawable.icon_banshee
+        AchievementIcon.DEMON -> R.drawable.icon_demon
+        AchievementIcon.DEOGEN -> R.drawable.icon_deogen
+        AchievementIcon.GORYO -> R.drawable.icon_goryo
+        AchievementIcon.HANTU -> R.drawable.icon_hantu
+        AchievementIcon.JINN -> R.drawable.icon_jinn
+        AchievementIcon.MARE -> R.drawable.icon_mare
+        AchievementIcon.MOROI -> R.drawable.icon_moroi
+        AchievementIcon.MYLING -> R.drawable.icon_myling
+        AchievementIcon.OBAKE -> R.drawable.icon_obake
+        AchievementIcon.ONI -> R.drawable.icon_oni
+        AchievementIcon.ONRYO -> R.drawable.icon_onryo
+        AchievementIcon.PHANTOM -> R.drawable.icon_phantom
+        AchievementIcon.POLTERGEIST -> R.drawable.icon_poltergeist
+        AchievementIcon.RAIJU -> R.drawable.icon_raiju
+        AchievementIcon.REVENANT -> R.drawable.icon_revenant
+        AchievementIcon.SHADE -> R.drawable.icon_shade
+        AchievementIcon.SPIRIT -> R.drawable.icon_spirit
+        AchievementIcon.THAYE -> R.drawable.icon_thaye
+        AchievementIcon.MIMIC -> R.drawable.icon_the_mimic
+        AchievementIcon.TWINS -> R.drawable.icon_the_twins
+        AchievementIcon.WRAITH -> R.drawable.icon_wraith
+        AchievementIcon.YOKAI -> R.drawable.icon_yokai
+        AchievementIcon.YUREI -> R.drawable.icon_yurei
+        AchievementIcon.PRESTIGE1 -> R.drawable.icon_achievement_prestige_1
+        AchievementIcon.PRESTIGE2 -> R.drawable.icon_achievement_prestige_2
+        AchievementIcon.PRESTIGE3 -> R.drawable.icon_achievement_prestige_3
+        AchievementIcon.WORK_EXPERIENCE -> R.drawable.icon_achievement_work_experience
+        AchievementIcon.FLAWLESS_EXECUTION -> R.drawable.icon_achievement_flawless_execution
+        AchievementIcon.THEYRE_HERE -> R.drawable.icon_achievement_theyre_here
+        AchievementIcon.ESCAPE_ARTIST -> R.drawable.icon_achievement_escape_artist
+        AchievementIcon.BAIT -> R.drawable.icon_achievement_the_bait
+        AchievementIcon.DOOM_SLAYED -> R.drawable.icon_achievement_doom_slayed
+        AchievementIcon.PARANORMAL_PERFECTIONIST -> R.drawable.icon_achievement_paranormal_perfectionist
+    }
+
+@DrawableRes fun AchievementExclusivity.toStringResource(): Int =
+    when (this) {
+        AchievementExclusivity.STEAM -> R.string.platform_steam
+        AchievementExclusivity.XBOX -> R.string.platform_xbox
+        AchievementExclusivity.PLAYSTATION -> R.string.platform_playstation
+    }
+
+@DrawableRes fun AchievementExclusivity.toDrawableResource(): Int =
+    when (this) {
+        AchievementExclusivity.STEAM -> R.drawable.ic_logo_steam
+        AchievementExclusivity.XBOX -> R.drawable.ic_logo_xbox
+        AchievementExclusivity.PLAYSTATION -> R.drawable.ic_logo_playstation
     }

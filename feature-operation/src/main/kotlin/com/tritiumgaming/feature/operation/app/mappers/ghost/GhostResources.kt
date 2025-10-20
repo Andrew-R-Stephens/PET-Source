@@ -1,7 +1,10 @@
 package com.tritiumgaming.feature.operation.app.mappers.ghost
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementIcon
+import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostIcon
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostIdentifier
@@ -64,6 +67,34 @@ import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.Gho
         GhostTitle.YOKAI -> R.string.ghost_type_yokai
         GhostTitle.YUREI -> R.string.ghost_type_yurei
     }
+
+@DrawableRes fun GhostIcon.toDrawableResource(): Int =
+    when (this) {
+        GhostIcon.BANSHEE -> R.drawable.icon_banshee
+        GhostIcon.DEMON -> R.drawable.icon_demon
+        GhostIcon.DEOGEN -> R.drawable.icon_deogen
+        GhostIcon.GORYO -> R.drawable.icon_goryo
+        GhostIcon.HANTU -> R.drawable.icon_hantu
+        GhostIcon.JINN -> R.drawable.icon_jinn
+        GhostIcon.MARE -> R.drawable.icon_mare
+        GhostIcon.MOROI -> R.drawable.icon_moroi
+        GhostIcon.MYLING -> R.drawable.icon_myling
+        GhostIcon.OBAKE -> R.drawable.icon_obake
+        GhostIcon.ONI -> R.drawable.icon_oni
+        GhostIcon.ONRYO -> R.drawable.icon_onryo
+        GhostIcon.PHANTOM -> R.drawable.icon_phantom
+        GhostIcon.POLTERGEIST -> R.drawable.icon_poltergeist
+        GhostIcon.RAIJU -> R.drawable.icon_raiju
+        GhostIcon.REVENANT -> R.drawable.icon_revenant
+        GhostIcon.SHADE -> R.drawable.icon_shade
+        GhostIcon.SPIRIT -> R.drawable.icon_spirit
+        GhostIcon.THAYE -> R.drawable.icon_thaye
+        GhostIcon.THE_MIMIC -> R.drawable.icon_the_mimic
+        GhostIcon.THE_TWINS -> R.drawable.icon_the_twins
+        GhostIcon.WRAITH -> R.drawable.icon_wraith
+        GhostIcon.YOKAI -> R.drawable.icon_yokai
+        GhostIcon.YUREI -> R.drawable.icon_yurei
+}
 
 @StringRes fun GhostDescription.toStringResource(): Int =
     when (this) {
