@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 interface DatastoreRepository<T> {
     
     fun initializeDatastoreLiveData()
-    fun initDatastoreFlow(onUpdate: (preferences: T) -> Unit): Flow<T>
+    fun initDatastoreFlow(): Flow<T>
     
 }

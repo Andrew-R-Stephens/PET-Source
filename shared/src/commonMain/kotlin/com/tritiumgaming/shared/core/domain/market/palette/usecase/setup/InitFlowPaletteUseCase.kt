@@ -10,5 +10,5 @@ class InitFlowPaletteUseCase(
     operator fun invoke(
         onUpdate: (PaletteDatastore.PalettePreferences) -> Unit = {}
     ): Flow<PaletteDatastore.PalettePreferences> =
-        repository.initDatastoreFlow(onUpdate)
+        repository.initDatastoreFlow()
 }

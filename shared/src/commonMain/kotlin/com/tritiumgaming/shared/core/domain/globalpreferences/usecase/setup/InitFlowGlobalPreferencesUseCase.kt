@@ -8,5 +8,5 @@ class InitFlowGlobalPreferencesUseCase(
 ) {
     operator fun invoke(
         onUpdate: (preferences: GlobalPreferencesDatastore.GlobalPreferences) -> Unit = {}
-    ) = repository.initDatastoreFlow(onUpdate)
+    ) = repository.initDatastoreFlow()
 }

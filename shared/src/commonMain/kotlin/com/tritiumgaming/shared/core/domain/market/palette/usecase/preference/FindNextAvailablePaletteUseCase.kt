@@ -20,27 +20,9 @@ class FindNextAvailablePaletteUseCase(
             marketRepository.get()
                 .getOrDefault(emptyList()).toAccountMarketPalette()
 
-        /*Log.d("Settings", "MarketPalettes:")
-        marketPalettes.forEach {
-            Log.d("Settings", "\t$it")
-        }*/
-        println("Settings: MarketPalettes ->")
-        marketPalettes.forEach {
-            println("Settings: \t$it")
-        }
-
         val accountPalettes: List<AccountMarketPalette> =
             accountRepository.fetchUnlockedPalettes()
                 .getOrDefault(emptyList()).toAccountMarketPalette()
-
-        /*Log.d("Settings", "AccountPalettes:")
-        accountPalettes.forEach {
-            Log.d("Settings", "\t$it")
-        }*/
-        println("Settings: AccountPalettes ->")
-        accountPalettes.forEach {
-            println("Settings: \t$it")
-        }
 
         val mergedMarketAccountPalettes =
             accountPalettes.fold(marketPalettes) { marketPs, accountP ->
@@ -59,25 +41,8 @@ class FindNextAvailablePaletteUseCase(
                 }
             }
 
-        /*Log.d("Settings", "MarketAccountPalettes:")
-        mergedMarketAccountPalettes.forEach {
-            Log.d("Settings", "\t$it")
-        }*/
-        println("Settings: MarketAccountPalettes ->")
-        mergedMarketAccountPalettes.forEach {
-            println("Settings: \t$it")
-        }
-
         val filteredMergedMarketAccountPalettes =
             mergedMarketAccountPalettes.filter { it.isUnlocked }
-        //Log.d("Settings", "Filtered MarketAccountPalettes:")
-        /*filteredMergedMarketAccountPalettes.forEach {
-            Log.d("Settings", "\t$it")
-        }*/
-        println("Settings: Filtered MarketAccountPalettes ->")
-        filteredMergedMarketAccountPalettes.forEach {
-            println("Settings: \t$it")
-        }
 
         val uuidsFiltered = filteredMergedMarketAccountPalettes.map { it.uuid }
         val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
@@ -85,8 +50,6 @@ class FindNextAvailablePaletteUseCase(
         var increment = currentIndex + direction.value
         if(increment >= uuidsFiltered.size) increment = 0
         if(increment < 0) increment = uuidsFiltered.size - 1
-
-        //Log.d("Settings", "Move: $currentIndex $increment $direction")
 
         return uuidsFiltered[increment]
     }

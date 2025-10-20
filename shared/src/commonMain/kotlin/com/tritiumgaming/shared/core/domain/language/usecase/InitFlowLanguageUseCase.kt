@@ -7,5 +7,5 @@ class InitFlowLanguageUseCase(
     private val repository: LanguageRepository
 ) {
     operator fun invoke(onUpdate: (LanguagePreferences) -> Unit = {}) =
-        repository.initDatastoreFlow(onUpdate)
+        repository.initDatastoreFlow()
 }
