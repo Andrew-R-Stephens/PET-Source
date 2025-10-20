@@ -3,17 +3,18 @@ package com.tritiumgaming.data.ghost.dto
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIdentifier
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostIcon
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostIdentifier
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostWeakness
 import com.tritiumgaming.shared.operation.domain.ghost.model.Ghost
 import com.tritiumgaming.shared.operation.domain.ghost.model.GhostType
-import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
 
 data class GhostDto(
     val id: GhostIdentifier,
     val name: GhostTitle,
+    val icon: GhostIcon,
     val normalEvidence: List<EvidenceIdentifier>,
     val strictEvidence: List<EvidenceIdentifier>,
     val info: GhostDescription,
@@ -36,6 +37,7 @@ fun List<GhostDto>.toDomain() = map {
 fun GhostDto.toDomain() = Ghost(
     id = id,
     name = name,
+    icon = icon,
     info = info,
     strengthData = strengthData,
     weaknessData = weaknessData,
@@ -44,11 +46,3 @@ fun GhostDto.toDomain() = Ghost(
     strictEvidence = strictEvidence.map { it }
 )
 
-fun GhostDto.toLocalPopup() = GhostPopupRecord(
-    id = id,
-    name = name,
-    info = info,
-    strengthData = strengthData,
-    weaknessData = weaknessData,
-    huntData = huntData,
-)

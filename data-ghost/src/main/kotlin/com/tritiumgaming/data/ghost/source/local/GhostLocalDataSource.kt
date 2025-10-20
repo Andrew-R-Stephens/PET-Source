@@ -1,6 +1,5 @@
 package com.tritiumgaming.data.ghost.source.local
 
-
 import android.content.Context
 import com.tritiumgaming.data.ghost.dto.GhostDto
 import com.tritiumgaming.data.ghost.source.GhostDataSource
@@ -11,16 +10,16 @@ import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.Gho
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostIcon
 
-class GhostLocalDataSource(
-    private val applicationContext: Context
-): GhostDataSource {
+class GhostLocalDataSource: GhostDataSource {
 
     private val ghostResourceDto: List<GhostResourceDto>
         get() = listOf(
             GhostResourceDto(
                 id = GhostIdentifier.BANSHEE,
                 name = GhostTitle.BANSHEE,
+                icon = GhostIcon.BANSHEE,
                 info = GhostDescription.BANSHEE,
                 strengthData = GhostStrength.BANSHEE,
                 weaknessData = GhostWeakness.BANSHEE,
@@ -35,6 +34,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.DEMON,
                 name = GhostTitle.DEMON,
+                icon = GhostIcon.DEMON,
                 info = GhostDescription.DEMON,
                 strengthData = GhostStrength.DEMON,
                 weaknessData = GhostWeakness.DEMON,
@@ -49,6 +49,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.DEOGEN,
                 name = GhostTitle.DEOGEN,
+                icon = GhostIcon.DEOGEN,
                 info = GhostDescription.DEOGEN,
                 strengthData = GhostStrength.DEOGEN,
                 weaknessData = GhostWeakness.DEOGEN,
@@ -65,6 +66,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.GORYO,
                 name = GhostTitle.GORYO,
+                icon = GhostIcon.GORYO,
                 info = GhostDescription.GORYO,
                 strengthData = GhostStrength.GORYO,
                 weaknessData = GhostWeakness.GORYO,
@@ -80,6 +82,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.HANTU,
                 name = GhostTitle.HANTU,
+                icon = GhostIcon.HANTU,
                 info = GhostDescription.HANTU,
                 strengthData = GhostStrength.HANTU,
                 weaknessData = GhostWeakness.HANTU,
@@ -96,6 +99,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.JINN,
                 name = GhostTitle.JINN,
+                icon = GhostIcon.JINN,
                 info = GhostDescription.JINN,
                 strengthData = GhostStrength.JINN,
                 weaknessData = GhostWeakness.JINN,
@@ -109,6 +113,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.MARE,
                 name = GhostTitle.MARE,
+                icon = GhostIcon.MARE,
                 info = GhostDescription.MARE,
                 strengthData = GhostStrength.MARE,
                 weaknessData = GhostWeakness.MARE,
@@ -123,6 +128,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.MOROI,
                 name = GhostTitle.MOROI,
+                icon = GhostIcon.MOROI,
                 info = GhostDescription.MOROI,
                 strengthData = GhostStrength.MOROI,
                 weaknessData = GhostWeakness.MOROI,
@@ -138,6 +144,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.MYLING,
                 name = GhostTitle.MYLING,
+                icon = GhostIcon.MYLING,
                 info = GhostDescription.MYLING,
                 strengthData = GhostStrength.MYLING,
                 weaknessData = GhostWeakness.MYLING,
@@ -152,6 +159,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.OBAKE,
                 name = GhostTitle.OBAKE,
+                icon = GhostIcon.OBAKE,
                 info = GhostDescription.OBAKE,
                 strengthData = GhostStrength.OBAKE,
                 weaknessData = GhostWeakness.OBAKE,
@@ -167,6 +175,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.ONI,
                 name = GhostTitle.ONI,
+                icon = GhostIcon.ONI,
                 info = GhostDescription.ONI,
                 strengthData = GhostStrength.ONI,
                 weaknessData = GhostWeakness.ONI,
@@ -181,6 +190,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.ONRYO,
                 name = GhostTitle.ONRYO,
+                icon = GhostIcon.ONRYO,
                 info = GhostDescription.ONRYO,
                 strengthData = GhostStrength.ONRYO,
                 weaknessData = GhostWeakness.ONRYO,
@@ -194,6 +204,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.PHANTOM,
                 name = GhostTitle.PHANTOM,
+                icon = GhostIcon.PHANTOM,
                 info = GhostDescription.PHANTOM,
                 strengthData = GhostStrength.PHANTOM,
                 weaknessData = GhostWeakness.PHANTOM,
@@ -208,6 +219,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.POLTERGEIST,
                 name = GhostTitle.POLTERGEIST,
+                icon = GhostIcon.POLTERGEIST,
                 info = GhostDescription.POLTERGEIST,
                 strengthData = GhostStrength.POLTERGEIST,
                 weaknessData = GhostWeakness.POLTERGEIST,
@@ -221,6 +233,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.RAIJU,
                 name = GhostTitle.RAIJU,
+                icon = GhostIcon.RAIJU,
                 info = GhostDescription.RAIJU,
                 strengthData = GhostStrength.RAIJU,
                 weaknessData = GhostWeakness.RAIJU,
@@ -235,6 +248,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.REVENANT,
                 name = GhostTitle.REVENANT,
+                icon = GhostIcon.REVENANT,
                 info = GhostDescription.REVENANT,
                 strengthData = GhostStrength.REVENANT,
                 weaknessData = GhostWeakness.REVENANT,
@@ -248,6 +262,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.SHADE,
                 name = GhostTitle.SHADE,
+                icon = GhostIcon.SHADE,
                 info = GhostDescription.SHADE,
                 strengthData = GhostStrength.SHADE,
                 weaknessData = GhostWeakness.SHADE,
@@ -262,6 +277,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.SPIRIT,
                 name = GhostTitle.SPIRIT,
+                icon = GhostIcon.SPIRIT,
                 info = GhostDescription.SPIRIT,
                 strengthData = GhostStrength.SPIRIT,
                 weaknessData = GhostWeakness.SPIRIT,
@@ -275,6 +291,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.THAYE,
                 name = GhostTitle.THAYE,
+                icon = GhostIcon.THAYE,
                 info = GhostDescription.THAYE,
                 strengthData = GhostStrength.THAYE,
                 weaknessData = GhostWeakness.THAYE,
@@ -289,6 +306,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.THE_TWINS,
                 name = GhostTitle.THE_TWINS,
+                icon = GhostIcon.THE_TWINS,
                 info = GhostDescription.THE_TWINS,
                 strengthData = GhostStrength.THE_TWINS,
                 weaknessData = GhostWeakness.THE_TWINS,
@@ -302,6 +320,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.THE_MIMIC,
                 name = GhostTitle.THE_MIMIC,
+                icon = GhostIcon.THE_MIMIC,
                 info = GhostDescription.THE_MIMIC,
                 strengthData = GhostStrength.THE_MIMIC,
                 weaknessData = GhostWeakness.THE_MIMIC,
@@ -319,6 +338,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.WRAITH,
                 name = GhostTitle.WRAITH,
+                icon = GhostIcon.WRAITH,
                 info = GhostDescription.WRAITH,
                 strengthData = GhostStrength.WRAITH,
                 weaknessData = GhostWeakness.WRAITH,
@@ -332,6 +352,7 @@ class GhostLocalDataSource(
             ),GhostResourceDto(
                 id = GhostIdentifier.YOKAI,
                 name = GhostTitle.YOKAI,
+                icon = GhostIcon.YOKAI,
                 info = GhostDescription.YOKAI,
                 strengthData = GhostStrength.YOKAI,
                 weaknessData = GhostWeakness.YOKAI,
@@ -346,6 +367,7 @@ class GhostLocalDataSource(
             GhostResourceDto(
                 id = GhostIdentifier.YUREI,
                 name = GhostTitle.YUREI,
+                icon = GhostIcon.YUREI,
                 info = GhostDescription.YUREI,
                 strengthData = GhostStrength.YUREI,
                 weaknessData = GhostWeakness.YUREI,
@@ -375,6 +397,7 @@ class GhostLocalDataSource(
     private fun GhostResourceDto.toGhostDto() = GhostDto(
         id = id,
         name = name,
+        icon = icon,
         info = info,
         strengthData = strengthData,
         weaknessData = weaknessData,
@@ -386,6 +409,7 @@ class GhostLocalDataSource(
     private data class GhostResourceDto(
         val id: GhostIdentifier,
         val name: GhostTitle,
+        val icon: GhostIcon,
         val info: GhostDescription,
         val strengthData: GhostStrength,
         val weaknessData: GhostWeakness,
