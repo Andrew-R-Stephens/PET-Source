@@ -2,8 +2,8 @@ package com.tritiumgaming.data.marketplace.typography.repository
 
 import android.util.Log
 import com.tritiumgaming.data.marketplace.typography.dto.MarketTypographyDto
-import com.tritiumgaming.data.marketplace.typography.mapper.toDomain
-import com.tritiumgaming.data.marketplace.typography.mapper.toLocal
+import com.tritiumgaming.data.marketplace.typography.dto.toDomain
+import com.tritiumgaming.data.marketplace.typography.dto.toLocal
 import com.tritiumgaming.data.marketplace.typography.source.local.MarketTypographyLocalDataSource
 import com.tritiumgaming.data.marketplace.typography.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.shared.core.domain.market.typography.model.MarketTypography

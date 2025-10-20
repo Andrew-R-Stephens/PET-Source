@@ -46,7 +46,6 @@ class MarketTypographyDatastoreDataSource(
     }
 
     override fun initDatastoreFlow(): Flow<TypographyDatastore.TypographyPreferences> {
-        /*flow.collect { onUpdate(it) }*/
         return flow
     }
 

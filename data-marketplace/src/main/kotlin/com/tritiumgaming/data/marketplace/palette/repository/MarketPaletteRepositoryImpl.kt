@@ -2,8 +2,8 @@ package com.tritiumgaming.data.marketplace.palette.repository
 
 import android.util.Log
 import com.tritiumgaming.data.marketplace.palette.dto.MarketPaletteDto
-import com.tritiumgaming.data.marketplace.palette.mapper.toDomain
-import com.tritiumgaming.data.marketplace.palette.mapper.toLocal
+import com.tritiumgaming.data.marketplace.palette.dto.toDomain
+import com.tritiumgaming.data.marketplace.palette.dto.toLocal
 import com.tritiumgaming.data.marketplace.palette.source.local.MarketPaletteLocalDataSource
 import com.tritiumgaming.data.marketplace.palette.source.remote.MarketPaletteFirestoreDataSource
 import com.tritiumgaming.shared.core.domain.market.palette.model.MarketPalette
