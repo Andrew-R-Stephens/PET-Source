@@ -176,6 +176,7 @@ class EvidenceLocalDataSource: EvidenceDataSource {
             name = name,
             description = description,
             icon = icon,
+            animation = defaultAnimation,
             tiers = tiers.toLocal()
         )
 

@@ -1,5 +1,6 @@
 package com.tritiumgaming.data.evidence.dto
 
+import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceAnimation
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceDescription
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIcon
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIdentifier
@@ -14,6 +15,7 @@ data class EvidenceDto(
     val name: EvidenceTitle,
     val description: EvidenceDescription,
     val icon: EvidenceIcon,
+    val animation: EvidenceAnimation,
     val tiers: List<EvidenceTierDto> = emptyList()
 )
 
@@ -28,6 +30,7 @@ fun EvidenceDto.toDomain() = Evidence(
     name = name,
     description = description,
     icon = icon,
+    animation = animation,
     tiers = tiers.toDomain(),
 )
 
