@@ -28,7 +28,7 @@ import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessageScreen
 import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessagesScreen
 import com.tritiumgaming.feature.home.ui.startscreen.StartScreen
 import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
-import com.tritiumgaming.feature.operation.ui.codex.catalog.CodexItemstoreScreen
+import com.tritiumgaming.feature.operation.ui.codex.catalog.CodexCatalogScreen
 import com.tritiumgaming.feature.operation.ui.codex.menu.CodexMenuScreen
 import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
 import com.tritiumgaming.feature.operation.ui.investigation.InvestigationSoloScreen
@@ -290,7 +290,7 @@ private fun NavGraphBuilder.operationNavigation(
                     entry.id == categoryId }
 
                 category?.let {
-                    CodexItemstoreScreen(
+                    CodexCatalogScreen(
                         navController = navController,
                         codexViewModel = codexViewModel,
                         category = category
