@@ -37,7 +37,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AccountViewModel(
+class AccountScreenViewModel(
     private val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
     private val signInAccountUseCase: SignInAccountUseCase,
     private val signOutAccountUseCase: SignOutAccountUseCase,
@@ -268,7 +268,7 @@ class AccountViewModel(
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
                 val observeAccountUnlockedTypographiesUseCase = container.observeAccountUnlockedTypographiesUseCase
 
-                AccountViewModel(
+                AccountScreenViewModel(
                     getSignInCredentialsUseCase = getSignInCredentialsUseCase,
                     signInAccountUseCase = signInAccountUseCase,
                     signOutAccountUseCase = signOutAccountUseCase,

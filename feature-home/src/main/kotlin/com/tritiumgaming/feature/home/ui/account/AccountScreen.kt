@@ -86,7 +86,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun AccountScreen(
     navController: NavController = rememberNavController(),
-    accountViewModel: AccountViewModel
+    accountViewModel: AccountScreenViewModel
 ) {
 
     MainMenuScreen {
@@ -119,7 +119,7 @@ fun AccountScreen(
 @Composable
 private fun AccountContentPortrait(
     navController: NavController = rememberNavController(),
-    accountViewModel: AccountViewModel
+    accountViewModel: AccountScreenViewModel
 ) {
     val activity = LocalActivity.current
 
@@ -255,7 +255,7 @@ private fun AccountContentPortrait(
 @Composable
 private fun AccountContentLandscape(
     navController: NavController = rememberNavController(),
-    accountViewModel: AccountViewModel
+    accountViewModel: AccountScreenViewModel
 ) {
     val activity = LocalActivity.current
 
@@ -390,7 +390,7 @@ private fun AccountContentLandscape(
 
 @Composable
 private fun AccountComponentPortrait(
-    accountViewModel: AccountViewModel,
+    accountViewModel: AccountScreenViewModel,
     onLogoutClicked: () -> Unit = {},
     onDeactivateClicked: () -> Unit = {}
 ) {
@@ -428,7 +428,7 @@ private fun AccountComponentPortrait(
 
 @Composable
 private fun AccountComponentLandscape(
-    accountViewModel: AccountViewModel,
+    accountViewModel: AccountScreenViewModel,
     onLogoutClicked: () -> Unit = {},
     onDeactivateClicked: () -> Unit = {}
 ) {
@@ -464,7 +464,7 @@ private fun AccountComponentLandscape(
 @Composable
 private fun AccountDetailsPortraitComponent(
     modifier: Modifier = Modifier,
-    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
+    accountViewModel: AccountScreenViewModel = viewModel(factory = AccountScreenViewModel.Factory),
 ) {
 
     Column (
@@ -515,7 +515,7 @@ private fun AccountDetailsPortraitComponent(
 @Composable
 private fun AccountDetailsLandscapeComponent(
     modifier: Modifier = Modifier,
-    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
+    accountViewModel: AccountScreenViewModel = viewModel(factory = AccountScreenViewModel.Factory),
 ) {
 
     Column (
@@ -619,7 +619,7 @@ private fun LabeledValue(
 
 @Composable
 private fun UnlockHistoryPalettesComponent(
-    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory)
+    accountViewModel: AccountScreenViewModel = viewModel(factory = AccountScreenViewModel.Factory)
 ) {
 
     val accountPalettes = accountViewModel.accountUnlockedPalettesUiState.collectAsStateWithLifecycle()
@@ -723,7 +723,7 @@ private fun PaletteListItem(
 
 @Composable
 private fun SignInComponent(
-    accountViewModel: AccountViewModel = viewModel(factory = AccountViewModel.Factory),
+    accountViewModel: AccountScreenViewModel = viewModel(factory = AccountScreenViewModel.Factory),
     onClick: () -> Unit = {},
     onFailure: () -> Unit = {},
     onSignIn: (result: Boolean) -> Unit = {}
