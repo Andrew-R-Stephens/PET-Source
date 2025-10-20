@@ -23,9 +23,7 @@ class MarketTypographyRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override fun initDatastoreFlow(
-        onUpdate: (TypographyDatastore.TypographyPreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow()
+    override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
     private var cache: List<MarketTypographyDto> = emptyList()
 

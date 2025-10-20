@@ -23,9 +23,7 @@ class MarketPaletteRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override fun initDatastoreFlow(
-        onUpdate: (PaletteDatastore.PalettePreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow()
+    override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
@@ -90,11 +88,6 @@ class MarketPaletteRepositoryImpl(
     }
 
     override fun get(): Result<List<MarketPalette>> {
-        Log.d("Palette", "Getting ${cache.size} cached palettes:")
-        cache.forEach {
-            Log.d("Palette", "\t$it")
-        }
-
         return Result.success(cache.toDomain())
     }
 

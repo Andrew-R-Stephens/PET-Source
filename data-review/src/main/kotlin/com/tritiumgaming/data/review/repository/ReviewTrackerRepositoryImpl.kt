@@ -2,7 +2,6 @@ package com.tritiumgaming.data.review.repository
 
 import com.tritiumgaming.shared.core.domain.reviewtracker.repository.ReviewTrackerRepository
 import com.tritiumgaming.shared.core.domain.reviewtracker.source.ReviewTrackerDatastore
-import com.tritiumgaming.shared.core.domain.reviewtracker.source.ReviewTrackerDatastore.ReviewTrackerPreferences
 
 class ReviewTrackerRepositoryImpl(
     private val dataStoreSource: ReviewTrackerDatastore,
@@ -10,9 +9,7 @@ class ReviewTrackerRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override fun initDatastoreFlow(
-        onUpdate: (ReviewTrackerPreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow()
+    override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
     override suspend fun saveWasRequestedStatus(wasRequested: Boolean) =
         dataStoreSource.saveWasRequestedState(wasRequested)

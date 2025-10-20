@@ -23,9 +23,7 @@ class NewsletterRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override fun initDatastoreFlow(
-        onUpdate: (NewsletterDatastore.NewsletterPreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow()
+    override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
     private var localCache: List<FlattenedNewsletterInboxDto> = emptyList()
 

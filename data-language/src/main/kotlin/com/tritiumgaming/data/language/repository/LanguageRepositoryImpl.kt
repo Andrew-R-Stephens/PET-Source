@@ -15,9 +15,7 @@ class LanguageRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override fun initDatastoreFlow(
-        onUpdate: (LanguageDatastore.LanguagePreferences) -> Unit
-    ) = dataStoreSource.initDatastoreFlow()
+    override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
     override fun getAvailableLanguages(): Result<List<LanguageEntity>> {
         return localDataSource.getAvailableLanguages().map { dto -> dto.toDomain() }

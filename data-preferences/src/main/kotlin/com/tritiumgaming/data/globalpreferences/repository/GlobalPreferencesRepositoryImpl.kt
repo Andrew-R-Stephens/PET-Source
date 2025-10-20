@@ -10,9 +10,7 @@ class GlobalPreferencesRepositoryImpl(
 
     override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
-    override fun initDatastoreFlow(
-        onUpdate: (preferences: GlobalPreferencesDatastore.GlobalPreferences) -> Unit
-    ): Flow<GlobalPreferencesDatastore.GlobalPreferences> =
+    override fun initDatastoreFlow(): Flow<GlobalPreferencesDatastore.GlobalPreferences> =
         dataStoreSource.initDatastoreFlow()
 
     override suspend fun setDisableScreenSaver(disable: Boolean) =
