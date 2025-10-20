@@ -895,7 +895,7 @@ private fun SignOutButton(
     Button(
         modifier = modifier,
         colors = ButtonDefaults.buttonColors().copy(
-            containerColor = LocalPalette.current.codexFamily.codex3_buttonBackground
+            containerColor = LocalPalette.current.codexFamily.codex3
         ),
         onClick = onClick,
         shape = RoundedCornerShape(8.dp)
