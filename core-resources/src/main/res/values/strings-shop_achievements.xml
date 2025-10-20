@@ -56,6 +56,7 @@
     <string name="achievements_escapeartist_name" translatable="false">Escape Artist</string>
     <string name="achievements_bait_name" translatable="false">The Bait</string>
     <string name="achievements_doomslayed_name" translatable="false">Doom Slayed</string>
+    <string name="achievements_paranormal_perfectionist_name" translatable="false">Paranormal Perfectionist</string>
 
     <!-- Information -->
     <string name="achievements_trainingwheels_info" translatable="false">Complete Training</string>
@@ -98,8 +99,8 @@
     <string name="achievements_shade_info" translatable="false">Successfully identify your first Shade and survive</string>
     <string name="achievements_spirit_info" translatable="false">Successfully identify your first Spirit and survive</string>
     <string name="achievements_thaye_info" translatable="false">Successfully identify your first Thaye and survive</string>
-    <string name="achievements_mimic_info" translatable="false">Successfully identify The Mimic for the first time[1]</string>
-    <string name="achievements_twins_info" translatable="false">Successfully identify The Twins for the first time[1]</string>
+    <string name="achievements_mimic_info" translatable="false">Successfully identify The Mimic for the first time</string>
+    <string name="achievements_twins_info" translatable="false">Successfully identify The Twins for the first time</string>
     <string name="achievements_wraith_info" translatable="false">Successfully identify your first Wraith and survive</string>
     <string name="achievements_yokai_info" translatable="false">Successfully identify your first Yokai and survive</string>
     <string name="achievements_yurei_info" translatable="false">Successfully identify your first Yurei and survive</string>
@@ -112,6 +113,12 @@
     <string name="achievements_escapeartist_info" translatable="false">Escape a Revenant</string>
     <string name="achievements_bait_info" translatable="false">Get killed by a Banshee in multiplayer</string>
     <string name="achievements_doomslayed_info" translatable="false">Get killed by a Demon ability within the first minute</string>
+    <string name="achievements_paranormal_perfectionist_info" translatable="false">Obtain all trophies</string>
 
+    <string name="achievements_visibility_hidden" translatable="false">Hidden Achievement</string>
+
+    <string name="platform_steam" translatable="false">Steam</string>
+    <string name="platform_xbox" translatable="false">Xbox</string>
+    <string name="platform_playstation" translatable="false">Playstation</string>
 
 </resources>
