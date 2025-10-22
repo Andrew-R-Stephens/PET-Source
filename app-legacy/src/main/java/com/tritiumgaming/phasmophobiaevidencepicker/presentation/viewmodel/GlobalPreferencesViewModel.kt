@@ -132,12 +132,12 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
 
         fontThemeControl = FontThemeControl(context)
         fontThemeControl.init(sharedPref.getString(
-            context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedFont), fontThemeID) ?: ""
+            context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedTypography), fontThemeID) ?: ""
         )
 
         colorThemeControl = ColorThemeControl(context)
         colorThemeControl.init(sharedPref.getString(
-            context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedTheme), colorThemeID) ?: ""
+            context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedPalette), colorThemeID) ?: ""
         )
 
         saveToFile(context)
@@ -188,8 +188,8 @@ class GlobalPreferencesViewModel(application: Application): SharedViewModel(appl
         save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isAlwaysOn), isAlwaysOn, editor)
         save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isHuntAudioWarningAllowed), isHuntWarnAudioAllowed.value, editor)
         save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_huntWarningFlashTimeout), huntWarnFlashTimeMax.value, editor)
-        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedTheme), colorThemeID, editor)
-        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedFont), fontThemeID, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedPalette), colorThemeID, editor)
+        save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_savedTypography), fontThemeID, editor)
         save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_isLeftHandSupportEnabled), isLeftHandSupportEnabled, editor)
         save(context.resources.getString(com.tritiumgaming.core.resources.R.string.preference_enableReorderGhostViews), reorderGhostViews, editor)
         save(context.resources.getString(com.tritiumgaming.core.resources.R.string.reviewtracking_canRequestReview),reviewRequestData.wasRequested, editor)
