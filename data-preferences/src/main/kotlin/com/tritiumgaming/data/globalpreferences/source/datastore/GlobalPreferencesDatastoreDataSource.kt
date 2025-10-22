@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.core.domain.globalpreferences.source.GlobalPreferencesDatastore
@@ -51,6 +52,13 @@ class GlobalPreferencesDatastoreDataSource(
 
         KEY_HUNT_WARN_MAX_TIMEOUT =
             longPreferencesKey(context.resources.getString(R.string.preference_huntWarningFlashTimeout))
+
+        KEY_TYPOGRAPHY = stringPreferencesKey(
+            context.resources.getString(R.string.preference_savedTypography)
+        )
+        KEY_PALETTE = stringPreferencesKey(
+            context.resources.getString(R.string.preference_savedPalette)
+        )
     }
 
     // Generic settings
@@ -145,6 +153,34 @@ class GlobalPreferencesDatastoreDataSource(
         return allowed
     }
 
+    override suspend fun savePalette(uuid: String) {
+        dataStore.edit { preferences ->
+            preferences[KEY_PALETTE] = uuid
+        }
+    }
+
+    override fun getPalette(): String {
+        var palette = ""
+        dataStore.data.map { preferences ->
+            preferences[KEY_PALETTE]?.let { palette = it }
+        }
+        return palette
+    }
+
+    override suspend fun saveTypography(uuid: String) {
+        dataStore.edit { preferences ->
+            preferences[KEY_TYPOGRAPHY] = uuid
+        }
+    }
+
+    override fun getTypography(): String {
+        var typography = ""
+        dataStore.data.map { preferences ->
+            preferences[KEY_TYPOGRAPHY]?.let { typography = it }
+        }
+        return typography
+    }
+
     override fun initializeDatastoreLiveData() {
         liveData { emit(fetchDatastoreInitialPreferences()) }
     }
@@ -156,13 +192,15 @@ class GlobalPreferencesDatastoreDataSource(
 
     private fun mapPreferences(preferences: Preferences): GlobalPreferences {
         return GlobalPreferences(
-            preferences[KEY_DISABLE_SCREENSAVER] == true,
-            preferences[KEY_ALLOW_CELLULAR_DATA] != false,
-            preferences[KEY_ALLOW_HUNT_WARN_AUDIO] != false,
-            preferences[KEY_ENABLE_GHOST_REORDER] != false,
-            preferences[KEY_ALLOW_INTRODUCTION] != false,
-            preferences[KEY_ENABLE_RTL] == true,
-            preferences[KEY_HUNT_WARN_MAX_TIMEOUT] ?: 300
+            disableScreenSaver = preferences[KEY_DISABLE_SCREENSAVER] == true,
+            allowCellularData = preferences[KEY_ALLOW_CELLULAR_DATA] != false,
+            allowHuntWarnAudio = preferences[KEY_ALLOW_HUNT_WARN_AUDIO] != false,
+            enableGhostReorder = preferences[KEY_ENABLE_GHOST_REORDER] != false,
+            allowIntroduction = preferences[KEY_ALLOW_INTRODUCTION] != false,
+            enableRTL = preferences[KEY_ENABLE_RTL] == true,
+            maxHuntWarnFlashTime = preferences[KEY_HUNT_WARN_MAX_TIMEOUT] ?: 300,
+            typographyUuid = preferences[KEY_TYPOGRAPHY] ?: "",
+            paletteUuid = preferences[KEY_PALETTE] ?: ""
         )
     }
 
@@ -176,6 +214,9 @@ class GlobalPreferencesDatastoreDataSource(
         lateinit var KEY_ENABLE_RTL: Preferences.Key<Boolean>
 
         lateinit var KEY_HUNT_WARN_MAX_TIMEOUT: Preferences.Key<Long>
+
+        lateinit var KEY_PALETTE: Preferences.Key<String>
+        lateinit var KEY_TYPOGRAPHY: Preferences.Key<String>
     }
 
 }

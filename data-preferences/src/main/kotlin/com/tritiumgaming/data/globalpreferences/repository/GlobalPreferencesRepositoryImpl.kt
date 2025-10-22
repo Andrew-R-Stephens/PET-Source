@@ -76,4 +76,13 @@ class GlobalPreferencesRepositoryImpl(
     override suspend fun loadAllowHuntWarnAudio() =
         dataStoreSource.setAllowHuntWarnAudio(dataStoreSource.getAllowHuntWarnAudio())
 
+    override suspend fun savePalette(uuid: String) = dataStoreSource.savePalette(uuid)
+
+    override fun getPalette(): String = dataStoreSource.getPalette()
+
+    override suspend fun saveTypography(uuid: String) = dataStoreSource.saveTypography(uuid)
+
+    override fun getTypography(): String = dataStoreSource.getTypography()
+
+
 }
