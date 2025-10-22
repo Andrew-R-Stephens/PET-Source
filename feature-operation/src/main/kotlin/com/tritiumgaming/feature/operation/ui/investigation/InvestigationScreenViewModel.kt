@@ -12,7 +12,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.operation.app.container.OperationContainerProvider
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.item.GhostScore
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.InvestigationPopupUiState
+import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.JournalPopupUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapUiState
@@ -164,7 +164,7 @@ class InvestigationScreenViewModel(
     private val _toolbarUiState = MutableStateFlow(ToolbarUiState())
     val toolbarUiState = _toolbarUiState.asStateFlow()
 
-    private val _popupUiState = MutableStateFlow(InvestigationPopupUiState())
+    private val _popupUiState = MutableStateFlow(JournalPopupUiState())
     val popupUiState = _popupUiState.asStateFlow()
 
     /*
@@ -304,7 +304,7 @@ class InvestigationScreenViewModel(
      */
     private fun initPopupUiState() {
         _popupUiState.update {
-            InvestigationPopupUiState()
+            JournalPopupUiState()
         }
     }
 
