@@ -24,8 +24,8 @@
     <string name="preference_enableReorderGhostViews" translatable="false">canReorderGhostViews</string>
     <!--<string name="preference_colorSpace" translatable="false">colorSpace</string>
     <string name="preference_fontType" translatable="false">fontType</string>-->
-    <string name="preference_savedTheme" translatable="false">savedTheme</string>
-    <string name="preference_savedFont" translatable="false">savedFont</string>
+    <string name="preference_savedPalette" translatable="false">savedTheme</string>
+    <string name="preference_savedTypography" translatable="false">savedFont</string>
     <!-- Review Tracking -->
     <string name="tutorialTracking_canShowIntroduction" translatable="false">canShowIntroduction</string>
     <string name="reviewtracking_canRequestReview" translatable="false">canRequestReview</string>
