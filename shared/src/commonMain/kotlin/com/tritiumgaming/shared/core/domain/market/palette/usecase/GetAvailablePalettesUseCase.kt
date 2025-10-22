@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.core.domain.market.palette.usecase.preference
+package com.tritiumgaming.shared.core.domain.market.palette.usecase
 
 import com.tritiumgaming.shared.core.domain.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository

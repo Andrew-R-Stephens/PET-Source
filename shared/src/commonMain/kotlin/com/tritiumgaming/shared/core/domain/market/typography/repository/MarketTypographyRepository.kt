@@ -6,8 +6,11 @@ import com.tritiumgaming.shared.core.domain.market.typography.model.MarketTypogr
 import com.tritiumgaming.shared.core.domain.market.typography.source.TypographyDatastore.TypographyPreferences
 
 interface MarketTypographyRepository:
+    MarketCatalogRepository<MarketTypography>
+
+/*interface MarketTypographyRepository:
     MarketCatalogRepository<MarketTypography>, DatastoreRepository<TypographyPreferences> {
 
     suspend fun saveCurrent(uuid: String)
 
-}
+}*/

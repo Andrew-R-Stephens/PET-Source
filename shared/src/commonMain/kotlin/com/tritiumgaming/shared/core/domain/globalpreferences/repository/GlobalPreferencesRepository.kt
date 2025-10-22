@@ -33,4 +33,10 @@ interface GlobalPreferencesRepository: DatastoreRepository<GlobalPreferences> {
     fun getAllowHuntWarnAudio(): Boolean
     suspend fun loadAllowHuntWarnAudio()
 
+    suspend fun savePalette(uuid: String)
+    fun getPalette(): String
+
+    suspend fun saveTypography(uuid: String)
+    fun getTypography(): String
+
 }

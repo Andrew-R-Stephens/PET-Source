@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.core.domain.market.typography.usecase.preference
+package com.tritiumgaming.shared.core.domain.market.typography.usecase
 
 import com.tritiumgaming.shared.core.domain.market.typography.model.MarketTypography
 import com.tritiumgaming.shared.core.domain.market.typography.repository.MarketTypographyRepository

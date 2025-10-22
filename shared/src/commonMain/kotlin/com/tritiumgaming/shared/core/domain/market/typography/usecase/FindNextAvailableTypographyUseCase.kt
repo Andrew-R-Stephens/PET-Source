@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.core.domain.market.typography.usecase.preference
+package com.tritiumgaming.shared.core.domain.market.typography.usecase
 
 import com.tritiumgaming.shared.core.domain.market.model.IncrementDirection
 import com.tritiumgaming.shared.core.domain.market.typography.model.toAccountMarketTypography
@@ -20,19 +20,9 @@ class FindNextAvailableTypographyUseCase(
             marketRepository.get()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
 
-        /*Log.d("Settings", "MarketTypographies:")
-        marketTypographies.forEach {
-            Log.d("Settings", "\t$it")
-        }*/
-
         val accountTypographies: List<AccountMarketTypography> =
             accountRepository.fetchUnlockedTypographies()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
-
-        /*Log.d("Settings", "AccountTypographies:")
-        accountTypographies.forEach {
-            Log.d("Settings", "\t$it")
-        }*/
 
         val mergedMarketAccountTypographies =
             accountTypographies.fold(marketTypographies) { marketTs, accountT ->
@@ -51,17 +41,8 @@ class FindNextAvailableTypographyUseCase(
                 }
             }
 
-        /*Log.d("Settings", "MarketAccountTypographies:")
-        mergedMarketAccountTypographies.forEach {
-            Log.d("Settings", "\t$it")
-        }*/
-
         val filteredMergedMarketAccountTypographies =
             mergedMarketAccountTypographies.filter { it.isUnlocked }
-        /*Log.d("Settings", "Filtered MarketAccountTypographies:")
-        filteredMergedMarketAccountTypographies.forEach {
-            Log.d("Settings", "\t$it")
-        }*/
 
         val uuidsFiltered = filteredMergedMarketAccountTypographies.map { it.uuid }
         val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
@@ -69,8 +50,6 @@ class FindNextAvailableTypographyUseCase(
         var increment = currentIndex + direction.value
         if(increment >= uuidsFiltered.size) increment = 0
         if(increment < 0) increment = uuidsFiltered.size - 1
-
-        //Log.d("Settings", "Move: $currentIndex $increment $direction")
 
         return uuidsFiltered[increment]
     }

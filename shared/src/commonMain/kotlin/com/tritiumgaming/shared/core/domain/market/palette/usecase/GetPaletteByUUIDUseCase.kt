@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.core.domain.market.palette.usecase.preference
+package com.tritiumgaming.shared.core.domain.market.palette.usecase
 
 import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository
@@ -10,12 +10,8 @@ class GetPaletteByUUIDUseCase(
     operator fun invoke(
         uuid: String, defaultPalette: PaletteType
     ): PaletteType {
-        //Log.d("GetPaletteByUUIDUseCase", "Finding cached palette: $uuid")
         val palettesCache = repository.get().getOrDefault(emptyList())
         val cachedPalette = palettesCache.find { it.uuid == uuid }
-
-        //Log.d("GetPaletteByUUIDUseCase", "Cached palette found $cachedPalette")
-        //Log.d("GetPaletteByUUIDUseCase", "ExtendedPalette: ${cachedPalette?.palette}")
 
         return cachedPalette?.palette ?: defaultPalette
     }

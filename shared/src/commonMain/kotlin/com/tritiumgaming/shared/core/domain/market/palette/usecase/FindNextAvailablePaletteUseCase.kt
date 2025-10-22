@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.core.domain.market.palette.usecase.preference
+package com.tritiumgaming.shared.core.domain.market.palette.usecase
 
 import com.tritiumgaming.shared.core.domain.market.model.IncrementDirection
 import com.tritiumgaming.shared.core.domain.market.palette.model.toAccountMarketPalette

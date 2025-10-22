@@ -19,6 +19,10 @@ interface GlobalPreferencesDatastore: DatastoreDataSource<GlobalPreferences> {
     fun getMaxHuntWarnFlashTime(): Long
     suspend fun setAllowHuntWarnAudio(allowed: Boolean)
     fun getAllowHuntWarnAudio(): Boolean
+    suspend fun savePalette(uuid: String)
+    fun getPalette(): String
+    suspend fun saveTypography(uuid: String)
+    fun getTypography(): String
 
     data class GlobalPreferences(
         val disableScreenSaver: Boolean = true,
@@ -27,7 +31,9 @@ interface GlobalPreferencesDatastore: DatastoreDataSource<GlobalPreferences> {
         val enableGhostReorder: Boolean = true,
         val allowIntroduction: Boolean = true,
         val enableRTL: Boolean = false,
-        val maxHuntWarnFlashTime: Long = 300L
+        val maxHuntWarnFlashTime: Long = 300L,
+        val typographyUuid: String,
+        val paletteUuid: String
     )
 
 }
