@@ -76,7 +76,7 @@ private fun InfoScreenPreview() {
         typography = ClassicTypography
     ) {
         InfoScreen(
-            mainMenuViewModel = viewModel(factory = AppInfoViewModel.Factory)
+            viewModel = viewModel(factory = AppInfoViewModel.Factory)
         )
     }
 }
@@ -84,7 +84,7 @@ private fun InfoScreenPreview() {
 @Composable
 fun InfoScreen(
     navController: NavController = rememberNavController(),
-    mainMenuViewModel: AppInfoViewModel
+    viewModel: AppInfoViewModel
 ) {
 
     MainMenuScreen {
@@ -109,7 +109,7 @@ fun InfoScreen(
             when(deviceConfiguration) {
                 DeviceConfiguration.MOBILE_PORTRAIT -> {
                     InfoContentPortrait(
-                        contributors = mainMenuViewModel.specialThanksList
+                        contributors = viewModel.specialThanksList
                     )
                 }
                 DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -117,7 +117,7 @@ fun InfoScreen(
                 DeviceConfiguration.TABLET_LANDSCAPE,
                 DeviceConfiguration.DESKTOP -> {
                     InfoContentLandscape(
-                        contributors = mainMenuViewModel.specialThanksList
+                        contributors = viewModel.specialThanksList
                     )
                 }
             }

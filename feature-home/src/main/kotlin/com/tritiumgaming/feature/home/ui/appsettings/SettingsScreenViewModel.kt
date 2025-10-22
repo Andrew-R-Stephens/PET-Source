@@ -26,20 +26,14 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.Setu
 import com.tritiumgaming.shared.core.domain.market.model.IncrementDirection
 import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.shared.core.domain.market.palette.source.PaletteDatastore
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitPaletteDataStoreUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType
 import com.tritiumgaming.shared.core.domain.market.typography.source.TypographyDatastore
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitTypographyDataStoreUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.SaveCurrentTypographyUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -58,17 +52,11 @@ class SettingsScreenViewModel(
     private val setEnableRTLUseCase: SetEnableRTLUseCase,
     private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     // Typographies
-    private val initTypographyDataStoreUseCase: InitTypographyDataStoreUseCase,
-    private val initFlowTypographyUseCase: InitFlowTypographyUseCase,
     private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
-    private val getAvailableTypographiesUseCase: GetAvailableTypographiesUseCase,
     private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
     private val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
     // Palettes
-    private val initPaletteDataStoreUseCase: InitPaletteDataStoreUseCase,
-    private val initFlowPaletteUseCase: InitFlowPaletteUseCase,
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
-    private val getAvailablePalettesUseCase: GetAvailablePalettesUseCase,
     private val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
     private val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase,
 ) : ViewModel() {
@@ -204,7 +192,12 @@ class SettingsScreenViewModel(
      */
 
     private val _currentPaletteUUID : StateFlow<PaletteDatastore.PalettePreferences> =
-        initFlowPaletteUseCase()
+        initFlowGlobalPreferencesUseCase()
+            .map {
+                PaletteDatastore.PalettePreferences(
+                    uuid = it.paletteUuid
+                )
+            }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
@@ -240,7 +233,12 @@ class SettingsScreenViewModel(
      */
 
     private val _currentTypographyUUID : StateFlow<TypographyDatastore.TypographyPreferences> =
-        initFlowTypographyUseCase()
+        initFlowGlobalPreferencesUseCase()
+            .map {
+                TypographyDatastore.TypographyPreferences(
+                    uuid = it.typographyUuid
+                )
+            }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
@@ -274,8 +272,6 @@ class SettingsScreenViewModel(
 
     private fun initialDataStoreSetupEvent() {
         initGlobalPreferencesDataStoreUseCase()
-        initPaletteDataStoreUseCase()
-        initTypographyDataStoreUseCase()
     }
 
     init {
@@ -303,17 +299,11 @@ class SettingsScreenViewModel(
                 val setEnableRTLUseCase: SetEnableRTLUseCase = container.setEnableRTLUseCase
                 val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase = container.setMaxHuntWarnFlashTimeUseCase
                 // Typographies
-                val initTypographyDataStoreUseCase: InitTypographyDataStoreUseCase = container.initTypographyDataStoreUseCase
-                val initFlowTypographyUseCase: InitFlowTypographyUseCase = container.initFlowTypographyUseCase
                 val setCurrentTypographyUseCase: SaveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
-                val getTypographiesUseCase: GetAvailableTypographiesUseCase = container.getAvailableTypographiesUseCase
                 val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
                 val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase = container.findNextAvailableTypographyUseCase
                 // Palettes
-                val initPaletteDataStoreUseCase: InitPaletteDataStoreUseCase = container.initPaletteDataStoreUseCase
-                val initFlowPaletteUseCase: InitFlowPaletteUseCase = container.initFlowPaletteUseCase
                 val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
-                val getAvailablePalettesUseCase: GetAvailablePalettesUseCase = container.getAvailablePalettesUseCase
                 val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
                 val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase = container.findNextAvailablePaletteUseCase
 
@@ -329,17 +319,11 @@ class SettingsScreenViewModel(
                     setEnableRTLUseCase = setEnableRTLUseCase,
                     setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                     // Typographies
-                    getAvailableTypographiesUseCase = getTypographiesUseCase,
-                    initTypographyDataStoreUseCase = initTypographyDataStoreUseCase,
-                    initFlowTypographyUseCase = initFlowTypographyUseCase,
                     saveCurrentTypographyUseCase = setCurrentTypographyUseCase,
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                     findNextAvailableTypographyUseCase = findNextAvailableTypographyUseCase,
                     // Palettes
-                    initPaletteDataStoreUseCase = initPaletteDataStoreUseCase,
-                    initFlowPaletteUseCase = initFlowPaletteUseCase,
                     saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
-                    getAvailablePalettesUseCase = getAvailablePalettesUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                     findNextAvailablePaletteUseCase = findNextAvailablePaletteUseCase,
                 )

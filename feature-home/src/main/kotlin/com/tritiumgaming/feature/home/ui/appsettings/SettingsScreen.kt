@@ -101,7 +101,6 @@ private fun SettingsContent(
         viewModel(factory = SettingsScreenViewModel.Factory),
     onBack: () -> Unit = {}
 ) {
-
     Surface(
         modifier = modifier
             .fillMaxWidth(),
@@ -315,7 +314,7 @@ private fun SettingsContent(
 }
 
 @Composable
-fun EditButton(
+fun GDPRButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {}
 ) {
@@ -384,6 +383,6 @@ fun EditButtonPreview() {
         palette = LocalPalette.current,
         typography = LocalTypography.current
     ) {
-        EditButton()
+        GDPRButton()
     }
 }

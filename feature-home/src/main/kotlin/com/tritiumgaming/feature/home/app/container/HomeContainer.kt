@@ -31,18 +31,14 @@ import com.tritiumgaming.shared.core.domain.language.usecase.LoadCurrentLanguage
 import com.tritiumgaming.shared.core.domain.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitPaletteDataStoreUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitTypographyDataStoreUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.GetAvailablePalettesUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.GetAvailableTypographiesUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
@@ -97,14 +93,10 @@ class HomeContainer(
     val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
     val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
     val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
-    val initTypographyDataStoreUseCase: InitTypographyDataStoreUseCase,
-    val initFlowTypographyUseCase: InitFlowTypographyUseCase,
     val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     val getAvailableTypographiesUseCase: GetAvailableTypographiesUseCase,
     val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
     val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
-    val initPaletteDataStoreUseCase: InitPaletteDataStoreUseCase,
-    val initFlowPaletteUseCase: InitFlowPaletteUseCase,
     val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     val getAvailablePalettesUseCase: GetAvailablePalettesUseCase,
     val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
