@@ -42,8 +42,6 @@ import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
 
 @Composable
 fun RootNavigation(
-    mainMenuViewModel: AppInfoViewModel =
-        viewModel(factory = AppInfoViewModel.Factory),
     newsletterViewModel: NewsletterViewModel =
         viewModel(factory = NewsletterViewModel.Factory),
     investigationViewModel: InvestigationScreenViewModel =
@@ -52,8 +50,7 @@ fun RootNavigation(
         viewModel(factory = ObjectivesViewModel.Factory),
     mapsViewModel: MapsViewModel =
         viewModel(factory = MapsViewModel.Factory),
-    codexViewModel: CodexViewModel =
-        viewModel(factory = CodexViewModel.Factory)
+
 ) {
 
     val navController = rememberNavController()
@@ -69,7 +66,6 @@ fun RootNavigation(
 
         homeNavigation(
             navController = navController,
-            mainMenuViewModel = mainMenuViewModel,
             newsletterViewModel = newsletterViewModel
         )
 
@@ -77,8 +73,7 @@ fun RootNavigation(
             navController = navController,
             investigationViewModel = investigationViewModel,
             objectivesViewModel = objectivesViewModel,
-            mapsViewModel = mapsViewModel,
-            codexViewModel = codexViewModel
+            mapsViewModel = mapsViewModel
         )
 
     }
@@ -86,7 +81,6 @@ fun RootNavigation(
 
 private fun NavGraphBuilder.homeNavigation(
     navController: NavHostController,
-    mainMenuViewModel: AppInfoViewModel,
     newsletterViewModel: NewsletterViewModel
 ) {
 
@@ -109,7 +103,7 @@ private fun NavGraphBuilder.homeNavigation(
         composable(route = NavRoute.SCREEN_APP_INFO.route) {
             InfoScreen(
                 navController = navController,
-                mainMenuViewModel = mainMenuViewModel
+                viewModel = viewModel(factory = AppInfoViewModel.Factory)
             )
         }
 
@@ -202,8 +196,7 @@ private fun NavGraphBuilder.operationNavigation(
     navController: NavHostController,
     investigationViewModel: InvestigationScreenViewModel,
     objectivesViewModel: ObjectivesViewModel,
-    mapsViewModel: MapsViewModel,
-    codexViewModel: CodexViewModel
+    mapsViewModel: MapsViewModel
 ) {
     navigation(
         route = NavRoute.NAVIGATION_INVESTIGATION.route,
@@ -286,7 +279,7 @@ private fun NavGraphBuilder.operationNavigation(
                 category?.let {
                     CodexCatalogScreen(
                         navController = navController,
-                        codexViewModel = codexViewModel,
+                        codexViewModel = viewModel(factory = CodexViewModel.Factory),
                         category = category
                     )
                 } ?: navController.popBackStack()

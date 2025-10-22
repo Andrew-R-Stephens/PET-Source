@@ -52,13 +52,9 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
         coreContainer = CoreContainer(applicationContext, dataStore, firestore, firebaseAuth)
 
         appContainer = AppContainer(
-            initTypographyDataStoreUseCase = coreContainer.initTypographyDataStoreUseCase,
-            initFlowTypographyUseCase = coreContainer.initFlowTypographyUseCase,
-            saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
+            setupGlobalPreferencesUseCase = coreContainer.setupGlobalPreferencesUseCase,
+            initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
             getTypographyByUUIDUseCase = coreContainer.getTypographyByUUIDUseCase,
-            initPaletteDataStoreUseCase = coreContainer.initPaletteDataStoreUseCase,
-            initFlowPaletteUseCase = coreContainer.initFlowPaletteUseCase,
-            saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
             getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,
         )
 
@@ -93,14 +89,10 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
             loadCurrentLanguageUseCase = coreContainer.loadCurrentLanguageUseCase,
             // Typographies
             getAvailableTypographiesUseCase = coreContainer.getAvailableTypographiesUseCase,
-            initTypographyDataStoreUseCase = coreContainer.initTypographyDataStoreUseCase,
-            initFlowTypographyUseCase = coreContainer.initFlowTypographyUseCase,
             saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
             getTypographyByUUIDUseCase = coreContainer.getTypographyByUUIDUseCase,
             findNextAvailableTypographyUseCase = coreContainer.findNextAvailableTypographyUseCase,
             // Palettes
-            initPaletteDataStoreUseCase = coreContainer.initPaletteDataStoreUseCase,
-            initFlowPaletteUseCase = coreContainer.initFlowPaletteUseCase,
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
             getAvailablePalettesUseCase = coreContainer.getAvailablePalettesUseCase,
             getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,

@@ -21,21 +21,20 @@ import com.tritiumgaming.core.ui.theme.palette.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
+import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
 import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.shared.core.domain.market.palette.source.PaletteDatastore
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitPaletteDataStoreUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
 import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType
 import com.tritiumgaming.shared.core.domain.market.typography.source.TypographyDatastore
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitTypographyDataStoreUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -43,13 +42,9 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.atomic.AtomicBoolean
 
 class PETActivityViewModel(
-    // Typographies
-    private val initTypographyDataStoreUseCase: InitTypographyDataStoreUseCase,
-    initFlowTypographyUseCase: InitFlowTypographyUseCase,
+    private val initGlobalPreferencesDataStoreUseCase: SetupGlobalPreferencesUseCase,
+    private val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase,
     private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
-    // Palettes
-    private val initPaletteDataStoreUseCase: InitPaletteDataStoreUseCase,
-    initFlowPaletteUseCase: InitFlowPaletteUseCase,
     private val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
 ): ViewModel() {
 
@@ -67,7 +62,12 @@ class PETActivityViewModel(
      * Palettes
      */
     private val _currentPaletteUUID : StateFlow<PaletteDatastore.PalettePreferences> =
-        initFlowPaletteUseCase()
+        initFlowGlobalPreferencesUseCase()
+            .map {
+                PaletteDatastore.PalettePreferences(
+                    uuid = it.paletteUuid
+                )
+            }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
@@ -85,7 +85,12 @@ class PETActivityViewModel(
      * Typographies
      */
     private val _currentTypographyUUID : StateFlow<TypographyDatastore.TypographyPreferences> =
-        initFlowTypographyUseCase()
+        initFlowGlobalPreferencesUseCase()
+            .map {
+                TypographyDatastore.TypographyPreferences(
+                    uuid = it.typographyUuid
+                )
+            }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
@@ -100,8 +105,7 @@ class PETActivityViewModel(
             .toTypographyResource()
 
     private fun initialDataStoreSetupEvent() {
-        initPaletteDataStoreUseCase()
-        initTypographyDataStoreUseCase()
+        initGlobalPreferencesDataStoreUseCase()
     }
 
     /** GDPR consent manager */
@@ -229,27 +233,6 @@ class PETActivityViewModel(
         Log.d("GlobalPreferencesViewModel", "Initializing...")
 
         initialDataStoreSetupEvent()
-
-        // Palette
-        /*viewModelScope.launch {
-            initFlowPaletteUseCase { preferences ->
-                _currentPaletteUUID.update {
-                    preferences.uuid.ifBlank { defaultPaletteUUID }
-                }
-                Log.d("Palette", "Collecting from flow:\n\tID -> ${currentPaletteUUID.value}")
-            }
-        }
-
-        // Typography
-        viewModelScope.launch {
-            initFlowTypographyUseCase { preferences ->
-                _currentTypographyUUID.update {
-                    preferences.uuid.ifBlank { defaultTypographyUUID }
-                }
-                Log.d("Typography", "Collecting from flow:\n\tID -> ${currentTypographyUUID.value}")
-            }
-        }*/
-
     }
 
     companion object {
@@ -271,21 +254,15 @@ class PETActivityViewModel(
                 val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
                 val container = (application as AppContainerProvider).provideAppContainer()
 
-                // Typographies
-                val setupTypographyUseCase: InitTypographyDataStoreUseCase = container.initTypographyDataStoreUseCase
-                val initFlowTypographyUseCase: InitFlowTypographyUseCase = container.initFlowTypographyUseCase
+                val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase = container.setupGlobalPreferencesUseCase
+                val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
                 val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
-                // Palettes
-                val setupPaletteUseCase: InitPaletteDataStoreUseCase = container.initPaletteDataStoreUseCase
-                val initFlowPaletteUseCase: InitFlowPaletteUseCase = container.initFlowPaletteUseCase
                 val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
-                
+
                 PETActivityViewModel(
-                    initTypographyDataStoreUseCase = setupTypographyUseCase,
-                    initFlowTypographyUseCase = initFlowTypographyUseCase,
+                    initGlobalPreferencesDataStoreUseCase = setupGlobalPreferencesUseCase,
+                    initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
-                    initPaletteDataStoreUseCase = setupPaletteUseCase,
-                    initFlowPaletteUseCase = initFlowPaletteUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                 )
             }
