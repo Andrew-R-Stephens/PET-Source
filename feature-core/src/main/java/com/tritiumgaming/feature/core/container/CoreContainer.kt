@@ -18,14 +18,12 @@ import com.tritiumgaming.data.language.source.datastore.LanguageDatastoreDataSou
 import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
 import com.tritiumgaming.data.marketplace.bundle.repository.MarketBundleRepositoryImpl
 import com.tritiumgaming.data.marketplace.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
-import com.tritiumgaming.data.marketplace.palette.repository.MarketPaletteRepositoryImpl
-import com.tritiumgaming.data.marketplace.palette.source.datastore.MarketPaletteDatastoreDataSource
-import com.tritiumgaming.data.marketplace.palette.source.local.MarketPaletteLocalDataSource
-import com.tritiumgaming.data.marketplace.palette.source.remote.MarketPaletteFirestoreDataSource
-import com.tritiumgaming.data.marketplace.typography.repository.MarketTypographyRepositoryImpl
-import com.tritiumgaming.data.marketplace.typography.source.datastore.MarketTypographyDatastoreDataSource
-import com.tritiumgaming.data.marketplace.typography.source.local.MarketTypographyLocalDataSource
-import com.tritiumgaming.data.marketplace.typography.source.remote.MarketTypographyFirestoreDataSource
+import com.tritiumgaming.data.palette.repository.MarketPaletteRepositoryImpl
+import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
+import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSource
+import com.tritiumgaming.data.palette.repository.MarketTypographyRepositoryImpl
+import com.tritiumgaming.data.palette.source.local.MarketTypographyLocalDataSource
+import com.tritiumgaming.data.palette.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.data.review.source.datastore.ReviewTrackerDatastoreDataSource
 import com.tritiumgaming.shared.core.domain.globalpreferences.repository.GlobalPreferencesRepository
@@ -53,19 +51,15 @@ import com.tritiumgaming.shared.core.domain.language.usecase.SetDefaultLanguageU
 import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.shared.core.domain.market.bundle.repository.MarketBundleRemoteRepository
 import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetAvailablePalettesUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.GetPaletteByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.preference.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitFlowPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.setup.InitPaletteDataStoreUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.GetAvailablePalettesUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.core.domain.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.core.domain.market.typography.repository.MarketTypographyRepository
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetAvailableTypographiesUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.GetTypographyByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.preference.SaveCurrentTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitFlowTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.setup.InitTypographyDataStoreUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.GetAvailableTypographiesUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.core.domain.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
 import com.tritiumgaming.shared.core.domain.reviewtracker.repository.ReviewTrackerRepository
@@ -148,6 +142,12 @@ class CoreContainer(
         repository = globalPreferencesRepository
     )
     val getAllowHuntWarnAudioUseCase = GetAllowHuntWarnAudioUseCase(
+        repository = globalPreferencesRepository
+    )
+    val saveCurrentTypographyUseCase = SaveCurrentTypographyUseCase(
+        repository = globalPreferencesRepository
+    )
+    val saveCurrentPaletteUseCase = SaveCurrentPaletteUseCase(
         repository = globalPreferencesRepository
     )
 
@@ -289,15 +289,15 @@ class CoreContainer(
         val typographyFirestoreDataSource = MarketTypographyFirestoreDataSource(
             firestore = firestore
         )
-        val typographyDatastoreDataSource = MarketTypographyDatastoreDataSource(
+        /*val typographyDatastoreDataSource = MarketTypographyDatastoreDataSource(
             context = applicationContext,
             dataStore = dataStore
-        )
+        )*/
 
         MarketTypographyRepositoryImpl(
             localDataSource = typographyLocalDataSource,
             firestoreDataSource = typographyFirestoreDataSource,
-            dataStoreSource = typographyDatastoreDataSource,
+            /*dataStoreSource = typographyDatastoreDataSource,*/
             coroutineDispatcher = Dispatchers.IO
         )
     }
@@ -305,15 +305,6 @@ class CoreContainer(
     val findNextAvailableTypographyUseCase = FindNextAvailableTypographyUseCase(
         marketRepository = typographyRepository,
         accountRepository = firestoreAccountRepository
-    )
-    val initTypographyDataStoreUseCase = InitTypographyDataStoreUseCase(
-        repository = typographyRepository
-    )
-    val initFlowTypographyUseCase = InitFlowTypographyUseCase(
-        repository = typographyRepository
-    )
-    val saveCurrentTypographyUseCase = SaveCurrentTypographyUseCase(
-        repository = typographyRepository
     )
     val getAvailableTypographiesUseCase = GetAvailableTypographiesUseCase(
         repository = typographyRepository
@@ -330,15 +321,15 @@ class CoreContainer(
         val paletteFirestoreDataSource = MarketPaletteFirestoreDataSource(
             firestore = firestore
         )
-        val paletteDatastoreDataSource = MarketPaletteDatastoreDataSource(
+        /*val paletteDatastoreDataSource = MarketPaletteDatastoreDataSource(
             context = applicationContext,
             dataStore = dataStore
-        )
+        )*/
 
         MarketPaletteRepositoryImpl(
             localDataSource = paletteLocalDataSource,
             firestoreDataSource = paletteFirestoreDataSource,
-            dataStoreSource = paletteDatastoreDataSource,
+            /*dataStoreSource = paletteDatastoreDataSource,*/
             coroutineDispatcher = Dispatchers.IO
         )
     }
@@ -346,15 +337,6 @@ class CoreContainer(
     val findNextAvailablePaletteUseCase = FindNextAvailablePaletteUseCase(
         marketRepository = paletteRepository,
         accountRepository = firestoreAccountRepository
-    )
-    val initPaletteDataStoreUseCase = InitPaletteDataStoreUseCase(
-        repository = paletteRepository
-    )
-    val initFlowPaletteUseCase = InitFlowPaletteUseCase(
-        repository = paletteRepository
-    )
-    val saveCurrentPaletteUseCase = SaveCurrentPaletteUseCase(
-        repository = paletteRepository
     )
     val getAvailablePalettesUseCase = GetAvailablePalettesUseCase(
         repository = paletteRepository

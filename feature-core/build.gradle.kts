@@ -67,6 +67,8 @@ dependencies {
     implementation(project(":data-preferences"))
     implementation(project(":data-language"))
     implementation(project(":data-marketplace"))
+    implementation(project(":data-typography"))
+    implementation(project(":data-palette"))
     implementation(project(":data-review"))
     // implementation(project(":data-codex"))
     // implementation(project(":data-contributor"))
