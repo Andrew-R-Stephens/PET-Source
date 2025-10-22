@@ -43,20 +43,22 @@ include(
 )
 
 include(
+    ":data-account",
+    ":data-codex",
+    ":data-contributor",
+    ":data-difficulty",
     ":data-evidence",
     ":data-ghost",
-    ":data-difficulty",
-    ":data-language",
-    ":data-codex",
-    ":data-map",
-    ":data-contributor",
-    ":data-account",
-    ":data-mission",
-    ":data-newsletter",
     ":data-ghostbox",
     ":data-ghostname",
+    ":data-language",
+    ":data-map",
+    ":data-marketplace",
+    ":data-mission",
+    ":data-newsletter",
+    ":data-palette",
     ":data-preferences",
-    ":database-unknown",
     ":data-review",
-    ":data-marketplace"
+    ":data-typography",
+    ":database-unknown",
 )
