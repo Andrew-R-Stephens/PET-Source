@@ -90,7 +90,10 @@ private fun NavGraphBuilder.homeNavigation(
     ) {
 
         composable(route = NavRoute.SCREEN_HOME.route) {
-            StartScreen(navController = navController)
+            StartScreen(
+                newsletterViewModel = newsletterViewModel,
+                navController = navController
+            )
         }
 
         composable(route = NavRoute.SCREEN_LANGUAGE.route) {

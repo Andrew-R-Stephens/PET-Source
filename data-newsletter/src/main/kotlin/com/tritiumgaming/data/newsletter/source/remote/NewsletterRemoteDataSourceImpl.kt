@@ -11,9 +11,9 @@ class NewsletterRemoteDataSourceImpl(
 ): NewsletterRemoteDataSource {
 
     override suspend fun fetchInbox(
-        inboxUrl: Url
+        url: Url
     ): Result<RemoteNewsletterInboxDto> = withContext(Dispatchers.IO) {
-        Result.success(newsletterApi.fetchInbox(inboxUrl).getOrThrow())
+        Result.success(newsletterApi.fetchInbox(url).getOrThrow())
     }
 
 }

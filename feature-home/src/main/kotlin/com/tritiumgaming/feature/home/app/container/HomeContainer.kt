@@ -62,6 +62,7 @@ import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.InitFlowNewsletterUseCase
+import com.tritiumgaming.shared.home.domain.newsletter.usecase.RefreshNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SetupNewsletterUseCase
 import kotlinx.coroutines.Dispatchers
@@ -115,36 +116,41 @@ class HomeContainer(
 ) {
 
     // App Info
-    private val appInfoLocalDataSource: ContributorDataSource = ContributorLocalDataSource()
-    private val appInfoRepository: ContributorRepository = ContributorRepositoryImpl(
-        localSource = appInfoLocalDataSource
-    )
+    private val appInfoRepository: ContributorRepository by lazy {
+        val appInfoLocalDataSource: ContributorDataSource = ContributorLocalDataSource()
+
+        ContributorRepositoryImpl(
+            localSource = appInfoLocalDataSource
+        )
+    }
     internal val getContributorsUseCase = ContributorUseCase(
         appInfoRepository = appInfoRepository
     )
 
     // Newsletter
-    private val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSourceImpl(
-        applicationContext = applicationContext
-    )
-    private val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSourceImpl(
-        newsletterApi = NewsletterService()
-    )
-    private val newsletterDatastore: NewsletterDatastoreDataSource = NewsletterDatastoreDataSource(
-        context = applicationContext,
-        dataStore = dataStore
-    )
-    private val connectivityManagerHelper: ConnectivityManagerHelper = ConnectivityManagerHelper(
-        applicationContext = applicationContext
-    )
+    private val newsletterRepository: NewsletterRepository by lazy {
+        val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSourceImpl(
+            applicationContext = applicationContext
+        )
+        val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSourceImpl(
+            newsletterApi = NewsletterService()
+        )
+        val newsletterDatastore = NewsletterDatastoreDataSource(
+            context = applicationContext,
+            dataStore = dataStore
+        )
+        val connectivityManagerHelper = ConnectivityManagerHelper(
+            applicationContext = applicationContext
+        )
 
-    private val newsletterRepository: NewsletterRepository = NewsletterRepositoryImpl(
-        localDataSource = newsletterLocalDataSource,
-        remoteDataSource = newsletterRemoteDataSource,
-        dataStoreSource = newsletterDatastore,
-        connectivityManagerHelper = connectivityManagerHelper,
-        coroutineDispatcher = Dispatchers.IO
-    )
+        NewsletterRepositoryImpl(
+            localDataSource = newsletterLocalDataSource,
+            remoteDataSource = newsletterRemoteDataSource,
+            dataStoreSource = newsletterDatastore,
+            connectivityManagerHelper = connectivityManagerHelper,
+            coroutineDispatcher = Dispatchers.IO
+        )
+    }
     internal val setupNewsletterUseCase = SetupNewsletterUseCase(
         repository = newsletterRepository
     )

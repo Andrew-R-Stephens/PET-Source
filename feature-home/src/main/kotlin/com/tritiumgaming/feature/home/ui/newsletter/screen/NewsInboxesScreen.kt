@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.home.ui.newsletter.screen
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -44,6 +45,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.admob.AdmobBanner
+import com.tritiumgaming.core.ui.common.admob.BannerAd
 import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
@@ -124,8 +126,13 @@ fun NewsInboxesScreen(
                 }
             }
 
+            BannerAd(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                adId = stringResource(R.string.ad_banner_1)
+            )
 
-            AdmobBanner()
+            // AdmobBanner()
         }
 
     }
@@ -152,9 +159,9 @@ private fun ColumnScope.NewsInboxesContentPortrait(
             .padding(8.dp),
         onRefresh = {
             newsletterViewModel.refreshInboxes(
-                onFailure = { message ->
+                /*onFailure = { message ->
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                }
+                }*/
             )
 
         },
@@ -208,9 +215,9 @@ private fun ColumnScope.NewsInboxesContentLandscape(
             .padding(8.dp),
         onRefresh = {
             newsletterViewModel.refreshInboxes(
-                onFailure = { message ->
+                /*onFailure = { message ->
                     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                }
+                }*/
             )
         },
         isRefreshing = isRefreshing

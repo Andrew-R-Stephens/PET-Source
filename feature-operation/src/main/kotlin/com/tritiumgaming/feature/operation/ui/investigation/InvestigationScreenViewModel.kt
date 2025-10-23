@@ -12,7 +12,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.operation.app.container.OperationContainerProvider
 import com.tritiumgaming.feature.operation.ui.investigation.journal.lists.item.GhostScore
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.JournalPopupUiState
+import com.tritiumgaming.feature.operation.ui.investigation.popups.JournalPopupUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapUiState

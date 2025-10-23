@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.operation.ui.investigation.journal.popups.evidence
+package com.tritiumgaming.feature.operation.ui.investigation.popups.evidence
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R

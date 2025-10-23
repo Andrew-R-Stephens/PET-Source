@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.operation.ui.investigation.journal.popups.evidence
+package com.tritiumgaming.feature.operation.ui.investigation.popups.evidence
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -68,9 +68,10 @@ import com.tritiumgaming.feature.operation.app.mappers.codex.toIntegerResource
 import com.tritiumgaming.feature.operation.app.mappers.codex.toStringResource
 import com.tritiumgaming.feature.operation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.operation.app.mappers.evidence.toStringResource
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.AnimatedGif
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.PageButton
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.PopupDataRow
+import com.tritiumgaming.feature.operation.ui.investigation.popups.common.AnimatedGif
+import com.tritiumgaming.feature.operation.ui.investigation.popups.common.InvestigationPopup
+import com.tritiumgaming.feature.operation.ui.investigation.popups.common.PageButton
+import com.tritiumgaming.feature.operation.ui.investigation.popups.common.PopupDataRow
 import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources
 import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
@@ -348,8 +349,8 @@ private fun EvidencePopupContent(
                             animatedGifRes = animationRes.toDrawableResource()
                         )
                     }
-
                 }
+
             }
 
         }
@@ -544,7 +545,8 @@ fun EvidenceTypePortraitPopup(
             PageButton(
                 isSelected = evidencePage == EvidenceTypePage.EQUIPMENT,
                 icon = { modifier, colors ->
-                    equipmentTypeIcon(modifier, colors) }
+                    equipmentTypeIcon(modifier, colors)
+                }
             ) { evidencePage = EvidenceTypePage.EQUIPMENT }
 
         }
@@ -838,39 +840,26 @@ fun EvidenceTypePortraitPreview() {
             )
         }
 
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(32.dp),
-    ) {
-        items(LocalPalettesMap.values.toList()) {
-            palette ->
-            SelectiveTheme(
-                palette = palette,
-                typography = ClassicTypography
+        SelectiveTheme {
+            InvestigationPopup(
+                modifier = Modifier
+                    .fillMaxSize(),
+                shown = true,
+                backgroundColor = LocalPalette.current.surface.color
             ) {
-                Box(
+                EvidenceTypePortraitPopup(
                     modifier = Modifier
-                        .fillMaxSize()
-                ) {
-
-                    EvidenceTypePortraitPopup(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(500.dp)
-                            .padding(top = 16.dp, start = 8.dp, end = 8.dp)
-                            .align(Alignment.BottomCenter),
-                        primaryTitleContent = primaryTitleContent,
-                        primaryImageContent = primaryImageContent,
-                        primaryDataContent = primaryDataContent,
-                        evidenceBodyContent = bodyContent,
-                        equipmentTypeIcon = { modifier, colors -> equipmentTypeIcon(modifier, colors) },
-                        onDismiss = {}
-                    )
-                }
+                        .fillMaxSize(),
+                    primaryTitleContent = primaryTitleContent,
+                    primaryImageContent = primaryImageContent,
+                    primaryDataContent = primaryDataContent,
+                    evidenceBodyContent = bodyContent,
+                    equipmentTypeIcon = { modifier, colors -> equipmentTypeIcon(modifier, colors) },
+                    onDismiss = {}
+                )
             }
         }
     }
-
-}
 
 @Preview(device = "spec:width=411dp,height=891dp,orientation=landscape")
 @Composable
@@ -979,28 +968,26 @@ fun EvidenceTypePopupLandscapePreview() {
             )
         }
 
-    SelectiveTheme(
-        palette = Whiteboard,
-        typography = CleanTypography
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
 
+    SelectiveTheme {
+        InvestigationPopup(
+            modifier = Modifier
+                .fillMaxSize(),
+            shown = true,
+            backgroundColor = LocalPalette.current.surface.color
+        ) {
             EvidenceTypeLandscapePopup(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = 8.dp, end = 16.dp, bottom = 8.dp)
-                    .align(Alignment.CenterStart),
-                primaryTitleContent = { modifier -> primaryTitleContent(modifier) },
-                primaryImageContent = { modifier -> primaryImageContent(modifier) },
-                primaryDataContent = { modifier -> primaryDataContent(modifier) },
-                evidenceBodyContent = { modifier -> bodyContent(modifier) },
+                    .fillMaxSize(),
+                primaryTitleContent = primaryTitleContent,
+                primaryImageContent = primaryImageContent,
+                primaryDataContent = primaryDataContent,
+                evidenceBodyContent = bodyContent,
                 equipmentTypeIcon = { modifier, colors ->
                     equipmentTypeIcon(modifier, colors) },
                 onDismiss = {}
             )
         }
     }
+
 }

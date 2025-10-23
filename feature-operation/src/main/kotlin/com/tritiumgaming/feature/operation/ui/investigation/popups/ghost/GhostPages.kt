@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.operation.ui.investigation.journal.popups.ghost
+package com.tritiumgaming.feature.operation.ui.investigation.popups.ghost
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R

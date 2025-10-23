@@ -58,9 +58,9 @@ import com.tritiumgaming.core.ui.vector.getGearVector
 import com.tritiumgaming.core.ui.vector.getInfoVector
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.operation.ui.investigation.journal.Journal
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.InvestigationPopup
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.evidence.EvidencePopup
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.ghost.GhostPopup
+import com.tritiumgaming.feature.operation.ui.investigation.popups.common.InvestigationPopup
+import com.tritiumgaming.feature.operation.ui.investigation.popups.evidence.EvidencePopup
+import com.tritiumgaming.feature.operation.ui.investigation.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.CollapseButton
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.InvestigationToolbar
 import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ResetButton
@@ -157,23 +157,25 @@ private fun InvestigationSoloContent(
     InvestigationPopup(
         modifier = Modifier
             .fillMaxSize(),
-        shown = popupUiState.isShown
-    ) {
+        backgroundColor = LocalPalette.current.surface.color,
+        shown = popupUiState.isShown,
+    ) { modifier ->
         popupUiState.ghostPopupRecord?.let { record ->
             GhostPopup(
-                modifier = Modifier,
+                modifier = modifier,
                 record = record,
             ) { investigationViewModel.clearPopup() }
         }
 
         popupUiState.evidencePopupRecord?.let { record ->
             EvidencePopup(
-                modifier = Modifier,
+                modifier = modifier,
                 record = record
             ) { investigationViewModel.clearPopup() }
         }
     }
 }
+
 
 @Composable
 fun InvestigationCompactPortrait() {

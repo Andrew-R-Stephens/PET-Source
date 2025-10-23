@@ -56,6 +56,7 @@ import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.admob.AdmobBanner
+import com.tritiumgaming.core.ui.common.admob.BannerAd
 import com.tritiumgaming.core.ui.common.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.common.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.common.menus.SecondarySelector
@@ -109,11 +110,15 @@ private fun StartButtonPreview2() {
 
 @Composable
 fun StartScreen(
+    newsletterViewModel: NewsletterViewModel,
     navController: NavHostController
 ) {
 
     MainMenuScreen {
-        StartContent(navController)
+        StartContent(
+            newsletterViewModel = newsletterViewModel,
+            navController = navController
+        )
     }
 
 }
@@ -121,6 +126,7 @@ fun StartScreen(
 
 @Composable
 private fun StartContent(
+    newsletterViewModel: NewsletterViewModel,
     navController: NavController
 ) {
 
@@ -137,7 +143,9 @@ private fun StartContent(
                 .height(48.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            HeaderNavBar(navController)
+            HeaderNavBar(
+                newsletterViewModel = newsletterViewModel,
+                navController = navController)
         }
 
         val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -156,7 +164,13 @@ private fun StartContent(
                 navController = navController) }
         }
 
-        AdmobBanner()
+        BannerAd(
+            modifier = Modifier
+                .fillMaxWidth(),
+            adId = stringResource(R.string.ad_banner_1)
+        )
+
+        //AdmobBanner()
     }
 
 }
@@ -459,7 +473,7 @@ private fun StartButton(
 @Composable
 private fun HeaderNavBar(
     navController: NavController,
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
+    newsletterViewModel: NewsletterViewModel,
 ) {
 
     val context = LocalContext.current

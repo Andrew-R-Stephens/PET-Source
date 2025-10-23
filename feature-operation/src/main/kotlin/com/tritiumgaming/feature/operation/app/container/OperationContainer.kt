@@ -93,10 +93,12 @@ class OperationContainer(
 ) {
 
     // Ghost
-    private val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource()
-    private val ghostRepository: GhostRepository = GhostRepositoryImpl(
-        ghostLocalDataSource = ghostLocalDataSource
-    )
+    private val ghostRepository: GhostRepository by lazy {
+        val ghostLocalDataSource: GhostDataSource = GhostLocalDataSource()
+        GhostRepositoryImpl(
+            ghostLocalDataSource = ghostLocalDataSource
+        )
+    }
     internal val getGhostUseCase = GetGhostUseCase(
         repository = ghostRepository
     )
@@ -108,10 +110,12 @@ class OperationContainer(
     )
 
     // Evidence
-    private val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource()
-    private val evidenceRepository: EvidenceRepository = EvidenceRepositoryImpl(
-        evidenceLocalDataSource = evidenceLocalDataSource
-    )
+    private val evidenceRepository: EvidenceRepository by lazy {
+        val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource()
+        EvidenceRepositoryImpl(
+            evidenceLocalDataSource = evidenceLocalDataSource
+        )
+    }
     internal val getEvidenceUseCase = GetEvidenceUseCase(
         repository = evidenceRepository
     )
@@ -132,12 +136,14 @@ class OperationContainer(
     )
 
     // Difficulty
-    private val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(
-        applicationContext = applicationContext
-    )
-    private val difficultyRepository: DifficultyRepository = DifficultyRepositoryImpl(
-        localSource = difficultyLocalDataSource
-    )
+    private val difficultyRepository: DifficultyRepository by lazy {
+        val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(
+            applicationContext = applicationContext
+        )
+        DifficultyRepositoryImpl(
+            localSource = difficultyLocalDataSource
+        )
+    }
     internal val fetchDifficultiesUseCase = FetchDifficultiesUseCase(
         difficultyRepository = difficultyRepository
     )
@@ -167,23 +173,27 @@ class OperationContainer(
     )
 
     // Mission
-    private val missionLocalDataSource: MissionDataSource = MissionLocalDataSource(
-        applicationContext = applicationContext,
-    )
-    internal val missionRepository: MissionRepository = MissionRepositoryImpl(
-        localSource = missionLocalDataSource
-    )
+    internal val missionRepository: MissionRepository by lazy {
+        val missionLocalDataSource: MissionDataSource = MissionLocalDataSource(
+            applicationContext = applicationContext,
+        )
+        MissionRepositoryImpl(
+            localSource = missionLocalDataSource
+        )
+    }
     internal val fetchAllMissionsUseCase = FetchAllMissionsUseCase(
         missionRepository = missionRepository
     )
 
     // Ghost Name
-    private val ghostNameLocalDataSource: GhostNameDataSource = GhostNameLocalDataSource(
-        applicationContext = applicationContext
-    )
-    internal val ghostNameRepository: GhostNameRepository = GhostNameRepositoryImpl(
-        localSource = ghostNameLocalDataSource
-    )
+    internal val ghostNameRepository: GhostNameRepository by lazy {
+        val ghostNameLocalDataSource: GhostNameDataSource = GhostNameLocalDataSource(
+            applicationContext = applicationContext
+        )
+        GhostNameRepositoryImpl(
+            localSource = ghostNameLocalDataSource
+        )
+    }
     internal val fetchAllFirstNamesUseCase = FetchAllFirstNamesUseCase(
         repository = ghostNameRepository
     )
@@ -198,23 +208,27 @@ class OperationContainer(
     )
 
     // Map Modifiers
-    private val mapModifiersLocalDataSource: MapModifiersDataSource = MapModifiersLocalDataSource(
-        applicationContext = applicationContext
-    )
-    private val mapModifiersRepository: MapModifiersRepository = MapModifiersRepositoryImpl(
-        localSource = mapModifiersLocalDataSource
-    )
+    private val mapModifiersRepository: MapModifiersRepository by lazy {
+        val mapModifiersLocalDataSource: MapModifiersDataSource = MapModifiersLocalDataSource(
+            applicationContext = applicationContext
+        )
+        MapModifiersRepositoryImpl(
+            localSource = mapModifiersLocalDataSource
+        )
+    }
     internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(
         repository = mapModifiersRepository
     )
 
     // Simple Map
-    private val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(
-        applicationContext = applicationContext
-    )
-    private val simpleMapRepository: SimpleMapRepository = SimpleMapRepositoryImpl(
-        localSource = simpleMapLocalDataSource
-    )
+    private val simpleMapRepository: SimpleMapRepository by lazy {
+        val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(
+            applicationContext = applicationContext
+        )
+        SimpleMapRepositoryImpl(
+            localSource = simpleMapLocalDataSource
+        )
+    }
     internal val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(
         simpleMapRepository = simpleMapRepository
     )
@@ -254,35 +268,30 @@ class OperationContainer(
     )
 
     // Complex Map
-    private val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
-        applicationContext = applicationContext,
-        service = ComplexMapLocalService()
-    )
-    private val complexMapRepository: ComplexMapRepository = ComplexMapRepositoryImpl(
-        localSource = complexMapLocalDataSource
-    )
+    private val complexMapRepository: ComplexMapRepository by lazy {
+        val complexMapLocalDataSource: ComplexMapDataSource = ComplexMapLocalDataSource(
+            applicationContext = applicationContext,
+            service = ComplexMapLocalService()
+        )
+        ComplexMapRepositoryImpl(
+            localSource = complexMapLocalDataSource
+        )
+    }
     internal val fetchComplexMapsUseCase = FetchComplexMapsUseCase(
         complexMapRepository = complexMapRepository
     )
 
-    // Achievements
-    private val achievementsLocalDataSource: AchievementsLocalDataSource =
-        AchievementsLocalDataSource()
-
-    // Equipment
-    private val equipmentLocalDataSource: EquipmentLocalDataSource =
-        EquipmentLocalDataSource()
-
-    //Possessions
-    private val possessionsLocalDataSource: PossessionsLocalDataSource =
-        PossessionsLocalDataSource()
-
     // Codex
-    private val codexRepository: CodexRepository = CodexRepositoryImpl(
-        achievementsLocalDataSource = achievementsLocalDataSource,
-        equipmentLocalDataSource = equipmentLocalDataSource,
-        possessionsLocalDataSource = possessionsLocalDataSource
-    )
+    private val codexRepository: CodexRepository by lazy {
+        val achievementsLocalDataSource = AchievementsLocalDataSource()
+        val equipmentLocalDataSource = EquipmentLocalDataSource()
+        val possessionsLocalDataSource = PossessionsLocalDataSource()
+        CodexRepositoryImpl(
+            achievementsLocalDataSource = achievementsLocalDataSource,
+            equipmentLocalDataSource = equipmentLocalDataSource,
+            possessionsLocalDataSource = possessionsLocalDataSource
+        )
+    }
 
     internal val fetchCodexAchievementsUseCase = FetchAchievementTypesUseCase(
         codexRepository = codexRepository

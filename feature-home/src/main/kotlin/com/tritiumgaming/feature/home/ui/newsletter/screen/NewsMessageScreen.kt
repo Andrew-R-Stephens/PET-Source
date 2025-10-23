@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
@@ -29,7 +30,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.admob.AdmobBanner
+import com.tritiumgaming.core.ui.common.admob.BannerAd
 import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
@@ -184,7 +187,14 @@ private fun NewsMessageContent(
             )
         )
 
-        AdmobBanner()
+
+        BannerAd(
+            modifier = Modifier
+                .fillMaxWidth(),
+            adId = stringResource(R.string.ad_banner_1)
+        )
+
+        //AdmobBanner()
 
     }
 }

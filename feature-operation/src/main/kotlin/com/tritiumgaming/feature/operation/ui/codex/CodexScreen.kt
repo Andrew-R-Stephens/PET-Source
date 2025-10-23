@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.admob.AdmobBanner
+import com.tritiumgaming.core.ui.common.admob.BannerAd
 import com.tritiumgaming.core.ui.icon.GridIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
@@ -169,7 +170,14 @@ private fun CodexScreenContent(
                     .padding(vertical = 4.dp, horizontal = 16.dp)
             )
 
-            AdmobBanner()
+
+            BannerAd(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                adId = stringResource(R.string.ad_banner_1)
+            )
+
+            // AdmobBanner()
         }
 
     }

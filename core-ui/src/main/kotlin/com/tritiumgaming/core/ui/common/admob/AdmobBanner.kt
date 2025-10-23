@@ -1,13 +1,17 @@
 package com.tritiumgaming.core.ui.common.admob
 
+import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -17,6 +21,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.tritiumgaming.core.resources.R
+
 
 @Composable
 fun AdmobBanner(
@@ -64,7 +69,7 @@ fun AdmobBanner2(
 @Composable
 fun BannerAd(
     modifier: Modifier = Modifier,
-    adView: AdView
+    adId: String
 ) {
     // Ad load does not work in preview mode because it requires a network connection.
     if (LocalInspectionMode.current) {
@@ -78,15 +83,24 @@ fun BannerAd(
         return
     }
 
+    val adView = AdView(LocalContext.current).apply {
+        setAdSize(AdSize.BANNER)
+        adUnitId = adId
+        loadAd(AdRequest.Builder().build())
+    }
+
+    val rememberAdView = remember { adView }
+    Log.d("TAG", "BannerAd Loaded: $rememberAdView")
+
     AndroidView(
         modifier = modifier
             .wrapContentSize(),
-        factory = { adView }
+        factory = { rememberAdView }
     )
 
     // Pause and resume the AdView when the lifecycle is paused and resumed.
-    LifecycleResumeEffect(adView) {
-        adView.resume()
-        onPauseOrDispose { adView.pause() }
+    LifecycleResumeEffect(rememberAdView) {
+        rememberAdView.resume()
+        onPauseOrDispose { rememberAdView.pause() }
     }
 }

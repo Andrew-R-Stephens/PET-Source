@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common
+package com.tritiumgaming.feature.operation.ui.investigation.popups.common
 
 import android.widget.Toast
 import androidx.annotation.DrawableRes
@@ -46,7 +46,7 @@ import coil3.compose.AsyncImage
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.evidence.EvidenceTypePage
+import com.tritiumgaming.feature.operation.ui.investigation.popups.evidence.EvidenceTypePage
 
 @Composable
 fun RowScope.PrimaryPageButton(

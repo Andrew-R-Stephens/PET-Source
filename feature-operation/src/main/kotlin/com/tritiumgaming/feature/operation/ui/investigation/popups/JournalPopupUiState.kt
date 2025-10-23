@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.operation.ui.investigation.journal.popups
+package com.tritiumgaming.feature.operation.ui.investigation.popups
 
 import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord

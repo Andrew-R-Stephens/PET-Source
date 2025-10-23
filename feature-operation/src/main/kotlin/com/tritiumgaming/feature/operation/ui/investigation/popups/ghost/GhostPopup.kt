@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.operation.ui.investigation.journal.popups.ghost
+package com.tritiumgaming.feature.operation.ui.investigation.popups.ghost
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,10 +22,10 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -54,8 +54,7 @@ import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.ghost.toDrawableResource
 import com.tritiumgaming.feature.operation.app.mappers.ghost.toStringResource
-import com.tritiumgaming.feature.operation.ui.investigation.journal.popups.common.PageButton
-import com.tritiumgaming.feature.operation.ui.investigation.toolbar.ModifiersButton
+import com.tritiumgaming.feature.operation.ui.investigation.popups.common.PageButton
 import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
 
 
@@ -690,7 +689,14 @@ fun GhostTypeLandscapePopup(
             )
         }
 
-        Row {
+        Row(
+            modifier = Modifier
+                .border(
+                    width = 1.dp,
+                    shape = RectangleShape,
+                    color = LocalPalette.current.codexFamily.codex3
+                )
+        ){
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -738,130 +744,136 @@ fun GhostTypeLandscapePopup(
 
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .border(
-                        width = 1.dp,
-                        shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
-                    ),
-                horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                PageButton(
-                    isSelected = evidencePage == GhostPage.DESCRIPTION,
-                    icon = { modifier, colors ->
-                        Icon(
-                            modifier = modifier
-                                .padding(4.dp),
-                            painter = painterResource(
-                                R.drawable.ic_ghost
-                            ),
-                            contentDescription = "",
-                            tint = colors.strokeColor,
-                        )
-                    }
-                ) { evidencePage = GhostPage.DESCRIPTION }
-
-                PageButton(
-                    isSelected = evidencePage == GhostPage.STRENGTH,
-                    icon = { modifier, colors ->
-                        Icon(
-                            modifier = modifier
-                                .padding(4.dp),
-                            painter = painterResource(
-                                R.drawable.ic_thumb_up
-                            ),
-                            contentDescription = "",
-                            tint = colors.strokeColor,
-                        )
-                    }
-                ) { evidencePage = GhostPage.STRENGTH }
-
-                PageButton(
-                    isSelected = evidencePage == GhostPage.WEAKNESS,
-                    icon = { modifier, colors ->
-                        Icon(
-                            modifier = modifier
-                                .padding(4.dp),
-                            painter = painterResource(
-                                R.drawable.ic_thumb_down
-                            ),
-                            contentDescription = "",
-                            tint = colors.strokeColor,
-                        )
-                    }
-                ) { evidencePage = GhostPage.WEAKNESS }
-
-                PageButton(
-                    isSelected = evidencePage == GhostPage.HUNT,
-                    icon = { modifier, colors ->
-                        Icon(
-                            modifier = modifier
-                                .padding(2.dp),
-                            painter = painterResource(
-                                R.drawable.ic_intelligence
-                            ),
-                            contentDescription = "",
-                            tint = colors.strokeColor,
-                        )
-                    }
-                ) { evidencePage = GhostPage.HUNT }
-
-            }
-
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
                         color = LocalPalette.current.codexFamily.codex3
                     )
-                    .padding(2.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceBetween,
             ) {
-                when(evidencePage) {
-                    GhostPage.DESCRIPTION -> {
-                        descriptionBodyContent?.let { content ->
-                            content(
-                                Modifier
-                                    .weight(1f, true)
-                                    .fillMaxWidth()
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .wrapContentWidth(),
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    PageButton(
+                        isSelected = evidencePage == GhostPage.DESCRIPTION,
+                        icon = { modifier, colors ->
+                            Icon(
+                                modifier = modifier
+                                    .padding(4.dp),
+                                painter = painterResource(
+                                    R.drawable.ic_ghost
+                                ),
+                                contentDescription = "",
+                                tint = colors.strokeColor,
                             )
                         }
-                    }
-                    GhostPage.STRENGTH -> {
-                        strengthBodyContent?.let { content ->
-                            content(
-                                Modifier
-                                    .weight(1f, true)
-                                    .fillMaxWidth()
+                    ) { evidencePage = GhostPage.DESCRIPTION }
+
+                    PageButton(
+                        isSelected = evidencePage == GhostPage.STRENGTH,
+                        icon = { modifier, colors ->
+                            Icon(
+                                modifier = modifier
+                                    .padding(4.dp),
+                                painter = painterResource(
+                                    R.drawable.ic_thumb_up
+                                ),
+                                contentDescription = "",
+                                tint = colors.strokeColor,
                             )
                         }
-                    }
-                    GhostPage.WEAKNESS -> {
-                        weaknessBodyContent?.let { content ->
-                            content(
-                                Modifier
-                                    .weight(1f, true)
-                                    .fillMaxWidth()
+                    ) { evidencePage = GhostPage.STRENGTH }
+
+                    PageButton(
+                        isSelected = evidencePage == GhostPage.WEAKNESS,
+                        icon = { modifier, colors ->
+                            Icon(
+                                modifier = modifier
+                                    .padding(4.dp),
+                                painter = painterResource(
+                                    R.drawable.ic_thumb_down
+                                ),
+                                contentDescription = "",
+                                tint = colors.strokeColor,
                             )
                         }
-                    }
-                    GhostPage.HUNT -> {
-                        huntInfoBodyContent?.let { content ->
-                            content(
-                                Modifier
-                                    .weight(1f, true)
-                                    .fillMaxWidth()
+                    ) { evidencePage = GhostPage.WEAKNESS }
+
+                    PageButton(
+                        isSelected = evidencePage == GhostPage.HUNT,
+                        icon = { modifier, colors ->
+                            Icon(
+                                modifier = modifier
+                                    .padding(2.dp),
+                                painter = painterResource(
+                                    R.drawable.ic_intelligence
+                                ),
+                                contentDescription = "",
+                                tint = colors.strokeColor,
                             )
+                        }
+                    ) { evidencePage = GhostPage.HUNT }
+
+                }
+
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()/*
+                        .border(
+                            width = 1.dp,
+                            shape = RectangleShape,
+                            color = LocalPalette.current.codexFamily.codex3
+                        )*/
+                        .padding(2.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    when(evidencePage) {
+                        GhostPage.DESCRIPTION -> {
+                            descriptionBodyContent?.let { content ->
+                                content(
+                                    Modifier
+                                        .weight(1f, true)
+                                        .fillMaxWidth()
+                                )
+                            }
+                        }
+                        GhostPage.STRENGTH -> {
+                            strengthBodyContent?.let { content ->
+                                content(
+                                    Modifier
+                                        .weight(1f, true)
+                                        .fillMaxWidth()
+                                )
+                            }
+                        }
+                        GhostPage.WEAKNESS -> {
+                            weaknessBodyContent?.let { content ->
+                                content(
+                                    Modifier
+                                        .weight(1f, true)
+                                        .fillMaxWidth()
+                                )
+                            }
+                        }
+                        GhostPage.HUNT -> {
+                            huntInfoBodyContent?.let { content ->
+                                content(
+                                    Modifier
+                                        .weight(1f, true)
+                                        .fillMaxWidth()
+                                )
+                            }
                         }
                     }
                 }
             }
+
         }
     }
 }
