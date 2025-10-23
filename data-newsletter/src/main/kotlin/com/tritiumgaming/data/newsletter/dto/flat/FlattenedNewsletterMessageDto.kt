@@ -1,5 +1,6 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
+import android.util.Log
 import com.tritiumgaming.core.common.util.FontUtils
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterMessage
 import java.text.ParseException
@@ -25,15 +26,17 @@ fun FlattenedNewsletterMessageDto.toExternal(): NewsletterMessage =
 
 fun List<FlattenedNewsletterMessageDto>.toExternal(): List<NewsletterMessage> =
     mapIndexed { index, dto ->
-        NewsletterMessage(
+
+        val newsletterMessage = NewsletterMessage(
             id = dto.id ?: "$index",
-            title = FontUtils.removeXMLImgSrcTags(dto.title),
-            description = FontUtils.removeXMLImgSrcTags(dto.description),
+            title = dto.title,
+            description = dto.description,
             dateFormatted = formatFromEpoch(dto.date),
             dateEpoch = dto.date ?: 1L
         )
-    }
 
+        newsletterMessage
+    }
 
 private fun formatFromEpoch(time: Long?): String? {
 

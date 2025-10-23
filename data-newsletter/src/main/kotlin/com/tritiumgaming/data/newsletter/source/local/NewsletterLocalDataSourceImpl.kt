@@ -51,9 +51,9 @@ class NewsletterLocalDataSourceImpl(
     )
 
     private data class NewsletterInboxResourceDto(
-        @StringRes val id: Int,
+        @field:StringRes val id: Int,
         val title: NewsletterTitle,
-        @StringRes val url: Int,
+        @field:StringRes val url: Int,
         val icon: NewsletterIcon
     )
 

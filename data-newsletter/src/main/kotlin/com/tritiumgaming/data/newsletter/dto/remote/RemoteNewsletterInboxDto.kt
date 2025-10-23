@@ -1,5 +1,6 @@
 package com.tritiumgaming.data.newsletter.dto.remote
 
+import android.util.Log
 import com.tritiumgaming.core.common.util.FontUtils
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterChannelDto
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
@@ -44,11 +45,14 @@ fun RemoteNewsletterInboxDto.toInternal(): FlattenedNewsletterInboxDto =
         channel = channel.toExternal()
     )
 
-fun RemoteNewsletterChannelDto.toExternal(): FlattenedNewsletterChannelDto =
-    FlattenedNewsletterChannelDto(
+fun RemoteNewsletterChannelDto.toExternal(): FlattenedNewsletterChannelDto {
+    val messages = items?.toExternal()
+
+    return FlattenedNewsletterChannelDto(
         language = language ?: Locale.ENGLISH.language,
-        messages = items?.toExternal()
+        messages = messages
     )
+}
 
 fun RemoteNewsletterMessageDto.toExternal(): FlattenedNewsletterMessageDto =
     FlattenedNewsletterMessageDto(
@@ -75,8 +79,11 @@ fun List<RemoteNewsletterChannelDto>.toExternal(): List<FlattenedNewsletterChann
     map { dto -> dto.toExternal() }
 
 @JvmName("remoteNewsletterMessageDtoListToFlattenedNewsletterMessageDtoList")
-fun List<RemoteNewsletterMessageDto>.toExternal(): List<FlattenedNewsletterMessageDto> =
-    map { dto -> dto.toExternal() }
+fun List<RemoteNewsletterMessageDto>.toExternal(): List<FlattenedNewsletterMessageDto> {
+    val external = map { dto -> dto.toExternal() }
+
+    return external
+}
 
 private fun formatFromEpoch(time: Long?): String? {
 

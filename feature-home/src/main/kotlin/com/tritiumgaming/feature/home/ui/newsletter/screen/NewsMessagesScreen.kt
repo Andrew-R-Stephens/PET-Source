@@ -66,30 +66,10 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterMessage
 
-
-@Composable
-@Preview
-private fun NewsMessagesScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface.color
-        ) {
-            NewsMessagesScreen(
-                navController = rememberNavController(),
-                newsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
-                inboxID = "0"
-            )
-        }
-    }
-}
-
 @Composable
 fun NewsMessagesScreen(
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
+    newsletterViewModel: NewsletterViewModel,
     inboxID: String = "0"
 ) {
     val rememberInboxID by remember{ mutableStateOf(inboxID) }
@@ -173,7 +153,7 @@ fun NewsMessagesScreen(
 fun ColumnScope.NewsMessagesContentCompactPortrait(
     modifier: Modifier = Modifier,
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
+    newsletterViewModel: NewsletterViewModel,
     inbox: NewsletterInbox,
 ) {
     val context = LocalContext.current
@@ -257,7 +237,7 @@ fun ColumnScope.NewsMessagesContentCompactPortrait(
 fun ColumnScope.NewsMessagesContentCompactLandscape(
     modifier: Modifier = Modifier,
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
+    newsletterViewModel: NewsletterViewModel,
     inbox: NewsletterInbox,
 ) {
     val context = LocalContext.current

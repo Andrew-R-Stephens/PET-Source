@@ -7,11 +7,11 @@ class FetchNewsletterInboxesUseCase(
     private val repository: NewsletterRepository
 ) {
     suspend operator fun invoke(): Result<List<NewsletterInbox>> {
-
         val result = repository.fetchInboxes()
 
         result.exceptionOrNull()?.let { e ->
-            throw Exception("Failed to fetch inboxes.", e)}
+            throw Exception("Failed to fetch inboxes.", e)
+        }
 
         return result
     }

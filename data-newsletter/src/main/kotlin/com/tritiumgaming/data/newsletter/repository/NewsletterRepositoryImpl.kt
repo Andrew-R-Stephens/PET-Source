@@ -1,5 +1,6 @@
 package com.tritiumgaming.data.newsletter.repository
 
+import android.util.Log
 import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterInboxDto
 import com.tritiumgaming.data.newsletter.dto.flat.toExternal
@@ -27,6 +28,8 @@ class NewsletterRepositoryImpl(
 
     private var localCache: List<FlattenedNewsletterInboxDto> = emptyList()
 
+
+
     private fun getLocalInboxes(): Result<List<FlattenedNewsletterInboxDto>> {
         val result = localDataSource.fetchInboxes()
         val out = result.getOrDefault(emptyList()).toInternal()
@@ -37,12 +40,18 @@ class NewsletterRepositoryImpl(
         inboxUrl: Url
     ): Result<FlattenedNewsletterInboxDto> {
         val result = remoteDataSource.fetchInbox(inboxUrl)
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Failed to fetch remote inbox.", it))
+        }
 
-        return result.map{ dto -> dto.toInternal() }
+        return try {
+            result.map{ dto -> dto.toInternal() }
+        } catch (e: Exception) {
+            Result.failure(Exception("Failed to parse remote inbox.", e))
+        }
     }
 
     private suspend fun fetchRemoteInboxes(): Result<List<FlattenedNewsletterInboxDto>> {
-
         val connection = connectivityManagerHelper.getActiveNetworkTransport()
         connection.exceptionOrNull()?.let { e ->
             return Result.failure(Exception("ABORTING remote inbox fetch.", e))
@@ -51,7 +60,7 @@ class NewsletterRepositoryImpl(
         localCache.map { inbox ->
             inbox.url?.let { rawURL ->
                 val result = fetchRemoteInbox(Url(rawURL))
-                result.getOrNull()?.let { remote ->
+                result.getOrThrow().let { remote ->
                     inbox.channel = remote.channel
                 }
             }
@@ -75,12 +84,12 @@ class NewsletterRepositoryImpl(
         }
 
         // Update inboxes. Exit if failure
-        val result = fetchRemoteInboxes()
-        result.exceptionOrNull()?.let { e ->
-            return Result.failure(Exception("Remote synchronization failed.", e))
+        return try {
+            val internal = fetchRemoteInboxes().getOrThrow()
+            Result.success(internal.toExternal()) // Successful initialization
+        } catch (e: Exception) {
+            Result.failure(Exception("There was an error parsing the inboxes.", e))
         }
-
-        return Result.success(result.getOrThrow().toExternal()) // Successful initialization
 
     }
 

@@ -165,7 +165,7 @@ class NewsletterViewModel(
     }
 
     init {
-        Log.d("NewsletterViewModel", "Initializing...")
+        Log.d("NewsletterViewModel", "Initializing datastore...")
 
         initialDatastoreSetupEvent()
 

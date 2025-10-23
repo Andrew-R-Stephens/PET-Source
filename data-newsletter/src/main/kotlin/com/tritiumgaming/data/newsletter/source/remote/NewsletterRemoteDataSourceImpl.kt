@@ -13,7 +13,10 @@ class NewsletterRemoteDataSourceImpl(
     override suspend fun fetchInbox(
         url: Url
     ): Result<RemoteNewsletterInboxDto> = withContext(Dispatchers.IO) {
-        Result.success(newsletterApi.fetchInbox(url).getOrThrow())
+        val inboxes = newsletterApi.fetchInbox(url).getOrElse {
+            return@withContext Result.failure(it)
+        }
+        Result.success(inboxes)
     }
 
 }

@@ -45,27 +45,9 @@ import com.tritiumgaming.feature.home.ui.MainMenuScreen
 import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
 
 @Composable
-@Preview
-private fun NewsMessageScreenPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface.color
-        ) {
-            NewsMessageScreen(
-                inboxID = "0",
-                messageID = "0"
-            )
-        }
-    }
-}
-
-@Composable
 fun NewsMessageScreen(
     navController: NavHostController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
+    newsletterViewModel: NewsletterViewModel,
     inboxID: String,
     messageID: String
 ) {
@@ -85,7 +67,7 @@ fun NewsMessageScreen(
 @Composable
 private fun NewsMessageContent(
     navController: NavHostController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory),
+    newsletterViewModel: NewsletterViewModel,
     inboxID: String,
     messageID: String
 ) {

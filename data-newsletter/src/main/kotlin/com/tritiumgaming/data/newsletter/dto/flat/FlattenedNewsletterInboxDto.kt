@@ -1,5 +1,6 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
+import android.util.Log
 import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
 
@@ -21,11 +22,14 @@ fun FlattenedNewsletterInboxDto.toExternal(): NewsletterInbox =
 
 fun List<FlattenedNewsletterInboxDto>.toExternal(): List<NewsletterInbox> =
     map { dto ->
+
+        val channel = dto.channel?.toExternal()
+
         NewsletterInbox(
             id = dto.id,
             title = dto.title ?: NewsletterResources.NewsletterTitle.GENERAL_NEWS,
             url = dto.url,
             icon = dto.icon ?: NewsletterResources.NewsletterIcon.GENERAL_NEWS,
-            channel = dto.channel?.toExternal()
+            channel = channel
         )
     }

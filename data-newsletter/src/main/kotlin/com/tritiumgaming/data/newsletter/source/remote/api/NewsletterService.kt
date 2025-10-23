@@ -1,5 +1,6 @@
 package com.tritiumgaming.data.newsletter.source.remote.api
 
+import android.util.Log
 import com.tritiumgaming.data.newsletter.dto.remote.RemoteNewsletterInboxDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -17,7 +18,7 @@ import nl.adaptivity.xmlutil.serialization.XmlConfig
 class NewsletterService {
 
     @OptIn(ExperimentalXmlUtilApi::class)
-    @Throws(Exception::class)
+    //@Throws(Exception::class)
     suspend fun fetchInbox(
         inboxURL: Url
     ): Result<RemoteNewsletterInboxDto> {
@@ -36,15 +37,23 @@ class NewsletterService {
                     contentType = ContentType.Text.Xml,
                     format = format
                 )
+                xml(
+                    contentType = ContentType.Application.Xml,
+                    format = format
+                )
+                xml(
+                    contentType = ContentType.Application.Rss,
+                    format = format
+                )
             }
         }
 
         return try {
-            val inboxDto = client.get(inboxURL).body<RemoteNewsletterInboxDto>()
-            Result.success(inboxDto)
-        } catch (ex: Exception) {
-            Result.failure(ex)
-        }
+                val inboxDto = client.get(inboxURL).body<RemoteNewsletterInboxDto>()
+                Result.success(inboxDto)
+            } catch (ex: Exception) {
+                Result.failure(ex)
+            }
 
     }
 

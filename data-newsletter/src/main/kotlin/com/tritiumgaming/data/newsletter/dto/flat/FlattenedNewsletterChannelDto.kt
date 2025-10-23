@@ -1,5 +1,6 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
+import android.util.Log
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterChannel
 
 data class FlattenedNewsletterChannelDto(
@@ -8,8 +9,11 @@ data class FlattenedNewsletterChannelDto(
 )
 
 fun FlattenedNewsletterChannelDto.toExternal(): NewsletterChannel {
+
+    val messages = messages?.toExternal()
+
     return NewsletterChannel(
         language = language,
-        messages = messages?.toExternal() ?: listOf()
+        messages = messages ?: listOf()
     )
 }

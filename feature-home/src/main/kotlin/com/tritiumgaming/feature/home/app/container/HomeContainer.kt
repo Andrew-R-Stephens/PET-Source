@@ -62,7 +62,6 @@ import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.InitFlowNewsletterUseCase
-import com.tritiumgaming.shared.home.domain.newsletter.usecase.RefreshNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SetupNewsletterUseCase
 import kotlinx.coroutines.Dispatchers

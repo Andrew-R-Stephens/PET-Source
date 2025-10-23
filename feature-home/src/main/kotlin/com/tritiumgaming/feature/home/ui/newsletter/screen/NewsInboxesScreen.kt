@@ -64,25 +64,9 @@ import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
 
 @Composable
-@Preview
-private fun NewsInboxesScreenPreview() {
-
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Surface(
-            color = LocalPalette.current.surface.color
-        ) {
-            NewsInboxesScreen()
-        }
-    }
-}
-
-@Composable
 fun NewsInboxesScreen(
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
+    newsletterViewModel: NewsletterViewModel
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -121,7 +105,8 @@ fun NewsInboxesScreen(
                 DeviceConfiguration.TABLET_LANDSCAPE,
                 DeviceConfiguration.DESKTOP -> {
                     NewsInboxesContentLandscape(
-                        navController = navController
+                        navController = navController,
+                        newsletterViewModel = newsletterViewModel
                     )
                 }
             }
@@ -143,7 +128,7 @@ fun NewsInboxesScreen(
 @Composable
 private fun ColumnScope.NewsInboxesContentPortrait(
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
+    newsletterViewModel: NewsletterViewModel
 ) {
     val context = LocalContext.current
 
@@ -198,7 +183,7 @@ private fun ColumnScope.NewsInboxesContentPortrait(
 @Composable
 private fun ColumnScope.NewsInboxesContentLandscape(
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel = viewModel(factory = NewsletterViewModel.Factory)
+    newsletterViewModel: NewsletterViewModel
 ) {
     val context = LocalContext.current
 
