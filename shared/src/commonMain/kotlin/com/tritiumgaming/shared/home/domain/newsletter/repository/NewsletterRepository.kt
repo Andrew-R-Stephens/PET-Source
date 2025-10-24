@@ -3,11 +3,16 @@ package com.tritiumgaming.shared.home.domain.newsletter.repository
 import com.tritiumgaming.shared.core.domain.datastore.DatastoreRepository
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.shared.home.domain.newsletter.source.NewsletterDatastore
+import kotlinx.coroutines.flow.Flow
 
 interface NewsletterRepository: DatastoreRepository<NewsletterDatastore.NewsletterPreferences> {
 
     suspend fun saveInboxLastReadDate(id: String, date: Long)
 
     suspend fun fetchInboxes(): Result<List<NewsletterInbox>>
+
+    //suspend fun synchronizeInboxes(): Result<List<NewsletterInbox>>
+
+    fun getInboxFlow(): Flow<List<NewsletterInbox>>
 
 }
