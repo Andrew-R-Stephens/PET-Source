@@ -61,7 +61,8 @@ import com.tritiumgaming.shared.home.domain.appinfo.repository.ContributorReposi
 import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
-import com.tritiumgaming.shared.home.domain.newsletter.usecase.InitFlowNewsletterUseCase
+import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
+import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SetupNewsletterUseCase
 import kotlinx.coroutines.Dispatchers
@@ -132,7 +133,8 @@ class HomeContainer(
             applicationContext = applicationContext
         )
         val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSourceImpl(
-            newsletterApi = NewsletterService()
+            newsletterApi = NewsletterService(),
+            dispatcher = Dispatchers.IO
         )
         val newsletterDatastore = NewsletterDatastoreDataSource(
             context = applicationContext,
@@ -153,7 +155,10 @@ class HomeContainer(
     internal val setupNewsletterUseCase = SetupNewsletterUseCase(
         repository = newsletterRepository
     )
-    internal val initFlowNewsletterUseCase = InitFlowNewsletterUseCase(
+    internal val getFlowNewsletterDatastoreUseCase = GetFlowNewsletterDatastoreUseCase(
+        repository = newsletterRepository
+    )
+    internal val getFlowNewsletterInboxesUseCase = GetFlowNewsletterInboxesUseCase(
         repository = newsletterRepository
     )
     internal val getNewsletterInboxesUseCase = FetchNewsletterInboxesUseCase(
