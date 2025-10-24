@@ -179,6 +179,53 @@ fun NotificationIndicator(
     }
 }
 
+@Composable
+fun NotificationIndicator(
+    modifier: Modifier = Modifier,
+    isActive: Boolean = false,
+    baseComponent: (@Composable (modifier: Modifier) -> Unit)? = null,
+    badgeComponent: @Composable (modifier: Modifier) -> Unit = {},
+    onClick: () -> Unit = {}
+) {
+
+    Box(
+        modifier = modifier
+            .aspectRatio(1f)
+            .clickable { onClick() }
+    ) {
+
+        baseComponent?.let { component: @Composable (modifier: Modifier) -> Unit ->
+            component(modifier
+                .fillMaxSize())
+        }
+
+        val opacity by rememberInfiniteTransition().animateFloat(
+                initialValue = .4f,
+                targetValue = .9f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(
+                        durationMillis = 1000,
+                        easing = EaseOutQuad
+                    ),
+                    repeatMode = RepeatMode.Reverse
+                ), label = ""
+            )
+
+        val alertScale = if(baseComponent != null) .5f else 1f
+
+        Box(
+            modifier = Modifier
+                .alpha(if (isActive) { opacity } else 0f)
+                .fillMaxSize(fraction = alertScale)
+                .align(Alignment.BottomEnd)
+        ) {
+            badgeComponent(modifier
+                .fillMaxSize())
+        }
+
+    }
+}
+
 data class NotificationIndicatorColors(
     val baseTint: Color = Color.White,
     val alertTint: Color = Color.Red
