@@ -567,6 +567,7 @@ private fun HeaderNavBar(
             }
         )
     }
+
     val reviewIcon: @Composable () -> Unit = { ReviewIcon(
         modifier = Modifier
             .size(48.dp)
@@ -576,6 +577,7 @@ private fun HeaderNavBar(
             strokeColor = LocalPalette.current.textFamily.body
         )
     ) }
+
     val accountIcon: @Composable () -> Unit = {
         AccountIcon(
             modifier = Modifier
@@ -624,12 +626,14 @@ private fun HeaderNavBar(
             }
         )
     }
+
     val personIcon: @Composable () -> Unit = { PersonIcon(
         modifier = Modifier,
         colors = IconVectorColors.defaults(
             strokeColor = LocalPalette.current.textFamily.body
         )
     ) }
+
     val storeIcon: @Composable () -> Unit = { StoreIcon(
         modifier = Modifier,
         colors = IconVectorColors.defaults(
@@ -690,6 +694,30 @@ private fun HeaderNavBar(
     // News Button
     NotificationIndicator(
         isActive = notificationState,
+        baseComponent = @Composable { modifier ->
+            IconResource.NEWS.ToComposable(
+                modifier = modifier,
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.background.color,
+                    strokeColor = LocalPalette.current.textFamily.body
+                ),
+            )
+        },
+        badgeComponent = @Composable { modifier ->
+            IconResource.NOTIFY.ToComposable(
+                modifier = modifier,
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.background.color,
+                    strokeColor = LocalPalette.current.inboxNotification
+                )
+            )
+        },
+    ) {
+        navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
+    }
+
+    /*NotificationIndicator(
+        isActive = notificationState,
         alertIcon = IconResource.NOTIFY,
         alertTint = IconVectorColors(
             fillColor = LocalPalette.current.background.color,
@@ -697,7 +725,7 @@ private fun HeaderNavBar(
         )
     ) {
         navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
-    }
+    }*/
 
     reviewIcon()
 
