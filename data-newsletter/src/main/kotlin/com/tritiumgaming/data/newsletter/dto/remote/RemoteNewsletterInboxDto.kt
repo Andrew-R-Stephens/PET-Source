@@ -1,6 +1,5 @@
 package com.tritiumgaming.data.newsletter.dto.remote
 
-import android.util.Log
 import com.tritiumgaming.core.common.util.FontUtils
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterChannelDto
 import com.tritiumgaming.data.newsletter.dto.flat.FlattenedNewsletterInboxDto

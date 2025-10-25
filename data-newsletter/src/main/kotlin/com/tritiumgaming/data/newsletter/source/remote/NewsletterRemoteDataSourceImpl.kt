@@ -1,12 +1,9 @@
 package com.tritiumgaming.data.newsletter.source.remote
 
-import android.net.http.HttpException
-import android.util.Log
 import com.tritiumgaming.data.newsletter.dto.remote.RemoteNewsletterInboxDto
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
 import io.ktor.http.Url
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn

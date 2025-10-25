@@ -1,6 +1,5 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
-import android.util.Log
 import com.tritiumgaming.core.common.util.FontUtils
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterMessage
 import java.text.ParseException

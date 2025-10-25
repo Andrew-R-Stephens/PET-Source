@@ -1,6 +1,5 @@
 package com.tritiumgaming.data.newsletter.source.remote.api
 
-import android.util.Log
 import com.tritiumgaming.data.newsletter.dto.remote.RemoteNewsletterInboxDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

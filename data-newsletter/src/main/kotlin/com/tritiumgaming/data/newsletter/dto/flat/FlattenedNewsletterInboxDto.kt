@@ -1,6 +1,5 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
-import android.util.Log
 import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
 
