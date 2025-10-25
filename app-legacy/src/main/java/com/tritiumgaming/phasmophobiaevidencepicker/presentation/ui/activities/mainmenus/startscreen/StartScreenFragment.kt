@@ -53,8 +53,8 @@ import com.tritiumgaming.core.ui.icon.PersonIcon
 import com.tritiumgaming.core.ui.icon.ReviewIcon
 import com.tritiumgaming.core.ui.icon.StoreIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.R
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.app.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.startscreen.views.StartScreenAnimationView
@@ -64,6 +64,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFrom
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getDrawableFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getTextStyleFromAttribute
 import com.tritiumgaming.shared.core.domain.icons.IconResources
+import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import java.util.Locale
 
 class StartScreenFragment : MainMenuFragment() {
@@ -366,7 +367,41 @@ class StartScreenFragment : MainMenuFragment() {
 
                 val notificationState = newsLetterViewModel?.requiresNotify?.collectAsStateWithLifecycle()
                 // News Button
+
                 NotificationIndicator(
+                    isActive = notificationState?.value ?: false,
+                    baseComponent = @Composable { modifier ->
+                        IconResource.NEWS.ToComposable(
+                            modifier = modifier,
+                            colors = IconVectorColors(
+                                fillColor = Color(getColorFromAttribute(
+                                    context, R.attr.backgroundColor)),
+                                strokeColor = Color(getColorFromAttribute(
+                                    context, R.attr.textColorBody))
+                            ),
+                        )
+                    },
+                    badgeComponent = @Composable { modifier ->
+                        IconResource.NOTIFY.ToComposable(
+                            modifier = modifier,
+                            colors = IconVectorColors(
+                                fillColor = Color(getColorFromAttribute(
+                                        context, R.attr.backgroundColor)),
+                                strokeColor = Color(getColorFromAttribute(
+                                        context, R.attr.inboxNotification))
+                            )
+                        )
+                    },
+                ) {
+                    try {
+                        findNavController(view).navigate(
+                            R.id.action_titleScreenFragment_to_inboxFragment)
+                    } catch (e: IllegalStateException) {
+                        e.printStackTrace()
+                    }
+                }
+
+                /*NotificationIndicator(
                     modifier = Modifier
                         .size(48.dp)
                         .padding(4.dp),
@@ -394,7 +429,7 @@ class StartScreenFragment : MainMenuFragment() {
                     } catch (e: IllegalStateException) {
                         e.printStackTrace()
                     }
-                }
+                }*/
 
                 reviewIcon()
 

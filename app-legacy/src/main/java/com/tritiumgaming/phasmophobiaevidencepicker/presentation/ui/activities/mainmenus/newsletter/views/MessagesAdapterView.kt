@@ -5,19 +5,24 @@ import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
+import com.tritiumgaming.core.ui.common.prefabicon.NotificationIndicator
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessageModel
-import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.compose.NewsAlert
+import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 
 class MessagesAdapterView(
-    private val currentInbow: NewsletterInboxModel,
-    private val onMessageListener: OnMessageListener)
-    : RecyclerView.Adapter<MessagesAdapterView.ViewHolder>() {
+    private val currentInbox: NewsletterInboxModel,
+    private val colors: IconVectorColors,
+    private val onMessageListener: OnMessageListener,
+) : RecyclerView.Adapter<MessagesAdapterView.ViewHolder>() {
 
-    private val messages: ArrayList<NewsletterMessageModel> = currentInbow.messages
+    private val messages: ArrayList<NewsletterMessageModel> = currentInbox.messages
 
     class ViewHolder(view: View, onMessageListener: OnMessageListener)
         : RecyclerView.ViewHolder(view), View.OnClickListener {
@@ -50,9 +55,17 @@ class MessagesAdapterView(
         textView.text = messages[position].title
         textView.isSelected = true
         val icon = holder.icon
-        if(currentInbow.compareDate(messages[position].date) > 0) {
+        if(currentInbox.compareDate(messages[position].date) > 0) {
             icon?.setContent {
-                NewsAlert(true, baseDrawableId = null)
+                NotificationIndicator(
+                    isActive = true,
+                    badgeComponent = @Composable { modifier ->
+                        IconResource.NOTIFY.ToComposable(
+                            modifier = modifier,
+                            colors = colors
+                        )
+                    },
+                )
             }
         } else { icon?.visibility = GONE }
     }

@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.newsletter.views.MessagesAdapterView
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global.PETImageButton
+import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 
 class NewsMessagesFragment : MainMenuFragment() {
 
@@ -77,7 +80,14 @@ class NewsMessagesFragment : MainMenuFragment() {
     private fun populateAdapter(view: View) {
         newsLetterViewModel?.currentInbox?.let { currentInbox ->
             val adapter = MessagesAdapterView(
-                currentInbox, object: MessagesAdapterView.OnMessageListener {
+                currentInbox,
+                IconVectorColors(
+                    fillColor = Color(getColorFromAttribute(
+                        view.context, R.attr.backgroundColor)),
+                    strokeColor = Color(getColorFromAttribute(
+                        view.context, R.attr.inboxNotification))
+                ),
+                object: MessagesAdapterView.OnMessageListener {
                     override fun onNoteClick(position: Int) {
                         newsLetterViewModel?.let { newsletterViewModel ->
                             newsletterViewModel.currentMessageIndex = position
