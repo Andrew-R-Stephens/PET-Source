@@ -33,33 +33,7 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import org.jetbrains.annotations.TestOnly
 
-@Composable
-@Preview
-@TestOnly
-private fun NotificationIndicatorPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Column {
-            NotificationIndicator(
-                isActive = true,
-                baseIcon = IconResource.NOTIFY
-            )
-            NotificationIndicator(
-                isActive = true,
-                baseDrawableId = null,
-                colors = NotificationIndicatorColors(
-                    baseTint = LocalPalette.current.textFamily.primary,
-                    alertTint = LocalPalette.current.inboxNotification
-                )
-            )
-        }
-    }
-
-}
-
-@Composable
+/*@Composable
 fun NotificationIndicator(
     modifier: Modifier = Modifier,
     isActive: Boolean = false,
@@ -177,7 +151,7 @@ fun NotificationIndicator(
         }
 
     }
-}
+}*/
 
 @Composable
 fun NotificationIndicator(
@@ -226,7 +200,8 @@ fun NotificationIndicator(
     }
 }
 
+/*
 data class NotificationIndicatorColors(
     val baseTint: Color = Color.White,
     val alertTint: Color = Color.Red
-)
+)*/

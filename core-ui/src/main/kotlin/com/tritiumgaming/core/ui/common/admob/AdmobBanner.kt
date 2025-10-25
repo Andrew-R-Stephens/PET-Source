@@ -1,6 +1,5 @@
 package com.tritiumgaming.core.ui.common.admob
 
-import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

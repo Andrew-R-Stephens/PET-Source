@@ -7,7 +7,6 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.vector.getGridVector
-import com.tritiumgaming.core.ui.vector.getLogoPhasmophobiaVector
 
 @Composable
 fun GridIcon(
