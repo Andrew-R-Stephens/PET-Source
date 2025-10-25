@@ -17,7 +17,7 @@ import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobi
 import com.tritiumgaming.core.ui.mappers.toPaletteResource
 import com.tritiumgaming.core.ui.mappers.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
-import com.tritiumgaming.core.ui.theme.palette.LocalDefaultPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider

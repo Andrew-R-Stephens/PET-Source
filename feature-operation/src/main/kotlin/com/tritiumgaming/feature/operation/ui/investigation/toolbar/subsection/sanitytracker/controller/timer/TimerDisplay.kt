@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.core.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 
 @Composable
 fun TimerDisplay(

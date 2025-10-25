@@ -33,7 +33,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.prefabicon.MarkCheckCircleIcon
 import com.tritiumgaming.core.ui.common.prefabicon.MarkPriorityCircleIcon
 import com.tritiumgaming.core.ui.common.prefabicon.MarkXCircleIcon
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.operation.app.mappers.ghost.toStringResource

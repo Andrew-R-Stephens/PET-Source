@@ -39,7 +39,7 @@ import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.common.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import kotlin.math.absoluteValue
 import kotlin.math.max
 

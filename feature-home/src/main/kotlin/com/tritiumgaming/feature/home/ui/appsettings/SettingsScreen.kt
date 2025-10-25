@@ -37,7 +37,7 @@ import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.ui.MainMenuScreen
 import com.tritiumgaming.feature.home.ui.appsettings.content.CarouselComposable

@@ -32,7 +32,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.admob.BannerAd
 import com.tritiumgaming.core.ui.icon.GridIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.operation.ui.codex.menu.CodexMenuGhostLabel

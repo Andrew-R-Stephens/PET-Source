@@ -29,8 +29,8 @@ import com.tritiumgaming.core.ui.icon.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.mappers.ToComposable
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
-import com.tritiumgaming.core.ui.theme.palette.LocalPalettesMap
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.shared.core.domain.icons.IconResources
 import org.jetbrains.annotations.TestOnly
 

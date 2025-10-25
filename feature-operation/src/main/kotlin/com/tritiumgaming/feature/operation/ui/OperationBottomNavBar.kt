@@ -43,7 +43,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.screens.PETScreen
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.getHamburgerMenuVector
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import kotlinx.coroutines.CoroutineScope
@@ -350,7 +350,7 @@ private fun OperationNavigationRail(
 
 private enum class Destination(
     val route: String,
-    @DrawableRes val icon: Int,
+    @field:DrawableRes val icon: Int,
     val navOptions: NavOptions? = null
 ) {
     INVESTIGATION(

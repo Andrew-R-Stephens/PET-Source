@@ -50,7 +50,7 @@ import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
 import com.tritiumgaming.core.ui.common.prefabicon.NotificationIndicator
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.mappers.ToComposable
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.app.mappers.toStringResource
 import com.tritiumgaming.feature.home.ui.MainMenuScreen

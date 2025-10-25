@@ -47,7 +47,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.modifiers.DisplayOrientation
 import com.tritiumgaming.core.ui.common.modifiers.fadingEdges
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

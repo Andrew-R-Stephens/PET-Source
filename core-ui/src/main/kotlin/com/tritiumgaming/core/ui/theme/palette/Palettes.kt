@@ -293,9 +293,9 @@ private val PET_Base = ExtendedDefaultLight.copy(
         emphasis = red_M250,
     ),
 
-    windowBackgroundColor = black,
+    // // windowBackgroundColor = black,
     windowStrokeColor = white,
-    navigationFooterIconAlt = white_M200,
+    // // navigationFooterIconAlt = white_M200,
     backgroundColor_mapviewOverlay = black_A75,
     splashTextColor = red_M350,
     light_active = red,
@@ -310,7 +310,7 @@ private val PET_Base = ExtendedDefaultLight.copy(
     progressBarColorStart = red_M350,
     progressBarColorEnd = red_M350,
     progressBarColorThumbGradientStart = white,
-    progressBarColorThumbGradientEnd = black,
+    // progressBarColorThumbGradientEnd = black,
     progressBarColorThumbOutline = Color(0xFFCCCCCC),
 
     inboxNotification = red_M300,
@@ -318,14 +318,14 @@ private val PET_Base = ExtendedDefaultLight.copy(
     selectedColor2 = red_A40,
     unselectedColor = white_M600,
     strikethroughColor = red_M300,
-    circleColor = green,
+    // circleColor = green,
     positiveSelColor = green,
     neutralSelColor = white_M100,
     negativeSelColor = red_M350,
     mapPoiFillColor = red_M300_A75,
     mapRoomBorderColor = red_M300_A58,
     mapRoomFillColor = yellow_A10,
-    buttonFilterOnPrimary = white,
+    // buttonFilterOnPrimary = white,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -479,7 +479,7 @@ val Monochromacy = Colorblind.copy(
 
     inboxNotification = white_M600,
     strikethroughColor = white_M100,
-    circleColor = white,
+    // circleColor = white,
     selectedColor = white_M100,
     unselectedColor = white_M600,
     positiveSelColor = white,
@@ -488,9 +488,9 @@ val Monochromacy = Colorblind.copy(
     mapPoiFillColor = white_A75,
     mapRoomBorderColor = white_A58,
     mapRoomFillColor = yellow_M50_A10,
-    navigationFooterIconAlt = white_M200,
+    // navigationFooterIconAlt = white_M200,
     splashTextColor = white_M200,
-    buttonFilterOnPrimary = white,
+    // buttonFilterOnPrimary = white,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -539,7 +539,7 @@ val Deuteranomaly = Colorblind.copy(
 
     inboxNotification = blue_M650,
     strikethroughColor = blue_M175,
-    circleColor = yellow,
+    // circleColor = yellow,
     selectedColor = yellow,
     unselectedColor = white_M600,
     positiveSelColor = yellow,
@@ -548,9 +548,9 @@ val Deuteranomaly = Colorblind.copy(
     mapPoiFillColor = blue_M175_A75,
     mapRoomBorderColor = blue_M200_A58,
     mapRoomFillColor = yellow_A10,
-    navigationFooterIconAlt = yellow_M100,
+    // navigationFooterIconAlt = yellow_M100,
     splashTextColor = white_M200,
-    buttonFilterOnPrimary = white,
+    // buttonFilterOnPrimary = white,
 )
 
 val Protanomaly = Colorblind.copy(
@@ -591,7 +591,7 @@ val Protanomaly = Colorblind.copy(
 
     inboxNotification = blue_M650,
     strikethroughColor = blue_M175,
-    circleColor = yellow,
+    // circleColor = yellow,
     selectedColor = yellow,
     unselectedColor = white_M600,
     positiveSelColor = yellow,
@@ -600,9 +600,9 @@ val Protanomaly = Colorblind.copy(
     mapPoiFillColor = blue_M175_A75,
     mapRoomBorderColor = blue_M200_A58,
     mapRoomFillColor = yellow_A10,
-    navigationFooterIconAlt = yellow_M100,
+    // navigationFooterIconAlt = yellow_M100,
     splashTextColor = yellow_M100,
-    buttonFilterOnPrimary = white,
+    // buttonFilterOnPrimary = white,
 )
 
 val Tritanomaly = Colorblind.copy(
@@ -634,10 +634,10 @@ val Tritanomaly = Colorblind.copy(
     progressBarColorStart = red_M500,
     progressBarColorEnd = red_M300,
 
-    circleColor = green,
+    // circleColor = green,
     neutralSelColor = white,
     mapPoiFillColor = red_A75,
-    buttonFilterOnPrimary = white,
+    // buttonFilterOnPrimary = white,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -717,14 +717,14 @@ val Recruit = Prestige.copy(
 
     statusBarColor = orange_M950,
     navigationBarColor = orange_M950,
-    windowBackgroundColor = orange_M950,
+    // windowBackgroundColor = orange_M950,
     windowStrokeColor = white,
     light_active = orange_M150,
     light_inactive = orange_M50_A40,
     light_off = white_M600,
 
     strikethroughColor = orange_M300,
-    circleColor = orange,
+    // circleColor = orange,
     selectedColor = orange_M150,
     selectedColor2 = orange_M150,
     unselectedColor = white_M600,
@@ -743,10 +743,10 @@ val Recruit = Prestige.copy(
     sanityPieEndColor = orange_M150,
 
     splashTextColor = orange_M150,
-    navigationFooterIcon = Color(0xFF818180),
-    navigationFooterIconAlt = orange_M150,
+    // navigationFooterIcon = Color(0xFF818180),
+    // navigationFooterIconAlt = orange_M150,
 
-    buttonFilterOnPrimary = white_M50,
+    // buttonFilterOnPrimary = white_M50,
     inboxNotification = orange_M150,
 
     discordColor = BrandingColorFamily(
@@ -833,7 +833,7 @@ val Investigator = Prestige.copy(
 
     statusBarColor = purple_M950,
     navigationBarColor = purple_M950,
-    windowBackgroundColor = purple_M950,
+    // windowBackgroundColor = purple_M950,
     windowStrokeColor = white_M10,
 
     light_active = purple_M75,
@@ -841,7 +841,7 @@ val Investigator = Prestige.copy(
     light_off = white_M600,
 
     strikethroughColor = purple_M525,
-    circleColor = purple_M75,
+    // circleColor = purple_M75,
     selectedColor = purple_M75,
     selectedColor2 = purple_M75,
     unselectedColor = white_M600,
@@ -861,10 +861,10 @@ val Investigator = Prestige.copy(
 
     splashTextColor = purple_M75,
 
-    navigationFooterIcon = Color(0x4DD71472),
-    navigationFooterIconAlt = purple_M250,
+    // navigationFooterIcon = Color(0x4DD71472),
+    // navigationFooterIconAlt = purple_M250,
 
-    buttonFilterOnPrimary = white_M300,
+    // buttonFilterOnPrimary = white_M300,
     inboxNotification = purple_M75,
 
     discordColor = BrandingColorFamily(
@@ -948,7 +948,7 @@ val PrivateInvestigator = Prestige.copy(
 
     statusBarColor = black,
     navigationBarColor = black,
-    windowBackgroundColor = black,
+    // windowBackgroundColor = black,
     windowStrokeColor = white,
 
     light_active = orange,
@@ -956,7 +956,7 @@ val PrivateInvestigator = Prestige.copy(
     light_off = orange_M510,
 
     strikethroughColor = orange_M510,
-    circleColor = orange,
+    // circleColor = orange,
     selectedColor = orange_M10,
     selectedColor2 = orange_M50_A40,
     unselectedColor = white_M600,
@@ -975,10 +975,10 @@ val PrivateInvestigator = Prestige.copy(
     sanityPieEndColor = orange_M10,
 
     splashTextColor = orange_M10,
-    navigationFooterIcon = Color(0x8078522B),
-    navigationFooterIconAlt = orange_M10,
+    // navigationFooterIcon = Color(0x8078522B),
+    // navigationFooterIconAlt = orange_M10,
 
-    buttonFilterOnPrimary = orange_M20,
+    // buttonFilterOnPrimary = orange_M20,
     inboxNotification = orange_M10,
 
     discordColor = BrandingColorFamily(
@@ -1064,7 +1064,7 @@ val Detective = Prestige.copy(
 
     statusBarColor = green_M875,
     navigationBarColor = green_M875,
-    windowBackgroundColor = green_M875,
+    // windowBackgroundColor = green_M875,
     windowStrokeColor = white_M20,
 
     light_active = green_M25,
@@ -1072,7 +1072,7 @@ val Detective = Prestige.copy(
     light_off = Color(0xFF2E332F),
 
     strikethroughColor = white_M600,
-    circleColor = green_M25,
+    // circleColor = green_M25,
     selectedColor = green_M25,
     selectedColor2 = green_M525,
     unselectedColor = white_M600,
@@ -1091,10 +1091,10 @@ val Detective = Prestige.copy(
     sanityPieEndColor = green_M25,
 
     splashTextColor = green_M25,
-    navigationFooterIcon = white_M600,
-    navigationFooterIconAlt = green_M25,
+    // navigationFooterIcon = white_M600,
+    // navigationFooterIconAlt = green_M25,
 
-    buttonFilterOnPrimary = white_M20,
+    // buttonFilterOnPrimary = white_M20,
     inboxNotification = green_M25,
 
     discordColor = BrandingColorFamily(
@@ -1183,7 +1183,7 @@ val Technician = Prestige.copy(
 
     statusBarColor = Color(0xFF050C04),
     navigationBarColor = Color(0xFF081204),
-    windowBackgroundColor = Color(0xFF050C04),
+    // windowBackgroundColor = Color(0xFF050C04),
     windowStrokeColor = white,
 
 
@@ -1192,7 +1192,7 @@ val Technician = Prestige.copy(
     light_off = white_M600,
 
     strikethroughColor = Color(0xFF5E0D0B),
-    circleColor = red_M375,
+    // circleColor = red_M375,
     selectedColor = red_M375,
     selectedColor2 = Color(0xFF5E0D0B),
     unselectedColor = white_M500,
@@ -1212,10 +1212,10 @@ val Technician = Prestige.copy(
     sanityPieEndColor = red_M375,
 
     splashTextColor = red_M375,
-    navigationFooterIcon = white_M600,
-    navigationFooterIconAlt = red_M375,
+    // navigationFooterIcon = white_M600,
+    // navigationFooterIconAlt = red_M375,
 
-    buttonFilterOnPrimary = Color(0xFFE0E0E0),
+    // buttonFilterOnPrimary = Color(0xFFE0E0E0),
     inboxNotification = red_M375,
 
     discordColor = BrandingColorFamily(
@@ -1304,7 +1304,7 @@ val Specialist = Prestige.copy(
 
     statusBarColor = Color(0xFF070C05),
     navigationBarColor = Color(0xFF070C05),
-    windowBackgroundColor = Color(0xFF070C05),
+    // windowBackgroundColor = Color(0xFF070C05),
     windowStrokeColor = Color(0xFFFEFEFE),
 
     light_active = green_M150,
@@ -1312,7 +1312,7 @@ val Specialist = Prestige.copy(
     light_off = white_M600,
 
     strikethroughColor = Color(0xFFA0B17B),
-    circleColor = green_M150,
+    // circleColor = green_M150,
     selectedColor = Color(0xFF80994D),
     selectedColor2 = Color(0xFF80994D),
     unselectedColor = white_M600,
@@ -1331,10 +1331,10 @@ val Specialist = Prestige.copy(
     sanityPieEndColor = green_M150,
 
     splashTextColor = green_M150,
-    navigationFooterIcon = Color(0xFF545B4D),
-    navigationFooterIconAlt = green_M150,
+    // navigationFooterIcon = Color(0xFF545B4D),
+    // navigationFooterIconAlt = green_M150,
 
-    buttonFilterOnPrimary = Color(0xBF070C05),
+    // buttonFilterOnPrimary = Color(0xBF070C05),
     inboxNotification = green_M150,
 
     discordColor = BrandingColorFamily(
@@ -1422,7 +1422,7 @@ val Analyst = Prestige.copy(
 
     statusBarColor = red_M850,
     navigationBarColor = red_M850,
-    windowBackgroundColor = red_M850,
+    // windowBackgroundColor = red_M850,
     windowStrokeColor = Color(0xFFA7968C),
 
     light_active = Color(0xFF2667CD),
@@ -1430,9 +1430,9 @@ val Analyst = Prestige.copy(
     light_off = red_M850,
 
     buttonColor = Color(0xFF7BCD26),
-    buttonFilterOnPrimary = Color(0xFFCD2547),
+    // buttonFilterOnPrimary = Color(0xFFCD2547),
     strikethroughColor = Color(0xFFCD2547),
-    circleColor = Color(0xFF7BCD26),
+    // circleColor = Color(0xFF7BCD26),
     selectedColor = Color(0xFF2667CD),
     selectedColor2 = Color(0xFF2667CD),
     unselectedColor = orange_M525,
@@ -1449,8 +1449,8 @@ val Analyst = Prestige.copy(
     sanityPieEndColor = Color(0xFF2667CD),
 
     splashTextColor = Color(0xFF2667CD),
-    navigationFooterIcon = orange_M525,
-    navigationFooterIconAlt = Color(0xFF2667CD),
+    // navigationFooterIcon = orange_M525,
+    // navigationFooterIconAlt = Color(0xFF2667CD),
 
     backgroundColor_mapviewOverlay = Color(0xBF1B1516),
 
@@ -1541,16 +1541,16 @@ val Agent = Prestige.copy(
 
     statusBarColor = Color(0xFF101515),
     navigationBarColor = Color(0xFF101515),
-    windowBackgroundColor = Color(0xFF0E1212),
+    // windowBackgroundColor = Color(0xFF0E1212),
     windowStrokeColor = white,
 
     light_active = blue_M90,
     light_inactive = Color(0xFF1D4E49),
     light_off = Color(0xFF202A29),
 
-    buttonFilterOnPrimary = white,
+    // buttonFilterOnPrimary = white,
     strikethroughColor = Color(0xFF1D4E49),
-    circleColor = blue_M90,
+    // circleColor = blue_M90,
     selectedColor = Color(0xFF167467),
     selectedColor2 = Color(0xFF167467),
     unselectedColor = Color(0xFF858686),
@@ -1567,8 +1567,8 @@ val Agent = Prestige.copy(
     sanityPieEndColor = blue_M90,
 
     splashTextColor = blue_M90,
-    navigationFooterIcon = Color(0xFF858686),
-    navigationFooterIconAlt = blue_M90,
+    // navigationFooterIcon = Color(0xFF858686),
+    // navigationFooterIconAlt = blue_M90,
 
     backgroundColor_mapviewOverlay = Color(0xBF101515),
 
@@ -1657,16 +1657,16 @@ val Operator = Prestige.copy(
 
     statusBarColor = blue_M950,
     navigationBarColor = blue_M950,
-    windowBackgroundColor = blue_M950,
+    // windowBackgroundColor = blue_M950,
     windowStrokeColor = white,
 
-    circleColor = purple,
+    // circleColor = purple,
     mapRoomFillColor = purple_A10,
     light_inactive = purple_M50_A40,
     light_active = blue_M150,
 
     inboxNotification = purple_M150,
-    buttonFilterOnPrimary = purple_M475,
+    // buttonFilterOnPrimary = purple_M475,
     strikethroughColor = purple_M300,
     mapRoomBorderColor = purple_M300_A58,
     mapPoiFillColor = purple_M300_A75,
@@ -1684,8 +1684,8 @@ val Operator = Prestige.copy(
     sanityPieEndColor = purple_M150,
 
     splashTextColor = purple_M150,
-    navigationFooterIcon = purple_M475,
-    navigationFooterIconAlt = purple_M150,
+    // navigationFooterIcon = purple_M475,
+    // navigationFooterIconAlt = purple_M150,
 
     backgroundColor_mapviewOverlay = Color(0xBF00000E),
 
@@ -1772,7 +1772,7 @@ val Commissioner = Prestige.copy(
 
     statusBarColor = black_M50,
     navigationBarColor = black_M50,
-    windowBackgroundColor = black_M50,
+    // windowBackgroundColor = black_M50,
     windowStrokeColor = white,
 
     light_active = orange_M05,
@@ -1781,9 +1781,9 @@ val Commissioner = Prestige.copy(
 
 
     inboxNotification = orange_M05,
-    buttonFilterOnPrimary = Color(0xFFFDF9EE),
+    // buttonFilterOnPrimary = Color(0xFFFDF9EE),
     strikethroughColor = Color(0xFF765932),
-    circleColor = orange_M05,
+    // circleColor = orange_M05,
     selectedColor = Color(0xFFE5A348),
     selectedColor2 = Color(0xFFE5A348),
     unselectedColor = Color(0xFFACAAAC),
@@ -1800,8 +1800,8 @@ val Commissioner = Prestige.copy(
     sanityPieEndColor = orange_M05,
 
     splashTextColor = orange_M05,
-    navigationFooterIcon = Color(0xFFACAAAC),
-    navigationFooterIconAlt = Color(0xFFE5A348),
+    // navigationFooterIcon = Color(0xFFACAAAC),
+    // navigationFooterIconAlt = Color(0xFFE5A348),
 
     backgroundColor_mapviewOverlay = Color(0xBF080808),
 
@@ -1890,16 +1890,16 @@ val Easter = Event.copy(
 
     statusBarColor = Color(0xFF030C0A),
     navigationBarColor = Color(0xFF030C0A),
-    windowBackgroundColor = Color(0xFF030C0A),
+    // windowBackgroundColor = Color(0xFF030C0A),
     windowStrokeColor = Color(0xFFE1EBE5),
     light_active = orange_M75,
     light_inactive = Color(0xFFF8E8BD),
     light_off = Color(0xFF1C180D),
 
-    buttonFilterOnPrimary = Color(0xFFE1EBE5),
+    // buttonFilterOnPrimary = Color(0xFFE1EBE5),
     inboxNotification = orange_M05,
     strikethroughColor = Color(0xFF21654A),
-    circleColor = orange_M75,
+    // circleColor = orange_M75,
     selectedColor = Color(0xFFF8E8BD),
     selectedColor2 = green_M550,
     unselectedColor = white_M600,
@@ -1916,12 +1916,12 @@ val Easter = Event.copy(
     sanityPieEndColor = orange_M75,
 
     splashTextColor = green_M550,
-    navigationFooterIcon = white_M600,
-    navigationFooterIconAlt = orange_M75,
+    // navigationFooterIcon = white_M600,
+    // navigationFooterIconAlt = orange_M75,
 
     backgroundColor_mapviewOverlay = Color(0xBF030C0A),
 
-    colorOnButton = Color(0xFF030C0A),
+    // colorOnButton = Color(0xFF030C0A),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2008,15 +2008,15 @@ val Halloween23 = Event.copy(
 
     statusBarColor = Color(0xFF0C0400),
     navigationBarColor = Color(0xFF0C0400),
-    windowBackgroundColor = Color(0xFF0C0400),
+    // windowBackgroundColor = Color(0xFF0C0400),
     windowStrokeColor = white,
     light_active = Color(0xFFEC700D),
     light_inactive = Color(0xFF9F4B0D),
     light_off = Color(0xFF3F1602),
 
-    buttonFilterOnPrimary = Color(0xFFD7CCC3),
+    // buttonFilterOnPrimary = Color(0xFFD7CCC3),
     strikethroughColor = Color(0xFFD7CCC3),
-    circleColor = Color(0xFFEC700D),
+    // circleColor = Color(0xFFEC700D),
     selectedColor = Color(0xFFC85E0D),
     selectedColor2 = Color(0xFFC85E0D),
     unselectedColor = Color(0xFF373737),
@@ -2033,8 +2033,8 @@ val Halloween23 = Event.copy(
     sanityPieEndColor = Color(0xFFEC700D),
 
     splashTextColor = Color(0xFFEC700D),
-    navigationFooterIcon = Color(0xFF373737),
-    navigationFooterIconAlt = Color(0xFFC85E0D),
+    // navigationFooterIcon = Color(0xFF373737),
+    // navigationFooterIconAlt = Color(0xFFC85E0D),
 
     backgroundColor_mapviewOverlay = Color(0xBF0C0400),
 
@@ -2125,15 +2125,15 @@ val Holiday22 = Event.copy(
 
     statusBarColor = Color(0xFF0D0E19),
     navigationBarColor = Color(0xFF0D0E19),
-    windowBackgroundColor = Color(0xFF0D0E19),
+    // windowBackgroundColor = Color(0xFF0D0E19),
     windowStrokeColor = Color(0xFFFEFEFE),
     light_active = blue_M125,
     light_inactive = Color(0xFF2A2E45),
     light_off = blue_M750,
 
-    buttonFilterOnPrimary = Color(0xFFF8BC7F),
+    // buttonFilterOnPrimary = Color(0xFFF8BC7F),
     strikethroughColor = blue_M125,
-    circleColor = orange_M50,
+    // circleColor = orange_M50,
     selectedColor = blue_M125,
     selectedColor2 = blue_M125,
     unselectedColor = Color(0xFF2A2E45),
@@ -2151,8 +2151,8 @@ val Holiday22 = Event.copy(
 
     splashTextColor = blue_M125,
 
-    navigationFooterIcon = Color(0xFF2A2E45),
-    navigationFooterIconAlt = blue_M125,
+    // navigationFooterIcon = Color(0xFF2A2E45),
+    // navigationFooterIconAlt = blue_M125,
 
     backgroundColor_mapviewOverlay = Color(0xBF0D0E19),
 
@@ -2239,15 +2239,15 @@ val Holiday23 = Event.copy(
 
     statusBarColor = Color(0xFF1B1C33),
     navigationBarColor = Color(0xFF1B1C33),
-    windowBackgroundColor = Color(0xFF1B1C33),
+    // windowBackgroundColor = Color(0xFF1B1C33),
     windowStrokeColor = white,
     light_active = Color(0xFFE9AD4C),
     light_inactive = Color(0x40E9AD4C),
     light_off = Color(0xFF2A2E45),
 
-    buttonFilterOnPrimary = Color(0xFF447CDE),
+    // buttonFilterOnPrimary = Color(0xFF447CDE),
     strikethroughColor = Color(0xFF447CDE),
-    circleColor = Color(0xFFE9AD4C),
+    // circleColor = Color(0xFFE9AD4C),
     selectedColor = Color(0xFFE9AD4C),
     selectedColor2 = Color(0xFFE9AD4C),
     unselectedColor = Color(0xFF213A67),
@@ -2264,8 +2264,8 @@ val Holiday23 = Event.copy(
     sanityPieEndColor = Color(0xFFE9AD4C),
 
     splashTextColor = Color(0xFF447CDE),
-    navigationFooterIcon = Color(0xFFB1AEA9),
-    navigationFooterIconAlt = Color(0xFFE9AD4C),
+    // navigationFooterIcon = Color(0xFFB1AEA9),
+    // navigationFooterIconAlt = Color(0xFFE9AD4C),
 
     backgroundColor_mapviewOverlay = Color(0xBF1B1C33),
 
@@ -2363,15 +2363,15 @@ val Discord = Community.copy(
 
     statusBarColor = Color(0xFF131517),
     navigationBarColor = Color(0xFF131517),
-    windowBackgroundColor = Color(0xFF131517),
+    // windowBackgroundColor = Color(0xFF131517),
     windowStrokeColor = Color(0xFFF3F3F7),
     light_active = blue_M75,
     light_inactive = Color(0xFFAAB3F3),
     light_off = blue_M850,
 
-    buttonFilterOnPrimary = Color(0xFFAAB3F3),
+    // buttonFilterOnPrimary = Color(0xFFAAB3F3),
     strikethroughColor = Color(0xFFC3C4C6),
-    circleColor = blue_M75,
+    // circleColor = blue_M75,
     selectedColor = Color(0xFFAAB3F3),
     selectedColor2 = Color(0xFFAAB3F3),
     unselectedColor = blue_M850,
@@ -2389,8 +2389,8 @@ val Discord = Community.copy(
 
     splashTextColor = blue_M75,
 
-    navigationFooterIcon = blue_M850,
-    navigationFooterIconAlt = blue_M75,
+    // navigationFooterIcon = blue_M850,
+    // navigationFooterIconAlt = blue_M75,
 
     backgroundColor_mapviewOverlay = Color(0xBF131517),
 
@@ -2481,16 +2481,16 @@ val ContentCreator = Community.copy(
 
     statusBarColor = black_M50,
     navigationBarColor = black_M50,
-    windowBackgroundColor = black_M50,
+    // windowBackgroundColor = black_M50,
     windowStrokeColor = white,
 
     light_active = red_M225,
     light_inactive = Color(0xFF510E1B),
     light_off = Color(0xFF1E1013),
 
-    buttonFilterOnPrimary = Color(0xFFCACACA),
+    // buttonFilterOnPrimary = Color(0xFFCACACA),
     strikethroughColor = Color(0xFF780C0C),
-    circleColor = Color(0xFFDF1740),
+    // circleColor = Color(0xFFDF1740),
     selectedColor = red_M225,
     selectedColor2 = red_M225,
     unselectedColor = Color(0xFF510E1B),
@@ -2508,8 +2508,8 @@ val ContentCreator = Community.copy(
 
     splashTextColor = red_M225,
 
-    navigationFooterIcon = Color(0xFF510E1B),
-    navigationFooterIconAlt = Color(0xFFDF1740),
+    // navigationFooterIcon = Color(0xFF510E1B),
+    // navigationFooterIconAlt = Color(0xFFDF1740),
 
     backgroundColor_mapviewOverlay = Color(0xBF080808),
 
@@ -2597,15 +2597,15 @@ val Developer = Community.copy(
 
     statusBarColor = black_M50,
     navigationBarColor = black_M50,
-    windowBackgroundColor = black_M50,
+    // windowBackgroundColor = black_M50,
     windowStrokeColor = Color(0xFFE2E2DF),
     light_active = yellow_M25,
     light_inactive = Color(0x66ECD316),
     light_off = Color(0x1AECD316),
 
-    buttonFilterOnPrimary = Color(0xFFD3C667),
+    // buttonFilterOnPrimary = Color(0xFFD3C667),
     strikethroughColor = Color(0xFFE2E2DF),
-    circleColor = yellow_M25,
+    // circleColor = yellow_M25,
     selectedColor = yellow_M25,
     selectedColor2 = yellow_M25,
     unselectedColor = Color(0xFFE2E2DF),
@@ -2622,8 +2622,8 @@ val Developer = Community.copy(
     sanityPieEndColor = yellow_M25,
 
     splashTextColor = yellow_M25,
-    navigationFooterIcon = Color(0xFFE2E2DF),
-    navigationFooterIconAlt = yellow_M25,
+    // navigationFooterIcon = Color(0xFFE2E2DF),
+    // navigationFooterIconAlt = yellow_M25,
 
     backgroundColor_mapviewOverlay = Color(0x40535353),
 
@@ -2714,16 +2714,16 @@ val Translator = Community.copy(
 
     statusBarColor = black,
     navigationBarColor = black,
-    windowBackgroundColor = black,
+    // windowBackgroundColor = black,
     windowStrokeColor = white,
 
     light_active = red_M150,
     light_inactive = Color(0xFF535052),
     light_off = purple_M850,
 
-    buttonFilterOnPrimary = Color(0xFFFCFAFB),
+    // buttonFilterOnPrimary = Color(0xFFFCFAFB),
     strikethroughColor = Color(0xFFD99CA5),
-    circleColor = red_M150,
+    // circleColor = red_M150,
     selectedColor = red_M150,
     selectedColor2 = Color(0xFF535052),
     unselectedColor = white_M600,
@@ -2741,8 +2741,8 @@ val Translator = Community.copy(
 
     splashTextColor = red_M150,
 
-    navigationFooterIcon = white_M600,
-    navigationFooterIconAlt = red_M150,
+    // navigationFooterIcon = white_M600,
+    // navigationFooterIconAlt = red_M150,
 
     backgroundColor_mapviewOverlay = black_A75,
 
@@ -2830,16 +2830,16 @@ val Winner = Community.copy(
 
     statusBarColor = Color(0xFF060C10),
     navigationBarColor = Color(0xFF060C10),
-    windowBackgroundColor = Color(0xFF060C10),
+    // windowBackgroundColor = Color(0xFF060C10),
     windowStrokeColor = white,
 
     light_active = Color(0xFFDABA80),
     light_inactive = blue_M850,
     light_off = white_M600,
 
-    buttonFilterOnPrimary = white,
+    // buttonFilterOnPrimary = white,
     strikethroughColor = Color(0xFF936305),
-    circleColor = orange_M250,
+    // circleColor = orange_M250,
     selectedColor = Color(0xFFDABA80),
     selectedColor2 = blue_M850,
     unselectedColor = white_M600,
@@ -2858,8 +2858,8 @@ val Winner = Community.copy(
     sanityPieEndColor = orange_M250,
 
     splashTextColor = orange_M250,
-    navigationFooterIcon = white_M600,
-    navigationFooterIconAlt = orange_M250,
+    // navigationFooterIcon = white_M600,
+    // navigationFooterIconAlt = orange_M250,
 
     backgroundColor_mapviewOverlay = Color(0xBF060C10),
 
@@ -2946,16 +2946,16 @@ val Artist = Community.copy(
 
     statusBarColor = Color(0xFF0A0C0C),
     navigationBarColor = Color(0xFF0A0C0C),
-    windowBackgroundColor = Color(0xFF0A0C0C),
+    // windowBackgroundColor = Color(0xFF0A0C0C),
     windowStrokeColor = white,
 
     light_active = purple_M550,
     light_inactive = Color(0xFF5B399E),
     light_off = white_M600,
 
-    buttonFilterOnPrimary = Color(0xFFE3D6F7),
+    // buttonFilterOnPrimary = Color(0xFFE3D6F7),
     strikethroughColor = Color(0xFF5B399E),
-    circleColor = Color(0xFFE3D6F7),
+    // circleColor = Color(0xFFE3D6F7),
     selectedColor = purple_M550,
     selectedColor2 = Color(0xFF5B399E),
     unselectedColor = white_M600,
@@ -2972,8 +2972,8 @@ val Artist = Community.copy(
     sanityPieEndColor = purple_M550,
 
     splashTextColor = Color(0xFFAA7FFD),
-    navigationFooterIcon = white_M600,
-    navigationFooterIconAlt = purple_M550,
+    // navigationFooterIcon = white_M600,
+    // navigationFooterIconAlt = purple_M550,
 
     backgroundColor_mapviewOverlay = Color(0xBF0A0C0C),
 
@@ -3048,11 +3048,11 @@ val Whiteboard = Skin.copy(
 
     statusBarColor = white_M50,
     navigationBarColor = white_M50,
-    windowBackgroundColor = white_M50,
+    // windowBackgroundColor = white_M50,
     windowStrokeColor = Color(0xFF383839),
 
-    navigationFooterIcon = white_M500,
-    navigationFooterIconAlt = red_M300,
+    // navigationFooterIcon = white_M500,
+    // navigationFooterIconAlt = red_M300,
 
     backgroundColor_mapviewOverlay = Color(0xFFafb7be),
 
@@ -3079,7 +3079,7 @@ val Whiteboard = Skin.copy(
     unselectedColor = Color(0xFFafb7be),
 
     strikethroughColor = Color(0xFFf55656),
-    circleColor = Color(0xFF383839),
+    // circleColor = Color(0xFF383839),
 
     positiveSelColor = Color(0xFFf55656),
     neutralSelColor = Color(0xFF383839),
@@ -3089,11 +3089,11 @@ val Whiteboard = Skin.copy(
     mapRoomBorderColor = red_M300_A58,
     mapRoomFillColor = red_A75,
 
-    buttonFilterOnPrimary = white_M50,
+    // buttonFilterOnPrimary = white_M50,
     buttonColor = Color(0xFF383839),
-    colorOnButton = Color(0xFF383839),
+    // colorOnButton = Color(0xFF383839),
 
-    actionMenuTextColor = Color(0xFF383839),
+    // actionMenuTextColor = Color(0xFF383839),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -3186,7 +3186,7 @@ val StrategemHero = Special.copy(
 
     statusBarColor = Color(0xFF000B17),
     navigationBarColor = Color(0xFF000B17),
-    windowBackgroundColor = Color(0xFF000B17),
+    // windowBackgroundColor = Color(0xFF000B17),
     windowStrokeColor = white,
 
     light_active = Color(0xFFFFD608),
@@ -3194,7 +3194,7 @@ val StrategemHero = Special.copy(
     light_off = Color(0xFFB7CBDC),
 
     strikethroughColor = Color(0xFFB7CBDC),
-    circleColor = Color(0xFFFFD608),
+    // circleColor = Color(0xFFFFD608),
     selectedColor = Color(0xFFFFD608),
     selectedColor2 = Color(0xFFFFD608),
     unselectedColor = Color(0xFFA3A3A3),
@@ -3213,18 +3213,18 @@ val StrategemHero = Special.copy(
 
     splashTextColor = Color(0xFF447CDE),
 
-    navigationFooterIcon = white,
-    navigationFooterIconAlt = Color(0xFFFFD608),
+    // navigationFooterIcon = white,
+    // navigationFooterIconAlt = Color(0xFFFFD608),
 
     backgroundColor_mapviewOverlay = Color(0xBF001021),
 
     inboxNotification = Color(0xFF95D2C8),
 
-    buttonFilterOnPrimary = Color(0xFFB7CBDC),
-    buttonBorderOnPrimary = white,
-    buttonBackgroundOnPrimary = Color(0xFFB7CBDC),
+    // buttonFilterOnPrimary = Color(0xFFB7CBDC),
+    // buttonBorderOnPrimary = white,
+    // buttonBackgroundOnPrimary = Color(0xFFB7CBDC),
 
-    colorActionPrimary = Color(0xFFFFD608),
+    // colorActionPrimary = Color(0xFFFFD608),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -3235,44 +3235,3 @@ val StrategemHero = Special.copy(
     ),
 
 )
-
-val LocalPalette = staticCompositionLocalOf { ExtendedPalette() }
-
-val LocalPalettesMap = mapOf(
-    Pair("CzjtxSbXRwIpX8SYR0ttngAND", ClassicPalette),
-    Pair("ey6VbQN5tx0MgR8tw4iJq3J8L", Monochromacy),
-    Pair("9Ec5cQIB0Jb73gbQ3a9R5kScX", Deuteranomaly),
-    Pair("44uBEX9ID9131TMG3yH7T2P1Q", Protanomaly),
-    Pair("28yi3LJWYMbA7v87RMAEznISy", Tritanomaly),
-    Pair("9QWud4Mj5C4jYp1hOA91b6G0L", Recruit),
-    Pair("1UdIWr97JGtOoRszQHpBYfK5U", Investigator),
-    Pair("1oF0ZF78LqA64zRyn8ozgMqLu", PrivateInvestigator),
-    Pair("5T2mB6W1370DEc3cnYN2bI0gT", Detective),
-    Pair("9t44qIYH7UU3EPwvgXEO6309E", Technician),
-    Pair("9Uo9I6AmpW2XbhHDIxCP4ppds", Specialist),
-    Pair("E2m4fr5Vp6dv07JnWE5Q3T08D", Analyst),
-    Pair("6BL0zB7jGGye94j45hq3wtwVq", Agent),
-    Pair("8No78zJ6oUSBLS818jH10Seni", Operator),
-    Pair("4p77qstew9oX20l4X5O0J010k", Commissioner),
-    Pair("B6xTXIXttQUqW02Skd094BY15", Easter),
-    Pair("EOkBD2aJZhOh9V821o20GFLXK", Halloween23),
-    Pair("7RF705OjW3uo39zl0aTktINHd", Holiday22),
-    Pair("0XrEhnlpA9mD9dNxrzCbNfkRe", Holiday23),
-    Pair("Ex00XEBLXbh65Nk9SdYMrMfsP", Discord),
-    Pair("2pe8HDVVWRfxhPUw4Xf0rhgwb", ContentCreator),
-    Pair("56iV5cnR3lRJ59uZF1mTtEz9X", Developer),
-    Pair("e6nDE683SE7Wg9dRPJeN61CD6", Translator),
-    Pair("8xkSw89x50Zwgr4tGd6z5X0a7", Winner),
-    Pair("88kEPt48wGs0ZxR4n7gtM3OTe", Artist),
-    Pair("tempWhiteboard", Whiteboard),
-    Pair("tempStratHero", StrategemHero),
-)
-
-private val LocalPalettesList = LocalPalettesMap.toList()
-
-val LocalDefaultPalette = SimpleUniquePalette(
-    LocalPalettesList[0].first,
-    LocalPalettesList[0].second
-)
-
-data class SimpleUniquePalette(val uuid: String, val palette: ExtendedPalette)
