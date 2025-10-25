@@ -43,10 +43,10 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
 import com.tritiumgaming.feature.operation.ui.codex.CodexScreen
 import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
-import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexAchievementDisplay
 import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CatalogAchievementListComponent
-import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexEquipmentDisplay
 import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CatalogEquipmentListComponent
+import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexAchievementDisplay
+import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexEquipmentDisplay
 import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexPossessionsDisplay
 import com.tritiumgaming.feature.operation.ui.codex.catalog.pages.CodexPossessionsListComponent
 import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources

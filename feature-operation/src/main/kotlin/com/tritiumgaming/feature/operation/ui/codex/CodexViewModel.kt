@@ -19,8 +19,8 @@ import com.tritiumgaming.shared.operation.domain.codex.model.equipment.Equipment
 import com.tritiumgaming.shared.operation.domain.codex.model.possessions.CodexPossessionsGroupItem
 import com.tritiumgaming.shared.operation.domain.codex.model.possessions.PossessionsType
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchAchievementTypesUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchEquipmentTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

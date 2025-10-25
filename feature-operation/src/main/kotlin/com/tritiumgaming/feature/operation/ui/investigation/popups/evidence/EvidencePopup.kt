@@ -22,8 +22,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -58,10 +56,6 @@ import com.tritiumgaming.core.ui.icon.GridIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
-import com.tritiumgaming.core.ui.theme.palette.LocalPalettesMap
-import com.tritiumgaming.core.ui.theme.palette.Whiteboard
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.core.ui.theme.type.CleanTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.operation.app.mappers.codex.toIntegerResource

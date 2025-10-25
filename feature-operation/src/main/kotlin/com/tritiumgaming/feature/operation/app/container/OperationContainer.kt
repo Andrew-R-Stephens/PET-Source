@@ -36,8 +36,8 @@ import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preference
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.operation.domain.codex.repository.CodexRepository
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchAchievementTypesUseCase
-import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
 import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchEquipmentTypesUseCase
+import com.tritiumgaming.shared.operation.domain.codex.usecase.FetchPossessionTypesUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.repository.DifficultyRepository
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.operation.domain.difficulty.usecase.FetchDifficultiesUseCase

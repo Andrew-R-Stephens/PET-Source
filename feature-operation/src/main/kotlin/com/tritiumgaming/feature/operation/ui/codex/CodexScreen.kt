@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.admob.AdmobBanner
 import com.tritiumgaming.core.ui.common.admob.BannerAd
 import com.tritiumgaming.core.ui.icon.GridIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors

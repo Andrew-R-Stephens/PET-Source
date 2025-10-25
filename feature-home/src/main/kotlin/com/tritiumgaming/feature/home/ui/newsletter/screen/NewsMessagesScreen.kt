@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.home.ui.newsletter.screen
 
-import android.widget.Toast
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -8,7 +7,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -38,30 +36,26 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.admob.AdmobBanner
 import com.tritiumgaming.core.ui.common.admob.BannerAd
 import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
 import com.tritiumgaming.core.ui.common.prefabicon.NotificationIndicator
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.mappers.ToComposable
 import com.tritiumgaming.core.ui.theme.palette.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.app.mappers.toStringResource
 import com.tritiumgaming.feature.home.ui.MainMenuScreen
 import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
+import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterMessage
@@ -394,18 +388,16 @@ private fun MessageCard(
 
             if(isActive) {
                 NotificationIndicator(
-                    modifier = Modifier
-                        .fillMaxHeight(),
                     isActive = true,
-                    baseIcon = null,
-                    baseTint = IconVectorColors(
-                        fillColor = LocalPalette.current.background.color,
-                        strokeColor = LocalPalette.current.textFamily.body
-                    ),
-                    alertTint = IconVectorColors(
-                        fillColor = LocalPalette.current.background.color,
-                        strokeColor = LocalPalette.current.inboxNotification
-                    )
+                    badgeComponent = @Composable { modifier ->
+                        IconResource.NOTIFY.ToComposable(
+                            modifier = modifier,
+                            colors = IconVectorColors(
+                                fillColor = LocalPalette.current.background.color,
+                                strokeColor = LocalPalette.current.inboxNotification
+                            )
+                        )
+                    },
                 )
             }
 

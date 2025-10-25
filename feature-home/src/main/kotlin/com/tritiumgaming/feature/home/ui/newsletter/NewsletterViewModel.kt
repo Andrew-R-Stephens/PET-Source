@@ -3,13 +3,11 @@ package com.tritiumgaming.feature.home.ui.newsletter
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.shared.home.domain.newsletter.source.NewsletterDatastore
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterInboxesUseCase
@@ -17,11 +15,8 @@ import com.tritiumgaming.shared.home.domain.newsletter.usecase.SaveNewsletterInb
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.SetupNewsletterUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch

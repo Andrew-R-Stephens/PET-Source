@@ -47,7 +47,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -55,7 +54,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.admob.AdmobBanner
 import com.tritiumgaming.core.ui.common.admob.BannerAd
 import com.tritiumgaming.core.ui.common.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.common.menus.IconDropdownMenuColors

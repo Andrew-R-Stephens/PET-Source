@@ -19,10 +19,10 @@ import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
 import com.tritiumgaming.data.marketplace.bundle.repository.MarketBundleRepositoryImpl
 import com.tritiumgaming.data.marketplace.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
 import com.tritiumgaming.data.palette.repository.MarketPaletteRepositoryImpl
-import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
-import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSource
 import com.tritiumgaming.data.palette.repository.MarketTypographyRepositoryImpl
+import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
 import com.tritiumgaming.data.palette.source.local.MarketTypographyLocalDataSource
+import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSource
 import com.tritiumgaming.data.palette.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.data.review.source.datastore.ReviewTrackerDatastoreDataSource

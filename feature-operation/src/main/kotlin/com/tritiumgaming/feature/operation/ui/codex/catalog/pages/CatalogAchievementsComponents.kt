@@ -29,7 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -51,9 +50,8 @@ import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexGroupIte
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexGroupItemsLandscape
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexGroupItemsPortrait
 import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexItemPopup
-import com.tritiumgaming.feature.operation.ui.codex.catalog.common.CodexItemPopupDataRow
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementVisibility
 import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementExclusivity
+import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementVisibility
 
 @Composable
 fun CatalogAchievementListComponent(
