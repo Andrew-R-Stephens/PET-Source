@@ -11,8 +11,15 @@ data class M3ColorFamily(
     val colorContainer: Color = Color.Unspecified,
     val onColorContainer: Color = Color.Unspecified,
 
+    val inverseColor: Color = Color.Unspecified,
+
     val variant: Color = Color.Unspecified,
     val onColorVariant: Color = Color.Unspecified,
     val containerVariant: Color = Color.Unspecified,
-    val onContainerVariant: Color = Color.Unspecified
+    val onContainerVariant: Color = Color.Unspecified,
+
+    val colorFixed: Color = Color.Unspecified,
+    val colorFixedDim: Color = Color.Unspecified,
+    val onColorFixed: Color = Color.Unspecified,
+    val onColorFixedVariant: Color = Color.Unspecified,
 )

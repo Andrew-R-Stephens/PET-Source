@@ -13,6 +13,56 @@ import com.tritiumgaming.core.ui.theme.palette.common.ThemeColorFamily
 
 data class ExtendedPalette(
 
+    /*val primary: Color,
+    val onPrimary: Color,
+    val primaryContainer: Color,
+    val onPrimaryContainer: Color,
+    val inversePrimary: Color,
+
+    val secondary: Color,
+    val onSecondary: Color,
+    val secondaryContainer: Color,
+    val onSecondaryContainer: Color,
+
+    val tertiary: Color,
+    val onTertiary: Color,
+    val tertiaryContainer: Color,
+    val onTertiaryContainer: Color,
+
+    val background: Color,
+    val onBackground: Color,
+
+    val surface: Color,
+    val onSurface: Color,
+    val surfaceVariant: Color,
+    val onSurfaceVariant: Color,
+    val surfaceTint: Color,
+    val inverseSurface: Color,
+    val inverseOnSurface: Color,
+
+    val outline: Color,
+    val outlineVariant: Color,
+    val scrim: Color,
+
+    val surfaceBright: Color,
+    val surfaceDim: Color,
+
+    val surfaceContainer: Color,
+    val surfaceContainerHigh: Color,
+    val surfaceContainerHighest: Color,
+    val surfaceContainerLow: Color,
+    val surfaceContainerLowest: Color,
+
+    val secondaryFixed: Color,
+    val secondaryFixedDim: Color,
+    val onSecondaryFixed: Color,
+    val onSecondaryFixedVariant: Color,
+
+    val tertiaryFixed: Color,
+    val tertiaryFixedDim: Color,
+    val onTertiaryFixed: Color,
+    val onTertiaryFixedVariant: Color,*/
+
     val extrasFamily: ExtrasFamily = ExtrasFamily(),
 
     val themeFamily: ThemeColorFamily = ThemeColorFamily(),
