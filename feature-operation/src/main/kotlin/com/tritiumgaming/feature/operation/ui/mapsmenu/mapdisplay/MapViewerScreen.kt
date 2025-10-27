@@ -912,7 +912,7 @@ private fun RoomDropdownWrapper(
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            containerColor = LocalPalette.current.surface.onColor,
+            containerColor = LocalPalette.current.surfaceContainerHigh,
             shape = RoundedCornerShape(
                 bottomStart = 8.dp,
                 bottomEnd = 8.dp

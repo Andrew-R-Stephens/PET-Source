@@ -133,7 +133,7 @@ private fun CodexScreenContent(
                 contentScale = ContentScale.FillBounds,
                 colorFilter = ColorFilter.tint(
                     blendMode = BlendMode.Darken,
-                    color = LocalPalette.current.background.color.copy(alpha=.75f)
+                    color = LocalPalette.current.surface.copy(alpha=.75f)
                 )
             )*/
             GridIcon(
@@ -146,7 +146,7 @@ private fun CodexScreenContent(
                 contentScale = ContentScale.FillBounds,
                 /*colorFilter = ColorFilter.tint(
                     blendMode = BlendMode.Darken,
-                    color = LocalPalette.current.background.color.copy(alpha=.75f)
+                    color = LocalPalette.current.surface.copy(alpha=.75f)
                 )*/
             )
 

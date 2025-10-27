@@ -154,8 +154,8 @@ private fun OperationNavigationBottomBar(
             .fillMaxWidth()
             .heightIn(min = 48.dp, max = 80.dp)
             .wrapContentHeight(),
-        contentColor = LocalPalette.current.surface.color,
-        containerColor = LocalPalette.current.surface.color,
+        contentColor = LocalPalette.current.surfaceContainer,
+        containerColor = LocalPalette.current.surfaceContainer,
         windowInsets = NavigationBarDefaults.windowInsets,
     ) {
 
@@ -187,12 +187,12 @@ private fun OperationNavigationBottomBar(
                             colors =
                                 if (rememberDrawerState.isOpen) {
                                     IconVectorColors.defaults(
-                                        fillColor =LocalPalette.current.surface.color,
+                                        fillColor =LocalPalette.current.surfaceContainer,
                                         strokeColor = LocalPalette.current.textFamily.primary
                                     )
                                 } else {
                                     IconVectorColors.defaults(
-                                        fillColor =LocalPalette.current.surface.color,
+                                        fillColor =LocalPalette.current.surfaceContainer,
                                         strokeColor = LocalPalette.current.textFamily.body
                                     )
                                 }
@@ -256,8 +256,8 @@ private fun OperationNavigationRail(
         NavigationRail(
             modifier = Modifier
                 .widthIn(min = 24.dp, max = 80.dp),
-            contentColor = LocalPalette.current.surface.color,
-            containerColor = LocalPalette.current.surface.color,
+            contentColor = LocalPalette.current.surfaceContainer,
+            containerColor = LocalPalette.current.surfaceContainer,
             windowInsets = NavigationRailDefaults.windowInsets,
         ) {
 
@@ -290,12 +290,12 @@ private fun OperationNavigationRail(
                                 colors =
                                     if (rememberDrawerState.isOpen) {
                                         IconVectorColors.defaults(
-                                            fillColor =LocalPalette.current.surface.color,
+                                            fillColor =LocalPalette.current.surfaceContainer,
                                             strokeColor = LocalPalette.current.textFamily.primary
                                         )
                                     } else {
                                         IconVectorColors.defaults(
-                                            fillColor =LocalPalette.current.surface.color,
+                                            fillColor =LocalPalette.current.surfaceContainer,
                                             strokeColor = LocalPalette.current.textFamily.body
                                         )
                                     }

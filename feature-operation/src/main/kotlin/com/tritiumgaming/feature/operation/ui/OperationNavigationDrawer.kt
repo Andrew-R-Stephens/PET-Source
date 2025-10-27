@@ -41,7 +41,7 @@ fun OperationNavigationDrawer(
         gesturesEnabled = false,
         drawerContent = {
             ModalDrawerSheet(
-                drawerContainerColor = LocalPalette.current.surface.onColor,
+                drawerContainerColor = LocalPalette.current.surfaceContainerHigh,
                 drawerTonalElevation = 16.dp
             ) {
                 Column(

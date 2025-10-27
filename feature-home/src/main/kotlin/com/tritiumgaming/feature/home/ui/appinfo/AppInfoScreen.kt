@@ -577,7 +577,7 @@ private fun VisitDiscordButton(
                     IconResource.DISCORD.ToComposable(
                         colors = IconVectorColors.defaults(
                             fillColor = LocalPalette.current.textFamily.primary,
-                            strokeColor = LocalPalette.current.background.color,
+                            strokeColor = LocalPalette.current.surface,
                         )
                     )
                 }
@@ -596,7 +596,7 @@ private fun VisitDiscordButton(
                 text = stringResource(R.string.aboutinfo_discord_join),
                 style = LocalTypography.current.primary.regular.copy(
                     fontWeight = FontWeight.Bold,
-                    color = LocalPalette.current.background.color,
+                    color = LocalPalette.current.surface,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,

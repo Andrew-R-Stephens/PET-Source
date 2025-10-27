@@ -66,14 +66,14 @@ fun AccountBannerExpanded(
             modifier = Modifier
                 .size(48.dp),
             borderColor = LocalPalette.current.textFamily.body,
-            backgroundColor = LocalPalette.current.surface.onColor,
+            backgroundColor = LocalPalette.current.surfaceContainerHigh,
             placeholder = {
                 IconResources.IconResource.PERSON.ToComposable(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(8.dp),
                     colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.background.color,
+                        fillColor = LocalPalette.current.surface,
                         strokeColor = LocalPalette.current.textFamily.body
                     )
                 )
@@ -93,7 +93,7 @@ fun AccountBannerExpanded(
                         color = LocalPalette.current.textFamily.body,
                         textAlign = TextAlign.Center,
                         shadow = Shadow(
-                            color = LocalPalette.current.surface.onColor,
+                            color = LocalPalette.current.surfaceContainerHigh,
                             blurRadius = 8f
                         ),
                     )
@@ -125,7 +125,7 @@ fun AccountBannerComposite(
     ) {
         AccountIcon(
             borderColor =  LocalPalette.current.textFamily.body,
-            backgroundColor = LocalPalette.current.surface.onColor
+            backgroundColor = LocalPalette.current.surfaceContainerHigh
         )
 
         Box(

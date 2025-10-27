@@ -839,7 +839,7 @@ fun EvidenceTypePortraitPreview() {
                 modifier = Modifier
                     .fillMaxSize(),
                 shown = true,
-                backgroundColor = LocalPalette.current.surface.color
+                backgroundColor = LocalPalette.current.surfaceContainer
             ) {
                 EvidenceTypePortraitPopup(
                     modifier = Modifier
@@ -968,7 +968,7 @@ fun EvidenceTypePopupLandscapePreview() {
             modifier = Modifier
                 .fillMaxSize(),
             shown = true,
-            backgroundColor = LocalPalette.current.surface.color
+            backgroundColor = LocalPalette.current.surfaceContainer
         ) {
             EvidenceTypeLandscapePopup(
                 modifier = Modifier

@@ -125,17 +125,17 @@ private fun Preview() {
             MarkCheckCircleIcon(
                 modifier = Modifier
                     .size(48.dp),
-                backgroundColor = LocalPalette.current.surface.color,
+                backgroundColor = LocalPalette.current.surfaceContainer,
                 foregroundColor = LocalPalette.current.textFamily.body
             )
             MarkXCircleIcon(
                 modifier = Modifier.size(48.dp),
-                backgroundColor = LocalPalette.current.surface.color,
+                backgroundColor = LocalPalette.current.surfaceContainer,
                 foregroundColor = LocalPalette.current.textFamily.body
             )
             MarkPriorityCircleIcon(
                 modifier = Modifier.size(48.dp),
-                backgroundColor = LocalPalette.current.surface.color,
+                backgroundColor = LocalPalette.current.surfaceContainer,
                 foregroundColor = LocalPalette.current.textFamily.body
             )
         }

@@ -45,8 +45,8 @@ fun SelectiveTheme(
 
             val window = (view.context as Activity).window
 
-            window.statusBarColor = palette.statusBarColor.toArgb()
-            window.navigationBarColor = palette.navigationBarColor.toArgb()
+            window.statusBarColor = palette.surface.toArgb()
+            window.navigationBarColor = palette.surface.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
                 palette.extrasFamily.isLightMode
             WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars =

@@ -247,7 +247,7 @@ fun LogoutDialog(
             contentPadding = PaddingValues(8.dp),
             colors = ButtonColors(
                 contentColor =
-                    LocalPalette.current.background.color,
+                    LocalPalette.current.surface,
                 containerColor = LocalPalette.current.coreFamily.primary,
                 disabledContentColor = Color.Blue,
                 disabledContainerColor = Color.Green
@@ -379,7 +379,7 @@ fun DeleteAccountDialog(
             },
             contentPadding = PaddingValues(8.dp),
             colors = ButtonColors(
-                contentColor = LocalPalette.current.background.color,
+                contentColor = LocalPalette.current.surface,
                 containerColor = LocalPalette.current.coreFamily.primary,
                 disabledContentColor = Color.Blue,
                 disabledContainerColor = Color.Green
@@ -410,7 +410,7 @@ fun Dialog(
     cancelButton: @Composable () -> Unit = { }
 ) {
     val backgroundColor = ColorUtils.interpolate(
-        LocalPalette.current.background.color.toArgb(),
+        LocalPalette.current.surface.toArgb(),
         Color.Transparent.hashCode(), .75f)
 
     Box(modifier = Modifier
@@ -448,7 +448,7 @@ fun Dialog(
                         modifier = Modifier
                             .size(64.dp)
                             .background(
-                                LocalPalette.current.background.color,
+                                LocalPalette.current.surface,
                                 CircleShape
                             )
                             .padding(8.dp)
@@ -620,7 +620,7 @@ fun EquipConfirmationDialog (
                     Button(
                         contentPadding = PaddingValues(8.dp),
                         colors = ButtonColors(
-                            contentColor =  LocalPalette.current.background.color,
+                            contentColor =  LocalPalette.current.surface,
                             containerColor =  LocalPalette.current.coreFamily.primary,
                             disabledContentColor = Color.Blue,
                             disabledContainerColor = Color.Green

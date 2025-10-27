@@ -125,7 +125,7 @@ fun HuntTimeoutPreferenceSeekbar(
             .wrapContentHeight(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = LocalPalette.current.surface.onColor
+            containerColor = LocalPalette.current.surfaceContainerHigh
         )
     ) {
 
@@ -225,7 +225,7 @@ private fun SeekbarThumb(
 ) {
     Box(
         modifier = modifier
-            .border(2.dp, LocalPalette.current.background.color, CircleShape)
+            .border(2.dp, LocalPalette.current.surface, CircleShape)
             .padding(2.dp)
             .clip(CircleShape)
             .background(LocalPalette.current.progressBarColorThumbOutline)

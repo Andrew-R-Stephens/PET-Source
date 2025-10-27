@@ -157,7 +157,7 @@ private fun InvestigationSoloContent(
     InvestigationPopup(
         modifier = Modifier
             .fillMaxSize(),
-        backgroundColor = LocalPalette.current.surface.color,
+        backgroundColor = LocalPalette.current.surfaceContainer,
         shown = popupUiState.isShown,
     ) { modifier ->
         popupUiState.ghostPopupRecord?.let { record ->

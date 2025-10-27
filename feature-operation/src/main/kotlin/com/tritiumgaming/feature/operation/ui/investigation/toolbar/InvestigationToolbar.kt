@@ -73,7 +73,7 @@ fun InvestigationToolbar(
                     modifier = Modifier
                         .padding(4.dp)
                         .wrapContentSize()
-                        .background(LocalPalette.current.surface.onColor, CircleShape)
+                        .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
                 ) {
                     stickyContentStart()
                 }
@@ -84,7 +84,7 @@ fun InvestigationToolbar(
                         .weight(1f, fill = true)
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .background(LocalPalette.current.surface.onColor, RoundedCornerShape(8.dp))
+                        .background(LocalPalette.current.surfaceContainerHigh, RoundedCornerShape(8.dp))
                         .horizontalScroll(scrollState)
                         .padding(4.dp)
                         .fadingEdges(
@@ -103,7 +103,7 @@ fun InvestigationToolbar(
                     modifier = Modifier
                         .padding(4.dp)
                         .wrapContentSize()
-                        .background(LocalPalette.current.surface.onColor, CircleShape)
+                        .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
                 ) {
                     stickyContentEnd()
                 }
@@ -122,7 +122,7 @@ fun InvestigationToolbar(
                     modifier = Modifier
                         .padding(4.dp)
                         .wrapContentSize()
-                        .background(LocalPalette.current.surface.onColor, CircleShape)
+                        .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
                 ) {
                     stickyContentStart()
                 }
@@ -133,7 +133,7 @@ fun InvestigationToolbar(
                         .weight(1f, fill = true)
                         .fillMaxHeight()
                         .wrapContentWidth()
-                        .background(LocalPalette.current.surface.onColor, RoundedCornerShape(8.dp))
+                        .background(LocalPalette.current.surfaceContainerHigh, RoundedCornerShape(8.dp))
                         .verticalScroll(scrollState)
                         .fadingEdges(scrollState, DisplayOrientation.VERTICAL, 64.dp, 64.dp),
                     verticalArrangement = Arrangement.SpaceEvenly,
@@ -145,7 +145,7 @@ fun InvestigationToolbar(
                     modifier = Modifier
                         .padding(4.dp)
                         .wrapContentSize()
-                        .background(LocalPalette.current.surface.onColor, CircleShape)
+                        .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
                 ) {
                     stickyContentEnd()
                 }

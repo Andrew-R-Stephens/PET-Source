@@ -70,7 +70,7 @@ fun RowScope.PrimaryPageButton(
             .padding(2.dp),
         colors = ButtonDefaults.buttonColors(
             disabledContainerColor = LocalPalette.current.selectedColor2,
-            containerColor = LocalPalette.current.surface.color
+            containerColor = LocalPalette.current.surfaceContainer
         ),
         onClick = {
             onClick()

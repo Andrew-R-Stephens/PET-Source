@@ -99,7 +99,7 @@ private fun NewsMessageContent(
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .padding(16.dp),
-            color = LocalPalette.current.surface.onColor,
+            color = LocalPalette.current.surfaceContainerHigh,
             shape = RoundedCornerShape(16.dp)
         ) {
 

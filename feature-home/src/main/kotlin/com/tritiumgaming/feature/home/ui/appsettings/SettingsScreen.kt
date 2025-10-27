@@ -104,7 +104,7 @@ private fun SettingsContent(
     Surface(
         modifier = modifier
             .fillMaxWidth(),
-        color = LocalPalette.current.surface.color
+        color = LocalPalette.current.surfaceContainer
     ) {
 
         Column(

@@ -54,7 +54,7 @@ fun CarouselComposable(
             .wrapContentHeight(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = LocalPalette.current.surface.onColor
+            containerColor = LocalPalette.current.surfaceContainerHigh
         )
     ) {
 

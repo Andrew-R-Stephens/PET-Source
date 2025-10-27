@@ -75,7 +75,7 @@ private fun TestPalette(
     ) {
         Column(
             Modifier
-                .background(LocalPalette.current.surface.color)
+                .background(LocalPalette.current.surfaceContainer)
                 .padding(4.dp)
         ) {
 

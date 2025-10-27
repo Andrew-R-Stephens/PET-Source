@@ -154,7 +154,7 @@ private fun LanguageItem(
                 onClick()
             }),
         shape = RoundedCornerShape(8.dp),
-        color = LocalPalette.current.surface.onColor,
+        color = LocalPalette.current.surfaceContainerHigh,
     ) {
 
         DynamicContentRow(

@@ -245,7 +245,7 @@ private fun AccountContentPortrait(
 
         IndeterminateCircularIndicator(
             color1 = LocalPalette.current.textFamily.body,
-            color2 = LocalPalette.current.surface.onColor,
+            color2 = LocalPalette.current.surfaceContainerHigh,
             isLoading = loadingState
         )
 
@@ -381,7 +381,7 @@ private fun AccountContentLandscape(
 
         IndeterminateCircularIndicator(
             color1 = LocalPalette.current.textFamily.body,
-            color2 = LocalPalette.current.surface.onColor,
+            color2 = LocalPalette.current.surfaceContainerHigh,
             isLoading = loadingState
         )
 
@@ -573,7 +573,7 @@ private fun LabeledValue(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(),
-        color = LocalPalette.current.surface.onColor,
+        color = LocalPalette.current.surfaceContainerHigh,
         shape = RoundedCornerShape(8.dp),
     ) {
         DynamicContentRow(
@@ -683,7 +683,7 @@ private fun PaletteListItem(
             .padding(8.dp)
             .fillMaxWidth()
             .wrapContentHeight(),
-        color = LocalPalette.current.surface.onColor,
+        color = LocalPalette.current.surfaceContainerHigh,
         shape = RoundedCornerShape(8.dp),
     ) {
 
@@ -742,7 +742,7 @@ private fun SignInComponent(
             .widthIn(max = 600.dp)
             .wrapContentHeight()
             .padding(8.dp),
-        color = LocalPalette.current.surface.onColor,
+        color = LocalPalette.current.surfaceContainerHigh,
         shape = RoundedCornerShape(8.dp),
     ) {
 
@@ -904,7 +904,7 @@ private fun SignOutButton(
         Text(
             text = stringResource(R.string.account_button_logout),
             style = LocalTypography.current.quaternary.bold,
-            color = LocalPalette.current.surface.onColor,
+            color = LocalPalette.current.surfaceContainerHigh,
             fontSize = 18.sp
         )
 
@@ -930,7 +930,7 @@ private fun DeactivateAccountButton(
             style = LocalTypography.current.quaternary.bold.copy(
                 textAlign = TextAlign.Center
             ),
-            color = LocalPalette.current.background.color,
+            color = LocalPalette.current.surface,
             fontSize = 18.sp
         )
 
@@ -998,7 +998,7 @@ private fun DeactivateAccountDialog(
             },
             contentPadding = PaddingValues(8.dp),
             colors = ButtonColors(
-                contentColor = LocalPalette.current.surface.onColor,
+                contentColor = LocalPalette.current.surfaceContainerHigh,
                 containerColor = LocalPalette.current.textFamily.body,
                 disabledContentColor = Color.Blue,
                 disabledContainerColor = Color.Green
@@ -1022,7 +1022,7 @@ private fun DeactivateAccountDialog(
             },
             contentPadding = PaddingValues(8.dp),
             colors = ButtonColors(
-                contentColor = LocalPalette.current.background.color,
+                contentColor = LocalPalette.current.surface,
                 containerColor = LocalPalette.current.coreFamily.primary,
                 disabledContentColor = Color.Blue,
                 disabledContainerColor = Color.Green
@@ -1073,7 +1073,7 @@ private fun LogoutDialog(
             },
             contentPadding = PaddingValues(8.dp),
             colors = ButtonColors(
-                contentColor = LocalPalette.current.surface.onColor,
+                contentColor = LocalPalette.current.surfaceContainerHigh,
                 containerColor = LocalPalette.current.textFamily.body,
                 disabledContentColor = Color.Blue,
                 disabledContainerColor = Color.Green
@@ -1097,7 +1097,7 @@ private fun LogoutDialog(
             },
             contentPadding = PaddingValues(8.dp),
             colors = ButtonColors(
-                contentColor = LocalPalette.current.background.color,
+                contentColor = LocalPalette.current.surface,
                 containerColor = LocalPalette.current.coreFamily.primary,
                 disabledContentColor = Color.Blue,
                 disabledContainerColor = Color.Green

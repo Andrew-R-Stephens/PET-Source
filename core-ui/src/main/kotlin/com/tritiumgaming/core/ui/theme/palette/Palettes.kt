@@ -271,13 +271,15 @@ private val PET_Base = ExtendedDefaultLight.copy(
         codex7 = Color(0xFFFFFFFF),
     ),
 
-    background = M3ColorFamily(
-        color = black
-    ),
-    surface = M3ColorFamily(
-        color = black,
-        onColor = Color(0xFF191616),
-    ),
+    surface = black,
+
+    surfaceContainer = black,
+    surfaceContainerHigh = Color(0xFF191616),
+
+//    surface = M3ColorFamily(
+//        color = black,
+//        onColor = Color(0xFF191616),
+//    ),
 
     switchTheme = SwitchColorFamily(
         trackInactive = Color(0xFF191616),
@@ -345,7 +347,6 @@ private val Colorblind = PET_Base.copy(
     primary = PET_Base.primary.copy(),
     secondary = PET_Base.secondary.copy(),
     tertiary = PET_Base.tertiary.copy(),
-    surface = PET_Base.surface.copy(),
     codexFamily = PET_Base.codexFamily.copy(),
     switchTheme = PET_Base.switchTheme.copy(),
     textFamily = PET_Base.textFamily.copy(),
@@ -357,7 +358,6 @@ private val Non_Colorblind = Colorblind.copy(
     primary = Colorblind.primary.copy(),
     secondary = Colorblind.secondary.copy(),
     tertiary = Colorblind.tertiary.copy(),
-    surface = Colorblind.surface.copy(),
     codexFamily = Colorblind.codexFamily.copy(),
     switchTheme = Colorblind.switchTheme.copy(),
     textFamily = Colorblind.textFamily.copy(),
@@ -370,7 +370,6 @@ val ClassicPalette = Non_Colorblind.copy(
     primary = Non_Colorblind.primary.copy(),
     secondary = Non_Colorblind.secondary.copy(),
     tertiary = Non_Colorblind.tertiary.copy(),
-    surface = Non_Colorblind.surface.copy(),
     codexFamily = Non_Colorblind.codexFamily.copy(),
     switchTheme = Non_Colorblind.switchTheme.copy(),
     textFamily = Non_Colorblind.textFamily.copy(),
@@ -383,7 +382,6 @@ private val Skin = ClassicPalette.copy(
     primary = ClassicPalette.primary.copy(),
     secondary = ClassicPalette.secondary.copy(),
     tertiary = ClassicPalette.tertiary.copy(),
-    surface = ClassicPalette.surface.copy(),
     codexFamily = ClassicPalette.codexFamily.copy(),
     switchTheme = ClassicPalette.switchTheme.copy(),
     textFamily = ClassicPalette.textFamily.copy()
@@ -396,7 +394,6 @@ private val Prestige = Skin.copy(
     primary = Skin.primary.copy(),
     secondary = Skin.secondary.copy(),
     tertiary = Skin.tertiary.copy(),
-    surface = Skin.surface.copy(),
     codexFamily = Skin.codexFamily.copy(),
     switchTheme = Skin.switchTheme.copy(),
     textFamily = Skin.textFamily.copy()
@@ -408,7 +405,6 @@ private val Event = Skin.copy(
     primary = Skin.primary.copy(),
     secondary = Skin.secondary.copy(),
     tertiary = Skin.tertiary.copy(),
-    surface = Skin.surface.copy(),
     codexFamily = Skin.codexFamily.copy(),
     switchTheme = Skin.switchTheme.copy(),
     textFamily = Skin.textFamily.copy()
@@ -420,7 +416,6 @@ private val Community = Skin.copy(
     primary = Skin.primary.copy(),
     secondary = Skin.secondary.copy(),
     tertiary = Skin.tertiary.copy(),
-    surface = Skin.surface.copy(),
     codexFamily = Skin.codexFamily.copy(),
     switchTheme = Skin.switchTheme.copy(),
     textFamily = Skin.textFamily.copy()
@@ -432,7 +427,6 @@ private val Special = Skin.copy(
     primary = Skin.primary.copy(),
     secondary = Skin.secondary.copy(),
     tertiary = Skin.tertiary.copy(),
-    surface = Skin.surface.copy(),
     codexFamily = Skin.codexFamily.copy(),
     switchTheme = Skin.switchTheme.copy(),
     textFamily = Skin.textFamily.copy()
@@ -448,8 +442,6 @@ val Monochromacy = Colorblind.copy(
     primary = PET_Base.primary.copy(),
     secondary = PET_Base.secondary.copy(),
     tertiary = PET_Base.tertiary.copy(),
-    background = PET_Base.background.copy(),
-    surface = PET_Base.surface.copy(),
     codexFamily = PET_Base.codexFamily.copy(),
 
     coreFamily = Colorblind.coreFamily.copy(
@@ -514,8 +506,6 @@ val Deuteranomaly = Colorblind.copy(
     primary = PET_Base.primary.copy(),
     secondary = PET_Base.secondary.copy(),
     tertiary = PET_Base.tertiary.copy(),
-    background = PET_Base.background.copy(),
-    surface = PET_Base.surface.copy(),
     codexFamily = PET_Base.codexFamily.copy(),
     switchTheme = SwitchColorFamily(
         thumbActive = black,
@@ -566,8 +556,6 @@ val Protanomaly = Colorblind.copy(
     primary = PET_Base.primary.copy(),
     secondary = PET_Base.secondary.copy(),
     tertiary = PET_Base.tertiary.copy(),
-    background = PET_Base.background.copy(),
-    surface = PET_Base.surface.copy(),
     codexFamily = PET_Base.codexFamily.copy(),
     switchTheme = PET_Base.switchTheme.copy(
         trackActive = blue_M175,
@@ -619,8 +607,6 @@ val Tritanomaly = Colorblind.copy(
     primary = PET_Base.primary.copy(),
     secondary = PET_Base.secondary.copy(),
     tertiary = PET_Base.tertiary.copy(),
-    background = PET_Base.background.copy(),
-    surface = PET_Base.surface.copy(),
     codexFamily = PET_Base.codexFamily.copy(),
     switchTheme = PET_Base.switchTheme.copy(
         trackInactive = black,
@@ -693,13 +679,14 @@ val Recruit = Prestige.copy(
         color = orange_M950,
         onColor = orange_M950
     ),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = orange_M950,
-        onColor = orange_M900,
-    ),
+    surfaceContainer = orange_M950,
+    surfaceContainerHigh = orange_M900,
+
+//    surface = Prestige.surface.copy(
+//        color = orange_M950,
+//        onColor = orange_M900,
+//    ),
 
     switchTheme = Prestige.switchTheme.copy(
         trackActive = orange_M500,
@@ -716,8 +703,8 @@ val Recruit = Prestige.copy(
         emphasis = orange_M250,
     ),
 
-    statusBarColor = orange_M950,
-    navigationBarColor = orange_M950,
+    // statusBarColor = orange_M950,
+    // navigationBarColor = orange_M950,
     // windowBackgroundColor = orange_M950,
     windowStrokeColor = white,
     light_active = orange_M150,
@@ -799,13 +786,14 @@ val Investigator = Prestige.copy(
         onColor = orange_M950
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = purple_M950,
-        onColor = purple_M900,
-    ),
+    surfaceContainer = purple_M950,
+    surfaceContainerHigh = purple_M900,
+
+//    surface = Prestige.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
 
     codexFamily = Prestige.codexFamily.copy(
         codex1 = Color(0xFF390721),
@@ -832,8 +820,8 @@ val Investigator = Prestige.copy(
         emphasis = purple_M250,
     ),
 
-    statusBarColor = purple_M950,
-    navigationBarColor = purple_M950,
+    // statusBarColor = purple_M950,
+    // navigationBarColor = purple_M950,
     // windowBackgroundColor = purple_M950,
     windowStrokeColor = white_M10,
 
@@ -939,16 +927,17 @@ val PrivateInvestigator = Prestige.copy(
         onColor = black
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = black,
-        onColor = black_M50,
-    ),
+    surfaceContainer = black,
+    surfaceContainerHigh = black_M50,
 
-    statusBarColor = black,
-    navigationBarColor = black,
+//    surface = Prestige.surface.copy(
+//        color =
+//        onColor = ,
+//    ),
+
+    // statusBarColor = black,
+    // navigationBarColor = black,
     // windowBackgroundColor = black,
     windowStrokeColor = white,
 
@@ -1049,13 +1038,14 @@ val Detective = Prestige.copy(
         onColor = green_M875
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = green_M875,
-        onColor = green_M825,
-    ),
+    surfaceContainer = green_M875,
+    surfaceContainerHigh = green_M825,
+
+//    surface = Prestige.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
     switchTheme = Prestige.switchTheme.copy(
         thumbActive = green_M825,
         trackActive = green_M25,
@@ -1063,8 +1053,8 @@ val Detective = Prestige.copy(
         trackInactive = green_M825,
     ),
 
-    statusBarColor = green_M875,
-    navigationBarColor = green_M875,
+    // statusBarColor = green_M875,
+    // navigationBarColor = green_M875,
     // windowBackgroundColor = green_M875,
     windowStrokeColor = white_M20,
 
@@ -1167,13 +1157,14 @@ val Technician = Prestige.copy(
         onColor = Color(0xFF050C04)
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = Color(0xFF050C04),
-        onColor = Color(0xFF081204),
-    ),
+    surfaceContainer = Color(0xFF050C04),
+    surfaceContainerHigh = Color(0xFF081204),
+
+//    surface = Prestige.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
 
     switchTheme = Prestige.switchTheme.copy(
         thumbActive = black,
@@ -1182,8 +1173,8 @@ val Technician = Prestige.copy(
         trackInactive = black,
     ),
 
-    statusBarColor = Color(0xFF050C04),
-    navigationBarColor = Color(0xFF081204),
+    // statusBarColor = Color(0xFF050C04),
+    // navigationBarColor = Color(0xFF081204),
     // windowBackgroundColor = Color(0xFF050C04),
     windowStrokeColor = white,
 
@@ -1289,13 +1280,14 @@ val Specialist = Prestige.copy(
         onColor = Color(0xFF070C05)
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = Color(0xFF070C05),
-        onColor = Color(0xFF0F1B0A),
-    ),
+    surfaceContainer = Color(0xFF070C05),
+    surfaceContainerHigh = Color(0xFF0F1B0A),
+
+//    surface = Prestige.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
     switchTheme = Prestige.switchTheme.copy(
         thumbActive = black,
         trackActive = green_M150,
@@ -1303,8 +1295,8 @@ val Specialist = Prestige.copy(
         trackInactive = black,
     ),
 
-    statusBarColor = Color(0xFF070C05),
-    navigationBarColor = Color(0xFF070C05),
+    // statusBarColor = Color(0xFF070C05),
+    // navigationBarColor = Color(0xFF070C05),
     // windowBackgroundColor = Color(0xFF070C05),
     windowStrokeColor = Color(0xFFFEFEFE),
 
@@ -1406,13 +1398,14 @@ val Analyst = Prestige.copy(
         onColor = red_M850
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = red_M850,
-        onColor = orange_M525,
-    ),
+    surfaceContainer = red_M850,
+    surfaceContainerHigh = orange_M525,
+
+//    surface = Prestige.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
 
     switchTheme = Prestige.switchTheme.copy(
         thumbActive = black,
@@ -1421,8 +1414,8 @@ val Analyst = Prestige.copy(
         trackInactive = black,
     ),
 
-    statusBarColor = red_M850,
-    navigationBarColor = red_M850,
+    // statusBarColor = red_M850,
+    // navigationBarColor = red_M850,
     // windowBackgroundColor = red_M850,
     windowStrokeColor = Color(0xFFA7968C),
 
@@ -1532,16 +1525,17 @@ val Agent = Prestige.copy(
         onColor = Color(0xFF101515)
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = Color(0xFF101515),
-        onColor = Color(0xFF131919),
-    ),
+    surfaceContainer = Color(0xFF101515),
+    surfaceContainerHigh = Color(0xFF131919),
 
-    statusBarColor = Color(0xFF101515),
-    navigationBarColor = Color(0xFF101515),
+//    surface = Prestige.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = Color(0xFF101515),
+    // navigationBarColor = Color(0xFF101515),
     // windowBackgroundColor = Color(0xFF0E1212),
     windowStrokeColor = white,
 
@@ -1648,16 +1642,17 @@ val Operator = Prestige.copy(
         onColor = blue_M950
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = blue_M950,
-        onColor = blue_M900,
-    ),
+    surfaceContainer = blue_M950,
+    surfaceContainerHigh = blue_M900,
 
-    statusBarColor = blue_M950,
-    navigationBarColor = blue_M950,
+//    surface = Prestige.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = blue_M950,
+    // navigationBarColor = blue_M950,
     // windowBackgroundColor = blue_M950,
     windowStrokeColor = white,
 
@@ -1763,16 +1758,17 @@ val Commissioner = Prestige.copy(
         onColor = black_M50
     ),
     tertiary = Prestige.tertiary.copy(),
-    background = Prestige.background.copy(
 
-    ),
-    surface = Prestige.surface.copy(
-        color = black_M50,
-        onColor = purple_M825,
-    ),
+    surfaceContainer = black_M50,
+    surfaceContainerHigh = purple_M825,
 
-    statusBarColor = black_M50,
-    navigationBarColor = black_M50,
+//    surface = Prestige.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = black_M50,
+    // navigationBarColor = black_M50,
     // windowBackgroundColor = black_M50,
     windowStrokeColor = white,
 
@@ -1881,16 +1877,17 @@ val Easter = Event.copy(
         onColor = Color(0xFF030C0A)
     ),
     tertiary = Event.tertiary.copy(),
-    background = Event.background.copy(
 
-    ),
-    surface = Event.surface.copy(
-        color = Color(0xFF030C0A),
-        onColor = Color(0xFF061915),
-    ),
+    surfaceContainer = Color(0xFF030C0A),
+    surfaceContainerHigh = Color(0xFF061915),
 
-    statusBarColor = Color(0xFF030C0A),
-    navigationBarColor = Color(0xFF030C0A),
+//    surface = Event.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = Color(0xFF030C0A),
+    // navigationBarColor = Color(0xFF030C0A),
     // windowBackgroundColor = Color(0xFF030C0A),
     windowStrokeColor = Color(0xFFE1EBE5),
     light_active = orange_M75,
@@ -1999,16 +1996,17 @@ val Halloween23 = Event.copy(
         onColor = Color(0xFF0C0400)
     ),
     tertiary = Event.tertiary.copy(),
-    background = Event.background.copy(
 
-    ),
-    surface = Event.surface.copy(
-        color = Color(0xFF0C0400),
-        onColor = Color(0xFF3F1602),
-    ),
+    surfaceContainer = Color(0xFF0C0400),
+    surfaceContainerHigh = Color(0xFF3F1602),
 
-    statusBarColor = Color(0xFF0C0400),
-    navigationBarColor = Color(0xFF0C0400),
+//    surface = Event.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = Color(0xFF0C0400),
+    // navigationBarColor = Color(0xFF0C0400),
     // windowBackgroundColor = Color(0xFF0C0400),
     windowStrokeColor = white,
     light_active = Color(0xFFEC700D),
@@ -2116,16 +2114,17 @@ val Holiday22 = Event.copy(
         onColor = Color(0xFF0D0E19)
     ),
     tertiary = Event.tertiary.copy(),
-    background = Event.background.copy(
 
-    ),
-    surface = Event.surface.copy(
-        color = Color(0xFF0D0E19),
-        onColor = Color(0xFF151529),
-    ),
+    surfaceContainer = Color(0xFF0D0E19),
+    surfaceContainerHigh = Color(0xFF151529),
 
-    statusBarColor = Color(0xFF0D0E19),
-    navigationBarColor = Color(0xFF0D0E19),
+//    surface = Event.surface.copy(
+//        color = ,
+//        onColor = ),
+//    ),
+
+    // statusBarColor = Color(0xFF0D0E19),
+    // navigationBarColor = Color(0xFF0D0E19),
     // windowBackgroundColor = Color(0xFF0D0E19),
     windowStrokeColor = Color(0xFFFEFEFE),
     light_active = blue_M125,
@@ -2230,16 +2229,17 @@ val Holiday23 = Event.copy(
         onColor = Color(0xFF1B1C33)
     ),
     tertiary = Event.tertiary.copy(),
-    background = Event.background.copy(
 
-    ),
-    surface = Event.surface.copy(
-        color = Color(0xFF1B1C33),
-        onColor = Color(0xFF131423),
-    ),
+    surfaceContainer = Color(0xFF1B1C33),
+    surfaceContainerHigh = Color(0xFF131423),
 
-    statusBarColor = Color(0xFF1B1C33),
-    navigationBarColor = Color(0xFF1B1C33),
+//    surface = Event.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = Color(0xFF1B1C33),
+    // navigationBarColor = Color(0xFF1B1C33),
     // windowBackgroundColor = Color(0xFF1B1C33),
     windowStrokeColor = white,
     light_active = Color(0xFFE9AD4C),
@@ -2354,16 +2354,17 @@ val Discord = Community.copy(
         onColor = Color(0xFF131517)
     ),
     tertiary = Community.tertiary.copy(),
-    background = Community.background.copy(
 
-    ),
-    surface = Community.surface.copy(
-        color = Color(0xFF131517),
-        onColor = blue_M850,
-    ),
+    surfaceContainer = Color(0xFF131517),
+    surfaceContainerHigh = blue_M850,
 
-    statusBarColor = Color(0xFF131517),
-    navigationBarColor = Color(0xFF131517),
+//    surface = Community.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = Color(0xFF131517),
+    // navigationBarColor = Color(0xFF131517),
     // windowBackgroundColor = Color(0xFF131517),
     windowStrokeColor = Color(0xFFF3F3F7),
     light_active = blue_M75,
@@ -2472,16 +2473,17 @@ val ContentCreator = Community.copy(
         onColor = black_M50
     ),
     tertiary = Community.tertiary.copy(),
-    background = Community.background.copy(
 
-    ),
-    surface = Community.surface.copy(
-        color = black_M50,
-        onColor = Color(0xFF190509),
-    ),
+    surfaceContainer = black_M50,
+    surfaceContainerHigh = Color(0xFF190509),
 
-    statusBarColor = black_M50,
-    navigationBarColor = black_M50,
+//    surface = Community.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = black_M50,
+    // navigationBarColor = black_M50,
     // windowBackgroundColor = black_M50,
     windowStrokeColor = white,
 
@@ -2588,16 +2590,17 @@ val Developer = Community.copy(
         onColor = black_M50
     ),
     tertiary = Community.tertiary.copy(),
-    background = Community.background.copy(
 
-    ),
-    surface = Community.surface.copy(
-        color = black_M50,
-        onColor = Color(0xFF171502),
-    ),
+    surfaceContainer = black_M50,
+    surfaceContainerHigh = Color(0xFF171502),
 
-    statusBarColor = black_M50,
-    navigationBarColor = black_M50,
+//    surface = Community.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = black_M50,
+    // navigationBarColor = black_M50,
     // windowBackgroundColor = black_M50,
     windowStrokeColor = Color(0xFFE2E2DF),
     light_active = yellow_M25,
@@ -2705,16 +2708,17 @@ val Translator = Community.copy(
         onColor = black
     ),
     tertiary = Community.tertiary.copy(),
-    background = Community.background.copy(
 
-    ),
-    surface = Community.surface.copy(
-        color = black,
-        onColor = black_M50,
-    ),
+    surfaceContainer = black,
+    surfaceContainerHigh = black_M50,
 
-    statusBarColor = black,
-    navigationBarColor = black,
+//    surface = Community.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = black,
+    // navigationBarColor = black,
     // windowBackgroundColor = black,
     windowStrokeColor = white,
 
@@ -2797,13 +2801,14 @@ val Winner = Community.copy(
         onColor = Color(0xFF060C10)
     ),
     tertiary = Community.tertiary.copy(),
-    background = Community.background.copy(
 
-    ),
-    surface = Community.surface.copy(
-        color = Color(0xFF060C10),
-        onColor = Color(0xFF091319)
-    ),
+    surfaceContainer = Color(0xFF060C10),
+    surfaceContainerHigh = Color(0xFF091319),
+
+//    surface = Community.surface.copy(
+//        color = ,
+//        onColor =
+//    ),
 
     codexFamily = Community.codexFamily.copy(
         codex1 = blue_M850,
@@ -2829,8 +2834,8 @@ val Winner = Community.copy(
         emphasis = Color(0xFFDABA80)
     ),
 
-    statusBarColor = Color(0xFF060C10),
-    navigationBarColor = Color(0xFF060C10),
+    // statusBarColor = Color(0xFF060C10),
+    // navigationBarColor = Color(0xFF060C10),
     // windowBackgroundColor = Color(0xFF060C10),
     windowStrokeColor = white,
 
@@ -2912,13 +2917,14 @@ val Artist = Community.copy(
         onColor = Color(0xFF0A0C0C)
     ),
     tertiary = Community.tertiary.copy(),
-    background = Community.background.copy(
 
-    ),
-    surface = Community.surface.copy(
-        color = Color(0xFF0A0C0C),
-        onColor = Color(0xFF131717)
-    ),
+    surfaceContainer = Color(0xFF0A0C0C),
+    surfaceContainerHigh = Color(0xFF131717),
+
+//    surface = Community.surface.copy(
+//        color = ,
+//        onColor =
+//    ),
 
     codexFamily = Community.codexFamily.copy(
         codex1 = Color(0xFF0A0C0C),
@@ -2945,8 +2951,8 @@ val Artist = Community.copy(
         emphasis = Color(0xFFE3D6F7),
     ),
 
-    statusBarColor = Color(0xFF0A0C0C),
-    navigationBarColor = Color(0xFF0A0C0C),
+    // statusBarColor = Color(0xFF0A0C0C),
+    // navigationBarColor = Color(0xFF0A0C0C),
     // windowBackgroundColor = Color(0xFF0A0C0C),
     windowStrokeColor = white,
 
@@ -3016,13 +3022,14 @@ val Whiteboard = Skin.copy(
     ),
     tertiary = Skin.tertiary.copy(),
 
-    background = Skin.background.copy(
-        color = Color(0xFFafb7be)
-    ),
-    surface = Skin.surface.copy(
-        color = white_M50,
-        onColor = white_M150,
-    ),
+    surface = Color(0xFFafb7be),
+    surfaceContainer = white_M50,
+    surfaceContainerHigh = white_M150,
+
+//    surface = Skin.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
 
     codexFamily = Skin.codexFamily.copy(
         codex1 = black_A75,
@@ -3047,8 +3054,8 @@ val Whiteboard = Skin.copy(
         emphasis = Color(0xFFf55656),
     ),
 
-    statusBarColor = white_M50,
-    navigationBarColor = white_M50,
+    // statusBarColor = white_M50,
+    // navigationBarColor = white_M50,
     // windowBackgroundColor = white_M50,
     windowStrokeColor = Color(0xFF383839),
 
@@ -3177,16 +3184,17 @@ val StrategemHero = Special.copy(
         onColor = Color(0xFF000B17)
     ),
     tertiary = Special.tertiary.copy(),
-    background = Special.background.copy(
 
-    ),
-    surface = Special.surface.copy(
-        color = Color(0xFF000B17),
-        onColor = Color(0xFF000E1E),
-    ),
+    surfaceContainer = Color(0xFF000B17),
+    surfaceContainerHigh = Color(0xFF000E1E),
 
-    statusBarColor = Color(0xFF000B17),
-    navigationBarColor = Color(0xFF000B17),
+//    surface = Special.surface.copy(
+//        color = ,
+//        onColor = ,
+//    ),
+
+    // statusBarColor = Color(0xFF000B17),
+    // navigationBarColor = Color(0xFF000B17),
     // windowBackgroundColor = Color(0xFF000B17),
     windowStrokeColor = white,
 

@@ -100,7 +100,7 @@ fun ReviewPopupComposable() {
             .wrapContentHeight(),
         shape = RoundedCornerShape(corner = CornerSize(30.dp)),
         colors = CardDefaults.cardColors(
-            containerColor = LocalPalette.current.surface.color
+            containerColor = LocalPalette.current.surfaceContainer
         ),
         border = BorderStroke(5.dp, LocalPalette.current.windowStrokeColor)
     ) {

@@ -11,57 +11,67 @@ import com.tritiumgaming.core.ui.theme.palette.common.SwitchColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.TextColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ThemeColorFamily
 
+/** Based on Material Design 3 color roles. Further customization as necessary.
+ * @see <a href="https://m3.material.io/styles/color/roles/">Style guide</a>*/
+
 data class ExtendedPalette(
 
-    /*val primary: Color,
-    val onPrimary: Color,
-    val primaryContainer: Color,
-    val onPrimaryContainer: Color,
-    val inversePrimary: Color,
+//    val primary: Color = Color.Unspecified,
+//    val onPrimary: Color = Color.Unspecified,
+//    val primaryContainer: Color = Color.Unspecified,
+//    val onPrimaryContainer: Color = Color.Unspecified,
+//
+//    val secondary: Color = Color.Unspecified,
+//    val onSecondary: Color = Color.Unspecified,
+//    val secondaryContainer: Color = Color.Unspecified,
+//    val onSecondaryContainer: Color = Color.Unspecified,
+//
+//    val tertiary: Color = Color.Unspecified,
+//    val onTertiary: Color = Color.Unspecified,
+//    val tertiaryContainer: Color = Color.Unspecified,
+//    val onTertiaryContainer: Color = Color.Unspecified,
 
-    val secondary: Color,
-    val onSecondary: Color,
-    val secondaryContainer: Color,
-    val onSecondaryContainer: Color,
+    val error: Color = Color.Unspecified,
+    val onError: Color = Color.Unspecified,
+    val errorContainer: Color = Color.Unspecified,
+    val onErrorContainer: Color = Color.Unspecified,
 
-    val tertiary: Color,
-    val onTertiary: Color,
-    val tertiaryContainer: Color,
-    val onTertiaryContainer: Color,
+    val primaryFixed: Color = Color.Unspecified,
+    val primaryFixedDim: Color = Color.Unspecified,
+    val onPrimaryFixed: Color = Color.Unspecified,
+    val onPrimaryFixedVariant: Color = Color.Unspecified,
 
-    val background: Color,
-    val onBackground: Color,
+    val secondaryFixed: Color = Color.Unspecified,
+    val secondaryFixedDim: Color = Color.Unspecified,
+    val onSecondaryFixed: Color = Color.Unspecified,
+    val onSecondaryFixedVariant: Color = Color.Unspecified,
 
-    val surface: Color,
-    val onSurface: Color,
-    val surfaceVariant: Color,
-    val onSurfaceVariant: Color,
-    val surfaceTint: Color,
-    val inverseSurface: Color,
-    val inverseOnSurface: Color,
+    val tertiaryFixed: Color = Color.Unspecified,
+    val tertiaryFixedDim: Color = Color.Unspecified,
+    val onTertiaryFixed: Color = Color.Unspecified,
+    val onTertiaryFixedVariant: Color = Color.Unspecified,
 
-    val outline: Color,
-    val outlineVariant: Color,
-    val scrim: Color,
+    val surfaceDim: Color = Color.Unspecified,
+    val surface: Color = Color.Unspecified,
+    val surfaceBright: Color = Color.Unspecified,
 
-    val surfaceBright: Color,
-    val surfaceDim: Color,
+    val surfaceContainerLowest: Color = Color.Unspecified,
+    val surfaceContainerLow: Color = Color.Unspecified,
+    val surfaceContainer: Color = Color.Unspecified,
+    val surfaceContainerHigh: Color = Color.Unspecified,
+    val surfaceContainerHighest: Color = Color.Unspecified,
 
-    val surfaceContainer: Color,
-    val surfaceContainerHigh: Color,
-    val surfaceContainerHighest: Color,
-    val surfaceContainerLow: Color,
-    val surfaceContainerLowest: Color,
+    val onSurface: Color = Color.Unspecified,
+    val onSurfaceVariant: Color = Color.Unspecified,
+    val outline: Color = Color.Unspecified,
+    val outlineVariant: Color = Color.Unspecified,
 
-    val secondaryFixed: Color,
-    val secondaryFixedDim: Color,
-    val onSecondaryFixed: Color,
-    val onSecondaryFixedVariant: Color,
+    val inverseSurface: Color = Color.Unspecified,
+    val inverseOnSurface: Color = Color.Unspecified,
+    val inversePrimary: Color = Color.Unspecified,
 
-    val tertiaryFixed: Color,
-    val tertiaryFixedDim: Color,
-    val onTertiaryFixed: Color,
-    val onTertiaryFixedVariant: Color,*/
+    val scrim: Color = Color.Unspecified,
+    val shadow: Color = Color.Unspecified,
 
     val extrasFamily: ExtrasFamily = ExtrasFamily(),
 
@@ -72,11 +82,10 @@ data class ExtendedPalette(
     val secondary: M3ColorFamily = M3ColorFamily(),
     val tertiary: M3ColorFamily = M3ColorFamily(),
 
-    val background: M3ColorFamily = M3ColorFamily(),
-    val surface: M3ColorFamily = M3ColorFamily(),
+    //val background: M3ColorFamily = M3ColorFamily(),
+    //val surface: M3ColorFamily = M3ColorFamily(),
 
     val inverse: M3ColorFamily = M3ColorFamily(),
-    val error: M3ColorFamily = M3ColorFamily(),
 
     val codexFamily: CodexColorFamily = CodexColorFamily(),
     val switchTheme: SwitchColorFamily = SwitchColorFamily(),
@@ -90,8 +99,8 @@ data class ExtendedPalette(
 
     val backgroundColor_mapviewOverlay: Color = Color.Unspecified,
 
-    val navigationBarColor: Color = surface.color,
-    val statusBarColor: Color = surface.color,
+//    val navigationBarColor: Color = surface.color,
+//    val statusBarColor: Color = surface.color,
 
     // val colorActionPrimary: Color = textFamily.body,
     // val colorActionSecondary: Color = Color.Unspecified,
@@ -121,8 +130,8 @@ data class ExtendedPalette(
     val selectedColor2: Color = Color.Unspecified,
     val unselectedColor: Color = Color.Unspecified,
 
-    // val navigationFooterIcon: Color = unselectedColor,
-    // val navigationFooterIconAlt: Color = Color.Unspecified,
+//     val navigationFooterIcon: Color = unselectedColor,
+//     val navigationFooterIconAlt: Color = Color.Unspecified,
 
     val positiveSelColor: Color = Color.Unspecified,
     val negativeSelColor: Color = Color.Unspecified,

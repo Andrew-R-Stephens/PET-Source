@@ -48,8 +48,8 @@ fun AccountCredits(
             .wrapContentSize(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            contentColor = LocalPalette.current.surface.onColor,
-            containerColor = LocalPalette.current.surface.onColor
+            contentColor = LocalPalette.current.surfaceContainerHigh,
+            containerColor = LocalPalette.current.surfaceContainerHigh
         )
     ) {
 

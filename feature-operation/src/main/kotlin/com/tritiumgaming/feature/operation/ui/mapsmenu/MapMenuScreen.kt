@@ -196,7 +196,7 @@ private fun MapCard(
         },
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = LocalPalette.current.surface.onColor
+            containerColor = LocalPalette.current.surfaceContainerHigh
         )
     ) {
         Image(
@@ -217,7 +217,7 @@ private fun MapCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(LocalPalette.current.surface.onColor)
+                .background(LocalPalette.current.surfaceContainerHigh)
                 .padding(8.dp)
                 .basicMarquee(
                     iterations = Int.MAX_VALUE,

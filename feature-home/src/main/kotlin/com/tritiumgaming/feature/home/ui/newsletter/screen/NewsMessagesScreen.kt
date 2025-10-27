@@ -373,7 +373,7 @@ private fun MessageCard(
     Surface(
         modifier = modifier
             .height(48.dp),
-        color = LocalPalette.current.surface.onColor,
+        color = LocalPalette.current.surfaceContainerHigh,
         shape = RoundedCornerShape(CornerSize(16.dp)),
         onClick = { onClick() }
     ) {
@@ -393,7 +393,7 @@ private fun MessageCard(
                         IconResource.NOTIFY.ToComposable(
                             modifier = modifier,
                             colors = IconVectorColors(
-                                fillColor = LocalPalette.current.background.color,
+                                fillColor = LocalPalette.current.surface,
                                 strokeColor = LocalPalette.current.inboxNotification
                             )
                         )

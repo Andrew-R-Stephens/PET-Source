@@ -62,7 +62,7 @@ fun OperationDetails(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(LocalPalette.current.surface.color)
+            .background(LocalPalette.current.surfaceContainer)
             .verticalScroll(rememberScrollState())
     ) {
         PhaseModifierDetails(investigationViewModel = investigationViewModel)

@@ -103,7 +103,7 @@ fun PaletteCard(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(24.dp)
-                            .background(LocalPalette.current.surface.onColor)
+                            .background(LocalPalette.current.surfaceContainerHigh)
                             .padding(4.dp),
                         text = stringResource(LocalPalette.current.extrasFamily.title),
                         color = LocalPalette.current.textFamily.emphasis,
@@ -191,7 +191,7 @@ fun PaletteCard(
                             .fillMaxWidth()
                             .wrapContentHeight()
                             .padding(vertical = 4.dp)
-                            .background(LocalPalette.current.surface.onColor.copy(alpha = .3f))
+                            .background(LocalPalette.current.surfaceContainerHigh.copy(alpha = .3f))
                             .padding(horizontal = 8.dp),
                         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
                         verticalAlignment = Alignment.CenterVertically
@@ -204,7 +204,7 @@ fun PaletteCard(
                             shape = RoundedCornerShape(2.dp),
                             contentPadding = PaddingValues(4.dp),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = LocalPalette.current.surface.onColor
+                                containerColor = LocalPalette.current.surfaceContainerHigh
                             ),
                         ) {
                             Text(
@@ -226,7 +226,7 @@ fun PaletteCard(
                                 .padding(8.dp),
                             painter = painterResource(R.drawable.ic_shop_cost),
                             contentDescription = "Cost",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.surface.onColor)
+                            colorFilter = ColorFilter.tint(LocalPalette.current.surfaceContainerHigh)
                         )
 
                         Text(
@@ -234,7 +234,7 @@ fun PaletteCard(
                                 .weight(1f, false),
                             text = "${marketPalette.buyCredits}",
                             fontSize = 24.sp,
-                            color = LocalPalette.current.surface.onColor,
+                            color = LocalPalette.current.surfaceContainerHigh,
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             )

@@ -221,7 +221,7 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        backgroundColor = LocalPalette.current.surface.onColor,
+                        backgroundColor = LocalPalette.current.surfaceContainerHigh,
                         foregroundColor = LocalPalette.current.negativeSelColor
                     )
                 }
@@ -231,7 +231,7 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        foregroundColor = LocalPalette.current.surface.onColor,
+                        foregroundColor = LocalPalette.current.surfaceContainerHigh,
                         backgroundColor = LocalPalette.current.negativeSelColor
                     )
                 }
@@ -241,7 +241,7 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        foregroundColor = LocalPalette.current.surface.onColor,
+                        foregroundColor = LocalPalette.current.surfaceContainerHigh,
                         backgroundColor = LocalPalette.current.positiveSelColor
                     )
                 }

@@ -84,7 +84,7 @@ class PETActivity : AppCompatActivity(),
 
                     Box(
                         modifier = Modifier.Companion
-                            .background(LocalPalette.current.surface.color)
+                            .background(LocalPalette.current.surfaceContainer)
                             .padding(it)
                             .padding(horizontal = 8.dp)
                     ) {

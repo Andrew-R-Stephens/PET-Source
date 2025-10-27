@@ -60,7 +60,7 @@ fun LanguageIconPreview() {
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.background.color,
+                fillColor = LocalPalette.current.surface,
                 strokeColor = LocalPalette.current.textFamily.body
             )
         )

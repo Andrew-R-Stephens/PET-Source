@@ -280,7 +280,7 @@ private fun VerticalPaginator(
 
     Column(
         modifier = modifier
-            .background(LocalPalette.current.background.color)
+            .background(LocalPalette.current.surface)
             .padding(8.dp)
             .onSizeChanged { paginatorHeight = it.height.toFloat() }
             .pointerInput(Unit) {
@@ -337,7 +337,7 @@ private fun HorizontalPaginator(
 
     Row(
         modifier = modifier
-            .background(LocalPalette.current.background.color)
+            .background(LocalPalette.current.surface)
             .padding(8.dp)
             .onSizeChanged { paginatorWidth = it.width.toFloat() }
             .pointerInput(Unit) {

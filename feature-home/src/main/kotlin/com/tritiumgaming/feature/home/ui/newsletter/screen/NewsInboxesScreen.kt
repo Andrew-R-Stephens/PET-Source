@@ -249,7 +249,7 @@ private fun InboxCard(
             .clickable {
                 onClick()
             },
-        color = LocalPalette.current.surface.onColor,
+        color = LocalPalette.current.surfaceContainerHigh,
         shape = RoundedCornerShape(CornerSize(16.dp)),
         onClick = { onClick() }
     ) {
@@ -270,7 +270,7 @@ private fun InboxCard(
                     icon.toIconResource().ToComposable(
                         modifier = modifier,
                         colors = IconVectorColors(
-                            fillColor = LocalPalette.current.background.color,
+                            fillColor = LocalPalette.current.surface,
                             strokeColor = LocalPalette.current.textFamily.body
                         ),
                     )
@@ -279,7 +279,7 @@ private fun InboxCard(
                     IconResource.NOTIFY.ToComposable(
                         modifier = modifier,
                         colors = IconVectorColors(
-                            fillColor = LocalPalette.current.background.color,
+                            fillColor = LocalPalette.current.surface,
                             strokeColor = LocalPalette.current.inboxNotification
                         )
                     )
