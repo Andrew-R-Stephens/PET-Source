@@ -240,16 +240,17 @@ val white_M300 = Color(0xFFC0C0C0)
 val white_M400 = Color(0xFF979797)
 val white_M500 = Color(0xFF676767)
 val white_M600 = Color(0xFF4A4A4A)
-val white_M700 = Color(0xFF404040)
-val white_M750 = Color(0xFF3A3A3A)
-val white_M800 = Color(0xFF333333)
-val white_M850 = Color(0xFF313131)
-val white_M900 = Color(0xFF2C2C2C)
+val white_M650 = Color(0xFF404040)
+val white_M700 = Color(0xFF3A3A3A)
+val white_M750 = Color(0xFF333333)
+val white_M800 = Color(0xFF313131)
+val white_M850 = Color(0xFF2C2C2C)
+val white_M900 = Color(0xFF1F1F1F)
+val white_M950 = Color(0xFF080808)
 
 /* Black */
 val black = Color(0xFF000000)
 val black_A75 = Color(0xBF000000)
-val black_M50 = Color(0xFF080808)
 
 /* Special */
 val discord_color_blurple = Color(0xFF5865F2)
