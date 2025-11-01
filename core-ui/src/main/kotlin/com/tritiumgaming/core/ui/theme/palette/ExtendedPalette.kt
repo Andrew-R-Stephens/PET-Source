@@ -6,7 +6,6 @@ import com.tritiumgaming.core.ui.theme.palette.common.BrandingColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CodexColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CoreColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ExtrasFamily
-import com.tritiumgaming.core.ui.theme.palette.common.M3ColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.SwitchColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.TextColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ThemeColorFamily
@@ -77,8 +76,6 @@ data class ExtendedPalette(
 
     val themeFamily: ThemeColorFamily = ThemeColorFamily(),
     val coreFamily: CoreColorFamily = CoreColorFamily(),
-
-    val inverse: M3ColorFamily = M3ColorFamily(),
 
     val codexFamily: CodexColorFamily = CodexColorFamily(),
     val switchTheme: SwitchColorFamily = SwitchColorFamily(),
