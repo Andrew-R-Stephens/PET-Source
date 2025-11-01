@@ -51,14 +51,14 @@ fun PreviewPatreonBranding() {
             ) {
 
                 Surface(
-                    color = palette.surface.color,
+                    color = palette.surface,
                 ) {
                     Column {
 
                         Text(
                             text = stringResource(palette.extrasFamily.title),
                             fontSize = 18.sp,
-                            color = LocalPalette.current.textFamily.body
+                            color = LocalPalette.current.onSurface
                         )
 
                         Row(
@@ -99,7 +99,7 @@ fun PreviewPatreonBranding() {
                                 OpenInNewIcon(
                                     colors = IconVectorColors.defaults(
                                         fillColor = palette.textFamily.body,
-                                        strokeColor = palette.surface.color,
+                                        strokeColor = palette.surface,
                                     )
                                 )
                             }

@@ -1,7 +1,5 @@
 package com.tritiumgaming.core.ui.common.menus
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,11 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,11 +29,174 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import org.jetbrains.annotations.TestOnly
-import com.tritiumgaming.core.resources.R as CoreRDrawables
 
+@Composable
+fun NavigationHeaderComposable(
+    modifier: Modifier = Modifier,
+    leftContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
+    rightContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
+    centerContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
+) {
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+        leftContent?.let { content ->
+            content(
+                Modifier
+            )
+        }
+
+        centerContent?.let { content ->
+            content(
+                Modifier
+                    .weight(1f)
+            )
+        }
+
+        rightContent?.let { content ->
+            content(
+                Modifier
+            )
+        }
+
+    }
+
+}
+
+@Composable
+fun RowScope.NavigationHeaderCenter(
+    modifier: Modifier = Modifier,
+    textContent: @Composable (modifier: Modifier) -> Unit,
+    onClick: () -> Unit = {}
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        textContent(
+            Modifier
+                .wrapContentHeight(unbounded = false)
+                .heightIn(0.dp, 36.dp)
+                .padding(4.dp)
+        )
+    }
+}
+
+@Composable
+fun RowScope.NavigationHeaderSideButton(
+    modifier: Modifier = Modifier,
+    iconContent: @Composable ((modifier: Modifier) -> Unit)? = null,
+    labelContent: @Composable ((modifier: Modifier) -> Unit)? = null,
+    onClick: () -> Unit = {}
+) {
+
+    Column(
+        modifier = modifier
+            .wrapContentHeight()
+            .wrapContentWidth()
+            .clickable(enabled = true, onClick = { onClick() }),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Box(
+            modifier = modifier
+                .size(48.dp)
+                .padding(8.dp)
+        ) {
+            iconContent?.let { content ->
+                content(
+                    Modifier
+                        .aspectRatio(1f)
+                        .fillMaxSize()
+                    )
+            }
+        }
+
+        labelContent?.let { content ->
+            content(
+                Modifier
+                    .wrapContentHeight(unbounded = false)
+                    .heightIn(0.dp, 36.dp)
+                    .padding(4.dp),
+            )
+        }
+    }
+}
+
+@Composable
+@Preview
+fun TestNavHeader() {
+    SelectiveTheme {
+        NavigationHeaderComposable(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(max = 64.dp),
+            leftContent = {
+                NavigationHeaderSideButton(
+                    iconContent = {
+                        Image(
+                            modifier = Modifier
+                                .aspectRatio(1f)
+                                .fillMaxSize()
+                                .widthIn(max = 48.dp),
+                            painter = painterResource(R.drawable.ic_arrow_60_left),
+                            colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body),
+                            contentDescription = ""
+                        )
+                    }
+                )
+            },
+            rightContent = {
+                NavigationHeaderSideButton(
+                    iconContent = {
+                        Image(
+                            modifier = Modifier
+                                .aspectRatio(1f)
+                                .fillMaxSize()
+                                .widthIn(max = 48.dp),
+                            painter = painterResource(R.drawable.ic_arrow_60_right),
+                            colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body),
+                            contentDescription = ""
+                        )
+                    }
+                )
+            },
+            centerContent = {
+                NavigationHeaderCenter(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    textContent = {
+                        BasicText(
+                            modifier = Modifier
+                                .weight(2f)
+                                .wrapContentHeight(),
+                            text = stringResource(R.string.objectives_title_optional_objective),
+                            style = LocalTypography.current.primary.regular.copy(
+                                color = LocalPalette.current.textFamily.primary,
+                                textAlign = TextAlign.Center
+                            ),
+                            maxLines = 1,
+                            autoSize = TextAutoSize.StepBased(
+                                minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+                        )
+                    }
+                )
+            }
+        )
+    }
+}
+
+/*
 @Composable
 fun NavigationHeaderComposable(
     modifier: Modifier = Modifier,
@@ -51,7 +213,7 @@ fun NavigationHeaderComposable(
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        SideButton(
+        NavigationHeaderSideButton(
             modifier = Modifier.weight(1f, fill = false),
             type = params.leftType,
             titleRes = params.leftTitleRes,
@@ -73,7 +235,7 @@ fun NavigationHeaderComposable(
             )
         }
 
-        SideButton(
+        NavigationHeaderSideButton(
             modifier = Modifier.weight(1f, fill = false),
             type = params.rightType,
             titleRes = params.rightTitleRes,
@@ -85,7 +247,7 @@ fun NavigationHeaderComposable(
 }
 
 @Composable
-private fun RowScope.SideButton(
+private fun RowScope.NavigationHeaderSideButton(
     modifier: Modifier = Modifier,
     type: PETImageButtonType = PETImageButtonType.NONE,
     @StringRes titleRes: Int = type.labelRes,
@@ -120,47 +282,6 @@ private fun RowScope.SideButton(
     }
 }
 
-@Composable
-fun PETImageButton(
-    modifier: Modifier = Modifier,
-    type: PETImageButtonType = PETImageButtonType.NONE,
-    @DrawableRes imageRes: Int = type.imageRes,
-) {
-
-    Box(
-        modifier = modifier
-            .heightIn(0.dp, 48.dp)
-            .padding(8.dp)
-    ) {
-
-        if(imageRes != 0) {
-            Image(
-                modifier = Modifier
-                    .aspectRatio(1f)
-                    .fillMaxSize(),
-                painter = painterResource(imageRes),
-                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body),
-                contentDescription = ""
-            )
-        } else {
-            Box(
-                modifier = modifier
-                    .aspectRatio(1f)
-                    .fillMaxSize(),
-            )
-        }
-    }
-}
-
-@Composable
-@TestOnly
-@Preview
-private fun TestPreview() {
-    PETImageButton(
-        type = PETImageButtonType.BACK
-    )
-}
-
 data class NavHeaderComposableParams(
     var leftType: PETImageButtonType = PETImageButtonType.NONE,
     var rightType: PETImageButtonType = PETImageButtonType.NONE,
@@ -170,20 +291,5 @@ data class NavHeaderComposableParams(
     var leftOnClick: () -> Unit = {},
     var rightOnClick: () -> Unit = {},
 )
+*/
 
-enum class PETImageButtonType(
-    @param:DrawableRes val imageRes: Int = 0,
-    @param:StringRes val labelRes: Int = 0
-) {
-    NONE(0, 0),
-    BACK(CoreRDrawables.drawable.ic_arrow_60_left),
-    FORWARD(CoreRDrawables.drawable.ic_arrow_60_right),
-    CONFIRM(
-        CoreRDrawables.drawable.ic_selector_pos_unsel,
-        R.string.settings_confirm),
-    CANCEL(
-        CoreRDrawables.drawable.ic_selector_neg_unsel,
-        R.string.settings_cancel),
-    PLAY(CoreRDrawables.drawable.ic_control_play),
-    PAUSE(CoreRDrawables.drawable.ic_control_pause)
-}

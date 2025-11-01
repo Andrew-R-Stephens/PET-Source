@@ -1,4 +1,4 @@
-package com.tritiumgaming.compose
+package com.tritiumgaming.phasmophobiaevidencepicker
 
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry

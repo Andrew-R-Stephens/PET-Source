@@ -1,6 +1,5 @@
 package com.tritiumgaming.core.ui.theme.palette.common
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.Color
 
