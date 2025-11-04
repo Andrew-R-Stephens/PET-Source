@@ -84,14 +84,27 @@ class PETActivity : AppCompatActivity(),
 
                     Box(
                         modifier = Modifier.Companion
-                            .background(LocalPalette.current.surfaceContainer)
+                            .background(LocalPalette.current.surface)
+                            .padding(it)
+                            //.padding(horizontal = 8.dp)
+                    ) {
+                        RootNavigation()
+                    }
+
+                }
+
+                /*Scaffold {
+
+                    Box(
+                        modifier = Modifier.Companion
+                            .background(LocalPalette.current.surface)
                             .padding(it)
                             .padding(horizontal = 8.dp)
                     ) {
                         RootNavigation()
                     }
 
-                }
+                }*/
 
             }
 

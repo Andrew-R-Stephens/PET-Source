@@ -21,7 +21,7 @@ fun PETScreen(
     Surface(
         modifier = modifier
             .fillMaxSize(),
-        color = LocalPalette.current.surfaceContainer
+        color = LocalPalette.current.surface
     ) {
 
         content()
