@@ -14,7 +14,7 @@ class FindNextAvailablePaletteUseCase(
     suspend operator fun invoke(
         currentUUID: String,
         direction: IncrementDirection
-    ): String {
+    ): Result<String> {
 
         val marketPalettes: List<AccountMarketPalette> =
             marketRepository.get()
@@ -51,7 +51,7 @@ class FindNextAvailablePaletteUseCase(
         if(increment >= uuidsFiltered.size) increment = 0
         if(increment < 0) increment = uuidsFiltered.size - 1
 
-        return uuidsFiltered[increment]
+        return Result.success(uuidsFiltered[increment])
     }
 
 }

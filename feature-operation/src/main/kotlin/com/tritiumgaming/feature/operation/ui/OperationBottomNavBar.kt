@@ -188,7 +188,7 @@ private fun OperationNavigationBottomBar(
                                 if (rememberDrawerState.isOpen) {
                                     IconVectorColors.defaults(
                                         fillColor =LocalPalette.current.surfaceContainer,
-                                        strokeColor = LocalPalette.current.textFamily.primary
+                                        strokeColor = LocalPalette.current.primary
                                     )
                                 } else {
                                     IconVectorColors.defaults(
@@ -207,7 +207,7 @@ private fun OperationNavigationBottomBar(
             NavigationBarItem(
                 colors = NavigationBarItemDefaults.colors(
                     indicatorColor = Color.Transparent,
-                    selectedIconColor = LocalPalette.current.textFamily.primary,
+                    selectedIconColor = LocalPalette.current.primary,
                     unselectedIconColor = LocalPalette.current.textFamily.body
                 ),
                 modifier = Modifier
@@ -229,7 +229,7 @@ private fun OperationNavigationBottomBar(
                         contentDescription = destination.name,
                         tint =
                             if (navController.currentDestination?.route == destination.route)
-                                LocalPalette.current.textFamily.primary
+                                LocalPalette.current.primary
                             else
                                 LocalPalette.current.textFamily.body
                     )
@@ -291,7 +291,7 @@ private fun OperationNavigationRail(
                                     if (rememberDrawerState.isOpen) {
                                         IconVectorColors.defaults(
                                             fillColor =LocalPalette.current.surfaceContainer,
-                                            strokeColor = LocalPalette.current.textFamily.primary
+                                            strokeColor = LocalPalette.current.primary
                                         )
                                     } else {
                                         IconVectorColors.defaults(
@@ -310,7 +310,7 @@ private fun OperationNavigationRail(
                 NavigationRailItem(
                     colors = NavigationRailItemDefaults.colors(
                         indicatorColor = Color.Transparent,
-                        selectedIconColor = LocalPalette.current.textFamily.primary,
+                        selectedIconColor = LocalPalette.current.primary,
                         unselectedIconColor = LocalPalette.current.textFamily.body
                     ),
                     modifier = Modifier
@@ -332,7 +332,7 @@ private fun OperationNavigationRail(
                             contentDescription = destination.name,
                             tint =
                                 if (navController.currentDestination?.route == destination.route)
-                                    LocalPalette.current.textFamily.primary
+                                    LocalPalette.current.primary
                                 else
                                     LocalPalette.current.textFamily.body
                         )

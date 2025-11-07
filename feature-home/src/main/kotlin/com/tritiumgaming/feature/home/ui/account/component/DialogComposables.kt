@@ -59,7 +59,7 @@ import com.tritiumgaming.core.ui.common.modifiers.progressGradient
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import kotlinx.coroutines.delay
 
-@Composable
+/*@Composable
 fun MarketplaceDialog(
     onConfirm: () -> Unit = { }
 ) {
@@ -175,7 +175,9 @@ fun MarketplaceDialog(
     Dialog(
         title = title,
         content = { content() },
-        confirmButton = { confirmButton() }
+        confirmButton = { confirmButton() },
+        backgroundColor = LocalPalette.current.surfaceContainer,
+        scrimColor = LocalPalette.current.scrim
     )
 }
 
@@ -212,18 +214,8 @@ fun LogoutDialog(
             },
             contentPadding = PaddingValues(8.dp),
             colors = ButtonColors(
-                contentColor = Color(
-                    getColorFromAttribute(
-                        LocalContext.current,
-                        R.attr.backgroundColorOnBackground
-                    )
-                ),
-                containerColor = Color(
-                    getColorFromAttribute(
-                        LocalContext.current,
-                        R.attr.textColorBody
-                    )
-                ),
+                contentColor = LocalPalette.current.surfaceContainerHigh,
+                containerColor = LocalPalette.current.surfaceContainerHigh,
                 disabledContentColor = Color.Blue,
                 disabledContainerColor = Color.Green
             ),
@@ -246,9 +238,8 @@ fun LogoutDialog(
             },
             contentPadding = PaddingValues(8.dp),
             colors = ButtonColors(
-                contentColor =
-                    LocalPalette.current.surface,
-                containerColor = LocalPalette.current.coreFamily.primary,
+                contentColor = LocalPalette.current.errorContainer,
+                containerColor = LocalPalette.current.errorContainer,
                 disabledContentColor = Color.Blue,
                 disabledContainerColor = Color.Green
             ),
@@ -264,7 +255,9 @@ fun LogoutDialog(
         title = title,
         content = { content() },
         cancelButton = { cancelButton() },
-        confirmButton = { confirmButton() }
+        confirmButton = { confirmButton() },
+        backgroundColor = LocalPalette.current.surfaceContainer,
+        scrimColor = LocalPalette.current.scrim
     )
 }
 
@@ -396,10 +389,12 @@ fun DeleteAccountDialog(
         title = title,
         content = { content() },
         cancelButton = { cancelButton() },
-        confirmButton = { confirmButton() }
+        confirmButton = { confirmButton() },
+        backgroundColor = LocalPalette.current.surfaceContainer,
+        scrimColor = LocalPalette.current.scrim
     )
 
-}
+}*/
 
 //@Preview
 @Composable
@@ -407,28 +402,19 @@ fun Dialog(
     title: String = "",
     content: @Composable () -> Unit = { },
     confirmButton: @Composable () -> Unit = { },
-    cancelButton: @Composable () -> Unit = { }
+    cancelButton: @Composable () -> Unit = { },
+    backgroundColor: Color = Color.Transparent,
+    scrimColor: Color = Color.Transparent,
 ) {
-    val backgroundColor = ColorUtils.interpolate(
-        LocalPalette.current.surface.toArgb(),
-        Color.Transparent.hashCode(), .75f)
-
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color(backgroundColor))
+        .background(scrimColor)
         .padding(8.dp)
     ) {
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
-                .background(
-                    Color(
-                        getColorFromAttribute(
-                            LocalContext.current,
-                            R.attr.backgroundColorOnBackground
-                        )
-                    )
-                )
+                .background(backgroundColor)
                 .padding(16.dp)
                 .align(Alignment.Center)
                 .wrapContentWidth()
@@ -448,9 +434,8 @@ fun Dialog(
                         modifier = Modifier
                             .size(64.dp)
                             .background(
-                                LocalPalette.current.surface,
-                                CircleShape
-                            )
+                                LocalPalette.current.onSurface,
+                                CircleShape)
                             .padding(8.dp)
                             .align(Alignment.Center)
                     )
@@ -461,7 +446,7 @@ fun Dialog(
                     maxLines = 1,
                     style = TextStyle(
                         fontSize = 24.sp,
-                        color =  LocalPalette.current.coreFamily.primary
+                        color =  LocalPalette.current.primary
                     )
                 )
 
@@ -572,10 +557,18 @@ fun EquipConfirmationDialog (
     ) {
         AnimatedVisibility(
             isVisible,
-            enter = slideIn(tween(500, easing = LinearOutSlowInEasing)) { fullSize ->
+            enter = slideIn(
+                tween(
+                    500,
+                    easing = LinearOutSlowInEasing)
+            ) { fullSize ->
                 IntOffset(0, fullSize.height)
             },
-            exit = slideOut(tween(250, easing = LinearOutSlowInEasing)) { fullSize ->
+            exit = slideOut(
+                tween(
+                    250,
+                    easing = LinearOutSlowInEasing)
+            ) { fullSize ->
                 IntOffset(0, fullSize.height)
             }
         ) {
@@ -598,9 +591,8 @@ fun EquipConfirmationDialog (
                         .background(
                             Color(
                                 getColorFromAttribute(
-                                    LocalContext.current, R.attr.backgroundColorOnBackground
-                                )
-                            ),
+                                    LocalContext.current,
+                                    R.attr.backgroundColorOnBackground)),
                             RoundedCornerShape(24)
                         )
                         .padding(8.dp)
@@ -609,7 +601,9 @@ fun EquipConfirmationDialog (
                     Text(
                         text = "$targetTitle?",
                         fontSize = 18.sp,
-                        color = Color(getColorFromAttribute(LocalContext.current, R.attr.textColorBody)),
+                        color = Color(getColorFromAttribute(
+                            LocalContext.current,
+                            R.attr.textColorBody)),
                         modifier = Modifier
                             .weight(1f)
                             .align(Alignment.CenterVertically)

@@ -53,7 +53,9 @@ fun MapMenuScreen(
     mapsViewModel: MapsViewModel
 ) {
 
-    OperationScreen (
+    OperationScreen(
+        modifier = Modifier
+            .padding(horizontal = 8.dp),
         navController = navController,
     ) {
 

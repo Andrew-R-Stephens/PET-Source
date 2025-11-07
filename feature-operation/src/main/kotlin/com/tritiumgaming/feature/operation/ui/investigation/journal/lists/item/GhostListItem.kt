@@ -117,6 +117,35 @@ fun LazyItemScope.GhostListItem(
                             painter = painterResource(id = R.drawable.ic_ev_omit),
                             contentScale = ContentScale.FillBounds,
                             contentDescription = "Omit Icon",
+                            colorFilter = ColorFilter.tint(LocalPalette.current.primary)
+                        )
+                    it < 0 ->
+                        Image(
+                            modifier = Modifier.fillMaxSize(),
+                            painter = painterResource(id = strikethroughIcon),
+                            contentScale = ContentScale.FillBounds,
+                            contentDescription = "Strikeout Icon",
+                            colorFilter = ColorFilter.tint(LocalPalette.current.primary)
+                        )
+                    it >= 3 ->
+                        Image(
+                            modifier = Modifier.fillMaxSize(),
+                            painter = painterResource(id = R.drawable.ic_selector_selected),
+                            contentScale = ContentScale.FillBounds,
+                            contentDescription = "Circle Icon",
+                            colorFilter = ColorFilter.tint(LocalPalette.current.tertiary)
+                        )
+                }
+            }
+
+            /*scoreState?.value?.let {
+                when {
+                    (rejectionState?.value == true) ->
+                        Image(
+                            modifier = Modifier.fillMaxSize(),
+                            painter = painterResource(id = R.drawable.ic_ev_omit),
+                            contentScale = ContentScale.FillBounds,
+                            contentDescription = "Omit Icon",
                             colorFilter = ColorFilter.tint(LocalPalette.current.strikethroughColor)
                         )
                     it < 0 ->
@@ -136,7 +165,7 @@ fun LazyItemScope.GhostListItem(
                             colorFilter = ColorFilter.tint(LocalPalette.current.positiveSelColor)
                         )
                 }
-            }
+            }*/
 
         }
 
@@ -206,10 +235,15 @@ private fun RowScope.EvidenceIcon(
             contentDescription = "Evidence Icon",
             colorFilter = ColorFilter.tint(
                 when (evidenceRuling) {
+                    NEGATIVE -> LocalPalette.current.primary
+                    POSITIVE -> LocalPalette.current.tertiary
+                    else -> LocalPalette.current.secondary
+                }
+                /*when (evidenceRuling) {
                     NEGATIVE -> LocalPalette.current.negativeSelColor
                     POSITIVE -> LocalPalette.current.positiveSelColor
                     else -> LocalPalette.current.neutralSelColor
-                }
+                }*/
             )
         )
 
@@ -221,8 +255,9 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        backgroundColor = LocalPalette.current.surfaceContainerHigh,
-                        foregroundColor = LocalPalette.current.negativeSelColor
+                        foregroundColor = LocalPalette.current.tertiary,
+                        backgroundColor = LocalPalette.current.surfaceContainer,
+                        //foregroundColor = LocalPalette.current.negativeSelColor
                     )
                 }
                 NEGATIVE -> {
@@ -231,8 +266,9 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        foregroundColor = LocalPalette.current.surfaceContainerHigh,
-                        backgroundColor = LocalPalette.current.negativeSelColor
+                        foregroundColor = LocalPalette.current.surfaceContainer,
+                        backgroundColor = LocalPalette.current.secondary
+                        //backgroundColor = LocalPalette.current.negativeSelColor,
                     )
                 }
                 else -> {
@@ -241,8 +277,9 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        foregroundColor = LocalPalette.current.surfaceContainerHigh,
-                        backgroundColor = LocalPalette.current.positiveSelColor
+                        foregroundColor = LocalPalette.current.surfaceContainer,
+                        backgroundColor = LocalPalette.current.primary
+                        //backgroundColor = LocalPalette.current.positiveSelColor
                     )
                 }
             }

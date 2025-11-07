@@ -1,13 +1,17 @@
 package com.tritiumgaming.feature.home.ui.newsletter.screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
@@ -18,7 +22,6 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
@@ -30,7 +33,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,9 +47,9 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.admob.BannerAd
-import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.common.prefabicon.NotificationIndicator
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.mappers.ToComposable
@@ -74,22 +79,19 @@ fun NewsInboxesScreen(
 
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
+                .fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            NavigationHeaderComposable(
-                params = NavHeaderComposableParams(
-                    leftType = PETImageButtonType.BACK,
-                    rightType = PETImageButtonType.NONE,
-                    centerTitleRes = R.string.newsletter_title,
-                    leftOnClick = { navController.popBackStack() }
-                )
+            NavigationHeader(
+                onLeftClick = { navController.popBackStack() }
             )
 
-            HorizontalDivider()
+            Spacer(
+                modifier = Modifier
+                    .height(8.dp)
+            )
 
             when(deviceConfiguration) {
                 DeviceConfiguration.MOBILE_PORTRAIT -> {
@@ -122,14 +124,59 @@ fun NewsInboxesScreen(
 
 }
 
+@Composable
+private fun NavigationHeader(
+    onLeftClick: () -> Unit = {},
+    onRightClick: () -> Unit = {}
+) {
+    NavigationHeaderComposable(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 64.dp),
+        leftContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+                iconContent = { iconModifier ->
+                    Image(
+                        modifier = iconModifier,
+                        painter = painterResource(R.drawable.ic_arrow_60_left),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                        contentDescription = ""
+                    )
+                }
+            ) { onLeftClick() }
+        },
+        rightContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+            )
+        },
+        centerContent = { outerModifier ->
+            NavigationHeaderCenter(
+                modifier = outerModifier,
+                textContent = { modifier ->
+                    BasicText(
+                        modifier = modifier,
+                        text = stringResource(R.string.newsletter_title),
+                        style = LocalTypography.current.primary.regular.copy(
+                            color = LocalPalette.current.primary,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+                    )
+                }
+            )
+        }
+    )
+}
 
 @Composable
 private fun ColumnScope.NewsInboxesContentPortrait(
     navController: NavController = rememberNavController(),
     newsletterViewModel: NewsletterViewModel
 ) {
-    val context = LocalContext.current
-
     val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
     val inboxes = inboxesUiState.value.inboxes
 
@@ -163,13 +210,23 @@ private fun ColumnScope.NewsInboxesContentPortrait(
                     modifier = Modifier
                         .padding(vertical = 4.dp),
                     title = inbox.title.toStringResource(),
-                    icon = inbox.icon,
-                    isActive = notificationState,
-                    onClick = {
-                        navController.navigate(
-                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}")
-                    }
-                )
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    iconContent = { modifier ->
+                        inbox.icon.toIconResource().ToComposable(
+                            modifier = modifier,
+                            colors = IconVectorColors(
+                                fillColor = LocalPalette.current.surface,
+                                strokeColor = LocalPalette.current.onSurface
+                            ),
+                        )
+                    },
+                    titleColor = LocalPalette.current.primary,
+                    isActive = notificationState
+                ) {
+                    navController.navigate(
+                        route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}"
+                    )
+                }
 
             }
 
@@ -183,8 +240,6 @@ private fun ColumnScope.NewsInboxesContentLandscape(
     navController: NavController = rememberNavController(),
     newsletterViewModel: NewsletterViewModel
 ) {
-    val context = LocalContext.current
-
     val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
     val inboxes = inboxesUiState.value.inboxes
 
@@ -218,14 +273,23 @@ private fun ColumnScope.NewsInboxesContentLandscape(
                     modifier = Modifier
                         .padding(vertical = 4.dp),
                     title = inbox.title.toStringResource(),
-                    icon = inbox.icon,
-                    isActive = notificationState,
-                    onClick = {
-                        navController.navigate(
-                            route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}"
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    iconContent = { modifier ->
+                        inbox.icon.toIconResource().ToComposable(
+                            modifier = modifier,
+                            colors = IconVectorColors(
+                                fillColor = LocalPalette.current.surface,
+                                strokeColor = LocalPalette.current.onSurface
+                            ),
                         )
-                    }
-                )
+                    },
+                    titleColor = LocalPalette.current.primary,
+                    isActive = notificationState
+                ) {
+                    navController.navigate(
+                        route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGES.route}/${inbox.id}"
+                    )
+                }
 
             }
 
@@ -238,18 +302,18 @@ private fun ColumnScope.NewsInboxesContentLandscape(
 private fun InboxCard(
     modifier: Modifier = Modifier,
     title: Int = R.string.newsletter_title,
-    icon: NewsletterIcon = NewsletterIcon.GENERAL_NEWS,
+    iconContent: @Composable (modifier: Modifier) -> Unit = {},
     isActive: Boolean = true,
+    titleColor: Color = Color.White,
+    containerColor: Color = Color.White,
     onClick: () -> Unit = {}
 ) {
 
     Surface(
         modifier = modifier
             .padding(8.dp)
-            .clickable {
-                onClick()
-            },
-        color = LocalPalette.current.surfaceContainerHigh,
+            .clickable { onClick() },
+        color = containerColor,
         shape = RoundedCornerShape(CornerSize(16.dp)),
         onClick = { onClick() }
     ) {
@@ -264,29 +328,21 @@ private fun InboxCard(
         ) {
             NotificationIndicator(
                 modifier = Modifier
-                    .size(98.dp),
+                    .size(64.dp),
                 isActive = isActive,
                 baseComponent = @Composable { modifier ->
-                    icon.toIconResource().ToComposable(
-                        modifier = modifier,
-                        colors = IconVectorColors(
-                            fillColor = LocalPalette.current.surface,
-                            strokeColor = LocalPalette.current.textFamily.body
-                        ),
-                    )
+                    iconContent(modifier)
                 },
                 badgeComponent = @Composable { modifier ->
                     IconResource.NOTIFY.ToComposable(
                         modifier = modifier,
                         colors = IconVectorColors(
-                            fillColor = LocalPalette.current.surface,
-                            strokeColor = LocalPalette.current.inboxNotification
+                            fillColor = LocalPalette.current.onError,
+                            strokeColor = LocalPalette.current.error
                         )
                     )
                 },
-            ) {
-                onClick()
-            }
+            ) { onClick() }
 
             var rememberOverflow by remember { mutableStateOf(false) }
             Box(
@@ -302,7 +358,7 @@ private fun InboxCard(
                 BasicText(
                     text = stringResource(title),
                     style = LocalTypography.current.primary.regular.copy(
-                        color = LocalPalette.current.textFamily.primary,
+                        color = titleColor,
                         textAlign = TextAlign.Center
                     ),
                     softWrap = true,
@@ -325,9 +381,10 @@ private fun InboxCard(
 
 @Composable
 fun PullToRefresh(
+    modifier: Modifier = Modifier,
     isRefreshing: Boolean,
     onRefresh: () -> Unit,
-    modifier: Modifier = Modifier,
+    contentAlignment: Alignment = Alignment.TopCenter,
     content: @Composable () -> Unit
 ) {
     val state = rememberPullToRefreshState()
@@ -337,6 +394,7 @@ fun PullToRefresh(
         state = state,
         isRefreshing = isRefreshing,
         onRefresh = onRefresh,
+        contentAlignment = contentAlignment
     ) {
         content()
     }
@@ -357,21 +415,51 @@ private fun InboxButtonPreview() {
                 modifier = Modifier
                     .padding(vertical = 4.dp),
                 title = R.string.newsletter_inbox_title_general,
-                icon = NewsletterIcon.GENERAL_NEWS
+                containerColor = LocalPalette.current.surfaceContainer,
+                titleColor = LocalPalette.current.primary,
+                iconContent = { modifier ->
+                    NewsletterIcon.GENERAL_NEWS.toIconResource().ToComposable(
+                        modifier = modifier,
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.surface,
+                            strokeColor = LocalPalette.current.onSurface
+                        ),
+                    )
+                },
             )
 
             InboxCard(
                 modifier = Modifier
                     .padding(vertical = 4.dp),
                 title = R.string.newsletter_inbox_title_phasmophobia,
-                icon = NewsletterIcon.PET_CHANGELOG
+                containerColor = LocalPalette.current.surfaceContainer,
+                titleColor = LocalPalette.current.primary,
+                iconContent = { modifier ->
+                    NewsletterIcon.PET_CHANGELOG.toIconResource().ToComposable(
+                        modifier = modifier,
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.surface,
+                            strokeColor = LocalPalette.current.onSurface
+                        ),
+                    )
+                },
             )
 
             InboxCard(
                 modifier = Modifier
                     .padding(vertical = 4.dp),
                 title = R.string.newsletter_inbox_title_pet,
-                icon = NewsletterIcon.PHASMOPHOBIA_CHANGELOG
+                containerColor = LocalPalette.current.surfaceContainer,
+                titleColor = LocalPalette.current.primary,
+                iconContent = { modifier ->
+                    NewsletterIcon.PHASMOPHOBIA_CHANGELOG.toIconResource().ToComposable(
+                        modifier = modifier,
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.surface,
+                            strokeColor = LocalPalette.current.onSurface
+                        ),
+                    )
+                },
             )
 
         }

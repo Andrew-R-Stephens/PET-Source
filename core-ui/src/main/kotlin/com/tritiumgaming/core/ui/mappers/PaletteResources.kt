@@ -22,7 +22,7 @@ import com.tritiumgaming.core.ui.theme.palette.PrivateInvestigator
 import com.tritiumgaming.core.ui.theme.palette.Protanomaly
 import com.tritiumgaming.core.ui.theme.palette.Recruit
 import com.tritiumgaming.core.ui.theme.palette.Specialist
-import com.tritiumgaming.core.ui.theme.palette.StrategemHero
+import com.tritiumgaming.core.ui.theme.palette.StratagemHero
 import com.tritiumgaming.core.ui.theme.palette.Technician
 import com.tritiumgaming.core.ui.theme.palette.Translator
 import com.tritiumgaming.core.ui.theme.palette.Tritanomaly
@@ -58,5 +58,5 @@ fun PaletteType.toPaletteResource(): ExtendedPalette =
         PaletteType.TRANSLATOR -> Translator
         PaletteType.WINNER -> Winner
         PaletteType.ARTIST -> Artist
-        PaletteType.STRATAGEM_HERO -> StrategemHero
+        PaletteType.STRATAGEM_HERO -> StratagemHero
     }

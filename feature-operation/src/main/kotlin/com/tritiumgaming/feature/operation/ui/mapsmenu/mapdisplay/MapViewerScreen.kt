@@ -452,7 +452,7 @@ private fun UiControllerPortrait(
 
     Column(
         modifier = modifier
-            .background(LocalPalette.current.backgroundColor_mapviewOverlay),
+            .background(LocalPalette.current.scrim.copy(alpha = .75f)),
         verticalArrangement = Arrangement.spacedBy(2.dp),
     ) {
 
@@ -622,7 +622,8 @@ private fun UiControllerLandscape(
         Row(
             modifier = Modifier
                 .height(48.dp)
-                .background(LocalPalette.current.backgroundColor_mapviewOverlay)
+                //.background(LocalPalette.current.backgroundColor_mapviewOverlay)
+                .background(LocalPalette.current.scrim.copy(alpha = .75f))
                 .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -695,7 +696,8 @@ private fun UiControllerLandscape(
                 modifier = Modifier
                     .width(48.dp)
                     .fillMaxHeight()
-                    .background(LocalPalette.current.backgroundColor_mapviewOverlay)
+                    //.background(LocalPalette.current.backgroundColor_mapviewOverlay)
+                    .background(LocalPalette.current.scrim.copy(alpha = .75f))
                     .padding(8.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -766,7 +768,8 @@ private fun UiControllerLandscape(
             modifier = Modifier
                 //.height(48.dp)
                 .wrapContentHeight()
-                .background(LocalPalette.current.backgroundColor_mapviewOverlay),
+                //.background(LocalPalette.current.backgroundColor_mapviewOverlay)
+                .background(LocalPalette.current.scrim.copy(alpha = .75f)),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

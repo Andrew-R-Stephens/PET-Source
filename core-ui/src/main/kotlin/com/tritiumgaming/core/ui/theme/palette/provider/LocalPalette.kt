@@ -23,7 +23,7 @@ import com.tritiumgaming.core.ui.theme.palette.PrivateInvestigator
 import com.tritiumgaming.core.ui.theme.palette.Protanomaly
 import com.tritiumgaming.core.ui.theme.palette.Recruit
 import com.tritiumgaming.core.ui.theme.palette.Specialist
-import com.tritiumgaming.core.ui.theme.palette.StrategemHero
+import com.tritiumgaming.core.ui.theme.palette.StratagemHero
 import com.tritiumgaming.core.ui.theme.palette.Technician
 import com.tritiumgaming.core.ui.theme.palette.Translator
 import com.tritiumgaming.core.ui.theme.palette.Tritanomaly
@@ -59,7 +59,7 @@ val LocalPalettesMap = mapOf(
     Pair("8xkSw89x50Zwgr4tGd6z5X0a7", Winner),
     Pair("88kEPt48wGs0ZxR4n7gtM3OTe", Artist),
     Pair("tempWhiteboard", Whiteboard),
-    Pair("tempStratHero", StrategemHero),
+    Pair("tempStratHero", StratagemHero),
 )
 
 private val LocalPalettesList = LocalPalettesMap.toList()

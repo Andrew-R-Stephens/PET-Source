@@ -251,8 +251,8 @@ private fun ColumnScope.LogoSection(
                 .weight(1f),
 
             colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.surface,
-                strokeColor = LocalPalette.current.textFamily.body
+                fillColor = LocalPalette.current.surfaceContainerLow,
+                strokeColor = LocalPalette.current.secondary
             )
         )
 
@@ -262,7 +262,7 @@ private fun ColumnScope.LogoSection(
                 .height(48.dp),
             text = stringResource(R.string.titlescreen_description),
             style = LocalTypography.current.primary.regular.copy(
-                color = LocalPalette.current.splashTextColor,
+                color = LocalPalette.current.primary,
                 textAlign = TextAlign.Center
             ),
             maxLines = 2,
@@ -293,8 +293,10 @@ private fun RowScope.LogoSection(
                 .weight(1f, false),
 
             colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.surface,
-                strokeColor = LocalPalette.current.textFamily.body
+                fillColor = LocalPalette.current.surfaceContainerLow,
+                strokeColor = LocalPalette.current.secondary
+                // fillColor = LocalPalette.current.surface,
+                // strokeColor = LocalPalette.current.onSurface
             )
         )
 
@@ -308,7 +310,7 @@ private fun RowScope.LogoSection(
                 .wrapContentHeight(),
             text = stringResource(R.string.titlescreen_description),
             style = LocalTypography.current.primary.regular.copy(
-                color = LocalPalette.current.splashTextColor,
+                color = LocalPalette.current.primary,
                 textAlign = TextAlign.Center
             ),
             maxLines = 2,
@@ -379,8 +381,9 @@ private fun LanguageButton(
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.surface,
-                strokeColor = LocalPalette.current.textFamily.body
+                //fillColor = LocalPalette.current.onSecondary,
+                fillColor = LocalPalette.current.surfaceContainerLow,
+                strokeColor = LocalPalette.current.secondary
             )
         ) {
             onClick()
@@ -401,7 +404,7 @@ private fun LanguageButton(
                 .wrapContentSize(),
             text = currentLanguage,
             style = LocalTypography.current.primary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
+                color = LocalPalette.current.onSurface,
                 textAlign = TextAlign.Center,
                 fontSize = 18.sp
             ),
@@ -443,8 +446,9 @@ private fun StartButton(
                     .fillMaxHeight()
                     .width(IntrinsicSize.Max),
                 colors = IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.surface,
-                    strokeColor = LocalPalette.current.textFamily.body
+                    //fillColor = LocalPalette.current.onSecondary,
+                    fillColor = LocalPalette.current.surfaceContainerLow,
+                    strokeColor = LocalPalette.current.secondary
                 )
             )
 
@@ -454,7 +458,7 @@ private fun StartButton(
                     .fillMaxWidth(),
                 text = stringResource(R.string.titlescreen_button).uppercase(),
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.body,
+                    color = LocalPalette.current.secondary,
                     textAlign = TextAlign.Center,
                 ),
                 maxLines = 1,
@@ -492,8 +496,9 @@ private fun HeaderNavBar(
                 .padding(4.dp),
 
             colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.surface,
-                strokeColor = LocalPalette.current.textFamily.body
+                //fillColor = LocalPalette.current.onSecondary,
+                fillColor = LocalPalette.current.surfaceContainerLow,
+                strokeColor = LocalPalette.current.secondary
             )
         )
     }
@@ -502,8 +507,9 @@ private fun HeaderNavBar(
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.surface,
-                strokeColor = LocalPalette.current.textFamily.body
+                //fillColor = LocalPalette.current.onSecondary,
+                fillColor = LocalPalette.current.surfaceContainerLow,
+                strokeColor = LocalPalette.current.secondary
             )
         )
     }
@@ -512,8 +518,9 @@ private fun HeaderNavBar(
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.surface,
-                strokeColor = LocalPalette.current.textFamily.body
+                //fillColor = LocalPalette.current.onSecondary,
+                fillColor = LocalPalette.current.surfaceContainerLow,
+                strokeColor = LocalPalette.current.secondary
             )
         )
     }
@@ -522,8 +529,9 @@ private fun HeaderNavBar(
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                fillColor = LocalPalette.current.surface,
-                strokeColor = LocalPalette.current.textFamily.body
+                //fillColor = LocalPalette.current.onSecondary,
+                fillColor = LocalPalette.current.surfaceContainerLow,
+                strokeColor = LocalPalette.current.secondary
             )
         ) {
             navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
@@ -544,8 +552,9 @@ private fun HeaderNavBar(
         ) {
             OpenInNewIcon(
                 colors = IconVectorColors.defaults(
-                    fillColor = LocalPalette.current.textFamily.body,
-                    strokeColor = LocalPalette.current.surfaceContainer,
+                    //fillColor = LocalPalette.current.onSecondary,
+                    fillColor = LocalPalette.current.surfaceContainerLow,
+                    strokeColor = LocalPalette.current.secondary
                 )
             )
         }
@@ -571,8 +580,9 @@ private fun HeaderNavBar(
             .size(48.dp)
             .padding(4.dp),
         colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.surface,
-            strokeColor = LocalPalette.current.textFamily.body
+            //fillColor = LocalPalette.current.onSecondary,
+            fillColor = LocalPalette.current.surfaceContainerLow,
+            strokeColor = LocalPalette.current.secondary
         )
     ) }
 
@@ -581,16 +591,19 @@ private fun HeaderNavBar(
             modifier = Modifier
                 .size(48.dp)
                 .padding(4.dp),
-            borderColor =  LocalPalette.current.textFamily.body,
-            backgroundColor = LocalPalette.current.surfaceContainerHigh,
+            borderColor =  LocalPalette.current.secondary,
+            backgroundColor = LocalPalette.current.surfaceContainerLow,
+            // borderColor =  LocalPalette.current.secondary,
+            // backgroundColor = LocalPalette.current.onSecondary,
             placeholder = {
                 IconResource.PERSON.ToComposable(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(8.dp),
                     colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.surface,
-                        strokeColor = LocalPalette.current.textFamily.body
+                        //fillColor = LocalPalette.current.onSecondary,
+                        fillColor = LocalPalette.current.surfaceContainerLow,
+                        strokeColor = LocalPalette.current.secondary
                     )
                 )
             },
@@ -605,10 +618,10 @@ private fun HeaderNavBar(
                         firstName = names.getOrNull(0) ?: "",
                         lastName = names.getOrNull(1) ?: "",
                         textStyle = LocalTypography.current.primary.bold.copy(
-                            color = LocalPalette.current.textFamily.body,
+                            color = LocalPalette.current.onSurface,
                             textAlign = TextAlign.Center,
                             shadow = Shadow(
-                                color = LocalPalette.current.surfaceContainerHigh,
+                                color = LocalPalette.current.surfaceContainer,
                                 blurRadius = 8f
                             ),
                         )
@@ -628,15 +641,15 @@ private fun HeaderNavBar(
     val personIcon: @Composable () -> Unit = { PersonIcon(
         modifier = Modifier,
         colors = IconVectorColors.defaults(
-            strokeColor = LocalPalette.current.textFamily.body
+            strokeColor = LocalPalette.current.onSurface
         )
     ) }
 
     val storeIcon: @Composable () -> Unit = { StoreIcon(
         modifier = Modifier,
         colors = IconVectorColors.defaults(
-            fillColor = LocalPalette.current.textFamily.body,
-            strokeColor = LocalPalette.current.textFamily.body
+            fillColor = LocalPalette.current.secondary,
+            strokeColor = LocalPalette.current.secondary
         )
     ) }
 
@@ -684,8 +697,8 @@ private fun HeaderNavBar(
             }
         },
         colors = IconDropdownMenuColors(
-            primaryContentBackground = LocalPalette.current.surfaceContainerHigh,
-            dropdownContentBackground = LocalPalette.current.surfaceContainerHigh
+            primaryContentBackground = LocalPalette.current.surfaceContainer,
+            dropdownContentBackground = LocalPalette.current.surfaceContainer
         )
     ) { false }
 
@@ -696,8 +709,9 @@ private fun HeaderNavBar(
             IconResource.NEWS.ToComposable(
                 modifier = modifier,
                 colors = IconVectorColors(
-                    fillColor = LocalPalette.current.surface,
-                    strokeColor = LocalPalette.current.textFamily.body
+                    //fillColor = LocalPalette.current.onSecondary,
+                    fillColor = LocalPalette.current.surfaceContainerLow,
+                    strokeColor = LocalPalette.current.secondary
                 ),
             )
         },
@@ -705,8 +719,8 @@ private fun HeaderNavBar(
             IconResource.NOTIFY.ToComposable(
                 modifier = modifier,
                 colors = IconVectorColors(
-                    fillColor = LocalPalette.current.surface,
-                    strokeColor = LocalPalette.current.inboxNotification
+                    fillColor = LocalPalette.current.onError,
+                    strokeColor = LocalPalette.current.error
                 )
             )
         },
@@ -746,8 +760,8 @@ private fun HeaderNavBar(
             }
         },
         colors = IconDropdownMenuColors(
-            primaryContentBackground = LocalPalette.current.surfaceContainerHigh,
-            dropdownContentBackground = LocalPalette.current.surfaceContainerHigh
+            primaryContentBackground = LocalPalette.current.surfaceContainer,
+            dropdownContentBackground = LocalPalette.current.surfaceContainer
         )
     ) { false }
 }

@@ -34,7 +34,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
-import com.tritiumgaming.core.ui.theme.palette.StrategemHero
+import com.tritiumgaming.core.ui.theme.palette.StratagemHero
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
@@ -49,7 +49,7 @@ import org.jetbrains.annotations.TestOnly
 @Composable
 fun PaletteTester() {
     TestM3Palette(
-        palette = StrategemHero
+        palette = StratagemHero
     )
 }
 

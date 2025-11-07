@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
-import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
+import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterInboxUiState
+import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterInboxesUiState
+import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterRefreshingUiState
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterInboxesUseCase
@@ -73,7 +75,7 @@ class NewsletterViewModel(
             )
     val newsletterPreferencesState = _newsletterPreferencesState*/
 
-    private val _refreshUiState = MutableStateFlow<NewsletterRefreshingUiState>(
+    private val _refreshUiState = MutableStateFlow(
         NewsletterRefreshingUiState())
     val refreshUiState = _refreshUiState.asStateFlow()
 
@@ -85,10 +87,12 @@ class NewsletterViewModel(
 
     fun loadInboxes(
         onStart: () -> Unit = {},
-        onComplete: () -> Unit = {},
+        onSuccess: () -> Unit = {},
+        onFailure: () -> Unit = {},
     ) {
 
         viewModelScope.launch {
+            onStart()
 
             try {
                 val fetchedInboxes = fetchNewsletterInboxesUseCase().getOrThrow()
@@ -98,8 +102,11 @@ class NewsletterViewModel(
                         "Fetched inbox: ${inbox.title} ${inbox.channel?.messages?.map { "${ it.title }\n" }}")
                 }
 
+                onSuccess()
+
             } catch (e: Exception) {
                 e.printStackTrace()
+                onFailure()
             }
 
         }
@@ -218,7 +225,7 @@ class NewsletterViewModel(
                     )
                 }
             },
-            onComplete = {
+            onSuccess = {
                 _refreshUiState.update {
                     it.copy(
                         isRefreshing = false,
@@ -263,18 +270,5 @@ class NewsletterViewModel(
         private val MIN_REFRESH_WAIT_TIME = 30.seconds.inWholeMilliseconds
     }
 
-    data class NewsletterRefreshingUiState(
-        val isRefreshing: Boolean = false,
-        val lastRefreshEpoch: Long = 0L
-    )
-
-    data class NewsletterInboxesUiState(
-        val inboxes: List<NewsletterInboxUiState> = emptyList()
-    )
-
-    data class NewsletterInboxUiState (
-        val inbox: NewsletterInbox,
-        val lastReadDate: Long = 0L
-    )
 
 }

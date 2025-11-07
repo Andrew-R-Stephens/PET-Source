@@ -41,7 +41,7 @@ fun OperationNavigationDrawer(
         gesturesEnabled = false,
         drawerContent = {
             ModalDrawerSheet(
-                drawerContainerColor = LocalPalette.current.surfaceContainerHigh,
+                drawerContainerColor = LocalPalette.current.surfaceContainer,
                 drawerTonalElevation = 16.dp
             ) {
                 Column(
@@ -61,7 +61,7 @@ fun OperationNavigationDrawer(
                                 text = stringResource(R.string.general_navigation_home),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp,
-                                    color = LocalPalette.current.textFamily.body
+                                    color = LocalPalette.current.onSurface
                                 )
                             )
                         },
@@ -70,7 +70,7 @@ fun OperationNavigationDrawer(
                             Icon(
                                 painter = painterResource(R.drawable.ic_nav_home),
                                 contentDescription = null,
-                                tint = LocalPalette.current.textFamily.body
+                                tint = LocalPalette.current.onSurface
                             )
                         },
                         onClick = {
@@ -84,7 +84,7 @@ fun OperationNavigationDrawer(
                         style = LocalTypography.current.primary.bold.copy (
                             fontSize = 24.sp,
                         ),
-                        color = LocalPalette.current.textFamily.primary
+                        color = LocalPalette.current.primary
                     )
 
                     NavigationDrawerItem(
@@ -97,7 +97,7 @@ fun OperationNavigationDrawer(
                                 text = stringResource(R.string.investigation_section_title_evidence),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp,
-                                    color = LocalPalette.current.textFamily.body
+                                    color = LocalPalette.current.onSurface
                                 )
                             )
                         },
@@ -106,7 +106,7 @@ fun OperationNavigationDrawer(
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_evidence),
                                 contentDescription = null,
-                                tint = LocalPalette.current.textFamily.body
+                                tint = LocalPalette.current.onSurface
                             )
                         },
                         onClick = {
@@ -124,7 +124,7 @@ fun OperationNavigationDrawer(
                                 text = stringResource(R.string.general_tasks_button),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp,
-                                    color = LocalPalette.current.textFamily.body
+                                    color = LocalPalette.current.onSurface
                                 )
                             )
                         },
@@ -133,7 +133,7 @@ fun OperationNavigationDrawer(
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_tasks),
                                 contentDescription = null,
-                                tint = LocalPalette.current.textFamily.body
+                                tint = LocalPalette.current.onSurface
                             )
                         },
                         onClick = {
@@ -151,7 +151,7 @@ fun OperationNavigationDrawer(
                                 text = stringResource(R.string.general_maps_button),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp,
-                                    color = LocalPalette.current.textFamily.body
+                                    color = LocalPalette.current.onSurface
                                 )
                             )
                         },
@@ -160,7 +160,7 @@ fun OperationNavigationDrawer(
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_mapmenu2),
                                 contentDescription = null,
-                                tint = LocalPalette.current.textFamily.body
+                                tint = LocalPalette.current.onSurface
                             )
                         },
                         onClick = {
@@ -176,7 +176,7 @@ fun OperationNavigationDrawer(
                         style = LocalTypography.current.primary.bold.copy (
                             fontSize = 24.sp,
                         ),
-                        color = LocalPalette.current.textFamily.primary
+                        color = LocalPalette.current.primary
                     )
 
                     NavigationDrawerItem(
@@ -189,7 +189,7 @@ fun OperationNavigationDrawer(
                                 text = stringResource(R.string.general_codex_button),
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     fontSize = 18.sp,
-                                    color = LocalPalette.current.textFamily.body
+                                    color = LocalPalette.current.onSurface
                                 )
                             )
                         },
@@ -198,7 +198,7 @@ fun OperationNavigationDrawer(
                             Icon(
                                 painter = painterResource(R.drawable.icon_nav_codex),
                                 contentDescription = null,
-                                tint = LocalPalette.current.textFamily.body
+                                tint = LocalPalette.current.onSurface
                             )
                         },
                         onClick = {

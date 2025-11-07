@@ -52,6 +52,8 @@ fun ObjectivesScreen(
 ) {
 
     OperationScreen(
+        modifier = Modifier
+            .padding(horizontal = 8.dp),
         navController = navController,
     ) {
 
@@ -109,7 +111,7 @@ private fun ObjectivesContentPortrait(
                     .padding(4.dp),
                 text = stringResource(R.string.objectives_title_optional_objectives),
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                    color = LocalPalette.current.primary,
                     textAlign = TextAlign.Center
                 ),
                 autoSize = TextAutoSize.StepBased(minFontSize = 24.sp, stepSize = 5.sp)
@@ -137,7 +139,7 @@ private fun ObjectivesContentPortrait(
                     .padding(4.dp),
                 text = stringResource(R.string.objectives_title_investigation_debrief),
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                    color = LocalPalette.current.primary,
                     textAlign = TextAlign.Center
                 ),
                 autoSize = TextAutoSize.StepBased(minFontSize = 24.sp, stepSize = 5.sp)
@@ -189,7 +191,7 @@ private fun ObjectivesContentLandscape(
                     .padding(4.dp),
                 text = stringResource(R.string.objectives_title_optional_objectives),
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                    color = LocalPalette.current.primary,
                     textAlign = TextAlign.Center
                 ),
                 autoSize = TextAutoSize.StepBased(minFontSize = 24.sp, stepSize = 5.sp)
@@ -220,7 +222,7 @@ private fun ObjectivesContentLandscape(
                     .padding(4.dp),
                 text = stringResource(R.string.objectives_title_investigation_debrief),
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                    color = LocalPalette.current.primary,
                     textAlign = TextAlign.Center
                 ),
                 autoSize = TextAutoSize.StepBased(minFontSize = 24.sp, stepSize = 5.sp)

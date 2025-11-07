@@ -95,6 +95,8 @@ fun InvestigationSoloScreen(
 ) {
 
     OperationScreen(
+        modifier = Modifier
+            .padding(horizontal = 8.dp),
         navController = navController
     ) {
         InvestigationSoloContent(
@@ -157,7 +159,7 @@ private fun InvestigationSoloContent(
     InvestigationPopup(
         modifier = Modifier
             .fillMaxSize(),
-        backgroundColor = LocalPalette.current.surfaceContainer,
+        backgroundColor = LocalPalette.current.scrim,
         shown = popupUiState.isShown,
     ) { modifier ->
         popupUiState.ghostPopupRecord?.let { record ->
@@ -482,7 +484,7 @@ private fun OperationToolbar(
                     if(section == ToolbarUiState.Category.TOOL_CONFIG) {
                         IconVectorColors.defaults(
                             fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.textFamily.primary,
+                            strokeColor = LocalPalette.current.primary,
                         )
                     } else {
                         IconVectorColors.defaults(
@@ -507,7 +509,7 @@ private fun OperationToolbar(
                     if(section == ToolbarUiState.Category.TOOL_ANALYZER) {
                         IconVectorColors.defaults(
                             fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.textFamily.primary,
+                            strokeColor = LocalPalette.current.primary,
                         )
                     } else {
                         IconVectorColors.defaults(
@@ -531,7 +533,7 @@ private fun OperationToolbar(
                 imageVector = getExitVector(
                     if(section == ToolbarUiState.Category.TOOL_FOOTSTEP) {
                         IconVectorColors.defaults(
-                            fillColor = LocalPalette.current.textFamily.primary,
+                            fillColor = LocalPalette.current.primary,
                             strokeColor = Color.Transparent,
                         )
                     } else {

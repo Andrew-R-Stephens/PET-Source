@@ -12,13 +12,11 @@ private fun MarketplaceBillingScreenPreview() {
 }
 
 @Composable
-fun MarketplaceBillingScreen(
-    //content: @Composable () -> Unit
-) {
+fun MarketplaceBillingScreen() {
 
-    MainMenuScreen(
-        content = { MarketplaceBillingContent() }
-    )
+    MainMenuScreen {
+        MarketplaceBillingContent()
+    }
 
 }
 

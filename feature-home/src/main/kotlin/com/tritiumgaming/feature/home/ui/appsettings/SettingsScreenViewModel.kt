@@ -217,10 +217,16 @@ class SettingsScreenViewModel(
 
     fun setNextAvailablePalette(direction: IncrementDirection) {
         viewModelScope.launch {
-            val uuid = findNextAvailablePaletteUseCase(
-                currentPaletteUUID.value.uuid, direction
-            )
-            saveCurrentPaletteUUID(uuid)
+            try {
+                val result = findNextAvailablePaletteUseCase(
+                    currentPaletteUUID.value.uuid, direction
+                )
+                result.getOrNull()?.let { uuid ->
+                    saveCurrentPaletteUUID(uuid)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -268,7 +274,6 @@ class SettingsScreenViewModel(
     fun getTypographyByUUID(uuid: String): ExtendedTypography =
         getTypographyByUUIDUseCase(uuid, TypographyType.CLASSIC)
             .toTypographyResource()
-
 
     private fun initialDataStoreSetupEvent() {
         initGlobalPreferencesDataStoreUseCase()

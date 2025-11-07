@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.menus.PETImageButton
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.other.PETImageButton
+import com.tritiumgaming.core.ui.common.other.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette

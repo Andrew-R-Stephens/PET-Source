@@ -1,23 +1,28 @@
 package com.tritiumgaming.feature.home.ui.appsettings
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,10 +37,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -67,64 +73,365 @@ fun SettingsScreen(
         modifier = modifier
     ) {
 
-        SettingsContent(
-            settingsViewModel = settingsViewModel
-        ) { navController.popBackStack() }
-
-        /*
-        val paletteState = settingsViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
-        val typographyState = settingsViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
-
-        val palette = settingsViewModel.getPaletteByUUID(paletteState.value.uuid)
-        val typography = settingsViewModel.getTypographyByUUID(typographyState.value.uuid)
-        */
-
-        /*
-        ThemeConfigurationControl(
-            palette = palette,
-            typography = typography
+        Column(
+            modifier = Modifier
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            SettingsContent(
-                settingsViewModel = settingsViewModel
-            ) { navController.popBackStack() }
-        }
-        */
 
+            NavigationHeader(
+                onLeftClick = { navController.popBackStack() }
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+            val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+            when(deviceConfiguration) {
+                DeviceConfiguration.MOBILE_PORTRAIT -> {
+                    SettingsContentPortrait(
+                        settingsViewModel = settingsViewModel,
+                    )
+                }
+                DeviceConfiguration.MOBILE_LANDSCAPE,
+                DeviceConfiguration.TABLET_PORTRAIT,
+                DeviceConfiguration.TABLET_LANDSCAPE,
+                DeviceConfiguration.DESKTOP -> {
+                    SettingsContentLandscape(
+                        settingsViewModel = settingsViewModel
+                    )
+                }
+            }
+
+        }
     }
 
 }
 
 @Composable
-private fun SettingsContent(
+private fun NavigationHeader(
+    onLeftClick: () -> Unit = {},
+    onRightClick: () -> Unit = {}
+) {
+    NavigationHeaderComposable(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 64.dp),
+        leftContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+                iconContent = { iconModifier ->
+                    Image(
+                        modifier = iconModifier,
+                        painter = painterResource(R.drawable.ic_arrow_60_left),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                        contentDescription = ""
+                    )
+                }
+            ) { onLeftClick() }
+        },
+        rightContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+            )
+        },
+        centerContent = { outerModifier ->
+            NavigationHeaderCenter(
+                modifier = outerModifier,
+                textContent = { modifier ->
+                    BasicText(
+                        modifier = modifier,
+                        text = stringResource(R.string.settings_title),
+                        style = LocalTypography.current.primary.regular.copy(
+                            color = LocalPalette.current.primary,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+                    )
+                }
+            )
+        }
+    )
+}
+
+@Composable
+private fun ColumnScope.SettingsContentPortrait(
     modifier: Modifier = Modifier,
     settingsViewModel: SettingsScreenViewModel =
-        viewModel(factory = SettingsScreenViewModel.Factory),
-    onBack: () -> Unit = {}
+        viewModel(factory = SettingsScreenViewModel.Factory)
 ) {
-    Surface(
+    Column(
         modifier = modifier
-            .fillMaxWidth(),
-        color = LocalPalette.current.surfaceContainer
+            .weight(1f)
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
     ) {
+
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(4.dp),
+            text = stringResource(R.string.settings_generalsettings),
+            color = LocalPalette.current.secondary,
+            style = LocalTypography.current.primary.bold,
+            textAlign = TextAlign.Start,
+            fontSize = 18.sp,
+            maxLines = 1,
+        )
 
         Column(
             modifier = Modifier,
-            verticalArrangement = Arrangement.spacedBy(24.dp, Alignment.Top),
         ) {
-            NavigationHeaderComposable(
-                params = NavHeaderComposableParams(
-                    leftType = PETImageButtonType.BACK,
-                    centerTitleRes = R.string.settings_title,
-                    leftOnClick = { onBack() }
-                )
+
+            LabeledSwitch(
+                label = stringResource(R.string.settings_screenalwayson),
+                state = settingsViewModel.screensaverPreference,
+                textColor = LocalPalette.current.onSurface,
+                onChange = {
+                    settingsViewModel.setScreenSaverPreference(it)
+                }
             )
 
-            HorizontalDivider()
+            LabeledSwitch(
+                label = stringResource(R.string.settings_networktitle),
+                state = settingsViewModel.networkPreference,
+                textColor = LocalPalette.current.onSurface,
+                onChange = {
+                    settingsViewModel.setNetworkPreference(it)
+                }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Column(
+            modifier = Modifier,
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        ) {
+
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(4.dp),
+                text = stringResource(R.string.settings_extrasettings),
+                color = LocalPalette.current.secondary,
+                style = LocalTypography.current.primary.bold,
+                textAlign = TextAlign.Start,
+                fontSize = 18.sp,
+                maxLines = 1,
+            )
+
+            Column(
+                modifier = Modifier,
+            ) {
+                LabeledSwitch(
+                    label = stringResource(R.string.settings_enableLeftHandSupport),
+                    state = settingsViewModel.rTLPreference,
+                    textColor = LocalPalette.current.onSurface,
+                    onChange = { settingsViewModel.setRTLPreference(it) }
+                )
+
+                LabeledSwitch(
+                    label = stringResource(R.string.settings_enablehuntaudioqueue),
+                    state = settingsViewModel.huntWarningAudioPreference,
+                    textColor = LocalPalette.current.onSurface,
+                    onChange = {
+                        settingsViewModel.setHuntWarningAudioPreference(it) }
+                )
+
+                LabeledSwitch(
+                    label = stringResource(R.string.settings_enableGhostReorder),
+                    state = settingsViewModel.ghostReorderPreference,
+                    textColor = LocalPalette.current.onSurface,
+                    onChange = { settingsViewModel.setGhostReorderPreference(it) }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Column(
+                modifier = Modifier,
+            ) {
+                HuntTimeoutPreferenceSeekbar(
+                    settingsViewModel = settingsViewModel,
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    textColor = LocalPalette.current.onSurface,
+                    inactiveTrackColor = LocalPalette.current.progressBarColorStart,
+                    activeTrackColor = LocalPalette.current.progressBarColorThumbGradientStart,
+                    thumbOutlineColor = LocalPalette.current.progressBarColorStart,
+                    thumbInnerColor = LocalPalette.current.progressBarColorThumbGradientStart,
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Column(
+            modifier = Modifier,
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        ) {
+
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(4.dp),
+                text = stringResource(R.string.settings_appearancesettings),
+                color = LocalPalette.current.secondary,
+                style = LocalTypography.current.primary.bold,
+                textAlign = TextAlign.Start,
+                fontSize = 18.sp,
+                maxLines = 1,
+            )
+
+            val paletteState = settingsViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
+            val paletteLabel = settingsViewModel.getPaletteByUUID(paletteState.value.uuid)
+
+            CarouselComposable(
+                title = R.string.settings_colortheme_title,
+                state = settingsViewModel.currentPaletteUUID,
+                label = stringResource(paletteLabel.extrasFamily.title),
+                painterResource = painterResource(LocalPalette.current.extrasFamily.badge),
+                containerColor = LocalPalette.current.surfaceContainer,
+                primaryTextColor = LocalPalette.current.onSurface,
+                secondaryTextColor = LocalPalette.current.onSurfaceVariant,
+                leftOnClick = {
+                    settingsViewModel.setNextAvailablePalette(
+                        IncrementDirection.BACKWARD
+                    )
+                },
+                rightOnClick = {
+                    settingsViewModel.setNextAvailablePalette(
+                        IncrementDirection.FORWARD
+                    )
+                }
+            )
+
+            val typographyState = settingsViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
+            val typographyLabel = settingsViewModel.getTypographyByUUID(typographyState.value.uuid)
+
+            CarouselComposable(
+                title = R.string.settings_fontstylesettings,
+                state = MutableStateFlow(LocalTypography.current.extrasFamily.title),
+                label = stringResource(typographyLabel.extrasFamily.title),
+                containerColor = LocalPalette.current.surfaceContainer,
+                imageTint = LocalPalette.current.onSurface,
+                primaryTextColor = LocalPalette.current.onSurface,
+                secondaryTextColor = LocalPalette.current.onSurfaceVariant,
+                painterResource = painterResource(R.drawable.ic_font_family),
+                leftOnClick = {
+                    settingsViewModel.setNextAvailableTypography(
+                        IncrementDirection.BACKWARD
+                    )
+                },
+                rightOnClick = {
+                    settingsViewModel.setNextAvailableTypography(
+                        IncrementDirection.FORWARD
+                    )
+                }
+            )
+
+        }
+
+        /*if(permissionsUiState.value.isPrivacyOptionsRequired) {
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             Column(
                 modifier = Modifier
-                    .weight(1f)
-                    .verticalScroll(rememberScrollState()),
+                    .wrapContentHeight()
+                    .fillMaxWidth()
+            ) {
+
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(4.dp),
+                    text = stringResource(R.string.settings_adsconsentcontrolsettings),
+                    color = LocalPalette.current.primary,
+                    style = LocalTypography.current.primary.bold,
+                    textAlign = TextAlign.Start,
+                    fontSize = 18.sp,
+                    maxLines = 1,
+                )
+
+                EditButton {
+                    activity?.let {
+                        permissionsViewModel.showPrivacyOptionsForm(activity = it) {  }
+                    }
+                }
+
+            }
+        }*/
+
+    }
+}
+
+@Composable
+private fun SettingsContentLandscape(
+    modifier: Modifier = Modifier,
+    settingsViewModel: SettingsScreenViewModel =
+        viewModel(factory = SettingsScreenViewModel.Factory)
+) {
+    Row(
+        modifier = modifier
+            .fillMaxSize(),
+        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
+    ) {
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        ) {
+
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(4.dp),
+                text = stringResource(R.string.settings_generalsettings),
+                color = LocalPalette.current.secondary,
+                style = LocalTypography.current.primary.bold,
+                textAlign = TextAlign.Start,
+                fontSize = 18.sp,
+                maxLines = 1,
+            )
+
+            Column(
+                modifier = Modifier,
+            ) {
+
+                LabeledSwitch(
+                    label = stringResource(R.string.settings_screenalwayson),
+                    state = settingsViewModel.screensaverPreference,
+                    textColor = LocalPalette.current.onSurface,
+                    onChange = {
+                        settingsViewModel.setScreenSaverPreference(it)
+                    }
+                )
+
+                LabeledSwitch(
+                    label = stringResource(R.string.settings_networktitle),
+                    state = settingsViewModel.networkPreference,
+                    textColor = LocalPalette.current.onSurface,
+                    onChange = {
+                        settingsViewModel.setNetworkPreference(it)
+                    }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Column(
+                modifier = Modifier,
                 verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
             ) {
 
@@ -133,184 +440,166 @@ private fun SettingsContent(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         .padding(4.dp),
-                    text = stringResource(R.string.settings_generalsettings),
-                    color = LocalPalette.current.textFamily.primary,
+                    text = stringResource(R.string.settings_extrasettings),
+                    color = LocalPalette.current.secondary,
+                    style = LocalTypography.current.primary.bold,
+                    textAlign = TextAlign.Start,
+                    fontSize = 18.sp,
+                    maxLines = 1,
+                )
+                Column(
+                    modifier = Modifier,
+                ) {
+                    LabeledSwitch(
+                        label = stringResource(R.string.settings_enableLeftHandSupport),
+                        state = settingsViewModel.rTLPreference,
+                        textColor = LocalPalette.current.onSurface,
+                        onChange = { settingsViewModel.setRTLPreference(it) }
+                    )
+
+                    LabeledSwitch(
+                        label = stringResource(R.string.settings_enablehuntaudioqueue),
+                        textColor = LocalPalette.current.onSurface,
+                        state = settingsViewModel.huntWarningAudioPreference,
+                        onChange = {
+                            settingsViewModel.setHuntWarningAudioPreference(it) }
+                    )
+
+                    LabeledSwitch(
+                        label = stringResource(R.string.settings_enableGhostReorder),
+                        textColor = LocalPalette.current.onSurface,
+                        state = settingsViewModel.ghostReorderPreference,
+                        onChange = { settingsViewModel.setGhostReorderPreference(it) }
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Column(
+                    modifier = Modifier,
+                ) {
+                    HuntTimeoutPreferenceSeekbar(
+                        settingsViewModel = settingsViewModel,
+                        containerColor = LocalPalette.current.surfaceContainer,
+                        textColor = LocalPalette.current.onSurface,
+                        inactiveTrackColor = LocalPalette.current.progressBarColorStart,
+                        activeTrackColor = LocalPalette.current.progressBarColorThumbGradientStart,
+                        thumbOutlineColor = LocalPalette.current.progressBarColorStart,
+                        thumbInnerColor = LocalPalette.current.progressBarColorThumbGradientStart,
+                    )
+                }
+            }
+
+        }
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        ) {
+
+            Column(
+                modifier = Modifier,
+                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+            ) {
+
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(4.dp),
+                    text = stringResource(R.string.settings_appearancesettings),
+                    color = LocalPalette.current.secondary,
                     style = LocalTypography.current.primary.bold,
                     textAlign = TextAlign.Start,
                     fontSize = 18.sp,
                     maxLines = 1,
                 )
 
-                Column(
-                    modifier = Modifier,
-                ) {
+                val paletteState = settingsViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
+                val paletteLabel = settingsViewModel.getPaletteByUUID(paletteState.value.uuid)
 
-                    LabeledSwitch(
-                        label = stringResource(R.string.settings_screenalwayson),
-                        state = settingsViewModel.screensaverPreference,
-                        onChange = {
-                            settingsViewModel.setScreenSaverPreference(it)
-                        }
-                    )
-
-                    LabeledSwitch(
-                        label = stringResource(R.string.settings_networktitle),
-                        state = settingsViewModel.networkPreference,
-                        onChange = {
-                            settingsViewModel.setNetworkPreference(it)
-                        }
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Column(
-                    modifier = Modifier,
-                    verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-                ) {
-
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(4.dp),
-                        text = stringResource(R.string.settings_extrasettings),
-                        color = LocalPalette.current.textFamily.primary,
-                        style = LocalTypography.current.primary.bold,
-                        textAlign = TextAlign.Start,
-                        fontSize = 18.sp,
-                        maxLines = 1,
-                    )
-                    Column(
-                        modifier = Modifier,
-                    ) {
-                        LabeledSwitch(
-                            label = stringResource(R.string.settings_enableLeftHandSupport),
-                            state = settingsViewModel.rTLPreference,
-                            onChange = { settingsViewModel.setRTLPreference(it) }
+                CarouselComposable(
+                    title = R.string.settings_colortheme_title,
+                    state = settingsViewModel.currentPaletteUUID,
+                    label = stringResource(paletteLabel.extrasFamily.title),
+                    painterResource = painterResource(LocalPalette.current.extrasFamily.badge),
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    primaryTextColor = LocalPalette.current.onSurface,
+                    secondaryTextColor = LocalPalette.current.onSurfaceVariant,
+                    leftOnClick = {
+                        settingsViewModel.setNextAvailablePalette(
+                            IncrementDirection.BACKWARD
                         )
-
-                        LabeledSwitch(
-                            label = stringResource(R.string.settings_enablehuntaudioqueue),
-                            state = settingsViewModel.huntWarningAudioPreference,
-                            onChange = {
-                                settingsViewModel.setHuntWarningAudioPreference(it) }
-                        )
-
-                        LabeledSwitch(
-                            label = stringResource(R.string.settings_enableGhostReorder),
-                            state = settingsViewModel.ghostReorderPreference,
-                            onChange = { settingsViewModel.setGhostReorderPreference(it) }
+                    },
+                    rightOnClick = {
+                        settingsViewModel.setNextAvailablePalette(
+                            IncrementDirection.FORWARD
                         )
                     }
+                )
 
-                    Column(
-                        modifier = Modifier,
-                    ) {
-                        HuntTimeoutPreferenceSeekbar(
-                            settingsViewModel = settingsViewModel
+                val typographyState = settingsViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
+                val typographyLabel = settingsViewModel.getTypographyByUUID(typographyState.value.uuid)
+
+                CarouselComposable(
+                    title = R.string.settings_fontstylesettings,
+                    state = MutableStateFlow(LocalTypography.current.extrasFamily.title),
+                    label = stringResource(typographyLabel.extrasFamily.title),
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    primaryTextColor = LocalPalette.current.onSurface,
+                    secondaryTextColor = LocalPalette.current.onSurfaceVariant,
+                    painterResource = painterResource(R.drawable.ic_font_family),
+                    leftOnClick = {
+                        settingsViewModel.setNextAvailableTypography(
+                            IncrementDirection.BACKWARD
+                        )
+                    },
+                    rightOnClick = {
+                        settingsViewModel.setNextAvailableTypography(
+                            IncrementDirection.FORWARD
                         )
                     }
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Column(
-                    modifier = Modifier,
-                    verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-                ) {
-
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(4.dp),
-                        text = stringResource(R.string.settings_appearancesettings),
-                        color = LocalPalette.current.textFamily.primary,
-                        style = LocalTypography.current.primary.bold,
-                        textAlign = TextAlign.Start,
-                        fontSize = 18.sp,
-                        maxLines = 1,
-                    )
-
-                    val paletteState = settingsViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
-                    val paletteLabel = settingsViewModel.getPaletteByUUID(paletteState.value.uuid)
-
-                    CarouselComposable(
-                        title = R.string.settings_colortheme_title,
-                        state = settingsViewModel.currentPaletteUUID,
-                        label = stringResource(paletteLabel.extrasFamily.title),
-                        painterResource = painterResource(LocalPalette.current.extrasFamily.badge),
-                        leftOnClick = {
-                            settingsViewModel.setNextAvailablePalette(
-                                IncrementDirection.BACKWARD
-                            )
-                        },
-                        rightOnClick = {
-                            settingsViewModel.setNextAvailablePalette(
-                                IncrementDirection.FORWARD
-                            )
-                        }
-                    )
-
-                    val typographyState = settingsViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
-                    val typographyLabel = settingsViewModel.getTypographyByUUID(typographyState.value.uuid)
-
-                    CarouselComposable(
-                        title = R.string.settings_fontstylesettings,
-                        state = MutableStateFlow(LocalTypography.current.extrasFamily.title),
-                        label = stringResource(typographyLabel.extrasFamily.title),
-                        colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body),
-                        painterResource = painterResource(R.drawable.ic_font_family),
-                        leftOnClick = {
-                            settingsViewModel.setNextAvailableTypography(
-                                IncrementDirection.BACKWARD
-                            )
-                        },
-                        rightOnClick = {
-                            settingsViewModel.setNextAvailableTypography(
-                                IncrementDirection.FORWARD
-                            )
-                        }
-                    )
-
-                }
-
-                /*if(permissionsUiState.value.isPrivacyOptionsRequired) {
-
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    Column(
-                        modifier = Modifier
-                            .wrapContentHeight()
-                            .fillMaxWidth()
-                    ) {
-
-                        Text(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .wrapContentHeight()
-                                .padding(4.dp),
-                            text = stringResource(R.string.settings_adsconsentcontrolsettings),
-                            color = LocalPalette.current.textFamily.primary,
-                            style = LocalTypography.current.primary.bold,
-                            textAlign = TextAlign.Start,
-                            fontSize = 18.sp,
-                            maxLines = 1,
-                        )
-
-                        EditButton {
-                            activity?.let {
-                                permissionsViewModel.showPrivacyOptionsForm(activity = it) {  }
-                            }
-                        }
-
-                    }
-                }*/
+                )
 
             }
+
+            /*if(permissionsUiState.value.isPrivacyOptionsRequired) {
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Column(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .fillMaxWidth()
+                ) {
+
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight()
+                            .padding(4.dp),
+                        text = stringResource(R.string.settings_adsconsentcontrolsettings),
+                        color = LocalPalette.current.primary,
+                        style = LocalTypography.current.primary.bold,
+                        textAlign = TextAlign.Start,
+                        fontSize = 18.sp,
+                        maxLines = 1,
+                    )
+
+                    EditButton {
+                        activity?.let {
+                            permissionsViewModel.showPrivacyOptionsForm(activity = it) {  }
+                        }
+                    }
+
+                }
+            }*/
+
         }
     }
+
 }
 
 @Composable
@@ -320,14 +609,14 @@ fun GDPRButton(
 ) {
 
     Button (
-        modifier = Modifier
+        modifier = modifier
             .height(48.dp)
             .padding(4.dp),
         onClick = { /*TODO*/ },
         shape = RoundedCornerShape(8.dp),
         colors = ButtonDefaults.buttonColors(
-            contentColor = LocalPalette.current.coreFamily.primary,
-            containerColor = LocalPalette.current.coreFamily.primary,
+            contentColor = LocalPalette.current.primary,
+            containerColor = LocalPalette.current.primary,
         )
     ) {
         Row(
@@ -337,13 +626,13 @@ fun GDPRButton(
             Icon(
                 painter = painterResource(android.R.drawable.ic_menu_edit),
                 contentDescription = null,
-                tint = LocalPalette.current.textFamily.body
+                tint = LocalPalette.current.primaryContainer
             )
 
             Text(
                 modifier = Modifier,
                 text = stringResource(R.string.settings_adsconsentcontrolsettings),
-                color = LocalPalette.current.textFamily.body,
+                color = LocalPalette.current.onPrimaryContainer,
                 style = LocalTypography.current.quaternary.bold,
                 textAlign = TextAlign.Start,
                 fontSize = 18.sp,

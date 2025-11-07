@@ -1,5 +1,7 @@
 package com.tritiumgaming.feature.home.ui.applanguages
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +17,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,8 +27,11 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,15 +42,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.labels.DynamicContentRow
-import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.mappers.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.ui.MainMenuScreen
 import com.tritiumgaming.shared.core.domain.language.model.LanguageEntity
-
 
 @Composable
 @Preview
@@ -67,14 +73,8 @@ fun LanguageScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            NavigationHeaderComposable(
-                params = NavHeaderComposableParams(
-                    centerTitleRes = R.string.titlescreen_languages_label,
-                    leftType = PETImageButtonType.BACK,
-                    leftOnClick = {
-                        navController.popBackStack()
-                    }
-                )
+            NavigationHeader(
+                onLeftClick = { navController.popBackStack() }
             )
 
             LanguageContent(
@@ -86,6 +86,53 @@ fun LanguageScreen(
 
 }
 
+@Composable
+private fun NavigationHeader(
+    onLeftClick: () -> Unit = {},
+    onRightClick: () -> Unit = {}
+) {
+    NavigationHeaderComposable(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 64.dp),
+        leftContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+                iconContent = { iconModifier ->
+                    Image(
+                        modifier = iconModifier,
+                        painter = painterResource(R.drawable.ic_arrow_60_left),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                        contentDescription = ""
+                    )
+                }
+            ) { onLeftClick() }
+        },
+        rightContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+            )
+        },
+        centerContent = { outerModifier ->
+            NavigationHeaderCenter(
+                modifier = outerModifier,
+                textContent = { modifier ->
+                    BasicText(
+                        modifier = modifier,
+                        text = stringResource(R.string.titlescreen_languages_label),
+                        style = LocalTypography.current.primary.regular.copy(
+                            color = LocalPalette.current.primary,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+                    )
+                }
+            )
+        }
+    )
+}
 
 @Composable
 private fun ColumnScope.LanguageContent(
@@ -102,7 +149,7 @@ private fun ColumnScope.LanguageContent(
             .weight(1f)
             .widthIn(max = 600.dp)
             .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally,
         state = columnState
     ){
@@ -113,7 +160,6 @@ private fun ColumnScope.LanguageContent(
             val languageCode = it.code
 
             val isSelected = languageCode == currentLanguage
-            /*AppCompatDelegate.getApplicationLocales()[0]?.language*/
 
             LanguageItem(
                 language = it,
@@ -136,12 +182,34 @@ private fun LanguageItem(
     val rememberName by remember{
         mutableIntStateOf(language.localizedName.toStringResource()) }
 
-    val color =
-        if(isSelected) {
-            LocalPalette.current.textFamily.emphasis
-        } else {
-            LocalPalette.current.textFamily.body
+    var textStyleStart: TextStyle
+    var textStyleEnd: TextStyle
+    var containerColor: Color
+
+    when(isSelected) {
+        false -> {
+            textStyleStart = LocalTypography.current.quaternary.bold.copy(
+                color = LocalPalette.current.onSurface.copy(alpha = .75f),
+                textAlign = TextAlign.Start
+            )
+            textStyleEnd = LocalTypography.current.quaternary.regular.copy(
+                color = LocalPalette.current.onSurface,
+                textAlign = TextAlign.End
+            )
+            containerColor = LocalPalette.current.surfaceContainerHighest
         }
+        true -> {
+            textStyleStart = LocalTypography.current.quaternary.bold.copy(
+                color = LocalPalette.current.onTertiaryContainer,
+                textAlign = TextAlign.Start
+            )
+            textStyleEnd = LocalTypography.current.quaternary.bold.copy(
+                color = LocalPalette.current.onTertiaryContainer,
+                textAlign = TextAlign.End
+            )
+            containerColor = LocalPalette.current.tertiaryContainer
+        }
+    }
 
     Surface(
         modifier = Modifier
@@ -149,12 +217,14 @@ private fun LanguageItem(
             .padding(vertical = 2.dp)
             .wrapContentHeight()
             .heightIn(min = 48.dp)
-            .padding(vertical = 4.dp)
-            .clickable(true, onClick = {
-                onClick()
-            }),
+            .padding(4.dp)
+            .clickable(!isSelected, onClick = { onClick() }),
         shape = RoundedCornerShape(8.dp),
-        color = LocalPalette.current.surfaceContainerHigh,
+        color = containerColor,
+        border =
+            if(isSelected) null
+            else BorderStroke(1.dp,
+                LocalPalette.current.outline.copy(alpha=.5f))
     ) {
 
         DynamicContentRow(
@@ -167,10 +237,7 @@ private fun LanguageItem(
                     modifier = Modifier
                         .wrapContentWidth(Alignment.Start),
                     text = stringResource(rememberName),
-                    style = LocalTypography.current.quaternary.regular.copy(
-                        color = color,
-                        textAlign = TextAlign.Start
-                    ),
+                    style = textStyleStart,
                     maxLines = 1,
                     fontSize = 18.sp
                 )
@@ -178,13 +245,9 @@ private fun LanguageItem(
             endComponent = {
                 Text(
                     modifier = Modifier
-                        .wrapContentWidth(Alignment.End)
-                        .alpha(.75f),
+                        .wrapContentWidth(Alignment.End),
                     text = "( ${stringResource(language.nativeName.toStringResource())} )",
-                    style = LocalTypography.current.quaternary.regular.copy(
-                        color = color,
-                        textAlign = TextAlign.End
-                    ),
+                    style = textStyleEnd,
                     maxLines = 1,
                     fontSize = 18.sp
                 )

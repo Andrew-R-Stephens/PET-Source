@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
@@ -27,8 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.menus.PETImageButton
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.other.PETImageButton
+import com.tritiumgaming.core.ui.common.other.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,7 +42,10 @@ fun CarouselComposable(
     state: StateFlow<Any?> = MutableStateFlow(null),
     label: String = "",
     painterResource: Painter = painterResource(R.drawable.ic_font_family),
-    colorFilter: ColorFilter? = null,
+    containerColor: Color = Color.White,
+    imageTint: Color? = null,
+    primaryTextColor: Color = Color.White,
+    secondaryTextColor: Color = Color.White,
     leftOnClick: () -> Unit = {},
     rightOnClick: () -> Unit = {}
 ) {
@@ -54,7 +58,7 @@ fun CarouselComposable(
             .wrapContentHeight(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = LocalPalette.current.surfaceContainerHigh
+            containerColor = containerColor
         )
     ) {
 
@@ -72,7 +76,7 @@ fun CarouselComposable(
                     .align(Alignment.CenterVertically),
                 alignment = Alignment.Center,
                 painter = painterResource,
-                colorFilter = colorFilter,
+                colorFilter = imageTint?.let {ColorFilter.tint(it)},
                 contentDescription = "",
                 contentScale = ContentScale.Inside
             )
@@ -90,7 +94,7 @@ fun CarouselComposable(
                         .align(Alignment.CenterHorizontally)
                         .padding(4.dp),
                     text = if(title != 0) stringResource(title) else "",
-                    color = LocalPalette.current.textFamily.body,
+                    color = primaryTextColor,
                     style = LocalTypography.current.primary.regular,
                     textAlign = TextAlign.Center,
                     maxLines = 1,
@@ -107,7 +111,8 @@ fun CarouselComposable(
                     PETImageButton(
                         modifier = Modifier
                             .clickable(onClick = { leftOnClick() }),
-                        type = PETImageButtonType.BACK
+                        type = PETImageButtonType.BACK,
+                        tint = LocalPalette.current.onSurface
                     )
 
                     Text(
@@ -118,8 +123,8 @@ fun CarouselComposable(
                             .align(Alignment.CenterVertically)
                             .padding(4.dp),
                         text = if(rememberState.value != 0) { label } else "",
-                        color = LocalPalette.current.textFamily.emphasis,
-                        style = LocalTypography.current.primary.regular,
+                        color = secondaryTextColor,
+                        style = LocalTypography.current.primary.bold,
                         textAlign = TextAlign.Center,
                         maxLines = 1,
                         fontSize = 16.sp
@@ -128,7 +133,8 @@ fun CarouselComposable(
                     PETImageButton(
                         modifier = Modifier
                             .clickable(onClick = { rightOnClick() }),
-                        type = PETImageButtonType.FORWARD
+                        type = PETImageButtonType.FORWARD,
+                        tint = LocalPalette.current.onSurface
                     )
 
                 }

@@ -18,7 +18,7 @@ fun getNotifyVector(colors: IconVectorColors = IconVectorColors.defaults()): Ima
         defaultHeight = 200.0.dp,
         viewportWidth = 750.0f,
         viewportHeight = 750.0f,
-        /*tintColor = LocalPalette.current.textFamily.primary,
+        /*tintColor = LocalPalette.current.primary,
         tintBlendMode = BlendMode.DstOut*/
     ).apply {
 

@@ -102,7 +102,7 @@ fun ReviewPopupComposable() {
         colors = CardDefaults.cardColors(
             containerColor = LocalPalette.current.surfaceContainer
         ),
-        border = BorderStroke(5.dp, LocalPalette.current.windowStrokeColor)
+        border = BorderStroke(5.dp, LocalPalette.current.outline)
     ) {
 
         Column(

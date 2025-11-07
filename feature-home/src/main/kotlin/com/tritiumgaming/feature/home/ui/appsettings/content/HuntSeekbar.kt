@@ -46,7 +46,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreenViewModel
 import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreenViewModel.Companion.percentAsTime
@@ -74,7 +73,13 @@ private fun HuntSeekbarPreview() {
 @Composable
 fun HuntTimeoutPreferenceSeekbar(
     settingsViewModel: SettingsScreenViewModel =
-        viewModel ( factory = SettingsScreenViewModel.Factory )
+        viewModel ( factory = SettingsScreenViewModel.Factory ),
+    containerColor: Color = Color.White,
+    textColor: Color = Color.White,
+    inactiveTrackColor: Color = Color.White,
+    activeTrackColor: Color = Color.White,
+    thumbOutlineColor: Color = Color.White,
+    thumbInnerColor: Color = Color.White
 ) {
 
     val settingsScreenUiState =
@@ -106,26 +111,13 @@ fun HuntTimeoutPreferenceSeekbar(
 
     val interactionSource = remember { MutableInteractionSource() }
 
-    val colors = SliderDefaults.colors(
-        activeTrackColor = LocalPalette.current.progressBarColorStart,
-        inactiveTrackColor = LocalPalette.current.progressBarColorThumbGradientStart,
-        activeTickColor = Color.Transparent,
-        inactiveTickColor = Color.Transparent,
-        disabledInactiveTickColor = Color.Transparent,
-        disabledThumbColor = Color.Transparent,
-        disabledActiveTrackColor = Color.Transparent,
-        disabledInactiveTrackColor = Color.Transparent,
-        disabledActiveTickColor = Color.Transparent,
-        thumbColor = Color.Transparent
-    )
-
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            containerColor = LocalPalette.current.surfaceContainerHigh
+            containerColor = containerColor
         )
     ) {
 
@@ -143,7 +135,7 @@ fun HuntTimeoutPreferenceSeekbar(
                     .align(Alignment.CenterHorizontally)
                     .padding(4.dp),
                 text = stringResource(R.string.settings_huntwarningflashtimeout),
-                color = LocalPalette.current.textFamily.body,
+                color = textColor,
                 style = LocalTypography.current.primary.regular,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
@@ -169,7 +161,7 @@ fun HuntTimeoutPreferenceSeekbar(
                         .fillMaxHeight(),
                     text = "$time",
                     style = LocalTypography.current.quaternary.regular.copy(
-                        color = LocalPalette.current.textFamily.body,
+                        color = textColor,
                         textAlign = TextAlign.Center
                     ),
                     autoSize = TextAutoSize.StepBased(12.sp, 18.sp, 1.sp),
@@ -195,20 +187,34 @@ fun HuntTimeoutPreferenceSeekbar(
                     valueRange = 0f..1f,
                     interactionSource = interactionSource,
                     thumb = {
-                        SeekbarThumb()
+                        SeekbarThumb(
+                            outlineColor = thumbOutlineColor,
+                            innerColor = thumbInnerColor
+                        )
                     },
                     track = {
                         SliderDefaults.Track(
                             modifier = Modifier
                                 .height(3.dp),
-                            colors = colors,
+                            colors = SliderDefaults.colors(
+                                activeTrackColor = activeTrackColor,
+                                inactiveTrackColor = inactiveTrackColor,
+                                activeTickColor = Color.Transparent,
+                                inactiveTickColor = Color.Transparent,
+                                disabledInactiveTickColor = Color.Transparent,
+                                disabledThumbColor = Color.Transparent,
+                                disabledActiveTrackColor = Color.Transparent,
+                                disabledInactiveTrackColor = Color.Transparent,
+                                disabledActiveTickColor = Color.Transparent,
+                                thumbColor = Color.Transparent
+                            ),
                             sliderState = rememberSliderState,
                             thumbTrackGapSize = 0.dp
                         )
                     },
                     colors = SliderDefaults.colors(
-                        activeTrackColor = LocalPalette.current.progressBarColorStart,
-                        inactiveTrackColor = LocalPalette.current.progressBarColorEnd,
+                        activeTrackColor = activeTrackColor,
+                        inactiveTrackColor = inactiveTrackColor,
                         activeTickColor = Color.Transparent,
                         inactiveTickColor = Color.Transparent
                     )
@@ -221,13 +227,15 @@ fun HuntTimeoutPreferenceSeekbar(
 @Composable
 private fun SeekbarThumb(
     modifier: Modifier = Modifier
-        .size(ButtonDefaults.IconSize)
+        .size(ButtonDefaults.IconSize),
+    outlineColor: Color = Color.White,
+    innerColor: Color = Color.White
 ) {
     Box(
         modifier = modifier
-            .border(2.dp, LocalPalette.current.surface, CircleShape)
+            .border(2.dp, outlineColor, CircleShape)
             .padding(2.dp)
             .clip(CircleShape)
-            .background(LocalPalette.current.progressBarColorThumbOutline)
+            .background(innerColor)
     )
 }

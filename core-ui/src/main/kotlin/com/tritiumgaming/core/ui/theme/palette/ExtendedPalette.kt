@@ -6,7 +6,6 @@ import com.tritiumgaming.core.ui.theme.palette.common.BrandingColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CodexColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CoreColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ExtrasFamily
-import com.tritiumgaming.core.ui.theme.palette.common.SwitchColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.TextColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ThemeColorFamily
 
@@ -78,50 +77,38 @@ data class ExtendedPalette(
     val coreFamily: CoreColorFamily = CoreColorFamily(),
 
     val codexFamily: CodexColorFamily = CodexColorFamily(),
-    val switchTheme: SwitchColorFamily = SwitchColorFamily(),
     val textFamily: TextColorFamily = TextColorFamily(),
 
-    val splashTextColor: Color = Color.Unspecified,
-
-    val backgroundColor_mapviewOverlay: Color = Color.Unspecified,
-
-    val windowStrokeColor: Color = Color.Unspecified,
-
-    val light_active: Color = Color.Unspecified,
-    val light_inactive: Color = Color.Unspecified,
-    val light_off: Color = Color.Unspecified,
-
-    val inboxNotification: Color = Color.Unspecified,
-
-    val progressBarColorStart: Color = Color.Unspecified,
-    val progressBarColorEnd: Color = Color.Unspecified,
-    val progressBarColorThumbGradientStart: Color = Color.Unspecified,
-    val progressBarColorThumbOutline: Color = Color.Unspecified,
-
-    val selectedColor: Color = Color.Unspecified,
-    val selectedColor2: Color = Color.Unspecified,
-    val unselectedColor: Color = Color.Unspecified,
-
-    val positiveSelColor: Color = Color.Unspecified,
-    val negativeSelColor: Color = Color.Unspecified,
-    val neutralSelColor: Color = Color.Unspecified,
-
-    val strikethroughColor: Color = Color.Unspecified,
-
-    val mapPoiFillColor: Color = Color.Unspecified,
-    val mapRoomFillColor: Color = Color.Unspecified,
-    val mapRoomBorderColor: Color = Color.Unspecified,
-
-    val sanityPieStartColor: Color = Color.Unspecified,
-    val sanityPieEndColor: Color = Color.Unspecified,
-    val sanityHeadBrainColor: Color = primary,
-    val sanityHeadSkullColor: Color = Color.Unspecified,
-    val sanityBorderColor: Color = Color.Unspecified,
-
-    val buttonColor: Color = light_inactive,
-
     val discordColor: BrandingColorFamily = BrandingColorFamily(),
-    val patreonColor: BrandingColorFamily = BrandingColorFamily()
+    val patreonColor: BrandingColorFamily = BrandingColorFamily(),
+
+    //val backgroundColor_mapviewOverlay: Color = Color.Unspecified, // TODO Remove
+
+    val light_active: Color = Color.Unspecified, // TODO Remove
+    val light_inactive: Color = Color.Unspecified, // TODO Remove
+    val light_off: Color = Color.Unspecified, // TODO Remove
+
+    val progressBarColorStart: Color = Color.Unspecified, // TODO Remove
+    val progressBarColorThumbGradientStart: Color = Color.Unspecified, // TODO Remove
+
+    val selectedColor: Color = Color.Unspecified, // TODO Remove
+    val selectedColor2: Color = Color.Unspecified, // TODO Remove
+    val unselectedColor: Color = Color.Unspecified, // TODO Remove
+
+    val positiveSelColor: Color = Color.Unspecified, // TODO Remove
+    val negativeSelColor: Color = Color.Unspecified, // TODO Remove
+    val neutralSelColor: Color = Color.Unspecified, // TODO Remove
+
+    //val strikethroughColor: Color = Color.Unspecified, // TODO Remove
+
+    val mapPoiFillColor: Color = Color.Unspecified, // TODO Remove
+    val mapRoomFillColor: Color = Color.Unspecified, // TODO Remove
+    val mapRoomBorderColor: Color = Color.Unspecified, // TODO Remove
+
+    val sanityPieStartColor: Color = Color.Unspecified, // TODO Remove
+    val sanityPieEndColor: Color = Color.Unspecified, // TODO Remove
+    val sanityHeadSkullColor: Color = Color.Unspecified, // TODO Remove
+    val sanityBorderColor: Color = Color.Unspecified, // TODO Remove
 
 ) : ExtendedTheme()
 

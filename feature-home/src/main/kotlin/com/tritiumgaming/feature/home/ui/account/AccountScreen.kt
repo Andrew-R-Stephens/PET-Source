@@ -4,8 +4,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.MarqueeAnimationMode
-import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,6 +14,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -29,7 +28,6 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -45,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
@@ -52,7 +51,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -65,10 +63,10 @@ import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.indicators.IndeterminateCircularIndicator
-import com.tritiumgaming.core.ui.common.labels.DynamicContentRow
-import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
+import com.tritiumgaming.core.ui.common.labels.LabeledValue
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
@@ -111,9 +109,55 @@ fun AccountScreen(
                 )
             }
         }
-
     }
+}
 
+@Composable
+private fun NavigationHeader(
+    onLeftClick: () -> Unit = {},
+    onRightClick: () -> Unit = {}
+) {
+    NavigationHeaderComposable(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 64.dp),
+        leftContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+                iconContent = { iconModifier ->
+                    Image(
+                        modifier = iconModifier,
+                        painter = painterResource(R.drawable.ic_arrow_60_left),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                        contentDescription = ""
+                    )
+                }
+            ) { onLeftClick() }
+        },
+        rightContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+            )
+        },
+        centerContent = { outerModifier ->
+            NavigationHeaderCenter(
+                modifier = outerModifier,
+                textContent = { modifier ->
+                    BasicText(
+                        modifier = modifier,
+                        text = stringResource(R.string.account_title),
+                        style = LocalTypography.current.primary.regular.copy(
+                            color = LocalPalette.current.primary,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+                    )
+                }
+            )
+        }
+    )
 }
 
 @Composable
@@ -140,17 +184,8 @@ private fun AccountContentPortrait(
             verticalArrangement = Arrangement.Top
         ) {
 
-            NavigationHeaderComposable(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                params = NavHeaderComposableParams(
-                    leftType = PETImageButtonType.BACK,
-                    centerTitleRes = R.string.account_title,
-                    leftOnClick = {
-                        navController.popBackStack()
-                    }
-                )
+            NavigationHeader(
+                onLeftClick = { navController.popBackStack() }
             )
 
             Column(
@@ -178,7 +213,9 @@ private fun AccountContentPortrait(
                                 "${activity?.getString(R.string.alert_account_welcome)} ${Firebase.auth.currentUser?.displayName}",
                                 Toast.LENGTH_SHORT).show()
                         } else {
-                            Toast.makeText(activity, activity?.getString(R.string.alert_account_login_failure), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity,
+                                activity?.getString(R.string.alert_account_login_failure),
+                                Toast.LENGTH_SHORT).show()
                         }
 
                     }
@@ -209,9 +246,13 @@ private fun AccountContentPortrait(
                             rememberDialog = AccountOverviewDialog.NONE
 
                             if(result) {
-                                Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_success), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity,
+                                    activity?.getString(R.string.alert_account_remove_success),
+                                    Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_failure), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity,
+                                    activity?.getString(R.string.alert_account_remove_failure),
+                                    Toast.LENGTH_SHORT).show()
                             }
 
                         }
@@ -230,7 +271,9 @@ private fun AccountContentPortrait(
                             rememberDialog = AccountOverviewDialog.NONE
 
                             if(value) {
-                                Toast.makeText(activity, activity?.getString(R.string.alert_account_logout_success), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity,
+                                    activity?.getString(R.string.alert_account_logout_success),
+                                    Toast.LENGTH_SHORT).show()
                             }
 
                         }
@@ -244,7 +287,7 @@ private fun AccountContentPortrait(
         }
 
         IndeterminateCircularIndicator(
-            color1 = LocalPalette.current.textFamily.body,
+            color1 = LocalPalette.current.surfaceContainer,
             color2 = LocalPalette.current.surfaceContainerHigh,
             isLoading = loadingState
         )
@@ -276,17 +319,8 @@ private fun AccountContentLandscape(
             verticalArrangement = Arrangement.Top
         ) {
 
-            NavigationHeaderComposable(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                params = NavHeaderComposableParams(
-                    leftType = PETImageButtonType.BACK,
-                    centerTitleRes = R.string.account_title,
-                    leftOnClick = {
-                        navController.popBackStack()
-                    }
-                )
+            NavigationHeader(
+                onLeftClick = { navController.popBackStack() }
             )
 
             Column(
@@ -380,7 +414,7 @@ private fun AccountContentLandscape(
         }
 
         IndeterminateCircularIndicator(
-            color1 = LocalPalette.current.textFamily.body,
+            color1 = LocalPalette.current.surfaceContainer,
             color2 = LocalPalette.current.surfaceContainerHigh,
             isLoading = loadingState
         )
@@ -488,7 +522,7 @@ private fun AccountDetailsPortraitComponent(
                 .padding(8.dp),
             text = stringResource(R.string.account_label_information),
             style = LocalTypography.current.quaternary.bold,
-            color = LocalPalette.current.textFamily.body,
+            color = LocalPalette.current.onSurface,
             fontSize = 18.sp,
             maxLines = 1,
             textAlign = TextAlign.Start
@@ -498,14 +532,18 @@ private fun AccountDetailsPortraitComponent(
 
         LabeledValue(
             title = "${stringResource(R.string.account_label_name)}:",
-            value = Firebase.auth.currentUser?.displayName ?: ""
+            value = Firebase.auth.currentUser?.displayName ?: "",
+            containerColor = LocalPalette.current.surfaceContainer,
+            textColor = LocalPalette.current.onSurface
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         LabeledValue(
             title = "${stringResource(R.string.account_label_email)}:",
-            value = Firebase.auth.currentUser?.email ?: ""
+            value = Firebase.auth.currentUser?.email ?: "",
+            containerColor = LocalPalette.current.surfaceContainer,
+            textColor = LocalPalette.current.onSurface
         )
 
     }
@@ -539,7 +577,7 @@ private fun AccountDetailsLandscapeComponent(
                 .padding(8.dp),
             text = stringResource(R.string.account_label_information),
             style = LocalTypography.current.quaternary.bold,
-            color = LocalPalette.current.textFamily.body,
+            color = LocalPalette.current.onSurface,
             fontSize = 18.sp,
             maxLines = 1,
             textAlign = TextAlign.Start
@@ -549,72 +587,22 @@ private fun AccountDetailsLandscapeComponent(
 
         LabeledValue(
             title = "${stringResource(R.string.account_label_name)}:",
-            value = Firebase.auth.currentUser?.displayName ?: ""
+            value = Firebase.auth.currentUser?.displayName ?: "",
+            containerColor = LocalPalette.current.surfaceContainer,
+            textColor = LocalPalette.current.onSurface
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         LabeledValue(
             title = "${stringResource(R.string.account_label_email)}:",
-            value = Firebase.auth.currentUser?.email ?: ""
+            value = Firebase.auth.currentUser?.email ?: "",
+            containerColor = LocalPalette.current.surfaceContainer,
+            textColor = LocalPalette.current.onSurface
         )
 
     }
 
-}
-
-@Composable
-private fun LabeledValue(
-    modifier: Modifier = Modifier,
-    title: String = "",
-    value: String = ""
-) {
-    Surface(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        color = LocalPalette.current.surfaceContainerHigh,
-        shape = RoundedCornerShape(8.dp),
-    ) {
-        DynamicContentRow(
-            modifier = Modifier
-                .padding(horizontal = 12.dp, vertical = 8.dp)
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            startComponent = {
-                Text(
-                    text = title,
-                    style = LocalTypography.current.quaternary.bold,
-                    color = LocalPalette.current.textFamily.body,
-                    fontSize = 18.sp,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    textAlign = TextAlign.Start,
-                    modifier = Modifier
-                        .padding(end = 4.dp)
-                )
-            },
-            endComponent = {
-                Text(
-                    text = value,
-                    style = LocalTypography.current.quaternary.bold,
-                    color = LocalPalette.current.textFamily.body,
-                    fontSize = 18.sp,
-                    maxLines = 1,
-                    textAlign = TextAlign.End,
-                    overflow = TextOverflow.Clip,
-                    modifier = Modifier
-                        .basicMarquee(
-                            animationMode = MarqueeAnimationMode.Immediately,
-                            iterations = Integer.MAX_VALUE,
-                            initialDelayMillis = 3000,
-                            repeatDelayMillis = 3000
-                        )
-                        .padding(start = 4.dp)
-                )
-            }
-        )
-    }
 }
 
 @Composable
@@ -666,7 +654,9 @@ private fun LabeledValuePreview() {
 
             LabeledValue(
                 title = "ds:",
-                value = "d"
+                value = "d",
+                containerColor = LocalPalette.current.surfaceContainer,
+                textColor = LocalPalette.current.onSurface
             )
 
         }
@@ -712,7 +702,7 @@ private fun PaletteListItem(
                     .wrapContentHeight(),
                 text = stringResource(palette.extrasFamily.title),
                 style = LocalTypography.current.quaternary.bold.copy(
-                    color = LocalPalette.current.textFamily.body,
+                    color = LocalPalette.current.onSurface,
                     textAlign = TextAlign.Start,
                     fontSize = 24.sp
                 ),
@@ -742,7 +732,7 @@ private fun SignInComponent(
             .widthIn(max = 600.dp)
             .wrapContentHeight()
             .padding(8.dp),
-        color = LocalPalette.current.surfaceContainerHigh,
+        color = LocalPalette.current.surfaceContainer,
         shape = RoundedCornerShape(8.dp),
     ) {
 
@@ -760,7 +750,7 @@ private fun SignInComponent(
                     .height(36.dp),
                 text = stringResource(R.string.marketplace_error_login_required),
                 style = LocalTypography.current.quaternary.regular.copy(
-                    color = LocalPalette.current.textFamily.body,
+                    color = LocalPalette.current.onSurface,
                     textAlign = TextAlign.Center
                 ),
                 autoSize = TextAutoSize.StepBased(12.sp, 36.sp, 5.sp),
@@ -831,14 +821,24 @@ private fun SignOutComponent(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        SignOutButton(
+        AccountActionButton(
             modifier = Modifier
                 .fillMaxWidth()
                 .onSizeChanged {
                     if (rememberMaxWidth.intValue > it.width)
                         rememberMaxWidth.intValue = it.width
                 }
-                .padding(4.dp)
+                .padding(4.dp),
+            text = stringResource(id = R.string.account_button_logout),
+            textStyle = LocalTypography.current.quaternary.bold.copy(
+                fontSize = 18.sp
+            ),
+            buttonColors = ButtonColors(
+                contentColor = LocalPalette.current.onSecondaryContainer,
+                containerColor = LocalPalette.current.secondaryContainer,
+                disabledContentColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent
+            )
         ) {
             onLogoutClicked()
         }
@@ -848,14 +848,24 @@ private fun SignOutComponent(
                 .height(24.dp)
         )
 
-        DeactivateAccountButton(
+        AccountActionButton(
             modifier = Modifier
                 .fillMaxWidth()
                 .onSizeChanged {
                     if (rememberMaxWidth.intValue > it.width)
                         rememberMaxWidth.intValue = it.width
                 }
-                .padding(4.dp)
+                .padding(4.dp),
+            text = stringResource(id = R.string.account_button_deactivate),
+            textStyle = LocalTypography.current.quaternary.bold.copy(
+                fontSize = 18.sp
+            ),
+            buttonColors = ButtonColors(
+                contentColor = LocalPalette.current.errorContainer,
+                containerColor = LocalPalette.current.onErrorContainer,
+                disabledContentColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent
+            )
         ) {
             onDeactivateClicked()
         }
@@ -888,53 +898,61 @@ private fun SignInWithGoogleButton(
 }
 
 @Composable
-private fun SignOutButton(
+private fun AccountActionButton(
     modifier: Modifier = Modifier,
+    text: String = "",
+    textStyle: TextStyle = TextStyle(),
+    buttonColors: ButtonColors,
     onClick: () -> Unit = {}
 ) {
-    Button(
-        modifier = modifier,
-        colors = ButtonDefaults.buttonColors().copy(
-            containerColor = LocalPalette.current.codexFamily.codex3
-        ),
-        onClick = onClick,
-        shape = RoundedCornerShape(8.dp)
-    ) {
-
-        Text(
-            text = stringResource(R.string.account_button_logout),
-            style = LocalTypography.current.quaternary.bold,
-            color = LocalPalette.current.surfaceContainerHigh,
-            fontSize = 18.sp
-        )
-
-    }
+    TextButton(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp),
+        content = {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                text = text.uppercase(),
+                maxLines = 1,
+                style = textStyle,
+                textAlign = TextAlign.Center
+            )
+        },
+        contentPadding = PaddingValues(8.dp),
+        colors = buttonColors,
+        shape = RoundedCornerShape(percent = 20),
+        onClick = { onClick() },
+    )
 }
 
 @Composable
-private fun DeactivateAccountButton(
+private fun DialogButton(
     modifier: Modifier = Modifier,
+    text: String = "",
+    textStyle: TextStyle = TextStyle(),
+    buttonColors: ButtonColors,
     onClick: () -> Unit = {}
 ) {
-    Button(
-        modifier = modifier,
-        colors = ButtonDefaults.buttonColors().copy(
-            containerColor = LocalPalette.current.coreFamily.primary
-        ),
-        onClick = onClick,
-        shape = RoundedCornerShape(8.dp)
-    ) {
-
-        Text(
-            text = stringResource(R.string.account_button_deactivate),
-            style = LocalTypography.current.quaternary.bold.copy(
+    TextButton(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(48.dp),
+        content = {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                text = text.uppercase(),
+                maxLines = 1,
+                style = textStyle,
                 textAlign = TextAlign.Center
-            ),
-            color = LocalPalette.current.surface,
-            fontSize = 18.sp
-        )
-
-    }
+            )
+        },
+        contentPadding = PaddingValues(8.dp),
+        colors = buttonColors,
+        shape = RoundedCornerShape(percent = 20),
+        onClick = { onClick() },
+    )
 }
 
 @Composable
@@ -948,10 +966,12 @@ private fun DeactivateAccountDialog(
     val content: @Composable () -> Unit = {
 
         Text(
+            modifier = Modifier
+                .fillMaxWidth(),
             text = stringResource(id = R.string.account_deactivate_warning),
-            style = TextStyle(
+            style = LocalTypography.current.quaternary.bold.copy(
                 fontSize = 14.sp,
-                color = LocalPalette.current.textFamily.body
+                color = LocalPalette.current.onSurface
             )
         )
 
@@ -963,83 +983,77 @@ private fun DeactivateAccountDialog(
         ) {
             Text(
                 text = stringResource(id = R.string.account_deactivate_warning_list_1),
-                style = TextStyle(
+                style = LocalTypography.current.quaternary.bold.copy(
                     fontSize = 14.sp,
-                    color = LocalPalette.current.textFamily.body
+                    color = LocalPalette.current.onSurface
                 )
             )
 
             Text(
                 text = stringResource(id = R.string.account_deactivate_warning_list_2),
-                style = TextStyle(
+                style = LocalTypography.current.quaternary.bold.copy(
                     fontSize = 14.sp,
-                    color = LocalPalette.current.textFamily.body
+                    color = LocalPalette.current.onSurface
                 )
             )
 
             Text(
                 text = stringResource(id = R.string.account_deactivate_warning_list_3),
-                style = TextStyle(
+                style = LocalTypography.current.quaternary.bold.copy(
                     fontSize = 14.sp,
-                    color = LocalPalette.current.textFamily.body
+                    color = LocalPalette.current.onSurface
                 )
             )
         }
     }
 
     val cancelButton: @Composable () -> Unit = {
-        TextButton(
-            content = {
-                Text(
-                    text = stringResource(id = R.string.account_deactivate_button_cancel),
-                    maxLines = 1,
-                    style = TextStyle(fontSize = 18.sp)
-                )
-            },
-            contentPadding = PaddingValues(8.dp),
-            colors = ButtonColors(
-                contentColor = LocalPalette.current.surfaceContainerHigh,
-                containerColor = LocalPalette.current.textFamily.body,
-                disabledContentColor = Color.Blue,
-                disabledContainerColor = Color.Green
-            ),
-            shape = RoundedCornerShape(percent = 20),
-            onClick = { onCancel() },
+        DialogButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(48.dp)
-        )
+                .height(48.dp),
+            text = stringResource(id = R.string.account_deactivate_button_cancel),
+            textStyle = LocalTypography.current.quaternary.bold.copy(
+                fontSize = 18.sp
+            ),
+            buttonColors = ButtonColors(
+                contentColor = LocalPalette.current.onSecondaryContainer,
+                containerColor = LocalPalette.current.secondaryContainer,
+                disabledContentColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent
+            ),
+        ) {
+            onCancel()
+        }
     }
 
     val confirmButton: @Composable () -> Unit = {
-        TextButton(
-            content = {
-                Text(
-                    text = stringResource(id = R.string.account_deactivate_button_confirm),
-                    maxLines = 1,
-                    style = TextStyle(fontSize = 18.sp)
-                )
-            },
-            contentPadding = PaddingValues(8.dp),
-            colors = ButtonColors(
-                contentColor = LocalPalette.current.surface,
-                containerColor = LocalPalette.current.coreFamily.primary,
-                disabledContentColor = Color.Blue,
-                disabledContainerColor = Color.Green
-            ),
-            shape = RoundedCornerShape(percent = 20),
-            onClick = { onConfirm() },
+        DialogButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(48.dp)
-        )
+                .height(48.dp),
+            text = stringResource(id = R.string.account_deactivate_button_confirm),
+            textStyle = LocalTypography.current.quaternary.bold.copy(
+                fontSize = 18.sp
+            ),
+            buttonColors = ButtonColors(
+                contentColor = LocalPalette.current.onErrorContainer,
+                containerColor = LocalPalette.current.errorContainer,
+                disabledContentColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent
+            ),
+        ) {
+            onConfirm()
+        }
     }
 
     Dialog(
         title = title,
         content = { content() },
         cancelButton = { cancelButton() },
-        confirmButton = { confirmButton() }
+        confirmButton = { confirmButton() },
+        backgroundColor = LocalPalette.current.surfaceContainer,
+        scrimColor = LocalPalette.current.scrim
     )
 
 }
@@ -1054,78 +1068,74 @@ private fun LogoutDialog(
 
     val content: @Composable () -> Unit = {
         Text(
+            modifier = Modifier
+                .fillMaxWidth(),
             text = stringResource(id = R.string.account_logout_warning),
-            style = TextStyle(
-                fontSize = 18.sp,
-                color = LocalPalette.current.textFamily.body
+            style = LocalTypography.current.quaternary.bold.copy(
+                fontSize = 14.sp,
+                color = LocalPalette.current.onSurface
             )
         )
     }
 
     val cancelButton: @Composable () -> Unit = {
-        TextButton(
-            content = {
-                Text(
-                    text = stringResource(id = R.string.account_logout_button_cancel),
-                    maxLines = 1,
-                    style = TextStyle(fontSize = 18.sp)
-                )
-            },
-            contentPadding = PaddingValues(8.dp),
-            colors = ButtonColors(
-                contentColor = LocalPalette.current.surfaceContainerHigh,
-                containerColor = LocalPalette.current.textFamily.body,
-                disabledContentColor = Color.Blue,
-                disabledContainerColor = Color.Green
-            ),
-            shape = RoundedCornerShape(percent = 20),
-            onClick = { onCancel() },
+        DialogButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(48.dp)
-        )
+                .height(48.dp),
+            text = stringResource(id = R.string.account_logout_button_cancel),
+            textStyle = LocalTypography.current.quaternary.bold.copy(
+                fontSize = 18.sp
+            ),
+            buttonColors = ButtonColors(
+                contentColor = LocalPalette.current.onSecondaryContainer,
+                containerColor = LocalPalette.current.secondaryContainer,
+                disabledContentColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent
+            ),
+        ) {
+            onCancel()
+        }
     }
 
     val confirmButton: @Composable () -> Unit = {
-        TextButton(
-            content = {
-                Text(
-                    text = stringResource(id = R.string.account_logout_button_confirm),
-                    maxLines = 1,
-                    style = TextStyle(fontSize = 18.sp)
-                )
-            },
-            contentPadding = PaddingValues(8.dp),
-            colors = ButtonColors(
-                contentColor = LocalPalette.current.surface,
-                containerColor = LocalPalette.current.coreFamily.primary,
-                disabledContentColor = Color.Blue,
-                disabledContainerColor = Color.Green
-            ),
-            shape = RoundedCornerShape(percent = 20),
-            onClick = { onConfirm() },
+        DialogButton(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(48.dp)
-        )
+                .height(48.dp),
+            text = stringResource(id = R.string.account_logout_button_confirm),
+            textStyle = LocalTypography.current.quaternary.bold.copy(
+                fontSize = 18.sp
+            ),
+            buttonColors = ButtonColors(
+                contentColor = LocalPalette.current.onErrorContainer,
+                containerColor = LocalPalette.current.errorContainer,
+                disabledContentColor = Color.Transparent,
+                disabledContainerColor = Color.Transparent
+            ),
+        ) {
+            onConfirm()
+        }
     }
 
     Dialog(
         title = title,
         content = { content() },
         cancelButton = { cancelButton() },
-        confirmButton = { confirmButton() }
+        confirmButton = { confirmButton() },
+        backgroundColor = LocalPalette.current.surfaceContainer,
+        scrimColor = LocalPalette.current.scrim
     )
 }
 
-@Preview
+/*@Preview
 @Composable
-private fun SignOutButtonPreview() {
+private fun AccountActionButtonPreview() {
     SelectiveTheme(
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        SignOutButton()
+        AccountActionButton()
     }
 }
 
@@ -1136,9 +1146,9 @@ private fun DeactivateAccountButtonPreview() {
         palette = ClassicPalette,
         typography = ClassicTypography
     ) {
-        DeactivateAccountButton()
+        AccountActionButton()
     }
-}
+}*/
 
 private enum class AccountOverviewDialog {
     NONE,

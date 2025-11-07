@@ -111,9 +111,7 @@ class FirestoreAccountRemoteDataSource(
         return try {
 
             val docRef = preferencesDocumentRef
-
-            if(docRef == null)
-                return Result.failure(Exception("User Marketplace Preferences document null!"))
+                ?: return Result.failure(Exception("User Marketplace Preferences document null!"))
 
             val agreementDto = firestore.runTransaction { transaction ->
 
@@ -143,9 +141,7 @@ class FirestoreAccountRemoteDataSource(
         return try {
 
             val docRef = creditsDocumentRef
-
-            if (docRef == null)
-                return Result.failure(Exception("User Account Credits document null!"))
+                ?: return Result.failure(Exception("User Account Credits document null!"))
 
             // Update document
             firestore.runTransaction { transaction ->
@@ -189,9 +185,7 @@ class FirestoreAccountRemoteDataSource(
         return try {
 
             val docRef = creditsDocumentRef
-
-            if (docRef == null)
-                return Result.failure(Exception("User Account Credits document null!"))
+                ?: return Result.failure(Exception("User Account Credits document null!"))
 
             // Update document
             firestore.runTransaction { transaction ->
@@ -285,9 +279,8 @@ class FirestoreAccountRemoteDataSource(
     ): Result<String> {
 
         val docRef = unlockHistoryCollectionRef
+            ?: return Result.failure(Exception("Unlock history collection not found!"))
 
-        if(docRef == null)
-            return Result.failure(Exception("Unlock history collection not found!"))
         if(unlockUUIDs == null)
             return Result.failure(Exception("No UUIDs found!"))
 
@@ -312,9 +305,7 @@ class FirestoreAccountRemoteDataSource(
     suspend fun fetchUnlockedPaletteDocuments(): Result<List<AccountPaletteDto>> {
 
         val docRef = unlockHistoryCollectionRef
-
-        if(docRef == null)
-            return Result.failure(Exception("Unlock history collection not found!"))
+            ?: return Result.failure(Exception("Unlock history collection not found!"))
 
         val accountPaletteDtoList = mutableListOf<AccountPaletteDto>()
 
@@ -333,9 +324,7 @@ class FirestoreAccountRemoteDataSource(
     suspend fun fetchUnlockedTypographyDocuments(): Result<List<AccountTypographyDto>> {
 
         val docRef = unlockHistoryCollectionRef
-
-        if(docRef == null)
-            return Result.failure(Exception("Unlock history collection not found!"))
+            ?: return Result.failure(Exception("Unlock history collection not found!"))
 
         val accountTypographyDtoList = mutableListOf<AccountTypographyDto>()
 
@@ -462,13 +451,10 @@ class FirestoreAccountRemoteDataSource(
     ): Result<String> {
 
         val docRef = purchaseHistoryCollectionRef
-
-        if(docRef == null)
-            return Result.failure(Exception("Purchase history collection not found!"))
+            ?: return Result.failure(Exception("Purchase history collection not found!"))
 
         val purchaseReferenceDoc = purchaseDocumentRef
-        if(purchaseReferenceDoc == null)
-            return Result.failure(Exception("Purchase history document not found!"))
+            ?: return Result.failure(Exception("Purchase history document not found!"))
 
         val documentData: MutableMap<String, Any> = HashMap()
         documentData[FIELD_PURCHASE_REFERENCE] = purchaseReferenceDoc.id

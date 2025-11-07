@@ -40,8 +40,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.menus.PETImageButton
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.other.PETImageButton
+import com.tritiumgaming.core.ui.common.other.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.operation.app.mappers.mission.toStringResource
@@ -113,7 +113,7 @@ fun MissionWrapper(
             text = title,
             fontSize = 16.sp,
             style = LocalTypography.current.primary.bold,
-            color = LocalPalette.current.textFamily.primary,
+            color = LocalPalette.current.primary,
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -189,7 +189,7 @@ fun MissionWrapper(
                                 .fillMaxWidth(),
                             painter = painterResource(R.drawable.icon_strikethrough_1),
                             contentDescription = "",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.primary),
+                            colorFilter = ColorFilter.tint(LocalPalette.current.primary),
                             contentScale = ContentScale.FillBounds
                         )
                     }

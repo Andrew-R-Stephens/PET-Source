@@ -1,22 +1,25 @@
 package com.tritiumgaming.feature.home.ui.newsletter.screen
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -30,9 +33,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.admob.BannerAd
-import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.ui.MainMenuScreen
@@ -79,27 +81,20 @@ private fun NewsMessageContent(
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(8.dp),
+            .fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
 
-        NavigationHeaderComposable(
-            params = NavHeaderComposableParams(
-                leftType = PETImageButtonType.BACK,
-                rightType = PETImageButtonType.NONE,
-                leftOnClick = { navController.popBackStack() }
-            )
+        NavigationHeader(
+            onLeftClick = { navController.popBackStack() }
         )
-
-        HorizontalDivider()
 
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .padding(16.dp),
-            color = LocalPalette.current.surfaceContainerHigh,
+            color = LocalPalette.current.surfaceContainer,
             shape = RoundedCornerShape(16.dp)
         ) {
 
@@ -119,11 +114,10 @@ private fun NewsMessageContent(
                         message?.title ?: ""
                     ),
                     style = LocalTypography.current.quaternary.regular.copy(
-                        color = LocalPalette.current.textFamily.emphasis,
+                        color = LocalPalette.current.primary,
                         fontSize = 24.sp,
                         textAlign = TextAlign.Center
                     )
-
                 )
 
                 BasicText(
@@ -132,7 +126,7 @@ private fun NewsMessageContent(
                         .wrapContentHeight(),
                     text = AnnotatedString.Companion.fromHtml(message?.dateFormatted ?: ""),
                     style = LocalTypography.current.quaternary.regular.copy(
-                        color = LocalPalette.current.textFamily.body,
+                        color = LocalPalette.current.onSurface,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center
                     )
@@ -152,13 +146,13 @@ private fun NewsMessageContent(
                 message?.description ?: "",
                 linkStyles = TextLinkStyles(
                     style = SpanStyle(
-                        color = LocalPalette.current.textFamily.emphasis,
+                        color = LocalPalette.current.secondary,
                         fontSize = 18.sp
                     ),
                 )
             ),
             style = LocalTypography.current.quaternary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
+                color = LocalPalette.current.onSurface,
                 fontSize = 18.sp
             )
         )
@@ -173,5 +167,35 @@ private fun NewsMessageContent(
         //AdmobBanner()
 
     }
+}
+
+@Composable
+private fun NavigationHeader(
+    onLeftClick: () -> Unit = {},
+    onRightClick: () -> Unit = {}
+) {
+    NavigationHeaderComposable(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 64.dp),
+        leftContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+                iconContent = { iconModifier ->
+                    Image(
+                        modifier = iconModifier,
+                        painter = painterResource(R.drawable.ic_arrow_60_left),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                        contentDescription = ""
+                    )
+                }
+            ) { onLeftClick() }
+        },
+        rightContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+            )
+        },
+    )
 }
 

@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.home.ui.appinfo
 
 import android.content.Intent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -35,7 +37,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -52,9 +56,9 @@ import androidx.window.core.layout.WindowSizeClass
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.util.FontUtils
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.menus.NavHeaderComposableParams
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.PETImageButtonType
+import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.common.prefabicon.BadgeIcon
 import com.tritiumgaming.core.ui.icon.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
@@ -95,12 +99,8 @@ fun InfoScreen(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
 
-            NavigationHeaderComposable(
-                params = NavHeaderComposableParams(
-                    centerTitleRes = R.string.aboutinfo_title_about,
-                    leftType = PETImageButtonType.BACK,
-                    leftOnClick = { navController.popBackStack() }
-                )
+            NavigationHeader(
+                onLeftClick = { navController.popBackStack() }
             )
 
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -128,6 +128,54 @@ fun InfoScreen(
 }
 
 @Composable
+private fun NavigationHeader(
+    onLeftClick: () -> Unit = {},
+    onRightClick: () -> Unit = {}
+) {
+    NavigationHeaderComposable(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 64.dp),
+        leftContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+                iconContent = { iconModifier ->
+                    Image(
+                        modifier = iconModifier,
+                        painter = painterResource(R.drawable.ic_arrow_60_left),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                        contentDescription = ""
+                    )
+                }
+            ) { onLeftClick() }
+        },
+        rightContent = { outerModifier ->
+            NavigationHeaderSideButton(
+                modifier = outerModifier,
+            )
+        },
+        centerContent = { outerModifier ->
+            NavigationHeaderCenter(
+                modifier = outerModifier,
+                textContent = { modifier ->
+                    BasicText(
+                        modifier = modifier,
+                        text = stringResource(R.string.aboutinfo_title_about),
+                        style = LocalTypography.current.primary.regular.copy(
+                            color = LocalPalette.current.primary,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(
+                            minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+                    )
+                }
+            )
+        }
+    )
+}
+
+@Composable
 private fun ColumnScope.InfoContentPortrait(
     contributors: List<Contributor>
 ) {
@@ -136,7 +184,9 @@ private fun ColumnScope.InfoContentPortrait(
 
     val versionSequence by remember {
         mutableStateOf(
-            try { (context.packageManager.getPackageInfo(context.packageName, 0)).versionName }
+            try {
+                (context.packageManager.getPackageInfo(
+                    context.packageName, 0)).versionName }
             catch (_: Exception) { "Unknown" }
         )
     }
@@ -144,10 +194,10 @@ private fun ColumnScope.InfoContentPortrait(
     BasicText(
         modifier = Modifier
             .fillMaxWidth()
-            .height(24.dp),
+            .height(18.dp),
         text = "${stringResource(R.string.aboutinfo_version)} $versionSequence",
-        style = LocalTypography.current.secondary.regular.copy(
-            color = LocalPalette.current.textFamily.body,
+        style = LocalTypography.current.quaternary.regular.copy(
+            color = LocalPalette.current.onSurface,
             textAlign = TextAlign.Center
         ),
         maxLines = 1,
@@ -171,17 +221,17 @@ private fun ColumnScope.InfoContentPortrait(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
                     .weight(.35f, false),
-                style = LocalTypography.current.secondary.regular,
-                fontSize = 24.sp,
+                style = LocalTypography.current.quaternary.regular,
+                fontSize = 18.sp,
                 text =
-                    AnnotatedString.Companion.fromHtml(
+                    AnnotatedString.fromHtml(
                         FontUtils.replaceHTMLFontColor(
                             stringResource(R.string.aboutinfo_aboutapp_info),
                             "CC3C3C",
-                            LocalPalette.current.textFamily.emphasis
+                            LocalPalette.current.onSurfaceVariant
                         )
                     ),
-                color = LocalPalette.current.textFamily.body,
+                color = LocalPalette.current.onSurface,
                 textAlign = TextAlign.Center
             )
         }
@@ -196,32 +246,36 @@ private fun ColumnScope.InfoContentPortrait(
         Column(
             modifier = Modifier
                 .weight(1f, fill = false)
-                .padding(bottom = 16.dp)
+                .padding(vertical = 8.dp)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center
         ) {
 
-            BasicText(
+            /*BasicText(
                 modifier = Modifier
-                    .padding(top = 16.dp)
-                    .height(36.dp)
+                    .height(24.dp)
                     .fillMaxWidth(),
                 text = stringResource(R.string.aboutinfo_developerinfo_title),
-                style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                style = LocalTypography.current.primary.bold.copy(
+                    color = LocalPalette.current.secondary,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,
                 autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
             )
 
+            Spacer(
+                modifier = Modifier
+                    .height(16.dp)
+            )*/
+
             BasicText(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(24.dp),
                 text = stringResource(R.string.aboutinfo_developerinfo_developer),
-                style = LocalTypography.current.secondary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                style = LocalTypography.current.quaternary.regular.copy(
+                    color = LocalPalette.current.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,
@@ -233,12 +287,17 @@ private fun ColumnScope.InfoContentPortrait(
                     .fillMaxWidth()
                     .height(18.dp),
                 text = stringResource(R.string.contact_developerName),
-                style = LocalTypography.current.secondary.regular.copy(
-                    color = LocalPalette.current.textFamily.body,
+                style = LocalTypography.current.quaternary.regular.copy(
+                    color = LocalPalette.current.onSurface,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,
                 autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+            )
+
+            Spacer(
+                modifier = Modifier
+                    .height(8.dp)
             )
 
             BasicText(
@@ -246,8 +305,8 @@ private fun ColumnScope.InfoContentPortrait(
                     .fillMaxWidth()
                     .height(24.dp),
                 text = stringResource(R.string.aboutinfo_developerinfo_contact),
-                style = LocalTypography.current.secondary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                style = LocalTypography.current.quaternary.regular.copy(
+                    color = LocalPalette.current.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,
@@ -259,8 +318,8 @@ private fun ColumnScope.InfoContentPortrait(
                     .fillMaxWidth()
                     .height(18.dp),
                 text = stringResource(R.string.contact_developerEmail),
-                style = LocalTypography.current.secondary.regular.copy(
-                    color = LocalPalette.current.textFamily.body,
+                style = LocalTypography.current.quaternary.regular.copy(
+                    color = LocalPalette.current.onSurface,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,
@@ -268,6 +327,11 @@ private fun ColumnScope.InfoContentPortrait(
             )
 
         }
+
+        Spacer(
+            modifier = Modifier
+                .height(16.dp)
+        )
 
         Column(
             modifier = Modifier
@@ -277,12 +341,12 @@ private fun ColumnScope.InfoContentPortrait(
 
             BasicText(
                 modifier = Modifier
-                    .padding(top = 16.dp)
-                    .height(36.dp)
+                    .padding(vertical = 8.dp)
+                    .height(24.dp)
                     .fillMaxWidth(),
                 text = stringResource(R.string.aboutinfo_specialthanks_title),
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                    color = LocalPalette.current.onSurfaceVariant,
                     textAlign = TextAlign.Center
                 ),
                 autoSize = TextAutoSize.StepBased(
@@ -290,6 +354,11 @@ private fun ColumnScope.InfoContentPortrait(
                     maxFontSize = 48.sp,
                     stepSize = 1.6.sp
                 )
+            )
+
+            Spacer(
+                modifier = Modifier
+                    .height(16.dp)
             )
 
             LazyColumn(
@@ -301,10 +370,10 @@ private fun ColumnScope.InfoContentPortrait(
                     BasicText(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(24.dp),
+                            .height(18.dp),
                         text = contributor.username,
                         style = LocalTypography.current.quaternary.regular.copy(
-                            color = LocalPalette.current.textFamily.body,
+                            color = LocalPalette.current.onSurface,
                             textAlign = TextAlign.Center
                         ),
                         maxLines = 1,
@@ -344,12 +413,17 @@ private fun ColumnScope.InfoContentLandscape(
             .height(24.dp)
             .align(Alignment.CenterHorizontally),
         text = "${stringResource(R.string.aboutinfo_version)} $versionSequence",
-        style = LocalTypography.current.secondary.regular.copy(
-            color = LocalPalette.current.textFamily.body,
+        style = LocalTypography.current.quaternary.regular.copy(
+            color = LocalPalette.current.onSurface,
             textAlign = TextAlign.Center
         ),
         maxLines = 1,
         autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+    )
+
+    Spacer(
+        modifier = Modifier
+            .height(8.dp)
     )
 
     Row(
@@ -365,9 +439,9 @@ private fun ColumnScope.InfoContentLandscape(
             modifier = Modifier
                 .weight(1f, true)
                 //.fillMaxHeight()
-                .padding(all = 8.dp)
+                .padding(horizontal = 8.dp)
                 .verticalScroll(rememberScrollStateStart),
-            verticalArrangement = Arrangement.Top,
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -375,24 +449,19 @@ private fun ColumnScope.InfoContentLandscape(
                 modifier = Modifier
                     .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp)
                     .wrapContentHeight()
-                    .padding(8.dp),
-                style = LocalTypography.current.secondary.regular,
-                fontSize = 24.sp,
+                    .padding(horizontal = 8.dp),
+                style = LocalTypography.current.quaternary.regular,
+                fontSize = 18.sp,
                 text =
-                    AnnotatedString.Companion.fromHtml(
+                    AnnotatedString.fromHtml(
                         FontUtils.replaceHTMLFontColor(
                             stringResource(R.string.aboutinfo_aboutapp_info),
                             "CC3C3C",
-                            LocalPalette.current.textFamily.emphasis
+                            LocalPalette.current.onSurfaceVariant
                         )
                     ),
-                color = LocalPalette.current.textFamily.body,
+                color = LocalPalette.current.onSurface,
                 textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier
-                .height(32.dp)
-                .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp)
             )
 
             Column(
@@ -404,12 +473,12 @@ private fun ColumnScope.InfoContentLandscape(
 
                 BasicText(
                     modifier = Modifier
-                        .padding(top = 16.dp)
-                        .height(36.dp)
+                        .padding(all = 8.dp)
+                        .height(24.dp)
                         .fillMaxWidth(),
                     text = stringResource(R.string.aboutinfo_specialthanks_title),
                     style = LocalTypography.current.primary.regular.copy(
-                        color = LocalPalette.current.textFamily.primary,
+                        color = LocalPalette.current.onSurfaceVariant,
                         textAlign = TextAlign.Center
                     ),
                     autoSize = TextAutoSize.StepBased(minFontSize = 10.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
@@ -424,10 +493,10 @@ private fun ColumnScope.InfoContentLandscape(
                         BasicText(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(24.dp),
+                                .height(18.dp),
                             text = contributor.username,
                             style = LocalTypography.current.quaternary.regular.copy(
-                                color = LocalPalette.current.textFamily.body,
+                                color = LocalPalette.current.onSurface,
                                 textAlign = TextAlign.Center
                             ),
                             maxLines = 1,
@@ -449,7 +518,7 @@ private fun ColumnScope.InfoContentLandscape(
                 //.fillMaxHeight()
                 .padding(all = 8.dp)
                 .verticalScroll(rememberScrollStateEnd),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -463,10 +532,10 @@ private fun ColumnScope.InfoContentLandscape(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .padding(horizontal = 8.dp, vertical = 12.dp),
+                        .padding(horizontal = 8.dp, vertical = 4.dp),
                     text = stringResource(R.string.aboutinfo_developerinfo_developer),
                     style = LocalTypography.current.quaternary.bold.copy(
-                        color = LocalPalette.current.textFamily.primary,
+                        color = LocalPalette.current.onSurfaceVariant,
                         textAlign = TextAlign.Center
                     ),
                     maxLines = 1,
@@ -477,10 +546,10 @@ private fun ColumnScope.InfoContentLandscape(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .padding(horizontal = 8.dp),
+                        .padding(horizontal = 8.dp, vertical = 4.dp),
                     text = stringResource(R.string.contact_developerName),
                     style = LocalTypography.current.quaternary.regular.copy(
-                        color = LocalPalette.current.textFamily.body,
+                        color = LocalPalette.current.onSurface,
                         textAlign = TextAlign.Center
                     ),
                     maxLines = 1,
@@ -493,10 +562,10 @@ private fun ColumnScope.InfoContentLandscape(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .padding(horizontal = 8.dp, vertical = 12.dp),
+                        .padding(horizontal = 8.dp, vertical = 4.dp),
                     text = stringResource(R.string.aboutinfo_developerinfo_contact),
                     style = LocalTypography.current.quaternary.bold.copy(
-                        color = LocalPalette.current.textFamily.primary,
+                        color = LocalPalette.current.onSurfaceVariant,
                         textAlign = TextAlign.Center
                     ),
                     maxLines = 1,
@@ -507,21 +576,16 @@ private fun ColumnScope.InfoContentLandscape(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .padding(horizontal = 8.dp),
+                        .padding(horizontal = 8.dp, vertical = 4.dp),
                     text = stringResource(R.string.contact_developerEmail),
                     style = LocalTypography.current.quaternary.regular.copy(
-                        color = LocalPalette.current.textFamily.body,
+                        color = LocalPalette.current.onSurface,
                         textAlign = TextAlign.Center
                     ),
                     maxLines = 1,
                     fontSize = 18.sp
                 )
             }
-
-            Spacer(modifier = Modifier
-                .height(32.dp)
-                .widthIn(max = WindowSizeClass.WIDTH_DP_MEDIUM_LOWER_BOUND.dp)
-            )
 
             VisitDiscordButton(
                 modifier = Modifier
@@ -558,7 +622,7 @@ private fun VisitDiscordButton(
         },
         shape = RoundedCornerShape(25),
         colors = ButtonDefaults.buttonColors(
-            containerColor = LocalPalette.current.textFamily.primary
+            containerColor = LocalPalette.current.primaryContainer
         ),
         contentPadding = PaddingValues(16.dp, 4.dp)
     ) {
@@ -576,15 +640,15 @@ private fun VisitDiscordButton(
                 baseComponent = {
                     IconResource.DISCORD.ToComposable(
                         colors = IconVectorColors.defaults(
-                            fillColor = LocalPalette.current.textFamily.primary,
-                            strokeColor = LocalPalette.current.surface,
+                            fillColor = LocalPalette.current.primaryContainer,
+                            strokeColor = LocalPalette.current.onPrimaryContainer,
                         )
                     )
                 }
             ) {
                 OpenInNewIcon(
                     colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.textFamily.body,
+                        fillColor = LocalPalette.current.onSurface,
                     )
                 )
             }
@@ -596,7 +660,7 @@ private fun VisitDiscordButton(
                 text = stringResource(R.string.aboutinfo_discord_join),
                 style = LocalTypography.current.primary.regular.copy(
                     fontWeight = FontWeight.Bold,
-                    color = LocalPalette.current.surface,
+                    color = LocalPalette.current.onPrimaryContainer,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,

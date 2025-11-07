@@ -81,7 +81,7 @@ fun SanityMeterView(
                 modifier = Modifier.align(Alignment.Center),
                 text = "$sanityPercent".substring(0, min(4, sanityPercent.toString().length)),
                 style = LocalTypography.current.quaternary.regular,
-                color = LocalPalette.current.textFamily.primary,
+                color = LocalPalette.current.primary,
                 fontSize = 18.sp,
             )
         }

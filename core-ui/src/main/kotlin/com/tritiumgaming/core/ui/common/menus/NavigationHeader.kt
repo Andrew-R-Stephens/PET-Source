@@ -182,7 +182,7 @@ fun TestNavHeader() {
                                 .wrapContentHeight(),
                             text = stringResource(R.string.objectives_title_optional_objective),
                             style = LocalTypography.current.primary.regular.copy(
-                                color = LocalPalette.current.textFamily.primary,
+                                color = LocalPalette.current.primary,
                                 textAlign = TextAlign.Center
                             ),
                             maxLines = 1,
@@ -227,7 +227,7 @@ fun NavigationHeaderComposable(
                     .weight(2f, fill = true),
                 text = centerTitle,
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.primary,
+                    color = LocalPalette.current.primary,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,

@@ -20,19 +20,15 @@ private fun OperationScreenPreview() {
 
 @Composable
 fun OperationScreen(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    content: @Composable () -> Unit
+    content: @Composable (modifier: Modifier) -> Unit
 ) {
 
     OperationNavigationBar(
         navController = navController
     ) {
-        Box(
-            modifier = Modifier
-                .padding(horizontal = 8.dp)
-        ) {
-            content()
-        }
+        content(modifier)
     }
 
 }
