@@ -190,7 +190,7 @@ fun ResetButton(
         label = "",
     )
 
-    val foregroundColor = LocalPalette.current.textFamily.body
+    val foregroundColor = LocalPalette.current.onSurface
 
     Box(
         modifier = modifier
@@ -236,7 +236,7 @@ fun CollapseButton(
         label = "",
     )
 
-    val foregroundColor = LocalPalette.current.textFamily.body
+    val foregroundColor = LocalPalette.current.onSurface
 
     Box(
         modifier = modifier
@@ -274,7 +274,7 @@ fun SanityButton(
 ) {
     val enabledState by isShownState.collectAsStateWithLifecycle()
 
-    val foregroundColor = LocalPalette.current.textFamily.body
+    val foregroundColor = LocalPalette.current.onSurface
 
     Box(
         modifier = modifier
@@ -311,7 +311,7 @@ fun ModifiersButton(
 ) {
     val enabledState by isShownState.collectAsStateWithLifecycle()
 
-    val foregroundColor = LocalPalette.current.textFamily.body
+    val foregroundColor = LocalPalette.current.onSurface
 
     Box(
         modifier = modifier

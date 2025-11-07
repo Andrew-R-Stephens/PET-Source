@@ -125,7 +125,7 @@ private fun OperationConfigCarousel(
                     text = label,
                     style = LocalTypography.current.secondary.regular,
                     textAlign = TextAlign.Center,
-                    color = LocalPalette.current.textFamily.body,
+                    color = LocalPalette.current.onSurface,
                     fontSize = 18.sp
                 )
 

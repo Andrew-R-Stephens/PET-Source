@@ -269,7 +269,7 @@ private val PET_Base = ExtendedDefaultLight.copy(
     ),
 
     // windowStrokeColor = white,
-    backgroundColor_mapviewOverlay = black_A75,
+    // backgroundColor_mapviewOverlay = black_A75,
     // splashTextColor = red_M350,
     light_active = red,
     light_inactive = red_A40,
@@ -289,7 +289,7 @@ private val PET_Base = ExtendedDefaultLight.copy(
     selectedColor = red,
     selectedColor2 = red_A40,
     unselectedColor = white_M600,
-    strikethroughColor = red_M300,
+    // strikethroughColor = red_M300,
     positiveSelColor = green,
     neutralSelColor = white_M100,
     negativeSelColor = red_M350,
@@ -444,7 +444,7 @@ val Monochromacy = PET_Base.copy(
     // progressBarColorEnd = white_M300,
 
     // inboxNotification = white_M600,
-    strikethroughColor = white_M100,
+    // strikethroughColor = white_M100,
     selectedColor = white_M100,
     unselectedColor = white_M600,
     positiveSelColor = white,
@@ -547,7 +547,7 @@ val Deuteranomaly = PET_Base.copy(
     // progressBarColorEnd = yellow_M300,
 
     // inboxNotification = blue_M650,
-    strikethroughColor = blue_M175,
+    // strikethroughColor = blue_M175,
     selectedColor = yellow,
     unselectedColor = white_M600,
     positiveSelColor = yellow,
@@ -647,7 +647,7 @@ val Protanomaly = PET_Base.copy(
     // progressBarColorEnd = yellow_M300,
 
     // inboxNotification = blue_M650,
-    strikethroughColor = blue_M175,
+    // strikethroughColor = blue_M175,
     selectedColor = yellow,
     unselectedColor = white_M600,
     positiveSelColor = yellow,
@@ -855,7 +855,7 @@ val Recruit = Prestige.copy(
     light_inactive = orange_M50_A40,
     light_off = white_M600,
 
-    strikethroughColor = orange_M300,
+    // strikethroughColor = orange_M300,
     selectedColor = orange_M150,
     selectedColor2 = orange_M150,
     unselectedColor = white_M600,
@@ -866,7 +866,7 @@ val Recruit = Prestige.copy(
     mapRoomBorderColor = orange_M300_A58,
     mapRoomFillColor = yellow_A10,
 
-    backgroundColor_mapviewOverlay = Color(0xBF090500),
+    // backgroundColor_mapviewOverlay = Color(0xBF090500),
 
     progressBarColorStart = orange_M500,
     // progressBarColorEnd = orange_M300,
@@ -989,7 +989,7 @@ val Investigator = Prestige.copy(
     light_inactive = Color(0x6689114F),
     light_off = white_M600,
 
-    strikethroughColor = purple_M525,
+    // strikethroughColor = purple_M525,
     selectedColor = purple_M75,
     selectedColor2 = purple_M75,
     unselectedColor = white_M600,
@@ -1000,7 +1000,7 @@ val Investigator = Prestige.copy(
     mapRoomBorderColor = Color(0x94F11284),
     mapRoomFillColor = Color(0x1AF11284),
 
-    backgroundColor_mapviewOverlay = Color(0xBF0B000B),
+    // backgroundColor_mapviewOverlay = Color(0xBF0B000B),
 
     progressBarColorStart = white_M10,
     // progressBarColorEnd = purple_M75,
@@ -1120,7 +1120,7 @@ val PrivateInvestigator = Prestige.copy(
     light_inactive = orange_M50_A40,
     light_off = orange_M510,
 
-    strikethroughColor = orange_M510,
+    // strikethroughColor = orange_M510,
     selectedColor = orange_M10,
     selectedColor2 = orange_M50_A40,
     unselectedColor = white_M600,
@@ -1131,7 +1131,7 @@ val PrivateInvestigator = Prestige.copy(
     mapRoomBorderColor = orange_M300_A58,
     mapRoomFillColor = yellow_A10,
 
-    backgroundColor_mapviewOverlay = black_A75,
+    // backgroundColor_mapviewOverlay = black_A75,
 
     progressBarColorStart = orange_M85,
     // progressBarColorEnd = orange_M10,
@@ -1254,7 +1254,7 @@ val Detective = Prestige.copy(
     light_inactive = green_M525,
     light_off = Color(0xFF2E332F),
 
-    strikethroughColor = white_M600,
+    // strikethroughColor = white_M600,
     selectedColor = green_M25,
     selectedColor2 = green_M525,
     unselectedColor = white_M600,
@@ -1265,7 +1265,7 @@ val Detective = Prestige.copy(
     mapRoomBorderColor = Color(0x941A9863),
     mapRoomFillColor = Color(0x1A1A9863),
 
-    backgroundColor_mapviewOverlay = Color(0xBF0F100F),
+    // backgroundColor_mapviewOverlay = Color(0xBF0F100F),
 
     progressBarColorStart = white_M20,
     // progressBarColorEnd = green_M25,
@@ -1391,7 +1391,7 @@ val Technician = Prestige.copy(
     light_inactive = Color(0xFF5E0D0B),
     light_off = white_M600,
 
-    strikethroughColor = Color(0xFF5E0D0B),
+    // strikethroughColor = Color(0xFF5E0D0B),
     selectedColor = red_M375,
     selectedColor2 = Color(0xFF5E0D0B),
     unselectedColor = white_M500,
@@ -1403,7 +1403,7 @@ val Technician = Prestige.copy(
     mapRoomBorderColor = Color(0x8091100C),
     mapRoomFillColor = Color(0x1A91100C),
 
-    backgroundColor_mapviewOverlay = Color(0xBF050C04),
+    // backgroundColor_mapviewOverlay = Color(0xBF050C04),
 
     progressBarColorStart = Color(0xFFE0E0E0),
     // progressBarColorEnd = red_M375,
@@ -1530,7 +1530,7 @@ val Specialist = Prestige.copy(
     light_inactive = Color(0xFF80994D),
     light_off = white_M600,
 
-    strikethroughColor = Color(0xFFA0B17B),
+    // strikethroughColor = Color(0xFFA0B17B),
     selectedColor = Color(0xFF80994D),
     selectedColor2 = Color(0xFF80994D),
     unselectedColor = white_M600,
@@ -1541,7 +1541,7 @@ val Specialist = Prestige.copy(
     mapRoomBorderColor = green_M150_A58,
     mapRoomFillColor = green_M150_A10,
 
-    backgroundColor_mapviewOverlay = Color(0xBF070C05),
+    // backgroundColor_mapviewOverlay = Color(0xBF070C05),
 
     progressBarColorStart = Color(0xFF80994D),
     // progressBarColorEnd = green_M150,
@@ -1666,7 +1666,7 @@ val Analyst = Prestige.copy(
     light_off = red_M850,
 
     // buttonColor = Color(0xFF7BCD26),
-    strikethroughColor = Color(0xFFCD2547),
+    // strikethroughColor = Color(0xFFCD2547),
     selectedColor = Color(0xFF2667CD),
     selectedColor2 = Color(0xFF2667CD),
     unselectedColor = orange_M525,
@@ -1684,7 +1684,7 @@ val Analyst = Prestige.copy(
 
     // splashTextColor = Color(0xFF2667CD),
 
-    backgroundColor_mapviewOverlay = Color(0xBF1B1516),
+    // backgroundColor_mapviewOverlay = Color(0xBF1B1516),
 
     // inboxNotification = Color(0xFFD3C9C3),
 
@@ -1802,7 +1802,7 @@ val Agent = Prestige.copy(
     light_inactive = Color(0xFF1D4E49),
     light_off = Color(0xFF202A29),
 
-    strikethroughColor = Color(0xFF1D4E49),
+    // strikethroughColor = Color(0xFF1D4E49),
     selectedColor = Color(0xFF167467),
     selectedColor2 = Color(0xFF167467),
     unselectedColor = Color(0xFF858686),
@@ -1820,7 +1820,7 @@ val Agent = Prestige.copy(
 
     // splashTextColor = blue_M90,
 
-    backgroundColor_mapviewOverlay = Color(0xBF101515),
+    // backgroundColor_mapviewOverlay = Color(0xBF101515),
 
     // inboxNotification = blue_M90,
 
@@ -1937,7 +1937,7 @@ val Operator = Prestige.copy(
     light_active = blue_M150,
 
     // inboxNotification = purple_M150,
-    strikethroughColor = purple_M300,
+    // strikethroughColor = purple_M300,
     mapRoomBorderColor = purple_M300_A58,
     mapPoiFillColor = purple_M300_A75,
     selectedColor = purple_M450,
@@ -1955,7 +1955,7 @@ val Operator = Prestige.copy(
 
     // splashTextColor = purple_M150,
 
-    backgroundColor_mapviewOverlay = Color(0xBF00000E),
+    // backgroundColor_mapviewOverlay = Color(0xBF00000E),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2071,7 +2071,7 @@ val Commissioner = Prestige.copy(
 
 
     // inboxNotification = orange_M05,
-    strikethroughColor = Color(0xFF765932),
+    // strikethroughColor = Color(0xFF765932),
     selectedColor = Color(0xFFE5A348),
     selectedColor2 = Color(0xFFE5A348),
     unselectedColor = Color(0xFFACAAAC),
@@ -2089,7 +2089,7 @@ val Commissioner = Prestige.copy(
 
     // splashTextColor = orange_M05,
 
-    backgroundColor_mapviewOverlay = Color(0xBF080808),
+    // backgroundColor_mapviewOverlay = Color(0xBF080808),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2205,7 +2205,7 @@ val Easter = Event.copy(
     light_off = Color(0xFF1C180D),
 
     // inboxNotification = orange_M05,
-    strikethroughColor = Color(0xFF21654A),
+    // strikethroughColor = Color(0xFF21654A),
     selectedColor = Color(0xFFF8E8BD),
     selectedColor2 = green_M550,
     unselectedColor = white_M600,
@@ -2223,7 +2223,7 @@ val Easter = Event.copy(
 
     // splashTextColor = green_M550,
 
-    backgroundColor_mapviewOverlay = Color(0xBF030C0A),
+    // backgroundColor_mapviewOverlay = Color(0xBF030C0A),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2337,7 +2337,7 @@ val Halloween23 = Event.copy(
     light_inactive = Color(0xFF9F4B0D),
     light_off = Color(0xFF3F1602),
 
-    strikethroughColor = Color(0xFFD7CCC3),
+    // strikethroughColor = Color(0xFFD7CCC3),
     selectedColor = Color(0xFFC85E0D),
     selectedColor2 = Color(0xFFC85E0D),
     unselectedColor = Color(0xFF373737),
@@ -2355,7 +2355,7 @@ val Halloween23 = Event.copy(
 
     // splashTextColor = Color(0xFFEC700D),
 
-    backgroundColor_mapviewOverlay = Color(0xBF0C0400),
+    // backgroundColor_mapviewOverlay = Color(0xBF0C0400),
 
     // inboxNotification = Color(0xFFEC700D),
 
@@ -2472,7 +2472,7 @@ val Holiday22 = Event.copy(
     light_inactive = Color(0xFF2A2E45),
     light_off = blue_M750,
 
-    strikethroughColor = blue_M125,
+    // strikethroughColor = blue_M125,
     selectedColor = blue_M125,
     selectedColor2 = blue_M125,
     unselectedColor = Color(0xFF2A2E45),
@@ -2490,7 +2490,7 @@ val Holiday22 = Event.copy(
 
     // splashTextColor = blue_M125,
 
-    backgroundColor_mapviewOverlay = Color(0xBF0D0E19),
+    // backgroundColor_mapviewOverlay = Color(0xBF0D0E19),
 
     // inboxNotification = Color(0xFF6996E4),
 
@@ -2603,7 +2603,7 @@ val Holiday23 = Event.copy(
     light_inactive = Color(0x40E9AD4C),
     light_off = Color(0xFF2A2E45),
 
-    strikethroughColor = Color(0xFF447CDE),
+    // strikethroughColor = Color(0xFF447CDE),
     selectedColor = Color(0xFFE9AD4C),
     selectedColor2 = Color(0xFFE9AD4C),
     unselectedColor = Color(0xFF213A67),
@@ -2621,7 +2621,7 @@ val Holiday23 = Event.copy(
 
     // splashTextColor = Color(0xFF447CDE),
 
-    backgroundColor_mapviewOverlay = Color(0xBF1B1C33),
+    // backgroundColor_mapviewOverlay = Color(0xBF1B1C33),
 
     // inboxNotification = Color(0xFFE9AD4C),
 
@@ -2745,7 +2745,7 @@ val Discord = Community.copy(
     light_inactive = Color(0xFFAAB3F3),
     light_off = blue_M850,
 
-    strikethroughColor = Color(0xFFC3C4C6),
+    // strikethroughColor = Color(0xFFC3C4C6),
     selectedColor = Color(0xFFAAB3F3),
     selectedColor2 = Color(0xFFAAB3F3),
     unselectedColor = blue_M850,
@@ -2763,7 +2763,7 @@ val Discord = Community.copy(
 
     // splashTextColor = blue_M75,
 
-    backgroundColor_mapviewOverlay = Color(0xBF131517),
+    // backgroundColor_mapviewOverlay = Color(0xBF131517),
 
     // inboxNotification = Color(0xFFF3F3F7),
 
@@ -2879,7 +2879,7 @@ val ContentCreator = Community.copy(
     light_inactive = Color(0xFF510E1B),
     light_off = Color(0xFF1E1013),
 
-    strikethroughColor = Color(0xFF780C0C),
+    // strikethroughColor = Color(0xFF780C0C),
     selectedColor = red_M225,
     selectedColor2 = red_M225,
     unselectedColor = Color(0xFF510E1B),
@@ -2897,7 +2897,7 @@ val ContentCreator = Community.copy(
 
     // splashTextColor = red_M225,
 
-    backgroundColor_mapviewOverlay = Color(0xBF080808),
+    // backgroundColor_mapviewOverlay = Color(0xBF080808),
 
     // inboxNotification = red_M225,
 
@@ -3011,7 +3011,7 @@ val Developer = Community.copy(
     light_inactive = Color(0x66ECD316),
     light_off = Color(0x1AECD316),
 
-    strikethroughColor = Color(0xFFE2E2DF),
+    // strikethroughColor = Color(0xFFE2E2DF),
     selectedColor = yellow_M25,
     selectedColor2 = yellow_M25,
     unselectedColor = Color(0xFFE2E2DF),
@@ -3029,7 +3029,7 @@ val Developer = Community.copy(
 
     // splashTextColor = yellow_M25,
 
-    backgroundColor_mapviewOverlay = Color(0x40535353),
+    // backgroundColor_mapviewOverlay = Color(0x40535353),
 
     // inboxNotification = Color(0xFFE2E2DF),
 
@@ -3147,7 +3147,7 @@ val Translator = Community.copy(
     light_inactive = Color(0xFF535052),
     light_off = purple_M850,
 
-    strikethroughColor = Color(0xFFD99CA5),
+    // strikethroughColor = Color(0xFFD99CA5),
     selectedColor = red_M150,
     selectedColor2 = Color(0xFF535052),
     unselectedColor = white_M600,
@@ -3165,7 +3165,7 @@ val Translator = Community.copy(
 
     // splashTextColor = red_M150,
 
-    backgroundColor_mapviewOverlay = black_A75,
+    // backgroundColor_mapviewOverlay = black_A75,
 
     // inboxNotification = Color(0xFFDA7F88),
 
@@ -3280,7 +3280,7 @@ val Winner = Community.copy(
     light_inactive = blue_M850,
     light_off = white_M600,
 
-    strikethroughColor = Color(0xFF936305),
+    // strikethroughColor = Color(0xFF936305),
     selectedColor = Color(0xFFDABA80),
     selectedColor2 = blue_M850,
     unselectedColor = white_M600,
@@ -3300,7 +3300,7 @@ val Winner = Community.copy(
 
     // splashTextColor = orange_M250,
 
-    backgroundColor_mapviewOverlay = Color(0xBF060C10),
+    // backgroundColor_mapviewOverlay = Color(0xBF060C10),
 
     // inboxNotification = Color(0xFFDABA80),
 
@@ -3415,7 +3415,7 @@ val Artist = Community.copy(
     light_inactive = Color(0xFF5B399E),
     light_off = white_M600,
 
-    strikethroughColor = Color(0xFF5B399E),
+    // strikethroughColor = Color(0xFF5B399E),
     selectedColor = purple_M550,
     selectedColor2 = Color(0xFF5B399E),
     unselectedColor = white_M600,
@@ -3433,7 +3433,7 @@ val Artist = Community.copy(
 
     // splashTextColor = Color(0xFFAA7FFD),
 
-    backgroundColor_mapviewOverlay = Color(0xBF0A0C0C),
+    // backgroundColor_mapviewOverlay = Color(0xBF0A0C0C),
 
     // inboxNotification = Color(0xFFE3D6F7),
 
@@ -3533,7 +3533,7 @@ val Whiteboard = Skin.copy(
 
     // windowStrokeColor = Color(0xFF383839),
 
-    backgroundColor_mapviewOverlay = Color(0xFFafb7be),
+    // backgroundColor_mapviewOverlay = Color(0xFFafb7be),
 
     // splashTextColor = Color(0xFF383839),
 
@@ -3556,7 +3556,7 @@ val Whiteboard = Skin.copy(
     selectedColor2 = Color(0xFFf55656),
     unselectedColor = Color(0xFFafb7be),
 
-    strikethroughColor = Color(0xFFf55656),
+    // strikethroughColor = Color(0xFFf55656),
 
     positiveSelColor = Color(0xFFf55656),
     neutralSelColor = Color(0xFF383839),
@@ -3688,7 +3688,7 @@ val StratagemHero = Special.copy(
     light_inactive = Color(0x40FFD608),
     light_off = Color(0xFFB7CBDC),
 
-    strikethroughColor = Color(0xFFB7CBDC),
+    // strikethroughColor = Color(0xFFB7CBDC),
     selectedColor = Color(0xFFFFD608),
     selectedColor2 = Color(0xFFFFD608),
     unselectedColor = Color(0xFFA3A3A3),
@@ -3707,7 +3707,7 @@ val StratagemHero = Special.copy(
 
     // splashTextColor = Color(0xFF447CDE),
 
-    backgroundColor_mapviewOverlay = Color(0xBF001021),
+    // backgroundColor_mapviewOverlay = Color(0xBF001021),
 
     // inboxNotification = Color(0xFF95D2C8),
 

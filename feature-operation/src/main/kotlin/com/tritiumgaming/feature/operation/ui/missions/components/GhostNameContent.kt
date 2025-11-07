@@ -75,7 +75,7 @@ fun GhostNameContent(
                 .padding(8.dp),
             text = stringResource(R.string.objectives_title_ghost_name),
             style = LocalTypography.current.quaternary.regular,
-            color = LocalPalette.current.textFamily.body,
+            color = LocalPalette.current.onSurface,
             fontSize = 18.sp
         )
 
@@ -152,7 +152,7 @@ fun NameWrapper(
                     .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, true),
                 value = name,
                 textStyle = LocalTypography.current.quaternary.regular.copy(
-                    color = LocalPalette.current.textFamily.body,
+                    color = LocalPalette.current.onSurface,
                     fontSize = 18.sp
                 ),
                 placeholder = {
@@ -163,7 +163,7 @@ fun NameWrapper(
                             .wrapContentHeight(),
                         text = placeholder,
                         style = LocalTypography.current.quaternary.regular,
-                        color = LocalPalette.current.textFamily.body.copy(alpha = 0.5f),
+                        color = LocalPalette.current.onSurface.copy(alpha = 0.5f),
                         fontSize = 18.sp
                     )
                 },
@@ -208,12 +208,12 @@ fun NameWrapper(
                             Text(
                                 text = stringResource(it.name.toStringResource()),
                                 style = LocalTypography.current.quaternary.regular,
-                                color = LocalPalette.current.textFamily.body,
+                                color = LocalPalette.current.onSurface,
                                 fontSize = 18.sp
                             )
                         },
                         colors = MenuDefaults.itemColors().copy(
-                            textColor = LocalPalette.current.textFamily.body,
+                            textColor = LocalPalette.current.onSurface,
                         ),
                         onClick = {
                             expanded = false

@@ -483,7 +483,7 @@ private fun UiControllerPortrait(
                     text = stringResource(mapTitle.toStringResource()),
                     style = LocalTypography.current.quaternary.bold,
                     fontSize = 24.sp,
-                    color = LocalPalette.current.textFamily.body
+                    color = LocalPalette.current.onSurface
                 )
             },
             endComponent = {
@@ -502,7 +502,7 @@ private fun UiControllerPortrait(
                             contentDescription = null,
                             contentScale = ContentScale.Fit,
                             colorFilter = ColorFilter.tint(
-                                LocalPalette.current.textFamily.body)
+                                LocalPalette.current.onSurface)
                         )
                     }
 
@@ -524,7 +524,7 @@ private fun UiControllerPortrait(
                 painter = painterResource(R.drawable.ic_stairs),
                 contentScale = ContentScale.Fit,
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
             )
 
             Row(
@@ -542,7 +542,7 @@ private fun UiControllerPortrait(
                         })
                         .padding(8.dp),
                     colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.textFamily.body
+                        fillColor = LocalPalette.current.onSurface
                     )
                 )
 
@@ -550,7 +550,7 @@ private fun UiControllerPortrait(
                     text = stringResource(floorTitle.toStringResource()),
                     style = LocalTypography.current.quaternary.bold,
                     textAlign = TextAlign.Center,
-                    color = LocalPalette.current.textFamily.body
+                    color = LocalPalette.current.onSurface
                 )
 
                 Arrow60RightIcon(
@@ -561,7 +561,7 @@ private fun UiControllerPortrait(
                         })
                         .padding(8.dp),
                     colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.textFamily.body
+                        fillColor = LocalPalette.current.onSurface
                     )
                 )
 
@@ -582,7 +582,7 @@ private fun UiControllerPortrait(
                 painter = painterResource(R.drawable.ic_room),
                 contentScale = ContentScale.Fit,
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
             )
 
             RoomDropdownWrapper(
@@ -637,7 +637,7 @@ private fun UiControllerLandscape(
                 painter = painterResource(android.R.drawable.ic_menu_revert),
                 contentScale = ContentScale.Fit,
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
             )
 
             Text(
@@ -654,7 +654,7 @@ private fun UiControllerLandscape(
                 style = LocalTypography.current.quaternary.bold,
                 textAlign = TextAlign.Start,
                 fontSize = 24.sp,
-                color = LocalPalette.current.textFamily.body
+                color = LocalPalette.current.onSurface
             )
 
             Text(
@@ -671,7 +671,7 @@ private fun UiControllerLandscape(
                 style = LocalTypography.current.quaternary.bold,
                 textAlign = TextAlign.End,
                 fontSize = 24.sp,
-                color = LocalPalette.current.textFamily.body
+                color = LocalPalette.current.onSurface
             )
 
             Image(
@@ -681,7 +681,7 @@ private fun UiControllerLandscape(
                 painter = painterResource(R.drawable.ic_stairs),
                 contentScale = ContentScale.Fit,
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
             )
         }
 
@@ -711,7 +711,7 @@ private fun UiControllerLandscape(
                         })
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.textFamily.body
+                        fillColor = LocalPalette.current.onSurface
                     )
                 )
 
@@ -742,7 +742,7 @@ private fun UiControllerLandscape(
                             contentDescription = null,
                             contentScale = ContentScale.Fit,
                             colorFilter = ColorFilter.tint(
-                                LocalPalette.current.textFamily.body)
+                                LocalPalette.current.onSurface)
                         )
                     }
 
@@ -757,7 +757,7 @@ private fun UiControllerLandscape(
                         })
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.textFamily.body
+                        fillColor = LocalPalette.current.onSurface
                     )
                 )
 
@@ -793,7 +793,7 @@ private fun UiControllerLandscape(
                     painter = painterResource(R.drawable.ic_room),
                     contentScale = ContentScale.Fit,
                     contentDescription = null,
-                    colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+                    colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
                 )
 
                 RoomDropdownWrapper(
@@ -814,7 +814,7 @@ private fun UiControllerLandscape(
                 painter = painterResource(R.drawable.ic_selector_inc_unsel),
                 contentScale = ContentScale.Fit,
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body)
+                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
             )
 
         }
@@ -881,7 +881,7 @@ private fun RoomDropdownWrapper(
                     ),
                 value = roomName,
                 textStyle = LocalTypography.current.quaternary.regular.copy(
-                    color = LocalPalette.current.textFamily.body,
+                    color = LocalPalette.current.onSurface,
                     fontSize = 14.sp
                 ),
                 trailingIcon = {
@@ -900,8 +900,8 @@ private fun RoomDropdownWrapper(
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent,
                     errorIndicatorColor = Color.Transparent,
-                    unfocusedTrailingIconColor = LocalPalette.current.textFamily.body,
-                    focusedTrailingIconColor = LocalPalette.current.textFamily.body
+                    unfocusedTrailingIconColor = LocalPalette.current.onSurface,
+                    focusedTrailingIconColor = LocalPalette.current.onSurface
                 ),
                 onValueChange = {},
                 readOnly = true,
@@ -930,13 +930,13 @@ private fun RoomDropdownWrapper(
                         Text(
                             text = it.name,
                             style = LocalTypography.current.quaternary.regular,
-                            color = LocalPalette.current.textFamily.body,
+                            color = LocalPalette.current.onSurface,
                             fontSize = 18.sp
                         )
                     },
                     colors = MenuDefaults.itemColors().copy(
-                        textColor = LocalPalette.current.textFamily.body,
-                        trailingIconColor = LocalPalette.current.textFamily.body,
+                        textColor = LocalPalette.current.onSurface,
+                        trailingIconColor = LocalPalette.current.onSurface,
                     ),
                     onClick = {
                         expanded = false

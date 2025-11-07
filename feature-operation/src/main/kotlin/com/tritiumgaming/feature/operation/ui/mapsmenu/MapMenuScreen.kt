@@ -231,7 +231,7 @@ private fun MapCard(
             style = LocalTypography.current.primary.bold.copy(
                 textAlign = TextAlign.Center
             ),
-            color = LocalPalette.current.textFamily.body,
+            color = LocalPalette.current.onSurface,
             fontSize = 24.sp,
             maxLines = 1
         )

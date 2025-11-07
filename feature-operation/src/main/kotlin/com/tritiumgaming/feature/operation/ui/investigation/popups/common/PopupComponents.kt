@@ -81,7 +81,7 @@ fun RowScope.PrimaryPageButton(
         BasicText(
             text = stringResource(textRes).uppercase(),
             style = LocalTypography.current.secondary.regular.copy(
-                color = LocalPalette.current.textFamily.body,
+                color = LocalPalette.current.onSurface,
                 textAlign = TextAlign.Center
             ),
             autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 1.6.sp)
@@ -90,7 +90,7 @@ fun RowScope.PrimaryPageButton(
             containerModifier = Modifier
                 .fillMaxSize(),
             text = stringResource(textRes),
-            color = LocalPalette.current.textFamily.body,
+            color = LocalPalette.current.onSurface,
             style = LocalTypography.current.secondary.regular,
             autoResizeStyle = AutoResizedStyleType.SQUEEZE,
             textCase = TextCase.Uppercase,

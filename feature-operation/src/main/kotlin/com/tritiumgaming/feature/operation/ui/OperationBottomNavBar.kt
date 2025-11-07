@@ -193,7 +193,7 @@ private fun OperationNavigationBottomBar(
                                 } else {
                                     IconVectorColors.defaults(
                                         fillColor =LocalPalette.current.surfaceContainer,
-                                        strokeColor = LocalPalette.current.textFamily.body
+                                        strokeColor = LocalPalette.current.onSurface
                                     )
                                 }
                         ),
@@ -208,7 +208,7 @@ private fun OperationNavigationBottomBar(
                 colors = NavigationBarItemDefaults.colors(
                     indicatorColor = Color.Transparent,
                     selectedIconColor = LocalPalette.current.primary,
-                    unselectedIconColor = LocalPalette.current.textFamily.body
+                    unselectedIconColor = LocalPalette.current.onSurface
                 ),
                 modifier = Modifier
                     .weight(1f, true)
@@ -231,7 +231,7 @@ private fun OperationNavigationBottomBar(
                             if (navController.currentDestination?.route == destination.route)
                                 LocalPalette.current.primary
                             else
-                                LocalPalette.current.textFamily.body
+                                LocalPalette.current.onSurface
                     )
                 }
             )
@@ -296,7 +296,7 @@ private fun OperationNavigationRail(
                                     } else {
                                         IconVectorColors.defaults(
                                             fillColor =LocalPalette.current.surfaceContainer,
-                                            strokeColor = LocalPalette.current.textFamily.body
+                                            strokeColor = LocalPalette.current.onSurface
                                         )
                                     }
                             ),
@@ -311,7 +311,7 @@ private fun OperationNavigationRail(
                     colors = NavigationRailItemDefaults.colors(
                         indicatorColor = Color.Transparent,
                         selectedIconColor = LocalPalette.current.primary,
-                        unselectedIconColor = LocalPalette.current.textFamily.body
+                        unselectedIconColor = LocalPalette.current.onSurface
                     ),
                     modifier = Modifier
                         .weight(1f, true)
@@ -334,7 +334,7 @@ private fun OperationNavigationRail(
                                 if (navController.currentDestination?.route == destination.route)
                                     LocalPalette.current.primary
                                 else
-                                    LocalPalette.current.textFamily.body
+                                    LocalPalette.current.onSurface
                         )
                     }
                 )

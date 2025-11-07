@@ -146,7 +146,7 @@ fun MissionWrapper(
                             .padding(horizontal = 4.dp),
                         value = stringResource(state.mission.content.toStringResource()),
                         textStyle = LocalTypography.current.quaternary.regular.copy(
-                            color = LocalPalette.current.textFamily.body,
+                            color = LocalPalette.current.onSurface,
                             fontSize = 14.sp
                         ),
                         placeholder = {
@@ -157,7 +157,7 @@ fun MissionWrapper(
                                     .wrapContentHeight(),
                                 text = title,
                                 style = LocalTypography.current.quaternary.regular,
-                                color = LocalPalette.current.textFamily.body.copy(alpha = 0.5f),
+                                color = LocalPalette.current.onSurface.copy(alpha = 0.5f),
                                 fontSize = 14.sp
                             )
                         },
@@ -174,8 +174,8 @@ fun MissionWrapper(
                             unfocusedIndicatorColor = Color.Transparent,
                             disabledIndicatorColor = Color.Transparent,
                             errorIndicatorColor = Color.Transparent,
-                            unfocusedTrailingIconColor = LocalPalette.current.textFamily.body,
-                            focusedTrailingIconColor = LocalPalette.current.textFamily.body
+                            unfocusedTrailingIconColor = LocalPalette.current.onSurface,
+                            focusedTrailingIconColor = LocalPalette.current.onSurface
                         ),
                         onValueChange = {},
                         readOnly = true,
@@ -217,12 +217,12 @@ fun MissionWrapper(
                                 Text(
                                     text = stringResource(it.content.toStringResource()),
                                     style = LocalTypography.current.quaternary.regular,
-                                    color = LocalPalette.current.textFamily.body,
+                                    color = LocalPalette.current.onSurface,
                                     fontSize = 18.sp
                                 )
                             },
                             colors = MenuDefaults.itemColors().copy(
-                                textColor = LocalPalette.current.textFamily.body,
+                                textColor = LocalPalette.current.onSurface,
                             ),
                             onClick = {
                                 expanded = false

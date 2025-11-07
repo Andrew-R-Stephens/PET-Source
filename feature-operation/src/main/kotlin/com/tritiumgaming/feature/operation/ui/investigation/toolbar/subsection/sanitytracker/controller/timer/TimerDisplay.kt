@@ -25,7 +25,7 @@ fun TimerDisplay(
         modifier = modifier,
         text = FormatterUtils.formatMillisToTime(timeMillis),
         style = DigitalDreamTextStyle,
-        color = LocalPalette.current.textFamily.body,
+        color = LocalPalette.current.onSurface,
         autoSize = TextAutoSize.StepBased(12.sp, maxFontSize = 24.sp, stepSize = 1.sp)
     )
 

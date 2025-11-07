@@ -331,7 +331,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
                 Text(
                     text = "Remaining Time",
                     style = LocalTypography.current.primary.regular,
-                    color = LocalPalette.current.textFamily.body
+                    color = LocalPalette.current.onSurface
                 )
                 TimerDisplay(
                     modifier = Modifier
@@ -353,7 +353,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
                     onClick = { investigationViewModel.toggleTimer() },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Transparent,
-                        contentColor = LocalPalette.current.textFamily.body
+                        contentColor = LocalPalette.current.onSurface
                     )
                 ) {
                     if (timerUiState.value.paused) {
@@ -362,7 +362,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
                                 .size(48.dp),
                             painter = painterResource(R.drawable.ic_control_play),
                             contentDescription = null,
-                            tint = LocalPalette.current.textFamily.body
+                            tint = LocalPalette.current.onSurface
                         )
                     } else {
                         Icon(
@@ -370,7 +370,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
                                 .size(48.dp),
                             painter = painterResource(R.drawable.ic_control_pause),
                             contentDescription = null,
-                            tint = LocalPalette.current.textFamily.body
+                            tint = LocalPalette.current.onSurface
                         )
                     }
                 }
@@ -489,7 +489,7 @@ private fun OperationToolbar(
                     } else {
                         IconVectorColors.defaults(
                             fillColor =Color.Transparent,
-                            strokeColor = LocalPalette.current.textFamily.body,
+                            strokeColor = LocalPalette.current.onSurface,
                         )
                     }
                 ),
@@ -514,7 +514,7 @@ private fun OperationToolbar(
                     } else {
                         IconVectorColors.defaults(
                             fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.textFamily.body,
+                            strokeColor = LocalPalette.current.onSurface,
                         )
                     }
                 ),
@@ -539,7 +539,7 @@ private fun OperationToolbar(
                     } else {
                         IconVectorColors.defaults(
                             fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.textFamily.body,
+                            strokeColor = LocalPalette.current.onSurface,
                         )
                     }
                 ),

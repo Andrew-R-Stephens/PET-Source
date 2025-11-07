@@ -279,7 +279,7 @@ private fun SubRow(
 private fun TextCategoryTitle(text: String) {
     Text(
         text = text,
-        color = LocalPalette.current.textFamily.body
+        color = LocalPalette.current.onSurface
     )
 }
 
@@ -287,6 +287,6 @@ private fun TextCategoryTitle(text: String) {
 private fun TextSubTitle(text: String) {
     Text(
         text = text,
-        color = LocalPalette.current.textFamily.body
+        color = LocalPalette.current.onSurface
     )
 }

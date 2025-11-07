@@ -102,7 +102,7 @@ fun LazyItemScope.GhostListItem(
             BasicText(
                 text = label,
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.body,
+                    color = LocalPalette.current.onSurface,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,

@@ -61,7 +61,7 @@ fun GhostResponseContent(
             style = LocalTypography.current.quaternary.regular.copy(
                 textAlign = TextAlign.Center
             ),
-            color = LocalPalette.current.textFamily.body,
+            color = LocalPalette.current.onSurface,
             fontSize = 18.sp
         )
 
@@ -186,7 +186,7 @@ fun ResponseItem(
                 textAlign = TextAlign.Center
             ),
             color = if (state && enabled)
-                    LocalPalette.current.textFamily.body
+                    LocalPalette.current.onSurface
                 else
                     LocalPalette.current.unselectedColor.copy(alpha = .75f),
             fontSize = 18.sp

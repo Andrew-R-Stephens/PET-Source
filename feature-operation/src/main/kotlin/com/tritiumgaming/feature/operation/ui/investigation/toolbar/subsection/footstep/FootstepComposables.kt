@@ -80,13 +80,13 @@ fun FootstepTool(
             Text(
                 text = "$bpm",
                 fontSize = 12.sp,
-                color = LocalPalette.current.textFamily.body
+                color = LocalPalette.current.onSurface
             )
 
             Text(
                 text = "$bpms",
                 fontSize = 12.sp,
-                color = LocalPalette.current.textFamily.body
+                color = LocalPalette.current.onSurface
             )
         }
         //Foreground()
