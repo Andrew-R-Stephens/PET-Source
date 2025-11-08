@@ -78,7 +78,7 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.MainMenuScreen
+import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
@@ -112,7 +112,7 @@ fun StartScreen(
     navController: NavHostController
 ) {
 
-    MainMenuScreen {
+    HomeScreen {
         StartContent(
             newsletterViewModel = newsletterViewModel,
             navController = navController

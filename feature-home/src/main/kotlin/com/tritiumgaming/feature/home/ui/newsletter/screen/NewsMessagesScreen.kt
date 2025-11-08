@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,9 +25,7 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -63,7 +60,7 @@ import com.tritiumgaming.core.ui.mappers.ToComposable
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.app.mappers.toStringResource
-import com.tritiumgaming.feature.home.ui.MainMenuScreen
+import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
@@ -84,7 +81,7 @@ fun NewsMessagesScreen(
     val inboxUiState = inboxes.first { inboxUiState -> inboxUiState.inbox.id == rememberInboxID }
     val inbox = inboxUiState.inbox
 
-    MainMenuScreen {
+    HomeScreen {
 
         Column(
             modifier = Modifier

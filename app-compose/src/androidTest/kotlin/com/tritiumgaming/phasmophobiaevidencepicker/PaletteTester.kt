@@ -134,7 +134,7 @@ private fun TestPalette(
                     .wrapContentWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Switch(
+                /*Switch(
                     colors = SwitchDefaults.colors(
                         uncheckedThumbColor = LocalPalette.current.switchTheme.thumbInactive,
                         checkedThumbColor = LocalPalette.current.switchTheme.thumbActive,
@@ -154,7 +154,7 @@ private fun TestPalette(
                     ),
                     checked = true,
                     onCheckedChange = {}
-                )
+                )*/
             }
         }
     }

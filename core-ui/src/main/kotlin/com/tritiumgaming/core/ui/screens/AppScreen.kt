@@ -9,12 +9,12 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 
 @Composable
 @Preview
-private fun PETScreenPreview() {
-    PETScreen{}
+private fun AppScreenPreview() {
+    AppScreen{}
 }
 
 @Composable
-fun PETScreen(
+fun AppScreen(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
@@ -23,9 +23,7 @@ fun PETScreen(
             .fillMaxSize(),
         color = LocalPalette.current.surface
     ) {
-
         content()
-
     }
 
 }

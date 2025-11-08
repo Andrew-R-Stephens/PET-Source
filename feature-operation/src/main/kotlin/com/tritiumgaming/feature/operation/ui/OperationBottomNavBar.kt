@@ -42,7 +42,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.HamburgerMenuIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
-import com.tritiumgaming.core.ui.screens.PETScreen
+import com.tritiumgaming.core.ui.screens.AppScreen
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.getHamburgerMenuVector
 import com.tritiumgaming.shared.core.navigation.NavRoute
@@ -99,7 +99,7 @@ fun OperationNavigationBar(
 
         if (bottomNavigationBarEnabled) {
 
-            PETScreen(
+            AppScreen(
                 modifier = Modifier
             ) {
 
@@ -125,7 +125,7 @@ fun OperationNavigationBar(
                 },
                 destinations = destinations
             ) {
-                PETScreen {
+                AppScreen {
 
                     OperationNavigationDrawer(
                         navController = navController,

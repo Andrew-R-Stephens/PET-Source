@@ -48,7 +48,7 @@ import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.mappers.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.MainMenuScreen
+import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.shared.core.domain.language.model.LanguageEntity
 
 @Composable
@@ -64,7 +64,7 @@ fun LanguageScreen(
     viewModel: LanguageScreenViewModel
 ) {
 
-    MainMenuScreen {
+    HomeScreen {
 
         Column(
             modifier = Modifier

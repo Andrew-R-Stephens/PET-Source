@@ -60,7 +60,7 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.app.mappers.toIconResource
 import com.tritiumgaming.feature.home.app.mappers.toStringResource
-import com.tritiumgaming.feature.home.ui.MainMenuScreen
+import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
@@ -75,7 +75,7 @@ fun NewsInboxesScreen(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    MainMenuScreen {
+    HomeScreen {
 
         Column(
             modifier = Modifier

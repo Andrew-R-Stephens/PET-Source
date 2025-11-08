@@ -45,7 +45,7 @@ import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.MainMenuScreen
+import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.appsettings.content.CarouselComposable
 import com.tritiumgaming.feature.home.ui.appsettings.content.HuntTimeoutPreferenceSeekbar
 import com.tritiumgaming.feature.home.ui.appsettings.content.LabeledSwitch
@@ -69,7 +69,7 @@ fun SettingsScreen(
     navController: NavController = rememberNavController()
 ) {
 
-    MainMenuScreen(
+    HomeScreen(
         modifier = modifier
     ) {
 
