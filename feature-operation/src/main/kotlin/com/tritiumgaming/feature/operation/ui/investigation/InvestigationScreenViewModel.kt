@@ -133,11 +133,12 @@ class InvestigationScreenViewModel(
 
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
-        it.getOrNull()?.let {
-            Log.d("InvestigationViewModel", "GhostEvidence")
-            it.forEach { Log.d("InvestigationViewModel", "	GhostEvidence: $it") }
+        try {
+            it.getOrThrow()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
         }
-        it.getOrDefault(emptyList())
     }
 
     /*
@@ -435,7 +436,7 @@ class InvestigationScreenViewModel(
         MutableStateFlow(listOf())
     val ghostScores = _ghostScores.asStateFlow()
     private fun initGhostScores() {
-        _ghostScores.update { scores ->
+        _ghostScores.update { _ ->
             ghostEvidences.map { GhostScore(it) }
         }
         Log.d("GhostScores", "Creating New")
