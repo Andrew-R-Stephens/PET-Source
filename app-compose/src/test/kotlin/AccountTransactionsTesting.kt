@@ -1,8 +1,8 @@
 
-import com.tritiumgaming.compose.core.data.user.repository.FirestoreAccountRepositoryImpl
-import com.tritiumgaming.compose.core.domain.user.model.AccountCreditTransaction
-import com.tritiumgaming.compose.core.domain.user.model.AccountCredits
-import com.tritiumgaming.compose.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.shared.core.domain.user.model.AccountCreditTransaction
+import com.tritiumgaming.shared.core.domain.user.model.AccountCredits
+import com.tritiumgaming.shared.core.domain.user.repository.FirestoreAccountRepository
+import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
@@ -14,7 +14,7 @@ import org.mockito.kotlin.whenever
 
 class AccountTransactionsTesting {
 
-    private lateinit var mockAccountRepository: FirestoreAccountRepositoryImpl
+    private lateinit var mockAccountRepository: FirestoreAccountRepository
     private lateinit var addAccountCreditsUseCase: AddAccountCreditsUseCase
 
     private val testDispatcher = StandardTestDispatcher() // From kotlinx-coroutines-test
