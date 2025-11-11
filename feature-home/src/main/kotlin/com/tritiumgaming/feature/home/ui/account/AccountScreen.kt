@@ -50,6 +50,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -238,49 +239,102 @@ private fun AccountContentPortrait(
         when(rememberDialog) {
             AccountOverviewDialog.DEACTIVATE_ACCOUNT ->
                 DeactivateAccountDialog(
-                    onConfirm = {
+                    contentColor = LocalPalette.current.onSurface,
+                    confirmButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_deactivate_button_confirm),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onErrorContainer,
+                                containerColor = LocalPalette.current.errorContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                        ) {
+                            accountViewModel.deactivateAccount { result ->
 
-                        accountViewModel.deactivateAccount { result ->
+                                rememberAccount = Firebase.auth.currentUser?.uid
+                                rememberDialog = AccountOverviewDialog.NONE
 
-                            rememberAccount = Firebase.auth.currentUser?.uid
-                            rememberDialog = AccountOverviewDialog.NONE
-
-                            if(result) {
-                                Toast.makeText(activity,
-                                    activity?.getString(R.string.alert_account_remove_success),
-                                    Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(activity,
-                                    activity?.getString(R.string.alert_account_remove_failure),
-                                    Toast.LENGTH_SHORT).show()
+                                if(result) {
+                                    Toast.makeText(activity,
+                                        activity?.getString(R.string.alert_account_remove_success),
+                                        Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(activity,
+                                        activity?.getString(R.string.alert_account_remove_failure),
+                                        Toast.LENGTH_SHORT).show()
+                                }
                             }
-
                         }
-
                     },
-                    onCancel = {
-                        rememberDialog = AccountOverviewDialog.NONE
+                    cancelButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_deactivate_button_cancel),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp
+                            ),
+                            buttonColors = ButtonColors(
+                                containerColor = LocalPalette.current.secondaryContainer,
+                                contentColor = LocalPalette.current.onSecondaryContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                        ) {
+                            rememberDialog = AccountOverviewDialog.NONE
+                        }
                     }
             )
             AccountOverviewDialog.SIGN_OUT ->
                 LogoutDialog(
-                    onConfirm = {
-                        accountViewModel.signOutAccount { value ->
+                    contentColor = LocalPalette.current.onSurface,
+                    confirmButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_logout_button_confirm),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onErrorContainer,
+                                containerColor = LocalPalette.current.errorContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                        ) {
+                            accountViewModel.signOutAccount { value ->
 
-                            rememberAccount = Firebase.auth.currentUser?.uid
-                            rememberDialog = AccountOverviewDialog.NONE
+                                rememberAccount = Firebase.auth.currentUser?.uid
+                                rememberDialog = AccountOverviewDialog.NONE
 
-                            if(value) {
-                                Toast.makeText(activity,
-                                    activity?.getString(R.string.alert_account_logout_success),
-                                    Toast.LENGTH_SHORT).show()
+                                if(value) {
+                                    Toast.makeText(activity,
+                                        activity?.getString(R.string.alert_account_logout_success),
+                                        Toast.LENGTH_SHORT).show()
+                                }
                             }
-
                         }
-
                     },
-                    onCancel = {
-                        rememberDialog = AccountOverviewDialog.NONE
+                    cancelButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_logout_button_cancel),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onSecondaryContainer,
+                                containerColor = LocalPalette.current.secondaryContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                        ) {
+                            rememberDialog = AccountOverviewDialog.NONE
+                        }
                     }
                 )
             AccountOverviewDialog.NONE -> {}
@@ -371,43 +425,108 @@ private fun AccountContentLandscape(
         when(rememberDialog) {
             AccountOverviewDialog.DEACTIVATE_ACCOUNT ->
                 DeactivateAccountDialog(
-                    onConfirm = {
+                    contentColor = LocalPalette.current.onSurface,
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    scrimColor = LocalPalette.current.scrim,
+                    confirmButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_deactivate_button_confirm),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onErrorContainer,
+                                containerColor = LocalPalette.current.errorContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                        ) {
+                            accountViewModel.deactivateAccount { result ->
 
-                        accountViewModel.deactivateAccount { result ->
+                                rememberAccount = Firebase.auth.currentUser?.uid
+                                rememberDialog = AccountOverviewDialog.NONE
 
-                            rememberAccount = Firebase.auth.currentUser?.uid
-                            rememberDialog = AccountOverviewDialog.NONE
+                                if(result) {
+                                    Toast.makeText(activity,
+                                        activity?.getString(R.string.alert_account_remove_success),
+                                        Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(activity,
+                                        activity?.getString(R.string.alert_account_remove_failure),
+                                        Toast.LENGTH_SHORT).show()
+                                }
 
-                            if(result) {
-                                Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_success), Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(activity, activity?.getString(R.string.alert_account_remove_failure), Toast.LENGTH_SHORT).show()
                             }
-
                         }
-
                     },
-                    onCancel = {
-                        rememberDialog = AccountOverviewDialog.NONE
+                    cancelButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_deactivate_button_cancel),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp
+                            ),
+                            buttonColors = ButtonColors(
+                                containerColor = LocalPalette.current.secondaryContainer,
+                                contentColor = LocalPalette.current.onSecondaryContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                        ) {
+                            rememberDialog = AccountOverviewDialog.NONE
+                        }
                     }
                 )
             AccountOverviewDialog.SIGN_OUT ->
                 LogoutDialog(
-                    onConfirm = {
-                        accountViewModel.signOutAccount { value ->
+                    contentColor = LocalPalette.current.onSurface,
+                    containerColor = LocalPalette.current.surfaceContainer,
+                    scrimColor = LocalPalette.current.scrim,
+                    confirmButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_logout_button_confirm),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onErrorContainer,
+                                containerColor = LocalPalette.current.errorContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                        ) {
+                            accountViewModel.signOutAccount { value ->
 
-                            rememberAccount = Firebase.auth.currentUser?.uid
-                            rememberDialog = AccountOverviewDialog.NONE
+                                rememberAccount = Firebase.auth.currentUser?.uid
+                                rememberDialog = AccountOverviewDialog.NONE
 
-                            if(value) {
-                                Toast.makeText(activity, activity?.getString(R.string.alert_account_logout_success), Toast.LENGTH_SHORT).show()
+                                if(value) {
+                                    Toast.makeText(activity,
+                                        activity?.getString(R.string.alert_account_logout_success),
+                                        Toast.LENGTH_SHORT).show()
+                                }
+
                             }
-
                         }
-
                     },
-                    onCancel = {
-                        rememberDialog = AccountOverviewDialog.NONE
+                    cancelButton = { modifier ->
+                        DialogButton(
+                            modifier = modifier,
+                            text = stringResource(id = R.string.account_logout_button_cancel),
+                            textStyle = LocalTypography.current.quaternary.bold.copy(
+                                fontSize = 18.sp
+                            ),
+                            buttonColors = ButtonColors(
+                                contentColor = LocalPalette.current.onSecondaryContainer,
+                                containerColor = LocalPalette.current.secondaryContainer,
+                                disabledContentColor = Color.Transparent,
+                                disabledContainerColor = Color.Transparent
+                            ),
+                        ) {
+                            rememberDialog = AccountOverviewDialog.NONE
+                        }
                     }
                 )
             AccountOverviewDialog.NONE -> {}
@@ -640,30 +759,6 @@ private fun AccountDetailsComponentPreview() {
 
 }
 
-@Preview
-@Composable
-private fun LabeledValuePreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-
-        Column {
-
-            Spacer(modifier = Modifier.height(128.dp))
-
-            LabeledValue(
-                title = "ds:",
-                value = "d",
-                containerColor = LocalPalette.current.surfaceContainer,
-                textColor = LocalPalette.current.onSurface
-            )
-
-        }
-    }
-
-}
-
 @Composable
 private fun PaletteListItem(
     palette: ExtendedPalette
@@ -834,8 +929,8 @@ private fun SignOutComponent(
                 fontSize = 18.sp
             ),
             buttonColors = ButtonColors(
-                contentColor = LocalPalette.current.onSecondaryContainer,
                 containerColor = LocalPalette.current.secondaryContainer,
+                contentColor = LocalPalette.current.onSecondaryContainer,
                 disabledContentColor = Color.Transparent,
                 disabledContainerColor = Color.Transparent
             )
@@ -861,8 +956,8 @@ private fun SignOutComponent(
                 fontSize = 18.sp
             ),
             buttonColors = ButtonColors(
-                contentColor = LocalPalette.current.errorContainer,
-                containerColor = LocalPalette.current.onErrorContainer,
+                containerColor = LocalPalette.current.errorContainer,
+                contentColor = LocalPalette.current.onErrorContainer,
                 disabledContentColor = Color.Transparent,
                 disabledContainerColor = Color.Transparent
             )
@@ -906,7 +1001,7 @@ private fun AccountActionButton(
     onClick: () -> Unit = {}
 ) {
     TextButton(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(48.dp),
         content = {
@@ -935,7 +1030,7 @@ private fun DialogButton(
     onClick: () -> Unit = {}
 ) {
     TextButton(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(48.dp),
         content = {
@@ -957,8 +1052,11 @@ private fun DialogButton(
 
 @Composable
 private fun DeactivateAccountDialog(
-    onConfirm: () -> Unit = { },
-    onCancel: () -> Unit = { }
+    contentColor: Color = LocalPalette.current.onSurface,
+    containerColor: Color = LocalPalette.current.surfaceContainer,
+    scrimColor: Color = LocalPalette.current.scrim,
+    confirmButton: @Composable (modifier: Modifier) -> Unit = { },
+    cancelButton: @Composable (modifier: Modifier) -> Unit = { },
 ) {
 
     val title = stringResource(id = R.string.account_deactivate_title)
@@ -971,7 +1069,7 @@ private fun DeactivateAccountDialog(
             text = stringResource(id = R.string.account_deactivate_warning),
             style = LocalTypography.current.quaternary.bold.copy(
                 fontSize = 14.sp,
-                color = LocalPalette.current.onSurface
+                color = contentColor
             )
         )
 
@@ -985,7 +1083,7 @@ private fun DeactivateAccountDialog(
                 text = stringResource(id = R.string.account_deactivate_warning_list_1),
                 style = LocalTypography.current.quaternary.bold.copy(
                     fontSize = 14.sp,
-                    color = LocalPalette.current.onSurface
+                    color = contentColor
                 )
             )
 
@@ -993,7 +1091,7 @@ private fun DeactivateAccountDialog(
                 text = stringResource(id = R.string.account_deactivate_warning_list_2),
                 style = LocalTypography.current.quaternary.bold.copy(
                     fontSize = 14.sp,
-                    color = LocalPalette.current.onSurface
+                    color = contentColor
                 )
             )
 
@@ -1001,67 +1099,38 @@ private fun DeactivateAccountDialog(
                 text = stringResource(id = R.string.account_deactivate_warning_list_3),
                 style = LocalTypography.current.quaternary.bold.copy(
                     fontSize = 14.sp,
-                    color = LocalPalette.current.onSurface
+                    color = contentColor
                 )
             )
-        }
-    }
-
-    val cancelButton: @Composable () -> Unit = {
-        DialogButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
-            text = stringResource(id = R.string.account_deactivate_button_cancel),
-            textStyle = LocalTypography.current.quaternary.bold.copy(
-                fontSize = 18.sp
-            ),
-            buttonColors = ButtonColors(
-                contentColor = LocalPalette.current.onSecondaryContainer,
-                containerColor = LocalPalette.current.secondaryContainer,
-                disabledContentColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent
-            ),
-        ) {
-            onCancel()
-        }
-    }
-
-    val confirmButton: @Composable () -> Unit = {
-        DialogButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
-            text = stringResource(id = R.string.account_deactivate_button_confirm),
-            textStyle = LocalTypography.current.quaternary.bold.copy(
-                fontSize = 18.sp
-            ),
-            buttonColors = ButtonColors(
-                contentColor = LocalPalette.current.onErrorContainer,
-                containerColor = LocalPalette.current.errorContainer,
-                disabledContentColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent
-            ),
-        ) {
-            onConfirm()
         }
     }
 
     Dialog(
         title = title,
         content = { content() },
-        cancelButton = { cancelButton() },
-        confirmButton = { confirmButton() },
-        backgroundColor = LocalPalette.current.surfaceContainer,
-        scrimColor = LocalPalette.current.scrim
+        cancelButton = { cancelButton(
+            Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        ) },
+        confirmButton = { confirmButton(
+            Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        ) },
+        backgroundColor = containerColor,
+        scrimColor = scrimColor
     )
 
 }
 
 @Composable
 private fun LogoutDialog(
-    onConfirm: () -> Unit = { },
-    onCancel: () -> Unit = { }
+    contentColor: Color = LocalPalette.current.onSurface,
+    containerColor: Color = LocalPalette.current.surfaceContainer,
+    scrimColor: Color = LocalPalette.current.scrim,
+    confirmButton: @Composable (modifier: Modifier) -> Unit = { },
+    cancelButton: @Composable (modifier: Modifier) -> Unit = { }
 ) {
 
     val title = stringResource(id = R.string.account_logout_title)
@@ -1073,82 +1142,28 @@ private fun LogoutDialog(
             text = stringResource(id = R.string.account_logout_warning),
             style = LocalTypography.current.quaternary.bold.copy(
                 fontSize = 14.sp,
-                color = LocalPalette.current.onSurface
+                color = contentColor
             )
         )
-    }
-
-    val cancelButton: @Composable () -> Unit = {
-        DialogButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
-            text = stringResource(id = R.string.account_logout_button_cancel),
-            textStyle = LocalTypography.current.quaternary.bold.copy(
-                fontSize = 18.sp
-            ),
-            buttonColors = ButtonColors(
-                contentColor = LocalPalette.current.onSecondaryContainer,
-                containerColor = LocalPalette.current.secondaryContainer,
-                disabledContentColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent
-            ),
-        ) {
-            onCancel()
-        }
-    }
-
-    val confirmButton: @Composable () -> Unit = {
-        DialogButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
-            text = stringResource(id = R.string.account_logout_button_confirm),
-            textStyle = LocalTypography.current.quaternary.bold.copy(
-                fontSize = 18.sp
-            ),
-            buttonColors = ButtonColors(
-                contentColor = LocalPalette.current.onErrorContainer,
-                containerColor = LocalPalette.current.errorContainer,
-                disabledContentColor = Color.Transparent,
-                disabledContainerColor = Color.Transparent
-            ),
-        ) {
-            onConfirm()
-        }
     }
 
     Dialog(
         title = title,
         content = { content() },
-        cancelButton = { cancelButton() },
-        confirmButton = { confirmButton() },
-        backgroundColor = LocalPalette.current.surfaceContainer,
-        scrimColor = LocalPalette.current.scrim
+        cancelButton = { cancelButton(
+            Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        ) },
+        confirmButton = { confirmButton(
+            Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+        ) },
+        backgroundColor = containerColor,
+        scrimColor = scrimColor
     )
 }
-
-/*@Preview
-@Composable
-private fun AccountActionButtonPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        AccountActionButton()
-    }
-}
-
-@Preview
-@Composable
-private fun DeactivateAccountButtonPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        AccountActionButton()
-    }
-}*/
 
 private enum class AccountOverviewDialog {
     NONE,
