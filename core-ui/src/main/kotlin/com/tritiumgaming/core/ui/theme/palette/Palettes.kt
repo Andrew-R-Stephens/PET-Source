@@ -192,7 +192,7 @@ private val PET_Base = ExtendedDefaultLight.copy(
     error = red_M300,
     onError = Color(0xFFFFF0F0),
     errorContainer = Color(0xFFF50000),
-    onErrorContainer = Color(0xFF6B0000),
+    onErrorContainer = Color(0xFF240000),
 
     primaryFixed = Color.Unspecified,
     primaryFixedDim = Color.Unspecified,

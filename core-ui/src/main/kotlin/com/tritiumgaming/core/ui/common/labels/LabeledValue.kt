@@ -2,7 +2,10 @@ package com.tritiumgaming.core.ui.common.labels
 
 import androidx.compose.foundation.MarqueeAnimationMode
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,8 +16,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 
 @Composable
@@ -71,4 +79,28 @@ fun LabeledValue(
             }
         )
     }
+}
+
+@Preview
+@Composable
+private fun LabeledValuePreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+
+        Column {
+
+            Spacer(modifier = Modifier.height(128.dp))
+
+            LabeledValue(
+                title = "ds:",
+                value = "d",
+                containerColor = LocalPalette.current.surfaceContainer,
+                textColor = LocalPalette.current.onSurface
+            )
+
+        }
+    }
+
 }
