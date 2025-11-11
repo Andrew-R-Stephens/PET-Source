@@ -17,13 +17,14 @@ import nl.adaptivity.xmlutil.serialization.XmlConfig
 class NewsletterService {
 
     @OptIn(ExperimentalXmlUtilApi::class)
-    //@Throws(Exception::class)
     suspend fun fetchInbox(
         inboxURL: Url
     ): Result<RemoteNewsletterInboxDto> {
         val format = XML {
             xmlDeclMode = XmlDeclMode.Charset
-            unknownChildHandler = XmlConfig.Companion.IGNORING_UNKNOWN_CHILD_HANDLER
+            defaultPolicy {
+                unknownChildHandler = XmlConfig.IGNORING_UNKNOWN_CHILD_HANDLER
+            }
         }
 
         val client = HttpClient(CIO) {
