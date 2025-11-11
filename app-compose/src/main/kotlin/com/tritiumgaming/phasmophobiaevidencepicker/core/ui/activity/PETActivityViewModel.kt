@@ -240,8 +240,8 @@ class PETActivityViewModel(
         // Check your logcat output for the test device hashed ID e.g.
         // "Use RequestConfiguration.Builder().setTestDeviceIds(Arrays.asList("ABCDEF012345"))
         // to get test ads on this device" or
-        // "Use new ConsentDebugSettings.Builder().addTestDeviceHashedId("ABCDEF012345") to set this as
-        // a debug device".
+        // "Use new ConsentDebugSettings.Builder().addTestDeviceHashedId("ABCDEF012345") to set
+        // this as a debug device".
         val TEST_DEVICE_HASHED_IDS = listOf (
             "00E2BE3BE3FB3298734CA8B92655E237",
             "B3C272DE5AEAB81CA9CBBCB2A928A38E",
@@ -251,7 +251,7 @@ class PETActivityViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
+                val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
                 val container = (application as AppContainerProvider).provideAppContainer()
 
                 val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase = container.setupGlobalPreferencesUseCase
