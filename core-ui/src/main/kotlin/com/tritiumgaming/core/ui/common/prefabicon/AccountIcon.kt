@@ -50,9 +50,9 @@ fun AccountIconPrimaryContent(
     lastName: String? = null,
     textStyle: TextStyle,
     showText: Boolean = true,
-    content: @Composable () -> Unit = {},
+    backgroundContent: @Composable () -> Unit = {},
 ) {
-    content()
+    backgroundContent()
 
     if(showText) {
         val firstNameInitial = firstName?.firstOrNull()?.uppercase() ?: ""
