@@ -109,7 +109,7 @@ fun InfoScreen(
             when(deviceConfiguration) {
                 DeviceConfiguration.MOBILE_PORTRAIT -> {
                     InfoContentPortrait(
-                        contributors = viewModel.specialThanksList
+                        contributors = viewModel.contributorsList
                     )
                 }
                 DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -117,7 +117,7 @@ fun InfoScreen(
                 DeviceConfiguration.TABLET_LANDSCAPE,
                 DeviceConfiguration.DESKTOP -> {
                     InfoContentLandscape(
-                        contributors = viewModel.specialThanksList
+                        contributors = viewModel.contributorsList
                     )
                 }
             }

@@ -6,7 +6,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.shared.home.domain.appinfo.model.Contributor
-import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorUseCase
+import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorsUseCase
 
 /**
  * TitleScreenViewModel class
@@ -14,24 +14,24 @@ import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorUseCase
  * @author TritiumGamingStudios
  */
 class AppInfoViewModel(
-    private val getSpecialThanksUseCase: ContributorUseCase
+    private val getContributorsUseCase: ContributorsUseCase
 ): ViewModel() {
 
-    val specialThanksList: List<Contributor>
-        get() = getSpecialThanksUseCase()
+    private val _contributorsList: List<Contributor>
+        get() = getContributorsUseCase().getOrDefault(emptyList())
+    val contributorsList = _contributorsList
 
     companion object {
-
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
                 val container = (application as HomeContainerProvider).provideHomeContainer()
 
-                val getSpecialThanksUseCase: ContributorUseCase =
+                val getSpecialThanksUseCase: ContributorsUseCase =
                     container.getContributorsUseCase
 
                 AppInfoViewModel(
-                    getSpecialThanksUseCase = getSpecialThanksUseCase
+                    getContributorsUseCase = getSpecialThanksUseCase
                 )
 
             }

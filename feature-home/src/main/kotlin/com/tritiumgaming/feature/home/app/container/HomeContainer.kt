@@ -58,7 +58,7 @@ import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAc
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.home.domain.appinfo.repository.ContributorRepository
-import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorUseCase
+import com.tritiumgaming.shared.home.domain.appinfo.usecase.ContributorsUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
@@ -123,7 +123,7 @@ class HomeContainer(
             localSource = appInfoLocalDataSource
         )
     }
-    internal val getContributorsUseCase = ContributorUseCase(
+    internal val getContributorsUseCase = ContributorsUseCase(
         appInfoRepository = appInfoRepository
     )
 

@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,6 +41,9 @@ private fun AccountCreditsPreview() {
 @Composable
 fun AccountCredits(
     modifier: Modifier = Modifier,
+    containerColor: Color = LocalPalette.current.surfaceContainer,
+    iconColor: Color = LocalPalette.current.onSurface,
+    textColor: Color = LocalPalette.current.onSurfaceVariant,
     credits: Int = 100
 ) {
 
@@ -48,8 +52,8 @@ fun AccountCredits(
             .wrapContentSize(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
-            contentColor = LocalPalette.current.surfaceContainerHigh,
-            containerColor = LocalPalette.current.surfaceContainerHigh
+            contentColor = containerColor,
+            containerColor = containerColor
         )
     ) {
 
@@ -65,24 +69,23 @@ fun AccountCredits(
             ShopCostIcon(
                 modifier = Modifier
                     .wrapContentWidth()
-                    .height(36.dp),
+                    .height(48.dp)
+                    .padding(4.dp),
                 colors = IconVectorColors(
-                    strokeColor = LocalPalette.current.textFamily.body,
-                    fillColor = LocalPalette.current.textFamily.body
+                    strokeColor = iconColor,
+                    fillColor = iconColor
                 )
             )
             
             Text(
                 text = credits.toString(),
                 fontSize = 24.sp,
-                color = LocalPalette.current.textFamily.emphasis,
+                color = textColor,
                 maxLines = 1,
                 modifier = Modifier
                     .wrapContentWidth()
             )
 
         }
-
     }
-
 }

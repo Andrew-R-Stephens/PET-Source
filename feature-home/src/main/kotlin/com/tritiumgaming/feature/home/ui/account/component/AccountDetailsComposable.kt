@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -62,51 +63,7 @@ fun AccountBannerExpanded(
             )
         }
 
-        AccountIcon(
-            modifier = Modifier
-                .size(48.dp),
-            borderColor = LocalPalette.current.textFamily.body,
-            backgroundColor = LocalPalette.current.surfaceContainerHigh,
-            placeholder = {
-                IconResources.IconResource.PERSON.ToComposable(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(8.dp),
-                    colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.surface,
-                        strokeColor = LocalPalette.current.textFamily.body
-                    )
-                )
-            },
-            content = {
-                val authUser = Firebase.auth.currentUser
-                val authUserName = authUser?.displayName ?: ""
-
-                val names: List<String?> = (authUserName).split(" ")
-
-                val textStyle = LocalTypography.current.primary.bold
-
-                AccountIconPrimaryContent(
-                    firstName = names.getOrNull(0) ?: "",
-                    lastName = names.getOrNull(1) ?: "",
-                    textStyle = textStyle.copy(
-                        color = LocalPalette.current.textFamily.body,
-                        textAlign = TextAlign.Center,
-                        shadow = Shadow(
-                            color = LocalPalette.current.surfaceContainerHigh,
-                            blurRadius = 8f
-                        ),
-                    )
-                ) {
-                    Image(
-                        painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
-                        contentDescription = "",
-                        contentScale = ContentScale.Inside,
-                        alpha = .5f
-                    )
-                }
-            }
-        )
+        AccountBannerIcon()
     }
 
 }
@@ -123,10 +80,7 @@ fun AccountBannerComposite(
             .wrapContentHeight(),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        AccountIcon(
-            borderColor =  LocalPalette.current.textFamily.body,
-            backgroundColor = LocalPalette.current.surfaceContainerHigh
-        )
+        AccountBannerIcon()
 
         Box(
             modifier = Modifier
@@ -139,4 +93,53 @@ fun AccountBannerComposite(
 
     }
 
+}
+
+@Composable
+private fun AccountBannerIcon(
+    modifier: Modifier = Modifier
+) {
+    AccountIcon(
+        modifier = modifier
+            .size(48.dp),
+        borderColor = LocalPalette.current.onSurface,
+        backgroundColor = LocalPalette.current.surfaceContainer,
+        placeholder = {
+            IconResources.IconResource.PERSON.ToComposable(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp),
+                colors = IconVectorColors.defaults(
+                    fillColor = LocalPalette.current.surface,
+                    strokeColor = LocalPalette.current.onSurface
+                )
+            )
+        },
+        content = {
+            val authUser = Firebase.auth.currentUser
+            val authUserName = authUser?.displayName ?: ""
+
+            val names: List<String?> = (authUserName).split(" ")
+
+            AccountIconPrimaryContent(
+                firstName = names.getOrNull(0) ?: "",
+                lastName = names.getOrNull(1) ?: "",
+                textStyle = LocalTypography.current.primary.bold.copy(
+                    color = LocalPalette.current.onSurface,
+                    textAlign = TextAlign.Center,
+                    shadow = Shadow(
+                        color = LocalPalette.current.shadow,
+                        blurRadius = 8f
+                    ),
+                )
+            ) {
+                Image(
+                    painter = painterResource(id = LocalPalette.current.extrasFamily.badge),
+                    contentDescription = "",
+                    contentScale = ContentScale.Inside,
+                    alpha = .75f
+                )
+            }
+        }
+    )
 }
