@@ -82,25 +82,6 @@ data class ExtendedPalette(
     val discordColor: BrandingColorFamily = BrandingColorFamily(),
     val patreonColor: BrandingColorFamily = BrandingColorFamily(),
 
-    //val backgroundColor_mapviewOverlay: Color = Color.Unspecified, // TODO Remove
-
-    val light_active: Color = Color.Unspecified, // TODO Remove
-    val light_inactive: Color = Color.Unspecified, // TODO Remove
-    val light_off: Color = Color.Unspecified, // TODO Remove
-
-    val progressBarColorStart: Color = Color.Unspecified, // TODO Remove
-    val progressBarColorThumbGradientStart: Color = Color.Unspecified, // TODO Remove
-
-    val selectedColor: Color = Color.Unspecified, // TODO Remove
-    val selectedColor2: Color = Color.Unspecified, // TODO Remove
-    val unselectedColor: Color = Color.Unspecified, // TODO Remove
-
-    val positiveSelColor: Color = Color.Unspecified, // TODO Remove
-    val negativeSelColor: Color = Color.Unspecified, // TODO Remove
-    val neutralSelColor: Color = Color.Unspecified, // TODO Remove
-
-    //val strikethroughColor: Color = Color.Unspecified, // TODO Remove
-
     val mapPoiFillColor: Color = Color.Unspecified, // TODO Remove
     val mapRoomFillColor: Color = Color.Unspecified, // TODO Remove
     val mapRoomBorderColor: Color = Color.Unspecified, // TODO Remove
