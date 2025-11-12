@@ -23,7 +23,7 @@ class SimpleMapLocalDataSource(
                 mapId = R.string.map_id_meadows,
                 mapName = MapTitle.SUNNY_MEADOWS,
                 thumbnailImage = MapThumbnail.SUNNY_MEADOWS,
-                mapSize = MapSize.SMALL,
+                mapSize = MapSize.LARGE,
                 mapFloors = listOf(
                     MapFloorResourceDto(
                         layerName = MapFloorTitle.BASEMENT,
@@ -41,7 +41,7 @@ class SimpleMapLocalDataSource(
                 mapId = R.string.map_id_meadows_r,
                 mapName = MapTitle.SUNNY_MEADOWS_RESTRICTED,
                 thumbnailImage = MapThumbnail.SUNNY_MEADOWS_RESTRICTED,
-                mapSize = MapSize.SMALL,
+                mapSize = MapSize.LARGE,
                 mapFloors = listOf(
                     MapFloorResourceDto(
                         layerName = MapFloorTitle.BASEMENT,
@@ -59,7 +59,7 @@ class SimpleMapLocalDataSource(
                 mapId = R.string.map_id_pointhope,
                 mapName = MapTitle.POINT_HOPE,
                 thumbnailImage = MapThumbnail.POINT_HOPE,
-                mapSize = MapSize.SMALL,
+                mapSize = MapSize.MEDIUM,
                 mapFloors = listOf(
                     MapFloorResourceDto(
                         layerName = MapFloorTitle.GROUND_FLOOR,
@@ -114,6 +114,20 @@ class SimpleMapLocalDataSource(
                     MapFloorResourceDto(
                         layerName = MapFloorTitle.GROUND_FLOOR,
                         image = MapFloorImage.CAMP_WOODWIND_GROUND_FLOOR
+                    ),
+                ),
+                defaultFloor = 0
+            ),
+            // Camp Woodwind
+            MapResourceDto(
+                mapId = R.string.map_id_diner,
+                mapName = MapTitle.DINER,
+                thumbnailImage = MapThumbnail.DINER,
+                mapSize = MapSize.SMALL,
+                mapFloors = listOf(
+                    MapFloorResourceDto(
+                        layerName = MapFloorTitle.FIRST_FLOOR,
+                        image = MapFloorImage.DINER_FIRST_FLOOR
                     ),
                 ),
                 defaultFloor = 0
