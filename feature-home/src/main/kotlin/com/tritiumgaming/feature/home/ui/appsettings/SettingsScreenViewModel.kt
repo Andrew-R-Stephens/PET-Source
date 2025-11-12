@@ -81,90 +81,36 @@ class SettingsScreenViewModel(
             )
     val settingsScreenUiState = _settingsScreenUiState
 
-    private val _screensaverPreference: StateFlow<Boolean> =
-        initFlowGlobalPreferencesUseCase()
-            .map { it.disableScreenSaver }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = false
-            )
-    var screensaverPreference = _screensaverPreference
     fun setScreenSaverPreference(disable: Boolean) {
         viewModelScope.launch {
             setDisableScreenSaverUseCase(disable)
         }
     }
 
-    private val _networkPreference: StateFlow<Boolean> =
-        initFlowGlobalPreferencesUseCase()
-            .map { it.allowCellularData }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = true
-            )
-    var networkPreference = _networkPreference
     fun setNetworkPreference(allow: Boolean) {
         viewModelScope.launch {
             setAllowCellularDataUseCase(allow)
         }
     }
 
-    private val _rTLPreference: StateFlow<Boolean> =
-        initFlowGlobalPreferencesUseCase()
-            .map { it.enableRTL }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = true
-            )
-    val rTLPreference = _rTLPreference
     fun setRTLPreference(enable: Boolean) {
         viewModelScope.launch {
             setEnableRTLUseCase(enable)
         }
     }
 
-    private val _ghostReorderPreference: StateFlow<Boolean> =
-        initFlowGlobalPreferencesUseCase()
-            .map { it.enableGhostReorder }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = true
-            )
-    val ghostReorderPreference = _ghostReorderPreference
     fun setGhostReorderPreference(allow: Boolean) {
         viewModelScope.launch {
             setEnableGhostReorderUseCase(allow)
         }
     }
 
-    private val _introductionPermissionPreference: StateFlow<Boolean> =
-        initFlowGlobalPreferencesUseCase()
-            .map { it.allowIntroduction }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = true
-            )
-    val introductionPermissionPreference = _introductionPermissionPreference
     fun setIntroductionPermissionPreference(allow: Boolean) {
         viewModelScope.launch {
             setAllowIntroductionUseCase(allow)
         }
     }
 
-    private val _huntWarnDurationPreference: StateFlow<Long> =
-        initFlowGlobalPreferencesUseCase()
-            .map { it.maxHuntWarnFlashTime }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = FOREVER
-            )
-    val huntWarnDurationPreference: StateFlow<Long> = _huntWarnDurationPreference
     fun setHuntWarnDurationPreference(maxTime: Long) {
         val time = maxTime.coerceIn(TIME_MIN, TIME_MAX)
         viewModelScope.launch {
@@ -172,15 +118,6 @@ class SettingsScreenViewModel(
         }
     }
 
-    private val _huntWarningAudioPreference: StateFlow<Boolean> =
-        initFlowGlobalPreferencesUseCase()
-            .map { it.allowHuntWarnAudio }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = true
-            )
-    val huntWarningAudioPreference: StateFlow<Boolean> = _huntWarningAudioPreference
     fun setHuntWarningAudioPreference(isAllowed: Boolean) {
         viewModelScope.launch {
             setAllowHuntWarnAudioUseCase(isAllowed)
@@ -190,7 +127,6 @@ class SettingsScreenViewModel(
     /**
      * Palettes
      */
-
     private val _currentPaletteUUID : StateFlow<PaletteDatastore.PalettePreferences> =
         initFlowGlobalPreferencesUseCase()
             .map {
@@ -210,8 +146,6 @@ class SettingsScreenViewModel(
     fun saveCurrentPaletteUUID(uuid: String) {
         viewModelScope.launch {
             saveCurrentPaletteUseCase(uuid)
-            Log.d("Settings",
-                "$uuid -> ${_currentPaletteUUID.value} == ${currentPaletteUUID.value}")
         }
     }
 
@@ -257,8 +191,6 @@ class SettingsScreenViewModel(
     private fun saveCurrentTypographyUUID(uuid: String) {
         viewModelScope.launch {
             saveCurrentTypographyUseCase(uuid)
-            Log.d("Settings",
-                "$uuid -> ${_currentTypographyUUID.value} == ${currentTypographyUUID.value}")
         }
     }
 

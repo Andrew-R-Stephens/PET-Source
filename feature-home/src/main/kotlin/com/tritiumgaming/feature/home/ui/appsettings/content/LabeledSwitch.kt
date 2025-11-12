@@ -12,16 +12,19 @@ import androidx.compose.material3.SwitchColors
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.StratagemHero
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
@@ -42,8 +45,15 @@ fun Test() {
                 .background(LocalPalette.current.surface)
                 .padding(8.dp)
         ) {
-            LabeledSwitch(state = MutableStateFlow(false))
-            LabeledSwitch(state = MutableStateFlow(true))
+            val rememberState1 = remember { mutableStateOf(false) }
+            val rememberState2 = remember { mutableStateOf(true) }
+
+            LabeledSwitch(state = rememberState1.value) {
+                rememberState1.value = it
+            }
+            LabeledSwitch(state = rememberState2.value) {
+                rememberState2.value = it
+            }
         }
     }
 }
@@ -72,7 +82,7 @@ fun Test() {
     }
 }*/
 
-@Composable
+/*@Composable
 fun LabeledSwitch(
     modifier: Modifier = Modifier,
     label: String = "Default Label",
@@ -109,6 +119,49 @@ fun LabeledSwitch(
 
         Text(
             text = rememberLabel,
+            color = textColor,
+            fontSize = 16.sp,
+            maxLines = 1,
+            style = LocalTypography.current.primary.regular
+        )
+
+    }
+
+}*/
+
+@Composable
+fun LabeledSwitch(
+    modifier: Modifier = Modifier,
+    label: String = "Default Label",
+    state: Boolean = false,
+    switchColors: SwitchColors = SwitchDefaults.colors(
+        uncheckedTrackColor = LocalPalette.current.surfaceContainerHighest,
+        uncheckedBorderColor = LocalPalette.current.outline,
+        uncheckedThumbColor = LocalPalette.current.outline,
+        checkedTrackColor = LocalPalette.current.primary,
+        checkedBorderColor = Color.Transparent,
+        checkedThumbColor = LocalPalette.current.onPrimary,
+    ),
+    textColor: Color = Color.White,
+    onChange: (state: Boolean) -> Unit = {}
+) {
+    Row(
+        modifier = modifier
+            .wrapContentHeight(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+
+        Switch(
+            colors = switchColors,
+            checked = state,
+            onCheckedChange = { newState ->
+                onChange(newState)
+            }
+        )
+
+        Text(
+            text = label,
             color = textColor,
             fontSize = 16.sp,
             maxLines = 1,
