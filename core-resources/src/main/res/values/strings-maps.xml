@@ -14,6 +14,7 @@
     <string name="map_id_pointhope" translatable="false">552f0926e72e8d9eec5e7592cc5ec391</string>
     <string name="map_id_campmaple" translatable="false">2099ada45c7c7f3c77fb81e149b0afba</string>
     <string name="map_id_campwoodwind" translatable="false">811dc62017bd3b1cbfa0942716fc0de1</string>
+    <string name="map_id_diner" translatable="false">c989e77a2d3e33d94e8fa1e44ac22ee6</string>
     <string name="map_id_bleasdale" translatable="false">32636a0842db10cd16e8d8f8cbf1d0cd</string>
     <string name="map_id_grafton" translatable="false">0ef095554b6d5951144d9dde23eab971</string>
     <string name="map_id_brownstone" translatable="false">4165500a559a9ac64878e047b4baf9e0</string>
@@ -28,6 +29,7 @@
     <string name="map_name_full_meadows" translatable="false">Sunny Meadows Mental Institution</string>
     <string name="map_name_full_meadows_r" translatable="false">Sunny Meadows Mental Institution (Restricted)</string>
     <string name="map_name_full_pointhope" translatable="false">Point Hope</string>
+    <string name="map_name_full_diner" translatable="false">Nell\'s Diner</string>
     <string name="map_name_full_campmaple" translatable="false">Maple Lodge Campsite</string>
     <string name="map_name_full_campwoodwind" translatable="false">Camp Woodwind</string>
     <string name="map_name_full_bleasdale" translatable="false">Bleasdale Farmhouse</string>
@@ -44,6 +46,7 @@
     <string name="map_name_short_meadows" translatable="false">Sunny Meadows</string>
     <string name="map_name_short_meadows_r" translatable="false">Sunny Meadows (R)</string>
     <string name="map_name_short_pointhope" translatable="false">Point Hope</string>
+    <string name="map_name_short_diner" translatable="false">Nell\'s Diner</string>
     <string name="map_name_short_campmaple" translatable="false">Maple Lodge</string>
     <string name="map_name_short_campwoodwind" translatable="false">Woodwind</string>
     <string name="map_name_short_bleasdale" translatable="false">Bleasdale</string>

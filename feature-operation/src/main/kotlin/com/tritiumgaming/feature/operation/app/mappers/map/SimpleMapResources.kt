@@ -30,6 +30,7 @@ import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapRes
         MapTitle.WILLOW -> R.string.map_name_full_willow
         MapTitle.RIDGEVIEW -> R.string.map_name_full_ridgeview
         MapTitle.PRISON -> R.string.map_name_full_prison
+        MapTitle.DINER -> R.string.map_name_full_diner
     }
 }
 
@@ -48,6 +49,7 @@ import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapRes
         MapTitle.WILLOW -> R.string.map_name_short_willow
         MapTitle.RIDGEVIEW -> R.string.map_name_short_ridgeview
         MapTitle.PRISON -> R.string.map_name_short_prison
+        MapTitle.DINER -> R.string.map_name_short_diner
     }
 }
 
@@ -66,6 +68,7 @@ import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapRes
         MapThumbnail.WILLOW -> R.drawable.thumbnail_willow
         MapThumbnail.RIDGEVIEW -> R.drawable.thumbnail_ridgeview
         MapThumbnail.PRISON -> R.drawable.thumbnail_prison
+        MapThumbnail.DINER -> R.drawable.thumbnail_diner
     }
 }
 
@@ -127,6 +130,7 @@ import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapRes
         MapFloorImage.RIDGEVIEW_SECOND_FLOOR -> R.drawable.map_ridgeview_secondfloor
         MapFloorImage.PRISON_FIRST_FLOOR -> R.drawable.map_prison_firstfloor
         MapFloorImage.PRISON_SECOND_FLOOR -> R.drawable.map_prison_secondfloor
+        MapFloorImage.DINER_FIRST_FLOOR -> R.drawable.map_diner_firstfloor
     }
 
 }
