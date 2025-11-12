@@ -564,10 +564,10 @@ private fun HuntTimeoutSlider(settingsViewModel: SettingsScreenViewModel) {
         settingsViewModel = settingsViewModel,
         containerColor = LocalPalette.current.surfaceContainer,
         textColor = LocalPalette.current.onSurface,
-        inactiveTrackColor = LocalPalette.current.progressBarColorThumbGradientStart,
-        activeTrackColor = LocalPalette.current.progressBarColorStart,
-        thumbOutlineColor = LocalPalette.current.progressBarColorStart,
-        thumbInnerColor = LocalPalette.current.progressBarColorThumbGradientStart,
+        inactiveTrackColor = LocalPalette.current.onSurface,
+        activeTrackColor = LocalPalette.current.primary,
+        thumbOutlineColor = LocalPalette.current.primary,
+        thumbInnerColor = LocalPalette.current.onSurface,
     )
 }
 
