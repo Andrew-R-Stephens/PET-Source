@@ -17,7 +17,7 @@ class MapCarouselModel(
         val MODIFIER_SETUP = floatArrayOf(.09f, .05f, .03f)
     }
 
-    data class MapSizeData(val name: Int = 0, val size: Int)
+    data class MapSizeData(val fullName: Int = 0, val shortName: Int = 0, val size: Int)
 
     /* List */
     private var itemList = mutableListOf<MapSizeData>()
@@ -45,8 +45,10 @@ class MapCarouselModel(
     }
     /* -- */
 
-    val currentName: Int
-        get() = itemList[currentIndex.value].name
+    val currentFullName: Int
+        get() = itemList[currentIndex.value].fullName
+    val currentShortName: Int
+        get() = itemList[currentIndex.value].shortName
 
     val currentMapSize: Int
         get() {
@@ -66,12 +68,14 @@ class MapCarouselModel(
         }
 
     private fun setList(
-        names: MutableList<Int> = mutableListOf(),
+        fullNames: MutableList<Int> = mutableListOf(),
+        shortNames: MutableList<Int> = mutableListOf(),
         sizes: MutableList<Int> = mutableListOf()
     ) {
-        if (names.size == sizes.size) {
-            for (i in names.indices) {
-                itemList.add(i, MapSizeData(names[i], sizes[i]))
+        if (fullNames.size == sizes.size) {
+            for (i in fullNames.indices) {
+                itemList.add(i,
+                    MapSizeData(fullNames[i], shortNames[i], sizes[i]))
             }
         }
     }
@@ -79,18 +83,20 @@ class MapCarouselModel(
     init {
         val typedArray: TypedArray =
             context.resources.obtainTypedArray(R.array.maps_resources_array)
-        val names = mutableListOf<Int>()
+        val fullNames = mutableListOf<Int>()
+        val shortNames = mutableListOf<Int>()
         val sizes = mutableListOf<Int>()
         for (i in 0 until typedArray.length()) {
             val mapTypedArray: TypedArray =
                 context.resources.obtainTypedArray(typedArray.getResourceId(i, 0))
-            names.add(i, mapTypedArray.getResourceId(0, 0))
+            fullNames.add(i, mapTypedArray.getResourceId(0, 0))
+            shortNames.add(i, mapTypedArray.getResourceId(9, 0))
             val sizeLayer = 6
             sizes.add(i, mapTypedArray.getInt(sizeLayer, 0))
             mapTypedArray.recycle()
         }
         typedArray.recycle()
 
-        setList(names, sizes)
+        setList(fullNames, shortNames, sizes)
     }
 }

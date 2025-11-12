@@ -10,7 +10,7 @@ class MapDesBlueprint {
 
     @Keep
     class WorldMap {
-        @SerializedName("map_id") var mapId: Int = 0
+        @SerializedName("map_id") var mapId: String = ""
         @SerializedName("map_name") var mapName: String = ""
         @SerializedName("map_name_short") var mapNameShort: String = ""
         @SerializedName("map_floors") var mapFloors: ArrayList<Floor> = ArrayList()

@@ -57,7 +57,7 @@ class MapMenuFragment : InvestigationFragment() {
                             System.gc()
 
                             mapMenuViewModel.currentMapIndex = position
-                            mapMenuViewModel.currentMapModel = mapListModel.getMapById(position)
+                            mapMenuViewModel.currentMapModel = mapListModel.getMapByIndex(position)
 
                             navigateToMapView(itemView)
                         }

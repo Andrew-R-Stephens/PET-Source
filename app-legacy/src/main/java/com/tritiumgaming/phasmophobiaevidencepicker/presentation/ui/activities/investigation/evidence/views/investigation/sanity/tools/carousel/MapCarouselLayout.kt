@@ -42,7 +42,7 @@ class MapCarouselLayout : SanityCarouselLayout {
             }
         }
 
-        investigationViewModel.mapCarouselModel?.currentName?.let { nameRes ->
+        investigationViewModel.mapCarouselModel?.currentShortName?.let { nameRes ->
             setName(context.getString(nameRes).split(" ")[0])
         }
     }
@@ -50,7 +50,7 @@ class MapCarouselLayout : SanityCarouselLayout {
     override fun initObservables() {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             investigationViewModel.mapCarouselModel?.currentIndex?.collectLatest {
-                investigationViewModel.mapCarouselModel?.currentName?.let { nameRes ->
+                investigationViewModel.mapCarouselModel?.currentShortName?.let { nameRes ->
                     setName(context.getString(nameRes).split(" ")[0])
                 }
             }

@@ -26,7 +26,7 @@ class MapListModel(worldMapDeserializer: MapDesBlueprint) {
             return names
         }
 
-    fun getMapById(id: Int): MapModel? {
+    fun getMapById(id: String): MapModel? {
         for (m in mapModels) {
             if (m.mapId == id) {
                 return m
@@ -34,6 +34,10 @@ class MapListModel(worldMapDeserializer: MapDesBlueprint) {
         }
 
         return null
+    }
+
+    fun getMapByIndex(index: Int): MapModel? {
+        return mapModels.getOrNull(index)
     }
 
     @Synchronized

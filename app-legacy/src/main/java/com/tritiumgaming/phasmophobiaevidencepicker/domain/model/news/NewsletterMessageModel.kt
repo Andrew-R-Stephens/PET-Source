@@ -6,8 +6,8 @@ import com.tritiumgaming.phasmophobiaevidencepicker.util.FontUtils
 
 class NewsletterMessageModel(title: String, description: String, date: String) {
 
-    var title: String = FontUtils.removeXMLImgSrcTags(title)
-    var description: String = FontUtils.removeXMLImgSrcTags(description)
+    var title: String = title
+    var description: String = description
     var date: Long = formatToEpoch(FontUtils.removeXMLPubDateClockTime(date))
 
     fun hasContent(): Boolean {
