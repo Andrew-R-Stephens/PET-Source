@@ -50,10 +50,11 @@
         <item>@array/map_willow_array</item>
         <item>@array/map_ridgeview_array</item>
         <item>@array/map_prison_array</item>
+        <item>@array/map_diner_array</item>
     </integer-array>
 
     <!-- Map-Specific arrays of all their resources -->
-    <!-- String - Map name (Deprecated) -->
+    <!-- String - Map name full -->
     <!-- Bitmap - Outlines (Deprecated) -->
     <!-- Bitmap - Backgrounds (Deprecated) -->
     <!-- Bitmap - Doors (Deprecated) -->
@@ -73,6 +74,7 @@
         <item>@drawable/thumbnail_asylum</item>
         <item>@array/map_asylum_image_array</item>
     </integer-array>-->
+    <!-- String - Map name short -->
 
     <!-- Generic array of map names -->
     <string-array name="map_names_array">
@@ -89,6 +91,7 @@
         <item>@string/map_name_full_willow</item>
         <item>@string/map_name_full_ridgeview</item>
         <item>@string/map_name_full_prison</item>
+        <item>@string/map_name_full_diner</item>
     </string-array>
 
     <integer-array name= "map_meadows_array">
@@ -101,6 +104,7 @@
         <item>2</item>
         <item>@drawable/thumbnail_meadows</item>
         <item>@array/map_meadows_image_array</item>
+        <item>@string/map_name_short_meadows</item>
     </integer-array>
     <integer-array name= "map_meadows_r_array">
         <item>@string/map_name_full_meadows_r</item>
@@ -109,9 +113,10 @@
         <item>@array/map_meadows_r_image_array</item>
         <item>@array/map_meadows_layerName_array</item>
         <item>1</item>
-        <item>0</item>
+        <item>2</item>
         <item>@drawable/thumbnail_meadows</item>
         <item>@array/map_meadows_r_image_array</item>
+        <item>@string/map_name_short_meadows_r</item>
     </integer-array>
     <integer-array name= "map_pointhope_array">
         <item>@string/map_name_full_pointhope</item>
@@ -120,9 +125,22 @@
         <item>@array/map_pointhope_image_array</item>
         <item>@array/map_pointhope_layerName_array</item>
         <item>0</item>
-        <item>0</item>
+        <item>1</item>
         <item>@drawable/thumbnail_pointhope</item>
         <item>@array/map_pointhope_image_array</item>
+        <item>@string/map_name_short_pointhope</item>
+    </integer-array>
+    <integer-array name= "map_diner_array">
+        <item>@string/map_name_full_diner</item>
+        <item>@array/map_diner_image_array</item>
+        <item>@array/map_diner_image_array</item>
+        <item>@array/map_diner_image_array</item>
+        <item>@array/map_diner_layerName_array</item>
+        <item>0</item>
+        <item>0</item>
+        <item>@drawable/thumbnail_diner</item>
+        <item>@array/map_diner_image_array</item>
+        <item>@string/map_name_short_diner</item>
     </integer-array>
     <integer-array name= "map_campwoodwind_array">
         <item>@string/map_name_full_campwoodwind</item>
@@ -134,6 +152,7 @@
         <item>0</item>
         <item>@drawable/thumbnail_campwoodwind</item>
         <item>@array/map_campwoodwind_image_array</item>
+        <item>@string/map_name_short_campwoodwind</item>
     </integer-array>
     <integer-array name= "map_campmaple_array">
         <item>@string/map_name_full_campmaple</item>
@@ -153,9 +172,10 @@
         <item>@array/map_bleasdale_image_array</item>
         <item>@array/map_bleasdale_layerName_array</item>
         <item>0</item>
-        <item>0</item>
+        <item>1</item>
         <item>@drawable/thumbnail_bleasedale</item>
         <item>@array/map_bleasdale_image_array</item>
+        <item>@string/map_name_short_bleasdale</item>
     </integer-array>
     <integer-array name= "map_grafton_array">
         <item>@string/map_name_full_grafton</item>
@@ -167,6 +187,7 @@
         <item>0</item>
         <item>@drawable/thumbnail_grafton</item>
         <item>@array/map_grafton_image_array</item>
+        <item>@string/map_name_short_grafton</item>
     </integer-array>
     <integer-array name= "map_brownstone_array">
         <item>@string/map_name_full_brownstone</item>
@@ -178,6 +199,7 @@
         <item>2</item>
         <item>@drawable/thumbnail_highschool</item>
         <item>@array/map_brownstone_image_array</item>
+        <item>@string/map_name_short_brownstone</item>
     </integer-array>
     <integer-array name= "map_edgefield_array">
         <item>@string/map_name_full_edgefield</item>
@@ -189,6 +211,7 @@
         <item>0</item>
         <item>@drawable/thumbnail_edgefield</item>
         <item>@array/map_edgefield_image_array</item>
+        <item>@string/map_name_short_edgefield</item>
     </integer-array>
     <integer-array name= "map_tanglewood_array">
         <item>@string/map_name_full_tanglewood</item>
@@ -211,6 +234,7 @@
         <item>0</item>
         <item>@drawable/thumbnail_willow</item>
         <item>@array/map_willow_image_array</item>
+        <item>@string/map_name_short_willow</item>
     </integer-array>
     <integer-array name= "map_ridgeview_array">
         <item>@string/map_name_full_ridgeview</item>
@@ -222,6 +246,7 @@
         <item>0</item>
         <item>@drawable/thumbnail_ridgeview</item>
         <item>@array/map_ridgeview_image_array</item>
+        <item>@string/map_name_short_ridgeview</item>
     </integer-array>
     <integer-array name= "map_prison_array">
         <item>@string/map_name_full_prison</item>
@@ -233,6 +258,7 @@
         <item>1</item>
         <item>@drawable/thumbnail_prison</item>
         <item>@array/map_prison_image_array</item>
+        <item>@string/map_name_short_prison</item>
     </integer-array>
 
     <!-- Map-Specific arrays of all their Layer names -->
@@ -259,6 +285,9 @@
         <item>@string/map_floor_name_eighth</item>
         <item>@string/map_floor_name_ninth</item>
         <item>@string/map_floor_name_tenth</item>
+    </integer-array>
+    <integer-array name="map_diner_layerName_array">
+        <item>@string/map_floor_name_first</item>
     </integer-array>
     <integer-array name="map_campwoodwind_layerName_array">
         <item>@string/map_floor_name_ground</item>
@@ -329,6 +358,9 @@
         <item>@drawable/map_pointhope_eighthfloor</item>
         <item>@drawable/map_pointhope_ninthfloor</item>
         <item>@drawable/map_pointhope_tenthfloor</item>
+    </integer-array>
+    <integer-array name= "map_diner_image_array">
+        <item>@drawable/map_diner_firstfloor</item>
     </integer-array>
     <integer-array name= "map_campwoodwind_image_array">
         <item>@drawable/map_woodwind_firstfloor</item>
