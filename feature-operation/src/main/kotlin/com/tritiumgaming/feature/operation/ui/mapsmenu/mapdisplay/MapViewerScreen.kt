@@ -213,7 +213,6 @@ private fun MapCanvas(
     val wallPathColor = LocalPalette.current.mapRoomBorderColor
     val wallFillColor = LocalPalette.current.mapRoomFillColor
 
-
     Canvas(
         modifier = Modifier
             .fillMaxSize()

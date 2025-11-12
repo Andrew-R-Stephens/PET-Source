@@ -8,8 +8,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Text
@@ -112,7 +115,7 @@ fun GhostResponseContent(
                     contentDescription = "",
                     contentScale = ContentScale.FillBounds,
                     colorFilter = ColorFilter.tint(
-                        LocalPalette.current.negativeSelColor
+                        LocalPalette.current.error
                     ),
                 )
             }
@@ -129,7 +132,7 @@ fun GhostResponseContent(
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 2,
-                color = LocalPalette.current.textFamily.emphasis,
+                color = LocalPalette.current.onSurfaceVariant,
                 fontSize = 14.sp
             )
         }
@@ -162,18 +165,16 @@ fun ResponseItem(
 
         Image(
             modifier = Modifier
-                .sizeIn(
-                    minWidth = 48.dp, minHeight = 48.dp,
-                    maxHeight = 72.dp, maxWidth = 72.dp
-                )
+                .fillMaxSize()
+                .size(48.dp)
                 .padding(4.dp),
             painter = painterResource(icon),
             contentDescription = "",
             colorFilter = ColorFilter.tint(
                 if (state && enabled)
-                    LocalPalette.current.selectedColor
+                    LocalPalette.current.primary
                 else
-                    LocalPalette.current.unselectedColor.copy(alpha = 0.75f)
+                    LocalPalette.current.onSurface.copy(alpha = 0.75f)
             )
         )
 
@@ -186,10 +187,10 @@ fun ResponseItem(
                 textAlign = TextAlign.Center
             ),
             color = if (state && enabled)
-                    LocalPalette.current.onSurface
+                    LocalPalette.current.primary
                 else
-                    LocalPalette.current.unselectedColor.copy(alpha = .75f),
-            fontSize = 18.sp
+                    LocalPalette.current.onSurface.copy(alpha = .75f),
+            fontSize = 14.sp
         )
 
     }

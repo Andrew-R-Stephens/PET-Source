@@ -98,7 +98,7 @@ private fun RowScope.GhostListColumn(
                     .wrapContentWidth(),
                 text = stringResource(R.string.investigation_section_title_ghosts),
                 style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.textFamily.tertiary,
+                    color = LocalPalette.current.primary,
                     textAlign = TextAlign.Center
                 ),
                 maxLines = 1,
@@ -140,7 +140,7 @@ private fun RowScope.EvidenceListColumn(
                 BasicText(
                     text = stringResource(R.string.investigation_section_title_evidence),
                     style = LocalTypography.current.primary.regular.copy(
-                        color = LocalPalette.current.textFamily.tertiary,
+                        color = LocalPalette.current.primary,
                         textAlign = TextAlign.Center
                     ),
                     maxLines = 1,

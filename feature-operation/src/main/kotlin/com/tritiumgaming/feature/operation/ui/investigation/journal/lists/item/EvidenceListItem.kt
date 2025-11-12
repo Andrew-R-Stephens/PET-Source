@@ -297,11 +297,11 @@ private fun RowScope.RulingIcon(
 ) {
 
     val onSelectedColor = when (ruling) {
-        Ruling.NEGATIVE -> LocalPalette.current.negativeSelColor
-        Ruling.POSITIVE -> LocalPalette.current.positiveSelColor
-        else -> LocalPalette.current.neutralSelColor
+        Ruling.NEGATIVE -> LocalPalette.current.primary
+        Ruling.POSITIVE -> LocalPalette.current.tertiary
+        else -> LocalPalette.current.onSurface
     }
-    val onUnselectedColor = LocalPalette.current.neutralSelColor
+    val onUnselectedColor = LocalPalette.current.onSurface
 
     ruling?.let { ruling ->
         Box(

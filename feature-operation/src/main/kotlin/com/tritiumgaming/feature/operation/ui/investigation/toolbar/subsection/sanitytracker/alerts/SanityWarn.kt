@@ -27,9 +27,9 @@ fun FlashBackground(
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "")
 
-    val offColor = LocalPalette.current.light_off.toArgb()
-    val inactiveColor = LocalPalette.current.light_inactive.toArgb()
-    val activeColor= LocalPalette.current.light_active.toArgb()
+    val offColor = LocalPalette.current.onSurface.copy(alpha = .5f).toArgb()
+    val inactiveColor = LocalPalette.current.onSurface.toArgb()
+    val activeColor = LocalPalette.current.primary.toArgb()
 
     val ratio = if (state == FlashState.ACTIVE_ANIMATED) {
         infiniteTransition.animateFloat(
@@ -49,7 +49,8 @@ fun FlashBackground(
         when(state) {
             FlashState.OFF -> offColor
             FlashState.INACTIVE -> inactiveColor
-            FlashState.ACTIVE_ANIMATED -> ColorUtils.interpolate(activeColor, inactiveColor, ratio)
+            FlashState.ACTIVE_ANIMATED -> ColorUtils.interpolate(
+                activeColor, inactiveColor, ratio)
             FlashState.ACTIVE_STEADY -> activeColor
         }
 
