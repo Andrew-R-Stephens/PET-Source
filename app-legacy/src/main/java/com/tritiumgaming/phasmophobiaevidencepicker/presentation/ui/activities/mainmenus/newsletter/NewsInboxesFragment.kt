@@ -64,6 +64,7 @@ class NewsInboxesFragment : MainMenuFragment() {
         try {
             findNavController(v).navigate(R.id.action_inboxFragment_to_inboxMessageListFragment)
         } catch (e: IllegalStateException) { e.printStackTrace() }
+        catch (e: IllegalArgumentException) { e.printStackTrace() }
 
     }
 

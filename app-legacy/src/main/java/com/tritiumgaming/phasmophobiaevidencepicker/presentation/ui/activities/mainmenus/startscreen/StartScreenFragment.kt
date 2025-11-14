@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -63,7 +64,6 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.m
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getDrawableFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getTextStyleFromAttribute
-import com.tritiumgaming.shared.core.domain.icons.IconResources
 import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
 import java.util.Locale
 
@@ -162,7 +162,7 @@ class StartScreenFragment : MainMenuFragment() {
                     modifier = Modifier
                         .size(48.dp),
                     baseComponent = {
-                        IconResources.IconResource.DISCORD.ToComposable(
+                        IconResource.DISCORD.ToComposable(
                             colors = IconVectorColors.defaults(
                                 fillColor = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground)),
                                 strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
@@ -184,7 +184,7 @@ class StartScreenFragment : MainMenuFragment() {
                         .size(48.dp)
                         .padding(4.dp),
                     baseComponent = {
-                        IconResources.IconResource.PATREON.ToComposable(
+                        IconResource.PATREON.ToComposable(
                             colors = IconVectorColors.defaults(
                                 fillColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
                                 strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody)),
@@ -193,15 +193,29 @@ class StartScreenFragment : MainMenuFragment() {
                     }
                 )
             }
-            val reviewIcon: @Composable () -> Unit = { ReviewIcon(
-                modifier = Modifier
-                    .size(48.dp)
-                    .padding(4.dp),
-                colors = IconVectorColors.defaults(
-                    fillColor = Color(getColorFromAttribute(context, R.attr.backgroundColor)),
-                    strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody))
+            val reviewIcon: @Composable () -> Unit = {
+                ReviewIcon(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .padding(4.dp)
+                        .clickable(onClick = {
+                            try {
+                                startActivity(
+                                    Intent(
+                                        Intent.ACTION_VIEW,
+                                        getString(com.tritiumgaming.core.resources.R.string.link_appstore_review).toUri()
+                                    )
+                                )
+                            } catch (e: IllegalStateException) {
+                                e.printStackTrace()
+                            }
+                        }),
+                    colors = IconVectorColors.defaults(
+                        fillColor = Color(getColorFromAttribute(context, R.attr.backgroundColor)),
+                        strokeColor = Color(getColorFromAttribute(context, R.attr.textColorBody))
+                    )
                 )
-            ) }
+            }
 
             val accountIcon: @Composable () -> Unit = {
                 AccountIcon(
@@ -212,7 +226,7 @@ class StartScreenFragment : MainMenuFragment() {
                     backgroundColor = Color(getColorFromAttribute(
                         context, R.attr.backgroundColorOnBackground)),
                     placeholder = {
-                        IconResources.IconResource.PERSON.ToComposable(
+                        IconResource.PERSON.ToComposable(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .padding(8.dp),
