@@ -1,7 +1,6 @@
 package com.tritiumgaming.core.ui.theme.palette
 
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.luminance
 import com.tritiumgaming.core.ui.theme.badge_10_commissioner
 import com.tritiumgaming.core.ui.theme.badge_1_recruit
 import com.tritiumgaming.core.ui.theme.badge_2_investigator
@@ -33,7 +32,6 @@ import com.tritiumgaming.core.ui.theme.blue_M175_A75
 import com.tritiumgaming.core.ui.theme.blue_M200
 import com.tritiumgaming.core.ui.theme.blue_M200_A58
 import com.tritiumgaming.core.ui.theme.blue_M250
-import com.tritiumgaming.core.ui.theme.blue_M650
 import com.tritiumgaming.core.ui.theme.blue_M75
 import com.tritiumgaming.core.ui.theme.blue_M750
 import com.tritiumgaming.core.ui.theme.blue_M850
@@ -73,8 +71,6 @@ import com.tritiumgaming.core.ui.theme.orange_M300_A58
 import com.tritiumgaming.core.ui.theme.orange_M300_A75
 import com.tritiumgaming.core.ui.theme.orange_M400
 import com.tritiumgaming.core.ui.theme.orange_M50
-import com.tritiumgaming.core.ui.theme.orange_M500
-import com.tritiumgaming.core.ui.theme.orange_M50_A40
 import com.tritiumgaming.core.ui.theme.orange_M510
 import com.tritiumgaming.core.ui.theme.orange_M525
 import com.tritiumgaming.core.ui.theme.orange_M75
@@ -96,8 +92,6 @@ import com.tritiumgaming.core.ui.theme.purple_M300_A58
 import com.tritiumgaming.core.ui.theme.purple_M300_A75
 import com.tritiumgaming.core.ui.theme.purple_M450
 import com.tritiumgaming.core.ui.theme.purple_M475
-import com.tritiumgaming.core.ui.theme.purple_M500
-import com.tritiumgaming.core.ui.theme.purple_M50_A40
 import com.tritiumgaming.core.ui.theme.purple_M525
 import com.tritiumgaming.core.ui.theme.purple_M550
 import com.tritiumgaming.core.ui.theme.purple_M75
@@ -107,7 +101,6 @@ import com.tritiumgaming.core.ui.theme.purple_M875
 import com.tritiumgaming.core.ui.theme.purple_M900
 import com.tritiumgaming.core.ui.theme.purple_M950
 import com.tritiumgaming.core.ui.theme.red
-import com.tritiumgaming.core.ui.theme.red_A40
 import com.tritiumgaming.core.ui.theme.red_A75
 import com.tritiumgaming.core.ui.theme.red_M150
 import com.tritiumgaming.core.ui.theme.red_M225
@@ -117,7 +110,6 @@ import com.tritiumgaming.core.ui.theme.red_M300_A58
 import com.tritiumgaming.core.ui.theme.red_M300_A75
 import com.tritiumgaming.core.ui.theme.red_M350
 import com.tritiumgaming.core.ui.theme.red_M375
-import com.tritiumgaming.core.ui.theme.red_M500
 import com.tritiumgaming.core.ui.theme.red_M850
 import com.tritiumgaming.core.ui.theme.red_M950
 import com.tritiumgaming.core.ui.theme.title_10_commissioner
@@ -162,13 +154,10 @@ import com.tritiumgaming.core.ui.theme.white_M500
 import com.tritiumgaming.core.ui.theme.white_M600
 import com.tritiumgaming.core.ui.theme.white_M700
 import com.tritiumgaming.core.ui.theme.white_M800
-import com.tritiumgaming.core.ui.theme.white_M900
 import com.tritiumgaming.core.ui.theme.white_M950
 import com.tritiumgaming.core.ui.theme.yellow
 import com.tritiumgaming.core.ui.theme.yellow_A10
-import com.tritiumgaming.core.ui.theme.yellow_A40
 import com.tritiumgaming.core.ui.theme.yellow_M25
-import com.tritiumgaming.core.ui.theme.yellow_M500
 import com.tritiumgaming.core.ui.theme.yellow_M50_A10
 
 private val ExtendedDefaultLight = ExtendedPalette()
