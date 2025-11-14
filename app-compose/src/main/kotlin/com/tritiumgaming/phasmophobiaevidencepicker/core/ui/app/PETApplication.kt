@@ -11,10 +11,16 @@ import com.google.firebase.firestore.firestore
 import com.tritiumgaming.feature.core.container.CoreContainer
 import com.tritiumgaming.feature.home.app.container.HomeContainer
 import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
-import com.tritiumgaming.feature.operation.app.container.OperationContainer
-import com.tritiumgaming.feature.operation.app.container.OperationContainerProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
+import com.tritiumstudios.feature.codex.app.container.CodexContainer
+import com.tritiumstudios.feature.codex.app.container.CodexContainerProvider
+import com.tritiumstudios.feature.investigation.app.container.InvestigationContainer
+import com.tritiumstudios.feature.investigation.app.container.InvestigationContainerProvider
+import com.tritiumstudios.feature.maps.app.container.MapViewerContainer
+import com.tritiumstudios.feature.maps.app.container.MapViewerContainerProvider
+import com.tritiumstudios.feature.missions.app.container.MissionsContainer
+import com.tritiumstudios.feature.missions.app.container.MissionsContainerProvider
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
 
@@ -25,7 +31,14 @@ val Context.dataStore by preferencesDataStore(
     }
 )
 
-class PETApplication : Application(), AppContainerProvider, HomeContainerProvider, OperationContainerProvider {
+class PETApplication : Application(),
+    AppContainerProvider,
+    HomeContainerProvider,
+    /*OperationContainerProvider,*/
+    InvestigationContainerProvider,
+    MissionsContainerProvider,
+    CodexContainerProvider,
+    MapViewerContainerProvider {
 
     /*val db = Room.databaseBuilder(
         applicationContext,
@@ -43,7 +56,11 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
 
     lateinit var appContainer: AppContainer
     lateinit var homeContainer: HomeContainer
-    lateinit var operationsContainer: OperationContainer
+    //lateinit var operationsContainer: OperationContainer
+    lateinit var codexContainer: CodexContainer
+    lateinit var missionsContainer: MissionsContainer
+    lateinit var mapViewerContainer: MapViewerContainer
+    lateinit var investigationContainer: InvestigationContainer
 
     override fun onCreate() {
 
@@ -111,7 +128,16 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
             loadAppTimesOpenedUseCase = coreContainer.loadAppTimesOpenedUseCase
         )
 
-        operationsContainer = OperationContainer(
+        /*operationsContainer = OperationContainer(
+            applicationContext = applicationContext,
+            // User Preferences
+            getAllowHuntWarnAudioUseCase = coreContainer.getAllowHuntWarnAudioUseCase,
+            getEnableGhostReorderUseCase = coreContainer.getEnableGhostReorderUseCase,
+            getEnableRTLUseCase = coreContainer.getEnableRTLUseCase,
+            getMaxHuntWarnFlashTimeUseCase = coreContainer.getMaxHuntWarnFlashTimeUseCase,
+        )*/
+
+        investigationContainer = InvestigationContainer(
             applicationContext = applicationContext,
             // User Preferences
             getAllowHuntWarnAudioUseCase = coreContainer.getAllowHuntWarnAudioUseCase,
@@ -120,10 +146,24 @@ class PETApplication : Application(), AppContainerProvider, HomeContainerProvide
             getMaxHuntWarnFlashTimeUseCase = coreContainer.getMaxHuntWarnFlashTimeUseCase,
         )
 
+        codexContainer = CodexContainer()
+
+        missionsContainer = MissionsContainer(
+            applicationContext = applicationContext
+        )
+
+        mapViewerContainer = MapViewerContainer(
+            applicationContext = applicationContext
+        )
+
     }
 
     override fun provideAppContainer(): AppContainer = appContainer
     override fun provideHomeContainer(): HomeContainer = homeContainer
-    override fun provideOperationContainer(): OperationContainer = operationsContainer
+    //override fun provideOperationContainer(): OperationContainer = operationsContainer
+    override fun provideCodexContainer(): CodexContainer = codexContainer
+    override fun provideMissionsContainer(): MissionsContainer = missionsContainer
+    override fun provideMapViewerContainer(): MapViewerContainer = mapViewerContainer
+    override fun provideInvestigationContainer(): InvestigationContainer = investigationContainer
 
 }

@@ -284,6 +284,10 @@ dependencies {
 
     implementation(project(":feature-core"))
     implementation(project(":feature-home"))
+    implementation(project(":feature-codex"))
+    implementation(project(":feature-investigation"))
+    implementation(project(":feature-mapviewer"))
+    implementation(project(":feature-missions"))
     implementation(project(":feature-operation"))
 
 

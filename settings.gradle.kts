@@ -62,3 +62,7 @@ include(
     ":data-typography",
     ":database-unknown",
 )
+include(":feature-codex")
+include(":feature-investigation")
+include(":feature-missions")
+include(":feature-mapviewer")

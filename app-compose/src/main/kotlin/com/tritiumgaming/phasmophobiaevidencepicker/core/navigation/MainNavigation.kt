@@ -3,7 +3,12 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.navigation
 import android.util.Log
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -27,18 +32,20 @@ import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsInboxesScreen
 import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessageScreen
 import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessagesScreen
 import com.tritiumgaming.feature.home.ui.startscreen.StartScreen
-import com.tritiumgaming.feature.operation.ui.codex.CodexViewModel
-import com.tritiumgaming.feature.operation.ui.codex.catalog.CodexCatalogScreen
-import com.tritiumgaming.feature.operation.ui.codex.menu.CodexMenuScreen
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationScreenViewModel
-import com.tritiumgaming.feature.operation.ui.investigation.InvestigationSoloScreen
-import com.tritiumgaming.feature.operation.ui.mapsmenu.MapMenuScreen
-import com.tritiumgaming.feature.operation.ui.mapsmenu.MapsViewModel
-import com.tritiumgaming.feature.operation.ui.mapsmenu.mapdisplay.MapViewerScreen
-import com.tritiumgaming.feature.operation.ui.missions.ObjectivesScreen
-import com.tritiumgaming.feature.operation.ui.missions.ObjectivesViewModel
+import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
+import com.tritiumstudios.feature.codex.ui.CodexViewModel
+import com.tritiumstudios.feature.codex.ui.catalog.CodexCatalogScreen
+import com.tritiumstudios.feature.codex.ui.menu.CodexMenuScreen
+import com.tritiumstudios.feature.investigation.ui.InvestigationScreenViewModel
+import com.tritiumstudios.feature.investigation.ui.InvestigationSoloScreen
+import com.tritiumstudios.feature.maps.ui.MapMenuScreen
+import com.tritiumstudios.feature.maps.ui.MapsScreenViewModel
+import com.tritiumstudios.feature.maps.ui.mapdisplay.MapViewerScreen
+import com.tritiumstudios.feature.missions.ui.DifficultyUiState
+import com.tritiumstudios.feature.missions.ui.ObjectivesScreen
+import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel
 
 @Composable
 fun RootNavigation(
@@ -48,10 +55,10 @@ fun RootNavigation(
         viewModel(factory = InvestigationScreenViewModel.Factory),
     objectivesViewModel: ObjectivesViewModel =
         viewModel(factory = ObjectivesViewModel.Factory),
-    mapsViewModel: MapsViewModel =
-        viewModel(factory = MapsViewModel.Factory),
+    mapsScreenViewModel: MapsScreenViewModel =
+        viewModel(factory = MapsScreenViewModel.Factory),
 
-) {
+    ) {
 
     val navController = rememberNavController()
 
@@ -73,7 +80,7 @@ fun RootNavigation(
             navController = navController,
             investigationViewModel = investigationViewModel,
             objectivesViewModel = objectivesViewModel,
-            mapsViewModel = mapsViewModel
+            mapsScreenViewModel = mapsScreenViewModel
         )
 
     }
@@ -199,7 +206,7 @@ private fun NavGraphBuilder.operationNavigation(
     navController: NavHostController,
     investigationViewModel: InvestigationScreenViewModel,
     objectivesViewModel: ObjectivesViewModel,
-    mapsViewModel: MapsViewModel
+    mapsScreenViewModel: MapsScreenViewModel
 ) {
     navigation(
         route = NavRoute.NAVIGATION_INVESTIGATION.route,
@@ -207,18 +214,32 @@ private fun NavGraphBuilder.operationNavigation(
     ) {
 
         composable(route = NavRoute.SCREEN_INVESTIGATION.route) {
-            InvestigationSoloScreen(
-                navController = navController,
-                investigationViewModel = investigationViewModel
-            )
+            OperationScreen(
+                modifier = Modifier
+                    .padding(horizontal = 8.dp),
+                navController = navController
+            ) {
+                InvestigationSoloScreen(
+                    navController = navController,
+                    investigationViewModel = investigationViewModel
+                )
+            }
         }
 
         composable(route = NavRoute.SCREEN_MISSIONS.route) {
-            ObjectivesScreen(
-                navController = navController,
-                objectivesViewModel = objectivesViewModel,
-                investigationViewModel = investigationViewModel
-            )
+            OperationScreen(
+                modifier = Modifier
+                    .padding(horizontal = 8.dp),
+                navController = navController
+            ) {
+                val collect by investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+
+                ObjectivesScreen(
+                    navController = navController,
+                    objectivesViewModel = objectivesViewModel,
+                    difficultyUiState = DifficultyUiState(collect.responseType)
+                )
+            }
         }
 
         navigation(
@@ -227,10 +248,16 @@ private fun NavGraphBuilder.operationNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_MAPS_MENU.route) {
-                MapMenuScreen(
-                    navController = navController,
-                    mapsViewModel = mapsViewModel
-                )
+                OperationScreen(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp),
+                    navController = navController
+                ) {
+                    MapMenuScreen(
+                        navController = navController,
+                        mapsScreenViewModel = mapsScreenViewModel
+                    )
+                }
             }
 
             composable(route = "${NavRoute.SCREEN_MAP_VIEWER.route}/{mapId}",
@@ -243,11 +270,15 @@ private fun NavGraphBuilder.operationNavigation(
                 Log.d("MainNavigation", "mapId: $mapId")
 
                 if(mapId != null) {
-                    MapViewerScreen(
+                    OperationScreen(
                         navController = navController,
-                        mapsViewModel = mapsViewModel,
-                        mapId = mapId
-                    )
+                    ) {
+                        MapViewerScreen(
+                            navController = navController,
+                            mapsScreenViewModel = mapsScreenViewModel,
+                            mapId = mapId
+                        )
+                    }
                 } else {
                     navController.popBackStack()
                 }
@@ -261,9 +292,15 @@ private fun NavGraphBuilder.operationNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_CODEX_MENU.route) {
-                CodexMenuScreen(
+                OperationScreen(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp),
                     navController = navController
-                )
+                ) {
+                    CodexMenuScreen(
+                        navController = navController
+                    )
+                }
             }
 
             composable(
@@ -280,11 +317,17 @@ private fun NavGraphBuilder.operationNavigation(
                     entry.id == categoryId }
 
                 category?.let {
-                    CodexCatalogScreen(
-                        navController = navController,
-                        codexViewModel = viewModel(factory = CodexViewModel.Factory),
-                        category = category
-                    )
+                    OperationScreen(
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp),
+                        navController = navController
+                    ) {
+                        CodexCatalogScreen(
+                            navController = navController,
+                            codexViewModel = viewModel(factory = CodexViewModel.Factory),
+                            category = category
+                        )
+                    }
                 } ?: navController.popBackStack()
 
             }
