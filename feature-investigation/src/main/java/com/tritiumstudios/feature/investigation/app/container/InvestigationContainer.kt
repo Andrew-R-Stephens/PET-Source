@@ -1,6 +1,29 @@
-package com.tritiumgaming.feature.operation.app.container
+package com.tritiumstudios.feature.investigation.app.container
 
 import android.content.Context
+import com.tritiumgaming.data.codex.repository.CodexRepositoryImpl
+import com.tritiumgaming.data.codex.source.local.AchievementsLocalDataSource
+import com.tritiumgaming.data.codex.source.local.EquipmentLocalDataSource
+import com.tritiumgaming.data.codex.source.local.PossessionsLocalDataSource
+import com.tritiumgaming.data.difficulty.repository.DifficultyRepositoryImpl
+import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
+import com.tritiumgaming.data.difficulty.source.local.DifficultyLocalDataSource
+import com.tritiumgaming.data.evidence.repository.EvidenceRepositoryImpl
+import com.tritiumgaming.data.evidence.source.EvidenceDataSource
+import com.tritiumgaming.data.evidence.source.local.EvidenceLocalDataSource
+import com.tritiumgaming.data.ghost.repository.GhostRepositoryImpl
+import com.tritiumgaming.data.ghost.source.GhostDataSource
+import com.tritiumgaming.data.ghost.source.local.GhostLocalDataSource
+import com.tritiumgaming.data.map.complex.repository.ComplexMapRepositoryImpl
+import com.tritiumgaming.data.map.complex.source.ComplexMapDataSource
+import com.tritiumgaming.data.map.complex.source.local.ComplexMapLocalDataSource
+import com.tritiumgaming.data.map.complex.source.service.ComplexMapLocalService
+import com.tritiumgaming.data.map.modifiers.repository.MapModifiersRepositoryImpl
+import com.tritiumgaming.data.map.modifiers.source.MapModifiersDataSource
+import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSource
+import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
+import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
+import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableRTLUseCase
@@ -22,11 +45,6 @@ import com.tritiumgaming.shared.operation.domain.difficulty.usecase.IncrementDif
 import com.tritiumgaming.shared.operation.domain.evidence.repository.EvidenceRepository
 import com.tritiumgaming.shared.operation.domain.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.operation.domain.ghost.repository.GhostRepository
-import com.tritiumgaming.shared.operation.domain.ghostname.repository.GhostNameRepository
-import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFemaleNamesUseCase
-import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFirstNamesUseCase
-import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllMaleNamesUseCase
-import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllSurnamesUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.operation.domain.journal.usecase.FetchGhostTypesUseCase
@@ -52,11 +70,8 @@ import com.tritiumgaming.shared.operation.domain.map.simple.usecase.GetSimpleMap
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.operation.domain.map.simple.usecase.IncrementMapIndexUseCase
-import com.tritiumgaming.shared.operation.domain.mission.repository.MissionRepository
-import com.tritiumgaming.shared.operation.domain.mission.usecase.FetchAllMissionsUseCase
-/*
 
-class OperationContainer(
+class InvestigationContainer(
     applicationContext: Context,
     val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase,
     val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase,
@@ -142,41 +157,6 @@ class OperationContainer(
     )
     internal val decrementDifficultyIndexUseCase = DecrementDifficultyIndexUseCase(
         difficultyRepository = difficultyRepository
-    )
-
-    // Mission
-    internal val missionRepository: MissionRepository by lazy {
-        val missionLocalDataSource: MissionDataSource = MissionLocalDataSource(
-            applicationContext = applicationContext,
-        )
-        MissionRepositoryImpl(
-            localSource = missionLocalDataSource
-        )
-    }
-    internal val fetchAllMissionsUseCase = FetchAllMissionsUseCase(
-        missionRepository = missionRepository
-    )
-
-    // Ghost Name
-    internal val ghostNameRepository: GhostNameRepository by lazy {
-        val ghostNameLocalDataSource: GhostNameDataSource = GhostNameLocalDataSource(
-            applicationContext = applicationContext
-        )
-        GhostNameRepositoryImpl(
-            localSource = ghostNameLocalDataSource
-        )
-    }
-    internal val fetchAllFirstNamesUseCase = FetchAllFirstNamesUseCase(
-        repository = ghostNameRepository
-    )
-    internal val fetchAllMaleNamesUseCase = FetchAllMaleNamesUseCase(
-        repository = ghostNameRepository
-    )
-    internal val fetchAllFemaleNamesUseCase = FetchAllFemaleNamesUseCase(
-        repository = ghostNameRepository
-    )
-    internal val fetchAllSurnamesUseCase = FetchAllSurnamesUseCase(
-        repository = ghostNameRepository
     )
 
     // Map Modifiers
@@ -278,4 +258,3 @@ class OperationContainer(
     internal val getEquipmentTypeByEvidenceTypeUseCase = GetEquipmentTypeByEvidenceTypeUseCase()
 
 }
-*/

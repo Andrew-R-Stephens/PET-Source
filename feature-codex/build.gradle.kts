@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tritiumgaming.feature.operation"
+    namespace = "com.tritiumgaming.feature.codex"
     compileSdk = 36
 
     defaultConfig {
@@ -97,6 +97,8 @@ dependencies {
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
+
+    implementation(project(":data-codex"))
 
     implementation(project(":shared"))
 

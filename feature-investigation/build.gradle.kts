@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tritiumgaming.feature.operation"
+    namespace = "com.tritiumgaming.feature.investigation"
     compileSdk = 36
 
     defaultConfig {
@@ -97,6 +97,12 @@ dependencies {
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
+
+    implementation(project(":data-map"))
+    implementation(project(":data-difficulty"))
+    implementation(project(":data-evidence"))
+    implementation(project(":data-ghost"))
+    implementation(project(":data-codex"))
 
     implementation(project(":shared"))
 

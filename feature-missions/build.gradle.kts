@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tritiumgaming.feature.operation"
+    namespace = "com.tritiumgaming.feature.missions"
     compileSdk = 36
 
     defaultConfig {
@@ -97,6 +97,10 @@ dependencies {
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
+
+    implementation(project(":data-ghostname"))
+    implementation(project(":data-mission"))
+    implementation(project(":data-difficulty"))
 
     implementation(project(":shared"))
 
