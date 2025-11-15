@@ -117,7 +117,7 @@ class ObjectivesViewModel(
             )
         }
     }
-    fun setGhostLastName(name: GhostName) {
+    fun setGhostSurname(name: GhostName) {
         _ghostDetailsUiState.update {
             it.copy(
                 surname = name

@@ -33,7 +33,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
@@ -49,17 +48,13 @@ import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel
 @Composable
 fun GhostNameContent(
     modifier: Modifier = Modifier,
-    objectivesViewModel: ObjectivesViewModel,
+    firstnames: List<GhostName> = emptyList(),
+    surnames: List<GhostName> = emptyList(),
+    firstname: GhostName? = null,
+    surname: GhostName? = null,
+    onSelectFirstName: (ghostName: GhostName) -> Unit = {},
+    onSelectSurname: (ghostName: GhostName) -> Unit = {}
 ) {
-
-    val ghostDetails = objectivesViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
-
-    val allFirstNames = objectivesViewModel.fetchAllFirstNames().sortedBy { it.name }
-    val allSurnames = objectivesViewModel.fetchAllSurnamesNames()
-
-    val ghostFirstName = ghostDetails.value.firstName
-    val ghostSurname = ghostDetails.value.surname
-
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -91,22 +86,22 @@ fun GhostNameContent(
                 modifier = Modifier
                     .weight(1f, fill = false)
                     .wrapContentHeight(),
-                state = ghostFirstName,
-                dropdownList = allFirstNames,
+                state = firstname,
+                dropdownList = firstnames,
                 placeholder = "First Name",
-            ) { 
-                objectivesViewModel.setGhostFirstName(it)
+            ) { name ->
+                onSelectFirstName(name)
             }
 
             NameWrapper(
                 modifier = Modifier
                     .weight(1f, fill = false)
                     .wrapContentHeight(),
-                state = ghostSurname,
-                dropdownList = allSurnames,
+                state = surname,
+                dropdownList = surnames,
                 placeholder = "Surname",
-            ) {
-                objectivesViewModel.setGhostLastName(it)
+            ) { surname ->
+                onSelectSurname(surname)
             }
 
         }
@@ -202,11 +197,11 @@ fun NameWrapper(
                 matchAnchorWidth = true,
             ) {
 
-                dropdownList.forEach { it ->
+                dropdownList.forEach { ghostName ->
                     DropdownMenuItem(
                         text = {
                             Text(
-                                text = stringResource(it.name.toStringResource()),
+                                text = stringResource(ghostName.name.toStringResource()),
                                 style = LocalTypography.current.quaternary.regular,
                                 color = LocalPalette.current.onSurface,
                                 fontSize = 18.sp
@@ -217,7 +212,7 @@ fun NameWrapper(
                         ),
                         onClick = {
                             expanded = false
-                            onChange(it)
+                            onChange(ghostName)
                         },
                     )
                 }
@@ -232,7 +227,7 @@ fun NameWrapper(
 @Composable
 @Preview
 fun GhostNameWrapperPreview(
-    objectivesViewModel: ObjectivesViewModel = viewModel(factory = ObjectivesViewModel.Companion.Factory)
+    objectivesViewModel: ObjectivesViewModel = viewModel(factory = ObjectivesViewModel.Factory)
 ) {
     SelectiveTheme(
         palette = ClassicPalette,
@@ -250,18 +245,5 @@ fun GhostNameWrapperPreview(
             dropdownList = objectivesViewModel.fetchAllFirstNames(),
             placeholder = "First Name"
         ) { }
-    }
-}
-
-@Composable
-@Preview
-fun GhostNameContentPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        GhostNameContent(
-            objectivesViewModel = viewModel(factory = ObjectivesViewModel.Companion.Factory),
-        )
     }
 }

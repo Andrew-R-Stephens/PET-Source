@@ -27,23 +27,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources
 import com.tritiumstudios.feature.missions.ui.DifficultyUiState
-import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel
+import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel.Companion.ALONE
+import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel.Companion.GROUP
+import com.tritiumstudios.feature.missions.ui.Response
 
 @Composable
 fun GhostResponseContent(
     modifier: Modifier = Modifier,
-    objectivesViewModel: ObjectivesViewModel,
-    difficultyUiState: DifficultyUiState
+    difficultyUiState: DifficultyUiState,
+    response: Response,
+    onResponseChange: (Response) -> Unit
 ) {
-    val ghostDetailsUiState = objectivesViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
-    val responseState = ghostDetailsUiState.value.responseState
-
     val collectDifficultyUiState by remember { mutableStateOf(difficultyUiState) }
     val isResponseKnown = collectDifficultyUiState.responseType ==
             DifficultyResources.DifficultyResponseType.KNOWN
@@ -88,10 +87,10 @@ fun GhostResponseContent(
                         .weight(1f, false),
                     title = R.string.objectives_title_response_alone,
                     icon = R.drawable.ic_response_alone,
-                    state = responseState == ObjectivesViewModel.Companion.ALONE,
+                    state = response == ALONE,
                     enabled = isResponseKnown
                 ) {
-                    objectivesViewModel.setGhostResponse(ObjectivesViewModel.Companion.ALONE)
+                    onResponseChange(ALONE)
                 }
 
                 ResponseItem(
@@ -99,10 +98,10 @@ fun GhostResponseContent(
                         .weight(1f, false),
                     title = R.string.objectives_title_response_everyone,
                     icon = R.drawable.ic_response_group,
-                    state = responseState == ObjectivesViewModel.Companion.GROUP,
+                    state = response == GROUP,
                     enabled = isResponseKnown
                 ) {
-                    objectivesViewModel.setGhostResponse(ObjectivesViewModel.Companion.GROUP)
+                    onResponseChange(GROUP)
                 }
 
             }

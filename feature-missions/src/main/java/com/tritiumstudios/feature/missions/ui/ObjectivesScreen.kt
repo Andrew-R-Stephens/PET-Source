@@ -20,12 +20,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.shared.operation.domain.ghostname.model.GhostName
+import com.tritiumgaming.shared.operation.domain.mission.model.Mission
 import com.tritiumstudios.feature.missions.ui.components.GhostNameContent
 import com.tritiumstudios.feature.missions.ui.components.GhostResponseContent
 import com.tritiumstudios.feature.missions.ui.components.MissionsContent
@@ -40,11 +43,48 @@ fun ObjectivesScreen(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
+    val missionsUiState = objectivesViewModel.missionSpinnersUiState.collectAsStateWithLifecycle()
+
+    val ghostDetailsUiState = objectivesViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
+
+    val filteredMissions = missionsUiState.value
+        .fold(objectivesViewModel.fetchAllMissions()) { missionsUi, mission ->
+            missionsUi.filter { it.id != mission.mission.id }
+        }
+
+    val firstname = ghostDetailsUiState.value.firstName
+    val surname = ghostDetailsUiState.value.surname
+    val response = ghostDetailsUiState.value.responseState
+
+    val firstnames = objectivesViewModel.fetchAllFirstNames().sortedBy { it.name }
+    val surnames = objectivesViewModel.fetchAllSurnamesNames()
+
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             ObjectivesContentPortrait(
-                objectivesViewModel = objectivesViewModel,
-                difficultyUiState = difficultyUiState
+                difficultyUiState = difficultyUiState,
+                missionsUiState = missionsUiState.value,
+                filteredMissions = filteredMissions,
+                firstnames = firstnames,
+                surnames = surnames,
+                firstname = firstname,
+                surname = surname,
+                response = response,
+                onSelectFirstName = { firstname ->
+                    objectivesViewModel.setGhostFirstName(firstname)
+                },
+                onSelectSurname = { surname ->
+                    objectivesViewModel.setGhostSurname(surname)
+                },
+                onSelectMission = { index, mission ->
+                    objectivesViewModel.selectMission(index, mission)
+                },
+                onChangesMissionStatus = { mission, state ->
+                    objectivesViewModel.updateMissionStatus(mission, state)
+                },
+                onResponseChange = { response ->
+                    objectivesViewModel.setGhostResponse(response)
+                }
             )
         }
         DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -52,8 +92,29 @@ fun ObjectivesScreen(
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
             ObjectivesContentLandscape(
-                objectivesViewModel = objectivesViewModel,
-                difficultyUiState = difficultyUiState
+                difficultyUiState = difficultyUiState,
+                missionsUiState = missionsUiState.value,
+                missions = filteredMissions,
+                firstnames = firstnames,
+                surnames = surnames,
+                firstname = firstname,
+                surname = surname,
+                response = response,
+                onSelectFirstName = { firstname ->
+                    objectivesViewModel.setGhostFirstName(firstname)
+                },
+                onSelectSurname = { surname ->
+                    objectivesViewModel.setGhostSurname(surname)
+                },
+                onSelectMission = { index, mission ->
+                    objectivesViewModel.selectMission(index, mission)
+                },
+                onChangesMissionStatus = { mission, state ->
+                    objectivesViewModel.updateMissionStatus(mission, state)
+                },
+                onResponseChange = { response ->
+                    objectivesViewModel.setGhostResponse(response)
+                }
             )
         }
     }
@@ -63,8 +124,19 @@ fun ObjectivesScreen(
 @Composable
 private fun ObjectivesContentPortrait(
     modifier: Modifier = Modifier,
-    objectivesViewModel: ObjectivesViewModel,
-    difficultyUiState: DifficultyUiState
+    missionsUiState: List<ObjectivesViewModel.MissionSpinnerUiState>,
+    difficultyUiState: DifficultyUiState,
+    filteredMissions: List<Mission>,
+    firstnames: List<GhostName>,
+    surnames: List<GhostName>,
+    firstname: GhostName? = null,
+    surname: GhostName? = null,
+    response: Response,
+    onSelectFirstName: (ghostName: GhostName) -> Unit,
+    onSelectSurname: (ghostName: GhostName) -> Unit,
+    onSelectMission: (Int, Mission) -> Unit,
+    onChangesMissionStatus: (Mission, Boolean) -> Unit,
+    onResponseChange: (Response) -> Unit,
 ) {
     val rememberScrollState = rememberScrollState()
 
@@ -98,7 +170,14 @@ private fun ObjectivesContentPortrait(
             MissionsContent(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top),
-                objectivesViewModel = objectivesViewModel
+                missionsUiState = missionsUiState,
+                filteredMissions = filteredMissions,
+                onSelectMission = { index, mission ->
+                    onSelectMission(index, mission)
+                },
+                onChangeMissionStatus = { mission, state ->
+                    onChangesMissionStatus(mission, state)
+                }
             )
 
         }
@@ -124,14 +203,26 @@ private fun ObjectivesContentPortrait(
             )
 
             GhostNameContent(
-                objectivesViewModel = objectivesViewModel
+                firstnames = firstnames,
+                surnames = surnames,
+                firstname = firstname,
+                surname = surname,
+                onSelectFirstName = { firstname ->
+                    onSelectFirstName(firstname)
+                },
+                onSelectSurname = { surname ->
+                    onSelectSurname(surname)
+                }
             )
 
             GhostResponseContent(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top),
-                objectivesViewModel = objectivesViewModel,
-                difficultyUiState = difficultyUiState
+                difficultyUiState = difficultyUiState,
+                response = response,
+                onResponseChange = { response ->
+                    onResponseChange(response)
+                }
             )
 
         }
@@ -142,8 +233,19 @@ private fun ObjectivesContentPortrait(
 @Composable
 private fun ObjectivesContentLandscape(
     modifier: Modifier = Modifier,
-    objectivesViewModel: ObjectivesViewModel,
-    difficultyUiState: DifficultyUiState
+    missionsUiState: List<ObjectivesViewModel.MissionSpinnerUiState>,
+    difficultyUiState: DifficultyUiState,
+    missions: List<Mission>,
+    firstnames: List<GhostName>,
+    surnames: List<GhostName>,
+    firstname: GhostName? = null,
+    surname: GhostName? = null,
+    response: Response,
+    onSelectFirstName: (ghostName: GhostName) -> Unit,
+    onSelectSurname: (ghostName: GhostName) -> Unit,
+    onSelectMission: (Int, Mission) -> Unit,
+    onChangesMissionStatus: (Mission, Boolean) -> Unit,
+    onResponseChange: (Response) -> Unit
 ) {
     val rememberScrollState = rememberScrollState()
 
@@ -179,7 +281,14 @@ private fun ObjectivesContentLandscape(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top)
                     .padding(8.dp),
-                objectivesViewModel = objectivesViewModel
+                missionsUiState = missionsUiState,
+                filteredMissions = missions,
+                onSelectMission = { index, mission ->
+                    onSelectMission(index, mission)
+                },
+                onChangeMissionStatus = { mission, state ->
+                    onChangesMissionStatus(mission, state)
+                }
             )
 
         }
@@ -207,14 +316,26 @@ private fun ObjectivesContentLandscape(
             )
 
             GhostNameContent(
-                objectivesViewModel = objectivesViewModel
+                firstnames = firstnames,
+                surnames = surnames,
+                firstname = firstname,
+                surname = surname,
+                onSelectFirstName = { firstname ->
+                    onSelectFirstName(firstname)
+                },
+                onSelectSurname = { surname ->
+                    onSelectSurname(surname)
+                }
             )
 
             GhostResponseContent(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top),
-                objectivesViewModel = objectivesViewModel,
-                difficultyUiState = difficultyUiState
+                difficultyUiState = difficultyUiState,
+                response = response,
+                onResponseChange = { response ->
+                    onResponseChange(response)
+                }
             )
 
         }

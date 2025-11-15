@@ -38,7 +38,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.other.PETImageButton
 import com.tritiumgaming.core.ui.common.other.PETImageButtonType
@@ -51,14 +50,11 @@ import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel
 @Composable
 fun MissionsContent(
     modifier: Modifier = Modifier,
-    objectivesViewModel: ObjectivesViewModel
+    missionsUiState: List<ObjectivesViewModel.MissionSpinnerUiState>,
+    filteredMissions: List<Mission>,
+    onSelectMission: (Int, Mission) -> Unit = { _, _ -> },
+    onChangeMissionStatus: (Mission, Boolean) -> Unit = { _, _ -> }
 ) {
-    val missionsUiState = objectivesViewModel.missionSpinnersUiState.collectAsStateWithLifecycle()
-
-    val filteredMissions = missionsUiState.value
-        .fold(objectivesViewModel.fetchAllMissions()) { missionsUi, mission ->
-            missionsUi.filter { it.id != mission.mission.id }
-        }
 
     Surface(
         modifier = Modifier
@@ -72,15 +68,20 @@ fun MissionsContent(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            missionsUiState.value.forEachIndexed { index, missionUiState ->
+            missionsUiState.forEachIndexed { index, _ ->
                 MissionWrapper(
                     modifier = Modifier,
-                    objectivesViewModel = objectivesViewModel,
-                    state = missionsUiState.value[index],
+                    state = missionsUiState[index],
                     dropdownList = filteredMissions,
                     index = index,
                     title =
-                        "${stringResource(R.string.objectives_title_optional_objective)} ${index + 1}"
+                        "${stringResource(R.string.objectives_title_optional_objective)} ${index + 1}",
+                    onSelectMission = { index, mission ->
+                        onSelectMission(index, mission)
+                    },
+                    onChangeMissionStatus = { mission, status ->
+                        onChangeMissionStatus(mission, status)
+                    }
                 )
             }
         }
@@ -93,11 +94,12 @@ fun MissionsContent(
 @Composable
 fun MissionWrapper(
     modifier: Modifier = Modifier,
-    objectivesViewModel: ObjectivesViewModel,
     state: ObjectivesViewModel.MissionSpinnerUiState,
     dropdownList: List<Mission>,
     index: Int = 0,
-    title: String
+    title: String,
+    onSelectMission: (Int, Mission) -> Unit = { _, _ ->},
+    onChangeMissionStatus: (Mission, Boolean) -> Unit = { _, _ ->}
 ) {
 
     var expanded by remember { mutableStateOf(false) }
@@ -211,11 +213,11 @@ fun MissionWrapper(
                     matchAnchorWidth = true,
                 ) {
 
-                    dropdownList.forEach { it ->
+                    dropdownList.forEach { mission ->
                         DropdownMenuItem(
                             text =  {
                                 Text(
-                                    text = stringResource(it.content.toStringResource()),
+                                    text = stringResource(mission.content.toStringResource()),
                                     style = LocalTypography.current.quaternary.regular,
                                     color = LocalPalette.current.onSurface,
                                     fontSize = 18.sp
@@ -226,7 +228,7 @@ fun MissionWrapper(
                             ),
                             onClick = {
                                 expanded = false
-                                objectivesViewModel.selectMission(index, it)
+                                onSelectMission(index, mission)
                             },
                         )
                     }
@@ -238,10 +240,7 @@ fun MissionWrapper(
                 modifier = Modifier
                     .size(48.dp)
                     .clickable(onClick = {
-                        objectivesViewModel.updateMissionStatus(
-                            state.mission,
-                            !state.status
-                        )
+                        onChangeMissionStatus(state.mission, !state.status)
                     }),
                 type =
                     if(!state.status) PETImageButtonType.CONFIRM
