@@ -87,7 +87,6 @@ private fun InvestigationSoloScreenPreview() {
 
 @Composable
 fun InvestigationSoloScreen(
-    navController: NavHostController = rememberNavController(),
     investigationViewModel: InvestigationScreenViewModel
 ) {
 
