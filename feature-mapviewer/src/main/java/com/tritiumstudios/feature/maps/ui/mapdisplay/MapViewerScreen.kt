@@ -105,6 +105,7 @@ fun MapViewerScreen(
     mapsScreenViewModel.setCurrentMap(mapId)
 
     MapViewerContent(
+        navController = navController,
         mapsScreenViewModel = mapsScreenViewModel
     )
 
@@ -112,6 +113,7 @@ fun MapViewerScreen(
 
 @Composable
 private fun MapViewerContent(
+    navController: NavHostController = rememberNavController(),
     mapsScreenViewModel: MapsScreenViewModel
 ) {
 
@@ -147,6 +149,7 @@ private fun MapViewerContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(),
+                    navController = navController,
                     mapTitle = mapTitle,
                     floorIndex = floorIndex,
                     floorCount = floorCount,
@@ -171,6 +174,7 @@ private fun MapViewerContent(
                 UiControllerLandscape(
                     modifier = Modifier
                         .fillMaxSize(),
+                    navController = navController,
                     mapTitle = mapTitle,
                     floorIndex = floorIndex,
                     floorCount = floorCount,
@@ -426,6 +430,7 @@ private fun Modifier.mapControlInput(
 @Composable
 private fun UiControllerPortrait(
     modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
     mapTitle: SimpleMapResources.MapTitle,
     floorIndex: Int,
     floorCount: Int,
@@ -448,55 +453,81 @@ private fun UiControllerPortrait(
             rememberLazyListState.animateScrollToItem(floorIndex)
         }
 
-        DynamicContentRow(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(32.dp)
-                .padding(horizontal = 16.dp),
-            maxPercentage = DynamicContentAlignmentPercentage(
-                maxPercentage = .5f,
-                alignment = Alignment.End
-            ),
-            startComponent = {
-                Text(
-                    modifier = Modifier
-                        .height(24.dp)
-                        .basicMarquee(
-                            iterations = Int.MAX_VALUE,
-                            initialDelayMillis = 1000,
-                            repeatDelayMillis = 5000
-                        )
-                        .padding(end = 16.dp),
-                    text = stringResource(mapTitle.toStringResource()),
-                    style = LocalTypography.current.quaternary.bold,
-                    fontSize = 18.sp,
-                    color = LocalPalette.current.onSurface
-                )
-            },
-            endComponent = {
-                LazyRow(
-                    state = rememberLazyListState
-                ) {
-                    if(floorCount <= 1) return@LazyRow
+                .height(48.dp)
+                .padding(end = 8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .aspectRatio(1f)
+                    .clickable(onClick = {
+                        try {
+                            navController.popBackStack()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    })
+                    .padding(8.dp),
+                painter = painterResource(android.R.drawable.ic_menu_revert),
+                contentScale = ContentScale.Fit,
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
+            )
 
-                    items(floorCount) { index ->
-                        val icon = if (floorIndex == index) R.drawable.ic_selector_sel
-                        else R.drawable.ic_selector_unsel
+            DynamicContentRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(36.dp)
+                    .padding(start = 8.dp),
+                maxPercentage = DynamicContentAlignmentPercentage(
+                    maxPercentage = .5f,
+                    alignment = Alignment.End
+                ),
+                startComponent = {
+                    Text(
+                        modifier = Modifier
+                            .height(24.dp)
+                            .basicMarquee(
+                                iterations = Int.MAX_VALUE,
+                                initialDelayMillis = 1000,
+                                repeatDelayMillis = 5000
+                            )
+                            .padding(end = 16.dp),
+                        text = stringResource(mapTitle.toStringResource()),
+                        style = LocalTypography.current.quaternary.bold,
+                        fontSize = 18.sp,
+                        color = LocalPalette.current.onSurface
+                    )
+                },
+                endComponent = {
+                    LazyRow(
+                        state = rememberLazyListState
+                    ) {
+                        if(floorCount <= 1) return@LazyRow
 
-                        Image(
-                            modifier = Modifier
-                                .size(24.dp)
-                                .padding(5.dp, 2.dp, 5.dp, 2.dp),
-                            painter = painterResource(icon),
-                            contentDescription = null,
-                            contentScale = ContentScale.Fit,
-                            colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
-                        )
+                        items(floorCount) { index ->
+                            val icon = if (floorIndex == index) R.drawable.ic_selector_sel
+                            else R.drawable.ic_selector_unsel
+
+                            Image(
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .padding(5.dp, 2.dp, 5.dp, 2.dp),
+                                painter = painterResource(icon),
+                                contentDescription = null,
+                                contentScale = ContentScale.Fit,
+                                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
+                            )
+                        }
+
                     }
-
                 }
-            }
-        )
+            )
+        }
 
         Row(
             modifier = Modifier
@@ -538,7 +569,7 @@ private fun UiControllerPortrait(
 
                 Text(
                     modifier = Modifier
-                        .padding(start = if(floorCount > 1) 0.dp else 16.dp)
+                        .padding(start = if (floorCount > 1) 0.dp else 16.dp)
                         .basicMarquee(
                             iterations = Int.MAX_VALUE,
                             initialDelayMillis = 1000,
@@ -605,12 +636,13 @@ private fun UiControllerPortrait(
 @Composable
 private fun UiControllerLandscape(
     modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
     mapTitle: SimpleMapResources.MapTitle,
     floorIndex: Int,
     floorCount: Int,
     floorTitle: SimpleMapResources.MapFloorTitle,
-    roomName: String,
     roomList: List<ComplexWorldRoom>,
+    roomName: String,
     onDecrementFloor: () -> Unit = { },
     onIncrementFloor: () -> Unit = { },
     onSetRoom: (Int) -> Unit
@@ -636,6 +668,13 @@ private fun UiControllerLandscape(
                 modifier = Modifier
                     .fillMaxHeight()
                     .aspectRatio(1f)
+                    .clickable(onClick = {
+                        try {
+                            navController.popBackStack()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    })
                     .padding(end = 8.dp),
                 painter = painterResource(android.R.drawable.ic_menu_revert),
                 contentScale = ContentScale.Fit,
@@ -772,9 +811,7 @@ private fun UiControllerLandscape(
 
         Row(
             modifier = Modifier
-                //.height(48.dp)
                 .wrapContentHeight()
-                //.background(LocalPalette.current.backgroundColor_mapviewOverlay)
                 .background(LocalPalette.current.scrim.copy(alpha = .75f)),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -783,7 +820,6 @@ private fun UiControllerLandscape(
             Row(
                 modifier = Modifier
                     .weight(1f, true)
-                    //.fillMaxHeight()
                     .wrapContentHeight()
                     .padding(start = 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(24.dp),
@@ -792,7 +828,6 @@ private fun UiControllerLandscape(
 
                 Image(
                     modifier = Modifier
-                        //.fillMaxHeight()
                         .height(48.dp)
                         .aspectRatio(1f)
                         .padding(8.dp),
@@ -817,7 +852,6 @@ private fun UiControllerLandscape(
 
             Image(
                 modifier = Modifier
-                    //.fillMaxHeight()
                     .height(48.dp)
                     .aspectRatio(1f)
                     .padding(8.dp),
