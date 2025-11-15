@@ -328,7 +328,8 @@ private fun NavGraphBuilder.operationNavigation(
                     OperationScreen(
                         modifier = Modifier
                             .padding(horizontal = 8.dp),
-                        navController = navController
+                        navController = navController,
+                        windowInsets = windowInsets
                     ) {
                         CodexCatalogScreen(
                             navController = navController,
