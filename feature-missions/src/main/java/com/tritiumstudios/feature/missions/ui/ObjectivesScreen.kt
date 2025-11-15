@@ -21,8 +21,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
@@ -35,7 +33,6 @@ import com.tritiumstudios.feature.missions.ui.components.MissionsContent
 
 @Composable
 fun ObjectivesScreen(
-    navController: NavHostController = rememberNavController(),
     objectivesViewModel: ObjectivesViewModel,
     difficultyUiState: DifficultyUiState
 ) {
