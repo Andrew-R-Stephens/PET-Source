@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -43,6 +44,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.shared.operation.domain.map.simple.model.SimpleWorldMap
 import com.tritiumstudios.feature.maps.app.mappers.map.toDrawableResource
 import com.tritiumstudios.feature.maps.app.mappers.map.toStringResource
 
@@ -55,18 +57,20 @@ fun MapMenuScreen(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
+    val simpleMaps = mapsScreenViewModel.simpleMaps
+
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             MapMenuContentPortrait(
                 navController = navController,
-                mapsScreenViewModel = mapsScreenViewModel,
+                simpleMaps = simpleMaps,
                 rows = 2
             )
         }
         DeviceConfiguration.MOBILE_LANDSCAPE -> {
             MapMenuContentLandscape(
                 navController = navController,
-                mapsScreenViewModel = mapsScreenViewModel,
+                simpleMaps = simpleMaps,
                 columns = 2
             )
         }
@@ -74,14 +78,14 @@ fun MapMenuScreen(
         DeviceConfiguration.TABLET_LANDSCAPE -> {
             MapMenuContentLandscape(
                 navController = navController,
-                mapsScreenViewModel = mapsScreenViewModel,
+                simpleMaps = simpleMaps,
                 columns = 3
             )
         }
         DeviceConfiguration.DESKTOP -> {
             MapMenuContentLandscape(
                 navController = navController,
-                mapsScreenViewModel = mapsScreenViewModel,
+                simpleMaps = simpleMaps,
                 columns = 4
             )
         }
@@ -92,10 +96,13 @@ fun MapMenuScreen(
 @Composable
 private fun MapMenuContentPortrait(
     navController: NavHostController,
-    mapsScreenViewModel: MapsScreenViewModel,
+    simpleMaps: List<SimpleWorldMap>,
     rows: Int = 2
 ) {
     val rememberLazyGridState = rememberLazyGridState()
+
+    var maxWidth by remember { mutableStateOf(Dp.Unspecified) }
+    val density = LocalDensity.current
 
     LazyVerticalGrid(
         state = rememberLazyGridState,
@@ -103,10 +110,12 @@ private fun MapMenuContentPortrait(
     ) {
         mapCardGrid(
             navController = navController,
-            mapsScreenViewModel = mapsScreenViewModel,
+            simpleMaps = simpleMaps,
             maxWidth = Dp.Unspecified,
             maxHeight = Dp.Unspecified,
-        )
+        ) { width, _ ->
+            maxWidth = with(density) { width.toDp() }
+        }
     }
 
 }
@@ -114,7 +123,7 @@ private fun MapMenuContentPortrait(
 @Composable
 private fun MapMenuContentLandscape(
     navController: NavHostController,
-    mapsScreenViewModel: MapsScreenViewModel,
+    simpleMaps: List<SimpleWorldMap>,
     columns: Int = 2
 ) {
     val rememberLazyGridState = rememberLazyGridState()
@@ -128,25 +137,24 @@ private fun MapMenuContentLandscape(
     ) {
         mapCardGrid(
             navController = navController,
-            mapsScreenViewModel = mapsScreenViewModel,
-            onCardSizeChanged = { width, height ->
-                maxWidth = with(density) { width.toDp() }
-            },
+            simpleMaps = simpleMaps,
             maxWidth = maxWidth,
             maxHeight = Dp.Unspecified
-        )
+        ) { width, _ ->
+            maxWidth = with(density) { width.toDp() }
+        }
     }
 
 }
 
 private fun LazyGridScope.mapCardGrid(
     navController: NavHostController,
-    mapsScreenViewModel: MapsScreenViewModel,
-    onCardSizeChanged: (Int, Int) -> Unit = {w, h ->},
+    simpleMaps: List<SimpleWorldMap>,
     maxWidth: Dp = Dp.Unspecified,
-    maxHeight: Dp = Dp.Unspecified
+    maxHeight: Dp = Dp.Unspecified,
+    onCardSizeChanged: (Int, Int) -> Unit = { _, _ -> }
 ) {
-    itemsIndexed(mapsScreenViewModel.simpleMaps) { index, map ->
+    items(simpleMaps) { map ->
 
         MapCard(
             title = map.mapName,
@@ -157,7 +165,8 @@ private fun LazyGridScope.mapCardGrid(
             maxWidth = maxWidth,
             maxHeight = maxHeight
         ) {
-            navController.navigate(route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}")
+            navController.navigate(
+                route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}")
         }
 
     }

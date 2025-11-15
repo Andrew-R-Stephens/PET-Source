@@ -87,6 +87,7 @@ import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldPoint
+import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.shared.operation.domain.map.poi.mappers.MapPoiResources
 import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources
 import com.tritiumstudios.feature.maps.app.mappers.map.toDrawableResource
@@ -117,6 +118,16 @@ private fun MapViewerContent(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
+    val mapDisplayUiState = mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
+    val floorIndex = mapDisplayUiState.value.floorIndex
+    val roomName = mapDisplayUiState.value.roomName
+    val roomList = mapDisplayUiState.value.roomDropdownList
+
+    val currentMap = mapsScreenViewModel.getSimpleMap()
+    val floorCount: Int = currentMap.floorCount
+    val mapTitle: SimpleMapResources.MapTitle = currentMap.mapName
+    val floorTitle: SimpleMapResources.MapFloorTitle = currentMap.mapFloors[floorIndex].layerName
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -136,7 +147,21 @@ private fun MapViewerContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    mapsScreenViewModel = mapsScreenViewModel
+                    mapTitle = mapTitle,
+                    floorIndex = floorIndex,
+                    floorCount = floorCount,
+                    floorTitle = floorTitle,
+                    roomName = roomName,
+                    roomList = roomList,
+                    onIncrementFloor = {
+                        mapsScreenViewModel.incrementFloor()
+                    },
+                    onDecrementFloor = {
+                        mapsScreenViewModel.decrementFloor()
+                    },
+                    onSetRoom = { id ->
+                        mapsScreenViewModel.setCurrentRoom(id)
+                    }
                 )
             }
             DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -146,7 +171,21 @@ private fun MapViewerContent(
                 UiControllerLandscape(
                     modifier = Modifier
                         .fillMaxSize(),
-                    mapsScreenViewModel = mapsScreenViewModel
+                    mapTitle = mapTitle,
+                    floorIndex = floorIndex,
+                    floorCount = floorCount,
+                    floorTitle = floorTitle,
+                    roomName = roomName,
+                    roomList = roomList,
+                    onIncrementFloor = {
+                        mapsScreenViewModel.incrementFloor()
+                    },
+                    onDecrementFloor = {
+                        mapsScreenViewModel.decrementFloor()
+                    },
+                    onSetRoom = { id ->
+                        mapsScreenViewModel.setCurrentRoom(id)
+                    }
                 )
             }
         }
@@ -338,53 +377,6 @@ private fun MapCanvas(
             }
         }
 
-        /*val fontSize = (scaleX / width) * 24
-        paint.textSize = min(36.0, max(12.0, fontSize.toDouble())).toFloat()
-
-        paint.isAntiAlias = true
-        paint.color = poiColor
-        paint.setColorFilter(poiColorFilter)
-
-        mapMenuViewModel?.currentMapModel?.let { currentMapModel ->
-            for (poi in currentMapModel.currentFloor.floorPOIs) {
-                var x = panX
-                var y = panY
-                poi.point?.let { point ->
-                    x = (panX) + point.x * scaleX
-                    y = (panY) + point.y * scaleY
-                }
-
-                val b = poiImages[poi.type]
-                if (bitmapExists(b)) {
-                    b?.let {
-                        interactivePoiModel.deepCopy(interactiveMapData)
-                        interactivePoiModel.setPan(x, y)
-                        interactivePoiModel.postTranslateOriginMatrix(
-                            b.width.toFloat(), b.height.toFloat(),
-                            width.toFloat(), height.toFloat()
-                        )
-                        canvas.drawBitmap(b, interactivePoiModel.matrix, paint)
-                    }
-
-                }
-            }
-        }
-
-        paint.isAntiAlias = false
-
-        if (frameRect == null) {
-            frameRect = Rect(1, 1, width - 1, height - 1)
-        } else {
-            frameRect?.bottom = height - 1
-        }
-
-        paint.setColorFilter(null)
-        paint.color = mapBorderColor
-        paint.style = Paint.Style.STROKE
-        frameRect?.let { frameRect ->
-            canvas.drawRect(frameRect, paint)
-        }*/
-
     }
 
 }
@@ -417,7 +409,7 @@ private fun Modifier.mapControlInput(
                 }
             }
             .pointerInput(Unit) {
-                detectTransformGestures { centroid, pan, zoom, rotation ->
+                detectTransformGestures { _, pan, zoom, _ ->
                     if (pointerCount == 1) {
                         interactiveViewController.doPan(pan.x, pan.y)
                         onInteraction()
@@ -434,16 +426,16 @@ private fun Modifier.mapControlInput(
 @Composable
 private fun UiControllerPortrait(
     modifier: Modifier = Modifier,
-    mapsScreenViewModel: MapsScreenViewModel,
+    mapTitle: SimpleMapResources.MapTitle,
+    floorIndex: Int,
+    floorCount: Int,
+    floorTitle: SimpleMapResources.MapFloorTitle,
+    roomList: List<ComplexWorldRoom>,
+    roomName: String,
+    onDecrementFloor: () -> Unit = { },
+    onIncrementFloor: () -> Unit = { },
+    onSetRoom: (Int) -> Unit = { }
 ) {
-
-    val mapDisplayUiState = mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
-    val floorIndex = mapDisplayUiState.value.floorIndex
-
-    val currentMap = mapsScreenViewModel.getSimpleMap()
-    val floorCount: Int = currentMap.floorCount
-    val mapTitle: SimpleMapResources.MapTitle = currentMap.mapName
-    val floorTitle: SimpleMapResources.MapFloorTitle = currentMap.mapFloors[floorIndex].layerName
 
     Column(
         modifier = modifier
@@ -485,8 +477,10 @@ private fun UiControllerPortrait(
                 LazyRow(
                     state = rememberLazyListState
                 ) {
+                    if(floorCount <= 1) return@LazyRow
+
                     items(floorCount) { index ->
-                        val icon = if(floorIndex == index) R.drawable.ic_selector_sel
+                        val icon = if (floorIndex == index) R.drawable.ic_selector_sel
                         else R.drawable.ic_selector_unsel
 
                         Image(
@@ -528,20 +522,23 @@ private fun UiControllerPortrait(
                 verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Arrow60LeftIcon(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clickable(onClick = {
-                            mapsScreenViewModel.decrementFloor()
-                        })
-                        .padding(8.dp),
-                    colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface
+                if(floorCount > 1) {
+                    Arrow60LeftIcon(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clickable(onClick = {
+                                onDecrementFloor()
+                            })
+                            .padding(8.dp),
+                        colors = IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface
+                        )
                     )
-                )
+                }
 
                 Text(
                     modifier = Modifier
+                        .padding(start = if(floorCount > 1) 0.dp else 16.dp)
                         .basicMarquee(
                             iterations = Int.MAX_VALUE,
                             initialDelayMillis = 1000,
@@ -549,22 +546,24 @@ private fun UiControllerPortrait(
                         ),
                     text = stringResource(floorTitle.toStringResource()),
                     style = LocalTypography.current.quaternary.bold,
-                    textAlign = TextAlign.Center,
+                    textAlign = if(floorCount > 1) { TextAlign.Center } else TextAlign.Start,
                     color = LocalPalette.current.onSurface,
                     fontSize = 18.sp
                 )
 
-                Arrow60RightIcon(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clickable(onClick = {
-                            mapsScreenViewModel.incrementFloor()
-                        })
-                        .padding(8.dp),
-                    colors = IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface
+                if(floorCount > 1) {
+                    Arrow60RightIcon(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clickable(onClick = {
+                                onIncrementFloor()
+                            })
+                            .padding(8.dp),
+                        colors = IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface
+                        )
                     )
-                )
+                }
 
             }
         }
@@ -590,7 +589,11 @@ private fun UiControllerPortrait(
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight(),
-                mapsScreenViewModel = mapsScreenViewModel
+                roomName = roomName,
+                roomList = roomList,
+                onSetRoom = { id ->
+                    onSetRoom(id)
+                }
             )
 
         }
@@ -602,16 +605,16 @@ private fun UiControllerPortrait(
 @Composable
 private fun UiControllerLandscape(
     modifier: Modifier = Modifier,
-    mapsScreenViewModel: MapsScreenViewModel,
+    mapTitle: SimpleMapResources.MapTitle,
+    floorIndex: Int,
+    floorCount: Int,
+    floorTitle: SimpleMapResources.MapFloorTitle,
+    roomName: String,
+    roomList: List<ComplexWorldRoom>,
+    onDecrementFloor: () -> Unit = { },
+    onIncrementFloor: () -> Unit = { },
+    onSetRoom: (Int) -> Unit
 ) {
-
-    val mapDisplayUiState = mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
-    val floorIndex = mapDisplayUiState.value.floorIndex
-
-    val currentMap = mapsScreenViewModel.getSimpleMap()
-    val floorCount: Int = currentMap.floorCount
-    val mapTitle: SimpleMapResources.MapTitle = currentMap.mapName
-    val floorTitle: SimpleMapResources.MapFloorTitle = currentMap.mapFloors[floorIndex].layerName
 
     Column(
         modifier = modifier
@@ -694,11 +697,12 @@ private fun UiControllerLandscape(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
+            if(floorCount <= 1) return@Row
+
             Column(
                 modifier = Modifier
                     .width(48.dp)
                     .fillMaxHeight()
-                    //.background(LocalPalette.current.backgroundColor_mapviewOverlay)
                     .background(LocalPalette.current.scrim.copy(alpha = .75f))
                     .padding(8.dp),
                 verticalArrangement = Arrangement.Top,
@@ -709,7 +713,7 @@ private fun UiControllerLandscape(
                         .fillMaxWidth()
                         .aspectRatio(1f)
                         .clickable(onClick = {
-                            mapsScreenViewModel.incrementFloor()
+                            onDecrementFloor()
                         })
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
@@ -755,7 +759,7 @@ private fun UiControllerLandscape(
                         .fillMaxWidth()
                         .aspectRatio(1f)
                         .clickable(onClick = {
-                            mapsScreenViewModel.decrementFloor()
+                            onIncrementFloor()
                         })
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
@@ -802,7 +806,11 @@ private fun UiControllerLandscape(
                     modifier = Modifier
                         .wrapContentHeight()
                         .fillMaxWidth(.5f),
-                    mapsScreenViewModel = mapsScreenViewModel
+                    roomName = roomName,
+                    roomList = roomList,
+                    onSetRoom = { id ->
+                        onSetRoom(id)
+                    }
                 )
 
             }
@@ -844,12 +852,10 @@ private fun BackgroundGrid(
 @Composable
 private fun RoomDropdownWrapper(
     modifier: Modifier = Modifier,
-    mapsScreenViewModel: MapsScreenViewModel
+    roomName: String,
+    roomList: List<ComplexWorldRoom>,
+    onSetRoom: (Int) -> Unit = {}
 ) {
-
-    val mapDisplayUiState = mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
-    val roomName = mapDisplayUiState.value.roomName
-    val roomList = mapDisplayUiState.value.roomDropdownList
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -918,7 +924,7 @@ private fun RoomDropdownWrapper(
             matchAnchorWidth = true,
         ) {
 
-            roomList.forEach {
+            roomList.forEach { room ->
                 DropdownMenuItem(
                     text =  {
                         Text(
@@ -929,7 +935,7 @@ private fun RoomDropdownWrapper(
                                     repeatDelayMillis = 5000,
                                     animationMode = MarqueeAnimationMode.Immediately
                                 ),
-                            text = it.name,
+                            text = room.name,
                             style = LocalTypography.current.quaternary.bold,
                             color = LocalPalette.current.onSurface,
                             fontSize = 18.sp
@@ -941,7 +947,7 @@ private fun RoomDropdownWrapper(
                     ),
                     onClick = {
                         expanded = false
-                        mapsScreenViewModel.setCurrentRoom(it.id)
+                        onSetRoom(room.id)
                     },
                 )
             }
