@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
@@ -82,29 +83,18 @@ class PETActivity : AppCompatActivity(),
                 Scaffold {
 
                     Box(
-                        modifier = Modifier.Companion
+                        modifier = Modifier
                             .background(LocalPalette.current.surface)
                             .padding(it)
-                            //.padding(horizontal = 8.dp)
                     ) {
-                        RootNavigation()
+                        RootNavigation(
+                            windowInsets = WindowInsets(
+                                bottom = it.calculateBottomPadding()
+                            )
+                        )
                     }
 
                 }
-
-                /*Scaffold {
-
-                    Box(
-                        modifier = Modifier.Companion
-                            .background(LocalPalette.current.surface)
-                            .padding(it)
-                            .padding(horizontal = 8.dp)
-                    ) {
-                        RootNavigation()
-                    }
-
-                }*/
-
             }
 
         }

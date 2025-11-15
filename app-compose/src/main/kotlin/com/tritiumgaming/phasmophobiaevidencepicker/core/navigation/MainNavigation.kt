@@ -3,6 +3,7 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.navigation
 import android.util.Log
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -57,8 +58,8 @@ fun RootNavigation(
         viewModel(factory = ObjectivesViewModel.Factory),
     mapsScreenViewModel: MapsScreenViewModel =
         viewModel(factory = MapsScreenViewModel.Factory),
-
-    ) {
+    windowInsets: WindowInsets = WindowInsets()
+) {
 
     val navController = rememberNavController()
 
@@ -78,6 +79,7 @@ fun RootNavigation(
 
         operationNavigation(
             navController = navController,
+            windowInsets = windowInsets,
             investigationViewModel = investigationViewModel,
             objectivesViewModel = objectivesViewModel,
             mapsScreenViewModel = mapsScreenViewModel
@@ -204,6 +206,7 @@ private fun NavGraphBuilder.homeNavigation(
 
 private fun NavGraphBuilder.operationNavigation(
     navController: NavHostController,
+    windowInsets: WindowInsets,
     investigationViewModel: InvestigationScreenViewModel,
     objectivesViewModel: ObjectivesViewModel,
     mapsScreenViewModel: MapsScreenViewModel
@@ -217,7 +220,8 @@ private fun NavGraphBuilder.operationNavigation(
             OperationScreen(
                 modifier = Modifier
                     .padding(horizontal = 8.dp),
-                navController = navController
+                navController = navController,
+                windowInsets = windowInsets
             ) {
                 InvestigationSoloScreen(
                     navController = navController,
@@ -230,7 +234,8 @@ private fun NavGraphBuilder.operationNavigation(
             OperationScreen(
                 modifier = Modifier
                     .padding(horizontal = 8.dp),
-                navController = navController
+                navController = navController,
+                windowInsets = windowInsets
             ) {
                 val collect by investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
 
@@ -251,7 +256,8 @@ private fun NavGraphBuilder.operationNavigation(
                 OperationScreen(
                     modifier = Modifier
                         .padding(horizontal = 8.dp),
-                    navController = navController
+                    navController = navController,
+                    windowInsets = windowInsets
                 ) {
                     MapMenuScreen(
                         navController = navController,
@@ -272,6 +278,7 @@ private fun NavGraphBuilder.operationNavigation(
                 if(mapId != null) {
                     OperationScreen(
                         navController = navController,
+                        windowInsets = windowInsets
                     ) {
                         MapViewerScreen(
                             navController = navController,
@@ -295,7 +302,8 @@ private fun NavGraphBuilder.operationNavigation(
                 OperationScreen(
                     modifier = Modifier
                         .padding(horizontal = 8.dp),
-                    navController = navController
+                    navController = navController,
+                    windowInsets = windowInsets
                 ) {
                     CodexMenuScreen(
                         navController = navController
