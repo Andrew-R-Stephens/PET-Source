@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.operation.app.mappers.ghostbox
+package com.tritiumstudios.feature.codex.app.mappers.ghostbox
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
