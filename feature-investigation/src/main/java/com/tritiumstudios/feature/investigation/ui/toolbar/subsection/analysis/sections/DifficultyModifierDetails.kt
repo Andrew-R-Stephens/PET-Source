@@ -51,8 +51,7 @@ fun DifficultyModifierDetails(
         }
     ) {
         Column(
-            modifier = Modifier
-                .padding(8.dp),
+            modifier = Modifier,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             SubRow {

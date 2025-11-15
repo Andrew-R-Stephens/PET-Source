@@ -94,6 +94,7 @@ fun CategoryColumn(
 
 @Composable
 fun ExpandableCategoryColumn(
+    modifier: Modifier = Modifier,
     expanded: Boolean = false,
     defaultContent: @Composable (modifier: Modifier, expanded: Boolean) -> Unit = { _, _ -> },
     expandedContent: @Composable (modifier: Modifier) -> Unit = {}
@@ -102,13 +103,12 @@ fun ExpandableCategoryColumn(
 
     Column(
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
             .background(
                 LocalPalette.current.surfaceContainer,
                 RoundedCornerShape(8.dp)
             )
-            .padding(4.dp)
+            .padding(8.dp)
     ) {
         Row(
             modifier = Modifier
@@ -158,7 +158,6 @@ fun ExpandableCategoryRow(
                 LocalPalette.current.surfaceContainer,
                 RoundedCornerShape(8.dp)
             )
-            .padding(8.dp)
     ) {
         content(
             Modifier
@@ -179,27 +178,37 @@ fun ExpandableCategoryRow(
 
 @Composable
 fun SubRow(
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit = {}
 ) {
     Row(
+        modifier = modifier
+            .wrapContentWidth(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.wrapContentWidth()
     ) {
         content()
     }
 }
 
 @Composable
-fun TextCategoryTitle(text: String) {
+fun TextCategoryTitle(
+    modifier: Modifier = Modifier,
+    text: String
+) {
     Text(
+        modifier = modifier,
         text = text,
         color = LocalPalette.current.onSurface
     )
 }
 
 @Composable
-fun TextSubTitle(text: String) {
+fun TextSubTitle(
+    modifier: Modifier = Modifier,
+    text: String
+) {
     Text(
+        modifier = modifier,
         text = text,
         color = LocalPalette.current.onSurface
     )

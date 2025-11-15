@@ -3,6 +3,7 @@ package com.tritiumstudios.feature.investigation.ui.toolbar.subsection.analysis.
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,6 +37,8 @@ fun MapModifierDetails(
     val normalMapModifier = rememberState.normalModifier
 
     ExpandableCategoryColumn(
+        modifier = Modifier
+            .fillMaxWidth(),
         expanded = false,
         defaultContent = { modifier, expanded ->
             ExpandableCategoryRow(
@@ -45,18 +48,18 @@ fun MapModifierDetails(
                 Row(
                     modifier = modifier,
                 ) {
-                    TextCategoryTitle(text = "Map:")
+                    TextCategoryTitle(text = "Map: ")
                     TextSubTitle(text = stringResource(mapName))
                 }
             }
         }
     ) {
         Column(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             SubRow {
-                TextSubTitle(text = "Size:")
+                TextSubTitle(text = "Size: ")
                 TextSubTitle(text = stringResource(mapSize))
             }
             SubRow {
