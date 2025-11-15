@@ -4,9 +4,16 @@ import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.exclude
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
@@ -23,6 +30,7 @@ import androidx.compose.material3.NavigationRailDefaults
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.NavigationRailItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -31,9 +39,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
@@ -52,6 +62,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun OperationNavigationBar(
     navController: NavHostController = rememberNavController(),
+    windowInsets: WindowInsets = WindowInsets(),
     content: @Composable () -> Unit
 ) {
     val scope = rememberCoroutineScope()
@@ -80,20 +91,22 @@ fun OperationNavigationBar(
         }
 
     Scaffold(
+        contentWindowInsets = windowInsets,
         bottomBar = {
-
             if (bottomNavigationBarEnabled) {
                 OperationNavigationBottomBar(
+                    modifier = Modifier
+                        .fillMaxWidth(),
                     navController = navController,
                     scope = scope,
                     rememberDrawerState = rememberDrawerState,
                     onChangeDestination = {
                         selectedDestination = it
                     },
-                    destinations = destinations
+                    destinations = destinations,
+                    windowInsets = windowInsets
                 )
             }
-
         }
     ) { contentPadding ->
 
@@ -106,9 +119,7 @@ fun OperationNavigationBar(
                 OperationNavigationDrawer(
                     navController = navController,
                     drawerState = rememberDrawerState,
-                    modifier = Modifier.padding(
-                        bottom = contentPadding.calculateBottomPadding()
-                    )
+                    modifier = Modifier.padding(contentPadding)
                 ) {
                     content()
                 }
@@ -123,13 +134,15 @@ fun OperationNavigationBar(
                 onChangeDestination = {
                     selectedDestination = it
                 },
-                destinations = destinations
+                destinations = destinations,
+                windowInsets = windowInsets
             ) {
                 AppScreen {
 
                     OperationNavigationDrawer(
                         navController = navController,
-                        drawerState = rememberDrawerState
+                        drawerState = rememberDrawerState,
+                        modifier = Modifier.padding(contentPadding)
                     ) {
                         content()
                     }
@@ -143,20 +156,23 @@ fun OperationNavigationBar(
 
 @Composable
 private fun OperationNavigationBottomBar(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     scope: CoroutineScope,
     rememberDrawerState: DrawerState,
     onChangeDestination: (route: String) -> Unit = {},
-    destinations: List<Destination>
+    destinations: List<Destination>,
+    windowInsets: WindowInsets
 ) {
     NavigationBar(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = 48.dp, max = 80.dp)
-            .wrapContentHeight(),
+        modifier = modifier,
         contentColor = LocalPalette.current.surfaceContainer,
         containerColor = LocalPalette.current.surfaceContainer,
-        windowInsets = NavigationBarDefaults.windowInsets,
+        windowInsets = NavigationBarDefaults.windowInsets.exclude(
+            insets = WindowInsets(
+                bottom = windowInsets.asPaddingValues().calculateBottomPadding()
+            )
+        )
     ) {
 
         NavigationBarItem(
@@ -165,9 +181,6 @@ private fun OperationNavigationBottomBar(
                 selectedIconColor = Color.Transparent,
                 unselectedIconColor = Color.Transparent
             ),
-            modifier = Modifier
-                .weight(1f, true)
-                .sizeIn(maxWidth = 24.dp, maxHeight = 24.dp),
             selected = rememberDrawerState.isOpen,
             onClick = {
                 scope.launch {
@@ -179,30 +192,29 @@ private fun OperationNavigationBottomBar(
                 }
             },
             icon = {
-                HamburgerMenuIcon()
-                Image(
-                    modifier = Modifier,
-                    imageVector =
-                        getHamburgerMenuVector(
-                            colors =
-                                if (rememberDrawerState.isOpen) {
-                                    IconVectorColors.defaults(
-                                        fillColor =LocalPalette.current.surfaceContainer,
-                                        strokeColor = LocalPalette.current.primary
-                                    )
-                                } else {
-                                    IconVectorColors.defaults(
-                                        fillColor =LocalPalette.current.surfaceContainer,
-                                        strokeColor = LocalPalette.current.onSurface
-                                    )
-                                }
-                        ),
-                    contentDescription = "Menu Drawer"
+                HamburgerMenuIcon(
+                    modifier = Modifier
+                        .size(24.dp)
+                        .align(Alignment.CenterVertically),
+                    colors = if (rememberDrawerState.isOpen) {
+                            IconVectorColors.defaults(
+                                fillColor = LocalPalette.current.surfaceContainer,
+                                strokeColor = LocalPalette.current.primary
+                            )
+                        } else {
+                            IconVectorColors.defaults(
+                                fillColor = LocalPalette.current.surfaceContainer,
+                                strokeColor = LocalPalette.current.onSurface
+                            )
+                        },
                 )
+            },
+            label = {
+
             }
         )
 
-        destinations.forEachIndexed { index, destination ->
+        destinations.forEach { destination ->
 
             NavigationBarItem(
                 colors = NavigationBarItemDefaults.colors(
@@ -210,9 +222,6 @@ private fun OperationNavigationBottomBar(
                     selectedIconColor = LocalPalette.current.primary,
                     unselectedIconColor = LocalPalette.current.onSurface
                 ),
-                modifier = Modifier
-                    .weight(1f, true)
-                    .sizeIn(maxWidth = 28.dp, maxHeight = 28.dp),
                 selected = navController.currentDestination?.route == destination.route,
                 enabled = navController.currentDestination?.route != destination.route,
                 onClick = {
@@ -224,7 +233,9 @@ private fun OperationNavigationBottomBar(
                 },
                 icon = {
                     Icon(
-                        modifier = Modifier,
+                        modifier = Modifier
+                            .size(24.dp)
+                            .align(Alignment.CenterVertically),
                         painter = painterResource(destination.icon),
                         contentDescription = destination.name,
                         tint =
@@ -248,17 +259,23 @@ private fun OperationNavigationRail(
     rememberDrawerState: DrawerState,
     onChangeDestination: (route: String) -> Unit = {},
     destinations: List<Destination>,
+    windowInsets: WindowInsets,
     content: @Composable () -> Unit
 ) {
 
     Row {
 
         NavigationRail(
-            modifier = Modifier
-                .widthIn(min = 24.dp, max = 80.dp),
+            modifier = Modifier,
             contentColor = LocalPalette.current.surfaceContainer,
             containerColor = LocalPalette.current.surfaceContainer,
-            windowInsets = NavigationRailDefaults.windowInsets,
+            windowInsets = NavigationRailDefaults.windowInsets.exclude(
+                insets = WindowInsets(
+                    left = windowInsets.asPaddingValues().calculateStartPadding(
+                        layoutDirection = LayoutDirection.Ltr
+                    )
+                )
+            )
         ) {
 
             NavigationRailItem(
@@ -267,10 +284,7 @@ private fun OperationNavigationRail(
                     selectedIconColor = Color.Transparent,
                     unselectedIconColor = Color.Transparent
                 ),
-                modifier = Modifier
-                    .weight(1f, true)
-                    .width(24.dp),
-                //.sizeIn(maxWidth = 24.dp, maxHeight = 24.dp),
+                modifier = Modifier,
                 selected = rememberDrawerState.isOpen,
                 onClick = {
                     scope.launch {
@@ -284,7 +298,8 @@ private fun OperationNavigationRail(
                 icon = {
 
                     Image(
-                        modifier = Modifier,
+                        modifier = Modifier
+                            .size(24.dp),
                         imageVector =
                             getHamburgerMenuVector(
                                 colors =
@@ -313,9 +328,7 @@ private fun OperationNavigationRail(
                         selectedIconColor = LocalPalette.current.primary,
                         unselectedIconColor = LocalPalette.current.onSurface
                     ),
-                    modifier = Modifier
-                        .weight(1f, true)
-                        .sizeIn(maxWidth = 28.dp, maxHeight = 28.dp),
+                    modifier = Modifier,
                     selected = navController.currentDestination?.route == destination.route,
                     enabled = navController.currentDestination?.route != destination.route,
                     onClick = {
@@ -327,7 +340,8 @@ private fun OperationNavigationRail(
                     },
                     icon = {
                         Icon(
-                            modifier = Modifier,
+                            modifier = Modifier
+                                .size(24.dp),
                             painter = painterResource(destination.icon),
                             contentDescription = destination.name,
                             tint =
