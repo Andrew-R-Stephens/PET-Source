@@ -224,7 +224,6 @@ private fun NavGraphBuilder.operationNavigation(
                 windowInsets = windowInsets
             ) {
                 InvestigationSoloScreen(
-                    navController = navController,
                     investigationViewModel = investigationViewModel
                 )
             }
@@ -240,7 +239,6 @@ private fun NavGraphBuilder.operationNavigation(
                 val collect by investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
 
                 ObjectivesScreen(
-                    navController = navController,
                     objectivesViewModel = objectivesViewModel,
                     difficultyUiState = DifficultyUiState(collect.responseType)
                 )
