@@ -98,7 +98,7 @@ class AnimatedWritingModel(
      * @return new rotated Bitmap
      */
     @Throws(IllegalStateException::class, NullPointerException::class)
-    override fun rotateBitmap(original: Bitmap?): Bitmap? {
+    override fun rotateBitmap(original: Bitmap?): Bitmap {
         if (original == null) {
             throw NullPointerException("Bitmap is null")
         }

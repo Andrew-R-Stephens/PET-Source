@@ -105,6 +105,7 @@ class AnimationModel {
                             bitmapWritingRot = animated.rotateBitmap(bitmapWriting)
                     }
                 } catch (e: IllegalStateException) { e.printStackTrace() }
+                catch (e: NullPointerException) { e.printStackTrace() }
             }
             return
         }
@@ -125,6 +126,7 @@ class AnimationModel {
                     allPool.add(data)
                     try { bitmapHandRot = data.rotateBitmap(bitmapHand) }
                     catch (e: IllegalStateException) { e.printStackTrace() }
+                    catch (e: NullPointerException) { e.printStackTrace() }
                 }
             }
         }
@@ -139,6 +141,7 @@ class AnimationModel {
                     allPool.add(data)
                     try { bitmapWritingRot = data.rotateBitmap(bitmapWriting) }
                     catch (e: IllegalStateException) { e.printStackTrace() }
+                    catch (e: NullPointerException) { e.printStackTrace() }
                 }
             }
         }
@@ -206,9 +209,12 @@ class AnimationModel {
                                 allPool[index] = AnimatedHandModel(
                                     screenW, screenH, bitmapW, bitmapH)
 
-                                bitmapHandRot =
-                                    (lastFromCurrentPool as AnimatedHandModel)
-                                        .rotateBitmap(bitmapHand)
+                                try {
+                                    bitmapHandRot =
+                                        (lastFromCurrentPool as AnimatedHandModel)
+                                            .rotateBitmap(bitmapHand)
+                                } catch (e: IllegalStateException) { e.printStackTrace() }
+                                catch (e: NullPointerException) { e.printStackTrace() }
                             }
 
                         }
@@ -228,9 +234,12 @@ class AnimationModel {
                                 allPool[index] = AnimatedWritingModel(
                                     screenW, screenH, bitmapW, bitmapH, this)
 
-                                bitmapWritingRot =
-                                    (lastFromCurrentPool as AnimatedWritingModel)
-                                        .rotateBitmap(bitmapWriting)
+                                try {
+                                    bitmapWritingRot =
+                                        (lastFromCurrentPool as AnimatedWritingModel)
+                                            .rotateBitmap(bitmapWriting)
+                                } catch (e: IllegalStateException) { e.printStackTrace() }
+                                catch (e: NullPointerException) { e.printStackTrace() }
                             }
 
                         }
@@ -272,7 +281,11 @@ class AnimationModel {
                         bitmapHand = bitmapUtils.compileBitmaps(context)
 
                         if (BitmapUtils.bitmapExists(bitmapHand)) {
-                            bitmapHandRot = currentAnim.rotateBitmap(bitmapHand) }
+                            try {
+                                bitmapHandRot = currentAnim.rotateBitmap(bitmapHand)
+                            } catch (e: IllegalStateException) { e.printStackTrace() }
+                            catch (e: NullPointerException) { e.printStackTrace() }
+                        }
                     }
                     is AnimatedWritingModel -> {
                         selectedWriting =
@@ -287,7 +300,10 @@ class AnimationModel {
                         bitmapWriting = bitmapUtils.compileBitmaps(context)
 
                         if (BitmapUtils.bitmapExists(bitmapWriting)) {
-                            bitmapWritingRot = currentAnim.rotateBitmap(bitmapWriting)
+                            try {
+                                bitmapWritingRot = currentAnim.rotateBitmap(bitmapWriting)
+                            } catch (e: IllegalStateException) { e.printStackTrace() }
+                            catch (e: NullPointerException) { e.printStackTrace() }
                         }
                     }
                 }
