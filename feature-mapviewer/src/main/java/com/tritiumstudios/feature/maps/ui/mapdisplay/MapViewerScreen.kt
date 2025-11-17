@@ -752,7 +752,7 @@ private fun UiControllerLandscape(
                         .fillMaxWidth()
                         .aspectRatio(1f)
                         .clickable(onClick = {
-                            onDecrementFloor()
+                            onIncrementFloor()
                         })
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
@@ -798,7 +798,7 @@ private fun UiControllerLandscape(
                         .fillMaxWidth()
                         .aspectRatio(1f)
                         .clickable(onClick = {
-                            onIncrementFloor()
+                            onDecrementFloor()
                         })
                         .rotate(90f),
                     colors = IconVectorColors.defaults(
