@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.mappers.ToComposable
-import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
-import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
-import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources.NewsletterTitle
+import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
+import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle
 
 @StringRes fun NewsletterTitle.toStringResource(): Int =
     when (this) {

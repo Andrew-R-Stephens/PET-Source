@@ -51,7 +51,7 @@ import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.appsettings.content.CarouselComposable
 import com.tritiumgaming.feature.home.ui.appsettings.content.HuntTimeoutPreferenceSeekbar
 import com.tritiumgaming.feature.home.ui.appsettings.content.LabeledSwitch
-import com.tritiumgaming.shared.core.domain.market.model.IncrementDirection
+import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.annotations.TestOnly
 

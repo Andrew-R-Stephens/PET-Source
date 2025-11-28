@@ -1,6 +1,6 @@
 package com.tritiumstudios.feature.maps.ui.mapdisplay
 
-import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldRoom
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
 
 data class InteractiveMapUiState(
     val mapId: String = "",

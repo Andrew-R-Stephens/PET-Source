@@ -41,7 +41,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
+import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumstudios.feature.codex.ui.CodexScreen
 import com.tritiumstudios.feature.codex.ui.CodexViewModel
 import com.tritiumstudios.feature.codex.ui.catalog.pages.CatalogAchievementListComponent

@@ -3,9 +3,9 @@ package com.tritiumstudios.feature.maps.app.mappers.map
 import androidx.annotation.FractionRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.PhaseModifierTitle
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.SizePhaseModifier
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.PhaseModifierTitle
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.SizePhaseModifier
 
 @StringRes
 fun MapSize.toStringResource(): Int {

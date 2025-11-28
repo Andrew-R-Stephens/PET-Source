@@ -26,65 +26,65 @@ import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSo
 import com.tritiumgaming.data.palette.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.data.review.repository.ReviewTrackerRepositoryImpl
 import com.tritiumgaming.data.review.source.datastore.ReviewTrackerDatastoreDataSource
-import com.tritiumgaming.shared.core.domain.globalpreferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetEnableRTLUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowCellularDataUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetAllowIntroductionUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetDisableScreenSaverUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetEnableRTLUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.InitFlowGlobalPreferencesUseCase
-import com.tritiumgaming.shared.core.domain.globalpreferences.usecase.setup.SetupGlobalPreferencesUseCase
-import com.tritiumgaming.shared.core.domain.language.repository.LanguageRepository
-import com.tritiumgaming.shared.core.domain.language.usecase.GetAvailableLanguagesUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.GetCurrentLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.GetDefaultLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.InitFlowLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.LoadCurrentLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.SaveCurrentLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.SetDefaultLanguageUseCase
-import com.tritiumgaming.shared.core.domain.language.usecase.SetupLanguageUseCase
-import com.tritiumgaming.shared.core.domain.market.bundle.repository.MarketBundleRemoteRepository
-import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.GetAvailablePalettesUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.GetPaletteByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.repository.MarketTypographyRepository
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.GetAvailableTypographiesUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.GetTypographyByUUIDUseCase
-import com.tritiumgaming.shared.core.domain.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
+import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
+import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.repository.ReviewTrackerRepository
-import com.tritiumgaming.shared.core.domain.reviewtracker.source.ReviewTrackerDatastore
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.setup.InitFlowReviewTrackerUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.setup.SetupReviewTrackerUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.status.GetReviewRequestStatusUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.status.LoadReviewRequestStatusUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.status.SetReviewRequestStatusUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timealive.GetAppTimeAliveUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timealive.LoadAppTimeAliveUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timealive.SetAppTimeAliveUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.GetAppTimesOpenedUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.LoadAppTimesOpenedUseCase
-import com.tritiumgaming.shared.core.domain.reviewtracker.usecase.timesopened.SetAppTimesOpenedUseCase
-import com.tritiumgaming.shared.core.domain.user.repository.FirestoreAccountRepository
-import com.tritiumgaming.shared.core.domain.user.usecase.account.DeactivateAccountUseCase
-import com.tritiumgaming.shared.core.domain.user.usecase.account.GetSignInCredentialsUseCase
-import com.tritiumgaming.shared.core.domain.user.usecase.account.SignOutAccountUseCase
-import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.AddAccountCreditsUseCase
-import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountCreditsUseCase
-import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
-import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.core.domain.user.usecase.accountcredit.RemoveAccountCreditsUseCase
-import com.tritiumgaming.shared.core.domain.user.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.core.domain.market.user.usecase.SignOutAccountUseCase
+import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.AddAccountCreditsUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
+import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowCellularDataUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowIntroductionUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetDisableScreenSaverUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.setup.InitFlowGlobalPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.setup.SetupGlobalPreferencesUseCase
+import com.tritiumgaming.shared.data.language.repository.LanguageRepository
+import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
+import com.tritiumgaming.shared.data.language.usecase.GetCurrentLanguageUseCase
+import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
+import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
+import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
+import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
+import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
+import com.tritiumgaming.shared.data.language.usecase.SetupLanguageUseCase
+import com.tritiumgaming.shared.data.market.bundle.repository.MarketBundleRemoteRepository
+import com.tritiumgaming.shared.data.market.palette.repository.MarketPaletteRepository
+import com.tritiumgaming.shared.data.market.palette.usecase.FindNextAvailablePaletteUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetAvailablePalettesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.data.market.typography.repository.MarketTypographyRepository
+import com.tritiumgaming.shared.data.market.typography.usecase.FindNextAvailableTypographyUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetAvailableTypographiesUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
+import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
+import com.tritiumgaming.shared.data.review.usecase.setup.InitFlowReviewTrackerUseCase
+import com.tritiumgaming.shared.data.review.usecase.setup.SetupReviewTrackerUseCase
+import com.tritiumgaming.shared.data.review.usecase.status.GetReviewRequestStatusUseCase
+import com.tritiumgaming.shared.data.review.usecase.status.LoadReviewRequestStatusUseCase
+import com.tritiumgaming.shared.data.review.usecase.status.SetReviewRequestStatusUseCase
+import com.tritiumgaming.shared.data.review.usecase.timealive.GetAppTimeAliveUseCase
+import com.tritiumgaming.shared.data.review.usecase.timealive.LoadAppTimeAliveUseCase
+import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUseCase
+import com.tritiumgaming.shared.data.review.usecase.timesopened.GetAppTimesOpenedUseCase
+import com.tritiumgaming.shared.data.review.usecase.timesopened.LoadAppTimesOpenedUseCase
+import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
 import kotlinx.coroutines.Dispatchers
 
 class CoreContainer(
@@ -201,24 +201,18 @@ class CoreContainer(
 
 
     val setMarketplaceAgreementStateUseCase = SetMarketplaceAgreementStateUseCase(
-        repository = firestoreAccountRepository
-    )
+        repository = firestoreAccountRepository)
     val addAccountCreditsUseCase = AddAccountCreditsUseCase(
-        repository = firestoreAccountRepository
-    )
+        repository = firestoreAccountRepository)
     val removeAccountCreditsUseCase = RemoveAccountCreditsUseCase(
-        repository = firestoreAccountRepository
-    )
+        repository = firestoreAccountRepository)
     val observeAccountCreditsUseCase = ObserveAccountCreditsUseCase(
-        repository = firestoreAccountRepository
-    )
+        repository = firestoreAccountRepository)
     val observeAccountUnlockedPalettesUseCase = ObserveAccountUnlockedPalettesUseCase(
-        repository = firestoreAccountRepository
-    )
-    val observeAccountUnlockedTypographiesUseCase =
-        ObserveAccountUnlockedTypographiesUseCase(
+        repository = firestoreAccountRepository)
+    val observeAccountUnlockedTypographiesUseCase = ObserveAccountUnlockedTypographiesUseCase(
             repository = firestoreAccountRepository
-        )
+    )
 
     /**
      * Review Tracker

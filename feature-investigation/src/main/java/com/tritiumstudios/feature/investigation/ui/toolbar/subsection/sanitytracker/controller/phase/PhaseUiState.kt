@@ -11,3 +11,7 @@ data class PhaseUiState(
     internal val elapsedFlashTime: Long = DEFAULT,
     internal val maxFlashTime: Long = FOREVER,
 )
+
+enum class Phase {
+    SETUP, ACTION, HUNT
+}

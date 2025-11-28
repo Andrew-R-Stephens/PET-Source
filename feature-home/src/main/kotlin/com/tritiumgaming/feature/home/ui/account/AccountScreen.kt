@@ -78,7 +78,7 @@ import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.account.component.AccountBannerComposite
 import com.tritiumgaming.feature.home.ui.account.component.AccountBannerExpanded
 import com.tritiumgaming.feature.home.ui.account.component.Dialog
-import com.tritiumgaming.shared.core.domain.user.model.SignInOptions
+import com.tritiumgaming.shared.data.account.model.SignInOptions
 import kotlinx.coroutines.launch
 
 @Composable

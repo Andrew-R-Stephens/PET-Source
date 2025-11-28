@@ -10,11 +10,11 @@ import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterInboxUiState
 import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterInboxesUiState
 import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterRefreshingUiState
-import com.tritiumgaming.shared.home.domain.newsletter.usecase.FetchNewsletterInboxesUseCase
-import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
-import com.tritiumgaming.shared.home.domain.newsletter.usecase.GetFlowNewsletterInboxesUseCase
-import com.tritiumgaming.shared.home.domain.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
-import com.tritiumgaming.shared.home.domain.newsletter.usecase.SetupNewsletterUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.SetupNewsletterUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow

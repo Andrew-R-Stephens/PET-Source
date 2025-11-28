@@ -80,7 +80,7 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
-import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import java.util.Locale
 

@@ -7,13 +7,13 @@ import com.tritiumgaming.data.ghostname.source.local.GhostNameLocalDataSource
 import com.tritiumgaming.data.mission.repository.MissionRepositoryImpl
 import com.tritiumgaming.data.mission.source.MissionDataSource
 import com.tritiumgaming.data.mission.source.local.MissionLocalDataSource
-import com.tritiumgaming.shared.operation.domain.ghostname.repository.GhostNameRepository
-import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFemaleNamesUseCase
-import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllFirstNamesUseCase
-import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllMaleNamesUseCase
-import com.tritiumgaming.shared.operation.domain.ghostname.usecase.FetchAllSurnamesUseCase
-import com.tritiumgaming.shared.operation.domain.mission.repository.MissionRepository
-import com.tritiumgaming.shared.operation.domain.mission.usecase.FetchAllMissionsUseCase
+import com.tritiumgaming.shared.data.ghostname.repository.GhostNameRepository
+import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFemaleNamesUseCase
+import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase
+import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllMaleNamesUseCase
+import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllSurnamesUseCase
+import com.tritiumgaming.shared.data.mission.repository.MissionRepository
+import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 
 class MissionsContainer(
     applicationContext: Context

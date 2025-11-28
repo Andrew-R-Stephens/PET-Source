@@ -3,13 +3,13 @@ package com.tritiumstudios.feature.investigation.app.mappers.ghost
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostDescription
-import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostHuntInfo
-import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostIcon
-import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostIdentifier
-import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostStrength
-import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostTitle
-import com.tritiumgaming.shared.operation.domain.ghost.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostStrength
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 
 @StringRes fun GhostIdentifier.toStringResource(): Int =
     when (this) {

@@ -62,9 +62,9 @@ import com.tritiumgaming.feature.home.app.mappers.toIconResource
 import com.tritiumgaming.feature.home.app.mappers.toStringResource
 import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
-import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
-import com.tritiumgaming.shared.home.domain.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon
 
 @Composable
 fun NewsInboxesScreen(

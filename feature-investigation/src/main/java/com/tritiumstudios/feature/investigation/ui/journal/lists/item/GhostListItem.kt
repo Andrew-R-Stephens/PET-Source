@@ -35,10 +35,10 @@ import com.tritiumgaming.core.ui.common.prefabicon.MarkPriorityCircleIcon
 import com.tritiumgaming.core.ui.common.prefabicon.MarkXCircleIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
-import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.NEGATIVE
-import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.NEUTRAL
-import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling.POSITIVE
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling.NEGATIVE
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling.NEUTRAL
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling.POSITIVE
 import com.tritiumstudios.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumstudios.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumstudios.feature.investigation.ui.InvestigationScreenViewModel

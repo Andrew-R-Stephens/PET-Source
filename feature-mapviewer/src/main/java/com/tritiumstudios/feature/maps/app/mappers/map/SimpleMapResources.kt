@@ -3,11 +3,11 @@ package com.tritiumstudios.feature.maps.app.mappers.map
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapFloorImage
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapFloorTitle
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitleLength
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorImage
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapThumbnail
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitleLength
 
 @StringRes fun MapTitle.toStringResource(length: MapTitleLength = MapTitleLength.FULL): Int =
     when (length) {

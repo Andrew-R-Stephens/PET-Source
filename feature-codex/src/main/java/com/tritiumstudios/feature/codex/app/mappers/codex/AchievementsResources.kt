@@ -3,10 +3,10 @@ package com.tritiumstudios.feature.codex.app.mappers.codex
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementContent
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementExclusivity
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementIcon
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementTitle
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementContent
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementIcon
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementTitle
 
 @StringRes fun AchievementTitle.toStringResource(): Int =
     when (this) {

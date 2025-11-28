@@ -46,9 +46,9 @@ import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.shared.core.domain.market.bundle.model.MarketBundle
-import com.tritiumgaming.shared.core.domain.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
+import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 
 @Composable
 fun PaletteCard(

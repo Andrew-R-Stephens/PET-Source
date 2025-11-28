@@ -3,15 +3,15 @@ package com.tritiumstudios.feature.codex.app.mappers.codex
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionAttribute
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionDescription
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionDrawChance
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionFlavor
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionImage
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionItemAltName
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionSanityDrain
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionTitle
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionsIcon
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionAttribute
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionDescription
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionDrawChance
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionFlavor
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionImage
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionItemAltName
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionSanityDrain
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionTitle
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionsIcon
 
 @StringRes fun PossessionTitle.toStringResource(): Int =
     when (this) {

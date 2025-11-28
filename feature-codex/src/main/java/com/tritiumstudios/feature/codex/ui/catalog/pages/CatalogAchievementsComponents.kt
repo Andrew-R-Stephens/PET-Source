@@ -42,8 +42,8 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementExclusivity
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementVisibility
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
 import com.tritiumstudios.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumstudios.feature.codex.app.mappers.codex.toStringResource
 import com.tritiumstudios.feature.codex.ui.CodexViewModel

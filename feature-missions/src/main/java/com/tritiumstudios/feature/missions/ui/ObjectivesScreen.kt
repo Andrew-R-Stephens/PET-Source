@@ -25,8 +25,8 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.ghostname.model.GhostName
-import com.tritiumgaming.shared.operation.domain.mission.model.Mission
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
+import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumstudios.feature.missions.ui.components.GhostNameContent
 import com.tritiumstudios.feature.missions.ui.components.GhostResponseContent
 import com.tritiumstudios.feature.missions.ui.components.MissionsContent

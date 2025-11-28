@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -43,8 +42,8 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.core.navigation.NavRoute
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources
-import com.tritiumgaming.shared.operation.domain.map.simple.model.SimpleWorldMap
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
 import com.tritiumstudios.feature.maps.app.mappers.map.toDrawableResource
 import com.tritiumstudios.feature.maps.app.mappers.map.toStringResource
 

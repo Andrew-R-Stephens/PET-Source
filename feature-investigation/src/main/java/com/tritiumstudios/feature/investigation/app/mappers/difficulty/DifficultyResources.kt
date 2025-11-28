@@ -3,12 +3,12 @@ package com.tritiumstudios.feature.investigation.app.mappers.difficulty
 import androidx.annotation.FractionRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyInitialSanity
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyModifier
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTime
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.Frequency
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyInitialSanity
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyModifier
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTime
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.Frequency
 
 @StringRes fun DifficultyTitle.toStringResource(): Int =
     when (this) {

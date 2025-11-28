@@ -1,7 +1,7 @@
 package com.tritiumstudios.feature.missions.app.mappers.mission
 
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.mission.mappers.MissionResources
+import com.tritiumgaming.shared.data.mission.mappers.MissionResources
 
 fun MissionResources.MissionContent.toStringResource(): Int =
     when (this) {

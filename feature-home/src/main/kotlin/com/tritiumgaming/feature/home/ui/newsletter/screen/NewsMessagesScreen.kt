@@ -62,10 +62,10 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.app.mappers.toStringResource
 import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
-import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
-import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterMessage
+import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
+import com.tritiumgaming.shared.data.newsletter.model.NewsletterMessage
 
 @Composable
 fun NewsMessagesScreen(

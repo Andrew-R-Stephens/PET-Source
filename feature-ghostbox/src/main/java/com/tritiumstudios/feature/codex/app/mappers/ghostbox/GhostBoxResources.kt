@@ -2,7 +2,7 @@ package com.tritiumstudios.feature.codex.app.mappers.ghostbox
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.ghostbox.mapper.GhostBoxResources
+import com.tritiumgaming.shared.data.ghostbox.mapper.GhostBoxResources
 
 @StringRes fun GhostBoxResources.Response.toStringResource(): Int =
     when (this) {

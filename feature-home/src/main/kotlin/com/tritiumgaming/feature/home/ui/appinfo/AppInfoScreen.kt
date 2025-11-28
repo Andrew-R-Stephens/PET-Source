@@ -69,8 +69,8 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.home.ui.HomeScreen
-import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
-import com.tritiumgaming.shared.home.domain.appinfo.model.Contributor
+import com.tritiumgaming.shared.data.contributor.model.Contributor
+import com.tritiumgaming.shared.core.ui.mappers.IconResources
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -638,7 +638,7 @@ private fun VisitDiscordButton(
                     .aspectRatio(1f)
                     .fillMaxHeight(),
                 baseComponent = {
-                    IconResource.DISCORD.ToComposable(
+                    IconResources.IconResource.DISCORD.ToComposable(
                         colors = IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primaryContainer,
                             strokeColor = LocalPalette.current.onPrimaryContainer,

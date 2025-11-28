@@ -1,7 +1,7 @@
 package com.tritiumstudios.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty
 
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 
 data class DifficultyUiState(
     internal val index: Int = 0,

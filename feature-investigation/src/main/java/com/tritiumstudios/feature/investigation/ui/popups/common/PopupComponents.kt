@@ -4,24 +4,20 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.OutlinedIconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -107,72 +103,6 @@ fun PopupDataRow(
     }
 }
 
-@Composable fun PageButton(
-    isSelected: Boolean,
-    text: String,
-    onClick: () -> Unit = {}
-) {
-    if(isSelected) {
-        PageButtonSelected(text) { onClick() }
-    } else {
-        PageButtonUnselected(text) { onClick() }
-    }
-}
-
-@Composable
-private fun PageButtonUnselected(
-    text: String,
-    onClick: () -> Unit = {}
-) {
-    TextButton(
-        modifier = Modifier
-            .height(48.dp)
-            .padding(8.dp),
-        contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp),
-        shape = RoundedCornerShape(8.dp),
-        onClick = {
-            onClick()
-        }
-    ) {
-        Text(
-            text = text,
-            style = LocalTypography.current.quaternary.bold.copy(
-                textAlign = TextAlign.Center,
-            ),
-            color = LocalPalette.current.codexFamily.codex3
-        )
-    }
-}
-
-@Composable
-private fun PageButtonSelected(
-    text: String,
-    onClick: () -> Unit = {}
-) {
-    TextButton(
-        modifier = Modifier
-            .height(48.dp)
-            .padding(8.dp),
-        contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp),
-        shape = RoundedCornerShape(8.dp),
-        onClick = {
-            onClick()
-        },
-        colors = ButtonDefaults.textButtonColors(
-            containerColor = LocalPalette.current.codexFamily.codex4
-        )
-    ) {
-        Text(
-            text = text,
-            style = LocalTypography.current.quaternary.bold.copy(
-                textAlign = TextAlign.Center,
-            ),
-            color = LocalPalette.current.codexFamily.codex2
-        )
-    }
-
-}
-
 @Composable
 private fun PageButtonUnselected(
     icon: @Composable (modifier: Modifier, colors: IconVectorColors) -> Unit,
@@ -233,3 +163,69 @@ private fun PageButtonSelected(
         )
     }
 }
+
+/*@Composable fun PageButton(
+    isSelected: Boolean,
+    text: String,
+    onClick: () -> Unit = {}
+) {
+    if(isSelected) {
+        PageButtonSelected(text) { onClick() }
+    } else {
+        PageButtonUnselected(text) { onClick() }
+    }
+}*/
+
+/*@Composable
+private fun PageButtonUnselected(
+    text: String,
+    onClick: () -> Unit = {}
+) {
+    TextButton(
+        modifier = Modifier
+            .height(48.dp)
+            .padding(8.dp),
+        contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp),
+        shape = RoundedCornerShape(8.dp),
+        onClick = {
+            onClick()
+        }
+    ) {
+        Text(
+            text = text,
+            style = LocalTypography.current.quaternary.bold.copy(
+                textAlign = TextAlign.Center,
+            ),
+            color = LocalPalette.current.codexFamily.codex3
+        )
+    }
+}
+
+@Composable
+private fun PageButtonSelected(
+    text: String,
+    onClick: () -> Unit = {}
+) {
+    TextButton(
+        modifier = Modifier
+            .height(48.dp)
+            .padding(8.dp),
+        contentPadding = PaddingValues(vertical = 4.dp, horizontal = 8.dp),
+        shape = RoundedCornerShape(8.dp),
+        onClick = {
+            onClick()
+        },
+        colors = ButtonDefaults.textButtonColors(
+            containerColor = LocalPalette.current.codexFamily.codex4
+        )
+    ) {
+        Text(
+            text = text,
+            style = LocalTypography.current.quaternary.bold.copy(
+                textAlign = TextAlign.Center,
+            ),
+            color = LocalPalette.current.codexFamily.codex2
+        )
+    }
+
+}*/

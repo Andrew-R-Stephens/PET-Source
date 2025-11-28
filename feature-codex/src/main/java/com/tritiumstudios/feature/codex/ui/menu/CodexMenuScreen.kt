@@ -51,7 +51,7 @@ import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.theme.white
 import com.tritiumgaming.shared.core.navigation.NavRoute
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
+import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumstudios.feature.codex.ui.CodexScreen
 
 @Composable

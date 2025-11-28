@@ -35,7 +35,7 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitleLength
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitleLength
 import com.tritiumstudios.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumstudios.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumstudios.feature.investigation.ui.InvestigationScreenViewModel

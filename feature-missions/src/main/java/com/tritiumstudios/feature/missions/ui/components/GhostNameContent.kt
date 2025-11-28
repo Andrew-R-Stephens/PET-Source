@@ -40,8 +40,8 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.ghostname.mappers.GhostNameResources
-import com.tritiumgaming.shared.operation.domain.ghostname.model.GhostName
+import com.tritiumgaming.shared.data.ghostname.mappers.GhostNameResources
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumstudios.feature.missions.app.mappers.ghostname.toStringResource
 import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel
 

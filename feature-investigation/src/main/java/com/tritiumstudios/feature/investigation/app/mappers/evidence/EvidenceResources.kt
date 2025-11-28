@@ -3,12 +3,12 @@ package com.tritiumstudios.feature.investigation.app.mappers.evidence
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceAnimation
-import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceDescription
-import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIcon
-import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceIdentifier
-import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTierAnimation
-import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources.EvidenceTitle
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceAnimation
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle
 
 @StringRes fun EvidenceIdentifier.toStringResource(): Int =
     when (this) {

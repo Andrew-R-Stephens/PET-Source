@@ -1,7 +1,7 @@
 package com.tritiumstudios.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map
 
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 data class MapUiState(
     internal val index: Int = 0,

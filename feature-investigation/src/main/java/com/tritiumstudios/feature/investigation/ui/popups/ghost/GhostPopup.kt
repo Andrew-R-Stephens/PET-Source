@@ -52,7 +52,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.popup.model.GhostPopupRecord
+import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
 import com.tritiumstudios.feature.investigation.app.mappers.ghost.toDrawableResource
 import com.tritiumstudios.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumstudios.feature.investigation.ui.popups.common.PageButton
@@ -755,7 +755,7 @@ fun GhostTypeLandscapePopup(
                     modifier = Modifier
                         .fillMaxHeight()
                         .wrapContentWidth(),
-                    verticalArrangement = Arrangement.SpaceEvenly,
+                    verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     PageButton(

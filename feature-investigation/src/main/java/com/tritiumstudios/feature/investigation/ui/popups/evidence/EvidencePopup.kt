@@ -57,9 +57,9 @@ import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources
-import com.tritiumgaming.shared.operation.domain.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.operation.domain.popup.model.EvidencePopupRecord
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumstudios.feature.investigation.app.mappers.codex.toDrawableResource
 import com.tritiumstudios.feature.investigation.app.mappers.codex.toIntegerResource
 import com.tritiumstudios.feature.investigation.app.mappers.codex.toStringResource
@@ -94,9 +94,9 @@ private fun EvidencePopupContent(
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val image = evidencePopupRecord.icon.toDrawableResource()
-    val evidenceTitle: AnnotatedString = AnnotatedString.Companion.fromHtml(
+    val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
         stringResource(evidencePopupRecord.name.toStringResource()))
-    val evidenceDescription = AnnotatedString.Companion.fromHtml(
+    val evidenceDescription = AnnotatedString.fromHtml(
         stringResource(evidencePopupRecord.description.toStringResource()))
 
     val buyCost = integerResource(evidencePopupRecord.equipmentType.buyCostData.toIntegerResource())
@@ -126,7 +126,7 @@ private fun EvidencePopupContent(
     val primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
         @Composable { modifier ->
             PopupDataRow(
-                modifier = Modifier
+                modifier = modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .heightIn(max = 32.dp),
@@ -268,13 +268,13 @@ private fun EvidencePopupContent(
 
             }
 
-            equipmentTier?.let { equipment ->
+            equipmentTier?.let { tier ->
 
-                val equipmentFlavor: AnnotatedString = AnnotatedString.Companion.fromHtml(
-                    stringResource(equipmentTier.flavor.toStringResource()))
+                val equipmentFlavor: AnnotatedString = AnnotatedString.fromHtml(
+                    stringResource(tier.flavor.toStringResource()))
 
-                val equipmentInfo: AnnotatedString = AnnotatedString.Companion.fromHtml(
-                    stringResource(equipmentTier.info.toStringResource()))
+                val equipmentInfo: AnnotatedString = AnnotatedString.fromHtml(
+                    stringResource(tier.info.toStringResource()))
 
                 Column(
                     modifier = modifier
@@ -352,7 +352,7 @@ private fun EvidencePopupContent(
     val equipmentTypeIcon: @Composable (modifier: Modifier, colors: IconVectorColors) -> Unit =
         @Composable { modifier, colors ->
             Icon(
-                modifier = Modifier
+                modifier = modifier
                     .fillMaxSize()
                     .padding(4.dp),
                 painter = painterResource(
@@ -716,14 +716,9 @@ fun EvidenceTypeLandscapePopup(
                             .weight(1f, true)
                             .fillMaxWidth()
                     )
+
                 }
 
-                AnimatedGif(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    animatedGifRes = EvidenceResources.EvidenceTierAnimation.DOTS_1.toDrawableResource()
-                )
             }
         }
     }

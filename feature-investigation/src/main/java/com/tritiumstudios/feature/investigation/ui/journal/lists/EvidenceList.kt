@@ -13,7 +13,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.shared.operation.domain.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumstudios.feature.investigation.app.mappers.evidence.toStringResource
 import com.tritiumstudios.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumstudios.feature.investigation.ui.journal.lists.item.EvidenceListItem

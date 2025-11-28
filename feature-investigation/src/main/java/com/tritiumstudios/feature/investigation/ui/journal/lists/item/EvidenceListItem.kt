@@ -46,7 +46,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence.Ruling
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling
 import org.jetbrains.annotations.TestOnly
 
 @Composable

@@ -2,7 +2,7 @@ package com.tritiumstudios.feature.missions.app.mappers.ghostname
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.operation.domain.ghostname.mappers.GhostNameResources
+import com.tritiumgaming.shared.data.ghostname.mappers.GhostNameResources
 
 @StringRes fun GhostNameResources.Name.toStringResource(): Int =
     when (this) {

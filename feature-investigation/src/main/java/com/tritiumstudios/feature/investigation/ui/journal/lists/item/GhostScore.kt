@@ -1,8 +1,8 @@
 package com.tritiumstudios.feature.investigation.ui.journal.lists.item
 
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.shared.operation.domain.evidence.model.RuledEvidence
-import com.tritiumgaming.shared.operation.domain.journal.model.GhostEvidence
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
+import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

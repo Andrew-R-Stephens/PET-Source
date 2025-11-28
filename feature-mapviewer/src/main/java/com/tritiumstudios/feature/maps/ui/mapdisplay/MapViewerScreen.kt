@@ -86,10 +86,10 @@ import com.tritiumgaming.core.ui.icon.GridIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldPoint
-import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldRoom
-import com.tritiumgaming.shared.operation.domain.map.poi.mappers.MapPoiResources
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
+import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumstudios.feature.maps.app.mappers.map.toDrawableResource
 import com.tritiumstudios.feature.maps.app.mappers.map.toStringResource
 import com.tritiumstudios.feature.maps.ui.MapsScreenViewModel
