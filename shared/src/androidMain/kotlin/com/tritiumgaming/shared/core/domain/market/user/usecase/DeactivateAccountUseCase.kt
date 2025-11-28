@@ -1,7 +1,6 @@
-package com.tritiumgaming.shared.core.domain.user.usecase.account
+package com.tritiumgaming.shared.core.domain.market.user.usecase
 
 import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
-
 
 class DeactivateAccountUseCase(
     private val credentialsRepository: CredentialsRepository

@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.core.domain.market.user.source
 
 import androidx.credentials.GetCustomCredentialOption
-import com.tritiumgaming.shared.core.domain.user.model.SignInOptions
+import com.tritiumgaming.shared.data.account.model.SignInOptions
 
 interface CredentialsDataSource {
 

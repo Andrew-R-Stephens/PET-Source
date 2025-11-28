@@ -1,8 +1,8 @@
-package com.tritiumgaming.shared.core.domain.user.usecase.account
+package com.tritiumgaming.shared.core.domain.market.user.usecase
 
 import androidx.credentials.GetCustomCredentialOption
 import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
-import com.tritiumgaming.shared.core.domain.user.model.SignInOptions
+import com.tritiumgaming.shared.data.account.model.SignInOptions
 
 class GetSignInCredentialsUseCase(
     private val credentialsRepository: CredentialsRepository
