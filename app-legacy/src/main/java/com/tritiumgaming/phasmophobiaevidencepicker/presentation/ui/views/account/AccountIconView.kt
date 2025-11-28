@@ -29,7 +29,7 @@ import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.views.global
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getDrawableFromAttribute
 import com.tritiumgaming.phasmophobiaevidencepicker.util.ColorUtils.getTextStyleFromAttribute
-import com.tritiumgaming.shared.core.domain.icons.IconResources
+import com.tritiumgaming.shared.core.ui.icon.mappers.IconResources
 
 class AccountIconView : MaterialCardView {
     constructor(context: Context) :

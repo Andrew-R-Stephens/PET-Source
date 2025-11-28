@@ -14,7 +14,7 @@ import com.tritiumgaming.core.ui.mappers.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterInboxModel
 import com.tritiumgaming.phasmophobiaevidencepicker.domain.model.news.NewsletterMessageModel
-import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 
 class MessagesAdapterView(
     private val currentInbox: NewsletterInboxModel,
