@@ -35,7 +35,7 @@ import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessagesScreen
 import com.tritiumgaming.feature.home.ui.startscreen.StartScreen
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.shared.core.navigation.NavRoute
-import com.tritiumgaming.shared.operation.domain.codex.mappers.CodexResources
+import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumstudios.feature.codex.ui.CodexViewModel
 import com.tritiumstudios.feature.codex.ui.catalog.CodexCatalogScreen
 import com.tritiumstudios.feature.codex.ui.menu.CodexMenuScreen
