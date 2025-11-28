@@ -15,7 +15,7 @@ import com.tritiumgaming.core.ui.mappers.ToComposable
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.shared.core.domain.icons.IconResources.IconResource
+import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import org.jetbrains.annotations.TestOnly
 
 @Composable
