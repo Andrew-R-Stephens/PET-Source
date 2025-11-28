@@ -3,8 +3,8 @@ package com.tritiumgaming.data.ghostname.source.local
 import android.content.Context
 import com.tritiumgaming.data.ghostname.dto.GhostNameDto
 import com.tritiumgaming.data.ghostname.source.GhostNameDataSource
-import com.tritiumgaming.shared.operation.domain.ghostname.mappers.GhostNameResources
-import com.tritiumgaming.shared.operation.domain.ghostname.model.GhostName
+import com.tritiumgaming.shared.data.ghostname.mappers.GhostNameResources
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
 
 class GhostNameLocalDataSource(
     private val applicationContext: Context

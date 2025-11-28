@@ -3,7 +3,7 @@ package com.tritiumgaming.data.map.complex.dto
 import android.graphics.PointF
 import android.util.Log
 import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto
-import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldMapFloor
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapFloor
 
 data class ComplexFloorDto(
     internal val floorId: Int,

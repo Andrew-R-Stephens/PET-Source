@@ -2,16 +2,16 @@ package com.tritiumgaming.data.codex.source.local
 
 import com.tritiumgaming.data.codex.dto.EquipmentTypeDto
 import com.tritiumgaming.data.codex.dto.EquipmentTypeTierDto
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentAttribute
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentBuyCost
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentIcon
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentIdentifier
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentTierFlavorText
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentTierImage
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentTierInformation
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentTitle
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentUnlockLevel
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentUpgradeCost
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentAttribute
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentBuyCost
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIcon
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierFlavorText
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierImage
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierInformation
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUnlockLevel
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUpgradeCost
 
 class EquipmentLocalDataSource {
 

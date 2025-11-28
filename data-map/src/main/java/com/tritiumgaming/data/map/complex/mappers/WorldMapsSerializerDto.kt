@@ -20,7 +20,7 @@ import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto.WorldMa
 import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto
 import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto.RoomSerializerDto.RoomPointsSerializerDto.RoomPointSerializerDto
 import com.tritiumgaming.data.map.complex.mappers.WorldMapsSerializerDto.WorldMapSerializerDto.WorldDimensionsSerializerDto
-import com.tritiumgaming.shared.operation.domain.map.poi.mappers.MapPoiResources
+import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources
 
 @Keep
 class WorldMapsSerializerDto {

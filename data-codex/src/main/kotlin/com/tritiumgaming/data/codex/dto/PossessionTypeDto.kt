@@ -1,8 +1,8 @@
 package com.tritiumgaming.data.codex.dto
 
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionTitle
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionsIcon
-import com.tritiumgaming.shared.operation.domain.codex.model.possessions.PossessionsType
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionTitle
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionsIcon
+import com.tritiumgaming.shared.data.codex.model.possessions.PossessionsType
 
 data class PossessionTypeDto(
     val name: PossessionTitle,

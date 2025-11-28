@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.review.repository
 
-import com.tritiumgaming.shared.core.domain.reviewtracker.repository.ReviewTrackerRepository
-import com.tritiumgaming.shared.core.domain.reviewtracker.source.ReviewTrackerDatastore
+import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
+import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
 
 class ReviewTrackerRepositoryImpl(
     private val dataStoreSource: ReviewTrackerDatastore,

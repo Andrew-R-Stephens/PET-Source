@@ -9,7 +9,7 @@ import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.home.domain.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.shared.data.newsletter.source.NewsletterDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
@@ -43,7 +43,7 @@ class NewsletterDatastoreDataSource(
 
     override suspend fun setLastReadDate(id: String, date: Long) {
         val key = keyList[id]
-        key?.let { it ->
+        key?.let {
             dataStore.edit { preferences ->
                 preferences[it] = date
             }

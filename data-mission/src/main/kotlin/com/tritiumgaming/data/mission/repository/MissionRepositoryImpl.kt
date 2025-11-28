@@ -2,8 +2,8 @@ package com.tritiumgaming.data.mission.repository
 
 import com.tritiumgaming.data.mission.dto.toDomain
 import com.tritiumgaming.data.mission.source.MissionDataSource
-import com.tritiumgaming.shared.operation.domain.mission.model.Mission
-import com.tritiumgaming.shared.operation.domain.mission.repository.MissionRepository
+import com.tritiumgaming.shared.data.mission.model.Mission
+import com.tritiumgaming.shared.data.mission.repository.MissionRepository
 
 class MissionRepositoryImpl(
     private val localSource: MissionDataSource

@@ -1,7 +1,6 @@
 package com.tritiumgaming.data.account.dto
 
-import com.tritiumgaming.shared.core.domain.user.model.AccountCreditTransaction
-
+import com.tritiumgaming.shared.data.account.model.AccountCreditTransaction
 
 data class AccountCreditTransactionDto(
     val credits: Long

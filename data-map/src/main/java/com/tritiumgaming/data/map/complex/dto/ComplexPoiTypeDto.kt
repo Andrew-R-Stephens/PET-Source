@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.map.complex.dto
 
-import com.tritiumgaming.shared.operation.domain.map.poi.mappers.MapPoiResources
+import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources
 
 enum class ComplexPoiTypeDto {
     FUSE_BOX,

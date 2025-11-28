@@ -5,11 +5,11 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapDto
 import com.tritiumgaming.data.map.simple.dto.SimpleWorldMapFloorDto
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapFloorImage
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapFloorTitle
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorImage
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapThumbnail
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 
 class SimpleMapLocalDataSource(

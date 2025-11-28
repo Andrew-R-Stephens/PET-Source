@@ -1,13 +1,13 @@
 package com.tritiumgaming.data.codex.dto
 
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionAttribute
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionDescription
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionDrawChance
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionFlavor
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionImage
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionItemAltName
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionSanityDrain
-import com.tritiumgaming.shared.operation.domain.codex.model.possessions.CodexPossessionsGroupItem
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionAttribute
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionDescription
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionDrawChance
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionFlavor
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionImage
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionItemAltName
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionSanityDrain
+import com.tritiumgaming.shared.data.codex.model.possessions.CodexPossessionsGroupItem
 
 data class PossessionTypeMemberDto(
     val altName: PossessionItemAltName? = null,

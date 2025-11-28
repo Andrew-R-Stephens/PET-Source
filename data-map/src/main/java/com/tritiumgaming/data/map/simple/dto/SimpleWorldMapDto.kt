@@ -1,10 +1,10 @@
 package com.tritiumgaming.data.map.simple.dto
 
 import android.util.Log
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapThumbnail
-import com.tritiumgaming.shared.operation.domain.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.shared.operation.domain.map.simple.model.SimpleWorldMap
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapThumbnail
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
+import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
 
 data class SimpleWorldMapDto(
     val mapId: String,

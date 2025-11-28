@@ -1,16 +1,16 @@
 package com.tritiumgaming.data.palette.source.local
 
-import com.tritiumgaming.shared.core.domain.market.common.source.MarketLocalDataSource
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.ANDROID
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.BRICK
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.CLASSIC
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.CLEAN
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.JETBRAINS_MONO
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.JOURNAL
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.LONG_CANG
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.NEUCHA
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyResources.TypographyType.NEW_TEGOMIN
+import com.tritiumgaming.shared.data.market.common.source.MarketLocalDataSource
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.ANDROID
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.BRICK
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.CLASSIC
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.CLEAN
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.JETBRAINS_MONO
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.JOURNAL
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.LONG_CANG
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.NEUCHA
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType.NEW_TEGOMIN
 
 class MarketTypographyLocalDataSource:
     MarketLocalDataSource<Map<String, TypographyType>> {

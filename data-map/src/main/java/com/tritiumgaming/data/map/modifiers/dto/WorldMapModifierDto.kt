@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.map.modifiers.dto
 
-import com.tritiumgaming.shared.operation.domain.map.modifier.mappers.MapModifierResources
-import com.tritiumgaming.shared.operation.domain.map.modifier.model.WorldMapModifier
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
+import com.tritiumgaming.shared.data.map.modifier.model.WorldMapModifier
 
 data class WorldMapModifierDto(
     val name: MapModifierResources.MapSize,

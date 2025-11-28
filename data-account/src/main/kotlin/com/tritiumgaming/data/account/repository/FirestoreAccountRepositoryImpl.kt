@@ -10,12 +10,12 @@ import com.tritiumgaming.data.account.dto.toNetwork
 import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreUserRemoteDataSource
-import com.tritiumgaming.shared.core.domain.user.model.AccountCreditTransaction
-import com.tritiumgaming.shared.core.domain.user.model.AccountCredits
-import com.tritiumgaming.shared.core.domain.user.model.AccountMarketAgreement
-import com.tritiumgaming.shared.core.domain.user.model.AccountPalette
-import com.tritiumgaming.shared.core.domain.user.model.AccountTypography
-import com.tritiumgaming.shared.core.domain.user.repository.FirestoreAccountRepository
+import com.tritiumgaming.shared.data.account.model.AccountCreditTransaction
+import com.tritiumgaming.shared.data.account.model.AccountCredits
+import com.tritiumgaming.shared.data.account.model.AccountMarketAgreement
+import com.tritiumgaming.shared.data.account.model.AccountPalette
+import com.tritiumgaming.shared.data.account.model.AccountTypography
+import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOf
@@ -34,20 +34,16 @@ class FirestoreAccountRepositoryImpl(
         creditTransaction: AccountCreditTransaction
     ): Result<AccountCredits> {
 
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return Result.failure(Exception("An authorized user is not currently logged in!"))
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
+            Exception("An authorized user is not currently logged in!"))
 
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return Result.failure(Exception("The authorized user's data could not be located!"))
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid) ?: return Result.failure(
+            Exception("The authorized user's data could not be located!"))
 
         val result: Result<AccountCreditsDto> =
             accountRemoteDataSource.addCredits(creditTransaction.toNetwork())
 
-        return result.map { dto ->
-            dto.toDomain()
-        }
+        return result.map { dto -> dto.toDomain() }
 
     }
 
@@ -55,37 +51,31 @@ class FirestoreAccountRepositoryImpl(
         creditTransaction: AccountCreditTransaction
     ): Result<AccountCredits> {
 
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return Result.failure(Exception("An authorized user is not currently logged in!"))
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
+            Exception("An authorized user is not currently logged in!"))
 
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return Result.failure(Exception("The authorized user's data could not be located!"))
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid) ?: return Result.failure(
+            Exception("The authorized user's data could not be located!"))
 
         val result: Result<AccountCreditsDto> =
             accountRemoteDataSource.removeCredits(creditTransaction.toNetwork())
 
-        return result.map { dto ->
-            dto.toDomain()
-        }
+        return result.map { dto -> dto.toDomain() }
 
     }
 
     override fun observeCredits(): Flow<Result<AccountCredits>> {
 
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(
+            Result.failure(
+                Exception("An authorized user is not currently logged in!")))
 
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return flowOf(Result.failure(Exception("The authorized user's data could not be located!")))
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid) ?: return flowOf(
+            Result.failure(
+                Exception("The authorized user's data could not be located!")))
 
         return accountRemoteDataSource.observeCreditsDocument().map { flow: Result<AccountCreditsDto> ->
-            flow.map { dto ->
-                dto.toDomain()
-            }
+            flow.map { dto -> dto.toDomain() }
         }
 
     }
@@ -94,21 +84,16 @@ class FirestoreAccountRepositoryImpl(
         marketAgreement: AccountMarketAgreement
     ): Result<AccountMarketAgreement> {
 
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return Result.failure(Exception("An authorized user is not currently logged in!"))
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
+            Exception("An authorized user is not currently logged in!"))
 
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return Result.failure(Exception("The authorized user's data could not be located!"))
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid) ?: return Result.failure(
+            Exception("The authorized user's data could not be located!"))
 
         val result: Result<AccountMarketAgreementDto> =
             accountRemoteDataSource.setMarketplaceAgreementState(marketAgreement.toNetwork())
 
-        return result.map { dto ->
-            dto.toDomain()
-        }
-
+        return result.map { dto -> dto.toDomain() }
     }
 
     //TODO: Get Marketplace Agreement State
@@ -135,13 +120,11 @@ class FirestoreAccountRepositoryImpl(
         type: String
     ): Result<String> {
 
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return Result.failure(Exception("An authorized user is not currently logged in!"))
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
+            Exception("An authorized user is not currently logged in!"))
 
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return Result.failure(Exception("The authorized user's data could not be located!"))
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid) ?: return Result.failure(
+            Exception("The authorized user's data could not be located!"))
 
         if(unlockUUIDs == null || unlockUUIDs.isEmpty())
             return Result.failure(Exception("No UUIDs found!"))
@@ -184,13 +167,13 @@ class FirestoreAccountRepositoryImpl(
 
     override fun observeUnlockedPalettes(): Flow<Result<List<AccountPalette>>> {
 
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(
+            Result.failure(
+                Exception("An authorized user is not currently logged in!")))
 
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return flowOf(Result.failure(Exception("The authorized user's data could not be located!")))
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid) ?: return flowOf(
+            Result.failure(
+                    Exception("The authorized user's data could not be located!")))
 
         return accountRemoteDataSource.observeUnlockedPaletteDocuments().map { flow ->
             flow.map { dto -> dto.toDomain() } }
@@ -199,13 +182,13 @@ class FirestoreAccountRepositoryImpl(
 
     override fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>> {
 
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return flowOf(Result.failure(Exception("An authorized user is not currently logged in!")))
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return flowOf(
+            Result.failure(
+                Exception("An authorized user is not currently logged in!")))
 
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return flowOf(Result.failure(Exception("The authorized user's data could not be located!")))
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid) ?: return flowOf(
+            Result.failure(
+                    Exception("The authorized user's data could not be located!")))
 
         return accountRemoteDataSource.observeUnlockedTypographyDocuments().map { flow ->
             flow.map { dto -> dto.toDomain() } }
@@ -238,13 +221,12 @@ class FirestoreAccountRepositoryImpl(
         orderID: String
     ): Result<String> {
 
-        val uid: String? = authRemoteDataSource.currentAuthUser?.uid
-        if(uid == null)
-            return Result.failure(Exception("An authorized user is not currently logged in!"))
+        val uid: String = authRemoteDataSource.currentAuthUser?.uid ?: return Result.failure(
+            Exception("An authorized user is not currently logged in!")
+        )
 
-        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid)
-        if(userDocumentRef == null)
-            return Result.failure(Exception("The authorized user's data could not be located!"))
+        val userDocumentRef = userRemoteDataSource.getUserDocumentRef(uid) ?: return Result.failure(
+            Exception("The authorized user's data could not be located!"))
 
         return accountRemoteDataSource.addPurchaseDocument(orderID)
 

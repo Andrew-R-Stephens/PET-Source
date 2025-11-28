@@ -10,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.data.palette.dto.MarketPaletteDto
-import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteQueryOptions
+import com.tritiumgaming.shared.data.market.palette.model.PaletteQueryOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext

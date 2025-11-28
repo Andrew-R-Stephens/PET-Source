@@ -2,15 +2,15 @@ package com.tritiumgaming.data.codex.source.local
 
 import com.tritiumgaming.data.codex.dto.PossessionTypeDto
 import com.tritiumgaming.data.codex.dto.PossessionTypeMemberDto
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionAttribute
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionDescription
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionDrawChance
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionFlavor
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionImage
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionItemAltName
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionSanityDrain
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionTitle
-import com.tritiumgaming.shared.operation.domain.codex.mappers.PossessionsResources.PossessionsIcon
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionAttribute
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionDescription
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionDrawChance
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionFlavor
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionImage
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionItemAltName
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionSanityDrain
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionTitle
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.PossessionsIcon
 
 class PossessionsLocalDataSource {
 

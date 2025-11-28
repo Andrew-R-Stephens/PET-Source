@@ -1,9 +1,9 @@
 package com.tritiumgaming.data.ghostbox.repository
 
 import com.tritiumgaming.data.ghostbox.source.GhostBoxDataSource
-import com.tritiumgaming.shared.operation.domain.ghostbox.mapper.GhostBoxResources.Response
-import com.tritiumgaming.shared.operation.domain.ghostbox.model.GhostBoxType
-import com.tritiumgaming.shared.operation.domain.ghostbox.repository.GhostBoxRepository
+import com.tritiumgaming.shared.data.ghostbox.mapper.GhostBoxResources.Response
+import com.tritiumgaming.shared.data.ghostbox.model.GhostBoxType
+import com.tritiumgaming.shared.data.ghostbox.repository.GhostBoxRepository
 
 class GhostBoxRepositoryImpl(
     val localSource: GhostBoxDataSource

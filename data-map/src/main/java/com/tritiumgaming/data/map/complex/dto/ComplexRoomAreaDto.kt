@@ -2,8 +2,8 @@ package com.tritiumgaming.data.map.complex.dto
 
 import android.graphics.PointF
 import android.util.Log
-import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldPoint
-import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldRoomArea
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoomArea
 
 data class ComplexRoomAreaDto(
     val points: List<PointF>

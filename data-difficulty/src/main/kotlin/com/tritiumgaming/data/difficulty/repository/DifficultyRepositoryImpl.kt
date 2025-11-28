@@ -2,8 +2,8 @@ package com.tritiumgaming.data.difficulty.repository
 
 import com.tritiumgaming.data.difficulty.dto.toDomain
 import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
-import com.tritiumgaming.shared.operation.domain.difficulty.model.DifficultyModel
-import com.tritiumgaming.shared.operation.domain.difficulty.repository.DifficultyRepository
+import com.tritiumgaming.shared.data.difficulty.model.DifficultyModel
+import com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
 
 class DifficultyRepositoryImpl(
     val localSource: DifficultyDataSource

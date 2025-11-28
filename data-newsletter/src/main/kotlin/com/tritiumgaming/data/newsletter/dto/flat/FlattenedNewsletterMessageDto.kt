@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.newsletter.dto.flat
 
 import com.tritiumgaming.core.common.util.FontUtils
-import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterMessage
+import com.tritiumgaming.shared.data.newsletter.model.NewsletterMessage
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale

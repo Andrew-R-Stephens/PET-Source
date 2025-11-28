@@ -2,11 +2,11 @@ package com.tritiumgaming.data.codex.source.local
 
 import com.tritiumgaming.data.codex.dto.AchievementTypeDto
 import com.tritiumgaming.data.codex.dto.AchievementsTypeDto
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementContent
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementExclusivity
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementIcon
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementTitle
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementVisibility
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementContent
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementIcon
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementTitle
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
 
 class AchievementsLocalDataSource() {
 

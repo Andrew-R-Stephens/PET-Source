@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.map.complex.dto
 
 import android.util.Log
-import com.tritiumgaming.shared.operation.domain.map.complex.model.ComplexWorldRoom
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
 
 data class ComplexRoomDto(
     val id: Int,

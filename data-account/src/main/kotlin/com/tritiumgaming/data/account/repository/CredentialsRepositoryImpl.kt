@@ -4,7 +4,7 @@ import androidx.credentials.GetCredentialResponse
 import androidx.credentials.GetCustomCredentialOption
 import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
 import com.tritiumgaming.shared.core.domain.market.user.repository.CredentialsRepository
-import com.tritiumgaming.shared.core.domain.user.model.SignInOptions
+import com.tritiumgaming.shared.data.account.model.SignInOptions
 
 
 class CredentialsRepositoryImpl(

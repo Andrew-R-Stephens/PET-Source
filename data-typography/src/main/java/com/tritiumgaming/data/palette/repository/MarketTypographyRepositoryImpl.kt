@@ -6,9 +6,9 @@ import com.tritiumgaming.data.palette.dto.toDomain
 import com.tritiumgaming.data.palette.dto.toLocal
 import com.tritiumgaming.data.palette.source.local.MarketTypographyLocalDataSource
 import com.tritiumgaming.data.palette.source.remote.MarketTypographyFirestoreDataSource
-import com.tritiumgaming.shared.core.domain.market.typography.model.MarketTypography
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyQueryOptions
-import com.tritiumgaming.shared.core.domain.market.typography.repository.MarketTypographyRepository
+import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
+import com.tritiumgaming.shared.data.market.typography.model.TypographyQueryOptions
+import com.tritiumgaming.shared.data.market.typography.repository.MarketTypographyRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

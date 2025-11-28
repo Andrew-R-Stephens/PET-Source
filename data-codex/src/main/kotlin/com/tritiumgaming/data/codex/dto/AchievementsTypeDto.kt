@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.codex.dto
 
-import com.tritiumgaming.shared.operation.domain.codex.mappers.AchievementsResources.AchievementContent
-import com.tritiumgaming.shared.operation.domain.codex.model.achievements.CodexAchievementsGroupItem
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementContent
+import com.tritiumgaming.shared.data.codex.model.achievements.CodexAchievementsGroupItem
 
 data class AchievementsTypeDto(
     val infoText: AchievementContent

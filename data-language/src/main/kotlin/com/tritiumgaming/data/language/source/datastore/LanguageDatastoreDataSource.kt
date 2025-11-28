@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.core.domain.language.source.LanguageDatastore
+import com.tritiumgaming.shared.data.language.source.LanguageDatastore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map

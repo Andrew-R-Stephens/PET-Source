@@ -10,8 +10,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.tritiumgaming.data.palette.dto.MarketTypographyDto
-import com.tritiumgaming.shared.core.domain.market.common.source.MarketFirestoreDataSource
-import com.tritiumgaming.shared.core.domain.market.typography.model.TypographyQueryOptions
+import com.tritiumgaming.shared.data.market.common.source.MarketFirestoreDataSource
+import com.tritiumgaming.shared.data.market.typography.model.TypographyQueryOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext

@@ -6,9 +6,9 @@ import androidx.annotation.IntegerRes
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.data.difficulty.dto.DifficultyModelDto
 import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyResponseType
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.shared.operation.domain.difficulty.mapper.DifficultyResources.Frequency
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.Frequency
 
 class DifficultyLocalDataSource(
     private val applicationContext: Context

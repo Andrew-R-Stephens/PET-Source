@@ -1,10 +1,10 @@
 package com.tritiumgaming.data.codex.dto
 
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentBuyCost
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentIcon
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentIdentifier
-import com.tritiumgaming.shared.operation.domain.codex.mappers.EquipmentResources.EquipmentTitle
-import com.tritiumgaming.shared.operation.domain.codex.model.equipment.EquipmentType
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentBuyCost
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIcon
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle
+import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentType
 
 data class EquipmentTypeDto(
     val id: EquipmentIdentifier,

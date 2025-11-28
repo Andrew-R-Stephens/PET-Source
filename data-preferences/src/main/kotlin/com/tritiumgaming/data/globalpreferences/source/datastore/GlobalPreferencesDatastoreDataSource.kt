@@ -12,8 +12,8 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.core.domain.globalpreferences.source.GlobalPreferencesDatastore
-import com.tritiumgaming.shared.core.domain.globalpreferences.source.GlobalPreferencesDatastore.GlobalPreferences
+import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
+import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first

@@ -2,8 +2,8 @@ package com.tritiumgaming.data.map.modifiers.repository
 
 import com.tritiumgaming.data.map.modifiers.dto.toDomain
 import com.tritiumgaming.data.map.modifiers.source.MapModifiersDataSource
-import com.tritiumgaming.shared.operation.domain.map.modifier.model.WorldMapModifier
-import com.tritiumgaming.shared.operation.domain.map.modifier.repsitory.MapModifiersRepository
+import com.tritiumgaming.shared.data.map.modifier.model.WorldMapModifier
+import com.tritiumgaming.shared.data.map.modifier.repsitory.MapModifiersRepository
 
 class MapModifiersRepositoryImpl(
     val localSource: MapModifiersDataSource

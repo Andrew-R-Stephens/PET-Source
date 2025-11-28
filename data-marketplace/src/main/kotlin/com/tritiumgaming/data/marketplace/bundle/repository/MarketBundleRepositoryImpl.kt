@@ -2,9 +2,9 @@ package com.tritiumgaming.data.marketplace.bundle.repository
 
 import com.tritiumgaming.data.marketplace.bundle.mapper.toDomain
 import com.tritiumgaming.data.marketplace.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
-import com.tritiumgaming.shared.core.domain.market.bundle.model.BundleQueryOptions
-import com.tritiumgaming.shared.core.domain.market.bundle.model.MarketBundle
-import com.tritiumgaming.shared.core.domain.market.bundle.repository.MarketBundleRemoteRepository
+import com.tritiumgaming.shared.data.market.bundle.model.BundleQueryOptions
+import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
+import com.tritiumgaming.shared.data.market.bundle.repository.MarketBundleRemoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

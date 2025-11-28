@@ -2,9 +2,9 @@ package com.tritiumgaming.data.marketplace.billable.repository
 
 import com.tritiumgaming.data.marketplace.billable.mapper.toDomain
 import com.tritiumgaming.data.marketplace.billable.source.remote.MarketBillableFirestoreDataSource
-import com.tritiumgaming.shared.core.domain.market.billable.model.BillableQueryOptions
-import com.tritiumgaming.shared.core.domain.market.billable.model.MarketBillable
-import com.tritiumgaming.shared.core.domain.market.billable.repository.MarketBillableRepository
+import com.tritiumgaming.shared.data.market.billable.model.BillableQueryOptions
+import com.tritiumgaming.shared.data.market.billable.model.MarketBillable
+import com.tritiumgaming.shared.data.market.billable.repository.MarketBillableRepository
 
 class MarketBillableRepositoryImpl(
     private val billableFirestoreDataSource: MarketBillableFirestoreDataSource,

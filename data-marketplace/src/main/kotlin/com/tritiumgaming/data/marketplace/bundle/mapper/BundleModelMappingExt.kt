@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.marketplace.bundle.mapper
 
 import com.tritiumgaming.data.marketplace.bundle.dto.MarketBundleDto
-import com.tritiumgaming.shared.core.domain.market.bundle.model.MarketBundle
+import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 
 fun MarketBundleDto.toDomain(): MarketBundle =
     MarketBundle(

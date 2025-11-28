@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.ghostname.dto
 
-import com.tritiumgaming.shared.operation.domain.ghostname.mappers.GhostNameResources
-import com.tritiumgaming.shared.operation.domain.ghostname.model.GhostName
+import com.tritiumgaming.shared.data.ghostname.mappers.GhostNameResources
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
 
 data class GhostNameDto(
     val name: GhostNameResources.Name,

@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.palette.dto
 
-import com.tritiumgaming.shared.core.domain.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteResources.PaletteType
+import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType
 
 data class MarketPaletteDto(
     internal val uuid: String,

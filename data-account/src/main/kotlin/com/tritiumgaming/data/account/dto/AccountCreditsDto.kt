@@ -1,7 +1,6 @@
 package com.tritiumgaming.data.account.dto
 
-import com.tritiumgaming.shared.core.domain.user.model.AccountCredits
-
+import com.tritiumgaming.shared.data.account.model.AccountCredits
 
 data class AccountCreditsDto(
     val earnedCredits: Long = 0L,

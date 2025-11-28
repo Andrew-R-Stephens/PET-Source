@@ -3,8 +3,8 @@ package com.tritiumgaming.data.map.simple.repository
 import android.util.Log
 import com.tritiumgaming.data.map.simple.dto.toDomain
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
-import com.tritiumgaming.shared.operation.domain.map.simple.model.SimpleWorldMap
-import com.tritiumgaming.shared.operation.domain.map.simple.repository.SimpleMapRepository
+import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
+import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
 
 class SimpleMapRepositoryImpl(
     val localSource: SimpleMapDataSource

@@ -2,7 +2,7 @@ package com.tritiumgaming.data.ghostbox.source.local
 
 import com.tritiumgaming.data.ghostbox.dto.GhostBoxResponseDto
 import com.tritiumgaming.data.ghostbox.source.GhostBoxDataSource
-import com.tritiumgaming.shared.operation.domain.ghostbox.mapper.GhostBoxResources.Response
+import com.tritiumgaming.shared.data.ghostbox.mapper.GhostBoxResources.Response
 
 class GhostBoxLocalDataSource: GhostBoxDataSource {
 

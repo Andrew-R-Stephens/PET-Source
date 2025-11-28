@@ -7,9 +7,9 @@ import com.tritiumgaming.data.newsletter.dto.local.toInternal
 import com.tritiumgaming.data.newsletter.dto.remote.toInternal
 import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
-import com.tritiumgaming.shared.home.domain.newsletter.model.NewsletterInbox
-import com.tritiumgaming.shared.home.domain.newsletter.repository.NewsletterRepository
-import com.tritiumgaming.shared.home.domain.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.shared.data.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 import io.ktor.http.Url
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow

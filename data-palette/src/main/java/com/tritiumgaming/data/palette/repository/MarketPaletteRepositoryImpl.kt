@@ -6,9 +6,9 @@ import com.tritiumgaming.data.palette.dto.toDomain
 import com.tritiumgaming.data.palette.dto.toLocal
 import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
 import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSource
-import com.tritiumgaming.shared.core.domain.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.core.domain.market.palette.model.PaletteQueryOptions
-import com.tritiumgaming.shared.core.domain.market.palette.repository.MarketPaletteRepository
+import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
+import com.tritiumgaming.shared.data.market.palette.model.PaletteQueryOptions
+import com.tritiumgaming.shared.data.market.palette.repository.MarketPaletteRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

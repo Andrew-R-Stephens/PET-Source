@@ -1,7 +1,7 @@
 package com.tritiumgaming.data.globalpreferences.repository
 
-import com.tritiumgaming.shared.core.domain.globalpreferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.shared.core.domain.globalpreferences.source.GlobalPreferencesDatastore
+import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
+import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
 import kotlinx.coroutines.flow.Flow
 
 class GlobalPreferencesRepositoryImpl(
