@@ -7,9 +7,9 @@ import com.tritiumgaming.data.newsletter.dto.local.toInternal
 import com.tritiumgaming.data.newsletter.dto.remote.toInternal
 import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
+import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.source.NewsletterDatastore
-import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 import io.ktor.http.Url
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -27,12 +27,10 @@ class NewsletterRepositoryImpl(
     private val coroutineDispatcher: CoroutineDispatcher
 ): NewsletterRepository {
 
-    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
+    private var lastFetchDateMillis = 0L
 
-    override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
-
-    private var _inboxFlow = MutableStateFlow<List<FlattenedNewsletterInboxDto>>(emptyList())
-    val flow: StateFlow<List<FlattenedNewsletterInboxDto>> = _inboxFlow.asStateFlow()
+    private var _flow = MutableStateFlow<List<FlattenedNewsletterInboxDto>>(emptyList())
+    val flow: StateFlow<List<FlattenedNewsletterInboxDto>> = _flow.asStateFlow()
 
     private fun getLocalInboxes(): Result<List<FlattenedNewsletterInboxDto>> {
         val result = localDataSource.fetchInboxes()
@@ -75,38 +73,64 @@ class NewsletterRepositoryImpl(
         return Result.success(currentCache)
     }
 
-    override suspend fun fetchInboxes(): Result<List<NewsletterInbox>> {
+    override suspend fun fetchInboxes(
+        forceRefresh: Boolean,
+        onRefreshFailure: () -> Unit
+    ): Result<List<NewsletterInbox>> {
 
-        // Accept Synchronization:
-        // Initialize the Inboxes with locally. Fetch remote data if possible
-        if(_inboxFlow.value.isEmpty()) {
-            _inboxFlow.update { getLocalInboxes().getOrDefault(emptyList()) }
+        // Check the last time data was updated.
+        if(forceRefresh || (System.currentTimeMillis() - lastFetchDateMillis >= REFRESH_DELTA_MIN)) {
+            // Update the last fetch date
+            lastFetchDateMillis = System.currentTimeMillis()
+
+            // Accept Synchronization:
+            // Initialize the Inboxes with locally. Fetch remote data if possible
+            if(_flow.value.isEmpty()) {
+                _flow.update { getLocalInboxes().getOrDefault(emptyList()) }
+            }
+
+            // Check for internet connection. Exit if no connection
+            val connection = connectivityManagerHelper.getActiveNetworkTransport()
+            connection.exceptionOrNull()?.let { e ->
+                return Result.failure(Exception("ABORTING remote inbox synchronization.", e))
+            }
+
+            // Update inboxes. Exit if failure
+            return try {
+                val internal = fetchRemoteInboxes().getOrThrow()
+                _flow.update { internal }
+
+                // Update the last fetch date
+                lastFetchDateMillis = System.currentTimeMillis()
+
+                Result.success(flow.value.toExternal()) // Successful initialization
+            } catch (e: Exception) {
+                Result.failure(Exception("There was an error parsing the inboxes.", e))
+            }
+        }
+        // Exit if it's too soon to update
+        else {
+            onRefreshFailure()
+            return Result.success(flow.value.toExternal())
         }
 
-        // Check for internet connection. Exit if no connection
-        val connection = connectivityManagerHelper.getActiveNetworkTransport()
-        connection.exceptionOrNull()?.let { e ->
-            return Result.failure(Exception("ABORTING remote inbox synchronization.", e))
-        }
-
-        // Update inboxes. Exit if failure
-        return try {
-            val internal = fetchRemoteInboxes().getOrThrow()
-            _inboxFlow.update { internal }
-            Result.success(flow.value.toExternal()) // Successful initialization
-        } catch (e: Exception) {
-            Result.failure(Exception("There was an error parsing the inboxes.", e))
-        }
     }
 
-    override fun getInboxFlow(): Flow<List<NewsletterInbox>> = flow
-        .map { it.toExternal() }
+    override fun getInboxFlow(): Flow<List<NewsletterInbox>> = flow.map { it.toExternal() }
 
     override suspend fun saveInboxLastReadDate(id: String, date: Long) =
         dataStoreSource.setLastReadDate(id, date)
 
     init {
         initializeDatastoreLiveData()
+    }
+
+    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
+
+    override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
+
+    private companion object {
+        val REFRESH_DELTA_MIN = 30000L
     }
 
 }
