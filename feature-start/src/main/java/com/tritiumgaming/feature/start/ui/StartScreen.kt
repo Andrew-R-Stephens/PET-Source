@@ -1,6 +1,7 @@
-package com.tritiumgaming.feature.home.ui.startscreen
+package com.tritiumgaming.feature.start.ui
 
 import android.content.Intent
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -78,10 +79,8 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.HomeScreen
-import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
-import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
 
 @Composable
@@ -108,23 +107,21 @@ private fun StartButtonPreview2() {
 
 @Composable
 fun StartScreen(
-    newsletterViewModel: NewsletterViewModel,
+    startViewModel: StartViewModel,
     navController: NavHostController
 ) {
 
-    HomeScreen {
-        StartContent(
-            newsletterViewModel = newsletterViewModel,
-            navController = navController
-        )
-    }
+    StartContent(
+        startViewModel = startViewModel,
+        navController = navController
+    )
 
 }
 
 
 @Composable
 private fun StartContent(
-    newsletterViewModel: NewsletterViewModel,
+    startViewModel: StartViewModel,
     navController: NavController
 ) {
 
@@ -142,7 +139,7 @@ private fun StartContent(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             HeaderNavBar(
-                newsletterViewModel = newsletterViewModel,
+                startViewModel = startViewModel,
                 navController = navController)
         }
 
@@ -475,19 +472,24 @@ private fun StartButton(
 @Composable
 private fun HeaderNavBar(
     navController: NavController,
-    newsletterViewModel: NewsletterViewModel,
+    startViewModel: StartViewModel,
 ) {
 
     val context = LocalContext.current
     val discordInvitation = stringResource(R.string.link_discordInvite)
     val patreonInvitation = stringResource(R.string.link_patreonInvite)
 
-    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val notificationState = inboxesUiState.value.inboxes
+    val inboxesUiState = startViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val inboxNotificationState = inboxesUiState.value.inboxes
         .sortedByDescending { it.lastReadDate }
         .firstOrNull { inboxUiState ->
             inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
         } != null
+
+    val reviewUiState = startViewModel.reviewFlow.collectAsStateWithLifecycle()
+    val timesOpened = reviewUiState.value.timesOpened
+    Log.d("StartScreen", "$timesOpened")
+    val canRequestReview = reviewUiState.value.canRequestReview
 
     val menuIcon: @Composable () -> Unit = {
         HamburgerMenuIcon(
@@ -704,7 +706,7 @@ private fun HeaderNavBar(
 
     // News Button
     NotificationIndicator(
-        isActive = notificationState,
+        isActive = inboxNotificationState,
         baseComponent = @Composable { modifier ->
             IconResource.NEWS.ToComposable(
                 modifier = modifier,
@@ -739,7 +741,10 @@ private fun HeaderNavBar(
         navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
     }*/
 
-    reviewIcon()
+    //reviewIcon()
+    if(canRequestReview) {
+        reviewIcon()
+    }
 
     IconDropdownMenu(
         primaryContent = accountIcon,
