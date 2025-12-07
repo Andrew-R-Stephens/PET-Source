@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.marketplace
+package com.tritiumgaming.feature.marketplace.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -6,10 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
-import com.tritiumgaming.feature.home.ui.account.AccountCreditsUiState
-import com.tritiumgaming.feature.home.ui.account.AccountUnlockedPalettesUiState
-import com.tritiumgaming.feature.home.ui.account.AccountUnlockedTypographiesUiState
+import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
+import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState
+import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedTypographiesUiState
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
@@ -165,8 +164,8 @@ class MarketplaceViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
-                val container = (application as HomeContainerProvider).provideHomeContainer()
+                val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
+                val container = (application as MarketplaceContainerProvider).provideMarketplaceContainer()
 
                 val getSignInCredentialsUseCase = container.getSignInCredentialsUseCase
                 val signInAccountUseCase = container.signInAccountUseCase

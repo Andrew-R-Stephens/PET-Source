@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.marketplace.store.components
+package com.tritiumgaming.feature.marketplace.ui.store.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

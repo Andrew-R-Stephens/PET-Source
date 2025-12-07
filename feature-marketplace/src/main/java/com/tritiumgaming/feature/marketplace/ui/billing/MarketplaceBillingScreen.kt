@@ -1,9 +1,7 @@
-package com.tritiumgaming.feature.home.ui.marketplace.billing
+package com.tritiumgaming.feature.marketplace.ui.billing
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.tritiumgaming.feature.home.ui.HomeScreen
-
 
 @Composable
 @Preview
@@ -14,9 +12,7 @@ private fun MarketplaceBillingScreenPreview() {
 @Composable
 fun MarketplaceBillingScreen() {
 
-    HomeScreen {
-        MarketplaceBillingContent()
-    }
+    MarketplaceBillingContent()
 
 }
 
