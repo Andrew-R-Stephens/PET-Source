@@ -283,7 +283,12 @@ dependencies {
     implementation(project(":database-unknown"))
 
     implementation(project(":feature-core"))
+
+    implementation(project(":feature-start"))
     implementation(project(":feature-home"))
+    implementation(project(":feature-about"))
+    implementation(project(":feature-newsletter"))
+    implementation(project(":feature-marketplace"))
     implementation(project(":feature-codex"))
     implementation(project(":feature-investigation"))
     implementation(project(":feature-mapviewer"))

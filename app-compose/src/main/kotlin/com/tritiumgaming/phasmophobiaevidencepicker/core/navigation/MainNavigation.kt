@@ -19,21 +19,23 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import com.tritiumgaming.feature.about.ui.AppInfoViewModel
+import com.tritiumgaming.feature.about.ui.InfoScreen
+import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.home.ui.account.AccountScreen
 import com.tritiumgaming.feature.home.ui.account.AccountScreenViewModel
-import com.tritiumgaming.feature.home.ui.appinfo.AppInfoViewModel
-import com.tritiumgaming.feature.home.ui.appinfo.InfoScreen
 import com.tritiumgaming.feature.home.ui.applanguages.LanguageScreen
 import com.tritiumgaming.feature.home.ui.applanguages.LanguageScreenViewModel
 import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreen
-import com.tritiumgaming.feature.home.ui.marketplace.MarketplaceScreen
-import com.tritiumgaming.feature.home.ui.marketplace.billing.MarketplaceBillingScreen
-import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
-import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsInboxesScreen
-import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessageScreen
-import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsMessagesScreen
-import com.tritiumgaming.feature.home.ui.startscreen.StartScreen
+import com.tritiumgaming.feature.marketplace.ui.MarketplaceScreen
+import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
+import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsInboxesScreen
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessageScreen
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessagesScreen
 import com.tritiumgaming.feature.operation.ui.OperationScreen
+import com.tritiumgaming.feature.start.ui.StartScreen
+import com.tritiumgaming.feature.start.ui.StartViewModel
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumstudios.feature.codex.ui.CodexViewModel
@@ -99,30 +101,38 @@ private fun NavGraphBuilder.homeNavigation(
     ) {
 
         composable(route = NavRoute.SCREEN_HOME.route) {
-            StartScreen(
-                newsletterViewModel = newsletterViewModel,
-                navController = navController
-            )
+            HomeScreen {
+                StartScreen(
+                    startViewModel = viewModel(factory = StartViewModel.Factory),
+                    navController = navController
+                )
+            }
         }
 
         composable(route = NavRoute.SCREEN_LANGUAGE.route) {
-            LanguageScreen(
-                navController = navController,
-                viewModel = viewModel(factory = LanguageScreenViewModel.Factory)
-            )
+            HomeScreen {
+                LanguageScreen(
+                    navController = navController,
+                    viewModel = viewModel(factory = LanguageScreenViewModel.Factory)
+                )
+            }
         }
 
         composable(route = NavRoute.SCREEN_APP_INFO.route) {
-            InfoScreen(
-                navController = navController,
-                viewModel = viewModel(factory = AppInfoViewModel.Factory)
-            )
+            HomeScreen {
+                InfoScreen(
+                    navController = navController,
+                    viewModel = viewModel(factory = AppInfoViewModel.Factory)
+                )
+            }
         }
 
         composable(route = NavRoute.SCREEN_SETTINGS.route) {
-            SettingsScreen(
-                navController = navController
-            )
+            HomeScreen {
+                SettingsScreen(
+                    navController = navController
+                )
+            }
         }
 
         navigation(
@@ -131,10 +141,12 @@ private fun NavGraphBuilder.homeNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_NEWSLETTER_INBOX.route) {
-                NewsInboxesScreen(
-                    navController = navController,
-                    newsletterViewModel = newsletterViewModel
-                )
+                HomeScreen {
+                    NewsInboxesScreen(
+                        navController = navController,
+                        newsletterViewModel = newsletterViewModel
+                    )
+                }
             }
 
             composable(
@@ -145,11 +157,13 @@ private fun NavGraphBuilder.homeNavigation(
                 val inboxID = navBackStackEntry.arguments?.getString("inboxID")
 
                 if (inboxID != null) {
-                    NewsMessagesScreen(
-                        navController = navController,
-                        newsletterViewModel = newsletterViewModel,
-                        inboxID = inboxID
-                    )
+                    HomeScreen {
+                        NewsMessagesScreen(
+                            navController = navController,
+                            newsletterViewModel = newsletterViewModel,
+                            inboxID = inboxID
+                        )
+                    }
                 } else {
                     navController.popBackStack()
                 }
@@ -167,12 +181,14 @@ private fun NavGraphBuilder.homeNavigation(
                 val messageID = navBackStackEntry.arguments?.getString("messageID")
 
                 if (inboxID != null && messageID != null) {
-                    NewsMessageScreen(
-                        navController = navController,
-                        newsletterViewModel = newsletterViewModel,
-                        inboxID = inboxID,
-                        messageID = messageID
-                    )
+                    HomeScreen {
+                        NewsMessageScreen(
+                            navController = navController,
+                            newsletterViewModel = newsletterViewModel,
+                            inboxID = inboxID,
+                            messageID = messageID
+                        )
+                    }
                 } else {
                     navController.popBackStack()
                 }
@@ -186,18 +202,24 @@ private fun NavGraphBuilder.homeNavigation(
         ) {
 
             composable(route = NavRoute.SCREEN_ACCOUNT_OVERVIEW.route) {
-                AccountScreen(
-                    navController = navController,
-                    accountViewModel = viewModel(factory = AccountScreenViewModel.Factory)
-                )
+                HomeScreen {
+                    AccountScreen(
+                        navController = navController,
+                        accountViewModel = viewModel(factory = AccountScreenViewModel.Factory)
+                    )
+                }
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {
-                MarketplaceScreen()
+                HomeScreen {
+                    MarketplaceScreen()
+                }
             }
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_BILLABLE.route) {
-                MarketplaceBillingScreen()
+                HomeScreen {
+                    MarketplaceBillingScreen()
+                }
             }
 
         }

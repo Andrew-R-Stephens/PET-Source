@@ -8,9 +8,17 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.tritiumgaming.feature.about.app.container.AboutContainer
+import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
 import com.tritiumgaming.feature.core.container.CoreContainer
 import com.tritiumgaming.feature.home.app.container.HomeContainer
 import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
+import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainer
+import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
+import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainer
+import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainerProvider
+import com.tritiumgaming.feature.start.app.container.StartContainer
+import com.tritiumgaming.feature.start.app.container.StartContainerProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 import com.tritiumstudios.feature.codex.app.container.CodexContainer
@@ -34,7 +42,10 @@ val Context.dataStore by preferencesDataStore(
 class PETApplication : Application(),
     AppContainerProvider,
     HomeContainerProvider,
-    /*OperationContainerProvider,*/
+    StartContainerProvider,
+    AboutContainerProvider,
+    NewsletterContainerProvider,
+    MarketplaceContainerProvider,
     InvestigationContainerProvider,
     MissionsContainerProvider,
     CodexContainerProvider,
@@ -55,8 +66,13 @@ class PETApplication : Application(),
     lateinit var coreContainer: CoreContainer
 
     lateinit var appContainer: AppContainer
+
     lateinit var homeContainer: HomeContainer
-    //lateinit var operationsContainer: OperationContainer
+    lateinit var aboutContainer: AboutContainer
+    lateinit var startContainer: StartContainer
+    lateinit var newsletterContainer: NewsletterContainer
+    lateinit var marketplaceContainer: MarketplaceContainer
+
     lateinit var codexContainer: CodexContainer
     lateinit var missionsContainer: MissionsContainer
     lateinit var mapViewerContainer: MapViewerContainer
@@ -102,7 +118,6 @@ class PETApplication : Application(),
             initLanguageDataStoreUseCase = coreContainer.setupLanguageUseCase,
             initFlowLanguageUseCase = coreContainer.initFlowLanguageUseCase,
             saveCurrentLanguageUseCase = coreContainer.saveCurrentLanguageUseCase,
-            getCurrentLanguageUseCase = coreContainer.getCurrentLanguageUseCase,
             loadCurrentLanguageUseCase = coreContainer.loadCurrentLanguageUseCase,
             // Typographies
             getAvailableTypographiesUseCase = coreContainer.getAvailableTypographiesUseCase,
@@ -113,29 +128,55 @@ class PETApplication : Application(),
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
             getAvailablePalettesUseCase = coreContainer.getAvailablePalettesUseCase,
             getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,
-            findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase,
-            // Reviews
-            initReviewTrackerDataStoreUseCase = coreContainer.setupReviewTrackerUseCase,
-            initFlowReviewTrackerUseCase = coreContainer.initializeReviewTrackerUseCase,
-            setReviewRequestStatusUseCase = coreContainer.setReviewRequestStatusUseCase,
-            getReviewRequestStatusUseCase = coreContainer.getReviewRequestStatusUseCase,
-            loadReviewRequestStatusUseCase = coreContainer.loadReviewRequestStatusUseCase,
-            setAppTimeAliveUseCase = coreContainer.setAppTimeAliveUseCase,
-            getAppTimeAliveUseCase = coreContainer.getAppTimeAliveUseCase,
-            loadAppTimeAliveUseCase = coreContainer.loadAppTimeAliveUseCase,
-            setAppTimesOpenedUseCase = coreContainer.setAppTimesOpenedUseCase,
-            getAppTimesOpenedUseCase = coreContainer.getAppTimesOpenedUseCase,
-            loadAppTimesOpenedUseCase = coreContainer.loadAppTimesOpenedUseCase
+            findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase
         )
 
-        /*operationsContainer = OperationContainer(
+        aboutContainer = AboutContainer()
+
+        startContainer = StartContainer(
+            setupNewsletterUseCase = coreContainer.setupNewsletterUseCase,
+            getFlowNewsletterDatastoreUseCase = coreContainer.getFlowNewsletterDatastoreUseCase,
+            getFlowNewsletterInboxesUseCase= coreContainer.getFlowNewsletterInboxesUseCase,
+            getNewsletterInboxesUseCase= coreContainer.getNewsletterInboxesUseCase,
+            setupGlobalPreferencesUseCase= coreContainer.setupGlobalPreferencesUseCase,
+            initFlowGlobalPreferencesUseCase= coreContainer.initFlowGlobalPreferencesUseCase,
+            setAllowIntroductionUseCase= coreContainer.setAllowIntroductionUseCase,
+            initReviewTrackerDataStoreUseCase= coreContainer.setupReviewTrackerUseCase,
+            initFlowReviewTrackerUseCase= coreContainer.initializeReviewTrackerUseCase,
+            setReviewRequestStatusUseCase= coreContainer.setReviewRequestStatusUseCase,
+            setAppTimeAliveUseCase= coreContainer.setAppTimeAliveUseCase,
+            incrementAppTimesOpenedUseCase = coreContainer.incrementAppTimesOpenedUseCase,
+            setAppTimesOpenedUseCase= coreContainer.setAppTimesOpenedUseCase,
+        )
+
+        newsletterContainer = NewsletterContainer(
+            setupNewsletterUseCase = coreContainer.setupNewsletterUseCase,
+            getFlowNewsletterDatastoreUseCase = coreContainer.getFlowNewsletterDatastoreUseCase,
+            getFlowNewsletterInboxesUseCase= coreContainer.getFlowNewsletterInboxesUseCase,
+            getNewsletterInboxesUseCase= coreContainer.getNewsletterInboxesUseCase,
+            saveNewsletterInboxLastReadDateUseCase= coreContainer.saveNewsletterInboxLastReadDateUseCase
+        )
+
+        marketplaceContainer = MarketplaceContainer(
             applicationContext = applicationContext,
-            // User Preferences
-            getAllowHuntWarnAudioUseCase = coreContainer.getAllowHuntWarnAudioUseCase,
-            getEnableGhostReorderUseCase = coreContainer.getEnableGhostReorderUseCase,
-            getEnableRTLUseCase = coreContainer.getEnableRTLUseCase,
-            getMaxHuntWarnFlashTimeUseCase = coreContainer.getMaxHuntWarnFlashTimeUseCase,
-        )*/
+            getSignInCredentialsUseCase = coreContainer.getSignInCredentialsUseCase,
+            signInAccountUseCase = coreContainer.signInAccountUseCase,
+            signOutAccountUseCase = coreContainer.signOutAccountUseCase,
+            deactivateAccountUseCase = coreContainer.deactivateAccountUseCase,
+            observeAccountCreditsUseCase = coreContainer.observeAccountCreditsUseCase,
+            observeAccountUnlockedPalettesUseCase = coreContainer.observeAccountUnlockedPalettesUseCase,
+            observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase,
+            // Typographies
+            getAvailableTypographiesUseCase = coreContainer.getAvailableTypographiesUseCase,
+            saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
+            getTypographyByUUIDUseCase = coreContainer.getTypographyByUUIDUseCase,
+            findNextAvailableTypographyUseCase = coreContainer.findNextAvailableTypographyUseCase,
+            // Palettes
+            saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
+            getAvailablePalettesUseCase = coreContainer.getAvailablePalettesUseCase,
+            getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,
+            findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase,
+        )
 
         investigationContainer = InvestigationContainer(
             applicationContext = applicationContext,
@@ -160,7 +201,10 @@ class PETApplication : Application(),
 
     override fun provideAppContainer(): AppContainer = appContainer
     override fun provideHomeContainer(): HomeContainer = homeContainer
-    //override fun provideOperationContainer(): OperationContainer = operationsContainer
+    override fun provideStartContainer(): StartContainer = startContainer
+    override fun provideAboutContainer(): AboutContainer = aboutContainer
+    override fun provideNewsletterContainer(): NewsletterContainer = newsletterContainer
+    override fun provideMarketplaceContainer(): MarketplaceContainer = marketplaceContainer
     override fun provideCodexContainer(): CodexContainer = codexContainer
     override fun provideMissionsContainer(): MissionsContainer = missionsContainer
     override fun provideMapViewerContainer(): MapViewerContainer = mapViewerContainer

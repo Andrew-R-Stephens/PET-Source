@@ -27,8 +27,8 @@ import com.tritiumgaming.shared.data.market.palette.usecase.GetPaletteByUUIDUseC
 import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
 import com.tritiumgaming.shared.data.market.typography.source.TypographyDatastore
 import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.setup.InitFlowGlobalPreferencesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.setup.SetupGlobalPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -42,8 +42,8 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.atomic.AtomicBoolean
 
 class PETActivityViewModel(
-    private val initGlobalPreferencesDataStoreUseCase: SetupGlobalPreferencesUseCase,
-    private val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase,
+    private val initGlobalPreferencesDataStoreUseCase: SetupUserPreferencesUseCase,
+    private val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
     private val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
 ): ViewModel() {
@@ -254,8 +254,8 @@ class PETActivityViewModel(
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
                 val container = (application as AppContainerProvider).provideAppContainer()
 
-                val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase = container.setupGlobalPreferencesUseCase
-                val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
+                val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase = container.setupGlobalPreferencesUseCase
+                val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
                 val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
                 val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
 
