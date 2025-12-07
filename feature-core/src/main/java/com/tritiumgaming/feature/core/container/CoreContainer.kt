@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.tritiumgaming.core.common.network.ConnectivityManagerHelper
 import com.tritiumgaming.data.account.repository.CredentialsRepositoryImpl
 import com.tritiumgaming.data.account.repository.FirestoreAccountRepositoryImpl
 import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
@@ -18,6 +19,13 @@ import com.tritiumgaming.data.language.source.datastore.LanguageDatastoreDataSou
 import com.tritiumgaming.data.language.source.local.LanguageLocalDataSource
 import com.tritiumgaming.data.marketplace.bundle.repository.MarketBundleRepositoryImpl
 import com.tritiumgaming.data.marketplace.bundle.source.remote.MarketBundleFirestoreDataSourceImpl
+import com.tritiumgaming.data.newsletter.repository.NewsletterRepositoryImpl
+import com.tritiumgaming.data.newsletter.source.datastore.NewsletterDatastoreDataSource
+import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSource
+import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSourceImpl
+import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
+import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
+import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
 import com.tritiumgaming.data.palette.repository.MarketPaletteRepositoryImpl
 import com.tritiumgaming.data.palette.repository.MarketTypographyRepositoryImpl
 import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
@@ -38,20 +46,6 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
-import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowCellularDataUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowIntroductionUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetDisableScreenSaverUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.setup.InitFlowGlobalPreferencesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.setup.SetupGlobalPreferencesUseCase
 import com.tritiumgaming.shared.data.language.repository.LanguageRepository
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetCurrentLanguageUseCase
@@ -72,18 +66,33 @@ import com.tritiumgaming.shared.data.market.typography.usecase.FindNextAvailable
 import com.tritiumgaming.shared.data.market.typography.usecase.GetAvailableTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
+import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
+import com.tritiumgaming.shared.data.newsletter.usecase.SetupNewsletterUseCase
+import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
+import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
 import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
 import com.tritiumgaming.shared.data.review.usecase.setup.InitFlowReviewTrackerUseCase
 import com.tritiumgaming.shared.data.review.usecase.setup.SetupReviewTrackerUseCase
-import com.tritiumgaming.shared.data.review.usecase.status.GetReviewRequestStatusUseCase
-import com.tritiumgaming.shared.data.review.usecase.status.LoadReviewRequestStatusUseCase
 import com.tritiumgaming.shared.data.review.usecase.status.SetReviewRequestStatusUseCase
-import com.tritiumgaming.shared.data.review.usecase.timealive.GetAppTimeAliveUseCase
-import com.tritiumgaming.shared.data.review.usecase.timealive.LoadAppTimeAliveUseCase
 import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUseCase
-import com.tritiumgaming.shared.data.review.usecase.timesopened.GetAppTimesOpenedUseCase
-import com.tritiumgaming.shared.data.review.usecase.timesopened.LoadAppTimesOpenedUseCase
+import com.tritiumgaming.shared.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
 import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
 import kotlinx.coroutines.Dispatchers
 
@@ -94,7 +103,49 @@ class CoreContainer(
     firebaseAuth: FirebaseAuth
 ) {
 
-    internal val globalPreferencesRepository: GlobalPreferencesRepository by lazy {
+    // Newsletter
+    private val newsletterRepository: NewsletterRepository by lazy {
+        val newsletterLocalDataSource: NewsletterLocalDataSource = NewsletterLocalDataSourceImpl(
+            applicationContext = applicationContext
+        )
+        val newsletterRemoteDataSource: NewsletterRemoteDataSource = NewsletterRemoteDataSourceImpl(
+            newsletterApi = NewsletterService(),
+            dispatcher = Dispatchers.IO
+        )
+        val newsletterDatastore = NewsletterDatastoreDataSource(
+            context = applicationContext,
+            dataStore = dataStore
+        )
+        val connectivityManagerHelper = ConnectivityManagerHelper(
+            applicationContext = applicationContext
+        )
+
+        NewsletterRepositoryImpl(
+            localDataSource = newsletterLocalDataSource,
+            remoteDataSource = newsletterRemoteDataSource,
+            dataStoreSource = newsletterDatastore,
+            connectivityManagerHelper = connectivityManagerHelper,
+            coroutineDispatcher = Dispatchers.IO
+        )
+    }
+    val setupNewsletterUseCase = SetupNewsletterUseCase(
+        repository = newsletterRepository
+    )
+    val getFlowNewsletterDatastoreUseCase = GetFlowNewsletterDatastoreUseCase(
+        repository = newsletterRepository
+    )
+    val getFlowNewsletterInboxesUseCase = GetFlowNewsletterInboxesUseCase(
+        repository = newsletterRepository
+    )
+    val getNewsletterInboxesUseCase = FetchNewsletterInboxesUseCase(
+        repository = newsletterRepository
+    )
+    val saveNewsletterInboxLastReadDateUseCase = SaveNewsletterInboxLastReadDateUseCase(
+        repository = newsletterRepository
+    )
+
+
+    val globalPreferencesRepository: GlobalPreferencesRepository by lazy {
         val globalPreferencesDataSource = GlobalPreferencesDatastoreDataSource(
             context = applicationContext,
             dataStore = dataStore
@@ -105,10 +156,10 @@ class CoreContainer(
         )
     }
 
-    val setupGlobalPreferencesUseCase = SetupGlobalPreferencesUseCase(
+    val setupGlobalPreferencesUseCase = SetupUserPreferencesUseCase(
         repository = globalPreferencesRepository
     )
-    val initFlowGlobalPreferencesUseCase = InitFlowGlobalPreferencesUseCase(
+    val initFlowGlobalPreferencesUseCase = InitFlowUserPreferencesUseCase(
         repository = globalPreferencesRepository
     )
     val setAllowCellularDataUseCase = SetAllowCellularDataUseCase(
@@ -228,12 +279,6 @@ class CoreContainer(
         )
     }
 
-    val getReviewRequestStatusUseCase = GetReviewRequestStatusUseCase(
-        repository = reviewTrackerRepository
-    )
-    val loadReviewRequestStatusUseCase = LoadReviewRequestStatusUseCase(
-        repository = reviewTrackerRepository
-    )
     val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
         repository = reviewTrackerRepository
     )
@@ -246,19 +291,10 @@ class CoreContainer(
     val setAppTimeAliveUseCase = SetAppTimeAliveUseCase(
         repository = reviewTrackerRepository
     )
-    val getAppTimeAliveUseCase = GetAppTimeAliveUseCase(
-        repository = reviewTrackerRepository
-    )
-    val loadAppTimeAliveUseCase = LoadAppTimeAliveUseCase(
-        repository = reviewTrackerRepository
-    )
     val setAppTimesOpenedUseCase = SetAppTimesOpenedUseCase(
         repository = reviewTrackerRepository
     )
-    val getAppTimesOpenedUseCase = GetAppTimesOpenedUseCase(
-        repository = reviewTrackerRepository
-    )
-    val loadAppTimesOpenedUseCase = LoadAppTimesOpenedUseCase(
+    val incrementAppTimesOpenedUseCase = IncrementAppTimesOpenedByUseCase(
         repository = reviewTrackerRepository
     )
 

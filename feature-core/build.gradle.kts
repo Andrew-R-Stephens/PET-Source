@@ -68,6 +68,7 @@ dependencies {
     implementation(project(":data-preferences"))
     implementation(project(":data-language"))
     implementation(project(":data-marketplace"))
+    implementation(project(":data-newsletter"))
     implementation(project(":data-typography"))
     implementation(project(":data-palette"))
     implementation(project(":data-review"))
@@ -79,5 +80,4 @@ dependencies {
     // implementation(project(":data-ghostname"))
     // implementation(project(":data-map"))
     // implementation(project(":data-mission"))
-    // implementation(project(":data-newsletter"))
 }
