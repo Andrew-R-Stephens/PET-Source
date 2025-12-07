@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.newsletter.screen
+package com.tritiumgaming.feature.newsletter.ui.screen
 
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 

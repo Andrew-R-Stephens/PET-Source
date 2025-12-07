@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.newsletter.screen
+package com.tritiumgaming.feature.newsletter.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -58,10 +58,9 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.app.mappers.toIconResource
-import com.tritiumgaming.feature.home.app.mappers.toStringResource
-import com.tritiumgaming.feature.home.ui.HomeScreen
-import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
+import com.tritiumgaming.feature.newsletter.app.mappers.toIconResource
+import com.tritiumgaming.feature.newsletter.app.mappers.toStringResource
+import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon
@@ -75,51 +74,47 @@ fun NewsInboxesScreen(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    HomeScreen {
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
-        Column(
+        NavigationHeader(
+            onLeftClick = { navController.popBackStack() }
+        )
+
+        Spacer(
             modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+                .height(8.dp)
+        )
 
-            NavigationHeader(
-                onLeftClick = { navController.popBackStack() }
-            )
-
-            Spacer(
-                modifier = Modifier
-                    .height(8.dp)
-            )
-
-            when(deviceConfiguration) {
-                DeviceConfiguration.MOBILE_PORTRAIT -> {
-                    NewsInboxesContentPortrait(
-                        navController = navController,
-                        newsletterViewModel = newsletterViewModel
-                    )
-                }
-                DeviceConfiguration.MOBILE_LANDSCAPE,
-                DeviceConfiguration.TABLET_PORTRAIT,
-                DeviceConfiguration.TABLET_LANDSCAPE,
-                DeviceConfiguration.DESKTOP -> {
-                    NewsInboxesContentLandscape(
-                        navController = navController,
-                        newsletterViewModel = newsletterViewModel
-                    )
-                }
+        when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                NewsInboxesContentPortrait(
+                    navController = navController,
+                    newsletterViewModel = newsletterViewModel
+                )
             }
-
-            BannerAd(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                adId = stringResource(R.string.ad_banner_1)
-            )
-
-            // AdmobBanner()
+            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                NewsInboxesContentLandscape(
+                    navController = navController,
+                    newsletterViewModel = newsletterViewModel
+                )
+            }
         }
 
+        BannerAd(
+            modifier = Modifier
+                .fillMaxWidth(),
+            adId = stringResource(R.string.ad_banner_1)
+        )
+
+        // AdmobBanner()
     }
 
 }

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.newsletter
+package com.tritiumgaming.feature.newsletter.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
-import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterInboxUiState
-import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterInboxesUiState
-import com.tritiumgaming.feature.home.ui.newsletter.screen.NewsletterRefreshingUiState
+import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainerProvider
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsletterInboxUiState
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsletterInboxesUiState
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsletterRefreshingUiState
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
@@ -31,10 +31,6 @@ class NewsletterViewModel(
     private val fetchNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
     private val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
 ): ViewModel() {
-
-    /*private val _inboxesUiState = MutableStateFlow<NewsletterInboxesUiState>(
-        NewsletterInboxesUiState())
-    val inboxesUiState = _inboxesUiState.asStateFlow()*/
 
     private val _inboxesUiState = getFlowNewsletterInboxesUseCase()
         .combine(getFlowNewsletterDatastoreUseCase()) { inboxes, datastore ->
@@ -64,19 +60,9 @@ class NewsletterViewModel(
         )
     val inboxesUiState = _inboxesUiState
 
-    /*private val _newsletterPreferencesState =
-        getFlowNewsletterDatastoreUseCase()
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = NewsletterDatastore.NewsletterPreferences(
-                    data = emptyMap()
-                )
-            )
-    val newsletterPreferencesState = _newsletterPreferencesState*/
-
     private val _refreshUiState = MutableStateFlow(
-        NewsletterRefreshingUiState())
+        NewsletterRefreshingUiState()
+    )
     val refreshUiState = _refreshUiState.asStateFlow()
 
     fun saveInboxLastReadDate(inboxId: String, date: Long) {
@@ -111,101 +97,6 @@ class NewsletterViewModel(
 
         }
     }
-
-    /*fun saveInboxLastReadDate(inboxId: String, date: Long) {
-        viewModelScope.launch {
-
-            try {
-                _inboxesUiState.update { inboxesUi ->
-
-                    val updatedInboxes = inboxesUi.inboxes.map { inbox ->
-                        if(inbox.inbox.id == inboxId) {
-                            if(date <= inbox.lastReadDate) {
-                                Log.d(
-                                    "NewsletterViewModel",
-                                    "Not updating inbox: $inboxId | $date is older than ${inbox.lastReadDate}"
-                                )
-                                inbox
-                            } else {
-                                Log.d(
-                                    "NewsletterViewModel",
-                                    "Updating inbox: $inboxId | From ${inbox.lastReadDate} to $date"
-                                )
-                                saveNewsletterInboxLastReadDateUseCase(inboxId, date)
-
-                                inbox.copy(
-                                    lastReadDate = date
-                                )
-                            }
-                        } else {
-                            Log.d("NewsletterViewModel", "No inbox found: $inboxId")
-                            inbox
-                        }
-                    }
-
-                    inboxesUi.copy(
-                        inboxes = updatedInboxes
-                    )
-                }
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            Log.d("NewsletterViewModel", "Updated inbox dates: ${inboxesUiState.value.inboxes.map { it.lastReadDate }}")
-
-        }
-    }*/
-
-    /*fun loadInboxes(
-        onStart: () -> Unit = {},
-        onComplete: () -> Unit = {},
-    ) {
-
-        viewModelScope.launch {
-
-            onStart()
-
-            try {
-                val fetchedInboxes = fetchNewsletterInboxesUseCase().getOrThrow()
-
-                _inboxesUiState.update {
-                    it.copy(
-                        inboxes = fetchedInboxes.map { inbox ->
-                            NewsletterInboxUiState(
-                                inbox = inbox,
-                                lastReadDate = 0L
-                            )
-                        }
-                    )
-                }
-
-                getFlowNewsletterDatastoreUseCase { preferences ->
-                    Log.d("NewsletterViewModel", "Datastore flow triggered")
-
-                    _inboxesUiState.update { inboxes ->
-                        val updatedInboxes = inboxes.inboxes.map { inbox ->
-                            inbox.copy(
-                                lastReadDate = (preferences.data[inbox.inbox.id] ?: inbox.lastReadDate)
-                            )
-                        }
-
-                        inboxes.copy(
-                            inboxes = updatedInboxes
-                        )
-                    }
-
-                    onComplete()
-                }
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            onComplete()
-
-        }
-    }*/
 
     fun refreshInboxes(
         onSuccess: () -> Unit = {},
@@ -254,8 +145,8 @@ class NewsletterViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
-                val container = (application as HomeContainerProvider).provideHomeContainer()
+                val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
+                val container = (application as NewsletterContainerProvider).provideNewsletterContainer()
 
                 NewsletterViewModel(
                     setupNewsletterDatastoreUseCase = container.setupNewsletterUseCase,
@@ -269,6 +160,5 @@ class NewsletterViewModel(
 
         private val MIN_REFRESH_WAIT_TIME = 30.seconds.inWholeMilliseconds
     }
-
 
 }

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.newsletter.screen
+package com.tritiumgaming.feature.newsletter.ui.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -59,9 +59,8 @@ import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.mappers.ToComposable
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.app.mappers.toStringResource
-import com.tritiumgaming.feature.home.ui.HomeScreen
-import com.tritiumgaming.feature.home.ui.newsletter.NewsletterViewModel
+import com.tritiumgaming.feature.newsletter.app.mappers.toStringResource
+import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
@@ -78,73 +77,73 @@ fun NewsMessagesScreen(
     val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
     val inboxes = inboxesUiState.value.inboxes
 
-    val inboxUiState = inboxes.first { inboxUiState -> inboxUiState.inbox.id == rememberInboxID }
+    if(inboxes.isEmpty()) { navController.popBackStack(); return }
+
+    val inboxUiState = inboxes.first { inboxUiState ->
+        inboxUiState.inbox.id == rememberInboxID }
     val inbox = inboxUiState.inbox
 
-    HomeScreen {
+    Column(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
 
-        Column(
+        NavigationHeader(
+            title = stringResource(inbox.title.toStringResource()),
+            onLeftClick = { navController.popBackStack() }
+        )
+
+        Spacer(
             modifier = Modifier
-                .fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
+                .height(8.dp)
+        )
 
-            NavigationHeader(
-                title = stringResource(inbox.title.toStringResource()),
-                onLeftClick = { navController.popBackStack() }
-            )
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-            Spacer(
-                modifier = Modifier
-                    .height(8.dp)
-            )
+        when (deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
 
-            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-            val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+                NewsMessagesContentCompactPortrait(
+                    navController = navController,
+                    newsletterViewModel = newsletterViewModel,
+                    inbox = inbox
+                )
 
-            when (deviceConfiguration) {
-                DeviceConfiguration.MOBILE_PORTRAIT -> {
-
-                    NewsMessagesContentCompactPortrait(
-                        navController = navController,
-                        newsletterViewModel = newsletterViewModel,
-                        inbox = inbox
-                    )
-
-                }
-
-                DeviceConfiguration.MOBILE_LANDSCAPE -> {
-
-                    NewsMessagesContentCompactLandscape(
-                        navController = navController,
-                        newsletterViewModel = newsletterViewModel,
-                        inbox = inbox
-                    )
-
-                }
-
-                DeviceConfiguration.TABLET_PORTRAIT,
-                DeviceConfiguration.TABLET_LANDSCAPE,
-                DeviceConfiguration.DESKTOP -> {
-                    NewsMessagesContentCompactLandscape(
-                        navController = navController,
-                        newsletterViewModel = newsletterViewModel,
-                        inbox = inbox
-                    )
-
-                }
             }
 
-            BannerAd(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                adId = stringResource(R.string.ad_banner_1)
-            )
+            DeviceConfiguration.MOBILE_LANDSCAPE -> {
 
-            //AdmobBanner()
+                NewsMessagesContentCompactLandscape(
+                    navController = navController,
+                    newsletterViewModel = newsletterViewModel,
+                    inbox = inbox
+                )
+
+            }
+
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                NewsMessagesContentCompactLandscape(
+                    navController = navController,
+                    newsletterViewModel = newsletterViewModel,
+                    inbox = inbox
+                )
+
+            }
         }
 
+        BannerAd(
+            modifier = Modifier
+                .fillMaxWidth(),
+            adId = stringResource(R.string.ad_banner_1)
+        )
+
+        //AdmobBanner()
     }
+
 
 }
 
