@@ -1,9 +1,12 @@
 package com.tritiumgaming.shared.data.review.usecase.setup
 
+import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
+
 class InitFlowReviewTrackerUseCase(
-        private val repository: com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
-    ) {
-    suspend operator fun invoke(onUpdate: (com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore.ReviewTrackerPreferences) -> Unit) =
-        repository.initDatastoreFlow()
-    }
+    private val repository: ReviewTrackerRepository
+) {
+
+    operator fun invoke() = repository.initDatastoreFlow()
+
+}
     

@@ -10,11 +10,11 @@ interface ReviewTrackerDatastore: DatastoreDataSource<ReviewTrackerDatastore.Rev
     suspend fun saveAppTimeAlive(time: Long)
     fun getAppTimeAlive(): Long
 
-    suspend fun saveAppTimesOpened(count: Int)
+    suspend fun saveAppTimesOpened(count: Int): Result<Boolean>
     fun getAppTimesOpened(): Int
 
     data class ReviewTrackerPreferences(
-        val allowRequestReview: Boolean,
+        val reviewRequested: Boolean,
         val timeActive: Long,
         val timesOpened: Int
     )

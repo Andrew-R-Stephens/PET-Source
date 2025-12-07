@@ -1,18 +1,26 @@
 package com.tritiumgaming.shared.data.review.repository
 
+import com.tritiumgaming.shared.data.datastore.DatastoreRepository
+import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
+
 interface ReviewTrackerRepository:
-    com.tritiumgaming.shared.data.datastore.DatastoreRepository<com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore.ReviewTrackerPreferences> {
+    DatastoreRepository<ReviewTrackerDatastore.ReviewTrackerPreferences> {
+
+    var appInitializationState: Int
 
     suspend fun saveWasRequestedStatus(wasRequested: Boolean)
     fun getWasRequestedStatus(): Boolean
-    suspend fun loadWasRequestedStatus()
 
     suspend fun saveAppTimeAlive(time: Long)
     fun getAppTimeAlive(): Long
-    suspend fun loadAppTimeAlive()
 
-    suspend fun saveAppTimesOpened(count: Int)
+    fun canIncrementAppTimesOpened(): Result<Boolean>
+    suspend fun saveAppTimesOpened(count: Int): Result<Boolean>
     fun getAppTimesOpened(): Int
-    suspend fun loadAppTimesOpened()
+
+    companion object {
+        const val NOT_INITIALIZED = 0
+        const val INITIALIZED = 0
+    }
 
 }

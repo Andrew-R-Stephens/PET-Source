@@ -1,12 +1,13 @@
 package com.tritiumgaming.shared.data.review.usecase.timesopened
 
+import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
+
 class SetAppTimesOpenedUseCase(
-    private val repository: com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
+    private val repository: ReviewTrackerRepository
 ) {
 
-    @Suppress("unused")
     suspend operator fun invoke(count: Int) {
-        repository.saveAppTimesOpened(count)
+        repository.saveAppTimesOpened(count).getOrThrow()
     }
 
 }
