@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.appinfo
+package com.tritiumgaming.feature.about.ui
 
 import android.content.Intent
 import androidx.compose.foundation.Image
@@ -68,7 +68,6 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.shared.data.contributor.model.Contributor
 import com.tritiumgaming.shared.core.ui.mappers.IconResources
 import org.jetbrains.annotations.TestOnly
@@ -91,40 +90,36 @@ fun InfoScreen(
     viewModel: AppInfoViewModel
 ) {
 
-    HomeScreen {
+    Column(
+        modifier = Modifier
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
+        NavigationHeader(
+            onLeftClick = { navController.popBackStack() }
+        )
 
-            NavigationHeader(
-                onLeftClick = { navController.popBackStack() }
-            )
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-            val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
-            when(deviceConfiguration) {
-                DeviceConfiguration.MOBILE_PORTRAIT -> {
-                    InfoContentPortrait(
-                        contributors = viewModel.contributorsList
-                    )
-                }
-                DeviceConfiguration.MOBILE_LANDSCAPE,
-                DeviceConfiguration.TABLET_PORTRAIT,
-                DeviceConfiguration.TABLET_LANDSCAPE,
-                DeviceConfiguration.DESKTOP -> {
-                    InfoContentLandscape(
-                        contributors = viewModel.contributorsList
-                    )
-                }
+        when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                InfoContentPortrait(
+                    contributors = viewModel.contributorsList
+                )
             }
-
+            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                InfoContentLandscape(
+                    contributors = viewModel.contributorsList
+                )
+            }
         }
-    }
 
+    }
 }
 
 @Composable

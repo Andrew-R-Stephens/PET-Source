@@ -1,10 +1,10 @@
-package com.tritiumgaming.feature.home.ui.appinfo
+package com.tritiumgaming.feature.about.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
+import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
 import com.tritiumgaming.shared.data.contributor.model.Contributor
 import com.tritiumgaming.shared.data.contributor.usecase.ContributorsUseCase
 
@@ -24,8 +24,8 @@ class AppInfoViewModel(
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
-                val container = (application as HomeContainerProvider).provideHomeContainer()
+                val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
+                val container = (application as AboutContainerProvider).provideAboutContainer()
 
                 val getSpecialThanksUseCase: ContributorsUseCase =
                     container.getContributorsUseCase
