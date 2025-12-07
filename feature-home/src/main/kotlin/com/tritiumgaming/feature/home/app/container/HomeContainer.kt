@@ -23,17 +23,7 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.contributor.repository.ContributorRepository
 import com.tritiumgaming.shared.data.contributor.usecase.ContributorsUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowCellularDataUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowIntroductionUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetDisableScreenSaverUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.setup.InitFlowGlobalPreferencesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.setup.SetupGlobalPreferencesUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
-import com.tritiumgaming.shared.data.language.usecase.GetCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
@@ -48,23 +38,21 @@ import com.tritiumgaming.shared.data.market.typography.usecase.FindNextAvailable
 import com.tritiumgaming.shared.data.market.typography.usecase.GetAvailableTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
-import com.tritiumgaming.shared.data.review.usecase.setup.InitFlowReviewTrackerUseCase
-import com.tritiumgaming.shared.data.review.usecase.setup.SetupReviewTrackerUseCase
-import com.tritiumgaming.shared.data.review.usecase.status.GetReviewRequestStatusUseCase
-import com.tritiumgaming.shared.data.review.usecase.status.LoadReviewRequestStatusUseCase
-import com.tritiumgaming.shared.data.review.usecase.status.SetReviewRequestStatusUseCase
-import com.tritiumgaming.shared.data.review.usecase.timealive.GetAppTimeAliveUseCase
-import com.tritiumgaming.shared.data.review.usecase.timealive.LoadAppTimeAliveUseCase
-import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUseCase
-import com.tritiumgaming.shared.data.review.usecase.timesopened.GetAppTimesOpenedUseCase
-import com.tritiumgaming.shared.data.review.usecase.timesopened.LoadAppTimesOpenedUseCase
-import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
 import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SetupNewsletterUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers
 
 class HomeContainer(
@@ -77,8 +65,8 @@ class HomeContainer(
     val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
-    val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase,
-    val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase,
+    val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
+    val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     val setAllowCellularDataUseCase: SetAllowCellularDataUseCase,
     val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase,
     val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
@@ -92,7 +80,6 @@ class HomeContainer(
     val initLanguageDataStoreUseCase: SetupLanguageUseCase,
     val initFlowLanguageUseCase: InitFlowLanguageUseCase,
     val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
-    val getCurrentLanguageUseCase: GetCurrentLanguageUseCase,
     val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
     val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     val getAvailableTypographiesUseCase: GetAvailableTypographiesUseCase,
@@ -102,17 +89,6 @@ class HomeContainer(
     val getAvailablePalettesUseCase: GetAvailablePalettesUseCase,
     val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
     val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase,
-    val initReviewTrackerDataStoreUseCase: SetupReviewTrackerUseCase,
-    val initFlowReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
-    val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
-    val getReviewRequestStatusUseCase: GetReviewRequestStatusUseCase,
-    val loadReviewRequestStatusUseCase: LoadReviewRequestStatusUseCase,
-    val setAppTimeAliveUseCase: SetAppTimeAliveUseCase,
-    val getAppTimeAliveUseCase: GetAppTimeAliveUseCase,
-    val loadAppTimeAliveUseCase: LoadAppTimeAliveUseCase,
-    val setAppTimesOpenedUseCase: SetAppTimesOpenedUseCase,
-    val getAppTimesOpenedUseCase: GetAppTimesOpenedUseCase,
-    val loadAppTimesOpenedUseCase: LoadAppTimesOpenedUseCase
 ) {
 
     // App Info

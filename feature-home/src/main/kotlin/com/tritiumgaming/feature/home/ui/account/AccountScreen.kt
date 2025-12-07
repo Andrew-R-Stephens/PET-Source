@@ -87,27 +87,24 @@ fun AccountScreen(
     accountViewModel: AccountScreenViewModel
 ) {
 
-    HomeScreen {
+    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+    val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
-        when(deviceConfiguration) {
-            DeviceConfiguration.MOBILE_PORTRAIT -> {
-                AccountContentPortrait(
-                    navController = navController,
-                    accountViewModel = accountViewModel
-                )
-            }
-            DeviceConfiguration.MOBILE_LANDSCAPE,
-            DeviceConfiguration.TABLET_PORTRAIT,
-            DeviceConfiguration.TABLET_LANDSCAPE,
-            DeviceConfiguration.DESKTOP -> {
-                AccountContentLandscape(
-                    navController = navController,
-                    accountViewModel = accountViewModel
-                )
-            }
+    when(deviceConfiguration) {
+        DeviceConfiguration.MOBILE_PORTRAIT -> {
+            AccountContentPortrait(
+                navController = navController,
+                accountViewModel = accountViewModel
+            )
+        }
+        DeviceConfiguration.MOBILE_LANDSCAPE,
+        DeviceConfiguration.TABLET_PORTRAIT,
+        DeviceConfiguration.TABLET_LANDSCAPE,
+        DeviceConfiguration.DESKTOP -> {
+            AccountContentLandscape(
+                navController = navController,
+                accountViewModel = accountViewModel
+            )
         }
     }
 }

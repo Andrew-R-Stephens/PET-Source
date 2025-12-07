@@ -64,51 +64,43 @@ private fun SettingsScreenPreview() {
 
 @Composable
 fun SettingsScreen(
-    modifier: Modifier = Modifier
-        .fillMaxSize(),
     settingsViewModel: SettingsScreenViewModel =
         viewModel(factory = SettingsScreenViewModel.Factory),
     navController: NavController = rememberNavController()
 ) {
 
-    HomeScreen(
-        modifier = modifier
+    Column(
+        modifier = Modifier
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
+        NavigationHeader(
+            onLeftClick = { navController.popBackStack() }
+        )
 
-            NavigationHeader(
-                onLeftClick = { navController.popBackStack() }
-            )
+        Spacer(modifier = Modifier.height(16.dp))
 
-            Spacer(modifier = Modifier.height(16.dp))
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-            val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
-            when(deviceConfiguration) {
-                DeviceConfiguration.MOBILE_PORTRAIT -> {
-                    SettingsContentPortrait(
-                        settingsViewModel = settingsViewModel,
-                    )
-                }
-                DeviceConfiguration.MOBILE_LANDSCAPE,
-                DeviceConfiguration.TABLET_PORTRAIT,
-                DeviceConfiguration.TABLET_LANDSCAPE,
-                DeviceConfiguration.DESKTOP -> {
-                    SettingsContentLandscape(
-                        settingsViewModel = settingsViewModel
-                    )
-                }
+        when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                SettingsContentPortrait(
+                    settingsViewModel = settingsViewModel,
+                )
             }
-
+            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                SettingsContentLandscape(
+                    settingsViewModel = settingsViewModel
+                )
+            }
         }
-    }
 
+    }
 }
 
 @Composable

@@ -14,15 +14,15 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
 import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowCellularDataUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetAllowIntroductionUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetDisableScreenSaverUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.setup.InitFlowGlobalPreferencesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.setup.SetupGlobalPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.source.PaletteDatastore
@@ -42,8 +42,8 @@ import kotlinx.coroutines.launch
 
 class SettingsScreenViewModel(
     // Global Preferences
-    private val initGlobalPreferencesDataStoreUseCase: SetupGlobalPreferencesUseCase,
-    private val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase,
+    private val initGlobalPreferencesDataStoreUseCase: SetupUserPreferencesUseCase,
+    private val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     private val setAllowCellularDataUseCase: SetAllowCellularDataUseCase,
     private val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
     private val setDisableScreenSaverUseCase: SetDisableScreenSaverUseCase,
@@ -226,8 +226,8 @@ class SettingsScreenViewModel(
                 val container = (application as HomeContainerProvider).provideHomeContainer()
 
                 // Global Preferences
-                val setupGlobalPreferencesUseCase: SetupGlobalPreferencesUseCase = container.setupGlobalPreferencesUseCase
-                val initFlowGlobalPreferencesUseCase: InitFlowGlobalPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
+                val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase = container.setupGlobalPreferencesUseCase
+                val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
                 val setAllowCellularDataUseCase: SetAllowCellularDataUseCase = container.setAllowCellularDataUseCase
                 val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase = container.setAllowHuntWarnAudioUseCase
                 val setAllowIntroductionUseCase: SetAllowIntroductionUseCase = container.setAllowIntroductionUseCase

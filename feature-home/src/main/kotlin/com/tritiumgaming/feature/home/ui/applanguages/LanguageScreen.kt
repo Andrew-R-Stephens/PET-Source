@@ -64,24 +64,20 @@ fun LanguageScreen(
     viewModel: LanguageScreenViewModel
 ) {
 
-    HomeScreen {
+    Column(
+        modifier = Modifier
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
-        Column(
-            modifier = Modifier
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        NavigationHeader(
+            onLeftClick = { navController.popBackStack() }
+        )
 
-            NavigationHeader(
-                onLeftClick = { navController.popBackStack() }
-            )
-
-            LanguageContent(
-                viewModel = viewModel
-            )
-        }
-
+        LanguageContent(
+            viewModel = viewModel
+        )
     }
 
 }
