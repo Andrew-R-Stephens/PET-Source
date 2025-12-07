@@ -30,11 +30,8 @@ class ReviewTrackerDatastoreDataSource(
 
     val flow: Flow<ReviewTrackerDatastore.ReviewTrackerPreferences> = dataStore.data
         .catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
+            if (exception is IOException) { emit(emptyPreferences()) }
+            else { throw exception }
         }
         .map { preferences ->
             mapPreferences(preferences)
@@ -81,15 +78,18 @@ class ReviewTrackerDatastoreDataSource(
         return timeAlive
     }
 
-    override suspend fun saveAppTimesOpened(count: Int) {
+    override suspend fun saveAppTimesOpened(count: Int): Result<Boolean> {
         dataStore.edit { preferences ->
             preferences[KEY_TIMES_OPENED] = count
+            Log.d("ReviewTrackingRepository", "save times opened: $count")
         }
+        return Result.success(true)
     }
     override fun getAppTimesOpened(): Int {
         var timesOpened = 0
         dataStore.data.map  { preferences ->
             timesOpened = (preferences[KEY_TIMES_OPENED] ?: 0)
+            Log.d("ReviewTrackingRepository", "get times opened: $timesOpened")
         }
         return timesOpened
     }
@@ -106,8 +106,8 @@ class ReviewTrackerDatastoreDataSource(
     private fun mapPreferences(preferences: Preferences): ReviewTrackerDatastore.ReviewTrackerPreferences {
         return ReviewTrackerDatastore.ReviewTrackerPreferences(
             timeActive = preferences[KEY_TIME_ACTIVE] ?: 0L,
-            timesOpened = preferences[KEY_TIMES_OPENED] ?: 0,
-            allowRequestReview = preferences[KEY_ALLOW_REQUEST_REVIEW] == true,
+            timesOpened = preferences[KEY_TIMES_OPENED] ?: 5,
+            reviewRequested = preferences[KEY_ALLOW_REQUEST_REVIEW] == true,
         )
     }
 
