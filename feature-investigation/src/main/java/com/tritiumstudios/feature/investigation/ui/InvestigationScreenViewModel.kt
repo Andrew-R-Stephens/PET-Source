@@ -10,10 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase

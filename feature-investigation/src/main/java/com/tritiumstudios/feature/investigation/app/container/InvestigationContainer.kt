@@ -24,10 +24,10 @@ import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSo
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.preferences.GetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.data.codex.repository.CodexRepository
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
