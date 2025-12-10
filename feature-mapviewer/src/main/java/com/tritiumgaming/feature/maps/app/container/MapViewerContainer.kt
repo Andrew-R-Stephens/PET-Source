@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps.app.container
+package com.tritiumgaming.feature.maps.app.container
 
 import android.content.Context
 import com.tritiumgaming.data.map.complex.repository.ComplexMapRepositoryImpl

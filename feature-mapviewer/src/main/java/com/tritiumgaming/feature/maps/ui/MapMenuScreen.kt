@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps.ui
+package com.tritiumgaming.feature.maps.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -44,8 +44,8 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
-import com.tritiumstudios.feature.maps.app.mappers.map.toDrawableResource
-import com.tritiumstudios.feature.maps.app.mappers.map.toStringResource
+import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
+import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
 
 @Composable
 fun MapMenuScreen(

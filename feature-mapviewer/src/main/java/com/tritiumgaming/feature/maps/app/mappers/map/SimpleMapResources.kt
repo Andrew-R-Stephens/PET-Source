@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps.app.mappers.map
+package com.tritiumgaming.feature.maps.app.mappers.map
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps.ui.mapdisplay.model
+package com.tritiumgaming.feature.maps.ui.mapdisplay.model
 
 import android.graphics.BitmapFactory
 import android.graphics.Matrix

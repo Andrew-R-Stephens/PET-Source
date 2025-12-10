@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps
+package com.tritiumgaming.feature.maps
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps.ui.mapdisplay
+package com.tritiumgaming.feature.maps.ui.mapdisplay
 
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
@@ -90,10 +90,10 @@ import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint
 import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import com.tritiumstudios.feature.maps.app.mappers.map.toDrawableResource
-import com.tritiumstudios.feature.maps.app.mappers.map.toStringResource
-import com.tritiumstudios.feature.maps.ui.MapsScreenViewModel
-import com.tritiumstudios.feature.maps.ui.mapdisplay.model.InteractiveViewController
+import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
+import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
+import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
+import com.tritiumgaming.feature.maps.ui.mapdisplay.model.InteractiveViewController
 
 
 @Composable

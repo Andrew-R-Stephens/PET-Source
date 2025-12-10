@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps.app.container
+package com.tritiumgaming.feature.maps.app.container
 
 interface MapViewerContainerProvider {
 

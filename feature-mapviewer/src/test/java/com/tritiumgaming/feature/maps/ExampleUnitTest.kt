@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.codex
+package com.tritiumgaming.feature.maps
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

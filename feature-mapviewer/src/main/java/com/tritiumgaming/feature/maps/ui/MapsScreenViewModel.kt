@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps.ui
+package com.tritiumgaming.feature.maps.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -18,8 +18,8 @@ import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
 import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapFloorIndexUseCase
-import com.tritiumstudios.feature.maps.app.container.MapViewerContainerProvider
-import com.tritiumstudios.feature.maps.ui.mapdisplay.InteractiveMapUiState
+import com.tritiumgaming.feature.maps.app.container.MapViewerContainerProvider
+import com.tritiumgaming.feature.maps.ui.mapdisplay.InteractiveMapUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

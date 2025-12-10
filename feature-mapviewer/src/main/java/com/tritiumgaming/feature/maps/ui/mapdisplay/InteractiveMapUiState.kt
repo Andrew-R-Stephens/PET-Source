@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.maps.ui.mapdisplay
+package com.tritiumgaming.feature.maps.ui.mapdisplay
 
 import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
 
