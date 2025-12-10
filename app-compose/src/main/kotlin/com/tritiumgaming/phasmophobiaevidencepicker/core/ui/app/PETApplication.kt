@@ -11,8 +11,6 @@ import com.google.firebase.firestore.firestore
 import com.tritiumgaming.feature.about.app.container.AboutContainer
 import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
 import com.tritiumgaming.feature.core.container.CoreContainer
-import com.tritiumgaming.feature.home.app.container.HomeContainer
-import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainer
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainer
@@ -21,14 +19,20 @@ import com.tritiumgaming.feature.start.app.container.StartContainer
 import com.tritiumgaming.feature.start.app.container.StartContainerProvider
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
-import com.tritiumstudios.feature.codex.app.container.CodexContainer
-import com.tritiumstudios.feature.codex.app.container.CodexContainerProvider
-import com.tritiumstudios.feature.investigation.app.container.InvestigationContainer
-import com.tritiumstudios.feature.investigation.app.container.InvestigationContainerProvider
-import com.tritiumstudios.feature.maps.app.container.MapViewerContainer
-import com.tritiumstudios.feature.maps.app.container.MapViewerContainerProvider
-import com.tritiumstudios.feature.missions.app.container.MissionsContainer
-import com.tritiumstudios.feature.missions.app.container.MissionsContainerProvider
+import com.tritiumgaming.feature.account.app.container.AccountContainer
+import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
+import com.tritiumgaming.feature.codex.app.container.CodexContainer
+import com.tritiumgaming.feature.codex.app.container.CodexContainerProvider
+import com.tritiumgaming.feature.investigation.app.container.InvestigationContainer
+import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
+import com.tritiumgaming.feature.language.app.container.LanguageContainer
+import com.tritiumgaming.feature.language.app.container.LanguageContainerProvider
+import com.tritiumgaming.feature.maps.app.container.MapViewerContainer
+import com.tritiumgaming.feature.maps.app.container.MapViewerContainerProvider
+import com.tritiumgaming.feature.missions.app.container.MissionsContainer
+import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
+import com.tritiumgaming.feature.settings.app.container.SettingsContainer
+import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
 
@@ -41,7 +45,9 @@ val Context.dataStore by preferencesDataStore(
 
 class PETApplication : Application(),
     AppContainerProvider,
-    HomeContainerProvider,
+    AccountContainerProvider,
+    LanguageContainerProvider,
+    SettingsContainerProvider,
     StartContainerProvider,
     AboutContainerProvider,
     NewsletterContainerProvider,
@@ -67,7 +73,9 @@ class PETApplication : Application(),
 
     lateinit var appContainer: AppContainer
 
-    lateinit var homeContainer: HomeContainer
+    lateinit var accountContainer: AccountContainer
+    lateinit var languageContainer: LanguageContainer
+    lateinit var settingsContainer: SettingsContainer
     lateinit var aboutContainer: AboutContainer
     lateinit var startContainer: StartContainer
     lateinit var newsletterContainer: NewsletterContainer
@@ -91,26 +99,17 @@ class PETApplication : Application(),
             getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,
         )
 
-        homeContainer = HomeContainer(
-            applicationContext = applicationContext,
-            dataStore = dataStore,
+        accountContainer = AccountContainer(
             getSignInCredentialsUseCase = coreContainer.getSignInCredentialsUseCase,
             signInAccountUseCase = coreContainer.signInAccountUseCase,
             signOutAccountUseCase = coreContainer.signOutAccountUseCase,
             deactivateAccountUseCase = coreContainer.deactivateAccountUseCase,
             observeAccountCreditsUseCase = coreContainer.observeAccountCreditsUseCase,
             observeAccountUnlockedPalettesUseCase = coreContainer.observeAccountUnlockedPalettesUseCase,
-            observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase,
-            setupGlobalPreferencesUseCase = coreContainer.setupGlobalPreferencesUseCase,
-            // Global Preferences
-            initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
-            setAllowCellularDataUseCase = coreContainer.setAllowCellularDataUseCase,
-            setAllowHuntWarnAudioUseCase = coreContainer.setAllowHuntWarnAudioUseCase,
-            setAllowIntroductionUseCase = coreContainer.setAllowIntroductionUseCase,
-            setDisableScreenSaverUseCase = coreContainer.setDisableScreenSaverUseCase,
-            setEnableGhostReorderUseCase = coreContainer.setEnableGhostReorderUseCase,
-            setEnableRTLUseCase = coreContainer.setEnableRTLUseCase,
-            setMaxHuntWarnFlashTimeUseCase = coreContainer.setMaxHuntWarnFlashTimeUseCase,
+            observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase
+        )
+
+        languageContainer = LanguageContainer(
             // Languages
             getAvailableLanguagesUseCase = coreContainer.getLanguagesUseCase,
             getDefaultLanguageUseCase = coreContainer.getDefaultLanguageUseCase,
@@ -119,14 +118,25 @@ class PETApplication : Application(),
             initFlowLanguageUseCase = coreContainer.initFlowLanguageUseCase,
             saveCurrentLanguageUseCase = coreContainer.saveCurrentLanguageUseCase,
             loadCurrentLanguageUseCase = coreContainer.loadCurrentLanguageUseCase,
+        )
+
+        settingsContainer = SettingsContainer(
+            // Global Preferences
+            setupGlobalPreferencesUseCase = coreContainer.setupGlobalPreferencesUseCase,
+            initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
+            setAllowCellularDataUseCase = coreContainer.setAllowCellularDataUseCase,
+            setAllowHuntWarnAudioUseCase = coreContainer.setAllowHuntWarnAudioUseCase,
+            setAllowIntroductionUseCase = coreContainer.setAllowIntroductionUseCase,
+            setDisableScreenSaverUseCase = coreContainer.setDisableScreenSaverUseCase,
+            setEnableGhostReorderUseCase = coreContainer.setEnableGhostReorderUseCase,
+            setEnableRTLUseCase = coreContainer.setEnableRTLUseCase,
+            setMaxHuntWarnFlashTimeUseCase = coreContainer.setMaxHuntWarnFlashTimeUseCase,
             // Typographies
-            getAvailableTypographiesUseCase = coreContainer.getAvailableTypographiesUseCase,
             saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
             getTypographyByUUIDUseCase = coreContainer.getTypographyByUUIDUseCase,
             findNextAvailableTypographyUseCase = coreContainer.findNextAvailableTypographyUseCase,
             // Palettes
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
-            getAvailablePalettesUseCase = coreContainer.getAvailablePalettesUseCase,
             getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,
             findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase
         )
@@ -200,7 +210,9 @@ class PETApplication : Application(),
     }
 
     override fun provideAppContainer(): AppContainer = appContainer
-    override fun provideHomeContainer(): HomeContainer = homeContainer
+    override fun provideAccountContainer(): AccountContainer = accountContainer
+    override fun provideLanguageContainer(): LanguageContainer = languageContainer
+    override fun provideSettingsContainer(): SettingsContainer = settingsContainer
     override fun provideStartContainer(): StartContainer = startContainer
     override fun provideAboutContainer(): AboutContainer = aboutContainer
     override fun provideNewsletterContainer(): NewsletterContainer = newsletterContainer

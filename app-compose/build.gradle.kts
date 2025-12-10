@@ -285,6 +285,9 @@ dependencies {
     implementation(project(":feature-core"))
 
     implementation(project(":feature-start"))
+    implementation(project(":feature-account"))
+    implementation(project(":feature-settings"))
+    implementation(project(":feature-language"))
     implementation(project(":feature-home"))
     implementation(project(":feature-about"))
     implementation(project(":feature-newsletter"))
