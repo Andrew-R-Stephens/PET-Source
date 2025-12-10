@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.applanguages
+package com.tritiumgaming.feature.language.ui
 
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.shared.data.language.model.LanguageEntity
 import com.tritiumgaming.shared.data.language.source.LanguageDatastore
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
@@ -18,6 +17,7 @@ import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetupLanguageUseCase
+import com.tritiumgaming.feature.language.app.container.LanguageContainerProvider
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -98,8 +98,8 @@ class LanguageScreenViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
-                val container = (application as HomeContainerProvider).provideHomeContainer()
+                val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
+                val container = (application as LanguageContainerProvider).provideLanguageContainer()
 
                 val getLanguagesUseCase: GetAvailableLanguagesUseCase = container.getAvailableLanguagesUseCase
                 val getDefaultLanguageUseCase: GetDefaultLanguageUseCase = container.getDefaultLanguageUseCase

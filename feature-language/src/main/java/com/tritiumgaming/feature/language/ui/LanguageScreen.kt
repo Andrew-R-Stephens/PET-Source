@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.applanguages
+package com.tritiumgaming.feature.language.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -48,7 +48,6 @@ import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
 import com.tritiumgaming.core.ui.mappers.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.shared.data.language.model.LanguageEntity
 
 @Composable
