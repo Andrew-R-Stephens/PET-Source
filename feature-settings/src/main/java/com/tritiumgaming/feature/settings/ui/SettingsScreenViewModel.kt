@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.appsettings
+package com.tritiumgaming.feature.settings.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -13,7 +13,6 @@ import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
-import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
@@ -34,6 +33,7 @@ import com.tritiumgaming.shared.data.market.typography.source.TypographyDatastor
 import com.tritiumgaming.shared.data.market.typography.usecase.FindNextAvailableTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -222,8 +222,8 @@ class SettingsScreenViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
-                val container = (application as HomeContainerProvider).provideHomeContainer()
+                val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
+                val container = (application as SettingsContainerProvider).provideSettingsContainer()
 
                 // Global Preferences
                 val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase = container.setupGlobalPreferencesUseCase

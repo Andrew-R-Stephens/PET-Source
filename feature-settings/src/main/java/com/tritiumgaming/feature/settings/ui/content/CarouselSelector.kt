@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.appsettings.content
+package com.tritiumgaming.feature.settings.ui.content
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image

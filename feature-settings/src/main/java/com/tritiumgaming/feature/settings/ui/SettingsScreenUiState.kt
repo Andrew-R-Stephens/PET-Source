@@ -1,6 +1,4 @@
-package com.tritiumgaming.feature.home.ui.appsettings
-
-import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreenViewModel.Companion.FOREVER
+package com.tritiumgaming.feature.settings.ui
 
 data class SettingsScreenUiState(
     val screensaverPreference: Boolean = false,
@@ -9,5 +7,5 @@ data class SettingsScreenUiState(
     val ghostReorderPreference: Boolean = true,
     val introductionPermissionPreference: Boolean = true,
     val rTLPreference: Boolean = true,
-    val huntWarnDurationPreference: Long = FOREVER
+    val huntWarnDurationPreference: Long = SettingsScreenViewModel.Companion.FOREVER
 )

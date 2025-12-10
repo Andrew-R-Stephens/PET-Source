@@ -1,5 +1,6 @@
-package com.tritiumgaming.feature.home.ui.appsettings
+package com.tritiumgaming.feature.settings.ui
 
+import com.tritiumgaming.core.resources.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -38,7 +39,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
-import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
@@ -47,10 +47,9 @@ import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.HomeScreen
-import com.tritiumgaming.feature.home.ui.appsettings.content.CarouselComposable
-import com.tritiumgaming.feature.home.ui.appsettings.content.HuntTimeoutPreferenceSeekbar
-import com.tritiumgaming.feature.home.ui.appsettings.content.LabeledSwitch
+import com.tritiumgaming.feature.settings.ui.content.CarouselComposable
+import com.tritiumgaming.feature.settings.ui.content.HuntTimeoutPreferenceSeekbar
+import com.tritiumgaming.feature.settings.ui.content.LabeledSwitch
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.annotations.TestOnly

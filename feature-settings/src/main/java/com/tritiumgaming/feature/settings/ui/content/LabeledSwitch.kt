@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.appsettings.content
+package com.tritiumgaming.feature.settings.ui.content
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

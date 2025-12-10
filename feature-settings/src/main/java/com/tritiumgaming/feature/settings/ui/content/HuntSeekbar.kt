@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.appsettings.content
+package com.tritiumgaming.feature.settings.ui.content
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -47,9 +47,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreenViewModel
-import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreenViewModel.Companion.percentAsTime
-import com.tritiumgaming.feature.home.ui.appsettings.SettingsScreenViewModel.Companion.timeAsPercent
+import com.tritiumgaming.feature.settings.ui.SettingsScreenViewModel
 import org.jetbrains.annotations.TestOnly
 import java.lang.String.format
 import java.util.Locale
@@ -73,7 +71,7 @@ private fun HuntSeekbarPreview() {
 @Composable
 fun HuntTimeoutPreferenceSeekbar(
     settingsViewModel: SettingsScreenViewModel =
-        viewModel ( factory = SettingsScreenViewModel.Factory ),
+        viewModel ( factory = SettingsScreenViewModel.Companion.Factory ),
     containerColor: Color = Color.White,
     textColor: Color = Color.White,
     inactiveTrackColor: Color = Color.White,
@@ -87,21 +85,21 @@ fun HuntTimeoutPreferenceSeekbar(
     val huntWarnDuration = settingsScreenUiState.value.huntWarnDurationPreference
 
     var rememberSliderPosition by remember { mutableFloatStateOf(
-        timeAsPercent(huntWarnDuration)
+        SettingsScreenViewModel.Companion.timeAsPercent(huntWarnDuration)
     ) }
 
     LaunchedEffect(huntWarnDuration) {
-        rememberSliderPosition = timeAsPercent(huntWarnDuration)
+        rememberSliderPosition = SettingsScreenViewModel.Companion.timeAsPercent(huntWarnDuration)
     }
 
     val rememberSliderState =
         rememberSliderState(
-            value = timeAsPercent(huntWarnDuration),
+            value = SettingsScreenViewModel.Companion.timeAsPercent(huntWarnDuration),
             valueRange = 0f..1f,
             steps = 100,
             onValueChangeFinished = {
                 settingsViewModel.setHuntWarnDurationPreference(
-                    percentAsTime(rememberSliderPosition)
+                    SettingsScreenViewModel.Companion.percentAsTime(rememberSliderPosition)
                 )
                 //rememberSliderPosition = PhaseHandler.timeAsPercent(timeoutState.value)
                 Log.d("Slider",
@@ -150,7 +148,7 @@ fun HuntTimeoutPreferenceSeekbar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                val millis = percentAsTime(rememberSliderPosition)
+                val millis = SettingsScreenViewModel.Companion.percentAsTime(rememberSliderPosition)
                 val minutes = millis / 1000 / 60
                 val seconds = millis / 1000 % 60
                 val time = format(Locale.US, "%2dm %2ds", minutes, seconds)
@@ -179,7 +177,7 @@ fun HuntTimeoutPreferenceSeekbar(
                     },
                     onValueChangeFinished = {
                         settingsViewModel.setHuntWarnDurationPreference(
-                            percentAsTime(rememberSliderPosition)
+                            SettingsScreenViewModel.Companion.percentAsTime(rememberSliderPosition)
                         )
                         Log.d("Slider",
                             "Slider finished $rememberSliderPosition $huntWarnDuration")
