@@ -39,7 +39,12 @@ include(
 include(
     ":feature-operation",
     ":feature-home",
-    ":feature-core"
+    ":feature-core",
+    ":feature-codex",
+    ":feature-investigation",
+    ":feature-missions",
+    ":feature-mapviewer",
+    ":feature-ghostbox"
 )
 
 include(
@@ -62,12 +67,11 @@ include(
     ":data-typography",
     ":database-unknown",
 )
-include(":feature-codex")
-include(":feature-investigation")
-include(":feature-missions")
-include(":feature-mapviewer")
-include(":feature-ghostbox")
 include(":feature-marketplace")
 include(":feature-newsletter")
 include(":feature-about")
 include(":feature-start")
+include(":feature-settings")
+include(":feature-language")
+include(":feature-account")
+include(":feature-introduciton")
