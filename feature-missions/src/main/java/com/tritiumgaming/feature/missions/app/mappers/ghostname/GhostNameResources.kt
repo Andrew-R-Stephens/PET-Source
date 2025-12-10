@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.missions.app.mappers.ghostname
+package com.tritiumgaming.feature.missions.app.mappers.ghostname
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R

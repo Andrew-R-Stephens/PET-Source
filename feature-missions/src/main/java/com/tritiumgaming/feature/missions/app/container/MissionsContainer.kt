@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.missions.app.container
+package com.tritiumgaming.feature.missions.app.container
 
 import android.content.Context
 import com.tritiumgaming.data.ghostname.repository.GhostNameRepositoryImpl

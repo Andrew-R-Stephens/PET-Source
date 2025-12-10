@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.missions.ui
+package com.tritiumgaming.feature.missions.ui
 
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 

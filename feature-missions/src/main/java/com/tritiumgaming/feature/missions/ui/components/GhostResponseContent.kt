@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.missions.ui.components
+package com.tritiumgaming.feature.missions.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -31,10 +31,10 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
-import com.tritiumstudios.feature.missions.ui.DifficultyUiState
-import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel.Companion.ALONE
-import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel.Companion.GROUP
-import com.tritiumstudios.feature.missions.ui.Response
+import com.tritiumgaming.feature.missions.ui.DifficultyUiState
+import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.ALONE
+import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.GROUP
+import com.tritiumgaming.feature.missions.ui.Response
 
 @Composable
 fun GhostResponseContent(

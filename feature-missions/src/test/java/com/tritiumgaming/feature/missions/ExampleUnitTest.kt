@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.missions
+package com.tritiumgaming.feature.missions
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

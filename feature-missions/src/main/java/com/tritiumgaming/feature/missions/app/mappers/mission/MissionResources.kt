@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.missions.app.mappers.mission
+package com.tritiumgaming.feature.missions.app.mappers.mission
 
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.data.mission.mappers.MissionResources

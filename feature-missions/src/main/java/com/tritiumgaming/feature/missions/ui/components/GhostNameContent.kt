@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.missions.ui.components
+package com.tritiumgaming.feature.missions.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -42,8 +42,8 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.data.ghostname.mappers.GhostNameResources
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
-import com.tritiumstudios.feature.missions.app.mappers.ghostname.toStringResource
-import com.tritiumstudios.feature.missions.ui.ObjectivesViewModel
+import com.tritiumgaming.feature.missions.app.mappers.ghostname.toStringResource
+import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
 
 @Composable
 fun GhostNameContent(

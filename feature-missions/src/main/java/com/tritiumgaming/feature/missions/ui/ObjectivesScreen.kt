@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.missions.ui
+package com.tritiumgaming.feature.missions.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,9 +27,9 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumgaming.shared.data.mission.model.Mission
-import com.tritiumstudios.feature.missions.ui.components.GhostNameContent
-import com.tritiumstudios.feature.missions.ui.components.GhostResponseContent
-import com.tritiumstudios.feature.missions.ui.components.MissionsContent
+import com.tritiumgaming.feature.missions.ui.components.GhostNameContent
+import com.tritiumgaming.feature.missions.ui.components.GhostResponseContent
+import com.tritiumgaming.feature.missions.ui.components.MissionsContent
 
 @Composable
 fun ObjectivesScreen(
