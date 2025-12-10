@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.account.component
+package com.tritiumgaming.feature.account.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

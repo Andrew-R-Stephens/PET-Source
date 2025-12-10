@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.account
+package com.tritiumgaming.feature.account.ui
 
 import android.app.Activity
 import android.content.Context
@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.feature.home.app.container.HomeContainerProvider
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
@@ -26,6 +25,7 @@ import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
@@ -257,8 +257,8 @@ class AccountScreenViewModel(
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val application = this[ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY]
-                val container = (application as HomeContainerProvider).provideHomeContainer()
+                val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
+                val container = (application as AccountContainerProvider).provideAccountContainer()
 
                 val getSignInCredentialsUseCase = container.getSignInCredentialsUseCase
                 val signInAccountUseCase = container.signInAccountUseCase

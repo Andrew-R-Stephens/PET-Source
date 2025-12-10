@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.account
+package com.tritiumgaming.feature.account.ui
 
 import com.tritiumgaming.shared.data.account.model.AccountTypography
 

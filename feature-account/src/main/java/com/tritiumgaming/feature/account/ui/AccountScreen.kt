@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.account
+package com.tritiumgaming.feature.account.ui
 
 import android.util.Log
 import android.widget.Toast
@@ -74,11 +74,10 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.HomeScreen
-import com.tritiumgaming.feature.home.ui.account.component.AccountBannerComposite
-import com.tritiumgaming.feature.home.ui.account.component.AccountBannerExpanded
-import com.tritiumgaming.feature.home.ui.account.component.Dialog
 import com.tritiumgaming.shared.data.account.model.SignInOptions
+import com.tritiumgaming.feature.account.ui.component.AccountBannerComposite
+import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
+import com.tritiumgaming.feature.account.ui.component.Dialog
 import kotlinx.coroutines.launch
 
 @Composable

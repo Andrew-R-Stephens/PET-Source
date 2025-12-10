@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.account
+package com.tritiumgaming.feature.account.ui
 
 data class AccountCreditsUiState(
     val spentCredits: Int = 0,

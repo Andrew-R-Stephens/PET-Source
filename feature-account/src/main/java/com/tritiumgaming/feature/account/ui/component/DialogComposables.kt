@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.home.ui.account.component
+package com.tritiumgaming.feature.account.ui.component
 
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
