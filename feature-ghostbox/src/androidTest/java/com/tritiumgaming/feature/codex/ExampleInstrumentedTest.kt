@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.codex
+package com.tritiumgaming.feature.codex
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

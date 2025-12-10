@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.codex
+package com.tritiumgaming.feature.codex
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

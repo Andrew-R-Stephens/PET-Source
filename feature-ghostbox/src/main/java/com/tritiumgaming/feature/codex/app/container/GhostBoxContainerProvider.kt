@@ -1,4 +1,4 @@
-package com.tritiumstudios.feature.codex.app.container
+package com.tritiumgaming.feature.codex.app.container
 
 interface GhostBoxContainerProvider {
 
