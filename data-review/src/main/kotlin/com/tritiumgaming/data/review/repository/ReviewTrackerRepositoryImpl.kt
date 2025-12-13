@@ -26,7 +26,7 @@ class ReviewTrackerRepositoryImpl(
     override fun getAppTimesOpened(): Int = dataStoreSource.getAppTimesOpened()
     override fun canIncrementAppTimesOpened(): Result<Boolean> {
         if(appInitializationState == INITIALIZED) {
-            return Result.failure(Exception("App has already been initialized"))
+            return Result.success(false)
         }
 
         return Result.success(true)
