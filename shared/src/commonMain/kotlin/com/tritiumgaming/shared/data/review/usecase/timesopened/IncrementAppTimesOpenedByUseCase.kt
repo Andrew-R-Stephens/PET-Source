@@ -6,10 +6,14 @@ class IncrementAppTimesOpenedByUseCase(
     private val repository: ReviewTrackerRepository
 ) {
 
-    operator fun invoke(count: Int, incrementBy: Int): Result<Int> {
-        repository.canIncrementAppTimesOpened().getOrThrow()
+    suspend operator fun invoke(count: Int, incrementBy: Int): Result<Boolean> {
+        val canIncrement = repository.canIncrementAppTimesOpened().getOrThrow()
 
-        return Result.success(count + incrementBy)
+        return if(canIncrement) {
+            repository.saveAppTimesOpened(count + incrementBy)
+            Result.success(true)
+        } else Result.failure(Exception("Could not increment app times opened"))
+
     }
 
 }
