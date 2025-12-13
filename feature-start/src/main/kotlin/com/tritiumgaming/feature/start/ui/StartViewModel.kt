@@ -25,10 +25,7 @@ import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUse
 import com.tritiumgaming.shared.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
 import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpenedUseCase
 import kotlinx.coroutines.flow.SharingStarted.Companion.WhileSubscribed
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -170,40 +167,22 @@ class StartViewModel(
     init {
         Log.d("StartViewModel", "Initializing...")
 
-        initialDataStoreSetupEvent()
-
-        loadInboxes()
-
         viewModelScope.launch {
+            initialDataStoreSetupEvent()
 
-            try {
-                Log.d(
-                    "StartViewModel",
-                    "Incrementing times opened from: ${reviewFlow.value.timesOpened}"
-                )
+                Log.d("StartViewModel",
+                    "Incrementing times opened from: ${reviewFlow.value.timesOpened}")
 
-                val newCount = incrementAppTimesOpenedUseCase(
+                incrementAppTimesOpenedUseCase(
                     count = reviewFlow.value.timesOpened,
                     incrementBy = 1
-                ).getOrThrow()
-
-                viewModelScope.launch {
-                    try {
-                        setAppTimesOpenedUseCase(newCount)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                }
-
-                Log.d(
-                    "StartViewModel",
-                    "Times opened is now: $newCount"
                 )
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+
+                Log.d("StartViewModel", "Finish incrementing app times opened")
 
         }
+
+        loadInboxes()
 
     }
 
