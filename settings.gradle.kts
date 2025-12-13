@@ -37,17 +37,6 @@ include(
 )
 
 include(
-    ":feature-operation",
-    ":feature-home",
-    ":feature-core",
-    ":feature-codex",
-    ":feature-investigation",
-    ":feature-missions",
-    ":feature-mapviewer",
-    ":feature-ghostbox"
-)
-
-include(
     ":data-account",
     ":data-codex",
     ":data-contributor",
@@ -67,11 +56,28 @@ include(
     ":data-typography",
     ":database-unknown",
 )
-include(":feature-marketplace")
-include(":feature-newsletter")
-include(":feature-about")
-include(":feature-start")
-include(":feature-settings")
-include(":feature-language")
-include(":feature-account")
-include(":feature-introduciton")
+
+include(
+    ":feature-core",
+)
+
+include(
+    ":feature-home",
+    ":feature-account",
+    ":feature-marketplace",
+    ":feature-start",
+    ":feature-about",
+    ":feature-newsletter",
+    ":feature-settings",
+    ":feature-language",
+    ":feature-introduciton"
+)
+
+include(
+    ":feature-operation",
+    ":feature-codex",
+    ":feature-investigation",
+    ":feature-missions",
+    ":feature-mapviewer",
+    ":feature-ghostbox",
+)
