@@ -41,21 +41,21 @@ class MarketplaceViewModel(
     private var observeUnlockedPalettesJob: Job? = null
     private var observeUnlockedTypographiesJob: Job? = null
 
-    private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
+    private val _accountCreditsUiState = MutableStateFlow(_root_ide_package_.com.tritiumgaming.feature.marketplace.ui.AccountCreditsUiState())
     val accountCreditsUiState = _accountCreditsUiState.asStateFlow()
-    private fun setAccountUiStateDefault() = _accountCreditsUiState.update { AccountCreditsUiState() }
+    private fun setAccountUiStateDefault() = _accountCreditsUiState.update { _root_ide_package_.com.tritiumgaming.feature.marketplace.ui.AccountCreditsUiState() }
 
-    private val _accountUnlockedPalettesUiState = MutableStateFlow(AccountUnlockedPalettesUiState())
+    private val _accountUnlockedPalettesUiState = MutableStateFlow(_root_ide_package_.com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState())
     val accountUnlockedPalettesUiState = _accountUnlockedPalettesUiState.asStateFlow()
     private fun setUnlockedPalettesUiStatDefault() =
-        _accountUnlockedPalettesUiState.update { AccountUnlockedPalettesUiState() }
+        _accountUnlockedPalettesUiState.update { _root_ide_package_.com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState() }
 
     private val _accountUnlockedTypographiesUiState = MutableStateFlow(
-        AccountUnlockedTypographiesUiState()
+        _root_ide_package_.com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedTypographiesUiState()
     )
     val accountUnlockedTypographiesUiState = _accountUnlockedTypographiesUiState.asStateFlow()
     private fun setUnlockedTypographiesUiStatDefault() =
-        _accountUnlockedTypographiesUiState.update { AccountUnlockedTypographiesUiState() }
+        _accountUnlockedTypographiesUiState.update { _root_ide_package_.com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedTypographiesUiState() }
 
     private fun startObservingCredits() {
         observeCreditsJob = viewModelScope.launch {

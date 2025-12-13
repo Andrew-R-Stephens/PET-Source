@@ -6,7 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 private fun MarketplaceScreenPreview() {
-    MarketplaceScreen()
+    _root_ide_package_.com.tritiumgaming.feature.marketplace.ui.MarketplaceScreen()
 }
 
 @Composable
@@ -14,7 +14,7 @@ fun MarketplaceScreen(
     //content: @Composable () -> Unit
 ) {
 
-    MarketplaceContent()
+    _root_ide_package_.com.tritiumgaming.feature.marketplace.ui.MarketplaceContent()
 
 }
 
