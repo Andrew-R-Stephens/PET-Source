@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.settings.ui.content
+package com.tritiumgaming.feature.settings.ui.components
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -47,7 +47,10 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.settings.ui.SettingsScreenUiState
 import com.tritiumgaming.feature.settings.ui.SettingsScreenViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.annotations.TestOnly
 import java.lang.String.format
 import java.util.Locale
@@ -62,7 +65,9 @@ private fun HuntSeekbarPreview() {
         Column {
             SeekbarThumb()
 
-            HuntTimeoutPreferenceSeekbar()
+            val stateFlow = MutableStateFlow(1000L)
+            val state = stateFlow.collectAsStateWithLifecycle()
+            HuntTimeoutPreferenceSeekbar(state.value)
         }
     }
 }
@@ -70,40 +75,35 @@ private fun HuntSeekbarPreview() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HuntTimeoutPreferenceSeekbar(
-    settingsViewModel: SettingsScreenViewModel =
-        viewModel ( factory = SettingsScreenViewModel.Companion.Factory ),
+    state: Long,
     containerColor: Color = Color.White,
     textColor: Color = Color.White,
     inactiveTrackColor: Color = Color.White,
     activeTrackColor: Color = Color.White,
     thumbOutlineColor: Color = Color.White,
-    thumbInnerColor: Color = Color.White
+    thumbInnerColor: Color = Color.White,
+    onValueChange: (Long) -> Unit = {}
 ) {
 
-    val settingsScreenUiState =
-        settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
-    val huntWarnDuration = settingsScreenUiState.value.huntWarnDurationPreference
-
     var rememberSliderPosition by remember { mutableFloatStateOf(
-        SettingsScreenViewModel.Companion.timeAsPercent(huntWarnDuration)
+        SettingsScreenViewModel.timeAsPercent(state)
     ) }
 
-    LaunchedEffect(huntWarnDuration) {
-        rememberSliderPosition = SettingsScreenViewModel.Companion.timeAsPercent(huntWarnDuration)
+    LaunchedEffect(state) {
+        rememberSliderPosition = SettingsScreenViewModel.timeAsPercent(state)
     }
 
     val rememberSliderState =
         rememberSliderState(
-            value = SettingsScreenViewModel.Companion.timeAsPercent(huntWarnDuration),
+            value = SettingsScreenViewModel.timeAsPercent(state),
             valueRange = 0f..1f,
             steps = 100,
             onValueChangeFinished = {
-                settingsViewModel.setHuntWarnDurationPreference(
-                    SettingsScreenViewModel.Companion.percentAsTime(rememberSliderPosition)
+                onValueChange(
+                    SettingsScreenViewModel.percentAsTime(rememberSliderPosition)
                 )
-                //rememberSliderPosition = PhaseHandler.timeAsPercent(timeoutState.value)
                 Log.d("Slider",
-                    "Slider finished $rememberSliderPosition $huntWarnDuration")
+                    "Slider finished $rememberSliderPosition $state")
             }
         )
 
@@ -148,7 +148,7 @@ fun HuntTimeoutPreferenceSeekbar(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                val millis = SettingsScreenViewModel.Companion.percentAsTime(rememberSliderPosition)
+                val millis = SettingsScreenViewModel.percentAsTime(rememberSliderPosition)
                 val minutes = millis / 1000 / 60
                 val seconds = millis / 1000 % 60
                 val time = format(Locale.US, "%2dm %2ds", minutes, seconds)
@@ -176,11 +176,11 @@ fun HuntTimeoutPreferenceSeekbar(
                         rememberSliderState.value = it
                     },
                     onValueChangeFinished = {
-                        settingsViewModel.setHuntWarnDurationPreference(
-                            SettingsScreenViewModel.Companion.percentAsTime(rememberSliderPosition)
+                        onValueChange(
+                            SettingsScreenViewModel.percentAsTime(rememberSliderPosition)
                         )
                         Log.d("Slider",
-                            "Slider finished $rememberSliderPosition $huntWarnDuration")
+                            "Slider finished $rememberSliderPosition $state")
                     },
                     valueRange = 0f..1f,
                     interactionSource = interactionSource,

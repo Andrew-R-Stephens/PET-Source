@@ -42,14 +42,16 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
+import com.tritiumgaming.core.ui.icon.Arrow60LeftIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.settings.ui.content.CarouselComposable
-import com.tritiumgaming.feature.settings.ui.content.HuntTimeoutPreferenceSeekbar
-import com.tritiumgaming.feature.settings.ui.content.LabeledSwitch
+import com.tritiumgaming.feature.settings.ui.components.CarouselComposable
+import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSeekbar
+import com.tritiumgaming.feature.settings.ui.components.LabeledSwitch
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.annotations.TestOnly
@@ -115,11 +117,11 @@ private fun NavigationHeader(
             NavigationHeaderSideButton(
                 modifier = outerModifier,
                 iconContent = { iconModifier ->
-                    Image(
+                    Arrow60LeftIcon(
                         modifier = iconModifier,
-                        painter = painterResource(R.drawable.ic_arrow_60_left),
-                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-                        contentDescription = ""
+                        colors = IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface
+                        )
                     )
                 }
             ) { onLeftClick() }
@@ -154,7 +156,13 @@ private fun NavigationHeader(
 private fun ColumnScope.SettingsContentPortrait(
     modifier: Modifier = Modifier,
     settingsViewModel: SettingsScreenViewModel =
-        viewModel(factory = SettingsScreenViewModel.Factory)
+        viewModel(factory = SettingsScreenViewModel.Factory),
+    onSetScreenSaverPreference: (state: Boolean) -> Unit = {},
+    onSetNetworkPreference: (state: Boolean) -> Unit = {},
+    onSetRTLPreference: (state: Boolean) -> Unit = {},
+    onSetHuntWarningAudioPreference: (state: Boolean) -> Unit = {},
+    onSetGhostReorderPreference: (state: Boolean) -> Unit = {},
+    onSetHuntTimeoutPreference: (state: Long) -> Unit = {}
 ) {
     val settingsScreenUiState = settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
 
@@ -545,14 +553,19 @@ private fun PalettePreferenceCarousel(
 
 @Composable
 private fun HuntTimeoutSlider(settingsViewModel: SettingsScreenViewModel) {
+    val state = settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
+
     HuntTimeoutPreferenceSeekbar(
-        settingsViewModel = settingsViewModel,
+        state = state.value.huntWarnDurationPreference,
         containerColor = LocalPalette.current.surfaceContainer,
         textColor = LocalPalette.current.onSurface,
         inactiveTrackColor = LocalPalette.current.onSurface,
         activeTrackColor = LocalPalette.current.primary,
         thumbOutlineColor = LocalPalette.current.primary,
         thumbInnerColor = LocalPalette.current.onSurface,
+        onValueChange = { millis ->
+            settingsViewModel.setHuntWarnDurationPreference(millis)
+        }
     )
 }
 
