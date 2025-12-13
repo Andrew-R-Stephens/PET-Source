@@ -46,7 +46,7 @@ import kotlin.math.sin
 @Preview
 fun Test() {
     SelectiveTheme {
-        FootstepMeter(1f)
+        Meter2(1f)
     }
 }
 
@@ -182,6 +182,143 @@ fun FootstepMeter(
             Text(
                 text = "S: $seconds " +
                         "R: $rotations"
+            )
+        }
+    }
+}
+
+@SuppressLint("DefaultLocale")
+@Composable
+fun Meter2(
+    metersPerSecond: Float = 0f
+) {
+    var currentBPM by remember {
+        mutableFloatStateOf(metersPerSecond)
+    }
+
+    // Allow resume on rotation
+    var currentThetaStep by remember { mutableFloatStateOf(0f) }
+    var currentTheta by remember { mutableFloatStateOf(0f) }
+    val seconds = remember { Animatable(currentBPM) }
+
+    var firstTimeMillis = System.currentTimeMillis()
+    var rotations = 0
+
+    var savedTimeMillis = firstTimeMillis
+
+    val isPlaying by remember { mutableStateOf(true) }
+
+    LaunchedEffect(isPlaying) {
+        if (isPlaying) {
+            // Infinite repeatable rotation when is playing
+            seconds.animateTo(
+                targetValue = 1000f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(1000, easing = LinearEasing),
+                    repeatMode = RepeatMode.Restart
+                )
+            ) {
+                val currentTimeMillis = System.currentTimeMillis()
+                val currentTimeDifference = (currentTimeMillis - savedTimeMillis).toFloat()
+                savedTimeMillis = currentTimeMillis
+
+                currentThetaStep = currentTimeDifference * currentBPM * 360f / 1000f
+
+                currentTheta += currentThetaStep
+                if(currentTheta >= 360f) {
+                    rotations++
+                }
+                currentTheta %= 360f
+            }
+        }
+    }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(8.dp)
+            .background(Color.Red)
+    ) {
+
+        val strokeWidth = 20f
+        val circleSize = 64.dp
+
+        Box(
+            modifier = Modifier
+                .padding(8.dp)
+                .height(circleSize)
+                .aspectRatio(1f)
+        ) {
+
+            Canvas(
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+
+                drawCircle(
+                    Color.Blue,
+                    radius = (64 * 2) - (strokeWidth * 2.5f),
+                    style = Stroke(
+                        width = strokeWidth
+                    ),
+                    alpha = .8f
+                )
+
+                val indicatorLength = 8.dp
+                val indicatorOffset = 0.dp
+
+                val startOffset = pointOnCircle(
+                    //thetaInDegrees = currentRotation.toDouble(),
+                    thetaInDegrees = currentTheta.toDouble(),
+                    // Offset from the center to start drawing the markers
+                    radius = size.height / 2 - indicatorOffset.toPx(),
+                    cX = center.x,
+                    cY = center.y
+                )
+
+                // Small indicator marker
+                val endOffset = pointOnCircle(
+                    thetaInDegrees = currentTheta.toDouble(),
+                    // Length of small indicator
+                    radius = size.height / 2 - indicatorLength.toPx(),
+                    cX = center.x,
+                    cY = center.y
+                )
+
+                // Draw the small indicator marker using a thin line
+                speedMarker(
+                    startOffset, endOffset,
+                    SolidColor(Color.Cyan),
+                    5.dp.toPx()
+                )
+
+            }
+
+        }
+
+        Column {
+            Slider(
+                value = currentBPM,
+                valueRange = .4f..2.5f,
+                onValueChange = {
+                    currentBPM = it
+                    firstTimeMillis = System.currentTimeMillis()
+                    rotations = 0
+                    currentTheta = 0f
+                },
+                steps = ((2.5f - .4f) / .01f).toInt()
+            )
+
+            Text(
+                text = "BPM: ${String.format("%.1f", currentBPM)} " +
+                        "Step: ${String.format("%.1f", currentThetaStep)} " +
+                        "Theta: ${currentTheta.toInt()}"
+            )
+
+            val seconds = String.format("%.1f", (System.currentTimeMillis() - firstTimeMillis) / 1000f)
+            Text(
+                text = "S: $seconds R: $rotations"
             )
         }
     }

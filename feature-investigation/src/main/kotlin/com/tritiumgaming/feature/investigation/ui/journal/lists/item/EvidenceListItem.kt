@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -78,7 +79,6 @@ fun EvidenceListItem(
         when(deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 EvidenceColumn(
-                    modifier = modifier,
                     label = label,
                     state = state,
                     onToggle = { ruling ->
@@ -94,7 +94,6 @@ fun EvidenceListItem(
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
                 EvidenceRow(
-                    modifier = modifier,
                     label = label,
                     state = state,
                     onToggle = { ruling ->
@@ -193,7 +192,7 @@ private fun EvidenceRow(
 
 @Composable
 private fun EvidenceColumn(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     label: String,
     state: Ruling,
     onToggle: (ruling: Ruling) -> Unit = { },
@@ -207,7 +206,7 @@ private fun EvidenceColumn(
         verticalArrangement = Arrangement.Top
     ) {
 
-        Box(
+        Text(
             modifier = Modifier
                 .height(48.dp)
                 .fillMaxWidth()
@@ -215,30 +214,23 @@ private fun EvidenceColumn(
                 .clickable(onClick = {
                     onNameClick()
                 }),
-            contentAlignment = Alignment.Center
-        ) {
-
-            Text(
-                text = label,
-                style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.onSurface,
-                    textAlign = TextAlign.Center
-                ),
-                maxLines = 1,
-                autoSize = TextAutoSize.StepBased(
-                    minFontSize = 1.sp,
-                    maxFontSize = 36.sp,
-                    stepSize = 5.sp
-                )
+            text = label,
+            style = LocalTypography.current.primary.regular.copy(
+                color = LocalPalette.current.onSurface,
+                textAlign = TextAlign.Center
+            ),
+            maxLines = 1,
+            autoSize = TextAutoSize.StepBased(
+                minFontSize = 1.sp,
+                maxFontSize = 36.sp,
+                stepSize = 5.sp
             )
-
-        }
+        )
 
         Row(
             modifier = Modifier
-                .height(48.dp)
-                .fillMaxWidth()
-                .padding(2.dp),
+                .wrapContentHeight()
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -248,8 +240,10 @@ private fun EvidenceColumn(
                 Button(
                     modifier = Modifier
                         .weight(1f, false)
-                        .aspectRatio(1f)
-                        .wrapContentSize(),
+                        .sizeIn(
+                            maxWidth = 48.dp,
+                            maxHeight = 48.dp
+                        ),
                     onClick = {
                         onToggle(ruling)
                     },
@@ -264,7 +258,7 @@ private fun EvidenceColumn(
                     content = {
                         RulingIcon(
                             modifier = Modifier
-                                .size(48.dp),
+                                .fillMaxSize(),
                             ruling = ruling,
                             isSelected = state.ordinal == ruling.ordinal,
                         )
