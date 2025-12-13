@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.install.model.AppUpdateType
@@ -87,9 +88,9 @@ class PETActivity : AppCompatActivity(),
                             .background(LocalPalette.current.surface)
                             .padding(it)
                     ) {
-                        RootNavigation(
+                         RootNavigation(
                             windowInsets = WindowInsets(
-                                bottom = it.calculateBottomPadding()
+                                bottom = it.calculateBottomPadding(),
                             )
                         )
                     }
