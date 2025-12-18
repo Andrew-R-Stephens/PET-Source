@@ -134,7 +134,7 @@ fun OperationNavigationBar(
                     OperationNavigationDrawer(
                         navController = navController,
                         drawerState = rememberDrawerState,
-                        modifier = Modifier.padding(contentPadding)
+                        modifier = Modifier
                     ) {
                         content()
                     }
@@ -160,7 +160,7 @@ private fun OperationNavigationBottomBar(
         modifier = modifier,
         contentColor = LocalPalette.current.surfaceContainer,
         containerColor = LocalPalette.current.surfaceContainer,
-        windowInsets = NavigationBarDefaults.windowInsets.exclude(
+        windowInsets = windowInsets.exclude(
             insets = WindowInsets(
                 bottom = windowInsets.asPaddingValues().calculateBottomPadding()
             )
@@ -261,13 +261,7 @@ private fun OperationNavigationRail(
             modifier = Modifier,
             contentColor = LocalPalette.current.surfaceContainer,
             containerColor = LocalPalette.current.surfaceContainer,
-            windowInsets = NavigationRailDefaults.windowInsets.exclude(
-                insets = WindowInsets(
-                    left = windowInsets.asPaddingValues().calculateStartPadding(
-                        layoutDirection = LayoutDirection.Ltr
-                    )
-                )
-            )
+            windowInsets = windowInsets
         ) {
 
             NavigationRailItem(
