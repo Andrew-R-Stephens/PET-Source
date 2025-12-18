@@ -241,6 +241,7 @@ private fun CodexMenuItem(
             modifier = Modifier
                 .weight(1f)
                 .fillMaxSize()
+                .background(LocalPalette.current.scrim)
         ) {
 
             GridIcon(

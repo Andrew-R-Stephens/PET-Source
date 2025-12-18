@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
@@ -59,9 +60,9 @@ fun CodexPossessionsListComponent(
     codexViewModel: CodexViewModel,
     scrollState: LazyListState
 ) {
-    val possessionUiState = codexViewModel.possessionsUiState.collectAsStateWithLifecycle()
+    val possessionUiState by codexViewModel.possessionsUiState.collectAsStateWithLifecycle()
 
-    val groups = possessionUiState.value.list
+    val groups = possessionUiState.list
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
@@ -89,7 +90,7 @@ fun CodexPossessionsListComponent(
                                 .heightIn(min = 48.dp, max = 96.dp),
                             itemCount = group.size
                         ) {
-                            group.items.forEachIndexed { index, item ->
+                            group.items.forEach { item ->
                                 CodexGroupItem(
                                     modifier = Modifier
                                         .sizeIn(
@@ -99,7 +100,6 @@ fun CodexPossessionsListComponent(
                                         .aspectRatio(1f),
                                     isBackground = true,
                                     isBordered = true,
-                                    tierLevel = index + 1,
                                     image = item.image.toDrawableResource()
                                 ) {
                                     codexViewModel.setSelectedPossession(group, item)
@@ -136,18 +136,16 @@ fun CodexPossessionsListComponent(
                                 .width(96.dp),
                             itemCount = group.size
                         ) {
-                            group.items.forEachIndexed { index, item ->
+                            group.items.forEach { item ->
                                 CodexGroupItem(
                                     modifier = Modifier
                                         .sizeIn(
                                             minWidth = 64.dp, maxWidth = 96.dp,
                                             minHeight = 64.dp, maxHeight = 96.dp
                                         )
-                                        .aspectRatio(1f)/*
-                                        .weight(1f, false)*/,
+                                        .aspectRatio(1f),
                                     isBackground = true,
                                     isBordered = true,
-                                    tierLevel = index + 1,
                                     image = item.image.toDrawableResource()
                                 ) {
                                     codexViewModel.setSelectedPossession(group, item)
@@ -175,30 +173,48 @@ fun CodexPossessionsDisplay(
 
     val image = selectedItem.image.toDrawableResource()
 
-    val primaryTitle: AnnotatedString? = AnnotatedString.Companion.fromHtml(
+    val primaryTitle: AnnotatedString = AnnotatedString.fromHtml(
         stringResource(selectedGroup.name.toStringResource()))
-    val secondaryTitle: AnnotatedString? = AnnotatedString.Companion.fromHtml(
+    val secondaryTitle: AnnotatedString = AnnotatedString.fromHtml(
         selectedItem.altName?.toStringResource()?.let {
             stringResource(it) } ?: "")
 
-    val primaryText = AnnotatedString.Companion.fromHtml(
+    val primaryText = AnnotatedString.fromHtml(
         stringResource(selectedItem.infoText.toStringResource()))
 
-    val secondaryText = AnnotatedString.Companion.fromHtml(
+    val secondaryText = AnnotatedString.fromHtml(
         stringResource(selectedItem.flavorText.toStringResource()))
 
-    val footerText = AnnotatedString.Companion.fromHtml(
+    val footerText = AnnotatedString.fromHtml(
         stringResource(selectedItem.attributesText.toStringResource()))
 
-    val sanityDrain = AnnotatedString.Companion.fromHtml(
+    val sanityDrain = AnnotatedString.fromHtml(
         stringResource(selectedItem.sanityDrain.toStringResource()))
-    val drawChance = AnnotatedString.Companion.fromHtml(
+    val drawChance = AnnotatedString.fromHtml(
         stringResource(selectedItem.drawChance.toStringResource()))
 
     CodexItemPopup(
         modifier = modifier,
         primaryTitleContent = { modifier ->
-            primaryTitle?.let { title ->
+            Text(
+                modifier = modifier
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        initialDelayMillis = 1000,
+                        repeatDelayMillis = 1000,
+                    )
+                    .padding(horizontal = 8.dp, vertical = 4.dp),
+                text = primaryTitle,
+                style = LocalTypography.current.quaternary.bold.copy(
+                    textAlign = TextAlign.Start
+                ),
+                color = LocalPalette.current.codexFamily.codex3,
+                maxLines = 1,
+                fontSize = 20.sp
+            )
+        },
+        secondaryTitleContent = { modifier ->
+            if (secondaryTitle.isNotBlank()) {
                 Text(
                     modifier = modifier
                         .basicMarquee(
@@ -207,7 +223,7 @@ fun CodexPossessionsDisplay(
                             repeatDelayMillis = 1000,
                         )
                         .padding(horizontal = 8.dp, vertical = 4.dp),
-                    text = title,
+                    text = secondaryTitle,
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
@@ -216,29 +232,6 @@ fun CodexPossessionsDisplay(
                     fontSize = 20.sp
                 )
             }
-        },
-        secondaryTitleContent = { modifier ->
-            secondaryTitle?.let { title ->
-                if (title.isNotBlank()) {
-                    Text(
-                        modifier = modifier
-                            .basicMarquee(
-                                iterations = Int.MAX_VALUE,
-                                initialDelayMillis = 1000,
-                                repeatDelayMillis = 1000,
-                            )
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        text = title,
-                        style = LocalTypography.current.quaternary.bold.copy(
-                            textAlign = TextAlign.Start
-                        ),
-                        color = LocalPalette.current.codexFamily.codex3,
-                        maxLines = 1,
-                        fontSize = 20.sp
-                    )
-                }
-            }
-
         },
         primaryImageContent = { modifier ->
             GridIcon(
@@ -260,7 +253,7 @@ fun CodexPossessionsDisplay(
         primaryDataContent = { modifier ->
 
             CodexItemPopupDataRow(
-                modifier = Modifier.Companion
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .heightIn(max = 32.dp),
@@ -269,7 +262,7 @@ fun CodexPossessionsDisplay(
             )
 
             CodexItemPopupDataRow(
-                modifier = Modifier.Companion
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .heightIn(max = 32.dp),

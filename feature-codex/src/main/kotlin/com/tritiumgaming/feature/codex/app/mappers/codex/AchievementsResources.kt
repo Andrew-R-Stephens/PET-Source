@@ -149,30 +149,30 @@ import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.Achieve
         AchievementIcon.BRONZE_HUNTER -> R.drawable.icon_achievement_hunter_1
         AchievementIcon.SILVER_HUNTER -> R.drawable.icon_achievement_hunter_2
         AchievementIcon.GOLD_HUNTER -> R.drawable.icon_achievement_hunter_3
-        AchievementIcon.BANSHEE -> R.drawable.icon_banshee
-        AchievementIcon.DEMON -> R.drawable.icon_demon
-        AchievementIcon.DEOGEN -> R.drawable.icon_deogen
-        AchievementIcon.GORYO -> R.drawable.icon_goryo
-        AchievementIcon.HANTU -> R.drawable.icon_hantu
-        AchievementIcon.JINN -> R.drawable.icon_jinn
-        AchievementIcon.MARE -> R.drawable.icon_mare
-        AchievementIcon.MOROI -> R.drawable.icon_moroi
-        AchievementIcon.MYLING -> R.drawable.icon_myling
-        AchievementIcon.OBAKE -> R.drawable.icon_obake
-        AchievementIcon.ONI -> R.drawable.icon_oni
-        AchievementIcon.ONRYO -> R.drawable.icon_onryo
-        AchievementIcon.PHANTOM -> R.drawable.icon_phantom
-        AchievementIcon.POLTERGEIST -> R.drawable.icon_poltergeist
-        AchievementIcon.RAIJU -> R.drawable.icon_raiju
-        AchievementIcon.REVENANT -> R.drawable.icon_revenant
-        AchievementIcon.SHADE -> R.drawable.icon_shade
-        AchievementIcon.SPIRIT -> R.drawable.icon_spirit
-        AchievementIcon.THAYE -> R.drawable.icon_thaye
-        AchievementIcon.MIMIC -> R.drawable.icon_the_mimic
-        AchievementIcon.TWINS -> R.drawable.icon_the_twins
-        AchievementIcon.WRAITH -> R.drawable.icon_wraith
-        AchievementIcon.YOKAI -> R.drawable.icon_yokai
-        AchievementIcon.YUREI -> R.drawable.icon_yurei
+        AchievementIcon.BANSHEE -> R.drawable.icon_ghost_banshee
+        AchievementIcon.DEMON -> R.drawable.icon_ghost_demon
+        AchievementIcon.DEOGEN -> R.drawable.icon_ghost_deogen
+        AchievementIcon.GORYO -> R.drawable.icon_ghost_goryo
+        AchievementIcon.HANTU -> R.drawable.icon_ghost_hantu
+        AchievementIcon.JINN -> R.drawable.icon_ghost_jinn
+        AchievementIcon.MARE -> R.drawable.icon_ghost_mare
+        AchievementIcon.MOROI -> R.drawable.icon_ghost_moroi
+        AchievementIcon.MYLING -> R.drawable.icon_ghost_myling
+        AchievementIcon.OBAKE -> R.drawable.icon_ghost_obake
+        AchievementIcon.ONI -> R.drawable.icon_ghost_oni
+        AchievementIcon.ONRYO -> R.drawable.icon_ghost_onryo
+        AchievementIcon.PHANTOM -> R.drawable.icon_ghost_phantom
+        AchievementIcon.POLTERGEIST -> R.drawable.icon_ghost_poltergeist
+        AchievementIcon.RAIJU -> R.drawable.icon_ghost_raiju
+        AchievementIcon.REVENANT -> R.drawable.icon_ghost_revenant
+        AchievementIcon.SHADE -> R.drawable.icon_ghost_shade
+        AchievementIcon.SPIRIT -> R.drawable.icon_ghost_spirit
+        AchievementIcon.THAYE -> R.drawable.icon_ghost_thaye
+        AchievementIcon.MIMIC -> R.drawable.icon_ghost_the_mimic
+        AchievementIcon.TWINS -> R.drawable.icon_ghost_the_twins
+        AchievementIcon.WRAITH -> R.drawable.icon_ghost_wraith
+        AchievementIcon.YOKAI -> R.drawable.icon_ghost_yokai
+        AchievementIcon.YUREI -> R.drawable.icon_ghost_yurei
         AchievementIcon.PRESTIGE1 -> R.drawable.icon_achievement_prestige_1
         AchievementIcon.PRESTIGE2 -> R.drawable.icon_achievement_prestige_2
         AchievementIcon.PRESTIGE3 -> R.drawable.icon_achievement_prestige_3
