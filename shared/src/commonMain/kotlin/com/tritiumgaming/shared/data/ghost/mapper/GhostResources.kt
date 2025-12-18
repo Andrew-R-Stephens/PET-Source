@@ -1,12 +1,13 @@
 package com.tritiumgaming.shared.data.ghost.mapper
 
-//TODO(Create all enum values)
 class GhostResources {
 
     enum class GhostIdentifier {
         BANSHEE,
+        DAYAN,
         DEMON,
         DEOGEN,
+        GALLU,
         GORYO,
         HANTU,
         JINN,
@@ -14,6 +15,7 @@ class GhostResources {
         MOROI,
         MYLING,
         OBAKE,
+        OBAMBO,
         ONI,
         ONRYO,
         PHANTOM,
@@ -32,8 +34,10 @@ class GhostResources {
 
     enum class GhostTitle {
         BANSHEE,
+        DAYAN,
         DEMON,
         DEOGEN,
+        GALLU,
         GORYO,
         HANTU,
         JINN,
@@ -41,6 +45,7 @@ class GhostResources {
         MOROI,
         MYLING,
         OBAKE,
+        OBAMBO,
         ONI,
         ONRYO,
         PHANTOM,
@@ -59,8 +64,10 @@ class GhostResources {
 
     enum class GhostIcon {
         BANSHEE,
+        DAYAN,
         DEMON,
         DEOGEN,
+        GALLU,
         GORYO,
         HANTU,
         JINN,
@@ -68,6 +75,7 @@ class GhostResources {
         MOROI,
         MYLING,
         OBAKE,
+        OBAMBO,
         ONI,
         ONRYO,
         PHANTOM,
@@ -86,8 +94,10 @@ class GhostResources {
 
     enum class GhostDescription {
         BANSHEE,
+        DAYAN,
         DEMON,
         DEOGEN,
+        GALLU,
         GORYO,
         HANTU,
         JINN,
@@ -95,6 +105,7 @@ class GhostResources {
         MOROI,
         MYLING,
         OBAKE,
+        OBAMBO,
         ONI,
         ONRYO,
         PHANTOM,
@@ -113,8 +124,10 @@ class GhostResources {
 
     enum class GhostStrength {
         BANSHEE,
+        DAYAN,
         DEMON,
         DEOGEN,
+        GALLU,
         GORYO,
         HANTU,
         JINN,
@@ -122,6 +135,7 @@ class GhostResources {
         MOROI,
         MYLING,
         OBAKE,
+        OBAMBO,
         ONI,
         ONRYO,
         PHANTOM,
@@ -140,8 +154,10 @@ class GhostResources {
 
     enum class GhostWeakness {
         BANSHEE,
+        DAYAN,
         DEMON,
         DEOGEN,
+        GALLU,
         GORYO,
         HANTU,
         JINN,
@@ -149,6 +165,7 @@ class GhostResources {
         MOROI,
         MYLING,
         OBAKE,
+        OBAMBO,
         ONI,
         ONRYO,
         PHANTOM,
@@ -167,8 +184,10 @@ class GhostResources {
 
     enum class GhostHuntInfo {
         BANSHEE,
+        DAYAN,
         DEMON,
         DEOGEN,
+        GALLU,
         GORYO,
         HANTU,
         JINN,
@@ -176,6 +195,7 @@ class GhostResources {
         MOROI,
         MYLING,
         OBAKE,
+        OBAMBO,
         ONI,
         ONRYO,
         PHANTOM,
