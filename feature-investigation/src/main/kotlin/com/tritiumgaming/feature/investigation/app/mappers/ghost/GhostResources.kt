@@ -75,33 +75,33 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 
 @DrawableRes fun GhostIcon.toDrawableResource(): Int =
     when (this) {
-        GhostIcon.BANSHEE -> R.drawable.icon_banshee
-        GhostIcon.DAYAN -> R.drawable.icon_demon
-        GhostIcon.DEMON -> R.drawable.icon_demon
-        GhostIcon.DEOGEN -> R.drawable.icon_deogen
-        GhostIcon.GALLU -> R.drawable.icon_goryo
-        GhostIcon.GORYO -> R.drawable.icon_goryo
-        GhostIcon.HANTU -> R.drawable.icon_hantu
-        GhostIcon.JINN -> R.drawable.icon_jinn
-        GhostIcon.MARE -> R.drawable.icon_mare
-        GhostIcon.MOROI -> R.drawable.icon_moroi
-        GhostIcon.MYLING -> R.drawable.icon_myling
-        GhostIcon.OBAKE -> R.drawable.icon_obake
-        GhostIcon.OBAMBO -> R.drawable.icon_obake
-        GhostIcon.ONI -> R.drawable.icon_oni
-        GhostIcon.ONRYO -> R.drawable.icon_onryo
-        GhostIcon.PHANTOM -> R.drawable.icon_phantom
-        GhostIcon.POLTERGEIST -> R.drawable.icon_poltergeist
-        GhostIcon.RAIJU -> R.drawable.icon_raiju
-        GhostIcon.REVENANT -> R.drawable.icon_revenant
-        GhostIcon.SHADE -> R.drawable.icon_shade
-        GhostIcon.SPIRIT -> R.drawable.icon_spirit
-        GhostIcon.THAYE -> R.drawable.icon_thaye
-        GhostIcon.THE_MIMIC -> R.drawable.icon_the_mimic
-        GhostIcon.THE_TWINS -> R.drawable.icon_the_twins
-        GhostIcon.WRAITH -> R.drawable.icon_wraith
-        GhostIcon.YOKAI -> R.drawable.icon_yokai
-        GhostIcon.YUREI -> R.drawable.icon_yurei
+        GhostIcon.BANSHEE -> R.drawable.icon_ghost_banshee
+        GhostIcon.DAYAN -> R.drawable.icon_ghost_unknown
+        GhostIcon.DEMON -> R.drawable.icon_ghost_demon
+        GhostIcon.DEOGEN -> R.drawable.icon_ghost_deogen
+        GhostIcon.GALLU -> R.drawable.icon_ghost_unknown
+        GhostIcon.GORYO -> R.drawable.icon_ghost_goryo
+        GhostIcon.HANTU -> R.drawable.icon_ghost_hantu
+        GhostIcon.JINN -> R.drawable.icon_ghost_jinn
+        GhostIcon.MARE -> R.drawable.icon_ghost_mare
+        GhostIcon.MOROI -> R.drawable.icon_ghost_moroi
+        GhostIcon.MYLING -> R.drawable.icon_ghost_myling
+        GhostIcon.OBAKE -> R.drawable.icon_ghost_obake
+        GhostIcon.OBAMBO -> R.drawable.icon_ghost_unknown
+        GhostIcon.ONI -> R.drawable.icon_ghost_oni
+        GhostIcon.ONRYO -> R.drawable.icon_ghost_onryo
+        GhostIcon.PHANTOM -> R.drawable.icon_ghost_phantom
+        GhostIcon.POLTERGEIST -> R.drawable.icon_ghost_poltergeist
+        GhostIcon.RAIJU -> R.drawable.icon_ghost_raiju
+        GhostIcon.REVENANT -> R.drawable.icon_ghost_revenant
+        GhostIcon.SHADE -> R.drawable.icon_ghost_shade
+        GhostIcon.SPIRIT -> R.drawable.icon_ghost_spirit
+        GhostIcon.THAYE -> R.drawable.icon_ghost_thaye
+        GhostIcon.THE_MIMIC -> R.drawable.icon_ghost_the_mimic
+        GhostIcon.THE_TWINS -> R.drawable.icon_ghost_the_twins
+        GhostIcon.WRAITH -> R.drawable.icon_ghost_wraith
+        GhostIcon.YOKAI -> R.drawable.icon_ghost_yokai
+        GhostIcon.YUREI -> R.drawable.icon_ghost_yurei
 }
 
 @StringRes fun GhostDescription.toStringResource(): Int =
