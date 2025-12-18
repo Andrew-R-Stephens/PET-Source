@@ -1,13 +1,13 @@
 [versions]
-android-billing = "8.2.0" # Latest: 8.1.0
+android-billing = "8.2.1" # Latest: 8.2.0
 android-play-core-review = "2.0.2"
 android-play-core-update = "2.1.0"
 android-gif-drawable = "1.2.29"
-android-play-services-ads = "24.8.0" # Latest: 24.7.0
+android-play-services-ads = "24.9.0" # Latest: 24.8.0
 android-play-services-auth = "21.4.0" # Latest 21.3.0
-androidx-activity-compose = "1.12.1" # Latest 1.11.0
+androidx-activity-compose = "1.12.2" # Latest 1.12.0
 androidx-composeUi = "1.10.0" # Latest: 1.9.4
-androidx-compose-bom = "2025.12.00" # Latest 2025.11.00
+androidx-compose-bom = "2025.12.01" # Latest 2025.12.00
 androidx-compose-material3 = "1.4.0" # Latest: 1.4.0-rc01
 androidx-compose-material3-adaptive = "1.2.0" # Latest: 1.2.0-rc01
 androidx-compose-material3-window-size = "1.4.0-alpha16" # Latest: 1.4.0-alpha15
@@ -30,7 +30,7 @@ kotlin-coroutines = "1.10.2" # Latest: 1.10.1
 kotlinx-coroutines-test = "1.10.2" # 1.10.1
 androidx-compose-foundation = "1.10.0" # Latest 1.9.4
 espresso-core = "3.7.0" # Latest: 3.6.1
-firebase-bom = "34.6.0" # Latest 34.5.0
+firebase-bom = "34.7.0" # Latest 34.6.0
 firebase-crashlytics-gradle = "3.0.6" # Latest 3.0.5
 firebaseUi-auth = "8.0.2"
 firebase-perf-plugin = "2.0.2" # Latest 2.0.1
@@ -51,7 +51,7 @@ realm-kotlin-sync = "2.3.0"
 
 agp = "8.13.2" # Latest: 8.12.0
 kotlin = "2.2.21" # Latest: 2.2.20
-ksp = "2.2.10-2.0.2" # Latest: 2.1.20-2.0.0
+ksp = "2.2.21-2.0.4" # Latest: 2.2.10-2.0.2 <- 2.1.20-2.0.0
 composeMP = "1.9.3" # Latest: 1.9.0
 googleid = "1.1.1"
 kotlinTest = "2.1.20"
