@@ -216,9 +216,7 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT,
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
-                strictEvidence = listOf(
-                    EvidenceIdentifier.ULTRAVIOLET_LIGHT
-                )
+                strictEvidence = emptyList()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.ONI,
@@ -249,7 +247,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList()
-            ),GhostResourceDto(
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.PHANTOM,
                 name = GhostTitle.PHANTOM,
                 icon = GhostIcon.PHANTOM,
