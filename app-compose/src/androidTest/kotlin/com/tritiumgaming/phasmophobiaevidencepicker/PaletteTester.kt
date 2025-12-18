@@ -37,7 +37,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.home.ui.appsettings.content.LabeledSwitch
+import com.tritiumgaming.feature.settings.ui.components.LabeledSwitch
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.annotations.TestOnly
 
@@ -360,13 +360,13 @@ private fun TestM3Palette(
                     modifier = Modifier
                         .weight(1f),
                     label = "Switch Off",
-                    state = MutableStateFlow(false)
+                    state = false
                 )
                 LabeledSwitch(
                     modifier = Modifier
                         .weight(1f),
                     label = "Switch On",
-                    state = MutableStateFlow(true)
+                    state = true
                 )
             }
 
