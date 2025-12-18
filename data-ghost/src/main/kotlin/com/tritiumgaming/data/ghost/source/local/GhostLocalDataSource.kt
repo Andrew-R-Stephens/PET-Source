@@ -31,6 +31,21 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = emptyList()
             ),
             GhostResourceDto(
+                id = GhostIdentifier.DAYAN,
+                name = GhostTitle.DAYAN,
+                icon = GhostIcon.DAYAN,
+                info = GhostDescription.DAYAN,
+                strengthData = GhostStrength.DAYAN,
+                weaknessData = GhostWeakness.DAYAN,
+                huntData = GhostHuntInfo.DAYAN,
+                normalEvidence = listOf(
+                    EvidenceIdentifier.EMF_5,
+                    EvidenceIdentifier.GHOST_ORBS,
+                    EvidenceIdentifier.SPIRIT_BOX,
+                ),
+                strictEvidence = emptyList()
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.DEMON,
                 name = GhostTitle.DEMON,
                 icon = GhostIcon.DEMON,
@@ -63,6 +78,21 @@ class GhostLocalDataSource: GhostDataSource {
                 )
             ),
             GhostResourceDto(
+                id = GhostIdentifier.GALLU,
+                name = GhostTitle.GALLU,
+                icon = GhostIcon.GALLU,
+                info = GhostDescription.GALLU,
+                strengthData = GhostStrength.GALLU,
+                weaknessData = GhostWeakness.GALLU,
+                huntData = GhostHuntInfo.GALLU,
+                normalEvidence = listOf(
+                    EvidenceIdentifier.EMF_5,
+                    EvidenceIdentifier.ULTRAVIOLET_LIGHT,
+                    EvidenceIdentifier.SPIRIT_BOX,
+                ),
+                strictEvidence = emptyList()
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.GORYO,
                 name = GhostTitle.GORYO,
                 icon = GhostIcon.GORYO,
@@ -78,7 +108,8 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = listOf(
                     EvidenceIdentifier.DOTS
                 )
-            ),GhostResourceDto(
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.HANTU,
                 name = GhostTitle.HANTU,
                 icon = GhostIcon.HANTU,
@@ -171,7 +202,25 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = listOf(
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT
                 )
-            ),GhostResourceDto(
+            ),
+            GhostResourceDto(
+                id = GhostIdentifier.OBAMBO,
+                name = GhostTitle.OBAMBO,
+                icon = GhostIcon.OBAMBO,
+                info = GhostDescription.OBAMBO,
+                strengthData = GhostStrength.OBAMBO,
+                weaknessData = GhostWeakness.OBAMBO,
+                huntData = GhostHuntInfo.OBAMBO,
+                normalEvidence = listOf(
+                    EvidenceIdentifier.DOTS,
+                    EvidenceIdentifier.ULTRAVIOLET_LIGHT,
+                    EvidenceIdentifier.GHOST_WRITING,
+                ),
+                strictEvidence = listOf(
+                    EvidenceIdentifier.ULTRAVIOLET_LIGHT
+                )
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.ONI,
                 name = GhostTitle.ONI,
                 icon = GhostIcon.ONI,
