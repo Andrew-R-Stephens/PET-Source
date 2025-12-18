@@ -14,8 +14,10 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 @StringRes fun GhostIdentifier.toStringResource(): Int =
     when (this) {
         GhostIdentifier.BANSHEE -> R.string.ghost_id_banshee
+        GhostIdentifier.DAYAN -> R.string.ghost_id_dayan
         GhostIdentifier.DEMON -> R.string.ghost_id_demon
         GhostIdentifier.DEOGEN -> R.string.ghost_id_deogen
+        GhostIdentifier.GALLU -> R.string.ghost_id_gallu
         GhostIdentifier.GORYO -> R.string.ghost_id_goryo
         GhostIdentifier.HANTU -> R.string.ghost_id_hantu
         GhostIdentifier.JINN -> R.string.ghost_id_jinn
@@ -23,6 +25,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostIdentifier.MOROI -> R.string.ghost_id_moroi
         GhostIdentifier.MYLING -> R.string.ghost_id_myling
         GhostIdentifier.OBAKE -> R.string.ghost_id_obake
+        GhostIdentifier.OBAMBO -> R.string.ghost_id_obambo
         GhostIdentifier.ONI -> R.string.ghost_id_oni
         GhostIdentifier.ONRYO -> R.string.ghost_id_onryo
         GhostIdentifier.PHANTOM -> R.string.ghost_id_phantom
@@ -42,8 +45,10 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 @StringRes fun GhostTitle.toStringResource(): Int =
     when (this) {
         GhostTitle.BANSHEE -> R.string.ghost_type_banshee
+        GhostTitle.DAYAN -> R.string.ghost_type_dayan
         GhostTitle.DEMON -> R.string.ghost_type_demon
         GhostTitle.DEOGEN -> R.string.ghost_type_deogen
+        GhostTitle.GALLU -> R.string.ghost_type_gallu
         GhostTitle.GORYO -> R.string.ghost_type_goryo
         GhostTitle.HANTU -> R.string.ghost_type_hantu
         GhostTitle.JINN -> R.string.ghost_type_jinn
@@ -51,6 +56,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostTitle.MOROI -> R.string.ghost_type_moroi
         GhostTitle.MYLING -> R.string.ghost_type_myling
         GhostTitle.OBAKE -> R.string.ghost_type_obake
+        GhostTitle.OBAMBO -> R.string.ghost_type_obambo
         GhostTitle.ONI -> R.string.ghost_type_oni
         GhostTitle.ONRYO -> R.string.ghost_type_onryo
         GhostTitle.PHANTOM -> R.string.ghost_type_phantom
@@ -70,8 +76,10 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 @DrawableRes fun GhostIcon.toDrawableResource(): Int =
     when (this) {
         GhostIcon.BANSHEE -> R.drawable.icon_banshee
+        GhostIcon.DAYAN -> R.drawable.icon_demon
         GhostIcon.DEMON -> R.drawable.icon_demon
         GhostIcon.DEOGEN -> R.drawable.icon_deogen
+        GhostIcon.GALLU -> R.drawable.icon_goryo
         GhostIcon.GORYO -> R.drawable.icon_goryo
         GhostIcon.HANTU -> R.drawable.icon_hantu
         GhostIcon.JINN -> R.drawable.icon_jinn
@@ -79,6 +87,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostIcon.MOROI -> R.drawable.icon_moroi
         GhostIcon.MYLING -> R.drawable.icon_myling
         GhostIcon.OBAKE -> R.drawable.icon_obake
+        GhostIcon.OBAMBO -> R.drawable.icon_obake
         GhostIcon.ONI -> R.drawable.icon_oni
         GhostIcon.ONRYO -> R.drawable.icon_onryo
         GhostIcon.PHANTOM -> R.drawable.icon_phantom
@@ -98,8 +107,10 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 @StringRes fun GhostDescription.toStringResource(): Int =
     when (this) {
         GhostDescription.BANSHEE -> R.string.ghost_info_banshee
+        GhostDescription.DAYAN -> R.string.ghost_info_dayan
         GhostDescription.DEMON -> R.string.ghost_info_demon
         GhostDescription.DEOGEN -> R.string.ghost_info_deogen
+        GhostDescription.GALLU -> R.string.ghost_info_gallu
         GhostDescription.GORYO -> R.string.ghost_info_goryo
         GhostDescription.HANTU -> R.string.ghost_info_hantu
         GhostDescription.JINN -> R.string.ghost_info_jinn
@@ -107,6 +118,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostDescription.MOROI -> R.string.ghost_info_moroi
         GhostDescription.MYLING -> R.string.ghost_info_myling
         GhostDescription.OBAKE -> R.string.ghost_info_obake
+        GhostDescription.OBAMBO -> R.string.ghost_info_obambo
         GhostDescription.ONI -> R.string.ghost_info_oni
         GhostDescription.ONRYO -> R.string.ghost_info_onryo
         GhostDescription.PHANTOM -> R.string.ghost_info_phantom
@@ -126,8 +138,10 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 @StringRes fun GhostStrength.toStringResource(): Int =
     when (this) {
         GhostStrength.BANSHEE -> R.string.ghost_strengths_banshee
+        GhostStrength.DAYAN -> R.string.ghost_strengths_dayan
         GhostStrength.DEMON -> R.string.ghost_strengths_demon
         GhostStrength.DEOGEN -> R.string.ghost_strengths_deogen
+        GhostStrength.GALLU -> R.string.ghost_strengths_gallu
         GhostStrength.GORYO -> R.string.ghost_strengths_goryo
         GhostStrength.HANTU -> R.string.ghost_strengths_hantu
         GhostStrength.JINN -> R.string.ghost_strengths_jinn
@@ -135,6 +149,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostStrength.MOROI -> R.string.ghost_strengths_moroi
         GhostStrength.MYLING -> R.string.ghost_strengths_myling
         GhostStrength.OBAKE -> R.string.ghost_strengths_obake
+        GhostStrength.OBAMBO -> R.string.ghost_strengths_obambo
         GhostStrength.ONI -> R.string.ghost_strengths_oni
         GhostStrength.ONRYO -> R.string.ghost_strengths_onryo
         GhostStrength.PHANTOM -> R.string.ghost_strengths_phantom
@@ -154,8 +169,10 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 @StringRes fun GhostWeakness.toStringResource(): Int =
     when (this) {
         GhostWeakness.BANSHEE -> R.string.ghost_weaknesses_banshee
+        GhostWeakness.DAYAN -> R.string.ghost_weaknesses_dayan
         GhostWeakness.DEMON -> R.string.ghost_weaknesses_demon
         GhostWeakness.DEOGEN -> R.string.ghost_weaknesses_deogen
+        GhostWeakness.GALLU -> R.string.ghost_weaknesses_gallu
         GhostWeakness.GORYO -> R.string.ghost_weaknesses_goryo
         GhostWeakness.HANTU -> R.string.ghost_weaknesses_hantu
         GhostWeakness.JINN -> R.string.ghost_weaknesses_jinn
@@ -163,6 +180,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostWeakness.MOROI -> R.string.ghost_weaknesses_moroi
         GhostWeakness.MYLING -> R.string.ghost_weaknesses_myling
         GhostWeakness.OBAKE -> R.string.ghost_weaknesses_obake
+        GhostWeakness.OBAMBO -> R.string.ghost_weaknesses_obambo
         GhostWeakness.ONI -> R.string.ghost_weaknesses_oni
         GhostWeakness.ONRYO -> R.string.ghost_weaknesses_onryo
         GhostWeakness.PHANTOM -> R.string.ghost_weaknesses_phantom
@@ -182,8 +200,10 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
 @StringRes fun GhostHuntInfo.toStringResource(): Int =
     when (this) {
         GhostHuntInfo.BANSHEE -> R.string.ghost_huntingdata_banshee
+        GhostHuntInfo.DAYAN -> R.string.ghost_huntingdata_dayan
         GhostHuntInfo.DEMON -> R.string.ghost_huntingdata_demon
         GhostHuntInfo.DEOGEN -> R.string.ghost_huntingdata_deogen
+        GhostHuntInfo.GALLU -> R.string.ghost_huntingdata_gallu
         GhostHuntInfo.GORYO -> R.string.ghost_huntingdata_goryo
         GhostHuntInfo.HANTU -> R.string.ghost_huntingdata_hantu
         GhostHuntInfo.JINN -> R.string.ghost_huntingdata_jinn
@@ -191,6 +211,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostHuntInfo.MOROI -> R.string.ghost_huntingdata_moroi
         GhostHuntInfo.MYLING -> R.string.ghost_huntingdata_myling
         GhostHuntInfo.OBAKE -> R.string.ghost_huntingdata_obake
+        GhostHuntInfo.OBAMBO -> R.string.ghost_huntingdata_obambo
         GhostHuntInfo.ONI -> R.string.ghost_huntingdata_oni
         GhostHuntInfo.ONRYO -> R.string.ghost_huntingdata_onryo
         GhostHuntInfo.PHANTOM -> R.string.ghost_huntingdata_phantom
