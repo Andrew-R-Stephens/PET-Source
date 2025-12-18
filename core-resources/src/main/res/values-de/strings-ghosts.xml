@@ -9,8 +9,10 @@
 
     <!-- Ghost Names -->
     <string name="ghost_type_banshee">Banshee</string>
+    <string name="ghost_type_dayan">Dayan</string>
     <string name="ghost_type_demon">Dämon</string>
     <string name="ghost_type_deogen">Deogen</string>
+    <string name="ghost_type_gallu">Gallu</string>
     <string name="ghost_type_goryo">Goryo</string>
     <string name="ghost_type_hantu">Hantu</string>
     <string name="ghost_type_jinn">Dschinn</string>
@@ -18,6 +20,7 @@
     <string name="ghost_type_moroi">Moroi</string>
     <string name="ghost_type_myling">Myling</string>
     <string name="ghost_type_obake">Obake</string>
+    <string name="ghost_type_obambo">Obambo</string>
     <string name="ghost_type_oni">Oni</string>
     <string name="ghost_type_onryo">Onryo</string>
     <string name="ghost_type_phantom">Phantom</string>
@@ -581,5 +584,90 @@
          ]]>
      </string>
 
+    <string name="ghost_info_dayan">
+<![CDATA[
+<a>Die einzigartige Eigenschaft des Dayan besteht darin, dass er schneller wird, wenn sich Spieler in seiner Nähe bewegen, aber auch langsamer, wenn Spieler stehen bleiben.</a>
+]]> </string>
+    <string name="ghost_info_gallu" translatable="false">
+<![CDATA[
+<a>Dieser Geist wird bekanntermaßen während der Jagd schneller, wenn Spieler Schutzausrüstung wie Kruzifixe oder Weihrauch gegen ihn verwenden.</a>
+]]>
+</string>
+    <string name="ghost_info_obambo" translatable="false">
+<![CDATA[
+<a>Die einzigartige Fähigkeit des Obambo besteht darin, zwischen einem „ruhigen“ Zustand, in dem er weniger aggressiv und langsamer ist, und einem „aggressiven“ Zustand zu wechseln, in dem er aggressiver und schneller ist.</a>
+]]>
+</string>
+
+
+    <string name="ghost_strengths_dayan" translatable="false">
+<![CDATA[
+<a>Bewegt sich schneller, wenn sich ein Spieler in der Nähe des Dayan bewegt.</a>
+]]>
+</string>
+    <string name="ghost_strengths_gallu" translatable="false">
+<![CDATA[
+<a>Wird aggressiv, wenn Schutzausrüstung verwendet wird.</a>
+]]>
+</string>
+    <string name="ghost_strengths_obambo" translatable="false">
+<![CDATA[
+<a>Jagt früher und bewegt sich in seinem „aggressiven“ Zustand schneller.</a>
+]]>
+</string>
+
+
+    <string name="ghost_weaknesses_dayan" translatable="false">
+<![CDATA[
+<a>Bewegt sich langsamer, wenn ein Spieler in der Nähe des Dayan stillsteht.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_gallu" translatable="false">
+<![CDATA[
+<a>Wird nach einer Jagd weniger aggressiv.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_obambo" translatable="false">
+<![CDATA[
+<a>Jagt später und bewegt sich in seinem „ruhigen“ Zustand langsamer.</a>
+]]>
+</string>
+
+
+    <string name="ghost_huntingdata_dayan" translatable="false">
+<![CDATA[
+<a>Jagt ab 50 %</a> Die Standard-Geistesaktivität basiert auf dem geistigen Zustand und wird durch eine Kombination aus Spielernähe und Spielerbewegung beeinflusst.</a><br>
+<a>Die Jagdschwelle erhöht sich auf 65 % des geistigen Zustands, wenn ein Spieler in der Nähe (innerhalb von 10 Metern) geht.</a><br>
+<a>Die Jagdschwelle sinkt auf 45 % des geistigen Zustands, wenn alle Spieler in der Nähe (innerhalb von 10 Metern) stillstehen.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_gallu" translatable="false">
+<![CDATA[
+<a>Es gibt 3 Zustände dieses Geistes: Normal, Wütend und Geschwächt.</a><br>
+<br>
+<a>Normal:</a><br>
+<a>Jagd bei 50 % des geistigen Zustands. Die Bewegungsgeschwindigkeit während der Jagd beträgt 1,7 m/s. Die Wirkung von Weihrauch hält 5 Sekunden an.</a><br>
+<br>
+<a>Wütend:</a><br>
+<a>Jagd bei 60 % des geistigen Zustands. Die Reichweite des Kruzifixes ist um 2 Meter reduziert. Die Bewegungsgeschwindigkeit während der Jagd ist auf 1,96 m/s erhöht. Die Wirkung von Weihrauch ist auf 4 Sekunden reduziert. Kann nicht in Salz treten.</a><br>
+<br>
+<a>Geschwächt:</a><br>
+<a>Jagd bei 40 % des geistigen Zustands. Die effektive Reichweite des Kruzifixes ist um 1 Meter erhöht. Die Bewegungsgeschwindigkeit während der Jagd ist auf 1,36 m/s reduziert. Die Wirkung von Räucherwerk wird auf 6 Sekunden erhöht.</a><br>
+<br>
+<a>Der Gallu wechselt zwischen den Zuständen „Geschwächt“, „Normal“ und „Wütend“, wenn er durch die Aktivierung von Räucherwerk durch den Spieler oder die Interaktion des Geistes mit Salz oder einem Kruzifix provoziert wird.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_obambo" translatable="false">
+<![CDATA[
+<a>Es gibt 2 Zustände dieses Geistes: Ruhig und Aggressiv.</a><br>
+<br>
+<a>Ruhig: Jagt ab 10 % geistiger Gesundheit.</a><br>
+<a>Die Bewegungsgeschwindigkeit während der Jagd beträgt 1,45 m/s. Die Wirkung von Räucherwerk hält 5 Sekunden an.</a><br>
+<br>
+<a>Aggressiv:</a><br>
+<a>Jagt ab 65 % geistiger Gesundheit. Die Reichweite des Kruzifixes ist um 2 Meter verringert. Die Bewegungsgeschwindigkeit während der Jagd ist auf 1,96 m/s erhöht. Die Jagddauer ist 20 % kürzer, wenn die Jagd in diesem Zustand beginnt.</a><br>
+<a>Der Obambo beginnt im Zustand „Ruhig“, der 1 Minute nach dem ersten Betreten des Spielers anhält. Anschließend wechselt er alle 2 Minuten zwischen den Zuständen „Ruhig“ und „Aggressiv“. Dies kann sogar während einer Jagd geschehen.</a>
+]]>
+</string>
 
 </resources>

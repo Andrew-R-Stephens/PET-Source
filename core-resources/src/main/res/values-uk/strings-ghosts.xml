@@ -7,8 +7,10 @@
     <string name="popup_ghost_huntdata">Дані полювання</string>
     <!-- Ghost Names -->
     <string name="ghost_type_banshee">Банші</string>
+    <string name="ghost_type_dayan">Даян</string>
     <string name="ghost_type_demon">Демон</string>
     <string name="ghost_type_deogen">Деоген</string>
+    <string name="ghost_type_gallu">Галлу</string>
     <string name="ghost_type_goryo">Горьо</string>
     <string name="ghost_type_hantu">Ханту</string>
     <string name="ghost_type_jinn">Джин</string>
@@ -16,6 +18,7 @@
     <string name="ghost_type_moroi">Морой</string>
     <string name="ghost_type_myling">Мюлінг</string>
     <string name="ghost_type_obake">Обаке</string>
+    <string name="ghost_type_obambo">ОБамБо</string>
     <string name="ghost_type_oni">Оні</string>
     <string name="ghost_type_onryo">Онріо</string>
     <string name="ghost_type_phantom">Фантом</string>
@@ -309,4 +312,89 @@
         <![CDATA[
             <a>Полює на 50\% розуму.</a>
         ]]></string>
+
+    <string name="ghost_info_dayan" translatable="false">
+<![CDATA[
+<a>Унікальна особливість Даяна дозволяє йому прискорюватися, коли гравці рухаються поруч, але також уповільнює його, коли гравці зупиняються.</a>
+]]>
+</string>
+    <string name="ghost_info_gallu" translatable="false">
+<![CDATA[
+<a>Відомо, що цей привид стає швидшим під час полювання, коли гравці використовують проти нього захисне спорядження, таке як розп\'яття або пахощі.</a>
+]]>
+</string>
+    <string name="ghost_info_obambo" translatable="false">
+<![CDATA[
+<a>Унікальна здатність Обамбо полягає в перемиканні між «спокійним» станом, у якому він менш агресивний і повільніший під час полювання, і «агресивним» станом, у якому він більш агресивний і швидший під час полювання.</a>
+]]>
+</string>
+
+    <string name="ghost_strengths_dayan" translatable="false">
+<![CDATA[
+<a>Рухається швидше, коли гравець рухається поруч Даян.</a>
+]]>
+</string>
+    <string name="ghost_strengths_gallu" translatable="false">
+<![CDATA[
+<a>Стає агресивним, коли використовується захисне спорядження.</a>
+]]>
+</string>
+    <string name="ghost_strengths_obambo" translatable="false">
+<![CDATA[
+<a>Полює раніше та рухається швидше в своєму \"агресивному\" стані.</a>
+]]>
+</string>
+
+    <string name="ghost_weaknesses_dayan" translatable="false">
+<![CDATA[
+<a>Рухається повільніше, коли гравець стоїть нерухомо біля Даяна.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_gallu" translatable="false">
+<![CDATA[
+<a>Стає менш агресивним після полювання.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_obambo" translatable="false">
+<![CDATA[
+<a>Полює пізніше та рухається повільніше у своєму стані «спокою».</a>
+]]>
+</string>
+
+    <string name="ghost_huntingdata_dayan" translatable="false">
+<![CDATA[
+<a>За замовчуванням полює з 50% розсудливості та змінюється залежно від комбінації близькості гравця та його руху.</a><br>
+<a>Поріг полювання збільшується до 65% розсудливості, якщо будь-який гравець поблизу (у межах 10 метрів) ходить.</a><br>
+<a>Поріг полювання зменшується до 45% розсудливості, якщо всі гравці поблизу (у межах 10 метрів) стоять на місці.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_gallu" translatable="false">
+<![CDATA[
+<a>Є 3 стани цього привида: Звичайний, Розлючений та Ослаблений.</a><br>
+<br>
+<a>Звичайний:</a><br>
+<a>Полює з 50\% розсудливості. Швидкість руху під час полювання становить 1,7 м/с. Ефекти ладану тривають 5 секунд.</a><br>
+<br>
+<a>Розлючений:</a><br>
+<a>Полює з 60\% розсудливості. Дальність дії Розп\'яття зменшена на 2 метри. Швидкість руху під час полювання збільшена до 1,96 м/с. Ефекти ладану зменшено до 4 секунд. Не можна наступати на сіль.</a><br>
+<br>
+<a>Ослаблений:</a><br>
+<a>Полює з 40\% розсудливості. Ефективна дальність Розп\'яття збільшена на 1 метр. Швидкість руху під час полювання зменшена до 1,36 м/с. Ефекти ладану збільшено до 6 секунд.</a><br>
+<br>
+<a>Галлу переміщуватиметься вгору між Ослабленим, Нормальним та Розлюченим станами, коли його стан посилюється активацією ладану гравцем або взаємодією привида з сіллю чи розп\'яттям.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_obambo" translatable="false">
+<![CDATA[
+<a>Цей привид має 2 стани: Спокійний та Агресивний.</a><br>
+<br>
+<a>Спокій: Полює з 10% розсудливості.</a><br>
+<a>Швидкість пересування під час полювання становить 1,45 м/с. Ефекти ладану тривають 5 секунд.</a><br>
+<br>
+<a>Агресивний:</a><br>
+<a>Полює з 65% розсудливості. Дальність розп\'яття зменшується на 2 метри. Швидкість руху під час полювання збільшена до 1,96 м/с. Тривалість полювання скорочується на 20%, якщо полювання починається в цьому стані.</a><br>
+<a>Обамбо починає зі стану спокою, який триває 1 хвилину після першого входу гравця. Потім він перемикатиметься між станами спокою та агресії кожні 2 хвилини. Це може статися навіть під час полювання.</a>
+]]>
+</string>
+
 </resources>

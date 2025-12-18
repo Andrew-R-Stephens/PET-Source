@@ -9,8 +9,10 @@
 
     <!-- Ghost Names -->
     <string name="ghost_type_banshee">Banshee</string>
+    <string name="ghost_type_dayan">Dayan</string>
     <string name="ghost_type_demon">Démon</string>
     <string name="ghost_type_deogen">Deogen</string>
+    <string name="ghost_type_gallu">Gallu</string>
     <string name="ghost_type_goryo">Goryo</string>
     <string name="ghost_type_hantu">Hantu</string>
     <string name="ghost_type_jinn">Djinn</string>
@@ -18,6 +20,7 @@
     <string name="ghost_type_moroi">MoroÏ</string>
     <string name="ghost_type_myling">Myling</string>
     <string name="ghost_type_obake">Obake</string>
+    <string name="ghost_type_obambo">Obambo</string>
     <string name="ghost_type_oni">Oni</string>
     <string name="ghost_type_onryo">Onryo</string>
     <string name="ghost_type_phantom">Fantome</string>
@@ -590,5 +593,91 @@
              <a>Chasse à 50\% de santé mentale.</a>
          ]]>
      </string>
+
+    <string name="ghost_info_dayan">
+<![CDATA[
+<a>La particularité du Dayan lui permet d\'accélérer lorsque les joueurs se déplacent près de lui, mais le ralentit également lorsque les joueurs s\'arrêtent de bouger.</a>
+]]> </string>
+    <string name="ghost_info_gallu" translatable="false">
+<![CDATA[
+<a>Ce fantôme est connu pour devenir plus rapide pendant les chasses lorsque les joueurs utilisent des équipements de protection contre lui, comme des crucifix ou de l\'encens.</a>
+]]>
+</string>
+    <string name="ghost_info_obambo" translatable="false">
+<![CDATA[
+<a>La capacité unique de l\'Obambo consiste à alterner entre un état « calme », où il est moins agressif et plus lent pendant les chasses, et un état « agressif », où il est plus agressif et plus rapide pendant les chasses.</a>
+]]>
+</string>
+
+
+    <string name="ghost_strengths_dayan" translatable="false">
+<![CDATA[
+<a>Se déplace plus vite lorsqu\'un joueur se déplace près du Dayan.</a>
+]]>
+</string>
+    <string name="ghost_strengths_gallu" translatable="false">
+<![CDATA[
+<a>Devient agressif lorsque des équipements de protection sont utilisés.</a>
+]]>
+</string>
+    <string name="ghost_strengths_obambo" translatable="false">
+<![CDATA[
+<a>Chasse plus tôt et se déplace plus vite dans son état « agressif ».</a>
+]]>
+</string>
+
+
+    <string name="ghost_weaknesses_dayan" translatable="false">
+<![CDATA[
+<a>Se déplace plus lentement lorsqu\'un joueur reste immobile près du Dayan.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_gallu" translatable="false">
+<![CDATA[
+<a>Devient moins agressif après une chasse.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_obambo" translatable="false">
+<![CDATA[
+<a>Chasse plus tard et se déplace plus lentement dans son état « calme ».</a>
+]]>
+</string>
+
+
+    <string name="ghost_huntingdata_dayan" translatable="false">
+<![CDATA[
+<a>Chasse à 50 %</a> La santé mentale est définie par défaut et est modifiée en fonction de la proximité et des mouvements du joueur.</a><br>
+<a>Le seuil de chasse augmente à 65 % de santé mentale si un joueur à proximité (à moins de 10 mètres) marche.</a><br>
+<a>Le seuil de chasse diminue à 45 % de santé mentale si tous les joueurs à proximité (à moins de 10 mètres) sont immobiles.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_gallu" translatable="false">
+<![CDATA[
+Il existe 3 états pour ce fantôme : Normal, Enragé et Affaibli.</a><br>
+<br>
+<a>Normal:</a><br>
+<a>Chasse à 50 % de santé mentale. La vitesse de déplacement pendant la chasse est de 1,7 m/s. L\'encens a un effet de 5 secondes.</a><br>
+<br>
+<a>Enragé:</a><br>
+<a>Chasse à 60\% de santé mentale. La portée du crucifix est réduite de 2 mètres. La vitesse de déplacement pendant la chasse est augmentée à 1,96 m/s. L\'effet de l\'encens est réduit à 4 secondes. Ne peut pas marcher sur le sel.</a><br>
+<br>
+<a>Affaibli:</a><br>
+<a>Chasse à 40\% de santé mentale. La portée effective du crucifix est augmentée de 1 mètre. La vitesse de déplacement pendant la chasse est réduite à 1,36 m/s. Les effets de l\'encens durent désormais 6 secondes.</a><br>
+<br>
+<a>Le Gallu passera des états Affaibli, Normal et Enragé lorsqu\'il est provoqué par l\'activation de l\'encens par le joueur ou par l\'interaction du fantôme avec du sel ou un crucifix.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_obambo" translatable="false">
+<![CDATA[
+<a>Ce fantôme possède 2 états : Calme et Agressif.</a><br>
+<br>
+<a>Calme : Chasse à 10 % de santé mentale.</a><br>
+<a>Vitesse de déplacement pendant la chasse : 1,45 m/s. Les effets de l\'encens durent 5 secondes.</a><br>
+<br>
+<a>Agressif:</a><br>
+<a>Chasse à 65\% de santé mentale. La portée du crucifix est réduite de 2 mètres. La vitesse de déplacement pendant la chasse est augmentée à 1,96 m/s. La durée de la chasse est 20\% plus courte si elle commence dans cet état.</a><br>
+<a>L\'Obambo commence en état Calme pendant 1 minute après l\'entrée initiale du joueur. Ensuite, il alternera entre les états Calme et Agressif toutes les 2 minutes. Cela peut même se produire pendant une chasse.</a>
+]]>
+</string>
 
 </resources>

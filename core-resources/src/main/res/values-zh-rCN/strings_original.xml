@@ -254,8 +254,10 @@
     <!-- Ghost Names -->
 
     <string name="ghost_type_banshee">女妖</string>
+    <string name="ghost_type_dayan">达彦</string>
     <string name="ghost_type_demon">恶魔</string>
     <string name="ghost_type_deogen">雾影</string>
+    <string name="ghost_type_gallu">加鲁</string>
     <string name="ghost_type_goryo">御灵</string>
     <string name="ghost_type_hantu">寒魔</string>
     <string name="ghost_type_jinn">巨灵</string>
@@ -263,6 +265,7 @@
     <string name="ghost_type_moroi">魔洛伊</string>
     <string name="ghost_type_myling">鬼婴</string>
     <string name="ghost_type_obake">幻妖</string>
+    <string name="ghost_type_obambo">"奥班博 "</string>
     <string name="ghost_type_oni">赤鬼</string>
     <string name="ghost_type_onryo">怨灵</string>
     <string name="ghost_type_phantom">幻影</string>
@@ -945,5 +948,91 @@
     <string name="alert_gui_palette_error">调色板未设置！</string>
     <string name="alert_gui_typography_error">字体未设置！</string>
     <string name="account_button_visit_marketplace">访问市场</string>
+
+    <string name="ghost_info_dayan">
+            <![CDATA[
+                <a>达扬的独特之处在于，当玩家靠近它时，它的速度会加快，但当玩家停止移动时，它的速度也会减慢。</a>
+            ]]> </string>
+    <string name="ghost_info_gallu" translatable="false">
+            <![CDATA[
+                <a>众所周知，当玩家使用十字架或香炉等防护装备来对抗这只鬼魂时，它在追捕玩家的过程中速度会变得更快。</a>
+            ]]>
+        </string>
+<string name="ghost_info_obambo" translatable="false">
+<![CDATA[
+Obambo 的独特能力在于它会在“平静”状态和“攻击”状态之间切换。“平静”状态下，它在狩猎期间攻击性较低且速度较慢；“攻击”状态下，它在狩猎期间攻击性更强且速度更快。
+]]>
+</string>
+
+
+<string name="ghost_strengths_dayan" translatable="false">
+<![CDATA[
+当玩家靠近 Dayan 时，它的移动速度会更快。
+]]>
+</string>
+<string name="ghost_strengths_gallu" translatable="false">
+<![CDATA[
+使用防护装备时会变得更具攻击性。
+]]>
+</string>
+<string name="ghost_strengths_obambo" translatable="false">
+<![CDATA[
+在“攻击”状态下，它会更早开始狩猎，并且移动速度更快。
+]]>
+</string>
+
+
+<string name="ghost_weaknesses_dayan" translatable="false">
+<![CDATA[
+当玩家站在 Dayan 附近不动时，它的移动速度会变慢。
+]]>
+</string>
+<string name="ghost_weaknesses_gallu" translatable="false">
+<![CDATA[
+狩猎结束后攻击性会降低。
+]]>
+</string>
+<string name="ghost_weaknesses_obambo" translatable="false">
+<![CDATA[
+在“平静”状态下，它会更晚开始狩猎，并且移动速度更慢。
+]]>
+</string>
+
+
+<string name="ghost_huntingdata_dayan" translatable="false">
+<![CDATA[
+默认情况下，它在理智值达到 50% 时开始狩猎，并会根据玩家的距离和移动状态进行调整。移动。</a><br>
+<a>如果附近有任何玩家（10 米范围内）正在行走，狩猎阈值会提高到 65% 理智值。</a><br>
+<a>如果附近所有玩家（10 米范围内）都静止不动，狩猎阈值会降低到 45% 理智值。</a>
+]]>
+</string>
+<string name="ghost_huntingdata_gallu" translatable="false">
+<![CDATA[
+<a>这种鬼魂有 3 种状态：正常、狂暴和虚弱。</a><br>
+<br>
+<a>正常：</a><br>
+<a>在 50% 理智值时开始狩猎。狩猎移动速度为 1.7 米/秒。熏香效果持续 5 秒。</a><br>
+<br>
+<a>狂暴：</a><br>
+<a>在 60% 理智值时开始狩猎。十字架范围减少 2 米。狩猎移动速度提高到 1.96 米/秒。熏香效果减少到 4 秒。无法踩到盐。</a><br>
+<br>
+<a>虚弱：</a><br>
+<a>在 40% 理智值时开始狩猎。十字架有效范围增加 1 米。狩猎移动速度降低到 1.36 米/秒。熏香效果增加到 6 秒。</a><br>
+<br>
+<a>当玩家使用熏香或鬼魂与盐或十字架互动时，​​加鲁会从虚弱状态、正常状态和狂暴状态之间切换。</a>
+]]>
+</string>
+<string name="ghost_huntingdata_obambo" translatable="false">
+<![CDATA[
+<a>这种鬼魂有 2 种状态：平静和攻击性。</a><br>
+<br>
+<a>平静：在 10% 理智值时开始狩猎。</a><br>
+<a>狩猎移动速度为 1.45 米/秒。熏香效果持续 5 秒。</a><br>
+<br>
+<a>攻击性：</a><br>
+<a>在 65% 理智值时开始狩猎。十字架的有效范围减少2米。狩猎时的移动速度提高到1.96米/秒。如果在这种状态下开始狩猎，狩猎持续时间会缩短20%。
+奥班博一开始处于平静状态，持续1分钟（从玩家首次进入游戏开始计算）。之后，它会每2分钟在平静状态和攻击状态之间切换。即使在狩猎期间也会发生这种情况。
+]]>
+</string>
 
 </resources>

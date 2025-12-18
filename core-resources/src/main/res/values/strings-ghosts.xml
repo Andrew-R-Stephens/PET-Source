@@ -9,8 +9,10 @@
 
     <!-- Ghost Names -->
     <string name="ghost_type_banshee">Banshee</string>
+    <string name="ghost_type_dayan">Dayan</string>
     <string name="ghost_type_demon">Demon</string>
     <string name="ghost_type_deogen">Deogen</string>
+    <string name="ghost_type_gallu">Gallu</string>
     <string name="ghost_type_goryo">Goryo</string>
     <string name="ghost_type_hantu">Hantu</string>
     <string name="ghost_type_jinn">Jinn</string>
@@ -18,6 +20,7 @@
     <string name="ghost_type_moroi">Moroi</string>
     <string name="ghost_type_myling">Myling</string>
     <string name="ghost_type_obake">Obake</string>
+    <string name="ghost_type_obambo">Obambo</string>
     <string name="ghost_type_oni">Oni</string>
     <string name="ghost_type_onryo">Onryo</string>
     <string name="ghost_type_phantom">Phantom</string>
@@ -35,35 +38,43 @@
     
     <!-- Ghost IDs -->
     <string name="ghost_id_banshee" translatable="false">0</string>
-    <string name="ghost_id_demon" translatable="false">1</string>
-    <string name="ghost_id_deogen" translatable="false">2</string>
-    <string name="ghost_id_goryo" translatable="false">3</string>
-    <string name="ghost_id_hantu" translatable="false">4</string>
-    <string name="ghost_id_jinn" translatable="false">5</string>
-    <string name="ghost_id_mare" translatable="false">6</string>
-    <string name="ghost_id_moroi" translatable="false">7</string>
-    <string name="ghost_id_myling" translatable="false">8</string>
-    <string name="ghost_id_obake" translatable="false">9</string>
-    <string name="ghost_id_oni" translatable="false">10</string>
-    <string name="ghost_id_onryo" translatable="false">11</string>
-    <string name="ghost_id_phantom" translatable="false">12</string>
-    <string name="ghost_id_poltergeist" translatable="false">13</string>
-    <string name="ghost_id_raiju" translatable="false">14</string>
-    <string name="ghost_id_revenant" translatable="false">15</string>
-    <string name="ghost_id_shade" translatable="false">16</string>
-    <string name="ghost_id_spirit" translatable="false">17</string>
-    <string name="ghost_id_thaye" translatable="false">18</string>
-    <string name="ghost_id_thetwins" translatable="false">19</string>
-    <string name="ghost_id_themimic" translatable="false">20</string>
-    <string name="ghost_id_wraith" translatable="false">21</string>
-    <string name="ghost_id_yokai" translatable="false">22</string>
-    <string name="ghost_id_yurei" translatable="false">23</string>
+    <string name="ghost_id_dayan" translatable="false">1</string>
+    <string name="ghost_id_demon" translatable="false">2</string>
+    <string name="ghost_id_deogen" translatable="false">3</string>
+    <string name="ghost_id_gallu" translatable="false">4</string>
+    <string name="ghost_id_goryo" translatable="false">5</string>
+    <string name="ghost_id_hantu" translatable="false">6</string>
+    <string name="ghost_id_jinn" translatable="false">7</string>
+    <string name="ghost_id_mare" translatable="false">8</string>
+    <string name="ghost_id_moroi" translatable="false">9</string>
+    <string name="ghost_id_myling" translatable="false">10</string>
+    <string name="ghost_id_obake" translatable="false">11</string>
+    <string name="ghost_id_obambo" translatable="false">12</string>
+    <string name="ghost_id_oni" translatable="false">13</string>
+    <string name="ghost_id_onryo" translatable="false">14</string>
+    <string name="ghost_id_phantom" translatable="false">15</string>
+    <string name="ghost_id_poltergeist" translatable="false">16</string>
+    <string name="ghost_id_raiju" translatable="false">17</string>
+    <string name="ghost_id_revenant" translatable="false">18</string>
+    <string name="ghost_id_shade" translatable="false">19</string>
+    <string name="ghost_id_spirit" translatable="false">20</string>
+    <string name="ghost_id_thaye" translatable="false">21</string>
+    <string name="ghost_id_thetwins" translatable="false">22</string>
+    <string name="ghost_id_themimic" translatable="false">23</string>
+    <string name="ghost_id_wraith" translatable="false">24</string>
+    <string name="ghost_id_yokai" translatable="false">25</string>
+    <string name="ghost_id_yurei" translatable="false">26</string>
 
 
     <!-- Ghost description -->
     <string name="ghost_info_banshee" >
             <![CDATA[
                 <a>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>.</a>
+            ]]>
+        </string>
+    <string name="ghost_info_dayan" translatable="false">
+            <![CDATA[
+                <a>The Dayan\'s unique trait allows it to speed up when players move near it but also makes it slow down when players stop moving.</a>
             ]]>
         </string>
     <string name="ghost_info_demon" >
@@ -74,6 +85,11 @@
     <string name="ghost_info_deogen" >
             <![CDATA[
                 <a>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide. Repeat: DO NOT TRY TO HIDE. If you hear extremely rapid footsteps, like a drumroll, step out of hiding IMMEDIATELY.</a>
+            ]]>
+        </string>
+    <string name="ghost_info_gallu" translatable="false">
+            <![CDATA[
+                <a>This ghost is known to become faster during hunts when players use protective equipment against it such as crucifixes or incense.</a>
             ]]>
         </string>
     <string name="ghost_info_goryo">
@@ -109,6 +125,11 @@
     <string name="ghost_info_obake">
             <![CDATA[
                 <a>An Obake is a shape shifter which promotes some unusual evidence at times. An Obake has a chance to not produce fingerprints at all, which may cause problems with evidence collection if negating Fingerprints too early.
+            ]]>
+        </string>
+    <string name="ghost_info_obambo" translatable="false">
+            <![CDATA[
+                <a>The Obambo\'s unique ability revolves around switching between a \"calm\" state in which it is less aggressive and slower during hunts and an \"aggressive\" state in which it is more aggressive and faster during hunts.</a>
             ]]>
         </string>
     <string name="ghost_info_oni" >
@@ -190,6 +211,11 @@
                 <a>The Banshee will focus on one player, and will swap to a new target if their selected target is not in the play-area.</a>
             ]]>
         </string>
+    <string name="ghost_strengths_dayan" translatable="false">
+            <![CDATA[
+                <a>Moves faster when a player moves near the Dayan.</a>
+            ]]>
+        </string>
     <string name="ghost_strengths_demon" >
             <![CDATA[
                 <a>They can be difficult to gather clues on as they will attack players very frequently. The Demon can early\-hunt at any sanity, but it\'s minimum target is normally around 70\% average sanity. It\'s hunt cooldown, or the time between hunts, is 20 seconds, which is 5 seconds faster than any other ghost. Smudge sticks also have a shorter protection period, granting 60 seconds of safety rather than the normal 90 seconds for non\-Spirit ghosts.</a>
@@ -198,6 +224,11 @@
     <string name="ghost_strengths_deogen">
             <![CDATA[
                 <a>The Deogen will sense any living being, no matter how well hidden. Choosing to stay stationary against a Deogen will get you killed. Do not rely on breaking line-of-sight, as this will not stop a chase and will only allow the Deogen to move much quicker.</a>
+            ]]>
+        </string>
+    <string name="ghost_strengths_gallu" translatable="false">
+            <![CDATA[
+                <a>Becomes aggressive when protective equipment is used.</a>
             ]]>
         </string>
     <string name="ghost_strengths_goryo">
@@ -234,6 +265,11 @@
     <string name="ghost_strengths_obake">
             <![CDATA[
                 <a>An Obake may not leave a trace when manipulating the environment. This means that it has a chance to not leave fingerprint evidence. The Obake may also decrease fingerprint lifetime by half.</a>
+            ]]>
+        </string>
+    <string name="ghost_strengths_obambo" translatable="false">
+            <![CDATA[
+                <a>Hunts earlier and moves faster in its \"aggressive\" state.</a>
             ]]>
         </string>
     <string name="ghost_strengths_oni" >
@@ -313,6 +349,11 @@
                 <a>A Banshee will wander far from its room just to stalk its target. Banshees will never kill its non-target player, and during a hunt it will walk straight through any investigator who it isn\'t interested in. It also bases its hunt on the Sanity of its target instead of the average Sanity of the team. A Banshee has a special interaction with the Parabolic Microphone as it has a chance to emmit a faint, high pitched wail.</a>
             ]]>
         </string>
+    <string name="ghost_weaknesses_dayan" translatable="false">
+            <![CDATA[
+                <a>Moves slower when a player stands still near the Dayan.</a>
+            ]]>
+        </string>
     <string name="ghost_weaknesses_demon" >
             <![CDATA[
                 <a>Unlike other ghosts, asking a Demon a successful question via the Ouija Board will not lower players\' sanity. This makes the Ouija Board a very useful tool against Demons. Demons <font color=#ff6161>fear the Crucifix</font>, increasing its effectiveness against them by amplifying the Crucifix effective range to 5 meters instead of the normal 3 meters for other ghosts.</a>
@@ -321,6 +362,11 @@
     <string name="ghost_weaknesses_deogen">
             <![CDATA[
                 <a>The Deogen will stalk its prey to exhaustion, but it will never outpace it\'s prey. Stay on the move against this ghost and make sure to plan your routes ahead of time. Stay in line\-of\-sight with this ghost and you\'ll be fine as it will only be able to move at 0.4 m/s while in close proximity to the nearest player in line\-of\-sight. As long as you\'re within line\-of\-sight it will never be able to catch you, even if you\'re walking. The Deogen will only hunt at 40\% sanity.</a>
+            ]]>
+        </string>
+    <string name="ghost_weaknesses_gallu" translatable="false">
+            <![CDATA[
+                <a>Becomes less aggressive after a hunt.</a>
             ]]>
         </string>
     <string name="ghost_weaknesses_goryo">
@@ -358,6 +404,11 @@
     <string name="ghost_weaknesses_obake" >
             <![CDATA[
                 <a>By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake. The Obake may also change its ghost model for a brief second at any point both during a hunt. If the Obake touches a surface, there is a chance for fingerprints to not appear; This can be used as proof for the ghost if any following interactions produce fingerprints.</a>
+            ]]>
+        </string>
+    <string name="ghost_weaknesses_obambo" translatable="false">
+            <![CDATA[
+                <a>Hunts later and moves slower in its \"calm\" state.</a>
             ]]>
         </string>
     <string name="ghost_weaknesses_oni" >
@@ -438,6 +489,13 @@
                 <a>Completely ignores Average Sanity.</a>
             ]]>
         </string>
+    <string name="ghost_huntingdata_dayan" translatable="false">
+            <![CDATA[
+                <a>Hunts at 50\% Sanity by default, and is modified with a combination of player proximity and player movement.</a><br>
+                <a>Hunt threshold increases to 65\% Sanity if any nearby player (within 10 meters) is walking.</a><br>
+                <a>Hunt threshold decreases to 45\% Sanity if all nearby players (within 10 meters) are standing still.</a>
+            ]]>
+        </string>
     <string name="ghost_huntingdata_demon" >
             <![CDATA[
                 <a>Normally hunts at 70\% Sanity.</a><br>
@@ -450,8 +508,24 @@
                 <ul>
                     <li>3.0 m/s while sprinting to a hidden player\'s location.</li>
                     <li>0.4 m/s or more while following an investigator closely.</li>
-                    <li>3.0 m/s or less to maintain close proximity to investigator.
+                    <li>3.0 m/s or less to maintain close proximity to investigator.</li>
                 </ul>
+            ]]>
+        </string>
+    <string name="ghost_huntingdata_gallu" translatable="false">
+            <![CDATA[
+                <a>There are 3 states of this ghost: Normal, Enraged, and Weakened.</a><br>
+                <br>
+                <a>Normal:</a><br>
+                <a>Hunts at 50\% Sanity. Hunt movement speed is 1.7 m/s. Incense affects last for 5 seconds.</a><br>
+                <br>
+                <a>Enraged:</a><br>
+                <a>Hunts at 60\% Sanity. Crucifix range is reduced by 2 meters. Hunt movement speed is increased to 1.96 m/s. Incense affects are reduced to 4 seconds. Cannot step in salt.</a><br>
+                <br>
+                <a>Weakened:</a><br>
+                <a>Hunts at 40\% Sanity. Crucifix effective range increased by 1 meter.Hunt movement speed is reduced to 1.36 m/s. Incense affects are increased to 6 seconds.</a><br>
+                <br>
+                <a>The Gallu will move upwards between Weakened, Normal, and Enraged states when aggravated via the player\'s activation of Incense or the ghost\'s interaction with Salt or a Crucifix.</a>
             ]]>
         </string>
     <string name="ghost_huntingdata_goryo">
@@ -512,6 +586,18 @@
     <string name="ghost_huntingdata_obake" >
             <![CDATA[
                 <a>Hunts at 50\% Sanity.</a>
+            ]]>
+        </string>
+    <string name="ghost_huntingdata_obambo" translatable="false">
+            <![CDATA[
+                <a>There are 2 states of this ghost: Calm and Aggressive.</a><br>
+                <br>
+                <a>Calm: Hunts at 10\% Sanity.</a><br>
+                <a>Hunt movement speed is 1.45 m/s.Incense affects last for 5 seconds.</a><br>
+                <br>
+                <a>Aggressive:</a><br>
+                <a>Hunts at 65\% Sanity. Crucifix range is reduced by 2 meters. Hunt movement speed is increased to 1.96 m/s. Hunt duration is 20% shorter if hunt starts while in this state.</a><br>
+                <a>The Obambo starts with Calm state which lasts for 1 minute after initial player entry. Then, it will switch between Calm and Aggressive states every 2 minutes. This can even happen during a hunt.</a>
             ]]>
         </string>
     <string name="ghost_huntingdata_oni" >

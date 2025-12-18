@@ -43,11 +43,11 @@
 
     <!-- Map Full Names -->
     <!--<string name="map_name_asylum" translatable="false">Asylum</string>-->
-    <string name="map_name_short_meadows" translatable="false">Sunny Meadows</string>
-    <string name="map_name_short_meadows_r" translatable="false">Sunny Meadows (R)</string>
+    <string name="map_name_short_meadows" translatable="false">Sunny</string>
+    <string name="map_name_short_meadows_r" translatable="false">Sunny (R)</string>
     <string name="map_name_short_pointhope" translatable="false">Point Hope</string>
-    <string name="map_name_short_diner" translatable="false">Nell\'s Diner</string>
-    <string name="map_name_short_campmaple" translatable="false">Maple Lodge</string>
+    <string name="map_name_short_diner" translatable="false">Nell\'s</string>
+    <string name="map_name_short_campmaple" translatable="false">Maple</string>
     <string name="map_name_short_campwoodwind" translatable="false">Woodwind</string>
     <string name="map_name_short_bleasdale" translatable="false">Bleasdale</string>
     <string name="map_name_short_grafton" translatable="false">Grafton</string>

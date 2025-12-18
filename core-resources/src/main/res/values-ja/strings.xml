@@ -297,8 +297,10 @@
     <!-- Ghost Names -->
 
     <string name="ghost_type_banshee">バンシー</string>
+    <string name="ghost_type_dayan">デヤン</string>
     <string name="ghost_type_demon">デーモン</string>
     <string name="ghost_type_deogen">デオーン</string>
+    <string name="ghost_type_gallu">ガルル</string>
     <string name="ghost_type_goryo">御霊</string>
     <string name="ghost_type_hantu">ハントゥ</string>
     <string name="ghost_type_jinn">ジン</string>
@@ -306,6 +308,7 @@
     <string name="ghost_type_moroi">モ一ロイ</string>
     <string name="ghost_type_myling">マイリング</string>
     <string name="ghost_type_obake">化け物</string>
+    <string name="ghost_type_obambo">オバンボ</string>
     <string name="ghost_type_oni">鬼</string>
     <string name="ghost_type_onryo">怨霊</string>
     <string name="ghost_type_phantom">ファントム</string>
@@ -1070,4 +1073,89 @@
     <string name="alert_gui_palette_error">パレットが設定されていません！</string>
     <string name="alert_gui_typography_error">タイポグラフィが設定されていません！</string>
     <string name="account_button_visit_marketplace">マーケットプレイスにアクセスしてください</string>
+
+    <string name="ghost_info_dayan">
+            <![CDATA[
+                <a>ダヤンは、ホラーゲーム『ファズモフォビア』に登場する幽霊の一種です。その特徴は、プレイヤーが近づくと速度が上がり、プレイヤーが動きを止めると速度が遅くなることです。</a>
+            ]]> </string>
+    <string name="ghost_info_gallu" translatable="false">
+            <![CDATA[
+                <a>この幽霊は、プレイヤーが十字架やお香などの防御具を使用すると、狩りの際に動きが速くなることが知られている。</a>
+            ]]>
+        </string>
+<string name="ghost_info_obambo" translatable="false">
+<![CDATA[
+<a>オバンボのユニークな能力は、「穏やかな」状態（ハント中の攻撃性が低く、速度が遅い）と「攻撃的な」状態（ハント中の攻撃性が高く、速度が速い）の間で切り替わることにあります。</a>
+]]>
+</string>
+
+
+<string name="ghost_strengths_dayan" translatable="false">
+<![CDATA[
+<a>プレイヤーがダヤンの近くを移動すると、移動速度が速くなります。</a>
+]]>
+</string>
+<string name="ghost_strengths_gallu" translatable="false">
+<![CDATA[
+<a>防御アイテムが使用されると攻撃的になります。</a>
+]]>
+</string>
+<string name="ghost_strengths_obambo" translatable="false">
+<![CDATA[
+<a>「攻撃的な」状態では、ハント開始が早く、移動速度も速くなります。</a>
+]]>
+</string>
+
+
+<string name="ghost_weaknesses_dayan" translatable="false">
+<![CDATA[
+<a>プレイヤーがダヤンの近くで静止していると、移動速度が遅くなります。</a>
+]]>
+</string>
+<string name="ghost_weaknesses_gallu" translatable="false">
+<![CDATA[
+<a>ハント後は攻撃性が低下します。</a>
+]]>
+</string>
+<string name="ghost_weaknesses_obambo" translatable="false">
+<![CDATA[
+<a>「穏やかな」状態では、ハント開始が遅く、移動速度も遅くなります。</a>
+]]>
+</string>
+
+
+<string name="ghost_huntingdata_dayan" translatable="false">
+<![CDATA[
+<a>デフォルトでは正気度50%でハントを開始し、プレイヤーとの距離とプレイヤーの動きによって変化します。</a><br> <a>近くにいるプレイヤー（10メートル以内）が歩いている場合、ハント開始の正気度閾値が65%に上昇します。</a><br>
+<a>近くにいるプレイヤー（10メートル以内）全員が静止している場合、ハント開始の正気度閾値が45%に低下します。</a>
+]]>
+</string>
+<string name="ghost_huntingdata_gallu" translatable="false">
+<![CDATA[
+<a>このゴーストには3つの状態があります：通常、激怒、弱体化。</a><br>
+<br>
+<a>通常：</a><br>
+<a>正気度50%でハントを開始します。ハント時の移動速度は1.7 m/sです。お香の効果は5秒間持続します。</a><br>
+<br>
+<a>激怒：</a><br>
+<a>正気度60%でハントを開始します。十字架の有効範囲が2メートル減少します。ハント時の移動速度は1.96 m/sに増加します。お香の効果は4秒に短縮されます。塩を踏むことができません。</a><br>
+<br>
+<a>弱体化：</a><br>
+<a>正気度40%でハントを開始します。十字架の有効範囲が1メートル増加します。ハント時の移動速度は1.36 m/sに減少します。お香の効果は6秒に延長されます。</a><br>
+<br>
+<a>ガルーは、プレイヤーがお香を使用したり、ゴーストが塩や十字架に触れたりすることで刺激を受けると、弱体化、通常、激怒の状態へと変化します。</a>
+]]>
+</string>
+<string name="ghost_huntingdata_obambo" translatable="false">
+<![CDATA[
+<a>このゴーストには2つの状態があります：穏やか、攻撃的。</a><br>
+<br>
+<a>穏やか：正気度10%でハントを開始します。</a><br>
+<a>ハント時の移動速度は1.45 m/sです。お香の効果は5秒間持続します。</a><br>
+<br>
+<a>攻撃的：</a><br>
+<a>正気度65%でハントを開始します。十字架の効果範囲が2メートル縮小されます。狩りの移動速度が1.96m/sに増加します。この状態中に狩りが開始された場合、狩りの持続時間が20%短縮されます。
+オバンボはプレイヤーが最初にエリアに入ってから1分間、静穏状態になります。その後、2分ごとに静穏状態と攻撃状態を切り替えます。これは狩りの最中でも起こり得ます。
+]]></string>
+
 </resources>

@@ -9,8 +9,10 @@
 
     <!-- Ghost Names -->
     <string name="ghost_type_banshee">Banshee</string>
+    <string name="ghost_type_dayan">Dayan</string>
     <string name="ghost_type_demon">Démon</string>
     <string name="ghost_type_deogen">Deogen</string>
+    <string name="ghost_type_gallu">Gallu</string>
     <string name="ghost_type_goryo">Goryo</string>
     <string name="ghost_type_hantu">Hantu</string>
     <string name="ghost_type_jinn">Jinn</string>
@@ -18,6 +20,7 @@
     <string name="ghost_type_moroi">Moroi</string>
     <string name="ghost_type_myling">Myling</string>
     <string name="ghost_type_obake">Obake</string>
+    <string name="ghost_type_obambo">Obambo</string>
     <string name="ghost_type_oni">Oni</string>
     <string name="ghost_type_onryo">Onryo</string>
     <string name="ghost_type_phantom">Fantom</string>
@@ -555,5 +558,88 @@
              <a>Loví při 50\% příčetnosti.</a>
          ]]>
      </string>
+
+    <string name="ghost_info_dayan">
+<![CDATA[
+<a>Unikátní vlastnost Dayana mu umožňuje zrychlit, když se hráči pohybují v jeho blízkosti, ale také ho zpomalit, když se hráči zastaví.</a>
+]]> </string>
+    <string name="ghost_info_gallu" translatable="false">
+<![CDATA[
+<a>O tomto duchu je známo, že se během lovu zrychluje, když proti němu hráči používají ochranné vybavení, jako jsou krucifixy nebo kadidlo.</a>
+]]>
+</string>
+    <string name="ghost_info_obambo" translatable="false">
+<![CDATA[
+<a>Unikátní schopnost Obamba spočívá v přepínání mezi „klidným“ stavem, ve kterém je během lovu méně agresivní a pomalejší, a „agresivním“ stavem, ve kterém je během lovu agresivnější a rychlejší.</a>
+]]>
+</string>
+
+    <string name="ghost_strengths_dayan" translatable="false">
+<![CDATA[
+<a>Pohybuje se rychleji, když se hráč pohybuje poblíž Dayanu.</a>
+]]>
+</string>
+    <string name="ghost_strengths_gallu" translatable="false">
+<![CDATA[
+<a>Stává se agresivním, když je použito ochranné vybavení.</a>
+]]>
+</string>
+    <string name="ghost_strengths_obambo" translatable="false">
+<![CDATA[
+<a>Ve svém „agresivním“ stavu loví dříve a pohybuje se rychleji.</a>
+]]>
+</string>
+
+    <string name="ghost_weaknesses_dayan" translatable="false">
+<![CDATA[
+<a>Pohybuje se pomaleji, když hráč stojí poblíž Dayanu.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_gallu" translatable="false">
+<![CDATA[
+<a>Po lovu se stává méně agresivním.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_obambo" translatable="false">
+<![CDATA[
+<a>V klidném stavu loví později a pohybuje se pomaleji.</a>
+]]>
+</string>
+
+    <string name="ghost_huntingdata_dayan" translatable="false">
+<![CDATA[
+<a>Ve výchozím nastavení loví s 50% příčetností a je upravena kombinací blízkosti hráče a jeho pohybu.</a><br>
+<a>Práh lovu se zvyšuje na 65% příčetnosti, pokud jakýkoli hráč v blízkosti (do 10 metrů) jde.</a><br>
+<a>Práh lovu se snižuje na 45% příčetnosti, pokud všichni hráči v blízkosti (do 10 metrů) stojí v klidu.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_gallu" translatable="false">
+<![CDATA[
+<a>Tento duch má 3 stavy: Normální, Rozzuřený a Oslabený.</a><br>
+<br>
+<a>Normální:</a><br>
+<a>Loví s 50% příčetností. Rychlost pohybu při lovu je 1,7 m/s. Účinky kadidla trvají 5 sekund.</a><br>
+<br>
+<a>Rozuřený:</a><br>
+<a>Loví s 60% příčetností. Dosah krucifixu je snížen o 2 metry. Rychlost pohybu při lovu je zvýšena na 1,96 m/s. Účinky kadidla jsou sníženy na 4 sekundy. Nelze vstoupit do soli.</a><br>
+<br>
+<a>Oslabený:</a><br>
+<a>Loví s 40% příčetností. Efektivní dosah Krucifixu zvýšen o 1 metr. Rychlost pohybu lovců snížena na 1,36 m/s. Účinky kadidla jsou prodlouženy na 6 sekund.</a><br>
+<br>
+<a>Gallu se bude pohybovat mezi oslabeným, normálním a rozzuřeným stavem, když je podrážděn aktivací kadidla hráčem nebo interakcí ducha se solí či krucifixem.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_obambo" translatable="false">
+<![CDATA[
+<a>Tento duch má 2 stavy: klidný a agresivní.</a><br>
+<br>
+<a>Klidný: Loví s 10% příčetností.</a><br>
+<a>Rychlost pohybu při lovu je 1,45 m/s. Účinky kadidla trvají 5 sekund.</a><br>
+<br>
+<a>Agresivní:</a><br>
+<a>Loví s 65% příčetností. Dosah krucifixu je snížen o 2 metry. Rychlost pohybu při lovu se zvýší na 1,96 m/s. Doba lovu se zkrátí o 20 %, pokud lov začne v tomto stavu.</a><br>
+<a>Obambo začíná v klidném stavu, který trvá 1 minutu po prvním vstupu hráče. Poté se každé 2 minuty přepíná mezi klidným a agresivním stavem. To se může stát i během lovu.</a>
+]]>
+</string>
 
 </resources>

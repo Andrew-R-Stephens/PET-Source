@@ -254,8 +254,10 @@
     <!-- Ghost Names -->
 
     <string name="ghost_type_banshee">Banshee</string>
+    <string name="ghost_type_dayan">Dayan</string>
     <string name="ghost_type_demon">Demon</string>
     <string name="ghost_type_deogen">Deogen</string>
+    <string name="ghost_type_gallu">Gallu</string>
     <string name="ghost_type_goryo">Goryo</string>
     <string name="ghost_type_hantu">Hantu</string>
     <string name="ghost_type_jinn">Jinn</string>
@@ -263,6 +265,7 @@
     <string name="ghost_type_moroi">Moroi</string>
     <string name="ghost_type_myling">Myling</string>
     <string name="ghost_type_obake">Obake</string>
+    <string name="ghost_type_obambo">Obambo</string>
     <string name="ghost_type_oni">Oni</string>
     <string name="ghost_type_onryo">Onryo</string>
     <string name="ghost_type_phantom">Fantasma</string>
@@ -1078,4 +1081,90 @@
     <string name="alert_gui_palette_error">Paleta não definida!</string>
     <string name="alert_gui_typography_error">Tipografia não definida!</string>
     <string name="account_button_visit_marketplace">Visite o Marketplace</string>
+
+    <string name="ghost_info_dayan">
+<![CDATA[
+A característica única do Dayan permite que ele acelere quando os jogadores se movem perto dele, mas também faz com que ele diminua a velocidade quando os jogadores param de se mover.</a>
+]]> </string>
+    <string name="ghost_info_gallu" translatable="false">
+<![CDATA[
+<a>Este fantasma é conhecido por ficar mais rápido durante as caçadas quando os jogadores usam equipamentos de proteção contra ele, como crucifixos ou incenso.</a>
+]]>
+</string>
+    <string name="ghost_info_obambo" translatable="false">
+<![CDATA[
+<a>A habilidade única do Obambo gira em torno da alternância entre um estado "calmo", no qual ele é menos agressivo e mais lento durante as caçadas, e um estado "agressivo", no qual ele é mais agressivo e mais rápido durante as caçadas.</a>
+]]>
+</string>
+
+
+    <string name="ghost_strengths_dayan" translatable="false">
+<![CDATA[
+<a>Move-se mais rápido quando um jogador se move perto do Dayan.</a>
+]]>
+</string>
+    <string name="ghost_strengths_gallu" translatable="false">
+<![CDATA[
+<a>Torna-se agressivo quando equipamentos de proteção são usados.</a>
+]]>
+</string>
+    <string name="ghost_strengths_obambo" translatable="false">
+<![CDATA[
+<a>Caça mais cedo e move-se mais rápido em seu estado "agressivo".</a>
+]]>
+</string>
+
+
+    <string name="ghost_weaknesses_dayan" translatable="false">
+<![CDATA[
+<a>Move-se mais devagar quando um jogador fica parado perto do Dayan.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_gallu" translatable="false">
+<![CDATA[
+<a>Torna-se menos agressivo após uma caçada.</a>
+]]>
+</string>
+    <string name="ghost_weaknesses_obambo" translatable="false">
+<![CDATA[
+<a>Caça mais tarde e move-se mais devagar em seu estado "calmo".</a>
+]]>
+</string>
+
+
+    <string name="ghost_huntingdata_dayan" translatable="false">
+<![CDATA[
+<a>Caça com 50% de sanidade por padrão, e é modificado por uma combinação de proximidade e movimento do jogador.</a><br>
+<a>O limite de caça aumenta para 65% de Sanidade se algum jogador próximo (a menos de 10 metros) estiver andando.</a><br>
+<a>O limite de caça diminui para 45% de Sanidade se todos os jogadores próximos (a menos de 10 metros) estiverem parados.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_gallu" translatable="false">
+<![CDATA[
+<a>Existem 3 estados para este fantasma: Normal, Enfurecido e Enfraquecido.</a><br>
+<br>
+<a>Normal:</a><br>
+<a>Caça com 50% de Sanidade. A velocidade de movimento durante a caça é de 1,7 m/s. O efeito do incenso dura 5 segundos.</a><br>
+<br>
+<a>Enfurecido:</a><br>
+<a>Caça com 60% de Sanidade. O alcance do crucifixo é reduzido em 2 metros. A velocidade de movimento durante a caça aumenta para 1,96 m/s. O efeito do incenso é reduzido para 4 segundos. Não pode pisar em sal.</a><br>
+<br>
+<a>Enfraquecido:</a><br>
+<a>Caça com 40% de Sanidade. O alcance efetivo do crucifixo aumenta em 1 metro. A velocidade de movimento durante a caça é reduzida para 1,36 m/s. O efeito do incenso aumenta para 6 segundos.</a><br>
+<br>
+<a>O Gallu alternará entre os estados Enfraquecido, Normal e Enfurecido quando for provocado pela ativação do incenso pelo jogador ou pela interação do fantasma com sal ou um crucifixo.</a>
+]]>
+</string>
+    <string name="ghost_huntingdata_obambo" translatable="false">
+<![CDATA[
+<a>Existem 2 estados para este fantasma: Calmo e Agressivo.</a><br>
+<br>
+<a>Calmo: Caça com 10% de Sanidade.</a><br>
+<a>A velocidade de movimento durante a caça é de 1,45 m/s. O efeito do incenso dura 5 segundos.</a><br>
+<br>
+<a>Agressivo:</a><br>
+<a>Caça com 65% de Sanidade. O alcance do crucifixo é reduzido em 2 metros. A velocidade de movimento durante a caçada é aumentada para 1,96 m/s. A duração da caçada é 20% menor se a caçada começar enquanto estiver neste estado.
+O Obambo começa no estado Calmo, que dura 1 minuto após a entrada inicial do jogador. Em seguida, ele alternará entre os estados Calmo e Agressivo a cada 2 minutos. Isso pode acontecer mesmo durante uma caçada.
+]]></string>
+
 </resources>
