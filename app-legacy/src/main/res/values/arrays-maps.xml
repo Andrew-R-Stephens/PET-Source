@@ -164,6 +164,7 @@
         <item>1</item>
         <item>@drawable/thumbnail_campmaple</item>
         <item>@array/map_campmaple_image_array</item>
+        <item>@string/map_name_short_campmaple</item>
     </integer-array>
     <integer-array name= "map_bleasdale_array">
         <item>@string/map_name_full_bleasdale</item>
@@ -223,6 +224,7 @@
         <item>0</item>
         <item>@drawable/thumbnail_tanglewood</item>
         <item>@array/map_tanglewood_image_array</item>
+        <item>@string/map_name_short_tanglewood</item>
     </integer-array>
     <integer-array name= "map_willow_array">
         <item>@string/map_name_full_willow</item>

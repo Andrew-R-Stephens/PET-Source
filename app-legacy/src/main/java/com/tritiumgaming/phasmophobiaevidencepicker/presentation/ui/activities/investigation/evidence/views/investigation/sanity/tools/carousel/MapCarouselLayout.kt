@@ -51,7 +51,7 @@ class MapCarouselLayout : SanityCarouselLayout {
         findViewTreeLifecycleOwner()?.lifecycleScope?.launch {
             investigationViewModel.mapCarouselModel?.currentIndex?.collectLatest {
                 investigationViewModel.mapCarouselModel?.currentShortName?.let { nameRes ->
-                    setName(context.getString(nameRes).split(" ")[0])
+                    setName(context.getString(nameRes))
                 }
             }
         }
