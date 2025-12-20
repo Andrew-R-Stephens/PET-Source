@@ -81,6 +81,7 @@ fun CodexPossessionsListComponent(
                 items(
                     items = groups
                 ) { group ->
+
                     CodexGroup(
                         groupTitle = group.name.toStringResource()
                     ) {
@@ -91,6 +92,7 @@ fun CodexPossessionsListComponent(
                             itemCount = group.size
                         ) {
                             group.items.forEach { item ->
+
                                 CodexGroupItem(
                                     modifier = Modifier
                                         .sizeIn(
@@ -104,9 +106,11 @@ fun CodexPossessionsListComponent(
                                 ) {
                                     codexViewModel.setSelectedPossession(group, item)
                                 }
+
                             }
                         }
                     }
+
                 }
             }
 

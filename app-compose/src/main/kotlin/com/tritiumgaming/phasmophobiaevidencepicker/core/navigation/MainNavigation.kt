@@ -22,7 +22,7 @@ import androidx.navigation.navigation
 import com.tritiumgaming.feature.about.ui.AppInfoViewModel
 import com.tritiumgaming.feature.about.ui.InfoScreen
 import com.tritiumgaming.feature.home.ui.HomeScreen
-import com.tritiumgaming.feature.marketplace.ui.MarketplaceScreen
+import com.tritiumgaming.feature.marketplace.ui.store.MarketplaceStoreScreen
 import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
 import com.tritiumgaming.feature.newsletter.ui.screen.NewsInboxesScreen
@@ -212,7 +212,7 @@ private fun NavGraphBuilder.homeNavigation(
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {
                 HomeScreen {
-                    MarketplaceScreen()
+                    MarketplaceStoreScreen()
                 }
             }
 
