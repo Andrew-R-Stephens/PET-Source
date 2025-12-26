@@ -376,7 +376,7 @@ private fun AccountContentLandscape(
                 modifier = Modifier
                     .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
 
                 if (rememberAccount == null) {
@@ -428,7 +428,8 @@ private fun AccountContentLandscape(
                             modifier = modifier,
                             text = stringResource(id = R.string.account_deactivate_button_confirm),
                             textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp
+                                fontSize = 18.sp,
+                                color = LocalPalette.current.onErrorContainer
                             ),
                             buttonColors = ButtonColors(
                                 contentColor = LocalPalette.current.onErrorContainer,
@@ -460,7 +461,8 @@ private fun AccountContentLandscape(
                             modifier = modifier,
                             text = stringResource(id = R.string.account_deactivate_button_cancel),
                             textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp
+                                fontSize = 18.sp,
+                                color = LocalPalette.current.onSecondaryContainer
                             ),
                             buttonColors = ButtonColors(
                                 containerColor = LocalPalette.current.secondaryContainer,
@@ -483,7 +485,8 @@ private fun AccountContentLandscape(
                             modifier = modifier,
                             text = stringResource(id = R.string.account_logout_button_confirm),
                             textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp
+                                fontSize = 18.sp,
+                                color = LocalPalette.current.onErrorContainer
                             ),
                             buttonColors = ButtonColors(
                                 contentColor = LocalPalette.current.onErrorContainer,
@@ -511,7 +514,8 @@ private fun AccountContentLandscape(
                             modifier = modifier,
                             text = stringResource(id = R.string.account_logout_button_cancel),
                             textStyle = LocalTypography.current.quaternary.bold.copy(
-                                fontSize = 18.sp
+                                fontSize = 18.sp,
+                                color = LocalPalette.current.onSecondaryContainer
                             ),
                             buttonColors = ButtonColors(
                                 contentColor = LocalPalette.current.onSecondaryContainer,
@@ -921,7 +925,8 @@ private fun SignOutComponent(
                 .padding(4.dp),
             text = stringResource(id = R.string.account_button_logout),
             textStyle = LocalTypography.current.quaternary.bold.copy(
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                color = LocalPalette.current.onSecondaryContainer
             ),
             buttonColors = ButtonColors(
                 containerColor = LocalPalette.current.secondaryContainer,
@@ -948,7 +953,8 @@ private fun SignOutComponent(
                 .padding(4.dp),
             text = stringResource(id = R.string.account_button_deactivate),
             textStyle = LocalTypography.current.quaternary.bold.copy(
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                color = LocalPalette.current.onErrorContainer
             ),
             buttonColors = ButtonColors(
                 containerColor = LocalPalette.current.errorContainer,
@@ -1006,7 +1012,8 @@ private fun AccountActionButton(
                 text = text.uppercase(),
                 maxLines = 1,
                 style = textStyle,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = textStyle.color
             )
         },
         contentPadding = PaddingValues(8.dp),
@@ -1035,7 +1042,8 @@ private fun DialogButton(
                 text = text.uppercase(),
                 maxLines = 1,
                 style = textStyle,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = textStyle.color
             )
         },
         contentPadding = PaddingValues(8.dp),
