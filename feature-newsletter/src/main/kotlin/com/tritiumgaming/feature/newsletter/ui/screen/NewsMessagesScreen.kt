@@ -405,7 +405,7 @@ private fun MessageCard(
                         IconResource.NOTIFY.ToComposable(
                             modifier = modifier,
                             colors = IconVectorColors(
-                                fillColor = LocalPalette.current.onError,
+                                fillColor = LocalPalette.current.surfaceContainer,
                                 strokeColor = LocalPalette.current.error
                             )
                         )
