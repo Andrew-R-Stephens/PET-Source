@@ -212,7 +212,9 @@ private fun NavGraphBuilder.homeNavigation(
 
             composable(route = NavRoute.SCREEN_MARKETPLACE_UNLOCKS.route) {
                 HomeScreen {
-                    MarketplaceStoreScreen()
+                    MarketplaceStoreScreen(
+                        navController = navController
+                    )
                 }
             }
 
