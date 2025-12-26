@@ -5,15 +5,20 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
@@ -22,17 +27,14 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -46,30 +48,28 @@ import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.shared.data.market.bundle.model.MarketBundle
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 
 @Composable
 fun PaletteCard(
+    modifier: Modifier = Modifier,
     marketPalette: MarketPalette,
-    onBuyClick: () -> Unit
+    onBuyClick: () -> Unit = {}
 ) {
-    var rememberHeight by remember { mutableStateOf(0.dp) }
-    val density = LocalConfiguration.current.densityDpi
 
     SelectiveTheme(
         palette = marketPalette.palette?.toPaletteResource() ?: LocalPalette.current
     ) {
+
         Card(
-            modifier = Modifier
-                .wrapContentHeight()
-                .fillMaxWidth(),
+            modifier = modifier,
             shape = RoundedCornerShape(8.dp),
             colors = CardDefaults.cardColors(
                 containerColor = white_M100
             )
         ) {
+
             Box(
                 modifier = Modifier
                     .wrapContentHeight()
@@ -77,24 +77,10 @@ fun PaletteCard(
                 propagateMinConstraints = true
             ) {
 
-                Image(
-                    modifier = Modifier
-                        .zIndex(-1f)
-                        .scale(3f)
-                        .height(rememberHeight * density)
-                        .align(Alignment.CenterEnd),
-                    painter = painterResource(LocalPalette.current.extrasFamily.badge),
-                    contentDescription = "Background",
-                    alpha = .1f,
-                    alignment = Alignment.Center,
-                    contentScale = ContentScale.Crop
-                )
-
                 Column(
                     modifier = Modifier
                         .wrapContentHeight()
-                        .fillMaxWidth()
-                        .onSizeChanged { size -> rememberHeight = size.height.dp },
+                        .fillMaxWidth(),
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -119,20 +105,18 @@ fun PaletteCard(
 
                     Row(
                         modifier = Modifier
-                            .heightIn(max = 96.dp)
+                            .height(96.dp)
                             .padding(8.dp),
                         horizontalArrangement = Arrangement.Start,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
                             modifier = Modifier
-                                .fillMaxWidth(.2f)
+                                .fillMaxHeight()
                                 .aspectRatio(1f),
                             painter = painterResource(LocalPalette.current.extrasFamily.badge),
                             contentDescription = "Badge"
                         )
-
-                        val colors = LocalPalette.current.coreFamily.list
 
                         Column(
                             modifier = Modifier
@@ -148,19 +132,25 @@ fun PaletteCard(
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                colors.forEachIndexed { index, color ->
-                                    if(index < (colors.size-1)/2f) {
-                                        Card(
-                                            modifier = Modifier
-                                                .weight(1f)
-                                                .padding(4.dp),
-                                            colors = CardDefaults.cardColors(
-                                                containerColor = color
-                                            ),
-                                            shape = RoundedCornerShape(8.dp)
-                                        ) { Box(modifier = Modifier.fillMaxSize()) { } }
-                                    }
-                                }
+                                ColorSwatch(
+                                    backgroundColor = LocalPalette.current.onSurface
+                                )
+
+                                ColorSwatch(
+                                    backgroundColor = LocalPalette.current.primary
+
+                                )
+
+                                ColorSwatch(
+                                    backgroundColor = LocalPalette.current.secondary
+
+                                )
+
+                                ColorSwatch(
+                                    backgroundColor = LocalPalette.current.tertiary
+
+                                )
+
                             }
 
                             Row(
@@ -169,19 +159,27 @@ fun PaletteCard(
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                colors.forEachIndexed { index, color ->
-                                    if(index > (colors.size-1)/2f) {
-                                        Card(
-                                            modifier = Modifier
-                                                .weight(1f)
-                                                .padding(4.dp),
-                                            colors = CardDefaults.cardColors(
-                                                containerColor = color
-                                            ),
-                                            shape = RoundedCornerShape(8.dp)
-                                        ) { Box(modifier = Modifier.fillMaxSize()) { } }
-                                    }
-                                }
+
+                                ColorSwatch(
+                                    backgroundColor = LocalPalette.current.surfaceContainer
+
+                                )
+
+                                ColorSwatch(
+                                    backgroundColor = LocalPalette.current.primaryContainer
+
+                                )
+
+                                ColorSwatch(
+                                    backgroundColor = LocalPalette.current.secondaryContainer
+
+                                )
+
+                                ColorSwatch(
+                                    backgroundColor = LocalPalette.current.tertiaryContainer
+
+                                )
+
                             }
                         }
                     }
@@ -193,7 +191,10 @@ fun PaletteCard(
                             .padding(vertical = 4.dp)
                             .background(LocalPalette.current.surfaceContainerHigh.copy(alpha = .3f))
                             .padding(horizontal = 8.dp),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                        horizontalArrangement = Arrangement.spacedBy(
+                            8.dp,
+                            Alignment.CenterHorizontally
+                        ),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Button(
@@ -243,6 +244,29 @@ fun PaletteCard(
 
                 }
 
+                Row(
+                    modifier = Modifier
+                        .width(IntrinsicSize.Max)
+                        .height(IntrinsicSize.Max)
+                        .zIndex(-1f),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .aspectRatio(1f, false)
+                            .graphicsLayer {
+                                translationX = size.width * .5f
+                            }
+                            .scale(1.75f)
+                            .alpha(.1f),
+                        painter = painterResource(LocalPalette.current.extrasFamily.badge),
+                        contentDescription = "",
+                        contentScale = ContentScale.FillBounds,
+                        alignment = Alignment.CenterEnd
+                    )
+                }
 
             }
 
@@ -251,66 +275,120 @@ fun PaletteCard(
 }
 
 @Composable
-fun BundleCard(
-    marketBundle: MarketBundle,
-    onBuyClick: () -> Unit
+private fun RowScope.ColorSwatch(
+    backgroundColor: Color,
+    foregroundColor: Color? = null
 ) {
-    SelectiveTheme(
-
+    Card(
+        modifier = Modifier
+            .weight(1f)
+            .padding(4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = backgroundColor
+        ),
+        shape = RoundedCornerShape(8.dp)
     ) {
+        if(foregroundColor != null) {
+            Card(
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .fillMaxSize()
+                    .padding(2.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = foregroundColor
+                ),
+                shape = RoundedCornerShape(3.dp)
+            ) { Box(
+                modifier = Modifier
+            ) { } }
+        } else {
+            Box(modifier = Modifier.fillMaxSize()) { }
+        }
 
     }
 }
 
-/*@Composable
-private fun MarketCard(
-    content: @Composable () -> Unit
-) {
-    Card(
-
+/*
+@Composable
+@Preview(device = "spec:parent=pixel_5")
+fun PreviewThemeCards() {
+    LazyColumn (
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        content()
+        items(items = PaletteResources.PaletteType.entries) { type ->
+
+            PaletteCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                marketPalette = MarketPalette(
+                    uuid = "4324132",
+                    name = "Test",
+                    palette = type,
+                    buyCredits = 69
+                )
+            )
+
+        }
+
+    }
+}
+*/
+
+/*@Composable
+@Preview
+fun PreviewThemeCard() {
+
+    Column (
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        PaletteCard(
+            marketPalette = MarketPalette(
+                uuid = "4324132",
+                name = "Test",
+                palette = PaletteResources.PaletteType.COMMISSIONER,
+                buyCredits = 69
+            )
+        )
+
     }
 }*/
 
 @Composable
-private fun BundleIncludedThemeImage(
+@Preview
+private fun Test1() {
 
-) {
-
+    PaletteCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        marketPalette = MarketPalette(
+            uuid = "4324132",
+            name = "Test",
+            palette = PaletteResources.PaletteType.CONTENT_CREATOR,
+            buyCredits = 69
+        )
+    )
 }
+
 
 @Composable
 @Preview
-private fun PreviewThemeCard() {
+private fun Test2() {
+
     PaletteCard(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
         marketPalette = MarketPalette(
             uuid = "4324132",
             name = "Test",
             palette = PaletteResources.PaletteType.COMMISSIONER,
             buyCredits = 69
         )
-    ) {
-
-    }
-}
-
-@Composable
-@Preview
-private fun PreviewBundleCard() {
-    BundleCard(
-        marketBundle = MarketBundle(
-            uuid = "4324132",
-            name = "Test",
-            items = emptyList()
-        )
-    ) {
-
-    }
-}
-
-@Composable
-@Preview
-private fun PreviewBundleIncludedItemImage() {
-    BundleIncludedThemeImage()
+    )
 }
