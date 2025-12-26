@@ -12,8 +12,18 @@ android {
     namespace = "com.tritiumgaming.feature.marketplace"
     compileSdk = 36
 
+    /*
+     *  Compose Options
+     *  ----------------
+    */
+    buildFeatures {
+        compose = true
+    }
+
     defaultConfig {
+
         minSdk = 23
+        targetSdk = 36
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
