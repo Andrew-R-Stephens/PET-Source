@@ -220,7 +220,7 @@ private fun MapCanvas(
     val floorImage: ImageBitmap =
         BitmapFactory.decodeResource(resources, floorImageRes).asImageBitmap()
 
-    val poiImages: Map<MapPoiResources.Poi, ImageBitmap?>? =
+    val poiImages: Map<MapPoiResources.Poi, ImageBitmap?> =
         MapPoiResources.Poi.entries.associateWith { type ->
             val res = type.toDrawableResource()
             val bitmap = resources.let { resources ->
@@ -357,25 +357,22 @@ private fun MapCanvas(
                     y = (panY) + point.y * scaleY
                 }
 
-                poiImages?.let { poiImages ->
-                    poiImages[poi.type]?.let { poiImage ->
-                        poiTransformationManager.deepCopy(mapTransformationManager)
-                        poiTransformationManager.setPan(x, y)
-                        poiTransformationManager.postTranslateOriginMatrix(
-                            poiImage.width.toFloat(), poiImage.height.toFloat(),
-                            displayWidth.toFloat(), displayHeight.toFloat()
-                        )
-                        drawContext.canvas.save()
-                        drawContext.canvas.nativeCanvas.concat(
-                            poiTransformationManager.matrix)
-                        drawImage(
-                            image = poiImage,
-                            filterQuality = FilterQuality.Low,
-                            colorFilter = ColorFilter.tint(poiFillColor)
-                        )
-                        drawContext.canvas.restore()
-                    }
-
+                poiImages[poi.type]?.let { poiImage ->
+                    poiTransformationManager.deepCopy(mapTransformationManager)
+                    poiTransformationManager.setPan(x, y)
+                    poiTransformationManager.postTranslateOriginMatrix(
+                        poiImage.width.toFloat(), poiImage.height.toFloat(),
+                        displayWidth.toFloat(), displayHeight.toFloat()
+                    )
+                    drawContext.canvas.save()
+                    drawContext.canvas.nativeCanvas.concat(
+                        poiTransformationManager.matrix)
+                    drawImage(
+                        image = poiImage,
+                        filterQuality = FilterQuality.Low,
+                        colorFilter = ColorFilter.tint(poiFillColor)
+                    )
+                    drawContext.canvas.restore()
                 }
 
             }
