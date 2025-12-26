@@ -158,10 +158,19 @@ private fun ColumnScope.LanguageContent(
 
             LanguageItem(
                 language = it,
-                isSelected = isSelected
+                isSelected = isSelected,
+                textColorSelected = LocalPalette.current.onPrimaryContainer,
+                textContainerSelected = LocalPalette.current.primaryContainer,
+                textStyleStartSelected = LocalTypography.current.quaternary.bold,
+                textStyleEndSelected = LocalTypography.current.quaternary.bold,
+                textColorUnselected = LocalPalette.current.onSurface,
+                textContainerUnselected = LocalPalette.current.surfaceContainerHighest,
+                textStyleStartUnselected = LocalTypography.current.quaternary.bold,
+                textStyleEndUnselected = LocalTypography.current.quaternary.regular,
             ) {
-                viewModel.setCurrentLanguageCode(languageCode)
-            }
+                    viewModel.setCurrentLanguageCode(languageCode)
+                }
+
 
         }
 
@@ -172,7 +181,15 @@ private fun ColumnScope.LanguageContent(
 private fun LanguageItem(
     language: LanguageEntity,
     isSelected: Boolean = false,
-    onClick: () -> Unit
+    textColorSelected: Color,
+    textContainerSelected: Color,
+    textStyleStartSelected: TextStyle,
+    textStyleEndSelected: TextStyle,
+    textColorUnselected: Color,
+    textContainerUnselected: Color,
+    textStyleStartUnselected: TextStyle,
+    textStyleEndUnselected: TextStyle,
+    onClick: () -> Unit,
 ) {
     val rememberName by remember{
         mutableIntStateOf(language.localizedName.toStringResource()) }
@@ -182,27 +199,27 @@ private fun LanguageItem(
     var containerColor: Color
 
     when(isSelected) {
-        false -> {
-            textStyleStart = LocalTypography.current.quaternary.bold.copy(
-                color = LocalPalette.current.onSurface.copy(alpha = .75f),
-                textAlign = TextAlign.Start
-            )
-            textStyleEnd = LocalTypography.current.quaternary.regular.copy(
-                color = LocalPalette.current.onSurface,
-                textAlign = TextAlign.End
-            )
-            containerColor = LocalPalette.current.surfaceContainerHighest
-        }
         true -> {
-            textStyleStart = LocalTypography.current.quaternary.bold.copy(
-                color = LocalPalette.current.onTertiaryContainer,
+            textStyleStart = textStyleStartSelected.copy(
+                color = textColorSelected,
                 textAlign = TextAlign.Start
             )
-            textStyleEnd = LocalTypography.current.quaternary.bold.copy(
-                color = LocalPalette.current.onTertiaryContainer,
+            textStyleEnd = textStyleEndSelected.copy(
+                color = textColorSelected,
                 textAlign = TextAlign.End
             )
-            containerColor = LocalPalette.current.tertiaryContainer
+            containerColor = textContainerSelected
+        }
+        false -> {
+            textStyleStart = textStyleStartUnselected.copy(
+                color = textColorUnselected.copy(alpha = .75f),
+                textAlign = TextAlign.Start
+            )
+            textStyleEnd = textStyleEndUnselected.copy(
+                color = textColorUnselected,
+                textAlign = TextAlign.End
+            )
+            containerColor = textContainerUnselected
         }
     }
 
