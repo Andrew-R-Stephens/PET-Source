@@ -26,8 +26,8 @@ import com.tritiumgaming.data.newsletter.source.local.NewsletterLocalDataSourceI
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSource
 import com.tritiumgaming.data.newsletter.source.remote.NewsletterRemoteDataSourceImpl
 import com.tritiumgaming.data.newsletter.source.remote.api.NewsletterService
-import com.tritiumgaming.data.palette.repository.MarketPaletteRepositoryImpl
-import com.tritiumgaming.data.palette.repository.MarketTypographyRepositoryImpl
+import com.tritiumgaming.data.palette.repository.MarketCatalogPaletteRepositoryImpl
+import com.tritiumgaming.data.palette.repository.MarketCatalogTypographyRepositoryImpl
 import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
 import com.tritiumgaming.data.palette.source.local.MarketTypographyLocalDataSource
 import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSource
@@ -56,15 +56,15 @@ import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.shared.data.market.bundle.repository.MarketBundleRemoteRepository
-import com.tritiumgaming.shared.data.market.palette.repository.MarketPaletteRepository
-import com.tritiumgaming.shared.data.market.palette.usecase.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetAvailablePalettesUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
+import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.repository.MarketTypographyRepository
-import com.tritiumgaming.shared.data.market.typography.usecase.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetAvailableTypographiesUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
+import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
@@ -314,54 +314,54 @@ class CoreContainer(
     /**
      * Market Typography
      */
-    internal val typographyRepository: MarketTypographyRepository by lazy {
+    internal val typographyRepository: MarketCatalogTypographyRepository by lazy {
         val typographyLocalDataSource = MarketTypographyLocalDataSource()
         val typographyFirestoreDataSource = MarketTypographyFirestoreDataSource(
             firestore = firestore
         )
 
-        MarketTypographyRepositoryImpl(
+        MarketCatalogTypographyRepositoryImpl(
             localDataSource = typographyLocalDataSource,
             firestoreDataSource = typographyFirestoreDataSource,
             coroutineDispatcher = Dispatchers.IO
         )
     }
 
-    val findNextAvailableTypographyUseCase = FindNextAvailableTypographyUseCase(
+    val getNextUnlockedTypographyUseCase = GetNextUnlockedTypographyUseCase(
         marketRepository = typographyRepository,
         accountRepository = firestoreAccountRepository
     )
-    val getAvailableTypographiesUseCase = GetAvailableTypographiesUseCase(
+    val getMarketCatalogTypographiesUseCase = GetMarketCatalogTypographiesUseCase(
         repository = typographyRepository
     )
-    val getTypographyByUUIDUseCase = GetTypographyByUUIDUseCase(
+    val getMarketCatalogTypographyByUUIDUseCase = GetMarketCatalogTypographyByUUIDUseCase(
         repository = typographyRepository
     )
 
     /**
      * Market Palette
      */
-    internal val paletteRepository: MarketPaletteRepository by lazy {
+    internal val paletteRepository: MarketCatalogPaletteRepository by lazy {
         val paletteLocalDataSource = MarketPaletteLocalDataSource()
         val paletteFirestoreDataSource = MarketPaletteFirestoreDataSource(
             firestore = firestore
         )
 
-        MarketPaletteRepositoryImpl(
+        MarketCatalogPaletteRepositoryImpl(
             localDataSource = paletteLocalDataSource,
             firestoreDataSource = paletteFirestoreDataSource,
             coroutineDispatcher = Dispatchers.IO
         )
     }
 
-    val findNextAvailablePaletteUseCase = FindNextAvailablePaletteUseCase(
+    val findNextAvailablePaletteUseCase = GetNextUnlockedPaletteUseCase(
         marketRepository = paletteRepository,
         accountRepository = firestoreAccountRepository
     )
-    val getAvailablePalettesUseCase = GetAvailablePalettesUseCase(
+    val getMarketCatalogPalettesUseCase = GetMarketCatalogPalettesUseCase(
         repository = paletteRepository
     )
-    val getPaletteByUUIDUseCase = GetPaletteByUUIDUseCase(
+    val getMarketCatalogPaletteByUUIDUseCase = GetMarketCatalogPaletteByUUIDUseCase(
         repository = paletteRepository
     )
 
