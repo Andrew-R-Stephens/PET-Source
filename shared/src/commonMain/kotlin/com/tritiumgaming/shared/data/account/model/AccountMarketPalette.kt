@@ -1,5 +1,8 @@
 package com.tritiumgaming.shared.data.account.model
 
+import com.tritiumgaming.shared.data.market.model.FeatureAvailability
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+
 data class AccountMarketPalette (
     internal val uuid: String,
     internal val name: String? = "",
@@ -7,36 +10,36 @@ data class AccountMarketPalette (
     internal val buyCredits: Long = 0L,
     internal val priority: Long? = 0L,
     internal val unlocked: Boolean = false,
-    internal val palette: com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType? = null
+    internal val palette: PaletteResources.PaletteType? = null
 ) {
 
-    private var unlockedState: com.tritiumgaming.shared.data.market.model.FeatureAvailability =
-        if (unlocked) com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_DEFAULT
-        else com.tritiumgaming.shared.data.market.model.FeatureAvailability.LOCKED
+    private var unlockedState: FeatureAvailability =
+        if (unlocked) FeatureAvailability.UNLOCKED_DEFAULT
+        else FeatureAvailability.LOCKED
         get() =
-            if (unlocked) com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_DEFAULT
-            else com.tritiumgaming.shared.data.market.model.FeatureAvailability.LOCKED
+            if (unlocked) FeatureAvailability.UNLOCKED_DEFAULT
+            else FeatureAvailability.LOCKED
 
     val isUnlocked: Boolean
-        get() = unlockedState != com.tritiumgaming.shared.data.market.model.FeatureAvailability.LOCKED
+        get() = unlockedState != FeatureAvailability.LOCKED
 
     fun setUnlocked(state: Boolean) {
-        if (unlockedState == com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_DEFAULT) { return }
+        if (unlockedState == FeatureAvailability.UNLOCKED_DEFAULT) { return }
 
         this.unlockedState =
-            if(state) { com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_PURCHASE }
+            if(state) { FeatureAvailability.UNLOCKED_PURCHASE }
             else { this.unlockedState }
     }
 
-    fun setUnlocked(state: com.tritiumgaming.shared.data.market.model.FeatureAvailability) {
-        if (unlockedState == com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_DEFAULT) { return }
+    fun setUnlocked(state: FeatureAvailability) {
+        if (unlockedState == FeatureAvailability.UNLOCKED_DEFAULT) { return }
 
         this.unlockedState = state
     }
 
     fun revertUnlockStatus() {
-        if (unlockedState == com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_PURCHASE) {
-            unlockedState = com.tritiumgaming.shared.data.market.model.FeatureAvailability.LOCKED
+        if (unlockedState == FeatureAvailability.UNLOCKED_PURCHASE) {
+            unlockedState = FeatureAvailability.LOCKED
         }
     }
 

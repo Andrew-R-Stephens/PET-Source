@@ -1,22 +1,27 @@
 package com.tritiumgaming.shared.data.account.repository
 
+import com.tritiumgaming.shared.data.account.model.AccountCreditTransaction
+import com.tritiumgaming.shared.data.account.model.AccountCredits
+import com.tritiumgaming.shared.data.account.model.AccountMarketAgreement
+import com.tritiumgaming.shared.data.account.model.AccountPalette
+import com.tritiumgaming.shared.data.account.model.AccountTypography
 import kotlinx.coroutines.flow.Flow
 
 interface FirestoreAccountRepository {
 
     suspend fun addCredits(
-        creditTransaction: com.tritiumgaming.shared.data.account.model.AccountCreditTransaction
-    ): Result<com.tritiumgaming.shared.data.account.model.AccountCredits>
+        creditTransaction: AccountCreditTransaction
+    ): Result<AccountCredits>
 
     suspend fun removeCredits(
-        creditTransaction: com.tritiumgaming.shared.data.account.model.AccountCreditTransaction
-    ): Result<com.tritiumgaming.shared.data.account.model.AccountCredits>
+        creditTransaction: AccountCreditTransaction
+    ): Result<AccountCredits>
 
-    fun observeCredits(): Flow<Result<com.tritiumgaming.shared.data.account.model.AccountCredits>>
+    fun observeCredits(): Flow<Result<AccountCredits>>
 
     suspend fun setMarketplaceAgreementState(
-        marketAgreement: com.tritiumgaming.shared.data.account.model.AccountMarketAgreement
-    ): Result<com.tritiumgaming.shared.data.account.model.AccountMarketAgreement>
+        marketAgreement: AccountMarketAgreement
+    ): Result<AccountMarketAgreement>
 
     suspend fun addUnlockedDocuments(
         unlockUUIDs: List<String>?,
@@ -25,14 +30,14 @@ interface FirestoreAccountRepository {
 
     suspend fun fetchUnlockedPalettes(
         forceUpdate: Boolean = false
-    ): Result<List<com.tritiumgaming.shared.data.account.model.AccountPalette>>
+    ): Result<List<AccountPalette>>
 
     suspend fun fetchUnlockedTypographies(
         forceUpdate: Boolean = false
-    ): Result<List<com.tritiumgaming.shared.data.account.model.AccountTypography>>
+    ): Result<List<AccountTypography>>
 
-    fun observeUnlockedPalettes(): Flow<Result<List<com.tritiumgaming.shared.data.account.model.AccountPalette>>>
-    fun observeUnlockedTypographies(): Flow<Result<List<com.tritiumgaming.shared.data.account.model.AccountTypography>>>
+    fun observeUnlockedPalettes(): Flow<Result<List<AccountPalette>>>
+    fun observeUnlockedTypographies(): Flow<Result<List<AccountTypography>>>
 
     suspend fun addPurchasedDocument(
         orderID: String

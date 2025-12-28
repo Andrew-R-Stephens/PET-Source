@@ -9,8 +9,8 @@ fun List<AccountPalette>.toAccountMarketPalette() = map {
     it.toAccountMarketPalette()
 }
 
-fun AccountPalette.toAccountMarketPalette(): com.tritiumgaming.shared.data.account.model.AccountMarketPalette {
-    return com.tritiumgaming.shared.data.account.model.AccountMarketPalette(
+fun AccountPalette.toAccountMarketPalette(): AccountMarketPalette {
+    return AccountMarketPalette(
         uuid = uuid,
         unlocked = unlocked
     )

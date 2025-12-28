@@ -1,5 +1,7 @@
 package com.tritiumgaming.shared.data.market.palette.model
 
+import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
+
 data class MarketPalette(
     val uuid: String,
     val name: String? = "",
@@ -7,23 +9,23 @@ data class MarketPalette(
     val buyCredits: Long = 0L,
     val priority: Long? = 0L,
     val unlocked: Boolean = false,
-    val palette: com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType? = null
+    val palette: PaletteResources.PaletteType? = null
 )
 
-fun com.tritiumgaming.shared.data.market.palette.model.MarketPalette.toPair(): Pair<String, com.tritiumgaming.shared.data.market.palette.model.MarketPalette> {
+fun MarketPalette.toPair(): Pair<String, MarketPalette> {
     return Pair(uuid, this)
 }
 
-fun List<com.tritiumgaming.shared.data.market.palette.model.MarketPalette>.toPair() = associate { it ->
+fun List<MarketPalette>.toPair() = associate { it ->
     it.toPair()
 }
 
-fun List<com.tritiumgaming.shared.data.market.palette.model.MarketPalette>.toAccountMarketPalette() = map {
+fun List<MarketPalette>.toAccountMarketPalette() = map {
     it.toAccountMarketPalette()
 }
 
-fun com.tritiumgaming.shared.data.market.palette.model.MarketPalette.toAccountMarketPalette(): com.tritiumgaming.shared.data.account.model.AccountMarketPalette {
-    return com.tritiumgaming.shared.data.account.model.AccountMarketPalette(
+fun MarketPalette.toAccountMarketPalette(): AccountMarketPalette {
+    return AccountMarketPalette(
         uuid = uuid,
         name = name,
         group = group,

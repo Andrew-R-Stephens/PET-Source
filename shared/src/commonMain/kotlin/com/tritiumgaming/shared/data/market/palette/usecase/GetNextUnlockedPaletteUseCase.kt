@@ -3,8 +3,8 @@ package com.tritiumgaming.shared.data.market.palette.usecase
 import com.tritiumgaming.shared.data.account.model.toAccountMarketPalette
 import com.tritiumgaming.shared.data.market.palette.model.toAccountMarketPalette
 
-class FindNextAvailablePaletteUseCase(
-    private val marketRepository: com.tritiumgaming.shared.data.market.palette.repository.MarketPaletteRepository,
+class GetNextUnlockedPaletteUseCase(
+    private val marketRepository: com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository,
     private val accountRepository: com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
 ) {
     suspend operator fun invoke(

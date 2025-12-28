@@ -1,22 +1,26 @@
 package com.tritiumgaming.shared.data.market.typography.usecase
 
+import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
 import com.tritiumgaming.shared.data.account.model.toAccountMarketTypography
+import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
+import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.market.typography.model.toAccountMarketTypography
+import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
 
-class FindNextAvailableTypographyUseCase(
-    private val marketRepository: com.tritiumgaming.shared.data.market.typography.repository.MarketTypographyRepository,
-    private val accountRepository: com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
+class GetNextUnlockedTypographyUseCase(
+    private val marketRepository: MarketCatalogTypographyRepository,
+    private val accountRepository: FirestoreAccountRepository
 ) {
     suspend operator fun invoke(
         currentUUID: String,
-        direction: com.tritiumgaming.shared.data.market.model.IncrementDirection
+        direction: IncrementDirection
     ): String {
 
-        val marketTypographies: List<com.tritiumgaming.shared.data.account.model.AccountMarketTypography> =
+        val marketTypographies: List<AccountMarketTypography> =
             marketRepository.get()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
 
-        val accountTypographies: List<com.tritiumgaming.shared.data.account.model.AccountMarketTypography> =
+        val accountTypographies: List<AccountMarketTypography> =
             accountRepository.fetchUnlockedTypographies()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
 
