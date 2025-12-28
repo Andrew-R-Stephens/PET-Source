@@ -94,6 +94,9 @@ dependencies {
     implementation(libs.coilKt.network)
     implementation(libs.coilKt.gif)
 
+    // Charts
+    // implementation(libs.ehsannarmani.compose.charts)
+
     implementation(project(":core-common"))
     implementation(project(":core-resources"))
     implementation(project(":core-ui"))
