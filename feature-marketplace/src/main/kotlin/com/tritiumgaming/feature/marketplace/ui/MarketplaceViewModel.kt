@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedPalettesUiState
 import com.tritiumgaming.feature.marketplace.ui.store.AccountUnlockedTypographiesUiState
+import com.tritiumgaming.feature.marketplace.ui.store.MarketCatalogPalettesUiState
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
@@ -19,6 +20,8 @@ import com.tritiumgaming.shared.data.account.model.AccountTypography
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -34,12 +37,34 @@ class MarketplaceViewModel(
     private val deactivateAccountUseCase: DeactivateAccountUseCase,
     private val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     private val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
-    private val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase
-): ViewModel() {
+    private val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
+    private val getMarketCatalogPalettesUseCase: GetMarketCatalogPalettesUseCase,
+    private val getMarketCatalogTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
+
+    ): ViewModel() {
 
     private var observeCreditsJob: Job? = null
     private var observeUnlockedPalettesJob: Job? = null
     private var observeUnlockedTypographiesJob: Job? = null
+
+    private val _marketCatalogPalettesUiState = MutableStateFlow(MarketCatalogPalettesUiState())
+    val marketCatalogPalettesUiState = _marketCatalogPalettesUiState.asStateFlow()
+
+    private fun initMarketCatalogPalettes() {
+        viewModelScope.launch {
+            try {
+                val result = getMarketCatalogPalettesUseCase().getOrThrow()
+
+                _marketCatalogPalettesUiState.update {
+                    it.copy(
+                        palettes = result
+                    )
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 
     private val _accountCreditsUiState = MutableStateFlow(AccountCreditsUiState())
     val accountCreditsUiState = _accountCreditsUiState.asStateFlow()
@@ -158,6 +183,8 @@ class MarketplaceViewModel(
 
     init {
         startObservingAccount()
+
+        initMarketCatalogPalettes()
     }
 
     companion object {
@@ -174,6 +201,8 @@ class MarketplaceViewModel(
                 val observeAccountCreditsUseCase = container.observeAccountCreditsUseCase
                 val observeAccountUnlockedPalettesUseCase = container.observeAccountUnlockedPalettesUseCase
                 val observeAccountUnlockedTypographiesUseCase = container.observeAccountUnlockedTypographiesUseCase
+                val getMarketCatalogPalettesUseCase = container.getMarketCatalogPalettesUseCase
+                val getMarketCatalogTypographiesUseCase = container.getMarketCatalogTypographiesUseCase
 
                 MarketplaceViewModel(
                     getSignInCredentialsUseCase = getSignInCredentialsUseCase,
@@ -182,7 +211,9 @@ class MarketplaceViewModel(
                     deactivateAccountUseCase = deactivateAccountUseCase,
                     observeAccountCreditsUseCase = observeAccountCreditsUseCase,
                     observeAccountUnlockedPalettesUseCase = observeAccountUnlockedPalettesUseCase,
-                    observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase
+                    observeAccountUnlockedTypographiesUseCase = observeAccountUnlockedTypographiesUseCase,
+                    getMarketCatalogPalettesUseCase = getMarketCatalogPalettesUseCase,
+                    getMarketCatalogTypographiesUseCase = getMarketCatalogTypographiesUseCase
                 )
             }
         }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,15 +31,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
@@ -72,15 +77,38 @@ fun PaletteCard(
 
             Box(
                 modifier = Modifier
-                    .wrapContentHeight()
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
                 propagateMinConstraints = true
             ) {
 
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(IntrinsicSize.Max),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth(.75f)
+                            .aspectRatio(1f, false)
+                            .scale(3f)
+                            .graphicsLayer {
+                                translationX = size.width * .1f
+                            }
+                            .alpha(.1f),
+                        painter = painterResource(LocalPalette.current.extrasFamily.badge),
+                        contentDescription = "",
+                        contentScale = ContentScale.FillBounds,
+                        alignment = Alignment.CenterEnd
+                    )
+                }
+
                 Column(
                     modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .wrapContentHeight(),
                     verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -138,17 +166,14 @@ fun PaletteCard(
 
                                 ColorSwatch(
                                     backgroundColor = LocalPalette.current.primary
-
                                 )
 
                                 ColorSwatch(
                                     backgroundColor = LocalPalette.current.secondary
-
                                 )
 
                                 ColorSwatch(
                                     backgroundColor = LocalPalette.current.tertiary
-
                                 )
 
                             }
@@ -162,22 +187,18 @@ fun PaletteCard(
 
                                 ColorSwatch(
                                     backgroundColor = LocalPalette.current.surfaceContainer
-
                                 )
 
                                 ColorSwatch(
                                     backgroundColor = LocalPalette.current.primaryContainer
-
                                 )
 
                                 ColorSwatch(
                                     backgroundColor = LocalPalette.current.secondaryContainer
-
                                 )
 
                                 ColorSwatch(
                                     backgroundColor = LocalPalette.current.tertiaryContainer
-
                                 )
 
                             }
@@ -197,9 +218,11 @@ fun PaletteCard(
                         ),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
+
                         Button(
                             modifier = Modifier
-                                .height(36.dp)
+                                .height(48.dp)
+                                .padding(8.dp)
                                 .weight(1f, false),
                             onClick = onBuyClick,
                             shape = RoundedCornerShape(2.dp),
@@ -244,34 +267,11 @@ fun PaletteCard(
 
                 }
 
-                Row(
-                    modifier = Modifier
-                        .width(IntrinsicSize.Max)
-                        .height(IntrinsicSize.Max)
-                        .zIndex(-1f),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Image(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .aspectRatio(1f, false)
-                            .graphicsLayer {
-                                translationX = size.width * .5f
-                            }
-                            .scale(1.75f)
-                            .alpha(.1f),
-                        painter = painterResource(LocalPalette.current.extrasFamily.badge),
-                        contentDescription = "",
-                        contentScale = ContentScale.FillBounds,
-                        alignment = Alignment.CenterEnd
-                    )
-                }
-
             }
 
         }
     }
+
 }
 
 @Composable
@@ -391,4 +391,35 @@ private fun Test2() {
             buyCredits = 69
         )
     )
+}
+
+@Composable
+@Preview(device = "id:pixel_5")
+private fun Test3() {
+
+    Column {
+        PaletteCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            marketPalette = MarketPalette(
+                uuid = "4324132",
+                name = "Test",
+                palette = PaletteResources.PaletteType.CONTENT_CREATOR,
+                buyCredits = 69
+            )
+        )
+
+        PaletteCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            marketPalette = MarketPalette(
+                uuid = "4324132",
+                name = "Test",
+                palette = PaletteResources.PaletteType.COMMISSIONER,
+                buyCredits = 69
+            )
+        )
+    }
 }
