@@ -8,16 +8,16 @@ import com.tritiumgaming.data.palette.source.local.MarketPaletteLocalDataSource
 import com.tritiumgaming.data.palette.source.remote.MarketPaletteFirestoreDataSource
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
 import com.tritiumgaming.shared.data.market.palette.model.PaletteQueryOptions
-import com.tritiumgaming.shared.data.market.palette.repository.MarketPaletteRepository
+import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class MarketPaletteRepositoryImpl(
+class MarketCatalogPaletteRepositoryImpl(
     private val firestoreDataSource: MarketPaletteFirestoreDataSource,
     private val localDataSource: MarketPaletteLocalDataSource,
     coroutineDispatcher: CoroutineDispatcher
-): MarketPaletteRepository {
+): MarketCatalogPaletteRepository {
 
     private var cache: List<MarketPaletteDto> = emptyList()
 
