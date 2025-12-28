@@ -30,13 +30,13 @@ import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetupLanguageUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetAvailablePalettesUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetAvailableTypographiesUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
@@ -82,13 +82,13 @@ class HomeContainer(
     val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
     val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
     val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
-    val getAvailableTypographiesUseCase: GetAvailableTypographiesUseCase,
-    val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
-    val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
+    val getAvailableTypographiesUseCase: GetMarketCatalogTypographiesUseCase,
+    val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
+    val findNextAvailableTypographyUseCase: GetNextUnlockedTypographyUseCase,
     val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
-    val getAvailablePalettesUseCase: GetAvailablePalettesUseCase,
-    val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
-    val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase,
+    val getAvailablePalettesUseCase: GetMarketCatalogPalettesUseCase,
+    val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
+    val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
 ) {
 
     // App Info
