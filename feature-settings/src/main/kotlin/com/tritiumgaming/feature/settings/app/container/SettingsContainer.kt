@@ -1,10 +1,10 @@
 package com.tritiumgaming.feature.settings.app.container
 
-import com.tritiumgaming.shared.data.market.palette.usecase.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
@@ -27,9 +27,9 @@ class SettingsContainer(
     val setEnableRTLUseCase: SetEnableRTLUseCase,
     val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
-    val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
-    val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
+    val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
+    val findNextAvailableTypographyUseCase: GetNextUnlockedTypographyUseCase,
     val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
-    val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
-    val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase,
+    val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
+    val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
 )

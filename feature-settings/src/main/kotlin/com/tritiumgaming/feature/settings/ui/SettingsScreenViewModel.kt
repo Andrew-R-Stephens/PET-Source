@@ -25,13 +25,12 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUse
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.source.PaletteDatastore
-import com.tritiumgaming.shared.data.market.palette.usecase.FindNextAvailablePaletteUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
 import com.tritiumgaming.shared.data.market.typography.source.TypographyDatastore
-import com.tritiumgaming.shared.data.market.typography.usecase.FindNextAvailableTypographyUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
 import kotlinx.coroutines.flow.SharingStarted
@@ -53,12 +52,12 @@ class SettingsScreenViewModel(
     private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     // Typographies
     private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
-    private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
-    private val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase,
+    private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
+    private val findNextAvailableTypographyUseCase: GetNextUnlockedTypographyUseCase,
     // Palettes
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
-    private val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
-    private val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase,
+    private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
+    private val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
 ) : ViewModel() {
 
     private val _settingsScreenUiState : StateFlow<SettingsScreenUiState> =
@@ -164,9 +163,14 @@ class SettingsScreenViewModel(
         }
     }
 
-    fun getPaletteByUUID(uuid: String): ExtendedPalette =
-        getPaletteByUUIDUseCase(uuid, PaletteType.CLASSIC)
-            .toPaletteResource()
+    fun getPaletteByUUID(uuid: String): ExtendedPalette {
+        return try {
+            getPaletteByUUIDUseCase(uuid).getOrThrow().toPaletteResource()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            LocalDefaultPalette.palette
+        }
+    }
 
     /**
      * Typographies
@@ -203,9 +207,15 @@ class SettingsScreenViewModel(
         }
     }
 
-    fun getTypographyByUUID(uuid: String): ExtendedTypography =
-        getTypographyByUUIDUseCase(uuid, TypographyType.CLASSIC)
-            .toTypographyResource()
+    fun getTypographyByUUID(uuid: String): ExtendedTypography {
+        return try {
+            getTypographyByUUIDUseCase(uuid).getOrThrow()
+                .toTypographyResource()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            LocalDefaultTypography.typography
+        }
+    }
 
     private fun initialDataStoreSetupEvent() {
         initGlobalPreferencesDataStoreUseCase()
@@ -237,12 +247,12 @@ class SettingsScreenViewModel(
                 val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase = container.setMaxHuntWarnFlashTimeUseCase
                 // Typographies
                 val setCurrentTypographyUseCase: SaveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
-                val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
-                val findNextAvailableTypographyUseCase: FindNextAvailableTypographyUseCase = container.findNextAvailableTypographyUseCase
+                val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
+                val findNextAvailableTypographyUseCase: GetNextUnlockedTypographyUseCase = container.findNextAvailableTypographyUseCase
                 // Palettes
                 val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
-                val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
-                val findNextAvailablePaletteUseCase: FindNextAvailablePaletteUseCase = container.findNextAvailablePaletteUseCase
+                val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
+                val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase = container.findNextAvailablePaletteUseCase
 
                 SettingsScreenViewModel(
                     // Global Preferences
