@@ -23,10 +23,9 @@ import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.source.PaletteDatastore
-import com.tritiumgaming.shared.data.market.palette.usecase.GetPaletteByUUIDUseCase
-import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.source.TypographyDatastore
-import com.tritiumgaming.shared.data.market.typography.usecase.GetTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers
@@ -44,8 +43,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 class PETActivityViewModel(
     private val initGlobalPreferencesDataStoreUseCase: SetupUserPreferencesUseCase,
     private val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
-    private val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase,
-    private val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase,
+    private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
+    private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
 ): ViewModel() {
 
     private lateinit var _googleMobileAdsConsentManager: GoogleMobileAdsConsentManager
@@ -77,9 +76,14 @@ class PETActivityViewModel(
             )
     val currentPaletteUUID = _currentPaletteUUID
 
-    fun getPaletteByUUID(uuid: String): ExtendedPalette =
-        getPaletteByUUIDUseCase(uuid, PaletteType.CLASSIC)
-            .toPaletteResource()
+    fun getPaletteByUUID(uuid: String): ExtendedPalette {
+        return try {
+            getPaletteByUUIDUseCase(uuid).getOrThrow().toPaletteResource()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            LocalDefaultPalette.palette
+        }
+    }
 
     /**
      * Typographies
@@ -100,9 +104,14 @@ class PETActivityViewModel(
             )
     val currentTypographyUUID = _currentTypographyUUID
 
-    fun getTypographyByUUID(uuid: String): ExtendedTypography =
-        getTypographyByUUIDUseCase(uuid, TypographyType.CLASSIC)
-            .toTypographyResource()
+    fun getTypographyByUUID(uuid: String): ExtendedTypography {
+        return try {
+            getTypographyByUUIDUseCase(uuid).getOrThrow().toTypographyResource()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            LocalDefaultTypography.typography
+        }
+    }
 
     private fun initialDataStoreSetupEvent() {
         initGlobalPreferencesDataStoreUseCase()
@@ -256,8 +265,8 @@ class PETActivityViewModel(
 
                 val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase = container.setupGlobalPreferencesUseCase
                 val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
-                val getTypographyByUUIDUseCase: GetTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
-                val getPaletteByUUIDUseCase: GetPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
+                val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
+                val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
 
                 PETActivityViewModel(
                     initGlobalPreferencesDataStoreUseCase = setupGlobalPreferencesUseCase,

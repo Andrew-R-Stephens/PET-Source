@@ -95,8 +95,8 @@ class PETApplication : Application(),
         appContainer = AppContainer(
             setupGlobalPreferencesUseCase = coreContainer.setupGlobalPreferencesUseCase,
             initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
-            getTypographyByUUIDUseCase = coreContainer.getTypographyByUUIDUseCase,
-            getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,
+            getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
+            getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
         )
 
         accountContainer = AccountContainer(
@@ -133,11 +133,11 @@ class PETApplication : Application(),
             setMaxHuntWarnFlashTimeUseCase = coreContainer.setMaxHuntWarnFlashTimeUseCase,
             // Typographies
             saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
-            getTypographyByUUIDUseCase = coreContainer.getTypographyByUUIDUseCase,
-            findNextAvailableTypographyUseCase = coreContainer.findNextAvailableTypographyUseCase,
+            getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
+            findNextAvailableTypographyUseCase = coreContainer.getNextUnlockedTypographyUseCase,
             // Palettes
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
-            getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,
+            getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
             findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase
         )
 
@@ -168,7 +168,6 @@ class PETApplication : Application(),
         )
 
         marketplaceContainer = MarketplaceContainer(
-            applicationContext = applicationContext,
             getSignInCredentialsUseCase = coreContainer.getSignInCredentialsUseCase,
             signInAccountUseCase = coreContainer.signInAccountUseCase,
             signOutAccountUseCase = coreContainer.signOutAccountUseCase,
@@ -177,15 +176,15 @@ class PETApplication : Application(),
             observeAccountUnlockedPalettesUseCase = coreContainer.observeAccountUnlockedPalettesUseCase,
             observeAccountUnlockedTypographiesUseCase = coreContainer.observeAccountUnlockedTypographiesUseCase,
             // Typographies
-            getAvailableTypographiesUseCase = coreContainer.getAvailableTypographiesUseCase,
-            saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
-            getTypographyByUUIDUseCase = coreContainer.getTypographyByUUIDUseCase,
-            findNextAvailableTypographyUseCase = coreContainer.findNextAvailableTypographyUseCase,
+            getMarketCatalogTypographiesUseCase = coreContainer.getMarketCatalogTypographiesUseCase,
+            getMarketCatalogTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
             // Palettes
+            getMarketCatalogPalettesUseCase = coreContainer.getMarketCatalogPalettesUseCase,
+            getMarketCatalogPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
+            getNextUnlockedTypographyUseCase = coreContainer.getNextUnlockedTypographyUseCase,
+            getNextUnlockedPaletteUseCase = coreContainer.findNextAvailablePaletteUseCase,
+            saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
-            getAvailablePalettesUseCase = coreContainer.getAvailablePalettesUseCase,
-            getPaletteByUUIDUseCase = coreContainer.getPaletteByUUIDUseCase,
-            findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase,
         )
 
         investigationContainer = InvestigationContainer(
