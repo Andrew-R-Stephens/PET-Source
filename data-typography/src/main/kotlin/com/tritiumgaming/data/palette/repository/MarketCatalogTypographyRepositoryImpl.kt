@@ -8,16 +8,16 @@ import com.tritiumgaming.data.palette.source.local.MarketTypographyLocalDataSour
 import com.tritiumgaming.data.palette.source.remote.MarketTypographyFirestoreDataSource
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 import com.tritiumgaming.shared.data.market.typography.model.TypographyQueryOptions
-import com.tritiumgaming.shared.data.market.typography.repository.MarketTypographyRepository
+import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class MarketTypographyRepositoryImpl(
+class MarketCatalogTypographyRepositoryImpl(
     private val firestoreDataSource: MarketTypographyFirestoreDataSource,
     private val localDataSource: MarketTypographyLocalDataSource,
     coroutineDispatcher: CoroutineDispatcher
-): MarketTypographyRepository {
+): MarketCatalogTypographyRepository {
 
     private var cache: List<MarketTypographyDto> = emptyList()
 
