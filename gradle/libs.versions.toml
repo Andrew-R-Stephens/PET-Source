@@ -1,8 +1,8 @@
 [versions]
-android-billing = "8.2.1" # Latest: 8.2.0
+android-billing = "8.3.0" # Latest: 8.2.1
 android-play-core-review = "2.0.2"
 android-play-core-update = "2.1.0"
-android-gif-drawable = "1.2.29"
+android-gif-drawable = "1.2.30" # Latest: 1.2.29
 android-play-services-ads = "24.9.0" # Latest: 24.8.0
 android-play-services-auth = "21.4.0" # Latest 21.3.0
 androidx-activity-compose = "1.12.2" # Latest 1.12.0
@@ -25,6 +25,7 @@ androidx-room = "2.8.4" # Latest: 2.8.3
 appcompat = "1.7.1" # Latest 1.6.1
 cardview = "1.0.0"
 coil3 = "3.3.0" # Latest: 3.2.0
+composeCharts = "latest_version"
 constraintlayout = "2.2.1" # Latest 2.2.0
 kotlin-coroutines = "1.10.2" # Latest: 1.10.1
 kotlinx-coroutines-test = "1.10.2" # 1.10.1
@@ -54,7 +55,7 @@ kotlin = "2.3.0" # Latest: 2.2.21
 ksp = "2.2.21-2.0.4" # Latest: 2.2.10-2.0.2 -> 2.2.21-2.0.4
 composeMP = "1.9.3" # Latest: 1.9.0
 googleid = "1.1.1"
-kotlinTest = "2.1.20"
+kotlinTest = "2.2.20" # Latest 2.1.20
 runner = "1.7.0" # 1.6.2
 core = "1.7.0" # 1.6.1
 
@@ -162,6 +163,7 @@ coilKt-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.re
 coilKt-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil3" }
 coilKt-gif = { group = "io.coil-kt.coil3", name = "coil-gif", version.ref = "coil3" }
 droidsonroids-gifDrawable = { group = "pl.droidsonroids.gif", name = "android-gif-drawable", version.ref = "android-gif-drawable" }
+ehsannarmani-compose-charts = { module = "io.github.ehsannarmani:compose-charts", version.ref = "composeCharts" }
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 google-gms-services = { group = "com.google.gms", name = "google-services", version.ref = "google-services" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
