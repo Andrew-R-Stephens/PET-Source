@@ -3460,14 +3460,14 @@ val Whiteboard = Skin.copy(
     surface = white_M50,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF787F8C),
+    surfaceContainerLowest = Color(0xFFA1A9AF),
     surfaceContainerLow = Color(0xFFAFB7BE),
     surfaceContainer = white_M150,
     surfaceContainerHigh = white_M100,
     surfaceContainerHighest = white,
 
-    onSurface = black,
-    onSurfaceVariant = Color(0xFF383839),
+    onSurface = Color(0xFF383839),
+    onSurfaceVariant = black,
 
     outline = white_M500,
     outlineVariant = Color(0xFFafb7be),
