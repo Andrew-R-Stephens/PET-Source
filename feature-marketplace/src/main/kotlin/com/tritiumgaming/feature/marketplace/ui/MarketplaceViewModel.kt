@@ -121,7 +121,7 @@ class MarketplaceViewModel(
                 .collect { result: Result<List<AccountPalette>> ->
                     if(result.isSuccess) {
                         _accountUnlockedPalettesUiState.update {
-                            accountUnlockedPalettesUiState.value.copy(
+                            it.copy(
                                 unlockedPalettes = result.getOrNull() ?: emptyList()
                             )
                         }

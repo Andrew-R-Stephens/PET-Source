@@ -308,55 +308,6 @@ private fun RowScope.ColorSwatch(
     }
 }
 
-/*
-@Composable
-@Preview(device = "spec:parent=pixel_5")
-fun PreviewThemeCards() {
-    LazyColumn (
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(items = PaletteResources.PaletteType.entries) { type ->
-
-            PaletteCard(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                marketPalette = MarketPalette(
-                    uuid = "4324132",
-                    name = "Test",
-                    palette = type,
-                    buyCredits = 69
-                )
-            )
-
-        }
-
-    }
-}
-*/
-
-/*@Composable
-@Preview
-fun PreviewThemeCard() {
-
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        PaletteCard(
-            marketPalette = MarketPalette(
-                uuid = "4324132",
-                name = "Test",
-                palette = PaletteResources.PaletteType.COMMISSIONER,
-                buyCredits = 69
-            )
-        )
-
-    }
-}*/
 
 @Composable
 @Preview
