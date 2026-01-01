@@ -2,8 +2,7 @@ package com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytrac
 
 data class OperationSanityUiState(
     internal val sanityMax: Float = MAX_SANITY,
-    internal val drainModifier: Float = 1f,
-    internal val averageTeamSanity: Float = 1f
+    internal val drainModifier: Float = 1f
 ) {
     fun getDrainModifier(
         difficultyModifier: Float,

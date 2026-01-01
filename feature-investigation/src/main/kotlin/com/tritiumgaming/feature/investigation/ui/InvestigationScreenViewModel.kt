@@ -251,9 +251,8 @@ class InvestigationScreenViewModel(
                 sanityMax = MAX_SANITY,
                 drainModifier = it.getDrainModifier(
                     difficultyModifier = difficultyUiState.value.modifier,
-                    mapModifier = 0f
-                ),
-                averageTeamSanity = 1f
+                    mapModifier = 1f
+                )
             )
         }
     }
@@ -646,12 +645,21 @@ class InvestigationScreenViewModel(
                     .getOrDefault(it.responseType)
             )
         }
+
+        Log.d("InvestigationViewModel", "DifficultyUiState:" +
+                "\n\tindex: ${_difficultyUiState.value.index}" +
+                "\n\tname: ${_difficultyUiState.value.name}" +
+                "\n\tmodifier: ${_difficultyUiState.value.modifier}" +
+                "\n\ttime: ${_difficultyUiState.value.time}" +
+                "\n\tinitialSanity: ${_difficultyUiState.value.initialSanity}" +
+                "\n\tresponseType: ${_difficultyUiState.value.responseType}")
+
     }
 
     /*
      * Operation Sanity ---------------------------
      */
-    fun setOperationSanity() {
+    /*fun setOperationSanity() {
         _operationSanityUiState.update {
             it.copy(
                 sanityMax = difficultyUiState.value.initialSanity,
@@ -661,7 +669,7 @@ class InvestigationScreenViewModel(
                 )
             )
         }
-    }
+    }*/
 
     /*
      * Player Sanity ---------------------------
@@ -680,10 +688,8 @@ class InvestigationScreenViewModel(
             )
         }
 
-        Log.d("setInsanity", "Set Sanity" +
-                "\n\tvalue: $value" +
-                    "\n\tinsanityLevel: ${playerSanityUiState.value.insanityLevel}"
-        )
+        Log.d("Sanity", "Set insanityLevel: " +
+                "\n\t${playerSanityUiState.value.insanityLevel}")
 
         updateSanityLevel()
 
@@ -701,15 +707,16 @@ class InvestigationScreenViewModel(
         val drainMultiplier = drainModifier// * tickMultiplier
         val timeRemaining = startTime - System.currentTimeMillis()
 
-        Log.d("TimeRemaining->Insanity", "Set Sanity" +
+        setInsanityLevel(
+            MAX_SANITY - (timeRemaining * drainMultiplier) * .001f
+        )
+
+        Log.d("Sanity", "Modifiers:" +
                 "\n\tDrain Modifier: ${getCurrentMapModifier()} * ${difficultyUiState.value.modifier} = $drainModifier" +
                 "\n\tDrain Multiplier: $drainMultiplier" +
                 "\n\tTime Remaining: $startTime - ${System.currentTimeMillis()} = $timeRemaining" +
-                "\n\tSet Insanity Level: $MAX_SANITY - ($timeRemaining * $drainMultiplier) ->"
-        )
-
-        setInsanityLevel(
-            MAX_SANITY - (timeRemaining * drainMultiplier) * .001f
+                "\n\tSet Insanity Level: $MAX_SANITY - ($timeRemaining * $drainMultiplier) -> " +
+                "${MAX_SANITY - (timeRemaining * drainMultiplier) * .001f}"
         )
 
     }
@@ -729,7 +736,6 @@ class InvestigationScreenViewModel(
         val insanityLevel = playerSanityUiState.value.insanityLevel
 
         _playerSanityUiState.update {
-
             it.copy(
                 sanityLevel = max(
                     min(
@@ -741,9 +747,9 @@ class InvestigationScreenViewModel(
             )
         }
 
-        Log.d("Sanity", "Set Sanity" +
-            "\n\tinsanityLevel: $insanityLevel" +
-                    "\n\tsanityLevel: ${playerSanityUiState.value.sanityLevel}"
+        Log.d("Sanity", "Updated:" +
+            "\n\tinsanityLevel: ${playerSanityUiState.value.insanityLevel}" +
+                "\n\tsanityLevel: ${playerSanityUiState.value.sanityLevel}"
         )
 
         updatePhase()
@@ -800,7 +806,7 @@ class InvestigationScreenViewModel(
             e.printStackTrace()
         }
 
-        val input = String.Companion.format(Locale.US, "%3d", percentNum)
+        val input = String.format(Locale.US, "%3d", percentNum)
 
         val output = StringBuilder()
         var i = 0
@@ -1004,6 +1010,14 @@ class InvestigationScreenViewModel(
                     normalModifier = modifier.normalModifier
                 )
             }
+
+            Log.d("InvestigationViewModel", "MapUiSate:" +
+                    "\n\tindex: ${mapUiState.value.index}" +
+                    "\n\tname: ${mapUiState.value.name}" +
+                    "\n\tsize: ${mapUiState.value.size}" +
+                    "\n\tsetupModifier: ${mapUiState.value.setupModifier}" +
+                    "\n\tnormalModifier: ${mapUiState.value.normalModifier}")
+
         } catch (e: Exception) {
             Log.e("InvestigationViewModel", "Error setting map index")
             e.printStackTrace()
@@ -1015,9 +1029,7 @@ class InvestigationScreenViewModel(
             val newIndex = incrementMapIndexUseCase(
                 mapUiState.value.index).getOrThrow()
             setCurrentMapIndex(newIndex)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        } catch (e: Exception) { e.printStackTrace() }
     }
 
     fun decrementMapIndex() {
@@ -1025,9 +1037,7 @@ class InvestigationScreenViewModel(
             val newIndex = decrementMapIndexUseCase(
                 mapUiState.value.index).getOrThrow()
             setCurrentMapIndex(newIndex)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        } catch (e: Exception) { e.printStackTrace() }
     }
 
     /** Based on current map size (Small, Medium, Large) and the stage of the investigation

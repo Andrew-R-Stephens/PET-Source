@@ -18,9 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,6 +41,8 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTi
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyConfigCarousel
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapConfigCarousel
 
 @Composable
 @Preview
@@ -69,11 +73,14 @@ private fun OperationCarouselPreview() {
 }
 
 @Composable
-private fun OperationConfigCarousel(
+fun OperationConfigCarousel(
     modifier: Modifier = Modifier,
     @DrawableRes primaryIcon: Int = R.drawable.ic_selector_inc_unsel,
     label: String = stringResource(R.string.difficulty_title_default),
-    containerColor: Color = Color.Transparent,
+    textStyle: TextStyle = TextStyle.Default,
+    color: Color = Color.Unspecified,
+    containerColor: Color = Color.Unspecified,
+    iconColorFilter: ColorFilter = ColorFilter.tint(Color.Unspecified),
     onClickLeft: () -> Unit,
     onClickRight: () -> Unit
 ) {
@@ -98,6 +105,7 @@ private fun OperationConfigCarousel(
                 contentScale = ContentScale.Inside,
                 alignment = Alignment.Center,
                 painter = painterResource(primaryIcon),
+                colorFilter = iconColorFilter,
                 contentDescription = ""
             )
 
@@ -113,6 +121,7 @@ private fun OperationConfigCarousel(
                         .size(48.dp)
                         .clickable(onClick = { onClickLeft() }),
                     type = PETImageButtonType.BACK,
+                    tint = color
                 )
 
                 Box(
@@ -130,9 +139,9 @@ private fun OperationConfigCarousel(
                             .wrapContentHeight()
                             .fillMaxWidth(),
                         text = label,
-                        style = LocalTypography.current.secondary.regular,
+                        style = textStyle,
                         textAlign = TextAlign.Center,
-                        color = LocalPalette.current.onSurface,
+                        color = color,
                         fontSize = 18.sp
                     )
 
@@ -142,54 +151,11 @@ private fun OperationConfigCarousel(
                     modifier = Modifier
                         .size(48.dp)
                         .clickable(onClick = { onClickRight() }),
-                    type = PETImageButtonType.FORWARD
+                    type = PETImageButtonType.FORWARD,
+                    tint = color
                 )
 
             }
         }
     }
-}
-
-@Composable
-fun DifficultyConfigCarousel(
-    modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationScreenViewModel
-) {
-
-    val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
-    val difficultyName = difficultyUiState.value.name.toStringResource()
-
-    OperationConfigCarousel(
-        modifier = modifier,
-        primaryIcon = R.drawable.ic_puzzle,
-        label = stringResource(difficultyName),
-        onClickLeft = {
-            investigationViewModel.decrementDifficultyIndex()
-        },
-        onClickRight = {
-            investigationViewModel.incrementDifficultyIndex()
-        }
-    )
-}
-
-@Composable
-fun MapConfigCarousel(
-    modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationScreenViewModel
-) {
-
-    val mapUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
-    val mapName = mapUiState.value.name.toStringResource(MapTitleLength.ABBREVIATED)
-
-    OperationConfigCarousel(
-        modifier = modifier,
-        primaryIcon = R.drawable.icon_nav_mapmenu2,
-        label = stringResource(mapName),
-        onClickLeft = {
-            investigationViewModel.decrementMapIndex()
-        },
-        onClickRight = {
-            investigationViewModel.incrementMapIndex()
-        }
-    )
 }

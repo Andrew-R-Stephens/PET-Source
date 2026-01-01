@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
@@ -62,8 +63,8 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.footstep.FootstepTool
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.DifficultyConfigCarousel
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.MapConfigCarousel
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyConfigCarousel
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapConfigCarousel
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.SanityMeterView
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerToggleButton
@@ -295,10 +296,18 @@ private fun ColumnScope.ToolbarConfigurationSection(
     ) {
 
         MapConfigCarousel(
-            investigationViewModel = investigationViewModel
+            modifier = Modifier,
+            investigationViewModel = investigationViewModel,
+            textStyle = LocalTypography.current.secondary.regular,
+            color = LocalPalette.current.onSurface,
+            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
         )
         DifficultyConfigCarousel(
-            investigationViewModel = investigationViewModel
+            modifier = Modifier,
+            investigationViewModel = investigationViewModel,
+            textStyle = LocalTypography.current.secondary.regular,
+            color = LocalPalette.current.onSurface,
+            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
         )
         SanityMeterView(
             modifier = Modifier

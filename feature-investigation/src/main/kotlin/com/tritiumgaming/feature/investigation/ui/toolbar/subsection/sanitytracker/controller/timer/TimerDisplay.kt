@@ -11,10 +11,12 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,6 +27,8 @@ import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.core.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun DigitalTimer(
@@ -32,7 +36,10 @@ fun DigitalTimer(
     timeMillis: Long,
     color: Color = LocalPalette.current.onSurface
 ) {
-    val rememberTimeMillis by remember { mutableLongStateOf(timeMillis) }
+    var rememberTime by remember { mutableLongStateOf(timeMillis) }
+    LaunchedEffect(timeMillis) {
+        rememberTime = timeMillis
+    }
 
     Box(
         modifier = modifier,
@@ -41,7 +48,7 @@ fun DigitalTimer(
         Text(
             modifier = Modifier
                 .wrapContentHeight(),
-            text = FormatterUtils.formatMillisToTime(rememberTimeMillis),
+            text = FormatterUtils.formatMillisToTime(rememberTime),
             style = DigitalDreamTextStyle,
             color = color,
             autoSize = TextAutoSize.StepBased(12.sp, maxFontSize = 48.sp, stepSize = 1.sp)
@@ -57,7 +64,10 @@ fun TimerToggleButton(
     pauseContent: @Composable (modifier: Modifier) -> Unit = {},
     onClick: () -> Unit = {}
 ) {
-    val rememberState by remember { mutableStateOf(state) }
+    var rememberState by remember { mutableStateOf(state) }
+    LaunchedEffect(state) {
+        rememberState = state
+    }
 
     Button(
         modifier = modifier,
@@ -66,7 +76,7 @@ fun TimerToggleButton(
             containerColor = Color.Transparent,
             contentColor = LocalPalette.current.onSurface
         ),
-        contentPadding = PaddingValues(4.dp)
+        contentPadding = PaddingValues(8.dp)
     ) {
         if (rememberState) {
             /*Icon(
@@ -92,6 +102,7 @@ fun TimerToggleButton(
 @Preview
 @Composable
 private fun DigitalTimerPreview() {
+
 
     SelectiveTheme {
         DigitalTimer(
