@@ -257,7 +257,7 @@ private fun ColumnScope.LogoSection(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
-            text = stringResource(R.string.titlescreen_description),
+            text = stringResource(R.string.titlescreen_description).uppercase(),
             style = LocalTypography.current.primary.regular.copy(
                 color = LocalPalette.current.primary,
                 textAlign = TextAlign.Center
