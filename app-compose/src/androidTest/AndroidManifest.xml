@@ -3,14 +3,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <instrumentation
-        android:name="androidx.test.runner.AndroidJUnitRunner"
-        android:targetPackage="com.tritiumgaming.phasmophobiaevidencepicker.app-compose" />
     <application
-
+        android:label="My app's name" />
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config" >
-
-    </application>
-
 </manifest>

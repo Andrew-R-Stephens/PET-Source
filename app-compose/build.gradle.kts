@@ -298,5 +298,6 @@ dependencies {
     implementation(project(":feature-missions"))
     implementation(project(":feature-operation"))
 
-
+    debugImplementation(project(":feature-footstepvisualizer"))
+    testImplementation(project(":feature-footstepvisualizer"))
 }
