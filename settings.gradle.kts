@@ -77,6 +77,7 @@ include(
     ":feature-operation",
     ":feature-codex",
     ":feature-investigation",
+    ":feature-footstepvisualizer",
     ":feature-missions",
     ":feature-mapviewer",
     ":feature-ghostbox",
