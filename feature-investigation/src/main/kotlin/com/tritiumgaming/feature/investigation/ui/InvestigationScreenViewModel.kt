@@ -704,7 +704,7 @@ class InvestigationScreenViewModel(
         )
 
         val drainModifier = operationSanityUiState.value.drainModifier
-        val drainMultiplier = drainModifier// * tickMultiplier
+        val drainMultiplier = drainModifier // * tickMultiplier
         val timeRemaining = startTime - System.currentTimeMillis()
 
         setInsanityLevel(
@@ -733,14 +733,12 @@ class InvestigationScreenViewModel(
     /** the sanity level missing, in percent.**/
     private fun updateSanityLevel() {
 
-        val insanityLevel = playerSanityUiState.value.insanityLevel
-
         _playerSanityUiState.update {
             it.copy(
                 sanityLevel = max(
                     min(
                         MAX_SANITY,
-                        MAX_SANITY - insanityLevel
+                        MAX_SANITY - it.insanityLevel
                     ),
                     MIN_SANITY
                 )
@@ -748,7 +746,7 @@ class InvestigationScreenViewModel(
         }
 
         Log.d("Sanity", "Updated:" +
-            "\n\tinsanityLevel: ${playerSanityUiState.value.insanityLevel}" +
+                "\n\tinsanityLevel: ${playerSanityUiState.value.insanityLevel}" +
                 "\n\tsanityLevel: ${playerSanityUiState.value.sanityLevel}"
         )
 
