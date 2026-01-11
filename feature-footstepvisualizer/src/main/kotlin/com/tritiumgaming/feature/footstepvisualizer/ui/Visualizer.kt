@@ -6,23 +6,16 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,11 +29,19 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.clipRect
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.drawText
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.common.util.datastructs.CircularQueueLinkedList
 import com.tritiumgaming.core.common.util.datastructs.LinearQueueLinkedList
-import com.tritiumgaming.core.common.util.datastructs.Node
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import kotlin.math.ceil
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -51,8 +52,11 @@ private fun Preview() {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp),
-            alpha = .9f,
-            maxDisplayBPM = 400f
+            alpha = .01f,
+            maxDisplayBPM = 250f,
+            viewportSeconds = 10.seconds,
+            timeSplit = 10f,
+            bpmSplit = 120f
         )
     }
 }
@@ -61,17 +65,18 @@ private fun Preview() {
 fun FootstepVisualizer(
     modifier: Modifier = Modifier,
     alpha: Float = .2f,
-    maxDisplayBPM: Float = 400f
+    maxDisplayBPM: Float = 400f,
+    viewportSeconds: Duration = 60.seconds,
+    timeSplit: Float = 10f,
+    bpmSplit: Float = 120f
 ) {
-    var taps by remember {
-        mutableStateOf(
-            LinearQueueLinkedList<TapRecord>()
-        )
-    }
+    val now = System.currentTimeMillis()
 
-    var lastTapTime by remember { mutableLongStateOf(System.currentTimeMillis()) }
     var instantBPM by remember { mutableFloatStateOf(0f) }
     var smoothedBPM by remember { mutableFloatStateOf(0f) }
+
+    var lastTapTime by remember { mutableLongStateOf(now) }
+    var taps by remember { mutableStateOf(CircularQueueLinkedList<TapRecord>(50)) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "BPMDecay")
     val ticker by infiniteTransition.animateFloat(
@@ -87,73 +92,95 @@ fun FootstepVisualizer(
 
     // Real-time decay if no taps occur
     LaunchedEffect(ticker) {
-        val now = System.currentTimeMillis()
-        val delta = now - lastTapTime
+        if (lastTapTime != 0L) {
+            val delta = now - lastTapTime
 
-        if (lastTapTime != 0L/* && delta > 1000f*/) {
-            val delta = (now - lastTapTime)
-            instantBPM = 60000f / delta
-            smoothedBPM = ((alpha * instantBPM) + (1f - alpha) * smoothedBPM)
+            val potentialBPM = (60000f / delta)
+
+            smoothedBPM = (alpha * instantBPM) + ((1f - alpha) * instantBPM)
+            if(smoothedBPM > potentialBPM) smoothedBPM = potentialBPM
 
             if (smoothedBPM < 1f) smoothedBPM = 0f
         }
+
     }
 
     val onBeat = {
-        val now = System.currentTimeMillis()
         if (lastTapTime != 0L) {
             val delta = now - lastTapTime
-            instantBPM = 60000f / delta
+
+            instantBPM = (60000f / delta)
 
             taps.enqueue(TapRecord(now, instantBPM))
+            if(taps.size > 100) {
+                taps.dequeue()
+
+                taps.peek()
+            }
 
             smoothedBPM = if (smoothedBPM == 0f) { instantBPM }
-                else { (alpha * instantBPM) + (1f - alpha) * instantBPM }
+                else { (alpha * instantBPM) + ((1f - alpha) * instantBPM) }
 
+            if (smoothedBPM < 1f) smoothedBPM = 0f
         }
 
         lastTapTime = now
     }
 
-    val percent = (smoothedBPM / maxDisplayBPM).coerceIn(0f, 1f)
+    val bpmRatio = (smoothedBPM / maxDisplayBPM).coerceIn(0f, 1f)
 
-    Column(
-        modifier = Modifier
-            .wrapContentWidth()
-            .wrapContentHeight()
-            .padding(16.dp)
+    Column(modifier = modifier
+        .clickable { onBeat() }
     ) {
-        Row(modifier = modifier) {
+
+        Row(modifier = Modifier
+            .weight(1f)) {
+
+            VerticalScale(
+                modifier = Modifier
+                    .width(24.dp)
+                    .fillMaxHeight()
+                    .padding(end = 4.dp),
+                maxBpm = maxDisplayBPM,
+                bpmSplit = bpmSplit
+            )
+
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+            ) {
+                RealtimeGraph(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    currentTime = System.currentTimeMillis(),
+                    bpmLineRatio = bpmRatio,
+                    viewportSeconds = viewportSeconds,
+                    bpmViewport = maxDisplayBPM,
+                    timeSplit = timeSplit,
+                    taps = taps.asList()
+                )
+            }
+
             VerticalMeter(
                 modifier = Modifier
                     .width(12.dp)
                     .fillMaxHeight(),
-                color = if (percent > 0.8f) Color.Red else Color.Green,
-                percent = percent
-            )
-
-            RealtimeGraph(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight(),
-                bpmLineRatio = percent,
-                millisViewport = 10.seconds.inWholeMilliseconds,
-                bpmViewport = 400f,
-                taps = taps
+                color = if (bpmRatio > 0.8f) Color.Red else Color.Green,
+                percent = bpmRatio
             )
 
         }
 
-        Text(
+        HorizontalScale(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp)
-                .background(Color.DarkGray)
-                .clickable { onBeat() }
-                .padding(16.dp),
-            text = "BPM: ${smoothedBPM.toInt()}; ",
-            color = Color.White
+                .height(24.dp)
+                .padding(start = 24.dp, end = 12.dp),
+            millisViewport = viewportSeconds.inWholeMilliseconds,
+            timeSplit = timeSplit
         )
+
     }
 }
 
@@ -276,47 +303,194 @@ private fun VerticalMeter(
     }
 }
 
+
+@Composable
+private fun VerticalScale(
+    modifier: Modifier,
+    maxBpm: Float,
+    bpmSplit: Float
+) {
+    val textMeasurer = rememberTextMeasurer()
+    val textStyle = TextStyle(color = Color.Gray, fontSize = 10.sp)
+
+    val quantizedMax = ceil(maxBpm / bpmSplit) * bpmSplit
+    val steps = (quantizedMax / bpmSplit).toInt()
+
+    Canvas(modifier) {
+        clipRect(
+            size.width * -.25f,
+            size.height * -.25f,
+            size.width * 1.5f,
+            size.height
+        ) {
+            for (step in 0..steps + 1) {
+                val bpm = step * bpmSplit
+                val yRatio = bpm / quantizedMax
+                val y = size.height - (size.height * yRatio)
+
+                val mps = bpm / 60f
+
+                val label = "${ mps.toInt() } m"
+
+                drawText(
+                    textMeasurer = textMeasurer,
+                    text = label,
+                    style = textStyle,
+                    topLeft = Offset(
+                        size.width - textMeasurer.measure(
+                            text = label,
+                            style = textStyle,
+                            maxLines = 1
+                        ).size.width.toFloat(),
+                        y - (textMeasurer.measure(
+                            text = label,
+                            style = textStyle,
+                            maxLines = 1
+                        ).size.height.toFloat())
+                    ),
+                    maxLines = 1
+                )
+            }
+        }
+
+    }
+}
+
+@Composable
+private fun HorizontalScale(
+    modifier: Modifier,
+    millisViewport: Long,
+    timeSplit: Float
+) {
+    val textMeasurer = rememberTextMeasurer()
+    val textStyle = TextStyle(color = Color.Gray, fontSize = 10.sp)
+
+    Canvas(modifier) {
+        clipRect(
+            size.width * -.25f,
+            size.height * -.25f,
+            size.width * 1.5f,
+            size.height * 1.5f
+        ) {
+            val seconds = (millisViewport / 1.seconds.inWholeMilliseconds).toInt()
+            val labelCount = seconds / timeSplit
+
+            for (i in 0..timeSplit.toInt()) {
+
+                val time = labelCount * i
+
+                val label = "${time.toInt()}s"
+                val x = size.width - (size.width * (time / seconds))
+
+                drawText(
+                    textMeasurer = textMeasurer,
+                    text = label,
+                    style = TextStyle(
+                        color = Color.Gray,
+                        fontSize = 10.sp
+                    ),
+                    topLeft = Offset(
+                        x - textMeasurer.measure(
+                            text = label,
+                            style = textStyle,
+                            maxLines = 1,
+                            softWrap = false,
+                            overflow = TextOverflow.Visible
+                        ).size.width.toFloat() * .5f,
+                        y = 0f
+                    ),
+                    maxLines = 1,
+                    softWrap = false,
+                    overflow = TextOverflow.Visible
+                )
+            }
+        }
+    }
+}
+
 @Composable
 private fun RealtimeGraph(
     modifier: Modifier = Modifier,
     color: Color = Color.White,
-    millisViewport: Long = 60.seconds.inWholeMilliseconds,
+    currentTime: Long = System.currentTimeMillis(),
+    viewportSeconds: Duration = 60.seconds,
     bpmViewport: Float = 400f,
     bpmLineRatio: Float = 0f,
-    taps: LinearQueueLinkedList<TapRecord>? = null
+    timeSplit: Float = 10f,
+    taps: List<TapRecord>? = null
 ) {
 
-    val now = System.currentTimeMillis()
-
-    Canvas(
+    Box(
         modifier = modifier
     ) {
-        val xPlotRatio: Float = size.width / millisViewport
-        val yPlotRatio: Float = size.height / bpmLineRatio
+        Canvas(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            clipRect(
+                0f, 0f, size.width, size.height
+            ) {
+                val horizontalRatio: Float = size.width / timeSplit
 
-        drawLine(
-            color = color,
-            start = Offset(0f, size.height * (1f - bpmLineRatio)),
-            end = Offset(size.width, size.height * (1f - bpmLineRatio)),
-        )
+                for (i in 0 until timeSplit.toInt() + 1) {
 
-        taps ?: return@Canvas
+                    val x = horizontalRatio * i
+                    drawLine(
+                        color = Color.White.copy(alpha = .5f),
+                        start = Offset(x, 0f),
+                        end = Offset(x, size.height),
+                    )
 
-        var current: Node<TapRecord>? = taps.head
-
-        for(i: Int in 0..taps.size) {
-            val data = current?.data ?: return@Canvas
-
-            drawCircle(
-                color = Color.Red,
-                radius = 4f,
-                center = Offset(
-                    x = size.width - ((now - data.time) * xPlotRatio),
-                    y = size.height * (1f - (data.bpm / bpmViewport))
-                )
-            )
-            current = current.next
+                }
+            }
         }
 
+        Canvas(
+            modifier = Modifier.fillMaxSize()
+        ) {
+
+            clipRect(
+                0f, 0f, size.width, size.height
+            ) {
+                val xPlotRatio: Float = size.width / viewportSeconds.inWholeMilliseconds
+
+                drawLine(
+                    color = color,
+                    start = Offset(0f, size.height * (1f - bpmLineRatio)),
+                    end = Offset(size.width, size.height * (1f - bpmLineRatio)),
+                )
+
+                taps ?: return@Canvas
+
+                taps.forEachIndexed { index, tap ->
+
+                    if(index > 0) {
+                        val prevTap = taps[index - 1]
+                        drawLine(
+                            strokeWidth = 1f,
+                            color = Color.Red,
+                            start = Offset(
+                                x = size.width - ((currentTime - prevTap.time) * xPlotRatio),
+                                y = size.height * (1f - (prevTap.bpm / bpmViewport))
+                            ),
+                            end = Offset(
+                                x = size.width - ((currentTime - tap.time) * xPlotRatio),
+                                y = size.height * (1f - (tap.bpm / bpmViewport))
+                            )
+                        )
+                    }
+                }
+
+                taps.forEach { tap ->
+                    drawCircle(
+                        color = Color.Red,
+                        radius = 4f,
+                        center = Offset(
+                            x = size.width - ((currentTime - tap.time) * xPlotRatio),
+                            y = size.height * (1f - (tap.bpm / bpmViewport))
+                        )
+                    )
+                }
+            }
+        }
     }
 }
