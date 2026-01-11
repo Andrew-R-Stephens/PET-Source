@@ -1,11 +1,17 @@
 package com.tritiumgaming.core.common.util.datastructs
 
-class LinearQueueLinkedList<T> {
+class CircularQueueLinkedList<T>(
+    private val maxSize: Int
+) {
     var head: Node<T>? = null
     var tail: Node<T>? = null
     var size: Int = 0
+    private var count = 0
 
     fun enqueue(data: T) {
+        if (isFull()) {
+            dequeue()
+        }
         val newNode = Node(data)
         if (isEmpty()) {
             head = newNode
@@ -15,6 +21,7 @@ class LinearQueueLinkedList<T> {
             tail = newNode
         }
         size++
+        count++
     }
 
     fun dequeue(): T? {
@@ -24,6 +31,7 @@ class LinearQueueLinkedList<T> {
         val top = head?.data
         head = head?.next
         size--
+        count--
         return top
     }
 
@@ -31,8 +39,12 @@ class LinearQueueLinkedList<T> {
         return head?.data
     }
 
+    fun isFull(): Boolean {
+        return count == maxSize
+    }
+
     fun isEmpty(): Boolean {
-        return head == null
+        return count == 0
     }
 
     fun size(): Int {
@@ -51,6 +63,7 @@ class LinearQueueLinkedList<T> {
         head = null
         tail = null
         size = 0
+        count = 0
     }
 
     fun asList(): List<T> {
