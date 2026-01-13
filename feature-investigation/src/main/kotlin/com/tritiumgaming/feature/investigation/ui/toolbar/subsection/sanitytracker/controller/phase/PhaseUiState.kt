@@ -1,7 +1,8 @@
 package com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.phase
 
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DEFAULT
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.FOREVER
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.shared.data.phase.model.Phase
 
 data class PhaseUiState(
     internal val currentPhase: Phase = Phase.SETUP,
@@ -9,9 +10,5 @@ data class PhaseUiState(
     internal val canFlash: Boolean = true,
     internal val startFlashTime: Long = DEFAULT,
     internal val elapsedFlashTime: Long = DEFAULT,
-    internal val maxFlashTime: Long = FOREVER,
+    internal val maxFlashTime: Long = DURATION_30_SECONDS,
 )
-
-enum class Phase {
-    SETUP, ACTION, HUNT
-}

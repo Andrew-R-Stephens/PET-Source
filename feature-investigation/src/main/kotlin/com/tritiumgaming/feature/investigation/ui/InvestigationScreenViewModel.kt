@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui
 
-import android.os.CountDownTimer
 import android.util.Log
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateListOf
@@ -17,8 +16,6 @@ import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTime
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
@@ -28,7 +25,6 @@ import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyNameUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyResponseTypeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndexUseCase
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling
@@ -43,12 +39,10 @@ import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostTypeByIdUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
 import com.tritiumgaming.shared.data.journal.usecase.InitRuledEvidenceUseCase
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.shared.data.map.modifier.usecase.FetchMapModifiersUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetMapModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapSetupModifierUseCase
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchMapThumbnailsUseCase
@@ -67,7 +61,6 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.operation.OperationSanityUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.phase.Phase
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState.Companion.HALF_SANITY
@@ -76,8 +69,9 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytrack
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState.Companion.SAFE_MIN_BOUNDS
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DEFAULT
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.FOREVER
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.TIME_DEFAULT
+import com.tritiumgaming.shared.data.phase.model.Phase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
@@ -86,8 +80,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.text.NumberFormat
-import java.util.Locale
 import kotlin.math.max
 import kotlin.math.min
 
@@ -174,46 +166,6 @@ class InvestigationScreenViewModel(
     var sanityJob: Job? = null
 
     /*
-     * Map Ui Functions
-     */
-    private fun initMapUiState() {
-        _mapUiState.update {
-            MapUiState(
-                index = 0,
-                name = getSimpleMapNameUseCase(0)
-                    .getOrDefault(MapTitle.BLEASDALE_FARMHOUSE),
-                size = getSimpleMapSizeUseCase(0)
-                    .getOrDefault(MapSize.SMALL),
-                setupModifier = getSimpleMapSetupModifierUseCase(0)
-                    .getOrDefault(it.setupModifier),
-                normalModifier = getSimpleMapNormalModifierUseCase(0)
-                    .getOrDefault(it.normalModifier)
-            )
-        }
-    }
-
-    /*
-     * Difficulty Ui Functions
-     */
-    private fun initDifficultyUiState() {
-        _difficultyUiState.update {
-            DifficultyUiState(
-                index = 0,
-                name = getDifficultyNameUseCase(0)
-                    .getOrDefault(DifficultyTitle.AMATEUR),
-                modifier = getDifficultyModifierUseCase(0)
-                    .getOrDefault(0f),
-                time = getDifficultyTimeUseCase(0)
-                    .getOrDefault(TIME_DEFAULT),
-                initialSanity = getDifficultyInitialSanityUseCase(0)
-                    .getOrDefault(MAX_SANITY * .01f) * 100f,
-                responseType = getDifficultyResponseTypeUseCase(0)
-                    .getOrDefault(DifficultyResponseType.KNOWN)
-            )
-        }
-    }
-
-    /*
      * Timer Ui Functions
      */
     private fun initTimerUiState() {
@@ -234,7 +186,7 @@ class InvestigationScreenViewModel(
             it.copy(
                 elapsedFlashTime = 0L,
                 startFlashTime = DEFAULT,
-                maxFlashTime = FOREVER,
+                maxFlashTime = DURATION_30_SECONDS,
                 currentPhase = Phase.SETUP,
                 canFlash = true,
                 canAlertAudio = false
@@ -246,13 +198,20 @@ class InvestigationScreenViewModel(
      * Operation Sanity Ui Functions
      */
     private fun initOperationSanityUiState() {
+        val mapModifier = try {
+            getMapModifierUseCase(
+                mapUiState.value.size.ordinal,
+                phaseUiState.value.currentPhase
+            ).getOrThrow()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            1f
+        }
+
         _operationSanityUiState.update {
             OperationSanityUiState(
                 sanityMax = MAX_SANITY,
-                drainModifier = it.getDrainModifier(
-                    difficultyModifier = difficultyUiState.value.modifier,
-                    mapModifier = 1f
-                )
+                drainModifier = mapModifier * difficultyUiState.value.modifier
             )
         }
     }
@@ -361,6 +320,7 @@ class InvestigationScreenViewModel(
     ) {
         try {
             val ghost = getGhostUseCase(ghostType).getOrThrow()
+
             val popupRecord = GhostPopupRecord(
                 id = ghost.id,
                 name = ghost.name,
@@ -403,8 +363,8 @@ class InvestigationScreenViewModel(
     fun getGhostById(ghostId: GhostResources.GhostIdentifier): GhostType? =
         getGhostTypeByIdUseCase(ghostId)
 
-    fun getEvidenceById(evidenceId: EvidenceResources.EvidenceIdentifier): EvidenceType? =
-        getEvidenceTypeByIdUseCase(evidenceId)
+    /*fun getEvidenceById(evidenceId: EvidenceResources.EvidenceIdentifier): EvidenceType? =
+        getEvidenceTypeByIdUseCase(evidenceId)*/
 
     fun reset() {
         resetJournal()
@@ -446,7 +406,7 @@ class InvestigationScreenViewModel(
     private fun getGhostScores(
         ghostModel: GhostType
     ): GhostScore? {
-        return _ghostScores.value.find { it.ghostEvidence.ghost.id == ghostModel.id }
+        return ghostScores.value.find { it.ghostEvidence.ghost.id == ghostModel.id }
     }
 
     /** Order of Ghost IDs **/
@@ -603,47 +563,68 @@ class InvestigationScreenViewModel(
         setTimeRemaining(difficultyUiState.value.time)
         resetTimer()
 
-        _operationSanityUiState.update {
-            it.copy(
-                sanityMax = difficultyUiState.value.initialSanity,
-                drainModifier = it.getDrainModifier(
-                    difficultyModifier = difficultyUiState.value.modifier,
-                    mapModifier = 0f
-                )
-            )
-        }
-
-        _playerSanityUiState.update {
-            it.copy(
-                sanityLevel = difficultyUiState.value.initialSanity,
-                insanityLevel = 1f - difficultyUiState.value.initialSanity
-            )
-        }
-
-        _phaseUiState.update {
-            it.copy(
-                canAlertAudio = false
-            )
-        }
-
         reorderGhostScores()
     }
 
-    private fun updateDifficulty(index: Int) {
-        _difficultyUiState.update {
-            it.copy(
-                index = index,
-                name = getDifficultyNameUseCase(index)
-                    .getOrDefault(it.name),
-                modifier = getDifficultyModifierUseCase(index)
-                    .getOrDefault(it.modifier),
-                time = getDifficultyTimeUseCase(index)
-                    .getOrDefault(it.time),
-                initialSanity = getDifficultyInitialSanityUseCase(index)
-                    .getOrDefault(it.initialSanity),
-                responseType = getDifficultyResponseTypeUseCase(index)
-                    .getOrDefault(it.responseType)
-            )
+    private fun updateDifficulty(
+        index: Int = 0
+    ) {
+        try {
+            val name = getDifficultyNameUseCase(index).getOrThrow()
+            val modifier = getDifficultyModifierUseCase(index).getOrThrow()
+            val time = getDifficultyTimeUseCase(index).getOrThrow()
+            val initialSanity = getDifficultyInitialSanityUseCase(index).getOrThrow()
+            val responseType = getDifficultyResponseTypeUseCase(index).getOrThrow()
+
+            _difficultyUiState.update {
+                it.copy(
+                    index = index,
+                    name = name,
+                    modifier = modifier,
+                    time = time,
+                    initialSanity = initialSanity,
+                    responseType = responseType
+                )
+            }
+
+            Log.d("InvestigationViewModel", "Update DifficultyUiState success.")
+
+            val mapModifier = try {
+                getMapModifierUseCase(
+                    _mapUiState.value.size.ordinal,
+                    phaseUiState.value.currentPhase
+                ).getOrThrow()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                1f
+            }
+
+            val drainModifier = mapModifier * difficultyUiState.value.modifier
+
+            _operationSanityUiState.update {
+                it.copy(
+                    sanityMax = difficultyUiState.value.initialSanity,
+                    drainModifier = drainModifier
+                )
+            }
+
+            _playerSanityUiState.update {
+                it.copy(
+                    sanityLevel = difficultyUiState.value.initialSanity,
+                    insanityLevel = 1f - difficultyUiState.value.initialSanity
+                )
+            }
+
+            _phaseUiState.update {
+                it.copy(
+                    canAlertAudio = false
+                )
+            }
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+            Log.e("InvestigationViewModel", "Update DifficultyUiState failed.")
         }
 
         Log.d("InvestigationViewModel", "DifficultyUiState:" +
@@ -657,100 +638,64 @@ class InvestigationScreenViewModel(
     }
 
     /*
-     * Operation Sanity ---------------------------
-     */
-    /*fun setOperationSanity() {
-        _operationSanityUiState.update {
-            it.copy(
-                sanityMax = difficultyUiState.value.initialSanity,
-                drainModifier = it.getDrainModifier(
-                    difficultyModifier = difficultyUiState.value.modifier,
-                    mapModifier = getCurrentMapModifier()
-                )
-            )
-        }
-    }*/
-
-    /*
      * Player Sanity ---------------------------
      */
 
-    /** The level can be between 0 and 100. Levels outside those extremes are constrained.
+    /** The level can be between 0f and 1f. Levels outside those extremes are constrained.
      * @return The sanity level that's missing. MAX_SANITY - insanityActual. */
-    fun setInsanityLevel(
+    fun setPlayerSanity(
         value: Float
     ) {
+        val currentInsanity = playerSanityUiState.value.insanityLevel
+        val difference = value - currentInsanity
+
+        Log.d("InvestigationViewModel", "Player Sanity: " +
+                "Setting from $currentInsanity to $value -> (diff: ${"%.7f".format(difference)}")
+
+        val maxSanity = operationSanityUiState.value.sanityMax
+
         _playerSanityUiState.update {
             it.copy(
-                insanityLevel = max(
-                    min(MAX_SANITY, value),
-                    MIN_SANITY)
+                insanityLevel = value.coerceIn(MIN_SANITY, maxSanity),
+                sanityLevel = (maxSanity - value).coerceIn(MIN_SANITY, maxSanity)
             )
         }
-
-        Log.d("Sanity", "Set insanityLevel: " +
-                "\n\t${playerSanityUiState.value.insanityLevel}")
-
-        updateSanityLevel()
-
-    }
-
-    private fun timeRemainingToInsanityLevel() {
-
-        //val tickMultiplier = 100f
-        val startTime = max(
-            timerUiState.value.startTime,
-            TIME_MIN
-        )
-
-        val drainModifier = operationSanityUiState.value.drainModifier
-        val drainMultiplier = drainModifier // * tickMultiplier
-        val timeRemaining = startTime - System.currentTimeMillis()
-
-        setInsanityLevel(
-            MAX_SANITY - (timeRemaining * drainMultiplier) * .001f
-        )
-
-        Log.d("Sanity", "Modifiers:" +
-                "\n\tDrain Modifier: ${getCurrentMapModifier()} * ${difficultyUiState.value.modifier} = $drainModifier" +
-                "\n\tDrain Multiplier: $drainMultiplier" +
-                "\n\tTime Remaining: $startTime - ${System.currentTimeMillis()} = $timeRemaining" +
-                "\n\tSet Insanity Level: $MAX_SANITY - ($timeRemaining * $drainMultiplier) -> " +
-                "${MAX_SANITY - (timeRemaining * drainMultiplier) * .001f}"
-        )
 
     }
 
     private fun skipInsanity(
         newLevel: Float = HALF_SANITY
     ) {
-        val insanityLevel = playerSanityUiState.value.insanityLevel
+        val currentLevel = playerSanityUiState.value.insanityLevel
 
-        setInsanityLevel(newLevel.coerceAtLeast(insanityLevel))
-        setStartTimeByProgress(insanityLevel)
+        val normalizedLevel = newLevel.coerceAtLeast(currentLevel)
+
+        setPlayerSanity(normalizedLevel)
+
+        setStartTimeByProgress(normalizedLevel)
     }
 
-    /** the sanity level missing, in percent.**/
-    private fun updateSanityLevel() {
+    private fun calculateSanityDrain(): Float {
+        val timeElapsed = System.currentTimeMillis() - timerUiState.value.startTime
+        val drainRatePerMs = 0.00001f // Base rate per millisecond
 
-        _playerSanityUiState.update {
-            it.copy(
-                sanityLevel = max(
-                    min(
-                        MAX_SANITY,
-                        MAX_SANITY - it.insanityLevel
-                    ),
-                    MIN_SANITY
-                )
-            )
+        val calculatedDrain = timeElapsed * operationSanityUiState.value.drainModifier * drainRatePerMs
+
+        val mapModifier = try {
+            getMapModifierUseCase(
+                _mapUiState.value.size.ordinal,
+                phaseUiState.value.currentPhase
+            ).getOrThrow()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            1f
         }
 
-        Log.d("Sanity", "Updated:" +
-                "\n\tinsanityLevel: ${playerSanityUiState.value.insanityLevel}" +
-                "\n\tsanityLevel: ${playerSanityUiState.value.sanityLevel}"
-        )
+        Log.d("InvestigationViewModel", "Player Sanity: " +
+                "Drain Rate $mapModifier ${difficultyUiState.value.modifier} = " +
+                "${operationSanityUiState.value.drainModifier}")
 
-        updatePhase()
+        return calculatedDrain
     }
 
     /**
@@ -758,7 +703,7 @@ class InvestigationScreenViewModel(
      * time remaining.
      */
     private fun tickSanity() {
-        timeRemainingToInsanityLevel()
+        setPlayerSanity(calculateSanityDrain())
         updatePhase()
     }
 
@@ -769,10 +714,21 @@ class InvestigationScreenViewModel(
     private fun setStartTimeByProgress(progress: Float) {
         val drainModifier = operationSanityUiState.value.drainModifier
 
-        val progressOverride =
-            MAX_SANITY - max(MIN_SANITY, min(MAX_SANITY, progress))
+        val maxSanity = operationSanityUiState.value.sanityMax
 
-        val multiplier = .001f
+        /*val progressOverride =
+            MAX_SANITY - max(
+                MIN_SANITY,
+                min(MAX_SANITY, progress)
+            )*/
+
+        val progressOverride =
+            maxSanity - max(
+                MIN_SANITY,
+                min(maxSanity, progress)
+            )
+
+        val multiplier = .0001f
 
         val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
         val newStartTime = (System.currentTimeMillis() + timeAddition)
@@ -782,47 +738,6 @@ class InvestigationScreenViewModel(
                 startTime = newStartTime
             )
         }
-    }
-
-    fun displaySanityAsPercent(): String {
-        val percentageFormat = NumberFormat.getPercentInstance()
-        percentageFormat.minimumFractionDigits = 0
-
-        val percent = playerSanityUiState.value.sanityLevel * .01f
-
-        val formattedPercent = percentageFormat.format(percent).replace("%", "")
-
-        val nbsp = "\u00A0"
-
-        var percentStr = formattedPercent
-        percentStr = percentStr.replace(nbsp, "").trim { it <= ' ' }
-
-        var percentNum = 100
-        try {
-            percentNum = percentStr.toInt()
-        } catch (e: NumberFormatException) {
-            e.printStackTrace()
-        }
-
-        val input = String.format(Locale.US, "%3d", percentNum)
-
-        val output = StringBuilder()
-        var i = 0
-        while (i < input.length) {
-            if (input[i] != '0') {
-                break
-            }
-            output.append(nbsp)
-            i++
-        }
-        while (i < input.length) {
-            output.append(input[i])
-            i++
-        }
-        output.append("%")
-
-        return output.toString()
-
     }
 
     /** Defaults all persistent data. */
@@ -843,7 +758,7 @@ class InvestigationScreenViewModel(
      * @return if the Warning indicator can flash */
     private fun updateCanFlash() {
 
-        if (phaseUiState.value.maxFlashTime == FOREVER) {
+        if (phaseUiState.value.maxFlashTime == DURATION_30_SECONDS) {
             _phaseUiState.update {
                 it.copy(
                     canFlash = playerSanityUiState.value.isInsane
@@ -884,7 +799,7 @@ class InvestigationScreenViewModel(
         updateCanFlash()
     }
 
-    private fun updatePhase() =
+    private fun updatePhase() {
         _phaseUiState.update {
             it.copy(
                 currentPhase =
@@ -899,12 +814,54 @@ class InvestigationScreenViewModel(
                     }
             )
         }
+    }
 
     /*
      * Timer ---------------------------
      */
 
-    private var liveTimer: CountDownTimer? = null
+    private var timerJob: Job? = null
+    private fun playTimer() {
+        _timerUiState.update { it.copy(paused = false) }
+
+        // Cancel any existing timer before starting a new one
+        timerJob?.cancel()
+        timerJob = viewModelScope.launch {
+            while (!_timerUiState.value.paused) {
+                val remaining = timerUiState.value.remainingTime
+
+                val delay = 100L
+                delay(delay)
+                setTimeRemaining((remaining - delay).coerceAtLeast(0L))
+
+                updatePhase()
+
+                val mapModifier = try {
+                    getMapModifierUseCase(
+                        _mapUiState.value.size.ordinal,
+                        phaseUiState.value.currentPhase
+                    ).getOrThrow()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    1f
+                }
+
+                val drainModifier = mapModifier * difficultyUiState.value.modifier
+
+                _operationSanityUiState.update {
+                    it.copy(
+                        sanityMax = difficultyUiState.value.initialSanity,
+                        drainModifier = drainModifier
+                    )
+                }
+
+            }
+        }
+
+        startPlayerSanityJob()
+    }
+
+    /*private var liveTimer: CountDownTimer? = null
     private fun setLiveTimer(
         millisInFuture: Long = timerUiState.value.remainingTime,
         countDownInterval: Long = 100L
@@ -914,10 +871,10 @@ class InvestigationScreenViewModel(
                 setTimeRemaining(millis)
             }
 
-            override fun onFinish() { /* TODO not needed */
+            override fun onFinish() { *//* TODO not needed *//*
             }
         }
-    }
+    }*/
 
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
@@ -929,7 +886,11 @@ class InvestigationScreenViewModel(
         }
 
     private fun setTimeRemaining(value: Long) {
-        _timerUiState.update { it.copy(remainingTime = value) }
+        _timerUiState.update {
+            it.copy(
+                remainingTime = value
+            )
+        }
     }
 
     private fun pauseTimer() {
@@ -938,12 +899,23 @@ class InvestigationScreenViewModel(
                 paused = true
             )
         }
-        liveTimer?.cancel()
+        timerJob?.cancel()
 
         stopPlayerSanityJob()
     }
 
-    private fun playTimer() {
+    /*private fun pauseTimer() {
+        _timerUiState.update {
+            it.copy(
+                paused = true
+            )
+        }
+        liveTimer?.cancel()
+
+        stopPlayerSanityJob()
+    }*/
+
+    /*private fun playTimer() {
         _timerUiState.update {
             it.copy(
                 paused = false
@@ -953,7 +925,7 @@ class InvestigationScreenViewModel(
         liveTimer?.start()
 
         startPlayerSanityJob()
-    }
+    }*/
 
     fun toggleTimer() {
         if (timerUiState.value.paused) {
@@ -967,8 +939,9 @@ class InvestigationScreenViewModel(
     private fun resetTimer() {
         pauseTimer()
         resetStartTime()
-        timeRemainingToInsanityLevel()
-        setLiveTimer()
+        calculateSanityDrain()
+        updatePhase()
+        //setLiveTimer()
     }
 
     private fun resetTimer(
@@ -982,7 +955,7 @@ class InvestigationScreenViewModel(
     fun fastForwardTimer(time: Long) {
         pauseTimer()
         setTimeRemaining(time)
-        setLiveTimer()
+        //setLiveTimer()
         skipInsanity(HALF_SANITY)
         playTimer()
     }
@@ -991,8 +964,8 @@ class InvestigationScreenViewModel(
      * MapCarouselHandler ---------------------------
      */
 
-    private fun setCurrentMapIndex(
-        index: Int
+    private fun setMapIndex(
+        index: Int = 0
     ) {
         try {
             val name = getSimpleMapNameUseCase(index).getOrThrow()
@@ -1009,24 +982,43 @@ class InvestigationScreenViewModel(
                 )
             }
 
-            Log.d("InvestigationViewModel", "MapUiSate:" +
-                    "\n\tindex: ${mapUiState.value.index}" +
-                    "\n\tname: ${mapUiState.value.name}" +
-                    "\n\tsize: ${mapUiState.value.size}" +
-                    "\n\tsetupModifier: ${mapUiState.value.setupModifier}" +
-                    "\n\tnormalModifier: ${mapUiState.value.normalModifier}")
+            val mapModifier = try {
+                getMapModifierUseCase(
+                    _mapUiState.value.size.ordinal,
+                    phaseUiState.value.currentPhase
+                ).getOrThrow()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                1f
+            }
+
+            _operationSanityUiState.update {
+                it.copy(
+                    sanityMax = difficultyUiState.value.initialSanity,
+                    drainModifier = mapModifier * difficultyUiState.value.modifier
+                )
+            }
+            Log.e("InvestigationViewModel", "Set map index success")
 
         } catch (e: Exception) {
             Log.e("InvestigationViewModel", "Error setting map index")
             e.printStackTrace()
         }
+
+        Log.d("InvestigationViewModel", "MapUiSate:" +
+                "\n\tindex: ${mapUiState.value.index}" +
+                "\n\tname: ${mapUiState.value.name}" +
+                "\n\tsize: ${mapUiState.value.size}" +
+                "\n\tsetupModifier: ${mapUiState.value.setupModifier}" +
+                "\n\tnormalModifier: ${mapUiState.value.normalModifier}")
+
     }
 
     fun incrementMapIndex() {
         try {
             val newIndex = incrementMapIndexUseCase(
                 mapUiState.value.index).getOrThrow()
-            setCurrentMapIndex(newIndex)
+            setMapIndex(newIndex)
         } catch (e: Exception) { e.printStackTrace() }
     }
 
@@ -1034,25 +1026,8 @@ class InvestigationScreenViewModel(
         try {
             val newIndex = decrementMapIndexUseCase(
                 mapUiState.value.index).getOrThrow()
-            setCurrentMapIndex(newIndex)
+            setMapIndex(newIndex)
         } catch (e: Exception) { e.printStackTrace() }
-    }
-
-    /** Based on current map size (Small, Medium, Large) and the stage of the investigation
-     * (Setup vs Hunt)
-     * Defaults to Setup/Small if the selected index is out of range of available indexes.
-     * @returns the drop rate multiplier. */
-    private fun getCurrentMapModifier(): Float {
-        val modifier = getMapModifierUseCase(
-            _mapUiState.value.size.ordinal,
-            timerUiState.value.remainingTime
-        )
-        modifier.exceptionOrNull()?.let {
-            Log.e("InvestigationViewModel", "Error getting map modifier")
-            it.printStackTrace()
-        }
-
-        return modifier.getOrDefault(1f)
     }
 
     /*
@@ -1065,8 +1040,8 @@ class InvestigationScreenViewModel(
     val allowHuntWarnAudioPreference = getAllowHuntWarnAudioUseCase()
 
     init {
-        initMapUiState()
-        initDifficultyUiState()
+        setMapIndex(0)
+        updateDifficulty(0)
         initTimerUiState()
         initPhaseUiState()
         initOperationSanityUiState()

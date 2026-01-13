@@ -10,7 +10,7 @@ data class TimerUiState(
 
         const val TIME_DEFAULT = 0L
         const val NEVER = 0L
-        const val FOREVER = 300000L
+        const val DURATION_30_SECONDS = 300000L
         const val DEFAULT = 300000L
 
     }

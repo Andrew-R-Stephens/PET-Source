@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,7 +42,11 @@ fun SanityMeterView(
     investigationViewModel: InvestigationScreenViewModel
 ) {
     val sanityLevel by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
+
     val sanityPercent = sanityLevel.sanityLevel
+    /*val sanityPercentString = "$sanityPercent"
+        .substring(0, min(4, sanityPercent.toString().length))*/
+    val sanityPercentString = "$sanityPercent"
 
     Box(
         modifier = modifier
@@ -88,7 +93,7 @@ fun SanityMeterView(
                 modifier = Modifier
                     .fillMaxSize(.75f)
                     .align(Alignment.Center),
-                text = "$sanityPercent".substring(0, min(4, sanityPercent.toString().length)),
+                text = sanityPercentString,
                 style = LocalTypography.current.quaternary.regular.copy(
                     shadow = Shadow(
                         color = LocalPalette.current.scrim,
