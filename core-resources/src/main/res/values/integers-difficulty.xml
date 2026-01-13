@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Difficulty Modifiers -->
-    <!-- TODO(Refactor to fractions) -->
     <item name="difficulty_modifier_amateur" type="fraction">100%</item>
     <item name="difficulty_modifier_intermediate" type="fraction">150%</item>
     <item name="difficulty_modifier_professional" type="fraction">200%</item>
