@@ -30,7 +30,6 @@ class MapModifiersLocalDataSource(
     )
 
     override fun fetchSizeModifiers(): Result<List<WorldMapModifierDto>> {
-
         val modifiers = mapModifiers.toWorldMapModifierDtoList()
 
         return Result.success(modifiers)
