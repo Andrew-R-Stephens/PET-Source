@@ -1,10 +1,30 @@
 package com.tritiumgaming.shared.data.map.modifier.usecase
 
+import com.tritiumgaming.shared.data.phase.model.Phase
+
 class GetMapModifierUseCase(
-    private val getSimpleMapNormalModifierUseCase: com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapNormalModifierUseCase,
-    private val getSimpleMapSetupModifierUseCase: com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapSetupModifierUseCase
+    private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
+    private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase
 ) {
     operator fun invoke(
+        mapSize: Int,
+        phase: Phase
+    ): Result<Float> {
+        val result = when(phase) {
+            Phase.ACTION, Phase.HUNT -> getSimpleMapNormalModifierUseCase(mapSize)
+            Phase.SETUP -> getSimpleMapSetupModifierUseCase(mapSize)
+        }
+
+        result.exceptionOrNull()?.let {
+            return Result.failure(Exception("Could not get map modifiers", it)) }
+
+        val modifier = result.getOrNull()
+            ?: return Result.failure(Exception("Could not get map modifier"))
+
+        return Result.success(modifier)
+    }
+
+    /*operator fun invoke(
         mapSize: Int,
         timeRemaining: Long = 0L
     ): Result<Float> {
@@ -21,6 +41,6 @@ class GetMapModifierUseCase(
         return Result.success(modifier)
 
 
-    }
+    }*/
 }
 
