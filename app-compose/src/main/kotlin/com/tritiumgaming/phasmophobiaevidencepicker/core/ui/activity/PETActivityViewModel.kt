@@ -106,7 +106,8 @@ class PETActivityViewModel(
 
     fun getTypographyByUUID(uuid: String): ExtendedTypography {
         return try {
-            getTypographyByUUIDUseCase(uuid).getOrThrow().toTypographyResource()
+            val result = getTypographyByUUIDUseCase(uuid).getOrThrow()
+            result.toTypographyResource()
         } catch (e: Exception) {
             e.printStackTrace()
             LocalDefaultTypography.typography
