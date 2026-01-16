@@ -64,7 +64,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.Op
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.footstep.FootstepVisualizer
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyConfigCarousel
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapConfigCarousel
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.SanityMeterView
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerToggleButton
 import kotlin.time.Duration.Companion.seconds
@@ -309,18 +309,19 @@ private fun ColumnScope.ToolbarConfigurationSection(
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
         )
-        SanityMeterView(
-            modifier = Modifier
-                .size(64.dp),
-            investigationViewModel = investigationViewModel
-        )
 
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            SanityMeter(
+                modifier = Modifier
+                    .size(64.dp),
+                investigationViewModel = investigationViewModel
+            )
+            
             Column(
                 modifier = Modifier
                     .weight(1f, false)

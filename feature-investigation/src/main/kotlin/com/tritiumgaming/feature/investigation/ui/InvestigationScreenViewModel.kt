@@ -63,15 +63,12 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytrack
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.operation.OperationSanityUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState.Companion.HALF_SANITY
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState.Companion.MAX_SANITY
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState.Companion.MIN_SANITY
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState.Companion.SAFE_MIN_BOUNDS
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.TIME_DEFAULT
 import com.tritiumgaming.shared.data.phase.model.Phase
+import com.tritiumgaming.shared.data.sanity.model.SanityLevel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
@@ -210,7 +207,7 @@ class InvestigationScreenViewModel(
 
         _operationSanityUiState.update {
             OperationSanityUiState(
-                sanityMax = MAX_SANITY,
+                sanityMax = SanityLevel.MAX_SANITY,
                 drainModifier = mapModifier * difficultyUiState.value.modifier
             )
         }
@@ -222,7 +219,7 @@ class InvestigationScreenViewModel(
     private fun initPlayerSanityUiState() {
         _playerSanityUiState.update {
             PlayerSanityUiState(
-                sanityLevel = MAX_SANITY,
+                sanityLevel = SanityLevel.MAX_SANITY,
                 insanityLevel = 0f
             )
         }
@@ -369,11 +366,13 @@ class InvestigationScreenViewModel(
     fun reset() {
         resetJournal()
 
+        /*
         resetTimer(
             currentDifficultyTime = difficultyUiState.value.time
-        )
+        )*/
         resetPhase()
         resetSanity()
+        resetTimer()
     }
 
     /*
@@ -587,8 +586,6 @@ class InvestigationScreenViewModel(
                 )
             }
 
-            Log.d("InvestigationViewModel", "Update DifficultyUiState success.")
-
             val mapModifier = try {
                 getMapModifierUseCase(
                     _mapUiState.value.size.ordinal,
@@ -647,7 +644,7 @@ class InvestigationScreenViewModel(
         value: Float
     ) {
         val currentInsanity = playerSanityUiState.value.insanityLevel
-        val difference = value - currentInsanity
+        val difference = (value - currentInsanity)
 
         Log.d("InvestigationViewModel", "Player Sanity: " +
                 "Setting from $currentInsanity to $value -> (diff: ${"%.7f".format(difference)}")
@@ -656,15 +653,15 @@ class InvestigationScreenViewModel(
 
         _playerSanityUiState.update {
             it.copy(
-                insanityLevel = value.coerceIn(MIN_SANITY, maxSanity),
-                sanityLevel = (maxSanity - value).coerceIn(MIN_SANITY, maxSanity)
+                insanityLevel = value.coerceIn(SanityLevel.MIN_SANITY, maxSanity),
+                sanityLevel = (maxSanity - value).coerceIn(SanityLevel.MIN_SANITY, maxSanity)
             )
         }
 
     }
 
     private fun skipInsanity(
-        newLevel: Float = HALF_SANITY
+        newLevel: Float = SanityLevel.HALF_SANITY
     ) {
         val currentLevel = playerSanityUiState.value.insanityLevel
 
@@ -712,22 +709,14 @@ class InvestigationScreenViewModel(
      * Sets the Start Time of the Sanity Drain, based on remaining time,
      * sanity, difficulty and map size. */
     private fun setStartTimeByProgress(progress: Float) {
-        val drainModifier = operationSanityUiState.value.drainModifier
 
         val maxSanity = operationSanityUiState.value.sanityMax
 
-        /*val progressOverride =
-            MAX_SANITY - max(
-                MIN_SANITY,
-                min(MAX_SANITY, progress)
-            )*/
+        val upperBound = min(maxSanity, progress)
+        val normal = max(SanityLevel.MIN_SANITY, upperBound)
 
-        val progressOverride =
-            maxSanity - max(
-                MIN_SANITY,
-                min(maxSanity, progress)
-            )
-
+        val progressOverride = maxSanity - normal
+        val drainModifier = operationSanityUiState.value.drainModifier
         val multiplier = .0001f
 
         val timeAddition = (progressOverride / drainModifier / multiplier).toLong()
@@ -743,7 +732,7 @@ class InvestigationScreenViewModel(
     /** Defaults all persistent data. */
     private fun resetSanity() {
         //TODO warnTriggered = false
-        setStartTimeByProgress(MAX_SANITY - difficultyUiState.value.initialSanity)
+        setStartTimeByProgress(SanityLevel.MAX_SANITY - difficultyUiState.value.initialSanity)
         tickSanity()
     }
 
@@ -806,7 +795,7 @@ class InvestigationScreenViewModel(
                     if (timerUiState.value.remainingTime > TIME_MIN) {
                         Phase.SETUP
                     } else {
-                        if (playerSanityUiState.value.sanityLevel < SAFE_MIN_BOUNDS) {
+                        if (playerSanityUiState.value.sanityLevel < SanityLevel.SAFE_MIN_BOUNDS) {
                             Phase.HUNT
                         } else {
                             Phase.ACTION
@@ -861,21 +850,6 @@ class InvestigationScreenViewModel(
         startPlayerSanityJob()
     }
 
-    /*private var liveTimer: CountDownTimer? = null
-    private fun setLiveTimer(
-        millisInFuture: Long = timerUiState.value.remainingTime,
-        countDownInterval: Long = 100L
-    ) {
-        liveTimer = object : CountDownTimer(millisInFuture, countDownInterval) {
-            override fun onTick(millis: Long) {
-                setTimeRemaining(millis)
-            }
-
-            override fun onFinish() { *//* TODO not needed *//*
-            }
-        }
-    }*/
-
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
     private fun resetStartTime() =
@@ -904,29 +878,6 @@ class InvestigationScreenViewModel(
         stopPlayerSanityJob()
     }
 
-    /*private fun pauseTimer() {
-        _timerUiState.update {
-            it.copy(
-                paused = true
-            )
-        }
-        liveTimer?.cancel()
-
-        stopPlayerSanityJob()
-    }*/
-
-    /*private fun playTimer() {
-        _timerUiState.update {
-            it.copy(
-                paused = false
-            )
-        }
-        setLiveTimer()
-        liveTimer?.start()
-
-        startPlayerSanityJob()
-    }*/
-
     fun toggleTimer() {
         if (timerUiState.value.paused) {
             playTimer()
@@ -941,7 +892,6 @@ class InvestigationScreenViewModel(
         resetStartTime()
         calculateSanityDrain()
         updatePhase()
-        //setLiveTimer()
     }
 
     private fun resetTimer(
@@ -955,8 +905,7 @@ class InvestigationScreenViewModel(
     fun fastForwardTimer(time: Long) {
         pauseTimer()
         setTimeRemaining(time)
-        //setLiveTimer()
-        skipInsanity(HALF_SANITY)
+        skipInsanity(SanityLevel.HALF_SANITY)
         playTimer()
     }
 
@@ -1041,9 +990,9 @@ class InvestigationScreenViewModel(
 
     init {
         setMapIndex(0)
-        updateDifficulty(0)
-        initTimerUiState()
         initPhaseUiState()
+        initTimerUiState()
+        updateDifficulty(0)
         initOperationSanityUiState()
         initPlayerSanityUiState()
         initToolbarUiState()

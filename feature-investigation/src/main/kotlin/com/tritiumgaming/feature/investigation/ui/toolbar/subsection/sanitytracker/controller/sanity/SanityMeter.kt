@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,7 +36,7 @@ import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import kotlin.math.min
 
 @Composable
-fun SanityMeterView(
+fun SanityMeter(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationScreenViewModel
 ) {
