@@ -27,22 +27,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.other.PETImageButton
 import com.tritiumgaming.core.ui.common.other.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitleLength
-import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyConfigCarousel
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapConfigCarousel
 
 @Composable
 @Preview
@@ -53,10 +43,6 @@ private fun OperationCarouselPreview() {
             onClickLeft = {},
             onClickRight = {}
         )
-        DifficultyConfigCarousel(
-            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
-        MapConfigCarousel(
-            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
     }
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
@@ -65,10 +51,6 @@ private fun OperationCarouselPreview() {
             onClickLeft = {},
             onClickRight = {}
         )
-        DifficultyConfigCarousel(
-            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
-        MapConfigCarousel(
-            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
     }
 }
 

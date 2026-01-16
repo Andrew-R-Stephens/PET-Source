@@ -36,6 +36,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -52,6 +53,8 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.getExitVector
 import com.tritiumgaming.core.ui.vector.getGearVector
 import com.tritiumgaming.core.ui.vector.getInfoVector
+import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
+import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
@@ -62,11 +65,11 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.footstep.FootstepVisualizer
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyConfigCarousel
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapConfigCarousel
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.OperationConfigCarousel
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerToggleButton
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -295,19 +298,39 @@ private fun ColumnScope.ToolbarConfigurationSection(
         horizontalAlignment = Alignment.Start
     ) {
 
-        MapConfigCarousel(
+        val mapUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
+        val mapNameRes = mapUiState.value.name.toStringResource(
+            SimpleMapResources.MapTitleLength.ABBREVIATED)
+
+        OperationConfigCarousel(
             modifier = Modifier,
-            investigationViewModel = investigationViewModel,
+            label = stringResource(mapNameRes),
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
-            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
+            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+            onClickLeft = {
+                investigationViewModel.decrementMapIndex()
+            },
+            onClickRight = {
+                investigationViewModel.incrementMapIndex()
+            }
         )
-        DifficultyConfigCarousel(
+
+        val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+        val difficultyNameRes = difficultyUiState.value.name.toStringResource()
+
+        OperationConfigCarousel(
             modifier = Modifier,
-            investigationViewModel = investigationViewModel,
+            label = stringResource(difficultyNameRes),
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
-            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface)
+            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+            onClickLeft = {
+                investigationViewModel.decrementDifficultyIndex()
+            },
+            onClickRight = {
+                investigationViewModel.incrementDifficultyIndex()
+            }
         )
 
         Row(
@@ -382,8 +405,6 @@ private fun ToolbarFootsteps(
     investigationViewModel: InvestigationScreenViewModel,
     modifier: Modifier = Modifier
 ) {
-    //var bpm by remember { mutableFloatStateOf(0f) }
-
     Box (
         modifier = modifier
     ) {
