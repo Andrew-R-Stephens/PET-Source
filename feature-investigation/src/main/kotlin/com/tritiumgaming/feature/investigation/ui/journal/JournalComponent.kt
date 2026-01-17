@@ -50,6 +50,9 @@ fun Journal(
     ruledEvidenceList: List<RuledEvidence>,
     ghostsScore: List<GhostScore>,
     ghostsOrder: List<GhostResources.GhostIdentifier>,
+    onFindGhostById: (GhostResources.GhostIdentifier) -> GhostType?,
+    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
+    onToggleNegateGhost: (GhostType) -> Unit,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
     onChangeGhostPopup: (GhostType) -> Unit
@@ -74,8 +77,18 @@ fun Journal(
             )
             GhostListColumn(
                 investigationScreenViewModel = investigationViewModel,
+                ruledEvidence = ruledEvidenceList,
                 ghostScoreState = ghostsScore,
                 ghostsOrderState = ghostsOrder,
+                onFindGhostById = { ghostId ->
+                    onFindGhostById(ghostId)
+                },
+                onGetRuledEvidence = { evidenceType ->
+                    onGetRuledEvidence(evidenceType)
+                },
+                onToggleNegateGhost = { ghostType ->
+                    onToggleNegateGhost(ghostType)
+                },
                 onChangePopup = { ghostType ->
                     onChangeGhostPopup(ghostType)
                 }
@@ -83,8 +96,18 @@ fun Journal(
         } else {
             GhostListColumn(
                 investigationScreenViewModel = investigationViewModel,
+                ruledEvidence = ruledEvidenceList,
                 ghostScoreState = ghostsScore,
                 ghostsOrderState = ghostsOrder,
+                onFindGhostById = { ghostId ->
+                    onFindGhostById(ghostId)
+                },
+                onGetRuledEvidence = { evidenceType ->
+                    onGetRuledEvidence(evidenceType)
+                },
+                onToggleNegateGhost = { ghostType ->
+                    onToggleNegateGhost(ghostType)
+                },
                 onChangePopup = { ghostType ->
                     onChangeGhostPopup(ghostType)
                 }
@@ -107,8 +130,12 @@ fun Journal(
 @Composable
 private fun RowScope.GhostListColumn(
     investigationScreenViewModel: InvestigationScreenViewModel,
+    ruledEvidence: List<RuledEvidence>,
     ghostScoreState: List<GhostScore>,
     ghostsOrderState: List<GhostResources.GhostIdentifier>,
+    onFindGhostById: (GhostResources.GhostIdentifier) -> GhostType?,
+    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
+    onToggleNegateGhost: (GhostType) -> Unit,
     onChangePopup: (GhostType) -> Unit
 ) {
     var size by remember{
@@ -128,9 +155,7 @@ private fun RowScope.GhostListColumn(
                 .height(36.dp)
                 .wrapContentWidth(Alignment.CenterHorizontally)
                 .padding(2.dp)
-                .onSizeChanged {
-                    size = it
-                },
+                .onSizeChanged { size = it },
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -150,13 +175,24 @@ private fun RowScope.GhostListColumn(
         }
 
         GhostList(
-            investigationViewModel = investigationScreenViewModel,
+            modifier = Modifier,
+            ruledEvidence = ruledEvidence,
             ghostsScoreState = ghostScoreState,
-            ghostsOrderState = ghostsOrderState
-        ) {
-            Log.d("GhostList", "Setting popup to ${it.name}")
-            onChangePopup(it)
-        }
+            ghostsOrderState = ghostsOrderState,
+            onFindGhostById = { ghostId ->
+                onFindGhostById(ghostId)
+            },
+            onGetRuledEvidence = { evidenceType ->
+                onGetRuledEvidence(evidenceType)
+            },
+            onToggleNegateGhost = { ghostType ->
+                onToggleNegateGhost(ghostType)
+            },
+            onClickItem = { ghostType ->
+                Log.d("GhostList", "Setting popup to ${ghostType.name}")
+                onChangePopup(ghostType)
+            },
+        )
     }
 }
 
@@ -186,9 +222,7 @@ private fun RowScope.EvidenceListColumn(
                     .height(36.dp)
                     .fillMaxWidth()
                     .padding(2.dp)
-                    .onSizeChanged {
-                        size = it
-                    },
+                    .onSizeChanged { size = it },
                 contentAlignment = Alignment.Center
             ) {
                 key(size) {

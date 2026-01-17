@@ -162,6 +162,15 @@ private fun InvestigationSoloContent(
                 ruledEvidence = ruledEvidence,
                 ghostScores = ghostScores,
                 ghostOrder = ghostOrder,
+                onFindGhostById = { ghostId ->
+                    investigationViewModel.getGhostById(ghostId)
+                },
+                onGetRuledEvidence = { evidenceType ->
+                    investigationViewModel.getRuledEvidence(evidenceType)
+                },
+                onToggleNegateGhost = { ghostType ->
+                    investigationViewModel.toggleGhostNegation(ghostType)
+                },
                 onChangeEvidenceRuling = { e, r ->
                     investigationViewModel.setEvidenceRuling(e, r) },
                 onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
@@ -194,6 +203,15 @@ private fun InvestigationSoloContent(
                 ruledEvidence = ruledEvidence,
                 ghostScores = ghostScores,
                 ghostOrder = ghostOrder,
+                onFindGhostById = { ghostId ->
+                    investigationViewModel.getGhostById(ghostId)
+                },
+                onGetRuledEvidence = { evidenceType ->
+                    investigationViewModel.getRuledEvidence(evidenceType)
+                },
+                onToggleNegateGhost = { ghostType ->
+                    investigationViewModel.toggleGhostNegation(ghostType)
+                },
                 onChangeEvidenceRuling = { e, r ->
                     investigationViewModel.setEvidenceRuling(e, r) },
                 onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
@@ -245,6 +263,9 @@ private fun ColumnScope.Investigation(
     ruledEvidence: List<RuledEvidence>,
     ghostScores: List<GhostScore>,
     ghostOrder: List<GhostResources.GhostIdentifier>,
+    onFindGhostById: (GhostResources.GhostIdentifier) -> GhostType?,
+    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
+    onToggleNegateGhost: (GhostType) -> Unit,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
     onChangeGhostPopup: (GhostType) -> Unit,
@@ -265,6 +286,15 @@ private fun ColumnScope.Investigation(
         ruledEvidenceList = ruledEvidence,
         ghostsScore = ghostScores,
         ghostsOrder = ghostOrder,
+        onFindGhostById = { ghostId ->
+            onFindGhostById(ghostId)
+        },
+        onGetRuledEvidence = { evidenceType ->
+            onGetRuledEvidence(evidenceType)
+        },
+        onToggleNegateGhost = { ghostType ->
+            onToggleNegateGhost(ghostType)
+        },
         onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
         onChangeEvidencePopup = { onChangeEvidencePopup(it) },
         onChangeGhostPopup = { onChangeGhostPopup(it) },
@@ -339,6 +369,9 @@ private fun RowScope.Investigation(
     ruledEvidence: List<RuledEvidence>,
     ghostScores: List<GhostScore>,
     ghostOrder: List<GhostResources.GhostIdentifier>,
+    onFindGhostById: (GhostResources.GhostIdentifier) -> GhostType?,
+    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
+    onToggleNegateGhost: (GhostType) -> Unit,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
     onChangeGhostPopup: (GhostType) -> Unit,
@@ -409,6 +442,15 @@ private fun RowScope.Investigation(
         ruledEvidenceList = ruledEvidence,
         ghostsScore = ghostScores,
         ghostsOrder = ghostOrder,
+        onFindGhostById = { ghostId ->
+            onFindGhostById(ghostId)
+        },
+        onGetRuledEvidence = { evidenceType ->
+            onGetRuledEvidence(evidenceType)
+        },
+        onToggleNegateGhost = { ghostType ->
+            onToggleNegateGhost(ghostType)
+        },
         onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
         onChangeEvidencePopup = { onChangeEvidencePopup(it) },
         onChangeGhostPopup = { onChangeGhostPopup(it) },

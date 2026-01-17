@@ -28,6 +28,8 @@ import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListItem
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -36,10 +38,13 @@ import org.jetbrains.annotations.TestOnly
 @Composable
 fun GhostList(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationScreenViewModel,
+    ruledEvidence: List<RuledEvidence>,
     ghostsScoreState: List<GhostScore>,
     ghostsOrderState: List<GhostResources.GhostIdentifier>,
-    onClickItem: (ghost: GhostType) -> Unit = {},
+    onFindGhostById: (id: GhostResources.GhostIdentifier) -> GhostType?,
+    onToggleNegateGhost: (type: GhostType) -> Unit,
+    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
+    onClickItem: (ghost: GhostType) -> Unit,
 ) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -71,19 +76,25 @@ fun GhostList(
             key = { it }
         ) {
 
-            investigationViewModel.getGhostById(it)?.let { ghostType ->
+            onFindGhostById(it)?.let { ghostType ->
 
                 GhostListItem(
                     modifier = Modifier
                         .padding(horizontal = 2.dp)
                         .wrapContentWidth(Alignment.CenterHorizontally)
                         .animateItem(),
-                    investigationViewModel = investigationViewModel,
+                    ruledEvidence = ruledEvidence,
                     ghostScore = ghostsScoreState.find { score ->
-                        score.ghostEvidence.ghost.id == ghostType.id }
-                ) {
-                    onClickItem(ghostType)
-                }
+                        score.ghostEvidence.ghost.id == ghostType.id },
+                    onToggleNegateGhost = { ghostType ->
+                        onToggleNegateGhost(ghostType) },
+                    onGetRuledEvidence = { evidenceType ->
+                        onGetRuledEvidence(evidenceType)
+                    },
+                    onNameClick = {
+                        onClickItem(ghostType)
+                    }
+                )
 
             } ?: Log.d("GhostList", "No ghost found for id: $it")
 

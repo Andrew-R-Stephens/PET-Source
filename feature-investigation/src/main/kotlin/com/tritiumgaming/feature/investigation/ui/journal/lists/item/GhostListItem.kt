@@ -42,14 +42,18 @@ import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling.POSITIV
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
+import com.tritiumgaming.shared.data.ghost.model.GhostType
 
 @Composable
 fun LazyItemScope.GhostListItem(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationScreenViewModel,
+    ruledEvidence: List<RuledEvidence>,
     ghostScore: GhostScore? = null,
     label: String = ghostScore?.let {
         stringResource(ghostScore.ghostEvidence.ghost.name.toStringResource()) } ?: "Test",
+    onToggleNegateGhost: (GhostType) -> Unit = {},
+    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
     onNameClick: () -> Unit = {},
 ) {
 
@@ -83,9 +87,7 @@ fun LazyItemScope.GhostListItem(
                     detectHorizontalDragGestures(
                         onDragEnd = {
                             ghostScore?.let {
-                                investigationViewModel.toggleGhostNegation(
-                                    ghostScore.ghostEvidence.ghost
-                                )
+                                onToggleNegateGhost(ghostScore.ghostEvidence.ghost)
                             }
                         }
                     ) { change, dragAmount ->
@@ -158,8 +160,7 @@ fun LazyItemScope.GhostListItem(
                 ?.sortedWith (
                     compareBy(
                         { evidence ->
-                            investigationViewModel.getRuledEvidence(evidence)
-                                ?.ruling?.ordinal
+                            onGetRuledEvidence(evidence)?.ruling?.ordinal
                         },
                         { evidence ->
                             evidence.id
@@ -168,7 +169,7 @@ fun LazyItemScope.GhostListItem(
                 )
                 ?.forEach { normal ->
                     EvidenceIcon(
-                        investigationViewModel = investigationViewModel,
+                        ruledEvidence = ruledEvidence,
                         evidence = normal,
                         isStrict = strictEvidenceList?.find { strict ->
                             strict.id == normal.id
@@ -182,13 +183,12 @@ fun LazyItemScope.GhostListItem(
 
 @Composable
 private fun RowScope.EvidenceIcon(
-    investigationViewModel: InvestigationScreenViewModel,
+    ruledEvidence: List<RuledEvidence>,
     evidence: EvidenceType,
     isStrict: Boolean = false
 ) {
 
-    val rulingState = investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
-    val evidenceRuling = rulingState.value.find { it.evidence.id == evidence.id }?.ruling
+    val evidenceRuling = ruledEvidence.find { it.evidence.id == evidence.id }?.ruling
 
     //Log.d("EvidenceIcon", "Evidence: ${evidence.name}, Ruling: ${evidenceRuling?.name}")
 
