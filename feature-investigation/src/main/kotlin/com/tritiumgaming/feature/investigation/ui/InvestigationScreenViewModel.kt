@@ -357,11 +357,10 @@ class InvestigationScreenViewModel(
     /*
      * FUNCTIONS
      */
-    fun getGhostById(ghostId: GhostResources.GhostIdentifier): GhostType? =
-        getGhostTypeByIdUseCase(ghostId)
-
-    /*fun getEvidenceById(evidenceId: EvidenceResources.EvidenceIdentifier): EvidenceType? =
-        getEvidenceTypeByIdUseCase(evidenceId)*/
+    fun getGhostById(ghostId: GhostResources.GhostIdentifier): GhostType? {
+        return try { getGhostTypeByIdUseCase(ghostId).getOrThrow() }
+        catch (e: Exception) { e.printStackTrace(); null }
+    }
 
     fun reset() {
         resetJournal()
@@ -448,7 +447,6 @@ class InvestigationScreenViewModel(
             )
         }
         Log.d("GhostOrder", "Reordered to:$str2")
-
     }
 
     private fun getEvidenceScore(
