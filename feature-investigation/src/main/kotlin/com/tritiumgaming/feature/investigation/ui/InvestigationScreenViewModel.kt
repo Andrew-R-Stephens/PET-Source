@@ -169,7 +169,7 @@ class InvestigationScreenViewModel(
         _timerUiState.update {
             TimerUiState(
                 startTime = TIME_DEFAULT,
-                remainingTime = _difficultyUiState.value.time,
+                remainingTime = difficultyUiState.value.time,
                 paused = true
             )
         }
@@ -366,10 +366,7 @@ class InvestigationScreenViewModel(
     fun reset() {
         resetJournal()
 
-        /*
-        resetTimer(
-            currentDifficultyTime = difficultyUiState.value.time
-        )*/
+        resetTimer()
         resetPhase()
         resetSanity()
         resetTimer()
@@ -814,7 +811,13 @@ class InvestigationScreenViewModel(
         _timerUiState.update { it.copy(paused = false) }
 
         // Cancel any existing timer before starting a new one
-        timerJob?.cancel()
+        stopTimerJob()
+        createAndStartTimerJob()
+
+        startPlayerSanityJob()
+    }
+
+    private fun createAndStartTimerJob() {
         timerJob = viewModelScope.launch {
             while (!_timerUiState.value.paused) {
                 val remaining = timerUiState.value.remainingTime
@@ -846,8 +849,9 @@ class InvestigationScreenViewModel(
 
             }
         }
-
-        startPlayerSanityJob()
+    }
+    private fun stopTimerJob() {
+        timerJob?.cancel()
     }
 
     /** The Sanity Drain starting time, whenever the play button is activated.
@@ -873,8 +877,7 @@ class InvestigationScreenViewModel(
                 paused = true
             )
         }
-        timerJob?.cancel()
-
+        stopTimerJob()
         stopPlayerSanityJob()
     }
 
@@ -888,10 +891,16 @@ class InvestigationScreenViewModel(
     }
 
     private fun resetTimer() {
-        pauseTimer()
-        resetStartTime()
+        stopTimerJob()
+        initTimerUiState()
+
         calculateSanityDrain()
         updatePhase()
+
+        /*pauseTimer()
+        resetStartTime()
+        calculateSanityDrain()
+        updatePhase()*/
     }
 
     private fun resetTimer(
@@ -989,15 +998,16 @@ class InvestigationScreenViewModel(
     val allowHuntWarnAudioPreference = getAllowHuntWarnAudioUseCase()
 
     init {
+        initToolbarUiState()
+        initPopupUiState()
+
         setMapIndex(0)
+        updateDifficulty(0)
         initPhaseUiState()
         initTimerUiState()
-        updateDifficulty(0)
+
         initOperationSanityUiState()
         initPlayerSanityUiState()
-        initToolbarUiState()
-
-        initPopupUiState()
 
         initGhostScores()
         initRuledEvidence()

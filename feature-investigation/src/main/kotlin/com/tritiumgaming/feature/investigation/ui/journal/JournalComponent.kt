@@ -16,10 +16,19 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
@@ -102,6 +111,10 @@ private fun RowScope.GhostListColumn(
     ghostsOrderState: List<GhostResources.GhostIdentifier>,
     onChangePopup: (GhostType) -> Unit
 ) {
+    var size by remember{
+        mutableStateOf(IntSize.Zero)
+    }
+
     Column(
         modifier = Modifier
             .weight(1f, false)
@@ -114,21 +127,26 @@ private fun RowScope.GhostListColumn(
             modifier = Modifier
                 .height(36.dp)
                 .wrapContentWidth(Alignment.CenterHorizontally)
-                .padding(2.dp),
+                .padding(2.dp)
+                .onSizeChanged {
+                    size = it
+                },
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                modifier = Modifier
-                    .wrapContentWidth(),
-                text = stringResource(R.string.investigation_section_title_ghosts),
-                style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.primary,
-                    textAlign = TextAlign.Center
-                ),
-                maxLines = 1,
-                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-            )
+            key(size) {
+                Text(
+                    modifier = Modifier
+                        .wrapContentWidth(),
+                    text = stringResource(R.string.investigation_section_title_ghosts),
+                    style = LocalTypography.current.primary.regular.copy(
+                        color = LocalPalette.current.primary,
+                        textAlign = TextAlign.Center
+                    ),
+                    maxLines = 1,
+                    autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+                )
+            }
         }
 
         GhostList(
@@ -149,6 +167,10 @@ private fun RowScope.EvidenceListColumn(
     onChangePopup: (EvidenceType) -> Unit = {}
 ) {
 
+    var size by remember{
+        mutableStateOf(IntSize.Zero)
+    }
+
     Box(
         modifier = Modifier
             .weight(1f)
@@ -163,18 +185,23 @@ private fun RowScope.EvidenceListColumn(
                 modifier = Modifier
                     .height(36.dp)
                     .fillMaxWidth()
-                    .padding(2.dp),
+                    .padding(2.dp)
+                    .onSizeChanged {
+                        size = it
+                    },
                 contentAlignment = Alignment.Center
             ) {
-                BasicText(
-                    text = stringResource(R.string.investigation_section_title_evidence),
-                    style = LocalTypography.current.primary.regular.copy(
-                        color = LocalPalette.current.primary,
-                        textAlign = TextAlign.Center
-                    ),
-                    maxLines = 1,
-                    autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-                )
+                key(size) {
+                    BasicText(
+                        text = stringResource(R.string.investigation_section_title_evidence),
+                        style = LocalTypography.current.primary.regular.copy(
+                            color = LocalPalette.current.primary,
+                            textAlign = TextAlign.Center
+                        ),
+                        maxLines = 1,
+                        autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
+                    )
+                }
             }
 
             EvidenceList(

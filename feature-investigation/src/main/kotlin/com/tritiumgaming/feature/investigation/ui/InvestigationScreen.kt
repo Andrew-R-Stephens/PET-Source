@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui
 
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +23,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
@@ -113,7 +115,10 @@ private fun InvestigationSoloContent(
     investigationViewModel: InvestigationScreenViewModel
 ) {
 
+    val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
+
     val toolbarUiState by investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
+
     val timerUiState by investigationViewModel.timerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
     val mapUiState by investigationViewModel.mapUiState.collectAsStateWithLifecycle()
@@ -126,7 +131,6 @@ private fun InvestigationSoloContent(
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
 
     /*
     when(deviceConfiguration) {
@@ -159,38 +163,19 @@ private fun InvestigationSoloContent(
                 ghostScores = ghostScores,
                 ghostOrder = ghostOrder,
                 onChangeEvidenceRuling = { e, r ->
-                    investigationViewModel.setEvidenceRuling(e, r)
-                },
-                onChangeEvidencePopup = {
-                    investigationViewModel.setPopup(it)
-                },
-                onChangeGhostPopup = {
-                    investigationViewModel.setPopup(it)
-                },
-                onMapLeftClick = {
-                    investigationViewModel.decrementMapIndex()
-                },
-                onMapRightClick = {
-                    investigationViewModel.incrementMapIndex()
-                },
-                onDifficultyLeftClick = {
-                    investigationViewModel.decrementDifficultyIndex()
-                },
-                onDifficultyRightClick = {
-                    investigationViewModel.incrementDifficultyIndex()
-                },
-                onToggleTimer = {
-                    investigationViewModel.toggleTimer()
-                },
-                onToggleCollapseToolbar = {
-                    investigationViewModel.toggleToolbarState()
-                },
+                    investigationViewModel.setEvidenceRuling(e, r) },
+                onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
+                onChangeGhostPopup = { investigationViewModel.setPopup(it) },
+                onMapLeftClick = { investigationViewModel.decrementMapIndex() },
+                onMapRightClick = { investigationViewModel.incrementMapIndex() },
+                onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
+                onDifficultyRightClick = { investigationViewModel.incrementDifficultyIndex() },
+                onToggleTimer = { investigationViewModel.toggleTimer() },
+                onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
                 onChangeToolbarCategory = { category ->
                     investigationViewModel.setToolbarCategory(category)
                 },
-                onReset = {
-                    investigationViewModel.reset()
-                }
+                onReset = { investigationViewModel.reset() }
             )
         }
     } else {
@@ -210,43 +195,23 @@ private fun InvestigationSoloContent(
                 ghostScores = ghostScores,
                 ghostOrder = ghostOrder,
                 onChangeEvidenceRuling = { e, r ->
-                    investigationViewModel.setEvidenceRuling(e, r)
-                },
-                onChangeEvidencePopup = {
-                    investigationViewModel.setPopup(it)
-                },
-                onChangeGhostPopup = {
-                    investigationViewModel.setPopup(it)
-                },
-                onMapLeftClick = {
-                    investigationViewModel.decrementMapIndex()
-                },
-                onMapRightClick = {
-                    investigationViewModel.incrementMapIndex()
-                },
-                onDifficultyLeftClick = {
-                    investigationViewModel.decrementDifficultyIndex()
-                },
-                onDifficultyRightClick = {
-                    investigationViewModel.incrementDifficultyIndex()
-                },
-                onToggleTimer = {
-                    investigationViewModel.toggleTimer()
-                },
-                onToggleCollapseToolbar = {
-                    investigationViewModel.toggleToolbarState()
-                },
+                    investigationViewModel.setEvidenceRuling(e, r) },
+                onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
+                onChangeGhostPopup = { investigationViewModel.setPopup(it) },
+                onMapLeftClick = { investigationViewModel.decrementMapIndex() },
+                onMapRightClick = { investigationViewModel.incrementMapIndex() },
+                onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
+                onDifficultyRightClick = { investigationViewModel.incrementDifficultyIndex() },
+                onToggleTimer = { investigationViewModel.toggleTimer() },
+                onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
                 onChangeToolbarCategory = { category ->
                     investigationViewModel.setToolbarCategory(category)
                 },
-                onReset = {
-                    investigationViewModel.reset()
-                }
+                onReset = { investigationViewModel.reset() }
             )
         }
     }
 
-    val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
     InvestigationPopup(
         modifier = Modifier
             .fillMaxSize(),
@@ -267,17 +232,6 @@ private fun InvestigationSoloContent(
             ) { investigationViewModel.clearPopup() }
         }
     }
-}
-
-
-@Composable
-fun InvestigationCompactPortrait() {
-
-}
-
-@Composable
-fun InvestigationCompactLandscape() {
-
 }
 
 @Composable
@@ -320,20 +274,15 @@ private fun ColumnScope.Investigation(
         modifier = Modifier
             .height(48.dp),
         toolbarUiState = toolbarUiState,
-        onToggleCollapseToolbar = {
-            onToggleCollapseToolbar()
-        },
-        onChangeToolbarCategory = { category ->
-            onChangeToolbarCategory(category)
-        },
-        onReset = {
-            onReset()
-        }
+        onToggleCollapseToolbar = { onToggleCollapseToolbar() },
+        onChangeToolbarCategory = { category -> onChangeToolbarCategory(category) },
+        onReset = { onReset() }
     )
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .animateContentSize()
             .then(
                 if (!toolbarUiState.isCollapsed)
                     Modifier
@@ -355,26 +304,16 @@ private fun ColumnScope.Investigation(
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
                 sanityUiState = sanityUiState,
-                onMapLeftClick = {
-                    onMapLeftClick()
-                },
-                onMapRightClick = {
-                    onMapRightClick()
-                },
-                onDifficultyLeftClick = {
-                    onDifficultyLeftClick()
-                },
-                onDifficultyRightClick = {
-                    onDifficultyRightClick()
-                },
-                onToggleTimer = {
-                    onToggleTimer()
-                }
+                onMapLeftClick = { onMapLeftClick() },
+                onMapRightClick = { onMapRightClick() },
+                onDifficultyLeftClick = { onDifficultyLeftClick() },
+                onDifficultyRightClick = { onDifficultyRightClick() },
+                onToggleTimer = { onToggleTimer() }
             )
 
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
-                modifier = Modifier
-                    .fillMaxHeight(.5f),
+                modifier = Modifier,
+                    //.fillMaxHeight(.5f),
                 phaseUiState = phaseUiState,
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
@@ -417,6 +356,7 @@ private fun RowScope.Investigation(
         modifier = Modifier
             .then(
                 if (toolbarUiState.isCollapsed) Modifier
+                    .animateContentSize()
                     .fillMaxWidth(0f)
                     .alpha(0f)
                 else Modifier.fillMaxWidth(.35f)
@@ -432,21 +372,11 @@ private fun RowScope.Investigation(
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
                 sanityUiState = sanityUiState,
-                onMapLeftClick = {
-                    onMapLeftClick()
-                },
-                onMapRightClick = {
-                    onMapRightClick()
-                },
-                onDifficultyLeftClick = {
-                    onDifficultyLeftClick()
-                },
-                onDifficultyRightClick = {
-                    onDifficultyRightClick()
-                },
-                onToggleTimer = {
-                    onToggleTimer()
-                }
+                onMapLeftClick = { onMapLeftClick() },
+                onMapRightClick = { onMapRightClick() },
+                onDifficultyLeftClick = { onDifficultyLeftClick() },
+                onDifficultyRightClick = { onDifficultyRightClick() },
+                onToggleTimer = { onToggleTimer() }
             )
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
                 modifier = Modifier
@@ -467,15 +397,10 @@ private fun RowScope.Investigation(
         modifier = Modifier
             .width(48.dp),
         toolbarUiState = toolbarUiState,
-        onToggleCollapseToolbar = {
-            onToggleCollapseToolbar()
-        },
+        onToggleCollapseToolbar = { onToggleCollapseToolbar() },
         onChangeToolbarCategory = { category ->
-            onChangeToolbarCategory(category)
-        },
-        onReset = {
-            onReset()
-        }
+            onChangeToolbarCategory(category) },
+        onReset = { onReset() }
     )
 
     Journal(
@@ -517,12 +442,8 @@ private fun ColumnScope.ToolbarConfigurationSection(
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = {
-                onMapLeftClick()
-            },
-            onClickRight = {
-                onMapRightClick()
-            }
+            onClickLeft = { onMapLeftClick() },
+            onClickRight = { onMapRightClick() }
         )
 
         OperationConfigCarousel(
