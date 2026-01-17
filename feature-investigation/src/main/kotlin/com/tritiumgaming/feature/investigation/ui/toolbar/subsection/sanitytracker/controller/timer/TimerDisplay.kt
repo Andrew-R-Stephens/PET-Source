@@ -28,17 +28,20 @@ import com.tritiumgaming.core.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import kotlinx.coroutines.delay
+import kotlin.concurrent.timer
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun DigitalTimer(
     modifier: Modifier = Modifier,
-    timeMillis: Long,
+    timerUiState: TimerUiState,
     color: Color = LocalPalette.current.onSurface
 ) {
-    var rememberTime by remember { mutableLongStateOf(timeMillis) }
-    LaunchedEffect(timeMillis) {
-        rememberTime = timeMillis
+    val remainingTime = timerUiState.remainingTime
+
+    var rememberTime by remember { mutableLongStateOf(remainingTime) }
+    LaunchedEffect(remainingTime) {
+        rememberTime = remainingTime
     }
 
     Box(
@@ -59,11 +62,13 @@ fun DigitalTimer(
 @Composable
 fun TimerToggleButton(
     modifier: Modifier = Modifier,
-    state: Boolean,
+    timerUiState: TimerUiState,
     playContent: @Composable (modifier: Modifier) -> Unit = {},
     pauseContent: @Composable (modifier: Modifier) -> Unit = {},
     onClick: () -> Unit = {}
 ) {
+    val state = timerUiState.paused
+
     var rememberState by remember { mutableStateOf(state) }
     LaunchedEffect(state) {
         rememberState = state
@@ -79,21 +84,8 @@ fun TimerToggleButton(
         contentPadding = PaddingValues(8.dp)
     ) {
         if (rememberState) {
-            /*Icon(
-                modifier = Modifier,
-                painter = painterResource(R.drawable.ic_control_play),
-                contentDescription = null,
-                tint = LocalPalette.current.onSurface
-            )*/
             playContent(Modifier)
         } else {
-            /*Icon(
-                modifier = Modifier
-                    .size(48.dp),
-                painter = painterResource(R.drawable.ic_control_pause),
-                contentDescription = null,
-                tint = LocalPalette.current.onSurface
-            )*/
             pauseContent(Modifier)
         }
     }
@@ -103,14 +95,15 @@ fun TimerToggleButton(
 @Composable
 private fun DigitalTimerPreview() {
 
-
     SelectiveTheme {
         DigitalTimer(
             modifier = Modifier
                 .wrapContentWidth()
                 .height(48.dp)
                 .padding(4.dp),
-            timeMillis = 3000
+            timerUiState = TimerUiState(
+                remainingTime = 10.seconds.inWholeMilliseconds
+            )
         )
     }
 }

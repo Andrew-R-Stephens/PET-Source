@@ -21,16 +21,13 @@ import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun DifficultyModifierDetails(
-    state: StateFlow<DifficultyUiState>,
+    difficultyUiState: DifficultyUiState
 ) {
 
-    val collectState = state.collectAsStateWithLifecycle()
-    val rememberState by remember { mutableStateOf(collectState.value) }
-
-    val difficultyName = rememberState.name.toStringResource()
-    val difficultyTime = rememberState.time
-    val difficultyModifier = rememberState.modifier
-    val difficultyResponseType = rememberState.responseType
+    val difficultyName = difficultyUiState.name.toStringResource()
+    val difficultyTime = difficultyUiState.time
+    val difficultyModifier = difficultyUiState.modifier
+    val difficultyResponseType = difficultyUiState.responseType
 
     ExpandableCategoryColumn(
         expanded = false,

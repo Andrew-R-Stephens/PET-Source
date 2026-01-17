@@ -20,39 +20,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.journal.lists.EvidenceList
 import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostList
-import org.jetbrains.annotations.TestOnly
-
-@Composable
-@Preview
-@TestOnly
-private fun JournalListsPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        Journal(investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
-    }
-}
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.ghost.model.GhostType
 
 @Composable
 fun Journal(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationScreenViewModel
+    investigationViewModel: InvestigationScreenViewModel,
+    ruledEvidenceList: List<RuledEvidence>,
+    ghostsScore: List<GhostScore>,
+    ghostsOrder: List<GhostResources.GhostIdentifier>,
+    onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
+    onChangeEvidencePopup: (EvidenceType) -> Unit,
+    onChangeGhostPopup: (GhostType) -> Unit
 ) {
-
     Row(
         modifier = modifier
             .fillMaxSize()
@@ -62,11 +54,41 @@ fun Journal(
     ) {
 
         if(investigationViewModel.rTLPreference) {
-            EvidenceListColumn(investigationScreenViewModel = investigationViewModel)
-            GhostListColumn(investigationScreenViewModel = investigationViewModel)
+            EvidenceListColumn(
+                ruledEvidenceList = ruledEvidenceList,
+                onChangeEvidenceRuling = { e, r ->
+                    onChangeEvidenceRuling(e, r)
+                },
+                onChangePopup = { evidenceType ->
+                    onChangeEvidencePopup(evidenceType)
+                }
+            )
+            GhostListColumn(
+                investigationScreenViewModel = investigationViewModel,
+                ghostScoreState = ghostsScore,
+                ghostsOrderState = ghostsOrder,
+                onChangePopup = { ghostType ->
+                    onChangeGhostPopup(ghostType)
+                }
+            )
         } else {
-            GhostListColumn(investigationScreenViewModel = investigationViewModel)
-            EvidenceListColumn(investigationScreenViewModel = investigationViewModel)
+            GhostListColumn(
+                investigationScreenViewModel = investigationViewModel,
+                ghostScoreState = ghostsScore,
+                ghostsOrderState = ghostsOrder,
+                onChangePopup = { ghostType ->
+                    onChangeGhostPopup(ghostType)
+                }
+            )
+            EvidenceListColumn(
+                ruledEvidenceList = ruledEvidenceList,
+                onChangeEvidenceRuling = { e, r ->
+                    onChangeEvidenceRuling(e, r)
+                },
+                onChangePopup = { evidenceType ->
+                    onChangeEvidencePopup(evidenceType)
+                }
+            )
         }
 
     }
@@ -75,7 +97,10 @@ fun Journal(
 
 @Composable
 private fun RowScope.GhostListColumn(
-    investigationScreenViewModel: InvestigationScreenViewModel
+    investigationScreenViewModel: InvestigationScreenViewModel,
+    ghostScoreState: List<GhostScore>,
+    ghostsOrderState: List<GhostResources.GhostIdentifier>,
+    onChangePopup: (GhostType) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -107,17 +132,21 @@ private fun RowScope.GhostListColumn(
         }
 
         GhostList(
-            investigationViewModel = investigationScreenViewModel
+            investigationViewModel = investigationScreenViewModel,
+            ghostsScoreState = ghostScoreState,
+            ghostsOrderState = ghostsOrderState
         ) {
             Log.d("GhostList", "Setting popup to ${it.name}")
-            investigationScreenViewModel.setPopup(it)
+            onChangePopup(it)
         }
     }
 }
 
 @Composable
 private fun RowScope.EvidenceListColumn(
-    investigationScreenViewModel: InvestigationScreenViewModel
+    ruledEvidenceList: List<RuledEvidence>,
+    onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
+    onChangePopup: (EvidenceType) -> Unit = {}
 ) {
 
     Box(
@@ -149,11 +178,13 @@ private fun RowScope.EvidenceListColumn(
             }
 
             EvidenceList(
-                investigationViewModel = investigationScreenViewModel
-            ) {
-                Log.d("EvidenceList", "Setting popup to ${it.name}")
-                investigationScreenViewModel.setPopup(it)
-            }
+                ruledEvidenceList = ruledEvidenceList,
+                onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
+                onClickItem = {
+                    Log.d("EvidenceList", "Setting popup to ${it.name}")
+                    onChangePopup(it)
+                }
+            )
 
         }
     }

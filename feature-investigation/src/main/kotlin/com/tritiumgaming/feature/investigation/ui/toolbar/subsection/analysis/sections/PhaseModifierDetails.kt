@@ -10,6 +10,9 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.Ca
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.TextSubTitle
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.phase.PhaseUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DEFAULT
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.shared.data.phase.model.Phase
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
@@ -24,6 +27,25 @@ fun PhaseModifierDetails(
         CategoryRow {
             TextCategoryTitle(text = "Phase:")
             TextSubTitle(text = rememberState.currentPhase.name)
+        }
+    }
+
+}
+
+@Composable
+fun PhaseModifierDetails(
+    currentPhase: Phase,
+    canAlertAudio: Boolean,
+    canFlash: Boolean,
+    startFlashTime: Long,
+    elapsedFlashTime: Long,
+    maxFlashTime: Long
+) {
+
+    CategoryColumn {
+        CategoryRow {
+            TextCategoryTitle(text = "Phase:")
+            TextSubTitle(text = currentPhase.name)
         }
     }
 

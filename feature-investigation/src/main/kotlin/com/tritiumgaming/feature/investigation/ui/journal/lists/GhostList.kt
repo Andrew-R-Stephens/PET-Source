@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,27 +27,18 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListItem
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.jetbrains.annotations.TestOnly
-
-
-@Composable
-@Preview
-@TestOnly
-private fun GhostListPreview() {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        GhostList(investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
-    }
-}
 
 @Composable
 fun GhostList(
     modifier: Modifier = Modifier,
     investigationViewModel: InvestigationScreenViewModel,
+    ghostsScoreState: List<GhostScore>,
+    ghostsOrderState: List<GhostResources.GhostIdentifier>,
     onClickItem: (ghost: GhostType) -> Unit = {},
 ) {
 
@@ -54,12 +46,9 @@ fun GhostList(
 
     val listState = rememberLazyListState()
 
-    val ghostsScoreState = investigationViewModel.ghostScores.collectAsStateWithLifecycle()
-    val ghostsOrderState = investigationViewModel.ghostOrder.collectAsStateWithLifecycle()
-
     //Log.d("GhostList", "Ghost Scores: ${ghostsScoreState.value.size}")
 
-    val rememberOrderState by remember { ghostsOrderState }
+    val rememberOrderState by remember { mutableStateOf(ghostsOrderState) }
 
     LaunchedEffect(rememberOrderState) {
 
@@ -78,13 +67,11 @@ fun GhostList(
     ) {
 
         items(
-            items = ghostsOrderState.value,
+            items = ghostsOrderState,
             key = { it }
         ) {
 
             investigationViewModel.getGhostById(it)?.let { ghostType ->
-
-                //Log.d("GhostList", "Ghost Found: ${ghostModel.id}")
 
                 GhostListItem(
                     modifier = Modifier
@@ -92,7 +79,7 @@ fun GhostList(
                         .wrapContentWidth(Alignment.CenterHorizontally)
                         .animateItem(),
                     investigationViewModel = investigationViewModel,
-                    ghostScore = ghostsScoreState.value.find { score ->
+                    ghostScore = ghostsScoreState.find { score ->
                         score.ghostEvidence.ghost.id == ghostType.id }
                 ) {
                     onClickItem(ghostType)

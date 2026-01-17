@@ -138,35 +138,6 @@ fun LazyItemScope.GhostListItem(
                 }
             }
 
-            /*scoreState?.value?.let {
-                when {
-                    (rejectionState?.value == true) ->
-                        Image(
-                            modifier = Modifier.fillMaxSize(),
-                            painter = painterResource(id = R.drawable.ic_ev_omit),
-                            contentScale = ContentScale.FillBounds,
-                            contentDescription = "Omit Icon",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.strikethroughColor)
-                        )
-                    it < 0 ->
-                        Image(
-                            modifier = Modifier.fillMaxSize(),
-                            painter = painterResource(id = strikethroughIcon),
-                            contentScale = ContentScale.FillBounds,
-                            contentDescription = "Strikeout Icon",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.negativeSelColor)
-                        )
-                    it >= 3 ->
-                        Image(
-                            modifier = Modifier.fillMaxSize(),
-                            painter = painterResource(id = R.drawable.ic_selector_selected),
-                            contentScale = ContentScale.FillBounds,
-                            contentDescription = "Circle Icon",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.positiveSelColor)
-                        )
-                }
-            }*/
-
         }
 
         Row(

@@ -38,6 +38,77 @@ import kotlin.math.min
 @Composable
 fun SanityMeter(
     modifier: Modifier = Modifier,
+    sanityUiState: PlayerSanityUiState
+) {
+    val sanityPercent = sanityUiState.sanityLevel
+
+    val sanityPercentString = "$sanityPercent"
+        .substring(0, min(4, sanityPercent.toString().length))
+
+    Box(
+        modifier = modifier
+            .aspectRatio(1f)
+            .size(12.dp)
+            .border(
+                1.dp,
+                LocalPalette.current.onSurface,
+                CircleShape
+            )
+    ) {
+        SanityPie(
+            startColor = LocalPalette.current.error.copy(alpha= 0f).toArgb(),
+            endColor = LocalPalette.current.error.toArgb(),
+            interpolation = sanityPercent
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize(.7f)
+                .align(Alignment.Center)
+        ) {
+
+            SanityImageLayer(
+                image = R.drawable.icon_sanityhead_skull,
+                startColor = LocalPalette.current.onSurface.toArgb(),
+                endColor = LocalPalette.current.onSurface.toArgb(),
+                interpolation = sanityPercent
+            )
+            SanityImageLayer(
+                image = R.drawable.icon_sanityhead_brain,
+                startColor = (Color.Gray).toArgb(),
+                endColor = LocalPalette.current.error.toArgb(),
+                interpolation = sanityPercent
+            )
+            SanityImageLayer(
+                image = R.drawable.icon_sanityhead_border,
+                startColor = LocalPalette.current.onSurface.toArgb(),
+                endColor = LocalPalette.current.onSurface.toArgb(),
+                interpolation = sanityPercent
+            )
+
+            Text(
+                modifier = Modifier
+                    .fillMaxSize(.75f)
+                    .align(Alignment.Center),
+                text = sanityPercentString,
+                style = LocalTypography.current.quaternary.regular.copy(
+                    shadow = Shadow(
+                        color = LocalPalette.current.scrim,
+                        blurRadius = 2f
+                    )
+                ),
+                color = LocalPalette.current.primary,
+                fontSize = 18.sp,
+            )
+
+        }
+
+    }
+}
+
+@Composable
+fun SanityMeter(
+    modifier: Modifier = Modifier,
     investigationViewModel: InvestigationScreenViewModel
 ) {
     val sanityLevel by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()

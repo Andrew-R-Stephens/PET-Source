@@ -25,13 +25,9 @@ import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun ActiveGhostModifierDetails(
-    state: StateFlow<List<GhostScore>>,
+    ghostScores: List<GhostScore>
 ) {
-
-    val collectState = state.collectAsStateWithLifecycle()
-    val rememberState by remember { mutableStateOf(collectState.value) }
-
-    val filteredGhosts = rememberState.filter { score ->
+    val filteredGhosts = ghostScores.filter { score ->
             score.score.value >= 0 &&
                     !score.forcefullyRejected.value }
 
@@ -66,8 +62,6 @@ fun ActiveGhostModifierDetails(
             rememberGhosts.filter { ghost ->
                 ghost.score.value >= 0
             }.forEach { ghost ->
-
-                val collectScore = ghost.score.collectAsStateWithLifecycle()
 
                 TextCategoryTitle(
                     modifier = Modifier,

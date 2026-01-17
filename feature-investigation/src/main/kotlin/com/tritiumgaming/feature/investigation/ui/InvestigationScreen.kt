@@ -56,6 +56,7 @@ import com.tritiumgaming.core.ui.vector.getInfoVector
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
@@ -66,9 +67,18 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.footstep.FootstepVisualizer
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.OperationConfigCarousel
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.phase.PhaseUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerToggleButton
+import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import kotlin.time.Duration.Companion.seconds
 
@@ -103,11 +113,20 @@ private fun InvestigationSoloContent(
     investigationViewModel: InvestigationScreenViewModel
 ) {
 
-    val investigationToolbarUiState =
-        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
+    val toolbarUiState by investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
+    val timerUiState by investigationViewModel.timerUiState.collectAsStateWithLifecycle()
+    val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
+    val mapUiState by investigationViewModel.mapUiState.collectAsStateWithLifecycle()
+    val difficultyUiState by investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+    val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
+
+    val ghostScores by investigationViewModel.ghostScores.collectAsStateWithLifecycle()
+    val ghostOrder by investigationViewModel.ghostOrder.collectAsStateWithLifecycle()
+    val ruledEvidence by investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
 
     /*
     when(deviceConfiguration) {
@@ -130,8 +149,48 @@ private fun InvestigationSoloContent(
             verticalArrangement = Arrangement.Top
         ) {
             Investigation(
-                investigationViewModel = investigationViewModel,
-                collapsedState = investigationToolbarUiState.value.isCollapsed
+                toolbarUiState = toolbarUiState,
+                timerUiState = timerUiState,
+                phaseUiState = phaseUiState,
+                mapUiState = mapUiState,
+                difficultyUiState = difficultyUiState,
+                sanityUiState = sanityUiState,
+                ruledEvidence = ruledEvidence,
+                ghostScores = ghostScores,
+                ghostOrder = ghostOrder,
+                onChangeEvidenceRuling = { e, r ->
+                    investigationViewModel.setEvidenceRuling(e, r)
+                },
+                onChangeEvidencePopup = {
+                    investigationViewModel.setPopup(it)
+                },
+                onChangeGhostPopup = {
+                    investigationViewModel.setPopup(it)
+                },
+                onMapLeftClick = {
+                    investigationViewModel.decrementMapIndex()
+                },
+                onMapRightClick = {
+                    investigationViewModel.incrementMapIndex()
+                },
+                onDifficultyLeftClick = {
+                    investigationViewModel.decrementDifficultyIndex()
+                },
+                onDifficultyRightClick = {
+                    investigationViewModel.incrementDifficultyIndex()
+                },
+                onToggleTimer = {
+                    investigationViewModel.toggleTimer()
+                },
+                onToggleCollapseToolbar = {
+                    investigationViewModel.toggleToolbarState()
+                },
+                onChangeToolbarCategory = { category ->
+                    investigationViewModel.setToolbarCategory(category)
+                },
+                onReset = {
+                    investigationViewModel.reset()
+                }
             )
         }
     } else {
@@ -141,8 +200,48 @@ private fun InvestigationSoloContent(
             horizontalArrangement = Arrangement.Start
         ) {
             Investigation(
-                investigationViewModel = investigationViewModel,
-                collapsedState = investigationToolbarUiState.value.isCollapsed
+                toolbarUiState = toolbarUiState,
+                timerUiState = timerUiState,
+                phaseUiState = phaseUiState,
+                mapUiState = mapUiState,
+                difficultyUiState = difficultyUiState,
+                sanityUiState = sanityUiState,
+                ruledEvidence = ruledEvidence,
+                ghostScores = ghostScores,
+                ghostOrder = ghostOrder,
+                onChangeEvidenceRuling = { e, r ->
+                    investigationViewModel.setEvidenceRuling(e, r)
+                },
+                onChangeEvidencePopup = {
+                    investigationViewModel.setPopup(it)
+                },
+                onChangeGhostPopup = {
+                    investigationViewModel.setPopup(it)
+                },
+                onMapLeftClick = {
+                    investigationViewModel.decrementMapIndex()
+                },
+                onMapRightClick = {
+                    investigationViewModel.incrementMapIndex()
+                },
+                onDifficultyLeftClick = {
+                    investigationViewModel.decrementDifficultyIndex()
+                },
+                onDifficultyRightClick = {
+                    investigationViewModel.incrementDifficultyIndex()
+                },
+                onToggleTimer = {
+                    investigationViewModel.toggleTimer()
+                },
+                onToggleCollapseToolbar = {
+                    investigationViewModel.toggleToolbarState()
+                },
+                onChangeToolbarCategory = { category ->
+                    investigationViewModel.setToolbarCategory(category)
+                },
+                onReset = {
+                    investigationViewModel.reset()
+                }
             )
         }
     }
@@ -183,31 +282,60 @@ fun InvestigationCompactLandscape() {
 
 @Composable
 private fun ColumnScope.Investigation(
-    investigationViewModel: InvestigationScreenViewModel,
-    collapsedState: Boolean,
+    toolbarUiState: ToolbarUiState,
+    timerUiState: TimerUiState,
+    phaseUiState: PhaseUiState,
+    mapUiState: MapUiState,
+    difficultyUiState: DifficultyUiState,
+    sanityUiState: PlayerSanityUiState,
+    ruledEvidence: List<RuledEvidence>,
+    ghostScores: List<GhostScore>,
+    ghostOrder: List<GhostResources.GhostIdentifier>,
+    onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
+    onChangeEvidencePopup: (EvidenceType) -> Unit,
+    onChangeGhostPopup: (GhostType) -> Unit,
+    onToggleCollapseToolbar: () -> Unit = {},
+    onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
+    onReset: () -> Unit = {},
+    onMapLeftClick: () -> Unit = {},
+    onMapRightClick: () -> Unit = {},
+    onDifficultyLeftClick: () -> Unit = {},
+    onDifficultyRightClick: () -> Unit = {},
+    onToggleTimer: () -> Unit = {}
 ) {
 
     Journal(
         modifier = Modifier
             .weight(1f, false),
-        investigationViewModel = investigationViewModel
+        investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory),
+        ruledEvidenceList = ruledEvidence,
+        ghostsScore = ghostScores,
+        ghostsOrder = ghostOrder,
+        onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
+        onChangeEvidencePopup = { onChangeEvidencePopup(it) },
+        onChangeGhostPopup = { onChangeGhostPopup(it) },
     )
-
-    val investigationToolbarUiState =
-        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
-    val section = investigationToolbarUiState.value.category
 
     OperationToolbar(
         modifier = Modifier
             .height(48.dp),
-        investigationViewModel = investigationViewModel
+        toolbarUiState = toolbarUiState,
+        onToggleCollapseToolbar = {
+            onToggleCollapseToolbar()
+        },
+        onChangeToolbarCategory = { category ->
+            onChangeToolbarCategory(category)
+        },
+        onReset = {
+            onReset()
+        }
     )
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .then(
-                if (!collapsedState)
+                if (!toolbarUiState.isCollapsed)
                     Modifier
                         .alpha(1f)
                         .wrapContentHeight()
@@ -219,18 +347,42 @@ private fun ColumnScope.Investigation(
         verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Bottom),
         horizontalAlignment = Alignment.Start
     ) {
-        when(section) {
+        when(toolbarUiState.category) {
             ToolbarUiState.Category.TOOL_CONFIG -> ToolbarConfigurationSection(
-                investigationViewModel = investigationViewModel,
                 modifier = Modifier
-                    .height(IntrinsicSize.Max))
+                    .height(IntrinsicSize.Max),
+                timerUiState = timerUiState,
+                mapUiState = mapUiState,
+                difficultyUiState = difficultyUiState,
+                sanityUiState = sanityUiState,
+                onMapLeftClick = {
+                    onMapLeftClick()
+                },
+                onMapRightClick = {
+                    onMapRightClick()
+                },
+                onDifficultyLeftClick = {
+                    onDifficultyLeftClick()
+                },
+                onDifficultyRightClick = {
+                    onDifficultyRightClick()
+                },
+                onToggleTimer = {
+                    onToggleTimer()
+                }
+            )
+
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
-                investigationViewModel = investigationViewModel,
                 modifier = Modifier
-                    .fillMaxHeight(.5f))
+                    .fillMaxHeight(.5f),
+                phaseUiState = phaseUiState,
+                mapUiState = mapUiState,
+                difficultyUiState = difficultyUiState,
+                ghostScores = ghostScores
+            )
+
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootsteps(
-                modifier = Modifier,
-                investigationViewModel = investigationViewModel
+                modifier = Modifier
             )
 
         }
@@ -239,18 +391,32 @@ private fun ColumnScope.Investigation(
 
 @Composable
 private fun RowScope.Investigation(
-    investigationViewModel: InvestigationScreenViewModel,
-    collapsedState: Boolean,
+    toolbarUiState: ToolbarUiState,
+    timerUiState: TimerUiState,
+    phaseUiState: PhaseUiState,
+    mapUiState: MapUiState,
+    difficultyUiState: DifficultyUiState,
+    sanityUiState: PlayerSanityUiState,
+    ruledEvidence: List<RuledEvidence>,
+    ghostScores: List<GhostScore>,
+    ghostOrder: List<GhostResources.GhostIdentifier>,
+    onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
+    onChangeEvidencePopup: (EvidenceType) -> Unit,
+    onChangeGhostPopup: (GhostType) -> Unit,
+    onToggleCollapseToolbar: () -> Unit = {},
+    onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
+    onReset: () -> Unit = {},
+    onMapLeftClick: () -> Unit = {},
+    onMapRightClick: () -> Unit = {},
+    onDifficultyLeftClick: () -> Unit = {},
+    onDifficultyRightClick: () -> Unit = {},
+    onToggleTimer: () -> Unit = {}
 ) {
-
-    val investigationToolbarUiState =
-        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
-    val section = investigationToolbarUiState.value.category
 
     Column(
         modifier = Modifier
             .then(
-                if (collapsedState) Modifier
+                if (toolbarUiState.isCollapsed) Modifier
                     .fillMaxWidth(0f)
                     .alpha(0f)
                 else Modifier.fillMaxWidth(.35f)
@@ -258,78 +424,119 @@ private fun RowScope.Investigation(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        when(section) {
+        when(toolbarUiState.category) {
             ToolbarUiState.Category.TOOL_CONFIG -> ToolbarConfigurationSection(
-                investigationViewModel = investigationViewModel,
                 modifier = Modifier
-                    .height(IntrinsicSize.Max)
+                    .height(IntrinsicSize.Max),
+                timerUiState = timerUiState,
+                mapUiState = mapUiState,
+                difficultyUiState = difficultyUiState,
+                sanityUiState = sanityUiState,
+                onMapLeftClick = {
+                    onMapLeftClick()
+                },
+                onMapRightClick = {
+                    onMapRightClick()
+                },
+                onDifficultyLeftClick = {
+                    onDifficultyLeftClick()
+                },
+                onDifficultyRightClick = {
+                    onDifficultyRightClick()
+                },
+                onToggleTimer = {
+                    onToggleTimer()
+                }
             )
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
-                investigationViewModel = investigationViewModel,
                 modifier = Modifier
-                    .wrapContentHeight(align = Alignment.Bottom))
+                    .wrapContentHeight(align = Alignment.Bottom),
+                phaseUiState = phaseUiState,
+                mapUiState = mapUiState,
+                difficultyUiState = difficultyUiState,
+                ghostScores = ghostScores,
+            )
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootsteps(
-                modifier = Modifier,
-                investigationViewModel = investigationViewModel
+                modifier = Modifier
             )
 
         }
     }
+
     OperationToolbar(
         modifier = Modifier
             .width(48.dp),
-        investigationViewModel = investigationViewModel
+        toolbarUiState = toolbarUiState,
+        onToggleCollapseToolbar = {
+            onToggleCollapseToolbar()
+        },
+        onChangeToolbarCategory = { category ->
+            onChangeToolbarCategory(category)
+        },
+        onReset = {
+            onReset()
+        }
     )
+
     Journal(
-        investigationViewModel = investigationViewModel,
+        modifier = Modifier,
+        investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory),
+        ruledEvidenceList = ruledEvidence,
+        ghostsScore = ghostScores,
+        ghostsOrder = ghostOrder,
+        onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
+        onChangeEvidencePopup = { onChangeEvidencePopup(it) },
+        onChangeGhostPopup = { onChangeGhostPopup(it) },
     )
 }
 
 @Composable
 private fun ColumnScope.ToolbarConfigurationSection(
-    investigationViewModel: InvestigationScreenViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    timerUiState: TimerUiState,
+    mapUiState: MapUiState,
+    difficultyUiState: DifficultyUiState,
+    sanityUiState: PlayerSanityUiState,
+    onMapLeftClick: () -> Unit = {},
+    onMapRightClick: () -> Unit = {},
+    onDifficultyLeftClick: () -> Unit = {},
+    onDifficultyRightClick: () -> Unit = {},
+    onToggleTimer: () -> Unit = {}
 ) {
-    val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
-
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
 
-        val mapUiState = investigationViewModel.mapUiState.collectAsStateWithLifecycle()
-        val mapNameRes = mapUiState.value.name.toStringResource(
-            SimpleMapResources.MapTitleLength.ABBREVIATED)
-
         OperationConfigCarousel(
             modifier = Modifier,
-            label = stringResource(mapNameRes),
+            primaryIcon = R.drawable.icon_nav_mapmenu2,
+            label = stringResource(mapUiState.name.toStringResource(
+                SimpleMapResources.MapTitleLength.ABBREVIATED)),
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
             onClickLeft = {
-                investigationViewModel.decrementMapIndex()
+                onMapLeftClick()
             },
             onClickRight = {
-                investigationViewModel.incrementMapIndex()
+                onMapRightClick()
             }
         )
 
-        val difficultyUiState = investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
-        val difficultyNameRes = difficultyUiState.value.name.toStringResource()
-
         OperationConfigCarousel(
             modifier = Modifier,
-            label = stringResource(difficultyNameRes),
+            primaryIcon = R.drawable.ic_puzzle,
+            label = stringResource(difficultyUiState.name.toStringResource()),
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
             onClickLeft = {
-                investigationViewModel.decrementDifficultyIndex()
+                onDifficultyLeftClick()
             },
             onClickRight = {
-                investigationViewModel.incrementDifficultyIndex()
+                onDifficultyRightClick()
             }
         )
 
@@ -339,10 +546,11 @@ private fun ColumnScope.ToolbarConfigurationSection(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
+
             SanityMeter(
                 modifier = Modifier
                     .size(64.dp),
-                investigationViewModel = investigationViewModel
+                sanityUiState = sanityUiState
             )
             
             Column(
@@ -362,7 +570,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
                         .height(48.dp)
                         .padding(8.dp)
                         .fillMaxWidth(),
-                    timeMillis = timerUiState.value.remainingTime
+                    timerUiState = timerUiState
                 )
             }
 
@@ -374,7 +582,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
                     modifier = Modifier
                         .size(48.dp)
                         .padding(start = 4.dp),
-                    state = timerUiState.value.paused,
+                    timerUiState = timerUiState,
                     playContent = { modifier ->
                         Icon(
                             modifier = modifier,
@@ -393,7 +601,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
                         )
                     }
                 ) {
-                    investigationViewModel.toggleTimer()
+                    onToggleTimer()
                 }
             }
         }
@@ -402,7 +610,6 @@ private fun ColumnScope.ToolbarConfigurationSection(
 
 @Composable
 private fun ToolbarFootsteps(
-    investigationViewModel: InvestigationScreenViewModel,
     modifier: Modifier = Modifier
 ) {
     Box (
@@ -493,31 +700,36 @@ private fun ToolbarFootsteps(
 
 @Composable
 private fun ToolbarTimer(
-    investigationViewModel: InvestigationScreenViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    timerUiState: TimerUiState
 ) {
-    val timerUiState = investigationViewModel.timerUiState.collectAsStateWithLifecycle()
-    val timeMillis = timerUiState.value.remainingTime
 
     Box (
         modifier = modifier
     ) {
         DigitalTimer(
-            timeMillis = timeMillis
+            timerUiState = timerUiState
         )
     }
 }
 
 @Composable
 private fun ToolbarOperationAnalysis(
-    investigationViewModel: InvestigationScreenViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    phaseUiState: PhaseUiState,
+    mapUiState: MapUiState,
+    difficultyUiState: DifficultyUiState,
+    ghostScores: List<GhostScore>
 ) {
     Box (
         modifier = modifier
     ) {
         OperationDetails(
-            investigationViewModel = investigationViewModel
+            modifier = modifier,
+            phaseUiState = phaseUiState,
+            mapUiState = mapUiState,
+            difficultyUiState = difficultyUiState,
+            ghostScores = ghostScores
         )
     }
 }
@@ -525,12 +737,11 @@ private fun ToolbarOperationAnalysis(
 @Composable
 private fun OperationToolbar(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationScreenViewModel,
+    toolbarUiState: ToolbarUiState,
+    onToggleCollapseToolbar: () -> Unit = {},
+    onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
+    onReset: () -> Unit = {}
 ) {
-    val investigationToolbarUiState =
-        investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
-    val section = investigationToolbarUiState.value.category
-
 
     InvestigationToolbar(
         modifier = modifier
@@ -543,12 +754,12 @@ private fun OperationToolbar(
                 CollapseButton(
                     modifier = Modifier
                         .size(48.dp),
-                    isCollapsed = investigationToolbarUiState.value.isCollapsed,
+                    isCollapsed = toolbarUiState.isCollapsed,
                     icon = R.drawable.ic_arrow_chevron_right,
                     disabledRotationVertical = 90,
                     disabledRotationHorizontal = 90,
                     enabledRotationAddition = 180,
-                    onClick = { investigationViewModel.toggleToolbarState() }
+                    onClick = { onToggleCollapseToolbar() }
                 )
             }
 
@@ -559,7 +770,7 @@ private fun OperationToolbar(
                 onClick = {}
             ){
                 ResetButton {
-                    investigationViewModel.reset()
+                    onReset()
                 }
             }
 
@@ -568,13 +779,13 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                investigationViewModel.setToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
+                onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
             }
         ){
             Image(
                 modifier = modifier,
                 imageVector = getGearVector(
-                    if(section == ToolbarUiState.Category.TOOL_CONFIG) {
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
                         IconVectorColors.defaults(
                             fillColor = Color.Transparent,
                             strokeColor = LocalPalette.current.primary,
@@ -593,13 +804,13 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                investigationViewModel.setToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
+                onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
             }
         ){
             Image(
                 modifier = modifier,
                 imageVector = getInfoVector(
-                    if(section == ToolbarUiState.Category.TOOL_ANALYZER) {
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
                         IconVectorColors.defaults(
                             fillColor = Color.Transparent,
                             strokeColor = LocalPalette.current.primary,
@@ -618,13 +829,13 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                investigationViewModel.setToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+                onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
             }
         ){
             Image(
                 modifier = modifier,
                 imageVector = getExitVector(
-                    if(section == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = Color.Transparent,

@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.SubRow
@@ -24,16 +23,11 @@ import java.util.Locale
 
 @Composable
 fun MapModifierDetails(
-    state: StateFlow<MapUiState>,
+    mapName: String,
+    mapSize: String,
+    setupMapModifier: Float,
+    normalMapModifier: Float
 ) {
-
-    val collectState = state.collectAsStateWithLifecycle()
-    val rememberState by remember { mutableStateOf(collectState.value) }
-
-    val mapName = rememberState.name.toStringResource()
-    val mapSize = rememberState.size.toStringResource()
-    val setupMapModifier = rememberState.setupModifier
-    val normalMapModifier = rememberState.normalModifier
 
     ExpandableCategoryColumn(
         modifier = Modifier
@@ -48,7 +42,7 @@ fun MapModifierDetails(
                     modifier = modifier,
                 ) {
                     TextCategoryTitle(text = "Map: ")
-                    TextSubTitle(text = stringResource(mapName))
+                    TextSubTitle(text = mapName)
                 }
             }
         }
@@ -59,7 +53,7 @@ fun MapModifierDetails(
         ) {
             SubRow {
                 TextSubTitle(text = "Size: ")
-                TextSubTitle(text = stringResource(mapSize))
+                TextSubTitle(text = mapSize)
             }
             SubRow {
                 TextSubTitle(text = "Setup Modifier:")
