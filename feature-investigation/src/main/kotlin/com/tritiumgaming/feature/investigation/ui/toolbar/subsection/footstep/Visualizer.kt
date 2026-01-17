@@ -8,6 +8,10 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,6 +37,9 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.clipRect
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.changedToDown
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
@@ -43,6 +50,7 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.datastructs.CircularQueueLinkedList
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import kotlinx.coroutines.awaitCancellation
 import kotlin.math.ceil
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -152,7 +160,7 @@ fun FootstepVisualizer(
     samplingInterval: Duration = viewportDuration,
     onUpdate: ((instantBPM: Float, smoothedBPM: Float, intervalSampleBPM: Float) -> Unit) = {_, _, _ -> }
 ) {
-    val now = System.currentTimeMillis()
+    var now = System.currentTimeMillis()
 
     var instantBPM by remember { mutableFloatStateOf(0f) }
     var smoothedBPM by remember { mutableFloatStateOf(0f) }
@@ -243,7 +251,19 @@ fun FootstepVisualizer(
 
     Column(
         modifier = modifier
-            .clickable { onBeat() }
+            .pointerInput(Unit) {
+                awaitPointerEventScope {
+                    while (true) {
+                        val down = awaitFirstDown(requireUnconsumed = false)
+                        down.consume()
+
+                        now = System.currentTimeMillis()
+                        onBeat()
+
+                        waitForUpOrCancellation()
+                    }
+                }
+            }
     ) {
 
         Row(
