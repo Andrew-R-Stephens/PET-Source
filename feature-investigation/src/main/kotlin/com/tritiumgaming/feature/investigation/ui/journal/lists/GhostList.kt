@@ -12,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,12 +52,7 @@ fun GhostList(
 
     val listState = rememberLazyListState()
 
-    //Log.d("GhostList", "Ghost Scores: ${ghostsScoreState.value.size}")
-
-    val rememberOrderState by remember { mutableStateOf(ghostsOrderState) }
-
-    LaunchedEffect(rememberOrderState) {
-
+    LaunchedEffect(ghostsOrderState) {
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             withContext(Dispatchers.Main.immediate) {
                 listState.animateScrollToItem(0)

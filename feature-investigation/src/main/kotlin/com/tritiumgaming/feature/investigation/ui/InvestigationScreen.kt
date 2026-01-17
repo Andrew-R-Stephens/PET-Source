@@ -58,6 +58,7 @@ import com.tritiumgaming.core.ui.vector.getInfoVector
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
+import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
@@ -129,6 +130,10 @@ private fun InvestigationSoloContent(
     val ghostOrder by investigationViewModel.ghostOrder.collectAsStateWithLifecycle()
     val ruledEvidence by investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
 
+    val journalUiState = JournalUiState(
+        rtlPreference = investigationViewModel.rTLPreference
+    )
+
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
@@ -154,6 +159,7 @@ private fun InvestigationSoloContent(
         ) {
             Investigation(
                 toolbarUiState = toolbarUiState,
+                journalUiState = journalUiState,
                 timerUiState = timerUiState,
                 phaseUiState = phaseUiState,
                 mapUiState = mapUiState,
@@ -195,6 +201,7 @@ private fun InvestigationSoloContent(
         ) {
             Investigation(
                 toolbarUiState = toolbarUiState,
+                journalUiState = journalUiState,
                 timerUiState = timerUiState,
                 phaseUiState = phaseUiState,
                 mapUiState = mapUiState,
@@ -255,6 +262,7 @@ private fun InvestigationSoloContent(
 @Composable
 private fun ColumnScope.Investigation(
     toolbarUiState: ToolbarUiState,
+    journalUiState: JournalUiState,
     timerUiState: TimerUiState,
     phaseUiState: PhaseUiState,
     mapUiState: MapUiState,
@@ -282,7 +290,7 @@ private fun ColumnScope.Investigation(
     Journal(
         modifier = Modifier
             .weight(1f, false),
-        investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory),
+        journalUiState = journalUiState,
         ruledEvidenceList = ruledEvidence,
         ghostsScore = ghostScores,
         ghostsOrder = ghostOrder,
@@ -361,6 +369,7 @@ private fun ColumnScope.Investigation(
 @Composable
 private fun RowScope.Investigation(
     toolbarUiState: ToolbarUiState,
+    journalUiState: JournalUiState,
     timerUiState: TimerUiState,
     phaseUiState: PhaseUiState,
     mapUiState: MapUiState,
@@ -438,7 +447,7 @@ private fun RowScope.Investigation(
 
     Journal(
         modifier = Modifier,
-        investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory),
+        journalUiState = journalUiState,
         ruledEvidenceList = ruledEvidence,
         ghostsScore = ghostScores,
         ghostsOrder = ghostOrder,

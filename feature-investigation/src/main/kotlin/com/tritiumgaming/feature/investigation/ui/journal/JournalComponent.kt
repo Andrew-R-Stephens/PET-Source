@@ -46,7 +46,7 @@ import com.tritiumgaming.shared.data.ghost.model.GhostType
 @Composable
 fun Journal(
     modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationScreenViewModel,
+    journalUiState: JournalUiState,
     ruledEvidenceList: List<RuledEvidence>,
     ghostsScore: List<GhostScore>,
     ghostsOrder: List<GhostResources.GhostIdentifier>,
@@ -65,7 +65,7 @@ fun Journal(
         verticalAlignment = Alignment.Top
     ) {
 
-        if(investigationViewModel.rTLPreference) {
+        if(journalUiState.rtlPreference) {
             EvidenceListColumn(
                 ruledEvidenceList = ruledEvidenceList,
                 onChangeEvidenceRuling = { e, r ->
@@ -76,7 +76,6 @@ fun Journal(
                 }
             )
             GhostListColumn(
-                investigationScreenViewModel = investigationViewModel,
                 ruledEvidence = ruledEvidenceList,
                 ghostScoreState = ghostsScore,
                 ghostsOrderState = ghostsOrder,
@@ -95,7 +94,6 @@ fun Journal(
             )
         } else {
             GhostListColumn(
-                investigationScreenViewModel = investigationViewModel,
                 ruledEvidence = ruledEvidenceList,
                 ghostScoreState = ghostsScore,
                 ghostsOrderState = ghostsOrder,
@@ -129,7 +127,6 @@ fun Journal(
 
 @Composable
 private fun RowScope.GhostListColumn(
-    investigationScreenViewModel: InvestigationScreenViewModel,
     ruledEvidence: List<RuledEvidence>,
     ghostScoreState: List<GhostScore>,
     ghostsOrderState: List<GhostResources.GhostIdentifier>,
