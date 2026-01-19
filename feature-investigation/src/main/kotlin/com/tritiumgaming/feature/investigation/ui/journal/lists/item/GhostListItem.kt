@@ -42,6 +42,7 @@ import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling.POSITIV
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
+import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListActions
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.data.ghost.model.GhostType
 
@@ -52,9 +53,7 @@ fun LazyItemScope.GhostListItem(
     ghostScore: GhostScore? = null,
     label: String = ghostScore?.let {
         stringResource(ghostScore.ghostEvidence.ghost.name.toStringResource()) } ?: "Test",
-    onToggleNegateGhost: (GhostType) -> Unit = {},
-    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
-    onNameClick: () -> Unit = {},
+    ghostListItemActions: GhostListItemActions
 ) {
 
     val scoreState = ghostScore?.score?.collectAsStateWithLifecycle()
@@ -87,7 +86,8 @@ fun LazyItemScope.GhostListItem(
                     detectHorizontalDragGestures(
                         onDragEnd = {
                             ghostScore?.let {
-                                onToggleNegateGhost(ghostScore.ghostEvidence.ghost)
+                                ghostListItemActions.onToggleNegateGhost(
+                                    ghostScore.ghostEvidence.ghost)
                             }
                         }
                     ) { change, dragAmount ->
@@ -96,7 +96,7 @@ fun LazyItemScope.GhostListItem(
                 }
                 .pointerInput(Unit) {
                     detectTapGestures {
-                        onNameClick()
+                        ghostListItemActions.onNameClick()
                     }
                 },
             contentAlignment = Alignment.Center
@@ -160,7 +160,7 @@ fun LazyItemScope.GhostListItem(
                 ?.sortedWith (
                     compareBy(
                         { evidence ->
-                            onGetRuledEvidence(evidence)?.ruling?.ordinal
+                            ghostListItemActions.onGetRuledEvidence(evidence)?.ruling?.ordinal
                         },
                         { evidence ->
                             evidence.id

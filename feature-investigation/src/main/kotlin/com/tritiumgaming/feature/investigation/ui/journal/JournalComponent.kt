@@ -37,6 +37,8 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.journal.lists.EvidenceList
 import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostList
+import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListActions
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListItemActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
@@ -50,12 +52,10 @@ fun Journal(
     ruledEvidenceList: List<RuledEvidence>,
     ghostsScore: List<GhostScore>,
     ghostsOrder: List<GhostResources.GhostIdentifier>,
-    onFindGhostById: (GhostResources.GhostIdentifier) -> GhostType?,
-    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
-    onToggleNegateGhost: (GhostType) -> Unit,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
-    onChangeGhostPopup: (GhostType) -> Unit
+    ghostListActions: GhostListActions,
+    ghostListItemActions: GhostListItemActions
 ) {
     Row(
         modifier = modifier
@@ -79,36 +79,16 @@ fun Journal(
                 ruledEvidence = ruledEvidenceList,
                 ghostScoreState = ghostsScore,
                 ghostsOrderState = ghostsOrder,
-                onFindGhostById = { ghostId ->
-                    onFindGhostById(ghostId)
-                },
-                onGetRuledEvidence = { evidenceType ->
-                    onGetRuledEvidence(evidenceType)
-                },
-                onToggleNegateGhost = { ghostType ->
-                    onToggleNegateGhost(ghostType)
-                },
-                onChangePopup = { ghostType ->
-                    onChangeGhostPopup(ghostType)
-                }
+                onGhostListActions = ghostListActions,
+                onGhostListItemActions = ghostListItemActions
             )
         } else {
             GhostListColumn(
                 ruledEvidence = ruledEvidenceList,
                 ghostScoreState = ghostsScore,
                 ghostsOrderState = ghostsOrder,
-                onFindGhostById = { ghostId ->
-                    onFindGhostById(ghostId)
-                },
-                onGetRuledEvidence = { evidenceType ->
-                    onGetRuledEvidence(evidenceType)
-                },
-                onToggleNegateGhost = { ghostType ->
-                    onToggleNegateGhost(ghostType)
-                },
-                onChangePopup = { ghostType ->
-                    onChangeGhostPopup(ghostType)
-                }
+                onGhostListActions = ghostListActions,
+                onGhostListItemActions = ghostListItemActions
             )
             EvidenceListColumn(
                 ruledEvidenceList = ruledEvidenceList,
@@ -130,10 +110,8 @@ private fun RowScope.GhostListColumn(
     ruledEvidence: List<RuledEvidence>,
     ghostScoreState: List<GhostScore>,
     ghostsOrderState: List<GhostResources.GhostIdentifier>,
-    onFindGhostById: (GhostResources.GhostIdentifier) -> GhostType?,
-    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
-    onToggleNegateGhost: (GhostType) -> Unit,
-    onChangePopup: (GhostType) -> Unit
+    onGhostListActions: GhostListActions,
+    onGhostListItemActions: GhostListItemActions
 ) {
     var size by remember{
         mutableStateOf(IntSize.Zero)
@@ -176,19 +154,8 @@ private fun RowScope.GhostListColumn(
             ruledEvidence = ruledEvidence,
             ghostsScoreState = ghostScoreState,
             ghostsOrderState = ghostsOrderState,
-            onFindGhostById = { ghostId ->
-                onFindGhostById(ghostId)
-            },
-            onGetRuledEvidence = { evidenceType ->
-                onGetRuledEvidence(evidenceType)
-            },
-            onToggleNegateGhost = { ghostType ->
-                onToggleNegateGhost(ghostType)
-            },
-            onClickItem = { ghostType ->
-                Log.d("GhostList", "Setting popup to ${ghostType.name}")
-                onChangePopup(ghostType)
-            },
+            ghostListActions = onGhostListActions,
+            ghostListItemActions = onGhostListItemActions
         )
     }
 }

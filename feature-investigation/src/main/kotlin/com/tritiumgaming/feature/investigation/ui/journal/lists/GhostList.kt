@@ -28,6 +28,7 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListItem
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListItemActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
@@ -42,10 +43,8 @@ fun GhostList(
     ruledEvidence: List<RuledEvidence>,
     ghostsScoreState: List<GhostScore>,
     ghostsOrderState: List<GhostResources.GhostIdentifier>,
-    onFindGhostById: (id: GhostResources.GhostIdentifier) -> GhostType?,
-    onToggleNegateGhost: (type: GhostType) -> Unit,
-    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
-    onClickItem: (ghost: GhostType) -> Unit,
+    ghostListActions: GhostListActions,
+    ghostListItemActions: GhostListItemActions
 ) {
 
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -72,7 +71,7 @@ fun GhostList(
             key = { it }
         ) {
 
-            onFindGhostById(it)?.let { ghostType ->
+            ghostListActions.onFindGhostById(it)?.let { ghostType ->
 
                 GhostListItem(
                     modifier = Modifier
@@ -82,14 +81,9 @@ fun GhostList(
                     ruledEvidence = ruledEvidence,
                     ghostScore = ghostsScoreState.find { score ->
                         score.ghostEvidence.ghost.id == ghostType.id },
-                    onToggleNegateGhost = { ghostType ->
-                        onToggleNegateGhost(ghostType) },
-                    onGetRuledEvidence = { evidenceType ->
-                        onGetRuledEvidence(evidenceType)
-                    },
-                    onNameClick = {
-                        onClickItem(ghostType)
-                    }
+                    ghostListItemActions = ghostListItemActions.copy (
+                        onNameClick = { ghostListActions.onNameClick(ghostType) }
+                    )
                 )
 
             } ?: Log.d("GhostList", "No ghost found for id: $it")

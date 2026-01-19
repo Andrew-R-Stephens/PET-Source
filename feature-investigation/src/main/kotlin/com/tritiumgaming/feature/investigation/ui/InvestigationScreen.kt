@@ -57,6 +57,8 @@ import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringRe
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
 import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
+import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListActions
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListItemActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
@@ -175,25 +177,31 @@ private fun InvestigationSoloContent(
                 ruledEvidence = ruledEvidence,
                 ghostScores = ghostScores,
                 ghostOrder = ghostOrder,
-                onFindGhostById = { ghostId ->
-                    investigationViewModel.getGhostById(ghostId)
-                },
-                onGetRuledEvidence = { evidenceType ->
-                    investigationViewModel.getRuledEvidence(evidenceType)
-                },
-                onToggleNegateGhost = { ghostType ->
-                    investigationViewModel.toggleGhostNegation(ghostType)
-                },
                 onChangeEvidenceRuling = { e, r ->
                     investigationViewModel.setEvidenceRuling(e, r) },
                 onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
-                onChangeGhostPopup = { investigationViewModel.setPopup(it) },
                 operationConfigActions = operationConfigActions,
                 onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
                 onChangeToolbarCategory = { category ->
                     investigationViewModel.setToolbarCategory(category)
                 },
-                onReset = { investigationViewModel.reset() }
+                onReset = { investigationViewModel.reset() },
+                ghostListActions = GhostListActions(
+                    onFindGhostById = { ghostId ->
+                        investigationViewModel.getGhostById(ghostId)
+                    },
+                    onNameClick = {
+                        ghostType -> investigationViewModel.setPopup(ghostType)
+                    }
+                ),
+                ghostListItemActions = GhostListItemActions(
+                    onGetRuledEvidence = { evidenceType ->
+                        investigationViewModel.getRuledEvidence(evidenceType)
+                    },
+                    onToggleNegateGhost = { ghostType ->
+                        investigationViewModel.toggleGhostNegation(ghostType)
+                    },
+                )
             )
         }
     } else {
@@ -213,16 +221,6 @@ private fun InvestigationSoloContent(
                 ruledEvidence = ruledEvidence,
                 ghostScores = ghostScores,
                 ghostOrder = ghostOrder,
-                onFindGhostById = { ghostId ->
-                    investigationViewModel.getGhostById(ghostId)
-                },
-                onGetRuledEvidence = { evidenceType ->
-                    investigationViewModel.getRuledEvidence(evidenceType)
-                },
-                onToggleNegateGhost = { ghostType ->
-                    investigationViewModel.toggleGhostNegation(ghostType)
-                },
-                onChangeGhostPopup = { investigationViewModel.setPopup(it) },
                 onChangeEvidenceRuling = { e, r ->
                     investigationViewModel.setEvidenceRuling(e, r) },
                 onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
@@ -231,7 +229,23 @@ private fun InvestigationSoloContent(
                 onChangeToolbarCategory = { category ->
                     investigationViewModel.setToolbarCategory(category)
                 },
-                onReset = { investigationViewModel.reset() }
+                onReset = { investigationViewModel.reset() },
+                ghostListActions = GhostListActions(
+                    onFindGhostById = { ghostId ->
+                        investigationViewModel.getGhostById(ghostId)
+                    },
+                    onNameClick = {
+                            ghostType -> investigationViewModel.setPopup(ghostType)
+                    }
+                ),
+                ghostListItemActions = GhostListItemActions(
+                    onGetRuledEvidence = { evidenceType ->
+                        investigationViewModel.getRuledEvidence(evidenceType)
+                    },
+                    onToggleNegateGhost = { ghostType ->
+                        investigationViewModel.toggleGhostNegation(ghostType)
+                    },
+                )
             )
         }
     }
@@ -270,16 +284,14 @@ private fun ColumnScope.Investigation(
     ruledEvidence: List<RuledEvidence>,
     ghostScores: List<GhostScore>,
     ghostOrder: List<GhostResources.GhostIdentifier>,
-    onFindGhostById: (GhostResources.GhostIdentifier) -> GhostType?,
-    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
-    onToggleNegateGhost: (GhostType) -> Unit,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
-    onChangeGhostPopup: (GhostType) -> Unit,
     onToggleCollapseToolbar: () -> Unit = {},
     onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
     onReset: () -> Unit = {},
-    operationConfigActions: OperationConfigActions
+    operationConfigActions: OperationConfigActions,
+    ghostListActions: GhostListActions,
+    ghostListItemActions: GhostListItemActions,
 ) {
 
     Journal(
@@ -289,18 +301,10 @@ private fun ColumnScope.Investigation(
         ruledEvidenceList = ruledEvidence,
         ghostsScore = ghostScores,
         ghostsOrder = ghostOrder,
-        onFindGhostById = { ghostId ->
-            onFindGhostById(ghostId)
-        },
-        onGetRuledEvidence = { evidenceType ->
-            onGetRuledEvidence(evidenceType)
-        },
-        onToggleNegateGhost = { ghostType ->
-            onToggleNegateGhost(ghostType)
-        },
         onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
         onChangeEvidencePopup = { onChangeEvidencePopup(it) },
-        onChangeGhostPopup = { onChangeGhostPopup(it) },
+        ghostListActions = ghostListActions,
+        ghostListItemActions = ghostListItemActions
     )
 
     OperationToolbar(
@@ -368,16 +372,14 @@ private fun RowScope.Investigation(
     ruledEvidence: List<RuledEvidence>,
     ghostScores: List<GhostScore>,
     ghostOrder: List<GhostResources.GhostIdentifier>,
-    onFindGhostById: (GhostResources.GhostIdentifier) -> GhostType?,
-    onGetRuledEvidence: (EvidenceType) -> RuledEvidence?,
-    onToggleNegateGhost: (GhostType) -> Unit,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
-    onChangeGhostPopup: (GhostType) -> Unit,
     onToggleCollapseToolbar: () -> Unit = {},
     onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
     onReset: () -> Unit = {},
-    operationConfigActions: OperationConfigActions
+    operationConfigActions: OperationConfigActions,
+    ghostListActions: GhostListActions,
+    ghostListItemActions: GhostListItemActions,
 ) {
 
     Column(
@@ -433,18 +435,10 @@ private fun RowScope.Investigation(
         ruledEvidenceList = ruledEvidence,
         ghostsScore = ghostScores,
         ghostsOrder = ghostOrder,
-        onFindGhostById = { ghostId ->
-            onFindGhostById(ghostId)
-        },
-        onGetRuledEvidence = { evidenceType ->
-            onGetRuledEvidence(evidenceType)
-        },
-        onToggleNegateGhost = { ghostType ->
-            onToggleNegateGhost(ghostType)
-        },
         onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
         onChangeEvidencePopup = { onChangeEvidencePopup(it) },
-        onChangeGhostPopup = { onChangeGhostPopup(it) },
+        ghostListActions = ghostListActions,
+        ghostListItemActions = ghostListItemActions,
     )
 }
 
