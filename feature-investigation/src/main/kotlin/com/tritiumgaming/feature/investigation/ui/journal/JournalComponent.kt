@@ -16,7 +16,6 @@ import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -24,7 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -34,28 +32,27 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.journal.lists.EvidenceList
+import com.tritiumgaming.feature.investigation.ui.journal.lists.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostList
-import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListItemActions
+import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListUiItemActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
-import com.tritiumgaming.shared.data.ghost.model.GhostType
 
 @Composable
 fun Journal(
     modifier: Modifier = Modifier,
     journalUiState: JournalUiState,
-    ruledEvidenceList: List<RuledEvidence>,
-    ghostsScore: List<GhostScore>,
-    ghostsOrder: List<GhostResources.GhostIdentifier>,
+    evidenceListUiState: EvidenceListUiState,
+    ghostListUiState: GhostListUiState,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
-    ghostListActions: GhostListActions,
-    ghostListItemActions: GhostListItemActions
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions
 ) {
     Row(
         modifier = modifier
@@ -67,7 +64,7 @@ fun Journal(
 
         if(journalUiState.rtlPreference) {
             EvidenceListColumn(
-                ruledEvidenceList = ruledEvidenceList,
+                evidenceListUiState = evidenceListUiState,
                 onChangeEvidenceRuling = { e, r ->
                     onChangeEvidenceRuling(e, r)
                 },
@@ -76,22 +73,18 @@ fun Journal(
                 }
             )
             GhostListColumn(
-                ruledEvidence = ruledEvidenceList,
-                ghostScoreState = ghostsScore,
-                ghostsOrderState = ghostsOrder,
-                onGhostListActions = ghostListActions,
-                onGhostListItemActions = ghostListItemActions
+                ghostListUiState = ghostListUiState,
+                ghostListUiActions = ghostListUiActions,
+                ghostListUiItemActions = ghostListUiItemActions
             )
         } else {
             GhostListColumn(
-                ruledEvidence = ruledEvidenceList,
-                ghostScoreState = ghostsScore,
-                ghostsOrderState = ghostsOrder,
-                onGhostListActions = ghostListActions,
-                onGhostListItemActions = ghostListItemActions
+                ghostListUiState = ghostListUiState,
+                ghostListUiActions = ghostListUiActions,
+                ghostListUiItemActions = ghostListUiItemActions
             )
             EvidenceListColumn(
-                ruledEvidenceList = ruledEvidenceList,
+                evidenceListUiState = evidenceListUiState,
                 onChangeEvidenceRuling = { e, r ->
                     onChangeEvidenceRuling(e, r)
                 },
@@ -107,11 +100,9 @@ fun Journal(
 
 @Composable
 private fun RowScope.GhostListColumn(
-    ruledEvidence: List<RuledEvidence>,
-    ghostScoreState: List<GhostScore>,
-    ghostsOrderState: List<GhostResources.GhostIdentifier>,
-    onGhostListActions: GhostListActions,
-    onGhostListItemActions: GhostListItemActions
+    ghostListUiState: GhostListUiState,
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions
 ) {
     var size by remember{
         mutableStateOf(IntSize.Zero)
@@ -151,18 +142,16 @@ private fun RowScope.GhostListColumn(
 
         GhostList(
             modifier = Modifier,
-            ruledEvidence = ruledEvidence,
-            ghostsScoreState = ghostScoreState,
-            ghostsOrderState = ghostsOrderState,
-            ghostListActions = onGhostListActions,
-            ghostListItemActions = onGhostListItemActions
+            ghostListUiState = ghostListUiState,
+            ghostListUiActions = ghostListUiActions,
+            ghostListUiItemActions = ghostListUiItemActions
         )
     }
 }
 
 @Composable
 private fun RowScope.EvidenceListColumn(
-    ruledEvidenceList: List<RuledEvidence>,
+    evidenceListUiState: EvidenceListUiState,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangePopup: (EvidenceType) -> Unit = {}
 ) {
@@ -203,7 +192,7 @@ private fun RowScope.EvidenceListColumn(
             }
 
             EvidenceList(
-                ruledEvidenceList = ruledEvidenceList,
+                evidenceListUiState = evidenceListUiState,
                 onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
                 onClickItem = {
                     Log.d("EvidenceList", "Setting popup to ${it.name}")

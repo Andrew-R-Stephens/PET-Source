@@ -57,9 +57,10 @@ import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringRe
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
 import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListItemActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
+import com.tritiumgaming.feature.investigation.ui.journal.lists.EvidenceListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListUiItemActions
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
@@ -79,10 +80,9 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.phase.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.SanityMeter
+import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarUiActions
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
-import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import kotlin.time.Duration.Companion.seconds
 
@@ -135,6 +135,58 @@ private fun InvestigationSoloContent(
         rtlPreference = investigationViewModel.rTLPreference
     )
 
+    val ghostListUiState = GhostListUiState(
+        ghostScores = ghostScores,
+        ghostOrder = ghostOrder,
+        ruledEvidence = ruledEvidence
+    )
+
+    val evidenceListUiState = EvidenceListUiState(
+        ruledEvidenceList = ruledEvidence
+    )
+
+    val ghostListUiActions = GhostListUiActions(
+        onFindGhostById = { ghostId ->
+            investigationViewModel.getGhostById(ghostId)
+        },
+        onNameClick = { ghostType -> investigationViewModel.setPopup(ghostType) }
+    )
+
+    val ghostListUiItemActions = GhostListUiItemActions(
+        onGetRuledEvidence = { evidenceType ->
+            investigationViewModel.getRuledEvidence(evidenceType)
+        },
+        onToggleNegateGhost = { ghostType ->
+            investigationViewModel.toggleGhostNegation(ghostType)
+        },
+    )
+
+    val operationDetailsUiState = OperationDetailsUiState(
+        mapUiState = mapUiState,
+        phaseUiState = phaseUiState,
+        difficultyUiState = difficultyUiState,
+        timerUiState = timerUiState,
+        sanityUiState = sanityUiState,
+        ghostScores = ghostScores,
+        ghostOrder = ghostOrder,
+        ruledEvidence = ruledEvidence
+    )
+
+    val toolbarUiActions = ToolbarUiActions(
+        onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
+        onChangeToolbarCategory = { category -> investigationViewModel.setToolbarCategory(category)
+        },
+        onReset = { investigationViewModel.reset() }
+    )
+
+    val operationConfigActions = OperationConfigActions(
+        onMapLeftClick = { investigationViewModel.decrementMapIndex() },
+        onMapRightClick = { investigationViewModel.incrementMapIndex() },
+        onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
+        onDifficultyRightClick = { investigationViewModel.incrementDifficultyIndex() },
+        onToggleTimer = { investigationViewModel.toggleTimer() },
+    )
+
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
@@ -152,14 +204,6 @@ private fun InvestigationSoloContent(
             navController = navController) }
     }*/
 
-    val operationConfigActions = OperationConfigActions(
-        onMapLeftClick = { investigationViewModel.decrementMapIndex() },
-        onMapRightClick = { investigationViewModel.incrementMapIndex() },
-        onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
-        onDifficultyRightClick = { investigationViewModel.incrementDifficultyIndex() },
-        onToggleTimer = { investigationViewModel.toggleTimer() },
-    )
-
     if(LocalConfiguration.current.orientation == ORIENTATION_PORTRAIT) {
         Column(
             modifier = Modifier
@@ -174,34 +218,17 @@ private fun InvestigationSoloContent(
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
                 sanityUiState = sanityUiState,
-                ruledEvidence = ruledEvidence,
-                ghostScores = ghostScores,
-                ghostOrder = ghostOrder,
+                ghostListUiState = ghostListUiState,
+                evidenceListUiState = evidenceListUiState,
                 onChangeEvidenceRuling = { e, r ->
-                    investigationViewModel.setEvidenceRuling(e, r) },
+                    investigationViewModel.setEvidenceRuling(e, r)
+                },
                 onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
                 operationConfigActions = operationConfigActions,
-                onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
-                onChangeToolbarCategory = { category ->
-                    investigationViewModel.setToolbarCategory(category)
-                },
-                onReset = { investigationViewModel.reset() },
-                ghostListActions = GhostListActions(
-                    onFindGhostById = { ghostId ->
-                        investigationViewModel.getGhostById(ghostId)
-                    },
-                    onNameClick = {
-                        ghostType -> investigationViewModel.setPopup(ghostType)
-                    }
-                ),
-                ghostListItemActions = GhostListItemActions(
-                    onGetRuledEvidence = { evidenceType ->
-                        investigationViewModel.getRuledEvidence(evidenceType)
-                    },
-                    onToggleNegateGhost = { ghostType ->
-                        investigationViewModel.toggleGhostNegation(ghostType)
-                    },
-                )
+                toolbarUiActions =  toolbarUiActions,
+                ghostListUiActions = ghostListUiActions,
+                ghostListUiItemActions = ghostListUiItemActions,
+                operationDetailsUiState = operationDetailsUiState
             )
         }
     } else {
@@ -218,34 +245,16 @@ private fun InvestigationSoloContent(
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
                 sanityUiState = sanityUiState,
-                ruledEvidence = ruledEvidence,
-                ghostScores = ghostScores,
-                ghostOrder = ghostOrder,
+                ghostListUiState = ghostListUiState,
+                evidenceListUiState = evidenceListUiState,
                 onChangeEvidenceRuling = { e, r ->
                     investigationViewModel.setEvidenceRuling(e, r) },
                 onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
                 operationConfigActions = operationConfigActions,
-                onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
-                onChangeToolbarCategory = { category ->
-                    investigationViewModel.setToolbarCategory(category)
-                },
-                onReset = { investigationViewModel.reset() },
-                ghostListActions = GhostListActions(
-                    onFindGhostById = { ghostId ->
-                        investigationViewModel.getGhostById(ghostId)
-                    },
-                    onNameClick = {
-                            ghostType -> investigationViewModel.setPopup(ghostType)
-                    }
-                ),
-                ghostListItemActions = GhostListItemActions(
-                    onGetRuledEvidence = { evidenceType ->
-                        investigationViewModel.getRuledEvidence(evidenceType)
-                    },
-                    onToggleNegateGhost = { ghostType ->
-                        investigationViewModel.toggleGhostNegation(ghostType)
-                    },
-                )
+                toolbarUiActions = toolbarUiActions,
+                ghostListUiActions = ghostListUiActions,
+                ghostListUiItemActions = ghostListUiItemActions,
+                operationDetailsUiState = operationDetailsUiState
             )
         }
     }
@@ -281,38 +290,32 @@ private fun ColumnScope.Investigation(
     mapUiState: MapUiState,
     difficultyUiState: DifficultyUiState,
     sanityUiState: PlayerSanityUiState,
-    ruledEvidence: List<RuledEvidence>,
-    ghostScores: List<GhostScore>,
-    ghostOrder: List<GhostResources.GhostIdentifier>,
+    ghostListUiState: GhostListUiState,
+    evidenceListUiState: EvidenceListUiState,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
-    onToggleCollapseToolbar: () -> Unit = {},
-    onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
-    onReset: () -> Unit = {},
     operationConfigActions: OperationConfigActions,
-    ghostListActions: GhostListActions,
-    ghostListItemActions: GhostListItemActions,
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions,
+    toolbarUiActions: ToolbarUiActions,
+    operationDetailsUiState: OperationDetailsUiState
 ) {
 
     Journal(
         modifier = Modifier
             .weight(1f, false),
         journalUiState = journalUiState,
-        ruledEvidenceList = ruledEvidence,
-        ghostsScore = ghostScores,
-        ghostsOrder = ghostOrder,
+        ghostListUiState = ghostListUiState,
+        evidenceListUiState = evidenceListUiState,
         onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
         onChangeEvidencePopup = { onChangeEvidencePopup(it) },
-        ghostListActions = ghostListActions,
-        ghostListItemActions = ghostListItemActions
+        ghostListUiActions = ghostListUiActions,
+        ghostListUiItemActions = ghostListUiItemActions
     )
 
     OperationToolbar(
-        modifier = Modifier,
         toolbarUiState = toolbarUiState,
-        onToggleCollapseToolbar = { onToggleCollapseToolbar() },
-        onChangeToolbarCategory = { category -> onChangeToolbarCategory(category) },
-        onReset = { onReset() }
+        toolbarUiActions = toolbarUiActions
     )
 
     Column(
@@ -346,10 +349,7 @@ private fun ColumnScope.Investigation(
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
                 modifier = Modifier,
                     //.fillMaxHeight(.5f),
-                phaseUiState = phaseUiState,
-                mapUiState = mapUiState,
-                difficultyUiState = difficultyUiState,
-                ghostScores = ghostScores
+                operationDetailsUiState = operationDetailsUiState
             )
 
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootsteps(
@@ -368,18 +368,16 @@ private fun RowScope.Investigation(
     phaseUiState: PhaseUiState,
     mapUiState: MapUiState,
     difficultyUiState: DifficultyUiState,
+    ghostListUiState: GhostListUiState,
+    evidenceListUiState: EvidenceListUiState,
     sanityUiState: PlayerSanityUiState,
-    ruledEvidence: List<RuledEvidence>,
-    ghostScores: List<GhostScore>,
-    ghostOrder: List<GhostResources.GhostIdentifier>,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
-    onToggleCollapseToolbar: () -> Unit = {},
-    onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
-    onReset: () -> Unit = {},
     operationConfigActions: OperationConfigActions,
-    ghostListActions: GhostListActions,
-    ghostListItemActions: GhostListItemActions,
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions,
+    toolbarUiActions: ToolbarUiActions,
+    operationDetailsUiState: OperationDetailsUiState,
 ) {
 
     Column(
@@ -407,10 +405,7 @@ private fun RowScope.Investigation(
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
                 modifier = Modifier
                     .wrapContentHeight(align = Alignment.Bottom),
-                phaseUiState = phaseUiState,
-                mapUiState = mapUiState,
-                difficultyUiState = difficultyUiState,
-                ghostScores = ghostScores,
+                operationDetailsUiState = operationDetailsUiState
             )
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootsteps(
                 modifier = Modifier
@@ -423,22 +418,18 @@ private fun RowScope.Investigation(
         modifier = Modifier
             .width(48.dp),
         toolbarUiState = toolbarUiState,
-        onToggleCollapseToolbar = { onToggleCollapseToolbar() },
-        onChangeToolbarCategory = { category ->
-            onChangeToolbarCategory(category) },
-        onReset = { onReset() }
+        toolbarUiActions = toolbarUiActions
     )
 
     Journal(
         modifier = Modifier,
         journalUiState = journalUiState,
-        ruledEvidenceList = ruledEvidence,
-        ghostsScore = ghostScores,
-        ghostsOrder = ghostOrder,
+        ghostListUiState = ghostListUiState,
+        evidenceListUiState = evidenceListUiState,
         onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
         onChangeEvidencePopup = { onChangeEvidencePopup(it) },
-        ghostListActions = ghostListActions,
-        ghostListItemActions = ghostListItemActions,
+        ghostListUiActions = ghostListUiActions,
+        ghostListUiItemActions = ghostListUiItemActions,
     )
 }
 
@@ -643,20 +634,14 @@ private fun ToolbarFootsteps(
 @Composable
 private fun ToolbarOperationAnalysis(
     modifier: Modifier = Modifier,
-    phaseUiState: PhaseUiState,
-    mapUiState: MapUiState,
-    difficultyUiState: DifficultyUiState,
-    ghostScores: List<GhostScore>
+    operationDetailsUiState: OperationDetailsUiState
 ) {
     Box (
         modifier = modifier
     ) {
         OperationDetails(
             modifier = modifier,
-            phaseUiState = phaseUiState,
-            mapUiState = mapUiState,
-            difficultyUiState = difficultyUiState,
-            ghostScores = ghostScores
+            operationDetailsUiState = operationDetailsUiState
         )
     }
 }
@@ -665,9 +650,7 @@ private fun ToolbarOperationAnalysis(
 private fun OperationToolbar(
     modifier: Modifier = Modifier,
     toolbarUiState: ToolbarUiState,
-    onToggleCollapseToolbar: () -> Unit = {},
-    onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
-    onReset: () -> Unit = {}
+    toolbarUiActions: ToolbarUiActions
 ) {
 
     InvestigationToolbar(
@@ -686,7 +669,7 @@ private fun OperationToolbar(
                     disabledRotationVertical = 90,
                     disabledRotationHorizontal = 90,
                     enabledRotationAddition = 180,
-                    onClick = { onToggleCollapseToolbar() }
+                    onClick = { toolbarUiActions.onToggleCollapseToolbar() }
                 )
             }
 
@@ -697,7 +680,7 @@ private fun OperationToolbar(
                 onClick = {}
             ){
                 ResetButton {
-                    onReset()
+                    toolbarUiActions.onReset()
                 }
             }
 
@@ -706,7 +689,7 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
             }
         ){
             Image(
@@ -731,7 +714,7 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
             }
         ){
             Image(
@@ -756,7 +739,7 @@ private fun OperationToolbar(
 
         ToolbarItem(
             onClick = {
-                onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
             }
         ){
             Image(
