@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,7 +22,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
@@ -63,21 +61,22 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
-import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolbar
-import com.tritiumgaming.feature.investigation.ui.toolbar.ResetButton
-import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
-import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.analysis.OperationDetails
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.footstep.FootstepVisualizer
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.OperationConfigCarousel
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.phase.PhaseUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.SanityMeter
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.DigitalTimer
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerToggleButton
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.component.InvestigationToolbar
+import com.tritiumgaming.feature.investigation.ui.toolbar.component.OperationConfigActions
+import com.tritiumgaming.feature.investigation.ui.toolbar.component.ResetButton
+import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarItem
+import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.OperationDetails
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.DigitalTimer
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerToggleButton
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.footstep.FootstepVisualizer
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.OperationConfigCarousel
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.difficulty.DifficultyUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.map.MapUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.phase.PhaseUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.PlayerSanityUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.SanityMeter
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
@@ -151,6 +150,14 @@ private fun InvestigationSoloContent(
             navController = navController) }
     }*/
 
+    val operationConfigActions = OperationConfigActions(
+        onMapLeftClick = { investigationViewModel.decrementMapIndex() },
+        onMapRightClick = { investigationViewModel.incrementMapIndex() },
+        onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
+        onDifficultyRightClick = { investigationViewModel.incrementDifficultyIndex() },
+        onToggleTimer = { investigationViewModel.toggleTimer() },
+    )
+
     if(LocalConfiguration.current.orientation == ORIENTATION_PORTRAIT) {
         Column(
             modifier = Modifier
@@ -181,11 +188,7 @@ private fun InvestigationSoloContent(
                     investigationViewModel.setEvidenceRuling(e, r) },
                 onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
                 onChangeGhostPopup = { investigationViewModel.setPopup(it) },
-                onMapLeftClick = { investigationViewModel.decrementMapIndex() },
-                onMapRightClick = { investigationViewModel.incrementMapIndex() },
-                onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
-                onDifficultyRightClick = { investigationViewModel.incrementDifficultyIndex() },
-                onToggleTimer = { investigationViewModel.toggleTimer() },
+                operationConfigActions = operationConfigActions,
                 onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
                 onChangeToolbarCategory = { category ->
                     investigationViewModel.setToolbarCategory(category)
@@ -219,15 +222,11 @@ private fun InvestigationSoloContent(
                 onToggleNegateGhost = { ghostType ->
                     investigationViewModel.toggleGhostNegation(ghostType)
                 },
+                onChangeGhostPopup = { investigationViewModel.setPopup(it) },
                 onChangeEvidenceRuling = { e, r ->
                     investigationViewModel.setEvidenceRuling(e, r) },
                 onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
-                onChangeGhostPopup = { investigationViewModel.setPopup(it) },
-                onMapLeftClick = { investigationViewModel.decrementMapIndex() },
-                onMapRightClick = { investigationViewModel.incrementMapIndex() },
-                onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
-                onDifficultyRightClick = { investigationViewModel.incrementDifficultyIndex() },
-                onToggleTimer = { investigationViewModel.toggleTimer() },
+                operationConfigActions = operationConfigActions,
                 onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
                 onChangeToolbarCategory = { category ->
                     investigationViewModel.setToolbarCategory(category)
@@ -280,11 +279,7 @@ private fun ColumnScope.Investigation(
     onToggleCollapseToolbar: () -> Unit = {},
     onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
     onReset: () -> Unit = {},
-    onMapLeftClick: () -> Unit = {},
-    onMapRightClick: () -> Unit = {},
-    onDifficultyLeftClick: () -> Unit = {},
-    onDifficultyRightClick: () -> Unit = {},
-    onToggleTimer: () -> Unit = {}
+    operationConfigActions: OperationConfigActions
 ) {
 
     Journal(
@@ -309,8 +304,7 @@ private fun ColumnScope.Investigation(
     )
 
     OperationToolbar(
-        modifier = Modifier
-            .height(48.dp),
+        modifier = Modifier,
         toolbarUiState = toolbarUiState,
         onToggleCollapseToolbar = { onToggleCollapseToolbar() },
         onChangeToolbarCategory = { category -> onChangeToolbarCategory(category) },
@@ -342,11 +336,7 @@ private fun ColumnScope.Investigation(
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
                 sanityUiState = sanityUiState,
-                onMapLeftClick = { onMapLeftClick() },
-                onMapRightClick = { onMapRightClick() },
-                onDifficultyLeftClick = { onDifficultyLeftClick() },
-                onDifficultyRightClick = { onDifficultyRightClick() },
-                onToggleTimer = { onToggleTimer() }
+                operationConfigActions = operationConfigActions
             )
 
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
@@ -387,11 +377,7 @@ private fun RowScope.Investigation(
     onToggleCollapseToolbar: () -> Unit = {},
     onChangeToolbarCategory: (ToolbarUiState.Category) -> Unit = {},
     onReset: () -> Unit = {},
-    onMapLeftClick: () -> Unit = {},
-    onMapRightClick: () -> Unit = {},
-    onDifficultyLeftClick: () -> Unit = {},
-    onDifficultyRightClick: () -> Unit = {},
-    onToggleTimer: () -> Unit = {}
+    operationConfigActions: OperationConfigActions
 ) {
 
     Column(
@@ -414,11 +400,7 @@ private fun RowScope.Investigation(
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
                 sanityUiState = sanityUiState,
-                onMapLeftClick = { onMapLeftClick() },
-                onMapRightClick = { onMapRightClick() },
-                onDifficultyLeftClick = { onDifficultyLeftClick() },
-                onDifficultyRightClick = { onDifficultyRightClick() },
-                onToggleTimer = { onToggleTimer() }
+                operationConfigActions = operationConfigActions
             )
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
                 modifier = Modifier
@@ -473,12 +455,9 @@ private fun ColumnScope.ToolbarConfigurationSection(
     mapUiState: MapUiState,
     difficultyUiState: DifficultyUiState,
     sanityUiState: PlayerSanityUiState,
-    onMapLeftClick: () -> Unit = {},
-    onMapRightClick: () -> Unit = {},
-    onDifficultyLeftClick: () -> Unit = {},
-    onDifficultyRightClick: () -> Unit = {},
-    onToggleTimer: () -> Unit = {}
-) {
+    operationConfigActions: OperationConfigActions = OperationConfigActions(),
+
+    ) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -493,8 +472,8 @@ private fun ColumnScope.ToolbarConfigurationSection(
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = { onMapLeftClick() },
-            onClickRight = { onMapRightClick() }
+            onClickLeft = { operationConfigActions.onMapLeftClick() },
+            onClickRight = { operationConfigActions.onMapRightClick() }
         )
 
         OperationConfigCarousel(
@@ -504,12 +483,8 @@ private fun ColumnScope.ToolbarConfigurationSection(
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = {
-                onDifficultyLeftClick()
-            },
-            onClickRight = {
-                onDifficultyRightClick()
-            }
+            onClickLeft = { operationConfigActions.onDifficultyLeftClick() },
+            onClickRight = { operationConfigActions.onDifficultyRightClick() }
         )
 
         Row(
@@ -571,10 +546,11 @@ private fun ColumnScope.ToolbarConfigurationSection(
                             contentDescription = null,
                             tint = LocalPalette.current.onSurface
                         )
+                    },
+                    onClick = {
+                        operationConfigActions.onToggleTimer()
                     }
-                ) {
-                    onToggleTimer()
-                }
+                )
             }
         }
     }
@@ -668,21 +644,6 @@ private fun ToolbarFootsteps(
         }
     }
 
-}
-
-@Composable
-private fun ToolbarTimer(
-    modifier: Modifier = Modifier,
-    timerUiState: TimerUiState
-) {
-
-    Box (
-        modifier = modifier
-    ) {
-        DigitalTimer(
-            timerUiState = timerUiState
-        )
-    }
 }
 
 @Composable

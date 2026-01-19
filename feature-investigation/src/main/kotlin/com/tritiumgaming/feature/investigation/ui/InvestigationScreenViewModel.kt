@@ -9,10 +9,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
+import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
+import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState.Companion.DEFAULT
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState.Companion.TIME_DEFAULT
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.difficulty.DifficultyUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.map.MapUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.operation.OperationSanityUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.phase.PhaseUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.PlayerSanityUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarUiState
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
@@ -52,22 +61,13 @@ import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapIndexUseCase
+import com.tritiumgaming.shared.data.phase.model.Phase
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
-import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
-import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
-import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.difficulty.DifficultyUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.map.MapUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.operationconfig.operation.OperationSanityUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.phase.PhaseUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.sanity.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DEFAULT
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.DURATION_30_SECONDS
-import com.tritiumgaming.feature.investigation.ui.toolbar.subsection.sanitytracker.controller.timer.TimerUiState.Companion.TIME_DEFAULT
-import com.tritiumgaming.shared.data.phase.model.Phase
+import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
@@ -668,24 +668,19 @@ class InvestigationScreenViewModel(
     }
 
     private fun calculateSanityDrain(): Float {
-        val timeElapsed = System.currentTimeMillis() - timerUiState.value.startTime
-        val drainRatePerMs = 0.00001f // Base rate per millisecond
-
-        val calculatedDrain = timeElapsed * operationSanityUiState.value.drainModifier * drainRatePerMs
-
-        val mapModifier = try {
-            getMapModifierUseCase(
-                _mapUiState.value.size.ordinal,
-                phaseUiState.value.currentPhase
-            ).getOrThrow()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            1f
+        val currentTime = System.currentTimeMillis()
+        _timerUiState.update {
+            it.copy(
+                startTime = if(it.startTime == TIME_DEFAULT) currentTime else it.startTime
+            )
         }
+        val startTime = timerUiState.value.startTime
 
-        Log.d("InvestigationViewModel", "Player Sanity: " +
-                "Drain Rate $mapModifier ${difficultyUiState.value.modifier} = " +
-                "${operationSanityUiState.value.drainModifier}")
+        val timeElapsed = currentTime - startTime
+        val drainModifier = operationSanityUiState.value.drainModifier
+        val drainRatePerMs = 0.00001f
+
+        val calculatedDrain = timeElapsed * drainModifier * drainRatePerMs
 
         return calculatedDrain
     }
