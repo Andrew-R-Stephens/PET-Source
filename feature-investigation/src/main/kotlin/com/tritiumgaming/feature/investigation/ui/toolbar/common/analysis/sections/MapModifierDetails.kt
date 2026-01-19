@@ -6,20 +6,20 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.TextSubTitle
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.map.MapUiState
 import java.util.Locale
 
 @Composable
 fun MapModifierDetails(
-    mapName: String,
-    mapSize: String,
-    setupMapModifier: Float,
-    normalMapModifier: Float
+    mapUiState: MapUiState
 ) {
 
     ExpandableCategoryColumn(
@@ -35,7 +35,7 @@ fun MapModifierDetails(
                     modifier = modifier,
                 ) {
                     TextCategoryTitle(text = "Map: ")
-                    TextSubTitle(text = mapName)
+                    TextSubTitle(text = stringResource(mapUiState.name.toStringResource()))
                 }
             }
         }
@@ -46,14 +46,14 @@ fun MapModifierDetails(
         ) {
             SubRow {
                 TextSubTitle(text = "Size: ")
-                TextSubTitle(text = mapSize)
+                TextSubTitle(text = stringResource(mapUiState.size.toStringResource()))
             }
             SubRow {
                 TextSubTitle(text = "Setup Modifier:")
                 TextSubTitle(
                     text = String.format(
                         Locale.getDefault(), "%.2f",
-                        setupMapModifier
+                        mapUiState.setupModifier
                     )
                 )
             }
@@ -62,7 +62,7 @@ fun MapModifierDetails(
                 TextSubTitle(
                     text = String.format(
                         Locale.getDefault(), "%.2f",
-                        normalMapModifier
+                        mapUiState.normalModifier
                     )
                 )
             }

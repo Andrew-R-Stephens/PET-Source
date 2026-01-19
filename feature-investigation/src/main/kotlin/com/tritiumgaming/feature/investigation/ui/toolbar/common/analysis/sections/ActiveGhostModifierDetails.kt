@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -20,18 +21,22 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.Expand
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.TextSubTitle
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 
 @Composable
 fun ActiveGhostModifierDetails(
+    ghostOrder: List<GhostResources.GhostIdentifier>,
     ghostScores: List<GhostScore>
 ) {
-    val filteredGhosts = ghostScores.filter { score ->
+    var rememberFilteredGhosts = ghostScores.filter { score ->
             score.score.value >= 0 &&
                     !score.forcefullyRejected.value }
 
-    val rememberGhosts by remember { mutableStateOf(filteredGhosts) }
-
-    var rememberCount by remember { mutableIntStateOf(0) }
+    LaunchedEffect(ghostOrder) {
+        rememberFilteredGhosts = ghostScores.filter { score ->
+            score.score.value >= 0 &&
+                    !score.forcefullyRejected.value }
+    }
 
     ExpandableCategoryColumn(
         expanded = false,
@@ -47,7 +52,7 @@ fun ActiveGhostModifierDetails(
                     TextCategoryTitle(text = "Ghosts Active: ")
                     TextSubTitle(
                         modifier = Modifier.padding(start= 8.dp),
-                        text = "$rememberCount"
+                        text = "${rememberFilteredGhosts.size}"
                     )
                 }
             }
@@ -57,7 +62,7 @@ fun ActiveGhostModifierDetails(
             modifier = Modifier
         ) {
 
-            rememberGhosts.filter { ghost ->
+            rememberFilteredGhosts.filter { ghost ->
                 ghost.score.value >= 0
             }.forEach { ghost ->
 
@@ -104,7 +109,7 @@ fun ActiveGhostModifierDetails(
                 }
             }
 
-            if(rememberCount == 0) {
+            if(rememberFilteredGhosts.isEmpty()) {
                 TextCategoryTitle(
                     text = "Empty"
                 )

@@ -32,18 +32,13 @@ fun PhaseModifierDetails(
 
 @Composable
 fun PhaseModifierDetails(
-    currentPhase: Phase,
-    canAlertAudio: Boolean,
-    canFlash: Boolean,
-    startFlashTime: Long,
-    elapsedFlashTime: Long,
-    maxFlashTime: Long
+    phaseUiState: PhaseUiState
 ) {
 
     CategoryColumn {
         CategoryRow {
             TextCategoryTitle(text = "Phase:")
-            TextSubTitle(text = currentPhase.name)
+            TextSubTitle(text = phaseUiState.currentPhase.name)
         }
     }
 

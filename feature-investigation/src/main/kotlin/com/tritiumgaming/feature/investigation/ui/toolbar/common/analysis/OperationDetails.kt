@@ -21,56 +21,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.button.CollapseButton
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
-import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
-import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
+import com.tritiumgaming.feature.investigation.ui.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.sections.ActiveGhostModifierDetails
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.sections.DifficultyModifierDetails
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.sections.MapModifierDetails
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.analysis.sections.PhaseModifierDetails
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.difficulty.DifficultyUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.map.MapUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.phase.PhaseUiState
-import org.jetbrains.annotations.TestOnly
-
-@Composable
-@Preview
-@TestOnly
-private fun OperationDetailsPreview(
-    investigationViewModel: InvestigationScreenViewModel =
-        viewModel(factory = InvestigationScreenViewModel.Factory),
-    onClick: () -> Unit = {}
-) {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        OperationDetails(
-            phaseUiState = PhaseUiState(),
-            mapUiState = MapUiState(),
-            difficultyUiState = DifficultyUiState(),
-            ghostScores = emptyList()
-        )
-    }
-}
 
 @Composable
 fun OperationDetails(
     modifier: Modifier = Modifier,
-    phaseUiState: PhaseUiState,
-    mapUiState: MapUiState,
-    difficultyUiState: DifficultyUiState,
-    ghostScores: List<GhostScore>
+    operationDetailsUiState: OperationDetailsUiState
 ) {
     Column(
         modifier = modifier
@@ -79,26 +43,13 @@ fun OperationDetails(
             .padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        PhaseModifierDetails(
-            currentPhase = phaseUiState.currentPhase,
-            canAlertAudio = phaseUiState.canAlertAudio,
-            canFlash = phaseUiState.canFlash,
-            startFlashTime = phaseUiState.startFlashTime,
-            elapsedFlashTime = phaseUiState.elapsedFlashTime,
-            maxFlashTime = phaseUiState.maxFlashTime
+        PhaseModifierDetails(phaseUiState = operationDetailsUiState.phaseUiState)
+        MapModifierDetails(mapUiState = operationDetailsUiState.mapUiState)
+        DifficultyModifierDetails(difficultyUiState = operationDetailsUiState.difficultyUiState)
+        ActiveGhostModifierDetails(
+            ghostOrder = operationDetailsUiState.ghostOrder,
+            ghostScores = operationDetailsUiState.ghostScores
         )
-        MapModifierDetails(
-            mapName = stringResource(mapUiState.name.toStringResource()),
-            mapSize = stringResource(mapUiState.size.toStringResource()),
-            setupMapModifier = mapUiState.setupModifier,
-            normalMapModifier = mapUiState.normalModifier
-        )
-        DifficultyModifierDetails(difficultyUiState = difficultyUiState)
-        ActiveGhostModifierDetails(ghostScores = ghostScores)
-        /*PhaseModifierDetails(state = investigationViewModel.phaseUiState)
-        MapModifierDetails(state = investigationViewModel.mapUiState)
-        DifficultyModifierDetails(state = investigationViewModel.difficultyUiState)
-        ActiveGhostModifierDetails(state = investigationViewModel.ghostScores)*/
     }
 
 }
