@@ -14,7 +14,7 @@ import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 
 @Composable
 fun EvidenceList(
-    ruledEvidenceList: List<RuledEvidence>,
+    evidenceListUiState: EvidenceListUiState,
     onChangeEvidenceRuling: (evidence: EvidenceType, ruling: RuledEvidence.Ruling) -> Unit,
     onClickItem: (evidence: EvidenceType) -> Unit,
 ) {
@@ -25,7 +25,7 @@ fun EvidenceList(
     ) {
 
         items(
-            items = ruledEvidenceList,
+            items = evidenceListUiState.ruledEvidenceList,
             key = { it.evidence.id }
         ) { ruledEvidence ->
 
