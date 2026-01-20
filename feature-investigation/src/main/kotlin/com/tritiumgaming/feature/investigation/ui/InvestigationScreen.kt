@@ -190,71 +190,46 @@ private fun InvestigationSoloContent(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    /*
     when(deviceConfiguration) {
-        DeviceConfiguration.MOBILE_PORTRAIT -> { StartContentCompactPortrait(
-            navController = navController) }
-        DeviceConfiguration.MOBILE_LANDSCAPE -> { StartContentCompactLandscape(
-            navController = navController) }
-        DeviceConfiguration.TABLET_PORTRAIT -> { StartContentCompactPortrait(
-            navController = navController) }
-        DeviceConfiguration.TABLET_LANDSCAPE -> { StartContentCompactLandscape(
-            navController = navController) }
-        DeviceConfiguration.DESKTOP -> { StartContentCompactLandscape(
-            navController = navController) }
-    }*/
-
-    if(LocalConfiguration.current.orientation == ORIENTATION_PORTRAIT) {
-        Column(
-            modifier = Modifier
-                .padding(bottom = 8.dp),
-            verticalArrangement = Arrangement.Top
-        ) {
-            Investigation(
-                toolbarUiState = toolbarUiState,
-                journalUiState = journalUiState,
-                timerUiState = timerUiState,
-                phaseUiState = phaseUiState,
-                mapUiState = mapUiState,
-                difficultyUiState = difficultyUiState,
-                sanityUiState = sanityUiState,
-                ghostListUiState = ghostListUiState,
-                evidenceListUiState = evidenceListUiState,
-                onChangeEvidenceRuling = { e, r ->
-                    investigationViewModel.setEvidenceRuling(e, r)
-                },
-                onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
-                operationConfigActions = operationConfigActions,
-                toolbarUiActions =  toolbarUiActions,
-                ghostListUiActions = ghostListUiActions,
-                ghostListUiItemActions = ghostListUiItemActions,
-                operationDetailsUiState = operationDetailsUiState
+        DeviceConfiguration.MOBILE_PORTRAIT,
+        DeviceConfiguration.TABLET_PORTRAIT -> {
+            InvestigationSoloContentPortrait(
+                toolbarUiState,
+                journalUiState,
+                timerUiState,
+                phaseUiState,
+                mapUiState,
+                difficultyUiState,
+                sanityUiState,
+                ghostListUiState,
+                evidenceListUiState,
+                investigationViewModel,
+                operationConfigActions,
+                toolbarUiActions,
+                ghostListUiActions,
+                ghostListUiItemActions,
+                operationDetailsUiState
             )
         }
-    } else {
-        Row(
-            modifier = Modifier
-                .padding(start = 8.dp),
-            horizontalArrangement = Arrangement.Start
-        ) {
-            Investigation(
-                toolbarUiState = toolbarUiState,
-                journalUiState = journalUiState,
-                timerUiState = timerUiState,
-                phaseUiState = phaseUiState,
-                mapUiState = mapUiState,
-                difficultyUiState = difficultyUiState,
-                sanityUiState = sanityUiState,
-                ghostListUiState = ghostListUiState,
-                evidenceListUiState = evidenceListUiState,
-                onChangeEvidenceRuling = { e, r ->
-                    investigationViewModel.setEvidenceRuling(e, r) },
-                onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
-                operationConfigActions = operationConfigActions,
-                toolbarUiActions = toolbarUiActions,
-                ghostListUiActions = ghostListUiActions,
-                ghostListUiItemActions = ghostListUiItemActions,
-                operationDetailsUiState = operationDetailsUiState
+        DeviceConfiguration.MOBILE_LANDSCAPE,
+        DeviceConfiguration.TABLET_LANDSCAPE,
+        DeviceConfiguration.DESKTOP -> {
+            InvestigationSoloContentLandscape(
+                toolbarUiState,
+                journalUiState,
+                timerUiState,
+                phaseUiState,
+                mapUiState,
+                difficultyUiState,
+                sanityUiState,
+                ghostListUiState,
+                evidenceListUiState,
+                investigationViewModel,
+                operationConfigActions,
+                toolbarUiActions,
+                ghostListUiActions,
+                ghostListUiItemActions,
+                operationDetailsUiState
             )
         }
     }
@@ -278,6 +253,98 @@ private fun InvestigationSoloContent(
                 record = record
             ) { investigationViewModel.clearPopup() }
         }
+    }
+}
+
+@Composable
+private fun InvestigationSoloContentLandscape(
+    toolbarUiState: ToolbarUiState,
+    journalUiState: JournalUiState,
+    timerUiState: TimerUiState,
+    phaseUiState: PhaseUiState,
+    mapUiState: MapUiState,
+    difficultyUiState: DifficultyUiState,
+    sanityUiState: PlayerSanityUiState,
+    ghostListUiState: GhostListUiState,
+    evidenceListUiState: EvidenceListUiState,
+    investigationViewModel: InvestigationScreenViewModel,
+    operationConfigActions: OperationConfigActions,
+    toolbarUiActions: ToolbarUiActions,
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions,
+    operationDetailsUiState: OperationDetailsUiState
+) {
+    Row(
+        modifier = Modifier
+            .padding(start = 8.dp),
+        horizontalArrangement = Arrangement.Start
+    ) {
+        Investigation(
+            toolbarUiState = toolbarUiState,
+            journalUiState = journalUiState,
+            timerUiState = timerUiState,
+            phaseUiState = phaseUiState,
+            mapUiState = mapUiState,
+            difficultyUiState = difficultyUiState,
+            sanityUiState = sanityUiState,
+            ghostListUiState = ghostListUiState,
+            evidenceListUiState = evidenceListUiState,
+            onChangeEvidenceRuling = { e, r ->
+                investigationViewModel.setEvidenceRuling(e, r)
+            },
+            onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
+            operationConfigActions = operationConfigActions,
+            toolbarUiActions = toolbarUiActions,
+            ghostListUiActions = ghostListUiActions,
+            ghostListUiItemActions = ghostListUiItemActions,
+            operationDetailsUiState = operationDetailsUiState
+        )
+    }
+}
+
+@Composable
+private fun InvestigationSoloContentPortrait(
+    toolbarUiState: ToolbarUiState,
+    journalUiState: JournalUiState,
+    timerUiState: TimerUiState,
+    phaseUiState: PhaseUiState,
+    mapUiState: MapUiState,
+    difficultyUiState: DifficultyUiState,
+    sanityUiState: PlayerSanityUiState,
+    ghostListUiState: GhostListUiState,
+    evidenceListUiState: EvidenceListUiState,
+    investigationViewModel: InvestigationScreenViewModel,
+    operationConfigActions: OperationConfigActions,
+    toolbarUiActions: ToolbarUiActions,
+    ghostListUiActions: GhostListUiActions,
+    ghostListUiItemActions: GhostListUiItemActions,
+    operationDetailsUiState: OperationDetailsUiState
+) {
+    Column(
+        modifier = Modifier
+            .padding(bottom = 8.dp),
+        verticalArrangement = Arrangement.Top
+    ) {
+        Investigation(
+            toolbarUiState = toolbarUiState,
+            journalUiState = journalUiState,
+            timerUiState = timerUiState,
+            phaseUiState = phaseUiState,
+            mapUiState = mapUiState,
+            difficultyUiState = difficultyUiState,
+            sanityUiState = sanityUiState,
+            ghostListUiState = ghostListUiState,
+            evidenceListUiState = evidenceListUiState,
+            onChangeEvidenceRuling = { e, r ->
+                investigationViewModel.setEvidenceRuling(e, r)
+            },
+            onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
+            operationConfigActions = operationConfigActions,
+            toolbarUiActions = toolbarUiActions,
+            ghostListUiActions = ghostListUiActions,
+            ghostListUiItemActions = ghostListUiItemActions,
+            operationDetailsUiState = operationDetailsUiState
+        )
     }
 }
 
@@ -440,9 +507,8 @@ private fun ColumnScope.ToolbarConfigurationSection(
     mapUiState: MapUiState,
     difficultyUiState: DifficultyUiState,
     sanityUiState: PlayerSanityUiState,
-    operationConfigActions: OperationConfigActions = OperationConfigActions(),
-
-    ) {
+    operationConfigActions: OperationConfigActions = OperationConfigActions()
+) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(12.dp),
