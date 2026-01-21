@@ -69,14 +69,14 @@ fun InvestigationSoloScreen(
     investigationViewModel: InvestigationScreenViewModel
 ) {
 
-    InvestigationSoloContent(
+    InvestigationContent(
         investigationViewModel = investigationViewModel
     )
 
 }
 
 @Composable
-private fun InvestigationSoloContent(
+private fun InvestigationContent(
     investigationViewModel: InvestigationScreenViewModel
 ) {
 
@@ -156,7 +156,7 @@ private fun InvestigationSoloContent(
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT,
         DeviceConfiguration.TABLET_PORTRAIT -> {
-            InvestigationSoloContentPortrait(
+            ContentPortrait(
                 toolbarUiState,
                 journalUiState,
                 timerUiState,
@@ -177,7 +177,7 @@ private fun InvestigationSoloContent(
         DeviceConfiguration.MOBILE_LANDSCAPE,
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
-            InvestigationSoloContentLandscape(
+            ContentLandscape(
                 toolbarUiState,
                 journalUiState,
                 timerUiState,
@@ -220,7 +220,7 @@ private fun InvestigationSoloContent(
 }
 
 @Composable
-private fun InvestigationSoloContentLandscape(
+private fun ContentPortrait(
     toolbarUiState: ToolbarUiState,
     journalUiState: JournalUiState,
     timerUiState: TimerUiState,
@@ -237,10 +237,10 @@ private fun InvestigationSoloContentLandscape(
     ghostListUiItemActions: GhostListUiItemActions,
     operationDetailsUiState: OperationDetailsUiState
 ) {
-    Row(
+    Column(
         modifier = Modifier
-            .padding(start = 8.dp),
-        horizontalArrangement = Arrangement.Start
+            .padding(bottom = 8.dp),
+        verticalArrangement = Arrangement.Top
     ) {
         Investigation(
             toolbarUiState = toolbarUiState,
@@ -266,7 +266,7 @@ private fun InvestigationSoloContentLandscape(
 }
 
 @Composable
-private fun InvestigationSoloContentPortrait(
+private fun ContentLandscape(
     toolbarUiState: ToolbarUiState,
     journalUiState: JournalUiState,
     timerUiState: TimerUiState,
@@ -283,10 +283,10 @@ private fun InvestigationSoloContentPortrait(
     ghostListUiItemActions: GhostListUiItemActions,
     operationDetailsUiState: OperationDetailsUiState
 ) {
-    Column(
+    Row(
         modifier = Modifier
-            .padding(bottom = 8.dp),
-        verticalArrangement = Arrangement.Top
+            .padding(start = 8.dp),
+        horizontalArrangement = Arrangement.Start
     ) {
         Investigation(
             toolbarUiState = toolbarUiState,
