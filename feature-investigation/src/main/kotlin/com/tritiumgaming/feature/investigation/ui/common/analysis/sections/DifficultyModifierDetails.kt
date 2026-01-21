@@ -12,7 +12,7 @@ import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCate
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.difficulty.DifficultyUiState
+import com.tritiumgaming.feature.investigation.ui.DifficultyUiState
 
 @Composable
 fun DifficultyModifierDetails(

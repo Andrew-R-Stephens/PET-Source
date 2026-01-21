@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.common.operationconfig
 
-import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

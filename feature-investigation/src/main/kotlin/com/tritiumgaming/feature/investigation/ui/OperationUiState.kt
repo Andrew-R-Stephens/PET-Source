@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.common.operationconfig.operation
+package com.tritiumgaming.feature.investigation.ui
 
 data class OperationSanityUiState(
     internal val sanityMax: Float = 1f,

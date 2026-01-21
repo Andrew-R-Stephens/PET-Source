@@ -14,7 +14,7 @@ import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCate
 import com.tritiumgaming.feature.investigation.ui.common.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.map.MapUiState
+import com.tritiumgaming.feature.investigation.ui.MapUiState
 import java.util.Locale
 
 @Composable

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.common.digitaltimer
+package com.tritiumgaming.feature.investigation.ui
 
 data class TimerUiState(
     val startTime: Long = TIME_DEFAULT,

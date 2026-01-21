@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.toolbar.component
+package com.tritiumgaming.feature.investigation.ui.common.operationconfig
 
 class OperationConfigUiActions(
     val onMapLeftClick: () -> Unit = {},

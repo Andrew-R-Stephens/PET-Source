@@ -29,10 +29,7 @@ import com.tritiumgaming.core.ui.theme.palette.Holiday22
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.feature.investigation.ui.common.analysis.OperationDetailsUiState
-import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiState
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.difficulty.DifficultyUiState
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.map.MapUiState
-import com.tritiumgaming.feature.investigation.ui.common.phase.PhaseUiState
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiActions
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
 import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
@@ -43,13 +40,12 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.Ghost
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
+import com.tritiumgaming.feature.investigation.ui.section.ToolbarConfigurationSection
+import com.tritiumgaming.feature.investigation.ui.section.ToolbarFootstepsVisualizerSection
+import com.tritiumgaming.feature.investigation.ui.section.ToolbarOperationAnalysisSection
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.component.OperationConfigUiActions
-import com.tritiumgaming.feature.investigation.ui.toolbarsection.OperationToolbar
-import com.tritiumgaming.feature.investigation.ui.toolbarsection.ToolbarConfigurationSection
-import com.tritiumgaming.feature.investigation.ui.toolbarsection.ToolbarFootsteps
-import com.tritiumgaming.feature.investigation.ui.toolbarsection.ToolbarOperationAnalysis
+import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolbar
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 
@@ -380,13 +376,13 @@ private fun ColumnScope.Investigation(
                 operationConfigUiActions = operationConfigUiActions
             )
 
-            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
+            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysisSection(
                 modifier = Modifier,
                     //.fillMaxHeight(.5f),
                 operationDetailsUiState = operationDetailsUiState
             )
 
-            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootsteps(
+            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootstepsVisualizerSection(
                 modifier = Modifier
             )
 
@@ -436,12 +432,12 @@ private fun RowScope.Investigation(
                 sanityUiState = sanityUiState,
                 operationConfigUiActions = operationConfigUiActions
             )
-            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
+            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysisSection(
                 modifier = Modifier
                     .wrapContentHeight(align = Alignment.Bottom),
                 operationDetailsUiState = operationDetailsUiState
             )
-            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootsteps(
+            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootstepsVisualizerSection(
                 modifier = Modifier
             )
 

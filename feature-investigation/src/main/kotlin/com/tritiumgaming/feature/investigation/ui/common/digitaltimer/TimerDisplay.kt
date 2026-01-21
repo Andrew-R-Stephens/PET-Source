@@ -28,6 +28,7 @@ import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.core.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
