@@ -127,13 +127,13 @@ data class GhostScore(
         setForcefullyRejected(false)
     }
 
-    private companion object {
-        private const val NORMAL_EVIDENCE_NOT_FOUND = -5
-        private const val NORMAL_NEGATION_MINIMUM_REACHED = -6
-        private const val NORMAL_NEGATION_MAXIMUM_REACHED = -7
-        private const val STRICT_EVIDENCE_FOUND = -8
-        private const val POSITIVE_COUNT_OVER_MAXIMUM = -9
-        private const val NEGATIVE_COUNT_UNDER_MINIMUM = -10
-        private const val STRICT_EVIDENCE_NOT_FOUND = -11
+    companion object {
+        const val NORMAL_EVIDENCE_NOT_FOUND = -5
+        const val NORMAL_NEGATION_MINIMUM_REACHED = -6
+        const val NORMAL_NEGATION_MAXIMUM_REACHED = -7
+        const val STRICT_EVIDENCE_FOUND = -8
+        const val POSITIVE_COUNT_OVER_MAXIMUM = -9
+        const val NEGATIVE_COUNT_UNDER_MINIMUM = -10
+        const val STRICT_EVIDENCE_NOT_FOUND = -11
     }
 }

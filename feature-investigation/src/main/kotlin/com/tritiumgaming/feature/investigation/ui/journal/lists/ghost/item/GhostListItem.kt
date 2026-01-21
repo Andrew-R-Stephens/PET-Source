@@ -84,7 +84,8 @@ fun LazyItemScope.GhostListItem(
                         onDragEnd = {
                             ghostScore?.let {
                                 ghostListUiItemActions.onToggleNegateGhost(
-                                    ghostScore.ghostEvidence.ghost)
+                                    ghostScore.ghostEvidence.ghost
+                                )
                             }
                         }
                     ) { change, dragAmount ->
@@ -170,7 +171,8 @@ fun LazyItemScope.GhostListItem(
                         evidence = normal,
                         isStrict = strictEvidenceList?.find { strict ->
                             strict.id == normal.id
-                        }?.let { true } ?: false
+                        }?.let { true } ?: false,
+                        ghostScore = scoreState?.value ?: 0
                     )
             }
 
@@ -182,6 +184,7 @@ fun LazyItemScope.GhostListItem(
 private fun RowScope.EvidenceIcon(
     ruledEvidence: List<RuledEvidence>,
     evidence: EvidenceType,
+    ghostScore: Int,
     isStrict: Boolean = false
 ) {
 
@@ -208,17 +211,30 @@ private fun RowScope.EvidenceIcon(
             )
         )
 
+        val strictlyNegative = ghostScore == GhostScore.STRICT_EVIDENCE_NOT_FOUND
+
         if(isStrict) {
             when (evidenceRuling) {
                 NEUTRAL -> {
-                    MarkPriorityCircleIcon(
-                        modifier = Modifier
-                            .fillMaxSize(.5f)
-                            .widthIn(min = 16.dp)
-                            .align(Alignment.TopEnd),
-                        onColor = LocalPalette.current.surfaceContainer,
-                        color = LocalPalette.current.onSurface
-                    )
+                    if(strictlyNegative) {
+                        MarkPriorityCircleIcon(
+                            modifier = Modifier
+                                .fillMaxSize(.5f)
+                                .widthIn(min = 16.dp)
+                                .align(Alignment.TopEnd),
+                            onColor = LocalPalette.current.surfaceContainer,
+                            color = LocalPalette.current.primary
+                        )
+                    } else {
+                        MarkPriorityCircleIcon(
+                            modifier = Modifier
+                                .fillMaxSize(.5f)
+                                .widthIn(min = 16.dp)
+                                .align(Alignment.TopEnd),
+                            onColor = LocalPalette.current.surfaceContainer,
+                            color = LocalPalette.current.onSurface
+                        )
+                    }
                 }
                 NEGATIVE -> {
                     MarkXCircleIcon(
