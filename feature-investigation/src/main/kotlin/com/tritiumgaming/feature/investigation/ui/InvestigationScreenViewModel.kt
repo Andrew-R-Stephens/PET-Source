@@ -344,8 +344,8 @@ class InvestigationScreenViewModel(
             while(!timerUiState.value.paused) {
                 Log.d("TickSanity",
                     "--------------------------- Set Sanity-----------------------------")
-                delay(1000)
                 tickSanity()
+                delay(1000)
             }
         }
     }
@@ -638,13 +638,10 @@ class InvestigationScreenViewModel(
         val startTime = timerUiState.value.startTime
 
         val timeElapsed = currentTime - startTime
+        val drainModifier = operationSanityUiState.value.drainModifier
+        val multiplier = 0.00001f
 
-        Log.d("InvestigationViewModel", "Time difference: " +
-                "$startTime - $currentTime = $timeElapsed")
-
-        val drainRatePerMs = 0.00001f // Base rate per millisecond
-
-        val calculatedDrain = timeElapsed * operationSanityUiState.value.drainModifier * drainRatePerMs
+        val calculatedDrain = timeElapsed * drainModifier * multiplier
 
         return calculatedDrain
     }
@@ -653,12 +650,6 @@ class InvestigationScreenViewModel(
     fun setPlayerSanity(
         value: Float
     ) {
-        val currentInsanity = playerSanityUiState.value.insanityLevel
-        val difference = currentInsanity - value
-
-        Log.d("InvestigationViewModel", "Player Sanity: " +
-                "Setting from $currentInsanity to $value -> (diff: ${"%.7f".format(difference)}")
-
         val maxSanity = operationSanityUiState.value.sanityMax
 
         _playerSanityUiState.update {
@@ -687,7 +678,9 @@ class InvestigationScreenViewModel(
      * time remaining.
      */
     private fun tickSanity() {
-        setPlayerSanity(calculateSanityDrain())
+        val drain = calculateSanityDrain()
+        setPlayerSanity(drain)
+
         updatePhase()
     }
 
@@ -714,6 +707,14 @@ class InvestigationScreenViewModel(
                 startTime = newStartTime
             )
         }
+    }
+
+    private fun getDurationByProgress(progress: Float): Long {
+        val drainRatePerMs = 0.00001f
+
+        val timeElapsed = (progress / drainRatePerMs / operationSanityUiState.value.drainModifier)
+
+        return timeElapsed.toLong()
     }
 
     /** Defaults all persistent data. */
@@ -765,16 +766,6 @@ class InvestigationScreenViewModel(
 
     }
 
-    private fun resetPhase() {
-        _phaseUiState.update {
-            it.copy(
-                startFlashTime = DEFAULT,
-                elapsedFlashTime = System.currentTimeMillis() - it.startFlashTime
-            )
-        }
-        updateCanFlash()
-    }
-
     private fun updatePhase() {
         _phaseUiState.update {
             it.copy(
@@ -792,23 +783,31 @@ class InvestigationScreenViewModel(
         }
     }
 
+    private fun resetPhase() {
+        _phaseUiState.update {
+            it.copy(
+                startFlashTime = DEFAULT,
+                elapsedFlashTime = System.currentTimeMillis() - it.startFlashTime
+            )
+        }
+        updateCanFlash()
+    }
+
     /*
      * Timer ---------------------------
      */
 
     private var timerJob: Job? = null
-    private fun playTimer() {
-        stopPlayerSanityJob()
-        stopTimerJob()
-
-        launchTimerJob()
-        launchPlayerSanityJob()
-    }
-
     private fun launchTimerJob() {
         timerJob = viewModelScope.launch {
+
             _timerUiState.update {
-                val startTime =  System.currentTimeMillis()
+
+                val startTime =
+                    if(it.startTime == TIME_DEFAULT) System.currentTimeMillis()
+                    else System.currentTimeMillis() -
+                            getDurationByProgress(playerSanityUiState.value.insanityLevel)
+
                 val remainingTime =
                     if(it.remainingTime == TIME_DEFAULT) difficultyUiState.value.time
                     else it.remainingTime
@@ -820,7 +819,7 @@ class InvestigationScreenViewModel(
                 )
             }
 
-            while (!_timerUiState.value.paused) {
+            while (!timerUiState.value.paused) {
 
                 val delay = 100L
                 val preDelay = System.currentTimeMillis()
@@ -855,10 +854,17 @@ class InvestigationScreenViewModel(
             }
         }
     }
+
     private fun stopTimerJob() {
+        _timerUiState.update {
+            it.copy(
+                paused = true
+            )
+        }
         timerJob?.cancel("Timer Job Cancelled")
     }
 
+    /*
     /** The Sanity Drain starting time, whenever the play button is activated.
      * @return The Sanity drain start time. */
     private fun resetStartTime() =
@@ -866,7 +872,7 @@ class InvestigationScreenViewModel(
             it.copy(
                 startTime = TIME_DEFAULT
             )
-        }
+        }*/
 
     private fun setTimeRemaining(value: Long) {
         _timerUiState.update {
@@ -876,12 +882,15 @@ class InvestigationScreenViewModel(
         }
     }
 
+    private fun playTimer() {
+        stopPlayerSanityJob()
+        stopTimerJob()
+
+        launchTimerJob()
+        launchPlayerSanityJob()
+    }
+
     private fun pauseTimer() {
-        _timerUiState.update {
-            it.copy(
-                paused = true
-            )
-        }
         stopTimerJob()
         stopPlayerSanityJob()
     }
@@ -889,31 +898,9 @@ class InvestigationScreenViewModel(
     fun toggleTimer() {
         if (timerUiState.value.paused) {
             playTimer()
-            //setStartTimeByProgress(progress = playerSanityUiState.value.insanityLevel)
         } else {
             pauseTimer()
         }
-    }
-
-    private fun resetTimer() {
-        stopTimerJob()
-        initTimerUiState()
-
-        calculateSanityDrain()
-        updatePhase()
-
-        /*pauseTimer()
-        resetStartTime()
-        calculateSanityDrain()
-        updatePhase()*/
-    }
-
-    private fun resetTimer(
-        currentDifficultyTime: Long
-    ) {
-        resetTimer()
-        setTimeRemaining(currentDifficultyTime)
-        resetStartTime()
     }
 
     fun fastForwardTimer(time: Long) {
@@ -922,6 +909,24 @@ class InvestigationScreenViewModel(
         skipInsanity(SanityLevel.HALF_SANITY)
         playTimer()
     }
+
+    private fun resetTimer() {
+        stopTimerJob()
+        initTimerUiState()
+
+        calculateSanityDrain()
+        updatePhase()
+    }
+
+    /*
+    private fun resetTimer(
+        currentDifficultyTime: Long
+    ) {
+        resetTimer()
+        setTimeRemaining(currentDifficultyTime)
+        resetStartTime()
+    }
+    */
 
     /*
      * MapCarouselHandler ---------------------------
