@@ -187,8 +187,6 @@ private fun RowScope.EvidenceIcon(
 
     val evidenceRuling = ruledEvidence.find { it.evidence.id == evidence.id }?.ruling
 
-    //Log.d("EvidenceIcon", "Evidence: ${evidence.name}, Ruling: ${evidenceRuling?.name}")
-
     Box(
         modifier = Modifier
             .aspectRatio(1f)
@@ -207,11 +205,6 @@ private fun RowScope.EvidenceIcon(
                     POSITIVE -> LocalPalette.current.tertiary
                     else -> LocalPalette.current.secondary
                 }
-                /*when (evidenceRuling) {
-                    NEGATIVE -> LocalPalette.current.negativeSelColor
-                    POSITIVE -> LocalPalette.current.positiveSelColor
-                    else -> LocalPalette.current.neutralSelColor
-                }*/
             )
         )
 
@@ -223,9 +216,8 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        foregroundColor = LocalPalette.current.tertiary,
-                        backgroundColor = LocalPalette.current.surfaceContainer,
-                        //foregroundColor = LocalPalette.current.negativeSelColor
+                        onColor = LocalPalette.current.surfaceContainer,
+                        color = LocalPalette.current.onSurface
                     )
                 }
                 NEGATIVE -> {
@@ -234,9 +226,8 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        foregroundColor = LocalPalette.current.surfaceContainer,
-                        backgroundColor = LocalPalette.current.secondary
-                        //backgroundColor = LocalPalette.current.negativeSelColor,
+                        onColor = LocalPalette.current.surfaceContainer,
+                        color = LocalPalette.current.primary
                     )
                 }
                 else -> {
@@ -245,9 +236,8 @@ private fun RowScope.EvidenceIcon(
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
                             .align(Alignment.TopEnd),
-                        foregroundColor = LocalPalette.current.surfaceContainer,
-                        backgroundColor = LocalPalette.current.primary
-                        //backgroundColor = LocalPalette.current.positiveSelColor
+                        onColor = LocalPalette.current.surfaceContainer,
+                        color = LocalPalette.current.tertiary
                     )
                 }
             }
