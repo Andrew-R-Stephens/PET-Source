@@ -808,9 +808,7 @@ class InvestigationScreenViewModel(
     private fun launchTimerJob() {
         timerJob = viewModelScope.launch {
             _timerUiState.update {
-                val startTime =
-                    if(it.startTime == TIME_DEFAULT) System.currentTimeMillis()
-                    else it.startTime
+                val startTime =  System.currentTimeMillis()
                 val remainingTime =
                     if(it.remainingTime == TIME_DEFAULT) difficultyUiState.value.time
                     else it.remainingTime
@@ -823,9 +821,6 @@ class InvestigationScreenViewModel(
             }
 
             while (!_timerUiState.value.paused) {
-                val remaining = timerUiState.value.remainingTime
-
-                Log.d("InvestigationViewModel", "Timer Job: R: $remaining")
 
                 val delay = 100L
                 val preDelay = System.currentTimeMillis()
@@ -833,6 +828,7 @@ class InvestigationScreenViewModel(
                 val postDelay = System.currentTimeMillis()
                 val actualDelay = postDelay - preDelay
 
+                val remaining = timerUiState.value.remainingTime
                 setTimeRemaining((remaining - actualDelay).coerceAtLeast(0L))
 
                 updatePhase()
