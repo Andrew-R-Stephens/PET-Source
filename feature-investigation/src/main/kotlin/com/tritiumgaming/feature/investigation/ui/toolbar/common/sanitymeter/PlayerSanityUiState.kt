@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity
+package com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitymeter
 
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel.SAFE_MIN_BOUNDS
 

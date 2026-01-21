@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui
 
-import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +32,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -65,7 +63,7 @@ import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPop
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.toolbar.component.InvestigationToolbar
-import com.tritiumgaming.feature.investigation.ui.toolbar.component.OperationConfigActions
+import com.tritiumgaming.feature.investigation.ui.toolbar.component.OperationConfigUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.component.ResetButton
 import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarItem
 import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarUiState
@@ -78,8 +76,8 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.difficulty.DifficultyUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.map.MapUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.phase.PhaseUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.SanityMeter
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitymeter.PlayerSanityUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarUiActions
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
@@ -179,7 +177,7 @@ private fun InvestigationSoloContent(
         onReset = { investigationViewModel.reset() }
     )
 
-    val operationConfigActions = OperationConfigActions(
+    val operationConfigUiActions = OperationConfigUiActions(
         onMapLeftClick = { investigationViewModel.decrementMapIndex() },
         onMapRightClick = { investigationViewModel.incrementMapIndex() },
         onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
@@ -204,7 +202,7 @@ private fun InvestigationSoloContent(
                 ghostListUiState,
                 evidenceListUiState,
                 investigationViewModel,
-                operationConfigActions,
+                operationConfigUiActions,
                 toolbarUiActions,
                 ghostListUiActions,
                 ghostListUiItemActions,
@@ -225,7 +223,7 @@ private fun InvestigationSoloContent(
                 ghostListUiState,
                 evidenceListUiState,
                 investigationViewModel,
-                operationConfigActions,
+                operationConfigUiActions,
                 toolbarUiActions,
                 ghostListUiActions,
                 ghostListUiItemActions,
@@ -268,7 +266,7 @@ private fun InvestigationSoloContentLandscape(
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
     investigationViewModel: InvestigationScreenViewModel,
-    operationConfigActions: OperationConfigActions,
+    operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
@@ -293,7 +291,7 @@ private fun InvestigationSoloContentLandscape(
                 investigationViewModel.setEvidenceRuling(e, r)
             },
             onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
-            operationConfigActions = operationConfigActions,
+            operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
             ghostListUiItemActions = ghostListUiItemActions,
@@ -314,7 +312,7 @@ private fun InvestigationSoloContentPortrait(
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
     investigationViewModel: InvestigationScreenViewModel,
-    operationConfigActions: OperationConfigActions,
+    operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
@@ -339,7 +337,7 @@ private fun InvestigationSoloContentPortrait(
                 investigationViewModel.setEvidenceRuling(e, r)
             },
             onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
-            operationConfigActions = operationConfigActions,
+            operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
             ghostListUiItemActions = ghostListUiItemActions,
@@ -361,7 +359,7 @@ private fun ColumnScope.Investigation(
     evidenceListUiState: EvidenceListUiState,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
-    operationConfigActions: OperationConfigActions,
+    operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
@@ -410,7 +408,7 @@ private fun ColumnScope.Investigation(
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
                 sanityUiState = sanityUiState,
-                operationConfigActions = operationConfigActions
+                operationConfigUiActions = operationConfigUiActions
             )
 
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
@@ -440,7 +438,7 @@ private fun RowScope.Investigation(
     sanityUiState: PlayerSanityUiState,
     onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
     onChangeEvidencePopup: (EvidenceType) -> Unit,
-    operationConfigActions: OperationConfigActions,
+    operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
@@ -467,7 +465,7 @@ private fun RowScope.Investigation(
                 mapUiState = mapUiState,
                 difficultyUiState = difficultyUiState,
                 sanityUiState = sanityUiState,
-                operationConfigActions = operationConfigActions
+                operationConfigUiActions = operationConfigUiActions
             )
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysis(
                 modifier = Modifier
@@ -507,7 +505,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
     mapUiState: MapUiState,
     difficultyUiState: DifficultyUiState,
     sanityUiState: PlayerSanityUiState,
-    operationConfigActions: OperationConfigActions = OperationConfigActions()
+    operationConfigUiActions: OperationConfigUiActions = OperationConfigUiActions()
 ) {
     Column(
         modifier = modifier,
@@ -523,8 +521,8 @@ private fun ColumnScope.ToolbarConfigurationSection(
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = { operationConfigActions.onMapLeftClick() },
-            onClickRight = { operationConfigActions.onMapRightClick() }
+            onClickLeft = { operationConfigUiActions.onMapLeftClick() },
+            onClickRight = { operationConfigUiActions.onMapRightClick() }
         )
 
         OperationConfigCarousel(
@@ -534,8 +532,8 @@ private fun ColumnScope.ToolbarConfigurationSection(
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = { operationConfigActions.onDifficultyLeftClick() },
-            onClickRight = { operationConfigActions.onDifficultyRightClick() }
+            onClickLeft = { operationConfigUiActions.onDifficultyLeftClick() },
+            onClickRight = { operationConfigUiActions.onDifficultyRightClick() }
         )
 
         Row(
@@ -599,7 +597,7 @@ private fun ColumnScope.ToolbarConfigurationSection(
                         )
                     },
                     onClick = {
-                        operationConfigActions.onToggleTimer()
+                        operationConfigUiActions.onToggleTimer()
                     }
                 )
             }

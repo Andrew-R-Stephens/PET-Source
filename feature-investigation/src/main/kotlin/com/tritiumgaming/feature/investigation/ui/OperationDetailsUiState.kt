@@ -5,7 +5,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.Ti
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.difficulty.DifficultyUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.map.MapUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.phase.PhaseUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.PlayerSanityUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 

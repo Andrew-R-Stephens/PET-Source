@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity
+package com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitymeter
 
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes

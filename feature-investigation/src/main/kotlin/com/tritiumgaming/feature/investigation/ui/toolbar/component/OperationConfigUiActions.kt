@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui.toolbar.component
 
-class OperationConfigActions(
+class OperationConfigUiActions(
     val onMapLeftClick: () -> Unit = {},
     val onMapRightClick: () -> Unit = {},
     val onDifficultyLeftClick: () -> Unit = {},

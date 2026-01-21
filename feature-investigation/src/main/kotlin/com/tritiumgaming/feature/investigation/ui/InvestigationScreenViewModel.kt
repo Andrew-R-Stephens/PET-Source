@@ -20,7 +20,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.map.MapUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.operation.OperationSanityUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.common.phase.PhaseUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.controller.sanity.PlayerSanityUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarUiState
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
@@ -437,12 +437,12 @@ class InvestigationScreenViewModel(
         _ghostOrder.update { orderedTemp }
 
         val str2 = StringBuilder()
-        ghostOrder.value.forEachIndexed { index, orderModel ->
+        ghostOrder.value.forEach { orderModel ->
             str2.append(
                 "[$orderModel: " + "${
                     ghostScores.value.find { scoreModel ->
                         scoreModel.ghostEvidence.ghost.id == orderModel
-                    }?.score
+                    }?.score?.value ?: "ERROR"
                 }] "
             )
         }

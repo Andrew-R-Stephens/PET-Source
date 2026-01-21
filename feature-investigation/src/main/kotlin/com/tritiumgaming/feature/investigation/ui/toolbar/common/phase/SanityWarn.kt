@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitytracker.alerts
+package com.tritiumgaming.feature.investigation.ui.toolbar.common.phase
 
 import androidx.compose.animation.core.EaseInOut
 import androidx.compose.animation.core.RepeatMode
