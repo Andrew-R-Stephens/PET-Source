@@ -32,16 +32,14 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.investigation.ui.journal.lists.EvidenceList
-import com.tritiumgaming.feature.investigation.ui.journal.lists.EvidenceListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostList
-import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.GhostListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostListUiItemActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
+import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceList
+import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostList
+import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostListUiItemActions
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 
 @Composable
 fun Journal(

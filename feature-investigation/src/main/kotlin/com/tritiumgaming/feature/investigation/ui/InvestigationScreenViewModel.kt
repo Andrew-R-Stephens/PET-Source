@@ -10,18 +10,18 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
-import com.tritiumgaming.feature.investigation.ui.journal.lists.item.GhostScore
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiState
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiState.Companion.DEFAULT
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiState.Companion.DURATION_30_SECONDS
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiState.Companion.TIME_DEFAULT
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.difficulty.DifficultyUiState
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.map.MapUiState
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.operation.OperationSanityUiState
+import com.tritiumgaming.feature.investigation.ui.common.phase.PhaseUiState
+import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
+import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostScore
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState.Companion.DEFAULT
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState.Companion.DURATION_30_SECONDS
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.digitaltimer.TimerUiState.Companion.TIME_DEFAULT
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.difficulty.DifficultyUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.map.MapUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.operationconfig.operation.OperationSanityUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.phase.PhaseUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.common.sanitymeter.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.component.ToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
@@ -342,8 +342,6 @@ class InvestigationScreenViewModel(
     private fun launchPlayerSanityJob() {
         sanityJob = viewModelScope.launch {
             while(!timerUiState.value.paused) {
-                Log.d("TickSanity",
-                    "--------------------------- Set Sanity-----------------------------")
                 tickSanity()
                 delay(1000)
             }
