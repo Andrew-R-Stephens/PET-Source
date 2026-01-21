@@ -2,6 +2,7 @@ package com.tritiumgaming.core.ui.common.prefabicon
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,15 +29,16 @@ import com.tritiumgaming.core.ui.vector.getMarkXVector
 @Composable
 fun MarkCheckCircleIcon(
     modifier: Modifier = Modifier,
-    backgroundColor: Color,
-    foregroundColor: Color
+    color: Color,
+    onColor: Color
 ) {
     Box(
         modifier = modifier
             .background(
-                color = backgroundColor,
+                color = color,
                 shape = CircleShape
             )
+            .border(1.dp, onColor, CircleShape)
     ) {
         Image(
             modifier = Modifier
@@ -44,7 +46,7 @@ fun MarkCheckCircleIcon(
                 .align(Alignment.Center),
             imageVector = getMarkCheckVector(
                 colors = IconVectorColors.defaults(
-                    fillColor = foregroundColor
+                    fillColor = onColor
                 )
             ),
             contentDescription = null,
@@ -56,15 +58,16 @@ fun MarkCheckCircleIcon(
 @Composable
 fun MarkXCircleIcon(
     modifier: Modifier = Modifier,
-    backgroundColor: Color,
-    foregroundColor: Color
+    color: Color,
+    onColor: Color
 ) {
     Box(
         modifier = modifier
             .background(
-                color = backgroundColor,
+                color = color,
                 shape = CircleShape
             )
+            .border(1.dp, onColor, CircleShape)
     ) {
         Image(
             modifier = Modifier
@@ -72,7 +75,7 @@ fun MarkXCircleIcon(
                 .align(Alignment.Center),
             imageVector = getMarkXVector(
                 colors = IconVectorColors.defaults(
-                    fillColor = foregroundColor
+                    fillColor = onColor
                 )
             ),
             contentDescription = null,
@@ -84,15 +87,16 @@ fun MarkXCircleIcon(
 @Composable
 fun MarkPriorityCircleIcon(
     modifier: Modifier = Modifier,
-    backgroundColor: Color,
-    foregroundColor: Color
+    color: Color,
+    onColor: Color
 ) {
     Box(
         modifier = modifier
             .background(
-                color = backgroundColor,
+                color = color,
                 shape = CircleShape
             )
+            .border(1.dp, onColor, CircleShape)
     ) {
         Image(
             modifier = Modifier
@@ -100,7 +104,7 @@ fun MarkPriorityCircleIcon(
                 .align(Alignment.Center),
             imageVector = getMarkPriorityVector(
                 colors = IconVectorColors.defaults(
-                    fillColor = foregroundColor
+                    fillColor = onColor
                 )
             ),
             contentDescription = null,
@@ -125,18 +129,18 @@ private fun Preview() {
             MarkCheckCircleIcon(
                 modifier = Modifier
                     .size(48.dp),
-                backgroundColor = LocalPalette.current.surfaceContainer,
-                foregroundColor = LocalPalette.current.textFamily.body
+                color = LocalPalette.current.surfaceContainer,
+                onColor = LocalPalette.current.textFamily.body
             )
             MarkXCircleIcon(
                 modifier = Modifier.size(48.dp),
-                backgroundColor = LocalPalette.current.surfaceContainer,
-                foregroundColor = LocalPalette.current.textFamily.body
+                color = LocalPalette.current.surfaceContainer,
+                onColor = LocalPalette.current.textFamily.body
             )
             MarkPriorityCircleIcon(
                 modifier = Modifier.size(48.dp),
-                backgroundColor = LocalPalette.current.surfaceContainer,
-                foregroundColor = LocalPalette.current.textFamily.body
+                color = LocalPalette.current.surfaceContainer,
+                onColor = LocalPalette.current.textFamily.body
             )
         }
     }
