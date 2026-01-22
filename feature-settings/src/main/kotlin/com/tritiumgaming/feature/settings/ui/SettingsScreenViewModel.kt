@@ -23,7 +23,6 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTime
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.source.PaletteDatastore
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
@@ -33,6 +32,7 @@ import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTy
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
+import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -70,7 +70,15 @@ class SettingsScreenViewModel(
                     ghostReorderPreference = preferences.enableGhostReorder,
                     introductionPermissionPreference = preferences.allowIntroduction,
                     rTLPreference = preferences.enableRTL,
-                    huntWarnDurationPreference = preferences.maxHuntWarnFlashTime
+                    huntWarnDurationPreference = preferences.maxHuntWarnFlashTime,
+                    paletteUiState = PaletteUiState(
+                        uuid = preferences.paletteUuid,
+                        palette = getPaletteByUUID(preferences.paletteUuid)
+                    ),
+                    typographyUiState = TypographyUiState(
+                        uuid = preferences.typographyUuid,
+                        typography = getTypographyByUUID(preferences.typographyUuid)
+                    )
                 )
             }
             .stateIn(
@@ -126,21 +134,21 @@ class SettingsScreenViewModel(
     /**
      * Palettes
      */
-    private val _currentPaletteUUID : StateFlow<PaletteDatastore.PalettePreferences> =
+    /*private val _paletteUiState : StateFlow<PaletteDatastore.PalettePreferences> =
         initFlowGlobalPreferencesUseCase()
             .map {
                 PaletteDatastore.PalettePreferences(
-                    uuid = it.paletteUuid
+                    currentUUID = it.paletteUuid
                 )
             }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
                 initialValue = PaletteDatastore.PalettePreferences(
-                    uuid = LocalDefaultPalette.uuid
+                    currentUUID = LocalDefaultPalette.uuid
                 )
             )
-    val currentPaletteUUID = _currentPaletteUUID
+    val paletteUiState = _paletteUiState*/
 
     fun saveCurrentPaletteUUID(uuid: String) {
         viewModelScope.launch {
@@ -148,11 +156,26 @@ class SettingsScreenViewModel(
         }
     }
 
+    /*fun setNextAvailablePalette(direction: IncrementDirection) {
+        viewModelScope.launch {
+            try {
+                val result = findNextAvailablePaletteUseCase(
+                    paletteUiState.value.currentUUID, direction
+                )
+                result.getOrNull()?.let { uuid ->
+                    saveCurrentPaletteUUID(uuid)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }*/
+
     fun setNextAvailablePalette(direction: IncrementDirection) {
         viewModelScope.launch {
             try {
                 val result = findNextAvailablePaletteUseCase(
-                    currentPaletteUUID.value.uuid, direction
+                    settingsScreenUiState.value.paletteUiState.uuid, direction
                 )
                 result.getOrNull()?.let { uuid ->
                     saveCurrentPaletteUUID(uuid)
@@ -176,7 +199,7 @@ class SettingsScreenViewModel(
      * Typographies
      */
 
-    private val _currentTypographyUUID : StateFlow<TypographyDatastore.TypographyPreferences> =
+    /*private val _typographyUIState : StateFlow<TypographyDatastore.TypographyPreferences> =
         initFlowGlobalPreferencesUseCase()
             .map {
                 TypographyDatastore.TypographyPreferences(
@@ -190,7 +213,7 @@ class SettingsScreenViewModel(
                     uuid = LocalDefaultTypography.uuid
                 )
             )
-    val currentTypographyUUID = _currentTypographyUUID
+    val typographyUiState = _typographyUIState*/
 
     private fun saveCurrentTypographyUUID(uuid: String) {
         viewModelScope.launch {
@@ -198,10 +221,19 @@ class SettingsScreenViewModel(
         }
     }
 
+    /*fun setNextAvailableTypography(direction: IncrementDirection) {
+        viewModelScope.launch {
+            val uuid = findNextAvailableTypographyUseCase(
+                typographyUiState.value.uuid, direction
+            )
+            saveCurrentTypographyUUID(uuid)
+        }
+    }*/
+
     fun setNextAvailableTypography(direction: IncrementDirection) {
         viewModelScope.launch {
             val uuid = findNextAvailableTypographyUseCase(
-                currentTypographyUUID.value.uuid, direction
+                settingsScreenUiState.value.typographyUiState.uuid, direction
             )
             saveCurrentTypographyUUID(uuid)
         }

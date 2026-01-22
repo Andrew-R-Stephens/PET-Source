@@ -15,6 +15,11 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,7 +44,7 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 fun CarouselComposable(
     @StringRes title: Int = 0,
-    state: StateFlow<Any?> = MutableStateFlow(null),
+    state: Any,
     label: String = "",
     painterResource: Painter = painterResource(R.drawable.ic_font_family),
     containerColor: Color = Color.White,
@@ -49,9 +54,6 @@ fun CarouselComposable(
     leftOnClick: () -> Unit = {},
     rightOnClick: () -> Unit = {}
 ) {
-
-    val rememberState = state.collectAsStateWithLifecycle()
-
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -122,7 +124,7 @@ fun CarouselComposable(
                             .weight(1f)
                             .align(Alignment.CenterVertically)
                             .padding(4.dp),
-                        text = if(rememberState.value != 0) { label } else "",
+                        text = if(state != 0) { label } else "",
                         color = secondaryTextColor,
                         style = LocalTypography.current.primary.bold,
                         textAlign = TextAlign.Center,
