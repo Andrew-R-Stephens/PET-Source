@@ -8,7 +8,7 @@ interface PaletteDatastore: DatastoreDataSource<PalettePreferences> {
     suspend fun savePalette(uuid: String)
 
     data class PalettePreferences(
-        val currentUUID: String
+        val uuid: String
     )
 
 }
