@@ -23,20 +23,24 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTime
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
-import com.tritiumgaming.shared.data.market.palette.source.PaletteDatastore
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.source.TypographyDatastore
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
 import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
+import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
+import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
+import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SettingsScreenViewModel(
@@ -51,14 +55,30 @@ class SettingsScreenViewModel(
     private val setEnableRTLUseCase: SetEnableRTLUseCase,
     private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     // Typographies
+    private val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase,
     private val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     private val findNextAvailableTypographyUseCase: GetNextUnlockedTypographyUseCase,
     // Palettes
+    private val fetchUnlockedPaletteUseCase: FetchUnlockedPalettesUseCase,
     private val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
     private val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
 ) : ViewModel() {
+
+    data class UnlockedPalettes(
+        val palettes: List<AccountMarketPalette> = emptyList()
+    )
+
+    data class UnlockedTypographies(
+        val typographies: List<AccountMarketTypography> = emptyList()
+    )
+
+    private val _unlockedPalettes = MutableStateFlow(UnlockedPalettes())
+    val unlockedPalettes = _unlockedPalettes
+
+    private val _unlockedTypographies = MutableStateFlow(UnlockedTypographies())
+    val unlockedTypographies = _unlockedTypographies
 
     private val _settingsScreenUiState : StateFlow<SettingsScreenUiState> =
         initFlowGlobalPreferencesUseCase()
@@ -134,21 +154,6 @@ class SettingsScreenViewModel(
     /**
      * Palettes
      */
-    /*private val _paletteUiState : StateFlow<PaletteDatastore.PalettePreferences> =
-        initFlowGlobalPreferencesUseCase()
-            .map {
-                PaletteDatastore.PalettePreferences(
-                    currentUUID = it.paletteUuid
-                )
-            }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = PaletteDatastore.PalettePreferences(
-                    currentUUID = LocalDefaultPalette.uuid
-                )
-            )
-    val paletteUiState = _paletteUiState*/
 
     fun saveCurrentPaletteUUID(uuid: String) {
         viewModelScope.launch {
@@ -156,26 +161,13 @@ class SettingsScreenViewModel(
         }
     }
 
-    /*fun setNextAvailablePalette(direction: IncrementDirection) {
-        viewModelScope.launch {
-            try {
-                val result = findNextAvailablePaletteUseCase(
-                    paletteUiState.value.currentUUID, direction
-                )
-                result.getOrNull()?.let { uuid ->
-                    saveCurrentPaletteUUID(uuid)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }*/
-
     fun setNextAvailablePalette(direction: IncrementDirection) {
         viewModelScope.launch {
             try {
                 val result = findNextAvailablePaletteUseCase(
-                    settingsScreenUiState.value.paletteUiState.uuid, direction
+                    palettes = unlockedPalettes.value.palettes,
+                    currentUUID = settingsScreenUiState.value.paletteUiState.uuid,
+                    direction = direction
                 )
                 result.getOrNull()?.let { uuid ->
                     saveCurrentPaletteUUID(uuid)
@@ -199,43 +191,26 @@ class SettingsScreenViewModel(
      * Typographies
      */
 
-    /*private val _typographyUIState : StateFlow<TypographyDatastore.TypographyPreferences> =
-        initFlowGlobalPreferencesUseCase()
-            .map {
-                TypographyDatastore.TypographyPreferences(
-                    uuid = it.typographyUuid
-                )
-            }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = TypographyDatastore.TypographyPreferences(
-                    uuid = LocalDefaultTypography.uuid
-                )
-            )
-    val typographyUiState = _typographyUIState*/
-
     private fun saveCurrentTypographyUUID(uuid: String) {
         viewModelScope.launch {
             saveCurrentTypographyUseCase(uuid)
         }
     }
 
-    /*fun setNextAvailableTypography(direction: IncrementDirection) {
-        viewModelScope.launch {
-            val uuid = findNextAvailableTypographyUseCase(
-                typographyUiState.value.uuid, direction
-            )
-            saveCurrentTypographyUUID(uuid)
-        }
-    }*/
-
     fun setNextAvailableTypography(direction: IncrementDirection) {
         viewModelScope.launch {
-            val uuid = findNextAvailableTypographyUseCase(
-                settingsScreenUiState.value.typographyUiState.uuid, direction
-            )
-            saveCurrentTypographyUUID(uuid)
+            try {
+                val result = findNextAvailableTypographyUseCase(
+                    typographies = unlockedTypographies.value.typographies,
+                    currentUUID = settingsScreenUiState.value.typographyUiState.uuid,
+                    direction = direction
+                )
+                result.getOrNull()?.let { uuid ->
+                    saveCurrentTypographyUUID(uuid)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 
@@ -253,10 +228,45 @@ class SettingsScreenViewModel(
         initGlobalPreferencesDataStoreUseCase()
     }
 
+    private suspend fun initUnlockedPalettes() {
+        try {
+            val result = fetchUnlockedPaletteUseCase()
+            val list = result.getOrThrow()
+
+            _unlockedPalettes.update {
+                it.copy(
+                    palettes = list
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private suspend fun initUnlockedTypographies() {
+        try {
+            val result = fetchUnlockedTypographiesUseCase()
+            val list = result.getOrThrow()
+
+            _unlockedTypographies.update {
+                it.copy(
+                    typographies = list
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     init {
         Log.d("GlobalPreferencesViewModel", "Initializing...")
 
         initialDataStoreSetupEvent()
+
+        viewModelScope.launch {
+            initUnlockedPalettes()
+            initUnlockedTypographies()
+        }
     }
 
     companion object {
@@ -278,10 +288,12 @@ class SettingsScreenViewModel(
                 val setEnableRTLUseCase: SetEnableRTLUseCase = container.setEnableRTLUseCase
                 val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase = container.setMaxHuntWarnFlashTimeUseCase
                 // Typographies
+                val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase = container.fetchUnlockedTypographiesUseCase
                 val setCurrentTypographyUseCase: SaveCurrentTypographyUseCase = container.saveCurrentTypographyUseCase
                 val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
                 val findNextAvailableTypographyUseCase: GetNextUnlockedTypographyUseCase = container.findNextAvailableTypographyUseCase
                 // Palettes
+                val fetchUnlockedPalettesUseCase: FetchUnlockedPalettesUseCase = container.fetchUnlockedPalettesUseCase
                 val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase = container.saveCurrentPaletteUseCase
                 val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
                 val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase = container.findNextAvailablePaletteUseCase
@@ -298,10 +310,12 @@ class SettingsScreenViewModel(
                     setEnableRTLUseCase = setEnableRTLUseCase,
                     setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                     // Typographies
+                    fetchUnlockedTypographiesUseCase = fetchUnlockedTypographiesUseCase,
                     saveCurrentTypographyUseCase = setCurrentTypographyUseCase,
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                     findNextAvailableTypographyUseCase = findNextAvailableTypographyUseCase,
                     // Palettes
+                    fetchUnlockedPaletteUseCase = fetchUnlockedPalettesUseCase,
                     saveCurrentPaletteUseCase = saveCurrentPaletteUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,
                     findNextAvailablePaletteUseCase = findNextAvailablePaletteUseCase,

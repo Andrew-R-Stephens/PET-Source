@@ -1,8 +1,10 @@
 package com.tritiumgaming.feature.settings.app.container
 
+import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
@@ -26,9 +28,11 @@ class SettingsContainer(
     val setEnableGhostReorderUseCase: SetEnableGhostReorderUseCase,
     val setEnableRTLUseCase: SetEnableRTLUseCase,
     val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
+    val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase,
     val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,
     val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     val findNextAvailableTypographyUseCase: GetNextUnlockedTypographyUseCase,
+    val fetchUnlockedPalettesUseCase: FetchUnlockedPalettesUseCase,
     val saveCurrentPaletteUseCase: SaveCurrentPaletteUseCase,
     val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
     val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
