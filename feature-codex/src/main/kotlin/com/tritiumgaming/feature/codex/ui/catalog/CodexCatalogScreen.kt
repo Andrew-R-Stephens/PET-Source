@@ -23,7 +23,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
@@ -41,7 +40,6 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.pages.CatalogAchievementListComponent
@@ -50,6 +48,7 @@ import com.tritiumgaming.feature.codex.ui.catalog.pages.CodexAchievementDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.pages.CodexEquipmentDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.pages.CodexPossessionsDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.pages.CodexPossessionsListComponent
+import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable
 fun CodexCatalogScreen(
@@ -67,7 +66,6 @@ fun CodexCatalogScreen(
     codexViewModel.cacheCategory(category)
 
     val rememberScrollState = rememberLazyListState()
-    var rememberVisibleItems by remember { mutableIntStateOf(0) }
 
     val scrollUiState by codexViewModel.scrollUiState.collectAsStateWithLifecycle()
     LaunchedEffect(scrollUiState.offset) {

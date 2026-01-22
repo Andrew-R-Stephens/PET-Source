@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.feature.codex.app.container.CodexContainerProvider
+import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
@@ -19,8 +21,6 @@ import com.tritiumgaming.shared.data.codex.model.possessions.PossessionsType
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
-import com.tritiumgaming.feature.codex.app.container.CodexContainerProvider
-import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

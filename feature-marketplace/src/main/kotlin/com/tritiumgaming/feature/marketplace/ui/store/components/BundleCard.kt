@@ -11,9 +11,7 @@ fun BundleCard(
     marketBundle: MarketBundle,
     onBuyClick: () -> Unit
 ) {
-    SelectiveTheme(
-
-    ) {
+    SelectiveTheme {
 
     }
 }

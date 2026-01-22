@@ -8,11 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
+import com.tritiumgaming.feature.investigation.ui.DifficultyUiState
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
-import com.tritiumgaming.feature.investigation.ui.DifficultyUiState
 
 @Composable
 fun DifficultyModifierDetails(

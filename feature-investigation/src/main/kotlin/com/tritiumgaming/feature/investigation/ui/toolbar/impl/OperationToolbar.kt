@@ -32,7 +32,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.button.CollapseButton
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
@@ -225,7 +224,6 @@ fun SanityButton(
     onClick: () -> Unit = {},
     isShownState: StateFlow<Boolean> = MutableStateFlow(false)
 ) {
-    val enabledState by isShownState.collectAsStateWithLifecycle()
 
     val foregroundColor = LocalPalette.current.onSurface
 
@@ -238,7 +236,7 @@ fun SanityButton(
             }
     ) {
 
-        val orientationRotate = when(LocalConfiguration.current.orientation) {
+        when(LocalConfiguration.current.orientation) {
             ORIENTATION_PORTRAIT -> 90
             ORIENTATION_LANDSCAPE -> 180
             else -> 0
@@ -262,7 +260,6 @@ fun ModifiersButton(
     onClick: () -> Unit = {},
     isShownState: StateFlow<Boolean> = MutableStateFlow(false)
 ) {
-    val enabledState by isShownState.collectAsStateWithLifecycle()
 
     val foregroundColor = LocalPalette.current.onSurface
 
@@ -275,7 +272,7 @@ fun ModifiersButton(
             }
     ) {
 
-        val orientationRotate = when(LocalConfiguration.current.orientation) {
+        when(LocalConfiguration.current.orientation) {
             ORIENTATION_PORTRAIT -> 90
             ORIENTATION_LANDSCAPE -> 180
             else -> 0

@@ -105,7 +105,7 @@ private fun NewsMessageContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    text = AnnotatedString.Companion.fromHtml(
+                    text = AnnotatedString.fromHtml(
                         message?.title ?: ""
                     ),
                     style = LocalTypography.current.quaternary.regular.copy(
@@ -119,7 +119,7 @@ private fun NewsMessageContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(),
-                    text = AnnotatedString.Companion.fromHtml(message?.dateFormatted ?: ""),
+                    text = AnnotatedString.fromHtml(message?.dateFormatted ?: ""),
                     style = LocalTypography.current.quaternary.regular.copy(
                         color = LocalPalette.current.onSurface,
                         fontSize = 18.sp,
@@ -137,7 +137,7 @@ private fun NewsMessageContent(
                 .weight(1f)
                 .padding(8.dp)
                 .verticalScroll(rememberScrollState()),
-            text = AnnotatedString.Companion.fromHtml(
+            text = AnnotatedString.fromHtml(
                 message?.description ?: "",
                 linkStyles = TextLinkStyles(
                     style = SpanStyle(

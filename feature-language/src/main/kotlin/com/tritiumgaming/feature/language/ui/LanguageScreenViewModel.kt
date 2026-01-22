@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.language.ui
 
-import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
@@ -8,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.feature.language.app.container.LanguageContainerProvider
 import com.tritiumgaming.shared.data.language.model.LanguageEntity
 import com.tritiumgaming.shared.data.language.source.LanguageDatastore
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
@@ -16,8 +16,6 @@ import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
-import com.tritiumgaming.shared.data.language.usecase.SetupLanguageUseCase
-import com.tritiumgaming.feature.language.app.container.LanguageContainerProvider
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -28,7 +26,6 @@ class LanguageScreenViewModel(
     private val getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase,
     private val getDefaultLanguageUseCase: GetDefaultLanguageUseCase,
     private val setDefaultLanguageUseCase: SetDefaultLanguageUseCase,
-    private val initLanguageDataStoreUseCase: SetupLanguageUseCase,
     private val initFlowLanguageUseCase: InitFlowLanguageUseCase,
     private val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
     private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase
@@ -83,17 +80,6 @@ class LanguageScreenViewModel(
         }
     }
 
-    private fun initialDataStoreSetupEvent() {
-        initLanguageDataStoreUseCase()
-    }
-
-    init {
-        Log.d("LanguageScreenViewModel", "Initializing...")
-
-        initialDataStoreSetupEvent()
-
-    }
-
     companion object {
 
         val Factory: ViewModelProvider.Factory = viewModelFactory {
@@ -104,7 +90,6 @@ class LanguageScreenViewModel(
                 val getLanguagesUseCase: GetAvailableLanguagesUseCase = container.getAvailableLanguagesUseCase
                 val getDefaultLanguageUseCase: GetDefaultLanguageUseCase = container.getDefaultLanguageUseCase
                 val setDefaultLanguageUseCase: SetDefaultLanguageUseCase = container.setDefaultLanguageUseCase
-                val initLanguageDataStoreUseCase: SetupLanguageUseCase = container.initLanguageDataStoreUseCase
                 val initFlowLanguageUseCase: InitFlowLanguageUseCase = container.initFlowLanguageUseCase
                 val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase = container.saveCurrentLanguageUseCase
                 val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase = container.loadCurrentLanguageUseCase
@@ -114,7 +99,6 @@ class LanguageScreenViewModel(
                     getAvailableLanguagesUseCase = getLanguagesUseCase,
                     getDefaultLanguageUseCase = getDefaultLanguageUseCase,
                     setDefaultLanguageUseCase = setDefaultLanguageUseCase,
-                    initLanguageDataStoreUseCase = initLanguageDataStoreUseCase,
                     initFlowLanguageUseCase = initFlowLanguageUseCase,
                     saveCurrentLanguageUseCase = saveCurrentLanguageUseCase,
                     loadCurrentLanguageUseCase = loadCurrentLanguageUseCase

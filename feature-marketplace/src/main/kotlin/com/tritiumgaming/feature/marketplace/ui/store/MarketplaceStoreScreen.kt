@@ -16,11 +16,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.feature.marketplace.ui.MarketplaceViewModel
 import com.tritiumgaming.feature.marketplace.ui.store.components.PaletteCard
 import com.tritiumgaming.shared.data.market.palette.model.MarketPalette
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 
 @Composable
 @Preview

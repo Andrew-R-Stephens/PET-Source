@@ -74,10 +74,10 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.feature.account.ui.component.AccountBannerComposite
 import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
+import com.tritiumgaming.shared.data.account.model.SignInOptions
 import kotlinx.coroutines.launch
 
 @Composable

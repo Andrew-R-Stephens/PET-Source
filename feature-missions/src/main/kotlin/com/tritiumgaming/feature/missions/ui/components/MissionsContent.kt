@@ -43,10 +43,9 @@ import com.tritiumgaming.core.ui.common.other.PETImageButton
 import com.tritiumgaming.core.ui.common.other.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.feature.missions.app.mappers.mission.toStringResource
 import com.tritiumgaming.feature.missions.ui.MissionSpinnerUiState
-import com.tritiumgaming.feature.missions.ui.MissionUiState
+import com.tritiumgaming.shared.data.mission.model.Mission
 
 @Composable
 fun MissionsContent(

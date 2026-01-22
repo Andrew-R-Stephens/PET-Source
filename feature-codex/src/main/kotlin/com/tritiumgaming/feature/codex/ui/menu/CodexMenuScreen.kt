@@ -50,9 +50,9 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.theme.white
+import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
-import com.tritiumgaming.feature.codex.ui.CodexScreen
 
 @Composable
 fun CodexMenuScreen(
@@ -396,9 +396,7 @@ fun CodexMenuGhostLabelPreview() {
 @Preview
 private fun CodexMenuContentPreview() {
 
-    SelectiveTheme(
-
-    ) {
+    SelectiveTheme {
         CodexMenuScreen()
     }
 

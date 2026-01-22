@@ -25,16 +25,13 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.missions.ui.DifficultyUiState
 import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
 import com.tritiumgaming.feature.missions.ui.MissionSpinnerUiState
-import com.tritiumgaming.feature.missions.ui.MissionUiState
 import com.tritiumgaming.feature.missions.ui.NamesSpinnerUiState
-import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
 import com.tritiumgaming.feature.missions.ui.Response
-import com.tritiumgaming.shared.data.ghostname.model.GhostName
-import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.feature.missions.ui.components.GhostNameContent
 import com.tritiumgaming.feature.missions.ui.components.GhostResponseContent
 import com.tritiumgaming.feature.missions.ui.components.MissionWrapperActions
 import com.tritiumgaming.feature.missions.ui.components.MissionsContent
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
 
 @Composable
 internal fun ObjectivesContentLandscape(

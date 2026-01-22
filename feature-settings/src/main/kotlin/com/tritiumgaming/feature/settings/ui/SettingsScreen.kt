@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.settings.ui
 
-import com.tritiumgaming.core.resources.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -38,6 +37,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
@@ -50,7 +50,6 @@ import com.tritiumgaming.feature.settings.ui.components.CarouselComposable
 import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSeekbar
 import com.tritiumgaming.feature.settings.ui.components.LabeledSwitch
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
-import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.annotations.TestOnly
 
 @Preview
@@ -735,7 +734,7 @@ private fun saveAllPreferences(
 
     activity.recreate()*/
 
-    val message = "Changes Saved"
+    "Changes Saved"
     //Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
 

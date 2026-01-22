@@ -41,11 +41,11 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
+import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
-import com.tritiumgaming.feature.maps.app.mappers.map.toDrawableResource
-import com.tritiumgaming.feature.maps.app.mappers.map.toStringResource
 
 @Composable
 fun MapMenuScreen(

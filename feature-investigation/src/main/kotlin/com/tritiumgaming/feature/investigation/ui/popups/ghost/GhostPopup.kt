@@ -52,10 +52,10 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.popups.common.PageButton
+import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
 
 
 @Composable
@@ -88,15 +88,15 @@ private fun GhostPopupContent(
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val image = ghostPopupRecord.icon.toDrawableResource()
-    val title: AnnotatedString = AnnotatedString.Companion.fromHtml(
+    val title: AnnotatedString = AnnotatedString.fromHtml(
         stringResource(ghostPopupRecord.name.toStringResource()))
-    val description = AnnotatedString.Companion.fromHtml(
+    val description = AnnotatedString.fromHtml(
         stringResource(ghostPopupRecord.info.toStringResource()))
-    val strengths = AnnotatedString.Companion.fromHtml(
+    val strengths = AnnotatedString.fromHtml(
         stringResource(ghostPopupRecord.strengthData.toStringResource()))
-    val weakness = AnnotatedString.Companion.fromHtml(
+    val weakness = AnnotatedString.fromHtml(
         stringResource(ghostPopupRecord.weaknessData.toStringResource()))
-    val huntInfo = AnnotatedString.Companion.fromHtml(
+    val huntInfo = AnnotatedString.fromHtml(
         stringResource(ghostPopupRecord.huntData.toStringResource()))
 
     val primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit) =

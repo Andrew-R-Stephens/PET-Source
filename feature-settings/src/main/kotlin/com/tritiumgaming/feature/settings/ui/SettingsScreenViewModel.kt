@@ -13,6 +13,18 @@ import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
+import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
+import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
+import com.tritiumgaming.shared.data.market.model.IncrementDirection
+import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
@@ -20,21 +32,6 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUs
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
-import com.tritiumgaming.shared.data.market.model.IncrementDirection
-import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
-import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
-import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
-import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
-import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
-import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -45,7 +42,6 @@ import kotlinx.coroutines.launch
 
 class SettingsScreenViewModel(
     // Global Preferences
-    private val initGlobalPreferencesDataStoreUseCase: SetupUserPreferencesUseCase,
     private val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     private val setAllowCellularDataUseCase: SetAllowCellularDataUseCase,
     private val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
@@ -65,14 +61,6 @@ class SettingsScreenViewModel(
     private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
     private val findNextAvailablePaletteUseCase: GetNextUnlockedPaletteUseCase,
 ) : ViewModel() {
-
-    data class UnlockedPalettes(
-        val palettes: List<AccountMarketPalette> = emptyList()
-    )
-
-    data class UnlockedTypographies(
-        val typographies: List<AccountMarketTypography> = emptyList()
-    )
 
     private val _unlockedPalettes = MutableStateFlow(UnlockedPalettes())
     val unlockedPalettes = _unlockedPalettes
@@ -155,7 +143,22 @@ class SettingsScreenViewModel(
      * Palettes
      */
 
-    fun saveCurrentPaletteUUID(uuid: String) {
+    private suspend fun initUnlockedPalettes() {
+        try {
+            val result = fetchUnlockedPaletteUseCase()
+            val list = result.getOrThrow()
+
+            _unlockedPalettes.update {
+                it.copy(
+                    palettes = list
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun saveCurrentPaletteUUID(uuid: String) {
         viewModelScope.launch {
             saveCurrentPaletteUseCase(uuid)
         }
@@ -178,7 +181,7 @@ class SettingsScreenViewModel(
         }
     }
 
-    fun getPaletteByUUID(uuid: String): ExtendedPalette {
+    private fun getPaletteByUUID(uuid: String): ExtendedPalette {
         return try {
             getPaletteByUUIDUseCase(uuid).getOrThrow().toPaletteResource()
         } catch (e: Exception) {
@@ -190,6 +193,21 @@ class SettingsScreenViewModel(
     /**
      * Typographies
      */
+
+    private suspend fun initUnlockedTypographies() {
+        try {
+            val result = fetchUnlockedTypographiesUseCase()
+            val list = result.getOrThrow()
+
+            _unlockedTypographies.update {
+                it.copy(
+                    typographies = list
+                )
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
     private fun saveCurrentTypographyUUID(uuid: String) {
         viewModelScope.launch {
@@ -214,7 +232,7 @@ class SettingsScreenViewModel(
         }
     }
 
-    fun getTypographyByUUID(uuid: String): ExtendedTypography {
+    private fun getTypographyByUUID(uuid: String): ExtendedTypography {
         return try {
             getTypographyByUUIDUseCase(uuid).getOrThrow()
                 .toTypographyResource()
@@ -224,44 +242,8 @@ class SettingsScreenViewModel(
         }
     }
 
-    private fun initialDataStoreSetupEvent() {
-        initGlobalPreferencesDataStoreUseCase()
-    }
-
-    private suspend fun initUnlockedPalettes() {
-        try {
-            val result = fetchUnlockedPaletteUseCase()
-            val list = result.getOrThrow()
-
-            _unlockedPalettes.update {
-                it.copy(
-                    palettes = list
-                )
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    private suspend fun initUnlockedTypographies() {
-        try {
-            val result = fetchUnlockedTypographiesUseCase()
-            val list = result.getOrThrow()
-
-            _unlockedTypographies.update {
-                it.copy(
-                    typographies = list
-                )
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
     init {
         Log.d("GlobalPreferencesViewModel", "Initializing...")
-
-        initialDataStoreSetupEvent()
 
         viewModelScope.launch {
             initUnlockedPalettes()
@@ -278,7 +260,6 @@ class SettingsScreenViewModel(
                 val container = (application as SettingsContainerProvider).provideSettingsContainer()
 
                 // Global Preferences
-                val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase = container.setupGlobalPreferencesUseCase
                 val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
                 val setAllowCellularDataUseCase: SetAllowCellularDataUseCase = container.setAllowCellularDataUseCase
                 val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase = container.setAllowHuntWarnAudioUseCase
@@ -300,7 +281,6 @@ class SettingsScreenViewModel(
 
                 SettingsScreenViewModel(
                     // Global Preferences
-                    initGlobalPreferencesDataStoreUseCase = setupGlobalPreferencesUseCase,
                     initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
                     setAllowCellularDataUseCase = setAllowCellularDataUseCase,
                     setAllowHuntWarnAudioUseCase = setAllowHuntWarnAudioUseCase,

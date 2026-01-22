@@ -175,13 +175,13 @@ fun CodexEquipmentDisplay(
 
     val image = selectedItem.image.toDrawableResource()
 
-    val primaryTitle: AnnotatedString? = AnnotatedString.Companion.fromHtml(
+    val primaryTitle: AnnotatedString = AnnotatedString.fromHtml(
         stringResource(selectedGroup.name.toStringResource()))
 
-    val primaryText = AnnotatedString.Companion.fromHtml(
+    val primaryText = AnnotatedString.fromHtml(
         stringResource(selectedItem.info.toStringResource()))
 
-    val secondaryText = AnnotatedString.Companion.fromHtml(
+    val secondaryText = AnnotatedString.fromHtml(
         stringResource(selectedItem.flavor.toStringResource()))
 
     val positiveAttributes = selectedItem.positiveAttributes.map {
@@ -189,7 +189,7 @@ fun CodexEquipmentDisplay(
     val negativeAttributes = selectedItem.negativeAttributes.map {
         stringResource(it.toStringResource()) }.joinToString { "$it " }
 
-    val footerText = AnnotatedString.Companion.fromHtml(
+    val footerText = AnnotatedString.fromHtml(
         "$positiveAttributes $negativeAttributes")
 
     val buyCost = integerResource(selectedGroup.buyCostData.toIntegerResource())
@@ -238,7 +238,7 @@ fun CodexEquipmentDisplay(
         primaryDataContent = { modifier ->
 
             CodexItemPopupDataRow(
-                modifier = Modifier.Companion
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .heightIn(max = 32.dp),
@@ -247,7 +247,7 @@ fun CodexEquipmentDisplay(
             )
 
             CodexItemPopupDataRow(
-                modifier = Modifier.Companion
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .heightIn(max = 32.dp),
@@ -256,7 +256,7 @@ fun CodexEquipmentDisplay(
             )
 
             CodexItemPopupDataRow(
-                modifier = Modifier.Companion
+                modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
                     .heightIn(max = 32.dp),

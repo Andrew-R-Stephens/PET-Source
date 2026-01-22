@@ -29,21 +29,19 @@ import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
-import com.tritiumgaming.shared.data.language.usecase.SetupLanguageUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.SetupNewsletterUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
@@ -52,7 +50,6 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUs
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers
 
 class HomeContainer(
@@ -65,7 +62,6 @@ class HomeContainer(
     val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
     val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
     val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase,
-    val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
     val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     val setAllowCellularDataUseCase: SetAllowCellularDataUseCase,
     val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase,
@@ -77,7 +73,6 @@ class HomeContainer(
     val getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase,
     val getDefaultLanguageUseCase: GetDefaultLanguageUseCase,
     val setDefaultLanguageUseCase: SetDefaultLanguageUseCase,
-    val initLanguageDataStoreUseCase: SetupLanguageUseCase,
     val initFlowLanguageUseCase: InitFlowLanguageUseCase,
     val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
     val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase,
@@ -128,9 +123,9 @@ class HomeContainer(
             coroutineDispatcher = Dispatchers.IO
         )
     }
-    internal val setupNewsletterUseCase = SetupNewsletterUseCase(
+    /*internal val setupNewsletterUseCase = SetupNewsletterUseCase(
         repository = newsletterRepository
-    )
+    )*/
     internal val getFlowNewsletterDatastoreUseCase = GetFlowNewsletterDatastoreUseCase(
         repository = newsletterRepository
     )

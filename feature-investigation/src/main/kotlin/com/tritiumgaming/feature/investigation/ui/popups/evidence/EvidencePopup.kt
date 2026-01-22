@@ -57,9 +57,6 @@ import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toIntegerResource
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toStringResource
@@ -69,6 +66,9 @@ import com.tritiumgaming.feature.investigation.ui.popups.common.AnimatedGif
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.common.PageButton
 import com.tritiumgaming.feature.investigation.ui.popups.common.PopupDataRow
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 
 @Composable
 fun EvidencePopup(
@@ -729,9 +729,9 @@ fun EvidenceTypeLandscapePopup(
 fun EvidenceTypePortraitPreview() {
 
     val image = EvidenceResources.EvidenceIcon.DOTS.toDrawableResource()
-    val evidenceTitle: AnnotatedString = AnnotatedString.Companion.fromHtml(
+    val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
         stringResource(EvidenceResources.EvidenceTitle.DOTS.toStringResource()))
-    val evidenceDescription = AnnotatedString.Companion.fromHtml(
+    val evidenceDescription = AnnotatedString.fromHtml(
         stringResource(EvidenceResources.EvidenceDescription.DOTS.toStringResource()))
     val equipmentTypeImage = EquipmentResources.EquipmentIcon.DOTS.toDrawableResource()
 
@@ -855,9 +855,9 @@ fun EvidenceTypePortraitPreview() {
 fun EvidenceTypePopupLandscapePreview() {
 
     val evidenceImage = EvidenceResources.EvidenceIcon.DOTS.toDrawableResource()
-    val evidenceTitle: AnnotatedString = AnnotatedString.Companion.fromHtml(
+    val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
         stringResource(EvidenceResources.EvidenceTitle.DOTS.toStringResource()))
-    val evidenceDescription = AnnotatedString.Companion.fromHtml(
+    val evidenceDescription = AnnotatedString.fromHtml(
         stringResource(EvidenceResources.EvidenceDescription.DOTS.toStringResource()))
     val equipmentTypeImage = EquipmentResources.EquipmentIcon.DOTS.toDrawableResource()
 

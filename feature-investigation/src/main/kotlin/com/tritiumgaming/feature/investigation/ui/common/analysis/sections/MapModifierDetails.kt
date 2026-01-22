@@ -9,12 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
+import com.tritiumgaming.feature.investigation.ui.MapUiState
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
-import com.tritiumgaming.feature.investigation.ui.MapUiState
 import java.util.Locale
 
 @Composable

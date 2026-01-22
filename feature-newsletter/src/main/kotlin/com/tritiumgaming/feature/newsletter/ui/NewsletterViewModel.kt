@@ -14,7 +14,6 @@ import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUs
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.SetupNewsletterUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +24,6 @@ import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
 class NewsletterViewModel(
-    private val setupNewsletterDatastoreUseCase: SetupNewsletterUseCase,
     private val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
     private val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
     private val fetchNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
@@ -129,14 +127,8 @@ class NewsletterViewModel(
 
     }
 
-    private fun initialDatastoreSetupEvent() {
-        setupNewsletterDatastoreUseCase()
-    }
-
     init {
         Log.d("NewsletterViewModel", "Initializing datastore...")
-
-        initialDatastoreSetupEvent()
 
         loadInboxes()
     }
@@ -149,7 +141,7 @@ class NewsletterViewModel(
                 val container = (application as NewsletterContainerProvider).provideNewsletterContainer()
 
                 NewsletterViewModel(
-                    setupNewsletterDatastoreUseCase = container.setupNewsletterUseCase,
+                    //setupNewsletterDatastoreUseCase = container.setupNewsletterUseCase,
                     getFlowNewsletterDatastoreUseCase = container.getFlowNewsletterDatastoreUseCase,
                     getFlowNewsletterInboxesUseCase = container.getFlowNewsletterInboxesUseCase,
                     fetchNewsletterInboxesUseCase = container.getNewsletterInboxesUseCase,

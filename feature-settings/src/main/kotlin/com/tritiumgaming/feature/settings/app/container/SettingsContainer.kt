@@ -1,12 +1,12 @@
 package com.tritiumgaming.feature.settings.app.container
 
 import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
@@ -16,10 +16,9 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUs
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 
 class SettingsContainer(
-    val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
+    //val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
     val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     val setAllowCellularDataUseCase: SetAllowCellularDataUseCase,
     val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase,

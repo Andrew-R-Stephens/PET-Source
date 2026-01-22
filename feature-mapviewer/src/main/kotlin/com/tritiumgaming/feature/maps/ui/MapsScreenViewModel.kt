@@ -8,6 +8,8 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.common.graphics.geometry.Point2D
 import com.tritiumgaming.core.common.graphics.geometry.Polygon
+import com.tritiumgaming.feature.maps.app.container.MapViewerContainerProvider
+import com.tritiumgaming.feature.maps.ui.mapdisplay.InteractiveMapUiState
 import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMap
 import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapFloor
 import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMaps
@@ -18,8 +20,6 @@ import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
 import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapFloorIndexUseCase
-import com.tritiumgaming.feature.maps.app.container.MapViewerContainerProvider
-import com.tritiumgaming.feature.maps.ui.mapdisplay.InteractiveMapUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -56,7 +56,7 @@ class MapsScreenViewModel(
         .first { map -> map.mapId == interactiveMapUiState.value.mapId }
 
     fun getFloorByIndex(index: Int): ComplexWorldMapFloor? =
-        currentComplexMap?.mapFloors[interactiveMapUiState.value.floorIndex]
+        currentComplexMap?.mapFloors?.get(interactiveMapUiState.value.floorIndex)
 
     fun getFloorImage(): SimpleMapResources.MapFloorImage = getSimpleMap()
         .getFloorImage(interactiveMapUiState.value.floorIndex)

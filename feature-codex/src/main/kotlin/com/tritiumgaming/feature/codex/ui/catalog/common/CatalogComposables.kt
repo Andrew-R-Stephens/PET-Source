@@ -35,9 +35,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -360,7 +357,7 @@ fun CodexItemLandscapePopup(
             )
         }
 
-        Row() {
+        Row {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -741,17 +738,17 @@ private fun CodexGroupPreview() {
 @Composable
 fun CodexItemPopupPortraitPreview() {
 
-    val primaryText = AnnotatedString.Companion.fromHtml(
+    val primaryText = AnnotatedString.fromHtml(
         stringResource(R.string.shop_equipment_crucifix_data_info_1))
-    val secondaryText = AnnotatedString.Companion.fromHtml(
+    val secondaryText = AnnotatedString.fromHtml(
         stringResource(R.string.shop_equipment_crucifix_data_flavortext_1))
     val footerText = listOf(
-        AnnotatedString.Companion.fromHtml(
+        AnnotatedString.fromHtml(
             stringResource(R.string.shop_equipment_crucifix_data_flavortext_1))
     )
-    val primaryTitle = AnnotatedString.Companion.fromHtml(
+    val primaryTitle = AnnotatedString.fromHtml(
         stringResource(R.string.equipment_info_name_crucifix))
-    val secondaryTitle = AnnotatedString.Companion.fromHtml(
+    val secondaryTitle = AnnotatedString.fromHtml(
         stringResource(R.string.equipment_info_name_crucifix))
     val buyCost = 3000
     val unlockLevel = 30
@@ -938,17 +935,17 @@ fun CodexItemPopupPortraitPreview() {
 @Composable
 fun CodexItemPopupLandscapePreview() {
 
-    val primaryText = AnnotatedString.Companion.fromHtml(
+    val primaryText = AnnotatedString.fromHtml(
         stringResource(R.string.shop_equipment_crucifix_data_info_1))
-    val secondaryText = AnnotatedString.Companion.fromHtml(
+    val secondaryText = AnnotatedString.fromHtml(
         stringResource(R.string.shop_equipment_crucifix_data_flavortext_1))
     val footerText = listOf(
-        AnnotatedString.Companion.fromHtml(
+        AnnotatedString.fromHtml(
             stringResource(R.string.shop_equipment_crucifix_data_flavortext_1))
     )
-    val primaryTitle = AnnotatedString.Companion.fromHtml(
+    val primaryTitle = AnnotatedString.fromHtml(
         stringResource(R.string.equipment_info_name_crucifix))
-    val secondaryTitle = AnnotatedString.Companion.fromHtml(
+    val secondaryTitle = AnnotatedString.fromHtml(
         stringResource(R.string.equipment_info_name_crucifix))
     val buyCost = 3000
     val unlockLevel = 30

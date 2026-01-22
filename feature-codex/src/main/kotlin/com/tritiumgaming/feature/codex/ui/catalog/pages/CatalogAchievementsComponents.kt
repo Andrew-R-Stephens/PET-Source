@@ -42,8 +42,6 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity
-import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
 import com.tritiumgaming.feature.codex.ui.CodexViewModel
@@ -52,6 +50,8 @@ import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItem
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsLandscape
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsPortrait
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
 
 @Composable
 fun CatalogAchievementListComponent(
@@ -227,10 +227,10 @@ fun CodexAchievementDisplay(
 
     val image = selectedGroup.icon.toDrawableResource()
 
-    val primaryTitle: AnnotatedString? = AnnotatedString.Companion.fromHtml(
+    val primaryTitle: AnnotatedString = AnnotatedString.fromHtml(
         stringResource(selectedGroup.name.toStringResource()))
 
-    val primaryText = AnnotatedString.Companion.fromHtml(
+    val primaryText = AnnotatedString.fromHtml(
         stringResource(selectedItem.infoText.toStringResource()))
 
     CodexItemPopup(

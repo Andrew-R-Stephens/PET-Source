@@ -10,11 +10,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
-import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
-import com.tritiumgaming.feature.investigation.ui.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostScore
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState

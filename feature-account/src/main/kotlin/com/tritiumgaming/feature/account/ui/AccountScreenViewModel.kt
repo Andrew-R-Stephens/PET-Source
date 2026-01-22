@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
 import com.tritiumgaming.shared.core.domain.market.user.usecase.DeactivateAccountUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.GetSignInCredentialsUseCase
 import com.tritiumgaming.shared.core.domain.market.user.usecase.SignInAccountUseCase
@@ -25,7 +26,6 @@ import com.tritiumgaming.shared.data.account.model.SignInOptions
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
-import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel

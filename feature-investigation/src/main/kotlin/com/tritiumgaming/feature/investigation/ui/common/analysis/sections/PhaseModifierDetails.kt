@@ -5,11 +5,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.tritiumgaming.feature.investigation.ui.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.common.analysis.CategoryColumn
 import com.tritiumgaming.feature.investigation.ui.common.analysis.CategoryRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
-import com.tritiumgaming.feature.investigation.ui.PhaseUiState
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable

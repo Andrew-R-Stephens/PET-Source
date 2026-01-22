@@ -148,7 +148,7 @@ fun ExpandableCategoryRow(
             modifier = Modifier
                 .size(18.dp),
             isCollapsed = isExpanded,
-            icon = _root_ide_package_.com.tritiumgaming.core.resources.R.drawable.ic_arrow_chevron_right,
+            icon = com.tritiumgaming.core.resources.R.drawable.ic_arrow_chevron_right,
             disabledRotationVertical = -90,
             disabledRotationHorizontal = -90,
             enabledRotationAddition = 180

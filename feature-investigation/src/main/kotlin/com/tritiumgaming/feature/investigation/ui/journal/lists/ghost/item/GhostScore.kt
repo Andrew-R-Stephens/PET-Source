@@ -22,7 +22,7 @@ data class GhostScore(
         _forcefullyRejected.update { reject }
     }
     fun toggleForcefullyRejected() {
-        _forcefullyRejected.update { it -> !it }
+        _forcefullyRejected.update { !it }
     }
 
     /**

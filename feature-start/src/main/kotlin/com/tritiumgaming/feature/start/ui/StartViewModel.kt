@@ -14,12 +14,9 @@ import com.tritiumgaming.feature.start.ui.reviewpopup.ReviewUiState
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.SetupNewsletterUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowIntroductionUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import com.tritiumgaming.shared.data.review.usecase.setup.InitFlowReviewTrackerUseCase
-import com.tritiumgaming.shared.data.review.usecase.setup.SetupReviewTrackerUseCase
 import com.tritiumgaming.shared.data.review.usecase.status.SetReviewRequestStatusUseCase
 import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUseCase
 import com.tritiumgaming.shared.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
@@ -32,18 +29,15 @@ import kotlinx.coroutines.launch
 
 class StartViewModel(
     // Global Preferences
-    private val setupUserPreferencesDataStoreUseCase: SetupUserPreferencesUseCase,
     private val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase,
     private val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
     // Review Tracker
-    private val setupReviewDataStoreUseCase: SetupReviewTrackerUseCase,
     private val initFlowReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
     private val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
     private val setAppTimeAliveUseCase: SetAppTimeAliveUseCase,
     private val incrementAppTimesOpenedUseCase: IncrementAppTimesOpenedByUseCase,
     private val setAppTimesOpenedUseCase: SetAppTimesOpenedUseCase,
     // Newsletter
-    private val setupNewsletterDatastoreUseCase: SetupNewsletterUseCase,
     private val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
     private val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
     private val fetchNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase
@@ -158,17 +152,17 @@ class StartViewModel(
         }
     }
 
-    private fun initialDataStoreSetupEvent() {
+    /*private fun initialDataStoreSetupEvent() {
         setupNewsletterDatastoreUseCase()
         setupUserPreferencesDataStoreUseCase()
         setupReviewDataStoreUseCase()
-    }
+    }*/
 
     init {
         Log.d("StartViewModel", "Initializing...")
 
         viewModelScope.launch {
-            initialDataStoreSetupEvent()
+            //initialDataStoreSetupEvent()
 
                 Log.d("StartViewModel",
                     "Incrementing times opened from: ${reviewFlow.value.timesOpened}")
@@ -195,36 +189,30 @@ class StartViewModel(
                 val container = (application as StartContainerProvider).provideStartContainer()
 
                 // Global Preferences
-                val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase = container.setupGlobalPreferencesUseCase
                 val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
                 val setAllowIntroductionUseCase: SetAllowIntroductionUseCase = container.setAllowIntroductionUseCase
                 // Reviews
-                val initReviewTrackerDataStoreUseCase: SetupReviewTrackerUseCase = container.initReviewTrackerDataStoreUseCase
                 val initFlowReviewTrackerUseCase: InitFlowReviewTrackerUseCase = container.initFlowReviewTrackerUseCase
                 val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase = container.setReviewRequestStatusUseCase
                 val setAppTimeAliveUseCase: SetAppTimeAliveUseCase = container.setAppTimeAliveUseCase
                 val incrementAppTimesOpenedUseCase: IncrementAppTimesOpenedByUseCase = container.incrementAppTimesOpenedUseCase
                 val saveAppTimesOpenedUseCase: SetAppTimesOpenedUseCase = container.setAppTimesOpenedUseCase
                 // Newsletter
-                val setupNewsletterDatastoreUseCase = container.setupNewsletterUseCase
                 val getFlowNewsletterDatastoreUseCase = container.getFlowNewsletterDatastoreUseCase
                 val getFlowNewsletterInboxesUseCase = container.getFlowNewsletterInboxesUseCase
                 val fetchNewsletterInboxesUseCase = container.getNewsletterInboxesUseCase
 
                 StartViewModel(
                     // Global Preferences
-                    setupUserPreferencesDataStoreUseCase = setupGlobalPreferencesUseCase,
                     initFlowUserPreferencesUseCase = initFlowGlobalPreferencesUseCase,
                     setAllowIntroductionUseCase = setAllowIntroductionUseCase,
                     // Reviews
-                    setupReviewDataStoreUseCase = initReviewTrackerDataStoreUseCase,
                     initFlowReviewTrackerUseCase = initFlowReviewTrackerUseCase,
                     setReviewRequestStatusUseCase = setReviewRequestStatusUseCase,
                     setAppTimeAliveUseCase = setAppTimeAliveUseCase,
                     incrementAppTimesOpenedUseCase = incrementAppTimesOpenedUseCase,
                     setAppTimesOpenedUseCase = saveAppTimesOpenedUseCase,
                     // Newsletter
-                    setupNewsletterDatastoreUseCase = setupNewsletterDatastoreUseCase,
                     getFlowNewsletterDatastoreUseCase = getFlowNewsletterDatastoreUseCase,
                     getFlowNewsletterInboxesUseCase = getFlowNewsletterInboxesUseCase,
                     fetchNewsletterInboxesUseCase = fetchNewsletterInboxesUseCase

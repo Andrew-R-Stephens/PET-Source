@@ -54,26 +54,24 @@ import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
-import com.tritiumgaming.shared.data.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.shared.data.market.bundle.repository.MarketBundleRemoteRepository
 import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
 import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
-import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
+import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
 import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
-import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
+import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
 import com.tritiumgaming.shared.data.newsletter.repository.NewsletterRepository
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
-import com.tritiumgaming.shared.data.newsletter.usecase.SetupNewsletterUseCase
 import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
@@ -87,11 +85,9 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUs
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
 import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
 import com.tritiumgaming.shared.data.review.usecase.setup.InitFlowReviewTrackerUseCase
-import com.tritiumgaming.shared.data.review.usecase.setup.SetupReviewTrackerUseCase
 import com.tritiumgaming.shared.data.review.usecase.status.SetReviewRequestStatusUseCase
 import com.tritiumgaming.shared.data.review.usecase.timealive.SetAppTimeAliveUseCase
 import com.tritiumgaming.shared.data.review.usecase.timesopened.IncrementAppTimesOpenedByUseCase
@@ -130,9 +126,9 @@ class CoreContainer(
             coroutineDispatcher = Dispatchers.IO
         )
     }
-    val setupNewsletterUseCase = SetupNewsletterUseCase(
+    /*val setupNewsletterUseCase = SetupNewsletterUseCase(
         repository = newsletterRepository
-    )
+    )*/
     val getFlowNewsletterDatastoreUseCase = GetFlowNewsletterDatastoreUseCase(
         repository = newsletterRepository
     )
@@ -158,9 +154,6 @@ class CoreContainer(
         )
     }
 
-    val setupGlobalPreferencesUseCase = SetupUserPreferencesUseCase(
-        repository = globalPreferencesRepository
-    )
     val initFlowGlobalPreferencesUseCase = InitFlowUserPreferencesUseCase(
         repository = globalPreferencesRepository
     )
@@ -281,9 +274,9 @@ class CoreContainer(
         )
     }
 
-    val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
+    /*val setupReviewTrackerUseCase = SetupReviewTrackerUseCase(
         repository = reviewTrackerRepository
-    )
+    )*/
     val initializeReviewTrackerUseCase = InitFlowReviewTrackerUseCase(
         repository = reviewTrackerRepository
     )
@@ -402,9 +395,9 @@ class CoreContainer(
     val setDefaultLanguageUseCase = SetDefaultLanguageUseCase(
         repository = languageRepository
     )
-    val setupLanguageUseCase = SetupLanguageUseCase(
+    /*val setupLanguageUseCase = SetupLanguageUseCase(
         repository = languageRepository
-    )
+    )*/
     val initFlowLanguageUseCase = InitFlowLanguageUseCase(
         repository = languageRepository
     )

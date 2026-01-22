@@ -61,8 +61,8 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.newsletter.app.mappers.toIconResource
 import com.tritiumgaming.feature.newsletter.app.mappers.toStringResource
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
-import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon
 
 @Composable
