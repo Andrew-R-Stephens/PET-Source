@@ -5,7 +5,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.data.language.source.LanguageDatastore
 import kotlinx.coroutines.flow.Flow
@@ -42,10 +41,6 @@ class LanguageDatastoreDataSource(
         }
 
         return currentLanguageCode
-    }
-
-    override fun initializeDatastoreLiveData() {
-        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
     override fun initDatastoreFlow(): Flow<LanguageDatastore.LanguagePreferences> = flow

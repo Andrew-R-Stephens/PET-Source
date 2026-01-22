@@ -9,9 +9,9 @@ data class ComplexFloorDto(
     internal val floorId: Int,
     internal val floorName: String?,
     internal val floorImage: String?,
-    internal val floorLayer: com.tritiumgaming.data.map.complex.dto.ComplexFloorLayerTypeDto,
-    internal val floorRooms: List<com.tritiumgaming.data.map.complex.dto.ComplexRoomDto>,
-    internal val floorPOIs: List<com.tritiumgaming.data.map.complex.dto.ComplexPoiDto>
+    internal val floorLayer: ComplexFloorLayerTypeDto,
+    internal val floorRooms: List<ComplexRoomDto>,
+    internal val floorPOIs: List<ComplexPoiDto>
 ) {
 
     constructor(floor: WorldMapsSerializerDto.WorldMapSerializerDto.FloorSerializerDto) : this(

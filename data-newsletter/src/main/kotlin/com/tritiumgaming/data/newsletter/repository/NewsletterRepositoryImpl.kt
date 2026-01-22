@@ -121,12 +121,6 @@ class NewsletterRepositoryImpl(
     override suspend fun saveInboxLastReadDate(id: String, date: Long) =
         dataStoreSource.setLastReadDate(id, date)
 
-    init {
-        initializeDatastoreLiveData()
-    }
-
-    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
-
     override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
     private companion object {

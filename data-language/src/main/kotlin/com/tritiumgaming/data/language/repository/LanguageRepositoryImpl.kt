@@ -13,8 +13,6 @@ class LanguageRepositoryImpl(
 
     private var defaultLanguage: LanguageEntity? = null
 
-    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
-
     override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
     override fun getAvailableLanguages(): Result<List<LanguageEntity>> {

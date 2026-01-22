@@ -8,8 +8,6 @@ class GlobalPreferencesRepositoryImpl(
     private val dataStoreSource: GlobalPreferencesDatastore
 ): GlobalPreferencesRepository {
 
-    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
-
     override fun initDatastoreFlow(): Flow<GlobalPreferencesDatastore.GlobalPreferences> =
         dataStoreSource.initDatastoreFlow()
 

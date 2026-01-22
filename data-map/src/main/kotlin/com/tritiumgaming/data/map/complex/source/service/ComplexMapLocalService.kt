@@ -14,7 +14,7 @@ class ComplexMapLocalService: ComplexMapService {
 
     override fun readFile(assets: AssetManager, fileName: String): Result<WorldMapsSerializerDto> {
 
-        val inputStream: InputStream? = assets.open(fileName)
+        val inputStream: InputStream = assets.open(fileName)
 
         //Creating a JSONObject object
         val gson = GsonBuilder().create()

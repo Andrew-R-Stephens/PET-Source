@@ -7,7 +7,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
-import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.data.newsletter.source.NewsletterDatastore
 import kotlinx.coroutines.flow.Flow
@@ -48,10 +47,6 @@ class NewsletterDatastoreDataSource(
                 preferences[it] = date
             }
         }
-    }
-
-    override fun initializeDatastoreLiveData() {
-        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
     override fun initDatastoreFlow(): Flow<NewsletterDatastore.NewsletterPreferences> = flow

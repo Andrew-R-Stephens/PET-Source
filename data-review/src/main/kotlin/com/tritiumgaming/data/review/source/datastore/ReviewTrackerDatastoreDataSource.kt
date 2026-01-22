@@ -10,7 +10,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
-import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
 import kotlinx.coroutines.flow.Flow
@@ -92,10 +91,6 @@ class ReviewTrackerDatastoreDataSource(
             Log.d("ReviewTrackingRepository", "get times opened: $timesOpened")
         }
         return timesOpened
-    }
-
-    override fun initializeDatastoreLiveData() {
-        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
     override fun initDatastoreFlow(): Flow<ReviewTrackerDatastore.ReviewTrackerPreferences> = flow

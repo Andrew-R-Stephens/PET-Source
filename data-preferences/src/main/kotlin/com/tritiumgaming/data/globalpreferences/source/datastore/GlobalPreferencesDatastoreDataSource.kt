@@ -10,7 +10,6 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.lifecycle.liveData
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
@@ -179,10 +178,6 @@ class GlobalPreferencesDatastoreDataSource(
             preferences[KEY_TYPOGRAPHY]?.let { typography = it }
         }
         return typography
-    }
-
-    override fun initializeDatastoreLiveData() {
-        liveData { emit(fetchDatastoreInitialPreferences()) }
     }
 
     override fun initDatastoreFlow(): Flow<GlobalPreferences> = flow

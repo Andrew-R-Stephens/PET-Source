@@ -11,7 +11,7 @@ class ReviewTrackerRepositoryImpl(
 
     override var appInitializationState: Int = NOT_INITIALIZED
 
-    override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
+    //override fun initializeDatastoreLiveData() = dataStoreSource.initializeDatastoreLiveData()
 
     override fun initDatastoreFlow() = dataStoreSource.initDatastoreFlow()
 
