@@ -1,5 +1,7 @@
 package com.tritiumgaming.feature.settings.ui
 
+import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
+
 data class SettingsScreenUiState(
     val screensaverPreference: Boolean = false,
     val networkPreference: Boolean = true,
@@ -7,5 +9,7 @@ data class SettingsScreenUiState(
     val ghostReorderPreference: Boolean = true,
     val introductionPermissionPreference: Boolean = true,
     val rTLPreference: Boolean = true,
-    val huntWarnDurationPreference: Long = SettingsScreenViewModel.Companion.FOREVER
+    val huntWarnDurationPreference: Long = SettingsScreenViewModel.FOREVER,
+    val paletteUiState: PaletteUiState = PaletteUiState(),
+    val typographyUiState: TypographyUiState = TypographyUiState()
 )
