@@ -67,6 +67,13 @@ class PETActivity : AppCompatActivity(),
 
         super.onCreate(savedInstanceState)
 
+        // Initialize the view model. This will gather consent and initialize Google Mobile Ads.
+        petActivityViewModel.initMobileAdsConsentManager(this@PETActivity)
+
+        initFirebaseAnalytics(this)
+
+        checkForAppUpdate(this@PETActivity)
+
         setContent {
 
             val paletteState = petActivityViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
@@ -98,13 +105,6 @@ class PETActivity : AppCompatActivity(),
             }
 
         }
-
-        // Initialize the view model. This will gather consent and initialize Google Mobile Ads.
-        petActivityViewModel.initMobileAdsConsentManager(this@PETActivity)
-
-        initFirebaseAnalytics(this)
-
-        checkForAppUpdate(this@PETActivity)
 
     }
 
