@@ -593,10 +593,10 @@
                 <a>There are 2 states of this ghost: Calm and Aggressive.</a><br>
                 <br>
                 <a>Calm: Hunts at 10\% Sanity.</a><br>
-                <a>Hunt movement speed is 1.45 m/s.Incense affects last for 5 seconds.</a><br>
+                <a>Hunt movement speed is 1.45 m/s. Incense affects last for 5 seconds.</a><br>
                 <br>
                 <a>Aggressive:</a><br>
-                <a>Hunts at 65\% Sanity. Crucifix range is reduced by 2 meters. Hunt movement speed is increased to 1.96 m/s. Hunt duration is 20% shorter if hunt starts while in this state.</a><br>
+                <a>Hunts at 65\% Sanity. Crucifix range is reduced by 2 meters. Hunt movement speed is increased to 1.96 m/s. Hunt duration is 20\% shorter if hunt starts while in this state.</a><br>
                 <a>The Obambo starts with Calm state which lasts for 1 minute after initial player entry. Then, it will switch between Calm and Aggressive states every 2 minutes. This can even happen during a hunt.</a>
             ]]>
         </string>

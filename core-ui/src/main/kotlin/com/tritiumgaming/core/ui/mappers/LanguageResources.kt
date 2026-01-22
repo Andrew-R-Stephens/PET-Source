@@ -2,12 +2,11 @@ package com.tritiumgaming.core.ui.mappers
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.language.mappers.LanguageResources
 import com.tritiumgaming.shared.data.language.mappers.LanguageResources.LocalizationCode
 import com.tritiumgaming.shared.data.language.mappers.LanguageResources.LocalizedTitle
 import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTitle
 
-@StringRes fun LanguageResources.LocalizedTitle.toStringResource(): Int =
+@StringRes fun LocalizedTitle.toStringResource(): Int =
     when(this) {
         LocalizedTitle.ZH_HANS -> R.string.language_name_localized_zh_Hans
         LocalizedTitle.CS -> R.string.language_name_localized_cs
@@ -22,9 +21,9 @@ import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTi
         LocalizedTitle.UK -> R.string.language_name_localized_uk
     }
 
-@StringRes fun LanguageResources.NativeTitle.toStringResource(): Int =
+@StringRes fun NativeTitle.toStringResource(): Int =
     when(this) {
-        LanguageResources.NativeTitle.ZH_HANS -> R.string.language_name_native_zh_Hans
+        NativeTitle.ZH_HANS -> R.string.language_name_native_zh_Hans
         NativeTitle.CS -> R.string.language_name_native_cs
         NativeTitle.DE -> R.string.language_name_native_de
         NativeTitle.EN -> R.string.language_name_native_en
@@ -37,7 +36,7 @@ import com.tritiumgaming.shared.data.language.mappers.LanguageResources.NativeTi
         NativeTitle.UK -> R.string.language_name_native_uk
     }
 
-@StringRes fun LanguageResources.LocalizationCode.toStringResource(): Int =
+@StringRes fun LocalizationCode.toStringResource(): Int =
     when(this) {
         LocalizationCode.ZH_HANS -> R.string.language_code_zh_Hans
         LocalizationCode.CS -> R.string.language_code_cs

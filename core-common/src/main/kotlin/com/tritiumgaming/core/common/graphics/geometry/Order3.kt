@@ -113,7 +113,6 @@ internal class Order3(
         val a = ycoeff2 / ycoeff3
         val b = ycoeff1 / ycoeff3
         val c = (ycoeff0 - y) / ycoeff3
-        val roots = 0
         var Q = (a * a - 3.0 * b) / 9.0
         var R = (2.0 * a * a * a - 9.0 * a * b + 27.0 * c) / 54.0
         val R2 = R * R

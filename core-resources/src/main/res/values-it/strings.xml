@@ -1006,7 +1006,6 @@
 
     <plurals name="marketplace_description_watch_ad">
         <item quantity="one">Credito accompagnatore</item>
-        <item quantity="many">Crediti complementari</item>
         <item quantity="other">Crediti complementari</item>
     </plurals>
 
@@ -1127,10 +1126,10 @@
 
     <string name="ghost_huntingdata_dayan" translatable="false">
 <![CDATA[
-<a>Caccia al 50%</a>
+<a>Caccia al 50\%</a>
 La sanità mentale è impostata per impostazione predefinita e viene modificata in base alla vicinanza e al movimento dei giocatori.</a><br>
-Il livello di sanità mentale per l\'inizio della caccia aumenta al 65% se un giocatore nelle vicinanze (entro 10 metri) sta camminando.</a><br>
-Il livello di sanità mentale per l\'inizio della caccia diminuisce al 45% se tutti i giocatori nelle vicinanze (entro 10 metri) sono fermi.</a>
+Il livello di sanità mentale per l\'inizio della caccia aumenta al 6\5% se un giocatore nelle vicinanze (entro 10 metri) sta camminando.</a><br>
+Il livello di sanità mentale per l\'inizio della caccia diminuisce al 45\% se tutti i giocatori nelle vicinanze (entro 10 metri) sono fermi.</a>
 ]]>
 </string>
     <string name="ghost_huntingdata_gallu" translatable="false">

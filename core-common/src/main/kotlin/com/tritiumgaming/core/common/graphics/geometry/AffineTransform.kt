@@ -1329,8 +1329,7 @@ class AffineTransform : Cloneable, Serializable {
      * @since 1.2
      */
     fun shear(shx: Double, shy: Double) {
-        val state = this.state
-        when (state) {
+        when (val state = this.state) {
             APPLY_SHEAR or APPLY_SCALE or APPLY_TRANSLATE, APPLY_SHEAR or APPLY_SCALE -> {
                 var M0 = scaleX
                 var M1 = shearX

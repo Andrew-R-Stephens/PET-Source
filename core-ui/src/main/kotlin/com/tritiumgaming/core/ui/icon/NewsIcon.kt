@@ -13,8 +13,6 @@ fun NewsIcon(
     colors: IconVectorColors = IconVectorColors.defaults()
 ) {
 
-    val vector =
-
     Image(
         modifier = modifier,
         imageVector = getNewsVector(colors),
