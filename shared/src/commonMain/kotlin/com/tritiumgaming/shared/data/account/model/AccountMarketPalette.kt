@@ -4,7 +4,7 @@ import com.tritiumgaming.shared.data.market.model.FeatureAvailability
 import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
 
 data class AccountMarketPalette (
-    internal val uuid: String,
+    val uuid: String,
     internal val name: String? = "",
     internal val group: String? = "",
     internal val buyCredits: Long = 0L,

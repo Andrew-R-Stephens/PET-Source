@@ -1,30 +1,28 @@
 package com.tritiumgaming.shared.data.market.typography.usecase
 
-import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
 import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
 import com.tritiumgaming.shared.data.account.model.toAccountMarketTypography
 import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
-import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import com.tritiumgaming.shared.data.market.typography.model.toAccountMarketTypography
 import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
 
-class GetNextUnlockedTypographyUseCase(
+class FetchUnlockedTypographiesUseCase(
     private val marketRepository: MarketCatalogTypographyRepository,
     private val accountRepository: FirestoreAccountRepository
 ) {
-    suspend operator fun invoke(
-        currentUUID: String,
-        direction: IncrementDirection
-    ): String {
+    suspend operator fun invoke(): Result<List<AccountMarketTypography>> {
 
+        println("getNextUnlockedPaletteUseCase getting Market Palettes")
         val marketTypographies: List<AccountMarketTypography> =
             marketRepository.get()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
 
+        println("getNextUnlockedPaletteUseCase getting Account Palettes")
         val accountTypographies: List<AccountMarketTypography> =
             accountRepository.fetchUnlockedTypographies()
                 .getOrDefault(emptyList()).toAccountMarketTypography()
 
+        println("getNextUnlockedPaletteUseCase merging Market Palettes")
         val mergedMarketAccountTypographies =
             accountTypographies.fold(marketTypographies) { marketTs, accountT ->
                 marketTs.map { marketT ->
@@ -42,33 +40,11 @@ class GetNextUnlockedTypographyUseCase(
                 }
             }
 
+        println("getNextUnlockedPaletteUseCase filtering for unlocked Market Palettes")
         val filteredMergedMarketAccountTypographies =
             mergedMarketAccountTypographies.filter { it.isUnlocked }
 
-        val uuidsFiltered = filteredMergedMarketAccountTypographies.map { it.uuid }
-        val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
-
-        var increment = currentIndex + direction.value
-        if(increment >= uuidsFiltered.size) increment = 0
-        if(increment < 0) increment = uuidsFiltered.size - 1
-
-        return uuidsFiltered[increment]
+        return Result.success(filteredMergedMarketAccountTypographies)
     }
 
-    operator fun invoke(
-        typographies: List<AccountMarketTypography>,
-        currentUUID: String,
-        direction: IncrementDirection
-    ): Result<String> {
-
-        val uuidsFiltered = typographies.map { it.uuid }
-        val currentIndex = uuidsFiltered.indexOfFirst{ it == currentUUID }
-
-        var increment = currentIndex + direction.value
-        if(increment >= uuidsFiltered.size) increment = 0
-        if(increment < 0) increment = uuidsFiltered.size - 1
-
-        println("getNextUnlockedTypographyUseCase returning uuids")
-        return Result.success(uuidsFiltered[increment])
-    }
 }
