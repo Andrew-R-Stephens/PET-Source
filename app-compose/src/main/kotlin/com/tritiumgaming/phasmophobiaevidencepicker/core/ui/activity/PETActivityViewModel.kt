@@ -26,7 +26,6 @@ import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPale
 import com.tritiumgaming.shared.data.market.typography.source.TypographyDatastore
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -40,7 +39,6 @@ import kotlinx.coroutines.withContext
 import java.util.concurrent.atomic.AtomicBoolean
 
 class PETActivityViewModel(
-    private val initGlobalPreferencesDataStoreUseCase: SetupUserPreferencesUseCase,
     private val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     private val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     private val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
@@ -111,10 +109,6 @@ class PETActivityViewModel(
             e.printStackTrace()
             LocalDefaultTypography.typography
         }
-    }
-
-    private fun initialDataStoreSetupEvent() {
-        initGlobalPreferencesDataStoreUseCase()
     }
 
     /** GDPR consent manager */
@@ -238,12 +232,6 @@ class PETActivityViewModel(
         }
     }
 
-    init {
-        Log.d("GlobalPreferencesViewModel", "Initializing...")
-
-        initialDataStoreSetupEvent()
-    }
-
     companion object {
 
         // Check your logcat output for the test device hashed ID e.g.
@@ -263,13 +251,11 @@ class PETActivityViewModel(
                 val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
                 val container = (application as AppContainerProvider).provideAppContainer()
 
-                val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase = container.setupGlobalPreferencesUseCase
                 val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase = container.initFlowGlobalPreferencesUseCase
                 val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase = container.getTypographyByUUIDUseCase
                 val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase = container.getPaletteByUUIDUseCase
 
                 PETActivityViewModel(
-                    initGlobalPreferencesDataStoreUseCase = setupGlobalPreferencesUseCase,
                     initFlowGlobalPreferencesUseCase = initFlowGlobalPreferencesUseCase,
                     getTypographyByUUIDUseCase = getTypographyByUUIDUseCase,
                     getPaletteByUUIDUseCase = getPaletteByUUIDUseCase,

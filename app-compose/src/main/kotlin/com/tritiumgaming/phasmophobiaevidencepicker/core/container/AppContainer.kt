@@ -3,10 +3,9 @@ package com.tritiumgaming.phasmophobiaevidencepicker.core.container
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.SetupUserPreferencesUseCase
 
 class AppContainer(
-    val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
+    //val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
     val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
     val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
     val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,

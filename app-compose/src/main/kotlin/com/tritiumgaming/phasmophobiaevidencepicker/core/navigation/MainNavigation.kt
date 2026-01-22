@@ -21,23 +21,12 @@ import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.tritiumgaming.feature.about.ui.AppInfoViewModel
 import com.tritiumgaming.feature.about.ui.InfoScreen
-import com.tritiumgaming.feature.home.ui.HomeScreen
-import com.tritiumgaming.feature.marketplace.ui.store.MarketplaceStoreScreen
-import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
-import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
-import com.tritiumgaming.feature.newsletter.ui.screen.NewsInboxesScreen
-import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessageScreen
-import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessagesScreen
-import com.tritiumgaming.feature.operation.ui.OperationScreen
-import com.tritiumgaming.feature.start.ui.StartScreen
-import com.tritiumgaming.feature.start.ui.StartViewModel
-import com.tritiumgaming.shared.core.navigation.NavRoute
-import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumgaming.feature.account.ui.AccountScreen
 import com.tritiumgaming.feature.account.ui.AccountScreenViewModel
 import com.tritiumgaming.feature.codex.ui.CodexViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreen
 import com.tritiumgaming.feature.codex.ui.menu.CodexMenuScreen
+import com.tritiumgaming.feature.home.ui.HomeScreen
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
 import com.tritiumgaming.feature.investigation.ui.InvestigationSoloScreen
 import com.tritiumgaming.feature.language.ui.LanguageScreen
@@ -45,10 +34,21 @@ import com.tritiumgaming.feature.language.ui.LanguageScreenViewModel
 import com.tritiumgaming.feature.maps.ui.MapMenuScreen
 import com.tritiumgaming.feature.maps.ui.MapsScreenViewModel
 import com.tritiumgaming.feature.maps.ui.mapdisplay.MapViewerScreen
+import com.tritiumgaming.feature.marketplace.ui.billing.MarketplaceBillingScreen
+import com.tritiumgaming.feature.marketplace.ui.store.MarketplaceStoreScreen
 import com.tritiumgaming.feature.missions.ui.DifficultyUiState
 import com.tritiumgaming.feature.missions.ui.ObjectivesScreen
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
+import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsInboxesScreen
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessageScreen
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessagesScreen
+import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.settings.ui.SettingsScreen
+import com.tritiumgaming.feature.start.ui.StartScreen
+import com.tritiumgaming.feature.start.ui.StartViewModel
+import com.tritiumgaming.shared.core.navigation.NavRoute
+import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable
 fun RootNavigation(

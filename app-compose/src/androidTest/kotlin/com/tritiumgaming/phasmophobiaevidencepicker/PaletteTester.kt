@@ -38,7 +38,6 @@ import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.settings.ui.components.LabeledSwitch
-import kotlinx.coroutines.flow.MutableStateFlow
 import org.jetbrains.annotations.TestOnly
 
 
@@ -50,26 +49,6 @@ fun PaletteTester() {
         palette = StratagemHero
     )
 }
-
-/*@TestOnly
-@Preview(device = "spec:width=1500px,height=4000px,dpi=440")
-@Composable
-fun PaletteTester() {
-    Column(
-        Modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        LocalPalettesMap.forEach {
-            TestM3Palette(
-                palette = it.value
-            )
-        }
-
-    }
-}*/
 
 @TestOnly
 @Composable
@@ -101,25 +80,91 @@ private fun TestPalette(
                     .wrapContentWidth()
             ) {
 
-                PaletteColor(name = "primary", color = LocalPalette.current.coreFamily.primary)
-                PaletteColor(name = "color_1", color = LocalPalette.current.coreFamily.color_1)
-                PaletteColor(name = "color_2", color = LocalPalette.current.coreFamily.color_2)
-                PaletteColor(name = "color_3", color = LocalPalette.current.coreFamily.color_3)
-                PaletteColor(name = "color_4", color = LocalPalette.current.coreFamily.color_4)
-                PaletteColor(name = "color_5", color = LocalPalette.current.coreFamily.color_5)
-                PaletteColor(name = "color_6", color = LocalPalette.current.coreFamily.color_6)
-                PaletteColor(name = "color_7", color = LocalPalette.current.coreFamily.color_7)
-                PaletteColor(name = "color_8", color = LocalPalette.current.coreFamily.color_8)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "primary",
+                    color = LocalPalette.current.coreFamily.primary)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "color_1",
+                    color = LocalPalette.current.coreFamily.color_1)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "color_2",
+                    color = LocalPalette.current.coreFamily.color_2)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "color_3",
+                    color = LocalPalette.current.coreFamily.color_3)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "color_4",
+                    color = LocalPalette.current.coreFamily.color_4)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "color_5",
+                    color = LocalPalette.current.coreFamily.color_5)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "color_6",
+                    color = LocalPalette.current.coreFamily.color_6)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "color_7",
+                    color = LocalPalette.current.coreFamily.color_7)
+                PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
+                    name = "color_8",
+                    color = LocalPalette.current.coreFamily.color_8)
 
                 PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
                     color = LocalPalette.current.primary,
                     onColor = LocalPalette.current.onPrimary
                 )
                 PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
                     color = LocalPalette.current.secondary,
                     onColor = LocalPalette.current.onSecondary
                 )
                 PaletteColor(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(32.dp)
+                        .width(128.dp),
                     color = LocalPalette.current.tertiary,
                     onColor = LocalPalette.current.onTertiary
                 )
@@ -162,9 +207,7 @@ private fun TestPalette(
 @TestOnly
 @Composable
 private fun PaletteColor(
-    modifier: Modifier = Modifier
-        .height(32.dp)
-        .width(128.dp),
+    modifier: Modifier = Modifier,
     name: String = "",
     color: Color = Color.Unspecified,
     onColor: Color = color
@@ -312,37 +355,37 @@ private fun TestM3Palette(
                 ) {
                     PaletteColor(
                         modifier  = Modifier
-                            .fillMaxHeight()
                             .weight(1f)
-                            .widthIn(min = 32.dp),
+                            .height(32.dp)
+                            .width(128.dp),
                         color = LocalPalette.current.surfaceContainerLowest
                     )
                     PaletteColor(
                         modifier  = Modifier
-                            .fillMaxHeight()
                             .weight(1f)
-                            .widthIn(min = 32.dp),
+                            .height(32.dp)
+                            .width(128.dp),
                         color = LocalPalette.current.surfaceContainerLow
                     )
                     PaletteColor(
                         modifier  = Modifier
-                            .fillMaxHeight()
                             .weight(1f)
-                            .widthIn(min = 32.dp),
+                            .height(32.dp)
+                            .width(128.dp),
                         color = LocalPalette.current.surfaceContainer
                     )
                     PaletteColor(
                         modifier  = Modifier
-                            .fillMaxHeight()
                             .weight(1f)
-                            .widthIn(min = 32.dp),
+                            .height(32.dp)
+                            .width(128.dp),
                         color = LocalPalette.current.surfaceContainerHigh
                     )
                     PaletteColor(
                         modifier  = Modifier
-                            .fillMaxHeight()
                             .weight(1f)
-                            .widthIn(min = 32.dp),
+                            .height(32.dp)
+                            .width(128.dp),
                         color = LocalPalette.current.surfaceContainerHighest
                     )
                 }

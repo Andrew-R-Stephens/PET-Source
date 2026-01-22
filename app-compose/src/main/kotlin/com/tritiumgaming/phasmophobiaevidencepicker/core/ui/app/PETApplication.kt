@@ -10,29 +10,29 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import com.tritiumgaming.feature.about.app.container.AboutContainer
 import com.tritiumgaming.feature.about.app.container.AboutContainerProvider
-import com.tritiumgaming.feature.core.container.CoreContainer
-import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainer
-import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
-import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainer
-import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainerProvider
-import com.tritiumgaming.feature.start.app.container.StartContainer
-import com.tritiumgaming.feature.start.app.container.StartContainerProvider
-import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
-import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 import com.tritiumgaming.feature.account.app.container.AccountContainer
 import com.tritiumgaming.feature.account.app.container.AccountContainerProvider
 import com.tritiumgaming.feature.codex.app.container.CodexContainer
 import com.tritiumgaming.feature.codex.app.container.CodexContainerProvider
+import com.tritiumgaming.feature.core.container.CoreContainer
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainer
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
 import com.tritiumgaming.feature.language.app.container.LanguageContainer
 import com.tritiumgaming.feature.language.app.container.LanguageContainerProvider
 import com.tritiumgaming.feature.maps.app.container.MapViewerContainer
 import com.tritiumgaming.feature.maps.app.container.MapViewerContainerProvider
+import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainer
+import com.tritiumgaming.feature.marketplace.app.container.MarketplaceContainerProvider
 import com.tritiumgaming.feature.missions.app.container.MissionsContainer
 import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
+import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainer
+import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainerProvider
 import com.tritiumgaming.feature.settings.app.container.SettingsContainer
 import com.tritiumgaming.feature.settings.app.container.SettingsContainerProvider
+import com.tritiumgaming.feature.start.app.container.StartContainer
+import com.tritiumgaming.feature.start.app.container.StartContainerProvider
+import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainer
+import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
 
 private const val USER_PREFERENCES_NAME = "user_preferences"
 
@@ -93,7 +93,6 @@ class PETApplication : Application(),
         coreContainer = CoreContainer(applicationContext, dataStore, firestore, firebaseAuth)
 
         appContainer = AppContainer(
-            setupGlobalPreferencesUseCase = coreContainer.setupGlobalPreferencesUseCase,
             initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
             getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
             getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
@@ -114,7 +113,6 @@ class PETApplication : Application(),
             getAvailableLanguagesUseCase = coreContainer.getLanguagesUseCase,
             getDefaultLanguageUseCase = coreContainer.getDefaultLanguageUseCase,
             setDefaultLanguageUseCase = coreContainer.setDefaultLanguageUseCase,
-            initLanguageDataStoreUseCase = coreContainer.setupLanguageUseCase,
             initFlowLanguageUseCase = coreContainer.initFlowLanguageUseCase,
             saveCurrentLanguageUseCase = coreContainer.saveCurrentLanguageUseCase,
             loadCurrentLanguageUseCase = coreContainer.loadCurrentLanguageUseCase,
@@ -122,7 +120,6 @@ class PETApplication : Application(),
 
         settingsContainer = SettingsContainer(
             // Global Preferences
-            setupGlobalPreferencesUseCase = coreContainer.setupGlobalPreferencesUseCase,
             initFlowGlobalPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
             setAllowCellularDataUseCase = coreContainer.setAllowCellularDataUseCase,
             setAllowHuntWarnAudioUseCase = coreContainer.setAllowHuntWarnAudioUseCase,
@@ -146,14 +143,11 @@ class PETApplication : Application(),
         aboutContainer = AboutContainer()
 
         startContainer = StartContainer(
-            setupNewsletterUseCase = coreContainer.setupNewsletterUseCase,
             getFlowNewsletterDatastoreUseCase = coreContainer.getFlowNewsletterDatastoreUseCase,
             getFlowNewsletterInboxesUseCase= coreContainer.getFlowNewsletterInboxesUseCase,
             getNewsletterInboxesUseCase= coreContainer.getNewsletterInboxesUseCase,
-            setupGlobalPreferencesUseCase= coreContainer.setupGlobalPreferencesUseCase,
             initFlowGlobalPreferencesUseCase= coreContainer.initFlowGlobalPreferencesUseCase,
             setAllowIntroductionUseCase= coreContainer.setAllowIntroductionUseCase,
-            initReviewTrackerDataStoreUseCase= coreContainer.setupReviewTrackerUseCase,
             initFlowReviewTrackerUseCase= coreContainer.initializeReviewTrackerUseCase,
             setReviewRequestStatusUseCase= coreContainer.setReviewRequestStatusUseCase,
             setAppTimeAliveUseCase= coreContainer.setAppTimeAliveUseCase,
@@ -162,7 +156,6 @@ class PETApplication : Application(),
         )
 
         newsletterContainer = NewsletterContainer(
-            setupNewsletterUseCase = coreContainer.setupNewsletterUseCase,
             getFlowNewsletterDatastoreUseCase = coreContainer.getFlowNewsletterDatastoreUseCase,
             getFlowNewsletterInboxesUseCase= coreContainer.getFlowNewsletterInboxesUseCase,
             getNewsletterInboxesUseCase= coreContainer.getNewsletterInboxesUseCase,

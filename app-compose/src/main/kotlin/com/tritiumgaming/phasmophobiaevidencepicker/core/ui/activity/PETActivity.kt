@@ -30,7 +30,7 @@ class PETActivity : AppCompatActivity(),
     AppUpdateManagerService, FirebaseAnalyticsService {
 
     private val petActivityViewModel: PETActivityViewModel
-        by viewModels { PETActivityViewModel.Companion.Factory }
+        by viewModels { PETActivityViewModel.Factory }
 
     /*
     private val permissionsViewModel: PermissionsViewModel
@@ -55,7 +55,7 @@ class PETActivity : AppCompatActivity(),
                 result: ActivityResult ->
             // handle callback
             if (result.resultCode != RESULT_OK) {
-                print("Update flow failed! Result code: " + result.resultCode);
+                print("Update flow failed! Result code: " + result.resultCode)
             }
         }
 

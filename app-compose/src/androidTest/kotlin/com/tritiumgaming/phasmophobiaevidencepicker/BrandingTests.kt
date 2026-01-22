@@ -44,7 +44,7 @@ fun PreviewPatreonBranding() {
         modifier = Modifier
             .verticalScroll(rememberScrollState())
     ) {
-        LocalPalettesMap.toList().forEach { (string, palette) ->
+        LocalPalettesMap.toList().forEach { (_, palette) ->
 
             SelectiveTheme(
                 palette = palette,

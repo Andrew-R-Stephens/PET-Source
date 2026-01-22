@@ -29,7 +29,7 @@ class FirebaseTesting {
         val result = getCurrentFirebaseUserDisplayNameInitials(userName)
 
         assert(result.length == 1) {
-            println(result);
+            println(result)
         }
     }
 
@@ -40,7 +40,7 @@ class FirebaseTesting {
         val result = getCurrentFirebaseUserDisplayNameInitials(userName)
 
         assert(result.length == 2) {
-            println(result);
+            println(result)
         }
     }
 
