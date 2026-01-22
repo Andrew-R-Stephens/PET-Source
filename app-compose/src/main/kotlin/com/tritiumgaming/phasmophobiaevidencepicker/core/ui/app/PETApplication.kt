@@ -132,10 +132,12 @@ class PETApplication : Application(),
             setEnableRTLUseCase = coreContainer.setEnableRTLUseCase,
             setMaxHuntWarnFlashTimeUseCase = coreContainer.setMaxHuntWarnFlashTimeUseCase,
             // Typographies
+            fetchUnlockedTypographiesUseCase = coreContainer.fetchUnlockedTypographiesUseCase,
             saveCurrentTypographyUseCase = coreContainer.saveCurrentTypographyUseCase,
             getTypographyByUUIDUseCase = coreContainer.getMarketCatalogTypographyByUUIDUseCase,
             findNextAvailableTypographyUseCase = coreContainer.getNextUnlockedTypographyUseCase,
             // Palettes
+            fetchUnlockedPalettesUseCase = coreContainer.fetchUnlockedPaletteUseCase,
             saveCurrentPaletteUseCase = coreContainer.saveCurrentPaletteUseCase,
             getPaletteByUUIDUseCase = coreContainer.getMarketCatalogPaletteByUUIDUseCase,
             findNextAvailablePaletteUseCase = coreContainer.findNextAvailablePaletteUseCase
