@@ -11,7 +11,7 @@ class FirestoreUserRemoteDataSource(
     private val userCollectionRef: CollectionReference
         get() = firestore.collection(COLLECTION_USERS)
 
-    fun getUserDocumentRef(uid: String): DocumentReference? {
+    fun getUserDocumentRef(uid: String): DocumentReference {
         return userCollectionRef.document(uid)
     }
 

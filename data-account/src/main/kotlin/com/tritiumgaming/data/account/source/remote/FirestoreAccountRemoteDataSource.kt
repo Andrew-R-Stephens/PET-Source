@@ -258,7 +258,7 @@ class FirestoreAccountRemoteDataSource(
                     this.close(it)
                 }
 
-                snapshot?.let { it ->
+                snapshot?.let {
                     val data = AccountCreditsDto(
                         earnedCredits = it.getLong(FIELD_CREDITS_EARNED) ?: 0L,
                         spentCredits = it.getLong(FIELD_CREDITS_SPENT) ?: 0L
@@ -288,7 +288,7 @@ class FirestoreAccountRemoteDataSource(
 
             val documentData: MutableMap<String, Any> = HashMap()
             documentData[FIELD_TYPE] = type
-            documentData[FIELD_DATE_UNLOCKED] = Timestamp.Companion.now()
+            documentData[FIELD_DATE_UNLOCKED] = Timestamp.now()
 
             for (uuid in unlockUUIDs) {
                 val purchasedDocument = docRef.document(uuid)
@@ -459,7 +459,7 @@ class FirestoreAccountRemoteDataSource(
         val documentData: MutableMap<String, Any> = HashMap()
         documentData[FIELD_PURCHASE_REFERENCE] = purchaseReferenceDoc.id
         documentData[FIELD_ORDER_ID] = orderID
-        documentData[FIELD_DATE_PURCHASED] = Timestamp.Companion.now()
+        documentData[FIELD_DATE_PURCHASED] = Timestamp.now()
 
         return try {
             docRef.add(documentData).await()
