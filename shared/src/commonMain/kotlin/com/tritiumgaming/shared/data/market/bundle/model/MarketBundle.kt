@@ -6,6 +6,6 @@ data class MarketBundle (
     val items: List<String> = listOf()
 )
 
-fun com.tritiumgaming.shared.data.market.bundle.model.MarketBundle.toPair(): Pair<String, com.tritiumgaming.shared.data.market.bundle.model.MarketBundle> {
+fun MarketBundle.toPair(): Pair<String, MarketBundle> {
     return Pair(uuid, this)
 }

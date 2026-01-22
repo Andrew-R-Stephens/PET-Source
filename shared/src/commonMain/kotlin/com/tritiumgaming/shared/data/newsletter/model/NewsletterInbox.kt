@@ -5,7 +5,7 @@ data class NewsletterInbox(
     val title: com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle = com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle.GENERAL_NEWS,
     val url: String? = "",
     val icon: com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon = com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon.GENERAL_NEWS,
-    val channel: com.tritiumgaming.shared.data.newsletter.model.NewsletterChannel? = null
+    val channel: NewsletterChannel? = null
 ) {
 
     /** @return evaluates the age of one message compared to another

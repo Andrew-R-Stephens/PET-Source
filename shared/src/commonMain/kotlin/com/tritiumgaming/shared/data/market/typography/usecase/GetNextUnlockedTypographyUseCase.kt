@@ -1,6 +1,5 @@
 package com.tritiumgaming.shared.data.market.typography.usecase
 
-import com.tritiumgaming.shared.data.account.model.AccountMarketPalette
 import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
 import com.tritiumgaming.shared.data.account.model.toAccountMarketTypography
 import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository

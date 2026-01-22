@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.map.modifier.usecase
 
 class GetSimpleMapSetupModifierUseCase(
-    private val fetchMapModifiersUseCase: com.tritiumgaming.shared.data.map.modifier.usecase.FetchMapModifiersUseCase
+    private val fetchMapModifiersUseCase: FetchMapModifiersUseCase
 ) {
     operator fun invoke(index: Int): Result<Float> {
         val result = fetchMapModifiersUseCase()

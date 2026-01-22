@@ -16,7 +16,7 @@ fun MarketPalette.toPair(): Pair<String, MarketPalette> {
     return Pair(uuid, this)
 }
 
-fun List<MarketPalette>.toPair() = associate { it ->
+fun List<MarketPalette>.toPair() = associate {
     it.toPair()
 }
 

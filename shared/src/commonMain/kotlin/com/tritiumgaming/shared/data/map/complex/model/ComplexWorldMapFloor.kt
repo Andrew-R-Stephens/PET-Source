@@ -4,28 +4,28 @@ data class ComplexWorldMapFloor(
     internal val floorId: Int,
     internal val floorName: String?,
     internal val floorImage: String?,
-    internal val floorLayer: com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapFloorLayerType,
-    internal val floorRooms: List<com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom>,
-    internal val floorPOIs: List<com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoi>
+    internal val floorLayer: ComplexWorldMapFloorLayerType,
+    internal val floorRooms: List<ComplexWorldRoom>,
+    internal val floorPOIs: List<ComplexWorldPoi>
 ) {
 
     val floorRoomNames: List<String>
         get() = floorRooms.map { it.name }
 
-    val lastRoom: com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom?
+    val lastRoom: ComplexWorldRoom?
         get() {
             if (floorRooms.isEmpty()) { return null }
             return floorRooms[floorRooms.size - 1]
         }
 
-    val rooms: List<com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom>
+    val rooms: List<ComplexWorldRoom>
         get() = floorRooms
 
-    fun getRoomById(id: Int): com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom? = floorRooms.find { room -> room.id == id }
+    fun getRoomById(id: Int): ComplexWorldRoom? = floorRooms.find { room -> room.id == id }
 
     fun getRoomIndexById(id: Int): Int = floorRooms.indexOfFirst { room -> room.id == id }
 
-    fun getPois(): List<com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoi> = floorPOIs
+    fun getPois(): List<ComplexWorldPoi> = floorPOIs
 
     override fun toString(): String {
         val builder = StringBuilder()

@@ -4,7 +4,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface DatastoreRepository<T> {
     
-    fun initializeDatastoreLiveData()
     fun initDatastoreFlow(): Flow<T>
     
 }

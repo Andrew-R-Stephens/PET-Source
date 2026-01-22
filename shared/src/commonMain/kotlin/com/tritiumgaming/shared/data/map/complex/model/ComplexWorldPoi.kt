@@ -4,7 +4,7 @@ data class ComplexWorldPoi(
     val id: Int,
     val name: String,
     val type: com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources.Poi,
-    val point: com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint?
+    val point: ComplexWorldPoint?
 ) {
 
     fun hasName(): Boolean = name.isNotEmpty()

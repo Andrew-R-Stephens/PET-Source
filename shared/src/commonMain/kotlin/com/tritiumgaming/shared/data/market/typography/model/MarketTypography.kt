@@ -16,7 +16,7 @@ fun MarketTypography.toPair(): Pair<String, MarketTypography> {
     return Pair(uuid, this)
 }
 
-fun List<MarketTypography>.toPair() = associate { it ->
+fun List<MarketTypography>.toPair() = associate {
     it.toPair()
 }
 

@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.journal.usecase
 
 class InitRuledEvidenceUseCase(
-    private val fetchEvidencesUseCase: com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
+    private val fetchEvidencesUseCase: FetchEvidenceTypesUseCase
 ) {
     operator fun invoke(): Result<List<com.tritiumgaming.shared.data.evidence.model.RuledEvidence>> {
         val result = fetchEvidencesUseCase()

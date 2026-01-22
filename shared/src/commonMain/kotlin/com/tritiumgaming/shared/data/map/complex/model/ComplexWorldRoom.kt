@@ -3,7 +3,7 @@ package com.tritiumgaming.shared.data.map.complex.model
 class ComplexWorldRoom(
     val id: Int,
     val name: String,
-    val roomArea: com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoomArea
+    val roomArea: ComplexWorldRoomArea
 ) {
 
     override fun toString(): String {

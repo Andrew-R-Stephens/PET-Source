@@ -4,11 +4,11 @@ class ComplexWorldMap(
     val mapId: String,
     val mapName: String,
     val mapNameShort: String,
-    val mapDimensions: com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapDimensions,
-    val mapFloors: List<com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapFloor>
+    val mapDimensions: ComplexWorldMapDimensions,
+    val mapFloors: List<ComplexWorldMapFloor>
 ) {
 
-    fun getFloor(index: Int): com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMapFloor = mapFloors[index]
+    fun getFloor(index: Int): ComplexWorldMapFloor = mapFloors[index]
 
     fun orderRooms() = mapFloors.forEach { floor -> floor.orderRooms() }
 

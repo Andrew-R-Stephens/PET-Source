@@ -10,10 +10,9 @@ class GetMarketCatalogPaletteByUUIDUseCase(
     operator fun invoke(
         uuid: String
     ): Result<PaletteResources.PaletteType> {
-        val palettesCache = repository.get().getOrNull() ?:
-            return Result.failure(Exception("Palette Market Catalog cache is empty"))
+        val result = repository.get().getOrThrow()
 
-        val cachedPalette = palettesCache.firstOrNull { it.uuid == uuid } ?:
+        val cachedPalette = result.firstOrNull { it.uuid == uuid } ?:
             return Result.failure(Exception("Palette with uuid $uuid not found"))
 
         cachedPalette.palette ?:

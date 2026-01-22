@@ -1,10 +1,10 @@
 package com.tritiumgaming.shared.data.map.complex.model
 
 class ComplexWorldRoomArea(
-    val points: List<com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint>
+    val points: List<ComplexWorldPoint>
 ) {
 
-    val center: com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint
+    val center: ComplexWorldPoint
         get() {
             var x = 0f
             var y = 0f
@@ -18,7 +18,7 @@ class ComplexWorldRoomArea(
             x /= pointCount
             y /= pointCount
 
-            return com.tritiumgaming.shared.data.map.complex.model.ComplexWorldPoint(x, y)
+            return ComplexWorldPoint(x, y)
         }
 
     override fun toString(): String {

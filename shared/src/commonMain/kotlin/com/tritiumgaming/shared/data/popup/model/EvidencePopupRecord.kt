@@ -25,7 +25,7 @@ data class EvidencePopupRecord(
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
 
-        other as com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
+        other as EvidencePopupRecord
 
         return id == other.id
     }

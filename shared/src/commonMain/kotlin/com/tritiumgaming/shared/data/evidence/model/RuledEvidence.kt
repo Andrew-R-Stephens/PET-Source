@@ -6,7 +6,7 @@ import androidx.compose.runtime.Stable
 @Stable
 @Immutable
 data class RuledEvidence(
-    val evidence: com.tritiumgaming.shared.data.evidence.model.EvidenceType,
+    val evidence: EvidenceType,
     val ruling: Ruling = Ruling.NEUTRAL
 ) {
 
@@ -20,11 +20,11 @@ data class RuledEvidence(
         return ruling == other
     }
 
-    fun isEvidence(other: com.tritiumgaming.shared.data.evidence.model.RuledEvidence): Boolean {
+    fun isEvidence(other: RuledEvidence): Boolean {
         return isEvidence(other.evidence)
     }
 
-    fun isEvidence(other: com.tritiumgaming.shared.data.evidence.model.EvidenceType): Boolean {
+    fun isEvidence(other: EvidenceType): Boolean {
         return this.evidence == other
     }
 

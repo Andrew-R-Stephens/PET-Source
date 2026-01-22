@@ -6,5 +6,5 @@ data class Evidence(
     val description: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceDescription,
     val icon: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon,
     val animation: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceAnimation,
-    val tiers: List<com.tritiumgaming.shared.data.evidence.model.EvidenceTier> = emptyList()
+    val tiers: List<EvidenceTier> = emptyList()
 )
