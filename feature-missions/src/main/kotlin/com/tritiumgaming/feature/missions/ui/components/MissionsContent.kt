@@ -45,15 +45,15 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.feature.missions.app.mappers.mission.toStringResource
-import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
+import com.tritiumgaming.feature.missions.ui.MissionSpinnerUiState
+import com.tritiumgaming.feature.missions.ui.MissionUiState
 
 @Composable
 fun MissionsContent(
     modifier: Modifier = Modifier,
-    missionsUiState: List<ObjectivesViewModel.MissionSpinnerUiState>,
-    filteredMissions: List<Mission>,
-    onSelectMission: (Int, Mission) -> Unit = { _, _ -> },
-    onChangeMissionStatus: (Mission, Boolean) -> Unit = { _, _ -> }
+    //missionsUiState: List<MissionUiState>,
+    missionSpinnerUiState: MissionSpinnerUiState,
+    missionWrapperActions: MissionWrapperActions
 ) {
 
     Surface(
@@ -68,20 +68,23 @@ fun MissionsContent(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            missionsUiState.forEachIndexed { index, _ ->
+            /*missionsUiState.forEachIndexed { index, _ ->
                 MissionWrapper(
                     modifier = Modifier,
-                    state = missionsUiState[index],
-                    dropdownList = filteredMissions,
+                    missionUiState = missionsUiState[index],
+                    missionSpinnerUiState = missionSpinnerUiState,
+                    missionWrapperActions = missionWrapperActions,
                     index = index,
-                    title =
-                        "${stringResource(R.string.objectives_title_optional_objective)} ${index + 1}",
-                    onSelectMission = { index, mission ->
-                        onSelectMission(index, mission)
-                    },
-                    onChangeMissionStatus = { mission, status ->
-                        onChangeMissionStatus(mission, status)
-                    }
+                    title = "${stringResource(R.string.objectives_title_optional_objective)} ${index + 1}"
+               )*/
+            missionSpinnerUiState.selectedMissions.forEachIndexed { index, _ ->
+                MissionWrapper(
+                    modifier = Modifier,
+                    /*missionUiState = missionsUiState[index],*/
+                    missionSpinnerUiState = missionSpinnerUiState,
+                    missionWrapperActions = missionWrapperActions,
+                    index = index,
+                    title = "${stringResource(R.string.objectives_title_optional_objective)} ${index + 1}"
                 )
             }
         }
@@ -90,18 +93,23 @@ fun MissionsContent(
 
 }
 
+data class MissionWrapperActions(
+    val onSelectMission: (Int, Mission) -> Unit = { _, _ ->},
+    val onChangeMissionStatus: (Mission, Boolean) -> Unit = { _, _ ->}
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MissionWrapper(
     modifier: Modifier = Modifier,
-    state: ObjectivesViewModel.MissionSpinnerUiState,
-    dropdownList: List<Mission>,
+    /*missionUiState: MissionUiState,*/
+    missionSpinnerUiState: MissionSpinnerUiState,
+    missionWrapperActions: MissionWrapperActions,
     index: Int = 0,
     title: String,
-    onSelectMission: (Int, Mission) -> Unit = { _, _ ->},
-    onChangeMissionStatus: (Mission, Boolean) -> Unit = { _, _ ->}
 ) {
 
+    val selectedMission = missionSpinnerUiState.selectedMissions[index]
     var expanded by remember { mutableStateOf(false) }
 
     Column(
@@ -146,7 +154,8 @@ fun MissionWrapper(
                             .wrapContentHeight()
                             .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, true)
                             .padding(horizontal = 4.dp),
-                        value = stringResource(state.mission.content.toStringResource()),
+                        //value = stringResource(missionUiState.mission.content.toStringResource()),
+                        value = stringResource(selectedMission.mission.content.toStringResource()),
                         textStyle = LocalTypography.current.quaternary.regular.copy(
                             color = LocalPalette.current.onSurface,
                             fontSize = 14.sp
@@ -183,7 +192,19 @@ fun MissionWrapper(
                         readOnly = true,
                     )
 
-                    if(state.status) {
+                    /*if(missionUiState.status) {
+                        Image(
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .height(24.dp)
+                                .fillMaxWidth(),
+                            painter = painterResource(R.drawable.icon_strikethrough_1),
+                            contentDescription = "",
+                            colorFilter = ColorFilter.tint(LocalPalette.current.primary),
+                            contentScale = ContentScale.FillBounds
+                        )
+                    }*/
+                    if(selectedMission.status) {
                         Image(
                             modifier = Modifier
                                 .align(Alignment.Center)
@@ -213,7 +234,7 @@ fun MissionWrapper(
                     matchAnchorWidth = true,
                 ) {
 
-                    dropdownList.forEach { mission ->
+                    missionSpinnerUiState.availableMissions.forEach { mission ->
                         DropdownMenuItem(
                             text =  {
                                 Text(
@@ -228,7 +249,7 @@ fun MissionWrapper(
                             ),
                             onClick = {
                                 expanded = false
-                                onSelectMission(index, mission)
+                                missionWrapperActions.onSelectMission(index, mission)
                             },
                         )
                     }
@@ -236,14 +257,29 @@ fun MissionWrapper(
                 }
             }
 
+            /*
             PETImageButton(
                 modifier = Modifier
                     .size(48.dp)
                     .clickable(onClick = {
-                        onChangeMissionStatus(state.mission, !state.status)
+                        missionWrapperActions.onChangeMissionStatus(
+                            missionUiState.mission, !missionUiState.status)
                     }),
                 type =
-                    if(!state.status) PETImageButtonType.CONFIRM
+                    if(!missionUiState.status) PETImageButtonType.CONFIRM
+                    else PETImageButtonType.CANCEL
+            )
+            */
+
+            PETImageButton(
+                modifier = Modifier
+                    .size(48.dp)
+                    .clickable(onClick = {
+                        missionWrapperActions.onChangeMissionStatus(
+                            selectedMission.mission, !selectedMission.status)
+                    }),
+                type =
+                    if(!selectedMission.status) PETImageButtonType.CONFIRM
                     else PETImageButtonType.CANCEL
             )
 

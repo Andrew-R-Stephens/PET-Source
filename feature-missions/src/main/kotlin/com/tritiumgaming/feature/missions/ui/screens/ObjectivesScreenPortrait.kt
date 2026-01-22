@@ -21,29 +21,30 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.missions.ui.DifficultyUiState
+import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
+import com.tritiumgaming.feature.missions.ui.MissionSpinnerUiState
+import com.tritiumgaming.feature.missions.ui.MissionUiState
+import com.tritiumgaming.feature.missions.ui.NamesSpinnerUiState
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
 import com.tritiumgaming.feature.missions.ui.Response
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.feature.missions.ui.components.GhostNameContent
 import com.tritiumgaming.feature.missions.ui.components.GhostResponseContent
+import com.tritiumgaming.feature.missions.ui.components.MissionWrapperActions
 import com.tritiumgaming.feature.missions.ui.components.MissionsContent
 
 @Composable
 internal fun ObjectivesContentPortrait(
     modifier: Modifier = Modifier,
-    missionsUiState: List<ObjectivesViewModel.MissionSpinnerUiState>,
+    //missionsUiState: List<MissionUiState>,
     difficultyUiState: DifficultyUiState,
-    filteredMissions: List<Mission>,
-    firstnames: List<GhostName>,
-    surnames: List<GhostName>,
-    firstname: GhostName? = null,
-    surname: GhostName? = null,
-    response: Response,
+    missionSpinnerUiState: MissionSpinnerUiState,
+    ghostDetailsUiState: GhostDetailsUiState,
+    namesSpinnerUiState: NamesSpinnerUiState,
     onSelectFirstName: (ghostName: GhostName) -> Unit,
     onSelectSurname: (ghostName: GhostName) -> Unit,
-    onSelectMission: (Int, Mission) -> Unit,
-    onChangesMissionStatus: (Mission, Boolean) -> Unit,
+    missionWrapperActions: MissionWrapperActions,
     onResponseChange: (Response) -> Unit,
 ) {
     val rememberScrollState = rememberScrollState()
@@ -78,14 +79,9 @@ internal fun ObjectivesContentPortrait(
             MissionsContent(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top),
-                missionsUiState = missionsUiState,
-                filteredMissions = filteredMissions,
-                onSelectMission = { index, mission ->
-                    onSelectMission(index, mission)
-                },
-                onChangeMissionStatus = { mission, state ->
-                    onChangesMissionStatus(mission, state)
-                }
+                //missionsUiState = missionsUiState,
+                missionSpinnerUiState = missionSpinnerUiState,
+                missionWrapperActions = missionWrapperActions
             )
 
         }
@@ -111,10 +107,8 @@ internal fun ObjectivesContentPortrait(
             )
 
             GhostNameContent(
-                firstnames = firstnames,
-                surnames = surnames,
-                firstname = firstname,
-                surname = surname,
+                namesSpinnerUiState = namesSpinnerUiState,
+                ghostDetailsUiState = ghostDetailsUiState,
                 onSelectFirstName = { firstname ->
                     onSelectFirstName(firstname)
                 },
@@ -127,7 +121,7 @@ internal fun ObjectivesContentPortrait(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top),
                 difficultyUiState = difficultyUiState,
-                response = response,
+                ghostDetailsUiState = ghostDetailsUiState,
                 onResponseChange = { response ->
                     onResponseChange(response)
                 }

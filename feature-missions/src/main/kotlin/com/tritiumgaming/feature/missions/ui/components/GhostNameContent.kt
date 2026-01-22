@@ -43,15 +43,15 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.data.ghostname.mappers.GhostNameResources
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumgaming.feature.missions.app.mappers.ghostname.toStringResource
+import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
+import com.tritiumgaming.feature.missions.ui.NamesSpinnerUiState
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel
 
 @Composable
 fun GhostNameContent(
     modifier: Modifier = Modifier,
-    firstnames: List<GhostName> = emptyList(),
-    surnames: List<GhostName> = emptyList(),
-    firstname: GhostName? = null,
-    surname: GhostName? = null,
+    namesSpinnerUiState: NamesSpinnerUiState,
+    ghostDetailsUiState: GhostDetailsUiState,
     onSelectFirstName: (ghostName: GhostName) -> Unit = {},
     onSelectSurname: (ghostName: GhostName) -> Unit = {}
 ) {
@@ -86,8 +86,8 @@ fun GhostNameContent(
                 modifier = Modifier
                     .weight(1f, fill = false)
                     .wrapContentHeight(),
-                state = firstname,
-                dropdownList = firstnames,
+                state = ghostDetailsUiState.firstName,
+                dropdownList = namesSpinnerUiState.firstNames,
                 placeholder = "First Name",
             ) { name ->
                 onSelectFirstName(name)
@@ -97,8 +97,8 @@ fun GhostNameContent(
                 modifier = Modifier
                     .weight(1f, fill = false)
                     .wrapContentHeight(),
-                state = surname,
-                dropdownList = surnames,
+                state = ghostDetailsUiState.surname,
+                dropdownList = namesSpinnerUiState.surnames,
                 placeholder = "Surname",
             ) { surname ->
                 onSelectSurname(surname)
@@ -222,28 +222,4 @@ fun NameWrapper(
 
     }
 
-}
-
-@Composable
-@Preview
-fun GhostNameWrapperPreview(
-    objectivesViewModel: ObjectivesViewModel = viewModel(factory = ObjectivesViewModel.Factory)
-) {
-    SelectiveTheme(
-        palette = ClassicPalette,
-        typography = ClassicTypography
-    ) {
-        NameWrapper(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight(),
-            state = GhostName(
-                name = GhostNameResources.Name.ALEX,
-                priority = GhostName.NamePriority.FIRST,
-                gender = GhostName.Gender.MALE
-            ),
-            dropdownList = objectivesViewModel.fetchAllFirstNames(),
-            placeholder = "First Name"
-        ) { }
-    }
 }

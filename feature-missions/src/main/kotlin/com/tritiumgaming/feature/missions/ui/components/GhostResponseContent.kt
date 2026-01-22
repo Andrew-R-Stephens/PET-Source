@@ -32,6 +32,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.feature.missions.ui.DifficultyUiState
+import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.ALONE
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.GROUP
 import com.tritiumgaming.feature.missions.ui.Response
@@ -40,7 +41,7 @@ import com.tritiumgaming.feature.missions.ui.Response
 fun GhostResponseContent(
     modifier: Modifier = Modifier,
     difficultyUiState: DifficultyUiState,
-    response: Response,
+    ghostDetailsUiState: GhostDetailsUiState,
     onResponseChange: (Response) -> Unit
 ) {
     val collectDifficultyUiState by remember { mutableStateOf(difficultyUiState) }
@@ -87,7 +88,7 @@ fun GhostResponseContent(
                         .weight(1f, false),
                     title = R.string.objectives_title_response_alone,
                     icon = R.drawable.ic_response_alone,
-                    state = response == ALONE,
+                    state = ghostDetailsUiState.responseState == ALONE,
                     enabled = isResponseKnown
                 ) {
                     onResponseChange(ALONE)
@@ -98,7 +99,7 @@ fun GhostResponseContent(
                         .weight(1f, false),
                     title = R.string.objectives_title_response_everyone,
                     icon = R.drawable.ic_response_group,
-                    state = response == GROUP,
+                    state = ghostDetailsUiState.responseState == GROUP,
                     enabled = isResponseKnown
                 ) {
                     onResponseChange(GROUP)
