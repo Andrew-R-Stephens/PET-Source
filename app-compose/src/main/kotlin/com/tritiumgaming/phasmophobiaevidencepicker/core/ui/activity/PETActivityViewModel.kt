@@ -21,7 +21,6 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
-import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.PaletteType
 import com.tritiumgaming.shared.data.market.palette.source.PaletteDatastore
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.source.TypographyDatastore
