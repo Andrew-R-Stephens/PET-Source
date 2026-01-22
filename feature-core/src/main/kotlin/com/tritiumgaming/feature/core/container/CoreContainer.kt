@@ -57,11 +57,13 @@ import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetupLanguageUseCase
 import com.tritiumgaming.shared.data.market.bundle.repository.MarketBundleRemoteRepository
 import com.tritiumgaming.shared.data.market.palette.repository.MarketCatalogPaletteRepository
+import com.tritiumgaming.shared.data.market.palette.usecase.FetchUnlockedPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetNextUnlockedPaletteUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPalettesUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
 import com.tritiumgaming.shared.data.market.palette.usecase.SaveCurrentPaletteUseCase
 import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
+import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographiesUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
@@ -327,6 +329,10 @@ class CoreContainer(
         )
     }
 
+    val fetchUnlockedTypographiesUseCase = FetchUnlockedTypographiesUseCase(
+        marketRepository = typographyRepository,
+        accountRepository = firestoreAccountRepository
+    )
     val getNextUnlockedTypographyUseCase = GetNextUnlockedTypographyUseCase(
         marketRepository = typographyRepository,
         accountRepository = firestoreAccountRepository
@@ -354,6 +360,10 @@ class CoreContainer(
         )
     }
 
+    val fetchUnlockedPaletteUseCase = FetchUnlockedPalettesUseCase(
+        marketRepository = paletteRepository,
+        accountRepository = firestoreAccountRepository
+    )
     val findNextAvailablePaletteUseCase = GetNextUnlockedPaletteUseCase(
         marketRepository = paletteRepository,
         accountRepository = firestoreAccountRepository
