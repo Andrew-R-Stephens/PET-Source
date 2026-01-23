@@ -125,7 +125,10 @@ class MapsScreenViewModel(
 
             it.copy(
                 mapId = id,
+                mapName = simpleMap.mapName,
+                floorCount = simpleMap.floorCount,
                 floorIndex = simpleMap.defaultFloor,
+                floorTitle = simpleMap.mapFloors[simpleMap.defaultFloor].layerName,
                 roomId = 0,
                 roomName = complexMapFloors
                     ?.floorRoomNames[0] ?: "",
@@ -159,10 +162,12 @@ class MapsScreenViewModel(
                     it.floorIndex
                 ).getOrThrow()
 
+                val simpleMap = simpleMaps.first{ map -> map.mapId == it.mapId }
                 val complexMapFloors = currentComplexMap?.mapFloors[newIndex]
 
                 it.copy(
                     floorIndex = newIndex,
+                    floorTitle = simpleMap.mapFloors[newIndex].layerName,
                     roomId = 0,
                     roomName = complexMapFloors?.rooms?.find { room ->
                         room.id == 0 }?.name ?: "",
@@ -186,10 +191,12 @@ class MapsScreenViewModel(
                     it.floorIndex
                 ).getOrThrow()
 
+                val simpleMap = simpleMaps.first{ map -> map.mapId == it.mapId }
                 val complexMapFloors = currentComplexMap?.mapFloors[newIndex]
 
                 it.copy(
                     floorIndex = newIndex,
+                    floorTitle = simpleMap.mapFloors[newIndex].layerName,
                     roomId = 0,
                     roomName = complexMapFloors?.rooms?.find { room ->
                         room.id == 0 }?.name ?: "",

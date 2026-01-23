@@ -120,15 +120,7 @@ private fun MapViewerContent(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    val mapDisplayUiState = mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
-    val floorIndex = mapDisplayUiState.value.floorIndex
-    val roomName = mapDisplayUiState.value.roomName
-    val roomList = mapDisplayUiState.value.roomDropdownList
-
-    val currentMap = mapsScreenViewModel.getSimpleMap()
-    val floorCount: Int = currentMap.floorCount
-    val mapTitle: SimpleMapResources.MapTitle = currentMap.mapName
-    val floorTitle: SimpleMapResources.MapFloorTitle = currentMap.mapFloors[floorIndex].layerName
+    val mapDisplayUiState by mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
 
     Box(
         modifier = Modifier
@@ -150,12 +142,7 @@ private fun MapViewerContent(
                         .fillMaxWidth()
                         .wrapContentHeight(),
                     navController = navController,
-                    mapTitle = mapTitle,
-                    floorIndex = floorIndex,
-                    floorCount = floorCount,
-                    floorTitle = floorTitle,
-                    roomName = roomName,
-                    roomList = roomList,
+                    mapDisplayUiState = mapDisplayUiState,
                     onIncrementFloor = {
                         mapsScreenViewModel.incrementFloor()
                     },
@@ -175,12 +162,7 @@ private fun MapViewerContent(
                     modifier = Modifier
                         .fillMaxSize(),
                     navController = navController,
-                    mapTitle = mapTitle,
-                    floorIndex = floorIndex,
-                    floorCount = floorCount,
-                    floorTitle = floorTitle,
-                    roomName = roomName,
-                    roomList = roomList,
+                    mapDisplayUiState = mapDisplayUiState,
                     onIncrementFloor = {
                         mapsScreenViewModel.incrementFloor()
                     },
@@ -428,16 +410,18 @@ private fun Modifier.mapControlInput(
 private fun UiControllerPortrait(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    mapTitle: SimpleMapResources.MapTitle,
-    floorIndex: Int,
-    floorCount: Int,
-    floorTitle: SimpleMapResources.MapFloorTitle,
-    roomList: List<ComplexWorldRoom>,
-    roomName: String,
+    mapDisplayUiState: InteractiveMapUiState,
     onDecrementFloor: () -> Unit = { },
     onIncrementFloor: () -> Unit = { },
     onSetRoom: (Int) -> Unit = { }
 ) {
+
+    val mapTitle = mapDisplayUiState.mapName
+    val floorCount = mapDisplayUiState.floorCount
+    val floorIndex = mapDisplayUiState.floorIndex
+    val floorTitle = mapDisplayUiState.floorTitle
+    val roomName = mapDisplayUiState.roomName
+    val roomList = mapDisplayUiState.roomDropdownList
 
     Column(
         modifier = modifier
@@ -446,8 +430,8 @@ private fun UiControllerPortrait(
     ) {
 
         val rememberLazyListState = rememberLazyListState()
-        LaunchedEffect(floorIndex) {
-            rememberLazyListState.animateScrollToItem(floorIndex)
+        LaunchedEffect(mapDisplayUiState.floorIndex) {
+            rememberLazyListState.animateScrollToItem(mapDisplayUiState.floorIndex)
         }
 
         Row(
@@ -494,7 +478,8 @@ private fun UiControllerPortrait(
                                 repeatDelayMillis = 5000
                             )
                             .padding(end = 16.dp),
-                        text = stringResource(mapTitle.toStringResource()),
+                        text = stringResource(
+                            mapTitle.toStringResource()),
                         style = LocalTypography.current.quaternary.bold,
                         fontSize = 18.sp,
                         color = LocalPalette.current.onSurface
@@ -634,16 +619,18 @@ private fun UiControllerPortrait(
 private fun UiControllerLandscape(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    mapTitle: SimpleMapResources.MapTitle,
-    floorIndex: Int,
-    floorCount: Int,
-    floorTitle: SimpleMapResources.MapFloorTitle,
-    roomList: List<ComplexWorldRoom>,
-    roomName: String,
+    mapDisplayUiState: InteractiveMapUiState,
     onDecrementFloor: () -> Unit = { },
     onIncrementFloor: () -> Unit = { },
     onSetRoom: (Int) -> Unit
 ) {
+
+    val mapTitle = mapDisplayUiState.mapName
+    val floorCount = mapDisplayUiState.floorCount
+    val floorIndex = mapDisplayUiState.floorIndex
+    val floorTitle = mapDisplayUiState.floorTitle
+    val roomName = mapDisplayUiState.roomName
+    val roomList = mapDisplayUiState.roomDropdownList
 
     Column(
         modifier = modifier

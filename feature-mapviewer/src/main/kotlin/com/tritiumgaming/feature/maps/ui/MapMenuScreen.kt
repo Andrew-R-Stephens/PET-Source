@@ -21,7 +21,9 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -56,36 +58,42 @@ fun MapMenuScreen(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    val simpleMaps = mapsScreenViewModel.simpleMaps
+    val mapMenuUiState = MapMenuUiState(
+        maps = mapsScreenViewModel.simpleMaps
+    )
+
+    val onSelect: (SimpleWorldMap) -> Unit = { map ->
+            navController.navigate(
+                route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}") }
 
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             MapMenuContentPortrait(
-                navController = navController,
-                simpleMaps = simpleMaps,
-                rows = 2
+                mapMenuUiState = mapMenuUiState,
+                rows = 2,
+                onSelect = { map -> onSelect(map) }
             )
         }
         DeviceConfiguration.MOBILE_LANDSCAPE -> {
             MapMenuContentLandscape(
-                navController = navController,
-                simpleMaps = simpleMaps,
-                columns = 2
+                mapMenuUiState = mapMenuUiState,
+                columns = 2,
+                onSelect = { map -> onSelect(map) }
             )
         }
         DeviceConfiguration.TABLET_PORTRAIT,
         DeviceConfiguration.TABLET_LANDSCAPE -> {
             MapMenuContentLandscape(
-                navController = navController,
-                simpleMaps = simpleMaps,
-                columns = 3
+                mapMenuUiState = mapMenuUiState,
+                columns = 3,
+                onSelect = { map -> onSelect(map) }
             )
         }
         DeviceConfiguration.DESKTOP -> {
             MapMenuContentLandscape(
-                navController = navController,
-                simpleMaps = simpleMaps,
-                columns = 4
+                mapMenuUiState = mapMenuUiState,
+                columns = 4,
+                onSelect = { map -> onSelect(map) }
             )
         }
     }
@@ -94,9 +102,9 @@ fun MapMenuScreen(
 
 @Composable
 private fun MapMenuContentPortrait(
-    navController: NavHostController,
-    simpleMaps: List<SimpleWorldMap>,
-    rows: Int = 2
+    mapMenuUiState: MapMenuUiState,
+    rows: Int = 2,
+    onSelect: (SimpleWorldMap) -> Unit
 ) {
     val rememberLazyGridState = rememberLazyGridState()
 
@@ -108,22 +116,22 @@ private fun MapMenuContentPortrait(
         columns = GridCells.Fixed(rows)
     ) {
         mapCardGrid(
-            navController = navController,
-            simpleMaps = simpleMaps,
+            mapMenuUiState = mapMenuUiState,
             maxWidth = Dp.Unspecified,
             maxHeight = Dp.Unspecified,
-        ) { width, _ ->
-            maxWidth = with(density) { width.toDp() }
-        }
+            onClick = { map -> onSelect(map) },
+            onCardSizeChanged =  { width, _ ->
+                maxWidth = with(density) { width.toDp() } }
+        )
     }
 
 }
 
 @Composable
 private fun MapMenuContentLandscape(
-    navController: NavHostController,
-    simpleMaps: List<SimpleWorldMap>,
-    columns: Int = 2
+    mapMenuUiState: MapMenuUiState,
+    columns: Int = 2,
+    onSelect: (SimpleWorldMap) -> Unit,
 ) {
     val rememberLazyGridState = rememberLazyGridState()
 
@@ -135,38 +143,35 @@ private fun MapMenuContentLandscape(
         rows = GridCells.Fixed(count = columns)
     ) {
         mapCardGrid(
-            navController = navController,
-            simpleMaps = simpleMaps,
+            mapMenuUiState = mapMenuUiState,
             maxWidth = maxWidth,
-            maxHeight = Dp.Unspecified
-        ) { width, _ ->
-            maxWidth = with(density) { width.toDp() }
-        }
+            maxHeight = Dp.Unspecified,
+            onClick = { map -> onSelect(map) },
+            onCardSizeChanged = { width, _ ->
+                maxWidth = with(density) { width.toDp() } }
+        )
     }
 
 }
 
 private fun LazyGridScope.mapCardGrid(
-    navController: NavHostController,
-    simpleMaps: List<SimpleWorldMap>,
+    mapMenuUiState: MapMenuUiState,
     maxWidth: Dp = Dp.Unspecified,
     maxHeight: Dp = Dp.Unspecified,
+    onClick: (SimpleWorldMap) -> Unit = {},
     onCardSizeChanged: (Int, Int) -> Unit = { _, _ -> }
 ) {
-    items(simpleMaps) { map ->
+    items(mapMenuUiState.maps) { map ->
 
         MapCard(
             title = map.mapName,
             thumbnail = map.thumbnailImage,
             onCardSizeChanged = { width, height ->
-                onCardSizeChanged(width, height)
-            },
+                onCardSizeChanged(width, height) },
             maxWidth = maxWidth,
-            maxHeight = maxHeight
-        ) {
-            navController.navigate(
-                route = "${NavRoute.SCREEN_MAP_VIEWER.route}/${map.mapId}")
-        }
+            maxHeight = maxHeight,
+            onClick = { onClick(map) }
+        )
 
     }
 }
@@ -186,11 +191,11 @@ private fun MapCard(
         modifier = modifier
             .padding(8.dp)
             .then(
-                if(maxWidth == Dp.Unspecified) Modifier
+                if (maxWidth == Dp.Unspecified) Modifier
                 else Modifier.width(maxWidth)
             )
-            .then (
-                if(maxHeight == Dp.Unspecified) Modifier
+            .then(
+                if (maxHeight == Dp.Unspecified) Modifier
                 else Modifier.height(maxHeight)
             ),
         onClick = {
@@ -205,7 +210,7 @@ private fun MapCard(
             modifier = Modifier
                 .fillMaxSize()
                 .then(
-                    if(maxWidth == Dp.Unspecified) Modifier
+                    if (maxWidth == Dp.Unspecified) Modifier
                     else Modifier.weight(1f, true)
                 )
                 .onSizeChanged { newSize ->
