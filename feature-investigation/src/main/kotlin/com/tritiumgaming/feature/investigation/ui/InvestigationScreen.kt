@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
@@ -156,7 +158,7 @@ private fun InvestigationContent(
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT,
         DeviceConfiguration.TABLET_PORTRAIT -> {
-            ContentPortrait(
+            InvestigationContentPortrait(
                 toolbarUiState,
                 journalUiState,
                 timerUiState,
@@ -177,7 +179,7 @@ private fun InvestigationContent(
         DeviceConfiguration.MOBILE_LANDSCAPE,
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
-            ContentLandscape(
+            InvestigationContentLandscape(
                 toolbarUiState,
                 journalUiState,
                 timerUiState,
@@ -220,7 +222,7 @@ private fun InvestigationContent(
 }
 
 @Composable
-private fun ContentPortrait(
+private fun InvestigationContentPortrait(
     toolbarUiState: ToolbarUiState,
     journalUiState: JournalUiState,
     timerUiState: TimerUiState,
@@ -266,7 +268,7 @@ private fun ContentPortrait(
 }
 
 @Composable
-private fun ContentLandscape(
+private fun InvestigationContentLandscape(
     toolbarUiState: ToolbarUiState,
     journalUiState: JournalUiState,
     timerUiState: TimerUiState,
@@ -344,6 +346,8 @@ private fun ColumnScope.Investigation(
     )
 
     OperationToolbar(
+        modifier = Modifier
+            .widthIn(min = 48.dp),
         toolbarUiState = toolbarUiState,
         toolbarUiActions = toolbarUiActions
     )
@@ -446,7 +450,7 @@ private fun RowScope.Investigation(
 
     OperationToolbar(
         modifier = Modifier
-            .width(48.dp),
+            .heightIn(48.dp),
         toolbarUiState = toolbarUiState,
         toolbarUiActions = toolbarUiActions
     )

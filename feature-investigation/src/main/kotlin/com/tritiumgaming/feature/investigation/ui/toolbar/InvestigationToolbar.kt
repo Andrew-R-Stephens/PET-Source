@@ -37,98 +37,87 @@ fun InvestigationToolbar(
 ) {
     val scrollState = rememberScrollState()
 
-    when (LocalConfiguration.current.orientation) {
-        ORIENTATION_PORTRAIT -> {
-            Row(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .wrapContentSize()
-                        .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
-                ) {
-                    stickyContentStart()
-                }
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        StickyItemContainer(stickyContentStart)
 
-                Row(
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .weight(1f, fill = true)
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .background(LocalPalette.current.surfaceContainerHigh, RoundedCornerShape(8.dp))
-                        .horizontalScroll(scrollState)
-                        .padding(4.dp)
-                        .fadingEdges(
-                            scrollState = scrollState,
-                            orientation =
-                                DisplayOrientation.HORIZONTAL,
-                            topEdgeHeight = 64.dp,
-                            bottomEdgeHeight = 64.dp
-                        ),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-                ) {
-                    scrollContent()
-                }
-
-                Box(
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .wrapContentSize()
-                        .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
-                ) {
-                    stickyContentEnd()
-                }
-            }
-
+        Row(
+            modifier = Modifier
+                .padding(4.dp)
+                .weight(1f, fill = true)
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(LocalPalette.current.surfaceContainerHigh, RoundedCornerShape(8.dp))
+                .horizontalScroll(scrollState)
+                .padding(4.dp)
+                .fadingEdges(
+                    scrollState = scrollState,
+                    orientation =
+                        DisplayOrientation.HORIZONTAL,
+                    topEdgeHeight = 64.dp,
+                    bottomEdgeHeight = 64.dp
+                ),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+        ) {
+            scrollContent()
         }
-        else -> {
-            Column(
-                modifier = modifier
-                    .fillMaxHeight()
-                    .wrapContentWidth(),
-                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .wrapContentSize()
-                        .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
-                ) {
-                    stickyContentStart()
-                }
 
-                Column(
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .weight(1f, fill = true)
-                        .fillMaxHeight()
-                        .wrapContentWidth()
-                        .background(LocalPalette.current.surfaceContainerHigh, RoundedCornerShape(8.dp))
-                        .verticalScroll(scrollState)
-                        .fadingEdges(scrollState, DisplayOrientation.VERTICAL, 64.dp, 64.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly,
-                ) {
-                    scrollContent()
-                }
+        StickyItemContainer(stickyContentEnd)
+    }
 
-                Box(
-                    modifier = Modifier
-                        .padding(4.dp)
-                        .wrapContentSize()
-                        .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
-                ) {
-                    stickyContentEnd()
-                }
-            }
+}
 
+@Composable
+fun InvestigationToolRail(
+    modifier: Modifier = Modifier,
+    stickyContentStart: @Composable () -> Unit = {},
+    stickyContentEnd: @Composable () -> Unit = {},
+    scrollContent: @Composable () -> Unit,
+) {
+    val scrollState = rememberScrollState()
+
+    Column(
+        modifier = modifier
+            .fillMaxHeight()
+            .wrapContentWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        StickyItemContainer(stickyContentStart)
+
+        Column(
+            modifier = Modifier
+                .padding(4.dp)
+                .weight(1f, fill = true)
+                .fillMaxHeight()
+                .wrapContentWidth()
+                .background(LocalPalette.current.surfaceContainerHigh, RoundedCornerShape(8.dp))
+                .verticalScroll(scrollState)
+                .fadingEdges(scrollState, DisplayOrientation.VERTICAL, 64.dp, 64.dp),
+            verticalArrangement = Arrangement.SpaceEvenly,
+        ) {
+            scrollContent()
         }
+
+        StickyItemContainer(stickyContentEnd)
+    }
+
+}
+
+@Composable
+private fun StickyItemContainer(stickyContentStart: @Composable (() -> Unit)) {
+    Box(
+        modifier = Modifier
+            .padding(4.dp)
+            .wrapContentSize()
+            .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
+    ) {
+        stickyContentStart()
     }
 }
 
@@ -140,7 +129,6 @@ fun ToolbarItem(
 ) {
     Box(
         modifier = modifier
-            .size(48.dp)
             .clickable { onClick() }
             .padding(8.dp),
     ) {

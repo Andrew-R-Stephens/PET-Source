@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.toolbar.impl
 
-
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import androidx.compose.animation.core.Spring.DampingRatioLowBouncy
@@ -11,10 +10,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -40,6 +42,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.getExitVector
 import com.tritiumgaming.core.ui.vector.getGearVector
 import com.tritiumgaming.core.ui.vector.getInfoVector
+import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
@@ -47,25 +50,25 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-
 @Composable
-fun OperationToolbar(
+fun ColumnScope.OperationToolbar(
     modifier: Modifier = Modifier,
     toolbarUiState: ToolbarUiState,
     toolbarUiActions: ToolbarUiActions
 ) {
 
     InvestigationToolbar(
-        modifier = modifier
-            .heightIn(min = 48.dp),
+        modifier = modifier,
         stickyContentStart = {
 
             ToolbarItem(
+                modifier = Modifier
+                    .size(48.dp),
                 onClick = {}
             ){
                 CollapseButton(
                     modifier = Modifier
-                        .size(48.dp),
+                        .fillMaxSize(),
                     isCollapsed = toolbarUiState.isCollapsed,
                     icon = R.drawable.ic_arrow_chevron_right,
                     disabledRotationVertical = 90,
@@ -79,6 +82,8 @@ fun OperationToolbar(
         stickyContentEnd = {
 
             ToolbarItem(
+                modifier = Modifier
+                    .size(48.dp),
                 onClick = {}
             ){
                 ResetButton {
@@ -90,12 +95,15 @@ fun OperationToolbar(
     ) {
 
         ToolbarItem(
+            modifier = Modifier
+                .size(48.dp),
             onClick = {
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
             }
         ){
             Image(
-                modifier = modifier,
+                modifier = Modifier
+                    .fillMaxSize(),
                 imageVector = getGearVector(
                     if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
                         IconVectorColors.defaults(
@@ -115,12 +123,15 @@ fun OperationToolbar(
         }
 
         ToolbarItem(
+            modifier = Modifier
+                .size(48.dp),
             onClick = {
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
             }
         ){
             Image(
-                modifier = modifier,
+                modifier = Modifier
+                    .fillMaxSize(),
                 imageVector = getInfoVector(
                     if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
                         IconVectorColors.defaults(
@@ -140,12 +151,14 @@ fun OperationToolbar(
         }
 
         ToolbarItem(
+            modifier = Modifier
+                .size(48.dp),
             onClick = {
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
             }
         ){
             Image(
-                modifier = modifier,
+                modifier = Modifier,
                 imageVector = getExitVector(
                     if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
                         IconVectorColors.defaults(
@@ -166,6 +179,138 @@ fun OperationToolbar(
     }
 }
 
+@Composable
+fun RowScope.OperationToolbar(
+    modifier: Modifier = Modifier,
+    toolbarUiState: ToolbarUiState,
+    toolbarUiActions: ToolbarUiActions
+) {
+
+    InvestigationToolRail(
+        modifier = modifier,
+        stickyContentStart = {
+
+            ToolbarItem(
+                modifier = Modifier
+                    .size(48.dp),
+                onClick = {}
+            ){
+                CollapseButton(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    isCollapsed = toolbarUiState.isCollapsed,
+                    icon = R.drawable.ic_arrow_chevron_right,
+                    disabledRotationVertical = 90,
+                    disabledRotationHorizontal = 90,
+                    enabledRotationAddition = 180,
+                    onClick = { toolbarUiActions.onToggleCollapseToolbar() }
+                )
+            }
+
+        },
+        stickyContentEnd = {
+
+            ToolbarItem(
+                modifier = Modifier
+                    .size(48.dp),
+                onClick = {}
+            ){
+                ResetButton(
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    toolbarUiActions.onReset()
+                }
+            }
+
+        }
+    ) {
+
+        ToolbarItem(
+            modifier = Modifier
+                .size(48.dp),
+            onClick = {
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
+            }
+        ){
+            Image(
+                modifier = Modifier
+                    .fillMaxSize(),
+                imageVector = getGearVector(
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
+                        IconVectorColors.defaults(
+                            fillColor = Color.Transparent,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor =Color.Transparent,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.Fit
+            )
+        }
+
+        ToolbarItem(
+            modifier = Modifier
+                .size(48.dp),
+            onClick = {
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
+            }
+        ){
+            Image(
+                modifier = Modifier
+                    .fillMaxSize(),
+                imageVector = getInfoVector(
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
+                        IconVectorColors.defaults(
+                            fillColor = Color.Transparent,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = Color.Transparent,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.Fit
+            )
+        }
+
+        ToolbarItem(
+            modifier = Modifier
+                .size(48.dp),
+            onClick = {
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+            }
+        ){
+            Image(
+                modifier = Modifier
+                    .fillMaxSize(),
+                imageVector = getExitVector(
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = Color.Transparent,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = Color.Transparent,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.Fit
+            )
+        }
+    }
+}
 
 @Composable
 fun ResetButton(
