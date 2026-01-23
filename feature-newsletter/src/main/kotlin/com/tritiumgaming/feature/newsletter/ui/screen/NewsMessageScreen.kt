@@ -47,9 +47,11 @@ fun NewsMessageScreen(
     messageID: String
 ) {
 
+    val newsletterInboxesUiState by newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+
     NewsMessageContent(
         navController = navController,
-        newsletterViewModel = newsletterViewModel,
+        newsletterInboxesUiState = newsletterInboxesUiState,
         inboxID = inboxID,
         messageID = messageID
     )
@@ -58,7 +60,7 @@ fun NewsMessageScreen(
 @Composable
 private fun NewsMessageContent(
     navController: NavHostController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel,
+    newsletterInboxesUiState: NewsletterInboxesUiState,
     inboxID: String,
     messageID: String
 ) {
@@ -66,8 +68,7 @@ private fun NewsMessageContent(
     val rememberInboxID by remember { mutableStateOf(inboxID) }
     val rememberMessageID by remember { mutableStateOf(messageID) }
 
-    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val inboxes = inboxesUiState.value.inboxes
+    val inboxes = newsletterInboxesUiState.inboxes
 
     val channel = inboxes.find { inboxUiState ->
         inboxUiState.inbox.id == rememberInboxID }?.inbox?.channel

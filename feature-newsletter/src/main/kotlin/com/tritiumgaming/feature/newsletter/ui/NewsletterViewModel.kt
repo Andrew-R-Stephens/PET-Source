@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.newsletter.app.container.NewsletterContainerProvider
 import com.tritiumgaming.feature.newsletter.ui.screen.NewsletterInboxUiState
 import com.tritiumgaming.feature.newsletter.ui.screen.NewsletterInboxesUiState
-import com.tritiumgaming.feature.newsletter.ui.screen.NewsletterRefreshingUiState
+import com.tritiumgaming.feature.newsletter.ui.screen.NewsletterRefreshUiState
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
@@ -59,13 +59,29 @@ class NewsletterViewModel(
     val inboxesUiState = _inboxesUiState
 
     private val _refreshUiState = MutableStateFlow(
-        NewsletterRefreshingUiState()
+        NewsletterRefreshUiState()
     )
     val refreshUiState = _refreshUiState.asStateFlow()
 
+    fun saveInboxLastReadDate(inboxId: String) {
+        viewModelScope.launch {
+            val inbox = inboxesUiState.value.inboxes.first { inbox -> inbox.inbox.id == inboxId }
+            val newDate = inbox.inbox.channel?.messages?.get(0)?.dateEpoch ?:
+                System.currentTimeMillis()
+
+            if(inbox.lastReadDate < newDate) {
+                saveNewsletterInboxLastReadDateUseCase(inboxId, newDate)
+            }
+        }
+    }
+
     fun saveInboxLastReadDate(inboxId: String, date: Long) {
         viewModelScope.launch {
-            saveNewsletterInboxLastReadDateUseCase(inboxId, date)
+            val inbox = inboxesUiState.value.inboxes.first { inbox -> inbox.inbox.id == inboxId }
+
+            if(inbox.lastReadDate < date) {
+                saveNewsletterInboxLastReadDateUseCase(inboxId, date)
+            }
         }
     }
 
@@ -102,7 +118,7 @@ class NewsletterViewModel(
     ) {
 
         if(System.currentTimeMillis() - refreshUiState.value.lastRefreshEpoch < MIN_REFRESH_WAIT_TIME) {
-            onFailure("Please wait.")
+            onFailure("Please wait to refresh.")
             return // Don't refresh if it's too soon
         }
 
@@ -141,7 +157,6 @@ class NewsletterViewModel(
                 val container = (application as NewsletterContainerProvider).provideNewsletterContainer()
 
                 NewsletterViewModel(
-                    //setupNewsletterDatastoreUseCase = container.setupNewsletterUseCase,
                     getFlowNewsletterDatastoreUseCase = container.getFlowNewsletterDatastoreUseCase,
                     getFlowNewsletterInboxesUseCase = container.getFlowNewsletterInboxesUseCase,
                     fetchNewsletterInboxesUseCase = container.getNewsletterInboxesUseCase,

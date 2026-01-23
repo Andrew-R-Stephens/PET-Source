@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.newsletter.ui.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -70,9 +72,22 @@ fun NewsInboxesScreen(
     navController: NavController = rememberNavController(),
     newsletterViewModel: NewsletterViewModel
 ) {
+    val context = LocalContext.current
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+    val inboxesUiState by newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val refreshUiState by newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
+
+    val onRefreshInboxes: () -> Unit = {
+        newsletterViewModel.refreshInboxes(
+            onFailure = { message ->
+                Toast.makeText(
+                    context, message, Toast.LENGTH_SHORT).show()
+            }
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -93,8 +108,13 @@ fun NewsInboxesScreen(
         when(deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 NewsInboxesContentPortrait(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(8.dp),
                     navController = navController,
-                    newsletterViewModel = newsletterViewModel
+                    newsletterInboxesUiState = inboxesUiState,
+                    refreshUiState = refreshUiState,
+                    onRefreshInboxes = { onRefreshInboxes() }
                 )
             }
             DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -102,8 +122,14 @@ fun NewsInboxesScreen(
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
                 NewsInboxesContentLandscape(
+                    modifier = Modifier
+                        .weight(1f)
+                        .widthIn(max = 600.dp)
+                        .padding(8.dp),
                     navController = navController,
-                    newsletterViewModel = newsletterViewModel
+                    newsletterInboxesUiState = inboxesUiState,
+                    refreshUiState = refreshUiState,
+                    onRefreshInboxes = { onRefreshInboxes() }
                 )
             }
         }
@@ -169,26 +195,19 @@ private fun NavigationHeader(
 
 @Composable
 private fun ColumnScope.NewsInboxesContentPortrait(
+    modifier: Modifier = Modifier,
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel
+    newsletterInboxesUiState: NewsletterInboxesUiState,
+    refreshUiState: NewsletterRefreshUiState,
+    onRefreshInboxes: () -> Unit
 ) {
-    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val inboxes = inboxesUiState.value.inboxes
-
-    val refreshUiState = newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
-    val isRefreshing = refreshUiState.value.isRefreshing
+    val inboxes = newsletterInboxesUiState.inboxes
+    val isRefreshing = refreshUiState.isRefreshing
 
     PullToRefresh(
-        modifier = Modifier
-            .weight(1f)
-            .padding(8.dp),
+        modifier = modifier,
         onRefresh = {
-            newsletterViewModel.refreshInboxes(
-                /*onFailure = { message ->
-                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                }*/
-            )
-
+            onRefreshInboxes()
         },
         isRefreshing = isRefreshing
     ) {
@@ -232,26 +251,20 @@ private fun ColumnScope.NewsInboxesContentPortrait(
 
 @Composable
 private fun ColumnScope.NewsInboxesContentLandscape(
+    modifier: Modifier = Modifier,
     navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel
+    newsletterInboxesUiState: NewsletterInboxesUiState,
+    refreshUiState: NewsletterRefreshUiState,
+    onRefreshInboxes: () -> Unit
 ) {
-    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val inboxes = inboxesUiState.value.inboxes
+    val inboxes = newsletterInboxesUiState.inboxes
+    val isRefreshing = refreshUiState.isRefreshing
 
-    val refreshUiState = newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
-    val isRefreshing = refreshUiState.value.isRefreshing
 
     PullToRefresh(
-        modifier = Modifier
-            .weight(1f)
-            .widthIn(max = 600.dp)
-            .padding(8.dp),
+        modifier = modifier,
         onRefresh = {
-            newsletterViewModel.refreshInboxes(
-                /*onFailure = { message ->
-                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                }*/
-            )
+            onRefreshInboxes()
         },
         isRefreshing = isRefreshing
     ) {

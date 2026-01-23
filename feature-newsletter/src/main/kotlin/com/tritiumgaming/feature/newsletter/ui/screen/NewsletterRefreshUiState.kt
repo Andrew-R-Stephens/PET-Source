@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.newsletter.ui.screen
 
-data class NewsletterRefreshingUiState(
+data class NewsletterRefreshUiState(
     val isRefreshing: Boolean = false,
     val lastRefreshEpoch: Long = 0L
 )

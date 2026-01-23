@@ -72,16 +72,45 @@ fun NewsMessagesScreen(
     newsletterViewModel: NewsletterViewModel,
     inboxID: String = "0"
 ) {
+    val context = LocalContext.current
+
     val rememberInboxID by remember{ mutableStateOf(inboxID) }
 
-    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val inboxes = inboxesUiState.value.inboxes
+    val newsletterInboxesUiState by newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val refreshUiState by newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
 
+    val inboxes = newsletterInboxesUiState.inboxes
     if(inboxes.isEmpty()) { navController.popBackStack(); return }
 
     val inboxUiState = inboxes.first { inboxUiState ->
         inboxUiState.inbox.id == rememberInboxID }
     val inbox = inboxUiState.inbox
+
+    val onReadMessage: (NewsletterMessage) -> Unit = { message ->
+        inbox.id?.let { id ->
+            newsletterViewModel.saveInboxLastReadDate(
+                id, message.dateEpoch
+            )
+            navController.navigate(
+                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
+                        "${id}/${message.id}"
+            )
+        }
+    }
+
+    val onMarkAllRead: (NewsletterInbox) -> Unit = { inbox ->
+        inbox.id?.let { inboxId ->
+            newsletterViewModel.saveInboxLastReadDate(inboxId)
+        }
+    }
+
+    val onRefresh: () -> Unit = {
+        newsletterViewModel.refreshInboxes(
+            onFailure = { message ->
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            }
+        )
+    }
 
     Column(
         modifier = Modifier
@@ -106,30 +135,27 @@ fun NewsMessagesScreen(
             DeviceConfiguration.MOBILE_PORTRAIT -> {
 
                 NewsMessagesContentCompactPortrait(
-                    navController = navController,
-                    newsletterViewModel = newsletterViewModel,
-                    inbox = inbox
+                    newsletterInboxesUiState = newsletterInboxesUiState,
+                    refreshUiState = refreshUiState,
+                    inbox = inbox,
+                    onMarkAllRead = { inbox -> onMarkAllRead(inbox) },
+                    onReadMessage = { onReadMessage(it) },
+                    onRefresh = { onRefresh() }
                 )
 
             }
 
-            DeviceConfiguration.MOBILE_LANDSCAPE -> {
-
-                NewsMessagesContentCompactLandscape(
-                    navController = navController,
-                    newsletterViewModel = newsletterViewModel,
-                    inbox = inbox
-                )
-
-            }
-
+            DeviceConfiguration.MOBILE_LANDSCAPE,
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
                 NewsMessagesContentCompactLandscape(
-                    navController = navController,
-                    newsletterViewModel = newsletterViewModel,
-                    inbox = inbox
+                    newsletterInboxesUiState = newsletterInboxesUiState,
+                    refreshUiState = refreshUiState,
+                    inbox = inbox,
+                    onMarkAllRead = { inbox -> onMarkAllRead(inbox) },
+                    onReadMessage = { onReadMessage(it) },
+                    onRefresh = { onRefresh() }
                 )
 
             }
@@ -150,24 +176,21 @@ fun NewsMessagesScreen(
 @Composable
 fun ColumnScope.NewsMessagesContentCompactPortrait(
     modifier: Modifier = Modifier,
-    navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel,
     inbox: NewsletterInbox,
+    newsletterInboxesUiState: NewsletterInboxesUiState,
+    refreshUiState: NewsletterRefreshUiState,
+    onReadMessage: (NewsletterMessage) -> Unit,
+    onMarkAllRead: (NewsletterInbox) -> Unit = {},
+    onRefresh: () -> Unit = {}
 ) {
-    val context = LocalContext.current
-
-    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
-
-    val inboxUiState = inboxesUiState.value.inboxes.first { inboxUiState ->
-        inboxUiState.inbox.id == inbox.id }
-    val lastReadDate = inboxUiState.lastReadDate
-
-    val refreshUiState = newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
-    val isRefreshing = refreshUiState.value.isRefreshing
-
-    val messages = inbox.channel?.messages
-
     val rememberListState = rememberLazyListState()
+
+    val inboxUiState = newsletterInboxesUiState.inboxes.first { inboxUiState ->
+        inboxUiState.inbox.id == inbox.id }
+
+    val lastReadDate = inboxUiState.lastReadDate
+    val isRefreshing = refreshUiState.isRefreshing
+    val messages = inbox.channel?.messages
 
     messages?.get(0)?.dateEpoch?.let { newestDate ->
         if(newestDate > lastReadDate) {
@@ -177,9 +200,7 @@ fun ColumnScope.NewsMessagesContentCompactPortrait(
                     .align(Alignment.End)
             ) {
                 MarkAsReadButton(
-                    newsletterViewModel,
-                    inbox,
-                    messages
+                    onClick = { onMarkAllRead(inbox) }
                 )
             }
         }
@@ -189,14 +210,7 @@ fun ColumnScope.NewsMessagesContentCompactPortrait(
         modifier = Modifier
             .weight(1f)
             .padding(8.dp),
-        onRefresh = {
-            newsletterViewModel.refreshInboxes(
-                onFailure = { message ->
-                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                }
-            )
-
-        },
+        onRefresh = { onRefresh() },
         isRefreshing = isRefreshing
     ) {
         LazyColumn(
@@ -211,17 +225,7 @@ fun ColumnScope.NewsMessagesContentCompactPortrait(
                 MessageCard(
                     message = rememberMessage,
                     isActive = rememberMessage.compareDate(lastReadDate) > 0,
-                    onClick = {
-                        inbox.id?.let { id ->
-                            newsletterViewModel.saveInboxLastReadDate(
-                                id, rememberMessage.dateEpoch
-                            )
-                            navController.navigate(
-                                route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
-                                        "${id}/${rememberMessage.id}"
-                            )
-                        }
-                    },
+                    onClick = { onReadMessage(rememberMessage) },
                     modifier = Modifier
                         .padding(vertical = 4.dp)
                 )
@@ -236,24 +240,21 @@ fun ColumnScope.NewsMessagesContentCompactPortrait(
 @Composable
 fun NewsMessagesContentCompactLandscape(
     modifier: Modifier = Modifier,
-    navController: NavController = rememberNavController(),
-    newsletterViewModel: NewsletterViewModel,
     inbox: NewsletterInbox,
+    newsletterInboxesUiState: NewsletterInboxesUiState,
+    refreshUiState: NewsletterRefreshUiState,
+    onReadMessage: (NewsletterMessage) -> Unit,
+    onMarkAllRead: (NewsletterInbox) -> Unit = {},
+    onRefresh: () -> Unit = {}
 ) {
-    val context = LocalContext.current
-
-    val inboxesUiState = newsletterViewModel.inboxesUiState.collectAsStateWithLifecycle()
-
-    val inboxUiState = inboxesUiState.value.inboxes.first { inboxUiState ->
-        inboxUiState.inbox.id == inbox.id }
-    val lastReadDate = inboxUiState.lastReadDate
-
-    val refreshUiState = newsletterViewModel.refreshUiState.collectAsStateWithLifecycle()
-    val isRefreshing = refreshUiState.value.isRefreshing
-
-    val messages = inbox.channel?.messages
-
     val rememberListState = rememberLazyListState()
+
+    val inboxUiState = newsletterInboxesUiState.inboxes.first { inboxUiState ->
+        inboxUiState.inbox.id == inbox.id }
+
+    val lastReadDate = inboxUiState.lastReadDate
+    val isRefreshing = refreshUiState.isRefreshing
+    val messages = inbox.channel?.messages
 
     Row (
         modifier = modifier
@@ -267,14 +268,7 @@ fun NewsMessagesContentCompactLandscape(
                 .weight(1f, false)
                 .widthIn(max = 600.dp),
             contentAlignment = Alignment.Center,
-            onRefresh = {
-                newsletterViewModel.refreshInboxes(
-                    onFailure = { message ->
-                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                    }
-                )
-
-            },
+            onRefresh = { onRefresh() },
             isRefreshing = isRefreshing
         ) {
             LazyColumn(
@@ -289,17 +283,7 @@ fun NewsMessagesContentCompactLandscape(
                     MessageCard(
                         message = rememberMessage,
                         isActive = rememberMessage.compareDate(lastReadDate) > 0,
-                        onClick = {
-                            inbox.id?.let { id ->
-                                newsletterViewModel.saveInboxLastReadDate(
-                                    id, rememberMessage.dateEpoch
-                                )
-                                navController.navigate(
-                                    route = "${NavRoute.SCREEN_NEWSLETTER_MESSAGE.route}/" +
-                                            "${id}/${rememberMessage.id}"
-                                )
-                            }
-                        },
+                        onClick = { onReadMessage(rememberMessage) },
                         modifier = Modifier
                             .padding(vertical = 4.dp)
                     )
@@ -319,9 +303,9 @@ fun NewsMessagesContentCompactLandscape(
                     horizontalArrangement = Arrangement.End
                 ) {
                     MarkAsReadButton(
-                        newsletterViewModel,
-                        inbox,
-                        messages
+                        onClick = {
+                            onMarkAllRead(inbox)
+                        }
                     )
                 }
             }
@@ -332,12 +316,11 @@ fun NewsMessagesContentCompactLandscape(
 
 @Composable
 private fun MarkAsReadButton(
-    newsletterViewModel: NewsletterViewModel,
-    inbox: NewsletterInbox?,
-    messages: List<NewsletterMessage>?
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
 ) {
     TextButton(
-        modifier = Modifier
+        modifier = modifier
             .wrapContentWidth()
             .height(48.dp),
         content = {
@@ -361,11 +344,7 @@ private fun MarkAsReadButton(
         ),
         shape = RoundedCornerShape(percent = 20),
         onClick = {
-            inbox?.let { box ->
-                messages?.firstOrNull()?.dateEpoch?.let {
-                    box.id?.let { id -> newsletterViewModel.saveInboxLastReadDate(id, it) }
-                }
-            }
+            onClick()
         },
     )
 }
