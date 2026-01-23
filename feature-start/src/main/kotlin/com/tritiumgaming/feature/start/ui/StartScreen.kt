@@ -79,6 +79,8 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.start.ui.newsletter.NewsletterInboxesUiState
+import com.tritiumgaming.feature.start.ui.reviewpopup.ReviewUiState
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import java.util.Locale
@@ -125,6 +127,9 @@ private fun StartContent(
     navController: NavController
 ) {
 
+    val newsletterInboxesUiState by startViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val reviewUiState by startViewModel.reviewFlow.collectAsStateWithLifecycle()
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -139,7 +144,8 @@ private fun StartContent(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             HeaderNavBar(
-                startViewModel = startViewModel,
+                newsletterInboxesUiState = newsletterInboxesUiState,
+                reviewUiState = reviewUiState,
                 navController = navController)
         }
 
@@ -472,24 +478,23 @@ private fun StartButton(
 @Composable
 private fun HeaderNavBar(
     navController: NavController,
-    startViewModel: StartViewModel,
+    newsletterInboxesUiState: NewsletterInboxesUiState,
+    reviewUiState: ReviewUiState
 ) {
 
     val context = LocalContext.current
     val discordInvitation = stringResource(R.string.link_discordInvite)
     val patreonInvitation = stringResource(R.string.link_patreonInvite)
 
-    val inboxesUiState = startViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val inboxNotificationState = inboxesUiState.value.inboxes
+    val inboxNotificationState = newsletterInboxesUiState.inboxes
         .sortedByDescending { it.lastReadDate }
         .firstOrNull { inboxUiState ->
             inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
         } != null
 
-    val reviewUiState = startViewModel.reviewFlow.collectAsStateWithLifecycle()
-    val timesOpened = reviewUiState.value.timesOpened
+    val timesOpened = reviewUiState.timesOpened
     Log.d("StartScreen", "$timesOpened")
-    val canRequestReview = reviewUiState.value.canRequestReview
+    val canRequestReview = reviewUiState.canRequestReview
 
     val menuIcon: @Composable () -> Unit = {
         HamburgerMenuIcon(
