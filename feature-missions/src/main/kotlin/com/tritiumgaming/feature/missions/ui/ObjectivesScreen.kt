@@ -5,23 +5,48 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
-import com.tritiumgaming.feature.missions.ui.components.MissionWrapperActions
+import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiState
+import com.tritiumgaming.feature.missions.ui.components.name.GhostNameUiActions
+import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiActions
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentLandscape
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentPortrait
+import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentUiState
 
 @Composable
 fun ObjectivesScreen(
     objectivesViewModel: ObjectivesViewModel,
-    difficultyUiState: DifficultyUiState
+    ghostResponseUiState: GhostResponseUiState
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val namesSpinnerUiState by objectivesViewModel.namesSpinnerUiState.collectAsStateWithLifecycle()
-    //val missionUiState by objectivesViewModel.missionUiState.collectAsStateWithLifecycle()
     val ghostDetailsUiState by objectivesViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
     val missionSpinnerUiState by objectivesViewModel.missionSpinnerUiState.collectAsStateWithLifecycle()
+
+    val objectivesContentUiState = ObjectivesContentUiState(
+        ghostResponseUiState = ghostResponseUiState,
+        missionSpinnerUiState = missionSpinnerUiState,
+        ghostDetailsUiState = ghostDetailsUiState,
+        namesSpinnerUiState = namesSpinnerUiState
+    )
+
+    val ghostNameUiActions = GhostNameUiActions(
+        onSelectFirstName = { firstname ->
+            objectivesViewModel.setGhostFirstName(firstname)
+        },
+        onSelectSurname = { surname ->
+            objectivesViewModel.setGhostSurname(surname)
+        },
+    )
+
+    val ghostResponseUiActions = GhostResponseUiActions(
+        onSelectResponse = { response ->
+            objectivesViewModel.setGhostResponse(response)
+        }
+    )
 
     val missionWrapperActions = MissionWrapperActions(
         onSelectMission = { index, mission ->
@@ -35,20 +60,9 @@ fun ObjectivesScreen(
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             ObjectivesContentPortrait(
-                difficultyUiState = difficultyUiState,
-                //missionsUiState = missionUiState,
-                missionSpinnerUiState = missionSpinnerUiState,
-                ghostDetailsUiState = ghostDetailsUiState,
-                namesSpinnerUiState = namesSpinnerUiState,
-                onSelectFirstName = { firstname ->
-                    objectivesViewModel.setGhostFirstName(firstname)
-                },
-                onSelectSurname = { surname ->
-                    objectivesViewModel.setGhostSurname(surname)
-                },
-                onResponseChange = { response ->
-                    objectivesViewModel.setGhostResponse(response)
-                },
+                objectivesContentUiState = objectivesContentUiState,
+                ghostNameUiActions = ghostNameUiActions,
+                ghostResponseUiActions = ghostResponseUiActions,
                 missionWrapperActions = missionWrapperActions,
             )
         }
@@ -57,20 +71,9 @@ fun ObjectivesScreen(
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
             ObjectivesContentLandscape(
-                difficultyUiState = difficultyUiState,
-                //missionsUiState = missionUiState,
-                missionSpinnerUiState = missionSpinnerUiState,
-                ghostDetailsUiState = ghostDetailsUiState,
-                namesSpinnerUiState = namesSpinnerUiState,
-                onSelectFirstName = { firstname ->
-                    objectivesViewModel.setGhostFirstName(firstname)
-                },
-                onSelectSurname = { surname ->
-                    objectivesViewModel.setGhostSurname(surname)
-                },
-                onResponseChange = { response ->
-                    objectivesViewModel.setGhostResponse(response)
-                },
+                objectivesContentUiState = objectivesContentUiState,
+                ghostNameUiActions = ghostNameUiActions,
+                ghostResponseUiActions = ghostResponseUiActions,
                 missionWrapperActions = missionWrapperActions,
             )
         }

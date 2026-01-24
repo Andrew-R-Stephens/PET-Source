@@ -22,29 +22,20 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.missions.ui.DifficultyUiState
-import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
-import com.tritiumgaming.feature.missions.ui.MissionSpinnerUiState
-import com.tritiumgaming.feature.missions.ui.NamesSpinnerUiState
-import com.tritiumgaming.feature.missions.ui.Response
-import com.tritiumgaming.feature.missions.ui.components.GhostNameContent
-import com.tritiumgaming.feature.missions.ui.components.GhostResponseContent
-import com.tritiumgaming.feature.missions.ui.components.MissionWrapperActions
-import com.tritiumgaming.feature.missions.ui.components.MissionsContent
-import com.tritiumgaming.shared.data.ghostname.model.GhostName
+import com.tritiumgaming.feature.missions.ui.components.name.GhostNameContent
+import com.tritiumgaming.feature.missions.ui.components.name.GhostNameUiActions
+import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseContent
+import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiActions
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionsContent
 
 @Composable
 internal fun ObjectivesContentLandscape(
     modifier: Modifier = Modifier,
-    //missionsUiState: List<MissionUiState>,
-    difficultyUiState: DifficultyUiState,
-    missionSpinnerUiState: MissionSpinnerUiState,
-    ghostDetailsUiState: GhostDetailsUiState,
-    namesSpinnerUiState: NamesSpinnerUiState,
-    onSelectFirstName: (ghostName: GhostName) -> Unit,
-    onSelectSurname: (ghostName: GhostName) -> Unit,
+    objectivesContentUiState: ObjectivesContentUiState,
+    ghostNameUiActions: GhostNameUiActions,
     missionWrapperActions: MissionWrapperActions,
-    onResponseChange: (Response) -> Unit,
+    ghostResponseUiActions: GhostResponseUiActions
 ) {
     Row(
         modifier = modifier
@@ -79,8 +70,7 @@ internal fun ObjectivesContentLandscape(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top)
                     .padding(8.dp),
-                //missionsUiState = missionsUiState,
-                missionSpinnerUiState = missionSpinnerUiState,
+                missionSpinnerUiState = objectivesContentUiState.missionSpinnerUiState,
                 missionWrapperActions = missionWrapperActions
             )
 
@@ -109,24 +99,18 @@ internal fun ObjectivesContentLandscape(
             )
 
             GhostNameContent(
-                namesSpinnerUiState = namesSpinnerUiState,
-                ghostDetailsUiState = ghostDetailsUiState,
-                onSelectFirstName = { firstname ->
-                    onSelectFirstName(firstname)
-                },
-                onSelectSurname = { surname ->
-                    onSelectSurname(surname)
-                }
+                modifier = Modifier,
+                namesSpinnerUiState = objectivesContentUiState.namesSpinnerUiState,
+                ghostDetailsUiState = objectivesContentUiState.ghostDetailsUiState,
+                ghostNameUiActions = ghostNameUiActions,
             )
 
             GhostResponseContent(
                 modifier = Modifier
                     .wrapContentHeight(Alignment.Top),
-                difficultyUiState = difficultyUiState,
-                ghostDetailsUiState = ghostDetailsUiState,
-                onResponseChange = { response ->
-                    onResponseChange(response)
-                }
+                ghostResponseUiState = objectivesContentUiState.ghostResponseUiState,
+                ghostDetailsUiState = objectivesContentUiState.ghostDetailsUiState,
+                ghostResponseUiActions = ghostResponseUiActions
             )
 
         }

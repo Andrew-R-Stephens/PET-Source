@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.missions.ui
+package com.tritiumgaming.feature.missions.ui.components.mission
 
 import com.tritiumgaming.shared.data.mission.model.Mission
 

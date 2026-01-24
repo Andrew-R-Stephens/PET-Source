@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.missions.ui.components
+package com.tritiumgaming.feature.missions.ui.components.response
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -30,21 +30,19 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.missions.ui.DifficultyUiState
-import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.ALONE
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.GROUP
-import com.tritiumgaming.feature.missions.ui.Response
+import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 
 @Composable
 fun GhostResponseContent(
     modifier: Modifier = Modifier,
-    difficultyUiState: DifficultyUiState,
+    ghostResponseUiState: GhostResponseUiState,
     ghostDetailsUiState: GhostDetailsUiState,
-    onResponseChange: (Response) -> Unit
+    ghostResponseUiActions: GhostResponseUiActions,
 ) {
-    val collectDifficultyUiState by remember { mutableStateOf(difficultyUiState) }
+    val collectDifficultyUiState by remember { mutableStateOf(ghostResponseUiState) }
     val isResponseKnown = collectDifficultyUiState.responseType ==
             DifficultyResources.DifficultyResponseType.KNOWN
 
@@ -91,7 +89,7 @@ fun GhostResponseContent(
                     state = ghostDetailsUiState.responseState == ALONE,
                     enabled = isResponseKnown
                 ) {
-                    onResponseChange(ALONE)
+                    ghostResponseUiActions.onSelectResponse(ALONE)
                 }
 
                 ResponseItem(
@@ -102,7 +100,7 @@ fun GhostResponseContent(
                     state = ghostDetailsUiState.responseState == GROUP,
                     enabled = isResponseKnown
                 ) {
-                    onResponseChange(GROUP)
+                    ghostResponseUiActions.onSelectResponse(GROUP)
                 }
 
             }

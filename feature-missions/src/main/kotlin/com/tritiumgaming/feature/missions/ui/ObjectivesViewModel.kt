@@ -5,6 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionSpinnerUiState
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionStatus
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionUiState
+import com.tritiumgaming.feature.missions.ui.components.name.NamesSpinnerUiState
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFemaleNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase
@@ -25,21 +29,21 @@ class ObjectivesViewModel(
 ): ViewModel() {
 
     private val _missionSpinnerUiState: MutableStateFlow<MissionSpinnerUiState> =
-        MutableStateFlow(MissionSpinnerUiState(
-            availableMissions = fetchAllMissions()
-        ))
+        MutableStateFlow(
+            MissionSpinnerUiState(
+                availableMissions = fetchAllMissions()
+            )
+        )
     val missionSpinnerUiState = _missionSpinnerUiState.asStateFlow()
 
     private val _namesSpinnerUiState: MutableStateFlow<NamesSpinnerUiState> =
-        MutableStateFlow(NamesSpinnerUiState(
-            firstNames = fetchAllFirstNames(),
-            surnames = fetchAllSurnames()
-        ))
+        MutableStateFlow(
+            NamesSpinnerUiState(
+                firstNames = fetchAllFirstNames(),
+                surnames = fetchAllSurnames()
+            )
+        )
     val namesSpinnerUiState = _namesSpinnerUiState.asStateFlow()
-
-    /*private val _missionUiState: MutableStateFlow<List<MissionUiState>> =
-        MutableStateFlow(emptyList())
-    val missionUiState = _missionUiState.asStateFlow()*/
 
     /*
      * Missions -------------------------
@@ -54,15 +58,6 @@ class ObjectivesViewModel(
     }
 
     fun updateMissionStatus(mission: Mission, status: MissionStatus) {
-        /*_missionUiState.update {
-            it.map { spinnerState ->
-                if(spinnerState.mission.id == mission.id) {
-                    spinnerState.copy(status = status)
-                } else {
-                    spinnerState
-                }
-            }
-        }*/
 
         _missionSpinnerUiState.update {
             it.copy(
@@ -79,19 +74,6 @@ class ObjectivesViewModel(
     }
 
     fun selectMission(spinnerIndex: Int, mission: Mission) {
-
-        /*_missionUiState.update {
-            it.mapIndexed { index, spinnerState ->
-                if(spinnerIndex == index) {
-                    spinnerState.copy(
-                        mission = mission,
-                        status = NOT_COMPLETE
-                    )
-                } else {
-                    spinnerState
-                }
-            }
-        }*/
 
         _missionSpinnerUiState.update {
             it.copy(
@@ -151,12 +133,7 @@ class ObjectivesViewModel(
      */
 
     private fun updateMissionSpinnerUiState() {
-        /*
-        val filteredMissions = missionUiState.value
-            .fold(fetchAllMissions()) { missionsUi, mission ->
-                missionsUi.filter { it.id != mission.mission.id }
-            }
-        */
+
         val filteredMissions = missionSpinnerUiState.value.selectedMissions
             .fold(fetchAllMissions()) { missionsUi, mission ->
                 missionsUi.filter { it.id != mission.mission.id }

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.missions.ui.components
+package com.tritiumgaming.feature.missions.ui.components.name
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -37,7 +37,6 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.missions.app.mappers.ghostname.toStringResource
 import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
-import com.tritiumgaming.feature.missions.ui.NamesSpinnerUiState
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
 
 @Composable
@@ -45,8 +44,7 @@ fun GhostNameContent(
     modifier: Modifier = Modifier,
     namesSpinnerUiState: NamesSpinnerUiState,
     ghostDetailsUiState: GhostDetailsUiState,
-    onSelectFirstName: (ghostName: GhostName) -> Unit = {},
-    onSelectSurname: (ghostName: GhostName) -> Unit = {}
+    ghostNameUiActions: GhostNameUiActions
 ) {
     Column(
         modifier = modifier
@@ -83,7 +81,7 @@ fun GhostNameContent(
                 dropdownList = namesSpinnerUiState.firstNames,
                 placeholder = "First Name",
             ) { name ->
-                onSelectFirstName(name)
+                ghostNameUiActions.onSelectFirstName(name)
             }
 
             NameWrapper(
@@ -94,7 +92,7 @@ fun GhostNameContent(
                 dropdownList = namesSpinnerUiState.surnames,
                 placeholder = "Surname",
             ) { surname ->
-                onSelectSurname(surname)
+                ghostNameUiActions.onSelectSurname(surname)
             }
 
         }

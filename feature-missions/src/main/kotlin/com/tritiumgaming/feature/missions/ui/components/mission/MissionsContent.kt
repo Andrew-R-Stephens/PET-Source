@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.missions.ui.components
+package com.tritiumgaming.feature.missions.ui.components.mission
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -44,13 +44,11 @@ import com.tritiumgaming.core.ui.common.other.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.missions.app.mappers.mission.toStringResource
-import com.tritiumgaming.feature.missions.ui.MissionSpinnerUiState
 import com.tritiumgaming.shared.data.mission.model.Mission
 
 @Composable
 fun MissionsContent(
     modifier: Modifier = Modifier,
-    //missionsUiState: List<MissionUiState>,
     missionSpinnerUiState: MissionSpinnerUiState,
     missionWrapperActions: MissionWrapperActions
 ) {
@@ -67,19 +65,9 @@ fun MissionsContent(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            /*missionsUiState.forEachIndexed { index, _ ->
-                MissionWrapper(
-                    modifier = Modifier,
-                    missionUiState = missionsUiState[index],
-                    missionSpinnerUiState = missionSpinnerUiState,
-                    missionWrapperActions = missionWrapperActions,
-                    index = index,
-                    title = "${stringResource(R.string.objectives_title_optional_objective)} ${index + 1}"
-               )*/
             missionSpinnerUiState.selectedMissions.forEachIndexed { index, _ ->
                 MissionWrapper(
                     modifier = Modifier,
-                    /*missionUiState = missionsUiState[index],*/
                     missionSpinnerUiState = missionSpinnerUiState,
                     missionWrapperActions = missionWrapperActions,
                     index = index,
@@ -101,7 +89,6 @@ data class MissionWrapperActions(
 @Composable
 fun MissionWrapper(
     modifier: Modifier = Modifier,
-    /*missionUiState: MissionUiState,*/
     missionSpinnerUiState: MissionSpinnerUiState,
     missionWrapperActions: MissionWrapperActions,
     index: Int = 0,
@@ -191,18 +178,6 @@ fun MissionWrapper(
                         readOnly = true,
                     )
 
-                    /*if(missionUiState.status) {
-                        Image(
-                            modifier = Modifier
-                                .align(Alignment.Center)
-                                .height(24.dp)
-                                .fillMaxWidth(),
-                            painter = painterResource(R.drawable.icon_strikethrough_1),
-                            contentDescription = "",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.primary),
-                            contentScale = ContentScale.FillBounds
-                        )
-                    }*/
                     if(selectedMission.status) {
                         Image(
                             modifier = Modifier
@@ -255,20 +230,6 @@ fun MissionWrapper(
 
                 }
             }
-
-            /*
-            PETImageButton(
-                modifier = Modifier
-                    .size(48.dp)
-                    .clickable(onClick = {
-                        missionWrapperActions.onChangeMissionStatus(
-                            missionUiState.mission, !missionUiState.status)
-                    }),
-                type =
-                    if(!missionUiState.status) PETImageButtonType.CONFIRM
-                    else PETImageButtonType.CANCEL
-            )
-            */
 
             PETImageButton(
                 modifier = Modifier
