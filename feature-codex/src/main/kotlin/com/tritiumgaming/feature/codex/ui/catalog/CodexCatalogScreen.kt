@@ -115,6 +115,20 @@ fun CodexCatalogScreen(
         }
     )
 
+    val paginatorUiState = PaginatorUiState(
+        scrollUiState = scrollUiState,
+        images = when(category) {
+            CodexResources.Category.EQUIPMENT -> equipmentUiState.icons
+            CodexResources.Category.POSSESSIONS -> possessionsUiState.icons
+            CodexResources.Category.ACHIEVEMENTS -> achievementUiState.icons
+        }
+    )
+
+    val paginatorUiActions = PaginatorUiActions(
+        onScrollUpdate = { offset, index ->
+            codexViewModel.setScrollOffset(offset, index) }
+    )
+
     val rememberScrollState = rememberLazyListState()
 
     LaunchedEffect(scrollUiState.offset) {
@@ -160,7 +174,8 @@ fun CodexCatalogScreen(
                 CodexItemScreenContentPortrait(
                     category = category,
                     scrollState = rememberScrollState,
-                    codexViewModel = codexViewModel,
+                    paginatorUiState = paginatorUiState,
+                    paginatorUiActions = paginatorUiActions,
                     equipmentUiState = equipmentUiState,
                     possessionsUiState = possessionsUiState,
                     achievementUiState = achievementUiState,
@@ -179,7 +194,8 @@ fun CodexCatalogScreen(
                 CodexItemScreenContentLandscape(
                     category = category,
                     scrollState = rememberScrollState,
-                    codexViewModel = codexViewModel,
+                    paginatorUiState = paginatorUiState,
+                    paginatorUiActions = paginatorUiActions,
                     equipmentUiState = equipmentUiState,
                     possessionsUiState = possessionsUiState,
                     achievementUiState = achievementUiState,
@@ -196,9 +212,10 @@ fun CodexCatalogScreen(
 
 @Composable
 private fun CodexItemScreenContentPortrait(
-    codexViewModel: CodexViewModel,
     category: CodexResources.Category,
     scrollState: LazyListState,
+    paginatorUiState: PaginatorUiState,
+    paginatorUiActions: PaginatorUiActions,
     equipmentUiState: EquipmentCatalogUiState,
     possessionsUiState: PossessionsCatalogUiState,
     achievementUiState: AchievementsCatalogUiState,
@@ -215,8 +232,8 @@ private fun CodexItemScreenContentPortrait(
             modifier = Modifier
                 .fillMaxHeight()
                 .width(48.dp),
-            codexViewModel = codexViewModel,
-            images = codexViewModel.getCategoryIcons(category)
+            paginatorUiState = paginatorUiState,
+            paginatorUiActions = paginatorUiActions
         )
 
         Box(
@@ -231,6 +248,15 @@ private fun CodexItemScreenContentPortrait(
                         equipmentCatalogUiState = equipmentUiState,
                         equipmentListUiActions = equipmentListUiActions
                     )
+
+                    EquipmentCatalogDisplay(
+                        modifier = Modifier
+                            .fillMaxHeight(.8f)
+                            .fillMaxWidth()
+                            .align(Alignment.BottomCenter),
+                        equipmentCatalogUiState = equipmentUiState,
+                        displayUiActions = displayUiActions
+                    )
                 }
                 CodexResources.Category.POSSESSIONS -> {
 
@@ -238,6 +264,15 @@ private fun CodexItemScreenContentPortrait(
                         possessionsCatalogUiState = possessionsUiState,
                         possessionsListUiActions = possessionsListUiActions,
                         scrollState = scrollState
+                    )
+
+                    PossessionsCatalogDisplay(
+                        modifier = Modifier
+                            .fillMaxHeight(.8f)
+                            .fillMaxWidth()
+                            .align(Alignment.BottomCenter),
+                        possessionsCatalogUiState = possessionsUiState,
+                        displayUiActions = displayUiActions
                     )
                 }
                 CodexResources.Category.ACHIEVEMENTS -> {
@@ -247,44 +282,32 @@ private fun CodexItemScreenContentPortrait(
                         achievementCatalogUiState = achievementUiState,
                         achievementsListUiActions = achievementsListUiActions
                     )
+
+                    AchievementCatalogDisplay(
+                        modifier = Modifier
+                            .fillMaxHeight(.8f)
+                            .fillMaxWidth()
+                            .align(Alignment.BottomCenter),
+                        achievementsCatalogUiState = achievementUiState,
+                        displayUiActions = displayUiActions
+                    )
                 }
             }
 
-            when(category) {
-                CodexResources.Category.EQUIPMENT -> EquipmentCatalogDisplay(
-                    modifier = Modifier
-                        .fillMaxHeight(.8f)
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter),
-                    equipmentCatalogUiState = equipmentUiState,
-                    displayUiActions = displayUiActions
-                )
-                CodexResources.Category.POSSESSIONS -> PossessionsCatalogDisplay(
-                    modifier = Modifier
-                        .fillMaxHeight(.8f)
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter),
-                    possessionsCatalogUiState = possessionsUiState,
-                    displayUiActions = displayUiActions
-                )
-                CodexResources.Category.ACHIEVEMENTS -> AchievementCatalogDisplay(
-                    modifier = Modifier
-                        .fillMaxHeight(.8f)
-                        .fillMaxWidth()
-                        .align(Alignment.BottomCenter),
-                    achievementsCatalogUiState = achievementUiState,
-                    displayUiActions = displayUiActions
-                )
-            }
         }
     }
 }
 
+data class PaginatorUiActions(
+    val onScrollUpdate: (Float, Int) -> Unit
+)
+
 @Composable
 private fun CodexItemScreenContentLandscape(
-    codexViewModel: CodexViewModel,
     category: CodexResources.Category,
     scrollState: LazyListState,
+    paginatorUiState: PaginatorUiState,
+    paginatorUiActions: PaginatorUiActions,
     equipmentUiState: EquipmentCatalogUiState,
     possessionsUiState: PossessionsCatalogUiState,
     achievementUiState: AchievementsCatalogUiState,
@@ -301,8 +324,8 @@ private fun CodexItemScreenContentLandscape(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp),
-            codexViewModel = codexViewModel,
-            images = codexViewModel.getCategoryIcons(category)
+            paginatorUiState = paginatorUiState,
+            paginatorUiActions = paginatorUiActions
         )
 
         Box(
@@ -317,6 +340,15 @@ private fun CodexItemScreenContentLandscape(
                         equipmentCatalogUiState = equipmentUiState,
                         equipmentListUiActions = equipmentListUiActions
                     )
+
+                    EquipmentCatalogDisplay(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(.8f)
+                            .align(Alignment.CenterStart),
+                        equipmentCatalogUiState = equipmentUiState,
+                        displayUiActions = displayUiActions
+                    )
                 }
                 CodexResources.Category.POSSESSIONS -> {
 
@@ -324,6 +356,15 @@ private fun CodexItemScreenContentLandscape(
                         possessionsCatalogUiState = possessionsUiState,
                         possessionsListUiActions = possessionsListUiActions,
                         scrollState = scrollState
+                    )
+
+                    PossessionsCatalogDisplay(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(.8f)
+                            .align(Alignment.CenterStart),
+                        possessionsCatalogUiState = possessionsUiState,
+                        displayUiActions = displayUiActions
                     )
                 }
                 CodexResources.Category.ACHIEVEMENTS -> {
@@ -333,35 +374,18 @@ private fun CodexItemScreenContentLandscape(
                         achievementCatalogUiState = achievementUiState,
                         achievementsListUiActions = achievementsListUiActions
                     )
+
+                    AchievementCatalogDisplay(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .fillMaxWidth(.8f)
+                            .align(Alignment.CenterStart),
+                        achievementsCatalogUiState = achievementUiState,
+                        displayUiActions = displayUiActions
+                    )
                 }
             }
 
-            when(category) {
-                CodexResources.Category.EQUIPMENT -> EquipmentCatalogDisplay(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth(.8f)
-                        .align(Alignment.CenterStart),
-                    equipmentCatalogUiState = equipmentUiState,
-                    displayUiActions = displayUiActions
-                )
-                CodexResources.Category.POSSESSIONS -> PossessionsCatalogDisplay(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth(.8f)
-                        .align(Alignment.CenterStart),
-                    possessionsCatalogUiState = possessionsUiState,
-                    displayUiActions = displayUiActions
-                )
-                CodexResources.Category.ACHIEVEMENTS -> AchievementCatalogDisplay(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth(.8f)
-                        .align(Alignment.CenterStart),
-                    achievementsCatalogUiState = achievementUiState,
-                    displayUiActions = displayUiActions
-                )
-            }
         }
     }
 }
@@ -369,16 +393,18 @@ private fun CodexItemScreenContentLandscape(
 @Composable
 private fun VerticalPaginator(
     modifier: Modifier = Modifier,
-    codexViewModel: CodexViewModel,
-    @DrawableRes images: List<Int>
+    paginatorUiState: PaginatorUiState,
+    paginatorUiActions: PaginatorUiActions
 ) {
-    val scrollUiState by codexViewModel.scrollUiState.collectAsStateWithLifecycle()
-
     var paginatorHeight by remember {
         mutableFloatStateOf(0f)
     }
 
-    Log.d("CodexItemstoreScreen", "VerticalPaginator: ${scrollUiState.itemIndex}")
+    Log.d("CodexItemstoreScreen",
+        "VerticalPaginator: ${paginatorUiState.scrollUiState.itemIndex}")
+
+    val images = paginatorUiState.images
+    val scrollUiState = paginatorUiState.scrollUiState
 
     Column(
         modifier = modifier
@@ -387,18 +413,18 @@ private fun VerticalPaginator(
             .onSizeChanged { paginatorHeight = it.height.toFloat() }
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
-                    codexViewModel.setScrollOffset(
-                        offset = (change.position.y / (paginatorHeight - 1)).coerceIn(0f, 1f),
-                        index = (images.size * scrollUiState.offset).toInt()
-                    )
+                    val newOffset = (change.position.y / (paginatorHeight - 1)).coerceIn(0f, 1f)
+                    val newIndex = (images.size * scrollUiState.offset).toInt()
+
+                    paginatorUiActions.onScrollUpdate(newOffset, newIndex)
                 }
             }
             .pointerInput(Unit) {
                 detectTapGestures {
-                    codexViewModel.setScrollOffset(
-                        offset = (it.y / (paginatorHeight - 1)).coerceIn(0f, 1f),
-                        index = (images.size * scrollUiState.offset).toInt()
-                    )
+                    val newOffset = (it.y / (paginatorHeight - 1)).coerceIn(0f, 1f)
+                    val newIndex = (images.size * scrollUiState.offset).toInt()
+
+                    paginatorUiActions.onScrollUpdate(newOffset, newIndex)
                 }
             },
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -427,15 +453,18 @@ private fun VerticalPaginator(
 @Composable
 private fun HorizontalPaginator(
     modifier: Modifier = Modifier,
-    codexViewModel: CodexViewModel,
-    @DrawableRes images: List<Int>
+    paginatorUiState: PaginatorUiState,
+    paginatorUiActions: PaginatorUiActions
 ) {
-
-    val scrollUiState by codexViewModel.scrollUiState.collectAsStateWithLifecycle()
-
     var paginatorWidth by remember {
         mutableFloatStateOf(0f)
     }
+
+    Log.d("CodexItemstoreScreen",
+        "VerticalPaginator: ${paginatorUiState.scrollUiState.itemIndex}")
+
+    val images = paginatorUiState.images
+    val scrollUiState = paginatorUiState.scrollUiState
 
     Row(
         modifier = modifier
@@ -444,18 +473,18 @@ private fun HorizontalPaginator(
             .onSizeChanged { paginatorWidth = it.width.toFloat() }
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
-                    codexViewModel.setScrollOffset(
-                        offset = (change.position.x / (paginatorWidth - 1)).coerceIn(0f, 1f),
-                        index = (images.size * scrollUiState.offset).toInt()
-                    )
+                    val newOffset = (change.position.x / (paginatorWidth - 1)).coerceIn(0f, 1f)
+                    val newIndex = (images.size * scrollUiState.offset).toInt()
+
+                    paginatorUiActions.onScrollUpdate(newOffset, newIndex)
                 }
             }
             .pointerInput(Unit) {
                 detectTapGestures {
-                    codexViewModel.setScrollOffset(
-                        offset = (it.x / (paginatorWidth - 1)).coerceIn(0f, 1f),
-                        index = (images.size * scrollUiState.offset).toInt()
-                    )
+                    val newOffset = (it.x / (paginatorWidth - 1)).coerceIn(0f, 1f)
+                    val newIndex = (images.size * scrollUiState.offset).toInt()
+
+                    paginatorUiActions.onScrollUpdate(newOffset, newIndex)
                 }
             },
         verticalAlignment = Alignment.CenterVertically,
