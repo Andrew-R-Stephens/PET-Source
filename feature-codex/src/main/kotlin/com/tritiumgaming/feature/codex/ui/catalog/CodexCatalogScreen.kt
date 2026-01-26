@@ -41,17 +41,25 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.codex.ui.CodexScreen
+import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
+import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
 import com.tritiumgaming.feature.codex.ui.CodexViewModel
-import com.tritiumgaming.feature.codex.ui.catalog.pages.CatalogAchievementListComponent
-import com.tritiumgaming.feature.codex.ui.catalog.pages.CatalogEquipmentListComponent
-import com.tritiumgaming.feature.codex.ui.catalog.pages.CodexAchievementDisplay
-import com.tritiumgaming.feature.codex.ui.catalog.pages.CodexEquipmentDisplay
-import com.tritiumgaming.feature.codex.ui.catalog.pages.CodexPossessionsDisplay
-import com.tritiumgaming.feature.codex.ui.catalog.pages.CodexPossessionsListComponent
+import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementsCatalogUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementCatalogList
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentListComponent
+import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementCatalogDisplay
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogDisplay
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogListUiActions
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.DisplayUiActions
+import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogDisplay
+import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogList
+import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogUiState
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable
 fun CodexCatalogScreen(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     codexViewModel: CodexViewModel,
     category: CodexResources.Category
@@ -65,9 +73,50 @@ fun CodexCatalogScreen(
 
     codexViewModel.cacheCategory(category)
 
-    val rememberScrollState = rememberLazyListState()
+    val codexScreenUiState = CodexScreenUiState(
+        headerTitle = categoryTitle,
+        showBackButton = true
+    )
+
+    val codexScreenUiActions = CodexScreenUiActions(
+        onBackClicked = {
+            navController.popBackStack()
+        }
+    )
 
     val scrollUiState by codexViewModel.scrollUiState.collectAsStateWithLifecycle()
+    val equipmentUiState by codexViewModel.equipmentUiState.collectAsStateWithLifecycle()
+    val possessionsUiState by codexViewModel.possessionsUiState.collectAsStateWithLifecycle()
+    val achievementUiState by codexViewModel.achievementsUiState.collectAsStateWithLifecycle()
+
+    val equipmentListUiActions = CatalogListUiActions.Equipment(
+        onSelect = { group, item ->
+            codexViewModel.setSelectedEquipment(group, item)
+        }
+    )
+
+    val possessionsListUiActions = CatalogListUiActions.Possessions(
+        onSelect = { group, item ->
+            codexViewModel.setSelectedPossession(group, item)
+        }
+    )
+
+    val achievementsListUiActions = CatalogListUiActions.Achievements(
+        onSelect = { group, item ->
+            codexViewModel.setSelectedAchievement(group, item)
+        }
+    )
+
+    val displayUiActions = DisplayUiActions(
+        onDismiss = {
+            codexViewModel.setSelectedEquipment(null, null)
+            codexViewModel.setSelectedPossession(null, null)
+            codexViewModel.setSelectedAchievement(null, null)
+        }
+    )
+
+    val rememberScrollState = rememberLazyListState()
+
     LaunchedEffect(scrollUiState.offset) {
         rememberScrollState.scrollToItem(
             index = (scrollUiState.offset *
@@ -97,13 +146,9 @@ fun CodexCatalogScreen(
     }
 
     CodexScreen(
-        navController = navController,
-        headerTitle = categoryTitle,
-        showBackButton = true,
-        onBackClicked = {
-            codexViewModel.flushCategory(category)
-            navController.popBackStack()
-        }
+        modifier = modifier,
+        codexScreenUiState = codexScreenUiState,
+        codexScreenUiActions = codexScreenUiActions
     ) {
 
         val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -113,9 +158,16 @@ fun CodexCatalogScreen(
             DeviceConfiguration.MOBILE_PORTRAIT -> {
 
                 CodexItemScreenContentPortrait(
-                    codexViewModel = codexViewModel,
                     category = category,
-                    scrollState = rememberScrollState
+                    scrollState = rememberScrollState,
+                    codexViewModel = codexViewModel,
+                    equipmentUiState = equipmentUiState,
+                    possessionsUiState = possessionsUiState,
+                    achievementUiState = achievementUiState,
+                    equipmentListUiActions = equipmentListUiActions,
+                    possessionsListUiActions = possessionsListUiActions,
+                    achievementsListUiActions = achievementsListUiActions,
+                    displayUiActions = displayUiActions
                 )
             }
 
@@ -125,9 +177,16 @@ fun CodexCatalogScreen(
             DeviceConfiguration.DESKTOP -> {
 
                 CodexItemScreenContentLandscape(
-                    codexViewModel = codexViewModel,
                     category = category,
-                    scrollState = rememberScrollState
+                    scrollState = rememberScrollState,
+                    codexViewModel = codexViewModel,
+                    equipmentUiState = equipmentUiState,
+                    possessionsUiState = possessionsUiState,
+                    achievementUiState = achievementUiState,
+                    equipmentListUiActions = equipmentListUiActions,
+                    possessionsListUiActions = possessionsListUiActions,
+                    achievementsListUiActions = achievementsListUiActions,
+                    displayUiActions = displayUiActions
                 )
             }
         }
@@ -139,7 +198,14 @@ fun CodexCatalogScreen(
 private fun CodexItemScreenContentPortrait(
     codexViewModel: CodexViewModel,
     category: CodexResources.Category,
-    scrollState: LazyListState
+    scrollState: LazyListState,
+    equipmentUiState: EquipmentCatalogUiState,
+    possessionsUiState: PossessionsCatalogUiState,
+    achievementUiState: AchievementsCatalogUiState,
+    equipmentListUiActions: CatalogListUiActions.Equipment,
+    possessionsListUiActions: CatalogListUiActions.Possessions,
+    achievementsListUiActions: CatalogListUiActions.Achievements,
+    displayUiActions: DisplayUiActions
 ) {
     Row(
         horizontalArrangement = Arrangement.Start,
@@ -158,41 +224,56 @@ private fun CodexItemScreenContentPortrait(
             contentAlignment = Alignment.TopCenter
         ) {
             when(category) {
-                CodexResources.Category.EQUIPMENT -> CatalogEquipmentListComponent(
-                    codexViewModel = codexViewModel,
-                    scrollState = scrollState
-                )
-                CodexResources.Category.POSSESSIONS -> CodexPossessionsListComponent(
-                    codexViewModel = codexViewModel,
-                    scrollState = scrollState
-                )
-                CodexResources.Category.ACHIEVEMENTS -> CatalogAchievementListComponent(
-                    codexViewModel = codexViewModel,
-                    scrollState = scrollState
-                )
+                CodexResources.Category.EQUIPMENT -> {
+
+                    CatalogEquipmentListComponent(
+                        scrollState = scrollState,
+                        equipmentCatalogUiState = equipmentUiState,
+                        equipmentListUiActions = equipmentListUiActions
+                    )
+                }
+                CodexResources.Category.POSSESSIONS -> {
+
+                    PossessionsCatalogList(
+                        possessionsCatalogUiState = possessionsUiState,
+                        possessionsListUiActions = possessionsListUiActions,
+                        scrollState = scrollState
+                    )
+                }
+                CodexResources.Category.ACHIEVEMENTS -> {
+
+                    AchievementCatalogList(
+                        scrollState = scrollState,
+                        achievementCatalogUiState = achievementUiState,
+                        achievementsListUiActions = achievementsListUiActions
+                    )
+                }
             }
 
             when(category) {
-                CodexResources.Category.EQUIPMENT -> CodexEquipmentDisplay(
+                CodexResources.Category.EQUIPMENT -> EquipmentCatalogDisplay(
                     modifier = Modifier
                         .fillMaxHeight(.8f)
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter),
-                    codexViewModel = codexViewModel
+                    equipmentCatalogUiState = equipmentUiState,
+                    displayUiActions = displayUiActions
                 )
-                CodexResources.Category.POSSESSIONS -> CodexPossessionsDisplay(
+                CodexResources.Category.POSSESSIONS -> PossessionsCatalogDisplay(
                     modifier = Modifier
                         .fillMaxHeight(.8f)
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter),
-                    codexViewModel = codexViewModel
+                    possessionsCatalogUiState = possessionsUiState,
+                    displayUiActions = displayUiActions
                 )
-                CodexResources.Category.ACHIEVEMENTS -> CodexAchievementDisplay(
+                CodexResources.Category.ACHIEVEMENTS -> AchievementCatalogDisplay(
                     modifier = Modifier
                         .fillMaxHeight(.8f)
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter),
-                    codexViewModel = codexViewModel
+                    achievementsCatalogUiState = achievementUiState,
+                    displayUiActions = displayUiActions
                 )
             }
         }
@@ -203,7 +284,14 @@ private fun CodexItemScreenContentPortrait(
 private fun CodexItemScreenContentLandscape(
     codexViewModel: CodexViewModel,
     category: CodexResources.Category,
-    scrollState: LazyListState
+    scrollState: LazyListState,
+    equipmentUiState: EquipmentCatalogUiState,
+    possessionsUiState: PossessionsCatalogUiState,
+    achievementUiState: AchievementsCatalogUiState,
+    equipmentListUiActions: CatalogListUiActions.Equipment,
+    possessionsListUiActions: CatalogListUiActions.Possessions,
+    achievementsListUiActions: CatalogListUiActions.Achievements,
+    displayUiActions: DisplayUiActions
 ) {
     Column(
         horizontalAlignment = Alignment.Start,
@@ -222,41 +310,56 @@ private fun CodexItemScreenContentLandscape(
             contentAlignment = Alignment.TopCenter
         ) {
             when(category) {
-                CodexResources.Category.EQUIPMENT -> CatalogEquipmentListComponent(
-                    codexViewModel = codexViewModel,
-                    scrollState = scrollState
-                )
-                CodexResources.Category.POSSESSIONS -> CodexPossessionsListComponent(
-                    codexViewModel = codexViewModel,
-                    scrollState = scrollState
-                )
-                CodexResources.Category.ACHIEVEMENTS -> CatalogAchievementListComponent(
-                    codexViewModel = codexViewModel,
-                    scrollState = scrollState
-                )
+                CodexResources.Category.EQUIPMENT -> {
+
+                    CatalogEquipmentListComponent(
+                        scrollState = scrollState,
+                        equipmentCatalogUiState = equipmentUiState,
+                        equipmentListUiActions = equipmentListUiActions
+                    )
+                }
+                CodexResources.Category.POSSESSIONS -> {
+
+                    PossessionsCatalogList(
+                        possessionsCatalogUiState = possessionsUiState,
+                        possessionsListUiActions = possessionsListUiActions,
+                        scrollState = scrollState
+                    )
+                }
+                CodexResources.Category.ACHIEVEMENTS -> {
+
+                    AchievementCatalogList(
+                        scrollState = scrollState,
+                        achievementCatalogUiState = achievementUiState,
+                        achievementsListUiActions = achievementsListUiActions
+                    )
+                }
             }
 
             when(category) {
-                CodexResources.Category.EQUIPMENT -> CodexEquipmentDisplay(
+                CodexResources.Category.EQUIPMENT -> EquipmentCatalogDisplay(
                     modifier = Modifier
                         .fillMaxHeight()
                         .fillMaxWidth(.8f)
                         .align(Alignment.CenterStart),
-                    codexViewModel = codexViewModel
+                    equipmentCatalogUiState = equipmentUiState,
+                    displayUiActions = displayUiActions
                 )
-                CodexResources.Category.POSSESSIONS -> CodexPossessionsDisplay(
+                CodexResources.Category.POSSESSIONS -> PossessionsCatalogDisplay(
                     modifier = Modifier
                         .fillMaxHeight()
                         .fillMaxWidth(.8f)
                         .align(Alignment.CenterStart),
-                    codexViewModel = codexViewModel
+                    possessionsCatalogUiState = possessionsUiState,
+                    displayUiActions = displayUiActions
                 )
-                CodexResources.Category.ACHIEVEMENTS -> CodexAchievementDisplay(
+                CodexResources.Category.ACHIEVEMENTS -> AchievementCatalogDisplay(
                     modifier = Modifier
                         .fillMaxHeight()
                         .fillMaxWidth(.8f)
                         .align(Alignment.CenterStart),
-                    codexViewModel = codexViewModel
+                    achievementsCatalogUiState = achievementUiState,
+                    displayUiActions = displayUiActions
                 )
             }
         }

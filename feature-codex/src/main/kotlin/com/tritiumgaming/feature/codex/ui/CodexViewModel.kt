@@ -8,6 +8,10 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.codex.app.container.CodexContainerProvider
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
+import com.tritiumgaming.feature.codex.ui.catalog.ScrollUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementsCatalogUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogUiState
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
@@ -31,13 +35,13 @@ class CodexViewModel(
     val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase
 ): ViewModel() {
 
-    private val _equipmentUiState = MutableStateFlow(CodexEquipmentUiState())
+    private val _equipmentUiState = MutableStateFlow(EquipmentCatalogUiState())
     val equipmentUiState = _equipmentUiState.asStateFlow()
 
-    private val _possessionsUiState = MutableStateFlow(CodexPossessionUiState())
+    private val _possessionsUiState = MutableStateFlow(PossessionsCatalogUiState())
     val possessionsUiState = _possessionsUiState.asStateFlow()
 
-    private val _achievementsUiState = MutableStateFlow(CodexAchievementUiState())
+    private val _achievementsUiState = MutableStateFlow(AchievementsCatalogUiState())
     val achievementsUiState = _achievementsUiState.asStateFlow()
 
     private val _scrollUiState = MutableStateFlow(ScrollUiState())
@@ -66,9 +70,12 @@ class CodexViewModel(
 
     @DrawableRes fun getCategoryIcons(category: CodexResources.Category): List<Int> {
         return when(category) {
-            CodexResources.Category.EQUIPMENT -> EquipmentResources.EquipmentIcon.entries.map { it.toDrawableResource() }
-            CodexResources.Category.POSSESSIONS -> PossessionsResources.PossessionsIcon.entries.map { it.toDrawableResource() }
-            CodexResources.Category.ACHIEVEMENTS -> AchievementsResources.AchievementIcon.entries.map { it.toDrawableResource() }
+            CodexResources.Category.EQUIPMENT ->
+                EquipmentResources.EquipmentIcon.entries.map { it.toDrawableResource() }
+            CodexResources.Category.POSSESSIONS ->
+                PossessionsResources.PossessionsIcon.entries.map { it.toDrawableResource() }
+            CodexResources.Category.ACHIEVEMENTS ->
+                AchievementsResources.AchievementIcon.entries.map { it.toDrawableResource() }
         }
     }
 
@@ -115,15 +122,15 @@ class CodexViewModel(
     }
 
     private fun flushCodexEquipment() {
-        _equipmentUiState.value = CodexEquipmentUiState()
+        _equipmentUiState.value = EquipmentCatalogUiState()
     }
 
     private fun flushCodexPossessions() {
-        _possessionsUiState.value = CodexPossessionUiState()
+        _possessionsUiState.value = PossessionsCatalogUiState()
     }
 
     private fun flushCodexAchievements() {
-        _achievementsUiState.value = CodexAchievementUiState()
+        _achievementsUiState.value = AchievementsCatalogUiState()
     }
 
     fun setSelectedEquipment(
@@ -191,28 +198,5 @@ class CodexViewModel(
             }
         }
     }
-
-    data class CodexEquipmentUiState(
-        val list: List<EquipmentType> = emptyList(),
-        val selectedGroup: EquipmentType? = null,
-        val selectedItem: EquipmentTypeTier? = null,
-    )
-
-    data class CodexPossessionUiState(
-        val list: List<PossessionsType> = emptyList(),
-        val selectedGroup: PossessionsType? = null,
-        val selectedItem: CodexPossessionsGroupItem? = null,
-    )
-
-    data class CodexAchievementUiState(
-        val list: List<AchievementsType> = emptyList(),
-        val selectedGroup: AchievementsType? = null,
-        val selectedItem: CodexAchievementsGroupItem? = null,
-    )
-
-    data class ScrollUiState(
-        val offset: Float = 0f,
-        val itemIndex: Int = 0
-    )
 
 }

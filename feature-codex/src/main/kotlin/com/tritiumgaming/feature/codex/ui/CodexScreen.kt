@@ -40,19 +40,16 @@ import com.tritiumgaming.feature.codex.ui.menu.CodexMenuGhostLabel
 @Composable
 fun CodexScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController,
-    headerTitle: Int = R.string.general_codex_button,
-    showBackButton: Boolean = false,
-    onBackClicked: () -> Unit = {},
+    codexScreenUiState: CodexScreenUiState,
+    codexScreenUiActions: CodexScreenUiActions,
     content: @Composable () -> Unit
 ) {
 
     CodexScreenContent(
         modifier = modifier
             .fillMaxSize(),
-        headerTitle = headerTitle,
-        showBackButton = showBackButton,
-        onBackClicked = onBackClicked
+        codexScreenUiState = codexScreenUiState,
+        codexScreenUiActions = codexScreenUiActions
     ) {
         content()
     }
@@ -62,9 +59,8 @@ fun CodexScreen(
 @Composable
 private fun CodexScreenContent(
     modifier: Modifier = Modifier,
-    headerTitle: Int,
-    showBackButton: Boolean = false,
-    onBackClicked: () -> Unit = {},
+    codexScreenUiState: CodexScreenUiState,
+    codexScreenUiActions: CodexScreenUiActions,
     content: @Composable () -> Unit
 ) {
 
@@ -78,12 +74,12 @@ private fun CodexScreenContent(
                 .height(40.dp)
                 .background(LocalPalette.current.codexFamily.codex3)
         ) {
-            if(showBackButton) {
+            if(codexScreenUiState.showBackButton) {
                 Image(
                     modifier = Modifier
                         .fillMaxHeight()
                         .aspectRatio(1f)
-                        .clickable(onClick = { onBackClicked() })
+                        .clickable(onClick = { codexScreenUiActions.onBackClicked() })
                         .padding(8.dp),
                     painter = painterResource(android.R.drawable.ic_menu_revert),
                     colorFilter = ColorFilter.tint(LocalPalette.current.codexFamily.codex2),
@@ -97,7 +93,7 @@ private fun CodexScreenContent(
                     .weight(1f)
                     .wrapContentHeight()
                     .padding(4.dp),
-                text = stringResource(headerTitle).uppercase(),
+                text = stringResource(codexScreenUiState.headerTitle).uppercase(),
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Center
                 ),
@@ -107,7 +103,7 @@ private fun CodexScreenContent(
                 maxLines = 1
             )
 
-            if(showBackButton) {
+            if(codexScreenUiState.showBackButton) {
                 Box(
                     modifier = Modifier
                         .fillMaxHeight()
@@ -121,17 +117,6 @@ private fun CodexScreenContent(
             modifier = Modifier
                 .weight(1f, true)
         ) {
-            /*Image(
-                modifier = Modifier
-                    .fillMaxSize(),
-                painter = painterResource(R.drawable.itemstore_grid),
-                contentDescription = "",
-                contentScale = ContentScale.FillBounds,
-                colorFilter = ColorFilter.tint(
-                    blendMode = BlendMode.Darken,
-                    color = LocalPalette.current.surface.copy(alpha=.75f)
-                )
-            )*/
             GridIcon(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -139,11 +124,7 @@ private fun CodexScreenContent(
                     fillColor = LocalPalette.current.codexFamily.codex6,
                     strokeColor = LocalPalette.current.codexFamily.codex7
                 ),
-                contentScale = ContentScale.FillBounds,
-                /*colorFilter = ColorFilter.tint(
-                    blendMode = BlendMode.Darken,
-                    color = LocalPalette.current.surface.copy(alpha=.75f)
-                )*/
+                contentScale = ContentScale.FillBounds
             )
 
             content()
@@ -164,7 +145,6 @@ private fun CodexScreenContent(
                     .wrapContentWidth()
                     .padding(vertical = 4.dp, horizontal = 16.dp)
             )
-
 
             BannerAd(
                 modifier = Modifier

@@ -51,44 +51,64 @@ import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.theme.white
 import com.tritiumgaming.feature.codex.ui.CodexScreen
+import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
+import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
 @Composable
 fun CodexMenuScreen(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
 
+    val codexScreenUiState = CodexScreenUiState(
+        headerTitle = R.string.general_codex_button,
+        showBackButton = false
+    )
+
+    val codexScreenUiActions = CodexScreenUiActions(
+        onBackClicked = {
+            navController.popBackStack()
+        }
+    )
+
     CodexScreen(
-        navController = navController
+        modifier = modifier,
+        codexScreenUiState = codexScreenUiState,
+        codexScreenUiActions = codexScreenUiActions
     ) {
 
         val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
         val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
+        val codexMenuItemUiActions = CodexMenuItemUiActions(
+            onNavigate = { route -> navController.navigate(route) }
+        )
+
         when (deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 CodexMenuContentPortrait(
-                    navController = navController
+                    codexMenuItemUiActions = codexMenuItemUiActions
                 )
             }
 
             DeviceConfiguration.MOBILE_LANDSCAPE -> {
                 CodexMenuContentLandscape(
-                    navController = navController
+                    codexMenuItemUiActions = codexMenuItemUiActions
                 )
             }
 
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE -> {
                 CodexMenuContentLandscape(
-                    navController = navController
+                    codexMenuItemUiActions = codexMenuItemUiActions
                 )
             }
 
             DeviceConfiguration.DESKTOP -> {
                 CodexMenuContentLandscape(
-                    navController = navController
+                    codexMenuItemUiActions = codexMenuItemUiActions
                 )
             }
         }
@@ -99,7 +119,7 @@ fun CodexMenuScreen(
 
 @Composable
 private fun CodexMenuContentPortrait(
-    navController: NavController
+    codexMenuItemUiActions: CodexMenuItemUiActions
 ) {
     Column(
         modifier = Modifier
@@ -115,12 +135,15 @@ private fun CodexMenuContentPortrait(
                 modifier = Modifier
                     .weight(1f)
                     .height(64.dp),
-                title = R.string.codex_section_equipment,
-                image = R.drawable.thumbnail_shop
+                codexMenuItemUiState = CodexMenuItemUiState(
+                    title = R.string.codex_section_equipment,
+                    image = R.drawable.thumbnail_shop
+                )
             ) {
-                navController.navigate(
-                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
-                            "${CodexResources.Category.EQUIPMENT.id}")
+                codexMenuItemUiActions.onNavigate(
+                    "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                            "${CodexResources.Category.EQUIPMENT.id}"
+                )
             }
         }
 
@@ -137,11 +160,13 @@ private fun CodexMenuContentPortrait(
                 modifier = Modifier
                     .weight(1f)
                     .height(64.dp),
-                title = R.string.store_title_cursedpossessions,
-                image = R.drawable.thumbnail_possessions
+                codexMenuItemUiState = CodexMenuItemUiState(
+                    title = R.string.store_title_cursedpossessions,
+                    image = R.drawable.thumbnail_possessions
+                )
             ) {
-                navController.navigate(
-                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                codexMenuItemUiActions.onNavigate(
+                    "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
                             "${CodexResources.Category.POSSESSIONS.id}")
             }
 
@@ -149,11 +174,13 @@ private fun CodexMenuContentPortrait(
                 modifier = Modifier
                     .weight(1f)
                     .height(64.dp),
-                title = R.string.codex_section_more,
-                image = null
+                codexMenuItemUiState = CodexMenuItemUiState(
+                    title = R.string.codex_section_more,
+                    image = null
+                )
             ) {
-                navController.navigate(
-                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                codexMenuItemUiActions.onNavigate(
+                    "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
                             "${CodexResources.Category.ACHIEVEMENTS.id}")
             }
         }
@@ -163,7 +190,7 @@ private fun CodexMenuContentPortrait(
 
 @Composable
 private fun CodexMenuContentLandscape(
-    navController: NavController
+    codexMenuItemUiActions: CodexMenuItemUiActions
 ) {
     Column(
         modifier = Modifier
@@ -183,11 +210,13 @@ private fun CodexMenuContentLandscape(
                 modifier = Modifier
                     .weight(.4f)
                     .height(64.dp),
-                title = R.string.codex_section_equipment,
-                image = R.drawable.thumbnail_shop
+                codexMenuItemUiState = CodexMenuItemUiState(
+                    title = R.string.codex_section_equipment,
+                    image = R.drawable.thumbnail_shop
+                )
             ) {
-                navController.navigate(
-                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                codexMenuItemUiActions.onNavigate(
+                    "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
                             "${CodexResources.Category.EQUIPMENT.id}")
             }
 
@@ -195,11 +224,13 @@ private fun CodexMenuContentLandscape(
                 modifier = Modifier
                     .weight(.3f)
                     .height(64.dp),
-                title = R.string.store_title_cursedpossessions,
-                image = R.drawable.thumbnail_possessions
+                codexMenuItemUiState = CodexMenuItemUiState(
+                    title = R.string.store_title_cursedpossessions,
+                    image = R.drawable.thumbnail_possessions
+                )
             ) {
-                navController.navigate(
-                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                codexMenuItemUiActions.onNavigate(
+                    "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
                             "${CodexResources.Category.POSSESSIONS.id}")
             }
 
@@ -207,11 +238,13 @@ private fun CodexMenuContentLandscape(
                 modifier = Modifier
                     .weight(.3f)
                     .height(64.dp),
-                title = R.string.codex_section_more,
-                image = null
+                codexMenuItemUiState = CodexMenuItemUiState(
+                    title = R.string.codex_section_more,
+                    image = null
+                )
             ) {
-                navController.navigate(
-                    route = "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
+                codexMenuItemUiActions.onNavigate(
+                    "${NavRoute.SCREEN_CODEX_ITEM_SCREEN.route}/" +
                             "${CodexResources.Category.ACHIEVEMENTS.id}")
             }
 
@@ -224,8 +257,7 @@ private fun CodexMenuContentLandscape(
 @Composable
 private fun CodexMenuItem(
     modifier: Modifier = Modifier,
-    @StringRes title: Int,
-    @DrawableRes image: Int? = null,
+    codexMenuItemUiState: CodexMenuItemUiState,
     onClick: () -> Unit = {}
 ) {
     Card(
@@ -253,15 +285,8 @@ private fun CodexMenuItem(
                 ),
                 contentScale = ContentScale.FillBounds
             )
-            /*Image(
-                modifier = Modifier
-                    .fillMaxSize(),
-                painter = painterResource(R.drawable.itemstore_grid),
-                contentDescription = "",
-                contentScale = ContentScale.FillBounds
-            )*/
 
-            image?.let { background ->
+            codexMenuItemUiState.image?.let { background ->
                 Image(
                     modifier = Modifier
                         .fillMaxSize(),
@@ -290,7 +315,7 @@ private fun CodexMenuItem(
                             .fillMaxWidth()
                             .wrapContentHeight()
                             .padding(horizontal = 8.dp),
-                        text = stringResource(title).uppercase(),
+                        text = stringResource(codexMenuItemUiState.title).uppercase(),
                         style = LocalTypography.current.primary.regular.copy(
                             textAlign = TextAlign.Center,
                             drawStyle = Stroke(
@@ -311,7 +336,7 @@ private fun CodexMenuItem(
                             .fillMaxWidth()
                             .wrapContentHeight()
                             .padding(horizontal = 8.dp),
-                        text = stringResource(title).uppercase(),
+                        text = stringResource(codexMenuItemUiState.title).uppercase(),
                         style = LocalTypography.current.primary.regular.copy(
                             textAlign = TextAlign.Center
                         ),
@@ -381,23 +406,4 @@ fun CodexMenuGhostLabel(
             maxLines = 1
         )
     }
-}
-
-@Composable
-@Preview
-fun CodexMenuGhostLabelPreview() {
-
-    SelectiveTheme {
-        CodexMenuGhostLabel()
-    }
-}
-
-@Composable
-@Preview
-private fun CodexMenuContentPreview() {
-
-    SelectiveTheme {
-        CodexMenuScreen()
-    }
-
 }
