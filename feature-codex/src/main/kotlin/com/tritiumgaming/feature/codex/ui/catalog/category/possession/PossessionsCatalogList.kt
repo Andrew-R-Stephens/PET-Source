@@ -43,6 +43,8 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
+import com.tritiumgaming.feature.codex.ui.CodexViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.DisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroup
@@ -55,11 +57,11 @@ import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopupDataRow
 
 @Composable
 fun PossessionsCatalogList(
-    possessionsCatalogUiState: PossessionsCatalogUiState,
-    possessionsListUiActions: CatalogListUiActions.Possessions,
+    catalogUiState: CatalogCategory.Possessions,
+    listUiActions: CatalogListUiActions.Possessions,
     scrollState: LazyListState
 ) {
-    val groups = possessionsCatalogUiState.list
+    val groups = catalogUiState.list
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
@@ -101,7 +103,7 @@ fun PossessionsCatalogList(
                                     isBordered = true,
                                     image = item.image.toDrawableResource()
                                 ) {
-                                    possessionsListUiActions.onSelect(group, item)
+                                    listUiActions.onSelect(group, item)
                                 }
 
                             }
@@ -149,7 +151,7 @@ fun PossessionsCatalogList(
                                     isBordered = true,
                                     image = item.image.toDrawableResource()
                                 ) {
-                                    possessionsListUiActions.onSelect(group, item)
+                                    listUiActions.onSelect(group, item)
                                 }
                             }
                         }

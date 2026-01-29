@@ -34,6 +34,7 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
 import com.tritiumgaming.feature.codex.ui.CodexViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.DisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogUiState
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
@@ -43,12 +44,12 @@ import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.Achieve
 @Composable
 fun AchievementCatalogDisplay(
     modifier: Modifier = Modifier,
-    achievementsCatalogUiState: AchievementsCatalogUiState,
+    displayUiState: CatalogDisplayUiState.Achievements,
     displayUiActions: DisplayUiActions
 ) {
 
-    val selectedGroup = achievementsCatalogUiState.selectedGroup ?: return
-    val selectedItem = achievementsCatalogUiState.selectedItem ?: return
+    val selectedGroup = displayUiState.selectedGroup ?: return
+    val selectedItem = displayUiState.selectedItem ?: return
 
     val image = selectedGroup.icon.toDrawableResource()
 

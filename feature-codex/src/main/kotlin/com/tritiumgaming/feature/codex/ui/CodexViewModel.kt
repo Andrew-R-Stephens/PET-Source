@@ -6,16 +6,14 @@ import androidx.annotation.IntegerRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.codex.app.container.CodexContainerProvider
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
-import com.tritiumgaming.feature.codex.ui.catalog.PaginatorUiState
 import com.tritiumgaming.feature.codex.ui.catalog.ScrollUiState
-import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementsCatalogUiState
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogUiState
-import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategoryUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
@@ -40,37 +38,12 @@ class CodexViewModel(
     val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase
 ): ViewModel() {
 
-    /*sealed interface CatalogUiState {
-        data class Equipment(
-            val list: List<EquipmentType> = emptyList(),
-            val selectedGroup: EquipmentType? = null,
-            val selectedItem: EquipmentTypeTier? = null,
-            @field:IntegerRes val icons: List<Int> = emptyList()
-        ) : CatalogUiState
+    private val _catalogUiState = MutableStateFlow(CatalogCategoryUiState())
+    val catalogUiState = _catalogUiState.asStateFlow()
 
-        data class Possessions(
-            val list: List<PossessionsType> = emptyList(),
-            val selectedGroup: PossessionsType? = null,
-            val selectedItem: CodexPossessionsGroupItem? = null,
-            @field:IntegerRes val icons: List<Int> = emptyList()
-        ) : CatalogUiState
-
-        data class Achievements(
-            val list: List<AchievementsType> = emptyList(),
-            val selectedGroup: AchievementsType? = null,
-            val selectedItem: CodexAchievementsGroupItem? = null,
-            @field:IntegerRes val icons: List<Int> = emptyList()
-        ) : CatalogUiState
-    }*/
-
-    private val _equipmentUiState = MutableStateFlow(EquipmentCatalogUiState())
-    val equipmentUiState = _equipmentUiState.asStateFlow()
-
-    private val _possessionsUiState = MutableStateFlow(PossessionsCatalogUiState())
-    val possessionsUiState = _possessionsUiState.asStateFlow()
-
-    private val _achievementsUiState = MutableStateFlow(AchievementsCatalogUiState())
-    val achievementsUiState = _achievementsUiState.asStateFlow()
+    private val _displayUiState =
+        MutableStateFlow<CatalogDisplayUiState>(CatalogDisplayUiState.None())
+    val displayUiState = _displayUiState.asStateFlow()
 
     private val _scrollUiState = MutableStateFlow(ScrollUiState())
     val scrollUiState = _scrollUiState.asStateFlow()
@@ -81,6 +54,7 @@ class CodexViewModel(
                 CodexResources.Category.EQUIPMENT -> cacheCodexEquipment()
                 CodexResources.Category.POSSESSIONS -> cacheCodexPossessions()
                 CodexResources.Category.ACHIEVEMENTS -> cacheCodexAchievements()
+                else -> { /*DO NOTHING*/ }
             }
         }
     }
@@ -108,6 +82,7 @@ class CodexViewModel(
                 PossessionsResources.PossessionsIcon.entries.map { it.toDrawableResource() }
             CodexResources.Category.ACHIEVEMENTS ->
                 AchievementsResources.AchievementIcon.entries.map { it.toDrawableResource() }
+            else -> emptyList()
         }
     }
 
@@ -118,12 +93,15 @@ class CodexViewModel(
             val list = result.getOrThrow()
             val icons = getCategoryIcons(CodexResources.Category.EQUIPMENT)
 
-            _equipmentUiState.update {
+            _catalogUiState.update {
                 it.copy(
-                    list = list,
-                    icons = icons
+                    equipment = CatalogCategory.Equipment(
+                        list = list,
+                        icons = icons
+                    )
                 )
             }
+
         } catch (e: Exception) { e.printStackTrace() }
     }
 
@@ -134,12 +112,15 @@ class CodexViewModel(
             val list = result.getOrThrow()
             val icons = getCategoryIcons(CodexResources.Category.POSSESSIONS)
 
-            _possessionsUiState.update {
+            _catalogUiState.update {
                 it.copy(
-                    list = list,
-                    icons = icons
+                    possessions = CatalogCategory.Possessions(
+                        list = list,
+                        icons = icons
+                    )
                 )
             }
+
         } catch (e: Exception) { e.printStackTrace() }
     }
 
@@ -150,33 +131,42 @@ class CodexViewModel(
             val list = result.getOrThrow()
             val icons = getCategoryIcons(CodexResources.Category.ACHIEVEMENTS)
 
-            _achievementsUiState.update {
+            _catalogUiState.update {
                 it.copy(
-                    list = list,
-                    icons = icons
+                    achievements = CatalogCategory.Achievements(
+                        list = list,
+                        icons = icons
+                    )
                 )
             }
+
         } catch (e: Exception) { e.printStackTrace() }
     }
 
     private fun flushCodexEquipment() {
-        _equipmentUiState.value = EquipmentCatalogUiState()
+        _catalogUiState.update {
+            it.copy(equipment = CatalogCategory.Equipment())
+        }
     }
 
     private fun flushCodexPossessions() {
-        _possessionsUiState.value = PossessionsCatalogUiState()
+        _catalogUiState.update {
+            it.copy(possessions = CatalogCategory.Possessions())
+        }
     }
 
     private fun flushCodexAchievements() {
-        _achievementsUiState.value = AchievementsCatalogUiState()
+        _catalogUiState.update {
+            it.copy(achievements = CatalogCategory.Achievements())
+        }
     }
 
     fun setSelectedEquipment(
         group: EquipmentType? = null,
         item: EquipmentTypeTier? = null
     ) {
-        _equipmentUiState.update {
-            it.copy(
+        _displayUiState.update {
+            CatalogDisplayUiState.Equipment(
                 selectedGroup = group,
                 selectedItem = item
             )
@@ -187,8 +177,8 @@ class CodexViewModel(
         group: PossessionsType? = null,
         item: CodexPossessionsGroupItem? = null
     ) {
-        _possessionsUiState.update {
-            it.copy(
+        _displayUiState.update {
+            CatalogDisplayUiState.Possessions(
                 selectedGroup = group,
                 selectedItem = item
             )
@@ -199,11 +189,17 @@ class CodexViewModel(
         group: AchievementsType? = null,
         item: CodexAchievementsGroupItem? = null
     ) {
-        _achievementsUiState.update {
-            it.copy(
+        _displayUiState.update {
+            CatalogDisplayUiState.Achievements(
                 selectedGroup = group,
                 selectedItem = item
             )
+        }
+    }
+
+    fun clearDisplay() {
+        _displayUiState.update {
+            CatalogDisplayUiState.None()
         }
     }
 

@@ -32,19 +32,22 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
+import com.tritiumgaming.feature.codex.ui.CodexViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.DisplayUiActions
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogUiState
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopupDataRow
 
 @Composable
 fun PossessionsCatalogDisplay(
     modifier: Modifier = Modifier,
-    possessionsCatalogUiState: PossessionsCatalogUiState,
+    displayUiState: CatalogDisplayUiState.Possessions,
     displayUiActions: DisplayUiActions
 ) {
 
-    val selectedGroup = possessionsCatalogUiState.selectedGroup ?: return
-    val selectedItem = possessionsCatalogUiState.selectedItem ?: return
+    val selectedGroup = displayUiState.selectedGroup ?: return
+    val selectedItem = displayUiState.selectedItem ?: return
 
     val image = selectedItem.image.toDrawableResource()
 

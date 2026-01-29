@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
+import com.tritiumgaming.feature.codex.ui.CodexViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItem
@@ -30,11 +32,11 @@ import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsPortrait
 
 @Composable
 fun AchievementCatalogList(
-    achievementCatalogUiState: AchievementsCatalogUiState,
-    achievementsListUiActions: CatalogListUiActions.Achievements ,
+    catalogUiState: CatalogCategory.Achievements,
+    listUiActions: CatalogListUiActions.Achievements,
     scrollState: LazyListState
 ) {
-    val groups = achievementCatalogUiState.list
+    val groups = catalogUiState.list
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
@@ -71,7 +73,7 @@ fun AchievementCatalogList(
                                 isBordered = true,
                                 image = group.icon.toDrawableResource()
                             ) {
-                                achievementsListUiActions.onSelect(group, group.item)
+                                listUiActions.onSelect(group, group.item)
                             }
                         }
                     }
@@ -116,7 +118,7 @@ fun AchievementCatalogList(
                                 isBordered = true,
                                 image = group.icon.toDrawableResource()
                             ) {
-                                achievementsListUiActions.onSelect(group, group.item)
+                                listUiActions.onSelect(group, group.item)
                             }
                         }
                     }
