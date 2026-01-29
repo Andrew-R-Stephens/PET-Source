@@ -1,5 +1,7 @@
 package com.tritiumgaming.shared.data.codex.model.achievements
 
+import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources
+
 data class CodexAchievementsGroupItem(
-    val infoText: com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementContent
+    val infoText: AchievementsResources.AchievementContent
 )
