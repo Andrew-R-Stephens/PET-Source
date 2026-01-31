@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,6 +17,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.TruckTimeIcon
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
@@ -84,18 +85,30 @@ fun ColumnScope.ToolbarConfigurationSection(
                     .size(64.dp),
                 sanityUiState = sanityUiState
             )
+
+            TruckTimeIcon(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.onSurface,
+                    strokeColor = LocalPalette.current.surface
+                )
+            )
             
             Column(
                 modifier = Modifier
                     .weight(1f, false)
             ) {
-                Text(
+
+
+                /*Text(
                     modifier = Modifier
                         .fillMaxWidth(),
                     text = "Remaining Time",
                     style = LocalTypography.current.primary.regular,
                     color = LocalPalette.current.onSurface
-                )
+                )*/
 
                 DigitalTimer(
                     modifier = Modifier

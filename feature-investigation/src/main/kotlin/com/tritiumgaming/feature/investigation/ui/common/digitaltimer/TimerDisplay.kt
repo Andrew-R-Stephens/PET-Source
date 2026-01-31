@@ -31,10 +31,6 @@ fun DigitalTimer(
     timerUiState: TimerUiState,
     color: Color = LocalPalette.current.onSurface
 ) {
-    /*var remainingTime = timerUiState.remainingTime
-    LaunchedEffect(timerUiState) {
-        remainingTime = timerUiState.remainingTime
-    }*/
 
     var size by remember{
         mutableStateOf(IntSize.Zero)
