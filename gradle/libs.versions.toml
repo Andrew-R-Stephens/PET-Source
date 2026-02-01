@@ -5,9 +5,9 @@ android-play-core-update = "2.1.0"
 android-gif-drawable = "1.2.30" # Latest: 1.2.29
 android-play-services-ads = "24.9.0" # Latest: 24.8.0
 android-play-services-auth = "21.5.0" # Latest 21.4.0
-androidx-activity-compose = "1.12.2" # Latest 1.12.0
-androidx-composeUi = "1.10.1" # Latest: 1.10.0
-androidx-compose-bom = "2026.01.00" # Latest 2025.12.01
+androidx-activity-compose = "1.12.3" # Latest 1.12.2
+androidx-composeUi = "1.10.2" # Latest: 1.10.1
+androidx-compose-bom = "2026.01.01" # Latest 2026.01.00
 androidx-compose-material3 = "1.4.0" # Latest: 1.4.0-rc01
 androidx-compose-material3-adaptive = "1.2.0" # Latest: 1.2.0-rc01
 androidx-compose-material3-window-size = "1.4.0-alpha16" # Latest: 1.4.0-alpha15
@@ -20,7 +20,7 @@ androidx-leanback-core = "1.2.0" # Latest 1.2.0
 androidx-leanback-paging = "1.1.0" # Latest 1.1.0-rc01
 androidx-leanback-tab = "1.1.0" # Latest 1.1.0-rc01
 androidx-lifecycle = "2.10.0" # Latest: 2.9.4
-androidx-navigation-fragment-ktx = "2.9.6" # Latest: 2.9.5
+androidx-navigation-fragment-ktx = "2.9.7" # Latest: 2.9.6
 androidx-room = "2.8.4" # Latest: 2.8.3
 appcompat = "1.7.1" # Latest 1.6.1
 cardview = "1.0.0"
@@ -29,7 +29,7 @@ composeCharts = "latest_version"
 constraintlayout = "2.2.1" # Latest 2.2.0
 kotlin-coroutines = "1.10.2" # Latest: 1.10.1
 kotlinx-coroutines-test = "1.10.2" # 1.10.1
-androidx-compose-foundation = "1.10.1" # Latest 1.10.0
+androidx-compose-foundation = "1.10.2" # Latest 1.10.1
 espresso-core = "3.7.0" # Latest: 3.6.1
 firebase-bom = "34.8.0" # Latest 34.7.0
 firebase-crashlytics-gradle = "3.0.6" # Latest 3.0.5
@@ -40,12 +40,12 @@ google-services = "4.4.4" # Latest 4.4.3
 gson = "2.13.2" # Latest 2.13.1
 junit = "4.13.2"
 kotlin-stdlib = "2.3.0" # Latest 2.2.21
-ktor = "3.3.3" # Latest 3.3.2
+ktor = "3.4.0" # Latest 3.3.3
 material = "1.13.0" # Latest 1.12.0
-mockito-kotlin = "6.2.0" # Latest 6.1.0
+mockito-kotlin = "6.2.3" # Latest 6.2.0
 multidex = "1.0.3"
 user-messaging-platform = "4.0.0" # Latest: 3.2.0 ( MAJOR UPDATE )
-work-runtime = "2.11.0" # Latest: 2.10.5
+work-runtime = "2.11.1" # Latest: 2.11.0
 realm-kotlin = "3.0.0" # Latest: 1.16.0
 realm-kotlin-base = "3.0.0"
 realm-kotlin-sync = "2.3.0"
@@ -54,7 +54,7 @@ agp = "9.0.0" # Latest: 8.12.0
 kotlin = "2.3.0" # Latest: 2.2.21
 ksp = "2.3.2" # Latest: 2.2.10-2.0.2 -> 2.2.21-2.0.4
 composeMP = "1.10.0" # Latest: 1.9.3
-googleid = "1.1.1"
+googleid = "1.2.0" # Latest: 1.1.1
 kotlinTest = "2.2.20" # Latest 2.1.20
 runner = "1.7.0" # 1.6.2
 core = "1.7.0" # 1.6.1
@@ -163,7 +163,6 @@ coilKt-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.re
 coilKt-network = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil3" }
 coilKt-gif = { group = "io.coil-kt.coil3", name = "coil-gif", version.ref = "coil3" }
 droidsonroids-gifDrawable = { group = "pl.droidsonroids.gif", name = "android-gif-drawable", version.ref = "android-gif-drawable" }
-ehsannarmani-compose-charts = { module = "io.github.ehsannarmani:compose-charts", version.ref = "composeCharts" }
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 google-gms-services = { group = "com.google.gms", name = "google-services", version.ref = "google-services" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
