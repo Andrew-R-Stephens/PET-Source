@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,7 @@ import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MenuDefaults
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -138,10 +140,13 @@ fun MissionWrapper(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight()
-                            .menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, true)
+                            .menuAnchor(
+                                type = ExposedDropdownMenuAnchorType.PrimaryNotEditable,
+                                enabled = true
+                            )
                             .padding(horizontal = 4.dp),
-                        //value = stringResource(missionUiState.mission.content.toStringResource()),
-                        value = stringResource(selectedMission.mission.content.toStringResource()),
+                        value = stringResource(
+                            selectedMission.mission.content.toStringResource()),
                         textStyle = LocalTypography.current.quaternary.regular.copy(
                             color = LocalPalette.current.onSurface,
                             fontSize = 14.sp
@@ -175,7 +180,7 @@ fun MissionWrapper(
                             focusedTrailingIconColor = LocalPalette.current.onSurface
                         ),
                         onValueChange = {},
-                        readOnly = true,
+                        readOnly = true
                     )
 
                     if(selectedMission.status) {
@@ -206,6 +211,7 @@ fun MissionWrapper(
                     ),
                     scrollState = rememberScrollState(),
                     matchAnchorWidth = true,
+
                 ) {
 
                     missionSpinnerUiState.availableMissions.forEach { mission ->
@@ -221,6 +227,7 @@ fun MissionWrapper(
                             colors = MenuDefaults.itemColors().copy(
                                 textColor = LocalPalette.current.onSurface,
                             ),
+                            contentPadding = PaddingValues.Zero,
                             onClick = {
                                 expanded = false
                                 missionWrapperActions.onSelectMission(index, mission)
@@ -236,7 +243,8 @@ fun MissionWrapper(
                     .size(48.dp)
                     .clickable(onClick = {
                         missionWrapperActions.onChangeMissionStatus(
-                            selectedMission.mission, !selectedMission.status)
+                            selectedMission.mission, !selectedMission.status
+                        )
                     }),
                 type =
                     if(!selectedMission.status) PETImageButtonType.CONFIRM
