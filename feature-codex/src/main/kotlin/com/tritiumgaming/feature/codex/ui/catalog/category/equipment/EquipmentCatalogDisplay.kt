@@ -34,7 +34,6 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toIntegerResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
-import com.tritiumgaming.feature.codex.ui.CodexViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopupDataRow
@@ -74,25 +73,24 @@ fun EquipmentCatalogDisplay(
 
     CodexItemPopup(
         modifier = modifier,
+        background = LocalPalette.current.scrim,
         primaryTitleContent = { modifier ->
-            primaryTitle?.let { title ->
-                Text(
-                    modifier = modifier
-                        .basicMarquee(
-                            iterations = Int.MAX_VALUE,
-                            initialDelayMillis = 1000,
-                            repeatDelayMillis = 1000,
-                        )
-                        .padding(horizontal = 8.dp, vertical = 4.dp),
-                    text = title,
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Start
-                    ),
-                    color = LocalPalette.current.codexFamily.codex3,
-                    maxLines = 1,
-                    fontSize = 20.sp
-                )
-            }
+            Text(
+                modifier = modifier
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        initialDelayMillis = 1000,
+                        repeatDelayMillis = 1000,
+                    )
+                    .padding(horizontal = 8.dp, vertical = 4.dp),
+                text = primaryTitle,
+                style = LocalTypography.current.quaternary.bold.copy(
+                    textAlign = TextAlign.Start
+                ),
+                color = LocalPalette.current.codexFamily.codex3,
+                maxLines = 1,
+                fontSize = 20.sp
+            )
         },
         primaryImageContent = { modifier ->
             GridIcon(

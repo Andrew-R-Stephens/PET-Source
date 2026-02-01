@@ -2,6 +2,17 @@ package com.tritiumgaming.feature.codex.ui.catalog.common
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.EaseInOut
+import androidx.compose.animation.core.EaseOut
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
@@ -35,6 +46,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -63,6 +75,7 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 @Composable
 fun CodexItemPopup(
     modifier: Modifier = Modifier,
+    background: Color = Color.Transparent,
     primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
     secondaryTitleContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
     primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit)? = null,
@@ -75,25 +88,41 @@ fun CodexItemPopup(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
+    val visibleState = remember {
+        MutableTransitionState(false) }.apply {
+        targetState = true
+    }
+
     when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .background(background.copy(alpha = .32f))
             ) {
-                CodexItemPortraitPopup(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(.7f)
-                        .align(Alignment.BottomCenter),
-                    primaryTitleContent = primaryTitleContent,
-                    secondaryTitleContent = secondaryTitleContent,
-                    primaryImageContent = primaryImageContent,
-                    primaryDataContent = primaryDataContent,
-                    bodyContent = bodyContent,
-                    textFooterContent = textFooterContent,
-                    onDismiss = onDismiss
-                )
+
+                AnimatedVisibility(
+                    visibleState = visibleState,
+                    enter = expandVertically(
+                        animationSpec = tween(200, easing = EaseOut),
+                        expandFrom = Alignment.Top // Expands downwards or upwards based on Box alignment
+                    ),
+                    modifier = Modifier.align(Alignment.BottomCenter)
+                ) {
+                    CodexItemPortraitPopup(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(.7f)
+                            .align(Alignment.BottomCenter),
+                        primaryTitleContent = primaryTitleContent,
+                        secondaryTitleContent = secondaryTitleContent,
+                        primaryImageContent = primaryImageContent,
+                        primaryDataContent = primaryDataContent,
+                        bodyContent = bodyContent,
+                        textFooterContent = textFooterContent,
+                        onDismiss = onDismiss
+                    )
+                }
             }
         }
         DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -103,20 +132,31 @@ fun CodexItemPopup(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
+                    .background(background.copy(alpha = .32f))
             ) {
-                CodexItemLandscapePopup(
-                    modifier = modifier
-                        .fillMaxWidth(.8f)
-                        .fillMaxHeight()
-                        .align(Alignment.CenterStart),
-                    primaryTitleContent = primaryTitleContent,
-                    secondaryTitleContent = secondaryTitleContent,
-                    primaryImageContent = primaryImageContent,
-                    primaryDataContent = primaryDataContent,
-                    bodyContent = bodyContent,
-                    textFooterContent = textFooterContent,
-                    onDismiss = onDismiss
-                )
+
+                AnimatedVisibility(
+                    visibleState = visibleState,
+                    enter = expandHorizontally(
+                        animationSpec = tween(200, easing = EaseOut),
+                        expandFrom = Alignment.End // Expands downwards or upwards based on Box alignment
+                    ),
+                    modifier = Modifier.align(Alignment.CenterStart)
+                ) {
+                    CodexItemLandscapePopup(
+                        modifier = modifier
+                            .fillMaxWidth(.8f)
+                            .fillMaxHeight()
+                            .align(Alignment.CenterStart),
+                        primaryTitleContent = primaryTitleContent,
+                        secondaryTitleContent = secondaryTitleContent,
+                        primaryImageContent = primaryImageContent,
+                        primaryDataContent = primaryDataContent,
+                        bodyContent = bodyContent,
+                        textFooterContent = textFooterContent,
+                        onDismiss = onDismiss
+                    )
+                }
             }
         }
     }
@@ -137,11 +177,14 @@ fun CodexItemPortraitPopup(
     Column(
         modifier = modifier
             .padding(top = 8.dp)
-            .clip(RoundedCornerShape(
-                topStart = 4.dp,
-                topEnd = 4.dp,
-                bottomStart = 0.dp,
-                bottomEnd = 0.dp))
+            .clip(
+                RoundedCornerShape(
+                    topStart = 4.dp,
+                    topEnd = 4.dp,
+                    bottomStart = 0.dp,
+                    bottomEnd = 0.dp
+                )
+            )
             .background(LocalPalette.current.codexFamily.codex4)
             .padding(top = 4.dp)
             .clip(RectangleShape)
@@ -292,11 +335,14 @@ fun CodexItemLandscapePopup(
     Column(
         modifier = modifier
             .padding(end = 8.dp)
-            .clip(RoundedCornerShape(
-                topStart = 0.dp,
-                topEnd = 4.dp,
-                bottomStart = 0.dp,
-                bottomEnd = 4.dp))
+            .clip(
+                RoundedCornerShape(
+                    topStart = 0.dp,
+                    topEnd = 4.dp,
+                    bottomStart = 0.dp,
+                    bottomEnd = 4.dp
+                )
+            )
             .background(LocalPalette.current.codexFamily.codex4)
             .padding(end = 4.dp)
             .clip(RectangleShape)

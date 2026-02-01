@@ -61,25 +61,24 @@ fun AchievementCatalogDisplay(
 
     CodexItemPopup(
         modifier = modifier,
+        background = LocalPalette.current.scrim,
         primaryTitleContent = { modifier ->
-            primaryTitle?.let { title ->
-                Text(
-                    modifier = modifier
-                        .basicMarquee(
-                            iterations = Int.MAX_VALUE,
-                            initialDelayMillis = 1000,
-                            repeatDelayMillis = 1000,
-                        )
-                        .padding(horizontal = 8.dp, vertical = 4.dp),
-                    text = title,
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Start
-                    ),
-                    color = LocalPalette.current.codexFamily.codex3,
-                    maxLines = 1,
-                    fontSize = 20.sp
-                )
-            }
+            Text(
+                modifier = modifier
+                    .basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        initialDelayMillis = 1000,
+                        repeatDelayMillis = 1000,
+                    )
+                    .padding(horizontal = 8.dp, vertical = 4.dp),
+                text = primaryTitle,
+                style = LocalTypography.current.quaternary.bold.copy(
+                    textAlign = TextAlign.Start
+                ),
+                color = LocalPalette.current.codexFamily.codex3,
+                maxLines = 1,
+                fontSize = 20.sp
+            )
         },
         primaryDataContent = { modifier ->
             Row(

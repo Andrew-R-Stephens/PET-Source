@@ -73,6 +73,7 @@ fun PossessionsCatalogDisplay(
 
     CodexItemPopup(
         modifier = modifier,
+        background = LocalPalette.current.scrim,
         primaryTitleContent = { modifier ->
             Text(
                 modifier = modifier
