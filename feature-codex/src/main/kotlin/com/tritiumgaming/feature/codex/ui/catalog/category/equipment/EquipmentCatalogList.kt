@@ -134,8 +134,3 @@ fun CatalogEquipmentListComponent(
     }
 
 }
-
-data class DisplayUiActions(
-    val onDismiss: () -> Unit
-)
-

@@ -1,6 +1,6 @@
 package com.tritiumgaming.feature.codex.ui.catalog.category.achievement
 
-import androidx.compose.foundation.Image
+   import androidx.compose.foundation.Image
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,7 +16,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -27,16 +26,13 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
-import com.tritiumgaming.feature.codex.ui.CodexViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.DisplayUiActions
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogUiState
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementExclusivity
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
@@ -45,7 +41,7 @@ import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.Achieve
 fun AchievementCatalogDisplay(
     modifier: Modifier = Modifier,
     displayUiState: CatalogDisplayUiState.Achievements,
-    displayUiActions: DisplayUiActions
+    displayUiActions: CatalogDisplayUiActions
 ) {
 
     val selectedGroup = displayUiState.selectedGroup ?: return

@@ -34,6 +34,7 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toIntegerResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopupDataRow
@@ -42,7 +43,7 @@ import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopupDataRow
 fun EquipmentCatalogDisplay(
     modifier: Modifier = Modifier,
     displayUiState: CatalogDisplayUiState.Equipment,
-    displayUiActions: DisplayUiActions
+    displayUiActions: CatalogDisplayUiActions
 ) {
 
     val selectedGroup = displayUiState.selectedGroup ?: return

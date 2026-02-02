@@ -13,6 +13,11 @@ abstract class CatalogCategory(
     val category: Category,
     @field:IntegerRes open val icons: List<Int>
 ) {
+    class None: CatalogCategory(
+        category = Category.NONE,
+        icons = emptyList()
+    )
+
     data class Equipment(
         val list: List<EquipmentType> = emptyList(),
         @field:IntegerRes override val icons: List<Int> = emptyList()

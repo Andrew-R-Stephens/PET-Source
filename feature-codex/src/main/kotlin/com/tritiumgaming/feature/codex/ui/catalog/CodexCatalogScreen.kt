@@ -3,6 +3,7 @@ package com.tritiumgaming.feature.codex.ui.catalog
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -43,17 +44,19 @@ import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
 import com.tritiumgaming.feature.codex.ui.CodexViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategoryUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
 import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementCatalogDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementCatalogList
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentListComponent
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogListUiActions
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.DisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogList
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
+import kotlin.math.roundToInt
 
 @Composable
 fun CodexCatalogScreen(
@@ -62,18 +65,18 @@ fun CodexCatalogScreen(
     codexViewModel: CodexViewModel,
     category: CodexResources.Category
 ) {
+    codexViewModel.loadCategory(category)
 
     val catalogUiState by codexViewModel.catalogUiState.collectAsStateWithLifecycle()
     val displayUiState by codexViewModel.displayUiState.collectAsStateWithLifecycle()
+    val scrollUiState by codexViewModel.scrollUiState.collectAsStateWithLifecycle()
 
-    val categoryTitle = when(category) {
+    val categoryTitle = when(catalogUiState.catalog.category) {
         CodexResources.Category.EQUIPMENT -> R.string.store_title_equipment
         CodexResources.Category.POSSESSIONS -> R.string.store_title_cursedpossessions
         CodexResources.Category.ACHIEVEMENTS -> R.string.store_title_achievements
         else -> { R.string.alert_error_generic }
     }
-
-    codexViewModel.cacheCategory(category)
 
     val codexScreenUiState = CodexScreenUiState(
         headerTitle = categoryTitle,
@@ -85,8 +88,6 @@ fun CodexCatalogScreen(
             navController.popBackStack()
         }
     )
-
-    val scrollUiState by codexViewModel.scrollUiState.collectAsStateWithLifecycle()
 
     val equipmentListUiActions = CatalogListUiActions.Equipment(
         onSelect = { group, item ->
@@ -106,7 +107,7 @@ fun CodexCatalogScreen(
         }
     )
 
-    val displayUiActions = DisplayUiActions(
+    val displayUiActions = CatalogDisplayUiActions(
         onDismiss = {
             codexViewModel.clearDisplay()
         }
@@ -114,47 +115,80 @@ fun CodexCatalogScreen(
 
     val paginatorUiState = PaginatorUiState(
         scrollUiState = scrollUiState,
-        images = when(category) {
-            CodexResources.Category.EQUIPMENT -> catalogUiState.equipment.icons
-            CodexResources.Category.POSSESSIONS -> catalogUiState.possessions.icons
-            CodexResources.Category.ACHIEVEMENTS -> catalogUiState.achievements.icons
-            else -> { emptyList() }
-        }
+        images = catalogUiState.catalog.icons
     )
 
     val paginatorUiActions = PaginatorUiActions(
         onScrollUpdate = { offset, index ->
-            codexViewModel.setScrollOffset(offset, index) }
+
+            codexViewModel.setScrollOffset(
+                offset = offset
+            )
+        }
     )
 
     val rememberScrollState = rememberLazyListState()
 
-    LaunchedEffect(scrollUiState.offset) {
+    /*LaunchedEffect(scrollUiState.offset) {
+        val index = (scrollUiState.offset *
+                (rememberScrollState.layoutInfo.totalItemsCount + 1 -
+                        rememberScrollState.layoutInfo.visibleItemsInfo.size + 1)
+                ).toInt()
+
         rememberScrollState.scrollToItem(
-            index = (scrollUiState.offset *
-                    (rememberScrollState.layoutInfo.totalItemsCount+1 -
-                            rememberScrollState.layoutInfo.visibleItemsInfo.size+1)
-                    ).toInt()
+            index = index
         )
+
+    }*/
+
+    LaunchedEffect(scrollUiState.offset) {
+        val index = (scrollUiState.offset *
+                (rememberScrollState.layoutInfo.totalItemsCount + 1 -
+                        rememberScrollState.layoutInfo.visibleItemsInfo.size+1)
+                ).toInt()
+
+        rememberScrollState.scrollToItem(
+            index = index
+        )
+
     }
 
-    LaunchedEffect(rememberScrollState) {
-        snapshotFlow { rememberScrollState.firstVisibleItemScrollOffset }
-            .collect { firstVisibleIndex ->
-                rememberScrollState.layoutInfo.viewportSize
+    LaunchedEffect(rememberScrollState.layoutInfo) {
+        snapshotFlow {
+            // Track both index and offset for smooth precision
+            Pair(rememberScrollState.firstVisibleItemIndex,
+                rememberScrollState.firstVisibleItemScrollOffset
+            )
+        }
+        .collect { (firstVisibleIndex, firstVisibleOffset) ->
+            val layoutInfo = rememberScrollState.layoutInfo
+            val visibleItemsInfo = layoutInfo.visibleItemsInfo
 
-                val firstVisibleIndex = rememberScrollState.firstVisibleItemIndex.toFloat()
+            if (visibleItemsInfo.isNotEmpty()) {
+                val totalItems = layoutInfo.totalItemsCount
 
-                val currentVisibleItems = (rememberScrollState.layoutInfo.visibleItemsInfo.size).toFloat()
+                val avgItemSize = visibleItemsInfo.map { it.size }.average().toFloat()
 
-                val totalItems = (rememberScrollState.layoutInfo.totalItemsCount).toFloat()
+                val currentScrollPx = (firstVisibleIndex * avgItemSize) + firstVisibleOffset
+
+                val viewportSize = if (layoutInfo.orientation == Orientation.Vertical)
+                    layoutInfo.viewportSize.height else layoutInfo.viewportSize.width
+
+                val totalContentSize = totalItems * avgItemSize
+                val maxScrollPx = (totalContentSize - viewportSize).coerceAtLeast(1f)
+
+                val absoluteOffset = (currentScrollPx / maxScrollPx).coerceIn(0f, 1f)
+
+                val iconCount = catalogUiState.catalog.icons.size
+                val targetIndex = if (iconCount > 0) {
+                    (absoluteOffset * (iconCount - 1)).roundToInt().coerceIn(0, iconCount - 1)
+                } else 0
 
                 codexViewModel.setScrollOffset(
-                    index = (
-                            (((totalItems - (currentVisibleItems - firstVisibleIndex+1)) / totalItems)).toInt()
-                    ),
+                    index = targetIndex
                 )
             }
+        }
     }
 
     CodexScreen(
@@ -170,7 +204,6 @@ fun CodexCatalogScreen(
             DeviceConfiguration.MOBILE_PORTRAIT -> {
 
                 CodexItemScreenContentPortrait(
-                    category = category,
                     scrollState = rememberScrollState,
                     paginatorUiState = paginatorUiState,
                     paginatorUiActions = paginatorUiActions,
@@ -189,7 +222,6 @@ fun CodexCatalogScreen(
             DeviceConfiguration.DESKTOP -> {
 
                 CodexItemScreenContentLandscape(
-                    category = category,
                     scrollState = rememberScrollState,
                     paginatorUiState = paginatorUiState,
                     paginatorUiActions = paginatorUiActions,
@@ -208,7 +240,6 @@ fun CodexCatalogScreen(
 
 @Composable
 private fun CodexItemScreenContentPortrait(
-    category: CodexResources.Category,
     scrollState: LazyListState,
     paginatorUiState: PaginatorUiState,
     paginatorUiActions: PaginatorUiActions,
@@ -217,7 +248,7 @@ private fun CodexItemScreenContentPortrait(
     possessionsListUiActions: CatalogListUiActions.Possessions,
     achievementsListUiActions: CatalogListUiActions.Achievements,
     displayUiState: CatalogDisplayUiState,
-    displayUiActions: DisplayUiActions
+    displayUiActions: CatalogDisplayUiActions
 ) {
     Row(
         horizontalArrangement = Arrangement.Start,
@@ -235,12 +266,12 @@ private fun CodexItemScreenContentPortrait(
             modifier = Modifier,
             contentAlignment = Alignment.TopCenter
         ) {
-            when(category) {
-                CodexResources.Category.EQUIPMENT -> {
+            when(catalogUiState.catalog) {
+                is CatalogCategory.Equipment -> {
 
                     CatalogEquipmentListComponent(
                         scrollState = scrollState,
-                        catalogUiState = catalogUiState.equipment,
+                        catalogUiState = catalogUiState.catalog,
                         listUiActions = equipmentListUiActions
                     )
 
@@ -255,11 +286,11 @@ private fun CodexItemScreenContentPortrait(
                         )
                     }
                 }
-                CodexResources.Category.POSSESSIONS -> {
+                is CatalogCategory.Possessions -> {
 
                     PossessionsCatalogList(
                         scrollState = scrollState,
-                        catalogUiState = catalogUiState.possessions,
+                        catalogUiState = catalogUiState.catalog,
                         listUiActions = possessionsListUiActions
                     )
 
@@ -274,11 +305,11 @@ private fun CodexItemScreenContentPortrait(
                         )
                     }
                 }
-                CodexResources.Category.ACHIEVEMENTS -> {
+                is CatalogCategory.Achievements -> {
 
                     AchievementCatalogList(
                         scrollState = scrollState,
-                        catalogUiState = catalogUiState.achievements,
+                        catalogUiState = catalogUiState.catalog,
                         listUiActions = achievementsListUiActions
                     )
 
@@ -300,13 +331,8 @@ private fun CodexItemScreenContentPortrait(
     }
 }
 
-data class PaginatorUiActions(
-    val onScrollUpdate: (Float, Int) -> Unit
-)
-
 @Composable
 private fun CodexItemScreenContentLandscape(
-    category: CodexResources.Category,
     scrollState: LazyListState,
     paginatorUiState: PaginatorUiState,
     paginatorUiActions: PaginatorUiActions,
@@ -315,7 +341,7 @@ private fun CodexItemScreenContentLandscape(
     possessionsListUiActions: CatalogListUiActions.Possessions,
     achievementsListUiActions: CatalogListUiActions.Achievements,
     displayUiState: CatalogDisplayUiState,
-    displayUiActions: DisplayUiActions
+    displayUiActions: CatalogDisplayUiActions
 ) {
     Column(
         horizontalAlignment = Alignment.Start,
@@ -333,12 +359,12 @@ private fun CodexItemScreenContentLandscape(
             modifier = Modifier,
             contentAlignment = Alignment.TopCenter
         ) {
-            when(category) {
-                CodexResources.Category.EQUIPMENT -> {
+            when(catalogUiState.catalog) {
+                is CatalogCategory.Equipment -> {
 
                     CatalogEquipmentListComponent(
                         scrollState = scrollState,
-                        catalogUiState = catalogUiState.equipment,
+                        catalogUiState = catalogUiState.catalog,
                         listUiActions = equipmentListUiActions
                     )
 
@@ -353,11 +379,11 @@ private fun CodexItemScreenContentLandscape(
                         )
                     }
                 }
-                CodexResources.Category.POSSESSIONS -> {
+                is CatalogCategory.Possessions -> {
 
                     PossessionsCatalogList(
                         scrollState = scrollState,
-                        catalogUiState = catalogUiState.possessions,
+                        catalogUiState = catalogUiState.catalog,
                         listUiActions = possessionsListUiActions
                     )
 
@@ -372,11 +398,11 @@ private fun CodexItemScreenContentLandscape(
                         )
                     }
                 }
-                CodexResources.Category.ACHIEVEMENTS -> {
+                is CatalogCategory.Achievements -> {
 
                     AchievementCatalogList(
                         scrollState = scrollState,
-                        catalogUiState = catalogUiState.achievements,
+                        catalogUiState = catalogUiState.catalog,
                         listUiActions = achievementsListUiActions
                     )
 
@@ -422,17 +448,18 @@ private fun VerticalPaginator(
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
                     val newOffset = (change.position.y / (paginatorHeight - 1)).coerceIn(0f, 1f)
-                    val newIndex = (images.size * scrollUiState.offset).toInt()
+                    //val newIndex = (images.size * scrollUiState.offset).toInt()
 
-                    paginatorUiActions.onScrollUpdate(newOffset, newIndex)
+                    paginatorUiActions.onScrollUpdate(newOffset, paginatorUiState.scrollUiState.itemIndex)
                 }
             }
             .pointerInput(Unit) {
                 detectTapGestures {
                     val newOffset = (it.y / (paginatorHeight - 1)).coerceIn(0f, 1f)
-                    val newIndex = (images.size * scrollUiState.offset).toInt()
+                    //val newIndex = (images.size * scrollUiState.offset).toInt()
 
-                    paginatorUiActions.onScrollUpdate(newOffset, newIndex)
+                    paginatorUiActions.onScrollUpdate(newOffset, paginatorUiState.scrollUiState.itemIndex)
+                    //paginatorUiActions.onScrollUpdate(newOffset, newIndex)
                 }
             },
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -482,17 +509,15 @@ private fun HorizontalPaginator(
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
                     val newOffset = (change.position.x / (paginatorWidth - 1)).coerceIn(0f, 1f)
-                    val newIndex = (images.size * scrollUiState.offset).toInt()
 
-                    paginatorUiActions.onScrollUpdate(newOffset, newIndex)
+                    paginatorUiActions.onScrollUpdate(newOffset, paginatorUiState.scrollUiState.itemIndex)
                 }
             }
             .pointerInput(Unit) {
                 detectTapGestures {
                     val newOffset = (it.x / (paginatorWidth - 1)).coerceIn(0f, 1f)
-                    val newIndex = (images.size * scrollUiState.offset).toInt()
 
-                    paginatorUiActions.onScrollUpdate(newOffset, newIndex)
+                    paginatorUiActions.onScrollUpdate(newOffset, paginatorUiState.scrollUiState.itemIndex)
                 }
             },
         verticalAlignment = Alignment.CenterVertically,

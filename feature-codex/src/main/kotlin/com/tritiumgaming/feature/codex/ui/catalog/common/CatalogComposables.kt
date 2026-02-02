@@ -13,6 +13,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
@@ -46,6 +48,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -89,7 +92,8 @@ fun CodexItemPopup(
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
     val visibleState = remember {
-        MutableTransitionState(false) }.apply {
+        MutableTransitionState(false)
+    }.apply {
         targetState = true
     }
 
@@ -105,7 +109,11 @@ fun CodexItemPopup(
                     visibleState = visibleState,
                     enter = expandVertically(
                         animationSpec = tween(200, easing = EaseOut),
-                        expandFrom = Alignment.Top // Expands downwards or upwards based on Box alignment
+                        expandFrom = Alignment.Top
+                    ),
+                    exit = shrinkVertically (
+                        animationSpec = tween(50, easing = LinearEasing),
+                        shrinkTowards = Alignment.Top
                     ),
                     modifier = Modifier.align(Alignment.BottomCenter)
                 ) {
@@ -138,8 +146,12 @@ fun CodexItemPopup(
                 AnimatedVisibility(
                     visibleState = visibleState,
                     enter = expandHorizontally(
-                        animationSpec = tween(200, easing = EaseOut),
+                        animationSpec = tween(100, easing = EaseOut),
                         expandFrom = Alignment.End // Expands downwards or upwards based on Box alignment
+                    ),
+                    exit = shrinkHorizontally (
+                        animationSpec = tween(50, easing = LinearEasing),
+                        shrinkTowards = Alignment.End
                     ),
                     modifier = Modifier.align(Alignment.CenterStart)
                 ) {

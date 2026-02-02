@@ -53,6 +53,7 @@ import com.tritiumgaming.core.ui.theme.white
 import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
+import com.tritiumgaming.feature.codex.ui.CodexViewModel
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
@@ -61,7 +62,6 @@ fun CodexMenuScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
 ) {
-
     val codexScreenUiState = CodexScreenUiState(
         headerTitle = R.string.general_codex_button,
         showBackButton = false
