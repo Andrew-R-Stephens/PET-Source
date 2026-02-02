@@ -153,7 +153,7 @@ fun CodexCatalogScreen(
 
     }
 
-    LaunchedEffect(rememberScrollState.layoutInfo) {
+    LaunchedEffect(rememberScrollState) {
         snapshotFlow {
             // Track both index and offset for smooth precision
             Pair(rememberScrollState.firstVisibleItemIndex,
