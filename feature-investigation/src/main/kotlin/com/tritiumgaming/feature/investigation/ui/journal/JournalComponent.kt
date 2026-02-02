@@ -33,6 +33,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceList
+import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostList
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiActions
@@ -46,9 +47,8 @@ fun Journal(
     modifier: Modifier = Modifier,
     journalUiState: JournalUiState,
     evidenceListUiState: EvidenceListUiState,
+    evidenceListUiActions: EvidenceListUiActions,
     ghostListUiState: GhostListUiState,
-    onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
-    onChangeEvidencePopup: (EvidenceType) -> Unit,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions
 ) {
@@ -63,12 +63,7 @@ fun Journal(
         if(journalUiState.rtlPreference) {
             EvidenceListColumn(
                 evidenceListUiState = evidenceListUiState,
-                onChangeEvidenceRuling = { e, r ->
-                    onChangeEvidenceRuling(e, r)
-                },
-                onChangePopup = { evidenceType ->
-                    onChangeEvidencePopup(evidenceType)
-                }
+                evidenceListUiActions = evidenceListUiActions
             )
             GhostListColumn(
                 ghostListUiState = ghostListUiState,
@@ -83,12 +78,7 @@ fun Journal(
             )
             EvidenceListColumn(
                 evidenceListUiState = evidenceListUiState,
-                onChangeEvidenceRuling = { e, r ->
-                    onChangeEvidenceRuling(e, r)
-                },
-                onChangePopup = { evidenceType ->
-                    onChangeEvidencePopup(evidenceType)
-                }
+                evidenceListUiActions = evidenceListUiActions
             )
         }
 
@@ -150,8 +140,7 @@ private fun RowScope.GhostListColumn(
 @Composable
 private fun RowScope.EvidenceListColumn(
     evidenceListUiState: EvidenceListUiState,
-    onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
-    onChangePopup: (EvidenceType) -> Unit = {}
+    evidenceListUiActions: EvidenceListUiActions,
 ) {
 
     var size by remember{
@@ -191,12 +180,15 @@ private fun RowScope.EvidenceListColumn(
 
             EvidenceList(
                 evidenceListUiState = evidenceListUiState,
-                onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
+                evidenceListUiActions = evidenceListUiActions
+            )
+
+                /*onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
                 onClickItem = {
                     Log.d("EvidenceList", "Setting popup to ${it.name}")
                     onChangePopup(it)
                 }
-            )
+            )*/
 
         }
     }

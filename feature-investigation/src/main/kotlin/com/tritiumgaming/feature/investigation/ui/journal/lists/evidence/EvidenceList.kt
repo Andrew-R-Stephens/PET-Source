@@ -9,14 +9,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.EvidenceListItem
+import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.EvidenceListItemUiAction
+import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.EvidenceListItemUiState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 
 @Composable
 fun EvidenceList(
     evidenceListUiState: EvidenceListUiState,
-    onChangeEvidenceRuling: (evidence: EvidenceType, ruling: RuledEvidence.Ruling) -> Unit,
-    onClickItem: (evidence: EvidenceType) -> Unit,
+    evidenceListUiActions: EvidenceListUiActions
 ) {
 
     LazyColumn(
@@ -30,14 +31,19 @@ fun EvidenceList(
         ) { ruledEvidence ->
 
             EvidenceListItem(
-                state = ruledEvidence.ruling,
-                label = stringResource(ruledEvidence.evidence.name.toStringResource()),
-                onToggle = { ruling ->
-                    onChangeEvidenceRuling(ruledEvidence.evidence, ruling)
-                },
-                onNameClick = {
-                    onClickItem(ruledEvidence.evidence)
-                }
+                evidenceListItemUiState = EvidenceListItemUiState(
+                    state = ruledEvidence.ruling,
+                    label = stringResource(ruledEvidence.evidence.name.toStringResource())
+                ),
+                evidenceListItemUiAction = EvidenceListItemUiAction(
+                    onToggle = { ruling ->
+                        evidenceListUiActions.onChangeEvidenceRuling(
+                            ruledEvidence.evidence, ruling)
+                    },
+                    onNameClick = {
+                        evidenceListUiActions.onClickItem(ruledEvidence.evidence)
+                    }
+                )
             )
 
         }

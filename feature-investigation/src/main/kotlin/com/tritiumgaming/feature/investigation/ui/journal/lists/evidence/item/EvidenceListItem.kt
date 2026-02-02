@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -34,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,16 +48,15 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.investigation.ui.toolbar.impl.ModifiersButton
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling
 import org.jetbrains.annotations.TestOnly
 
 @Composable
 fun EvidenceListItem(
     modifier: Modifier = Modifier,
-    state: Ruling,
-    label: String = "",
-    onToggle: (ruling: Ruling) -> Unit = {},
-    onNameClick: () -> Unit = {}
+    evidenceListItemUiState: EvidenceListItemUiState,
+    evidenceListItemUiAction: EvidenceListItemUiAction
 ) {
 
     Card(
@@ -78,14 +79,8 @@ fun EvidenceListItem(
         when(deviceConfiguration) {
             DeviceConfiguration.MOBILE_PORTRAIT -> {
                 EvidenceColumn(
-                    label = label,
-                    state = state,
-                    onToggle = { ruling ->
-                        onToggle(ruling)
-                    },
-                    onNameClick = {
-                        onNameClick()
-                    }
+                    evidenceListItemUiState = evidenceListItemUiState,
+                    evidenceListItemUiAction = evidenceListItemUiAction
                 )
             }
             DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -93,14 +88,8 @@ fun EvidenceListItem(
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
                 EvidenceRow(
-                    label = label,
-                    state = state,
-                    onToggle = { ruling ->
-                        onToggle(ruling)
-                    },
-                    onNameClick = {
-                        onNameClick()
-                    }
+                    evidenceListItemUiState = evidenceListItemUiState,
+                    evidenceListItemUiAction = evidenceListItemUiAction
                 )
             }
         }
@@ -112,10 +101,8 @@ fun EvidenceListItem(
 @Composable
 private fun EvidenceRow(
     modifier: Modifier = Modifier,
-    label: String,
-    state: Ruling?,
-    onToggle: (ruling: Ruling) -> Unit,
-    onNameClick: () -> Unit,
+    evidenceListItemUiState: EvidenceListItemUiState,
+    evidenceListItemUiAction: EvidenceListItemUiAction
 ) {
     Row(
         modifier = modifier
@@ -130,14 +117,14 @@ private fun EvidenceRow(
                 .height(48.dp)
                 .weight(1f)
                 .clickable(onClick = {
-                    onNameClick()
+                    evidenceListItemUiAction.onNameClick()
                 })
                 .padding(vertical = 4.dp),
             contentAlignment = Alignment.Center
         ) {
 
             Text(
-                text = label,
+                text = evidenceListItemUiState.label,
                 style = LocalTypography.current.primary.regular.copy(
                     color = LocalPalette.current.onSurface,
                     textAlign = TextAlign.Center
@@ -165,7 +152,7 @@ private fun EvidenceRow(
                         .aspectRatio(1f)
                         .wrapContentSize(),
                     onClick = {
-                        onToggle(ruling)
+                        evidenceListItemUiAction.onToggle(ruling)
                     },
                     colors = ButtonDefaults.buttonColors().copy(
                         containerColor = Color.Transparent,
@@ -178,7 +165,7 @@ private fun EvidenceRow(
                     content = {
                         RulingIcon(
                             ruling = ruling,
-                            isSelected = state?.ordinal == ruling.ordinal
+                            isSelected = evidenceListItemUiState.state.ordinal == ruling.ordinal
                         )
                     }
                 )
@@ -192,39 +179,43 @@ private fun EvidenceRow(
 @Composable
 private fun EvidenceColumn(
     modifier: Modifier = Modifier,
-    label: String,
-    state: Ruling,
-    onToggle: (ruling: Ruling) -> Unit = { },
-    onNameClick: () -> Unit,
+    evidenceListItemUiState: EvidenceListItemUiState,
+    evidenceListItemUiAction: EvidenceListItemUiAction
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Top
+        verticalArrangement = Arrangement.spacedBy(2.dp, Alignment.Top),
     ) {
 
-        Text(
+        Box(
             modifier = Modifier
-                .height(48.dp)
+                .height(36.dp)
                 .fillMaxWidth()
-                .padding(vertical = 4.dp)
                 .clickable(onClick = {
-                    onNameClick()
+                    evidenceListItemUiAction.onNameClick()
                 }),
-            text = label,
-            style = LocalTypography.current.primary.regular.copy(
-                color = LocalPalette.current.onSurface,
-                textAlign = TextAlign.Center
-            ),
-            maxLines = 1,
-            autoSize = TextAutoSize.StepBased(
-                minFontSize = 1.sp,
-                maxFontSize = 36.sp,
-                stepSize = 5.sp
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                text = evidenceListItemUiState.label,
+                style = LocalTypography.current.primary.regular.copy(
+                    color = LocalPalette.current.onSurface,
+                    textAlign = TextAlign.Center
+                ),
+                maxLines = 1,
+                autoSize = TextAutoSize.StepBased(
+                    minFontSize = 1.sp,
+                    //maxFontSize = 48.sp,
+                    stepSize = 8.sp
+                )
             )
-        )
+        }
 
         Row(
             modifier = Modifier
@@ -244,7 +235,7 @@ private fun EvidenceColumn(
                             maxHeight = 48.dp
                         ),
                     onClick = {
-                        onToggle(ruling)
+                        evidenceListItemUiAction.onToggle(ruling)
                     },
                     colors = ButtonDefaults.buttonColors().copy(
                         containerColor = Color.Transparent,
@@ -252,14 +243,14 @@ private fun EvidenceColumn(
                         disabledContainerColor = Color.Transparent,
                         disabledContentColor = Color.Transparent,
                     ),
-                    contentPadding = PaddingValues(2.dp),
+                    contentPadding = PaddingValues(4.dp),
                     shape = CircleShape,
                     content = {
                         RulingIcon(
                             modifier = Modifier
-                                .fillMaxSize(),
+                                .fillMaxSize(.9f),
                             ruling = ruling,
-                            isSelected = state.ordinal == ruling.ordinal,
+                            isSelected = evidenceListItemUiState.state.ordinal == ruling.ordinal,
                         )
                     }
                 )
@@ -366,7 +357,7 @@ private fun EvidenceItemPreview() {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.Top
     ) {
         LocalPalettesMap.forEach {
             SelectiveTheme(
@@ -378,16 +369,25 @@ private fun EvidenceItemPreview() {
                 ) {
                     Column {
                         EvidenceListItem(
-                            label = "Test",
-                            state = Ruling.NEGATIVE
+                            evidenceListItemUiState = EvidenceListItemUiState(
+                                label = "Test",
+                                state = Ruling.NEGATIVE
+                            ),
+                            evidenceListItemUiAction = EvidenceListItemUiAction()
                         )
                         EvidenceListItem(
-                            label = "Test",
-                            state = Ruling.NEUTRAL
+                            evidenceListItemUiState = EvidenceListItemUiState(
+                                label = "Test",
+                                state = Ruling.NEUTRAL
+                            ),
+                            evidenceListItemUiAction = EvidenceListItemUiAction()
                         )
                         EvidenceListItem(
-                            label = "Test",
-                            state = Ruling.POSITIVE
+                            evidenceListItemUiState = EvidenceListItemUiState(
+                                label = "Test",
+                                state = Ruling.POSITIVE
+                            ),
+                            evidenceListItemUiAction = EvidenceListItemUiAction()
                         )
                     }
                 }

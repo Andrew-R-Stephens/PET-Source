@@ -35,6 +35,7 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.Operati
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
 import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
+import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiState
@@ -152,6 +153,12 @@ private fun InvestigationContent(
         onToggleTimer = { investigationViewModel.toggleTimer() },
     )
 
+    val evidenceListUiActions = EvidenceListUiActions(
+        onChangeEvidenceRuling = { e, r ->
+            investigationViewModel.setEvidenceRuling(e, r) },
+        onClickItem = { investigationViewModel.setPopup(it) },
+    )
+
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
@@ -168,7 +175,7 @@ private fun InvestigationContent(
                 sanityUiState,
                 ghostListUiState,
                 evidenceListUiState,
-                investigationViewModel,
+                evidenceListUiActions,
                 operationConfigUiActions,
                 toolbarUiActions,
                 ghostListUiActions,
@@ -189,7 +196,7 @@ private fun InvestigationContent(
                 sanityUiState,
                 ghostListUiState,
                 evidenceListUiState,
-                investigationViewModel,
+                evidenceListUiActions,
                 operationConfigUiActions,
                 toolbarUiActions,
                 ghostListUiActions,
@@ -232,7 +239,7 @@ private fun InvestigationContentPortrait(
     sanityUiState: PlayerSanityUiState,
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
-    investigationViewModel: InvestigationScreenViewModel,
+    evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
@@ -254,10 +261,7 @@ private fun InvestigationContentPortrait(
             sanityUiState = sanityUiState,
             ghostListUiState = ghostListUiState,
             evidenceListUiState = evidenceListUiState,
-            onChangeEvidenceRuling = { e, r ->
-                investigationViewModel.setEvidenceRuling(e, r)
-            },
-            onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
+            evidenceListUiActions = evidenceListUiActions,
             operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
@@ -278,7 +282,7 @@ private fun InvestigationContentLandscape(
     sanityUiState: PlayerSanityUiState,
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
-    investigationViewModel: InvestigationScreenViewModel,
+    evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
@@ -300,10 +304,7 @@ private fun InvestigationContentLandscape(
             sanityUiState = sanityUiState,
             ghostListUiState = ghostListUiState,
             evidenceListUiState = evidenceListUiState,
-            onChangeEvidenceRuling = { e, r ->
-                investigationViewModel.setEvidenceRuling(e, r)
-            },
-            onChangeEvidencePopup = { investigationViewModel.setPopup(it) },
+            evidenceListUiActions = evidenceListUiActions,
             operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
@@ -324,8 +325,7 @@ private fun ColumnScope.Investigation(
     sanityUiState: PlayerSanityUiState,
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
-    onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
-    onChangeEvidencePopup: (EvidenceType) -> Unit,
+    evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
@@ -339,8 +339,7 @@ private fun ColumnScope.Investigation(
         journalUiState = journalUiState,
         ghostListUiState = ghostListUiState,
         evidenceListUiState = evidenceListUiState,
-        onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
-        onChangeEvidencePopup = { onChangeEvidencePopup(it) },
+        evidenceListUiActions = evidenceListUiActions,
         ghostListUiActions = ghostListUiActions,
         ghostListUiItemActions = ghostListUiItemActions
     )
@@ -404,9 +403,8 @@ private fun RowScope.Investigation(
     difficultyUiState: DifficultyUiState,
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
+    evidenceListUiActions: EvidenceListUiActions,
     sanityUiState: PlayerSanityUiState,
-    onChangeEvidenceRuling: (EvidenceType, RuledEvidence.Ruling) -> Unit,
-    onChangeEvidencePopup: (EvidenceType) -> Unit,
     operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
@@ -460,8 +458,7 @@ private fun RowScope.Investigation(
         journalUiState = journalUiState,
         ghostListUiState = ghostListUiState,
         evidenceListUiState = evidenceListUiState,
-        onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
-        onChangeEvidencePopup = { onChangeEvidencePopup(it) },
+        evidenceListUiActions = evidenceListUiActions,
         ghostListUiActions = ghostListUiActions,
         ghostListUiItemActions = ghostListUiItemActions,
     )
