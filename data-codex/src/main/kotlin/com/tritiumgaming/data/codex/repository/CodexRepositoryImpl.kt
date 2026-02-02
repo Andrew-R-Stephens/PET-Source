@@ -15,16 +15,36 @@ class CodexRepositoryImpl(
     private val possessionsLocalDataSource: PossessionsLocalDataSource
 ): CodexRepository {
 
+    private var _achievementsCache = listOf<AchievementsType>()
+    private var _equipmentCache = listOf<EquipmentType>()
+    private var _possessionsCache = listOf<PossessionsType>()
+
     override fun fetchAchievements(): Result<List<AchievementsType>> {
-        return achievementsLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
+        if(_achievementsCache.isEmpty()) {
+            val result = achievementsLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
+            val data = result.getOrThrow()
+            _achievementsCache = data
+        }
+
+        return Result.success(_achievementsCache)
     }
 
     override fun fetchEquipment(): Result<List<EquipmentType>> {
-        return equipmentLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
+        if(_equipmentCache.isEmpty()) {
+            val result = equipmentLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
+            val data = result.getOrThrow()
+            _equipmentCache = data
+        }
+        return Result.success(_equipmentCache)
     }
 
     override fun fetchPossessions(): Result<List<PossessionsType>> {
-        return possessionsLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
+        if(_possessionsCache.isEmpty()) {
+            val result = possessionsLocalDataSource.fetchItems().map { dto -> dto.toDomain() }
+            val data = result.getOrThrow()
+            _possessionsCache = data
+        }
+        return Result.success(_possessionsCache)
     }
 
 }
