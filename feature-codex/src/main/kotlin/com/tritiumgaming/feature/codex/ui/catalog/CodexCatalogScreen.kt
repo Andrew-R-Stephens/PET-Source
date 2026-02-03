@@ -71,6 +71,58 @@ fun CodexCatalogScreen(
     val displayUiState by codexViewModel.displayUiState.collectAsStateWithLifecycle()
     val scrollUiState by codexViewModel.scrollUiState.collectAsStateWithLifecycle()
 
+    val rememberScrollState = rememberLazyListState()
+
+    LaunchedEffect(scrollUiState.offset) {
+        val index = (scrollUiState.offset *
+                (rememberScrollState.layoutInfo.totalItemsCount + 1 -
+                        rememberScrollState.layoutInfo.visibleItemsInfo.size+1)
+                ).toInt()
+
+        rememberScrollState.scrollToItem(
+            index = index
+        )
+
+    }
+
+    LaunchedEffect(rememberScrollState) {
+        snapshotFlow {
+            // Track both index and offset for smooth precision
+            Pair(rememberScrollState.firstVisibleItemIndex,
+                rememberScrollState.firstVisibleItemScrollOffset
+            )
+        }
+            .collect { (firstVisibleIndex, firstVisibleOffset) ->
+                val layoutInfo = rememberScrollState.layoutInfo
+                val visibleItemsInfo = layoutInfo.visibleItemsInfo
+
+                if (visibleItemsInfo.isNotEmpty()) {
+                    val totalItems = layoutInfo.totalItemsCount
+
+                    val avgItemSize = visibleItemsInfo.map { it.size }.average().toFloat()
+
+                    val currentScrollPx = (firstVisibleIndex * avgItemSize) + firstVisibleOffset
+
+                    val viewportSize = if (layoutInfo.orientation == Orientation.Vertical)
+                        layoutInfo.viewportSize.height else layoutInfo.viewportSize.width
+
+                    val totalContentSize = totalItems * avgItemSize
+                    val maxScrollPx = (totalContentSize - viewportSize).coerceAtLeast(1f)
+
+                    val absoluteOffset = (currentScrollPx / maxScrollPx).coerceIn(0f, 1f)
+
+                    val iconCount = catalogUiState.catalog.icons.size
+                    val targetIndex = if (iconCount > 0) {
+                        (absoluteOffset * (iconCount - 1)).roundToInt().coerceIn(0, iconCount - 1)
+                    } else 0
+
+                    codexViewModel.setScrollOffset(
+                        index = targetIndex
+                    )
+                }
+            }
+    }
+
     val categoryTitle = when(catalogUiState.catalog.category) {
         CodexResources.Category.EQUIPMENT -> R.string.store_title_equipment
         CodexResources.Category.POSSESSIONS -> R.string.store_title_cursedpossessions
@@ -127,70 +179,6 @@ fun CodexCatalogScreen(
         }
     )
 
-    val rememberScrollState = rememberLazyListState()
-
-    /*LaunchedEffect(scrollUiState.offset) {
-        val index = (scrollUiState.offset *
-                (rememberScrollState.layoutInfo.totalItemsCount + 1 -
-                        rememberScrollState.layoutInfo.visibleItemsInfo.size + 1)
-                ).toInt()
-
-        rememberScrollState.scrollToItem(
-            index = index
-        )
-
-    }*/
-
-    LaunchedEffect(scrollUiState.offset) {
-        val index = (scrollUiState.offset *
-                (rememberScrollState.layoutInfo.totalItemsCount + 1 -
-                        rememberScrollState.layoutInfo.visibleItemsInfo.size+1)
-                ).toInt()
-
-        rememberScrollState.scrollToItem(
-            index = index
-        )
-
-    }
-
-    LaunchedEffect(rememberScrollState) {
-        snapshotFlow {
-            // Track both index and offset for smooth precision
-            Pair(rememberScrollState.firstVisibleItemIndex,
-                rememberScrollState.firstVisibleItemScrollOffset
-            )
-        }
-        .collect { (firstVisibleIndex, firstVisibleOffset) ->
-            val layoutInfo = rememberScrollState.layoutInfo
-            val visibleItemsInfo = layoutInfo.visibleItemsInfo
-
-            if (visibleItemsInfo.isNotEmpty()) {
-                val totalItems = layoutInfo.totalItemsCount
-
-                val avgItemSize = visibleItemsInfo.map { it.size }.average().toFloat()
-
-                val currentScrollPx = (firstVisibleIndex * avgItemSize) + firstVisibleOffset
-
-                val viewportSize = if (layoutInfo.orientation == Orientation.Vertical)
-                    layoutInfo.viewportSize.height else layoutInfo.viewportSize.width
-
-                val totalContentSize = totalItems * avgItemSize
-                val maxScrollPx = (totalContentSize - viewportSize).coerceAtLeast(1f)
-
-                val absoluteOffset = (currentScrollPx / maxScrollPx).coerceIn(0f, 1f)
-
-                val iconCount = catalogUiState.catalog.icons.size
-                val targetIndex = if (iconCount > 0) {
-                    (absoluteOffset * (iconCount - 1)).roundToInt().coerceIn(0, iconCount - 1)
-                } else 0
-
-                codexViewModel.setScrollOffset(
-                    index = targetIndex
-                )
-            }
-        }
-    }
-
     CodexScreen(
         modifier = modifier,
         codexScreenUiState = codexScreenUiState,
@@ -214,8 +202,8 @@ fun CodexCatalogScreen(
                     displayUiState = displayUiState,
                     displayUiActions = displayUiActions
                 )
-            }
 
+            }
             DeviceConfiguration.MOBILE_LANDSCAPE,
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE,
@@ -232,10 +220,11 @@ fun CodexCatalogScreen(
                     displayUiState = displayUiState,
                     displayUiActions = displayUiActions
                 )
+
             }
+
         }
     }
-
 }
 
 @Composable
