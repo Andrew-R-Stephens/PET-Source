@@ -117,9 +117,8 @@ class InvestigationScreenViewModel(
 
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
-        try {
-            it.getOrThrow()
-        } catch (e: Exception) {
+        try { it.getOrThrow() }
+        catch (e: Exception) {
             e.printStackTrace()
             emptyList()
         }
@@ -400,9 +399,7 @@ class InvestigationScreenViewModel(
     /** Order of Ghost IDs **/
     private val _ghostOrder: MutableStateFlow<List<GhostResources.GhostIdentifier>> =
         MutableStateFlow(mutableStateListOf())
-
-    @Stable
-    val ghostOrder = _ghostOrder.asStateFlow()
+    @Stable val ghostOrder = _ghostOrder.asStateFlow()
     private fun initGhostOrder() {
         _ghostOrder.update {
             ghostEvidences.map { it.ghost.id }
@@ -429,7 +426,7 @@ class InvestigationScreenViewModel(
 
         _ghostOrder.update { orderedTemp }
 
-        val str2 = StringBuilder()
+        /*val str2 = StringBuilder()
         ghostOrder.value.forEach { orderModel ->
             str2.append(
                 "[$orderModel: " + "${
@@ -439,7 +436,7 @@ class InvestigationScreenViewModel(
                 }] "
             )
         }
-        Log.d("GhostOrder", "Reordered to:$str2")
+        Log.d("GhostOrder", "Reordered to:$str2")*/
     }
 
     private fun getEvidenceScore(
@@ -453,33 +450,12 @@ class InvestigationScreenViewModel(
             ) ?: 1
     }
 
-    /*fun getGhostScore(
-        ghostModel: GhostType
-    ): StateFlow<Int> {
-        return ghostScores.value.first { it.ghostEvidence.ghost.id == ghostModel.id }.score
-    }
-
-    fun setGhostNegation(
-        ghostModel: GhostType,
-        isForceNegated: Boolean
-    ) {
-        val ghostScore = ghostScores.value.first { it.ghostEvidence.ghost.id == ghostModel.id }
-        ghostScore.setForcefullyRejected(isForceNegated)
-    }*/
-
     fun toggleGhostNegation(
         ghostModel: GhostType
     ) {
         val ghostScore = ghostScores.value.first { it.ghostEvidence.ghost.id == ghostModel.id }
         ghostScore.toggleForcefullyRejected()
     }
-
-    /*fun getGhostScorePoints(
-        ghostModel: GhostType
-    ): StateFlow<Int>? {
-        val ghostScore = ghostScores.value.find { it.ghostEvidence.ghost.id == ghostModel.id }
-        return ghostScore?.score
-    }*/
 
     /*
     * Evidence Ruling Handler ---------------------------
