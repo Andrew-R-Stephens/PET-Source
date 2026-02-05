@@ -27,7 +27,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class StartViewModel(
+class StartScreenViewModel(
     // Global Preferences
     private val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase,
     private val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
@@ -65,7 +65,6 @@ class StartViewModel(
                 canRequestReview = (!stateFlow.reviewRequested) &&
                         (stateFlow.timesOpened >= MAX_TIMES_OPENED_TARGET)
             )
-            Log.d("StartViewModel", "Review flow: $state")
 
             state
         }
@@ -202,7 +201,7 @@ class StartViewModel(
                 val getFlowNewsletterInboxesUseCase = container.getFlowNewsletterInboxesUseCase
                 val fetchNewsletterInboxesUseCase = container.getNewsletterInboxesUseCase
 
-                StartViewModel(
+                StartScreenViewModel(
                     // Global Preferences
                     initFlowUserPreferencesUseCase = initFlowGlobalPreferencesUseCase,
                     setAllowIntroductionUseCase = setAllowIntroductionUseCase,

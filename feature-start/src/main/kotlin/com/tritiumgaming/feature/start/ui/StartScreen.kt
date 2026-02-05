@@ -1,7 +1,6 @@
 package com.tritiumgaming.feature.start.ui
 
 import android.content.Intent
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -109,12 +108,12 @@ private fun StartButtonPreview2() {
 
 @Composable
 fun StartScreen(
-    startViewModel: StartViewModel,
+    startScreenViewModel: StartScreenViewModel,
     navController: NavHostController
 ) {
 
     StartContent(
-        startViewModel = startViewModel,
+        startScreenViewModel = startScreenViewModel,
         navController = navController
     )
 
@@ -123,12 +122,12 @@ fun StartScreen(
 
 @Composable
 private fun StartContent(
-    startViewModel: StartViewModel,
+    startScreenViewModel: StartScreenViewModel,
     navController: NavController
 ) {
 
-    val newsletterInboxesUiState by startViewModel.inboxesUiState.collectAsStateWithLifecycle()
-    val reviewUiState by startViewModel.reviewFlow.collectAsStateWithLifecycle()
+    val newsletterInboxesUiState by startScreenViewModel.inboxesUiState.collectAsStateWithLifecycle()
+    val reviewUiState by startScreenViewModel.reviewFlow.collectAsStateWithLifecycle()
 
     Column(
         modifier = Modifier
@@ -492,8 +491,6 @@ private fun HeaderNavBar(
             inboxUiState.inbox.compareDates(inboxUiState.lastReadDate)
         } != null
 
-    val timesOpened = reviewUiState.timesOpened
-    Log.d("StartScreen", "$timesOpened")
     val canRequestReview = reviewUiState.canRequestReview
 
     val menuIcon: @Composable () -> Unit = {
@@ -503,7 +500,6 @@ private fun HeaderNavBar(
                 .padding(4.dp),
 
             colors = IconVectorColors.defaults(
-                //fillColor = LocalPalette.current.onSecondary,
                 fillColor = LocalPalette.current.surfaceContainerLow,
                 strokeColor = LocalPalette.current.secondary
             )
@@ -514,7 +510,6 @@ private fun HeaderNavBar(
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                //fillColor = LocalPalette.current.onSecondary,
                 fillColor = LocalPalette.current.surfaceContainerLow,
                 strokeColor = LocalPalette.current.secondary
             )
@@ -525,7 +520,6 @@ private fun HeaderNavBar(
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                //fillColor = LocalPalette.current.onSecondary,
                 fillColor = LocalPalette.current.surfaceContainerLow,
                 strokeColor = LocalPalette.current.secondary
             )
@@ -536,7 +530,6 @@ private fun HeaderNavBar(
             modifier = Modifier
                 .size(48.dp),
             colors = IconVectorColors.defaults(
-                //fillColor = LocalPalette.current.onSecondary,
                 fillColor = LocalPalette.current.surfaceContainerLow,
                 strokeColor = LocalPalette.current.secondary
             )
@@ -559,7 +552,6 @@ private fun HeaderNavBar(
         ) {
             OpenInNewIcon(
                 colors = IconVectorColors.defaults(
-                    //fillColor = LocalPalette.current.onSecondary,
                     fillColor = LocalPalette.current.surfaceContainerLow,
                     strokeColor = LocalPalette.current.secondary
                 )
@@ -600,15 +592,12 @@ private fun HeaderNavBar(
                 .padding(4.dp),
             borderColor =  LocalPalette.current.secondary,
             backgroundColor = LocalPalette.current.surfaceContainerLow,
-            // borderColor =  LocalPalette.current.secondary,
-            // backgroundColor = LocalPalette.current.onSecondary,
             placeholder = {
                 IconResource.PERSON.ToComposable(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(8.dp),
                     colors = IconVectorColors.defaults(
-                        //fillColor = LocalPalette.current.onSecondary,
                         fillColor = LocalPalette.current.surfaceContainerLow,
                         strokeColor = LocalPalette.current.secondary
                     )
@@ -716,7 +705,6 @@ private fun HeaderNavBar(
             IconResource.NEWS.ToComposable(
                 modifier = modifier,
                 colors = IconVectorColors(
-                    //fillColor = LocalPalette.current.onSecondary,
                     fillColor = LocalPalette.current.surfaceContainerLow,
                     strokeColor = LocalPalette.current.secondary
                 ),
@@ -735,18 +723,6 @@ private fun HeaderNavBar(
         navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
     }
 
-    /*NotificationIndicator(
-        isActive = notificationState,
-        alertIcon = IconResource.NOTIFY,
-        alertTint = IconVectorColors(
-            fillColor = LocalPalette.current.surface,
-            strokeColor = LocalPalette.current.inboxNotification
-        )
-    ) {
-        navController.navigate(NavRoute.NAVIGATION_NEWSLETTER.route)
-    }*/
-
-    //reviewIcon()
     if(canRequestReview) {
         reviewIcon()
     }
