@@ -74,32 +74,47 @@ fun BannerAd(
     if (LocalInspectionMode.current) {
         Box {
             Text(
-                text = "Google Mobile Ads preview banner.",
-                modifier
-                    .align(Alignment.Center)
+                modifier = Modifier
+                    .align(Alignment.Center),
+                text = "Google Mobile Ads preview banner."
             )
         }
         return
     }
 
     val adView = AdView(LocalContext.current).apply {
-        setAdSize(AdSize.BANNER)
+        //setAdSize(AdSize.BANNER)
         adUnitId = adId
+
+        // 2. Calculate Adaptive Size
+        val displayMetrics = context.resources.displayMetrics
+        val adWidthPixels = displayMetrics.widthPixels.toFloat()
+        val density = displayMetrics.density
+        val adWidth = (adWidthPixels / density).toInt()
+
+        setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidth))
         loadAd(AdRequest.Builder().build())
+
+        /*val adSize = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, width)
+        setAdSize(adSize)
+        adUnitId = adId
+        loadAd(AdRequest.Builder().build())*/
     }
 
     val rememberAdView = remember { adView }
     Log.d("TAG", "BannerAd Loaded: $rememberAdView")
-
-    AndroidView(
-        modifier = modifier
-            .wrapContentSize(),
-        factory = { rememberAdView }
-    )
 
     // Pause and resume the AdView when the lifecycle is paused and resumed.
     LifecycleResumeEffect(rememberAdView) {
         rememberAdView.resume()
         onPauseOrDispose { rememberAdView.pause() }
     }
+
+    AndroidView(
+        modifier = modifier
+            .wrapContentSize(),
+        factory = { rememberAdView },
+        onRelease = { it.destroy() }
+    )
+
 }
