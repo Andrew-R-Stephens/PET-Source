@@ -32,7 +32,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Fill
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
@@ -52,6 +54,7 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 @Preview
 private fun Preview() {
+
     SelectiveTheme {
         Column (
             modifier = Modifier
@@ -81,7 +84,11 @@ private fun Preview() {
                 sampleBackgroundColor = Color.Blue.copy(alpha = .5f),
                 labelColor = Color.Gray,
                 endpointColor = Color.Red,
-                lineSegmentColor = Color.Red,
+                lineSegmentColors = LineSegmentColors(
+                    instant = Color.Red,
+                    smoothed = Color.Blue,
+                    weighted = Color.Green
+                ),
                 meterBeatLineColor = Color.White,
                 meterColor = Color.Green,
                 meterOnColor = Color.White,
@@ -142,7 +149,7 @@ fun FootstepVisualizer(
     sampleBackgroundColor: Color = Color.Unspecified,
     labelColor: Color = Color.Unspecified,
     endpointColor: Color = Color.Unspecified,
-    lineSegmentColor: Color = Color.Unspecified,
+    lineSegmentColors: LineSegmentColors,
     meterBeatLineColor: Color = Color.Unspecified,
     meterColor: Color = Color.Unspecified,
     meterOnColor: Color = Color.Unspecified,
@@ -188,7 +195,6 @@ fun FootstepVisualizer(
                 smoothedBPM = potentialBPM
             }
 
-
             if (smoothedBPM < 1f) smoothedBPM = 0f
         }
 
@@ -198,23 +204,32 @@ fun FootstepVisualizer(
 
     }
 
-    val calculateSampleIntervalBPM: () -> Float = {
+    val calculateSampleIntervalBPM: () -> Pair<Float, Float> = {
 
         val targetTime = now - samplingInterval.inWholeMilliseconds
 
         var intervalSum = 0f
+        var intervalAverageSum = 0f
         var intervalCount = 0f
 
         var currentTap = taps.head
         while(currentTap != null) {
             if(currentTap.data.time > targetTime) {
                 intervalSum += currentTap.data.bpm
+                intervalAverageSum += currentTap.data.intervalAverage
+
                 intervalCount++
             }
+
             currentTap = currentTap.next
         }
 
-        intervalSum/(intervalCount.coerceAtLeast(1f))
+        val intervalAverage = intervalSum/(intervalCount.coerceAtLeast(1f))
+
+        Pair(
+            intervalAverage,
+            intervalAverageSum/(intervalCount.coerceAtLeast(1f))
+        )
     }
 
     val onBeat = {
@@ -223,12 +238,22 @@ fun FootstepVisualizer(
 
             instantBPM = (60000f / delta)
 
-            taps.enqueue(TapRecord(now, instantBPM))
-
             smoothedBPM = if (smoothedBPM == 0f) { instantBPM }
-                else { (alpha * instantBPM) + ((1f - alpha) * instantBPM) }
+            else { (alpha * instantBPM) + ((1f - alpha) * instantBPM) }
 
             if (smoothedBPM < 1f) smoothedBPM = 0f
+
+            val intervalBPM = calculateSampleIntervalBPM()
+            val intervalAverage = intervalBPM.first
+            val intervalWeightedAverage = intervalBPM.second
+
+            taps.enqueue(
+                TapRecord(
+                    time = now,
+                    bpm = instantBPM,
+                    intervalAverage = intervalAverage,
+                    intervalWeightedAverage = intervalWeightedAverage
+                ))
         }
 
         lastTapTime = now
@@ -236,7 +261,7 @@ fun FootstepVisualizer(
         onUpdate(
             instantBPM,
             smoothedBPM,
-            calculateSampleIntervalBPM()
+            calculateSampleIntervalBPM().first
         )
     }
 
@@ -306,7 +331,7 @@ fun FootstepVisualizer(
                     modifier = Modifier
                         .fillMaxSize(),
                     endpointColor = endpointColor,
-                    lineSegmentColor = lineSegmentColor,
+                    lineSegmentColors = lineSegmentColors,
                     meterBeatLineColor = meterBeatLineColor,
                     currentTime = System.currentTimeMillis(),
                     bpmRatio = bpmRatioSmooth,
@@ -348,9 +373,11 @@ fun FootstepVisualizer(
     }
 }
 
-private class TapRecord(
+private data class TapRecord(
     val time: Long,
-    val bpm: Float
+    val bpm: Float,
+    val intervalAverage: Float = 0f,
+    val intervalWeightedAverage: Float = 0f
 )
 
 @Composable
@@ -561,7 +588,7 @@ private fun Graph(
 private fun RealtimePlot(
     modifier: Modifier = Modifier,
     endpointColor: Color,
-    lineSegmentColor: Color,
+    lineSegmentColors: LineSegmentColors,
     meterBeatLineColor: Color,
     currentTime: Long = System.currentTimeMillis(),
     viewportDuration: Duration = 60.seconds,
@@ -587,12 +614,122 @@ private fun RealtimePlot(
             taps ?: return@Canvas
 
             val xPlotRatio: Float = size.width / viewportDuration.inWholeMilliseconds
+
+            if (taps.isNotEmpty()) {
+                val instantCurvePath = Path()
+                val averageCurvePath = Path()
+                val weightedAverageCurvePath = Path()
+
+                val firstTap = taps.first()
+
+                val startX = size.width - ((currentTime - firstTap.time) * xPlotRatio)
+                val startY0 = size.height * (1f - (firstTap.bpm / viewportBPM))
+                val startY1 = size.height * (1f - (firstTap.intervalAverage / viewportBPM))
+                val startY2 = size.height * (1f - (firstTap.intervalWeightedAverage / viewportBPM))
+
+                instantCurvePath.moveTo(startX, startY0)
+                averageCurvePath.moveTo(startX, startY1)
+                weightedAverageCurvePath.moveTo(startX, startY2)
+
+                for (i in 1 until taps.size) {
+                    val prevTap = taps[i - 1]
+                    val currTap = taps[i]
+
+                    val x1 = size.width - ((currentTime - prevTap.time) * xPlotRatio)
+                    val y10 = size.height * (1f - (prevTap.bpm / viewportBPM))
+                    val y11 = size.height * (1f - (prevTap.intervalAverage / viewportBPM))
+                    val y12 = size.height * (1f - (prevTap.intervalWeightedAverage / viewportBPM))
+                    val x2 = size.width - ((currentTime - currTap.time) * xPlotRatio)
+                    val y20 = size.height * (1f - (currTap.bpm / viewportBPM))
+                    val y21 = size.height * (1f - (currTap.intervalAverage / viewportBPM))
+                    val y22 = size.height * (1f - (currTap.intervalWeightedAverage / viewportBPM))
+
+                    val midX = (x1 + x2) / 2f
+                    val midY0 = (y10 + y20) / 2f
+                    val midY1 = (y11 + y21) / 2f
+                    val midY2 = (y12 + y22) / 2f
+
+                    instantCurvePath.quadraticTo(
+                        x1,
+                        y10,
+                        midX,
+                        midY0)
+
+                    averageCurvePath.quadraticTo(
+                        x1,
+                        y11,
+                        midX,
+                        midY1)
+
+                    weightedAverageCurvePath.quadraticTo(
+                        x1,
+                        y12,
+                        midX,
+                        midY2)
+
+                    if (i == taps.size - 1) {
+                        instantCurvePath.lineTo(x2, y20)
+                        averageCurvePath.lineTo(x2, y21)
+                        weightedAverageCurvePath.lineTo(x2, y22)
+                    }
+                }
+
+                drawPath(
+                    path = instantCurvePath,
+                    style = Stroke(width = 2f),
+                    color = lineSegmentColors.instant
+                )
+
+                drawPath(
+                    path = weightedAverageCurvePath,
+                    style = Stroke(width = 2f),
+                    color = lineSegmentColors.weighted
+                )
+
+                drawPath(
+                    path = averageCurvePath,
+                    style = Stroke(width = 2f),
+                    color = lineSegmentColors.smoothed
+                )
+            }
+
+            /*val linePath = Path()
             taps.forEachIndexed { index, tap ->
+                val x = size.width - ((currentTime - tap.time) * xPlotRatio)
+                val y = size.height * (1f - (tap.bpm / viewportBPM))
+                if(index > 0) {
+                    val prevTap = taps[index - 1]
+                        drawLine(
+                            strokeWidth = 1f,
+                            color = Color.Red,
+                            start = Offset(
+                                x = size.width - ((currentTime - prevTap.time) * xPlotRatio),
+                                y = size.height * (1f - (prevTap.bpm / viewportBPM))
+                            ),
+                            end = Offset(
+                                x = size.width - ((currentTime - tap.time) * xPlotRatio),
+                                y = size.height * (1f - (tap.bpm / viewportBPM))
+                            )
+                        )
+                        linePath.lineTo(x = x, y = y)
+                    } else {
+                        linePath.moveTo(x = x, y = y)
+                    }
+                }
+
+                drawPath(
+                    path = linePath,
+                    alpha = 1f,
+                    style = Stroke(width = 1f),
+                    color = lineSegmentColors.instant
+                )*/
+
+            /*taps.forEachIndexed { index, tap ->
                 if(index > 0) {
                     val prevTap = taps[index - 1]
                     drawLine(
                         strokeWidth = 1f,
-                        color = lineSegmentColor,
+                        color = Color.Red,
                         start = Offset(
                             x = size.width - ((currentTime - prevTap.time) * xPlotRatio),
                             y = size.height * (1f - (prevTap.bpm / viewportBPM.toFloat()))
@@ -603,11 +740,11 @@ private fun RealtimePlot(
                         )
                     )
                 }
-            }
+            }*/
 
             taps.forEach { tap ->
                 drawCircle(
-                    color = endpointColor,
+                    color = lineSegmentColors.instant,
                     radius = 4f,
                     center = Offset(
                         x = size.width - ((currentTime - tap.time) * xPlotRatio),

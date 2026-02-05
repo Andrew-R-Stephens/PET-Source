@@ -18,6 +18,7 @@ import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.ui.common.footstep.FootstepVisualizer
+import com.tritiumgaming.feature.investigation.ui.common.footstep.LineSegmentColors
 import kotlin.time.Duration.Companion.seconds
 
 
@@ -25,6 +26,12 @@ import kotlin.time.Duration.Companion.seconds
 fun ToolbarFootstepsVisualizerSection(
     modifier: Modifier = Modifier
 ) {
+    val lineSegmentColors = LineSegmentColors(
+        instant = LocalPalette.current.primary,
+        smoothed = LocalPalette.current.tertiary,
+        weighted = LocalPalette.current.secondary
+    )
+
     Box (
         modifier = modifier
     ) {
@@ -58,7 +65,7 @@ fun ToolbarFootstepsVisualizerSection(
                 sampleBackgroundColor = LocalPalette.current.surfaceContainer.copy(alpha = .5f),
                 labelColor = LocalPalette.current.onSurface,
                 endpointColor = LocalPalette.current.primary,
-                lineSegmentColor = LocalPalette.current.primary,
+                lineSegmentColors = lineSegmentColors,
                 meterBeatLineColor = LocalPalette.current.onSurface,
                 meterColor = LocalPalette.current.onSurface,
                 meterOnColor = LocalPalette.current.tertiary,
