@@ -63,10 +63,10 @@ class SettingsScreenViewModel(
 ) : ViewModel() {
 
     private val _unlockedPalettes = MutableStateFlow(UnlockedPalettes())
-    val unlockedPalettes = _unlockedPalettes
+    private val unlockedPalettes = _unlockedPalettes
 
     private val _unlockedTypographies = MutableStateFlow(UnlockedTypographies())
-    val unlockedTypographies = _unlockedTypographies
+    private val unlockedTypographies = _unlockedTypographies
 
     private val _settingsScreenUiState : StateFlow<SettingsScreenUiState> =
         initFlowGlobalPreferencesUseCase()
