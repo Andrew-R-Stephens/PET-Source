@@ -21,9 +21,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalDefaultTypography
 import com.tritiumgaming.phasmophobiaevidencepicker.core.container.AppContainerProvider
-import com.tritiumgaming.shared.data.market.palette.source.PaletteDatastore
 import com.tritiumgaming.shared.data.market.palette.usecase.GetMarketCatalogPaletteByUUIDUseCase
-import com.tritiumgaming.shared.data.market.typography.source.TypographyDatastore
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +29,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -54,26 +52,39 @@ class PETActivityViewModel(
     private val _googleAdsPermissionsUiState = MutableStateFlow(PETActivityUiState())
     private val googleAdsPermissionsUiState = _googleAdsPermissionsUiState.asStateFlow()
 
-    /**
-     * Palettes
-     */
-    private val _currentPaletteUUID : StateFlow<PaletteDatastore.PalettePreferences> =
+    private val _unlockedPalettes = MutableStateFlow(UnlockedPalettes())
+    private val unlockedPalettes = _unlockedPalettes
+
+    private val _unlockedTypographies = MutableStateFlow(UnlockedTypographies())
+    private val unlockedTypographies = _unlockedTypographies
+
+    private val _petActivityUiState : StateFlow<PETActivityUiState> =
         initFlowGlobalPreferencesUseCase()
-            .map {
-                PaletteDatastore.PalettePreferences(
-                    uuid = it.paletteUuid
+            .combine(_googleAdsPermissionsUiState) {
+                    preferences, googleAdsPermissionsUiState ->
+
+                PETActivityUiState(
+                    isMobileAdsInitialized = googleAdsPermissionsUiState.isMobileAdsInitialized,
+                    canRequestAds = googleAdsPermissionsUiState.canRequestAds,
+                    isPrivacyOptionsRequired = googleAdsPermissionsUiState.isPrivacyOptionsRequired,
+                    paletteUiState = PaletteUiState(
+                        uuid = preferences.paletteUuid,
+                        palette = getPaletteByUUID(preferences.paletteUuid)
+                    ),
+                    typographyUiState = TypographyUiState(
+                        uuid = preferences.typographyUuid,
+                        typography = getTypographyByUUID(preferences.typographyUuid)
+                    )
                 )
             }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5000),
-                initialValue = PaletteDatastore.PalettePreferences(
-                    uuid = LocalDefaultPalette.uuid
-                )
+                initialValue = PETActivityUiState()
             )
-    val currentPaletteUUID = _currentPaletteUUID
+    internal val petActivityUiState = _petActivityUiState
 
-    fun getPaletteByUUID(uuid: String): ExtendedPalette {
+    private fun getPaletteByUUID(uuid: String): ExtendedPalette {
         return try {
             getPaletteByUUIDUseCase(uuid).getOrThrow().toPaletteResource()
         } catch (e: Exception) {
@@ -82,26 +93,7 @@ class PETActivityViewModel(
         }
     }
 
-    /**
-     * Typographies
-     */
-    private val _currentTypographyUUID : StateFlow<TypographyDatastore.TypographyPreferences> =
-        initFlowGlobalPreferencesUseCase()
-            .map {
-                TypographyDatastore.TypographyPreferences(
-                    uuid = it.typographyUuid
-                )
-            }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = TypographyDatastore.TypographyPreferences(
-                    uuid = LocalDefaultTypography.uuid
-                )
-            )
-    val currentTypographyUUID = _currentTypographyUUID
-
-    fun getTypographyByUUID(uuid: String): ExtendedTypography {
+    private fun getTypographyByUUID(uuid: String): ExtendedTypography {
         return try {
             val result = getTypographyByUUIDUseCase(uuid).getOrThrow()
             result.toTypographyResource()

@@ -32,19 +32,9 @@ class PETActivity : AppCompatActivity(),
     private val petActivityViewModel: PETActivityViewModel
         by viewModels { PETActivityViewModel.Factory }
 
-    /*
-    private val permissionsViewModel: PermissionsViewModel
-            by viewModels { PermissionsViewModel.Companion.Factory }
-    */
-
     /* Firebase Analytics */
     private lateinit var auth: FirebaseAuth
     override var firebaseAnalytics: FirebaseAnalytics? = null
-
-    /* Consent */
-    //override var consentInformation: ConsentInformation? = null
-    // Use an atomic boolean to initialize the Google Mobile Ads SDK and load ads once.
-    //override val isMobileAdsInitializeCalled = AtomicBoolean(false)
 
     /* Update */
     override var appUpdateManager: AppUpdateManager? = null
@@ -67,7 +57,8 @@ class PETActivity : AppCompatActivity(),
 
         super.onCreate(savedInstanceState)
 
-        // Initialize the view model. This will gather consent and initialize Google Mobile Ads.
+        // Initialize the view model ad manager.
+        // This will gather consent and initialize Google Mobile Ads.
         petActivityViewModel.initMobileAdsConsentManager(this@PETActivity)
 
         initFirebaseAnalytics(this)
@@ -76,11 +67,10 @@ class PETActivity : AppCompatActivity(),
 
         setContent {
 
-            val paletteState = petActivityViewModel.currentPaletteUUID.collectAsStateWithLifecycle()
-            val typographyState = petActivityViewModel.currentTypographyUUID.collectAsStateWithLifecycle()
+            val paletteState = petActivityViewModel.petActivityUiState.collectAsStateWithLifecycle()
 
-            val palette = petActivityViewModel.getPaletteByUUID(paletteState.value.uuid)
-            val typography = petActivityViewModel.getTypographyByUUID(typographyState.value.uuid)
+            val palette = paletteState.value.paletteUiState.palette
+            val typography =  paletteState.value.typographyUiState.typography
 
             ThemeConfigurationControl(
                 palette = palette,

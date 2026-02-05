@@ -23,7 +23,7 @@ import com.tritiumgaming.feature.about.ui.AppInfoViewModel
 import com.tritiumgaming.feature.about.ui.InfoScreen
 import com.tritiumgaming.feature.account.ui.AccountScreen
 import com.tritiumgaming.feature.account.ui.AccountScreenViewModel
-import com.tritiumgaming.feature.codex.ui.CodexViewModel
+import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreenViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.CodexCatalogScreen
 import com.tritiumgaming.feature.codex.ui.menu.CodexMenuScreen
 import com.tritiumgaming.feature.home.ui.HomeScreen
@@ -46,7 +46,7 @@ import com.tritiumgaming.feature.newsletter.ui.screen.NewsMessagesScreen
 import com.tritiumgaming.feature.operation.ui.OperationScreen
 import com.tritiumgaming.feature.settings.ui.SettingsScreen
 import com.tritiumgaming.feature.start.ui.StartScreen
-import com.tritiumgaming.feature.start.ui.StartViewModel
+import com.tritiumgaming.feature.start.ui.StartScreenViewModel
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
@@ -103,7 +103,7 @@ private fun NavGraphBuilder.homeNavigation(
         composable(route = NavRoute.SCREEN_HOME.route) {
             HomeScreen {
                 StartScreen(
-                    startViewModel = viewModel(factory = StartViewModel.Factory),
+                    startScreenViewModel = viewModel(factory = StartScreenViewModel.Factory),
                     navController = navController
                 )
             }
@@ -356,7 +356,7 @@ private fun NavGraphBuilder.operationNavigation(
                     ) {
                         CodexCatalogScreen(
                             navController = navController,
-                            codexViewModel = viewModel(factory = CodexViewModel.Factory),
+                            codexCatalogScreenViewModel = viewModel(factory = CodexCatalogScreenViewModel.Factory),
                             category = category
                         )
                     }
