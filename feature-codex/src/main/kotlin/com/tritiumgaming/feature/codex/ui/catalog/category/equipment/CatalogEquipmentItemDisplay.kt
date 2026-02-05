@@ -40,7 +40,7 @@ import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopupDataRow
 
 @Composable
-fun EquipmentCatalogDisplay(
+fun CatalogEquipmentItemDisplay(
     modifier: Modifier = Modifier,
     displayUiState: CatalogDisplayUiState.Equipment,
     displayUiActions: CatalogDisplayUiActions

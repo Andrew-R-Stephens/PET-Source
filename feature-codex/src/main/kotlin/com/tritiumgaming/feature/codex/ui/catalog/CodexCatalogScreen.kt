@@ -12,12 +12,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,6 +35,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -43,18 +46,17 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
-import com.tritiumgaming.feature.codex.ui.CodexViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategoryUiState
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
-import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementCatalogDisplay
-import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.AchievementCatalogList
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentListComponent
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogListUiActions
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.EquipmentCatalogDisplay
-import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogDisplay
-import com.tritiumgaming.feature.codex.ui.catalog.category.possession.PossessionsCatalogList
+import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.CatalogAchievementItemDisplay
+import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.CatalogAchievementsList
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentList
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogListUiActions
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentItemDisplay
+import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionItemDisplay
+import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionsList
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 import kotlin.math.roundToInt
 
@@ -62,14 +64,16 @@ import kotlin.math.roundToInt
 fun CodexCatalogScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    codexViewModel: CodexViewModel,
+    codexCatalogScreenViewModel: CodexCatalogScreenViewModel,
     category: CodexResources.Category
 ) {
-    codexViewModel.loadCategory(category)
+    LaunchedEffect(category) {
+        codexCatalogScreenViewModel.loadCategory(category)
+    }
 
-    val catalogUiState by codexViewModel.catalogUiState.collectAsStateWithLifecycle()
-    val displayUiState by codexViewModel.displayUiState.collectAsStateWithLifecycle()
-    val scrollUiState by codexViewModel.scrollUiState.collectAsStateWithLifecycle()
+    val catalogUiState by codexCatalogScreenViewModel.catalogUiState.collectAsStateWithLifecycle()
+    val displayUiState by codexCatalogScreenViewModel.displayUiState.collectAsStateWithLifecycle()
+    val scrollUiState by codexCatalogScreenViewModel.scrollUiState.collectAsStateWithLifecycle()
 
     val rememberScrollState = rememberLazyListState()
 
@@ -82,52 +86,53 @@ fun CodexCatalogScreen(
         rememberScrollState.scrollToItem(
             index = index
         )
-
     }
 
     LaunchedEffect(rememberScrollState) {
         snapshotFlow {
-            // Track both index and offset for smooth precision
             Pair(rememberScrollState.firstVisibleItemIndex,
                 rememberScrollState.firstVisibleItemScrollOffset
             )
         }
-            .collect { (firstVisibleIndex, firstVisibleOffset) ->
-                val layoutInfo = rememberScrollState.layoutInfo
-                val visibleItemsInfo = layoutInfo.visibleItemsInfo
+        .collect { (firstVisibleIndex, firstVisibleOffset) ->
+            val layoutInfo = rememberScrollState.layoutInfo
+            val visibleItemsInfo = layoutInfo.visibleItemsInfo
 
-                if (visibleItemsInfo.isNotEmpty()) {
-                    val totalItems = layoutInfo.totalItemsCount
+            if (visibleItemsInfo.isNotEmpty()) {
+                val totalItems = layoutInfo.totalItemsCount
 
-                    val avgItemSize = visibleItemsInfo.map { it.size }.average().toFloat()
+                val avgItemSize = visibleItemsInfo.map { it.size }.average().toFloat()
 
-                    val currentScrollPx = (firstVisibleIndex * avgItemSize) + firstVisibleOffset
+                val currentScrollPx = (firstVisibleIndex * avgItemSize) + firstVisibleOffset
 
-                    val viewportSize = if (layoutInfo.orientation == Orientation.Vertical)
-                        layoutInfo.viewportSize.height else layoutInfo.viewportSize.width
+                val viewportSize = if (layoutInfo.orientation == Orientation.Vertical)
+                    layoutInfo.viewportSize.height else layoutInfo.viewportSize.width
 
-                    val totalContentSize = totalItems * avgItemSize
-                    val maxScrollPx = (totalContentSize - viewportSize).coerceAtLeast(1f)
+                val totalContentSize = totalItems * avgItemSize
+                val maxScrollPx = (totalContentSize - viewportSize).coerceAtLeast(1f)
 
-                    val absoluteOffset = (currentScrollPx / maxScrollPx).coerceIn(0f, 1f)
+                val absoluteOffset = (currentScrollPx / maxScrollPx).coerceIn(0f, 1f)
 
-                    val iconCount = catalogUiState.catalog.icons.size
-                    val targetIndex = if (iconCount > 0) {
-                        (absoluteOffset * (iconCount - 1)).roundToInt().coerceIn(0, iconCount - 1)
-                    } else 0
+                val iconCount = catalogUiState.catalog.icons.size
+                val targetIndex = if (iconCount > 0) {
+                    (absoluteOffset * (iconCount - 1)).roundToInt().coerceIn(0, iconCount - 1)
+                } else 0
 
-                    codexViewModel.setScrollOffset(
-                        index = targetIndex
-                    )
-                }
+                codexCatalogScreenViewModel.setScrollOffset(
+                    index = targetIndex
+                )
             }
+        }
     }
 
     val categoryTitle = when(catalogUiState.catalog.category) {
-        CodexResources.Category.EQUIPMENT -> R.string.store_title_equipment
-        CodexResources.Category.POSSESSIONS -> R.string.store_title_cursedpossessions
-        CodexResources.Category.ACHIEVEMENTS -> R.string.store_title_achievements
-        else -> { R.string.alert_error_generic }
+        CodexResources.Category.EQUIPMENT ->
+            stringResource(R.string.store_title_equipment)
+        CodexResources.Category.POSSESSIONS ->
+            stringResource(R.string.store_title_cursedpossessions)
+        CodexResources.Category.ACHIEVEMENTS ->
+            stringResource(R.string.store_title_achievements)
+        else -> { "" }
     }
 
     val codexScreenUiState = CodexScreenUiState(
@@ -143,25 +148,25 @@ fun CodexCatalogScreen(
 
     val equipmentListUiActions = CatalogListUiActions.Equipment(
         onSelect = { group, item ->
-            codexViewModel.setSelectedEquipment(group, item)
+            codexCatalogScreenViewModel.setSelectedEquipment(group, item)
         }
     )
 
     val possessionsListUiActions = CatalogListUiActions.Possessions(
         onSelect = { group, item ->
-            codexViewModel.setSelectedPossession(group, item)
+            codexCatalogScreenViewModel.setSelectedPossession(group, item)
         }
     )
 
     val achievementsListUiActions = CatalogListUiActions.Achievements(
         onSelect = { group, item ->
-            codexViewModel.setSelectedAchievement(group, item)
+            codexCatalogScreenViewModel.setSelectedAchievement(group, item)
         }
     )
 
     val displayUiActions = CatalogDisplayUiActions(
         onDismiss = {
-            codexViewModel.clearDisplay()
+            codexCatalogScreenViewModel.clearDisplay()
         }
     )
 
@@ -173,7 +178,7 @@ fun CodexCatalogScreen(
     val paginatorUiActions = PaginatorUiActions(
         onScrollUpdate = { offset, index ->
 
-            codexViewModel.setScrollOffset(
+            codexCatalogScreenViewModel.setScrollOffset(
                 offset = offset
             )
         }
@@ -258,14 +263,14 @@ private fun CodexItemScreenContentPortrait(
             when(catalogUiState.catalog) {
                 is CatalogCategory.Equipment -> {
 
-                    CatalogEquipmentListComponent(
+                    CatalogEquipmentList(
                         scrollState = scrollState,
                         catalogUiState = catalogUiState.catalog,
                         listUiActions = equipmentListUiActions
                     )
 
                     if(displayUiState is CatalogDisplayUiState.Equipment) {
-                        EquipmentCatalogDisplay(
+                        CatalogEquipmentItemDisplay(
                             modifier = Modifier
                                 .fillMaxHeight(.8f)
                                 .fillMaxWidth()
@@ -277,14 +282,14 @@ private fun CodexItemScreenContentPortrait(
                 }
                 is CatalogCategory.Possessions -> {
 
-                    PossessionsCatalogList(
+                    CatalogPossessionsList(
                         scrollState = scrollState,
                         catalogUiState = catalogUiState.catalog,
                         listUiActions = possessionsListUiActions
                     )
 
                     if(displayUiState is CatalogDisplayUiState.Possessions) {
-                        PossessionsCatalogDisplay(
+                        CatalogPossessionItemDisplay(
                             modifier = Modifier
                                 .fillMaxHeight(.8f)
                                 .fillMaxWidth()
@@ -296,14 +301,14 @@ private fun CodexItemScreenContentPortrait(
                 }
                 is CatalogCategory.Achievements -> {
 
-                    AchievementCatalogList(
+                    CatalogAchievementsList(
                         scrollState = scrollState,
                         catalogUiState = catalogUiState.catalog,
                         listUiActions = achievementsListUiActions
                     )
 
                     if(displayUiState is CatalogDisplayUiState.Achievements) {
-                        AchievementCatalogDisplay(
+                        CatalogAchievementItemDisplay(
                             modifier = Modifier
                                 .fillMaxHeight(.8f)
                                 .fillMaxWidth()
@@ -313,7 +318,19 @@ private fun CodexItemScreenContentPortrait(
                         )
                     }
                 }
-                else -> { /* DO NOTHING */ }
+                else -> {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier,
+                            color = LocalPalette.current.codexFamily.codex4
+                        )
+                    }
+
+                }
             }
 
         }
@@ -351,14 +368,14 @@ private fun CodexItemScreenContentLandscape(
             when(catalogUiState.catalog) {
                 is CatalogCategory.Equipment -> {
 
-                    CatalogEquipmentListComponent(
+                    CatalogEquipmentList(
                         scrollState = scrollState,
                         catalogUiState = catalogUiState.catalog,
                         listUiActions = equipmentListUiActions
                     )
 
                     if(displayUiState is CatalogDisplayUiState.Equipment) {
-                        EquipmentCatalogDisplay(
+                        CatalogEquipmentItemDisplay(
                             modifier = Modifier
                                 .fillMaxHeight()
                                 .fillMaxWidth(.8f)
@@ -370,14 +387,14 @@ private fun CodexItemScreenContentLandscape(
                 }
                 is CatalogCategory.Possessions -> {
 
-                    PossessionsCatalogList(
+                    CatalogPossessionsList(
                         scrollState = scrollState,
                         catalogUiState = catalogUiState.catalog,
                         listUiActions = possessionsListUiActions
                     )
 
                     if(displayUiState is CatalogDisplayUiState.Possessions) {
-                        PossessionsCatalogDisplay(
+                        CatalogPossessionItemDisplay(
                             modifier = Modifier
                                 .fillMaxHeight()
                                 .fillMaxWidth(.8f)
@@ -389,14 +406,14 @@ private fun CodexItemScreenContentLandscape(
                 }
                 is CatalogCategory.Achievements -> {
 
-                    AchievementCatalogList(
+                    CatalogAchievementsList(
                         scrollState = scrollState,
                         catalogUiState = catalogUiState.catalog,
                         listUiActions = achievementsListUiActions
                     )
 
                     if(displayUiState is CatalogDisplayUiState.Achievements) {
-                        AchievementCatalogDisplay(
+                        CatalogAchievementItemDisplay(
                             modifier = Modifier
                                 .fillMaxHeight()
                                 .fillMaxWidth(.8f)

@@ -4,7 +4,7 @@ import androidx.annotation.IntegerRes
 import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentType
 import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentTypeTier
 
-data class EquipmentCatalogUiState(
+data class CatalogEquipmentUiState(
     val list: List<EquipmentType> = emptyList(),
     val selectedGroup: EquipmentType? = null,
     val selectedItem: EquipmentTypeTier? = null,

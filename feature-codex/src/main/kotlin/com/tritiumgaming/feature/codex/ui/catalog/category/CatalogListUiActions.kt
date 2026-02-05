@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.codex.ui.catalog.category.equipment
+package com.tritiumgaming.feature.codex.ui.catalog.category
 
 import com.tritiumgaming.shared.data.codex.model.achievements.AchievementsType
 import com.tritiumgaming.shared.data.codex.model.achievements.CodexAchievementsGroupItem

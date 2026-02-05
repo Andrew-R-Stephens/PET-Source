@@ -1,7 +1,5 @@
 package com.tritiumgaming.feature.codex.ui.menu
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,17 +32,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.GridIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
-import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.black
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
@@ -53,7 +48,6 @@ import com.tritiumgaming.core.ui.theme.white
 import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
-import com.tritiumgaming.feature.codex.ui.CodexViewModel
 import com.tritiumgaming.shared.core.navigation.NavRoute
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources
 
@@ -63,7 +57,7 @@ fun CodexMenuScreen(
     navController: NavHostController = rememberNavController()
 ) {
     val codexScreenUiState = CodexScreenUiState(
-        headerTitle = R.string.general_codex_button,
+        headerTitle = "",
         showBackButton = false
     )
 

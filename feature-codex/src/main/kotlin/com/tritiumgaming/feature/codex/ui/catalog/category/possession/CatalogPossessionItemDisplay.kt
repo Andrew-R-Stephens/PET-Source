@@ -38,7 +38,7 @@ import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexItemPopupDataRow
 
 @Composable
-fun PossessionsCatalogDisplay(
+fun CatalogPossessionItemDisplay(
     modifier: Modifier = Modifier,
     displayUiState: CatalogDisplayUiState.Possessions,
     displayUiActions: CatalogDisplayUiActions

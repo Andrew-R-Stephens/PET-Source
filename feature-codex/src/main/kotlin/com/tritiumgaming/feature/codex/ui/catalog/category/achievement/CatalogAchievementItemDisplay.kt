@@ -38,7 +38,7 @@ import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.Achieve
 import com.tritiumgaming.shared.data.codex.mappers.AchievementsResources.AchievementVisibility
 
 @Composable
-fun AchievementCatalogDisplay(
+fun CatalogAchievementItemDisplay(
     modifier: Modifier = Modifier,
     displayUiState: CatalogDisplayUiState.Achievements,
     displayUiActions: CatalogDisplayUiActions

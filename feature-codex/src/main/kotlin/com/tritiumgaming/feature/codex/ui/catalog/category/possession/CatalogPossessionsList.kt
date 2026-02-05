@@ -22,7 +22,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogListUiActions
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItem
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsLandscape
@@ -30,7 +30,7 @@ import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsPortrait
 
 
 @Composable
-fun PossessionsCatalogList(
+fun CatalogPossessionsList(
     catalogUiState: CatalogCategory.Possessions,
     listUiActions: CatalogListUiActions.Possessions,
     scrollState: LazyListState

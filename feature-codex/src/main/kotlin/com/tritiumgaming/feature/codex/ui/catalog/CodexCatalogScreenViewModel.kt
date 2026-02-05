@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.codex.ui
+package com.tritiumgaming.feature.codex.ui.catalog
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,6 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.codex.app.container.CodexContainerProvider
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
-import com.tritiumgaming.feature.codex.ui.catalog.ScrollUiState
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategoryUiState
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
@@ -27,7 +26,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class CodexViewModel(
+class CodexCatalogScreenViewModel(
     val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase,
     val fetchCodexPossessionsUseCase: FetchPossessionTypesUseCase,
     val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase
@@ -36,9 +35,11 @@ class CodexViewModel(
     private val _categoryCache = MutableStateFlow(CategoryCache())
     private val categoryCache = _categoryCache.asStateFlow()
 
-    private val _catalogUiState = MutableStateFlow(CatalogCategoryUiState(
-        catalog = CatalogCategory.None()
-    ))
+    private val _catalogUiState = MutableStateFlow(
+        CatalogCategoryUiState(
+            catalog = CatalogCategory.None()
+        )
+    )
     val catalogUiState = _catalogUiState.asStateFlow()
 
     private val _displayUiState =
@@ -49,6 +50,8 @@ class CodexViewModel(
     val scrollUiState = _scrollUiState.asStateFlow()
 
     fun loadCategory(category: CodexResources.Category) {
+        if (this.catalogUiState.value.catalog.category == category) return
+
         viewModelScope.launch {
             when (category) {
                 CodexResources.Category.EQUIPMENT -> loadCodexEquipment()
@@ -59,7 +62,15 @@ class CodexViewModel(
         }
     }
 
-    private fun cacheCodexEquipment() {
+    fun cacheAllCategories() {
+        viewModelScope.launch {
+            cacheCodexEquipment()
+            cacheCodexPossessions()
+            cacheCodexAchievements()
+        }
+    }
+
+     private fun cacheCodexEquipment() {
         val result = fetchCodexEquipmentUseCase()
 
         try {
@@ -223,9 +234,7 @@ class CodexViewModel(
     }
 
     init {
-        cacheCodexEquipment()
-        cacheCodexPossessions()
-        cacheCodexAchievements()
+        cacheAllCategories()
     }
 
     companion object {
@@ -238,8 +247,8 @@ class CodexViewModel(
                 val fetchCodexEquipmentUseCase = container.fetchCodexEquipmentUseCase
                 val fetchCodexPossessionsUseCase = container.fetchCodexPossessionsUseCase
                 val fetchCodexAchievementsUseCase = container.fetchCodexAchievementsUseCase
-                
-                CodexViewModel(
+
+                CodexCatalogScreenViewModel(
                     fetchCodexEquipmentUseCase = fetchCodexEquipmentUseCase,
                     fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
                     fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase

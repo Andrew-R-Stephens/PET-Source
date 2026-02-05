@@ -4,7 +4,7 @@ import androidx.annotation.IntegerRes
 import com.tritiumgaming.shared.data.codex.model.possessions.CodexPossessionsGroupItem
 import com.tritiumgaming.shared.data.codex.model.possessions.PossessionsType
 
-data class PossessionsCatalogUiState(
+data class CatalogPossessionItemDisplayUiState(
     val list: List<PossessionsType> = emptyList(),
     val selectedGroup: PossessionsType? = null,
     val selectedItem: CodexPossessionsGroupItem? = null,

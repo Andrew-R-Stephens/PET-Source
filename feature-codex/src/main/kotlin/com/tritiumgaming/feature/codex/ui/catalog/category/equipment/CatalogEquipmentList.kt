@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.codex.ui.catalog.category.achievement
+package com.tritiumgaming.feature.codex.ui.catalog.category.equipment
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.aspectRatio
@@ -22,18 +22,17 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.feature.codex.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.codex.app.mappers.codex.toStringResource
-import com.tritiumgaming.feature.codex.ui.CodexViewModel
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogListUiActions
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroup
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItem
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsLandscape
 import com.tritiumgaming.feature.codex.ui.catalog.common.CodexGroupItemsPortrait
 
 @Composable
-fun AchievementCatalogList(
-    catalogUiState: CatalogCategory.Achievements,
-    listUiActions: CatalogListUiActions.Achievements,
+fun CatalogEquipmentList(
+    catalogUiState: CatalogCategory.Equipment,
+    listUiActions: CatalogListUiActions.Equipment,
     scrollState: LazyListState
 ) {
     val groups = catalogUiState.list
@@ -41,7 +40,7 @@ fun AchievementCatalogList(
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
-    when (deviceConfiguration) {
+    when(deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
 
             LazyColumn(
@@ -63,17 +62,21 @@ fun AchievementCatalogList(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .heightIn(min = 48.dp, max = 96.dp),
-                            itemCount = 1
+                            itemCount = group.size
                         ) {
-                            CodexGroupItem(
-                                modifier = Modifier
-                                    .widthIn(min = 32.dp, max = 96.dp)
-                                    .aspectRatio(1f)
-                                    .weight(1f, false),
-                                isBordered = true,
-                                image = group.icon.toDrawableResource()
-                            ) {
-                                listUiActions.onSelect(group, group.item)
+                            group.items.forEachIndexed { index, item ->
+                                CodexGroupItem(
+                                    modifier = Modifier
+                                        .widthIn(min = 32.dp, max = 96.dp)
+                                        .aspectRatio(1f)
+                                        .weight(1f, false),
+                                    isBackground = true,
+                                    isBordered = true,
+                                    tierLevel = index + 1,
+                                    image = item.image.toDrawableResource()
+                                ) {
+                                    listUiActions.onSelect(group, item)
+                                }
                             }
                         }
                     }
@@ -81,7 +84,6 @@ fun AchievementCatalogList(
             }
 
         }
-
         DeviceConfiguration.MOBILE_LANDSCAPE,
         DeviceConfiguration.TABLET_PORTRAIT,
         DeviceConfiguration.TABLET_LANDSCAPE,
@@ -105,20 +107,24 @@ fun AchievementCatalogList(
                             modifier = Modifier
                                 .fillMaxHeight()
                                 .width(96.dp),
-                            itemCount = 1
+                            itemCount = group.size
                         ) {
-                            CodexGroupItem(
-                                modifier = Modifier
-                                    .sizeIn(
-                                        minWidth = 64.dp, maxWidth = 96.dp,
-                                        minHeight = 64.dp, maxHeight = 96.dp
-                                    )
-                                    .aspectRatio(1f)/*
+                            group.items.forEachIndexed { index, item ->
+                                CodexGroupItem(
+                                    modifier = Modifier
+                                        .sizeIn(
+                                            minWidth = 64.dp, maxWidth = 96.dp,
+                                            minHeight = 64.dp, maxHeight = 96.dp
+                                        )
+                                        .aspectRatio(1f)/*
                                         .weight(1f, false)*/,
-                                isBordered = true,
-                                image = group.icon.toDrawableResource()
-                            ) {
-                                listUiActions.onSelect(group, group.item)
+                                    isBackground = true,
+                                    isBordered = true,
+                                    tierLevel = index + 1,
+                                    image = item.image.toDrawableResource()
+                                ) {
+                                    listUiActions.onSelect(group, item)
+                                }
                             }
                         }
                     }
@@ -126,4 +132,5 @@ fun AchievementCatalogList(
             }
         }
     }
+
 }

@@ -93,7 +93,7 @@ private fun CodexScreenContent(
                     .weight(1f)
                     .wrapContentHeight()
                     .padding(4.dp),
-                text = stringResource(codexScreenUiState.headerTitle).uppercase(),
+                text = codexScreenUiState.headerTitle.uppercase(),
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Center
                 ),
