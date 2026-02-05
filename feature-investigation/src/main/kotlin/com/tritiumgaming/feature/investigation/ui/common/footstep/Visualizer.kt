@@ -52,14 +52,6 @@ import kotlin.math.ceil
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-private data class TapUiState(
-    val instantBPM: Float,
-    val smoothedBPM: Float,
-    val potentialBPM: Float,
-    val lastTapTime: Long,
-    val taps: CircularQueueLinkedList<TapRecord>
-)
-
 @Composable
 fun FootstepVisualizer(
     modifier: Modifier = Modifier,

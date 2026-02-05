@@ -29,7 +29,6 @@ import kotlin.math.ceil
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-
 @Composable
 fun ToolbarFootstepsVisualizerSection(
     modifier: Modifier = Modifier
