@@ -24,7 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
-import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -53,6 +52,14 @@ import kotlin.math.ceil
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
+private data class TapUiState(
+    val instantBPM: Float,
+    val smoothedBPM: Float,
+    val potentialBPM: Float,
+    val lastTapTime: Long,
+    val taps: CircularQueueLinkedList<TapRecord>
+)
+
 @Composable
 fun FootstepVisualizer(
     modifier: Modifier = Modifier,
@@ -66,12 +73,17 @@ fun FootstepVisualizer(
 ) {
     var now = System.currentTimeMillis()
 
-    var instantBPM by remember { mutableFloatStateOf(0f) }
-    var smoothedBPM by remember { mutableFloatStateOf(0f) }
-    var potentialBPM by remember { mutableFloatStateOf(0f) }
+    var tapUiState by remember {
+        mutableStateOf(TapUiState(
+            instantBPM = 0f,
+            smoothedBPM = 0f,
+            potentialBPM = 0f,
+            lastTapTime = now,
+            taps = CircularQueueLinkedList(50)
+        ))
+    }
 
-    var lastTapTime by remember { mutableLongStateOf(now) }
-    var taps by remember { mutableStateOf(CircularQueueLinkedList<TapRecord>(50)) }
+    //var taps by remember { mutableStateOf(CircularQueueLinkedList<TapRecord>(50)) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "BPMDecay")
     val ticker by infiniteTransition.animateFloat(
@@ -87,22 +99,25 @@ fun FootstepVisualizer(
 
     // Real-time decay if no taps occur
     LaunchedEffect(ticker) {
-        if (lastTapTime != 0L) {
-            val delta = now - lastTapTime
+        if (tapUiState.lastTapTime != 0L) {
+            val delta = now - tapUiState.lastTapTime
 
-            potentialBPM = (60000f / delta)
+            val potentialBPM = (60000f / delta)
 
-            smoothedBPM = (footstepVisualizerUiState.alpha * instantBPM) + ((1f - footstepVisualizerUiState.alpha) * instantBPM)
-
+            var smoothedBPM = (footstepVisualizerUiState.alpha * tapUiState.instantBPM) + ((1f - footstepVisualizerUiState.alpha) * tapUiState.instantBPM)
             if(smoothedBPM > potentialBPM) {
                 smoothedBPM = potentialBPM
             }
-
             if (smoothedBPM < 1f) smoothedBPM = 0f
+
+            tapUiState = tapUiState.copy(
+                smoothedBPM = smoothedBPM,
+                potentialBPM = potentialBPM
+            )
         }
 
-        if(lastTapTime + footstepVisualizerUiState.viewportDuration.inWholeMilliseconds < now) {
-            taps.clear()
+        if(tapUiState.lastTapTime + footstepVisualizerUiState.viewportDuration.inWholeMilliseconds < now) {
+            tapUiState.taps.clear()
         }
 
     }
@@ -115,7 +130,7 @@ fun FootstepVisualizer(
         var intervalAverageSum = 0f
         var intervalCount = 0f
 
-        var currentTap = taps.head
+        var currentTap = tapUiState.taps.head
         while(currentTap != null) {
             if(currentTap.data.time > targetTime) {
                 intervalSum += currentTap.data.bpm
@@ -136,21 +151,26 @@ fun FootstepVisualizer(
     }
 
     val onBeat = {
-        if (lastTapTime != 0L) {
-            val delta = now - lastTapTime
+        if (tapUiState.lastTapTime != 0L) {
+            val delta = now - tapUiState.lastTapTime
 
-            instantBPM = (60000f / delta)
+            val instantBPM = (60000f / delta)
 
-            smoothedBPM = if (smoothedBPM == 0f) { instantBPM }
+            var smoothedBPM = if (tapUiState.smoothedBPM == 0f) { instantBPM }
             else { (footstepVisualizerUiState.alpha * instantBPM) + ((1f - footstepVisualizerUiState.alpha) * instantBPM) }
 
             if (smoothedBPM < 1f) smoothedBPM = 0f
+
+            tapUiState = tapUiState.copy(
+                instantBPM = instantBPM,
+                smoothedBPM = smoothedBPM
+            )
 
             val intervalBPM = calculateSampleIntervalBPM()
             val intervalAverage = intervalBPM.first
             val intervalWeightedAverage = intervalBPM.second
 
-            taps.enqueue(
+            tapUiState.taps.enqueue(
                 TapRecord(
                     time = now,
                     bpm = instantBPM,
@@ -159,25 +179,26 @@ fun FootstepVisualizer(
                 ))
         }
 
-        lastTapTime = now
+        tapUiState = tapUiState.copy(
+            lastTapTime = now
+        )
 
         onUpdate(
-            instantBPM,
-            smoothedBPM,
+            tapUiState.instantBPM,
+            tapUiState.smoothedBPM,
             calculateSampleIntervalBPM().first
         )
     }
 
-    val bpmRatioSmooth = (smoothedBPM / footstepVisualizerUiState.viewportBPM).coerceIn(0f, 1f)
-    val bpmRatioPredictive = (potentialBPM / footstepVisualizerUiState.viewportBPM).coerceIn(0f, 1f)
-    val currentTime = System.currentTimeMillis()
+    val bpmRatioSmooth = (tapUiState.smoothedBPM / footstepVisualizerUiState.viewportBPM).coerceIn(0f, 1f)
+    val bpmRatioPredictive = (tapUiState.potentialBPM / footstepVisualizerUiState.viewportBPM).coerceIn(0f, 1f)
 
     val realtimePlotUiState = RealtimePlotUiState(
-        currentTime = currentTime,
+        currentTime = now,
         bpmRatio = bpmRatioSmooth,
         viewportDuration = footstepVisualizerUiState.viewportDuration,
         viewportBPM = footstepVisualizerUiState.viewportBPM,
-        taps = taps.asList()
+        taps = tapUiState.taps.asList()
     )
 
     Column(
@@ -225,8 +246,10 @@ fun FootstepVisualizer(
                 )
 
                 BeatLine(
-                    modifier = Modifier,
-                    bpmRatio = bpmRatioSmooth
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    yPosition = bpmRatioSmooth,
+                    color = Color.White
                 )
 
                 RealtimePlot(
@@ -534,15 +557,13 @@ private fun RealtimePlot(
                     val y22 = size.height * (1f - (currTap.intervalWeightedAverage / viewportBPM))
 
                     val midX = (x1 + x2) / 2f
-                    val midY0 = (y10 + y20) / 2f
                     val midY1 = (y11 + y21) / 2f
                     val midY2 = (y12 + y22) / 2f
 
-                    instantPath.quadraticTo(
+                    instantPath.lineTo(
                         x1,
-                        y10,
-                        midX,
-                        midY0)
+                        y10
+                    )
 
                     averagePath.quadraticTo(
                         x1,
@@ -648,8 +669,8 @@ private fun RealtimePlot(
 @Composable
 private fun BeatLine(
     modifier: Modifier = Modifier,
-    color: Color = Color.White,
-    bpmRatio: Float = 0f
+    yPosition: Float,
+    color: Color,
 ) {
 
     Canvas(
@@ -662,8 +683,8 @@ private fun BeatLine(
 
             drawLine(
                 color = color,
-                start = Offset(0f, size.height * (1f - bpmRatio)),
-                end = Offset(size.width, size.height * (1f - bpmRatio)),
+                start = Offset(0f, size.height * (1f - yPosition)),
+                end = Offset(size.width, size.height * (1f - yPosition)),
             )
 
         }
