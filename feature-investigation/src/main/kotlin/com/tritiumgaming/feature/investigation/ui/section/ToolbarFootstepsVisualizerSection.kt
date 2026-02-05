@@ -18,7 +18,15 @@ import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.ui.common.footstep.FootstepVisualizer
-import com.tritiumgaming.feature.investigation.ui.common.footstep.LineSegmentColors
+import com.tritiumgaming.feature.investigation.ui.common.footstep.FootstepVisualizerUiState
+import com.tritiumgaming.feature.investigation.ui.common.footstep.GraphColors
+import com.tritiumgaming.feature.investigation.ui.common.footstep.GraphLabelColors
+import com.tritiumgaming.feature.investigation.ui.common.footstep.GraphUiState
+import com.tritiumgaming.feature.investigation.ui.common.footstep.RealtimePlotColors
+import com.tritiumgaming.feature.investigation.ui.common.footstep.VerticalMeterColors
+import kotlin.Float
+import kotlin.math.ceil
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 
@@ -26,10 +34,49 @@ import kotlin.time.Duration.Companion.seconds
 fun ToolbarFootstepsVisualizerSection(
     modifier: Modifier = Modifier
 ) {
-    val lineSegmentColors = LineSegmentColors(
+
+    val footstepVisualizerUiState = FootstepVisualizerUiState(
+        alpha = .01f,
+        viewportBPM = 360,
+        viewportDuration = 10.seconds,
+        durationSplit = 10f,
+        bpmSplit = 120f,
+        samplingInterval = 3.seconds
+    )
+
+    val quantizedMax = ceil(
+        footstepVisualizerUiState.viewportBPM / footstepVisualizerUiState.bpmSplit) *
+            footstepVisualizerUiState.bpmSplit
+    val steps = (quantizedMax / footstepVisualizerUiState.bpmSplit).toInt()
+
+    val realtimePlotColors = RealtimePlotColors(
         instant = LocalPalette.current.primary,
         smoothed = LocalPalette.current.tertiary,
-        weighted = LocalPalette.current.secondary
+        weighted = LocalPalette.current.secondary,
+        meterBeatLine = LocalPalette.current.onSurface
+    )
+
+    val verticalMeterColors = VerticalMeterColors(
+        meterColor = LocalPalette.current.onSurface,
+        meterOnColor = LocalPalette.current.tertiary,
+    )
+
+    val graphUiState = GraphUiState(
+        xInterval = footstepVisualizerUiState.durationSplit,
+        yInterval = steps.toFloat(),
+        viewportDuration = footstepVisualizerUiState.viewportDuration,
+        samplingInterval = footstepVisualizerUiState.samplingInterval
+    )
+
+    val graphColors = GraphColors(
+        surface = Color.Unspecified,
+        surfaceContainer = LocalPalette.current.surfaceContainer.copy(alpha = .5f),
+        xAxis = LocalPalette.current.onSurface,
+        yAxis = Color.Unspecified
+    )
+
+    val graphLabelColors = GraphLabelColors(
+        label = LocalPalette.current.onSurface
     )
 
     Box (
@@ -59,22 +106,12 @@ fun ToolbarFootstepsVisualizerSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
-                graphBackgroundColor = Color.Unspecified,
-                graphXAxisColor = LocalPalette.current.onSurface,
-                graphYAxisColor = Color.Unspecified,
-                sampleBackgroundColor = LocalPalette.current.surfaceContainer.copy(alpha = .5f),
-                labelColor = LocalPalette.current.onSurface,
-                endpointColor = LocalPalette.current.primary,
-                lineSegmentColors = lineSegmentColors,
-                meterBeatLineColor = LocalPalette.current.onSurface,
-                meterColor = LocalPalette.current.onSurface,
-                meterOnColor = LocalPalette.current.tertiary,
-                alpha = .01f,
-                viewportBPM = 360,
-                viewportDuration = 10.seconds,
-                durationSplit = 10f,
-                bpmSplit = 120f,
-                samplingInterval = 3.seconds
+                footstepVisualizerUiState = footstepVisualizerUiState,
+                graphColors = graphColors,
+                realtimePlotColors = realtimePlotColors,
+                verticalMeterColors = verticalMeterColors,
+                graphUiState = graphUiState,
+                graphLabelColors = graphLabelColors,
             ) { instantBPM, smoothedBPM, sampleAverage ->
                 rememberSmoothedBPM = smoothedBPM
                 rememberInstantBPM = instantBPM

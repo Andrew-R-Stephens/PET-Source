@@ -28,6 +28,7 @@ import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -37,6 +38,7 @@ import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
@@ -52,113 +54,14 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-@Preview
-private fun Preview() {
-
-    SelectiveTheme {
-        Column (
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-        ) {
-
-            var rememberSmoothedBPM by remember {
-                mutableFloatStateOf(0f)
-            }
-
-            var rememberInstantBPM by remember {
-                mutableFloatStateOf(0f)
-            }
-
-            var rememberSampledBPM by remember {
-                mutableFloatStateOf(0f)
-            }
-
-            FootstepVisualizer(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(400.dp),
-                graphBackgroundColor = Color.Unspecified,
-                graphXAxisColor = Color.Gray,
-                graphYAxisColor = Color.Unspecified,
-                sampleBackgroundColor = Color.Blue.copy(alpha = .5f),
-                labelColor = Color.Gray,
-                endpointColor = Color.Red,
-                lineSegmentColors = LineSegmentColors(
-                    instant = Color.Red,
-                    smoothed = Color.Blue,
-                    weighted = Color.Green
-                ),
-                meterBeatLineColor = Color.White,
-                meterColor = Color.Green,
-                meterOnColor = Color.White,
-                viewportBPM = 250,
-                viewportDuration = 20.seconds,
-                samplingInterval = 3.seconds,
-                durationSplit = 10f,
-                bpmSplit = 120f,
-                alpha = .01f
-            ) { instantBPM, smoothedBPM, sampleAverage ->
-                rememberSmoothedBPM = smoothedBPM
-                rememberInstantBPM = instantBPM
-                rememberSampledBPM = sampleAverage
-            }
-
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                text = "BPM: ${rememberSmoothedBPM.toInt()}; IPM: ${rememberInstantBPM.toInt()}",
-                color = LocalPalette.current.onSurface
-            )
-
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                text = "MSPS: ${rememberSmoothedBPM/60f}; MIPM: ${rememberInstantBPM/60f}",
-                color = LocalPalette.current.onSurface
-            )
-
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                text = "AVG BPM: $rememberSampledBPM",
-                color = LocalPalette.current.onSurface
-            )
-
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight(),
-                text = "AVG MPS: ${rememberSampledBPM/60f}",
-                color = LocalPalette.current.onSurface
-            )
-
-        }
-    }
-}
-
-@Composable
 fun FootstepVisualizer(
     modifier: Modifier = Modifier,
-    graphBackgroundColor: Color = Color.Unspecified,
-    graphXAxisColor: Color = Color.Unspecified,
-    graphYAxisColor: Color = Color.Unspecified,
-    sampleBackgroundColor: Color = Color.Unspecified,
-    labelColor: Color = Color.Unspecified,
-    endpointColor: Color = Color.Unspecified,
-    lineSegmentColors: LineSegmentColors,
-    meterBeatLineColor: Color = Color.Unspecified,
-    meterColor: Color = Color.Unspecified,
-    meterOnColor: Color = Color.Unspecified,
-    alpha: Float = .2f,
-    viewportBPM: Int = 480,
-    viewportDuration: Duration = 60.seconds,
-    durationSplit: Float = 10f,
-    bpmSplit: Float = 50f,
-    samplingInterval: Duration = viewportDuration,
+    footstepVisualizerUiState: FootstepVisualizerUiState,
+    graphUiState: GraphUiState,
+    graphColors: GraphColors,
+    graphLabelColors: GraphLabelColors,
+    realtimePlotColors: RealtimePlotColors,
+    verticalMeterColors: VerticalMeterColors,
     onUpdate: ((instantBPM: Float, smoothedBPM: Float, intervalSampleBPM: Float) -> Unit) = {_, _, _ -> }
 ) {
     var now = System.currentTimeMillis()
@@ -189,7 +92,7 @@ fun FootstepVisualizer(
 
             potentialBPM = (60000f / delta)
 
-            smoothedBPM = (alpha * instantBPM) + ((1f - alpha) * instantBPM)
+            smoothedBPM = (footstepVisualizerUiState.alpha * instantBPM) + ((1f - footstepVisualizerUiState.alpha) * instantBPM)
 
             if(smoothedBPM > potentialBPM) {
                 smoothedBPM = potentialBPM
@@ -198,7 +101,7 @@ fun FootstepVisualizer(
             if (smoothedBPM < 1f) smoothedBPM = 0f
         }
 
-        if(lastTapTime + viewportDuration.inWholeMilliseconds < now) {
+        if(lastTapTime + footstepVisualizerUiState.viewportDuration.inWholeMilliseconds < now) {
             taps.clear()
         }
 
@@ -206,7 +109,7 @@ fun FootstepVisualizer(
 
     val calculateSampleIntervalBPM: () -> Pair<Float, Float> = {
 
-        val targetTime = now - samplingInterval.inWholeMilliseconds
+        val targetTime = now - footstepVisualizerUiState.samplingInterval.inWholeMilliseconds
 
         var intervalSum = 0f
         var intervalAverageSum = 0f
@@ -239,7 +142,7 @@ fun FootstepVisualizer(
             instantBPM = (60000f / delta)
 
             smoothedBPM = if (smoothedBPM == 0f) { instantBPM }
-            else { (alpha * instantBPM) + ((1f - alpha) * instantBPM) }
+            else { (footstepVisualizerUiState.alpha * instantBPM) + ((1f - footstepVisualizerUiState.alpha) * instantBPM) }
 
             if (smoothedBPM < 1f) smoothedBPM = 0f
 
@@ -265,8 +168,17 @@ fun FootstepVisualizer(
         )
     }
 
-    val bpmRatioSmooth = (smoothedBPM / viewportBPM).coerceIn(0f, 1f)
-    val bpmRatioPredictive = (potentialBPM / viewportBPM).coerceIn(0f, 1f)
+    val bpmRatioSmooth = (smoothedBPM / footstepVisualizerUiState.viewportBPM).coerceIn(0f, 1f)
+    val bpmRatioPredictive = (potentialBPM / footstepVisualizerUiState.viewportBPM).coerceIn(0f, 1f)
+    val currentTime = System.currentTimeMillis()
+
+    val realtimePlotUiState = RealtimePlotUiState(
+        currentTime = currentTime,
+        bpmRatio = bpmRatioSmooth,
+        viewportDuration = footstepVisualizerUiState.viewportDuration,
+        viewportBPM = footstepVisualizerUiState.viewportBPM,
+        taps = taps.asList()
+    )
 
     Column(
         modifier = modifier
@@ -294,10 +206,9 @@ fun FootstepVisualizer(
                 modifier = Modifier
                     .width(24.dp)
                     .fillMaxHeight(),
-                labelColor = labelColor,
-                axisLineColor = graphYAxisColor,
-                viewportBpm = viewportBPM,
-                bpmSplit = bpmSplit
+                graphLabelColors = graphLabelColors,
+                viewportBpm = footstepVisualizerUiState.viewportBPM,
+                bpmSplit = footstepVisualizerUiState.bpmSplit
             )
 
             Box(
@@ -306,20 +217,11 @@ fun FootstepVisualizer(
                     .fillMaxHeight()
             ) {
 
-                val quantizedMax = ceil(viewportBPM / bpmSplit) * bpmSplit
-                val steps = (quantizedMax / bpmSplit).toInt()
-
                 Graph(
                     modifier = Modifier
                         .fillMaxSize(),
-                    graphBackgroundColor = graphBackgroundColor,
-                    sampleBackgroundColor = sampleBackgroundColor,
-                    graphXAxisColor = graphXAxisColor,
-                    graphYAxisColor = Color.Unspecified,
-                    xAxisSplit = durationSplit,
-                    yAxisSplit = steps.toFloat(),
-                    viewportDuration = viewportDuration,
-                    samplingInterval = samplingInterval
+                    graphColors = graphColors,
+                    graphUiState = graphUiState
                 )
 
                 BeatLine(
@@ -330,14 +232,8 @@ fun FootstepVisualizer(
                 RealtimePlot(
                     modifier = Modifier
                         .fillMaxSize(),
-                    endpointColor = endpointColor,
-                    lineSegmentColors = lineSegmentColors,
-                    meterBeatLineColor = meterBeatLineColor,
-                    currentTime = System.currentTimeMillis(),
-                    bpmRatio = bpmRatioSmooth,
-                    viewportDuration = viewportDuration,
-                    viewportBPM = viewportBPM,
-                    taps = taps.asList()
+                    realtimePlotColors = realtimePlotColors,
+                    realtimePlotUiState = realtimePlotUiState
                 )
 
             }
@@ -351,8 +247,8 @@ fun FootstepVisualizer(
                 VerticalMeter(
                     modifier = Modifier
                         .fillMaxSize(),
-                    color = meterColor,
-                    onColor = meterOnColor,
+                    color = verticalMeterColors.meterColor,
+                    onColor = verticalMeterColors.meterOnColor,
                     smoothRatio = bpmRatioSmooth,
                     predictiveRatio = bpmRatioPredictive
                 )
@@ -365,20 +261,13 @@ fun FootstepVisualizer(
                 .fillMaxWidth()
                 .height(24.dp)
                 .padding(start = 24.dp, end = 12.dp),
-            labelColor = labelColor,
-            viewportDuration = viewportDuration.inWholeMilliseconds,
-            durationSpit = durationSplit
+            graphLabelColors = graphLabelColors,
+            viewportDuration = footstepVisualizerUiState.viewportDuration.inWholeMilliseconds,
+            durationSpit = footstepVisualizerUiState.durationSplit
         )
 
     }
 }
-
-private data class TapRecord(
-    val time: Long,
-    val bpm: Float,
-    val intervalAverage: Float = 0f,
-    val intervalWeightedAverage: Float = 0f
-)
 
 @Composable
 private fun VerticalMeter(
@@ -411,13 +300,12 @@ private fun VerticalMeter(
 @Composable
 private fun VerticalScale(
     modifier: Modifier,
-    labelColor: Color = Color.Unspecified,
-    axisLineColor: Color = Color.Unspecified,
+    graphLabelColors: GraphLabelColors,
     viewportBpm: Int,
     bpmSplit: Float
 ) {
     val textMeasurer = rememberTextMeasurer()
-    val textStyle = TextStyle(color = labelColor, fontSize = 10.sp)
+    val textStyle = TextStyle(color = graphLabelColors.label, fontSize = 10.sp)
 
     val quantizedMax = ceil(viewportBpm / bpmSplit) * bpmSplit
     val steps = (quantizedMax / bpmSplit).toInt()
@@ -439,7 +327,7 @@ private fun VerticalScale(
                 val label = "${ mps.toInt() } m"
 
                 drawLine(
-                    color = axisLineColor,
+                    color = graphLabelColors.labelLine,
                     start = Offset(size.width, y),
                     end = Offset(size.width - 24, y)
                 )
@@ -472,12 +360,12 @@ private fun VerticalScale(
 @Composable
 private fun HorizontalScale(
     modifier: Modifier,
-    labelColor: Color = Color.Unspecified,
+    graphLabelColors: GraphLabelColors,
     viewportDuration: Long,
     durationSpit: Float
 ) {
     val textMeasurer = rememberTextMeasurer()
-    val textStyle = TextStyle(color = labelColor, fontSize = 10.sp)
+    val textStyle = TextStyle(color = graphLabelColors.label, fontSize = 10.sp)
 
     Canvas(modifier) {
         clipRect(
@@ -522,29 +410,27 @@ private fun HorizontalScale(
 @Composable
 private fun Graph(
     modifier: Modifier = Modifier,
-    graphBackgroundColor: Color = Color.Unspecified,
-    sampleBackgroundColor: Color,
-    graphXAxisColor: Color = Color.Unspecified,
-    graphYAxisColor: Color = Color.Unspecified,
-    xAxisSplit: Float = 10f,
-    yAxisSplit: Float = 10f,
-    viewportDuration: Duration = 60.seconds,
-    samplingInterval: Duration = 30.seconds
+    graphColors: GraphColors,
+    graphUiState: GraphUiState
 ) {
+    val xInterval = graphUiState.xInterval
+    val yInterval = graphUiState.yInterval
+    val viewportDuration: Duration = graphUiState.viewportDuration
+    val samplingInterval: Duration = graphUiState.samplingInterval
 
     Canvas(
         modifier = modifier
-            .background(graphBackgroundColor)
+            .background(graphColors.surface)
     ) {
         clipRect(
             0f, 0f, size.width, size.height
         ) {
-            if(graphXAxisColor != Color.Unspecified && xAxisSplit > 0f) {
-                val axisRatio: Float = size.width / xAxisSplit
-                for (i in 0 until xAxisSplit.toInt() + 1) {
+            if(graphColors.xAxis != Color.Unspecified && xInterval > 0f) {
+                val axisRatio: Float = size.width / xInterval
+                for (i in 0 until xInterval.toInt() + 1) {
                     val x = axisRatio * i
                     drawLine(
-                        color = graphXAxisColor,
+                        color = graphColors.xAxis,
                         start = Offset(x, 0f),
                         end = Offset(x, size.height),
                     )
@@ -552,12 +438,12 @@ private fun Graph(
                 }
             }
 
-            if(graphYAxisColor != Color.Unspecified && yAxisSplit > 0f) {
-                val axisRatio: Float = size.height / yAxisSplit
-                for (i in 0 until yAxisSplit.toInt() + 1) {
+            if(graphColors.yAxis != Color.Unspecified && yInterval > 0f) {
+                val axisRatio: Float = size.height / yInterval
+                for (i in 0 until yInterval.toInt() + 1) {
                     val y = axisRatio * i
                     drawLine(
-                        color = graphYAxisColor,
+                        color = graphColors.yAxis,
                         start = Offset(0f, y),
                         end = Offset(size.width, y),
                     )
@@ -568,7 +454,7 @@ private fun Graph(
             val samplingIntervalRatio =
                 samplingInterval.inWholeMilliseconds / viewportDuration.inWholeMilliseconds.toFloat()
             drawRect(
-                color = sampleBackgroundColor,
+                color = graphColors.surfaceContainer,
                 topLeft = Offset(
                     x = size.width - (size.width * samplingIntervalRatio),
                     y = 0f
@@ -587,15 +473,18 @@ private fun Graph(
 @Composable
 private fun RealtimePlot(
     modifier: Modifier = Modifier,
-    endpointColor: Color,
-    lineSegmentColors: LineSegmentColors,
-    meterBeatLineColor: Color,
-    currentTime: Long = System.currentTimeMillis(),
-    viewportDuration: Duration = 60.seconds,
-    viewportBPM: Int = 400,
-    bpmRatio: Float = 0f,
-    taps: List<TapRecord>? = null
+    realtimePlotColors: RealtimePlotColors,
+    realtimePlotUiState: RealtimePlotUiState
 ) {
+
+    val currentTime = realtimePlotUiState.currentTime
+
+    val viewportBPM = realtimePlotUiState.viewportBPM
+    val viewportDuration = realtimePlotUiState.viewportDuration
+
+    val bpmRatio = realtimePlotUiState.bpmRatio
+
+    val taps = realtimePlotUiState.taps
 
     Canvas(
         modifier = modifier
@@ -606,7 +495,7 @@ private fun RealtimePlot(
         ) {
 
             drawLine(
-                color = meterBeatLineColor,
+                color = realtimePlotColors.meterBeatLine,
                 start = Offset(0f, size.height * (1f - bpmRatio)),
                 end = Offset(size.width, size.height * (1f - bpmRatio)),
             )
@@ -616,9 +505,9 @@ private fun RealtimePlot(
             val xPlotRatio: Float = size.width / viewportDuration.inWholeMilliseconds
 
             if (taps.isNotEmpty()) {
-                val instantCurvePath = Path()
-                val averageCurvePath = Path()
-                val weightedAverageCurvePath = Path()
+                val instantPath = Path()
+                val averagePath = Path()
+                val weightedAveragePath = Path()
 
                 val firstTap = taps.first()
 
@@ -627,9 +516,9 @@ private fun RealtimePlot(
                 val startY1 = size.height * (1f - (firstTap.intervalAverage / viewportBPM))
                 val startY2 = size.height * (1f - (firstTap.intervalWeightedAverage / viewportBPM))
 
-                instantCurvePath.moveTo(startX, startY0)
-                averageCurvePath.moveTo(startX, startY1)
-                weightedAverageCurvePath.moveTo(startX, startY2)
+                instantPath.moveTo(startX, startY0)
+                averagePath.moveTo(startX, startY1)
+                weightedAveragePath.moveTo(startX, startY2)
 
                 for (i in 1 until taps.size) {
                     val prevTap = taps[i - 1]
@@ -649,47 +538,47 @@ private fun RealtimePlot(
                     val midY1 = (y11 + y21) / 2f
                     val midY2 = (y12 + y22) / 2f
 
-                    instantCurvePath.quadraticTo(
+                    instantPath.quadraticTo(
                         x1,
                         y10,
                         midX,
                         midY0)
 
-                    averageCurvePath.quadraticTo(
+                    averagePath.quadraticTo(
                         x1,
                         y11,
                         midX,
                         midY1)
 
-                    weightedAverageCurvePath.quadraticTo(
+                    weightedAveragePath.quadraticTo(
                         x1,
                         y12,
                         midX,
                         midY2)
 
                     if (i == taps.size - 1) {
-                        instantCurvePath.lineTo(x2, y20)
-                        averageCurvePath.lineTo(x2, y21)
-                        weightedAverageCurvePath.lineTo(x2, y22)
+                        instantPath.lineTo(x2, y20)
+                        averagePath.lineTo(x2, y21)
+                        weightedAveragePath.lineTo(x2, y22)
                     }
                 }
 
                 drawPath(
-                    path = instantCurvePath,
+                    path = instantPath,
                     style = Stroke(width = 2f),
-                    color = lineSegmentColors.instant
+                    color = realtimePlotColors.instant
                 )
 
                 drawPath(
-                    path = weightedAverageCurvePath,
+                    path = weightedAveragePath,
                     style = Stroke(width = 2f),
-                    color = lineSegmentColors.weighted
+                    color = realtimePlotColors.weighted
                 )
 
                 drawPath(
-                    path = averageCurvePath,
+                    path = averagePath,
                     style = Stroke(width = 2f),
-                    color = lineSegmentColors.smoothed
+                    color = realtimePlotColors.smoothed
                 )
             }
 
@@ -744,7 +633,7 @@ private fun RealtimePlot(
 
             taps.forEach { tap ->
                 drawCircle(
-                    color = lineSegmentColors.instant,
+                    color = realtimePlotColors.instant,
                     radius = 4f,
                     center = Offset(
                         x = size.width - ((currentTime - tap.time) * xPlotRatio),
@@ -776,6 +665,139 @@ private fun BeatLine(
                 start = Offset(0f, size.height * (1f - bpmRatio)),
                 end = Offset(size.width, size.height * (1f - bpmRatio)),
             )
+
+        }
+    }
+}
+
+@Composable
+@Preview
+private fun Preview() {
+
+    SelectiveTheme {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+        ) {
+
+            val footstepVisualizerUiState = FootstepVisualizerUiState(
+                alpha = .01f,
+                viewportBPM = 360,
+                viewportDuration = 10.seconds,
+                durationSplit = 10f,
+                bpmSplit = 120f,
+                samplingInterval = 3.seconds
+            )
+
+            val quantizedMax = ceil(
+                footstepVisualizerUiState.viewportBPM / footstepVisualizerUiState.bpmSplit) *
+                    footstepVisualizerUiState.bpmSplit
+            val steps = (quantizedMax / footstepVisualizerUiState.bpmSplit).toInt()
+
+            val realtimePlotColors = RealtimePlotColors(
+                instant = LocalPalette.current.primary,
+                smoothed = LocalPalette.current.tertiary,
+                weighted = LocalPalette.current.secondary,
+                meterBeatLine = LocalPalette.current.onSurface
+            )
+
+            val verticalMeterColors = VerticalMeterColors(
+                meterColor = LocalPalette.current.onSurface,
+                meterOnColor = LocalPalette.current.tertiary,
+            )
+
+            val graphUiState = GraphUiState(
+                xInterval = footstepVisualizerUiState.durationSplit,
+                yInterval = steps.toFloat(),
+                viewportDuration = footstepVisualizerUiState.viewportDuration,
+                samplingInterval = footstepVisualizerUiState.samplingInterval
+            )
+
+            val graphColors = GraphColors(
+                surface = Color.Unspecified,
+                surfaceContainer = LocalPalette.current.surfaceContainer.copy(alpha = .5f),
+                xAxis = LocalPalette.current.onSurface,
+                yAxis = Color.Unspecified
+            )
+
+            val graphLabelColors = GraphLabelColors(
+                label = LocalPalette.current.onSurface
+            )
+
+            Box (
+                modifier = Modifier
+            ) {
+
+                Column (
+                    modifier = Modifier
+                        .height(300.dp)
+                        .fillMaxWidth()
+                        .preferredFrameRate(FrameRateCategory.Normal)
+                ) {
+
+                    var rememberSmoothedBPM by remember {
+                        mutableFloatStateOf(0f)
+                    }
+
+                    var rememberInstantBPM by remember {
+                        mutableFloatStateOf(0f)
+                    }
+
+                    var rememberSampledBPM by remember {
+                        mutableFloatStateOf(0f)
+                    }
+
+                    FootstepVisualizer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp),
+                        footstepVisualizerUiState = footstepVisualizerUiState,
+                        graphColors = graphColors,
+                        realtimePlotColors = realtimePlotColors,
+                        verticalMeterColors = verticalMeterColors,
+                        graphUiState = graphUiState,
+                        graphLabelColors = graphLabelColors,
+                    ) { instantBPM, smoothedBPM, sampleAverage ->
+                        rememberSmoothedBPM = smoothedBPM
+                        rememberInstantBPM = instantBPM
+                        rememberSampledBPM = sampleAverage
+                    }
+
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
+                        text = "BPM: ${rememberSmoothedBPM.toInt()}; IPM: ${rememberInstantBPM.toInt()}",
+                        color = LocalPalette.current.onSurface
+                    )
+
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
+                        text = "MSPS: ${rememberSmoothedBPM/60f}; MIPM: ${rememberInstantBPM/60f}",
+                        color = LocalPalette.current.onSurface
+                    )
+
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
+                        text = "AVG BPM: $rememberSampledBPM",
+                        color = LocalPalette.current.onSurface
+                    )
+
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentHeight(),
+                        text = "AVG MPS: ${rememberSampledBPM/60f}",
+                        color = LocalPalette.current.onSurface
+                    )
+
+                }
+            }
 
         }
     }
