@@ -97,10 +97,10 @@ class NewsletterViewModel(
             try {
                 val fetchedInboxes = fetchNewsletterInboxesUseCase().getOrThrow()
 
-                fetchedInboxes.forEach { inbox ->
+                /*fetchedInboxes.forEach { inbox ->
                     Log.d("NewsletterViewModel",
                         "Fetched inbox: ${inbox.title} ${inbox.channel?.messages?.map { "${ it.title }\n" }}")
-                }
+                }*/
 
                 onSuccess()
 
