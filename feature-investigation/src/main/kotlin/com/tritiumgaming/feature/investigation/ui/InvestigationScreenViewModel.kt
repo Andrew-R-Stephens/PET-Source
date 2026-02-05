@@ -453,7 +453,7 @@ class InvestigationScreenViewModel(
             ) ?: 1
     }
 
-    fun getGhostScore(
+    /*fun getGhostScore(
         ghostModel: GhostType
     ): StateFlow<Int> {
         return ghostScores.value.first { it.ghostEvidence.ghost.id == ghostModel.id }.score
@@ -465,7 +465,7 @@ class InvestigationScreenViewModel(
     ) {
         val ghostScore = ghostScores.value.first { it.ghostEvidence.ghost.id == ghostModel.id }
         ghostScore.setForcefullyRejected(isForceNegated)
-    }
+    }*/
 
     fun toggleGhostNegation(
         ghostModel: GhostType
@@ -474,12 +474,12 @@ class InvestigationScreenViewModel(
         ghostScore.toggleForcefullyRejected()
     }
 
-    fun getGhostScorePoints(
+    /*fun getGhostScorePoints(
         ghostModel: GhostType
     ): StateFlow<Int>? {
         val ghostScore = ghostScores.value.find { it.ghostEvidence.ghost.id == ghostModel.id }
         return ghostScore?.score
-    }
+    }*/
 
     /*
     * Evidence Ruling Handler ---------------------------
