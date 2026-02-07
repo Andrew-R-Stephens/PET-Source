@@ -21,7 +21,7 @@ internal fun GraphLabelsYAxis(
     val textMeasurer = rememberTextMeasurer()
     val textStyle = TextStyle(color = colors.label, fontSize = 10.sp)
 
-    val quantizedMax = ceil(state.viewport / state.interval) * state.interval
+    val quantizedMax = ceil(state.max / state.interval) * state.interval
     val steps = (quantizedMax / state.interval).toInt()
 
     Canvas(modifier) {

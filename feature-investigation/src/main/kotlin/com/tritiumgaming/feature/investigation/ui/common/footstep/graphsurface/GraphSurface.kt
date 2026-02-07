@@ -16,10 +16,10 @@ internal fun GraphSurface(
     graphSurfaceUiColors: GraphSurfaceUiColors,
     graphSurfaceUiState: GraphSurfaceUiState
 ) {
-    val xInterval = graphSurfaceUiState.xInterval
-    val yInterval = graphSurfaceUiState.yInterval
-    val viewportDuration: Long = graphSurfaceUiState.viewportX
-    val samplingInterval: Long = graphSurfaceUiState.samplingInterval
+    val xInterval = graphSurfaceUiState.domainInterval
+    val yInterval = graphSurfaceUiState.rangeInterval
+    val viewportDuration: Long = graphSurfaceUiState.domain
+    val samplingInterval: Long = graphSurfaceUiState.subDomain
 
     Canvas(
         modifier = modifier

@@ -7,46 +7,47 @@ import kotlin.math.ceil
 import kotlin.time.Duration.Companion.seconds
 
 internal data class FootstepVisualizerUiStateBundle(
+    private val domain: Long = 10.seconds.inWholeMilliseconds,
+    private val range: Int = 360,
+    private val domainInterval: Float = 10f,
+    private val rangeInterval: Float = 120f,
+    private val subDomain: Long = 3.seconds.inWholeMilliseconds,
     private val alpha: Float = 0.01f,
-    private val viewportY: Int = 360,
-    private val viewportX: Long = 10.seconds.inWholeMilliseconds,
-    private val intervalX: Float = 10f,
-    private val intervalY: Float = 120f,
-    private val samplingXInterval: Long = 3.seconds.inWholeMilliseconds,
+
     val visualizerUiState: VisualizerUiState = VisualizerUiState(
         alpha = alpha,
-        viewportY = viewportY,
-        viewportX = viewportX,
-        intervalX = intervalX,
-        intervalY = intervalY,
-        samplingXInterval = samplingXInterval
+        domain = domain,
+        range = range,
+        domainInterval = domainInterval,
+        rangeInterval = rangeInterval,
+        subDomain = subDomain
     ),
     val graphSurfaceUiState: GraphSurfaceUiState = GraphSurfaceUiState(
-        xInterval = visualizerUiState.intervalX,
-        yInterval = calcInterval(
-            visualizerUiState.viewportY,
-            visualizerUiState.intervalY
-        ).toFloat(),
-        viewportX = visualizerUiState.viewportX,
-        samplingInterval = visualizerUiState.samplingXInterval
+        domain = visualizerUiState.domain,
+        domainInterval = visualizerUiState.domainInterval,
+        rangeInterval = calcInterval(
+            visualizerUiState.range,
+            visualizerUiState.rangeInterval
+        ),
+        subDomain = visualizerUiState.subDomain
     ),
     val graphLabelsXUiState: GraphLabelsUiState = GraphLabelsUiState(
-        viewport = visualizerUiState.viewportX.toInt(),
-        interval = visualizerUiState.intervalX
+        max = visualizerUiState.domain.toInt(),
+        interval = visualizerUiState.domainInterval
     ),
     val graphLabelsYUiState: GraphLabelsUiState = GraphLabelsUiState(
-        viewport = visualizerUiState.viewportY,
-        interval = visualizerUiState.intervalY
+        max = visualizerUiState.range,
+        interval = visualizerUiState.rangeInterval
     )
 )
 
 private fun calcInterval(
     interval: Int,
     subInterval: Float
-): Int {
+): Float {
     val quantizedMax = ceil(subInterval * interval / subInterval)
 
-    val steps = (quantizedMax / subInterval).toInt()
+    val steps = (quantizedMax / subInterval).toInt().toFloat()
 
     return steps
 }

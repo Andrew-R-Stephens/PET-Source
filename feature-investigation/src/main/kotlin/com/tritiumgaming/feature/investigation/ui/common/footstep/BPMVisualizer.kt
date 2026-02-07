@@ -21,7 +21,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -89,14 +88,14 @@ internal fun FootstepVisualizer(
         label = "Ticker"
     )
 
-    val bpmRatioSmooth = (tapUiState.smoothed / state.viewportY).coerceIn(0f, 1f)
-    val bpmRatioPredictive = (tapUiState.potential / state.viewportY).coerceIn(0f, 1f)
+    val bpmRatioSmooth = (tapUiState.smoothed / state.range).coerceIn(0f, 1f)
+    val bpmRatioPredictive = (tapUiState.potential / state.range).coerceIn(0f, 1f)
 
     val realtimePlotUiState = RealtimePlotUiState(
         currentTime = now,
         yRelative = bpmRatioSmooth,
-        viewportXInterval = state.viewportX,
-        viewportYInterval = state.viewportY.toFloat(),
+        viewportXInterval = state.domain,
+        viewportYInterval = state.range.toFloat(),
         taps = tapUiState.points.asList()
     )
 
@@ -124,7 +123,7 @@ internal fun FootstepVisualizer(
             )
         }
 
-        if(tapUiState.recordedTime + state.viewportX < now) {
+        if(tapUiState.recordedTime + state.domain < now) {
             tapUiState.points.clear()
         }
 
@@ -132,7 +131,7 @@ internal fun FootstepVisualizer(
 
     val calculateSampleIntervalBPM: () -> Pair<Float, Float> = {
 
-        val targetTime = now - state.samplingXInterval
+        val targetTime = now - state.subDomain
 
         var intervalSum = 0f
         var intervalAverageSum = 0f
@@ -298,11 +297,11 @@ private fun Preview() {
 
             val footstepVisualizerUiStateBundle = FootstepVisualizerUiStateBundle(
                 alpha = .01f,
-                viewportY = 360,
-                viewportX = 10.seconds.inWholeMilliseconds,
-                intervalX = 10f,
-                intervalY = 120f,
-                samplingXInterval = 3.seconds.inWholeMilliseconds
+                range = 360,
+                domain = 10.seconds.inWholeMilliseconds,
+                domainInterval = 10f,
+                rangeInterval = 120f,
+                subDomain = 3.seconds.inWholeMilliseconds
             )
 
             val bpmVisualizerUiColorBundle = BpmVisualizerUiColorBundle(

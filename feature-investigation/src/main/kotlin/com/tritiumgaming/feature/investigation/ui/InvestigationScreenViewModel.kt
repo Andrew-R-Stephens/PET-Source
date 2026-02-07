@@ -425,18 +425,6 @@ class InvestigationScreenViewModel(
             .map { it.ghostEvidence.ghost.id }.toMutableStateList()
 
         _ghostOrder.update { orderedTemp }
-
-        /*val str2 = StringBuilder()
-        ghostOrder.value.forEach { orderModel ->
-            str2.append(
-                "[$orderModel: " + "${
-                    ghostScores.value.find { scoreModel ->
-                        scoreModel.ghostEvidence.ghost.id == orderModel
-                    }?.score?.value ?: "ERROR"
-                }] "
-            )
-        }
-        Log.d("GhostOrder", "Reordered to:$str2")*/
     }
 
     private fun getEvidenceScore(

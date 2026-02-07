@@ -31,6 +31,7 @@ import com.tritiumgaming.core.ui.theme.palette.Holiday22
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.feature.investigation.ui.common.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.common.footstep.FootstepVisualizerUiStateBundle
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiActions
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
@@ -51,6 +52,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolbar
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
+import kotlin.time.Duration.Companion.seconds
 
 @Composable
 @Preview
@@ -158,6 +160,14 @@ private fun InvestigationContent(
             investigationViewModel.setEvidenceRuling(e, r) },
         onClickItem = { investigationViewModel.setPopup(it) },
     )
+    val footstepVisualizerUiStateBundle = FootstepVisualizerUiStateBundle(
+        alpha = 0f,
+        range = 360,
+        domain = 10.seconds.inWholeMilliseconds,
+        domainInterval = 10f,
+        rangeInterval = 120f,
+        subDomain = 3.seconds.inWholeMilliseconds
+    )
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
@@ -175,6 +185,7 @@ private fun InvestigationContent(
                 sanityUiState,
                 ghostListUiState,
                 evidenceListUiState,
+                footstepVisualizerUiStateBundle,
                 evidenceListUiActions,
                 operationConfigUiActions,
                 toolbarUiActions,
@@ -196,6 +207,7 @@ private fun InvestigationContent(
                 sanityUiState,
                 ghostListUiState,
                 evidenceListUiState,
+                footstepVisualizerUiStateBundle,
                 evidenceListUiActions,
                 operationConfigUiActions,
                 toolbarUiActions,
@@ -239,6 +251,7 @@ private fun InvestigationContentPortrait(
     sanityUiState: PlayerSanityUiState,
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
+    footstepVisualizerUiStateBundle: FootstepVisualizerUiStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
@@ -261,6 +274,7 @@ private fun InvestigationContentPortrait(
             sanityUiState = sanityUiState,
             ghostListUiState = ghostListUiState,
             evidenceListUiState = evidenceListUiState,
+            footstepVisualizerUiStateBundle = footstepVisualizerUiStateBundle,
             evidenceListUiActions = evidenceListUiActions,
             operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
@@ -282,6 +296,7 @@ private fun InvestigationContentLandscape(
     sanityUiState: PlayerSanityUiState,
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
+    footstepVisualizerUiStateBundle: FootstepVisualizerUiStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
@@ -304,6 +319,7 @@ private fun InvestigationContentLandscape(
             sanityUiState = sanityUiState,
             ghostListUiState = ghostListUiState,
             evidenceListUiState = evidenceListUiState,
+            footstepVisualizerUiStateBundle = footstepVisualizerUiStateBundle,
             evidenceListUiActions = evidenceListUiActions,
             operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
@@ -325,12 +341,13 @@ private fun ColumnScope.Investigation(
     sanityUiState: PlayerSanityUiState,
     ghostListUiState: GhostListUiState,
     evidenceListUiState: EvidenceListUiState,
+    operationDetailsUiState: OperationDetailsUiState,
+    footstepVisualizerUiStateBundle: FootstepVisualizerUiStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
-    operationDetailsUiState: OperationDetailsUiState
 ) {
 
     Journal(
@@ -386,7 +403,8 @@ private fun ColumnScope.Investigation(
             )
 
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootstepsVisualizerSection(
-                modifier = Modifier
+                modifier = Modifier,
+                footstepVisualizerUiStateBundle = footstepVisualizerUiStateBundle
             )
 
         }
@@ -405,6 +423,7 @@ private fun RowScope.Investigation(
     evidenceListUiState: EvidenceListUiState,
     evidenceListUiActions: EvidenceListUiActions,
     sanityUiState: PlayerSanityUiState,
+    footstepVisualizerUiStateBundle: FootstepVisualizerUiStateBundle,
     operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
@@ -440,7 +459,8 @@ private fun RowScope.Investigation(
                 operationDetailsUiState = operationDetailsUiState
             )
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootstepsVisualizerSection(
-                modifier = Modifier
+                modifier = Modifier,
+                footstepVisualizerUiStateBundle = footstepVisualizerUiStateBundle,
             )
 
         }
