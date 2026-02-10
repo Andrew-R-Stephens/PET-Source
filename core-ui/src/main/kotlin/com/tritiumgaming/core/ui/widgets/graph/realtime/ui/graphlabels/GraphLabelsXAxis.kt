@@ -28,7 +28,7 @@ fun GraphLabelsXAxis(
             size.width * 1.5f,
             size.height * 1.5f
         ) {
-            val seconds = (state.viewport / 1.seconds.inWholeMilliseconds).toInt()
+            val seconds = (state.max / 1.seconds.inWholeMilliseconds).toInt()
             val labelCount = seconds / state.interval
 
             for (i in 0..state.interval.toInt()) {
