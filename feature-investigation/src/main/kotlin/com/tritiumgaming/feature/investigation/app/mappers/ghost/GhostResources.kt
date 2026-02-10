@@ -1,8 +1,11 @@
 package com.tritiumgaming.feature.investigation.app.mappers.ghost
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.FractionRes
+import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
@@ -10,6 +13,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 
 @StringRes fun GhostIdentifier.toStringResource(): Int =
     when (this) {
@@ -226,4 +230,66 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
         GhostHuntInfo.WRAITH -> R.string.ghost_huntingdata_wraith
         GhostHuntInfo.YOKAI -> R.string.ghost_huntingdata_yokai
         GhostHuntInfo.YUREI -> R.string.ghost_huntingdata_yurei
+    }
+
+fun GhostSpeed.toMinimumAsInt(): Int =
+    when (this) {
+        GhostSpeed.BANSHEE -> 102
+        GhostSpeed.DAYAN -> 72
+        GhostSpeed.DEMON -> 24
+        GhostSpeed.DEOGEN -> 102
+        GhostSpeed.GALLU -> 22
+        GhostSpeed.GORYO -> 102
+        GhostSpeed.HANTU -> 84
+        GhostSpeed.JINN -> 102
+        GhostSpeed.MARE -> 102
+        GhostSpeed.MOROI -> 90
+        GhostSpeed.MYLING -> 102
+        GhostSpeed.OBAKE -> 102
+        GhostSpeed.OBAMBO -> 87
+        GhostSpeed.ONI -> 102
+        GhostSpeed.ONRYO -> 102
+        GhostSpeed.PHANTOM -> 102
+        GhostSpeed.POLTERGEIST -> 102
+        GhostSpeed.RAIJU -> 102
+        GhostSpeed.REVENANT -> 60
+        GhostSpeed.SHADE -> 102
+        GhostSpeed.SPIRIT -> 102
+        GhostSpeed.THAYE -> 60
+        GhostSpeed.THE_TWINS -> 102
+        GhostSpeed.THE_MIMIC -> 22
+        GhostSpeed.WRAITH -> 102
+        GhostSpeed.YOKAI -> 102
+        GhostSpeed.YUREI -> 102
+    }
+
+fun GhostSpeed.toMaximumAsInt(): Int =
+    when (this) {
+        GhostSpeed.BANSHEE -> -1
+        GhostSpeed.DAYAN -> 135
+        GhostSpeed.DEMON -> 180
+        GhostSpeed.DEOGEN -> -1
+        GhostSpeed.GALLU -> 117
+        GhostSpeed.GORYO -> -1
+        GhostSpeed.HANTU -> 162
+        GhostSpeed.JINN -> 150
+        GhostSpeed.MARE -> -1
+        GhostSpeed.MOROI -> 135
+        GhostSpeed.MYLING -> -1
+        GhostSpeed.OBAKE -> -1
+        GhostSpeed.OBAMBO -> 117
+        GhostSpeed.ONI -> -1
+        GhostSpeed.ONRYO -> -1
+        GhostSpeed.PHANTOM -> -1
+        GhostSpeed.POLTERGEIST -> -1
+        GhostSpeed.RAIJU -> 150
+        GhostSpeed.REVENANT -> 180
+        GhostSpeed.SHADE -> -1
+        GhostSpeed.SPIRIT -> -1
+        GhostSpeed.THAYE -> 165
+        GhostSpeed.THE_TWINS -> -1
+        GhostSpeed.THE_MIMIC -> 114
+        GhostSpeed.WRAITH -> -1
+        GhostSpeed.YOKAI -> -1
+        GhostSpeed.YUREI -> -1
     }

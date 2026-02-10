@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.section
+package com.tritiumgaming.feature.investigation.ui.section.analysis
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable

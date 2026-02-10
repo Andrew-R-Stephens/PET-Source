@@ -22,7 +22,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.button.CollapseButton
+import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 
 @Composable
@@ -148,7 +149,7 @@ fun ExpandableCategoryRow(
             modifier = Modifier
                 .size(18.dp),
             isCollapsed = isExpanded,
-            icon = com.tritiumgaming.core.resources.R.drawable.ic_arrow_chevron_right,
+            icon = R.drawable.ic_arrow_chevron_right,
             disabledRotationVertical = -90,
             disabledRotationHorizontal = -90,
             enabledRotationAddition = 180

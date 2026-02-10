@@ -11,8 +11,6 @@ import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringReso
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.EvidenceListItem
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.EvidenceListItemUiAction
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.EvidenceListItemUiState
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 
 @Composable
 fun EvidenceList(

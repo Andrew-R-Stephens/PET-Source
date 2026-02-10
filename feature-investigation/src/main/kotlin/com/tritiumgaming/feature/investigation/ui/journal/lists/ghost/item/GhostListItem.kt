@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -12,14 +13,17 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
@@ -30,9 +34,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.prefabicon.MarkCheckCircleIcon
-import com.tritiumgaming.core.ui.common.prefabicon.MarkPriorityCircleIcon
-import com.tritiumgaming.core.ui.common.prefabicon.MarkXCircleIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.MarkPriorityCircleIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.MarkXCircleIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
@@ -52,15 +56,16 @@ fun LazyItemScope.GhostListItem(
         stringResource(ghostScore.ghostEvidence.ghost.name.toStringResource()) } ?: "Test",
     ghostListUiItemActions: GhostListUiItemActions
 ) {
+    if(ghostScore == null) return
+    val scoreState = ghostScore.score.collectAsStateWithLifecycle()
 
-    val scoreState = ghostScore?.score?.collectAsStateWithLifecycle()
+    val rejectionState = ghostScore.forcefullyRejected.collectAsStateWithLifecycle()
+    val bpmState = ghostScore.bpmState.collectAsStateWithLifecycle()
 
-    val rejectionState = ghostScore?.forcefullyRejected?.collectAsStateWithLifecycle()
-
-    val ghostIdStr = ghostScore?.ghostEvidence?.ghost?.id?.toStringResource()?.let {
+    val ghostIdStr = ghostScore.ghostEvidence.ghost.id.toStringResource().let {
         stringResource(it)
     }
-    val strikethroughIcon = when(ghostIdStr?.toFloat()?.rem(3f)) {
+    val strikethroughIcon = when(ghostIdStr.toFloat().rem(3f)) {
         0f -> R.drawable.icon_strikethrough_2
         1f -> R.drawable.icon_strikethrough_3
         else ->  R.drawable.icon_strikethrough_1
@@ -74,6 +79,19 @@ fun LazyItemScope.GhostListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
+        if(bpmState.value) {
+            Box(
+                modifier = Modifier
+                    .width(2.dp)
+                    .fillMaxHeight()
+                    .background(
+                        if (bpmState.value) {
+                            LocalPalette.current.errorContainer
+                        } else { Color.Transparent }
+                    )
+            )
+        }
+
         Box(
             modifier = Modifier
                 .weight(1f)
@@ -82,7 +100,7 @@ fun LazyItemScope.GhostListItem(
                 .pointerInput(Unit) {
                     detectHorizontalDragGestures(
                         onDragEnd = {
-                            ghostScore?.let {
+                            ghostScore.let {
                                 ghostListUiItemActions.onToggleNegateGhost(
                                     ghostScore.ghostEvidence.ghost
                                 )
@@ -99,6 +117,7 @@ fun LazyItemScope.GhostListItem(
                 },
             contentAlignment = Alignment.Center
         ) {
+
             BasicText(
                 text = label,
                 style = LocalTypography.current.primary.regular.copy(
@@ -109,9 +128,9 @@ fun LazyItemScope.GhostListItem(
                 autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, maxFontSize = 36.sp, stepSize = 5.sp)
             )
 
-            scoreState?.value?.let {
+            scoreState.value.let {
                 when {
-                    (rejectionState?.value == true) ->
+                    (rejectionState.value) ->
                         Image(
                             modifier = Modifier.fillMaxSize(),
                             painter = painterResource(id = R.drawable.ic_ev_omit),
@@ -137,7 +156,6 @@ fun LazyItemScope.GhostListItem(
                         )
                 }
             }
-
         }
 
         Row(

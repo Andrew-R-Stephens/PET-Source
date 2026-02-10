@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -32,8 +31,8 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.feature.investigation.ui.common.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiActions
-import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
+import com.tritiumgaming.feature.investigation.ui.journal.JournalStateBundle
 import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
@@ -43,14 +42,13 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.Ghost
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
-import com.tritiumgaming.feature.investigation.ui.section.ToolbarConfigurationSection
-import com.tritiumgaming.feature.investigation.ui.section.ToolbarFootstepsVisualizerSection
-import com.tritiumgaming.feature.investigation.ui.section.ToolbarOperationAnalysisSection
+import com.tritiumgaming.feature.investigation.ui.section.configs.ToolbarConfigurationSection
+import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarFootstepsVisualizerSection
+import com.tritiumgaming.feature.investigation.ui.section.analysis.ToolbarOperationAnalysisSection
+import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarFootstepsVisualizerSectionUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolbar
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 
 @Composable
 @Preview
@@ -96,6 +94,9 @@ private fun InvestigationContent(
     val ghostScores by investigationViewModel.ghostScores.collectAsStateWithLifecycle()
     val ghostOrder by investigationViewModel.ghostOrder.collectAsStateWithLifecycle()
     val ruledEvidence by investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
+
+    val toolbarFootstepsVisualizerSectionUiState by investigationViewModel
+        .footstepVisualizerUiState.collectAsStateWithLifecycle()
 
     val journalUiState = JournalUiState(
         rtlPreference = investigationViewModel.rTLPreference
@@ -159,6 +160,37 @@ private fun InvestigationContent(
         onClickItem = { investigationViewModel.setPopup(it) },
     )
 
+    val toolbarFootstepsVisualizerSectionUiActions = ToolbarFootstepsVisualizerSectionUiActions(
+        onUpdate = {
+            investigationViewModel.setBpmData(it)
+        },
+        onChangeMeasurementType = {
+            investigationViewModel.setBpmMeasurementType(it)
+        },
+        toggleApplyMeasurement = {
+            investigationViewModel.toggleApplyBpmMeasurement()
+        }
+    )
+
+    val investigationStateBundle = InvestigationStateBundle(
+        toolbarUiState = toolbarUiState,
+        journalStateBundle = JournalStateBundle(
+            journalUiState = journalUiState,
+            evidenceListUiState = evidenceListUiState,
+            ghostListUiState = ghostListUiState
+        ),
+        timerUiState = timerUiState,
+        phaseUiState = phaseUiState,
+        mapUiState = mapUiState,
+        difficultyUiState = difficultyUiState,
+        sanityUiState = sanityUiState,
+        ghostListUiState = ghostListUiState,
+        evidenceListUiState = evidenceListUiState,
+        operationDetailsUiState = operationDetailsUiState,
+        toolbarFootstepsVisualizerSectionUiState = toolbarFootstepsVisualizerSectionUiState,
+        toolbarFootstepsVisualizerSectionUiActions = toolbarFootstepsVisualizerSectionUiActions
+    )
+
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
@@ -166,42 +198,26 @@ private fun InvestigationContent(
         DeviceConfiguration.MOBILE_PORTRAIT,
         DeviceConfiguration.TABLET_PORTRAIT -> {
             InvestigationContentPortrait(
-                toolbarUiState,
-                journalUiState,
-                timerUiState,
-                phaseUiState,
-                mapUiState,
-                difficultyUiState,
-                sanityUiState,
-                ghostListUiState,
-                evidenceListUiState,
+                investigationStateBundle,
                 evidenceListUiActions,
                 operationConfigUiActions,
                 toolbarUiActions,
                 ghostListUiActions,
                 ghostListUiItemActions,
-                operationDetailsUiState
+                toolbarFootstepsVisualizerSectionUiActions
             )
         }
         DeviceConfiguration.MOBILE_LANDSCAPE,
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
             InvestigationContentLandscape(
-                toolbarUiState,
-                journalUiState,
-                timerUiState,
-                phaseUiState,
-                mapUiState,
-                difficultyUiState,
-                sanityUiState,
-                ghostListUiState,
-                evidenceListUiState,
+                investigationStateBundle,
                 evidenceListUiActions,
                 operationConfigUiActions,
                 toolbarUiActions,
                 ghostListUiActions,
                 ghostListUiItemActions,
-                operationDetailsUiState
+                toolbarFootstepsVisualizerSectionUiActions
             )
         }
     }
@@ -230,21 +246,13 @@ private fun InvestigationContent(
 
 @Composable
 private fun InvestigationContentPortrait(
-    toolbarUiState: ToolbarUiState,
-    journalUiState: JournalUiState,
-    timerUiState: TimerUiState,
-    phaseUiState: PhaseUiState,
-    mapUiState: MapUiState,
-    difficultyUiState: DifficultyUiState,
-    sanityUiState: PlayerSanityUiState,
-    ghostListUiState: GhostListUiState,
-    evidenceListUiState: EvidenceListUiState,
+    investigationStateBundle: InvestigationStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
-    operationDetailsUiState: OperationDetailsUiState
+    toolbarFootstepsVisualizerSectionUiActions: ToolbarFootstepsVisualizerSectionUiActions
 ) {
     Column(
         modifier = Modifier
@@ -252,42 +260,26 @@ private fun InvestigationContentPortrait(
         verticalArrangement = Arrangement.Top
     ) {
         Investigation(
-            toolbarUiState = toolbarUiState,
-            journalUiState = journalUiState,
-            timerUiState = timerUiState,
-            phaseUiState = phaseUiState,
-            mapUiState = mapUiState,
-            difficultyUiState = difficultyUiState,
-            sanityUiState = sanityUiState,
-            ghostListUiState = ghostListUiState,
-            evidenceListUiState = evidenceListUiState,
+            investigationStateBundle = investigationStateBundle,
             evidenceListUiActions = evidenceListUiActions,
             operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
             ghostListUiItemActions = ghostListUiItemActions,
-            operationDetailsUiState = operationDetailsUiState
+            toolbarFootstepsVisualizerSectionUiActions = toolbarFootstepsVisualizerSectionUiActions
         )
     }
 }
 
 @Composable
 private fun InvestigationContentLandscape(
-    toolbarUiState: ToolbarUiState,
-    journalUiState: JournalUiState,
-    timerUiState: TimerUiState,
-    phaseUiState: PhaseUiState,
-    mapUiState: MapUiState,
-    difficultyUiState: DifficultyUiState,
-    sanityUiState: PlayerSanityUiState,
-    ghostListUiState: GhostListUiState,
-    evidenceListUiState: EvidenceListUiState,
+    investigationStateBundle: InvestigationStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
-    operationDetailsUiState: OperationDetailsUiState
+    toolbarFootstepsVisualizerSectionUiActions: ToolbarFootstepsVisualizerSectionUiActions
 ) {
     Row(
         modifier = Modifier
@@ -295,50 +287,36 @@ private fun InvestigationContentLandscape(
         horizontalArrangement = Arrangement.Start
     ) {
         Investigation(
-            toolbarUiState = toolbarUiState,
-            journalUiState = journalUiState,
-            timerUiState = timerUiState,
-            phaseUiState = phaseUiState,
-            mapUiState = mapUiState,
-            difficultyUiState = difficultyUiState,
-            sanityUiState = sanityUiState,
-            ghostListUiState = ghostListUiState,
-            evidenceListUiState = evidenceListUiState,
+            investigationStateBundle = investigationStateBundle,
             evidenceListUiActions = evidenceListUiActions,
             operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
             ghostListUiItemActions = ghostListUiItemActions,
-            operationDetailsUiState = operationDetailsUiState
+            toolbarFootstepsVisualizerSectionUiActions = toolbarFootstepsVisualizerSectionUiActions
         )
     }
 }
 
 @Composable
 private fun ColumnScope.Investigation(
-    toolbarUiState: ToolbarUiState,
-    journalUiState: JournalUiState,
-    timerUiState: TimerUiState,
-    phaseUiState: PhaseUiState,
-    mapUiState: MapUiState,
-    difficultyUiState: DifficultyUiState,
-    sanityUiState: PlayerSanityUiState,
-    ghostListUiState: GhostListUiState,
-    evidenceListUiState: EvidenceListUiState,
+    investigationStateBundle: InvestigationStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
     operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
-    operationDetailsUiState: OperationDetailsUiState
+    toolbarFootstepsVisualizerSectionUiActions: ToolbarFootstepsVisualizerSectionUiActions
+
 ) {
+
+    val journalStateBundle = investigationStateBundle.journalStateBundle
+    val toolbarUiState = investigationStateBundle.toolbarUiState
 
     Journal(
         modifier = Modifier
             .weight(1f, false),
-        journalUiState = journalUiState,
-        ghostListUiState = ghostListUiState,
-        evidenceListUiState = evidenceListUiState,
+        journalStateBundle = journalStateBundle,
         evidenceListUiActions = evidenceListUiActions,
         ghostListUiActions = ghostListUiActions,
         ghostListUiItemActions = ghostListUiItemActions
@@ -372,21 +350,22 @@ private fun ColumnScope.Investigation(
             ToolbarUiState.Category.TOOL_CONFIG -> ToolbarConfigurationSection(
                 modifier = Modifier
                     .height(IntrinsicSize.Max),
-                timerUiState = timerUiState,
-                mapUiState = mapUiState,
-                difficultyUiState = difficultyUiState,
-                sanityUiState = sanityUiState,
+                timerUiState = investigationStateBundle.timerUiState,
+                mapUiState = investigationStateBundle.mapUiState,
+                difficultyUiState = investigationStateBundle.difficultyUiState,
+                sanityUiState = investigationStateBundle.sanityUiState,
                 operationConfigUiActions = operationConfigUiActions
             )
 
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysisSection(
                 modifier = Modifier,
-                    //.fillMaxHeight(.5f),
-                operationDetailsUiState = operationDetailsUiState
+                operationDetailsUiState = investigationStateBundle.operationDetailsUiState
             )
 
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootstepsVisualizerSection(
-                modifier = Modifier
+                modifier = Modifier,
+                state = investigationStateBundle.toolbarFootstepsVisualizerSectionUiState,
+                actions = toolbarFootstepsVisualizerSectionUiActions
             )
 
         }
@@ -395,22 +374,17 @@ private fun ColumnScope.Investigation(
 
 @Composable
 private fun RowScope.Investigation(
-    toolbarUiState: ToolbarUiState,
-    journalUiState: JournalUiState,
-    timerUiState: TimerUiState,
-    phaseUiState: PhaseUiState,
-    mapUiState: MapUiState,
-    difficultyUiState: DifficultyUiState,
-    ghostListUiState: GhostListUiState,
-    evidenceListUiState: EvidenceListUiState,
+    investigationStateBundle: InvestigationStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
-    sanityUiState: PlayerSanityUiState,
     operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
-    operationDetailsUiState: OperationDetailsUiState,
+    toolbarFootstepsVisualizerSectionUiActions: ToolbarFootstepsVisualizerSectionUiActions
 ) {
+
+    val journalStateBundle = investigationStateBundle.journalStateBundle
+    val toolbarUiState = investigationStateBundle.toolbarUiState
 
     Column(
         modifier = Modifier
@@ -428,19 +402,21 @@ private fun RowScope.Investigation(
             ToolbarUiState.Category.TOOL_CONFIG -> ToolbarConfigurationSection(
                 modifier = Modifier
                     .height(IntrinsicSize.Max),
-                timerUiState = timerUiState,
-                mapUiState = mapUiState,
-                difficultyUiState = difficultyUiState,
-                sanityUiState = sanityUiState,
+                timerUiState = investigationStateBundle.timerUiState,
+                mapUiState = investigationStateBundle.mapUiState,
+                difficultyUiState = investigationStateBundle.difficultyUiState,
+                sanityUiState = investigationStateBundle.sanityUiState,
                 operationConfigUiActions = operationConfigUiActions
             )
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysisSection(
                 modifier = Modifier
                     .wrapContentHeight(align = Alignment.Bottom),
-                operationDetailsUiState = operationDetailsUiState
+                operationDetailsUiState = investigationStateBundle.operationDetailsUiState
             )
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootstepsVisualizerSection(
-                modifier = Modifier
+                modifier = Modifier,
+                state = investigationStateBundle.toolbarFootstepsVisualizerSectionUiState,
+                actions = toolbarFootstepsVisualizerSectionUiActions
             )
 
         }
@@ -455,9 +431,7 @@ private fun RowScope.Investigation(
 
     Journal(
         modifier = Modifier,
-        journalUiState = journalUiState,
-        ghostListUiState = ghostListUiState,
-        evidenceListUiState = evidenceListUiState,
+        journalStateBundle = journalStateBundle,
         evidenceListUiActions = evidenceListUiActions,
         ghostListUiActions = ghostListUiActions,
         ghostListUiItemActions = ghostListUiItemActions,

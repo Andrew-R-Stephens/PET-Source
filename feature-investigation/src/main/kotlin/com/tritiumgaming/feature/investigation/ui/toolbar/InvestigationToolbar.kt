@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.toolbar
 
-import android.content.res.Configuration.ORIENTATION_PORTRAIT
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -22,10 +20,9 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.common.modifiers.DisplayOrientation
-import com.tritiumgaming.core.ui.common.modifiers.fadingEdges
+import com.tritiumgaming.core.ui.modifier.DisplayOrientation
+import com.tritiumgaming.core.ui.modifier.fadingEdges
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 
 @Composable

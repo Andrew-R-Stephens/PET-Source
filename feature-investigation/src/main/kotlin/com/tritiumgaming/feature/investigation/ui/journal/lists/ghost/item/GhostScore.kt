@@ -1,5 +1,8 @@
 package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
 
+import android.util.Log
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
@@ -23,6 +26,12 @@ data class GhostScore(
     }
     fun toggleForcefullyRejected() {
         _forcefullyRejected.update { !it }
+    }
+
+    private val _bpmState = MutableStateFlow(false)
+    val bpmState = _bpmState.asStateFlow()
+    private fun setBpmState(state: Boolean) {
+        _bpmState.update { state }
     }
 
     /**
@@ -119,6 +128,20 @@ data class GhostScore(
         }
 
         return posScore
+    }
+
+    fun updateBpmScore(bpm: Float) {
+        val min = ghostEvidence.speed.toMinimumAsInt().toFloat()
+        var max = ghostEvidence.speed.toMaximumAsInt().toFloat()
+
+        if(max == -1f) max = min * 1.65f
+
+        val isInRange = bpm in min..max
+
+        Log.d("GhostScore", "setBpmState: ${ghostEvidence.ghost.id} -> $isInRange -> " +
+                "(min / bpm / max) $min / $bpm / $max")
+
+        setBpmState(isInRange)
     }
 
 

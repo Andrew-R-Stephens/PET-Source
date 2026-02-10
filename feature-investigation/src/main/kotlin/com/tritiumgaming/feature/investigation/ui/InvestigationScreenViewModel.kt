@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.PointRecord
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
@@ -16,6 +18,8 @@ import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DE
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostScore
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
+import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarFootstepsVisualizerSectionUiState
+import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
@@ -151,6 +155,10 @@ class InvestigationScreenViewModel(
 
     private val _popupUiState = MutableStateFlow(JournalPopupUiState())
     val popupUiState = _popupUiState.asStateFlow()
+
+    private val _footstepVisualizerUiState = MutableStateFlow(
+        ToolbarFootstepsVisualizerSectionUiState())
+    val footstepVisualizerUiState = _footstepVisualizerUiState.asStateFlow()
 
     /*
      * COROUTINES
@@ -415,12 +423,27 @@ class InvestigationScreenViewModel(
     private fun reorderGhostScores() {
         val orderedScores = mutableListOf<GhostScore>()
 
+        Log.d("GhostScore", "--------")
         ghostScores.value.forEach {
             it.setScore(
                 getEvidenceScore(
                     it.ghostEvidence.ghost
                 )
             )
+
+            if(footstepVisualizerUiState.value.applyMeasurement) {
+                val state = footstepVisualizerUiState.value.state
+                footstepVisualizerUiState.value.state.points.tail?.let { node ->
+                    it.updateBpmScore(
+                        when (footstepVisualizerUiState.value.measurementType) {
+                            VisualizerMeasurementType.INSTANT -> state.smoothed
+                            VisualizerMeasurementType.AVERAGED -> node.data.avg
+                            VisualizerMeasurementType.WEIGHTED -> node.data.weightedAvg
+                        }
+                    )
+                }
+            }
+
             orderedScores.add(it)
         }
         val orderedTemp = orderedScores
@@ -999,6 +1022,31 @@ class InvestigationScreenViewModel(
     val ghostReorderPreference = getEnableGhostReorderUseCase()
     val huntWarnDurationPreference = getMaxHuntWarnFlashTimeUseCase()
     val allowHuntWarnAudioPreference = getAllowHuntWarnAudioUseCase()
+
+    /*
+    * Footstep Visualizer
+    */
+
+    fun setBpmData(data: RealtimeUiState<PointRecord>) {
+        _footstepVisualizerUiState.update {
+            it.copy(state = data)
+        }
+        reorderGhostScores()
+    }
+
+    fun setBpmMeasurementType(type: VisualizerMeasurementType) {
+        _footstepVisualizerUiState.update {
+            it.copy(measurementType = type)
+        }
+        reorderGhostScores()
+    }
+
+    fun toggleApplyBpmMeasurement() {
+        _footstepVisualizerUiState.update {
+            it.copy(applyMeasurement = !it.applyMeasurement)
+        }
+        reorderGhostScores()
+    }
 
     init {
         initToolbarUiState()

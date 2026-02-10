@@ -14,7 +14,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.admob.BannerAd
+import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 
 @Composable
 fun InvestigationPopup(

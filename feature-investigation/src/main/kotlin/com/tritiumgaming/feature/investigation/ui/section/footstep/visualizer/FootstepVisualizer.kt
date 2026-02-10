@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.common.footstep
+package com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat
@@ -21,7 +21,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -35,39 +34,38 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.common.util.datastructs.CircularQueueLinkedList
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.feature.investigation.ui.common.footstep.beatline.BeatLine
-import com.tritiumgaming.feature.investigation.ui.common.footstep.beatline.BeatLineUiColors
-import com.tritiumgaming.feature.investigation.ui.common.footstep.beatline.BeatLineUiState
-import com.tritiumgaming.feature.investigation.ui.common.footstep.visualizer.VisualizerUiActions
-import com.tritiumgaming.feature.investigation.ui.common.footstep.visualizer.PointRecord
-import com.tritiumgaming.feature.investigation.ui.common.footstep.visualizer.TapUiState
-import com.tritiumgaming.feature.investigation.ui.common.footstep.graphlabels.GraphLabelsUiColors
-import com.tritiumgaming.feature.investigation.ui.common.footstep.graphlabels.GraphLabelsXAxis
-import com.tritiumgaming.feature.investigation.ui.common.footstep.graphlabels.GraphLabelsYAxis
-import com.tritiumgaming.feature.investigation.ui.common.footstep.graphsurface.GraphSurface
-import com.tritiumgaming.feature.investigation.ui.common.footstep.graphsurface.GraphSurfaceUiColors
-import com.tritiumgaming.feature.investigation.ui.common.footstep.realtimeplot.RealtimePlot
-import com.tritiumgaming.feature.investigation.ui.common.footstep.realtimeplot.RealtimePlotUiColors
-import com.tritiumgaming.feature.investigation.ui.common.footstep.realtimeplot.RealtimePlotUiState
-import com.tritiumgaming.feature.investigation.ui.common.footstep.realtimeverticalmeter.RealtimeVerticalMeter
-import com.tritiumgaming.feature.investigation.ui.common.footstep.realtimeverticalmeter.RealtimeVerticalMeterColors
-import com.tritiumgaming.feature.investigation.ui.common.footstep.realtimeverticalmeter.RealtimeVerticalMeterUiState
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLine
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiState
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiColors
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsXAxis
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsYAxis
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurface
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiColors
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlot
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiColors
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiState
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeter
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterUiState
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.PointRecord
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
 internal fun FootstepVisualizer(
     modifier: Modifier = Modifier,
     stateBundle: FootstepVisualizerUiStateBundle,
-    colorBundle: BpmVisualizerUiColorBundle,
-    actions: VisualizerUiActions
+    colorBundle: FootstepVisualizerUiColorBundle,
+    actions: FootstepVisualizerUiActions<RealtimeUiState<PointRecord>>
 ) {
     val state = stateBundle.visualizerUiState
 
     var now = System.currentTimeMillis()
 
-    var tapUiState by remember {
+    var realtimeUiState by remember {
         mutableStateOf(
-            TapUiState(
+            RealtimeUiState<PointRecord>(
                 instant = 0f,
                 smoothed = 0f,
                 potential = 0f,
@@ -89,15 +87,15 @@ internal fun FootstepVisualizer(
         label = "Ticker"
     )
 
-    val bpmRatioSmooth = (tapUiState.smoothed / state.viewportY).coerceIn(0f, 1f)
-    val bpmRatioPredictive = (tapUiState.potential / state.viewportY).coerceIn(0f, 1f)
+    val bpmRatioSmooth = (realtimeUiState.smoothed / state.range).coerceIn(0f, 1f)
+    val bpmRatioPredictive = (realtimeUiState.potential / state.range).coerceIn(0f, 1f)
 
     val realtimePlotUiState = RealtimePlotUiState(
         currentTime = now,
         yRelative = bpmRatioSmooth,
-        viewportXInterval = state.viewportX,
-        viewportYInterval = state.viewportY.toFloat(),
-        taps = tapUiState.points.asList()
+        viewportXInterval = state.domain,
+        viewportYInterval = state.range.toFloat(),
+        taps = realtimeUiState.points.asList()
     )
 
     val beatLineUiState = BeatLineUiState(
@@ -106,39 +104,39 @@ internal fun FootstepVisualizer(
 
     // Real-time decay if no taps occur
     LaunchedEffect(ticker) {
-        if (tapUiState.recordedTime != 0L) {
-            val delta = now - tapUiState.recordedTime
+        if (realtimeUiState.recordedTime != 0L) {
+            val delta = now - realtimeUiState.recordedTime
 
             val potentialBPM = (60000f / delta)
 
-            var smoothedBPM = (state.alpha * tapUiState.instant) +
-                    ((1f - state.alpha) * tapUiState.instant)
+            var smoothedBPM = (state.alpha * realtimeUiState.instant) +
+                    ((1f - state.alpha) * realtimeUiState.instant)
             if(smoothedBPM > potentialBPM) {
                 smoothedBPM = potentialBPM
             }
             if (smoothedBPM < 1f) smoothedBPM = 0f
 
-            tapUiState = tapUiState.copy(
+            realtimeUiState = realtimeUiState.copy(
                 smoothed = smoothedBPM,
                 potential = potentialBPM
             )
         }
 
-        if(tapUiState.recordedTime + state.viewportX < now) {
-            tapUiState.points.clear()
+        if(realtimeUiState.recordedTime + state.domain < now) {
+            realtimeUiState.points.clear()
         }
 
     }
 
     val calculateSampleIntervalBPM: () -> Pair<Float, Float> = {
 
-        val targetTime = now - state.samplingXInterval
+        val targetTime = now - state.domainSampleInterval
 
         var intervalSum = 0f
         var intervalAverageSum = 0f
         var intervalCount = 0f
 
-        var currentTap = tapUiState.points.head
+        var currentTap = realtimeUiState.points.head
         while(currentTap != null) {
             if(currentTap.data.pX > targetTime) {
                 intervalSum += currentTap.data.pY
@@ -159,24 +157,24 @@ internal fun FootstepVisualizer(
     }
 
     val onBeat = {
-        if (tapUiState.recordedTime != 0L) {
-            val delta = now - tapUiState.recordedTime
+        if (realtimeUiState.recordedTime != 0L) {
+            val delta = now - realtimeUiState.recordedTime
 
             val instantBPM = (60000f / delta)
 
-            var smoothedBPM = if (tapUiState.smoothed == 0f) { instantBPM }
+            var smoothedBPM = if (realtimeUiState.smoothed == 0f) { instantBPM }
             else { (state.alpha * instantBPM) + ((1f - state.alpha) * instantBPM) }
 
             if (smoothedBPM < 1f) smoothedBPM = 0f
 
-            tapUiState = tapUiState.copy(
+            realtimeUiState = realtimeUiState.copy(
                 instant = instantBPM,
                 smoothed = smoothedBPM
             )
 
             val intervalBPM = calculateSampleIntervalBPM()
 
-            tapUiState.points.enqueue(
+            realtimeUiState.points.enqueue(
                 PointRecord(
                     pX = now,
                     pY = instantBPM,
@@ -186,12 +184,12 @@ internal fun FootstepVisualizer(
             )
         }
 
-        tapUiState = tapUiState.copy(
+        realtimeUiState = realtimeUiState.copy(
             recordedTime = now
         )
 
         actions.onUpdate(
-            tapUiState
+            realtimeUiState
         )
     }
 
@@ -234,8 +232,8 @@ internal fun FootstepVisualizer(
                 GraphSurface(
                     modifier = Modifier
                         .fillMaxSize(),
-                    graphSurfaceUiColors = colorBundle.graphSurfaceUiColors,
-                    graphSurfaceUiState = stateBundle.graphSurfaceUiState
+                    state = stateBundle.graphSurfaceUiState,
+                    colors = colorBundle.graphSurfaceUiColors,
                 )
 
                 BeatLine(
@@ -248,8 +246,8 @@ internal fun FootstepVisualizer(
                 RealtimePlot(
                     modifier = Modifier
                         .fillMaxSize(),
-                    realtimePlotUiColors = colorBundle.realtimePlotUiColors,
-                    realtimePlotUiState = realtimePlotUiState
+                    colors = colorBundle.realtimePlotUiColors,
+                    state = realtimePlotUiState
                 )
 
             }
@@ -298,17 +296,17 @@ private fun Preview() {
 
             val footstepVisualizerUiStateBundle = FootstepVisualizerUiStateBundle(
                 alpha = .01f,
-                viewportY = 360,
-                viewportX = 10.seconds.inWholeMilliseconds,
-                intervalX = 10f,
-                intervalY = 120f,
-                samplingXInterval = 3.seconds.inWholeMilliseconds
+                range = 360,
+                domain = 10.seconds.inWholeMilliseconds,
+                domainInterval = 10f,
+                rangeInterval = 120f,
+                domainSampleInterval = 3.seconds.inWholeMilliseconds
             )
 
-            val bpmVisualizerUiColorBundle = BpmVisualizerUiColorBundle(
+            val footstepVisualizerUiColorBundle = FootstepVisualizerUiColorBundle(
                 realtimePlotUiColors = RealtimePlotUiColors(
                     instant = LocalPalette.current.primary,
-                    smoothed = LocalPalette.current.tertiary,
+                    averaged = LocalPalette.current.tertiary,
                     weighted = LocalPalette.current.onTertiary,
                     line = LocalPalette.current.onSurface
                 ),
@@ -326,10 +324,10 @@ private fun Preview() {
                     label = LocalPalette.current.onSurface,
                 ),
                 graphSurfaceUiColors = GraphSurfaceUiColors(
-                    surface = Color.Unspecified,
-                    surfaceContainer = LocalPalette.current.surfaceContainer.copy(alpha = 1f),
-                    xAxis = LocalPalette.current.onSurface,
-                    yAxis = Color.Unspecified
+                    surface = LocalPalette.current.surfaceContainer,
+                    surfaceContainer = LocalPalette.current.surfaceContainerHigh.copy(alpha = 1f),
+                    domain = LocalPalette.current.onSurface.copy(alpha = .25f),
+                    range = Color.Unspecified
                 )
             )
 
@@ -343,8 +341,8 @@ private fun Preview() {
                         .preferredFrameRate(FrameRateCategory.Normal)
                 ) {
 
-                    var tapUiState by remember{
-                        mutableStateOf(TapUiState())
+                    var realtimeUiState by remember{
+                        mutableStateOf(RealtimeUiState<PointRecord>())
                     }
 
                     FootstepVisualizer(
@@ -352,10 +350,10 @@ private fun Preview() {
                             .fillMaxWidth()
                             .height(200.dp),
                         stateBundle = footstepVisualizerUiStateBundle,
-                        colorBundle = bpmVisualizerUiColorBundle,
-                        actions = VisualizerUiActions(
+                        colorBundle = footstepVisualizerUiColorBundle,
+                        actions = FootstepVisualizerUiActions(
                             onUpdate = { newTapUiState ->
-                                tapUiState = newTapUiState
+                                realtimeUiState = newTapUiState
                             }
                         )
                     )
@@ -364,8 +362,8 @@ private fun Preview() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight(),
-                        text = "BPM: ${String.format("%.2f", tapUiState.smoothed) }; " +
-                                "IPM: ${String.format("%.2f", tapUiState.instant) }",
+                        text = "BPM: ${String.format("%.2f", realtimeUiState.smoothed) }; " +
+                                "IPM: ${String.format("%.2f", realtimeUiState.instant) }",
                         color = LocalPalette.current.onSurface
                     )
 
@@ -373,8 +371,8 @@ private fun Preview() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight(),
-                        text = "MSPS: ${String.format("%.2f", tapUiState.smoothed/60f) }; " +
-                                "MIPM: ${String.format("%.2f", tapUiState.instant/60f)}",
+                        text = "MSPS: ${String.format("%.2f", realtimeUiState.smoothed/60f) }; " +
+                                "MIPM: ${String.format("%.2f", realtimeUiState.instant/60f)}",
                         color = LocalPalette.current.onSurface
                     )
 
@@ -383,7 +381,7 @@ private fun Preview() {
                             .fillMaxWidth()
                             .wrapContentHeight(),
                         text = "AVG BPM: ${
-                            String.format("%.2f", tapUiState.points.tail?.data?.avg ?: 0f)}",
+                            String.format("%.2f", realtimeUiState.points.tail?.data?.avg ?: 0f)}",
                         color = LocalPalette.current.onSurface
                     )
 
@@ -391,7 +389,7 @@ private fun Preview() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight(),
-                        text = "AVG MPS: ${tapUiState.points.tail?.data?.avg
+                        text = "AVG MPS: ${realtimeUiState.points.tail?.data?.avg
                             ?.let { String.format("%.2f", it/60f)}}",
                         color = LocalPalette.current.onSurface
                     )
@@ -400,7 +398,7 @@ private fun Preview() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight(),
-                        text = "WAVG MPS: ${tapUiState.points.tail?.data?.weightedAvg
+                        text = "WAVG MPS: ${realtimeUiState.points.tail?.data?.weightedAvg
                             ?.let { String.format("%.2f", it/60f)}}",
                         color = LocalPalette.current.onSurface
                     )

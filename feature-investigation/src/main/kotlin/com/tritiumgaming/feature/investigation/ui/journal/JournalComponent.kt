@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.journal
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,19 +38,19 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostList
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostListUiItemActions
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 
 @Composable
 fun Journal(
     modifier: Modifier = Modifier,
-    journalUiState: JournalUiState,
-    evidenceListUiState: EvidenceListUiState,
+    journalStateBundle: JournalStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
-    ghostListUiState: GhostListUiState,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions
 ) {
+    val journalUiState = journalStateBundle.journalUiState
+    val evidenceListUiState = journalStateBundle.evidenceListUiState
+    val ghostListUiState = journalStateBundle.ghostListUiState
+
     Row(
         modifier = modifier
             .fillMaxSize()
