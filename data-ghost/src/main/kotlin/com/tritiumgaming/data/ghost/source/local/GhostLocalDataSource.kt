@@ -3,6 +3,7 @@ package com.tritiumgaming.data.ghost.source.local
 import com.tritiumgaming.data.ghost.dto.GhostDto
 import com.tritiumgaming.data.ghost.source.GhostDataSource
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
@@ -28,7 +29,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT,
                     EvidenceIdentifier.GHOST_ORBS,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.BANSHEE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DAYAN,
@@ -43,7 +45,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS,
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.DAYAN
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DEMON,
@@ -58,7 +61,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.FREEZING_TEMPERATURE,
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.DEMON
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DEOGEN,
@@ -75,7 +79,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = listOf(
                     EvidenceIdentifier.SPIRIT_BOX
-                )
+                ),
+                speed = GhostSpeed.DEOGEN
             ),
             GhostResourceDto(
                 id = GhostIdentifier.GALLU,
@@ -90,7 +95,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT,
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.GALLU
             ),
             GhostResourceDto(
                 id = GhostIdentifier.GORYO,
@@ -107,7 +113,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = listOf(
                     EvidenceIdentifier.DOTS
-                )
+                ),
+                speed = GhostSpeed.GORYO
             ),
             GhostResourceDto(
                 id = GhostIdentifier.HANTU,
@@ -124,7 +131,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = listOf(
                     EvidenceIdentifier.FREEZING_TEMPERATURE
-                )
+                ),
+                speed = GhostSpeed.HANTU
             ),
             GhostResourceDto(
                 id = GhostIdentifier.JINN,
@@ -139,8 +147,10 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT,
                     EvidenceIdentifier.FREEZING_TEMPERATURE,
                 ),
-                strictEvidence = emptyList()
-            ),GhostResourceDto(
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.JINN
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.MARE,
                 name = GhostTitle.MARE,
                 icon = GhostIcon.MARE,
@@ -153,7 +163,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_WRITING,
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.MARE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.MOROI,
@@ -170,7 +181,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = listOf(
                     EvidenceIdentifier.SPIRIT_BOX
-                )
+                ),
+                speed = GhostSpeed.MOROI
             ),GhostResourceDto(
                 id = GhostIdentifier.MYLING,
                 name = GhostTitle.MYLING,
@@ -184,7 +196,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT,
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.MYLING
             ),
             GhostResourceDto(
                 id = GhostIdentifier.OBAKE,
@@ -201,7 +214,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = listOf(
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT
-                )
+                ),
+                speed = GhostSpeed.OBAKE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.OBAMBO,
@@ -216,7 +230,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT,
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.OBAMBO
             ),
             GhostResourceDto(
                 id = GhostIdentifier.ONI,
@@ -231,7 +246,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.EMF_5,
                     EvidenceIdentifier.FREEZING_TEMPERATURE,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.ONI
             ),
             GhostResourceDto(
                 id = GhostIdentifier.ONRYO,
@@ -246,7 +262,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS,
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.ONRYO
             ),
             GhostResourceDto(
                 id = GhostIdentifier.PHANTOM,
@@ -261,7 +278,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT,
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.PHANTOM
             ),
             GhostResourceDto(
                 id = GhostIdentifier.POLTERGEIST,
@@ -276,7 +294,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_WRITING,
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.POLTERGEIST
             ),GhostResourceDto(
                 id = GhostIdentifier.RAIJU,
                 name = GhostTitle.RAIJU,
@@ -290,7 +309,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.EMF_5,
                     EvidenceIdentifier.GHOST_ORBS,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.RAIJU
             ),
             GhostResourceDto(
                 id = GhostIdentifier.REVENANT,
@@ -305,7 +325,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS,
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.REVENANT
             ),GhostResourceDto(
                 id = GhostIdentifier.SHADE,
                 name = GhostTitle.SHADE,
@@ -319,7 +340,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.FREEZING_TEMPERATURE,
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.SHADE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.SPIRIT,
@@ -334,7 +356,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.SPIRIT
             ),GhostResourceDto(
                 id = GhostIdentifier.THAYE,
                 name = GhostTitle.THAYE,
@@ -348,7 +371,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.DOTS,
                     EvidenceIdentifier.GHOST_ORBS,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.THAYE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.THE_TWINS,
@@ -363,8 +387,10 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.FREEZING_TEMPERATURE,
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
-                strictEvidence = emptyList()
-            ),GhostResourceDto(
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.THE_TWINS
+            ),
+            GhostResourceDto(
                 id = GhostIdentifier.THE_MIMIC,
                 name = GhostTitle.THE_MIMIC,
                 icon = GhostIcon.THE_MIMIC,
@@ -380,7 +406,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = listOf(
                     EvidenceIdentifier.GHOST_ORBS
-                )
+                ),
+                speed = GhostSpeed.THE_MIMIC
             ),
             GhostResourceDto(
                 id = GhostIdentifier.WRAITH,
@@ -395,7 +422,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                     EvidenceIdentifier.DOTS,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.WRAITH
             ),GhostResourceDto(
                 id = GhostIdentifier.YOKAI,
                 name = GhostTitle.YOKAI,
@@ -409,7 +437,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS,
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.YOKAI
             ),
             GhostResourceDto(
                 id = GhostIdentifier.YUREI,
@@ -424,7 +453,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.FREEZING_TEMPERATURE,
                     EvidenceIdentifier.GHOST_ORBS
                 ),
-                strictEvidence = emptyList()
+                strictEvidence = emptyList(),
+                speed = GhostSpeed.YUREI
             )
         )
 
@@ -450,7 +480,8 @@ class GhostLocalDataSource: GhostDataSource {
         weaknessData = weaknessData,
         huntData = huntData,
         normalEvidence = normalEvidence.map { it },
-        strictEvidence = strictEvidence.map { it }
+        strictEvidence = strictEvidence.map { it },
+        speed = speed
     )
 
     private data class GhostResourceDto(
@@ -463,6 +494,7 @@ class GhostLocalDataSource: GhostDataSource {
         val huntData: GhostHuntInfo,
         val normalEvidence: List<EvidenceIdentifier>,
         val strictEvidence: List<EvidenceIdentifier>,
+        val speed: GhostSpeed
     )
 
 }

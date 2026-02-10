@@ -1,6 +1,7 @@
 package com.tritiumgaming.data.ghost.dto
 
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
@@ -8,6 +9,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghost.model.GhostType
 
@@ -21,6 +23,7 @@ data class GhostDto(
     val strengthData: GhostStrength,
     val weaknessData: GhostWeakness,
     val huntData: GhostHuntInfo,
+    val speed: GhostSpeed
 )
 
 fun List<GhostDto>.toGhostType() = map {
@@ -34,6 +37,7 @@ fun GhostDto.toGhostType() = GhostType(
 fun List<GhostDto>.toDomain() = map {
     it.toDomain()
 }
+
 fun GhostDto.toDomain() = Ghost(
     id = id,
     name = name,
@@ -43,6 +47,7 @@ fun GhostDto.toDomain() = Ghost(
     weaknessData = weaknessData,
     huntData = huntData,
     normalEvidence = normalEvidence.map { it },
-    strictEvidence = strictEvidence.map { it }
+    strictEvidence = strictEvidence.map { it },
+    speed = speed
 )
 
