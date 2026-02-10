@@ -14,8 +14,8 @@ import com.google.android.gms.ads.OnAdInspectorClosedListener
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.ump.ConsentForm
 import com.tritiumgaming.core.common.settings.googleadsconsentmanager.GoogleMobileAdsConsentManager
-import com.tritiumgaming.core.ui.mappers.toPaletteResource
-import com.tritiumgaming.core.ui.mappers.toTypographyResource
+import com.tritiumgaming.core.ui.mapper.toPaletteResource
+import com.tritiumgaming.core.ui.mapper.toTypographyResource
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalDefaultPalette
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography

@@ -27,10 +27,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.other.PETImageButton
-import com.tritiumgaming.core.ui.common.other.PETImageButtonType
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.widgets.other.PETImageButton
+import com.tritiumgaming.core.ui.widgets.other.PETImageButtonType
 
 
 @Composable

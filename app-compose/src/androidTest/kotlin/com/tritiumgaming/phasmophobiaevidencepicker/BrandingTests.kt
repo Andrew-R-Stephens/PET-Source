@@ -24,10 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.ui.common.prefabicon.BadgeIcon
-import com.tritiumgaming.core.ui.icon.LogoPatreonIcon
-import com.tritiumgaming.core.ui.icon.OpenInNewIcon
+import com.tritiumgaming.core.ui.icon.base.LogoPatreonIcon
+import com.tritiumgaming.core.ui.icon.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
-import com.tritiumgaming.core.ui.mappers.ToComposable
+import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap

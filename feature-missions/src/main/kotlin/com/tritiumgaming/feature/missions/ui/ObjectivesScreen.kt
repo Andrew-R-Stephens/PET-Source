@@ -5,10 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
-import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiState
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
 import com.tritiumgaming.feature.missions.ui.components.name.GhostNameUiActions
 import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiActions
-import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
+import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiState
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentLandscape
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentPortrait
 import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentUiState

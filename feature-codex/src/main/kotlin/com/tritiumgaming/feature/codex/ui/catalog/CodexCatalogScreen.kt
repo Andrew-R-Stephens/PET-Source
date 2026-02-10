@@ -50,11 +50,11 @@ import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategory
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogCategoryUiState
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogDisplayUiState
+import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.CatalogAchievementItemDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.category.achievement.CatalogAchievementsList
-import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentList
-import com.tritiumgaming.feature.codex.ui.catalog.category.CatalogListUiActions
 import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentItemDisplay
+import com.tritiumgaming.feature.codex.ui.catalog.category.equipment.CatalogEquipmentList
 import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionItemDisplay
 import com.tritiumgaming.feature.codex.ui.catalog.category.possession.CatalogPossessionsList
 import com.tritiumgaming.shared.data.codex.mappers.CodexResources

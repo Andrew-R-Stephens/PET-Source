@@ -20,12 +20,12 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
+import com.tritiumgaming.feature.missions.ui.components.mission.MissionsContent
 import com.tritiumgaming.feature.missions.ui.components.name.GhostNameContent
 import com.tritiumgaming.feature.missions.ui.components.name.GhostNameUiActions
 import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseContent
 import com.tritiumgaming.feature.missions.ui.components.response.GhostResponseUiActions
-import com.tritiumgaming.feature.missions.ui.components.mission.MissionWrapperActions
-import com.tritiumgaming.feature.missions.ui.components.mission.MissionsContent
 
 @Composable
 internal fun ObjectivesContentPortrait(

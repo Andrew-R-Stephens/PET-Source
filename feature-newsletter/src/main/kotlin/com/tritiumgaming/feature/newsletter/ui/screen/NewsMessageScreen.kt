@@ -32,11 +32,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.admob.BannerAd
-import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
+import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.newsletter.ui.NewsletterViewModel
 
 @Composable

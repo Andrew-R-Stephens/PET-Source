@@ -62,11 +62,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.indicators.IndeterminateCircularIndicator
-import com.tritiumgaming.core.ui.common.labels.LabeledValue
-import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
-import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
+import com.tritiumgaming.core.ui.widgets.indicator.InfiniteThrobber
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
@@ -74,6 +70,10 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.widgets.label.LabeledValue
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.account.ui.component.AccountBannerComposite
 import com.tritiumgaming.feature.account.ui.component.AccountBannerExpanded
 import com.tritiumgaming.feature.account.ui.component.Dialog
@@ -335,7 +335,7 @@ private fun AccountContentPortrait(
             AccountOverviewDialog.NONE -> {}
         }
 
-        IndeterminateCircularIndicator(
+        InfiniteThrobber(
             color1 = LocalPalette.current.surfaceContainer,
             color2 = LocalPalette.current.surfaceContainerHigh,
             isLoading = loadingState
@@ -531,7 +531,7 @@ private fun AccountContentLandscape(
             AccountOverviewDialog.NONE -> {}
         }
 
-        IndeterminateCircularIndicator(
+        InfiniteThrobber(
             color1 = LocalPalette.current.surfaceContainer,
             color2 = LocalPalette.current.surfaceContainerHigh,
             isLoading = loadingState

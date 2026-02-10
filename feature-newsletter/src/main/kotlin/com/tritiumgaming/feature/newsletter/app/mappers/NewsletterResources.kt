@@ -5,7 +5,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.mappers.ToComposable
+import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon
 import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle

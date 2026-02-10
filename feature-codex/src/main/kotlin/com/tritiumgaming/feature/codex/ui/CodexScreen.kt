@@ -28,11 +28,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.admob.BannerAd
-import com.tritiumgaming.core.ui.icon.GridIcon
+import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.codex.ui.menu.CodexMenuGhostLabel

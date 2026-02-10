@@ -41,13 +41,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.labels.DynamicContentRow
-import com.tritiumgaming.core.ui.common.menus.NavigationHeaderCenter
-import com.tritiumgaming.core.ui.common.menus.NavigationHeaderComposable
-import com.tritiumgaming.core.ui.common.menus.NavigationHeaderSideButton
-import com.tritiumgaming.core.ui.mappers.toStringResource
+import com.tritiumgaming.core.ui.mapper.toStringResource
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.widgets.label.DynamicContentRow
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderCenter
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
+import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.shared.data.language.model.LanguageEntity
 
 @Composable

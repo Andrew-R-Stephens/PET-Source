@@ -51,7 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.ColorUtils.getColorFromAttribute
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.common.modifiers.progressGradient
+import com.tritiumgaming.core.ui.modifier.progressGradient
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import kotlinx.coroutines.delay
 
