@@ -1,11 +1,16 @@
 package com.tritiumgaming.shared.data.journal.usecase
 
+import com.tritiumgaming.shared.data.evidence.repository.EvidenceRepository
+import com.tritiumgaming.shared.data.ghost.model.GhostType
+import com.tritiumgaming.shared.data.ghost.repository.GhostRepository
+import com.tritiumgaming.shared.data.journal.model.GhostEvidence
+
 class FetchGhostEvidencesUseCase(
-    private val ghostRepository: com.tritiumgaming.shared.data.ghost.repository.GhostRepository,
-    private val evidenceRepository: com.tritiumgaming.shared.data.evidence.repository.EvidenceRepository
+    private val ghostRepository: GhostRepository,
+    private val evidenceRepository: EvidenceRepository
 ) {
 
-    operator fun invoke(): Result<List<com.tritiumgaming.shared.data.journal.model.GhostEvidence>> {
+    operator fun invoke(): Result<List<GhostEvidence>> {
 
         val ghostsResult = ghostRepository.fetchGhosts()
         ghostsResult.exceptionOrNull()?.let { return Result.failure(it) }
@@ -15,7 +20,7 @@ class FetchGhostEvidencesUseCase(
         evidenceResult.exceptionOrNull()?.let { return Result.failure(it) }
         val evidenceList = evidenceResult.getOrDefault(emptyList())
 
-        val ghostEvidenceDtoList: List<com.tritiumgaming.shared.data.journal.model.GhostEvidence> = ghostList.map { ghost ->
+        val ghostEvidenceDtoList: List<GhostEvidence> = ghostList.map { ghost ->
 
             val normalEvidence = ghost.normalEvidence.map { evidence ->
                 evidenceList.first { it.id == evidence }
@@ -25,10 +30,11 @@ class FetchGhostEvidencesUseCase(
                 evidenceList.first { it.id == evidence }
             }
 
-            com.tritiumgaming.shared.data.journal.model.GhostEvidence(
-                ghost = com.tritiumgaming.shared.data.ghost.model.GhostType(ghost.id, ghost.name),
+            GhostEvidence(
+                ghost = GhostType(ghost.id, ghost.name),
                 normalEvidenceList = normalEvidence,
-                strictEvidenceList = strictEvidence
+                strictEvidenceList = strictEvidence,
+                speed = ghost.speed
             )
         }
 

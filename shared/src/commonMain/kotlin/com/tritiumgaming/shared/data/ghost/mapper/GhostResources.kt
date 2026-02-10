@@ -212,4 +212,34 @@ class GhostResources {
         YUREI
     }
 
+    enum class GhostSpeed {
+        BANSHEE,
+        DAYAN,
+        DEMON,
+        DEOGEN,
+        GALLU,
+        GORYO,
+        HANTU,
+        JINN,
+        MARE,
+        MOROI,
+        MYLING,
+        OBAKE,
+        OBAMBO,
+        ONI,
+        ONRYO,
+        PHANTOM,
+        POLTERGEIST,
+        RAIJU,
+        REVENANT,
+        SHADE,
+        SPIRIT,
+        THAYE,
+        THE_TWINS,
+        THE_MIMIC,
+        WRAITH,
+        YOKAI,
+        YUREI
+    }
+
 }
