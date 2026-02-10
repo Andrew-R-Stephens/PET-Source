@@ -1,10 +1,10 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.ApplicationExtension
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.android.application)
 
-    alias(libs.plugins.jetbrains.kotlin.android)
+    // alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.compose.compiler)
 
     alias(libs.plugins.gms.services)
@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.firebase.perf)
 }
 
-android {
+configure<ApplicationExtension> {
 
     namespace = "com.tritiumgaming.phasmophobiaevidencepicker"
     compileSdk = 36
@@ -72,11 +72,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlin {
+    /* kotlin {
         compilerOptions {
             jvmTarget = JvmTarget.JVM_17
         }
-    }
+    } */
 
     buildToolsVersion = "36.1.0"
 
@@ -92,7 +92,7 @@ composeCompiler {
 dependencies {
 
     // PRIMARY
-    implementation(libs.android.support.multidex)
+    // implementation(libs.android.support.multidex)
 
     implementation(libs.firebase.analytics)
 

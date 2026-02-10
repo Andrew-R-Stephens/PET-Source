@@ -1,14 +1,14 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     alias(libs.plugins.gms.services)
 
-    alias(libs.plugins.jetbrains.kotlin.android)
+    // alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.android.library)
 }
 
-android {
+configure<LibraryExtension> {
     namespace = "com.tritiumgaming.core.ui"
     compileSdk = 36
 
@@ -35,11 +35,11 @@ android {
     }
     buildToolsVersion = "36.1.0"
 
-    kotlin {
+    /* kotlin {
         compilerOptions {
             jvmTarget = JvmTarget.JVM_17
         }
-    }
+    } */
 
     //buildToolsVersion = "36.0.0"
 
@@ -89,6 +89,7 @@ dependencies {
 
     implementation(project(":shared"))
 
+    implementation(project(":core-common"))
     implementation(project(":core-resources"))
 
 }

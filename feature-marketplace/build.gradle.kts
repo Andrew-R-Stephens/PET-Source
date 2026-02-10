@@ -1,14 +1,14 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     alias(libs.plugins.gms.services)
 
-    alias(libs.plugins.jetbrains.kotlin.android)
+    // alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.android.library)
 }
 
-android {
+configure<LibraryExtension> {
     namespace = "com.tritiumgaming.feature.marketplace"
     compileSdk = 36
 
@@ -50,11 +50,11 @@ android {
         targetSdk = 36
     }
 
-    kotlin {
+    /* kotlin {
         compilerOptions {
             jvmTarget = JvmTarget.JVM_17
         }
-    }
+    } */
 
 }
 

@@ -1,9 +1,10 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.ApplicationExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0
 
 plugins {
     alias(libs.plugins.android.application)
 
-    alias(libs.plugins.jetbrains.kotlin.android)
+    // // alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.jetbrains.compose.compiler)
     alias(libs.plugins.jetbrains.kotlin.serialization)
 
@@ -14,7 +15,7 @@ plugins {
     alias(libs.plugins.devtools.ksp)
 }
 
-android {
+configure<ApplicationExtension> {
 
     namespace = "com.tritiumgaming.core"
     compileSdk = 36
@@ -26,10 +27,6 @@ android {
     buildFeatures {
         compose = true
     }
-
-    /*composeOptions{
-        kotlinCompilerExtensionVersion = "1.5.15"
-    }*/
 
     /* ---------------- */
 
@@ -73,16 +70,16 @@ android {
         }
     }
 
-    compileOptions {
+    /*compileOptions {
         targetCompatibility = JavaVersion.VERSION_17
         sourceCompatibility = JavaVersion.VERSION_17
-    }
+    }*/
 
-    kotlin {
+    /*/* kotlin {
         compilerOptions {
             jvmTarget = JvmTarget.JVM_17
         }
-    }
+    } */*/
 
     buildToolsVersion = "36.1.0"
 
@@ -98,7 +95,7 @@ composeCompiler {
 dependencies {
 
     // PRIMARY
-    implementation(libs.android.support.multidex)
+    // implementation(libs.android.support.multidex)
 
     implementation(libs.jetbrains.kotlin.stdlib)
     implementation(libs.jetbrains.kotlinx.coroutines)
@@ -111,6 +108,7 @@ dependencies {
     implementation(libs.androidx.navigation.uiKtx)
     implementation(libs.androidx.cardview.core)
     implementation(libs.androidx.legacy.supportV4)
+    implementation(libs.android.material)
     implementation(libs.android.material)
 
     // Testing
@@ -184,6 +182,7 @@ dependencies {
     implementation(libs.androidx.leanback.paging)
     // leanback-tab is an add-on that provides customized TabLayout to be used as the top navigation bar.
     implementation(libs.androidx.leanback.tab)
+    implementation(libs.androidx.concurrent.futures.ktx)
 
     /*
         ---- START----
@@ -297,7 +296,4 @@ dependencies {
     implementation(project(":feature-mapviewer"))
     implementation(project(":feature-missions"))
     implementation(project(":feature-operation"))
-
-    debugImplementation(project(":feature-footstepvisualizer"))
-    testImplementation(project(":feature-footstepvisualizer"))
 }

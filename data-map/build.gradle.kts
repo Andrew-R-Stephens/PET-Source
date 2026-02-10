@@ -1,15 +1,15 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import com.android.build.api.dsl.LibraryExtension
 
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    // alias(libs.plugins.jetbrains.kotlin.android)
 
     alias(libs.plugins.devtools.ksp)
 
     alias(libs.plugins.gms.services)
 }
 
-android {
+configure<LibraryExtension> {
     namespace = "com.tritiumgaming.data.map"
     compileSdk = 36
 
@@ -36,11 +36,11 @@ android {
     }
     buildToolsVersion = "36.1.0"
 
-    kotlin {
+    /* kotlin {
         compilerOptions {
             jvmTarget = JvmTarget.JVM_17
         }
-    }
+    } */
 }
 
 dependencies {
