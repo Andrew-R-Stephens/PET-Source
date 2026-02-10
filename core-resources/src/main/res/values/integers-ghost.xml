@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="ghost_hunt_speed_min_banshee">102</integer>
+    <integer name="ghost_hunt_speed_min_dayan">72</integer>
+    <integer name="ghost_hunt_speed_min_demon">24</integer>
+    <integer name="ghost_hunt_speed_min_deogen">102</integer>
+    <integer name="ghost_hunt_speed_min_gallu">22</integer>
+    <integer name="ghost_hunt_speed_min_goryo">102</integer>
+    <integer name="ghost_hunt_speed_min_hantu">84</integer>
+    <integer name="ghost_hunt_speed_min_jinn">102</integer>
+    <integer name="ghost_hunt_speed_min_mare">102</integer>
+    <integer name="ghost_hunt_speed_min_moroi">90</integer>
+    <integer name="ghost_hunt_speed_min_myling">102</integer>
+    <integer name="ghost_hunt_speed_min_obake">102</integer>
+    <integer name="ghost_hunt_speed_min_obambo">87</integer>
+    <integer name="ghost_hunt_speed_min_oni">102</integer>
+    <integer name="ghost_hunt_speed_min_onryo">102</integer>
+    <integer name="ghost_hunt_speed_min_phantom">102</integer>
+    <integer name="ghost_hunt_speed_min_poltergeist">102</integer>
+    <integer name="ghost_hunt_speed_min_raiju">102</integer>
+    <integer name="ghost_hunt_speed_min_revenant">60</integer>
+    <integer name="ghost_hunt_speed_min_shade">102</integer>
+    <integer name="ghost_hunt_speed_min_spirit">102</integer>
+    <integer name="ghost_hunt_speed_min_thaye">60</integer>
+    <integer name="ghost_hunt_speed_min_thetwins">102</integer>
+    <integer name="ghost_hunt_speed_min_themimic">90</integer>
+    <integer name="ghost_hunt_speed_min_wraith">102</integer>
+    <integer name="ghost_hunt_speed_min_yokai">102</integer>
+    <integer name="ghost_hunt_speed_min_yurei">102</integer>
+
+    <integer name="ghost_hunt_speed_max_banshee">-1</integer>
+    <integer name="ghost_hunt_speed_max_dayan">135</integer>
+    <integer name="ghost_hunt_speed_max_demon">180</integer>
+    <integer name="ghost_hunt_speed_max_deogen">-1</integer>
+    <integer name="ghost_hunt_speed_max_gallu">117</integer>
+    <integer name="ghost_hunt_speed_max_goryo">-1</integer>
+    <integer name="ghost_hunt_speed_max_hantu">162</integer>
+    <integer name="ghost_hunt_speed_max_jinn">150</integer>
+    <integer name="ghost_hunt_speed_max_mare">-1</integer>
+    <integer name="ghost_hunt_speed_max_moroi">135</integer>
+    <integer name="ghost_hunt_speed_max_myling">-1</integer>
+    <integer name="ghost_hunt_speed_max_obake">-1</integer>
+    <integer name="ghost_hunt_speed_max_obambo">117</integer>
+    <integer name="ghost_hunt_speed_max_oni">-1</integer>
+    <integer name="ghost_hunt_speed_max_onryo">-1</integer>
+    <integer name="ghost_hunt_speed_max_phantom">-1</integer>
+    <integer name="ghost_hunt_speed_max_poltergeist">-1</integer>
+    <integer name="ghost_hunt_speed_max_raiju">150</integer>
+    <integer name="ghost_hunt_speed_max_revenant">180</integer>
+    <integer name="ghost_hunt_speed_max_shade">-1</integer>
+    <integer name="ghost_hunt_speed_max_spirit">-1</integer>
+    <integer name="ghost_hunt_speed_max_thaye">165</integer>
+    <integer name="ghost_hunt_speed_max_thetwins">-1</integer>
+    <integer name="ghost_hunt_speed_max_themimic">114</integer>
+    <integer name="ghost_hunt_speed_max_wraith">-1</integer>
+    <integer name="ghost_hunt_speed_max_yokai">-1</integer>
+    <integer name="ghost_hunt_speed_max_yurei">-1</integer>
+
+</resources>
