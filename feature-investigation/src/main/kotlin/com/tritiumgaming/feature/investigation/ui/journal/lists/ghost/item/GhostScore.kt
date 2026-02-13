@@ -35,6 +35,13 @@ data class GhostScore(
         _bpmState.update { state }
     }
 
+    fun updateEvidenceScore(
+        ruledEvidence: List<RuledEvidence>,
+        currentDifficulty: DifficultyResources.DifficultyType
+    ) {
+        setScore(calculateEvidenceScore(ruledEvidence, currentDifficulty))
+    }
+
     /**
      * getEvidenceScore method
      * Determines the possibility of the ghost based on user-determined Evidence.
@@ -47,9 +54,72 @@ data class GhostScore(
      * Score sets to '-5' if an Evidence type is negative and found in Ghost's Evidence list.
      * @return numerical representation of the Ghost's Evidence score
      */
+    private fun calculateEvidenceScore(
+        ruledEvidence: List<RuledEvidence>,
+        currentDifficulty: DifficultyResources.DifficultyType
+    ): Int {
+
+        val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
+        val isInsanity = currentDifficulty == DifficultyResources.DifficultyType.INSANITY
+        val isHardcore = isNightmare || isInsanity
+
+        val maxPosScore = when {
+            isInsanity -> 1
+            isNightmare -> 2
+            else -> 3
+        }
+
+        val rulings = ruledEvidence.associate { it.evidence to it.ruling }
+
+        val (normalEvidence, strictEvidence) =
+            ghostEvidence.normalEvidenceList to ghostEvidence.strictEvidenceList
+
+        if (ruledEvidence.any {
+            it.isRuling(RuledEvidence.Ruling.POSITIVE) &&
+                    it.evidence !in normalEvidence }) { return NORMAL_EVIDENCE_NOT_FOUND }
+
+        var posScore = 0
+        var negScore = 0
+
+        normalEvidence.forEachIndexed { index, evidence ->
+            when (rulings[evidence]) {
+                RuledEvidence.Ruling.POSITIVE -> if (index < 3) posScore++
+                RuledEvidence.Ruling.NEGATIVE -> {
+                    if (!isHardcore) return NORMAL_NEGATION_MINIMUM_REACHED
+                    if (index < 3) negScore++
+                    else return NORMAL_NEGATION_MAXIMUM_REACHED
+                }
+                else -> {}
+            }
+        }
+
+        if (strictEvidence.any { rulings[it] == RuledEvidence.Ruling.NEGATIVE }) {
+            return STRICT_EVIDENCE_FOUND
+        }
+
+        if (posScore > maxPosScore) return POSITIVE_COUNT_OVER_MAXIMUM
+        if (negScore > (3 - maxPosScore)) return NEGATIVE_COUNT_UNDER_MINIMUM
+
+        if (!isHardcore) return posScore - negScore
+
+        val expectedPosScore = maxPosScore - (3 - normalEvidence.size)
+        if (posScore == expectedPosScore) {
+            val hasInvalidStrict = strictEvidence.any {
+                val ruling = rulings[it]
+                val result = ruling != null && ruling != RuledEvidence.Ruling.POSITIVE
+
+                result
+            }
+            if (hasInvalidStrict) return STRICT_EVIDENCE_NOT_FOUND
+        }
+
+        return posScore
+    }
+
+    /*@Deprecated(level = DeprecationLevel.ERROR, message = "Deprecated")
     fun getEvidenceScore(
+        currentDifficulty: DifficultyResources.DifficultyType? = DifficultyResources.DifficultyType.AMATEUR,
         ruledEvidence: List<RuledEvidence> = emptyList(),
-        currentDifficulty: DifficultyResources.DifficultyType? = DifficultyResources.DifficultyType.AMATEUR
     ): Int {
 
         val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
@@ -129,7 +199,7 @@ data class GhostScore(
         }
 
         return posScore
-    }
+    }*/
 
     fun updateBpmScore(bpm: Float) {
         val min = ghostEvidence.speed.toMinimumAsInt().toFloat()

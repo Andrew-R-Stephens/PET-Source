@@ -218,25 +218,22 @@ class InvestigationScreenViewModel private constructor(
     ) { ghostScores, ruledEvidence, difficultyUiState, footstepVisualizerUiState ->
 
         Log.d("GhostScore", "--------")
-        ghostScores.forEach { score ->
-            val calculatedScore = score.getEvidenceScore(
+        ghostScores.forEach { ghostScore ->
+            ghostScore.updateEvidenceScore(
                 ruledEvidence = ruledEvidence,
-                currentDifficulty = DifficultyType.entries[difficultyUiState.index]
+                currentDifficulty = difficultyUiState.type
             )
-            score.setScore(calculatedScore)
 
-            val state = footstepVisualizerUiState.state
             if(footstepVisualizerUiState.applyMeasurement) {
-                score.updateBpmScore(
+                val state = footstepVisualizerUiState.state
+                ghostScore.updateBpmScore(
                     when (footstepVisualizerUiState.measurementType) {
                         VisualizerMeasurementType.INSTANT -> state.smoothed
                         VisualizerMeasurementType.AVERAGED -> state.average
                         VisualizerMeasurementType.WEIGHTED -> state.weightedAverage
                     }
                 )
-            } else {
-                score.resetBpmScore()
-            }
+            } else { ghostScore.resetBpmScore() }
         }
 
         ghostScores.sortedByDescending { it.bpmState.value }
