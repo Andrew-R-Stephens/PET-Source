@@ -203,7 +203,7 @@ class InvestigationScreenViewModel private constructor(
         MutableStateFlow(listOf())
     val ghostScores = _ghostScores.asStateFlow()
     private fun initGhostScores() {
-        _ghostScores.update { _ ->
+        _ghostScores.update {
             ghostEvidences.map { GhostScore(it) }
         }
         Log.d("GhostScores", "Creating New")
@@ -215,17 +215,19 @@ class InvestigationScreenViewModel private constructor(
         ruledEvidence,
         difficultyUiState,
         footstepVisualizerUiState
-    ) { ghostScores, _, _, footstepVisualizerUiState ->
-        val orderedScores = mutableListOf<GhostScore>()
+    ) { ghostScores, ruledEvidence, difficultyUiState, footstepVisualizerUiState ->
 
         Log.d("GhostScore", "--------")
-        ghostScores.forEach {
-            val calculatedScore = calculateEvidenceScore(it.ghostEvidence.ghost)
-            it.setScore(calculatedScore)
+        ghostScores.forEach { score ->
+            val calculatedScore = score.getEvidenceScore(
+                ruledEvidence = ruledEvidence,
+                currentDifficulty = DifficultyType.entries[difficultyUiState.index]
+            )
+            score.setScore(calculatedScore)
 
             val state = footstepVisualizerUiState.state
             if(footstepVisualizerUiState.applyMeasurement) {
-                it.updateBpmScore(
+                score.updateBpmScore(
                     when (footstepVisualizerUiState.measurementType) {
                         VisualizerMeasurementType.INSTANT -> state.smoothed
                         VisualizerMeasurementType.AVERAGED -> state.average
@@ -233,17 +235,14 @@ class InvestigationScreenViewModel private constructor(
                     }
                 )
             } else {
-                it.resetBpmScore()
+                score.resetBpmScore()
             }
-
-            orderedScores.add(it)
         }
-        val orderedTemp = orderedScores
-            .sortedByDescending { it.bpmState.value }
+
+        ghostScores.sortedByDescending { it.bpmState.value }
             .sortedByDescending { it.score.value }
             .map { it.ghostEvidence.ghost.id }
 
-        orderedTemp
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
@@ -456,22 +455,6 @@ class InvestigationScreenViewModel private constructor(
     /*
     * Ghost Score ---------------------------
     */
-    private fun getGhostScores(
-        ghostModel: GhostType
-    ): GhostScore? {
-        return ghostScores.value.find { it.ghostEvidence.ghost.id == ghostModel.id }
-    }
-
-    private fun calculateEvidenceScore(
-        ghostModel: GhostType
-    ): Int {
-
-        return getGhostScores(ghostModel)
-            ?.getEvidenceScore(
-                ruledEvidence = ruledEvidence.value,
-                currentDifficulty = DifficultyType.entries[difficultyUiState.value.index]
-            ) ?: 1
-    }
 
     fun toggleGhostNegation(
         ghostModel: GhostType
