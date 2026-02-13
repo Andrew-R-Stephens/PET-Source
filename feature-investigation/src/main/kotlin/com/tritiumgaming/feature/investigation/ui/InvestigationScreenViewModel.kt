@@ -9,6 +9,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.PointRecord
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
+import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
@@ -79,15 +80,16 @@ import kotlinx.coroutines.launch
 import kotlin.math.max
 import kotlin.math.min
 
-class InvestigationScreenViewModel(
-    private val getEvidenceUseCase: GetEvidenceUseCase,
-    private val fetchEvidenceTypesUseCase: FetchEvidenceTypesUseCase,
-    private val getEvidenceTypeByIdUseCase: GetEvidenceTypeByIdUseCase,
-    private val getGhostUseCase: GetGhostUseCase,
-    private val fetchGhostTypesUseCase: FetchGhostTypesUseCase,
-    private val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase,
-    private val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
-    private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
+class InvestigationScreenViewModel private constructor(
+    journalUseCaseBundle: JournalUseCaseBundle,
+    private val getEvidenceUseCase: GetEvidenceUseCase = journalUseCaseBundle.getEvidenceUseCase,
+    private val fetchEvidenceTypesUseCase: FetchEvidenceTypesUseCase = journalUseCaseBundle.fetchEvidenceTypesUseCase,
+    private val getEvidenceTypeByIdUseCase: GetEvidenceTypeByIdUseCase = journalUseCaseBundle.getEvidenceTypeByIdUseCase,
+    private val getGhostUseCase: GetGhostUseCase = journalUseCaseBundle.getGhostUseCase,
+    private val fetchGhostTypesUseCase: FetchGhostTypesUseCase = journalUseCaseBundle.fetchGhostTypesUseCase,
+    private val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
+    private val initRuledEvidenceUseCase: InitRuledEvidenceUseCase = journalUseCaseBundle.initRuledEvidenceUseCase,
+    private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
     private val getDifficultyNameUseCase: GetDifficultyNameUseCase,
     private val getDifficultyModifierUseCase: GetDifficultyModifierUseCase,
@@ -146,6 +148,8 @@ class InvestigationScreenViewModel(
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
+    /*private val _operationSanityUiState = MutableStateFlow(OperationSanityUiState())
+    val operationSanityUiState = _operationSanityUiState.asStateFlow()*/
     private val _operationSanityUiState = MutableStateFlow(OperationSanityUiState())
     val operationSanityUiState = _operationSanityUiState.asStateFlow()
 
@@ -477,16 +481,6 @@ class InvestigationScreenViewModel(
     /*
     * Evidence Ruling Handler ---------------------------
     */
-
-    fun setEvidenceRuling(
-        evidenceIndex: Int,
-        ruling: Ruling
-    ) {
-        _ruledEvidence.update {
-            it.apply { it[evidenceIndex].copy(ruling = ruling) }
-        }
-    }
-
     fun setEvidenceRuling(
         evidence: EvidenceType,
         ruling: Ruling
@@ -1027,14 +1021,7 @@ class InvestigationScreenViewModel(
                     val application = this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]
                     val container = (application as InvestigationContainerProvider).provideInvestigationContainer()
 
-                    val getEvidenceUseCase = container.getEvidenceUseCase
-                    val fetchEvidenceTypesUseCase = container.fetchEvidenceTypesUseCase
-                    val getEvidenceByIdUseCase = container.getEvidenceTypeByIdUseCase
-                    val getGhostUseCase = container.getGhostUseCase
-                    val fetchGhostTypesUseCase = container.fetchGhostTypesUseCase
-                    val getGhostByIdUseCase = container.getGhostTypeByIdUseCase
-                    val fetchGhostEvidencesUseCase = container.fetchGhostEvidencesUseCase
-                    val initRuledEvidenceUseCase = container.initRuledEvidenceUseCase
+                    val journalUseCaseBundle = container.journalUseCaseBundle
                     val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
                     val getDifficultyNameUseCase = container.getDifficultyNameUseCase
                     val getDifficultyModifierUseCase = container.getDifficultyModifierUseCase
@@ -1073,14 +1060,7 @@ class InvestigationScreenViewModel(
                         container.getEquipmentTypeByEvidenceTypeUseCase
 
                     InvestigationScreenViewModel(
-                        getEvidenceUseCase = getEvidenceUseCase,
-                        fetchEvidenceTypesUseCase = fetchEvidenceTypesUseCase,
-                        getEvidenceTypeByIdUseCase = getEvidenceByIdUseCase,
-                        getGhostUseCase = getGhostUseCase,
-                        fetchGhostTypesUseCase = fetchGhostTypesUseCase,
-                        getGhostTypeByIdUseCase = getGhostByIdUseCase,
-                        initRuledEvidenceUseCase = initRuledEvidenceUseCase,
-                        fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
+                        journalUseCaseBundle = journalUseCaseBundle,
                         fetchDifficultiesUseCase = fetchDifficultiesUseCase,
                         getDifficultyNameUseCase = getDifficultyNameUseCase,
                         getDifficultyModifierUseCase = getDifficultyModifierUseCase,

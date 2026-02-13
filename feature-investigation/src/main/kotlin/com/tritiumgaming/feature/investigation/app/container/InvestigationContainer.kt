@@ -86,13 +86,13 @@ class InvestigationContainer(
             ghostLocalDataSource = ghostLocalDataSource
         )
     }
-    internal val getGhostUseCase = GetGhostUseCase(
+    private val getGhostUseCase = GetGhostUseCase(
         repository = ghostRepository
     )
-    internal val fetchGhostTypesUseCase = FetchGhostTypesUseCase(
+    private val fetchGhostTypesUseCase = FetchGhostTypesUseCase(
         repository = ghostRepository
     )
-    internal val getGhostTypeByIdUseCase = GetGhostTypeByIdUseCase(
+    private val getGhostTypeByIdUseCase = GetGhostTypeByIdUseCase(
         repository = ghostRepository
     )
 
@@ -103,23 +103,34 @@ class InvestigationContainer(
             evidenceLocalDataSource = evidenceLocalDataSource
         )
     }
-    internal val getEvidenceUseCase = GetEvidenceUseCase(
+    private val getEvidenceUseCase = GetEvidenceUseCase(
         repository = evidenceRepository
     )
-    internal val fetchEvidenceTypesUseCase = FetchEvidenceTypesUseCase(
+    private val fetchEvidenceTypesUseCase = FetchEvidenceTypesUseCase(
         repository = evidenceRepository
     )
-    internal val getEvidenceTypeByIdUseCase = GetEvidenceTypeByIdUseCase(
+    private val getEvidenceTypeByIdUseCase = GetEvidenceTypeByIdUseCase(
         repository = evidenceRepository
     )
 
     // Journal
-    internal val fetchGhostEvidencesUseCase = FetchGhostEvidencesUseCase(
+    private val fetchGhostEvidencesUseCase = FetchGhostEvidencesUseCase(
         ghostRepository = ghostRepository,
         evidenceRepository = evidenceRepository
     )
-    internal val initRuledEvidenceUseCase = InitRuledEvidenceUseCase(
+    private val initRuledEvidenceUseCase = InitRuledEvidenceUseCase(
         fetchEvidencesUseCase = fetchEvidenceTypesUseCase
+    )
+
+    internal val journalUseCaseBundle: JournalUseCaseBundle = JournalUseCaseBundle(
+        getEvidenceUseCase = getEvidenceUseCase,
+        fetchEvidenceTypesUseCase = fetchEvidenceTypesUseCase,
+        getEvidenceTypeByIdUseCase = getEvidenceTypeByIdUseCase,
+        fetchGhostEvidencesUseCase = fetchGhostEvidencesUseCase,
+        initRuledEvidenceUseCase = initRuledEvidenceUseCase,
+        getGhostUseCase = getGhostUseCase,
+        fetchGhostTypesUseCase = fetchGhostTypesUseCase,
+        getGhostTypeByIdUseCase = getGhostTypeByIdUseCase
     )
 
     // Difficulty
@@ -258,3 +269,14 @@ class InvestigationContainer(
     internal val getEquipmentTypeByEvidenceTypeUseCase = GetEquipmentTypeByEvidenceTypeUseCase()
 
 }
+
+internal data class JournalUseCaseBundle(
+    val getGhostUseCase: GetGhostUseCase,
+    val fetchGhostTypesUseCase: FetchGhostTypesUseCase,
+    val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase,
+    val getEvidenceUseCase: GetEvidenceUseCase,
+    val fetchEvidenceTypesUseCase: FetchEvidenceTypesUseCase,
+    val getEvidenceTypeByIdUseCase: GetEvidenceTypeByIdUseCase,
+    val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
+    val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
+)
