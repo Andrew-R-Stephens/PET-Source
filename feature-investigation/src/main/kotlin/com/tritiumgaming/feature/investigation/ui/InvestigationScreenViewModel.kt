@@ -1,9 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui
 
 import android.util.Log
-import androidx.compose.runtime.Stable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -18,7 +15,7 @@ import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DE
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostScore
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
-import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarFootstepsVisualizerSectionUiState
+import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarSectionBpmVisualizerUiState
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
@@ -72,8 +69,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.math.max
@@ -156,8 +156,72 @@ class InvestigationScreenViewModel(
     val popupUiState = _popupUiState.asStateFlow()
 
     private val _footstepVisualizerUiState = MutableStateFlow(
-        ToolbarFootstepsVisualizerSectionUiState())
+        ToolbarSectionBpmVisualizerUiState())
     val footstepVisualizerUiState = _footstepVisualizerUiState.asStateFlow()
+
+    private val _ghostScores: MutableStateFlow<List<GhostScore>> =
+        MutableStateFlow(listOf())
+    val ghostScores = _ghostScores.asStateFlow()
+    private fun initGhostScores() {
+        _ghostScores.update { _ ->
+            ghostEvidences.map { GhostScore(it) }
+        }
+        Log.d("GhostScores", "Creating New")
+    }
+
+    private val _ruledEvidence: MutableStateFlow<List<RuledEvidence>> =
+        MutableStateFlow(emptyList())
+    val ruledEvidence = _ruledEvidence.asStateFlow()
+    private fun initRuledEvidence() {
+        try {
+            val evidence = initRuledEvidenceUseCase().getOrThrow()
+            _ruledEvidence.update { evidence }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    /** Order of Ghost IDs **/
+    private val _ghostOrder: StateFlow<List<GhostResources.GhostIdentifier>> = combine(
+        ghostScores,
+        ruledEvidence,
+        difficultyUiState,
+        footstepVisualizerUiState
+    ) { ghostScores, _, _, footstepVisualizerUiState ->
+        val orderedScores = mutableListOf<GhostScore>()
+
+        Log.d("GhostScore", "--------")
+        ghostScores.forEach {
+            val calculatedScore = calculateEvidenceScore(it.ghostEvidence.ghost)
+            it.setScore(calculatedScore)
+
+            val state = footstepVisualizerUiState.state
+            if(footstepVisualizerUiState.applyMeasurement) {
+                it.updateBpmScore(
+                    when (footstepVisualizerUiState.measurementType) {
+                        VisualizerMeasurementType.INSTANT -> state.smoothed
+                        VisualizerMeasurementType.AVERAGED -> state.average
+                        VisualizerMeasurementType.WEIGHTED -> state.weightedAverage
+                    }
+                )
+            } else {
+                it.resetBpmScore()
+            }
+
+            orderedScores.add(it)
+        }
+        val orderedTemp = orderedScores
+            .sortedByDescending { it.bpmState.value }
+            .sortedByDescending { it.score.value }
+            .map { it.ghostEvidence.ghost.id }
+
+        orderedTemp
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = ghostEvidences.map { it.ghost.id }
+    )
+    val ghostOrder = _ghostOrder
 
     /*
      * COROUTINES
@@ -386,71 +450,13 @@ class InvestigationScreenViewModel(
     /*
     * Ghost Score ---------------------------
     */
-    private val _ghostScores: MutableStateFlow<List<GhostScore>> =
-        MutableStateFlow(listOf())
-    val ghostScores = _ghostScores.asStateFlow()
-    private fun initGhostScores() {
-        _ghostScores.update { _ ->
-            ghostEvidences.map { GhostScore(it) }
-        }
-        Log.d("GhostScores", "Creating New")
-
-        initGhostOrder()
-    }
-
     private fun getGhostScores(
         ghostModel: GhostType
     ): GhostScore? {
         return ghostScores.value.find { it.ghostEvidence.ghost.id == ghostModel.id }
     }
 
-    /** Order of Ghost IDs **/
-    private val _ghostOrder: MutableStateFlow<List<GhostResources.GhostIdentifier>> =
-        MutableStateFlow(mutableStateListOf())
-    @Stable val ghostOrder = _ghostOrder.asStateFlow()
-    private fun initGhostOrder() {
-        _ghostOrder.update {
-            ghostEvidences.map { it.ghost.id }
-        }
-        Log.d("GhostOrder", "Creating New")
-
-        reorderGhostScores()
-    }
-
-    private fun reorderGhostScores() {
-        val orderedScores = mutableListOf<GhostScore>()
-
-        Log.d("GhostScore", "--------")
-        ghostScores.value.forEach {
-            it.setScore(
-                getEvidenceScore(
-                    it.ghostEvidence.ghost
-                )
-            )
-
-            if(footstepVisualizerUiState.value.applyMeasurement) {
-                val state = footstepVisualizerUiState.value.state
-                footstepVisualizerUiState.value.state.points.tail?.let { node ->
-                    it.updateBpmScore(
-                        when (footstepVisualizerUiState.value.measurementType) {
-                            VisualizerMeasurementType.INSTANT -> state.smoothed
-                            VisualizerMeasurementType.AVERAGED -> node.data.avg
-                            VisualizerMeasurementType.WEIGHTED -> node.data.weightedAvg
-                        }
-                    )
-                }
-            }
-
-            orderedScores.add(it)
-        }
-        val orderedTemp = orderedScores
-            .sortedByDescending { it.score.value }
-            .map { it.ghostEvidence.ghost.id }.toMutableStateList()
-
-        _ghostOrder.update { orderedTemp }
-    }
-
-    private fun getEvidenceScore(
+    private fun calculateEvidenceScore(
         ghostModel: GhostType
     ): Int {
 
@@ -472,18 +478,6 @@ class InvestigationScreenViewModel(
     * Evidence Ruling Handler ---------------------------
     */
 
-    private val _ruledEvidence: MutableStateFlow<List<RuledEvidence>> =
-        MutableStateFlow(emptyList())
-    val ruledEvidence = _ruledEvidence.asStateFlow()
-    private fun initRuledEvidence() {
-        try {
-            val evidence = initRuledEvidenceUseCase().getOrThrow()
-            _ruledEvidence.update { evidence }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
     fun setEvidenceRuling(
         evidenceIndex: Int,
         ruling: Ruling
@@ -491,7 +485,6 @@ class InvestigationScreenViewModel(
         _ruledEvidence.update {
             it.apply { it[evidenceIndex].copy(ruling = ruling) }
         }
-        reorderGhostScores()
     }
 
     fun setEvidenceRuling(
@@ -505,7 +498,6 @@ class InvestigationScreenViewModel(
                 else e
             }
         }
-        reorderGhostScores()
     }
 
     fun getRuledEvidence(
@@ -536,8 +528,6 @@ class InvestigationScreenViewModel(
 
         setTimeRemaining(difficultyUiState.value.time)
         resetTimer()
-
-        reorderGhostScores()
     }
 
     private fun updateDifficulty(
@@ -995,21 +985,21 @@ class InvestigationScreenViewModel(
         _footstepVisualizerUiState.update {
             it.copy(state = data)
         }
-        reorderGhostScores()
+        //reorderGhostScores()
     }
 
     fun setBpmMeasurementType(type: VisualizerMeasurementType) {
         _footstepVisualizerUiState.update {
             it.copy(measurementType = type)
         }
-        reorderGhostScores()
+        //reorderGhostScores()
     }
 
     fun toggleApplyBpmMeasurement() {
         _footstepVisualizerUiState.update {
             it.copy(applyMeasurement = !it.applyMeasurement)
         }
-        reorderGhostScores()
+        //reorderGhostScores()
     }
 
     init {
@@ -1026,7 +1016,7 @@ class InvestigationScreenViewModel(
 
         initGhostScores()
         initRuledEvidence()
-        reorderGhostScores()
+        //reorderGhostScores()
     }
 
     companion object {
