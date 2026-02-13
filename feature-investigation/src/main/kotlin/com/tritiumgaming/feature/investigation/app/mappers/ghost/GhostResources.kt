@@ -293,3 +293,34 @@ fun GhostSpeed.toMaximumAsInt(): Int =
         GhostSpeed.YOKAI -> -1
         GhostSpeed.YUREI -> -1
     }
+
+fun GhostSpeed.toLosBoolean(): Boolean =
+      when (this) {
+        GhostSpeed.BANSHEE -> true
+        GhostSpeed.DAYAN -> false
+        GhostSpeed.DEMON -> false
+        GhostSpeed.DEOGEN -> true
+        GhostSpeed.GALLU -> true
+        GhostSpeed.GORYO -> true
+        GhostSpeed.HANTU -> false
+        GhostSpeed.JINN -> false
+        GhostSpeed.MARE -> true
+        GhostSpeed.MOROI -> true
+        GhostSpeed.MYLING -> true
+        GhostSpeed.OBAKE -> true
+        GhostSpeed.OBAMBO -> true
+        GhostSpeed.ONI -> true
+        GhostSpeed.ONRYO -> true
+        GhostSpeed.PHANTOM -> true
+        GhostSpeed.POLTERGEIST -> true
+        GhostSpeed.RAIJU -> false
+        GhostSpeed.REVENANT -> false
+        GhostSpeed.SHADE -> true
+        GhostSpeed.SPIRIT -> true
+        GhostSpeed.THAYE -> false
+        GhostSpeed.THE_TWINS -> true
+        GhostSpeed.THE_MIMIC -> true
+        GhostSpeed.WRAITH -> true
+        GhostSpeed.YOKAI -> true
+        GhostSpeed.YUREI -> true
+    }

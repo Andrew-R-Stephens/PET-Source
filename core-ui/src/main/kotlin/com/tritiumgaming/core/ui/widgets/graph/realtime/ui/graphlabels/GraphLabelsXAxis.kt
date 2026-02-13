@@ -15,8 +15,8 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 fun GraphLabelsXAxis(
     modifier: Modifier,
-    colors: com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiColors,
-    state: com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiState
+    colors: GraphLabelsUiColors,
+    state: GraphLabelsUiState
 ) {
     val textMeasurer = rememberTextMeasurer()
     val textStyle = TextStyle(color = colors.label, fontSize = 10.sp)
@@ -28,7 +28,7 @@ fun GraphLabelsXAxis(
             size.width * 1.5f,
             size.height * 1.5f
         ) {
-            val seconds = (state.max / 1.seconds.inWholeMilliseconds).toInt()
+            val seconds = (state.viewport / 1.seconds.inWholeMilliseconds).toInt()
             val labelCount = seconds / state.interval
 
             for (i in 0..state.interval.toInt()) {

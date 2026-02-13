@@ -36,7 +36,7 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 
 @Composable
-fun ColumnScope.ToolbarConfigurationSection(
+fun ColumnScope.ToolbarSectionOperationConfigs(
     modifier: Modifier = Modifier,
     timerUiState: TimerUiState,
     mapUiState: MapUiState,

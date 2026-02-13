@@ -7,7 +7,7 @@ import com.tritiumgaming.feature.investigation.ui.common.analysis.OperationDetai
 import com.tritiumgaming.feature.investigation.ui.common.analysis.OperationDetailsUiState
 
 @Composable
-fun ToolbarOperationAnalysisSection(
+fun ToolbarSectionOperationAnalysis(
     modifier: Modifier = Modifier,
     operationDetailsUiState: OperationDetailsUiState
 ) {

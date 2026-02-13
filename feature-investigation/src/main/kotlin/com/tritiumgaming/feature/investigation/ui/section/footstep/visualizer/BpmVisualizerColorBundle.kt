@@ -6,7 +6,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSur
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
 
-internal data class FootstepVisualizerUiColorBundle(
+internal data class BpmVisualizerColorBundle(
     val graphLabelsXAxisUiColors: GraphLabelsUiColors,
     val graphLabelsYAxisUiColors: GraphLabelsUiColors,
     val graphSurfaceUiColors: GraphSurfaceUiColors,

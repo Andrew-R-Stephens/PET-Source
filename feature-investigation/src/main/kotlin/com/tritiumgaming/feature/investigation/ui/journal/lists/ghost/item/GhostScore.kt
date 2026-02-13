@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
 
 import android.util.Log
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toLosBoolean
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
@@ -133,8 +134,11 @@ data class GhostScore(
     fun updateBpmScore(bpm: Float) {
         val min = ghostEvidence.speed.toMinimumAsInt().toFloat()
         var max = ghostEvidence.speed.toMaximumAsInt().toFloat()
+        val losMultiplier = ghostEvidence.speed.toLosBoolean()
 
-        if(max == -1f) max = min * 1.65f
+        if(max == -1f) max = min
+
+        if(losMultiplier) { max *= 1.65f }
 
         val isInRange = bpm in min..max
 
@@ -144,9 +148,13 @@ data class GhostScore(
         setBpmState(isInRange)
     }
 
+    /** Resets the Ruling for each Evidence type  */
+    fun resetBpmScore() {
+        setBpmState(false)
+    }
 
     /** Resets the Ruling for each Evidence type  */
-    fun resetGhostScore() {
+    fun resetNegateScore() {
         setForcefullyRejected(false)
     }
 

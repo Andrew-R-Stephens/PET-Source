@@ -4,7 +4,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.PointRecor
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
 
-data class ToolbarFootstepsVisualizerSectionUiActions(
+data class ToolbarSectionBpmVisualizerUiActions(
     val onUpdate: (RealtimeUiState<PointRecord>) -> Unit,
     val onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
     val toggleApplyMeasurement: () -> Unit

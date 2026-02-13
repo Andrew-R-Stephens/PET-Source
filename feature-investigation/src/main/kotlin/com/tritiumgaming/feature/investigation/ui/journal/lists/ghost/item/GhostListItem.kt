@@ -79,18 +79,16 @@ fun LazyItemScope.GhostListItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        if(bpmState.value) {
-            Box(
-                modifier = Modifier
-                    .width(2.dp)
-                    .fillMaxHeight()
-                    .background(
-                        if (bpmState.value) {
-                            LocalPalette.current.errorContainer
-                        } else { Color.Transparent }
-                    )
-            )
-        }
+        Box(
+            modifier = Modifier
+                .width(2.dp)
+                .fillMaxHeight()
+                .background(
+                    if (bpmState.value) {
+                        LocalPalette.current.errorContainer
+                    } else { Color.Transparent }
+                )
+        )
 
         Box(
             modifier = Modifier

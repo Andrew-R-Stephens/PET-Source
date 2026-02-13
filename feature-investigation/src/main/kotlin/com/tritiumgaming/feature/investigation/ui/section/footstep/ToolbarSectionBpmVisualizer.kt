@@ -10,9 +10,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,21 +29,21 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabe
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.FootstepVisualizer
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.FootstepVisualizerUiActions
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.FootstepVisualizerUiColorBundle
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.FootstepVisualizerUiStateBundle
+import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizer
+import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerUiActions
+import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerColorBundle
+import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerStateBundle
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-fun ToolbarFootstepsVisualizerSection(
+fun ToolbarSectionBpmVisualizer(
     modifier: Modifier = Modifier,
-    state: ToolbarFootstepsVisualizerSectionUiState,
-    actions: ToolbarFootstepsVisualizerSectionUiActions
+    state: ToolbarSectionBpmVisualizerUiState,
+    actions: ToolbarSectionBpmVisualizerUiActions
 ) {
 
-    val footstepVisualizerUiStateBundle = FootstepVisualizerUiStateBundle(
+    val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
         alpha = .5f,
         range = 360,
         domain = 10.seconds.inWholeMilliseconds,
@@ -53,7 +55,7 @@ fun ToolbarFootstepsVisualizerSection(
     val alpha: (thisType: VisualizerMeasurementType, testType: VisualizerMeasurementType) -> Float = {
             thisType, testType -> if(thisType == testType) 1f else .25f }
 
-    val footstepVisualizerUiColorBundle = FootstepVisualizerUiColorBundle(
+    val bpmVisualizerColorBundle = BpmVisualizerColorBundle(
         realtimePlotUiColors = RealtimePlotUiColors(
             instant = LocalPalette.current.primary.copy(
                 alpha = alpha(
@@ -108,24 +110,38 @@ fun ToolbarFootstepsVisualizerSection(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
 
-            Icon(
+            Row(
                 modifier = Modifier
-                    .size(48.dp)
-                    .padding(8.dp)
-                    .clickable { actions.toggleApplyMeasurement() },
-                tint = LocalPalette.current.onSurface.copy(
-                    alpha = if(state.applyMeasurement) 1f else .25f),
-                imageVector = ImageVector.vectorResource(R.drawable.ic_ghost),
-                contentDescription = null
-            )
+                    .fillMaxWidth()
+                    .clickable {
+                        actions.onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
+                    },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start)
+            ) {
+                Checkbox(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    checked = state.applyMeasurement,
+                    onCheckedChange = { actions.toggleApplyMeasurement() }
+                )
 
-            FootstepVisualizer(
+                Text(
+                    modifier = Modifier
+                        .weight(1f)
+                        .wrapContentHeight(),
+                    text = "Apply",
+                    color = LocalPalette.current.onSurface
+                )
+            }
+
+            BpmVisualizer(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
-                stateBundle = footstepVisualizerUiStateBundle,
-                colorBundle = footstepVisualizerUiColorBundle,
-                actions = FootstepVisualizerUiActions(
+                stateBundle = bpmVisualizerStateBundle,
+                colorBundle = bpmVisualizerColorBundle,
+                actions = BpmVisualizerUiActions(
                     onUpdate = { newTapUiState ->
                         actions.onUpdate(newTapUiState) }
                 )

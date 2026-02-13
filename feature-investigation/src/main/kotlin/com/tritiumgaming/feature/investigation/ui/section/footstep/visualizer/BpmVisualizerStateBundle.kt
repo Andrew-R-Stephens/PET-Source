@@ -6,7 +6,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.Visualizer
 import kotlin.math.ceil
 import kotlin.time.Duration.Companion.seconds
 
-internal data class FootstepVisualizerUiStateBundle(
+internal data class BpmVisualizerStateBundle(
     private val alpha: Float = 0.01f,
     private val range: Int = 360,
     private val domain: Long = 10.seconds.inWholeMilliseconds,

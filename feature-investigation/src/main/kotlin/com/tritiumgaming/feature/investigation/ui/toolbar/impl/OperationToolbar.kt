@@ -35,6 +35,9 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.icon.impl.base.AnalyticsIcon
+import com.tritiumgaming.core.ui.icon.impl.base.SprintIcon
+import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.getExitVector
@@ -126,26 +129,23 @@ fun ColumnScope.OperationToolbar(
             onClick = {
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
             }
-        ){
-            Image(
+        ) {
+            AnalyticsIcon(
                 modifier = Modifier
                     .fillMaxSize(),
-                imageVector = getInfoVector(
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
-                        IconVectorColors.defaults(
-                            fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.primary,
-                        )
-                    } else {
-                        IconVectorColors.defaults(
-                            fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.onSurface,
-                        )
-                    }
-                ),
-                contentDescription = null,
-                contentScale = ContentScale.Fit
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary,
+                    )
+                } else {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface,
+                    )
+                }
             )
+
         }
 
         ToolbarItem(
@@ -155,23 +155,20 @@ fun ColumnScope.OperationToolbar(
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
             }
         ){
-            Image(
-                modifier = Modifier,
-                imageVector = getExitVector(
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
-                        IconVectorColors.defaults(
-                            fillColor = LocalPalette.current.primary,
-                            strokeColor = Color.Transparent,
-                        )
-                    } else {
-                        IconVectorColors.defaults(
-                            fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.onSurface,
-                        )
-                    }
-                ),
-                contentDescription = null,
-                contentScale = ContentScale.Fit
+            StopwatchIcon(
+                modifier = Modifier
+                    .fillMaxSize(),
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary,
+                    )
+                } else {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface,
+                    )
+                }
             )
         }
     }

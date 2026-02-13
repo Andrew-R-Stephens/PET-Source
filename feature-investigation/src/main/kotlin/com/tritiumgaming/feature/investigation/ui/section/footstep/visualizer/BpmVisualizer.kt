@@ -53,11 +53,11 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUi
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-internal fun FootstepVisualizer(
+internal fun BpmVisualizer(
     modifier: Modifier = Modifier,
-    stateBundle: FootstepVisualizerUiStateBundle,
-    colorBundle: FootstepVisualizerUiColorBundle,
-    actions: FootstepVisualizerUiActions<RealtimeUiState<PointRecord>>
+    stateBundle: BpmVisualizerStateBundle,
+    colorBundle: BpmVisualizerColorBundle,
+    actions: BpmVisualizerUiActions<RealtimeUiState<PointRecord>>
 ) {
     val state = stateBundle.visualizerUiState
 
@@ -157,6 +157,8 @@ internal fun FootstepVisualizer(
     }
 
     val onBeat = {
+        var intervalBpm: Pair<Float, Float>? = null
+
         if (realtimeUiState.recordedTime != 0L) {
             val delta = now - realtimeUiState.recordedTime
 
@@ -172,20 +174,22 @@ internal fun FootstepVisualizer(
                 smoothed = smoothedBPM
             )
 
-            val intervalBPM = calculateSampleIntervalBPM()
+            intervalBpm = calculateSampleIntervalBPM()
 
             realtimeUiState.points.enqueue(
                 PointRecord(
                     pX = now,
                     pY = instantBPM,
-                    avg = intervalBPM.first,
-                    weightedAvg = intervalBPM.second
+                    avg = intervalBpm.first,
+                    weightedAvg = intervalBpm.second
                 )
             )
         }
 
         realtimeUiState = realtimeUiState.copy(
-            recordedTime = now
+            recordedTime = now,
+            average = intervalBpm?.first ?: realtimeUiState.average,
+            weightedAverage = intervalBpm?.second ?: realtimeUiState.weightedAverage
         )
 
         actions.onUpdate(
@@ -294,7 +298,7 @@ private fun Preview() {
                 .wrapContentHeight()
         ) {
 
-            val footstepVisualizerUiStateBundle = FootstepVisualizerUiStateBundle(
+            val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
                 alpha = .01f,
                 range = 360,
                 domain = 10.seconds.inWholeMilliseconds,
@@ -303,7 +307,7 @@ private fun Preview() {
                 domainSampleInterval = 3.seconds.inWholeMilliseconds
             )
 
-            val footstepVisualizerUiColorBundle = FootstepVisualizerUiColorBundle(
+            val bpmVisualizerColorBundle = BpmVisualizerColorBundle(
                 realtimePlotUiColors = RealtimePlotUiColors(
                     instant = LocalPalette.current.primary,
                     averaged = LocalPalette.current.tertiary,
@@ -345,13 +349,13 @@ private fun Preview() {
                         mutableStateOf(RealtimeUiState<PointRecord>())
                     }
 
-                    FootstepVisualizer(
+                    BpmVisualizer(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(200.dp),
-                        stateBundle = footstepVisualizerUiStateBundle,
-                        colorBundle = footstepVisualizerUiColorBundle,
-                        actions = FootstepVisualizerUiActions(
+                        stateBundle = bpmVisualizerStateBundle,
+                        colorBundle = bpmVisualizerColorBundle,
+                        actions = BpmVisualizerUiActions(
                             onUpdate = { newTapUiState ->
                                 realtimeUiState = newTapUiState
                             }

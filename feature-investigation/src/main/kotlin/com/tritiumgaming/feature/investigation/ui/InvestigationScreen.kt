@@ -42,10 +42,10 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.Ghost
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
-import com.tritiumgaming.feature.investigation.ui.section.configs.ToolbarConfigurationSection
-import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarFootstepsVisualizerSection
-import com.tritiumgaming.feature.investigation.ui.section.analysis.ToolbarOperationAnalysisSection
-import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarFootstepsVisualizerSectionUiActions
+import com.tritiumgaming.feature.investigation.ui.section.configs.ToolbarSectionOperationConfigs
+import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarSectionBpmVisualizer
+import com.tritiumgaming.feature.investigation.ui.section.analysis.ToolbarSectionOperationAnalysis
+import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarSectionBpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolbar
@@ -113,9 +113,7 @@ private fun InvestigationContent(
     )
 
     val ghostListUiActions = GhostListUiActions(
-        onFindGhostById = { ghostId ->
-            investigationViewModel.getGhostById(ghostId)
-        },
+        onFindGhostById = { ghostId -> investigationViewModel.getGhostById(ghostId) },
         onNameClick = { ghostType -> investigationViewModel.setPopup(ghostType) }
     )
 
@@ -160,7 +158,7 @@ private fun InvestigationContent(
         onClickItem = { investigationViewModel.setPopup(it) },
     )
 
-    val toolbarFootstepsVisualizerSectionUiActions = ToolbarFootstepsVisualizerSectionUiActions(
+    val toolbarSectionBpmVisualizerUiActions = ToolbarSectionBpmVisualizerUiActions(
         onUpdate = {
             investigationViewModel.setBpmData(it)
         },
@@ -187,8 +185,8 @@ private fun InvestigationContent(
         ghostListUiState = ghostListUiState,
         evidenceListUiState = evidenceListUiState,
         operationDetailsUiState = operationDetailsUiState,
-        toolbarFootstepsVisualizerSectionUiState = toolbarFootstepsVisualizerSectionUiState,
-        toolbarFootstepsVisualizerSectionUiActions = toolbarFootstepsVisualizerSectionUiActions
+        toolbarSectionBpmVisualizerUiState = toolbarFootstepsVisualizerSectionUiState,
+        toolbarSectionBpmVisualizerUiActions = toolbarSectionBpmVisualizerUiActions
     )
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -204,7 +202,7 @@ private fun InvestigationContent(
                 toolbarUiActions,
                 ghostListUiActions,
                 ghostListUiItemActions,
-                toolbarFootstepsVisualizerSectionUiActions
+                toolbarSectionBpmVisualizerUiActions
             )
         }
         DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -217,7 +215,7 @@ private fun InvestigationContent(
                 toolbarUiActions,
                 ghostListUiActions,
                 ghostListUiItemActions,
-                toolbarFootstepsVisualizerSectionUiActions
+                toolbarSectionBpmVisualizerUiActions
             )
         }
     }
@@ -252,7 +250,7 @@ private fun InvestigationContentPortrait(
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
-    toolbarFootstepsVisualizerSectionUiActions: ToolbarFootstepsVisualizerSectionUiActions
+    toolbarSectionBpmVisualizerUiActions: ToolbarSectionBpmVisualizerUiActions
 ) {
     Column(
         modifier = Modifier
@@ -266,7 +264,7 @@ private fun InvestigationContentPortrait(
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
             ghostListUiItemActions = ghostListUiItemActions,
-            toolbarFootstepsVisualizerSectionUiActions = toolbarFootstepsVisualizerSectionUiActions
+            toolbarSectionBpmVisualizerUiActions = toolbarSectionBpmVisualizerUiActions
         )
     }
 }
@@ -279,7 +277,7 @@ private fun InvestigationContentLandscape(
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
-    toolbarFootstepsVisualizerSectionUiActions: ToolbarFootstepsVisualizerSectionUiActions
+    toolbarSectionBpmVisualizerUiActions: ToolbarSectionBpmVisualizerUiActions
 ) {
     Row(
         modifier = Modifier
@@ -293,7 +291,7 @@ private fun InvestigationContentLandscape(
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
             ghostListUiItemActions = ghostListUiItemActions,
-            toolbarFootstepsVisualizerSectionUiActions = toolbarFootstepsVisualizerSectionUiActions
+            toolbarSectionBpmVisualizerUiActions = toolbarSectionBpmVisualizerUiActions
         )
     }
 }
@@ -306,7 +304,7 @@ private fun ColumnScope.Investigation(
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
-    toolbarFootstepsVisualizerSectionUiActions: ToolbarFootstepsVisualizerSectionUiActions
+    toolbarSectionBpmVisualizerUiActions: ToolbarSectionBpmVisualizerUiActions
 
 ) {
 
@@ -347,7 +345,7 @@ private fun ColumnScope.Investigation(
         horizontalAlignment = Alignment.Start
     ) {
         when(toolbarUiState.category) {
-            ToolbarUiState.Category.TOOL_CONFIG -> ToolbarConfigurationSection(
+            ToolbarUiState.Category.TOOL_CONFIG -> ToolbarSectionOperationConfigs(
                 modifier = Modifier
                     .height(IntrinsicSize.Max),
                 timerUiState = investigationStateBundle.timerUiState,
@@ -357,15 +355,15 @@ private fun ColumnScope.Investigation(
                 operationConfigUiActions = operationConfigUiActions
             )
 
-            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysisSection(
+            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarSectionOperationAnalysis(
                 modifier = Modifier,
                 operationDetailsUiState = investigationStateBundle.operationDetailsUiState
             )
 
-            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootstepsVisualizerSection(
+            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarSectionBpmVisualizer(
                 modifier = Modifier,
-                state = investigationStateBundle.toolbarFootstepsVisualizerSectionUiState,
-                actions = toolbarFootstepsVisualizerSectionUiActions
+                state = investigationStateBundle.toolbarSectionBpmVisualizerUiState,
+                actions = toolbarSectionBpmVisualizerUiActions
             )
 
         }
@@ -380,7 +378,7 @@ private fun RowScope.Investigation(
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
-    toolbarFootstepsVisualizerSectionUiActions: ToolbarFootstepsVisualizerSectionUiActions
+    toolbarSectionBpmVisualizerUiActions: ToolbarSectionBpmVisualizerUiActions
 ) {
 
     val journalStateBundle = investigationStateBundle.journalStateBundle
@@ -399,7 +397,7 @@ private fun RowScope.Investigation(
         horizontalAlignment = Alignment.Start
     ) {
         when(toolbarUiState.category) {
-            ToolbarUiState.Category.TOOL_CONFIG -> ToolbarConfigurationSection(
+            ToolbarUiState.Category.TOOL_CONFIG -> ToolbarSectionOperationConfigs(
                 modifier = Modifier
                     .height(IntrinsicSize.Max),
                 timerUiState = investigationStateBundle.timerUiState,
@@ -408,15 +406,15 @@ private fun RowScope.Investigation(
                 sanityUiState = investigationStateBundle.sanityUiState,
                 operationConfigUiActions = operationConfigUiActions
             )
-            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarOperationAnalysisSection(
+            ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarSectionOperationAnalysis(
                 modifier = Modifier
                     .wrapContentHeight(align = Alignment.Bottom),
                 operationDetailsUiState = investigationStateBundle.operationDetailsUiState
             )
-            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarFootstepsVisualizerSection(
+            ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarSectionBpmVisualizer(
                 modifier = Modifier,
-                state = investigationStateBundle.toolbarFootstepsVisualizerSectionUiState,
-                actions = toolbarFootstepsVisualizerSectionUiActions
+                state = investigationStateBundle.toolbarSectionBpmVisualizerUiState,
+                actions = toolbarSectionBpmVisualizerUiActions
             )
 
         }
