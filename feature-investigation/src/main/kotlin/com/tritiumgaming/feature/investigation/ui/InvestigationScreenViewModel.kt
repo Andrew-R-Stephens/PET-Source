@@ -148,8 +148,6 @@ class InvestigationScreenViewModel private constructor(
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
-    /*private val _operationSanityUiState = MutableStateFlow(OperationSanityUiState())
-    val operationSanityUiState = _operationSanityUiState.asStateFlow()*/
     private val _operationSanityUiState = combine(
         mapUiState,
         difficultyUiState,
@@ -189,16 +187,6 @@ class InvestigationScreenViewModel private constructor(
         ToolbarSectionBpmVisualizerUiState())
     val footstepVisualizerUiState = _footstepVisualizerUiState.asStateFlow()
 
-    private val _ghostScores: MutableStateFlow<List<GhostScore>> =
-        MutableStateFlow(listOf())
-    val ghostScores = _ghostScores.asStateFlow()
-    private fun initGhostScores() {
-        _ghostScores.update { _ ->
-            ghostEvidences.map { GhostScore(it) }
-        }
-        Log.d("GhostScores", "Creating New")
-    }
-
     private val _ruledEvidence: MutableStateFlow<List<RuledEvidence>> =
         MutableStateFlow(emptyList())
     val ruledEvidence = _ruledEvidence.asStateFlow()
@@ -209,6 +197,16 @@ class InvestigationScreenViewModel private constructor(
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private val _ghostScores: MutableStateFlow<List<GhostScore>> =
+        MutableStateFlow(listOf())
+    val ghostScores = _ghostScores.asStateFlow()
+    private fun initGhostScores() {
+        _ghostScores.update { _ ->
+            ghostEvidences.map { GhostScore(it) }
+        }
+        Log.d("GhostScores", "Creating New")
     }
 
     /** Order of Ghost IDs **/
@@ -286,28 +284,6 @@ class InvestigationScreenViewModel private constructor(
             )
         }
     }
-
-    /*
-     * Operation Sanity Ui Functions
-     */
-    /*private fun initOperationSanityUiState() {
-        val mapModifier = try {
-            getMapModifierUseCase(
-                mapUiState.value.size.ordinal,
-                phaseUiState.value.currentPhase
-            ).getOrThrow()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            1f
-        }
-
-        _operationSanityUiState.update {
-            OperationSanityUiState(
-                sanityMax = SanityLevel.MAX_SANITY,
-                drainModifier = mapModifier * difficultyUiState.value.modifier
-            )
-        }
-    }*/
 
     /*
      * Player Sanity Ui Functions
@@ -512,7 +488,7 @@ class InvestigationScreenViewModel private constructor(
         ruling: Ruling
     ) {
         _ruledEvidence.update {
-            ruledEvidence.value.map { e ->
+            it.map { e ->
                 if (evidence.id == e.evidence.id)
                     e.copy(ruling = ruling)
                 else e
@@ -570,25 +546,6 @@ class InvestigationScreenViewModel private constructor(
                     responseType = responseType
                 )
             }
-
-            /*val mapModifier = try {
-                getMapModifierUseCase(
-                    _mapUiState.value.size.ordinal,
-                    phaseUiState.value.currentPhase
-                ).getOrThrow()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                1f
-            }
-
-            val drainModifier = mapModifier * difficultyUiState.value.modifier
-
-            _operationSanityUiState.update {
-                it.copy(
-                    sanityMax = difficultyUiState.value.initialSanity,
-                    drainModifier = drainModifier
-                )
-            }*/
 
             _playerSanityUiState.update {
                 it.copy(
@@ -822,25 +779,6 @@ class InvestigationScreenViewModel private constructor(
 
                 updatePhase()
 
-                /*val mapModifier = try {
-                    getMapModifierUseCase(
-                        _mapUiState.value.size.ordinal,
-                        phaseUiState.value.currentPhase
-                    ).getOrThrow()
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    1f
-                }
-
-                val drainModifier = mapModifier * difficultyUiState.value.modifier
-
-                _operationSanityUiState.update {
-                    it.copy(
-                        sanityMax = difficultyUiState.value.initialSanity,
-                        drainModifier = drainModifier
-                    )
-                }*/
-
             }
         }
     }
@@ -940,22 +878,6 @@ class InvestigationScreenViewModel private constructor(
                 )
             }
 
-            /*val mapModifier = try {
-                getMapModifierUseCase(
-                    _mapUiState.value.size.ordinal,
-                    phaseUiState.value.currentPhase
-                ).getOrThrow()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                1f
-            }
-
-            _operationSanityUiState.update {
-                it.copy(
-                    sanityMax = difficultyUiState.value.initialSanity,
-                    drainModifier = mapModifier * difficultyUiState.value.modifier
-                )
-            }*/
             Log.e("InvestigationViewModel", "Set map index success")
 
         } catch (e: Exception) {
@@ -1005,21 +927,18 @@ class InvestigationScreenViewModel private constructor(
         _footstepVisualizerUiState.update {
             it.copy(state = data)
         }
-        //reorderGhostScores()
     }
 
     fun setBpmMeasurementType(type: VisualizerMeasurementType) {
         _footstepVisualizerUiState.update {
             it.copy(measurementType = type)
         }
-        //reorderGhostScores()
     }
 
     fun toggleApplyBpmMeasurement() {
         _footstepVisualizerUiState.update {
             it.copy(applyMeasurement = !it.applyMeasurement)
         }
-        //reorderGhostScores()
     }
 
     init {
@@ -1031,12 +950,10 @@ class InvestigationScreenViewModel private constructor(
         initPhaseUiState()
         initTimerUiState()
 
-        //initOperationSanityUiState()
         initPlayerSanityUiState()
 
         initGhostScores()
         initRuledEvidence()
-        //reorderGhostScores()
     }
 
     companion object {

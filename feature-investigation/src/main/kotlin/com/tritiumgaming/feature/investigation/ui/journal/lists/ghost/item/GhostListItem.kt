@@ -166,12 +166,12 @@ fun LazyItemScope.GhostListItem(
             horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.CenterHorizontally),
         ) {
 
-            val allEvidence = ghostScore?.ghostEvidence
-            val evidenceList = allEvidence?.normalEvidenceList
-            val strictEvidenceList = allEvidence?.strictEvidenceList
+            val allEvidence = ghostScore.ghostEvidence
+            val evidenceList = allEvidence.normalEvidenceList
+            val strictEvidenceList = allEvidence.strictEvidenceList
 
             evidenceList
-                ?.sortedWith (
+                .sortedWith (
                     compareBy(
                         { evidence ->
                             ghostListUiItemActions.onGetRuledEvidence(evidence)?.ruling?.ordinal
@@ -181,14 +181,14 @@ fun LazyItemScope.GhostListItem(
                         },
                     )
                 )
-                ?.forEach { normal ->
+                .forEach { normal ->
                     EvidenceIcon(
                         ruledEvidence = ruledEvidence,
                         evidence = normal,
-                        isStrict = strictEvidenceList?.find { strict ->
+                        isStrict = strictEvidenceList.find { strict ->
                             strict.id == normal.id
                         }?.let { true } ?: false,
-                        ghostScore = scoreState?.value ?: 0
+                        ghostScore = scoreState.value
                     )
             }
 
