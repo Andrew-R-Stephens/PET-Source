@@ -150,8 +150,34 @@ class InvestigationScreenViewModel private constructor(
 
     /*private val _operationSanityUiState = MutableStateFlow(OperationSanityUiState())
     val operationSanityUiState = _operationSanityUiState.asStateFlow()*/
-    private val _operationSanityUiState = MutableStateFlow(OperationSanityUiState())
-    val operationSanityUiState = _operationSanityUiState.asStateFlow()
+    private val _operationSanityUiState = combine(
+        mapUiState,
+        difficultyUiState,
+        phaseUiState
+    ) { mapUiState, difficultyUiState, phaseUiState ->
+        val mapModifier = try {
+            val modifier = getMapModifierUseCase(
+                mapUiState.size.ordinal,
+                phaseUiState.currentPhase
+            ).getOrThrow()
+            Log.d("OperationSanityUiState", "got map modifier $modifier")
+            modifier
+        } catch (e: Exception) {
+            e.printStackTrace()
+            1f
+        }
+        Log.d("OperationSanityUiState", "Diff: ${difficultyUiState.modifier} Map Modifier: $mapModifier")
+
+        OperationSanityUiState(
+            sanityMax = difficultyUiState.initialSanity,
+            drainModifier = mapModifier * difficultyUiState.modifier
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = OperationSanityUiState()
+    )
+    val operationSanityUiState = _operationSanityUiState
 
     private val _toolbarUiState = MutableStateFlow(ToolbarUiState())
     val toolbarUiState = _toolbarUiState.asStateFlow()
@@ -264,7 +290,7 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Operation Sanity Ui Functions
      */
-    private fun initOperationSanityUiState() {
+    /*private fun initOperationSanityUiState() {
         val mapModifier = try {
             getMapModifierUseCase(
                 mapUiState.value.size.ordinal,
@@ -281,7 +307,7 @@ class InvestigationScreenViewModel private constructor(
                 drainModifier = mapModifier * difficultyUiState.value.modifier
             )
         }
-    }
+    }*/
 
     /*
      * Player Sanity Ui Functions
@@ -545,7 +571,7 @@ class InvestigationScreenViewModel private constructor(
                 )
             }
 
-            val mapModifier = try {
+            /*val mapModifier = try {
                 getMapModifierUseCase(
                     _mapUiState.value.size.ordinal,
                     phaseUiState.value.currentPhase
@@ -562,7 +588,7 @@ class InvestigationScreenViewModel private constructor(
                     sanityMax = difficultyUiState.value.initialSanity,
                     drainModifier = drainModifier
                 )
-            }
+            }*/
 
             _playerSanityUiState.update {
                 it.copy(
@@ -796,7 +822,7 @@ class InvestigationScreenViewModel private constructor(
 
                 updatePhase()
 
-                val mapModifier = try {
+                /*val mapModifier = try {
                     getMapModifierUseCase(
                         _mapUiState.value.size.ordinal,
                         phaseUiState.value.currentPhase
@@ -813,7 +839,7 @@ class InvestigationScreenViewModel private constructor(
                         sanityMax = difficultyUiState.value.initialSanity,
                         drainModifier = drainModifier
                     )
-                }
+                }*/
 
             }
         }
@@ -914,7 +940,7 @@ class InvestigationScreenViewModel private constructor(
                 )
             }
 
-            val mapModifier = try {
+            /*val mapModifier = try {
                 getMapModifierUseCase(
                     _mapUiState.value.size.ordinal,
                     phaseUiState.value.currentPhase
@@ -929,7 +955,7 @@ class InvestigationScreenViewModel private constructor(
                     sanityMax = difficultyUiState.value.initialSanity,
                     drainModifier = mapModifier * difficultyUiState.value.modifier
                 )
-            }
+            }*/
             Log.e("InvestigationViewModel", "Set map index success")
 
         } catch (e: Exception) {
@@ -1005,7 +1031,7 @@ class InvestigationScreenViewModel private constructor(
         initPhaseUiState()
         initTimerUiState()
 
-        initOperationSanityUiState()
+        //initOperationSanityUiState()
         initPlayerSanityUiState()
 
         initGhostScores()
