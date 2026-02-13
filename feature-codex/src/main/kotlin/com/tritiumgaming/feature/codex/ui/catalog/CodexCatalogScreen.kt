@@ -319,6 +319,7 @@ private fun CodexItemScreenContentPortrait(
                     }
                 }
                 else -> {
+
                     Box(
                         modifier = Modifier
                             .fillMaxSize(),
@@ -423,7 +424,19 @@ private fun CodexItemScreenContentLandscape(
                         )
                     }
                 }
-                else -> { /* DO NOTHING */ }
+                else -> {
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier,
+                            color = LocalPalette.current.codexFamily.codex4
+                        )
+                    }
+                }
             }
 
         }

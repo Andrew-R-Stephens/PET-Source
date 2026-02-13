@@ -21,6 +21,7 @@ import com.tritiumgaming.shared.data.codex.model.possessions.PossessionsType
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -63,7 +64,7 @@ class CodexCatalogScreenViewModel(
     }
 
     fun cacheAllCategories() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             cacheCodexEquipment()
             cacheCodexPossessions()
             cacheCodexAchievements()
@@ -71,7 +72,9 @@ class CodexCatalogScreenViewModel(
     }
 
      private fun cacheCodexEquipment() {
-        val result = fetchCodexEquipmentUseCase()
+
+         if(categoryCache.value.equipment.isNotEmpty()) return
+         val result = fetchCodexEquipmentUseCase()
 
         try {
             val list = result.getOrThrow()
@@ -86,6 +89,7 @@ class CodexCatalogScreenViewModel(
     }
 
     private fun cacheCodexPossessions() {
+        if(categoryCache.value.possessions.isNotEmpty()) return
         val result = fetchCodexPossessionsUseCase()
 
         try {
@@ -101,6 +105,7 @@ class CodexCatalogScreenViewModel(
     }
 
     private fun cacheCodexAchievements() {
+        if(categoryCache.value.achievements.isNotEmpty()) return
         val result = fetchCodexAchievementsUseCase()
 
         try {
