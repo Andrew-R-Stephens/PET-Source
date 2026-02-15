@@ -1,45 +1,78 @@
 package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
 
-import android.util.Log
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toHasLosMultiplierBoolean
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
 
 data class GhostScore(
     val ghostEvidence: GhostEvidence,
+    val score: Int = 0,
+    val manualRejection: Boolean = false,
+    val bpmIsValid: Boolean = false
 ) {
-    private val _score = MutableStateFlow(0)
-    val score = _score.asStateFlow()
-    fun setScore(newScore: Int) {
-        _score.update { newScore }
-    }
 
-    private val _generalRejection = MutableStateFlow(false)
-    val generalRejection = _generalRejection.asStateFlow()
-    fun setForcefullyRejected(reject: Boolean) {
-        _generalRejection.update { reject }
-    }
-    fun toggleForcefullyRejected() {
-        _generalRejection.update { !it }
-    }
-
-    private val _bpmIsValid = MutableStateFlow(false)
-    val bpmIsValid = _bpmIsValid.asStateFlow()
-    private fun setBpmState(state: Boolean) {
-        _bpmIsValid.update { state }
-    }
-
-    fun updateEvidenceScore(
+    fun updateScore(
         ruledEvidence: List<RuledEvidence>,
         currentDifficulty: DifficultyResources.DifficultyType
-    ) {
-        setScore(calculateEvidenceScore(ruledEvidence, currentDifficulty))
+    ): GhostScore {
+        return setScore(score = calculateEvidenceScore(ruledEvidence, currentDifficulty))
+    }
+
+    fun updateBpmValidation(
+        targetBpm: Float
+    ): GhostScore {
+        return setBpmValidation(validateBpm(targetBpm))
+    }
+
+    fun toggleManualRejection(): GhostScore {
+        return this.copy(
+            manualRejection = !manualRejection
+        )
+    }
+
+    /** Resets the Ruling for each Evidence type  */
+    fun resetBpmValidation(): GhostScore {
+        return setBpmValidation(false)
+    }
+
+    /** Resets the Ruling for each Evidence type  */
+    fun resetManualRejection(): GhostScore {
+        return setManualRejection(false)
+    }
+
+    private fun setScore(score: Int): GhostScore {
+        return this.copy(
+            score = score
+        )
+    }
+
+    private fun setManualRejection(state: Boolean): GhostScore {
+        return this.copy(
+            manualRejection = state
+        )
+    }
+
+    private fun setBpmValidation(state: Boolean): GhostScore {
+        return this.copy(
+            bpmIsValid = state
+        )
+    }
+
+    private fun validateBpm(targetBpm: Float): Boolean {
+        val min = ghostEvidence.speed.toMinimumAsInt().toFloat()
+        var max = ghostEvidence.speed.toMaximumAsInt().toFloat()
+        val losMultiplier = ghostEvidence.speed.toHasLosMultiplierBoolean()
+
+        if(max == -1f) max = min
+
+        if(losMultiplier) { max *= 1.65f }
+
+        val isInRange = targetBpm in min..max
+
+        return isInRange
     }
 
     /**
@@ -114,118 +147,6 @@ data class GhostScore(
         }
 
         return posScore
-    }
-
-    /*@Deprecated(level = DeprecationLevel.ERROR, message = "Deprecated")
-    fun getEvidenceScore(
-        currentDifficulty: DifficultyResources.DifficultyType? = DifficultyResources.DifficultyType.AMATEUR,
-        ruledEvidence: List<RuledEvidence> = emptyList(),
-    ): Int {
-
-        val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
-        val isInsanity = currentDifficulty == DifficultyResources.DifficultyType.INSANITY
-
-        val maxPosScore = when {
-            isInsanity -> 1
-            isNightmare -> 2
-            else -> 3
-        }
-
-        var posScore = 0
-        var negScore = 0
-
-        ruledEvidence.forEach { ruledEvidence ->
-            var isContained = false
-            for (normalEvidence in ghostEvidence.normalEvidenceList) {
-                if (ruledEvidence.evidence == normalEvidence) {
-                    isContained = true
-                    break
-                }
-            }
-            if (!isContained) {
-                if (ruledEvidence.isRuling(RuledEvidence.Ruling.POSITIVE)) {
-                    return NORMAL_EVIDENCE_NOT_FOUND } }
-        }
-
-        ghostEvidence.normalEvidenceList.forEachIndexed { index, normalEvidence ->
-
-            val normalRuledEvidence = ruledEvidence.find { it.isEvidence(normalEvidence) }
-
-            normalRuledEvidence?.ruling?.let { ruling: RuledEvidence.Ruling ->
-
-                when (ruling) {
-                    RuledEvidence.Ruling.POSITIVE -> { if (index < 3) { posScore++ } }
-                    RuledEvidence.Ruling.NEGATIVE -> {
-                        if (!(isNightmare || isInsanity)) return NORMAL_NEGATION_MINIMUM_REACHED
-                        negScore++
-                        if (index >= 3) { return NORMAL_NEGATION_MAXIMUM_REACHED }
-                    }
-
-                    RuledEvidence.Ruling.NEUTRAL -> {}
-                }
-            }
-
-        }
-
-        ghostEvidence.strictEvidenceList.forEach { strictEvidence ->
-
-            val strictRuledEvidence = ruledEvidence.find { it.isEvidence(strictEvidence) }
-
-            strictRuledEvidence?.ruling?.let { ruling: RuledEvidence.Ruling ->
-
-                if (ruling == RuledEvidence.Ruling.NEGATIVE) { return STRICT_EVIDENCE_FOUND }
-            }
-        }
-
-        if (posScore > maxPosScore) return POSITIVE_COUNT_OVER_MAXIMUM
-        if (negScore > (3 - maxPosScore)) return NEGATIVE_COUNT_UNDER_MINIMUM
-
-        if (!(isNightmare || isInsanity)) {
-            return posScore - negScore
-        }
-
-        if (posScore == maxPosScore - (3 - ghostEvidence.normalEvidenceList.size)) {
-            ghostEvidence.strictEvidenceList.forEach { strictEvidence ->
-
-                val strictRuledEvidence = ruledEvidence.find {
-                    it.isEvidence(strictEvidence) }
-
-                strictRuledEvidence?.ruling?.let { ruling: RuledEvidence.Ruling ->
-
-                    if (ruling != RuledEvidence.Ruling.POSITIVE) { return STRICT_EVIDENCE_NOT_FOUND }
-                }
-            }
-
-        }
-
-        return posScore
-    }*/
-
-    fun updateBpmScore(bpm: Float) {
-        val min = ghostEvidence.speed.toMinimumAsInt().toFloat()
-        var max = ghostEvidence.speed.toMaximumAsInt().toFloat()
-        val losMultiplier = ghostEvidence.speed.toHasLosMultiplierBoolean()
-
-        if(max == -1f) max = min
-
-        if(losMultiplier) { max *= 1.65f }
-
-        val isInRange = bpm in min..max
-
-        Log.d("GhostScore", "setBpmState: ${ghostEvidence.ghost.id} -> $isInRange -> " +
-                "(min / bpm / max) $min / $bpm / $max")
-
-        setBpmState(isInRange)
-    }
-
-    /** Resets the Ruling for each Evidence type  */
-    fun resetBpmScore() {
-        setBpmState(false)
-    }
-
-    /** Resets the Ruling for each Evidence type  */
-    fun resetNegateScore() {
-        setForcefullyRejected(false)
     }
 
     companion object {

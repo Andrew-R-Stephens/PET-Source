@@ -36,6 +36,7 @@ fun GhostList(
     val ruledEvidence = ghostListUiState.ruledEvidence
 
     LaunchedEffect(ghostOrder) {
+        Log.d("GhostList", "LaunchedEffect: ghostOrder")
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             withContext(Dispatchers.Main.immediate) {
                 listState.animateScrollToItem(0)

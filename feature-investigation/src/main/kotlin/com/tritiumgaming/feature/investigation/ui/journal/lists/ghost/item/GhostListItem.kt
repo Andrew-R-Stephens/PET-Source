@@ -56,10 +56,10 @@ fun LazyItemScope.GhostListItem(
     ghostListUiItemActions: GhostListUiItemActions
 ) {
     if(ghostScore == null) return
-    val scoreState = ghostScore.score.collectAsStateWithLifecycle()
+    val scoreState = ghostScore.score
 
-    val rejectionState = ghostScore.generalRejection.collectAsStateWithLifecycle()
-    val bpmState = ghostScore.bpmIsValid.collectAsStateWithLifecycle()
+    val rejectionState = ghostScore.manualRejection
+    val bpmState = ghostScore.bpmIsValid
 
     val ghostIdStr = ghostScore.ghostEvidence.ghost.id.toStringResource().let {
         stringResource(it)
@@ -83,7 +83,7 @@ fun LazyItemScope.GhostListItem(
                 .width(2.dp)
                 .fillMaxHeight()
                 .background(
-                    if (bpmState.value) {
+                    if (bpmState) {
                         LocalPalette.current.errorContainer
                     } else { Color.Transparent }
                 )
@@ -125,9 +125,9 @@ fun LazyItemScope.GhostListItem(
                 autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, maxFontSize = 36.sp, stepSize = 5.sp)
             )
 
-            scoreState.value.let {
+            scoreState.let {
                 when {
-                    (rejectionState.value) ->
+                    (rejectionState) ->
                         Image(
                             modifier = Modifier.fillMaxSize(),
                             painter = painterResource(id = R.drawable.ic_ev_omit),
@@ -187,7 +187,7 @@ fun LazyItemScope.GhostListItem(
                         isStrict = strictEvidenceList.find { strict ->
                             strict.id == normal.id
                         }?.let { true } ?: false,
-                        ghostScore = scoreState.value
+                        ghostScore = scoreState
                     )
             }
 
