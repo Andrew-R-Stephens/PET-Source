@@ -36,13 +36,14 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.AnalyticsIcon
-import com.tritiumgaming.core.ui.icon.impl.base.SprintIcon
+import com.tritiumgaming.core.ui.icon.impl.base.ConfigIcon
+import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
-import com.tritiumgaming.core.ui.vector.getExitVector
+import com.tritiumgaming.core.ui.vector.getSlidersVector
+import com.tritiumgaming.core.ui.vector.getFootprintsVector
 import com.tritiumgaming.core.ui.vector.getGearVector
-import com.tritiumgaming.core.ui.vector.getInfoVector
 import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
@@ -102,24 +103,20 @@ fun ColumnScope.OperationToolbar(
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
             }
         ){
-            Image(
+            ConfigIcon(
                 modifier = Modifier
                     .fillMaxSize(),
-                imageVector = getGearVector(
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
-                        IconVectorColors.defaults(
-                            fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.primary,
-                        )
-                    } else {
-                        IconVectorColors.defaults(
-                            fillColor =Color.Transparent,
-                            strokeColor = LocalPalette.current.onSurface,
-                        )
-                    }
-                ),
-                contentDescription = null,
-                contentScale = ContentScale.Fit
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary,
+                    )
+                } else {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface,
+                    )
+                }
             )
         }
 
@@ -171,6 +168,30 @@ fun ColumnScope.OperationToolbar(
                 }
             )
         }
+
+        ToolbarItem(
+            modifier = Modifier
+                .size(48.dp),
+            onClick = {
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+            }
+        ){
+            FootprintsIcon(
+                modifier = Modifier
+                    .fillMaxSize(),
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary,
+                    )
+                } else {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface,
+                    )
+                }
+            )
+        }
     }
 }
 
@@ -196,7 +217,7 @@ fun RowScope.OperationToolbar(
                     isCollapsed = toolbarUiState.isCollapsed,
                     icon = R.drawable.ic_arrow_chevron_right,
                     disabledRotationVertical = 90,
-                    disabledRotationHorizontal = 90,
+                    disabledRotationHorizontal = 180,
                     enabledRotationAddition = 180,
                     onClick = { toolbarUiActions.onToggleCollapseToolbar() }
                 )
@@ -228,24 +249,20 @@ fun RowScope.OperationToolbar(
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
             }
         ){
-            Image(
+            ConfigIcon(
                 modifier = Modifier
                     .fillMaxSize(),
-                imageVector = getGearVector(
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
-                        IconVectorColors.defaults(
-                            fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.primary,
-                        )
-                    } else {
-                        IconVectorColors.defaults(
-                            fillColor =Color.Transparent,
-                            strokeColor = LocalPalette.current.onSurface,
-                        )
-                    }
-                ),
-                contentDescription = null,
-                contentScale = ContentScale.Fit
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary,
+                    )
+                } else {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface,
+                    )
+                }
             )
         }
 
@@ -256,24 +273,20 @@ fun RowScope.OperationToolbar(
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
             }
         ){
-            Image(
+            AnalyticsIcon(
                 modifier = Modifier
                     .fillMaxSize(),
-                imageVector = getInfoVector(
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
-                        IconVectorColors.defaults(
-                            fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.primary,
-                        )
-                    } else {
-                        IconVectorColors.defaults(
-                            fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.onSurface,
-                        )
-                    }
-                ),
-                contentDescription = null,
-                contentScale = ContentScale.Fit
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary,
+                    )
+                } else {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface,
+                    )
+                }
             )
         }
 
@@ -284,24 +297,44 @@ fun RowScope.OperationToolbar(
                 toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
             }
         ){
-            Image(
+            StopwatchIcon(
                 modifier = Modifier
                     .fillMaxSize(),
-                imageVector = getExitVector(
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
-                        IconVectorColors.defaults(
-                            fillColor = LocalPalette.current.primary,
-                            strokeColor = Color.Transparent,
-                        )
-                    } else {
-                        IconVectorColors.defaults(
-                            fillColor = Color.Transparent,
-                            strokeColor = LocalPalette.current.onSurface,
-                        )
-                    }
-                ),
-                contentDescription = null,
-                contentScale = ContentScale.Fit
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary,
+                    )
+                } else {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface,
+                    )
+                }
+            )
+        }
+
+        ToolbarItem(
+            modifier = Modifier
+                .size(48.dp),
+            onClick = {
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+            }
+        ){
+            FootprintsIcon(
+                modifier = Modifier
+                    .fillMaxSize(),
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.primary,
+                        strokeColor = LocalPalette.current.primary,
+                    )
+                } else {
+                    IconVectorColors.defaults(
+                        fillColor = LocalPalette.current.onSurface,
+                        strokeColor = LocalPalette.current.onSurface,
+                    )
+                }
             )
         }
     }

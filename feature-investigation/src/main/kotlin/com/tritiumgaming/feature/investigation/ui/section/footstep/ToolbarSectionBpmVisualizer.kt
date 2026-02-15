@@ -23,6 +23,10 @@ import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
+import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
+import com.tritiumgaming.core.ui.icon.impl.base.SpeedIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiColors
@@ -34,6 +38,7 @@ import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.Bp
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerColorBundle
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerStateBundle
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.toolbar.impl.ModifiersButton
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -45,10 +50,10 @@ fun ToolbarSectionBpmVisualizer(
 
     val bpmVisualizerStateBundle = BpmVisualizerStateBundle(
         alpha = .5f,
-        range = 360,
+        range = 300,
         domain = 10.seconds.inWholeMilliseconds,
         domainInterval = 10f,
-        rangeInterval = 120f,
+        rangeInterval = 60f,
         domainSampleInterval = 3.seconds.inWholeMilliseconds
     )
 
@@ -154,23 +159,27 @@ fun ToolbarSectionBpmVisualizer(
                        actions.onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
                    }
             ) {
-                Icon(
+                SpeedIcon(
                     modifier = Modifier
-                        .size(48.dp)
+                        .size(32.dp)
                         .padding(8.dp),
-                    tint = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(state.measurementType,
-                            VisualizerMeasurementType.INSTANT)
-                    ),
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_circle_check),
-                    contentDescription = null
+                    colors = IconVectorColors(
+                        fillColor = LocalPalette.current.onSurface.copy(
+                            alpha = alpha(state.measurementType,
+                                VisualizerMeasurementType.INSTANT)
+                        ),
+                        strokeColor = LocalPalette.current.onSurface.copy(
+                            alpha = alpha(state.measurementType,
+                                VisualizerMeasurementType.INSTANT)
+                        )
+                    )
                 )
 
                 Text(
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentHeight(),
-                    text = "${state.state.smoothed}",
+                    text = "%.1f".format(state.state.smoothed / 60f),
                     color = LocalPalette.current.onSurface
                 )
             }
@@ -182,23 +191,27 @@ fun ToolbarSectionBpmVisualizer(
                        actions.onChangeMeasurementType(VisualizerMeasurementType.AVERAGED)
                    }
             ) {
-                Icon(
+                SpeedBIcon(
                     modifier = Modifier
-                        .size(48.dp)
+                        .size(32.dp)
                         .padding(8.dp),
-                    tint = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(state.measurementType,
-                            VisualizerMeasurementType.AVERAGED)
-                    ),
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_circle_question),
-                    contentDescription = null
+                    colors = IconVectorColors(
+                        fillColor = LocalPalette.current.onSurface.copy(
+                            alpha = alpha(state.measurementType,
+                                VisualizerMeasurementType.AVERAGED)
+                        ),
+                        strokeColor = LocalPalette.current.onSurface.copy(
+                            alpha = alpha(state.measurementType,
+                                VisualizerMeasurementType.AVERAGED)
+                        )
+                    )
                 )
 
                 Text(
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentHeight(),
-                    text = "${state.state.points.tail?.data?.avg?.let { it }}",
+                    text = "%.1f".format((state.state.points.tail?.data?.avg ?: 0f) / 60f),
                     color = LocalPalette.current.onSurface
                 )
             }
@@ -210,23 +223,27 @@ fun ToolbarSectionBpmVisualizer(
                        actions.onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED)
                    }
             ) {
-                Icon(
+                SpeedBBIcon(
                     modifier = Modifier
-                        .size(48.dp)
+                        .size(32.dp)
                         .padding(8.dp),
-                    tint = LocalPalette.current.onSurface.copy(
-                        alpha = alpha(state.measurementType,
-                            VisualizerMeasurementType.WEIGHTED)
-                    ),
-                    imageVector = ImageVector.vectorResource(R.drawable.ic_circle_cancel),
-                    contentDescription = null
+                    colors = IconVectorColors(
+                        fillColor = LocalPalette.current.onSurface.copy(
+                            alpha = alpha(state.measurementType,
+                                VisualizerMeasurementType.WEIGHTED)
+                        ),
+                        strokeColor = LocalPalette.current.onSurface.copy(
+                            alpha = alpha(state.measurementType,
+                                VisualizerMeasurementType.WEIGHTED)
+                        )
+                    )
                 )
 
                 Text(
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentHeight(),
-                    text = "${state.state.points.tail?.data?.weightedAvg?.let { it }}",
+                    text = "%.1f".format((state.state.points.tail?.data?.weightedAvg?: 0f) / 60f),
                     color = LocalPalette.current.onSurface
                 )
             }

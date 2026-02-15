@@ -1,11 +1,8 @@
 package com.tritiumgaming.feature.investigation.app.mappers.ghost
 
 import androidx.annotation.DrawableRes
-import androidx.annotation.FractionRes
-import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
@@ -236,9 +233,9 @@ fun GhostSpeed.toMinimumAsInt(): Int =
     when (this) {
         GhostSpeed.BANSHEE -> 102
         GhostSpeed.DAYAN -> 72
-        GhostSpeed.DEMON -> 24
-        GhostSpeed.DEOGEN -> 102
-        GhostSpeed.GALLU -> 22
+        GhostSpeed.DEMON -> 102
+        GhostSpeed.DEOGEN -> 24
+        GhostSpeed.GALLU -> 81
         GhostSpeed.GORYO -> 102
         GhostSpeed.HANTU -> 84
         GhostSpeed.JINN -> 102
@@ -267,9 +264,9 @@ fun GhostSpeed.toMaximumAsInt(): Int =
     when (this) {
         GhostSpeed.BANSHEE -> -1
         GhostSpeed.DAYAN -> 135
-        GhostSpeed.DEMON -> 180
-        GhostSpeed.DEOGEN -> -1
-        GhostSpeed.GALLU -> 117
+        GhostSpeed.DEMON -> -1
+        GhostSpeed.DEOGEN -> 180
+        GhostSpeed.GALLU -> 118
         GhostSpeed.GORYO -> -1
         GhostSpeed.HANTU -> 162
         GhostSpeed.JINN -> 150
@@ -277,7 +274,7 @@ fun GhostSpeed.toMaximumAsInt(): Int =
         GhostSpeed.MOROI -> 135
         GhostSpeed.MYLING -> -1
         GhostSpeed.OBAKE -> -1
-        GhostSpeed.OBAMBO -> 117
+        GhostSpeed.OBAMBO -> 118
         GhostSpeed.ONI -> -1
         GhostSpeed.ONRYO -> -1
         GhostSpeed.PHANTOM -> -1
@@ -294,7 +291,7 @@ fun GhostSpeed.toMaximumAsInt(): Int =
         GhostSpeed.YUREI -> -1
     }
 
-fun GhostSpeed.toLosBoolean(): Boolean =
+fun GhostSpeed.toHasLosMultiplierBoolean(): Boolean =
       when (this) {
         GhostSpeed.BANSHEE -> true
         GhostSpeed.DAYAN -> false

@@ -5,17 +5,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
-import com.tritiumgaming.core.ui.vector.getConfigVector
+import com.tritiumgaming.core.ui.vector.getSlidersVector
 
 @Composable
-fun ConfigIcon(
+fun SlidersIcon(
     modifier: Modifier = Modifier,
     colors: IconVectorColors = IconVectorColors.defaults()
 ) {
 
     Image(
         modifier = modifier,
-        imageVector = getConfigVector(colors),
+        imageVector = getSlidersVector(colors),
         contentDescription = null,
         contentScale = ContentScale.Fit
     )

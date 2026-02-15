@@ -11,7 +11,9 @@ import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 
-fun getExitVector(colors: IconVectorColors = IconVectorColors.defaults()): ImageVector =
+fun getExitVector(
+    colors: IconVectorColors = IconVectorColors.defaults()
+): ImageVector =
     Builder(
         name = "IconExit",
         defaultWidth = 200.0.dp,
