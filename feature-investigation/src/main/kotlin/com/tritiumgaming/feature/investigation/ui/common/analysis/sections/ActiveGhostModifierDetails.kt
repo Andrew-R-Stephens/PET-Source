@@ -25,12 +25,12 @@ fun ActiveGhostModifierDetails(
 ) {
     var rememberFilteredGhosts = ghostScores.filter { score ->
             score.score.value >= 0 &&
-                    !score.forcefullyRejected.value }
+                    !score.generalRejection.value }
 
     LaunchedEffect(ghostOrder) {
         rememberFilteredGhosts = ghostScores.filter { score ->
             score.score.value >= 0 &&
-                    !score.forcefullyRejected.value }
+                    !score.generalRejection.value }
     }
 
     ExpandableCategoryColumn(

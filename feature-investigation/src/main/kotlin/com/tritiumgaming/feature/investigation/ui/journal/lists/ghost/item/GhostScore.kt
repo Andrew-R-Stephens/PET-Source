@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
 
 import android.util.Log
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toLosBoolean
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toHasLosMultiplierBoolean
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
@@ -20,19 +20,19 @@ data class GhostScore(
         _score.update { newScore }
     }
 
-    private val _forcefullyRejected = MutableStateFlow(false)
-    val forcefullyRejected = _forcefullyRejected.asStateFlow()
+    private val _generalRejection = MutableStateFlow(false)
+    val generalRejection = _generalRejection.asStateFlow()
     fun setForcefullyRejected(reject: Boolean) {
-        _forcefullyRejected.update { reject }
+        _generalRejection.update { reject }
     }
     fun toggleForcefullyRejected() {
-        _forcefullyRejected.update { !it }
+        _generalRejection.update { !it }
     }
 
-    private val _bpmState = MutableStateFlow(false)
-    val bpmState = _bpmState.asStateFlow()
+    private val _bpmIsValid = MutableStateFlow(false)
+    val bpmIsValid = _bpmIsValid.asStateFlow()
     private fun setBpmState(state: Boolean) {
-        _bpmState.update { state }
+        _bpmIsValid.update { state }
     }
 
     fun updateEvidenceScore(
@@ -204,7 +204,7 @@ data class GhostScore(
     fun updateBpmScore(bpm: Float) {
         val min = ghostEvidence.speed.toMinimumAsInt().toFloat()
         var max = ghostEvidence.speed.toMaximumAsInt().toFloat()
-        val losMultiplier = ghostEvidence.speed.toLosBoolean()
+        val losMultiplier = ghostEvidence.speed.toHasLosMultiplierBoolean()
 
         if(max == -1f) max = min
 

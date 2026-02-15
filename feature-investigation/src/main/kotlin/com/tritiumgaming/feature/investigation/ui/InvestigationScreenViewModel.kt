@@ -22,7 +22,6 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyInitialSanityUseCase
@@ -236,7 +235,7 @@ class InvestigationScreenViewModel private constructor(
             } else { ghostScore.resetBpmScore() }
         }
 
-        ghostScores.sortedByDescending { it.bpmState.value }
+        ghostScores.sortedByDescending { it.bpmIsValid.value }
             .sortedByDescending { it.score.value }
             .map { it.ghostEvidence.ghost.id }
 

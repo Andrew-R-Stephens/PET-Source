@@ -20,7 +20,6 @@ import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -59,8 +58,8 @@ fun LazyItemScope.GhostListItem(
     if(ghostScore == null) return
     val scoreState = ghostScore.score.collectAsStateWithLifecycle()
 
-    val rejectionState = ghostScore.forcefullyRejected.collectAsStateWithLifecycle()
-    val bpmState = ghostScore.bpmState.collectAsStateWithLifecycle()
+    val rejectionState = ghostScore.generalRejection.collectAsStateWithLifecycle()
+    val bpmState = ghostScore.bpmIsValid.collectAsStateWithLifecycle()
 
     val ghostIdStr = ghostScore.ghostEvidence.ghost.id.toStringResource().let {
         stringResource(it)
