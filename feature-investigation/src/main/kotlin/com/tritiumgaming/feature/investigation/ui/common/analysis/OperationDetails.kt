@@ -23,8 +23,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 
 @Composable
 fun OperationDetails(
@@ -49,7 +49,7 @@ fun OperationDetails(
         )
         _root_ide_package_.com.tritiumgaming.feature.investigation.ui.common.analysis.sections.ActiveGhostModifierDetails(
             ghostOrder = operationDetailsUiState.ghostOrder,
-            ghostScores = operationDetailsUiState.ghostScores
+            ghostStates = operationDetailsUiState.ghostStates
         )
     }
 

@@ -5,8 +5,8 @@ import com.tritiumgaming.feature.investigation.ui.MapUiState
 import com.tritiumgaming.feature.investigation.ui.PhaseUiState
 import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostScore
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
+import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
+import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 
 class OperationDetailsUiState(
@@ -15,7 +15,7 @@ class OperationDetailsUiState(
     val difficultyUiState: DifficultyUiState,
     val timerUiState: TimerUiState,
     val sanityUiState: PlayerSanityUiState,
-    val ghostScores: List<GhostScore> = emptyList(),
+    val ghostStates: List<GhostState> = emptyList(),
     val ghostOrder: List<GhostResources.GhostIdentifier>,
-    val ruledEvidence: List<RuledEvidence>,
+    val evidenceState: List<EvidenceState>,
 )

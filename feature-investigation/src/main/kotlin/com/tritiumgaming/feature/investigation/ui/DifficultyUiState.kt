@@ -1,8 +1,8 @@
 package com.tritiumgaming.feature.investigation.ui
 
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 
 data class DifficultyUiState(
     internal val index: Int = 0,

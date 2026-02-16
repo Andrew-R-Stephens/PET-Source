@@ -11,20 +11,20 @@ class EvidenceRepositoryImpl(
     val evidenceLocalDataSource: EvidenceDataSource
 ): EvidenceRepository {
 
-    override fun fetchEvidenceType(): Result<List<EvidenceType>> {
-        val result = evidenceLocalDataSource.get()
-
-        result.exceptionOrNull()?.printStackTrace()
-
-        return result.map { it.toEvidenceType() }
-    }
-
-    override fun fetchEvidence(): Result<List<Evidence>> {
+    override fun fetchEvidences(): Result<List<Evidence>> {
         val result = evidenceLocalDataSource.get()
 
         result.exceptionOrNull()?.printStackTrace()
 
         return result.map { it.toDomain() }
+    }
+
+    override fun fetchEvidenceTypes(): Result<List<EvidenceType>> {
+        val result = evidenceLocalDataSource.get()
+
+        result.exceptionOrNull()?.printStackTrace()
+
+        return result.map { it.toEvidenceType() }
     }
 
 }

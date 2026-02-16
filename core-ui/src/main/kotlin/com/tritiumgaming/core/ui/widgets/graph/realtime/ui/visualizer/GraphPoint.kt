@@ -1,6 +1,6 @@
 package com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer
 
-data class PointRecord(
+data class GraphPoint(
     val pX: Long,
     val pY: Float,
     val avg: Float = 0f,

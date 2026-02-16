@@ -46,7 +46,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
 import org.jetbrains.annotations.TestOnly
 
 @Composable
@@ -140,7 +140,7 @@ private fun EvidenceRow(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
 
-            for (ruling in Ruling.entries) {
+            for (ruling in EvidenceValidationType.entries) {
 
                 Button(
                     modifier = Modifier
@@ -161,7 +161,7 @@ private fun EvidenceRow(
                     shape = CircleShape,
                     content = {
                         RulingIcon(
-                            ruling = ruling,
+                            evidenceValidationType = ruling,
                             isSelected = evidenceListItemUiState.state.ordinal == ruling.ordinal
                         )
                     }
@@ -222,7 +222,7 @@ private fun EvidenceColumn(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
 
-            for (ruling in Ruling.entries) {
+            for (ruling in EvidenceValidationType.entries) {
 
                 Button(
                     modifier = Modifier
@@ -246,7 +246,7 @@ private fun EvidenceColumn(
                         RulingIcon(
                             modifier = Modifier
                                 .fillMaxSize(.9f),
-                            ruling = ruling,
+                            evidenceValidationType = ruling,
                             isSelected = evidenceListItemUiState.state.ordinal == ruling.ordinal,
                         )
                     }
@@ -261,18 +261,18 @@ private fun EvidenceColumn(
 @Composable
 private fun RowScope.RulingIcon(
     modifier: Modifier = Modifier,
-    ruling: Ruling = Ruling.NEUTRAL,
+    evidenceValidationType: EvidenceValidationType = EvidenceValidationType.NEUTRAL,
     isSelected: Boolean = false
 ) {
 
-    val onSelectedColor = when (ruling) {
-        Ruling.NEGATIVE -> LocalPalette.current.primary
-        Ruling.NEUTRAL -> LocalPalette.current.onSurface
-        Ruling.POSITIVE -> LocalPalette.current.tertiary
+    val onSelectedColor = when (evidenceValidationType) {
+        EvidenceValidationType.NEGATIVE -> LocalPalette.current.primary
+        EvidenceValidationType.NEUTRAL -> LocalPalette.current.onSurface
+        EvidenceValidationType.POSITIVE -> LocalPalette.current.tertiary
     }
     val onUnselectedColor = LocalPalette.current.onSurface
 
-    ruling.let { ruling ->
+    evidenceValidationType.let { ruling ->
         Box(
             modifier = modifier
                 .align(Alignment.CenterVertically)
@@ -283,9 +283,9 @@ private fun RowScope.RulingIcon(
                     .padding(4.dp),
                 painter = painterResource(
                     id = when(ruling) {
-                        Ruling.NEGATIVE -> R.drawable.ic_selector_neg_unsel
-                        Ruling.NEUTRAL -> R.drawable.ic_selector_inc_unsel
-                        Ruling.POSITIVE -> R.drawable.ic_selector_pos_unsel
+                        EvidenceValidationType.NEGATIVE -> R.drawable.ic_selector_neg_unsel
+                        EvidenceValidationType.NEUTRAL -> R.drawable.ic_selector_inc_unsel
+                        EvidenceValidationType.POSITIVE -> R.drawable.ic_selector_pos_unsel
                     }
                 ),
                 contentScale = ContentScale.Fit,
@@ -327,19 +327,19 @@ private fun RulingIconPreview() {
             RulingIcon(
                 modifier = Modifier
                     .weight(1f),
-                ruling = Ruling.NEGATIVE,
+                evidenceValidationType = EvidenceValidationType.NEGATIVE,
                 isSelected = true
             )
             RulingIcon(
                 modifier = Modifier
                     .weight(1f),
-                ruling = Ruling.NEUTRAL,
+                evidenceValidationType = EvidenceValidationType.NEUTRAL,
                 isSelected = false
             )
             RulingIcon(
                 modifier = Modifier
                     .weight(1f),
-                ruling = Ruling.POSITIVE,
+                evidenceValidationType = EvidenceValidationType.POSITIVE,
                 isSelected = false
             )
         }
@@ -368,21 +368,21 @@ private fun EvidenceItemPreview() {
                         EvidenceListItem(
                             evidenceListItemUiState = EvidenceListItemUiState(
                                 label = "Test",
-                                state = Ruling.NEGATIVE
+                                state = EvidenceValidationType.NEGATIVE
                             ),
                             evidenceListItemUiAction = EvidenceListItemUiAction()
                         )
                         EvidenceListItem(
                             evidenceListItemUiState = EvidenceListItemUiState(
                                 label = "Test",
-                                state = Ruling.NEUTRAL
+                                state = EvidenceValidationType.NEUTRAL
                             ),
                             evidenceListItemUiAction = EvidenceListItemUiAction()
                         )
                         EvidenceListItem(
                             evidenceListItemUiState = EvidenceListItemUiState(
                                 label = "Test",
-                                state = Ruling.POSITIVE
+                                state = EvidenceValidationType.POSITIVE
                             ),
                             evidenceListItemUiAction = EvidenceListItemUiAction()
                         )

@@ -31,7 +31,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkPriorityCircleIcon
@@ -40,28 +39,28 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.shared.data.evidence.model.EvidenceState
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.NEGATIVE
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.NEUTRAL
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.POSITIVE
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling.NEGATIVE
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling.NEUTRAL
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling.POSITIVE
 
 @Composable
 fun LazyItemScope.GhostListItem(
     modifier: Modifier = Modifier,
-    ruledEvidence: List<RuledEvidence>,
-    ghostScore: GhostScore? = null,
-    label: String = ghostScore?.let {
-        stringResource(ghostScore.ghostEvidence.ghost.name.toStringResource()) } ?: "Test",
+    evidenceState: List<EvidenceState>,
+    ghostState: GhostState? = null,
+    label: String = ghostState?.let {
+        stringResource(ghostState.ghostEvidence.ghost.name.toStringResource()) } ?: "Test",
     ghostListUiItemActions: GhostListUiItemActions
 ) {
-    if(ghostScore == null) return
-    val scoreState = ghostScore.score
+    if(ghostState == null) return
+    val scoreState = ghostState.score
 
-    val rejectionState = ghostScore.manualRejection
-    val bpmState = ghostScore.bpmIsValid
+    val rejectionState = ghostState.manualRejection
+    val bpmState = ghostState.bpmIsValid
 
-    val ghostIdStr = ghostScore.ghostEvidence.ghost.id.toStringResource().let {
+    val ghostIdStr = ghostState.ghostEvidence.ghost.id.toStringResource().let {
         stringResource(it)
     }
     val strikethroughIcon = when(ghostIdStr.toFloat().rem(3f)) {
@@ -97,9 +96,9 @@ fun LazyItemScope.GhostListItem(
                 .pointerInput(Unit) {
                     detectHorizontalDragGestures(
                         onDragEnd = {
-                            ghostScore.let {
+                            ghostState.let {
                                 ghostListUiItemActions.onToggleNegateGhost(
-                                    ghostScore.ghostEvidence.ghost
+                                    ghostState.ghostEvidence.ghost
                                 )
                             }
                         }
@@ -165,7 +164,7 @@ fun LazyItemScope.GhostListItem(
             horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.CenterHorizontally),
         ) {
 
-            val allEvidence = ghostScore.ghostEvidence
+            val allEvidence = ghostState.ghostEvidence
             val evidenceList = allEvidence.normalEvidenceList
             val strictEvidenceList = allEvidence.strictEvidenceList
 
@@ -173,7 +172,7 @@ fun LazyItemScope.GhostListItem(
                 .sortedWith (
                     compareBy(
                         { evidence ->
-                            ghostListUiItemActions.onGetRuledEvidence(evidence)?.ruling?.ordinal
+                            ghostListUiItemActions.onGetEvidenceState(evidence)?.state?.ordinal
                         },
                         { evidence ->
                             evidence.id
@@ -182,7 +181,7 @@ fun LazyItemScope.GhostListItem(
                 )
                 .forEach { normal ->
                     EvidenceIcon(
-                        ruledEvidence = ruledEvidence,
+                        evidenceState = evidenceState,
                         evidence = normal,
                         isStrict = strictEvidenceList.find { strict ->
                             strict.id == normal.id
@@ -197,13 +196,13 @@ fun LazyItemScope.GhostListItem(
 
 @Composable
 private fun RowScope.EvidenceIcon(
-    ruledEvidence: List<RuledEvidence>,
+    evidenceState: List<EvidenceState>,
     evidence: EvidenceType,
     ghostScore: Int,
     isStrict: Boolean = false
 ) {
 
-    val evidenceRuling = ruledEvidence.find { it.evidence.id == evidence.id }?.ruling
+    val evidenceRuling = evidenceState.find { it.evidence.id == evidence.id }?.state
 
     Box(
         modifier = Modifier
@@ -226,7 +225,7 @@ private fun RowScope.EvidenceIcon(
             )
         )
 
-        val strictlyNegative = ghostScore == GhostScore.STRICT_EVIDENCE_NOT_FOUND
+        val strictlyNegative = ghostScore == GhostState.STRICT_EVIDENCE_NOT_FOUND
 
         if(isStrict) {
             when (evidenceRuling) {

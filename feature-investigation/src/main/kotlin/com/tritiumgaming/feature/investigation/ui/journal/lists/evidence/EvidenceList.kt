@@ -24,13 +24,13 @@ fun EvidenceList(
     ) {
 
         items(
-            items = evidenceListUiState.ruledEvidenceList,
+            items = evidenceListUiState.evidenceStateList,
             key = { it.evidence.id }
         ) { ruledEvidence ->
 
             EvidenceListItem(
                 evidenceListItemUiState = EvidenceListItemUiState(
-                    state = ruledEvidence.ruling,
+                    state = ruledEvidence.state,
                     label = stringResource(ruledEvidence.evidence.name.toStringResource())
                 ),
                 evidenceListItemUiAction = EvidenceListItemUiAction(

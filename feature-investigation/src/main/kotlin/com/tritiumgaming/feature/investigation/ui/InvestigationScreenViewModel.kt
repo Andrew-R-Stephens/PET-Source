@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.PointRecord
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
@@ -14,9 +14,9 @@ import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostScore
+import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
-import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarSectionBpmVisualizerUiState
+import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
@@ -30,9 +30,9 @@ import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyNameUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyResponseTypeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndexUseCase
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence.Ruling
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.GhostType
@@ -77,6 +77,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.collections.map
 import kotlin.math.max
 import kotlin.math.min
 
@@ -88,7 +89,7 @@ class InvestigationScreenViewModel private constructor(
     private val getGhostUseCase: GetGhostUseCase = journalUseCaseBundle.getGhostUseCase,
     private val fetchGhostTypesUseCase: FetchGhostTypesUseCase = journalUseCaseBundle.fetchGhostTypesUseCase,
     private val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
-    private val initRuledEvidenceUseCase: InitRuledEvidenceUseCase = journalUseCaseBundle.initRuledEvidenceUseCase,
+    private val initEvidenceStateUseCase: InitRuledEvidenceUseCase = journalUseCaseBundle.initRuledEvidenceUseCase,
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
     private val getDifficultyNameUseCase: GetDifficultyNameUseCase,
@@ -162,15 +163,20 @@ class InvestigationScreenViewModel private constructor(
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
-    private val _toolbarUiState = MutableStateFlow(ToolbarUiState())
+    private val _toolbarUiState = MutableStateFlow(
+        ToolbarUiState(
+            isCollapsed = false,
+            category = ToolbarUiState.Category.TOOL_CONFIG,
+            openWidth = 0.5f
+        )
+    )
     val toolbarUiState = _toolbarUiState.asStateFlow()
 
     private val _popupUiState = MutableStateFlow(JournalPopupUiState())
     val popupUiState = _popupUiState.asStateFlow()
 
-    private val _footstepVisualizerUiState = MutableStateFlow(
-        ToolbarSectionBpmVisualizerUiState())
-    val footstepVisualizerUiState = _footstepVisualizerUiState.asStateFlow()
+    private val _bpmToolUiState = MutableStateFlow(BpmToolUiState())
+    val bpmToolUiState = _bpmToolUiState.asStateFlow()
 
     private val _operationSanityUiState = combine(
         mapUiState,
@@ -198,57 +204,55 @@ class InvestigationScreenViewModel private constructor(
     )
     val operationSanityUiState = _operationSanityUiState
 
-    private val _ruledEvidence: MutableStateFlow<List<RuledEvidence>> =
+    private val _evidenceStates: MutableStateFlow<List<EvidenceState>> =
         MutableStateFlow(emptyList())
-    val ruledEvidence = _ruledEvidence.asStateFlow()
-    private fun initRuledEvidence() {
-        try {
-            val evidence = initRuledEvidenceUseCase().getOrThrow()
-            _ruledEvidence.update { evidence }
-            updateGhostScores()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-    /*private fun initRuledEvidence() {
-        initRuledEvidenceUseCase()
-            .onSuccess {
-                _ruledEvidence.update { it }
-                updateGhostScores()
-            }
-            .onFailure {
-                it.printStackTrace()
-            }
-    }*/
+    val evidenceStates = _evidenceStates.asStateFlow()
+    private fun resetEvidenceStates() {
+        _evidenceStates.update {
+            try {
+                fetchEvidenceTypesUseCase().getOrThrow()
+                    .map { evidenceType ->
+                        EvidenceState(
+                            evidence = evidenceType,
+                            state = EvidenceValidationType.NEUTRAL
+                        )
+                    }
 
-    private val _ghostScores = MutableStateFlow(
-        ghostEvidences.map { GhostScore(it) }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emptyList()
+            }
+        }
+        updateGhostScores()
+    }
+    private val _ghostStates = MutableStateFlow(
+        ghostEvidences.map { GhostState(it) }
     )
-    val ghostScores = _ghostScores.asStateFlow()
-    private fun initGhostScores() {
-        _ghostScores.update {
-            ghostEvidences.map { GhostScore(it) }
+    val ghostStates = _ghostStates.asStateFlow()
+    private fun resetGhostStates() {
+        _ghostStates.update {
+            ghostEvidences.map { GhostState(it) }
         }
     }
     private fun updateGhostScores() {
 
-        val currentRuledEvidence = ruledEvidence.value
-        val currentDifficulty = difficultyUiState.value.type
-        val visualizerState = footstepVisualizerUiState.value
+        val ruledEvidence = evidenceStates.value
+        val difficulty = difficultyUiState.value.type
+        val bpmToolUiState = bpmToolUiState.value
 
-        _ghostScores.update { currentScores ->
+        _ghostStates.update { currentScores ->
             currentScores.map { ghostScore ->
 
                 val updatedScore = ghostScore.updateScore(
-                    ruledEvidence = currentRuledEvidence,
-                    currentDifficulty = currentDifficulty
+                    evidenceState = ruledEvidence,
+                    currentDifficulty = difficulty
                 )
 
-                if (visualizerState.applyMeasurement) {
-                    val bpmValue = when (visualizerState.measurementType) {
-                        VisualizerMeasurementType.INSTANT -> visualizerState.state.smoothed
-                        VisualizerMeasurementType.AVERAGED -> visualizerState.state.average
-                        VisualizerMeasurementType.WEIGHTED -> visualizerState.state.weightedAverage
+                if (bpmToolUiState.applyMeasurement) {
+                    val bpmValue = when (bpmToolUiState.measurementType) {
+                        VisualizerMeasurementType.INSTANT -> bpmToolUiState.realtimeState.smoothed
+                        VisualizerMeasurementType.AVERAGED -> bpmToolUiState.realtimeState.average
+                        VisualizerMeasurementType.WEIGHTED -> bpmToolUiState.realtimeState.weightedAverage
                     }
                     updatedScore.updateBpmValidation(bpmValue)
                 } else {
@@ -259,8 +263,8 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /** Order of Ghost IDs **/
-    private val _ghostOrder: StateFlow<List<GhostResources.GhostIdentifier>> =
-        ghostScores.map { ghostScores ->
+    private val _sortedGhosts: StateFlow<List<GhostResources.GhostIdentifier>> =
+        ghostStates.map { ghostScores ->
             ghostScores
                 .sortedByDescending { it.bpmIsValid }
                 .sortedByDescending { it.score }
@@ -270,7 +274,23 @@ class InvestigationScreenViewModel private constructor(
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = ghostEvidences.map { it.ghost.id }
         )
-    val ghostOrder = _ghostOrder
+    /*private val _ghostOrder: StateFlow<List<GhostResources.GhostIdentifier>> =
+        combine(ghostScores, ghostReorderPreference) { scores, isReorderEnabled ->
+            if (isReorderEnabled) {
+                scores.sortedWith(
+                    compareByDescending<GhostScore> { it.bpmIsValid }
+                        .thenByDescending { it.score }
+                ).map { it.ghostEvidence.ghost.id }
+            } else {
+                // Keep original order (as defined in ghostEvidences) if reordering is disabled
+                scores.map { it.ghostEvidence.ghost.id }
+            }
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = ghostEvidences.map { it.ghost.id }
+        )*/
+    val sortedGhosts = _sortedGhosts
 
     /*
      * COROUTINES
@@ -320,16 +340,6 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Toolbar Ui Functions
      */
-    private fun initToolbarUiState() {
-        _toolbarUiState.update {
-            ToolbarUiState(
-                isCollapsed = false,
-                category = ToolbarUiState.Category.TOOL_CONFIG,
-                openWidth = 0.5f
-            )
-        }
-    }
-
     fun toggleToolbarState() {
         _toolbarUiState.update {
             it.copy(
@@ -350,12 +360,6 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Popup Ui Functions
      */
-    private fun initPopupUiState() {
-        _popupUiState.update {
-            JournalPopupUiState()
-        }
-    }
-
     fun clearPopup() {
         try {
             _popupUiState.update {
@@ -469,8 +473,8 @@ class InvestigationScreenViewModel private constructor(
      * Depends on the difficulty configuration
      * */
     fun resetJournal() {
-        initRuledEvidence()
-        initGhostScores()
+        resetEvidenceStates()
+        resetGhostStates()
     }
 
     /*
@@ -480,13 +484,13 @@ class InvestigationScreenViewModel private constructor(
     fun toggleGhostNegation(
         ghostModel: GhostType
     ) {
-        val scores = ghostScores.value.map {
+        val scores = ghostStates.value.map {
             if(it.ghostEvidence.ghost.id == ghostModel.id)
                 it.toggleManualRejection()
             else it
         }
 
-        _ghostScores.update {
+        _ghostStates.update {
             scores
         }
     }
@@ -496,12 +500,12 @@ class InvestigationScreenViewModel private constructor(
     */
     fun setEvidenceRuling(
         evidence: EvidenceType,
-        ruling: Ruling
+        evidenceValidationType: EvidenceValidationType
     ) {
-        _ruledEvidence.update {
+        _evidenceStates.update {
             it.map { e ->
                 if (evidence.id == e.evidence.id)
-                    e.copy(ruling = ruling)
+                    e.copy(state = evidenceValidationType)
                 else e
             }
         }
@@ -510,8 +514,8 @@ class InvestigationScreenViewModel private constructor(
 
     fun getRuledEvidence(
         evidenceModel: EvidenceType
-    ): RuledEvidence? {
-        return ruledEvidence.value.find { it.isEvidence(evidenceModel) }
+    ): EvidenceState? {
+        return evidenceStates.value.find { it.isEvidence(evidenceModel) }
     }
 
     /*
@@ -932,31 +936,28 @@ class InvestigationScreenViewModel private constructor(
     * Footstep Visualizer
     */
 
-    fun setBpmData(data: RealtimeUiState<PointRecord>) {
-        _footstepVisualizerUiState.update {
-            it.copy(state = data)
+    fun setBpmData(data: RealtimeUiState<GraphPoint>) {
+        _bpmToolUiState.update {
+            it.copy(realtimeState = data)
         }
         updateGhostScores()
     }
 
     fun setBpmMeasurementType(type: VisualizerMeasurementType) {
-        _footstepVisualizerUiState.update {
+        _bpmToolUiState.update {
             it.copy(measurementType = type)
         }
         updateGhostScores()
     }
 
     fun toggleApplyBpmMeasurement() {
-        _footstepVisualizerUiState.update {
+        _bpmToolUiState.update {
             it.copy(applyMeasurement = !it.applyMeasurement)
         }
         updateGhostScores()
     }
 
     init {
-        initToolbarUiState()
-        initPopupUiState()
-
         setMapIndex(0)
         updateDifficulty(0)
         initPhaseUiState()
@@ -964,8 +965,7 @@ class InvestigationScreenViewModel private constructor(
 
         initPlayerSanityUiState()
 
-        //initGhostScores()
-        initRuledEvidence()
+        resetEvidenceStates()
         updateGhostScores()
     }
 

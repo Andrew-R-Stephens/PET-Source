@@ -5,8 +5,8 @@ import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanit
 import com.tritiumgaming.feature.investigation.ui.journal.JournalStateBundle
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiState
+import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarSectionBpmVisualizerUiActions
-import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarSectionBpmVisualizerUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 
 data class InvestigationStateBundle(
@@ -20,6 +20,6 @@ data class InvestigationStateBundle(
     val ghostListUiState: GhostListUiState,
     val evidenceListUiState: EvidenceListUiState,
     val operationDetailsUiState: OperationDetailsUiState,
-    val toolbarSectionBpmVisualizerUiState: ToolbarSectionBpmVisualizerUiState,
+    val bpmToolUiState: BpmToolUiState,
     val toolbarSectionBpmVisualizerUiActions: ToolbarSectionBpmVisualizerUiActions
 )

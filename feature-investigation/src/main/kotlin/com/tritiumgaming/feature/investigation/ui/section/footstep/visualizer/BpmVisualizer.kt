@@ -48,7 +48,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.Realtime
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeter
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterUiState
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.PointRecord
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
 import kotlin.time.Duration.Companion.seconds
 
@@ -57,7 +57,7 @@ internal fun BpmVisualizer(
     modifier: Modifier = Modifier,
     stateBundle: BpmVisualizerStateBundle,
     colorBundle: BpmVisualizerColorBundle,
-    actions: BpmVisualizerUiActions<RealtimeUiState<PointRecord>>
+    actions: BpmVisualizerUiActions<RealtimeUiState<GraphPoint>>
 ) {
     val state = stateBundle.visualizerUiState
 
@@ -65,7 +65,7 @@ internal fun BpmVisualizer(
 
     var realtimeUiState by remember {
         mutableStateOf(
-            RealtimeUiState<PointRecord>(
+            RealtimeUiState<GraphPoint>(
                 instant = 0f,
                 smoothed = 0f,
                 potential = 0f,
@@ -177,7 +177,7 @@ internal fun BpmVisualizer(
             intervalBpm = calculateSampleIntervalBPM()
 
             realtimeUiState.points.enqueue(
-                PointRecord(
+                GraphPoint(
                     pX = now,
                     pY = instantBPM,
                     avg = intervalBpm.first,
@@ -346,7 +346,7 @@ private fun Preview() {
                 ) {
 
                     var realtimeUiState by remember{
-                        mutableStateOf(RealtimeUiState<PointRecord>())
+                        mutableStateOf(RealtimeUiState<GraphPoint>())
                     }
 
                     BpmVisualizer(

@@ -7,10 +7,10 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescriptio
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 
 @StringRes fun GhostIdentifier.toStringResource(): Int =
     when (this) {

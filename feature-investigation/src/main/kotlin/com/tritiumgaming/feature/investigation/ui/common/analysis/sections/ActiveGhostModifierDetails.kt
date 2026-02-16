@@ -15,20 +15,20 @@ import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCate
 import com.tritiumgaming.feature.investigation.ui.common.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostScore
+import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 
 @Composable
 fun ActiveGhostModifierDetails(
     ghostOrder: List<GhostResources.GhostIdentifier>,
-    ghostScores: List<GhostScore>
+    ghostStates: List<GhostState>
 ) {
-    var rememberFilteredGhosts = ghostScores.filter { score ->
+    var rememberFilteredGhosts = ghostStates.filter { score ->
             score.score >= 0 &&
                     !score.manualRejection }
 
     LaunchedEffect(ghostOrder) {
-        rememberFilteredGhosts = ghostScores.filter { score ->
+        rememberFilteredGhosts = ghostStates.filter { score ->
             score.score >= 0 &&
                     !score.manualRejection }
     }

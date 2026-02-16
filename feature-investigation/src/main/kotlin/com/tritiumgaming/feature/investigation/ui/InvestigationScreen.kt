@@ -42,9 +42,9 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.Ghost
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
+import com.tritiumgaming.feature.investigation.ui.section.analysis.ToolbarSectionOperationAnalysis
 import com.tritiumgaming.feature.investigation.ui.section.configs.ToolbarSectionOperationConfigs
 import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarSectionBpmVisualizer
-import com.tritiumgaming.feature.investigation.ui.section.analysis.ToolbarSectionOperationAnalysis
 import com.tritiumgaming.feature.investigation.ui.section.footstep.ToolbarSectionBpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
@@ -91,25 +91,25 @@ private fun InvestigationContent(
     val difficultyUiState by investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
 
-    val ghostScores by investigationViewModel.ghostScores.collectAsStateWithLifecycle()
-    val ghostOrder by investigationViewModel.ghostOrder.collectAsStateWithLifecycle()
-    val ruledEvidence by investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
+    val ghostStates by investigationViewModel.ghostStates.collectAsStateWithLifecycle()
+    val ghostOrder by investigationViewModel.sortedGhosts.collectAsStateWithLifecycle()
+    val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
 
     val toolbarFootstepsVisualizerSectionUiState by investigationViewModel
-        .footstepVisualizerUiState.collectAsStateWithLifecycle()
+        .bpmToolUiState.collectAsStateWithLifecycle()
 
     val journalUiState = JournalUiState(
         rtlPreference = investigationViewModel.rTLPreference
     )
 
     val ghostListUiState = GhostListUiState(
-        ghostScores = ghostScores,
+        ghostStates = ghostStates,
         ghostOrder = ghostOrder,
-        ruledEvidence = ruledEvidence
+        evidenceState = evidenceStates
     )
 
     val evidenceListUiState = EvidenceListUiState(
-        ruledEvidenceList = ruledEvidence
+        evidenceStateList = evidenceStates
     )
 
     val ghostListUiActions = GhostListUiActions(
@@ -118,7 +118,7 @@ private fun InvestigationContent(
     )
 
     val ghostListUiItemActions = GhostListUiItemActions(
-        onGetRuledEvidence = { evidenceType ->
+        onGetEvidenceState = { evidenceType ->
             investigationViewModel.getRuledEvidence(evidenceType)
         },
         onToggleNegateGhost = { ghostType ->
@@ -132,9 +132,9 @@ private fun InvestigationContent(
         difficultyUiState = difficultyUiState,
         timerUiState = timerUiState,
         sanityUiState = sanityUiState,
-        ghostScores = ghostScores,
+        ghostStates = ghostStates,
         ghostOrder = ghostOrder,
-        ruledEvidence = ruledEvidence
+        evidenceState = evidenceStates
     )
 
     val toolbarUiActions = ToolbarUiActions(
@@ -185,7 +185,7 @@ private fun InvestigationContent(
         ghostListUiState = ghostListUiState,
         evidenceListUiState = evidenceListUiState,
         operationDetailsUiState = operationDetailsUiState,
-        toolbarSectionBpmVisualizerUiState = toolbarFootstepsVisualizerSectionUiState,
+        bpmToolUiState = toolbarFootstepsVisualizerSectionUiState,
         toolbarSectionBpmVisualizerUiActions = toolbarSectionBpmVisualizerUiActions
     )
 
@@ -362,7 +362,7 @@ private fun ColumnScope.Investigation(
 
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarSectionBpmVisualizer(
                 modifier = Modifier,
-                state = investigationStateBundle.toolbarSectionBpmVisualizerUiState,
+                state = investigationStateBundle.bpmToolUiState,
                 actions = toolbarSectionBpmVisualizerUiActions
             )
 
@@ -413,7 +413,7 @@ private fun RowScope.Investigation(
             )
             ToolbarUiState.Category.TOOL_FOOTSTEP -> ToolbarSectionBpmVisualizer(
                 modifier = Modifier,
-                state = investigationStateBundle.toolbarSectionBpmVisualizerUiState,
+                state = investigationStateBundle.bpmToolUiState,
                 actions = toolbarSectionBpmVisualizerUiActions
             )
 

@@ -7,12 +7,12 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.clipRect
-import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.PointRecord
+import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 
 @Composable
 fun RealtimePlot(
     modifier: Modifier = Modifier,
-    state: RealtimePlotUiState<PointRecord>,
+    state: RealtimePlotUiState<GraphPoint>,
     colors: RealtimePlotUiColors,
 ) {
 

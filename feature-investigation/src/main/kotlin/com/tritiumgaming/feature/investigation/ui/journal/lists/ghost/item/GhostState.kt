@@ -4,10 +4,11 @@ import com.tritiumgaming.feature.investigation.app.mappers.ghost.toHasLosMultipl
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.shared.data.evidence.model.RuledEvidence
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 
-data class GhostScore(
+data class GhostState(
     val ghostEvidence: GhostEvidence,
     val score: Int = 0,
     val manualRejection: Boolean = false,
@@ -15,47 +16,47 @@ data class GhostScore(
 ) {
 
     fun updateScore(
-        ruledEvidence: List<RuledEvidence>,
+        evidenceState: List<EvidenceState>,
         currentDifficulty: DifficultyResources.DifficultyType
-    ): GhostScore {
-        return setScore(score = calculateEvidenceScore(ruledEvidence, currentDifficulty))
+    ): GhostState {
+        return setScore(score = calculateEvidenceScore(evidenceState, currentDifficulty))
     }
 
     fun updateBpmValidation(
         targetBpm: Float
-    ): GhostScore {
+    ): GhostState {
         return setBpmValidation(validateBpm(targetBpm))
     }
 
-    fun toggleManualRejection(): GhostScore {
+    fun toggleManualRejection(): GhostState {
         return this.copy(
             manualRejection = !manualRejection
         )
     }
 
     /** Resets the Ruling for each Evidence type  */
-    fun resetBpmValidation(): GhostScore {
+    fun resetBpmValidation(): GhostState {
         return setBpmValidation(false)
     }
 
     /** Resets the Ruling for each Evidence type  */
-    fun resetManualRejection(): GhostScore {
+    fun resetManualRejection(): GhostState {
         return setManualRejection(false)
     }
 
-    private fun setScore(score: Int): GhostScore {
+    private fun setScore(score: Int): GhostState {
         return this.copy(
             score = score
         )
     }
 
-    private fun setManualRejection(state: Boolean): GhostScore {
+    private fun setManualRejection(state: Boolean): GhostState {
         return this.copy(
             manualRejection = state
         )
     }
 
-    private fun setBpmValidation(state: Boolean): GhostScore {
+    private fun setBpmValidation(state: Boolean): GhostState {
         return this.copy(
             bpmIsValid = state
         )
@@ -88,7 +89,7 @@ data class GhostScore(
      * @return numerical representation of the Ghost's Evidence score
      */
     private fun calculateEvidenceScore(
-        ruledEvidence: List<RuledEvidence>,
+        evidenceState: List<EvidenceState>,
         currentDifficulty: DifficultyResources.DifficultyType
     ): Int {
 
@@ -102,13 +103,13 @@ data class GhostScore(
             else -> 3
         }
 
-        val rulings = ruledEvidence.associate { it.evidence to it.ruling }
+        val rulings = evidenceState.associate { it.evidence to it.state }
 
         val (normalEvidence, strictEvidence) =
             ghostEvidence.normalEvidenceList to ghostEvidence.strictEvidenceList
 
-        if (ruledEvidence.any {
-            it.isRuling(RuledEvidence.Ruling.POSITIVE) &&
+        if (evidenceState.any {
+            it.isRuling(EvidenceValidationType.POSITIVE) &&
                     it.evidence !in normalEvidence }) { return NORMAL_EVIDENCE_NOT_FOUND }
 
         var posScore = 0
@@ -116,8 +117,8 @@ data class GhostScore(
 
         normalEvidence.forEachIndexed { index, evidence ->
             when (rulings[evidence]) {
-                RuledEvidence.Ruling.POSITIVE -> if (index < 3) posScore++
-                RuledEvidence.Ruling.NEGATIVE -> {
+                EvidenceValidationType.POSITIVE -> if (index < 3) posScore++
+                EvidenceValidationType.NEGATIVE -> {
                     if (!isHardcore) return NORMAL_NEGATION_MINIMUM_REACHED
                     if (index < 3) negScore++
                     else return NORMAL_NEGATION_MAXIMUM_REACHED
@@ -126,7 +127,7 @@ data class GhostScore(
             }
         }
 
-        if (strictEvidence.any { rulings[it] == RuledEvidence.Ruling.NEGATIVE }) {
+        if (strictEvidence.any { rulings[it] == EvidenceValidationType.NEGATIVE }) {
             return STRICT_EVIDENCE_FOUND
         }
 
@@ -139,7 +140,7 @@ data class GhostScore(
         if (posScore == expectedPosScore) {
             val hasInvalidStrict = strictEvidence.any {
                 val ruling = rulings[it]
-                val result = ruling != null && ruling != RuledEvidence.Ruling.POSITIVE
+                val result = ruling != null && ruling != EvidenceValidationType.POSITIVE
 
                 result
             }

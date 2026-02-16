@@ -32,8 +32,8 @@ fun GhostList(
     val listState = rememberLazyListState()
 
     val ghostOrder = ghostListUiState.ghostOrder
-    val ghostScores = ghostListUiState.ghostScores
-    val ruledEvidence = ghostListUiState.ruledEvidence
+    val ghostScores = ghostListUiState.ghostStates
+    val ruledEvidence = ghostListUiState.evidenceState
 
     LaunchedEffect(ghostOrder) {
         Log.d("GhostList", "LaunchedEffect: ghostOrder")
@@ -63,8 +63,8 @@ fun GhostList(
                         .padding(horizontal = 2.dp)
                         .wrapContentWidth(Alignment.CenterHorizontally)
                         .animateItem(),
-                    ruledEvidence = ruledEvidence,
-                    ghostScore = ghostScores.find { score ->
+                    evidenceState = ruledEvidence,
+                    ghostState = ghostScores.find { score ->
                         score.ghostEvidence.ghost.id == ghostType.id },
                     ghostListUiItemActions = ghostListUiItemActions.copy (
                         onNameClick = { ghostListUiActions.onNameClick(ghostType) }

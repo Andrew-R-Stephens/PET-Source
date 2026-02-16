@@ -11,18 +11,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.preferredFrameRate
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
@@ -34,17 +30,16 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSur
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizer
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerColorBundle
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerStateBundle
+import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerUiActions
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
-import com.tritiumgaming.feature.investigation.ui.toolbar.impl.ModifiersButton
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun ToolbarSectionBpmVisualizer(
     modifier: Modifier = Modifier,
-    state: ToolbarSectionBpmVisualizerUiState,
+    state: BpmToolUiState,
     actions: ToolbarSectionBpmVisualizerUiActions
 ) {
 
@@ -179,7 +174,7 @@ fun ToolbarSectionBpmVisualizer(
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentHeight(),
-                    text = "%.1f".format(state.state.smoothed / 60f),
+                    text = "%.1f".format(state.realtimeState.smoothed / 60f),
                     color = LocalPalette.current.onSurface
                 )
             }
@@ -211,7 +206,7 @@ fun ToolbarSectionBpmVisualizer(
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentHeight(),
-                    text = "%.1f".format((state.state.points.tail?.data?.avg ?: 0f) / 60f),
+                    text = "%.1f".format((state.realtimeState.points.tail?.data?.avg ?: 0f) / 60f),
                     color = LocalPalette.current.onSurface
                 )
             }
@@ -243,7 +238,7 @@ fun ToolbarSectionBpmVisualizer(
                     modifier = Modifier
                         .weight(1f)
                         .wrapContentHeight(),
-                    text = "%.1f".format((state.state.points.tail?.data?.weightedAvg?: 0f) / 60f),
+                    text = "%.1f".format((state.realtimeState.points.tail?.data?.weightedAvg?: 0f) / 60f),
                     color = LocalPalette.current.onSurface
                 )
             }
