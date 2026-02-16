@@ -4,7 +4,7 @@ class FetchEvidenceListUseCase(
     private val repository: com.tritiumgaming.shared.data.evidence.repository.EvidenceRepository
 ) {
     operator fun invoke(): Result<List<com.tritiumgaming.shared.data.evidence.model.Evidence>> {
-        val result = repository.fetchEvidence()
+        val result = repository.fetchEvidences()
 
         return result
     }

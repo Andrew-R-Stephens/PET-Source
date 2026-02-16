@@ -5,22 +5,16 @@ import androidx.compose.runtime.Stable
 
 @Stable
 @Immutable
-data class RuledEvidence(
+data class EvidenceState(
     val evidence: EvidenceType,
-    val ruling: Ruling = Ruling.NEUTRAL
+    val state: EvidenceValidationType = EvidenceValidationType.NEUTRAL
 ) {
 
-    enum class Ruling() {
-        NEGATIVE,
-        NEUTRAL,
-        POSITIVE,
+    fun isRuling(other: EvidenceValidationType?): Boolean {
+        return state == other
     }
 
-    fun isRuling(other: Ruling?): Boolean {
-        return ruling == other
-    }
-
-    fun isEvidence(other: RuledEvidence): Boolean {
+    fun isEvidence(other: EvidenceState): Boolean {
         return isEvidence(other.evidence)
     }
 
@@ -29,7 +23,7 @@ data class RuledEvidence(
     }
 
     override fun toString(): String {
-        return ruling.name
+        return state.name
     }
 
 }

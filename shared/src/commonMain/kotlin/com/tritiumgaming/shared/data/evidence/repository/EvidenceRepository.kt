@@ -5,8 +5,8 @@ import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 
 interface EvidenceRepository {
 
-    fun fetchEvidence(): Result<List<Evidence>>
+    fun fetchEvidences(): Result<List<Evidence>>
 
-    fun fetchEvidenceType(): Result<List<EvidenceType>>
+    fun fetchEvidenceTypes(): Result<List<EvidenceType>>
 
 }
