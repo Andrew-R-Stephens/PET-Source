@@ -7,14 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.CrosshairsIcon
-import com.tritiumgaming.core.ui.icon.impl.base.ShieldIcon
-import com.tritiumgaming.core.ui.icon.impl.base.Stopwatch2Icon
 import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
 import com.tritiumgaming.core.ui.modifier.offsetPercent
 

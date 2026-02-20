@@ -1,4 +1,4 @@
-package com.tritiumgaming.core.ui.icon.color
+package com.tritiumgaming.core.ui.vector.color
 
 import android.os.Build
 import androidx.core.graphics.toColorInt

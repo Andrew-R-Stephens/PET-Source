@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 
 fun getSimpleMotionSensorVector(colors: IconVectorColors = IconVectorColors.defaults()): ImageVector =
     Builder(

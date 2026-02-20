@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.modifier.offsetPercent
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette

@@ -1,11 +1,10 @@
 package com.tritiumgaming.core.ui.vector
 
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 
 fun getSlidersVector(
     colors: IconVectorColors

@@ -4,9 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.vector.getHelpVector
-import com.tritiumgaming.core.ui.vector.getStopwatchVector
 
 @Composable
 fun HelpIcon(

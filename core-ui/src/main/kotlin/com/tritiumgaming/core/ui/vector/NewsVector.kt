@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 
 fun getNewsVector(colors: IconVectorColors = IconVectorColors.defaults()): ImageVector =
     Builder(

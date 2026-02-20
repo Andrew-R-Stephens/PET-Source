@@ -22,7 +22,7 @@ import com.tritiumgaming.core.ui.icon.impl.base.PersonIcon
 import com.tritiumgaming.core.ui.icon.impl.base.ReviewIcon
 import com.tritiumgaming.core.ui.icon.impl.base.StoreIcon
 import com.tritiumgaming.core.ui.icon.impl.base.TranslateIcon
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.shared.core.ui.mappers.IconResources.IconResource
 
 @Composable
