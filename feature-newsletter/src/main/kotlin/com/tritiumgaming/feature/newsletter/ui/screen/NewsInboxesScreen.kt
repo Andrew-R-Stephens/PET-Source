@@ -49,7 +49,7 @@ import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.theme.SelectiveTheme

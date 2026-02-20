@@ -56,7 +56,7 @@ import androidx.window.core.layout.WindowSizeClass
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.util.FontUtils
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
 import com.tritiumgaming.core.ui.mapper.ToComposable

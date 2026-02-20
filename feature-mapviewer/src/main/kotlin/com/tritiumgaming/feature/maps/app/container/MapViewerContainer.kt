@@ -11,15 +11,15 @@ import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
 import com.tritiumgaming.shared.data.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.shared.data.map.complex.usecase.FetchComplexMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapFloorIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapIdUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapFloorIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
 
 class MapViewerContainer(
     applicationContext: Context
@@ -40,16 +40,16 @@ class MapViewerContainer(
     internal val fetchMapThumbnailsUseCase = FetchMapThumbnailsUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val incrementMapIndexUseCase = IncrementMapIndexUseCase(
+    internal val incrementSimpleMapIndexUseCase = IncrementSimpleMapIndexUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val decrementMapIndexUseCase = DecrementMapIndexUseCase(
+    internal val decrementSimpleMapIndexUseCase = DecrementSimpleMapIndexUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val incrementMapFloorIndexUseCase = IncrementMapFloorIndexUseCase(
+    internal val incrementSimpleMapFloorIndexUseCase = IncrementSimpleMapFloorIndexUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val decrementMapFloorIndexUseCase = DecrementMapFloorIndexUseCase(
+    internal val decrementSimpleMapFloorIndexUseCase = DecrementSimpleMapFloorIndexUseCase(
         simpleMapRepository = simpleMapRepository
     )
     internal val getSimpleMapIdUseCase = GetSimpleMapIdUseCase(

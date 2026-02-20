@@ -78,7 +78,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.common.graphics.geometry.Point2D
 import com.tritiumgaming.core.common.util.BitmapUtils
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.Arrow60LeftIcon
 import com.tritiumgaming.core.ui.icon.impl.base.Arrow60RightIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon

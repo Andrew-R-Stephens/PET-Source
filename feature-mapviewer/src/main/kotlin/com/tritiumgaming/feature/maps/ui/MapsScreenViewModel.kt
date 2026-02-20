@@ -17,9 +17,9 @@ import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldRoom
 import com.tritiumgaming.shared.data.map.complex.usecase.FetchComplexMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.map.simple.model.SimpleWorldMap
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapFloorIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapFloorIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -35,8 +35,8 @@ import kotlinx.coroutines.withContext
 class MapsScreenViewModel(
     private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
     private val fetchComplexMapsUseCase: FetchComplexMapsUseCase,
-    private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
-    private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase
+    private val incrementSimpleMapFloorIndexUseCase: IncrementSimpleMapFloorIndexUseCase,
+    private val decrementSimpleMapFloorIndexUseCase: DecrementSimpleMapFloorIndexUseCase
 ) : ViewModel() {
 
     private val _interactiveMapUiState = MutableStateFlow(InteractiveMapUiState())
@@ -157,7 +157,7 @@ class MapsScreenViewModel(
     fun incrementFloor() {
         _interactiveMapUiState.update {
             try {
-                val newIndex = incrementMapFloorIndexUseCase(
+                val newIndex = incrementSimpleMapFloorIndexUseCase(
                     it.mapId,
                     it.floorIndex
                 ).getOrThrow()
@@ -186,7 +186,7 @@ class MapsScreenViewModel(
     fun decrementFloor() {
         _interactiveMapUiState.update {
             try {
-                val newIndex = decrementMapFloorIndexUseCase(
+                val newIndex = decrementSimpleMapFloorIndexUseCase(
                     it.mapId,
                     it.floorIndex
                 ).getOrThrow()
@@ -235,14 +235,14 @@ class MapsScreenViewModel(
 
                 val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
                 val fetchComplexMapsUseCase = container.fetchComplexMapsUseCase
-                val incrementMapFloorIndexUseCase = container.incrementMapFloorIndexUseCase
-                val decrementMapFloorIndexUseCase = container.decrementMapFloorIndexUseCase
+                val incrementMapFloorIndexUseCase = container.incrementSimpleMapFloorIndexUseCase
+                val decrementMapFloorIndexUseCase = container.decrementSimpleMapFloorIndexUseCase
 
                 MapsScreenViewModel(
                     fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
                     fetchComplexMapsUseCase = fetchComplexMapsUseCase,
-                    incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
-                    decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase
+                    incrementSimpleMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
+                    decrementSimpleMapFloorIndexUseCase = decrementMapFloorIndexUseCase
                 )
             }
         }

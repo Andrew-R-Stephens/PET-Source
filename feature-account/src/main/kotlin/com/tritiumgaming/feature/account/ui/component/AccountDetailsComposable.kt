@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
 import com.tritiumgaming.core.ui.mapper.ToComposable
