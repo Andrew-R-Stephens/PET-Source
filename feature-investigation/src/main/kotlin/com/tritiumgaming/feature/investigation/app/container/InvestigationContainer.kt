@@ -24,6 +24,7 @@ import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSo
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
+import com.tritiumgaming.shared.data.codex.model.achievements.CodexAchievementsGroupItem
 import com.tritiumgaming.shared.data.codex.repository.CodexRepository
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
@@ -38,6 +39,7 @@ import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyResponseTyp
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyTypeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndexUseCase
+import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.evidence.repository.EvidenceRepository
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.repository.GhostRepository
@@ -52,20 +54,20 @@ import com.tritiumgaming.shared.data.journal.usecase.InitRuledEvidenceUseCase
 import com.tritiumgaming.shared.data.map.complex.repository.ComplexMapRepository
 import com.tritiumgaming.shared.data.map.complex.usecase.FetchComplexMapsUseCase
 import com.tritiumgaming.shared.data.map.modifier.repsitory.MapModifiersRepository
-import com.tritiumgaming.shared.data.map.modifier.usecase.FetchMapModifiersUseCase
-import com.tritiumgaming.shared.data.map.modifier.usecase.GetMapModifierUseCase
+import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
+import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapSetupModifierUseCase
 import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapFloorIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapIdUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapFloorIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
@@ -78,6 +80,13 @@ class InvestigationContainer(
     val getEnableRTLUseCase: GetEnableRTLUseCase,
     val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase,
 ) {
+
+    internal val preferencesUseCaseBundle = PreferencesUseCaseBundle(
+        getAllowHuntWarnAudioUseCase = getAllowHuntWarnAudioUseCase,
+        getEnableGhostReorderUseCase = getEnableGhostReorderUseCase,
+        getEnableRTLUseCase = getEnableRTLUseCase,
+        getMaxHuntWarnFlashTimeUseCase = getMaxHuntWarnFlashTimeUseCase,
+    )
 
     // Ghost
     private val ghostRepository: GhostRepository by lazy {
@@ -142,34 +151,49 @@ class InvestigationContainer(
             localSource = difficultyLocalDataSource
         )
     }
-    internal val fetchDifficultiesUseCase = FetchDifficultiesUseCase(
+    private val fetchDifficultiesUseCase = FetchDifficultiesUseCase(
         difficultyRepository = difficultyRepository
     )
-    internal val getDifficultyTypeUseCase = GetDifficultyTypeUseCase(
+    private val getDifficultyTypeUseCase = GetDifficultyTypeUseCase(
         difficultyRepository = difficultyRepository
     )
-    internal val getDifficultyNameUseCase = GetDifficultyNameUseCase(
+    private val getDifficultyNameUseCase = GetDifficultyNameUseCase(
         difficultyRepository = difficultyRepository
     )
-    internal val getDifficultyModifierUseCase = GetDifficultyModifierUseCase(
+    private val getDifficultyModifierUseCase = GetDifficultyModifierUseCase(
         difficultyRepository = difficultyRepository
     )
-    internal val getDifficultyTimeUseCase = GetDifficultyTimeUseCase(
+    private val getDifficultyTimeUseCase = GetDifficultyTimeUseCase(
         difficultyRepository = difficultyRepository
     )
-    internal val getDifficultyResponseTypeUseCase = GetDifficultyResponseTypeUseCase(
+    private val getDifficultyResponseTypeUseCase = GetDifficultyResponseTypeUseCase(
         difficultyRepository = difficultyRepository
     )
-    internal val getDifficultyInitialSanityUseCase = GetDifficultyInitialSanityUseCase(
+    private val getDifficultyInitialSanityUseCase = GetDifficultyInitialSanityUseCase(
         difficultyRepository = difficultyRepository
     )
-    internal val incrementDifficultyIndexUseCase = IncrementDifficultyIndexUseCase(
+    private val incrementDifficultyIndexUseCase = IncrementDifficultyIndexUseCase(
         difficultyRepository = difficultyRepository
     )
-    internal val decrementDifficultyIndexUseCase = DecrementDifficultyIndexUseCase(
+    private val decrementDifficultyIndexUseCase = DecrementDifficultyIndexUseCase(
+        difficultyRepository = difficultyRepository
+    )
+    private val setDifficultyIndexUseCase = SetDifficultyIndexUseCase(
         difficultyRepository = difficultyRepository
     )
 
+    internal val difficultyUseCaseBundle = DifficultyUseCaseBundle(
+        fetchDifficultiesUseCase = fetchDifficultiesUseCase,
+        getDifficultyNameUseCase = getDifficultyNameUseCase,
+        getDifficultyModifierUseCase = getDifficultyModifierUseCase,
+        getDifficultyTimeUseCase = getDifficultyTimeUseCase,
+        getDifficultyResponseTypeUseCase = getDifficultyResponseTypeUseCase,
+        getDifficultyInitialSanityUseCase = getDifficultyInitialSanityUseCase,
+        incrementDifficultyIndexUseCase = incrementDifficultyIndexUseCase,
+        decrementDifficultyIndexUseCase = decrementDifficultyIndexUseCase,
+        setDifficultyIndexUseCase = setDifficultyIndexUseCase
+    )
+    
     // Map Modifiers
     private val mapModifiersRepository: MapModifiersRepository by lazy {
         val mapModifiersLocalDataSource: MapModifiersDataSource = MapModifiersLocalDataSource(
@@ -179,10 +203,6 @@ class InvestigationContainer(
             localSource = mapModifiersLocalDataSource
         )
     }
-    internal val fetchMapModifiersUseCase = FetchMapModifiersUseCase(
-        repository = mapModifiersRepository
-    )
-
     // Simple Map
     private val simpleMapRepository: SimpleMapRepository by lazy {
         val simpleMapLocalDataSource: SimpleMapDataSource = SimpleMapLocalDataSource(
@@ -192,42 +212,62 @@ class InvestigationContainer(
             localSource = simpleMapLocalDataSource
         )
     }
-    internal val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(
+    
+    private val fetchSimpleMapModifiersUseCase = FetchSimpleMapModifiersUseCase(
+        repository = mapModifiersRepository
+    )
+    private val fetchSimpleMapsUseCase = FetchSimpleMapsUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val fetchMapThumbnailsUseCase = FetchMapThumbnailsUseCase(
+    private val fetchMapThumbnailsUseCase = FetchMapThumbnailsUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val incrementMapIndexUseCase = IncrementMapIndexUseCase(
+    private val incrementSimpleMapIndexUseCase = IncrementSimpleMapIndexUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val decrementMapIndexUseCase = DecrementMapIndexUseCase(
+    private val decrementSimpleMapIndexUseCase = DecrementSimpleMapIndexUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val incrementMapFloorIndexUseCase = IncrementMapFloorIndexUseCase(
+    private val getSimpleMapIdUseCase = GetSimpleMapIdUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val decrementMapFloorIndexUseCase = DecrementMapFloorIndexUseCase(
+    private val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val getSimpleMapIdUseCase = GetSimpleMapIdUseCase(
+    private val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(
         simpleMapRepository = simpleMapRepository
     )
-    internal val getSimpleMapNameUseCase = GetSimpleMapNameUseCase(
-        simpleMapRepository = simpleMapRepository
+    private val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(
+        fetchSimpleMapModifiersUseCase = fetchSimpleMapModifiersUseCase
     )
-    internal val getSimpleMapSizeUseCase = GetSimpleMapSizeUseCase(
-        simpleMapRepository = simpleMapRepository
+    private val getSimpleMapNormalModifierUseCase = GetSimpleMapNormalModifierUseCase(
+        fetchSimpleMapModifiersUseCase = fetchSimpleMapModifiersUseCase
     )
-    internal val getSimpleMapSetupModifierUseCase = GetSimpleMapSetupModifierUseCase(
-        fetchMapModifiersUseCase = fetchMapModifiersUseCase
-    )
-    internal val getSimpleMapNormalModifierUseCase = GetSimpleMapNormalModifierUseCase(
-        fetchMapModifiersUseCase = fetchMapModifiersUseCase
-    )
-    internal val getMapModifierUseCase = GetMapModifierUseCase(
+    private val getSimpleMapModifierUseCase = GetSimpleMapModifierUseCase(
         getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
         getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase
+    )
+    private val incrementSimpleMapFloorIndexUseCase = IncrementSimpleMapFloorIndexUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+    private val decrementSimpleMapFloorIndexUseCase = DecrementSimpleMapFloorIndexUseCase(
+        simpleMapRepository = simpleMapRepository
+    )
+
+    internal val simpleMapUseCaseBundle = SimpleMapUseCaseBundle(
+        fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
+        incrementSimpleMapIndexUseCase = incrementSimpleMapIndexUseCase,
+        decrementSimpleMapIndexUseCase = decrementSimpleMapIndexUseCase,
+        getSimpleMapIdUseCase = getSimpleMapIdUseCase,
+        getSimpleMapNameUseCase = getSimpleMapNameUseCase,
+        getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
+        getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
+        getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
+        getSimpleMapModifierUseCase = getSimpleMapModifierUseCase,
+        fetchSimpleMapModifiersUseCase = fetchSimpleMapModifiersUseCase,
+        incrementSimpleMapFloorIndexUseCase = incrementSimpleMapFloorIndexUseCase,
+        decrementSimpleMapFloorIndexUseCase = decrementSimpleMapFloorIndexUseCase,
+        fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase
     )
 
     // Complex Map
@@ -240,8 +280,12 @@ class InvestigationContainer(
             localSource = complexMapLocalDataSource
         )
     }
-    internal val fetchComplexMapsUseCase = FetchComplexMapsUseCase(
+    private val fetchComplexMapsUseCase = FetchComplexMapsUseCase(
         complexMapRepository = complexMapRepository
+    )
+
+    internal val complexMapUseCaseBundle = ComplexMapUseCaseBundle(
+        fetchComplexMapsUseCase = fetchComplexMapsUseCase
     )
 
     // Codex
@@ -256,18 +300,24 @@ class InvestigationContainer(
         )
     }
 
-    internal val fetchCodexAchievementsUseCase = FetchAchievementTypesUseCase(
+    private val fetchCodexAchievementsUseCase = FetchAchievementTypesUseCase(
         codexRepository = codexRepository
     )
-    internal val fetchCodexEquipmentUseCase = FetchEquipmentTypesUseCase(
+    private val fetchCodexEquipmentUseCase = FetchEquipmentTypesUseCase(
         codexRepository = codexRepository
     )
-    internal val fetchCodexPossessionsUseCase = FetchPossessionTypesUseCase(
+    private val fetchCodexPossessionsUseCase = FetchPossessionTypesUseCase(
         codexRepository = codexRepository
     )
 
-    internal val getEquipmentTypeByEvidenceTypeUseCase = GetEquipmentTypeByEvidenceTypeUseCase()
+    private val getEquipmentTypeByEvidenceTypeUseCase = GetEquipmentTypeByEvidenceTypeUseCase()
 
+    internal val codexUseCaseBundle = CodexUseCaseBundle(
+        fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
+        fetchCodexEquipmentUseCase = fetchCodexEquipmentUseCase,
+        fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
+        getEquipmentTypeByEvidenceTypeUseCase = getEquipmentTypeByEvidenceTypeUseCase
+    )
 }
 
 internal data class JournalUseCaseBundle(
@@ -279,4 +329,50 @@ internal data class JournalUseCaseBundle(
     val getEvidenceTypeByIdUseCase: GetEvidenceTypeByIdUseCase,
     val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
     val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
+)
+
+internal data class DifficultyUseCaseBundle(
+    val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
+    val getDifficultyNameUseCase: GetDifficultyNameUseCase,
+    val getDifficultyModifierUseCase: GetDifficultyModifierUseCase,
+    val getDifficultyTimeUseCase: GetDifficultyTimeUseCase,
+    val getDifficultyResponseTypeUseCase: GetDifficultyResponseTypeUseCase,
+    val getDifficultyInitialSanityUseCase: GetDifficultyInitialSanityUseCase,
+    val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase,
+    val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase,
+    val setDifficultyIndexUseCase: SetDifficultyIndexUseCase,
+)
+
+internal data class SimpleMapUseCaseBundle(
+    val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
+    val incrementSimpleMapIndexUseCase: IncrementSimpleMapIndexUseCase,
+    val decrementSimpleMapIndexUseCase: DecrementSimpleMapIndexUseCase,
+    val getSimpleMapIdUseCase: GetSimpleMapIdUseCase,
+    val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
+    val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
+    val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase,
+    val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
+    val getSimpleMapModifierUseCase: GetSimpleMapModifierUseCase,
+    val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase,
+    val incrementSimpleMapFloorIndexUseCase: IncrementSimpleMapFloorIndexUseCase,
+    val decrementSimpleMapFloorIndexUseCase: DecrementSimpleMapFloorIndexUseCase,
+    val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
+)
+
+internal data class ComplexMapUseCaseBundle(
+    val fetchComplexMapsUseCase: FetchComplexMapsUseCase,
+)
+
+internal data class CodexUseCaseBundle(
+    val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase,
+    val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase,
+    val fetchCodexPossessionsUseCase: FetchPossessionTypesUseCase,
+    val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase,
+)
+
+internal data class PreferencesUseCaseBundle(
+    val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase,
+    val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase,
+    val getEnableRTLUseCase: GetEnableRTLUseCase,
+    val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase,
 )
