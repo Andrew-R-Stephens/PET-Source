@@ -53,7 +53,7 @@ import com.tritiumgaming.core.ui.icon.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.base.PersonIcon
 import com.tritiumgaming.core.ui.icon.base.ReviewIcon
 import com.tritiumgaming.core.ui.icon.base.StoreIcon
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
