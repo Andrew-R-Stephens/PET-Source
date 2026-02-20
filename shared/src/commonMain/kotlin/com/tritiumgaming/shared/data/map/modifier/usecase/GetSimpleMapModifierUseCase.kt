@@ -2,7 +2,7 @@ package com.tritiumgaming.shared.data.map.modifier.usecase
 
 import com.tritiumgaming.shared.data.phase.model.Phase
 
-class GetMapModifierUseCase(
+class GetSimpleMapModifierUseCase(
     private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
     private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase
 ) {

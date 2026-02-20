@@ -1,6 +1,6 @@
 package com.tritiumgaming.shared.data.map.simple.usecase
 
-class IncrementMapFloorIndexUseCase(
+class DecrementSimpleMapFloorIndexUseCase(
     private val simpleMapRepository: com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
 ) {
     operator fun invoke(currentMapId: String, currentFloorIndex: Int): Result<Int> {
@@ -14,10 +14,10 @@ class IncrementMapFloorIndexUseCase(
             val floorCount = map.first{ m -> m.mapId == currentMapId }.floorCount
             println("Maps Floor Count: $floorCount")
 
-            var newIndex: Int = currentFloorIndex + 1
-            if (newIndex >= floorCount) { newIndex = 0 }
+            var newIndex: Int = currentFloorIndex - 1
+            if (newIndex < 0) { newIndex = floorCount - 1 }
             Result.success(newIndex)
-        } ?: Result.failure(Exception("Index could not be incremented"))
+        } ?: Result.failure(Exception("Index could not be decremented"))
 
     }
 

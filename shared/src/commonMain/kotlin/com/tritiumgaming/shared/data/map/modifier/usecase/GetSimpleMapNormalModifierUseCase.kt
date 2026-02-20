@@ -1,10 +1,10 @@
 package com.tritiumgaming.shared.data.map.modifier.usecase
 
 class GetSimpleMapNormalModifierUseCase(
-    private val fetchMapModifiersUseCase: FetchMapModifiersUseCase
+    private val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase
 ) {
     operator fun invoke(index: Int): Result<Float> {
-        val result = fetchMapModifiersUseCase()
+        val result = fetchSimpleMapModifiersUseCase()
 
         result.exceptionOrNull()?.let {
             return Result.failure(Exception("Could not get map modifiers", it)) }

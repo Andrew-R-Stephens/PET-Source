@@ -1,6 +1,6 @@
 package com.tritiumgaming.shared.data.map.simple.usecase
 
-class DecrementMapIndexUseCase(
+class IncrementSimpleMapIndexUseCase(
     private val simpleMapRepository: com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
 ) {
 
@@ -12,8 +12,8 @@ class DecrementMapIndexUseCase(
 
         var newIndex = currentIndex
         maps?.let { list ->
-            newIndex = currentIndex - 1
-            if (newIndex < 0) { newIndex = list.size - 1 }
+            newIndex ++
+            if (newIndex >= list.size) { newIndex = 0 }
         }
         return Result.success(newIndex)
 
