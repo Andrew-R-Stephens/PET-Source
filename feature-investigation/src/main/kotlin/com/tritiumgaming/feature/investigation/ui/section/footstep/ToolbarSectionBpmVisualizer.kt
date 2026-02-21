@@ -19,11 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.preferredFrameRate
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.icon.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiColors
@@ -160,12 +160,16 @@ fun ToolbarSectionBpmVisualizer(
                         .padding(8.dp),
                     colors = IconVectorColors(
                         fillColor = LocalPalette.current.onSurface.copy(
-                            alpha = alpha(state.measurementType,
-                                VisualizerMeasurementType.INSTANT)
+                            alpha = alpha(
+                                state.measurementType,
+                                VisualizerMeasurementType.INSTANT
+                            )
                         ),
                         strokeColor = LocalPalette.current.onSurface.copy(
-                            alpha = alpha(state.measurementType,
-                                VisualizerMeasurementType.INSTANT)
+                            alpha = alpha(
+                                state.measurementType,
+                                VisualizerMeasurementType.INSTANT
+                            )
                         )
                     )
                 )

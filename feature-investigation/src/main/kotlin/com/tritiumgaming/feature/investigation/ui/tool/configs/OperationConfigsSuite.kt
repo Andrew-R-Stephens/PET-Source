@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.section.configs
+package com.tritiumgaming.feature.investigation.ui.tool.configs
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -35,15 +35,14 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 
 @Composable
-fun ColumnScope.ToolbarSectionOperationConfigs(
+internal fun ColumnScope.ToolbarSectionsOperationConfigs(
     modifier: Modifier = Modifier,
     timerUiState: TimerUiState,
+    timerUiActions: TimerUiActions,
     mapUiState: MapUiState,
-    mapUiActions: CarouselUiActions,
     difficultyUiState: DifficultyUiState,
-    difficultyUiActions: CarouselUiActions,
     sanityUiState: PlayerSanityUiState,
-    timerUiActions: TimerUiActions
+    actions: CarouselUiActions
 ) {
     Column(
         modifier = modifier,
@@ -59,8 +58,8 @@ fun ColumnScope.ToolbarSectionOperationConfigs(
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = { mapUiActions.onLeftClick() },
-            onClickRight = { mapUiActions.onRightClick() }
+            onClickLeft = { actions.onLeftClick() },
+            onClickRight = { actions.onRightClick() }
         )
 
         OperationConfigCarousel(
@@ -70,8 +69,8 @@ fun ColumnScope.ToolbarSectionOperationConfigs(
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = { difficultyUiActions.onLeftClick() },
-            onClickRight = { difficultyUiActions.onRightClick() }
+            onClickLeft = { actions.onLeftClick() },
+            onClickRight = { actions.onRightClick() }
         )
 
         Row(
@@ -102,15 +101,6 @@ fun ColumnScope.ToolbarSectionOperationConfigs(
                     .weight(1f, false)
             ) {
 
-
-                /*Text(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    text = "Remaining Time",
-                    style = LocalTypography.current.primary.regular,
-                    color = LocalPalette.current.onSurface
-                )*/
-
                 DigitalTimer(
                     modifier = Modifier
                         .height(48.dp)
@@ -135,3 +125,105 @@ fun ColumnScope.ToolbarSectionOperationConfigs(
         }
     }
 }
+/*
+@Composable
+internal fun ColumnScope.ToolbarSectionOperationConfigsCompact(
+    modifier: Modifier = Modifier,
+    timerUiState: TimerUiState,
+    timerUiActions: TimerUiActions,
+    mapUiState: MapUiState,
+    difficultyUiState: DifficultyUiState,
+    sanityUiState: PlayerSanityUiState,
+    state: OperationConfigDropdownUiState,
+    actions: CarouselUiActions
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalAlignment = Alignment.Start
+    ) {
+
+        OperationConfigDropdown(
+            modifier = Modifier,
+            primaryIcon = R.drawable.icon_nav_mapmenu2,
+            label = stringResource(mapConfigUiState.name.toStringResource(
+                SimpleMapResources.MapTitleLength.ABBREVIATED)),
+            textStyle = LocalTypography.current.secondary.regular,
+            color = LocalPalette.current.onSurface,
+            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+            state = state,
+            actions = actions
+        )
+
+        OperationConfigDropdown(
+            modifier = Modifier,
+            primaryIcon = R.drawable.ic_puzzle,
+            label = stringResource(difficultyConfigUiState.name.toStringResource()),
+            textStyle = LocalTypography.current.secondary.regular,
+            color = LocalPalette.current.onSurface,
+            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+            state = state,
+            actions = actions
+        )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            SanityMeter(
+                modifier = Modifier
+                    .size(64.dp),
+                sanityUiState = sanityUiState
+            )
+
+            TruckTimeIcon(
+                modifier = Modifier
+                    .size(48.dp)
+                    .padding(4.dp),
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.onSurface,
+                    strokeColor = LocalPalette.current.surface
+                )
+            )
+
+            Column(
+                modifier = Modifier
+                    .weight(1f, false)
+            ) {
+
+
+                *//*Text(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    text = "Remaining Time",
+                    style = LocalTypography.current.primary.regular,
+                    color = LocalPalette.current.onSurface
+                )*//*
+
+                DigitalTimer(
+                    modifier = Modifier
+                        .height(48.dp)
+                        .padding(8.dp)
+                        .fillMaxWidth(),
+                    timerUiState = timerUiState
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .weight(1f, false)
+            ) {
+                TimerToggleButton(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .padding(start = 4.dp),
+                    timerUiState = timerUiState,
+                    timerUiState = timerUiActions
+                )
+            }
+        }
+    }
+}*/

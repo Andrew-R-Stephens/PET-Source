@@ -28,7 +28,7 @@ import com.tritiumgaming.feature.investigation.ui.TimerUiState
 @Composable
 fun DigitalTimer(
     modifier: Modifier = Modifier,
-    timerUiState: TimerUiState,
+    state: TimerUiState,
     color: Color = LocalPalette.current.onSurface
 ) {
 
@@ -46,7 +46,7 @@ fun DigitalTimer(
             Text(
                 modifier = Modifier
                     .wrapContentHeight(),
-                text = FormatterUtils.formatMillisToTime(timerUiState.remainingTime),
+                text = FormatterUtils.formatMillisToTime(state.remainingTime),
                 style = DigitalDreamTextStyle,
                 color = color,
                 autoSize = TextAutoSize.StepBased(12.sp, maxFontSize = 48.sp, stepSize = 1.sp)
@@ -58,16 +58,14 @@ fun DigitalTimer(
 @Composable
 fun TimerToggleButton(
     modifier: Modifier = Modifier,
-    timerUiState: TimerUiState,
-    playContent: @Composable (modifier: Modifier) -> Unit = {},
-    pauseContent: @Composable (modifier: Modifier) -> Unit = {},
-    onClick: () -> Unit = {}
+    state: TimerUiState,
+    actions: TimerUiActions
 ) {
-    val state = timerUiState.paused
+    val state = state.paused
 
     Button(
         modifier = modifier,
-        onClick = { onClick() },
+        onClick = { actions.onToggleTimer() },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
             contentColor = LocalPalette.current.onSurface
@@ -75,9 +73,9 @@ fun TimerToggleButton(
         contentPadding = PaddingValues(8.dp)
     ) {
         if (state) {
-            playContent(Modifier)
+            actions.playContent(Modifier)
         } else {
-            pauseContent(Modifier)
+            actions.pauseContent(Modifier)
         }
     }
 }

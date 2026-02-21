@@ -12,25 +12,30 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.material3.Icon
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.Holiday22
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.feature.investigation.ui.common.analysis.OperationDetailsUiState
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.OperationConfigUiActions
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.CarouselUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
 import com.tritiumgaming.feature.investigation.ui.journal.JournalStateBundle
 import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
@@ -144,12 +149,37 @@ private fun InvestigationContent(
         onReset = { investigationViewModel.reset() }
     )
 
-    val operationConfigUiActions = OperationConfigUiActions(
-        onMapLeftClick = { investigationViewModel.decrementMapIndex() },
-        onMapRightClick = { investigationViewModel.incrementMapIndex() },
-        onDifficultyLeftClick = { investigationViewModel.decrementDifficultyIndex() },
-        onDifficultyRightClick = { investigationViewModel.incrementDifficultyIndex() },
-        onToggleTimer = { investigationViewModel.toggleTimer() },
+    val timerUiActions = TimerUiActions(
+         playContent = { modifier ->
+            Icon(
+                modifier = modifier,
+                painter = painterResource(R.drawable.ic_control_play),
+                contentDescription = null,
+                tint = LocalPalette.current.onSurface
+            )
+        },
+        pauseContent = { modifier ->
+            Icon(
+                modifier = modifier
+                    .size(48.dp),
+                painter = painterResource(R.drawable.ic_control_pause),
+                contentDescription = null,
+                tint = LocalPalette.current.onSurface
+            )
+        },
+        onToggleTimer = {
+            investigationViewModel.toggleTimer()
+        }
+    )
+
+    val mapUiActions = CarouselUiActions(
+        onLeftClick = { investigationViewModel.decrementMapIndex() },
+        onRightClick = { investigationViewModel.incrementMapIndex() },
+    )
+
+    val difficultyUiActions = CarouselUiActions(
+        onLeftClick = { investigationViewModel.decrementDifficultyIndex() },
+        onRightClick = { investigationViewModel.incrementDifficultyIndex() }
     )
 
     val evidenceListUiActions = EvidenceListUiActions(
@@ -178,9 +208,12 @@ private fun InvestigationContent(
             ghostListUiState = ghostListUiState
         ),
         timerUiState = timerUiState,
+        timerUiActions = timerUiActions,
         phaseUiState = phaseUiState,
         mapUiState = mapUiState,
+        mapUiActions = mapUiActions,
         difficultyUiState = difficultyUiState,
+        difficultyUiActions = difficultyUiActions,
         sanityUiState = sanityUiState,
         ghostListUiState = ghostListUiState,
         evidenceListUiState = evidenceListUiState,
@@ -198,7 +231,6 @@ private fun InvestigationContent(
             InvestigationContentPortrait(
                 investigationStateBundle,
                 evidenceListUiActions,
-                operationConfigUiActions,
                 toolbarUiActions,
                 ghostListUiActions,
                 ghostListUiItemActions,
@@ -211,7 +243,6 @@ private fun InvestigationContent(
             InvestigationContentLandscape(
                 investigationStateBundle,
                 evidenceListUiActions,
-                operationConfigUiActions,
                 toolbarUiActions,
                 ghostListUiActions,
                 ghostListUiItemActions,
@@ -246,7 +277,6 @@ private fun InvestigationContent(
 private fun InvestigationContentPortrait(
     investigationStateBundle: InvestigationStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
-    operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
@@ -260,7 +290,6 @@ private fun InvestigationContentPortrait(
         Investigation(
             investigationStateBundle = investigationStateBundle,
             evidenceListUiActions = evidenceListUiActions,
-            operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
             ghostListUiItemActions = ghostListUiItemActions,
@@ -273,7 +302,6 @@ private fun InvestigationContentPortrait(
 private fun InvestigationContentLandscape(
     investigationStateBundle: InvestigationStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
-    operationConfigUiActions: OperationConfigUiActions,
     toolbarUiActions: ToolbarUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
@@ -287,7 +315,6 @@ private fun InvestigationContentLandscape(
         Investigation(
             investigationStateBundle = investigationStateBundle,
             evidenceListUiActions = evidenceListUiActions,
-            operationConfigUiActions = operationConfigUiActions,
             toolbarUiActions = toolbarUiActions,
             ghostListUiActions = ghostListUiActions,
             ghostListUiItemActions = ghostListUiItemActions,
@@ -300,7 +327,6 @@ private fun InvestigationContentLandscape(
 private fun ColumnScope.Investigation(
     investigationStateBundle: InvestigationStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
-    operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
@@ -349,10 +375,12 @@ private fun ColumnScope.Investigation(
                 modifier = Modifier
                     .height(IntrinsicSize.Max),
                 timerUiState = investigationStateBundle.timerUiState,
+                timerUiActions = investigationStateBundle.timerUiActions,
                 mapUiState = investigationStateBundle.mapUiState,
+                mapUiActions = investigationStateBundle.mapUiActions,
                 difficultyUiState = investigationStateBundle.difficultyUiState,
-                sanityUiState = investigationStateBundle.sanityUiState,
-                operationConfigUiActions = operationConfigUiActions
+                difficultyUiActions = investigationStateBundle.difficultyUiActions,
+                sanityUiState = investigationStateBundle.sanityUiState
             )
 
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarSectionOperationAnalysis(
@@ -374,7 +402,6 @@ private fun ColumnScope.Investigation(
 private fun RowScope.Investigation(
     investigationStateBundle: InvestigationStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
-    operationConfigUiActions: OperationConfigUiActions,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions,
     toolbarUiActions: ToolbarUiActions,
@@ -401,10 +428,12 @@ private fun RowScope.Investigation(
                 modifier = Modifier
                     .height(IntrinsicSize.Max),
                 timerUiState = investigationStateBundle.timerUiState,
+                timerUiActions = investigationStateBundle.timerUiActions,
                 mapUiState = investigationStateBundle.mapUiState,
+                mapUiActions = investigationStateBundle.mapUiActions,
                 difficultyUiState = investigationStateBundle.difficultyUiState,
-                sanityUiState = investigationStateBundle.sanityUiState,
-                operationConfigUiActions = operationConfigUiActions
+                difficultyUiActions = investigationStateBundle.difficultyUiActions,
+                sanityUiState = investigationStateBundle.sanityUiState
             )
             ToolbarUiState.Category.TOOL_ANALYZER -> ToolbarSectionOperationAnalysis(
                 modifier = Modifier

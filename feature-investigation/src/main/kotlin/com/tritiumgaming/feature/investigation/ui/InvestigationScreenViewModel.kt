@@ -8,8 +8,12 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
+import com.tritiumgaming.feature.investigation.app.container.CodexUseCaseBundle
+import com.tritiumgaming.feature.investigation.app.container.DifficultyUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.InvestigationContainerProvider
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
+import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
+import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
@@ -30,9 +34,10 @@ import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyNameUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyResponseTypeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndexUseCase
-import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.GhostType
@@ -44,19 +49,19 @@ import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostTypeByIdUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
 import com.tritiumgaming.shared.data.journal.usecase.InitRuledEvidenceUseCase
-import com.tritiumgaming.shared.data.map.modifier.usecase.FetchMapModifiersUseCase
-import com.tritiumgaming.shared.data.map.modifier.usecase.GetMapModifierUseCase
+import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
+import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapSetupModifierUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapFloorIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.DecrementMapIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchMapThumbnailsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchSimpleMapsUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapIdUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapFloorIndexUseCase
-import com.tritiumgaming.shared.data.map.simple.usecase.IncrementMapIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
+import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.phase.model.Phase
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
@@ -77,7 +82,6 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.collections.map
 import kotlin.math.max
 import kotlin.math.min
 
@@ -153,36 +157,18 @@ class InvestigationScreenViewModel private constructor(
     /*
      * UI STATES
      */
-    private val _mapConfigUiState = MutableStateFlow(
-        MapConfigUiState(
-            maps = fetchSimpleMapsUseCase().let {
-                it.exceptionOrNull()?.printStackTrace()
-                try { it.getOrThrow() }
-                catch (e: Exception) {
-                    e.printStackTrace()
-                    emptyList()
-                }
-            }
-        )
+    private val _mapUiState = MutableStateFlow(
+        MapUiState()
     )
-    val mapConfigUiState = _mapConfigUiState.asStateFlow()
+    val mapUiState = _mapUiState.asStateFlow()
 
-    private val _difficultyConfigUiState = MutableStateFlow(
-        DifficultyConfigUiState(
-            difficulties = fetchDifficultiesUseCase().let {
-                it.exceptionOrNull()?.printStackTrace()
-                try { it.getOrThrow() }
-                catch (e: Exception) {
-                    e.printStackTrace()
-                    emptyList()
-                }
-            }
-        )
+    private val _difficultyUiState = MutableStateFlow(
+        DifficultyUiState()
     )
-    val difficultyConfigUiState = _difficultyConfigUiState.asStateFlow()
+    val difficultyUiState = _difficultyUiState.asStateFlow()
 
-    private val _timerConfigUiState = MutableStateFlow(TimerConfigUiState())
-    val timerConfigUiState = _timerConfigUiState.asStateFlow()
+    private val _timerUiState = MutableStateFlow(TimerUiState())
+    val timerUiState = _timerUiState.asStateFlow()
 
     private val _phaseUiState = MutableStateFlow(PhaseUiState())
     val phaseUiState = _phaseUiState.asStateFlow()
@@ -211,7 +197,7 @@ class InvestigationScreenViewModel private constructor(
         phaseUiState
     ) { mapUiState, difficultyUiState, phaseUiState ->
         val mapModifier = try {
-            getMapModifierUseCase(
+            getSimpleMapModifierUseCase(
                 mapUiState.size.ordinal,
                 phaseUiState.currentPhase
             ).getOrThrow()
@@ -546,7 +532,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-     * Difficulty Handler ---------------------------
+     * Difficulty ---------------------------
      */
     fun incrementDifficultyIndex() =
         incrementDifficultyIndexUseCase(difficultyUiState.value.index)
@@ -560,13 +546,14 @@ class InvestigationScreenViewModel private constructor(
                 setDifficultyIndex(index)
             }
 
-    private fun setDifficultyIndex(
-        index: Int
-    ) {
-        updateDifficulty(index)
-
-        setTimeRemaining(difficultyUiState.value.time)
-        resetTimer()
+    fun setDifficultyIndex(newIndex: Int) {
+        setDifficultyIndexUseCase(newIndex)
+            .onSuccess {
+                updateDifficulty(newIndex)
+            }
+            .onFailure {
+                Log.e("InvestigationViewModel", "Set Difficulty Index failed.")
+            }
     }
 
     private fun updateDifficulty(
@@ -604,6 +591,9 @@ class InvestigationScreenViewModel private constructor(
             }
 
             updateGhostScores()
+
+            setTimeRemaining(difficultyUiState.value.time)
+            resetTimer()
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -891,86 +881,6 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-     * Difficulty ---------------------------
-     */
-    fun incrementDifficultyIndex() =
-        incrementDifficultyIndexUseCase(difficultyConfigUiState.value.index)
-            .getOrNull()?.let { index ->
-                setDifficultyIndex(index)
-            }
-
-    fun decrementDifficultyIndex() =
-        decrementDifficultyIndexUseCase(difficultyConfigUiState.value.index)
-            .getOrNull()?.let { index ->
-                setDifficultyIndex(index)
-            }
-
-    fun setDifficultyIndex(newIndex: Int) {
-        setDifficultyIndexUseCase(newIndex)
-            .onSuccess {
-                updateDifficulty(newIndex)
-            }
-            .onFailure {
-                Log.e("InvestigationViewModel", "Set Difficulty Index failed.")
-            }
-    }
-
-    private fun updateDifficulty(
-        index: Int = 0
-    ) {
-        try {
-            val name = getDifficultyNameUseCase(index).getOrThrow()
-            val modifier = getDifficultyModifierUseCase(index).getOrThrow()
-            val time = getDifficultyTimeUseCase(index).getOrThrow()
-            val initialSanity = getDifficultyInitialSanityUseCase(index).getOrThrow()
-            val responseType = getDifficultyResponseTypeUseCase(index).getOrThrow()
-
-            _difficultyConfigUiState.update {
-                it.copy(
-                    index = index,
-                    name = name,
-                    modifier = modifier,
-                    time = time,
-                    initialSanity = initialSanity,
-                    responseType = responseType
-                )
-            }
-
-            _playerSanityUiState.update {
-                it.copy(
-                    sanityLevel = difficultyConfigUiState.value.initialSanity,
-                    insanityLevel = 1f - difficultyConfigUiState.value.initialSanity
-                )
-            }
-
-            _phaseUiState.update {
-                it.copy(
-                    canAlertAudio = false
-                )
-            }
-
-            updateGhostScores()
-
-            setTimeRemaining(difficultyConfigUiState.value.time)
-            resetTimer()
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-
-            Log.e("InvestigationViewModel", "Update DifficultyUiState failed.")
-        }
-
-        Log.d("InvestigationViewModel", "DifficultyUiState:" +
-                "\n\tindex: ${_difficultyConfigUiState.value.index}" +
-                "\n\tname: ${_difficultyConfigUiState.value.name}" +
-                "\n\tmodifier: ${_difficultyConfigUiState.value.modifier}" +
-                "\n\ttime: ${_difficultyConfigUiState.value.time}" +
-                "\n\tinitialSanity: ${_difficultyConfigUiState.value.initialSanity}" +
-                "\n\tresponseType: ${_difficultyConfigUiState.value.responseType}")
-
-    }
-
-    /*
      * MapCarouselHandler ---------------------------
      */
 
@@ -980,7 +890,7 @@ class InvestigationScreenViewModel private constructor(
         try {
             val name = getSimpleMapNameUseCase(index).getOrThrow()
             val size = getSimpleMapSizeUseCase(index).getOrThrow()
-            val modifier = fetchMapModifiersUseCase(size).getOrThrow()
+            val modifier = fetchSimpleMapModifiersUseCase(size).getOrThrow()
 
             _mapUiState.update {
                 it.copy(
@@ -1010,7 +920,7 @@ class InvestigationScreenViewModel private constructor(
 
     fun incrementMapIndex() {
         try {
-            val newIndex = incrementMapIndexUseCase(
+            val newIndex = incrementSimpleMapIndexUseCase(
                 mapUiState.value.index).getOrThrow()
             setMapIndex(newIndex)
         } catch (e: Exception) { e.printStackTrace() }
@@ -1018,7 +928,7 @@ class InvestigationScreenViewModel private constructor(
 
     fun decrementMapIndex() {
         try {
-            val newIndex = decrementMapIndexUseCase(
+            val newIndex = decrementSimpleMapIndexUseCase(
                 mapUiState.value.index).getOrThrow()
             setMapIndex(newIndex)
         } catch (e: Exception) { e.printStackTrace() }

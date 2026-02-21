@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.common.operationconfig
+package com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

@@ -25,6 +25,10 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
+import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.ActiveGhostModifierDetails
+import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.DifficultyModifierDetails
+import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.MapModifierDetails
+import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.PhaseModifierDetails
 
 @Composable
 fun OperationDetails(
@@ -38,16 +42,16 @@ fun OperationDetails(
             .padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        _root_ide_package_.com.tritiumgaming.feature.investigation.ui.common.analysis.sections.PhaseModifierDetails(
+        PhaseModifierDetails(
             phaseUiState = operationDetailsUiState.phaseUiState
         )
-        _root_ide_package_.com.tritiumgaming.feature.investigation.ui.common.analysis.sections.MapModifierDetails(
+        MapModifierDetails(
             mapUiState = operationDetailsUiState.mapUiState
         )
-        _root_ide_package_.com.tritiumgaming.feature.investigation.ui.common.analysis.sections.DifficultyModifierDetails(
+       DifficultyModifierDetails(
             difficultyUiState = operationDetailsUiState.difficultyUiState
         )
-        _root_ide_package_.com.tritiumgaming.feature.investigation.ui.common.analysis.sections.ActiveGhostModifierDetails(
+        ActiveGhostModifierDetails(
             ghostOrder = operationDetailsUiState.ghostOrder,
             ghostStates = operationDetailsUiState.ghostStates
         )
