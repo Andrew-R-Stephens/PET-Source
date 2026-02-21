@@ -37,10 +37,10 @@ import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.Vi
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-fun ToolbarSectionBpmVisualizer(
+fun BpmTool(
     modifier: Modifier = Modifier,
     state: BpmToolUiState,
-    actions: ToolbarSectionBpmVisualizerUiActions
+    actions: BpmToolUiActions
 ) {
 
     val bpmVisualizerStateBundle = BpmVisualizerStateBundle(

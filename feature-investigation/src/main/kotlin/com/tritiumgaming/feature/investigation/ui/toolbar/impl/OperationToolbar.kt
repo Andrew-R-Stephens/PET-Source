@@ -40,7 +40,7 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
 import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolRail
-import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolbar
+import com.tritiumgaming.feature.investigation.ui.toolbar.ScrollableToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
@@ -54,8 +54,9 @@ fun ColumnScope.OperationToolbar(
     toolbarUiActions: ToolbarUiActions
 ) {
 
-    InvestigationToolbar(
+    ScrollableToolbar(
         modifier = modifier,
+        surfaceColor = LocalPalette.current.surfaceContainerHigh,
         stickyContentStart = {
 
             ToolbarItem(
@@ -144,13 +145,13 @@ fun ColumnScope.OperationToolbar(
             modifier = Modifier
                 .size(48.dp),
             onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_TIMERS)
             }
         ){
             StopwatchIcon(
                 modifier = Modifier
                     .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_TIMERS) {
                     IconVectorColors.defaults(
                         fillColor = LocalPalette.current.primary,
                         strokeColor = LocalPalette.current.primary,

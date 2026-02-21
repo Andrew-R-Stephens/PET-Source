@@ -20,14 +20,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.modifier.DisplayOrientation
 import com.tritiumgaming.core.ui.modifier.fadingEdges
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 
 @Composable
-fun InvestigationToolbar(
+fun ScrollableToolbar(
     modifier: Modifier = Modifier,
+    surfaceColor: Color = LocalPalette.current.surface,
     stickyContentStart: @Composable () -> Unit = {},
     stickyContentEnd: @Composable () -> Unit = {},
     scrollContent: @Composable () -> Unit,
@@ -41,7 +43,10 @@ fun InvestigationToolbar(
         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        StickyItemContainer(stickyContentStart)
+        StickyItemContainer(
+            surfaceColor = surfaceColor,
+            stickyContent = stickyContentStart
+        )
 
         Row(
             modifier = Modifier
@@ -49,7 +54,7 @@ fun InvestigationToolbar(
                 .weight(1f, fill = true)
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(LocalPalette.current.surfaceContainerHigh, RoundedCornerShape(8.dp))
+                .background(surfaceColor, RoundedCornerShape(8.dp))
                 .horizontalScroll(scrollState)
                 .padding(4.dp)
                 .fadingEdges(
@@ -64,7 +69,10 @@ fun InvestigationToolbar(
             scrollContent()
         }
 
-        StickyItemContainer(stickyContentEnd)
+        StickyItemContainer(
+            surfaceColor = surfaceColor,
+            stickyContent = stickyContentEnd
+        )
     }
 
 }
@@ -72,6 +80,7 @@ fun InvestigationToolbar(
 @Composable
 fun InvestigationToolRail(
     modifier: Modifier = Modifier,
+    surfaceColor: Color = LocalPalette.current.surface,
     stickyContentStart: @Composable () -> Unit = {},
     stickyContentEnd: @Composable () -> Unit = {},
     scrollContent: @Composable () -> Unit,
@@ -85,7 +94,10 @@ fun InvestigationToolRail(
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        StickyItemContainer(stickyContentStart)
+        StickyItemContainer(
+            surfaceColor = surfaceColor,
+            stickyContent = stickyContentStart
+        )
 
         Column(
             modifier = Modifier
@@ -93,28 +105,42 @@ fun InvestigationToolRail(
                 .weight(1f, fill = true)
                 .fillMaxHeight()
                 .wrapContentWidth()
-                .background(LocalPalette.current.surfaceContainerHigh, RoundedCornerShape(8.dp))
+                .background(
+                    surfaceColor,
+                    RoundedCornerShape(8.dp)
+                )
                 .verticalScroll(scrollState)
-                .fadingEdges(scrollState, DisplayOrientation.VERTICAL, 64.dp, 64.dp),
+                .fadingEdges(
+                    scrollState,
+                    DisplayOrientation.VERTICAL,
+                    64.dp,
+                    64.dp
+                ),
             verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             scrollContent()
         }
 
-        StickyItemContainer(stickyContentEnd)
+        StickyItemContainer(
+            surfaceColor = surfaceColor,
+            stickyContent = stickyContentEnd
+        )
     }
 
 }
 
 @Composable
-private fun StickyItemContainer(stickyContentStart: @Composable (() -> Unit)) {
+private fun StickyItemContainer(
+    surfaceColor: Color = LocalPalette.current.surface,
+    stickyContent: @Composable (() -> Unit)
+) {
     Box(
         modifier = Modifier
             .padding(4.dp)
             .wrapContentSize()
-            .background(LocalPalette.current.surfaceContainerHigh, CircleShape)
+            .background(surfaceColor, CircleShape)
     ) {
-        stickyContentStart()
+        stickyContent()
     }
 }
 

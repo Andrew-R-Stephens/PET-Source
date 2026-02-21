@@ -10,7 +10,8 @@ data class DifficultyUiState(
     internal val modifier: Float = 0f,
     internal val time: Long = 0L,
     internal val initialSanity: Float = 0f,
-    val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN
+    val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN,
+    val allDifficulties: List<DifficultyTitle> = emptyList()
 ) {
     internal val type: DifficultyType = DifficultyType.entries[index]
 }

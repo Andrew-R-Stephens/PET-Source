@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.tool.configs
+package com.tritiumgaming.feature.investigation.ui.section.configs
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
@@ -21,28 +23,66 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.feature.investigation.ui.DifficultyUiState
-import com.tritiumgaming.feature.investigation.ui.MapUiState
-import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
-import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.CarouselUiActions
+import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.ConfigCarouselUiState
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.OperationConfigCarousel
-import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 
 @Composable
-internal fun ColumnScope.ToolbarSectionsOperationConfigs(
+fun ColumnScope.OperationConfigs(
+    modifier: Modifier = Modifier,
+    timerComponent: @Composable (Modifier) -> Unit = {},
+    mapConfigComponent: @Composable (Modifier) -> Unit = {},
+    difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    sanityMeterComponent: @Composable (Modifier) -> Unit = {},
+    phaseComponent: @Composable (Modifier) -> Unit = {}
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalAlignment = Alignment.Start
+    ) {
+
+        mapConfigComponent(Modifier)
+
+        difficultyConfigComponent(Modifier)
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            sanityMeterComponent(
+                Modifier
+                    .size(64.dp)
+            )
+
+            timerComponent(
+                Modifier
+                    .weight(1f, false)
+            )
+        }
+
+        phaseComponent(Modifier)
+    }
+}
+/*
+
+@Composable
+fun ColumnScope.OperationConfigs(
     modifier: Modifier = Modifier,
     timerUiState: TimerUiState,
-    timerUiActions: TimerUiActions,
     mapUiState: MapUiState,
+    mapUiActions: CarouselUiActions,
     difficultyUiState: DifficultyUiState,
+    difficultyUiActions: CarouselUiActions,
     sanityUiState: PlayerSanityUiState,
-    actions: CarouselUiActions
+    timerUiActions: TimerUiActions
 ) {
     Column(
         modifier = modifier,
@@ -53,24 +93,26 @@ internal fun ColumnScope.ToolbarSectionsOperationConfigs(
         OperationConfigCarousel(
             modifier = Modifier,
             primaryIcon = R.drawable.icon_nav_mapmenu2,
-            label = stringResource(mapUiState.name.toStringResource(
-                SimpleMapResources.MapTitleLength.ABBREVIATED)),
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = { actions.onLeftClick() },
-            onClickRight = { actions.onRightClick() }
+            state = ConfigCarouselUiState(
+                label = stringResource(mapUiState.name.toStringResource(
+                    SimpleMapResources.MapTitleLength.ABBREVIATED)),
+            ),
+            actions = mapUiActions
         )
 
         OperationConfigCarousel(
             modifier = Modifier,
             primaryIcon = R.drawable.ic_puzzle,
+            state = ConfigCarouselUiState(
             label = stringResource(difficultyUiState.name.toStringResource()),
+            ),
             textStyle = LocalTypography.current.secondary.regular,
             color = LocalPalette.current.onSurface,
             iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            onClickLeft = { actions.onLeftClick() },
-            onClickRight = { actions.onRightClick() }
+            actions = difficultyUiActions
         )
 
         Row(
@@ -95,11 +137,22 @@ internal fun ColumnScope.ToolbarSectionsOperationConfigs(
                     strokeColor = LocalPalette.current.surface
                 )
             )
-            
+
             Column(
                 modifier = Modifier
                     .weight(1f, false)
             ) {
+
+
+                */
+/*Text(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    text = "Remaining Time",
+                    style = LocalTypography.current.primary.regular,
+                    color = LocalPalette.current.onSurface
+                )*//*
+
 
                 DigitalTimer(
                     modifier = Modifier
@@ -119,111 +172,26 @@ internal fun ColumnScope.ToolbarSectionsOperationConfigs(
                         .size(48.dp)
                         .padding(start = 4.dp),
                     state = timerUiState,
-                    actions = timerUiActions
+                    actions = timerUiActions,
+                    playContent = { modifier ->
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_play),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    },
+                    pauseContent = { modifier ->
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_pause),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
                 )
             }
         }
     }
 }
-/*
-@Composable
-internal fun ColumnScope.ToolbarSectionOperationConfigsCompact(
-    modifier: Modifier = Modifier,
-    timerUiState: TimerUiState,
-    timerUiActions: TimerUiActions,
-    mapUiState: MapUiState,
-    difficultyUiState: DifficultyUiState,
-    sanityUiState: PlayerSanityUiState,
-    state: OperationConfigDropdownUiState,
-    actions: CarouselUiActions
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalAlignment = Alignment.Start
-    ) {
-
-        OperationConfigDropdown(
-            modifier = Modifier,
-            primaryIcon = R.drawable.icon_nav_mapmenu2,
-            label = stringResource(mapConfigUiState.name.toStringResource(
-                SimpleMapResources.MapTitleLength.ABBREVIATED)),
-            textStyle = LocalTypography.current.secondary.regular,
-            color = LocalPalette.current.onSurface,
-            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            state = state,
-            actions = actions
-        )
-
-        OperationConfigDropdown(
-            modifier = Modifier,
-            primaryIcon = R.drawable.ic_puzzle,
-            label = stringResource(difficultyConfigUiState.name.toStringResource()),
-            textStyle = LocalTypography.current.secondary.regular,
-            color = LocalPalette.current.onSurface,
-            iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-            state = state,
-            actions = actions
-        )
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            SanityMeter(
-                modifier = Modifier
-                    .size(64.dp),
-                sanityUiState = sanityUiState
-            )
-
-            TruckTimeIcon(
-                modifier = Modifier
-                    .size(48.dp)
-                    .padding(4.dp),
-                colors = IconVectorColors(
-                    fillColor = LocalPalette.current.onSurface,
-                    strokeColor = LocalPalette.current.surface
-                )
-            )
-
-            Column(
-                modifier = Modifier
-                    .weight(1f, false)
-            ) {
-
-
-                *//*Text(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    text = "Remaining Time",
-                    style = LocalTypography.current.primary.regular,
-                    color = LocalPalette.current.onSurface
-                )*//*
-
-                DigitalTimer(
-                    modifier = Modifier
-                        .height(48.dp)
-                        .padding(8.dp)
-                        .fillMaxWidth(),
-                    timerUiState = timerUiState
-                )
-            }
-
-            Column(
-                modifier = Modifier
-                    .weight(1f, false)
-            ) {
-                TimerToggleButton(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .padding(start = 4.dp),
-                    timerUiState = timerUiState,
-                    timerUiState = timerUiActions
-                )
-            }
-        }
-    }
-}*/
+*/

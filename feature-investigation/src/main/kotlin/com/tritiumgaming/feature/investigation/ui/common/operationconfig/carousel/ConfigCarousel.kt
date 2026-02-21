@@ -38,17 +38,19 @@ import com.tritiumgaming.core.ui.widgets.other.PETImageButtonType
 private fun OperationCarouselPreview() {
     SelectiveTheme(ClassicPalette, ClassicTypography) {
         OperationConfigCarousel(
-            label = stringResource(R.string.map_name_short_prison),
-            onClickLeft = {},
-            onClickRight = {}
+            state = ConfigCarouselUiState(
+                label = R.string.map_name_short_prison
+            ),
+            actions = CarouselUiActions()
         )
     }
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
         OperationConfigCarousel(
-            label = stringResource(R.string.map_name_short_prison),
-            onClickLeft = {},
-            onClickRight = {}
+            state = ConfigCarouselUiState(
+                label = R.string.map_name_short_prison
+            ),
+            actions = CarouselUiActions()
         )
     }
 }
@@ -56,14 +58,13 @@ private fun OperationCarouselPreview() {
 @Composable
 fun OperationConfigCarousel(
     modifier: Modifier = Modifier,
+    state: ConfigCarouselUiState,
     @DrawableRes primaryIcon: Int = R.drawable.ic_selector_inc_unsel,
-    label: String = stringResource(R.string.difficulty_title_default),
     textStyle: TextStyle = TextStyle.Default,
     color: Color = Color.Unspecified,
     containerColor: Color = Color.Unspecified,
     iconColorFilter: ColorFilter = ColorFilter.tint(Color.Unspecified),
-    onClickLeft: () -> Unit,
-    onClickRight: () -> Unit
+    actions: CarouselUiActions
 ) {
 
     Surface(
@@ -98,7 +99,7 @@ fun OperationConfigCarousel(
                 PETImageButton(
                     modifier = Modifier
                         .size(48.dp)
-                        .clickable(onClick = { onClickLeft() }),
+                        .clickable(onClick = { actions.onLeftClick() }),
                     type = PETImageButtonType.BACK,
                     tint = color
                 )
@@ -117,7 +118,7 @@ fun OperationConfigCarousel(
                             .align(Alignment.Center)
                             .wrapContentHeight()
                             .fillMaxWidth(),
-                        text = label,
+                        text = stringResource(state.label),
                         style = textStyle,
                         textAlign = TextAlign.Center,
                         color = color,
@@ -129,7 +130,7 @@ fun OperationConfigCarousel(
                 PETImageButton(
                     modifier = Modifier
                         .size(48.dp)
-                        .clickable(onClick = { onClickRight() }),
+                        .clickable(onClick = { actions.onRightClick() }),
                     type = PETImageButtonType.FORWARD,
                     tint = color
                 )

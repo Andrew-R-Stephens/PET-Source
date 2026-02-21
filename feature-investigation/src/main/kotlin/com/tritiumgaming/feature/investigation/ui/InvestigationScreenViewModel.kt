@@ -140,6 +140,22 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    private val maps = fetchSimpleMapsUseCase().let {
+        it.exceptionOrNull()?.printStackTrace()
+        try { it.getOrThrow() }
+        catch (_: Exception) {
+            emptyList()
+        }
+    }
+
+    private val difficulties = fetchDifficultiesUseCase().let {
+        it.exceptionOrNull()?.printStackTrace()
+        try { it.getOrThrow() }
+        catch (_: Exception) {
+            emptyList()
+        }
+    }
+
     /*
      * Routines
      */
@@ -158,12 +174,12 @@ class InvestigationScreenViewModel private constructor(
      * UI STATES
      */
     private val _mapUiState = MutableStateFlow(
-        MapUiState()
+        MapUiState(allMaps = maps.map { it.mapName })
     )
     val mapUiState = _mapUiState.asStateFlow()
 
     private val _difficultyUiState = MutableStateFlow(
-        DifficultyUiState()
+        DifficultyUiState(allDifficulties = difficulties.map { it.name })
     )
     val difficultyUiState = _difficultyUiState.asStateFlow()
 
@@ -532,86 +548,6 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-     * Difficulty ---------------------------
-     */
-    fun incrementDifficultyIndex() =
-        incrementDifficultyIndexUseCase(difficultyUiState.value.index)
-            .getOrNull()?.let { index ->
-                setDifficultyIndex(index)
-            }
-
-    fun decrementDifficultyIndex() =
-        decrementDifficultyIndexUseCase(difficultyUiState.value.index)
-            .getOrNull()?.let { index ->
-                setDifficultyIndex(index)
-            }
-
-    fun setDifficultyIndex(newIndex: Int) {
-        setDifficultyIndexUseCase(newIndex)
-            .onSuccess {
-                updateDifficulty(newIndex)
-            }
-            .onFailure {
-                Log.e("InvestigationViewModel", "Set Difficulty Index failed.")
-            }
-    }
-
-    private fun updateDifficulty(
-        index: Int = 0
-    ) {
-        try {
-            val name = getDifficultyNameUseCase(index).getOrThrow()
-            val modifier = getDifficultyModifierUseCase(index).getOrThrow()
-            val time = getDifficultyTimeUseCase(index).getOrThrow()
-            val initialSanity = getDifficultyInitialSanityUseCase(index).getOrThrow()
-            val responseType = getDifficultyResponseTypeUseCase(index).getOrThrow()
-
-            _difficultyUiState.update {
-                it.copy(
-                    index = index,
-                    name = name,
-                    modifier = modifier,
-                    time = time,
-                    initialSanity = initialSanity,
-                    responseType = responseType
-                )
-            }
-
-            _playerSanityUiState.update {
-                it.copy(
-                    sanityLevel = difficultyUiState.value.initialSanity,
-                    insanityLevel = 1f - difficultyUiState.value.initialSanity
-                )
-            }
-
-            _phaseUiState.update {
-                it.copy(
-                    canAlertAudio = false
-                )
-            }
-
-            updateGhostScores()
-
-            setTimeRemaining(difficultyUiState.value.time)
-            resetTimer()
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-
-            Log.e("InvestigationViewModel", "Update DifficultyUiState failed.")
-        }
-
-        Log.d("InvestigationViewModel", "DifficultyUiState:" +
-                "\n\tindex: ${_difficultyUiState.value.index}" +
-                "\n\tname: ${_difficultyUiState.value.name}" +
-                "\n\tmodifier: ${_difficultyUiState.value.modifier}" +
-                "\n\ttime: ${_difficultyUiState.value.time}" +
-                "\n\tinitialSanity: ${_difficultyUiState.value.initialSanity}" +
-                "\n\tresponseType: ${_difficultyUiState.value.responseType}")
-
-    }
-
-    /*
      * Player Sanity ---------------------------
      */
 
@@ -881,10 +817,112 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-     * MapCarouselHandler ---------------------------
+     * Difficulty ---------------------------
+     */
+    fun incrementDifficultyIndex() =
+        incrementDifficultyIndexUseCase(difficultyUiState.value.index)
+            .getOrNull()?.let { index ->
+                setDifficultyIndex(index)
+            }
+
+    fun decrementDifficultyIndex() =
+        decrementDifficultyIndexUseCase(difficultyUiState.value.index)
+            .getOrNull()?.let { index ->
+                setDifficultyIndex(index)
+            }
+
+    fun setDifficultyIndex(newIndex: Int) {
+        setDifficultyIndexUseCase(newIndex)
+            .onSuccess {
+                updateDifficulty(newIndex)
+            }
+            .onFailure {
+                Log.e("InvestigationViewModel", "Set Difficulty Index failed.")
+            }
+    }
+
+    private fun updateDifficulty(
+        index: Int = 0
+    ) {
+        try {
+            val name = getDifficultyNameUseCase(index).getOrThrow()
+            val modifier = getDifficultyModifierUseCase(index).getOrThrow()
+            val time = getDifficultyTimeUseCase(index).getOrThrow()
+            val initialSanity = getDifficultyInitialSanityUseCase(index).getOrThrow()
+            val responseType = getDifficultyResponseTypeUseCase(index).getOrThrow()
+
+            _difficultyUiState.update {
+                it.copy(
+                    index = index,
+                    name = name,
+                    modifier = modifier,
+                    time = time,
+                    initialSanity = initialSanity,
+                    responseType = responseType
+                )
+            }
+
+            _playerSanityUiState.update {
+                it.copy(
+                    sanityLevel = difficultyUiState.value.initialSanity,
+                    insanityLevel = 1f - difficultyUiState.value.initialSanity
+                )
+            }
+
+            _phaseUiState.update {
+                it.copy(
+                    canAlertAudio = false
+                )
+            }
+
+            updateGhostScores()
+
+            setTimeRemaining(difficultyUiState.value.time)
+            resetTimer()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+            Log.e("InvestigationViewModel", "Update DifficultyUiState failed.")
+        }
+
+        Log.d("InvestigationViewModel", "DifficultyUiState:" +
+                "\n\tindex: ${_difficultyUiState.value.index}" +
+                "\n\tname: ${_difficultyUiState.value.name}" +
+                "\n\tmodifier: ${_difficultyUiState.value.modifier}" +
+                "\n\ttime: ${_difficultyUiState.value.time}" +
+                "\n\tinitialSanity: ${_difficultyUiState.value.initialSanity}" +
+                "\n\tresponseType: ${_difficultyUiState.value.responseType}")
+
+    }
+
+    /*
+     * Map ---------------------------
      */
 
-    private fun setMapIndex(
+    fun incrementMapIndex() {
+        try {
+            val newIndex = incrementSimpleMapIndexUseCase(
+                mapUiState.value.index).getOrThrow()
+            updateMap(newIndex)
+        } catch (e: Exception) { e.printStackTrace() }
+    }
+
+    fun decrementMapIndex() {
+        try {
+            val newIndex = decrementSimpleMapIndexUseCase(
+                mapUiState.value.index).getOrThrow()
+            updateMap(newIndex)
+        } catch (e: Exception) { e.printStackTrace() }
+    }
+
+    fun setMapIndex(index: Int) {
+        //TODO
+
+        updateMap(index)
+    }
+
+    fun updateMap(
         index: Int = 0
     ) {
         try {
@@ -915,23 +953,6 @@ class InvestigationScreenViewModel private constructor(
                 "\n\tsize: ${mapUiState.value.size}" +
                 "\n\tsetupModifier: ${mapUiState.value.setupModifier}" +
                 "\n\tnormalModifier: ${mapUiState.value.normalModifier}")
-
-    }
-
-    fun incrementMapIndex() {
-        try {
-            val newIndex = incrementSimpleMapIndexUseCase(
-                mapUiState.value.index).getOrThrow()
-            setMapIndex(newIndex)
-        } catch (e: Exception) { e.printStackTrace() }
-    }
-
-    fun decrementMapIndex() {
-        try {
-            val newIndex = decrementSimpleMapIndexUseCase(
-                mapUiState.value.index).getOrThrow()
-            setMapIndex(newIndex)
-        } catch (e: Exception) { e.printStackTrace() }
     }
 
     /*
@@ -965,7 +986,7 @@ class InvestigationScreenViewModel private constructor(
     }
 
     init {
-        setMapIndex(0)
+        updateMap(0)
         updateDifficulty(0)
         initPhaseUiState()
         initTimerUiState()

@@ -9,4 +9,5 @@ data class MapUiState(
     internal val size: MapSize = MapSize.SMALL,
     internal val setupModifier: Float = 1f,
     internal val normalModifier: Float = 1f,
+    internal val allMaps: List<MapTitle> = emptyList()
 )
