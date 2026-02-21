@@ -91,35 +91,40 @@ class InvestigationScreenViewModel private constructor(
     private val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
     private val initEvidenceStateUseCase: InitRuledEvidenceUseCase = journalUseCaseBundle.initRuledEvidenceUseCase,
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase,
-    private val fetchDifficultiesUseCase: FetchDifficultiesUseCase,
-    private val getDifficultyNameUseCase: GetDifficultyNameUseCase,
-    private val getDifficultyModifierUseCase: GetDifficultyModifierUseCase,
-    private val getDifficultyTimeUseCase: GetDifficultyTimeUseCase,
-    private val getDifficultyResponseTypeUseCase: GetDifficultyResponseTypeUseCase,
-    private val getDifficultyInitialSanityUseCase: GetDifficultyInitialSanityUseCase,
-    private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase,
-    private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase,
-    private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase,
-    private val incrementMapIndexUseCase: IncrementMapIndexUseCase,
-    private val decrementMapIndexUseCase: DecrementMapIndexUseCase,
-    private val incrementMapFloorIndexUseCase: IncrementMapFloorIndexUseCase,
-    private val decrementMapFloorIndexUseCase: DecrementMapFloorIndexUseCase,
-    private val getSimpleMapIdUseCase: GetSimpleMapIdUseCase,
-    private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase,
-    private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase,
-    private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase,
-    private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
-    private val getMapModifierUseCase: GetMapModifierUseCase,
-    private val fetchMapModifiersUseCase: FetchMapModifiersUseCase,
-    private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase,
-    private val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase,
-    private val fetchCodexPossessionsUseCase: FetchPossessionTypesUseCase,
-    private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase,
-    private val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase,
-    private val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase,
-    private val getEnableRTLUseCase: GetEnableRTLUseCase,
-    private val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase,
-    private val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase,
+    difficultyUseCaseBundle: DifficultyUseCaseBundle,
+    private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase,
+    private val getDifficultyNameUseCase: GetDifficultyNameUseCase = difficultyUseCaseBundle.getDifficultyNameUseCase,
+    private val getDifficultyModifierUseCase: GetDifficultyModifierUseCase = difficultyUseCaseBundle.getDifficultyModifierUseCase,
+    private val getDifficultyTimeUseCase: GetDifficultyTimeUseCase = difficultyUseCaseBundle.getDifficultyTimeUseCase,
+    private val getDifficultyResponseTypeUseCase: GetDifficultyResponseTypeUseCase = difficultyUseCaseBundle.getDifficultyResponseTypeUseCase,
+    private val getDifficultyInitialSanityUseCase: GetDifficultyInitialSanityUseCase = difficultyUseCaseBundle.getDifficultyInitialSanityUseCase,
+    private val incrementDifficultyIndexUseCase: IncrementDifficultyIndexUseCase = difficultyUseCaseBundle.incrementDifficultyIndexUseCase,
+    private val decrementDifficultyIndexUseCase: DecrementDifficultyIndexUseCase = difficultyUseCaseBundle.decrementDifficultyIndexUseCase,
+    private val setDifficultyIndexUseCase: SetDifficultyIndexUseCase = difficultyUseCaseBundle.setDifficultyIndexUseCase,
+    simpleMapUseCaseBundle: SimpleMapUseCaseBundle,
+    private val fetchSimpleMapsUseCase: FetchSimpleMapsUseCase = simpleMapUseCaseBundle.fetchSimpleMapsUseCase,
+    private val incrementSimpleMapIndexUseCase: IncrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.incrementSimpleMapIndexUseCase,
+    private val decrementSimpleMapIndexUseCase: DecrementSimpleMapIndexUseCase = simpleMapUseCaseBundle.decrementSimpleMapIndexUseCase,
+    private val getSimpleMapIdUseCase: GetSimpleMapIdUseCase = simpleMapUseCaseBundle.getSimpleMapIdUseCase,
+    private val getSimpleMapNameUseCase: GetSimpleMapNameUseCase = simpleMapUseCaseBundle.getSimpleMapNameUseCase,
+    private val getSimpleMapSizeUseCase: GetSimpleMapSizeUseCase = simpleMapUseCaseBundle.getSimpleMapSizeUseCase,
+    private val getSimpleMapSetupModifierUseCase: GetSimpleMapSetupModifierUseCase = simpleMapUseCaseBundle.getSimpleMapSetupModifierUseCase,
+    private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase = simpleMapUseCaseBundle.getSimpleMapNormalModifierUseCase,
+    private val getSimpleMapModifierUseCase: GetSimpleMapModifierUseCase = simpleMapUseCaseBundle.getSimpleMapModifierUseCase,
+    private val fetchSimpleMapModifiersUseCase: FetchSimpleMapModifiersUseCase = simpleMapUseCaseBundle.fetchSimpleMapModifiersUseCase,
+    private val incrementSimpleMapFloorIndexUseCase: IncrementSimpleMapFloorIndexUseCase = simpleMapUseCaseBundle.incrementSimpleMapFloorIndexUseCase,
+    private val decrementSimpleMapFloorIndexUseCase: DecrementSimpleMapFloorIndexUseCase = simpleMapUseCaseBundle.decrementSimpleMapFloorIndexUseCase,
+    private val fetchMapThumbnailsUseCase: FetchMapThumbnailsUseCase = simpleMapUseCaseBundle.fetchMapThumbnailsUseCase,
+    codexUseCaseBundle: CodexUseCaseBundle,
+    private val fetchCodexAchievementsUseCase: FetchAchievementTypesUseCase = codexUseCaseBundle.fetchCodexAchievementsUseCase,
+    private val fetchCodexPossessionsUseCase: FetchPossessionTypesUseCase = codexUseCaseBundle.fetchCodexPossessionsUseCase,
+    private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase,
+    private val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase = codexUseCaseBundle.getEquipmentTypeByEvidenceTypeUseCase,
+    preferencesUseCaseBundle: PreferencesUseCaseBundle,
+    private val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase = preferencesUseCaseBundle.getAllowHuntWarnAudioUseCase,
+    private val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase = preferencesUseCaseBundle.getEnableGhostReorderUseCase,
+    private val getEnableRTLUseCase: GetEnableRTLUseCase = preferencesUseCaseBundle.getEnableRTLUseCase,
+    private val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase = preferencesUseCaseBundle.getMaxHuntWarnFlashTimeUseCase,
 ) : ViewModel() {
 
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
@@ -148,14 +153,36 @@ class InvestigationScreenViewModel private constructor(
     /*
      * UI STATES
      */
-    private val _mapUiState = MutableStateFlow(MapUiState())
-    val mapUiState = _mapUiState.asStateFlow()
+    private val _mapConfigUiState = MutableStateFlow(
+        MapConfigUiState(
+            maps = fetchSimpleMapsUseCase().let {
+                it.exceptionOrNull()?.printStackTrace()
+                try { it.getOrThrow() }
+                catch (e: Exception) {
+                    e.printStackTrace()
+                    emptyList()
+                }
+            }
+        )
+    )
+    val mapConfigUiState = _mapConfigUiState.asStateFlow()
 
-    private val _difficultyUiState = MutableStateFlow(DifficultyUiState())
-    val difficultyUiState = _difficultyUiState.asStateFlow()
+    private val _difficultyConfigUiState = MutableStateFlow(
+        DifficultyConfigUiState(
+            difficulties = fetchDifficultiesUseCase().let {
+                it.exceptionOrNull()?.printStackTrace()
+                try { it.getOrThrow() }
+                catch (e: Exception) {
+                    e.printStackTrace()
+                    emptyList()
+                }
+            }
+        )
+    )
+    val difficultyConfigUiState = _difficultyConfigUiState.asStateFlow()
 
-    private val _timerUiState = MutableStateFlow(TimerUiState())
-    val timerUiState = _timerUiState.asStateFlow()
+    private val _timerConfigUiState = MutableStateFlow(TimerConfigUiState())
+    val timerConfigUiState = _timerConfigUiState.asStateFlow()
 
     private val _phaseUiState = MutableStateFlow(PhaseUiState())
     val phaseUiState = _phaseUiState.asStateFlow()
@@ -864,14 +891,84 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-    private fun resetTimer(
-        currentDifficultyTime: Long
-    ) {
-        resetTimer()
-        setTimeRemaining(currentDifficultyTime)
-        resetStartTime()
+     * Difficulty ---------------------------
+     */
+    fun incrementDifficultyIndex() =
+        incrementDifficultyIndexUseCase(difficultyConfigUiState.value.index)
+            .getOrNull()?.let { index ->
+                setDifficultyIndex(index)
+            }
+
+    fun decrementDifficultyIndex() =
+        decrementDifficultyIndexUseCase(difficultyConfigUiState.value.index)
+            .getOrNull()?.let { index ->
+                setDifficultyIndex(index)
+            }
+
+    fun setDifficultyIndex(newIndex: Int) {
+        setDifficultyIndexUseCase(newIndex)
+            .onSuccess {
+                updateDifficulty(newIndex)
+            }
+            .onFailure {
+                Log.e("InvestigationViewModel", "Set Difficulty Index failed.")
+            }
     }
-    */
+
+    private fun updateDifficulty(
+        index: Int = 0
+    ) {
+        try {
+            val name = getDifficultyNameUseCase(index).getOrThrow()
+            val modifier = getDifficultyModifierUseCase(index).getOrThrow()
+            val time = getDifficultyTimeUseCase(index).getOrThrow()
+            val initialSanity = getDifficultyInitialSanityUseCase(index).getOrThrow()
+            val responseType = getDifficultyResponseTypeUseCase(index).getOrThrow()
+
+            _difficultyConfigUiState.update {
+                it.copy(
+                    index = index,
+                    name = name,
+                    modifier = modifier,
+                    time = time,
+                    initialSanity = initialSanity,
+                    responseType = responseType
+                )
+            }
+
+            _playerSanityUiState.update {
+                it.copy(
+                    sanityLevel = difficultyConfigUiState.value.initialSanity,
+                    insanityLevel = 1f - difficultyConfigUiState.value.initialSanity
+                )
+            }
+
+            _phaseUiState.update {
+                it.copy(
+                    canAlertAudio = false
+                )
+            }
+
+            updateGhostScores()
+
+            setTimeRemaining(difficultyConfigUiState.value.time)
+            resetTimer()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+            Log.e("InvestigationViewModel", "Update DifficultyUiState failed.")
+        }
+
+        Log.d("InvestigationViewModel", "DifficultyUiState:" +
+                "\n\tindex: ${_difficultyConfigUiState.value.index}" +
+                "\n\tname: ${_difficultyConfigUiState.value.name}" +
+                "\n\tmodifier: ${_difficultyConfigUiState.value.modifier}" +
+                "\n\ttime: ${_difficultyConfigUiState.value.time}" +
+                "\n\tinitialSanity: ${_difficultyConfigUiState.value.initialSanity}" +
+                "\n\tresponseType: ${_difficultyConfigUiState.value.responseType}")
+
+    }
 
     /*
      * MapCarouselHandler ---------------------------
@@ -978,74 +1075,17 @@ class InvestigationScreenViewModel private constructor(
                     val container = (application as InvestigationContainerProvider).provideInvestigationContainer()
 
                     val journalUseCaseBundle = container.journalUseCaseBundle
-                    val fetchDifficultiesUseCase = container.fetchDifficultiesUseCase
-                    val getDifficultyNameUseCase = container.getDifficultyNameUseCase
-                    val getDifficultyModifierUseCase = container.getDifficultyModifierUseCase
-                    val getDifficultyTimeUseCase = container.getDifficultyTimeUseCase
-                    val getDifficultyResponseTypeUseCase =
-                        container.getDifficultyResponseTypeUseCase
-                    val getDifficultyInitialSanityUseCase =
-                        container.getDifficultyInitialSanityUseCase
-                    val incrementDifficultyIndexUseCase =
-                        container.incrementDifficultyIndexUseCase
-                    val decrementDifficultyIndexUseCase =
-                        container.decrementDifficultyIndexUseCase
-                    val fetchSimpleMapsUseCase = container.fetchSimpleMapsUseCase
-                    val getSimpleMapIdUseCase = container.getSimpleMapIdUseCase
-                    val getSimpleMapNameUseCase = container.getSimpleMapNameUseCase
-                    val getSimpleMapSizeUseCase = container.getSimpleMapSizeUseCase
-                    val getSimpleMapSetupModifierUseCase =
-                        container.getSimpleMapSetupModifierUseCase
-                    val getSimpleMapNormalModifierUseCase =
-                        container.getSimpleMapNormalModifierUseCase
-                    val getMapModifierUseCase = container.getMapModifierUseCase
-                    val incrementMapIndexUseCase = container.incrementMapIndexUseCase
-                    val decrementMapIndexUseCase = container.decrementMapIndexUseCase
-                    val incrementMapFloorIndexUseCase = container.incrementMapFloorIndexUseCase
-                    val decrementMapFloorIndexUseCase = container.decrementMapFloorIndexUseCase
-                    val fetchMapModifiersUseCase = container.fetchMapModifiersUseCase
-                    val fetchMapThumbnailsUseCase = container.fetchMapThumbnailsUseCase
-                    val fetchCodexAchievementsUseCase = container.fetchCodexAchievementsUseCase
-                    val fetchCodexPossessionsUseCase = container.fetchCodexPossessionsUseCase
-                    val fetchCodexEquipmentUseCase = container.fetchCodexEquipmentUseCase
-                    val getAllowHuntWarnAudioUseCase = container.getAllowHuntWarnAudioUseCase
-                    val getEnableGhostReorderUseCase = container.getEnableGhostReorderUseCase
-                    val getEnableRTLUseCase = container.getEnableRTLUseCase
-                    val getMaxHuntWarnFlashTimeUseCase = container.getMaxHuntWarnFlashTimeUseCase
-                    val getEquipmentTypeByEvidenceTypeUseCase =
-                        container.getEquipmentTypeByEvidenceTypeUseCase
+                    val difficultyUseCaseBundle = container.difficultyUseCaseBundle
+                    val simpleMapUseCaseBundle = container.simpleMapUseCaseBundle
+                    val codexUseCaseBundle = container.codexUseCaseBundle
+                    val preferencesUseCaseBundle = container.preferencesUseCaseBundle
 
                     InvestigationScreenViewModel(
                         journalUseCaseBundle = journalUseCaseBundle,
-                        fetchDifficultiesUseCase = fetchDifficultiesUseCase,
-                        getDifficultyNameUseCase = getDifficultyNameUseCase,
-                        getDifficultyModifierUseCase = getDifficultyModifierUseCase,
-                        getDifficultyTimeUseCase = getDifficultyTimeUseCase,
-                        getDifficultyResponseTypeUseCase = getDifficultyResponseTypeUseCase,
-                        getDifficultyInitialSanityUseCase = getDifficultyInitialSanityUseCase,
-                        incrementDifficultyIndexUseCase = incrementDifficultyIndexUseCase,
-                        decrementDifficultyIndexUseCase = decrementDifficultyIndexUseCase,
-                        fetchSimpleMapsUseCase = fetchSimpleMapsUseCase,
-                        getSimpleMapIdUseCase = getSimpleMapIdUseCase,
-                        getSimpleMapNameUseCase = getSimpleMapNameUseCase,
-                        getSimpleMapSizeUseCase = getSimpleMapSizeUseCase,
-                        getSimpleMapSetupModifierUseCase = getSimpleMapSetupModifierUseCase,
-                        getSimpleMapNormalModifierUseCase = getSimpleMapNormalModifierUseCase,
-                        getMapModifierUseCase = getMapModifierUseCase,
-                        incrementMapIndexUseCase = incrementMapIndexUseCase,
-                        decrementMapIndexUseCase = decrementMapIndexUseCase,
-                        incrementMapFloorIndexUseCase = incrementMapFloorIndexUseCase,
-                        decrementMapFloorIndexUseCase = decrementMapFloorIndexUseCase,
-                        fetchMapModifiersUseCase = fetchMapModifiersUseCase,
-                        fetchMapThumbnailsUseCase = fetchMapThumbnailsUseCase,
-                        fetchCodexAchievementsUseCase = fetchCodexAchievementsUseCase,
-                        fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
-                        fetchCodexEquipmentUseCase = fetchCodexEquipmentUseCase,
-                        getAllowHuntWarnAudioUseCase = getAllowHuntWarnAudioUseCase,
-                        getEnableGhostReorderUseCase = getEnableGhostReorderUseCase,
-                        getEnableRTLUseCase = getEnableRTLUseCase,
-                        getMaxHuntWarnFlashTimeUseCase = getMaxHuntWarnFlashTimeUseCase,
-                        getEquipmentTypeByEvidenceTypeUseCase = getEquipmentTypeByEvidenceTypeUseCase
+                        difficultyUseCaseBundle = difficultyUseCaseBundle,
+                        simpleMapUseCaseBundle = simpleMapUseCaseBundle,
+                        codexUseCaseBundle = codexUseCaseBundle,
+                        preferencesUseCaseBundle = preferencesUseCaseBundle
                     )
                 }
             }
