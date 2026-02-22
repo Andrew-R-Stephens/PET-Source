@@ -5,7 +5,7 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUi
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
 
 data class BpmToolUiActions(
-    val onUpdate: (RealtimeUiState<GraphPoint>) -> Unit,
-    val onChangeMeasurementType: (VisualizerMeasurementType) -> Unit,
-    val toggleApplyMeasurement: () -> Unit
+    val onUpdate: (RealtimeUiState<GraphPoint>) -> Unit = {},
+    val onChangeMeasurementType: (VisualizerMeasurementType) -> Unit = {},
+    val toggleApplyMeasurement: () -> Unit = {}
 )

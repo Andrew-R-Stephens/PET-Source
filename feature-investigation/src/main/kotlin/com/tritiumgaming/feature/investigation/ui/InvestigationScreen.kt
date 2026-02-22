@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -15,16 +16,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -33,6 +36,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.TruckTimeIcon
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.Holiday22
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
@@ -69,6 +73,7 @@ import com.tritiumgaming.feature.investigation.ui.section.analysis.OperationAnal
 import com.tritiumgaming.feature.investigation.ui.section.configs.OperationConfigs
 import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmTool
 import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmToolUiActions
+import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.section.timers.OperationTimers
 import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarBundle
 import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarUiColors
@@ -76,23 +81,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBar
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolbar
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-
-@Composable
-@Preview
-private fun InvestigationSoloScreenPreview() {
-    SelectiveTheme(
-        palette = Holiday22,
-        typography = ClassicTypography
-    ) {
-
-        InvestigationSoloScreen(
-            investigationViewModel = viewModel(factory = InvestigationScreenViewModel.Factory))
-
-    }
-
-}
 
 @Composable
 fun InvestigationSoloScreen(
@@ -330,7 +319,7 @@ private fun InvestigationContent(
         )
     )
 
-    val investigationStateBundle = InvestigationStateBundle(
+    val investigationUiState = InvestigationUiState(
         toolbarUiState = toolbarUiState,
         journalStateBundle = JournalStateBundle(
             journalUiState = journalUiState,
@@ -356,6 +345,14 @@ private fun InvestigationContent(
         huntGapBundle = huntGapBundle
     )
 
+    val investigationUiActions = InvestigationUiActions(
+        evidenceListUi = evidenceListUiActions,
+        ghostListUi = ghostListUiActions,
+        ghostListItemUi = ghostListUiItemActions,
+        toolbarUi = toolbarUiActions,
+        bpmUi = bpmToolUiActions
+    )
+
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
@@ -363,24 +360,16 @@ private fun InvestigationContent(
         DeviceConfiguration.MOBILE_PORTRAIT,
         DeviceConfiguration.TABLET_PORTRAIT -> {
             InvestigationContentPortrait(
-                investigationStateBundle,
-                evidenceListUiActions,
-                toolbarUiActions,
-                ghostListUiActions,
-                ghostListUiItemActions,
-                bpmToolUiActions
+                state = investigationUiState,
+                actions = investigationUiActions
             )
         }
         DeviceConfiguration.MOBILE_LANDSCAPE,
         DeviceConfiguration.TABLET_LANDSCAPE,
         DeviceConfiguration.DESKTOP -> {
             InvestigationContentLandscape(
-                investigationStateBundle,
-                evidenceListUiActions,
-                toolbarUiActions,
-                ghostListUiActions,
-                ghostListUiItemActions,
-                bpmToolUiActions
+                state = investigationUiState,
+                actions = investigationUiActions
             )
         }
     }
@@ -409,156 +398,169 @@ private fun InvestigationContent(
 
 @Composable
 private fun InvestigationContentPortrait(
-    investigationStateBundle: InvestigationStateBundle,
-    evidenceListUiActions: EvidenceListUiActions,
-    toolbarUiActions: ToolbarUiActions,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions,
-    bpmToolUiActions: BpmToolUiActions
+    state: InvestigationUiState,
+    actions: InvestigationUiActions
 ) {
     Column(
-        modifier = Modifier
-            .padding(bottom = 8.dp),
+        modifier = Modifier,
         verticalArrangement = Arrangement.Top
     ) {
         Investigation(
-            investigationStateBundle = investigationStateBundle,
-            evidenceListUiActions = evidenceListUiActions,
-            toolbarUiActions = toolbarUiActions,
-            ghostListUiActions = ghostListUiActions,
-            ghostListUiItemActions = ghostListUiItemActions,
-            bpmToolUiActions = bpmToolUiActions
+            state = state,
+            actions = actions
         )
     }
 }
 
 @Composable
 private fun InvestigationContentLandscape(
-    investigationStateBundle: InvestigationStateBundle,
-    evidenceListUiActions: EvidenceListUiActions,
-    toolbarUiActions: ToolbarUiActions,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions,
-    bpmToolUiActions: BpmToolUiActions
+    state: InvestigationUiState,
+    actions: InvestigationUiActions
 ) {
     Row(
-        modifier = Modifier
-            .padding(start = 8.dp),
+        modifier = Modifier,
         horizontalArrangement = Arrangement.Start
     ) {
         Investigation(
-            investigationStateBundle = investigationStateBundle,
-            evidenceListUiActions = evidenceListUiActions,
-            toolbarUiActions = toolbarUiActions,
-            ghostListUiActions = ghostListUiActions,
-            ghostListUiItemActions = ghostListUiItemActions,
-            bpmToolUiActions = bpmToolUiActions
+            state = state,
+            actions = actions
         )
     }
 }
 
 @Composable
 private fun ColumnScope.Investigation(
-    investigationStateBundle: InvestigationStateBundle,
-    evidenceListUiActions: EvidenceListUiActions,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions,
-    toolbarUiActions: ToolbarUiActions,
-    bpmToolUiActions: BpmToolUiActions
+    state: InvestigationUiState,
+    actions: InvestigationUiActions
 ) {
-
-    val journalStateBundle = investigationStateBundle.journalStateBundle
-    val toolbarUiState = investigationStateBundle.toolbarUiState
 
     Journal(
         modifier = Modifier
             .weight(1f, false),
-        journalStateBundle = journalStateBundle,
-        evidenceListUiActions = evidenceListUiActions,
-        ghostListUiActions = ghostListUiActions,
-        ghostListUiItemActions = ghostListUiItemActions
+        journalStateBundle = state.journalStateBundle,
+        evidenceListUiActions = actions.evidenceListUi,
+        ghostListUiActions = actions.ghostListUi,
+        ghostListUiItemActions = actions.ghostListItemUi
     )
 
-    OperationToolbar(
+    val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
+        OperationToolbar(
+            modifier = modifier
+                .heightIn(min = 48.dp),
+            toolbarUiState = state.toolbarUiState,
+            toolbarUiActions = actions.toolbarUi
+        )
+    }
+
+    val primaryContent: @Composable (Modifier) -> Unit = { modifier ->
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .animateContentSize()
+                .then(
+                    if (!state.toolbarUiState.isCollapsed)
+                        Modifier
+                            .alpha(1f)
+                            .wrapContentHeight()
+                    else
+                        Modifier
+                            .height(0.dp)
+                            .alpha(0f)
+                ),
+            verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Bottom),
+            horizontalAlignment = Alignment.Start
+        ) {
+            when (state.toolbarUiState.category) {
+                ToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
+                    modifier = Modifier
+                        .height(IntrinsicSize.Max),
+                    mapConfigComponent = { modifier ->
+                        MapConfigComponent(
+                            modifier = modifier,
+                            stateBundle = state.mapUiStateBundle,
+                            actionsBundle = state.mapUiActionBundle,
+                            isCompact = true
+                        )
+                    },
+                    difficultyConfigComponent = { modifier ->
+                        DifficultyConfigComponent(
+                            modifier = modifier,
+                            stateBundle = state.difficultyUiStateBundle,
+                            actionsBundle = state.difficultyUiActionBundle,
+                            isCompact = true
+                        )
+                    },
+                    sanityMeterComponent = { modifier ->
+                        SanityMeterComponent(
+                            modifier = modifier,
+                            sanityUiState = state.sanityUiState
+                        )
+                    },
+                    timerComponent = { modifier ->
+                        TimerComponent(
+                            modifier = modifier,
+                            timerUiState = state.timerUiState,
+                            timerUiActions = state.timerUiActions
+                        )
+                    },
+                    phaseComponent = { modifier ->
+
+                    }
+                )
+
+                ToolbarUiState.Category.TOOL_ANALYZER -> OperationAnalysis(
+                    modifier = Modifier,
+                    operationDetailsUiState = state.operationDetailsUiState
+                )
+
+                ToolbarUiState.Category.TOOL_TIMERS -> OperationTimers(
+                    modifier = Modifier,
+                    smudgeHuntPreventionBundle = state.smudgeHuntPreventionBundle,
+                    smudgeBlindingBundle = state.smudgeBlindingBundle,
+                    huntDurationBundle = state.huntDurationBundle,
+                    huntGapBundle = state.huntGapBundle
+                )
+
+                ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
+                    modifier = Modifier,
+                    state = state.bpmToolUiState,
+                    actions = actions.bpmUi
+                )
+
+            }
+        }
+    }
+
+    ToolbarBottomSheet(
         modifier = Modifier
-            .widthIn(min = 48.dp),
-        toolbarUiState = toolbarUiState,
-        toolbarUiActions = toolbarUiActions
+            .padding(8.dp),
+        toolbarContent = { modifier -> toolbarContent(modifier) },
+        content = { modifier -> primaryContent(modifier) }
     )
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .animateContentSize()
-            .then(
-                if (!toolbarUiState.isCollapsed)
-                    Modifier
-                        .alpha(1f)
-                        .wrapContentHeight()
-                else
-                    Modifier
-                        .height(0.dp)
-                        .alpha(0f)
-            ),
-        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Bottom),
-        horizontalAlignment = Alignment.Start
+}
+
+@Composable
+private fun ToolbarBottomSheet(
+    modifier: Modifier = Modifier,
+    toolbarContent: @Composable (Modifier) -> Unit = {},
+    content: @Composable (Modifier) -> Unit = {}
+) {
+    Surface(
+        //modifier = modifier,
+        color = LocalPalette.current.surfaceContainerLow,
+        shape = RoundedCornerShape(
+            topStart = 16.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 0.dp)
     ) {
-        when(toolbarUiState.category) {
-            ToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
-                modifier = Modifier
-                    .height(IntrinsicSize.Max),
-                mapConfigComponent = { modifier ->
-                    MapConfigComponent(
-                        modifier = modifier,
-                        stateBundle = investigationStateBundle.mapUiStateBundle,
-                        actionsBundle = investigationStateBundle.mapUiActionBundle,
-                        isCompact = true
-                    )
-                },
-                difficultyConfigComponent = { modifier ->
-                    DifficultyConfigComponent(
-                        modifier = modifier,
-                        stateBundle = investigationStateBundle.difficultyUiStateBundle,
-                        actionsBundle = investigationStateBundle.difficultyUiActionBundle,
-                        isCompact = true
-                    )
-                },
-                sanityMeterComponent = { modifier ->
-                    SanityMeterComponent(
-                        modifier = modifier,
-                        sanityUiState = investigationStateBundle.sanityUiState
-                    )
-                },
-                timerComponent = { modifier ->
-                    TimerComponent(
-                        modifier = modifier,
-                        timerUiState = investigationStateBundle.timerUiState,
-                        timerUiActions = investigationStateBundle.timerUiActions
-                    )
-                },
-                phaseComponent = { modifier ->
-
-                }
+        Column(
+            modifier = modifier
+        ) {
+            toolbarContent(
+                Modifier
+                    .widthIn(min = 48.dp)
             )
 
-            ToolbarUiState.Category.TOOL_ANALYZER -> OperationAnalysis(
-                modifier = Modifier,
-                operationDetailsUiState = investigationStateBundle.operationDetailsUiState
-            )
-
-            ToolbarUiState.Category.TOOL_TIMERS -> OperationTimers(
-                modifier = Modifier,
-                smudgeHuntPreventionBundle = investigationStateBundle.smudgeHuntPreventionBundle,
-                smudgeBlindingBundle = investigationStateBundle.smudgeBlindingBundle,
-                huntDurationBundle = investigationStateBundle.huntDurationBundle,
-                huntGapBundle = investigationStateBundle.huntGapBundle
-            )
-
-            ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
-                modifier = Modifier,
-                state = investigationStateBundle.bpmToolUiState,
-                actions = bpmToolUiActions
-            )
+            content(Modifier)
 
         }
     }
@@ -566,17 +568,36 @@ private fun ColumnScope.Investigation(
 
 @Composable
 private fun RowScope.Investigation(
-    investigationStateBundle: InvestigationStateBundle,
-    evidenceListUiActions: EvidenceListUiActions,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions,
-    toolbarUiActions: ToolbarUiActions,
-    bpmToolUiActions: BpmToolUiActions
+    state: InvestigationUiState,
+    actions: InvestigationUiActions
 ) {
 
-    val journalStateBundle = investigationStateBundle.journalStateBundle
-    val toolbarUiState = investigationStateBundle.toolbarUiState
+    val journalStateBundle = state.journalStateBundle
+    val toolbarUiState = state.toolbarUiState
 
+    ToolbarSideSheet(
+        toolbarUiState = toolbarUiState,
+        toolbarUiActions = actions.toolbarUi,
+        investigationUiState = state,
+        bpmToolUiActions = actions.bpmUi
+    )
+
+    Journal(
+        modifier = Modifier,
+        journalStateBundle = journalStateBundle,
+        evidenceListUiActions = actions.evidenceListUi,
+        ghostListUiActions = actions.ghostListUi,
+        ghostListUiItemActions = actions.ghostListItemUi,
+    )
+}
+
+@Composable
+private fun RowScope.ToolbarSideSheet(
+    toolbarUiState: ToolbarUiState,
+    toolbarUiActions: ToolbarUiActions,
+    investigationUiState: InvestigationUiState,
+    bpmToolUiActions: BpmToolUiActions
+) {
     Column(
         modifier = Modifier
             .then(
@@ -589,43 +610,61 @@ private fun RowScope.Investigation(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.Start
     ) {
-        when(toolbarUiState.category) {
+        when (toolbarUiState.category) {
             ToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
                 modifier = Modifier
                     .height(IntrinsicSize.Max),
                 mapConfigComponent = { modifier ->
-
+                    MapConfigComponent(
+                        modifier = modifier,
+                        stateBundle = investigationUiState.mapUiStateBundle,
+                        actionsBundle = investigationUiState.mapUiActionBundle,
+                        isCompact = true
+                    )
                 },
                 difficultyConfigComponent = { modifier ->
-
+                    DifficultyConfigComponent(
+                        modifier = modifier,
+                        stateBundle = investigationUiState.difficultyUiStateBundle,
+                        actionsBundle = investigationUiState.difficultyUiActionBundle,
+                        isCompact = true
+                    )
                 },
                 sanityMeterComponent = { modifier ->
-
+                    SanityMeterComponent(
+                        modifier = modifier,
+                        sanityUiState = investigationUiState.sanityUiState
+                    )
                 },
                 timerComponent = { modifier ->
-
+                    TimerComponent(
+                        modifier = modifier,
+                        timerUiState = investigationUiState.timerUiState,
+                        timerUiActions = investigationUiState.timerUiActions
+                    )
                 },
                 phaseComponent = { modifier ->
 
                 }
             )
+
             ToolbarUiState.Category.TOOL_ANALYZER -> OperationAnalysis(
                 modifier = Modifier
                     .wrapContentHeight(align = Alignment.Bottom),
-                operationDetailsUiState = investigationStateBundle.operationDetailsUiState
+                operationDetailsUiState = investigationUiState.operationDetailsUiState
             )
 
             ToolbarUiState.Category.TOOL_TIMERS -> OperationTimers(
                 modifier = Modifier,
-                smudgeHuntPreventionBundle = investigationStateBundle.smudgeHuntPreventionBundle,
-                smudgeBlindingBundle = investigationStateBundle.smudgeBlindingBundle,
-                huntDurationBundle = investigationStateBundle.huntDurationBundle,
-                huntGapBundle = investigationStateBundle.huntGapBundle
+                smudgeHuntPreventionBundle = investigationUiState.smudgeHuntPreventionBundle,
+                smudgeBlindingBundle = investigationUiState.smudgeBlindingBundle,
+                huntDurationBundle = investigationUiState.huntDurationBundle,
+                huntGapBundle = investigationUiState.huntGapBundle
             )
 
             ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
                 modifier = Modifier,
-                state = investigationStateBundle.bpmToolUiState,
+                state = investigationUiState.bpmToolUiState,
                 actions = bpmToolUiActions
             )
 
@@ -637,14 +676,6 @@ private fun RowScope.Investigation(
             .heightIn(48.dp),
         toolbarUiState = toolbarUiState,
         toolbarUiActions = toolbarUiActions
-    )
-
-    Journal(
-        modifier = Modifier,
-        journalStateBundle = journalStateBundle,
-        evidenceListUiActions = evidenceListUiActions,
-        ghostListUiActions = ghostListUiActions,
-        ghostListUiItemActions = ghostListUiItemActions,
     )
 }
 
@@ -781,6 +812,250 @@ private fun DifficultyConfigComponent(
                 color = LocalPalette.current.onSurface,
                 iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
                 actions = actionsBundle.carouselUiActions
+            )
+        }
+    }
+}
+
+@Preview(device = "id:pixel_9_pro_xl")
+@Composable
+private fun PortraitPreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        val timerUiState = TimerUiState()
+        val phaseUiState = PhaseUiState()
+        val sanityUiState = PlayerSanityUiState()
+        val ghostListUiState = GhostListUiState(
+            ghostStates = listOf(),
+            ghostOrder = listOf(),
+            evidenceState = listOf()
+        )
+        val evidenceListUiState = EvidenceListUiState(
+            evidenceStateList = listOf()
+        )
+
+        val toolbarUiState = ToolbarUiState(
+            isCollapsed = false,
+            category = ToolbarUiState.Category.TOOL_CONFIG
+        )
+
+        val mapUiStateBundle = ConfigStateBundle(
+            carouselUiState = ConfigCarouselUiState(label = R.string.map_name_short_prison),
+            dropdownUiState = ConfigDropdownUiState(list = listOf(R.string.map_name_short_prison), label = R.string.map_name_short_prison)
+        )
+
+        val difficultyUiStateBundle = ConfigStateBundle(
+            carouselUiState = ConfigCarouselUiState(label = R.string.difficulty_title_amateur),
+            dropdownUiState = ConfigDropdownUiState(list = listOf(R.string.difficulty_title_amateur), label = R.string.difficulty_title_amateur)
+        )
+
+        val notchedProgressBarState = NotchedProgressBarUiState(
+            max = 100,
+            origin = 0,
+            remaining = 50,
+            notches = listOf(),
+            running = false
+        )
+
+        val notchedProgressBarColors = NotchedProgressBarUiColors(
+            remaining = LocalPalette.current.primary,
+            background = LocalPalette.current.surface,
+            border = LocalPalette.current.onSurface,
+            notch = LocalPalette.current.onSurface,
+            label = LocalPalette.current.onSurface,
+        )
+
+        val smudgeHuntPreventionBundle = NotchedProgressBarBundle(
+            title = "Smudge Hunt Protection",
+            state = notchedProgressBarState,
+            colors = notchedProgressBarColors
+        )
+
+        val investigationUiState = InvestigationUiState(
+            toolbarUiState = toolbarUiState,
+            journalStateBundle = JournalStateBundle(
+                journalUiState = JournalUiState(
+                    rtlPreference = false
+                ),
+                evidenceListUiState = evidenceListUiState,
+                ghostListUiState = ghostListUiState
+            ),
+            timerUiState = timerUiState,
+            timerUiActions = TimerUiActions(),
+            phaseUiState = phaseUiState,
+            mapUiStateBundle = mapUiStateBundle,
+            mapUiActionBundle = ConfigActionsBundle(
+                carouselUiActions = CarouselUiActions(),
+                dropdownUiActions = DropdownUiActions()
+            ),
+            difficultyUiStateBundle = difficultyUiStateBundle,
+            difficultyUiActionBundle = ConfigActionsBundle(
+                carouselUiActions = CarouselUiActions(),
+                dropdownUiActions = DropdownUiActions()
+            ),
+            sanityUiState = sanityUiState,
+            ghostListUiState = ghostListUiState,
+            evidenceListUiState = evidenceListUiState,
+            operationDetailsUiState = OperationDetailsUiState(
+                mapUiState = MapUiState(),
+                phaseUiState = phaseUiState,
+                difficultyUiState = DifficultyUiState(),
+                timerUiState = timerUiState,
+                sanityUiState = sanityUiState,
+                ghostStates = listOf(),
+                ghostOrder = listOf(),
+                evidenceState = listOf()
+            ),
+            bpmToolUiState = BpmToolUiState(),
+            bpmToolUiActions = BpmToolUiActions(
+                onUpdate = {},
+                onChangeMeasurementType = {},
+                toggleApplyMeasurement = {}
+            ),
+            smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
+            smudgeBlindingBundle = smudgeHuntPreventionBundle,
+            huntDurationBundle = smudgeHuntPreventionBundle,
+            huntGapBundle = smudgeHuntPreventionBundle
+        )
+
+        Column(
+            modifier = Modifier
+                .background(LocalPalette.current.surface)
+        ) {
+            Investigation(
+                state = investigationUiState,
+                actions = InvestigationUiActions(
+                    evidenceListUi = EvidenceListUiActions(),
+                    ghostListUi = GhostListUiActions(),
+                    ghostListItemUi = GhostListUiItemActions(),
+                    toolbarUi = ToolbarUiActions(),
+                    bpmUi = BpmToolUiActions()
+                )
+
+            )
+        }
+    }
+}
+
+@Preview(device = "spec:parent=pixel_9_pro_xl,orientation=landscape")
+@Composable
+private fun LandscapePreview() {
+    SelectiveTheme(
+        palette = ClassicPalette,
+        typography = ClassicTypography
+    ) {
+        val timerUiState = TimerUiState()
+        val phaseUiState = PhaseUiState()
+        val sanityUiState = PlayerSanityUiState()
+        val ghostListUiState = GhostListUiState(
+            ghostStates = listOf(),
+            ghostOrder = listOf(),
+            evidenceState = listOf()
+        )
+        val evidenceListUiState = EvidenceListUiState(
+            evidenceStateList = listOf()
+        )
+
+        val toolbarUiState = ToolbarUiState(
+            isCollapsed = false,
+            category = ToolbarUiState.Category.TOOL_CONFIG
+        )
+
+        val mapUiStateBundle = ConfigStateBundle(
+            carouselUiState = ConfigCarouselUiState(label = R.string.map_name_short_prison),
+            dropdownUiState = ConfigDropdownUiState(list = listOf(R.string.map_name_short_prison), label = R.string.map_name_short_prison)
+        )
+
+        val difficultyUiStateBundle = ConfigStateBundle(
+            carouselUiState = ConfigCarouselUiState(label = R.string.difficulty_title_amateur),
+            dropdownUiState = ConfigDropdownUiState(list = listOf(R.string.difficulty_title_amateur), label = R.string.difficulty_title_amateur)
+        )
+
+        val notchedProgressBarState = NotchedProgressBarUiState(
+            max = 100,
+            origin = 0,
+            remaining = 50,
+            notches = listOf(),
+            running = false
+        )
+
+        val notchedProgressBarColors = NotchedProgressBarUiColors(
+            remaining = LocalPalette.current.primary,
+            background = LocalPalette.current.surface,
+            border = LocalPalette.current.onSurface,
+            notch = LocalPalette.current.onSurface,
+            label = LocalPalette.current.onSurface,
+        )
+
+        val smudgeHuntPreventionBundle = NotchedProgressBarBundle(
+            title = "Smudge Hunt Protection",
+            state = notchedProgressBarState,
+            colors = notchedProgressBarColors
+        )
+
+        val investigationUiState = InvestigationUiState(
+            toolbarUiState = toolbarUiState,
+            journalStateBundle = JournalStateBundle(
+                journalUiState = JournalUiState(
+                    rtlPreference = false
+                ),
+                evidenceListUiState = evidenceListUiState,
+                ghostListUiState = ghostListUiState
+            ),
+            timerUiState = timerUiState,
+            timerUiActions = TimerUiActions(),
+            phaseUiState = phaseUiState,
+            mapUiStateBundle = mapUiStateBundle,
+            mapUiActionBundle = ConfigActionsBundle(
+                carouselUiActions = CarouselUiActions(),
+                dropdownUiActions = DropdownUiActions()
+            ),
+            difficultyUiStateBundle = difficultyUiStateBundle,
+            difficultyUiActionBundle = ConfigActionsBundle(
+                carouselUiActions = CarouselUiActions(),
+                dropdownUiActions = DropdownUiActions()
+            ),
+            sanityUiState = sanityUiState,
+            ghostListUiState = ghostListUiState,
+            evidenceListUiState = evidenceListUiState,
+            operationDetailsUiState = OperationDetailsUiState(
+                mapUiState = MapUiState(),
+                phaseUiState = phaseUiState,
+                difficultyUiState = DifficultyUiState(),
+                timerUiState = timerUiState,
+                sanityUiState = sanityUiState,
+                ghostStates = listOf(),
+                ghostOrder = listOf(),
+                evidenceState = listOf()
+            ),
+            bpmToolUiState = BpmToolUiState(),
+            bpmToolUiActions = BpmToolUiActions(
+                onUpdate = {},
+                onChangeMeasurementType = {},
+                toggleApplyMeasurement = {}
+            ),
+            smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
+            smudgeBlindingBundle = smudgeHuntPreventionBundle,
+            huntDurationBundle = smudgeHuntPreventionBundle,
+            huntGapBundle = smudgeHuntPreventionBundle
+        )
+
+        Row(
+            modifier = Modifier
+                .background(LocalPalette.current.surface)
+        ) {
+            Investigation(
+                state = investigationUiState,
+                actions = InvestigationUiActions(
+                    evidenceListUi = EvidenceListUiActions(),
+                    ghostListUi = GhostListUiActions(),
+                    ghostListItemUi = GhostListUiItemActions(),
+                    toolbarUi = ToolbarUiActions(),
+                    bpmUi = BpmToolUiActions()
+                )
+
             )
         }
     }

@@ -4,8 +4,6 @@ import com.tritiumgaming.feature.investigation.ui.common.analysis.OperationDetai
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigActionsBundle
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigStateBundle
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel.ConfigCarouselUiState
-import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.ConfigDropdownUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.JournalStateBundle
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
@@ -15,7 +13,7 @@ import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmToolUiActi
 import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarBundle
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 
-internal data class InvestigationStateBundle(
+internal data class InvestigationUiState(
     val toolbarUiState: ToolbarUiState,
     val journalStateBundle: JournalStateBundle,
     val timerUiState: TimerUiState,
