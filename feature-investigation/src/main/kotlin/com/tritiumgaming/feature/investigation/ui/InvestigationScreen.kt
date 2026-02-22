@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,19 +27,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.TruckTimeIcon
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.Holiday22
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -407,8 +407,37 @@ private fun InvestigationContentPortrait(
     ) {
         Investigation(
             state = state,
-            actions = actions
-        )
+            actions = actions,
+            mapConfigComponent = { modifier ->
+                MapConfigComponent(
+                    modifier = modifier,
+                    stateBundle = state.mapUiStateBundle,
+                    actionsBundle = state.mapUiActionBundle,
+                    isCompact = true
+                )
+            },
+            difficultyConfigComponent = { modifier ->
+                DifficultyConfigComponent(
+                    modifier = modifier,
+                    stateBundle = state.difficultyUiStateBundle,
+                    actionsBundle = state.difficultyUiActionBundle,
+                    isCompact = true
+                )
+            },
+            sanityMeterComponent = { modifier ->
+                SanityMeterComponent(
+                    modifier = modifier,
+                    sanityUiState = state.sanityUiState
+                )
+            },
+            timerComponent = { modifier ->
+                TimerComponent(
+                    modifier = modifier,
+                    timerUiState = state.timerUiState,
+                    timerUiActions = state.timerUiActions
+                )
+            }
+        ) 
     }
 }
 
@@ -423,7 +452,36 @@ private fun InvestigationContentLandscape(
     ) {
         Investigation(
             state = state,
-            actions = actions
+            actions = actions,
+            mapConfigComponent = { modifier ->
+                MapConfigComponent(
+                    modifier = modifier,
+                    stateBundle = state.mapUiStateBundle,
+                    actionsBundle = state.mapUiActionBundle,
+                    isCompact = true
+                )
+            },
+            difficultyConfigComponent = { modifier ->
+                DifficultyConfigComponent(
+                    modifier = modifier,
+                    stateBundle = state.difficultyUiStateBundle,
+                    actionsBundle = state.difficultyUiActionBundle,
+                    isCompact = true
+                )
+            },
+            sanityMeterComponent = { modifier ->
+                SanityMeterComponent(
+                    modifier = modifier,
+                    sanityUiState = state.sanityUiState
+                )
+            },
+            timerComponent = { modifier ->
+                TimerComponent(
+                    modifier = modifier,
+                    timerUiState = state.timerUiState,
+                    timerUiActions = state.timerUiActions
+                )
+            }
         )
     }
 }
@@ -431,7 +489,11 @@ private fun InvestigationContentLandscape(
 @Composable
 private fun ColumnScope.Investigation(
     state: InvestigationUiState,
-    actions: InvestigationUiActions
+    actions: InvestigationUiActions,
+    mapConfigComponent: @Composable (Modifier) -> Unit = {},
+    difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    sanityMeterComponent: @Composable (Modifier) -> Unit = {},
+    timerComponent: @Composable ColumnScope.(Modifier) -> Unit = {}
 ) {
 
     Journal(
@@ -448,7 +510,8 @@ private fun ColumnScope.Investigation(
             modifier = modifier
                 .heightIn(min = 48.dp),
             toolbarUiState = state.toolbarUiState,
-            toolbarUiActions = actions.toolbarUi
+            toolbarUiActions = actions.toolbarUi,
+            containerColor = LocalPalette.current.surfaceContainer
         )
     }
 
@@ -475,33 +538,16 @@ private fun ColumnScope.Investigation(
                     modifier = Modifier
                         .height(IntrinsicSize.Max),
                     mapConfigComponent = { modifier ->
-                        MapConfigComponent(
-                            modifier = modifier,
-                            stateBundle = state.mapUiStateBundle,
-                            actionsBundle = state.mapUiActionBundle,
-                            isCompact = true
-                        )
+                        mapConfigComponent(modifier)
                     },
                     difficultyConfigComponent = { modifier ->
-                        DifficultyConfigComponent(
-                            modifier = modifier,
-                            stateBundle = state.difficultyUiStateBundle,
-                            actionsBundle = state.difficultyUiActionBundle,
-                            isCompact = true
-                        )
+                        difficultyConfigComponent(modifier)
                     },
                     sanityMeterComponent = { modifier ->
-                        SanityMeterComponent(
-                            modifier = modifier,
-                            sanityUiState = state.sanityUiState
-                        )
+                        sanityMeterComponent(modifier)
                     },
                     timerComponent = { modifier ->
-                        TimerComponent(
-                            modifier = modifier,
-                            timerUiState = state.timerUiState,
-                            timerUiActions = state.timerUiActions
-                        )
+                        timerComponent(modifier)
                     },
                     phaseComponent = { modifier ->
 
@@ -541,6 +587,99 @@ private fun ColumnScope.Investigation(
 }
 
 @Composable
+private fun RowScope.Investigation(
+    state: InvestigationUiState,
+    actions: InvestigationUiActions,
+    mapConfigComponent: @Composable (Modifier) -> Unit = {},
+    difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    sanityMeterComponent: @Composable (Modifier) -> Unit = {},
+    timerComponent: @Composable ColumnScope.(Modifier) -> Unit = {}
+) {
+
+    val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
+        OperationToolbar(
+            modifier = modifier
+                .widthIn(min = 48.dp),
+            toolbarUiState = state.toolbarUiState,
+            toolbarUiActions = actions.toolbarUi,
+            containerColor = LocalPalette.current.surfaceContainer
+        )
+    }
+
+    val primaryContent: @Composable (Modifier) -> Unit = { modifier ->
+        Column(
+            modifier = modifier
+                .then(
+                    if (state.toolbarUiState.isCollapsed) Modifier
+                        .animateContentSize()
+                        .fillMaxWidth(0f)
+                        .alpha(0f)
+                    else Modifier.fillMaxWidth(.35f)
+                ),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalAlignment = Alignment.Start
+        ) {
+            when (state.toolbarUiState.category) {
+                ToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
+                    modifier = Modifier
+                        .width(IntrinsicSize.Max),
+                    mapConfigComponent = { modifier ->
+                        mapConfigComponent(modifier)
+                    },
+                    difficultyConfigComponent = { modifier ->
+                        difficultyConfigComponent(modifier)
+                    },
+                    sanityMeterComponent = { modifier ->
+                        sanityMeterComponent(modifier)
+                    },
+                    timerComponent = { modifier ->
+                        timerComponent(modifier)
+                    },
+                    phaseComponent = { modifier ->
+
+                    }
+                )
+
+                ToolbarUiState.Category.TOOL_ANALYZER -> OperationAnalysis(
+                    modifier = Modifier,
+                    operationDetailsUiState = state.operationDetailsUiState
+                )
+
+                ToolbarUiState.Category.TOOL_TIMERS -> OperationTimers(
+                    modifier = Modifier,
+                    smudgeHuntPreventionBundle = state.smudgeHuntPreventionBundle,
+                    smudgeBlindingBundle = state.smudgeBlindingBundle,
+                    huntDurationBundle = state.huntDurationBundle,
+                    huntGapBundle = state.huntGapBundle
+                )
+
+                ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
+                    modifier = Modifier,
+                    state = state.bpmToolUiState,
+                    actions = actions.bpmUi
+                )
+
+            }
+        }
+    }
+
+    ToolbarSideSheet(
+        modifier = Modifier
+            .padding(8.dp),
+        toolbarContent = { modifier -> toolbarContent(modifier) },
+        content = { modifier -> primaryContent(modifier) }
+    )
+
+    Journal(
+        modifier = Modifier,
+        journalStateBundle = state.journalStateBundle,
+        evidenceListUiActions = actions.evidenceListUi,
+        ghostListUiActions = actions.ghostListUi,
+        ghostListUiItemActions = actions.ghostListItemUi,
+    )
+}
+
+@Composable
 private fun ToolbarBottomSheet(
     modifier: Modifier = Modifier,
     toolbarContent: @Composable (Modifier) -> Unit = {},
@@ -557,7 +696,7 @@ private fun ToolbarBottomSheet(
         ) {
             toolbarContent(
                 Modifier
-                    .widthIn(min = 48.dp)
+                    .heightIn(min = 48.dp)
             )
 
             content(Modifier)
@@ -567,38 +706,32 @@ private fun ToolbarBottomSheet(
 }
 
 @Composable
-private fun RowScope.Investigation(
-    state: InvestigationUiState,
-    actions: InvestigationUiActions
-) {
-
-    val journalStateBundle = state.journalStateBundle
-    val toolbarUiState = state.toolbarUiState
-
-    ToolbarSideSheet(
-        toolbarUiState = toolbarUiState,
-        toolbarUiActions = actions.toolbarUi,
-        investigationUiState = state,
-        bpmToolUiActions = actions.bpmUi
-    )
-
-    Journal(
-        modifier = Modifier,
-        journalStateBundle = journalStateBundle,
-        evidenceListUiActions = actions.evidenceListUi,
-        ghostListUiActions = actions.ghostListUi,
-        ghostListUiItemActions = actions.ghostListItemUi,
-    )
-}
-
-@Composable
 private fun RowScope.ToolbarSideSheet(
-    toolbarUiState: ToolbarUiState,
-    toolbarUiActions: ToolbarUiActions,
-    investigationUiState: InvestigationUiState,
-    bpmToolUiActions: BpmToolUiActions
+    modifier: Modifier = Modifier,
+    toolbarContent: @Composable (Modifier) -> Unit = {},
+    content: @Composable (Modifier) -> Unit = {}
 ) {
-    Column(
+    Surface(
+        //modifier = modifier,
+        color = LocalPalette.current.surfaceContainerLow,
+        shape = RoundedCornerShape(
+            topStart = 16.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 0.dp
+        )
+    ) {
+        Row(
+            modifier = modifier
+        ) {
+            content(Modifier)
+
+            toolbarContent(
+                Modifier
+                    .widthIn(min = 48.dp)
+            )
+
+        }
+    }
+}
+/*    Column(
         modifier = Modifier
             .then(
                 if (toolbarUiState.isCollapsed) Modifier
@@ -677,7 +810,7 @@ private fun RowScope.ToolbarSideSheet(
         toolbarUiState = toolbarUiState,
         toolbarUiActions = toolbarUiActions
     )
-}
+}*/
 
 @Composable
 private fun ColumnScope.TimerComponent(
@@ -755,27 +888,36 @@ private fun MapConfigComponent(
     isCompact: Boolean,
 ) {
 
+    val icon: @Composable (Modifier) -> Unit = { modifier ->
+        Image(
+            modifier = modifier,
+            contentScale = ContentScale.Inside,
+            alignment = Alignment.Center,
+            painter = painterResource(R.drawable.icon_nav_mapmenu2),
+            colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+            contentDescription = ""
+        )
+    }
+
     when(isCompact) {
         true -> {
             OperationConfigDropdown(
                 modifier = modifier,
                 state = stateBundle.dropdownUiState,
-                primaryIcon = R.drawable.icon_nav_mapmenu2,
+                icon = { icon(it) },
                 textStyle = LocalTypography.current.secondary.regular,
-                color = LocalPalette.current.onSurface,
-                iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                onColor = LocalPalette.current.onSurface,
                 actions = actionsBundle.dropdownUiActions,
-                containerColor = LocalPalette.current.surfaceContainer
+                color = LocalPalette.current.surfaceContainer
             )
         }
         false -> {
             OperationConfigCarousel(
                 modifier = Modifier,
                 state = stateBundle.carouselUiState,
-                primaryIcon = R.drawable.icon_nav_mapmenu2,
+                icon = { icon(it) },
                 textStyle = LocalTypography.current.secondary.regular,
                 color = LocalPalette.current.onSurface,
-                iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
                 actions = actionsBundle.carouselUiActions
             )
         }
@@ -790,28 +932,37 @@ private fun DifficultyConfigComponent(
     isCompact: Boolean,
 ) {
 
+    val icon: @Composable (Modifier) -> Unit = { modifier ->
+        Image(
+            modifier = modifier,
+            contentScale = ContentScale.Inside,
+            alignment = Alignment.Center,
+            painter = painterResource(R.drawable.ic_puzzle),
+            colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+            contentDescription = ""
+        )
+    }
+
     when(isCompact) {
         true -> {
             OperationConfigDropdown(
                 modifier = modifier,
                 state = stateBundle.dropdownUiState,
-                primaryIcon = R.drawable.ic_puzzle,
-                textStyle = LocalTypography.current.secondary.regular,
-                color = LocalPalette.current.onSurface,
-                iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
                 actions = actionsBundle.dropdownUiActions,
-                containerColor = LocalPalette.current.surfaceContainer
+                icon = { icon(it) },
+                textStyle = LocalTypography.current.secondary.regular,
+                color = LocalPalette.current.surfaceContainer,
+                onColor = LocalPalette.current.onSurface,
             )
         }
         false -> {
             OperationConfigCarousel(
                 modifier = modifier,
-                primaryIcon = R.drawable.ic_puzzle,
                 state = stateBundle.carouselUiState,
+                actions = actionsBundle.carouselUiActions,
+                icon = { icon(it) },
                 textStyle = LocalTypography.current.secondary.regular,
                 color = LocalPalette.current.onSurface,
-                iconColorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
-                actions = actionsBundle.carouselUiActions
             )
         }
     }
@@ -932,9 +1083,43 @@ private fun PortraitPreview() {
                     ghostListItemUi = GhostListUiItemActions(),
                     toolbarUi = ToolbarUiActions(),
                     bpmUi = BpmToolUiActions()
-                )
+                ),
+                { modifier ->
+                    MapConfigComponent(
+                        modifier = modifier,
+                        stateBundle = mapUiStateBundle,
+                        actionsBundle = ConfigActionsBundle(
+                            carouselUiActions = CarouselUiActions(),
+                            dropdownUiActions = DropdownUiActions()
+                        ),
+                        isCompact = true
+                    )
+                },
+                { modifier ->
+                    DifficultyConfigComponent(
+                        modifier = modifier,
+                        stateBundle = difficultyUiStateBundle,
+                        actionsBundle = ConfigActionsBundle(
+                            carouselUiActions = CarouselUiActions(),
+                            dropdownUiActions = DropdownUiActions()
+                        ),
+                        isCompact = true
+                    )
+                },
+                { modifier ->
+                    SanityMeterComponent(
+                        modifier = modifier,
+                        sanityUiState = sanityUiState
+                    )
+                }
 
-            )
+            ) { modifier ->
+                TimerComponent(
+                    modifier = modifier,
+                    timerUiState = timerUiState,
+                    timerUiActions = TimerUiActions()
+                )
+            }
         }
     }
 }
@@ -1054,9 +1239,43 @@ private fun LandscapePreview() {
                     ghostListItemUi = GhostListUiItemActions(),
                     toolbarUi = ToolbarUiActions(),
                     bpmUi = BpmToolUiActions()
-                )
+                ),
+                { modifier ->
+                    MapConfigComponent(
+                        modifier = modifier,
+                        stateBundle = mapUiStateBundle,
+                        actionsBundle = ConfigActionsBundle(
+                            carouselUiActions = CarouselUiActions(),
+                            dropdownUiActions = DropdownUiActions()
+                        ),
+                        isCompact = true
+                    )
+                },
+                { modifier ->
+                    DifficultyConfigComponent(
+                        modifier = modifier,
+                        stateBundle = difficultyUiStateBundle,
+                        actionsBundle = ConfigActionsBundle(
+                            carouselUiActions = CarouselUiActions(),
+                            dropdownUiActions = DropdownUiActions()
+                        ),
+                        isCompact = true
+                    )
+                },
+                { modifier ->
+                    SanityMeterComponent(
+                        modifier = modifier,
+                        sanityUiState = sanityUiState
+                    )
+                }
 
-            )
+            ) { modifier ->
+                TimerComponent(
+                    modifier = modifier,
+                    timerUiState = timerUiState,
+                    timerUiActions = TimerUiActions()
+                )
+            }
         }
     }
 }

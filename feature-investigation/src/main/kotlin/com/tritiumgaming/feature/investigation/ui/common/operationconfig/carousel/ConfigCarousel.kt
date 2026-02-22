@@ -59,11 +59,10 @@ private fun OperationCarouselPreview() {
 fun OperationConfigCarousel(
     modifier: Modifier = Modifier,
     state: ConfigCarouselUiState,
-    @DrawableRes primaryIcon: Int = R.drawable.ic_selector_inc_unsel,
+    icon: @Composable (Modifier) -> Unit = {},
     textStyle: TextStyle = TextStyle.Default,
     color: Color = Color.Unspecified,
     containerColor: Color = Color.Unspecified,
-    iconColorFilter: ColorFilter = ColorFilter.tint(Color.Unspecified),
     actions: CarouselUiActions
 ) {
 
@@ -78,15 +77,10 @@ fun OperationConfigCarousel(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
-            Image(
-                modifier = Modifier
+            icon(
+                Modifier
                     .size(48.dp)
-                    .padding(12.dp),
-                contentScale = ContentScale.Inside,
-                alignment = Alignment.Center,
-                painter = painterResource(primaryIcon),
-                colorFilter = iconColorFilter,
-                contentDescription = ""
+                    .padding(12.dp)
             )
 
             Row(

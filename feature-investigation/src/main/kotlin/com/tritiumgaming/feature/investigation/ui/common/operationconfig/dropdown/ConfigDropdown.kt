@@ -1,7 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown
 
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -31,20 +29,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
-import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
-import com.tritiumgaming.core.ui.theme.type.LocalTypography
 
 
 @Composable
@@ -52,7 +44,6 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 private fun OperationDropdownPreview() {
     SelectiveTheme(ClassicPalette, ClassicTypography) {
         OperationConfigDropdown(
-            label = stringResource(R.string.map_name_short_prison),
             state = ConfigDropdownUiState(),
             actions = DropdownUiActions()
         )
@@ -60,7 +51,6 @@ private fun OperationDropdownPreview() {
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
         OperationConfigDropdown(
-            label = stringResource(R.string.map_name_short_prison),
             state = ConfigDropdownUiState(),
             actions = DropdownUiActions()
         )
@@ -70,19 +60,17 @@ private fun OperationDropdownPreview() {
 @Composable
 fun OperationConfigDropdown(
     modifier: Modifier = Modifier,
-    label: String = "None",
+    icon: @Composable (Modifier) -> Unit = {},
     state: ConfigDropdownUiState,
-    @DrawableRes primaryIcon: Int? = null,
     textStyle: TextStyle = TextStyle.Default,
+    onColor: Color = Color.Unspecified,
     color: Color = Color.Unspecified,
-    containerColor: Color = Color.Unspecified,
-    iconColorFilter: ColorFilter = ColorFilter.tint(Color.Unspecified),
     actions: DropdownUiActions
 ) {
 
     Surface(
         modifier = modifier,
-        color = containerColor
+        color = color
     ) {
         Row(
             modifier = modifier
@@ -91,18 +79,11 @@ fun OperationConfigDropdown(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
-            primaryIcon?.let {
-                Image(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .padding(12.dp),
-                    contentScale = ContentScale.Inside,
-                    alignment = Alignment.Center,
-                    painter = painterResource(primaryIcon),
-                    colorFilter = iconColorFilter,
-                    contentDescription = ""
-                )
-            }
+            icon(
+                Modifier
+                    .size(48.dp)
+                    .padding(12.dp)
+            )
 
             Box(
                 modifier = Modifier
@@ -118,7 +99,10 @@ fun OperationConfigDropdown(
                         .fillMaxWidth()
                         .wrapContentHeight(),
                     state = state,
-                    actions = actions
+                    actions = actions,
+                    textStyle = textStyle,
+                    color = color,
+                    onColor = onColor
                 )
             }
         }
@@ -131,6 +115,9 @@ private fun DropdownList(
     modifier: Modifier = Modifier,
     state: ConfigDropdownUiState,
     actions: DropdownUiActions,
+    textStyle: TextStyle = TextStyle.Default,
+    color: Color = Color.Unspecified,
+    onColor: Color = Color.Unspecified
 ) {
 
     var expanded by remember { mutableStateOf(false) }
@@ -158,10 +145,13 @@ private fun DropdownList(
                     )
                     .padding(horizontal = 4.dp),
                 value = stringResource(state.label),
-                textStyle = LocalTypography.current.quaternary.regular.copy(
-                    color = LocalPalette.current.onSurface,
-                    fontSize = 14.sp
+                textStyle = textStyle.copy(
+                    fontSize = 18.sp,
+                    color = onColor,
                 ),
+                trailingIcon = {
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                },
                 placeholder = {
                     Text(
                         modifier = Modifier
@@ -169,13 +159,10 @@ private fun DropdownList(
                             .height(24.dp)
                             .wrapContentHeight(),
                         text = stringResource(state.label),
-                        style = LocalTypography.current.quaternary.regular,
-                        color = LocalPalette.current.onSurface.copy(alpha = 0.5f),
+                        style = textStyle,
+                        color = onColor.copy(alpha = 0.5f),
                         fontSize = 14.sp
                     )
-                },
-                trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
                 },
                 maxLines = 2,
                 colors = TextFieldDefaults.colors().copy(
@@ -187,8 +174,8 @@ private fun DropdownList(
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent,
                     errorIndicatorColor = Color.Transparent,
-                    unfocusedTrailingIconColor = LocalPalette.current.onSurface,
-                    focusedTrailingIconColor = LocalPalette.current.onSurface
+                    unfocusedTrailingIconColor = onColor,
+                    focusedTrailingIconColor = onColor
                 ),
                 onValueChange = {},
                 readOnly = true
@@ -202,28 +189,26 @@ private fun DropdownList(
                 .padding(horizontal = 8.dp, vertical = 4.dp),
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            containerColor = LocalPalette.current.surfaceContainer,
+            containerColor = color,
             shape = RoundedCornerShape(
                 bottomStart = 8.dp,
                 bottomEnd = 8.dp
             ),
             scrollState = rememberScrollState(),
-            matchAnchorWidth = true,
-
-            ) {
+            matchAnchorWidth = true
+        ) {
 
             state.list.forEachIndexed { index, item ->
                 DropdownMenuItem(
                     text =  {
                         Text(
                             text = stringResource(item),
-                            style = LocalTypography.current.quaternary.regular,
-                            color = LocalPalette.current.onSurface,
+                            style = textStyle,
                             fontSize = 18.sp
                         )
                     },
                     colors = MenuDefaults.itemColors().copy(
-                        textColor = LocalPalette.current.onSurface,
+                        textColor = onColor,
                     ),
                     contentPadding = PaddingValues.Zero,
                     onClick = {

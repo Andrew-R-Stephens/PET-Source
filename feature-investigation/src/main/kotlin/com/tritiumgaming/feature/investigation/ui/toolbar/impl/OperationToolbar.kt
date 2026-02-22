@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
@@ -51,12 +52,13 @@ import kotlinx.coroutines.flow.StateFlow
 fun ColumnScope.OperationToolbar(
     modifier: Modifier = Modifier,
     toolbarUiState: ToolbarUiState,
-    toolbarUiActions: ToolbarUiActions
+    toolbarUiActions: ToolbarUiActions,
+    containerColor: Color// = Color.Unspecified
 ) {
 
     ScrollableToolbar(
         modifier = modifier,
-        surfaceColor = LocalPalette.current.surfaceContainerHigh,
+        surfaceColor = containerColor,
         stickyContentStart = {
 
             ToolbarItem(
@@ -195,11 +197,13 @@ fun ColumnScope.OperationToolbar(
 fun RowScope.OperationToolbar(
     modifier: Modifier = Modifier,
     toolbarUiState: ToolbarUiState,
-    toolbarUiActions: ToolbarUiActions
+    toolbarUiActions: ToolbarUiActions,
+    containerColor: Color
 ) {
 
     InvestigationToolRail(
         modifier = modifier,
+        surfaceColor = containerColor,
         stickyContentStart = {
 
             ToolbarItem(
