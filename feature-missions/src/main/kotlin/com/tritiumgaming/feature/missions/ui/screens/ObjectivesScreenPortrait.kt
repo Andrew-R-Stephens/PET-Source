@@ -54,7 +54,7 @@ internal fun ObjectivesContentPortrait(
             BasicText(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(48.dp)
+                    .height(36.dp)
                     .padding(4.dp),
                 text = stringResource(R.string.objectives_title_optional_objectives),
                 style = LocalTypography.current.primary.regular.copy(
@@ -83,7 +83,7 @@ internal fun ObjectivesContentPortrait(
             BasicText(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(48.dp)
+                    .height(36.dp)
                     .padding(4.dp),
                 text = stringResource(R.string.objectives_title_investigation_debrief),
                 style = LocalTypography.current.primary.regular.copy(
