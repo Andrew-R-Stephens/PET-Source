@@ -50,10 +50,10 @@ fun ScrollableToolbar(
 
         Row(
             modifier = Modifier
-                .padding(4.dp)
                 .weight(1f, fill = true)
                 .fillMaxWidth()
                 .wrapContentHeight()
+                .padding(4.dp)
                 .background(surfaceColor, RoundedCornerShape(8.dp))
                 .horizontalScroll(scrollState)
                 .padding(4.dp)

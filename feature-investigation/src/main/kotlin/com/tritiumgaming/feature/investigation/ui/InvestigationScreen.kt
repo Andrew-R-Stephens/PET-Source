@@ -272,52 +272,36 @@ private fun InvestigationContent(
         )
     )
 
+    val notchedProgressBarUiColors = NotchedProgressBarUiColors(
+        remaining = LocalPalette.current.primary,
+        background = LocalPalette.current.surface,
+        border = LocalPalette.current.onSurface,
+        notch = LocalPalette.current.onSurface,
+        label = LocalPalette.current.onSurface,
+    )
+
     val smudgeHuntPreventionBundle = NotchedProgressBarBundle(
         title = "Smudge Hunt Protection",
         state = smudgeHuntProtectionTimerState,
-        colors = NotchedProgressBarUiColors(
-            remaining = LocalPalette.current.primary,
-            background = LocalPalette.current.surface,
-            border = LocalPalette.current.onSurface,
-            notch = LocalPalette.current.onSurface,
-            label = LocalPalette.current.onSurface,
-        )
+        colors = notchedProgressBarUiColors
     )
 
     val smudgeBlindingBundle = NotchedProgressBarBundle(
         title = "Smudge Hunt Protection",
         state = smudgeHuntProtectionTimerState,
-        colors = NotchedProgressBarUiColors(
-            remaining = LocalPalette.current.primary,
-            background = LocalPalette.current.surface,
-            border = LocalPalette.current.onSurface,
-            notch = LocalPalette.current.onSurface,
-            label = LocalPalette.current.onSurface,
-        )
+        colors = notchedProgressBarUiColors
     )
 
     val huntDurationBundle = NotchedProgressBarBundle(
         title = "Smudge Hunt Protection",
         state = smudgeHuntProtectionTimerState,
-        colors = NotchedProgressBarUiColors(
-            remaining = LocalPalette.current.primary,
-            background = LocalPalette.current.surface,
-            border = LocalPalette.current.onSurface,
-            notch = LocalPalette.current.onSurface,
-            label = LocalPalette.current.onSurface,
-        )
+        colors = notchedProgressBarUiColors
     )
 
     val huntGapBundle = NotchedProgressBarBundle(
         title = "Smudge Hunt Protection",
         state = smudgeHuntProtectionTimerState,
-        colors = NotchedProgressBarUiColors(
-            remaining = LocalPalette.current.primary,
-            background = LocalPalette.current.surface,
-            border = LocalPalette.current.onSurface,
-            notch = LocalPalette.current.onSurface,
-            label = LocalPalette.current.onSurface,
-        )
+        colors = notchedProgressBarUiColors
     )
 
     val investigationUiState = InvestigationUiState(
@@ -575,7 +559,7 @@ private fun ColumnScope.Investigation(
                 .heightIn(min = 48.dp),
             toolbarUiState = state.toolbarUiState,
             toolbarUiActions = actions.toolbarUi,
-            containerColor = LocalPalette.current.surfaceContainer
+            containerColor = LocalPalette.current.surfaceContainerHigh
         )
     }
 
@@ -604,7 +588,7 @@ private fun RowScope.Investigation(
                 .widthIn(min = 48.dp),
             toolbarUiState = state.toolbarUiState,
             toolbarUiActions = actions.toolbarUi,
-            containerColor = LocalPalette.current.surfaceContainerLowest
+            containerColor = LocalPalette.current.surfaceContainerHigh
         )
     }
 
@@ -716,9 +700,9 @@ private fun RowScope.ToolbarSideSheet(
 ) {
     Surface(
         //modifier = modifier,
-        color = LocalPalette.current.surfaceContainer,
+        color = LocalPalette.current.surfaceContainerLow,
         shape = RoundedCornerShape(
-            topStart = 16.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 0.dp
+            topStart = 0.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 16.dp
         )
     ) {
         Row(

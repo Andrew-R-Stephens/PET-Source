@@ -86,23 +86,6 @@ fun ColumnScope.OperationToolbar(
                 )
             }
 
-            /*ToolbarItem(
-                modifier = Modifier
-                    .size(48.dp),
-                onClick = {}
-            ){
-                CollapseButton(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    isCollapsed = toolbarUiState.isCollapsed,
-                    icon = R.drawable.ic_arrow_chevron_right,
-                    disabledRotationVertical = 90,
-                    disabledRotationHorizontal = 90,
-                    enabledRotationAddition = 180,
-                    onClick = { toolbarUiActions.onToggleCollapseToolbar() }
-                )
-            }*/
-
         },
         stickyContentEnd = {
 
@@ -111,110 +94,92 @@ fun ColumnScope.OperationToolbar(
                     .size(48.dp),
                 onClick = {}
             ){
-                ResetButton {
+                ResetButton(
+                    modifier = Modifier,
+                    tintColor = LocalPalette.current.onSurface,
+                ) {
                     toolbarUiActions.onReset()
                 }
             }
 
-        }
-    ) {
-        /*ToolbarItem(
-            modifier = Modifier
-                .size(48.dp),
-            onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
-            }
-        ){
-            ConfigIcon(
-                modifier = Modifier
-                    .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.primary,
-                        strokeColor = LocalPalette.current.primary,
-                    )
-                } else {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface,
-                        strokeColor = LocalPalette.current.onSurface,
-                    )
-                }
-            )
-        }*/
+        },
+        scrollContent = {
 
-        ToolbarItem(
-            modifier = Modifier
-                .size(48.dp),
-            onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
-            }
-        ) {
-            AnalyticsIcon(
+            ToolbarItem(
                 modifier = Modifier
-                    .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.primary,
-                        strokeColor = LocalPalette.current.primary,
-                    )
-                } else {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface,
-                        strokeColor = LocalPalette.current.onSurface,
-                    )
+                    .size(48.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
                 }
-            )
+            ) {
+                AnalyticsIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
 
-        }
-
-        ToolbarItem(
-            modifier = Modifier
-                .size(48.dp),
-            onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_TIMERS)
             }
-        ){
-            StopwatchIcon(
-                modifier = Modifier
-                    .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_TIMERS) {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.primary,
-                        strokeColor = LocalPalette.current.primary,
-                    )
-                } else {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface,
-                        strokeColor = LocalPalette.current.onSurface,
-                    )
-                }
-            )
-        }
 
-        ToolbarItem(
-            modifier = Modifier
-                .size(48.dp),
-            onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
-            }
-        ){
-            FootprintsIcon(
+            ToolbarItem(
                 modifier = Modifier
-                    .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.primary,
-                        strokeColor = LocalPalette.current.primary,
-                    )
-                } else {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface,
-                        strokeColor = LocalPalette.current.onSurface,
-                    )
+                    .size(48.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_TIMERS)
                 }
-            )
+            ){
+                StopwatchIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_TIMERS) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
+            }
+
+            ToolbarItem(
+                modifier = Modifier
+                    .size(48.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+                }
+            ){
+                FootprintsIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
+            }
         }
-    }
+    )
+
 }
 
 @Composable
@@ -255,23 +220,6 @@ fun RowScope.OperationToolbar(
                 )
             }
 
-            /*ToolbarItem(
-                modifier = Modifier
-                    .size(48.dp),
-                onClick = {}
-            ){
-                CollapseButton(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    isCollapsed = toolbarUiState.isCollapsed,
-                    icon = R.drawable.ic_arrow_chevron_right,
-                    disabledRotationVertical = 90,
-                    disabledRotationHorizontal = 180,
-                    enabledRotationAddition = 180,
-                    onClick = { toolbarUiActions.onToggleCollapseToolbar() }
-                )
-            }*/
-
         },
         stickyContentEnd = {
 
@@ -290,29 +238,6 @@ fun RowScope.OperationToolbar(
 
         },
         scrollContent = {
-            /*ToolbarItem(
-                modifier = Modifier
-                    .size(48.dp),
-                onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
-                }
-            ){
-                ConfigIcon(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
-                        IconVectorColors.defaults(
-                            fillColor = LocalPalette.current.primary,
-                            strokeColor = LocalPalette.current.primary,
-                        )
-                    } else {
-                        IconVectorColors.defaults(
-                            fillColor = LocalPalette.current.onSurface,
-                            strokeColor = LocalPalette.current.onSurface,
-                        )
-                    }
-                )
-            }*/
 
             ToolbarItem(
                 modifier = Modifier
@@ -390,8 +315,9 @@ fun RowScope.OperationToolbar(
 }
 
 @Composable
-fun ResetButton(
+private fun ResetButton(
     modifier: Modifier = Modifier,
+    tintColor: Color = Color.Unspecified,
     onClick: () -> Unit = {}
 ) {
     var isRunning by remember{ mutableStateOf(false) }
@@ -408,8 +334,6 @@ fun ResetButton(
         label = "",
     )
 
-    val foregroundColor = LocalPalette.current.onSurface
-
     Box(
         modifier = modifier
             .size(48.dp)
@@ -421,7 +345,7 @@ fun ResetButton(
         Image(
             painterResource(id = R.drawable.ic_control_reset),
             contentDescription = "Reset Drawable",
-            colorFilter = ColorFilter.tint(foregroundColor),
+            colorFilter = ColorFilter.tint(tintColor),
             modifier = Modifier
                 .fillMaxSize()
                 .align(Alignment.Center)
