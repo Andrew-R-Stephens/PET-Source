@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -595,13 +596,26 @@ private fun RowScope.Investigation(
     val primaryContent: @Composable (Modifier) -> Unit = { modifier ->
         Column(
             modifier = modifier
+                .fillMaxHeight()
+                .animateContentSize()
+                .then(
+                    if (!state.toolbarUiState.isCollapsed)
+                        Modifier
+                            .fillMaxWidth(.35f)
+                            .alpha(1f)
+                    else
+                        Modifier
+                            .height(0.dp)
+                            .alpha(0f)
+                ),
+            /*modifier = modifier
                 .then(
                     if (state.toolbarUiState.isCollapsed) Modifier
                         .animateContentSize()
                         .fillMaxWidth(0f)
                         .alpha(0f)
                     else Modifier.fillMaxWidth(.35f)
-                ),
+                ),*/
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.Start
         ) {
@@ -673,7 +687,7 @@ private fun ToolbarBottomSheet(
     content: @Composable (Modifier) -> Unit = {}
 ) {
     Surface(
-        //modifier = modifier,
+        modifier = Modifier,
         color = LocalPalette.current.surfaceContainerLow,
         shape = RoundedCornerShape(
             topStart = 16.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 0.dp)
@@ -699,7 +713,7 @@ private fun RowScope.ToolbarSideSheet(
     content: @Composable (Modifier) -> Unit = {}
 ) {
     Surface(
-        //modifier = modifier,
+        modifier = Modifier,
         color = LocalPalette.current.surfaceContainerLow,
         shape = RoundedCornerShape(
             topStart = 0.dp, topEnd = 16.dp, bottomStart = 0.dp, bottomEnd = 16.dp

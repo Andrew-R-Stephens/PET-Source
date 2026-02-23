@@ -2,6 +2,7 @@ package com.tritiumgaming.feature.investigation.ui.toolbar.impl
 
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.Spring.DampingRatioLowBouncy
 import androidx.compose.animation.core.Spring.StiffnessLow
 import androidx.compose.animation.core.animateFloatAsState
@@ -15,8 +16,11 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -29,6 +33,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
@@ -320,6 +325,51 @@ private fun ResetButton(
     tintColor: Color = Color.Unspecified,
     onClick: () -> Unit = {}
 ) {
+    var rotationTarget by remember { mutableFloatStateOf(0f) }
+
+    val rotation by animateFloatAsState(
+        targetValue = rotationTarget,
+        animationSpec = spring(
+            stiffness = StiffnessLow,
+            dampingRatio = DampingRatioLowBouncy
+        ),
+        label = "ResetRotation"
+    )
+
+    IconButton(
+        onClick = {
+            rotationTarget -= 360f
+            onClick()
+        },
+        modifier = modifier
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_control_reset),
+            contentDescription = "Reset Button",
+            tint = tintColor,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(4.dp)
+                .rotate(rotation)
+        )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewResetButton() {
+    SelectiveTheme {
+        ResetButton()
+    }
+}
+
+/*
+@Composable
+private fun ResetButton(
+    modifier: Modifier = Modifier,
+    tintColor: Color = Color.Unspecified,
+    onClick: () -> Unit = {}
+) {
     var isRunning by remember{ mutableStateOf(false) }
 
     val rotation by animateFloatAsState(
@@ -361,7 +411,7 @@ private fun ResetButton(
         )
     }
 }
-
+*/
 
 
 @Composable
@@ -446,9 +496,12 @@ fun IconPreview() {
 
             var isShownState by remember { mutableStateOf(false) }
 
-            SanityButton()
-            ResetButton()
+            SanityButton(
+                modifier = Modifier.size(48.dp),)
+            ResetButton(
+                modifier = Modifier.size(48.dp),)
             CollapseButton(
+                modifier = Modifier.size(48.dp),
                 isCollapsed = false,
                 icon = R.drawable.ic_arrow_chevron_right,
                 disabledRotationVertical = 90,
