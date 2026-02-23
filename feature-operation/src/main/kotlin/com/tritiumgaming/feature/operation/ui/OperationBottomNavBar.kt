@@ -20,6 +20,7 @@ import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.NavigationRailItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
@@ -154,7 +155,7 @@ private fun OperationNavigationBottomBar(
 ) {
     NavigationBar(
         modifier = modifier,
-        contentColor = LocalPalette.current.surfaceContainer,
+        contentColor = LocalPalette.current.surfaceContainerHigh,
         containerColor = LocalPalette.current.surfaceContainer,
         windowInsets = windowInsets.exclude(
             insets = WindowInsets(
@@ -197,9 +198,7 @@ private fun OperationNavigationBottomBar(
                         },
                 )
             },
-            label = {
-
-            }
+            label = { }
         )
 
         destinations.forEach { destination ->
@@ -232,7 +231,8 @@ private fun OperationNavigationBottomBar(
                             else
                                 LocalPalette.current.onSurface
                     )
-                }
+                },
+                label = { }
             )
 
         }
@@ -255,7 +255,7 @@ private fun OperationNavigationRail(
 
         NavigationRail(
             modifier = Modifier,
-            contentColor = LocalPalette.current.surfaceContainer,
+            contentColor = LocalPalette.current.surfaceContainerHigh,
             containerColor = LocalPalette.current.surfaceContainer,
             windowInsets = windowInsets
         ) {
