@@ -169,14 +169,16 @@ private val PET_Base = ExtendedDefaultLight.copy(
     onPrimaryContainer = Color(0xFF740B0B),
 
     secondary = white,
-    onSecondary = white_M600,
+    //onSecondary = white_M600,
+    onSecondary = black,
     secondaryContainer = Color(0xFF8F8F8F),
     onSecondaryContainer = Color(0xFF424242),
 
     tertiary = green,
     onTertiary = black,
     tertiaryContainer = Color(0xFF003800),
-    onTertiaryContainer = Color(0xFF008F00),
+    //onTertiaryContainer = Color(0xFF008F00),
+    onTertiaryContainer = green_M150,
 
     error = red_M300,
     onError = Color(0xFFFFF0F0),
@@ -202,11 +204,23 @@ private val PET_Base = ExtendedDefaultLight.copy(
     surface = black,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF120F0F),
+    /*surfaceContainerLowest = Color(0xFF030101),
+    surfaceContainerLow = Color(0xFF0D0808),
+    surfaceContainer = Color(0xFF130B0B),
+    surfaceContainerHigh = Color(0xFF1E1111),
+    surfaceContainerHighest = Color(0xFF291717),*/
+
+    surfaceContainerLowest = Color(0xFF0A0808),
+    surfaceContainerLow = Color(0xFF120F0F),
+    surfaceContainer = Color(0xFF1A1717),
+    surfaceContainerHigh = Color(0xFF242020),
+    surfaceContainerHighest = Color(0xFF2F2A2A),
+
+    /*surfaceContainerLowest = Color(0xFF120F0F),
     surfaceContainerLow = Color(0xFF1A1717),
     surfaceContainer = Color(0xFF1E1A1A),
     surfaceContainerHigh = Color(0xFF292424),
-    surfaceContainerHighest = Color(0xFF342F2F),
+    surfaceContainerHighest = Color(0xFF342F2F),*/
 
     onSurface = white,
     onSurfaceVariant = red_M250,
@@ -354,14 +368,17 @@ val Monochromacy = PET_Base.copy(
     onPrimaryContainer = Color(0xFFC2C2C2),
 
     secondary = Color(0xFFC7C7C7),
-    onSecondary = Color(0xFF6E6E6E),
+    //onSecondary = Color(0xFF6E6E6E),
+    onSecondary = black,
     secondaryContainer = Color(0xFF4A4A4A),
     onSecondaryContainer = Color(0xFF999999),
 
     tertiary = Color(0xFF949494),
-    onTertiary = Color(0xFF474747),
+    //onTertiary = Color(0xFF474747),
+    onTertiary = black,
     tertiaryContainer = Color(0xFFC4C4C4),
-    onTertiaryContainer = Color(0xFF6B6B6B),
+    //onTertiaryContainer = Color(0xFF6B6B6B),
+    onTertiaryContainer = black,
 
     error = white,
     onError = Color(0xFF1C1C1C),
@@ -372,11 +389,23 @@ val Monochromacy = PET_Base.copy(
     surface = black,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF0D0D0D),
+    surfaceContainerLowest = Color(0xFF050505),
+    surfaceContainerLow = Color(0xFF0F0F0F),
+    surfaceContainer = Color(0xFF171717),
+    surfaceContainerHigh = Color(0xFF212121),
+    surfaceContainerHighest = Color(0xFF2B2B2B),
+
+    /*surfaceContainerLowest = Color(0xFF0D0D0D),
+    surfaceContainerLow = Color(0xFF1A1A1A),
+    surfaceContainer = Color(0xFF262626),
+    surfaceContainerHigh = Color(0xFF333333),
+    surfaceContainerHighest = Color(0xFF404040),*/
+
+    /*surfaceContainerLowest = Color(0xFF0D0D0D),
     surfaceContainerLow = Color(0xFF1A1A1A),
     surfaceContainer = Color(0xFF3D3D3D),
     surfaceContainerHigh = Color(0xFF4A4A4A),
-    surfaceContainerHighest = Color(0xFF5C5C5C),
+    surfaceContainerHighest = Color(0xFF5C5C5C),*/
 
     onSurface = white,
     onSurfaceVariant = Color(0xFFC8C8C8),
@@ -476,6 +505,12 @@ val Deuteranomaly = PET_Base.copy(
     surfaceDim = Color.Unspecified,
     surface = black,
     surfaceBright = Color.Unspecified,
+
+    /*surfaceContainerLowest = Color(0xFF000305),
+    surfaceContainerLow = Color(0xFF000911),
+    surfaceContainer = Color(0xFF00111F),
+    surfaceContainerHigh = Color(0xFF001A2F),
+    surfaceContainerHighest = Color(0xFF002440),*/
 
     surfaceContainerLowest = Color(0xFF0D0D12),
     surfaceContainerLow = Color(0xFF16161C),
@@ -692,11 +727,29 @@ val Tritanomaly = PET_Base.copy(
     surface = black,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF141111),
+    /*surfaceContainerLowest = Color(0xFF050101),
+    surfaceContainerLow = Color(0xFF110404),
+    surfaceContainer = Color(0xFF1C0707),
+    surfaceContainerHigh = Color(0xFF290A0A),
+    surfaceContainerHighest = Color(0xFF380E0E),*/
+
+    surfaceContainerLowest = Color(0xFF110D0D),
+    surfaceContainerLow = Color(0xFF1C1616),
+    surfaceContainer = Color(0xFF241E1E),
+    surfaceContainerHigh = Color(0xFF2F2929),
+    surfaceContainerHighest = Color(0xFF3B3434),
+
+    /*surfaceContainerLowest = Color(0xFF0D0D12),
+    surfaceContainerLow = Color(0xFF16161C),
+    surfaceContainer = Color(0xFF1E1E24),
+    surfaceContainerHigh = Color(0xFF29292F),
+    surfaceContainerHighest = Color(0xFF34343B),*/
+
+    /*surfaceContainerLowest = Color(0xFF141111),
     surfaceContainerLow = Color(0xFF211D1D),
     surfaceContainer = Color(0xFF312B2B),
     surfaceContainerHigh = Color(0xFF3C3636),
-    surfaceContainerHighest = Color(0xFF484141),
+    surfaceContainerHighest = Color(0xFF484141),*/
 
     onSurface = white,
     onSurfaceVariant = red_M250,
@@ -768,11 +821,23 @@ val Recruit = Prestige.copy(
     surface = orange_M950,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF0E0800),
+    surfaceContainerLowest = Color(0xFF050300),
+    surfaceContainerLow = Color(0xFF130B00),
+    surfaceContainer = Color(0xFF1C1100),
+    surfaceContainerHigh = Color(0xFF291800),
+    surfaceContainerHighest = Color(0xFF382100),
+
+    /*surfaceContainerLowest = Color(0xFF050300),
+    surfaceContainerLow = Color(0xFF0E0B08),
+    surfaceContainer = Color(0xFF15110E),
+    surfaceContainerHigh = Color(0xFF201B17),
+    surfaceContainerHighest = Color(0xFF2B2520),*/
+
+    /*surfaceContainerLowest = Color(0xFF0E0800),
     surfaceContainerLow = Color(0xFF120A00),
     surfaceContainer = Color(0xFF150B00),
     surfaceContainerHigh = Color(0xFF201200),
-    surfaceContainerHighest = Color(0xFF2B1900),
+    surfaceContainerHighest = Color(0xFF2B1900),*/
 
     /*surfaceContainerLowest = black,
     surfaceContainerLow = black,
@@ -888,17 +953,20 @@ val Investigator = Prestige.copy(
     onPrimaryContainer = Color(0xFFA90A5C),
 
     secondary = white_M300,
-    onSecondary = Color(0xFF4F4F4F),
+    //onSecondary = Color(0xFF4F4F4F),
+    onSecondary = black,
     secondaryContainer = Color(0xFFFCFCFC),
     onSecondaryContainer = Color(0xFF737373),
 
     tertiary = purple_M525,
-    onTertiary = Color(0xFFF39BC8),
+    //onTertiary = Color(0xFFF39BC8),
+    onTertiary = white,
     tertiaryContainer = Color(0xFFCC1976),
     onTertiaryContainer = Color(0xFF3E0E21),
 
     error = Color(0xFFAE0A5F),
-    onError = Color(0xFFF986C1),
+    //onError = Color(0xFFF986C1),
+    onError = white,
     errorContainer = Color(0xFFF10E83),
     onErrorContainer = Color(0xFF6A063A),
 
@@ -906,11 +974,23 @@ val Investigator = Prestige.copy(
     surface = purple_M950,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF120012),
+    surfaceContainerLowest = Color(0xFF06000B),
+    surfaceContainerLow = Color(0xFF0F001B),
+    surfaceContainer = Color(0xFF160026),
+    surfaceContainerHigh = Color(0xFF1F0036),
+    surfaceContainerHighest = Color(0xFF2A0048),
+
+    /*surfaceContainerLowest = Color(0xFF06000B),
+    surfaceContainerLow = Color(0xFF100A15),
+    surfaceContainer = Color(0xFF17111C),
+    surfaceContainerHigh = Color(0xFF211B26),
+    surfaceContainerHighest = Color(0xFF2C2531),*/
+
+    /*surfaceContainerLowest = Color(0xFF120012),
     surfaceContainerLow = Color(0xFF160016),
     surfaceContainer = Color(0xFF190019),
     surfaceContainerHigh = Color(0xFF240024),
-    surfaceContainerHighest = Color(0xFF300030),
+    surfaceContainerHighest = Color(0xFF300030),*/
 
     /*surfaceContainerLowest = black,
     surfaceContainerLow = black,
@@ -1046,11 +1126,17 @@ val PrivateInvestigator = Prestige.copy(
     surface = black,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF050505),
+    surfaceContainerLowest = Color(0xFF0A0A0A),
+    surfaceContainerLow = Color(0xFF141414),
+    surfaceContainer = Color(0xFF1E1E1E),
+    surfaceContainerHigh = Color(0xFF292929),
+    surfaceContainerHighest = Color(0xFF333333),
+
+    /*surfaceContainerLowest = Color(0xFF050505),
     surfaceContainerLow = Color(0xFF070707),
     surfaceContainer = Color(0xFF080808),
     surfaceContainerHigh = Color(0xFF121212),
-    surfaceContainerHighest = Color(0xFF1C1C1C),
+    surfaceContainerHighest = Color(0xFF1C1C1C),*/
 
     /*surfaceContainerLowest = black,
     surfaceContainerLow = black,
@@ -1305,7 +1391,8 @@ val Technician = Prestige.copy(
     onPrimaryContainer = Color(0xFF4C0806),
 
     secondary = Color(0xFFE0E0E0),
-    onSecondary = Color(0xFF636363),
+    //onSecondary = Color(0xFF636363),
+    onSecondary = black,
     secondaryContainer = Color(0xFF424242),
     onSecondaryContainer = Color(0xFFB0B0B0),
 
@@ -1323,11 +1410,17 @@ val Technician = Prestige.copy(
     surface = Color(0xFF050C04),
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF060F05),
+    surfaceContainerLowest = Color(0xFF050505),
+    surfaceContainerLow = Color(0xFF161313),
+    surfaceContainer = Color(0xFF201B1B),
+    surfaceContainerHigh = Color(0xFF2B2525),
+    surfaceContainerHighest = Color(0xFF373030),
+
+    /*surfaceContainerLowest = Color(0xFF060F05),
     surfaceContainerLow = Color(0xFF071104),
     surfaceContainer = Color(0xFF081204),
     surfaceContainerHigh = Color(0xFF141A10),
-    surfaceContainerHighest = Color(0xFF1F231B),
+    surfaceContainerHighest = Color(0xFF1F231B),*/
 
     /*surfaceContainerLowest = Color.Unspecified,
     surfaceContainerLow = Color.Unspecified,
@@ -1753,11 +1846,17 @@ val Agent = Prestige.copy(
     surface = Color(0xFF101515),
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF0D1111),
+    surfaceContainerLowest = Color(0xFF090C0C),
+    surfaceContainerLow = Color(0xFF171D1D),
+    surfaceContainer = Color(0xFF212B2B),
+    surfaceContainerHigh = Color(0xFF2C3535),
+    surfaceContainerHighest = Color(0xFF374242),
+
+    /*surfaceContainerLowest = Color(0xFF0D1111),
     surfaceContainerLow = Color(0xFF111717),
     surfaceContainer = Color(0xFF131919),
     surfaceContainerHigh = Color(0xFF1E2525),
-    surfaceContainerHighest = Color(0xFF283131),
+    surfaceContainerHighest = Color(0xFF283131),*/
 
     /*surfaceContainerLowest = black,
     surfaceContainerLow = Color(0xFF0B0E0E),
@@ -1895,11 +1994,17 @@ val Operator = Prestige.copy(
     surface = blue_M950,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF000008),
+    surfaceContainerLowest = Color(0xFF00050A),
+    surfaceContainerLow = Color(0xFF000C19),
+    surfaceContainer = Color(0xFF000E1E),
+    surfaceContainerHigh = Color(0xFF0C1625),
+    surfaceContainerHighest = Color(0xFF18202C),
+
+    /*surfaceContainerLowest = Color(0xFF000008),
     surfaceContainerLow = Color(0xFF000014),
     surfaceContainer = Color(0xFF000017),
     surfaceContainerHigh = Color(0xFF0D0C21),
-    surfaceContainerHighest = Color(0xFF17152B),
+    surfaceContainerHighest = Color(0xFF17152B),*/
 
     /*surfaceContainerLowest = Color(0xFF000005),
     surfaceContainerLow = Color(0xFF00000F),
@@ -2880,11 +2985,17 @@ val ContentCreator = Community.copy(
     surface = white_M950,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF0D0305),
+    surfaceContainerLowest = Color(0xFF0D0D0D),
+    surfaceContainerLow = Color(0xFF1A1113),
+    surfaceContainer = Color(0xFF21191B),
+    surfaceContainerHigh = Color(0xFF2C2124),
+    surfaceContainerHighest = Color(0xFF372A2E),
+
+    /*surfaceContainerLowest = Color(0xFF0D0305),
     surfaceContainerLow = Color(0xFF140407),
     surfaceContainer = Color(0xFF190509),
     surfaceContainerHigh = Color(0xFF260A11),
-    surfaceContainerHighest = Color(0xFF33111A),
+    surfaceContainerHighest = Color(0xFF33111A),*/
 
     /*surfaceContainerLowest = black,
     surfaceContainerLow = Color(0xFF050102),
@@ -3158,11 +3269,23 @@ val Translator = Community.copy(
     surface = black,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF050404),
+    surfaceContainerLowest = Color(0xFF0A0A0A),
+    surfaceContainerLow = Color(0xFF121212),
+    surfaceContainer = Color(0xFF1C1B1B),
+    surfaceContainerHigh = Color(0xFF2B292A),
+    surfaceContainerHighest = Color(0xFF363435),
+
+    /*surfaceContainerLowest = Color(0xFF050404),
     surfaceContainerLow = Color(0xFF070606),
     surfaceContainer = Color(0xFF080808),
     surfaceContainerHigh = Color(0xFF131112),
-    surfaceContainerHighest = Color(0xFF1E1B1C),
+    surfaceContainerHighest = Color(0xFF1E1B1C),*/
+
+    /*surfaceContainerLowest = Color(0xFF050404),
+    surfaceContainerLow = Color(0xFF070606),
+    surfaceContainer = Color(0xFF080808),
+    surfaceContainerHigh = Color(0xFF131112),
+    surfaceContainerHighest = Color(0xFF1E1B1C),*/
 
     /*surfaceContainerLowest = black,
     surfaceContainerLow = Color(0xFF030303),
@@ -3282,7 +3405,8 @@ val Winner = Community.copy(
     onPrimaryContainer = Color(0xFFE3C892),
 
     secondary = Color(0xFFBFBFBF),
-    onSecondary = white_M500,
+    //onSecondary = white_M500,
+    onSecondary = black,
     secondaryContainer = Color(0xFF919191),
     onSecondaryContainer = Color(0xFFFAFAFA),
 
@@ -3567,7 +3691,8 @@ val Whiteboard = Skin.copy(
     onSecondaryContainer = Color(0xFFB4B4B6),
 
     tertiary = Color(0xFF1CB981),
-    onTertiary = white_M600,
+    //onTertiary = white_M600,
+    onTertiary = Color(0xFF041A13),
     tertiaryContainer = Color(0xFF37E1A6),
     onTertiaryContainer = Color(0xFF137C57),
 
@@ -3580,11 +3705,11 @@ val Whiteboard = Skin.copy(
     surface = white_M50,
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFFFFFFFF),
-    surfaceContainerLow = Color(0xFFEBEBEB),
-    surfaceContainer = Color(0xFFDEDEDE),
-    surfaceContainerHigh = Color(0xFFD4D5DB),
-    surfaceContainerHighest = Color(0xFFCACBD4),
+    surfaceContainerLowest = Color(0xFFF9FAFF),
+    surfaceContainerLow = Color(0xFFF1F3F9),
+    surfaceContainer = Color(0xFFE8EAF6),
+    surfaceContainerHigh = Color(0xFFDDE1F0),
+    surfaceContainerHighest = Color(0xFFD2D6E7),
 
     /*surfaceContainerLowest = Color(0xFFA1A9AF),
     surfaceContainerLow = Color(0xFFAFB7BE),
@@ -3716,11 +3841,17 @@ val StratagemHero = Special.copy(
     surface = Color(0xFF000B17),
     surfaceBright = Color.Unspecified,
 
-    surfaceContainerLowest = Color(0xFF00070E),
+    surfaceContainerLowest = Color(0xFF05070A),
+    surfaceContainerLow = Color(0xFF0E141B),
+    surfaceContainer = Color(0xFF191F26),
+    surfaceContainerHigh = Color(0xFF232A32),
+    surfaceContainerHighest = Color(0xFF2E353D),
+
+    /*surfaceContainerLowest = Color(0xFF00070E),
     surfaceContainerLow = Color(0xFF000C19),
     surfaceContainer = Color(0xFF000E1E),
     surfaceContainerHigh = Color(0xFF0C1625),
-    surfaceContainerHighest = Color(0xFF18202C),
+    surfaceContainerHighest = Color(0xFF18202C),*/
 
     /*surfaceContainerLowest = black,
     surfaceContainerLow = Color(0xFF00050A),
