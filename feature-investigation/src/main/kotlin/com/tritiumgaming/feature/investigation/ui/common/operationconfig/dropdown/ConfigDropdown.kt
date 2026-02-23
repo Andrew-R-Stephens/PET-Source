@@ -76,6 +76,7 @@ fun OperationConfigDropdown(
             modifier = modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
+            verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
@@ -85,26 +86,19 @@ fun OperationConfigDropdown(
                     .padding(12.dp)
             )
 
-            Box(
+            DropdownList(
                 modifier = Modifier
                     .weight(1f)
-                    .wrapContentHeight()
                     .fillMaxWidth()
+                    .wrapContentHeight()
                     .align(Alignment.CenterVertically),
-                contentAlignment = Alignment.Center
-            ) {
+                state = state,
+                actions = actions,
+                textStyle = textStyle,
+                color = color,
+                onColor = onColor
+            )
 
-                DropdownList(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    state = state,
-                    actions = actions,
-                    textStyle = textStyle,
-                    color = color,
-                    onColor = onColor
-                )
-            }
         }
     }
 }

@@ -63,6 +63,31 @@ fun ColumnScope.OperationToolbar(
 
             ToolbarItem(
                 modifier = Modifier
+                    .size(48.dp)
+                    .padding(2.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
+                }
+            ){
+                ConfigIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
+            }
+
+            /*ToolbarItem(
+                modifier = Modifier
                     .size(48.dp),
                 onClick = {}
             ){
@@ -76,7 +101,7 @@ fun ColumnScope.OperationToolbar(
                     enabledRotationAddition = 180,
                     onClick = { toolbarUiActions.onToggleCollapseToolbar() }
                 )
-            }
+            }*/
 
         },
         stickyContentEnd = {
@@ -93,8 +118,7 @@ fun ColumnScope.OperationToolbar(
 
         }
     ) {
-
-        ToolbarItem(
+        /*ToolbarItem(
             modifier = Modifier
                 .size(48.dp),
             onClick = {
@@ -116,7 +140,7 @@ fun ColumnScope.OperationToolbar(
                     )
                 }
             )
-        }
+        }*/
 
         ToolbarItem(
             modifier = Modifier
@@ -208,6 +232,31 @@ fun RowScope.OperationToolbar(
 
             ToolbarItem(
                 modifier = Modifier
+                    .size(48.dp)
+                    .padding(2.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
+                }
+            ){
+                ConfigIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
+            }
+
+            /*ToolbarItem(
+                modifier = Modifier
                     .size(48.dp),
                 onClick = {}
             ){
@@ -221,7 +270,7 @@ fun RowScope.OperationToolbar(
                     enabledRotationAddition = 180,
                     onClick = { toolbarUiActions.onToggleCollapseToolbar() }
                 )
-            }
+            }*/
 
         },
         stickyContentEnd = {
@@ -239,105 +288,105 @@ fun RowScope.OperationToolbar(
                 }
             }
 
-        }
-    ) {
-
-        ToolbarItem(
-            modifier = Modifier
-                .size(48.dp),
-            onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
-            }
-        ){
-            ConfigIcon(
+        },
+        scrollContent = {
+            /*ToolbarItem(
                 modifier = Modifier
-                    .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.primary,
-                        strokeColor = LocalPalette.current.primary,
-                    )
-                } else {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface,
-                        strokeColor = LocalPalette.current.onSurface,
-                    )
+                    .size(48.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
                 }
-            )
-        }
+            ){
+                ConfigIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
+            }*/
 
-        ToolbarItem(
-            modifier = Modifier
-                .size(48.dp),
-            onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
-            }
-        ){
-            AnalyticsIcon(
+            ToolbarItem(
                 modifier = Modifier
-                    .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.primary,
-                        strokeColor = LocalPalette.current.primary,
-                    )
-                } else {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface,
-                        strokeColor = LocalPalette.current.onSurface,
-                    )
+                    .size(48.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
                 }
-            )
-        }
+            ){
+                AnalyticsIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
+            }
 
-        ToolbarItem(
-            modifier = Modifier
-                .size(48.dp),
-            onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
-            }
-        ){
-            StopwatchIcon(
+            ToolbarItem(
                 modifier = Modifier
-                    .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.primary,
-                        strokeColor = LocalPalette.current.primary,
-                    )
-                } else {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface,
-                        strokeColor = LocalPalette.current.onSurface,
-                    )
+                    .size(48.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
                 }
-            )
-        }
+            ){
+                StopwatchIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
+            }
 
-        ToolbarItem(
-            modifier = Modifier
-                .size(48.dp),
-            onClick = {
-                toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
-            }
-        ){
-            FootprintsIcon(
+            ToolbarItem(
                 modifier = Modifier
-                    .fillMaxSize(),
-                if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.primary,
-                        strokeColor = LocalPalette.current.primary,
-                    )
-                } else {
-                    IconVectorColors.defaults(
-                        fillColor = LocalPalette.current.onSurface,
-                        strokeColor = LocalPalette.current.onSurface,
-                    )
+                    .size(48.dp),
+                onClick = {
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
                 }
-            )
+            ){
+                FootprintsIcon(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.primary,
+                            strokeColor = LocalPalette.current.primary,
+                        )
+                    } else {
+                        IconVectorColors.defaults(
+                            fillColor = LocalPalette.current.onSurface,
+                            strokeColor = LocalPalette.current.onSurface,
+                        )
+                    }
+                )
+            }
         }
-    }
+    )
 }
 
 @Composable

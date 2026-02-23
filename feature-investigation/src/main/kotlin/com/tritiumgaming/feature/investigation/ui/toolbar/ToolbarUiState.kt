@@ -10,6 +10,7 @@ data class ToolbarUiState(
 ) {
 
     enum class Category {
+        TOOL_NONE,
         TOOL_CONFIG,
         TOOL_ANALYZER,
         TOOL_FOOTSTEP,

@@ -378,11 +378,25 @@ class InvestigationScreenViewModel private constructor(
     }
 
     fun setToolbarCategory(category: ToolbarUiState.Category) {
-        _toolbarUiState.update {
-            it.copy(
-                isCollapsed = false,
-                category = category
-            )
+        if(toolbarUiState.value.category == category) {
+            _toolbarUiState.update {
+                val isCollapsed = !it.isCollapsed
+
+                it.copy(
+                    isCollapsed = isCollapsed,
+                    category = if(!isCollapsed)
+                        category
+                    else
+                        ToolbarUiState.Category.TOOL_NONE
+                )
+            }
+        } else {
+            _toolbarUiState.update {
+                it.copy(
+                    isCollapsed = false,
+                    category = category
+                )
+            }
         }
     }
 
