@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,8 +33,8 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
-import com.tritiumgaming.core.ui.theme.palette.StratagemHero
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -44,9 +46,14 @@ import org.jetbrains.annotations.TestOnly
 @Preview(device = "spec:width=1500px,height=4000px,dpi=440")
 @Composable
 fun PaletteTester() {
-    TestM3Palette(
-        palette = StratagemHero
-    )
+    LazyColumn {
+        items(items = LocalPalettesMap.entries.toList()) {
+            TestM3Palette(
+                palette = it.value
+            )
+        }
+    }
+
 }
 
 @TestOnly
