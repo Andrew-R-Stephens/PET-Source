@@ -903,10 +903,12 @@ private fun RoomDropdownWrapper(
                     fontSize = 18.sp
                 ),
                 trailingIcon = {
-                    ExposedDropdownMenuDefaults.TrailingIcon(
-                        modifier = Modifier,
-                        expanded = expanded
-                    )
+                    if(roomList.isNotEmpty()) {
+                        ExposedDropdownMenuDefaults.TrailingIcon(
+                            modifier = Modifier,
+                            expanded = expanded
+                        )
+                    }
                 },
                 maxLines = 1,
                 colors = TextFieldDefaults.colors().copy(
@@ -925,6 +927,11 @@ private fun RoomDropdownWrapper(
                 readOnly = true,
             )
 
+        }
+
+        if(roomList.isEmpty()) {
+            expanded = false
+            return@ExposedDropdownMenuBox
         }
 
         ExposedDropdownMenu(
