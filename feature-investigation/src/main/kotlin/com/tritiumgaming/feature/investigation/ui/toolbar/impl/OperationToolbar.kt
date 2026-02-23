@@ -272,13 +272,13 @@ fun RowScope.OperationToolbar(
                 modifier = Modifier
                     .size(48.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_TIMERS)
                 }
             ){
                 StopwatchIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_TIMERS) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
