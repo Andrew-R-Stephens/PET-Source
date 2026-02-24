@@ -572,7 +572,7 @@ fun EquipConfirmationDialog (
                 .clip(RoundedCornerShape(25))
                 .progressGradient(
                     progress = timeLeft / (timeout.toFloat()),
-                    gradientColor =  LocalPalette.current.coreFamily.primary,
+                    gradientColor =  LocalPalette.current.primary,
                     gradientAlpha = 1f
                 )
                 .padding(0.dp, 1.dp, 0.dp, 1.dp)
@@ -611,7 +611,7 @@ fun EquipConfirmationDialog (
                         contentPadding = PaddingValues(8.dp),
                         colors = ButtonColors(
                             contentColor =  LocalPalette.current.surface,
-                            containerColor =  LocalPalette.current.coreFamily.primary,
+                            containerColor =  LocalPalette.current.primary,
                             disabledContentColor = Color.Blue,
                             disabledContainerColor = Color.Green
                         ),
