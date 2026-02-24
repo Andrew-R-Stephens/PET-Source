@@ -150,7 +150,7 @@ fun TestNavHeader() {
                                 .fillMaxSize()
                                 .widthIn(max = 48.dp),
                             painter = painterResource(R.drawable.ic_arrow_60_left),
-                            colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body),
+                            colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
                             contentDescription = ""
                         )
                     }
@@ -165,7 +165,7 @@ fun TestNavHeader() {
                                 .fillMaxSize()
                                 .widthIn(max = 48.dp),
                             painter = painterResource(R.drawable.ic_arrow_60_right),
-                            colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.body),
+                            colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
                             contentDescription = ""
                         )
                     }

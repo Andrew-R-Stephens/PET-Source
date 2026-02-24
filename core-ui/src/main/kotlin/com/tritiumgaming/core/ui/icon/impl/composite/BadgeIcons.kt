@@ -130,17 +130,17 @@ private fun Preview() {
                 modifier = Modifier
                     .size(48.dp),
                 color = LocalPalette.current.surfaceContainer,
-                onColor = LocalPalette.current.textFamily.body
+                onColor = LocalPalette.current.onSurface
             )
             MarkXCircleIcon(
                 modifier = Modifier.size(48.dp),
                 color = LocalPalette.current.surfaceContainer,
-                onColor = LocalPalette.current.textFamily.body
+                onColor = LocalPalette.current.onSurface
             )
             MarkPriorityCircleIcon(
                 modifier = Modifier.size(48.dp),
                 color = LocalPalette.current.surfaceContainer,
-                onColor = LocalPalette.current.textFamily.body
+                onColor = LocalPalette.current.onSurface
             )
         }
     }

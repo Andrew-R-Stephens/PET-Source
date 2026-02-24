@@ -6,7 +6,6 @@ import com.tritiumgaming.core.ui.theme.palette.common.BrandingColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CodexColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CoreColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ExtrasFamily
-import com.tritiumgaming.core.ui.theme.palette.common.TextColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ThemeColorFamily
 
 /** Based on Material Design 3 color roles. Further customization as necessary.
@@ -74,22 +73,13 @@ data class ExtendedPalette(
     val extrasFamily: ExtrasFamily = ExtrasFamily(),
 
     val themeFamily: ThemeColorFamily = ThemeColorFamily(),
+
     val coreFamily: CoreColorFamily = CoreColorFamily(),
 
     val codexFamily: CodexColorFamily = CodexColorFamily(),
-    val textFamily: TextColorFamily = TextColorFamily(),
 
     val discordColor: BrandingColorFamily = BrandingColorFamily(),
     val patreonColor: BrandingColorFamily = BrandingColorFamily(),
-
-    val mapPoiFillColor: Color = Color.Unspecified, // TODO Remove
-    val mapRoomFillColor: Color = Color.Unspecified, // TODO Remove
-    val mapRoomBorderColor: Color = Color.Unspecified, // TODO Remove
-
-    val sanityPieStartColor: Color = Color.Unspecified, // TODO Remove
-    val sanityPieEndColor: Color = Color.Unspecified, // TODO Remove
-    val sanityHeadSkullColor: Color = Color.Unspecified, // TODO Remove
-    val sanityBorderColor: Color = Color.Unspecified, // TODO Remove
 
 ) : ExtendedTheme()
 

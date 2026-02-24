@@ -28,15 +28,10 @@ import com.tritiumgaming.core.ui.theme.black_A75
 import com.tritiumgaming.core.ui.theme.blue_M125
 import com.tritiumgaming.core.ui.theme.blue_M150
 import com.tritiumgaming.core.ui.theme.blue_M175
-import com.tritiumgaming.core.ui.theme.blue_M175_A75
-import com.tritiumgaming.core.ui.theme.blue_M200
-import com.tritiumgaming.core.ui.theme.blue_M200_A58
-import com.tritiumgaming.core.ui.theme.blue_M250
 import com.tritiumgaming.core.ui.theme.blue_M75
 import com.tritiumgaming.core.ui.theme.blue_M750
 import com.tritiumgaming.core.ui.theme.blue_M850
 import com.tritiumgaming.core.ui.theme.blue_M90
-import com.tritiumgaming.core.ui.theme.blue_M900
 import com.tritiumgaming.core.ui.theme.blue_M950
 import com.tritiumgaming.core.ui.theme.cyan_M100
 import com.tritiumgaming.core.ui.theme.cyan_M100_A40
@@ -49,9 +44,6 @@ import com.tritiumgaming.core.ui.theme.discord_color_white
 import com.tritiumgaming.core.ui.theme.discord_color_yellow
 import com.tritiumgaming.core.ui.theme.green
 import com.tritiumgaming.core.ui.theme.green_M150
-import com.tritiumgaming.core.ui.theme.green_M150_A10
-import com.tritiumgaming.core.ui.theme.green_M150_A58
-import com.tritiumgaming.core.ui.theme.green_M150_A75
 import com.tritiumgaming.core.ui.theme.green_M25
 import com.tritiumgaming.core.ui.theme.green_M525
 import com.tritiumgaming.core.ui.theme.green_M550
@@ -67,9 +59,6 @@ import com.tritiumgaming.core.ui.theme.orange_M150
 import com.tritiumgaming.core.ui.theme.orange_M20
 import com.tritiumgaming.core.ui.theme.orange_M250
 import com.tritiumgaming.core.ui.theme.orange_M300
-import com.tritiumgaming.core.ui.theme.orange_M300_A58
-import com.tritiumgaming.core.ui.theme.orange_M300_A75
-import com.tritiumgaming.core.ui.theme.orange_M400
 import com.tritiumgaming.core.ui.theme.orange_M50
 import com.tritiumgaming.core.ui.theme.orange_M510
 import com.tritiumgaming.core.ui.theme.orange_M525
@@ -81,15 +70,10 @@ import com.tritiumgaming.core.ui.theme.palette.common.BrandingColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CodexColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.CoreColorFamily
 import com.tritiumgaming.core.ui.theme.palette.common.ExtrasFamily
-import com.tritiumgaming.core.ui.theme.palette.common.TextColorFamily
 import com.tritiumgaming.core.ui.theme.patreon_color_black
 import com.tritiumgaming.core.ui.theme.patreon_color_white
-import com.tritiumgaming.core.ui.theme.purple_A10
 import com.tritiumgaming.core.ui.theme.purple_M150
 import com.tritiumgaming.core.ui.theme.purple_M250
-import com.tritiumgaming.core.ui.theme.purple_M300
-import com.tritiumgaming.core.ui.theme.purple_M300_A58
-import com.tritiumgaming.core.ui.theme.purple_M300_A75
 import com.tritiumgaming.core.ui.theme.purple_M450
 import com.tritiumgaming.core.ui.theme.purple_M475
 import com.tritiumgaming.core.ui.theme.purple_M525
@@ -98,16 +82,12 @@ import com.tritiumgaming.core.ui.theme.purple_M75
 import com.tritiumgaming.core.ui.theme.purple_M825
 import com.tritiumgaming.core.ui.theme.purple_M850
 import com.tritiumgaming.core.ui.theme.purple_M875
-import com.tritiumgaming.core.ui.theme.purple_M900
 import com.tritiumgaming.core.ui.theme.purple_M950
 import com.tritiumgaming.core.ui.theme.red
-import com.tritiumgaming.core.ui.theme.red_A75
 import com.tritiumgaming.core.ui.theme.red_M150
 import com.tritiumgaming.core.ui.theme.red_M225
 import com.tritiumgaming.core.ui.theme.red_M250
 import com.tritiumgaming.core.ui.theme.red_M300
-import com.tritiumgaming.core.ui.theme.red_M300_A58
-import com.tritiumgaming.core.ui.theme.red_M300_A75
 import com.tritiumgaming.core.ui.theme.red_M350
 import com.tritiumgaming.core.ui.theme.red_M375
 import com.tritiumgaming.core.ui.theme.red_M850
@@ -140,11 +120,8 @@ import com.tritiumgaming.core.ui.theme.title_tritanomaly
 import com.tritiumgaming.core.ui.theme.title_whiteboard
 import com.tritiumgaming.core.ui.theme.title_winner
 import com.tritiumgaming.core.ui.theme.white
-import com.tritiumgaming.core.ui.theme.white_A58
-import com.tritiumgaming.core.ui.theme.white_A75
 import com.tritiumgaming.core.ui.theme.white_M10
 import com.tritiumgaming.core.ui.theme.white_M100
-import com.tritiumgaming.core.ui.theme.white_M150
 import com.tritiumgaming.core.ui.theme.white_M20
 import com.tritiumgaming.core.ui.theme.white_M25
 import com.tritiumgaming.core.ui.theme.white_M300
@@ -156,9 +133,7 @@ import com.tritiumgaming.core.ui.theme.white_M700
 import com.tritiumgaming.core.ui.theme.white_M800
 import com.tritiumgaming.core.ui.theme.white_M950
 import com.tritiumgaming.core.ui.theme.yellow
-import com.tritiumgaming.core.ui.theme.yellow_A10
 import com.tritiumgaming.core.ui.theme.yellow_M25
-import com.tritiumgaming.core.ui.theme.yellow_M50_A10
 
 private val ExtendedDefaultLight = ExtendedPalette()
 
@@ -169,7 +144,6 @@ private val PET_Base = ExtendedDefaultLight.copy(
     onPrimaryContainer = Color(0xFF740B0B),
 
     secondary = white,
-    //onSecondary = white_M600,
     onSecondary = black,
     secondaryContainer = Color(0xFF8F8F8F),
     onSecondaryContainer = Color(0xFF424242),
@@ -177,7 +151,6 @@ private val PET_Base = ExtendedDefaultLight.copy(
     tertiary = green,
     onTertiary = black,
     tertiaryContainer = Color(0xFF003800),
-    //onTertiaryContainer = Color(0xFF008F00),
     onTertiaryContainer = green_M150,
 
     error = red_M300,
@@ -204,23 +177,11 @@ private val PET_Base = ExtendedDefaultLight.copy(
     surface = black,
     surfaceBright = Color.Unspecified,
 
-    /*surfaceContainerLowest = Color(0xFF030101),
-    surfaceContainerLow = Color(0xFF0D0808),
-    surfaceContainer = Color(0xFF130B0B),
-    surfaceContainerHigh = Color(0xFF1E1111),
-    surfaceContainerHighest = Color(0xFF291717),*/
-
     surfaceContainerLowest = Color(0xFF0A0808),
     surfaceContainerLow = Color(0xFF120F0F),
     surfaceContainer = Color(0xFF1A1717),
     surfaceContainerHigh = Color(0xFF242020),
     surfaceContainerHighest = Color(0xFF2F2A2A),
-
-    /*surfaceContainerLowest = Color(0xFF120F0F),
-    surfaceContainerLow = Color(0xFF1A1717),
-    surfaceContainer = Color(0xFF1E1A1A),
-    surfaceContainerHigh = Color(0xFF292424),
-    surfaceContainerHighest = Color(0xFF342F2F),*/
 
     onSurface = white,
     onSurfaceVariant = red_M250,
@@ -254,51 +215,14 @@ private val PET_Base = ExtendedDefaultLight.copy(
     ),
 
     codexFamily = CodexColorFamily(
-        codex1 = cyan_M100,
-        codex2 = Color(0xFF151B1B),
-        codex3 = Color(0xFF99AEB3),
-        codex4 = Color(0xFFFFB43D),
-        codex5 = Color(0xFF2D3635),
-        codex6 = cyan_M100_A40,
-        codex7 = Color(0xFFFFFFFF),
+        primary = Color(0xFFFFB43D),
+        surface = cyan_M100,
+        secondaryContainer = cyan_M100_A40,
+        surfaceContainer = Color(0xFF151B1B),
+        onSurfaceVariant = Color(0xFF2D3635),
+        onSurface = Color(0xFF99AEB3),
+        onSecondaryContainer = Color(0xFFFFFFFF),
     ),
-
-    textFamily = TextColorFamily(
-        primary = red_M250,
-        secondary = red_M300,
-        tertiary = red_M350,
-        body = white,
-        emphasis = red_M250,
-    ),
-
-    // windowStrokeColor = white,
-    // backgroundColor_mapviewOverlay = black_A75,
-    // splashTextColor = red_M350,
-    // light_active = red,
-    // light_inactive = red_A40,
-    // buttonColor = red_A40,
-    // light_off = white_M600,
-    sanityPieStartColor = white,
-    sanityPieEndColor = red,
-    sanityHeadSkullColor = black,
-    sanityBorderColor = white,
-
-    // progressBarColorStart = red_M350,
-    // progressBarColorEnd = red_M350,
-    // progressBarColorThumbGradientStart = white,
-    // progressBarColorThumbOutline = Color(0xFFCCCCCC),
-
-    // inboxNotification = red_M300,
-    // selectedColor = red,
-    // selectedColor2 = red_A40,
-    // un// selectedColor = white_M600,
-    // strikethroughColor = red_M300,
-    // positiveSelColor = green,
-    // neutralSelColor = white_M100,
-    // negativeSelColor = red_M350,
-    mapPoiFillColor = red_M300_A75,
-    mapRoomBorderColor = red_M300_A58,
-    mapRoomFillColor = yellow_A10,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -315,8 +239,6 @@ private val Skin = PET_Base.copy(
     themeFamily = PET_Base.themeFamily.copy(),
     coreFamily = PET_Base.coreFamily.copy(),
     codexFamily = PET_Base.codexFamily.copy(),
-    //switchTheme = PET_Base.switchTheme.copy(),
-    textFamily = PET_Base.textFamily.copy()
 )
 
 private val Prestige = Skin.copy(
@@ -324,32 +246,24 @@ private val Prestige = Skin.copy(
     themeFamily = Skin.themeFamily.copy(),
     coreFamily = Skin.coreFamily.copy(),
     codexFamily = Skin.codexFamily.copy(),
-    //switchTheme = Skin.switchTheme.copy(),
-    textFamily = Skin.textFamily.copy()
 )
 private val Event = Skin.copy(
     extrasFamily = Skin.extrasFamily.copy(),
     themeFamily = Skin.themeFamily.copy(),
     coreFamily = Skin.coreFamily.copy(),
     codexFamily = Skin.codexFamily.copy(),
-    //switchTheme = Skin.switchTheme.copy(),
-    textFamily = Skin.textFamily.copy()
 )
 private val Community = Skin.copy(
     extrasFamily = Skin.extrasFamily.copy(),
     themeFamily = Skin.themeFamily.copy(),
     coreFamily = Skin.coreFamily.copy(),
     codexFamily = Skin.codexFamily.copy(),
-    //switchTheme = Skin.switchTheme.copy(),
-    textFamily = Skin.textFamily.copy()
 )
 private val Special = Skin.copy(
     extrasFamily = Skin.extrasFamily.copy(),
     themeFamily = Skin.themeFamily.copy(),
     coreFamily = Skin.coreFamily.copy(),
     codexFamily = Skin.codexFamily.copy(),
-    //switchTheme = Skin.switchTheme.copy(),
-    textFamily = Skin.textFamily.copy()
 )
 
 val ClassicPalette = PET_Base.copy(
@@ -357,8 +271,6 @@ val ClassicPalette = PET_Base.copy(
     themeFamily = PET_Base.themeFamily.copy(),
     coreFamily = PET_Base.coreFamily.copy(),
     codexFamily = PET_Base.codexFamily.copy(),
-    //switchTheme = PET_Base.switchTheme.copy(),
-    textFamily = PET_Base.textFamily.copy(),
 )
 
 val Monochromacy = PET_Base.copy(
@@ -368,16 +280,13 @@ val Monochromacy = PET_Base.copy(
     onPrimaryContainer = Color(0xFFC2C2C2),
 
     secondary = Color(0xFFC7C7C7),
-    //onSecondary = Color(0xFF6E6E6E),
     onSecondary = black,
     secondaryContainer = Color(0xFF4A4A4A),
     onSecondaryContainer = Color(0xFF999999),
 
     tertiary = Color(0xFF949494),
-    //onTertiary = Color(0xFF474747),
     onTertiary = black,
     tertiaryContainer = Color(0xFFC4C4C4),
-    //onTertiaryContainer = Color(0xFF6B6B6B),
     onTertiaryContainer = black,
 
     error = white,
@@ -394,18 +303,6 @@ val Monochromacy = PET_Base.copy(
     surfaceContainer = Color(0xFF171717),
     surfaceContainerHigh = Color(0xFF212121),
     surfaceContainerHighest = Color(0xFF2B2B2B),
-
-    /*surfaceContainerLowest = Color(0xFF0D0D0D),
-    surfaceContainerLow = Color(0xFF1A1A1A),
-    surfaceContainer = Color(0xFF262626),
-    surfaceContainerHigh = Color(0xFF333333),
-    surfaceContainerHighest = Color(0xFF404040),*/
-
-    /*surfaceContainerLowest = Color(0xFF0D0D0D),
-    surfaceContainerLow = Color(0xFF1A1A1A),
-    surfaceContainer = Color(0xFF3D3D3D),
-    surfaceContainerHigh = Color(0xFF4A4A4A),
-    surfaceContainerHighest = Color(0xFF5C5C5C),*/
 
     onSurface = white,
     onSurfaceVariant = Color(0xFFC8C8C8),
@@ -426,52 +323,34 @@ val Monochromacy = PET_Base.copy(
     themeFamily = PET_Base.themeFamily.copy(),
 
     codexFamily = CodexColorFamily(
-        codex1 = Color(26, 26, 26), //cyan_M100, Color(26, 26, 26),
-        codex2 = Color(25, 25, 25), // Color(0xFF151B1B),
-        codex3 = Color(168, 168, 168), // Color(0xFF99AEB3),
-        codex4 = Color(165, 165, 165), // Color(0xFFFFB43D),
-        codex5 = Color(51, 51, 51), // Color(0xFF2D3635),
-        codex6 = Color(26, 26, 26), // cyan_M100_A40,
-        codex7 = Color(255, 255, 255), // Color(0xFFFFFFFF),
+        primary = Color(0xFFBEBEBE), // Adjusted Primary to 74.3% brightness
+        surface = Color(0xFF1B1B1B), // Closest to 10.6% brightness (SurfaceContainer)
+        secondaryContainer = Color(0x661B1B1B), // Matching Surface brightness with 0x66 Alpha
+        surfaceContainer = Color(0xFF1A1A1A), // Adjusted to 10.2% brightness
+        onSurface = Color(0xFFA7A7A7), // Adjusted to 65.5% brightness
+        onSurfaceVariant = Color(0xFF343434), // Adjusted to 20.4% brightness
+        onSecondaryContainer = Color(0xFFFFFFFF), // Pure White (100%)
+
+        /*primary = Color(0xFFFFB43D),
+        surface = Color(0xFF161C1C),
+        secondaryContainer = Color(0x66161C1C),
+        surfaceContainer = Color(0xFF151B1B),
+        onSurface = Color(0xFF99AEB3),
+        onSurfaceVariant = Color(0xFF2D3635),
+        onSecondaryContainer = Color(0xFFFFFFFF),*/
+
+        /*primary = white,
+        surface = black,
+        surfaceVariant = Color(0x66000000),
+        surfaceContainer = Color(0xFF171717),
+        onSurface = Color(0xFF1C1C1C),
+        onSurfaceVariant = Color(0xFFC8C8C8),
+        outline = Color(0xFFC8C8C8),*/
     ),
 
     coreFamily = PET_Base.coreFamily.copy(
         primary = white_M100
     ),
-
-    textFamily = PET_Base.textFamily.copy(
-        primary = white,
-        secondary = white,
-        tertiary = white,
-        body = white,
-        emphasis = white,
-    ),
-
-    /*switchTheme = PET_Base.switchTheme.copy(
-        thumbActive = black,
-        trackActive = white_M100,
-        thumbInactive = white_M100,
-        trackInactive = black
-    ),*/
-
-    // light_active = white,
-    // light_inactive = white_M400,
-    sanityPieStartColor = white,
-    sanityPieEndColor = white_M500,
-    // progressBarColorStart = white_M500,
-    // progressBarColorEnd = white_M300,
-
-    // inboxNotification = white_M600,
-    // strikethroughColor = white_M100,
-    // selectedColor = white_M100,
-    // un// selectedColor = white_M600,
-    // positiveSelColor = white,
-    // neutralSelColor = white_M400,
-    // negativeSelColor = white_M600,
-    mapPoiFillColor = white_A75,
-    mapRoomBorderColor = white_A58,
-    mapRoomFillColor = yellow_M50_A10,
-    // splashTextColor = white_M200,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -506,12 +385,6 @@ val Deuteranomaly = PET_Base.copy(
     surface = black,
     surfaceBright = Color.Unspecified,
 
-    /*surfaceContainerLowest = Color(0xFF000305),
-    surfaceContainerLow = Color(0xFF000911),
-    surfaceContainer = Color(0xFF00111F),
-    surfaceContainerHigh = Color(0xFF001A2F),
-    surfaceContainerHighest = Color(0xFF002440),*/
-
     surfaceContainerLowest = Color(0xFF0D0D12),
     surfaceContainerLow = Color(0xFF16161C),
     surfaceContainer = Color(0xFF1E1E24),
@@ -540,47 +413,21 @@ val Deuteranomaly = PET_Base.copy(
     ),
 
     codexFamily = CodexColorFamily(
-        codex1 = Color(10, 10, 75),
-        codex2 = Color(25, 25, 75),
-        codex3 = Color(200, 200, 75),
-        codex4 = Color(200, 200, 25),
-        codex5 = Color(15, 15, 75),
-        codex6 = Color(10, 10, 50),
-        codex7 = Color(255, 255, 255),
+        primary = Color(0xFFACACFF), // Adjusted to 74.3% brightness
+        surface = Color(0xFF1B1B21), // SurfaceContainerLow adjusted to 10.6%
+        secondaryContainer = Color(0x661B1B21), // Surface base with 0x66 alpha
+        surfaceContainer = Color(0xFF1A1A20), // SurfaceContainer adjusted to 10.2%
+        onSurface = Color(0xFFA6A6F8), // Adjusted to 65.5% brightness
+        onSurfaceVariant = Color(0xFF333340), // Darkened blue variant to 20.4%
+        onSecondaryContainer = Color(0xFFFFFFFF), // Pure White (100%)
+        /*surface = black,
+        surfaceContainer = Color(0xFF1E1E24),
+        onSurface = blue_M175,
+        primary = Color(0xFF5959D4),
+        onSurfaceVariant = Color(0xFF0D0D12),
+        secondaryContainer = Color(0x66000000),
+        onSecondaryContainer = white,*/
     ),
-
-    /*switchTheme = SwitchColorFamily(
-        thumbActive = black,
-        trackActive = blue_M175,
-        thumbInactive = blue_M175,
-        trackInactive = black
-    ),*/
-    textFamily = PET_Base.textFamily.copy(
-        primary = blue_M175,
-        secondary = blue_M200,
-        tertiary = blue_M250,
-        body = white,
-        emphasis = blue_M175,
-    ),
-
-    // light_active = yellow,
-    // light_inactive = yellow_A40,
-    sanityPieStartColor = white,
-    sanityPieEndColor = yellow,
-    // progressBarColorStart = yellow_M500,
-    // progressBarColorEnd = yellow_M300,
-
-    // inboxNotification = blue_M650,
-    // strikethroughColor = blue_M175,
-    // selectedColor = yellow,
-    // un// selectedColor = white_M600,
-    // positiveSelColor = yellow,
-    // neutralSelColor = white_M400,
-    // negativeSelColor = blue_M650,
-    mapPoiFillColor = blue_M175_A75,
-    mapRoomBorderColor = blue_M200_A58,
-    mapRoomFillColor = yellow_A10,
-    // splashTextColor = white_M200,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -640,47 +487,21 @@ val Protanomaly = PET_Base.copy(
     ),
 
     codexFamily = CodexColorFamily(
-        codex1 = Color(10, 10, 75),
-        codex2 = Color(25, 25, 75),
-        codex3 = Color(200, 200, 75),
-        codex4 = Color(200, 200, 25),
-        codex5 = Color(15, 15, 75),
-        codex6 = Color(10, 10, 50),
-        codex7 = Color(255, 255, 255),
+        primary = Color(0xFFACACFF),
+        surface = Color(0xFF1B1B21),
+        secondaryContainer = Color(0x661B1B21),
+        surfaceContainer = Color(0xFF1A1A20),
+        onSurface = Color(0xFFA6A6F8),
+        onSurfaceVariant = Color(0xFF333340),
+        onSecondaryContainer = Color(0xFFFFFFFF),
+        /*surface = black,
+        surfaceContainer = Color(0xFF1E1E24),
+        onSurface = blue_M175,
+        primary = Color(0xFF5959D4),
+        onSurfaceVariant = Color(0xFF0D0D12),
+        secondaryContainer = Color(0x66000000),
+        onSecondaryContainer = white,*/
     ),
-
-    /*switchTheme = SwitchColorFamily(
-        thumbActive = black,
-        trackActive = blue_M175,
-        thumbInactive = blue_M175,
-        trackInactive = black
-    ),*/
-    textFamily = PET_Base.textFamily.copy(
-        primary = blue_M175,
-        secondary = blue_M200,
-        tertiary = blue_M250,
-        body = white,
-        emphasis = blue_M175,
-    ),
-
-    // light_active = yellow,
-    // light_inactive = yellow_A40,
-    sanityPieStartColor = white,
-    sanityPieEndColor = yellow,
-    // progressBarColorStart = yellow_M500,
-    // progressBarColorEnd = yellow_M300,
-
-    // inboxNotification = blue_M650,
-    // strikethroughColor = blue_M175,
-    // selectedColor = yellow,
-    // un// selectedColor = white_M600,
-    // positiveSelColor = yellow,
-    // neutralSelColor = white_M400,
-    // negativeSelColor = blue_M650,
-    mapPoiFillColor = blue_M175_A75,
-    mapRoomBorderColor = blue_M200_A58,
-    mapRoomFillColor = yellow_A10,
-    // splashTextColor = white_M200,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -727,29 +548,11 @@ val Tritanomaly = PET_Base.copy(
     surface = black,
     surfaceBright = Color.Unspecified,
 
-    /*surfaceContainerLowest = Color(0xFF050101),
-    surfaceContainerLow = Color(0xFF110404),
-    surfaceContainer = Color(0xFF1C0707),
-    surfaceContainerHigh = Color(0xFF290A0A),
-    surfaceContainerHighest = Color(0xFF380E0E),*/
-
     surfaceContainerLowest = Color(0xFF110D0D),
     surfaceContainerLow = Color(0xFF1C1616),
     surfaceContainer = Color(0xFF241E1E),
     surfaceContainerHigh = Color(0xFF2F2929),
     surfaceContainerHighest = Color(0xFF3B3434),
-
-    /*surfaceContainerLowest = Color(0xFF0D0D12),
-    surfaceContainerLow = Color(0xFF16161C),
-    surfaceContainer = Color(0xFF1E1E24),
-    surfaceContainerHigh = Color(0xFF29292F),
-    surfaceContainerHighest = Color(0xFF34343B),*/
-
-    /*surfaceContainerLowest = Color(0xFF141111),
-    surfaceContainerLow = Color(0xFF211D1D),
-    surfaceContainer = Color(0xFF312B2B),
-    surfaceContainerHigh = Color(0xFF3C3636),
-    surfaceContainerHighest = Color(0xFF484141),*/
 
     onSurface = white,
     onSurfaceVariant = red_M250,
@@ -774,21 +577,6 @@ val Tritanomaly = PET_Base.copy(
     ),
 
     codexFamily = PET_Base.codexFamily.copy(),
-    /*switchTheme = PET_Base.switchTheme.copy(
-        trackInactive = black,
-        thumbInactive = red,
-        thumbActive = black,
-        trackActive = red,
-    ),*/
-    textFamily = PET_Base.textFamily.copy(),
-
-    sanityPieStartColor = white,
-    sanityPieEndColor = red,
-    // progressBarColorStart = red_M500,
-    // progressBarColorEnd = red_M300,
-
-    // neutralSelColor = white,
-    mapPoiFillColor = red_A75,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -827,24 +615,6 @@ val Recruit = Prestige.copy(
     surfaceContainerHigh = Color(0xFF291800),
     surfaceContainerHighest = Color(0xFF382100),
 
-    /*surfaceContainerLowest = Color(0xFF050300),
-    surfaceContainerLow = Color(0xFF0E0B08),
-    surfaceContainer = Color(0xFF15110E),
-    surfaceContainerHigh = Color(0xFF201B17),
-    surfaceContainerHighest = Color(0xFF2B2520),*/
-
-    /*surfaceContainerLowest = Color(0xFF0E0800),
-    surfaceContainerLow = Color(0xFF120A00),
-    surfaceContainer = Color(0xFF150B00),
-    surfaceContainerHigh = Color(0xFF201200),
-    surfaceContainerHighest = Color(0xFF2B1900),*/
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = black,
-    surfaceContainer = orange_M900,
-    surfaceContainerHigh = Color(0xFF2E1500),
-    surfaceContainerHighest = Color(0xFF421D00),*/
-
     onSurface = white,
     onSurfaceVariant = orange_M250,
     outline = white,
@@ -874,13 +644,20 @@ val Recruit = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF232C2C),
-        codex2 = Color(0xFF252423),
-        codex3 = orange_M150,
-        codex4 = orange_M150,
-        codex5 = Color(0xFF252423),
-        codex6 = Color(0x40232C2C),
-        codex7 = white
+        primary = Color(0xFFFFB340),
+        surface = Color(0xFF1B1100),
+        secondaryContainer = Color(0x661B1100),
+        surfaceContainer = Color(0xFF1A1000),
+        onSurface = Color(0xFFBFA073),
+        onSurfaceVariant = Color(0xFF33230A),
+        onSecondaryContainer = Color(0xFFFFFFFF),
+        /*surface = Color(0xFF232C2C),
+        surfaceContainer = Color(0xFF252423),
+        onSurfaceVariant = orange_M150,
+        primary = orange_M150,
+        onSurface = Color(0xFF252423),
+        surfaceVariant = Color(0x40232C2C),
+        outline = white*/
     ),
 
     coreFamily = Prestige.coreFamily.copy(
@@ -894,48 +671,6 @@ val Recruit = Prestige.copy(
         color_7 = white_M600,
         color_8 = yellow,
     ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        trackActive = orange_M500,
-        trackInactive = orange_M900,
-        thumbActive = orange_M150,
-        thumbInactive = white_M100,
-    ),*/
-
-    textFamily = Prestige.textFamily.copy(
-        primary = orange_M250,
-        secondary = orange_M300,
-        tertiary = orange_M400,
-        body = white,
-        emphasis = orange_M250,
-    ),
-
-    // windowStrokeColor = white,
-    // light_active = orange_M150,
-    // light_inactive = orange_M50_A40,
-    // light_off = white_M600,
-
-    // strikethroughColor = orange_M300,
-    // selectedColor = orange_M150,
-    // selectedColor2 = orange_M150,
-    // un// selectedColor = white_M600,
-    // positiveSelColor = yellow,
-    // neutralSelColor = white_M100,
-    // negativeSelColor = orange_M300,
-    mapPoiFillColor = orange_M300_A75,
-    mapRoomBorderColor = orange_M300_A58,
-    mapRoomFillColor = yellow_A10,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF090500),
-
-    // progressBarColorStart = orange_M500,
-    // progressBarColorEnd = orange_M300,
-    sanityPieStartColor = white,
-    sanityPieEndColor = orange_M150,
-
-    // splashTextColor = orange_M150,
-
-    // inboxNotification = orange_M150,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -953,19 +688,16 @@ val Investigator = Prestige.copy(
     onPrimaryContainer = Color(0xFFA90A5C),
 
     secondary = white_M300,
-    //onSecondary = Color(0xFF4F4F4F),
     onSecondary = black,
     secondaryContainer = Color(0xFFFCFCFC),
     onSecondaryContainer = Color(0xFF737373),
 
     tertiary = purple_M525,
-    //onTertiary = Color(0xFFF39BC8),
     onTertiary = white,
     tertiaryContainer = Color(0xFFCC1976),
     onTertiaryContainer = Color(0xFF3E0E21),
 
     error = Color(0xFFAE0A5F),
-    //onError = Color(0xFFF986C1),
     onError = white,
     errorContainer = Color(0xFFF10E83),
     onErrorContainer = Color(0xFF6A063A),
@@ -979,24 +711,6 @@ val Investigator = Prestige.copy(
     surfaceContainer = Color(0xFF160026),
     surfaceContainerHigh = Color(0xFF1F0036),
     surfaceContainerHighest = Color(0xFF2A0048),
-
-    /*surfaceContainerLowest = Color(0xFF06000B),
-    surfaceContainerLow = Color(0xFF100A15),
-    surfaceContainer = Color(0xFF17111C),
-    surfaceContainerHigh = Color(0xFF211B26),
-    surfaceContainerHighest = Color(0xFF2C2531),*/
-
-    /*surfaceContainerLowest = Color(0xFF120012),
-    surfaceContainerLow = Color(0xFF160016),
-    surfaceContainer = Color(0xFF190019),
-    surfaceContainerHigh = Color(0xFF240024),
-    surfaceContainerHighest = Color(0xFF300030),*/
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = black,
-    surfaceContainer = purple_M900,
-    surfaceContainerHigh = Color(0xFF290029),
-    surfaceContainerHighest = Color(0xFF330033),*/
 
     onSurface = white_M10,
     onSurfaceVariant = purple_M250,
@@ -1040,57 +754,21 @@ val Investigator = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF390721),
-        codex2 = Color(0xFF200413),
-        codex3 = white_M300,
-        codex4 = purple_M75,
-        codex5 = Color(0xFF3C3237),
-        codex6 = Color(0x40390721),
-        codex7 = white
-    ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = purple_M75,
-        thumbInactive = purple_M525,
-        trackActive = purple_M525,
-        trackInactive = black,
-    ),*/
-
-    textFamily = Prestige.textFamily.copy(
+        primary = Color(0xFFFFA5D1),
+        surface = Color(0xFF160026),
+        secondaryContainer = Color(0x66160026),
+        surfaceContainer = Color(0xFF150025),
+        onSurface = Color(0xFFBB98AC),
+        onSurfaceVariant = Color(0xFF321E2A),
+        onSecondaryContainer = Color(0xFFFFFFFF),
+        /*surface = Color(0xFF390721),
+        surfaceContainer = Color(0xFF200413),
+        onSurface = white_M300,
         primary = purple_M75,
-        secondary = purple_M250,
-        tertiary = purple_M525,
-        body = white_M10,
-        emphasis = purple_M250,
+        onSurfaceVariant = Color(0xFF3C3237),
+        secondaryContainer = Color(0x40390721),
+        onSecondaryContainer = white*/
     ),
-
-    // windowStrokeColor = white_M10,
-
-    // light_active = purple_M75,
-    // light_inactive = Color(0x6689114F),
-    // light_off = white_M600,
-
-    // strikethroughColor = purple_M525,
-    // selectedColor = purple_M75,
-    // selectedColor2 = purple_M75,
-    // un// selectedColor = white_M600,
-    // positiveSelColor = purple_M75,
-    // neutralSelColor = white_M50,
-    // negativeSelColor = purple_M525,
-    mapPoiFillColor = Color(0xBFF11284),
-    mapRoomBorderColor = Color(0x94F11284),
-    mapRoomFillColor = Color(0x1AF11284),
-
-    // backgroundColor_mapviewOverlay = Color(0xBF0B000B),
-
-    // progressBarColorStart = white_M10,
-    // progressBarColorEnd = purple_M75,
-    sanityPieStartColor = white_M10,
-    sanityPieEndColor = purple_M75,
-
-    // splashTextColor = purple_M75,
-
-    // inboxNotification = purple_M75,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -1132,18 +810,6 @@ val PrivateInvestigator = Prestige.copy(
     surfaceContainerHigh = Color(0xFF292929),
     surfaceContainerHighest = Color(0xFF333333),
 
-    /*surfaceContainerLowest = Color(0xFF050505),
-    surfaceContainerLow = Color(0xFF070707),
-    surfaceContainer = Color(0xFF080808),
-    surfaceContainerHigh = Color(0xFF121212),
-    surfaceContainerHighest = Color(0xFF1C1C1C),*/
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = black,
-    surfaceContainer = white_M950,
-    surfaceContainerHigh = Color(0xFF121212),
-    surfaceContainerHighest = Color(0xFF1A1A1A),*/
-
     onSurface = white,
     onSurfaceVariant = orange_M20,
     outline = white,
@@ -1183,57 +849,14 @@ val PrivateInvestigator = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF150F08),
-        codex2 = Color(0xFF332312),
-        codex3 = orange_M10,
-        codex4 = orange_M10,
-        codex5 = Color(0xFF3A3631),
-        codex6 = Color(0x403E2A17),
-        codex7 = white
+        surface = Color(0xFF150F08),
+        surfaceContainer = Color(0xFF332312),
+        onSurface = orange_M10,
+        primary = orange_M10,
+        onSurfaceVariant = Color(0xFF3A3631),
+        secondaryContainer = Color(0x403E2A17),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = orange_M10,
-        trackActive = orange_M500,
-        thumbInactive = orange_M500,
-        trackInactive = black,
-    ),*/
-
-    textFamily = Prestige.textFamily.copy(
-        primary = orange_M20,
-        secondary = orange_M10,
-        tertiary = orange_M510,
-        body = white,
-        emphasis = orange_M20,
-    ),
-
-    // windowStrokeColor = white,
-
-    // light_active = orange,
-    // light_inactive = orange_M50_A40,
-    // light_off = orange_M510,
-
-    // strikethroughColor = orange_M510,
-    // selectedColor = orange_M10,
-    // selectedColor2 = orange_M50_A40,
-    // un// selectedColor = white_M600,
-    // positiveSelColor = orange_M10,
-    // neutralSelColor = orange_M85,
-    // negativeSelColor = orange_M510,
-    mapPoiFillColor = orange_M300_A75,
-    mapRoomBorderColor = orange_M300_A58,
-    mapRoomFillColor = yellow_A10,
-
-    // backgroundColor_mapviewOverlay = black_A75,
-
-    // progressBarColorStart = orange_M85,
-    // progressBarColorEnd = orange_M10,
-    sanityPieStartColor = orange_M85,
-    sanityPieEndColor = orange_M10,
-
-    // splashTextColor = orange_M10,
-
-    // inboxNotification = orange_M10,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -1274,12 +897,6 @@ val Detective = Prestige.copy(
     surfaceContainer = Color(0xFF171A18),
     surfaceContainerHigh = Color(0xFF212522),
     surfaceContainerHighest = Color(0xFF2C312D),
-
-    /*surfaceContainerLowest = Color(0xFF0B0E0B),
-    surfaceContainerLow = Color(0xFF141514),
-    surfaceContainer = green_M825,
-    surfaceContainerHigh = Color(0xFF1C211F),
-    surfaceContainerHighest = Color(0xFF242D2B),*/
 
     onSurface = white_M20,
     onSurfaceVariant = green_M525,
@@ -1323,57 +940,14 @@ val Detective = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF1E221F),
-        codex2 = green_M825,
-        codex3 = Color(0xFFB0E3CE),
-        codex4 = green_M25,
-        codex5 = white_M800,
-        codex6 = Color(0x401E221F),
-        codex7 = white
-    ),
-
-    textFamily = Prestige.textFamily.copy(
+        surface = Color(0xFF1E221F),
+        surfaceContainer = green_M825,
+        onSurface = Color(0xFFB0E3CE),
         primary = green_M25,
-        secondary = green_M525,
-        tertiary = Color(0xFF44BF8C),
-        body = white_M20,
-        emphasis = green_M525,
+        onSurfaceVariant = white_M800,
+        secondaryContainer = Color(0x401E221F),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = green_M825,
-        trackActive = green_M25,
-        thumbInactive = green_M25,
-        trackInactive = green_M825,
-    ),*/
-
-    // windowStrokeColor = white_M20,
-
-    // light_active = green_M25,
-    // light_inactive = green_M525,
-    // light_off = Color(0xFF2E332F),
-
-    // strikethroughColor = white_M600,
-    // selectedColor = green_M25,
-    // selectedColor2 = green_M525,
-    // un// selectedColor = white_M600,
-    // positiveSelColor = green_M25,
-    // neutralSelColor = white_M600,
-    // negativeSelColor = white_M300,
-    mapPoiFillColor = Color(0xBF1A9863),
-    mapRoomBorderColor = Color(0x941A9863),
-    mapRoomFillColor = Color(0x1A1A9863),
-
-    // backgroundColor_mapviewOverlay = Color(0xBF0F100F),
-
-    // progressBarColorStart = white_M20,
-    // progressBarColorEnd = green_M25,
-    sanityPieStartColor = white_M20,
-    sanityPieEndColor = green_M25,
-
-    // splashTextColor = green_M25,
-
-    // inboxNotification = green_M25,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -1391,7 +965,6 @@ val Technician = Prestige.copy(
     onPrimaryContainer = Color(0xFF4C0806),
 
     secondary = Color(0xFFE0E0E0),
-    //onSecondary = Color(0xFF636363),
     onSecondary = black,
     secondaryContainer = Color(0xFF424242),
     onSecondaryContainer = Color(0xFFB0B0B0),
@@ -1415,18 +988,6 @@ val Technician = Prestige.copy(
     surfaceContainer = Color(0xFF201B1B),
     surfaceContainerHigh = Color(0xFF2B2525),
     surfaceContainerHighest = Color(0xFF373030),
-
-    /*surfaceContainerLowest = Color(0xFF060F05),
-    surfaceContainerLow = Color(0xFF071104),
-    surfaceContainer = Color(0xFF081204),
-    surfaceContainerHigh = Color(0xFF141A10),
-    surfaceContainerHighest = Color(0xFF1F231B),*/
-
-    /*surfaceContainerLowest = Color.Unspecified,
-    surfaceContainerLow = Color.Unspecified,
-    surfaceContainer = Color(0xFF081204),
-    surfaceContainerHigh = Color(0xFF081204),
-    surfaceContainerHighest = Color.Unspecified,*/
 
     onSurface = white,
     onSurfaceVariant = Color(0xFFABABAB),
@@ -1472,59 +1033,14 @@ val Technician = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF200605),
-        codex2 = Color(0xFF120202),
-        codex3 = Color(0xFFE4DEDE),
-        codex4 = white,
-        codex5 = Color(0xFF575050),
-        codex6 = Color(0x403E1312),
-        codex7 = white
+        surface = Color(0xFF200605),
+        surfaceContainer = Color(0xFF120202),
+        onSurface = Color(0xFFE4DEDE),
+        primary = white,
+        onSurfaceVariant = Color(0xFF575050),
+        secondaryContainer = Color(0x403E1312),
+        onSecondaryContainer = white
     ),
-
-    textFamily = Prestige.textFamily.copy(
-        primary = red_M375,
-        secondary = Color(0xFF91100C),
-        tertiary = Color(0xFF8E3431),
-        body = white,
-        emphasis = Color(0xFFABABAB),
-    ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = black,
-        trackActive = red_M375,
-        thumbInactive = red_M375,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = white,
-
-
-    // light_active = red_M375,
-    // light_inactive = Color(0xFF5E0D0B),
-    // light_off = white_M600,
-
-    // strikethroughColor = Color(0xFF5E0D0B),
-    // selectedColor = red_M375,
-    // selectedColor2 = Color(0xFF5E0D0B),
-    // un// selectedColor = white_M500,
-    // positiveSelColor = red_M375,
-    // neutralSelColor = white_M600,
-    // negativeSelColor = Color(0xFFABABAB),
-
-    mapPoiFillColor = Color(0xBF91100C),
-    mapRoomBorderColor = Color(0x8091100C),
-    mapRoomFillColor = Color(0x1A91100C),
-
-    // backgroundColor_mapviewOverlay = Color(0xBF050C04),
-
-    // progressBarColorStart = Color(0xFFE0E0E0),
-    // progressBarColorEnd = red_M375,
-    sanityPieStartColor = Color(0xFFE0E0E0),
-    sanityPieEndColor = red_M375,
-
-    // splashTextColor = red_M375,
-
-    // inboxNotification = red_M375,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -1565,12 +1081,6 @@ val Specialist = Prestige.copy(
     surfaceContainer = Color(0xFF0F1B0A),
     surfaceContainerHigh = Color(0xFF1A2615),
     surfaceContainerHighest = Color(0xFF243120),
-
-    /*surfaceContainerLowest = Color(0xFF040703),
-    surfaceContainerLow = Color(0xFF0A1307),
-    surfaceContainer = Color(0xFF0F1B0A),
-    surfaceContainerHigh = Color(0xFF13220C),
-    surfaceContainerHighest = Color(0xFF14270C),*/
 
     onSurface = Color(0xFFFEFEFE),
     onSurfaceVariant = Color(0xFF80994D),
@@ -1618,57 +1128,14 @@ val Specialist = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF070C05),
-        codex2 = Color(0xFF24291F),
-        codex3 = Color(0xFFD9ECAF),
-        codex4 = green_M150,
-        codex5 = Color(0xFF545B4D),
-        codex6 = Color(0x40070C05),
-        codex7 = white
-    ),
-
-    textFamily = Prestige.textFamily.copy(
+        surface = Color(0xFF070C05),
+        surfaceContainer = Color(0xFF24291F),
+        onSurface = Color(0xFFD9ECAF),
         primary = green_M150,
-        secondary = Color(0xFF80994D),
-        tertiary = Color(0xFF545B4D),
-        body = Color(0xFFFEFEFE),
-        emphasis = Color(0xFF80994D),
+        onSurfaceVariant = Color(0xFF545B4D),
+        secondaryContainer = Color(0x40070C05),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = black,
-        trackActive = green_M150,
-        thumbInactive = green_M150,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = Color(0xFFFEFEFE),
-
-    // light_active = green_M150,
-    // light_inactive = Color(0xFF80994D),
-    // light_off = white_M600,
-
-    // strikethroughColor = Color(0xFFA0B17B),
-    // selectedColor = Color(0xFF80994D),
-    // selectedColor2 = Color(0xFF80994D),
-    // un// selectedColor = white_M600,
-    // positiveSelColor = green_M150,
-    // neutralSelColor = Color(0xFF545B4D),
-    // negativeSelColor = Color(0xFFA0B17B),
-    mapPoiFillColor = green_M150_A75,
-    mapRoomBorderColor = green_M150_A58,
-    mapRoomFillColor = green_M150_A10,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF070C05),
-
-    // progressBarColorStart = Color(0xFF80994D),
-    // progressBarColorEnd = green_M150,
-    sanityPieStartColor = Color(0xFFE7E8E7),
-    sanityPieEndColor = green_M150,
-
-    // splashTextColor = green_M150,
-
-    // inboxNotification = green_M150,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -1709,12 +1176,6 @@ val Analyst = Prestige.copy(
     surfaceContainer = Color(0xFF685A52),
     surfaceContainerHigh = Color(0xFF76685F),
     surfaceContainerHighest = Color(0xFF84756D),
-
-    /*surfaceContainerLowest = Color(0xFF1A1514),
-    surfaceContainerLow = Color(0xFF322525),
-    surfaceContainer = orange_M525,
-    surfaceContainerHigh = Color(0xFF836F67),
-    surfaceContainerHighest = Color(0xFF9A877E),*/
 
     onSurface = white,
     onSurfaceVariant = Color(0xFF82A9E8),
@@ -1759,58 +1220,21 @@ val Analyst = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF1C1917),
-        codex3 = Color(0xFFEDE5E7),
-        codex2 = Color(0xFF255BAF),
-        codex4 = Color(0xFF7BCD26),
-        codex5 = Color(0xFF101E01),
-        codex6 = Color(0x40201B19),
-        codex7 = white
+        surface = Color(0xFF1B1C33), // Target Navy Surface
+        onSurface = Color(0xFFFEFEFE), // Target White
+        surfaceContainer = Color(0xFF447CDE), // Target Primary Blue
+        primary = Color(0xFFE4D0AE), // Target Parchment/Gold (replaces the green accent)
+        onSurfaceVariant = Color(0xFF010409), // Target deepest "On" color
+        secondaryContainer = Color(0x4016172B), // Target SurfaceLowest with reference alpha
+        onSecondaryContainer = Color(0xFFFEFEFE) // Target White
+        /*surface = Color(0xFF1C1917),
+        onSurface = Color(0xFFEDE5E7),
+        surfaceContainer = Color(0xFF255BAF),
+        primary = Color(0xFF7BCD26),
+        onSurfaceVariant = Color(0xFF101E01),
+        secondaryContainer = Color(0x40201B19),
+        onSecondaryContainer = white*/
     ),
-
-    textFamily = Prestige.textFamily.copy(
-        primary = Color(0xFFCD2547),
-        secondary = Color(0xFF7BCD26),
-        tertiary = Color(0xFF2667CD),
-        body = white,
-        emphasis = Color(0xFFA7968C),
-    ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = black,
-        trackActive = Color(0xFF2667CD),
-        thumbInactive = Color(0xFF2667CD),
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = Color(0xFFA7968C),
-
-    // light_active = Color(0xFF2667CD),
-    // light_inactive = orange_M525,
-    // light_off = red_M850,
-
-    // buttonColor = Color(0xFF7BCD26),
-    // strikethroughColor = Color(0xFFCD2547),
-    // selectedColor = Color(0xFF2667CD),
-    // selectedColor2 = Color(0xFF2667CD),
-    // un// selectedColor = orange_M525,
-    // positiveSelColor = Color(0xFF7BCD26),
-    // neutralSelColor = Color(0xFFA7968C),
-    // negativeSelColor = Color(0xFFCD2547),
-    mapPoiFillColor = Color(0xBF2667CD),
-    mapRoomBorderColor = Color(0x942667CD),
-    mapRoomFillColor = Color(0x1A2667CD),
-
-    // progressBarColorStart = Color(0xFFA7968C),
-    // progressBarColorEnd = Color(0xFF2667CD),
-    sanityPieStartColor = Color(0xFFA7968C),
-    sanityPieEndColor = Color(0xFF2667CD),
-
-    // splashTextColor = Color(0xFF2667CD),
-
-    // backgroundColor_mapviewOverlay = Color(0xBF1B1516),
-
-    // inboxNotification = Color(0xFFD3C9C3),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -1851,18 +1275,6 @@ val Agent = Prestige.copy(
     surfaceContainer = Color(0xFF212B2B),
     surfaceContainerHigh = Color(0xFF2C3535),
     surfaceContainerHighest = Color(0xFF374242),
-
-    /*surfaceContainerLowest = Color(0xFF0D1111),
-    surfaceContainerLow = Color(0xFF111717),
-    surfaceContainer = Color(0xFF131919),
-    surfaceContainerHigh = Color(0xFF1E2525),
-    surfaceContainerHighest = Color(0xFF283131),*/
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = Color(0xFF0B0E0E),
-    surfaceContainer = Color(0xFF131919),
-    surfaceContainerHigh = Color(0xFF1C2626),
-    surfaceContainerHighest = Color(0xFF253232),*/
 
     onSurface = white,
     onSurfaceVariant = Color(0xFF167467),
@@ -1908,57 +1320,14 @@ val Agent = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF101515),
-        codex3 = Color(0xFFB7CFCC),
-        codex2 = Color(0xFF202A29),
-        codex4 = blue_M90,
-        codex5 = Color(0xFF5E7E7B),
-        codex6 = Color(0x40101515),
-        codex7 = white
-    ),
-
-    textFamily = Prestige.textFamily.copy(
+        surface = Color(0xFF101515),
+        onSurface = Color(0xFFB7CFCC),
+        surfaceContainer = Color(0xFF202A29),
         primary = blue_M90,
-        secondary = Color(0xFF02A996),
-        tertiary = Color(0xFF167467),
-        body = white,
-        emphasis = Color(0xFF167467),
+        onSurfaceVariant = Color(0xFF5E7E7B),
+        secondaryContainer = Color(0x40101515),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = black,
-        trackActive = blue_M90,
-        thumbInactive = blue_M90,
-        trackInactive = black
-    ),*/
-
-    // windowStrokeColor = white,
-
-    // light_active = blue_M90,
-    // light_inactive = Color(0xFF1D4E49),
-    // light_off = Color(0xFF202A29),
-
-    // strikethroughColor = Color(0xFF1D4E49),
-    // selectedColor = Color(0xFF167467),
-    // selectedColor2 = Color(0xFF167467),
-    // un// selectedColor = Color(0xFF858686),
-    // positiveSelColor = blue_M90,
-    // neutralSelColor = Color(0xFF5E7E7B),
-    // negativeSelColor = Color(0xFF1D4E49),
-    mapPoiFillColor = Color(0xBF02A996),
-    mapRoomBorderColor = Color(0x9402A996),
-    mapRoomFillColor = Color(0x1A02A996),
-
-    // progressBarColorStart = white,
-    // progressBarColorEnd = blue_M90,
-    sanityPieStartColor = white,
-    sanityPieEndColor = blue_M90,
-
-    // splashTextColor = blue_M90,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF101515),
-
-    // inboxNotification = blue_M90,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -1999,18 +1368,6 @@ val Operator = Prestige.copy(
     surfaceContainer = Color(0xFF000E1E),
     surfaceContainerHigh = Color(0xFF0C1625),
     surfaceContainerHighest = Color(0xFF18202C),
-
-    /*surfaceContainerLowest = Color(0xFF000008),
-    surfaceContainerLow = Color(0xFF000014),
-    surfaceContainer = Color(0xFF000017),
-    surfaceContainerHigh = Color(0xFF0D0C21),
-    surfaceContainerHighest = Color(0xFF17152B),*/
-
-    /*surfaceContainerLowest = Color(0xFF000005),
-    surfaceContainerLow = Color(0xFF00000F),
-    surfaceContainer = blue_M900,
-    surfaceContainerHigh = Color(0xFF00003D),
-    surfaceContainerHighest = Color(0xFF000057),*/
 
     onSurface = Color(0xFFF9F8FA),
     onSurfaceVariant = purple_M250,
@@ -2054,56 +1411,14 @@ val Operator = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF130B29),
-        codex3 = Color(0xFFC5BCCD),
-        codex2 = Color(0xFF370C37),
-        codex4 = purple_M150,
-        codex5 = Color(0xFF53425E),
-        codex6 = Color(0x40130B29),
-        codex7 = white
+        surface = Color(0xFF130B29),
+        onSurface = Color(0xFFC5BCCD),
+        surfaceContainer = Color(0xFF370C37),
+        primary = purple_M150,
+        onSurfaceVariant = Color(0xFF53425E),
+        secondaryContainer = Color(0x40130B29),
+        onSecondaryContainer = white
     ),
-
-    textFamily = Prestige.textFamily.copy(
-        primary = blue_M150,
-        secondary = purple_M300,
-        tertiary = purple_M450,
-        body = Color(0xFFF9F8FA),
-        emphasis = purple_M250,
-    ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = black,
-        thumbInactive = purple_M300,
-        trackActive = purple_M300,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = white,
-
-    mapRoomFillColor = purple_A10,
-    // light_inactive = purple_M50_A40,
-    // light_active = blue_M150,
-
-    // inboxNotification = purple_M150,
-    // strikethroughColor = purple_M300,
-    mapRoomBorderColor = purple_M300_A58,
-    mapPoiFillColor = purple_M300_A75,
-    // selectedColor = purple_M450,
-    // selectedColor2 = purple_M50_A40,
-    // un// selectedColor = purple_M475,
-    // negativeSelColor = blue_M150,
-    // positiveSelColor = purple_M150,
-    // neutralSelColor = purple_M475,
-    // light_off = purple_M875,
-
-    // progressBarColorStart = purple_M500,
-    // progressBarColorEnd = blue_M150,
-    sanityPieStartColor = Color(0xFFF9F8FA),
-    sanityPieEndColor = purple_M150,
-
-    // splashTextColor = purple_M150,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF00000E),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2144,12 +1459,6 @@ val Commissioner = Prestige.copy(
     surfaceContainer = Color(0xFF3C3B3C),
     surfaceContainerHigh = Color(0xFF494745),
     surfaceContainerHighest = Color(0xFF575452),
-
-    /*surfaceContainerLowest = Color(0xFF312F31),
-    surfaceContainerLow = Color(0xFF363536),
-    surfaceContainer = purple_M825,
-    surfaceContainerHigh = Color(0xFF434243),
-    surfaceContainerHighest = Color(0xFF484748),*/
 
     onSurface = Color(0xFFF8EFD9),
     onSurfaceVariant = Color(0xFFACAAAC),
@@ -2193,57 +1502,14 @@ val Commissioner = Prestige.copy(
     ),
 
     codexFamily = Prestige.codexFamily.copy(
-        codex1 = Color(0xFF232323),
-        codex3 = Color(0xFFFFF9F0),
-        codex2 = Color(0xFF130B00),
-        codex4 = orange_M05,
-        codex5 = Color(0xFF3C3B3B),
-        codex6 = Color(0x40232323),
-        codex7 = white
-    ),
-
-    textFamily = Prestige.textFamily.copy(
+        surface = Color(0xFF232323),
+        onSurface = Color(0xFFFFF9F0),
+        surfaceContainer = Color(0xFF130B00),
         primary = orange_M05,
-        secondary = Color(0xFFE5A348),
-        tertiary = Color(0xFF765932),
-        body = Color(0xFFF8EFD9),
-        emphasis = Color(0xFFACAAAC),
+        onSurfaceVariant = Color(0xFF3C3B3B),
+        secondaryContainer = Color(0x40232323),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Prestige.switchTheme.copy(
-        thumbActive = black,
-        trackActive = orange_M10,
-        thumbInactive = orange_M10,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = white,
-
-    // light_active = orange_M05,
-    // light_inactive = Color(0xFF765932),
-    // light_off = purple_M825,
-
-
-    // inboxNotification = orange_M05,
-    // strikethroughColor = Color(0xFF765932),
-    // selectedColor = Color(0xFFE5A348),
-    // selectedColor2 = Color(0xFFE5A348),
-    // un// selectedColor = Color(0xFFACAAAC),
-    // positiveSelColor = orange_M05,
-    // neutralSelColor = Color(0xFFACAAAC),
-    // negativeSelColor = Color(0xFF765932),
-    mapPoiFillColor = orange_M300_A75,
-    mapRoomBorderColor = orange_M300_A58,
-    mapRoomFillColor = yellow_A10,
-
-    // progressBarColorStart = Color(0xFFF8EFD9),
-    // progressBarColorEnd = orange_M05,
-    sanityPieStartColor = Color(0xFFF8EFD9),
-    sanityPieEndColor = orange_M05,
-
-    // splashTextColor = orange_M05,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF080808),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2284,12 +1550,6 @@ val Easter = Event.copy(
     surfaceContainer = Color(0xFF061915),
     surfaceContainerHigh = Color(0xFF12241F),
     surfaceContainerHighest = Color(0xFF1D302A),
-
-    /*surfaceContainerLowest = Color(0xFF010404),
-    surfaceContainerLow = Color(0xFF04100E),
-    surfaceContainer = Color(0xFF061915),
-    surfaceContainerHigh = Color(0xFF08211B),
-    surfaceContainerHighest = Color(0xFF0A2921),*/
 
     onSurface = Color(0xFFE1EBE5),
     onSurfaceVariant = Color(0xFFF8E8BD),
@@ -2335,55 +1595,14 @@ val Easter = Event.copy(
     ),
 
     codexFamily = Event.codexFamily.copy(
-        codex1 = Color(0xFF203E36),
-        codex3 = Color(0xFFF8E8BD),
-        codex2 = Color(0xFF09231D),
-        codex4 = orange_M75,
-        codex5 = Color(0xFF2D3332),
-        codex6 = Color(0x40203E36),
-        codex7 = white
+        surface = Color(0xFF203E36),
+        onSurface = Color(0xFFF8E8BD),
+        surfaceContainer = Color(0xFF09231D),
+        primary = orange_M75,
+        onSurfaceVariant = Color(0xFF2D3332),
+        secondaryContainer = Color(0x40203E36),
+        onSecondaryContainer = white
     ),
-
-    textFamily = Event.textFamily.copy(
-        primary = green_M550,
-        secondary = orange_M75,
-        tertiary = Color(0xFF21654A),
-        body = Color(0xFFE1EBE5),
-        emphasis = Color(0xFFF8E8BD),
-    ),
-
-    /*switchTheme = Event.switchTheme.copy(
-        thumbActive = black,
-        thumbInactive = orange_M75,
-        trackActive = orange_M75,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = Color(0xFFE1EBE5),
-    // light_active = orange_M75,
-    // light_inactive = Color(0xFFF8E8BD),
-    // light_off = Color(0xFF1C180D),
-
-    // inboxNotification = orange_M05,
-    // strikethroughColor = Color(0xFF21654A),
-    // selectedColor = Color(0xFFF8E8BD),
-    // selectedColor2 = green_M550,
-    // un// selectedColor = white_M600,
-    // positiveSelColor = orange_M75,
-    // neutralSelColor = Color(0xFFE1EBE5),
-    // negativeSelColor = Color(0xFF21654A),
-    mapPoiFillColor = Color(0xBF348662),
-    mapRoomBorderColor = Color(0x94ECC768),
-    mapRoomFillColor = Color(0x1AECC768),
-
-    // progressBarColorStart = Color(0xFFE1EBE5),
-    // progressBarColorEnd = orange_M75,
-    sanityPieStartColor = Color(0xFFE1EBE5),
-    sanityPieEndColor = orange_M75,
-
-    // splashTextColor = green_M550,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF030C0A),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2423,12 +1642,6 @@ val Halloween23 = Event.copy(
     surfaceContainer = Color(0xFF3F1602),
     surfaceContainerHigh = Color(0xFF51210B),
     surfaceContainerHighest = Color(0xFF642E15),
-
-    /*surfaceContainerLowest = Color(0xFF270E02),
-    surfaceContainerLow = Color(0xFF361302),
-    surfaceContainer = Color(0xFF3F1602),
-    surfaceContainerHigh = Color(0xFF4A1B02),
-    surfaceContainerHighest = Color(0xFF551F02),*/
 
     onSurface = Color(0xFFD7CCC3),
     onSurfaceVariant = Color(0xFFB3540A),
@@ -2474,56 +1687,14 @@ val Halloween23 = Event.copy(
     ),
 
     codexFamily = Event.codexFamily.copy(
-        codex1 = Color(0xFF1B0A00),
-        codex3 = Color(0xFFD7CCC3),
-        codex2 = Color(0xFF130700),
-        codex4 = Color(0xFFEC700D),
-        codex5 = Color(0xFF373737),
-        codex6 = Color(0x401B0A00),
-        codex7 = white
-    ),
-
-    textFamily = Event.textFamily.copy(
+        surface = Color(0xFF1B0A00),
+        onSurface = Color(0xFFD7CCC3),
+        surfaceContainer = Color(0xFF130700),
         primary = Color(0xFFEC700D),
-        secondary = Color(0xFFC85E0D),
-        tertiary = Color(0xFF9F4B0D),
-        body = Color(0xFFD7CCC3),
-        emphasis = Color(0xFFB3540A),
+        onSurfaceVariant = Color(0xFF373737),
+        secondaryContainer = Color(0x401B0A00),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Event.switchTheme.copy(
-        thumbActive = black,
-        trackActive = Color(0xFFEC700D),
-        thumbInactive = Color(0xFFEC700D),
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = white,
-    // light_active = Color(0xFFEC700D),
-    // light_inactive = Color(0xFF9F4B0D),
-    // light_off = Color(0xFF3F1602),
-
-    // strikethroughColor = Color(0xFFD7CCC3),
-    // selectedColor = Color(0xFFC85E0D),
-    // selectedColor2 = Color(0xFFC85E0D),
-    // un// selectedColor = Color(0xFF373737),
-    // positiveSelColor = Color(0xFFEC700D),
-    // neutralSelColor = Color(0xFF373737),
-    // negativeSelColor = Color(0xFFD7CCC3),
-    mapPoiFillColor = Color(0xBFEC700D),
-    mapRoomBorderColor = Color(0x94EC700D),
-    mapRoomFillColor = Color(0x1AEC700D),
-
-    // progressBarColorStart = Color(0xFFD7CCC3),
-    // progressBarColorEnd = Color(0xFFEC700D),
-    sanityPieStartColor = Color(0xFFD7CCC3),
-    sanityPieEndColor = Color(0xFFEC700D),
-
-    // splashTextColor = Color(0xFFEC700D),
-
-    // backgroundColor_mapviewOverlay = Color(0xBF0C0400),
-
-    // inboxNotification = Color(0xFFEC700D),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2564,12 +1735,6 @@ val Holiday22 = Event.copy(
     surfaceContainer = Color(0xFF151529),
     surfaceContainerHigh = Color(0xFF202035),
     surfaceContainerHighest = Color(0xFF2B2B42),
-
-    /*surfaceContainerLowest = Color(0xFF020204),
-    surfaceContainerLow = Color(0xFF0B0B18),
-    surfaceContainer = Color(0xFF151529),
-    surfaceContainerHigh = Color(0xFF1C1C36),
-    surfaceContainerHighest = Color(0xFF222244),*/
 
     onSurface = Color(0xFFFEFEFE),
     onSurfaceVariant = Color(0xFFF8BC7F),
@@ -2615,56 +1780,14 @@ val Holiday22 = Event.copy(
     ),
 
     codexFamily = Event.codexFamily.copy(
-        codex1 = Color(0xFF293750),
-        codex3 = Color(0xFFF3E8DE),
-        codex2 = blue_M750,
-        codex4 = orange_M50,
-        codex5 = Color(0xFF2A2E45),
-        codex6 = Color(0x40293750),
-        codex7 = white
-    ),
-
-    textFamily = Event.textFamily.copy(
+        surface = Color(0xFF293750),
+        onSurface = Color(0xFFF3E8DE),
+        surfaceContainer = blue_M750,
         primary = orange_M50,
-        secondary = blue_M125,
-        tertiary = Color(0xFF2E5497),
-        body = Color(0xFFFEFEFE),
-        emphasis = Color(0xFFF8BC7F),
+        onSurfaceVariant = Color(0xFF2A2E45),
+        secondaryContainer = Color(0x40293750),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Event.switchTheme.copy(
-        thumbActive = black,
-        trackActive = blue_M125,
-        thumbInactive = blue_M125,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = Color(0xFFFEFEFE),
-    // light_active = blue_M125,
-    // light_inactive = Color(0xFF2A2E45),
-    // light_off = blue_M750,
-
-    // strikethroughColor = blue_M125,
-    // selectedColor = blue_M125,
-    // selectedColor2 = blue_M125,
-    // un// selectedColor = Color(0xFF2A2E45),
-    // positiveSelColor = orange_M50,
-    // neutralSelColor = Color(0xFFDDDCDB),
-    // negativeSelColor = blue_M125,
-    mapPoiFillColor = Color(0xBFF58514),
-    mapRoomBorderColor = Color(0x94447CDD),
-    mapRoomFillColor = Color(0x1A447CDD),
-
-    // progressBarColorStart = Color(0xFFFEFEFE),
-    // progressBarColorEnd = orange_M50,
-    sanityPieStartColor = Color(0xFFFEFEFE),
-    sanityPieEndColor = orange_M50,
-
-    // splashTextColor = blue_M125,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF0D0E19),
-
-    // inboxNotification = Color(0xFF6996E4),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2706,12 +1829,6 @@ val Holiday23 = Event.copy(
     surfaceContainerHigh = Color(0xFF2C2D4B),
     surfaceContainerHighest = Color(0xFF373858),
 
-    /*surfaceContainerLowest = Color(0xFF111122),
-    surfaceContainerLow = Color(0xFF1B1B31),
-    surfaceContainer = Color(0xFF22233F),
-    surfaceContainerHigh = Color(0xFF27274E),
-    surfaceContainerHighest = Color(0xFF2B2D50),*/
-
     onSurface = white,
     onSurfaceVariant = Color(0xFFE4D0AE),
     outline = white,
@@ -2752,56 +1869,21 @@ val Holiday23 = Event.copy(
     ),
 
     codexFamily = Event.codexFamily.copy(
-        codex1 = Color(0xFF2A487E),
-        codex3 = Color(0xFFECDDC5),
-        codex2 = Color(0xFF447CDE),
-        codex4 = Color(0xFFE9AD4C),
-        codex5 = Color(0xFF344663),
-        codex6 = Color(0x402A487E),
-        codex7 = white
-    ),
-
-    textFamily = Event.textFamily.copy(
+        primary = Color(0xFFAAC5F3), // Lightened target blue to reach 74.3%
+        surface = Color(0xFF1B1C33), // Your target surface (approx 10.6%)
+        secondaryContainer = Color(0x661B1C33), // Surface with 0x66 Alpha
+        surfaceContainer = Color(0xFF1A1B31), // Adjusted to 10.2% brightness
+        onSurface = Color(0xFFE4D0AE), // Your "parchment" gold at 74.3% (Adjusted to 65.5%)
+        onSurfaceVariant = Color(0xFF373858), // Your SurfaceContainerHighest at 20.4%
+        onSecondaryContainer = Color(0xFFFEFEFE), // Pure white (100%)
+        /*surface = Color(0xFF2A487E),
+        onSurface = Color(0xFFECDDC5),
+        surfaceContainer = Color(0xFF447CDE),
         primary = Color(0xFFE9AD4C),
-        secondary = Color(0xFF447CDE),
-        tertiary = Color(0xFF2E5497),
-        body = white,
-        emphasis = Color(0xFFE4D0AE),
+        onSurfaceVariant = Color(0xFF344663),
+        secondaryContainer = Color(0x402A487E),
+        onSecondaryContainer = white*/
     ),
-
-    /*switchTheme = Event.switchTheme.copy(
-        thumbActive = black,
-        trackActive = Color(0xFF447CDE),
-        thumbInactive = Color(0xFF447CDE),
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = white,
-    // light_active = Color(0xFFE9AD4C),
-    // light_inactive = Color(0x40E9AD4C),
-    // light_off = Color(0xFF2A2E45),
-
-    // strikethroughColor = Color(0xFF447CDE),
-    // selectedColor = Color(0xFFE9AD4C),
-    // selectedColor2 = Color(0xFFE9AD4C),
-    // un// selectedColor = Color(0xFF213A67),
-    // positiveSelColor = Color(0xFFE9AD4C),
-    // neutralSelColor = white,
-    // negativeSelColor = Color(0xFF447CDE),
-    mapPoiFillColor = Color(0xBFE9AD4C),
-    mapRoomBorderColor = Color(0x94E9AD4C),
-    mapRoomFillColor = Color(0x1AE9AD4C),
-
-    // progressBarColorStart = Color(0xFFFEFEFE),
-    // progressBarColorEnd = Color(0xFFE9AD4C),
-    sanityPieStartColor = Color(0xFFFEFEFE),
-    sanityPieEndColor = Color(0xFFE9AD4C),
-
-    // splashTextColor = Color(0xFF447CDE),
-
-    // backgroundColor_mapviewOverlay = Color(0xBF1B1C33),
-
-    // inboxNotification = Color(0xFFE9AD4C),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2843,12 +1925,6 @@ val Discord = Community.copy(
     surfaceContainer = Color(0xFF23282B),
     surfaceContainerHigh = Color(0xFF2D3337),
     surfaceContainerHighest = Color(0xFF383E44),
-
-    /*surfaceContainerLowest = Color(0xFF161718),
-    surfaceContainerLow = Color(0xFF1C2021),
-    surfaceContainer = blue_M850,
-    surfaceContainerHigh = Color(0xFF2A2D32),
-    surfaceContainerHighest = Color(0xFF2C3435),*/
 
     onSurface = white,
     onSurfaceVariant = Color(0xFFAAB3F3),
@@ -2900,56 +1976,14 @@ val Discord = Community.copy(
     ),
 
     codexFamily = Community.codexFamily.copy(
-        codex1 = Color(0xFF1D2023),
-        codex3 = Color(0xFFAAB3F3),
-        codex2 = Color(0xFF131517),
-        codex4 = blue_M75,
-        codex5 = Color(0xFF2C3032),
-        codex6 = Color(0x401D2023),
-        codex7 = white
-    ),
-
-    textFamily = Community.textFamily.copy(
+        surface = Color(0xFF1D2023),
+        onSurface = Color(0xFFAAB3F3),
+        surfaceContainer = Color(0xFF131517),
         primary = blue_M75,
-        secondary = Color(0xFF717AF2),
-        tertiary = Color(0xFFAAB3F3),
-        body = white,
-        emphasis = Color(0xFFAAB3F3),
+        onSurfaceVariant = Color(0xFF2C3032),
+        secondaryContainer = Color(0x401D2023),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Community.switchTheme.copy(
-        thumbActive = black,
-        trackActive = blue_M75,
-        thumbInactive = blue_M75,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = Color(0xFFF3F3F7),
-    // light_active = blue_M75,
-    // light_inactive = Color(0xFFAAB3F3),
-    // light_off = blue_M850,
-
-    // strikethroughColor = Color(0xFFC3C4C6),
-    // selectedColor = Color(0xFFAAB3F3),
-    // selectedColor2 = Color(0xFFAAB3F3),
-    // un// selectedColor = blue_M850,
-    // positiveSelColor = blue_M75,
-    // neutralSelColor = Color(0xFFF3F3F7),
-    // negativeSelColor = Color(0xFFC3C4C6),
-    mapPoiFillColor = Color(0xBF5763EC),
-    mapRoomBorderColor = Color(0x945763EC),
-    mapRoomFillColor = Color(0x1A5763EC),
-
-    // progressBarColorStart = Color(0xFFF3F3F7),
-    // progressBarColorEnd = blue_M75,
-    sanityPieStartColor = Color(0xFFF3F3F7),
-    sanityPieEndColor = blue_M75,
-
-    // splashTextColor = blue_M75,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF131517),
-
-    // inboxNotification = Color(0xFFF3F3F7),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -2990,18 +2024,6 @@ val ContentCreator = Community.copy(
     surfaceContainer = Color(0xFF21191B),
     surfaceContainerHigh = Color(0xFF2C2124),
     surfaceContainerHighest = Color(0xFF372A2E),
-
-    /*surfaceContainerLowest = Color(0xFF0D0305),
-    surfaceContainerLow = Color(0xFF140407),
-    surfaceContainer = Color(0xFF190509),
-    surfaceContainerHigh = Color(0xFF260A11),
-    surfaceContainerHighest = Color(0xFF33111A),*/
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = Color(0xFF050102),
-    surfaceContainer = Color(0xFF190509),
-    surfaceContainerHigh = Color(0xFF2E0A12),
-    surfaceContainerHighest = Color(0xFF3B0D17),*/
 
     onSurface = white,
     onSurfaceVariant = Color(0xFF9B1B35),
@@ -3044,58 +2066,15 @@ val ContentCreator = Community.copy(
         color_8 = white_M950,
     ),
 
-    textFamily = Community.textFamily.copy(
-        primary = red_M225,
-        secondary = Color(0xFF9B1B35),
-        tertiary = Color(0xFF510E1B),
-        body = white,
-        emphasis = Color(0xFF9B1B35)
-    ),
-
     codexFamily = Community.codexFamily.copy(
-        codex1 = Color(0xFF510E1B),
-        codex3 = Color(0xFF99AEB3),
-        codex2 = Color(0xFF3C0A14),
-        codex4 = red_M225,
-        codex5 = Color(0xFF1E1013),
-        codex6 = Color(0x40510E1B),
-        codex7 = white
+        surface = Color(0xFF510E1B),
+        onSurface = Color(0xFF99AEB3),
+        surfaceContainer = Color(0xFF3C0A14),
+        primary = red_M225,
+        onSurfaceVariant = Color(0xFF1E1013),
+        secondaryContainer = Color(0x40510E1B),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Community.switchTheme.copy(
-        thumbActive = Color(0xFF1E1013),
-        trackActive = red_M225,
-        thumbInactive = red_M225,
-        trackInactive = Color(0xFF1E1013),
-    ),*/
-
-    // windowStrokeColor = white,
-
-    // light_active = red_M225,
-    // light_inactive = Color(0xFF510E1B),
-    // light_off = Color(0xFF1E1013),
-
-    // strikethroughColor = Color(0xFF780C0C),
-    // selectedColor = red_M225,
-    // selectedColor2 = red_M225,
-    // un// selectedColor = Color(0xFF510E1B),
-    // positiveSelColor = Color(0xFFDF1740),
-    // neutralSelColor = Color(0xFFCACACA),
-    // negativeSelColor = Color(0xFF780C0C),
-    mapPoiFillColor = Color(0xBFCD2547),
-    mapRoomBorderColor = Color(0x94CD2547),
-    mapRoomFillColor = Color(0x1ACD2547),
-
-    // progressBarColorStart = Color(0xFFCACACA),
-    // progressBarColorEnd = red_M225,
-    sanityPieStartColor = Color(0xFFCACACA),
-    sanityPieEndColor = red_M225,
-
-    // splashTextColor = red_M225,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF080808),
-
-    // inboxNotification = red_M225,
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -3137,12 +2116,6 @@ val Developer = Community.copy(
     surfaceContainerHigh = Color(0xFF222004),
     surfaceContainerHighest = Color(0xFF2D2B06),
 
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = Color(0xFF0A0801),
-    surfaceContainer = Color(0xFF171502),
-    surfaceContainerHigh = Color(0xFF312C02),
-    surfaceContainerHighest = Color(0xFF464002),*/
-
     onSurface = Color(0xFFE2E2DF),
     onSurfaceVariant = Color(0xFFCFCCB4),
 
@@ -3183,57 +2156,16 @@ val Developer = Community.copy(
         color_7 = Color(0xFF535353),
         color_8 = white_M950
     ),
-    textFamily = Community.textFamily.copy(
-        primary = yellow_M25,
-        secondary = Color(0xFFCDB70B),
-        tertiary = Color(0xFFD3C667),
-        body = Color(0xFFE2E2DF),
-        emphasis = Color(0xFFCFCCB4)
-    ),
 
     codexFamily = Community.codexFamily.copy(
-        codex1 = Color(0xFF535353),
-        codex3 = yellow_M25,
-        codex2 = Color(0xFF333333),
-        codex4 = yellow_M25,
-        codex5 = Color(0xFF332E09),
-        codex6 = Color(0x40535353),
-        codex7 = white
+        surface = Color(0xFF535353),
+        onSurface = yellow_M25,
+        surfaceContainer = Color(0xFF333333),
+        primary = yellow_M25,
+        onSurfaceVariant = Color(0xFF332E09),
+        secondaryContainer = Color(0x40535353),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Community.switchTheme.copy(
-        thumbActive = Color(0xFF4E4507),
-        thumbInactive = yellow_M25,
-        trackActive = yellow_M25,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = Color(0xFFE2E2DF),
-    // light_active = yellow_M25,
-    // light_inactive = Color(0x66ECD316),
-    // light_off = Color(0x1AECD316),
-
-    // strikethroughColor = Color(0xFFE2E2DF),
-    // selectedColor = yellow_M25,
-    // selectedColor2 = yellow_M25,
-    // un// selectedColor = Color(0xFFE2E2DF),
-    // positiveSelColor = yellow_M25,
-    // neutralSelColor = Color(0xFF4E4507),
-    // negativeSelColor = Color(0xFFE2E2DF),
-    mapPoiFillColor = Color(0xBFECD316),
-    mapRoomBorderColor = Color(0x94ECD316),
-    mapRoomFillColor = Color(0x1AECD316),
-
-    // progressBarColorStart = Color(0xFFE2E2DF),
-    // progressBarColorEnd = yellow_M25,
-    sanityPieStartColor = Color(0xFFE2E2DF),
-    sanityPieEndColor = yellow_M25,
-
-    // splashTextColor = yellow_M25,
-
-    // backgroundColor_mapviewOverlay = Color(0x40535353),
-
-    // inboxNotification = Color(0xFFE2E2DF),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -3274,24 +2206,6 @@ val Translator = Community.copy(
     surfaceContainer = Color(0xFF1C1B1B),
     surfaceContainerHigh = Color(0xFF2B292A),
     surfaceContainerHighest = Color(0xFF363435),
-
-    /*surfaceContainerLowest = Color(0xFF050404),
-    surfaceContainerLow = Color(0xFF070606),
-    surfaceContainer = Color(0xFF080808),
-    surfaceContainerHigh = Color(0xFF131112),
-    surfaceContainerHighest = Color(0xFF1E1B1C),*/
-
-    /*surfaceContainerLowest = Color(0xFF050404),
-    surfaceContainerLow = Color(0xFF070606),
-    surfaceContainer = Color(0xFF080808),
-    surfaceContainerHigh = Color(0xFF131112),
-    surfaceContainerHighest = Color(0xFF1E1B1C),*/
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = Color(0xFF030303),
-    surfaceContainer = white_M950,
-    surfaceContainerHigh = Color(0xFF242424),
-    surfaceContainerHighest = Color(0xFF363636),*/
 
     onSurface = Color(0xFFFCFAFB),
     onSurfaceVariant = Color(0xFFD1B8C9),
@@ -3337,57 +2251,14 @@ val Translator = Community.copy(
     ),
 
     codexFamily = Community.codexFamily.copy(
-        codex1 = Color(0xFF33292B),
-        codex3 = Color(0xFFE1C9CC),
-        codex2 = Color(0xFF492126),
-        codex4 = red_M150,
-        codex5 = purple_M850,
-        codex6 = Color(0x4033292B),
-        codex7 = white
-    ),
-
-    textFamily = Community.textFamily.copy(
+        surface = Color(0xFF33292B),
+        onSurface = Color(0xFFE1C9CC),
+        surfaceContainer = Color(0xFF492126),
         primary = red_M150,
-        secondary = Color(0xFFDA7F88),
-        tertiary = Color(0xFFD99CA5),
-        body = Color(0xFFFCFAFB),
-        emphasis = Color(0xFFE1C9CC)
+        onSurfaceVariant = purple_M850,
+        secondaryContainer = Color(0x4033292B),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Community.switchTheme.copy(
-        thumbActive = red_M150,
-        trackActive = Color(0xFFE1C9CC),
-        thumbInactive = red_M150,
-        trackInactive = black,
-    ),*/
-
-    // windowStrokeColor = white,
-
-    // light_active = red_M150,
-    // light_inactive = Color(0xFF535052),
-    // light_off = purple_M850,
-
-    // strikethroughColor = Color(0xFFD99CA5),
-    // selectedColor = red_M150,
-    // selectedColor2 = Color(0xFF535052),
-    // un// selectedColor = white_M600,
-    // positiveSelColor = red_M150,
-    // neutralSelColor = Color(0xFFE1C9CC),
-    // negativeSelColor = purple_M850,
-    mapPoiFillColor = Color(0xBFD66D7B),
-    mapRoomBorderColor = Color(0x80D66D7B),
-    mapRoomFillColor = Color(0x1AD99CA5),
-
-    // progressBarColorStart = Color(0xFFFCFAFB),
-    // progressBarColorEnd = red_M150,
-    sanityPieStartColor = Color(0xFFFCFAFB),
-    sanityPieEndColor = red_M150,
-
-    // splashTextColor = red_M150,
-
-    // backgroundColor_mapviewOverlay = black_A75,
-
-    // inboxNotification = Color(0xFFDA7F88),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -3405,7 +2276,6 @@ val Winner = Community.copy(
     onPrimaryContainer = Color(0xFFE3C892),
 
     secondary = Color(0xFFBFBFBF),
-    //onSecondary = white_M500,
     onSecondary = black,
     secondaryContainer = Color(0xFF919191),
     onSecondaryContainer = Color(0xFFFAFAFA),
@@ -3429,12 +2299,6 @@ val Winner = Community.copy(
     surfaceContainer = Color(0xFF091319),
     surfaceContainerHigh = Color(0xFF141D24),
     surfaceContainerHighest = Color(0xFF1F2830),
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = Color(0xFF030507),
-    surfaceContainer = Color(0xFF091319),
-    surfaceContainerHigh = Color(0xFF142C3E),
-    surfaceContainerHighest = Color(0xFF1E4867),*/
 
     onSurface = white,
     onSurfaceVariant = Color(0xFFDABA80),
@@ -3478,58 +2342,14 @@ val Winner = Community.copy(
     ),
 
     codexFamily = Community.codexFamily.copy(
-        codex1 = blue_M850,
-        codex3 = Color(0xFFBFB5A6),
-        codex2 = Color(0xFF0A151C),
-        codex4 = orange_M250,
-        codex5 = Color(0xFF090A0B),
-        codex6 = cyan_M100_A40,
-        codex7 = white
-    ),
-
-    /*switchTheme = Community.switchTheme.copy(
-        thumbActive = Color(0xFFECDFCD),
-        trackActive = orange_M250,
-        thumbInactive = orange_M250,
-        trackInactive = Color(0xFF060C10),
-    ),*/
-    textFamily = Community.textFamily.copy(
+        surface = blue_M850,
+        onSurface = Color(0xFFBFB5A6),
+        surfaceContainer = Color(0xFF0A151C),
         primary = orange_M250,
-        secondary = Color(0xFF936305),
-        tertiary = orange_M300,
-        body = white,
-        emphasis = Color(0xFFDABA80)
+        onSurfaceVariant = Color(0xFF090A0B),
+        secondaryContainer = cyan_M100_A40,
+        onSecondaryContainer = white
     ),
-
-    // windowStrokeColor = white,
-
-    // light_active = Color(0xFFDABA80),
-    // light_inactive = blue_M850,
-    // light_off = white_M600,
-
-    // strikethroughColor = Color(0xFF936305),
-    // selectedColor = Color(0xFFDABA80),
-    // selectedColor2 = blue_M850,
-    // un// selectedColor = white_M600,
-
-    // positiveSelColor = orange_M250,
-    // neutralSelColor = white_M500,
-    // negativeSelColor = Color(0xFFECDFCD),
-
-    mapPoiFillColor = Color(0xBF936305),
-    mapRoomBorderColor = Color(0x80936305),
-    mapRoomFillColor = yellow_A10,
-
-    // progressBarColorStart = Color(0xFFECDFCD),
-    // progressBarColorEnd = orange_M250,
-    sanityPieStartColor = Color(0xFFECDFCD),
-    sanityPieEndColor = orange_M250,
-
-    // splashTextColor = orange_M250,
-
-    // backgroundColor_mapviewOverlay = Color(0xBF060C10),
-
-    // inboxNotification = Color(0xFFDABA80),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -3569,12 +2389,6 @@ val Artist = Community.copy(
     surfaceContainer = Color(0xFF131717),
     surfaceContainerHigh = Color(0xFF1D2121),
     surfaceContainerHighest = Color(0xFF282B2B),
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = Color(0xFF070808),
-    surfaceContainer = Color(0xFF131717),
-    surfaceContainerHigh = Color(0xFF222A2A),
-    surfaceContainerHighest = Color(0xFF303B3B),*/
 
     onSurface = Color(0xFFE3D6F7),
     onSurfaceVariant = white,
@@ -3619,56 +2433,14 @@ val Artist = Community.copy(
     ),
 
     codexFamily = Community.codexFamily.copy(
-        codex1 = Color(0xFF0A0C0C),
-        codex3 = Color(0xFFE3D6F7),
-        codex2 = Color(0xFF1E1235),
-        codex4 = Color(0xFFAA7FFD),
-        codex5 = blue_M850,
-        codex6 = Color(0x400A0C0C),
-        codex7 = white
+        surface = Color(0xFF0A0C0C),
+        onSurface = Color(0xFFE3D6F7),
+        surfaceContainer = Color(0xFF1E1235),
+        primary = Color(0xFFAA7FFD),
+        onSurfaceVariant = blue_M850,
+        secondaryContainer = Color(0x400A0C0C),
+        onSecondaryContainer = white
     ),
-
-    /*switchTheme = Community.switchTheme.copy(
-        thumbActive = Color(0xFFE3D6F7),
-        trackActive = Color(0xFFAA7FFD),
-        thumbInactive = Color(0xFFAA7FFD),
-        trackInactive = Color(0xFF0A0C0C)
-    ),*/
-    textFamily = Community.textFamily.copy(
-        primary = purple_M550,
-        secondary = Color(0xFF5B399E),
-        tertiary = Color(0xFFAA7FFD),
-        body = white,
-        emphasis = Color(0xFFE3D6F7),
-    ),
-
-    // windowStrokeColor = white,
-
-    // light_active = purple_M550,
-    // light_inactive = Color(0xFF5B399E),
-    // light_off = white_M600,
-
-    // strikethroughColor = Color(0xFF5B399E),
-    // selectedColor = purple_M550,
-    // selectedColor2 = Color(0xFF5B399E),
-    // un// selectedColor = white_M600,
-    // positiveSelColor = Color(0xFFE3D6F7),
-    // neutralSelColor = Color(0xFF7E7C7E),
-    // negativeSelColor = purple_M550,
-    mapPoiFillColor = Color(0xBF5B399E),
-    mapRoomBorderColor = Color(0x805B399E),
-    mapRoomFillColor = yellow_A10,
-
-    // progressBarColorStart = Color(0xFFE3D6F7),
-    // progressBarColorEnd = Color(0xFFAA7FFD),
-    sanityPieStartColor = Color(0xFFE3D6F7),
-    sanityPieEndColor = purple_M550,
-
-    // splashTextColor = Color(0xFFAA7FFD),
-
-    // backgroundColor_mapviewOverlay = Color(0xBF0A0C0C),
-
-    // inboxNotification = Color(0xFFE3D6F7),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -3691,7 +2463,6 @@ val Whiteboard = Skin.copy(
     onSecondaryContainer = Color(0xFFB4B4B6),
 
     tertiary = Color(0xFF1CB981),
-    //onTertiary = white_M600,
     onTertiary = Color(0xFF041A13),
     tertiaryContainer = Color(0xFF37E1A6),
     onTertiaryContainer = Color(0xFF137C57),
@@ -3710,12 +2481,6 @@ val Whiteboard = Skin.copy(
     surfaceContainer = Color(0xFFE8EAF6),
     surfaceContainerHigh = Color(0xFFDDE1F0),
     surfaceContainerHighest = Color(0xFFD2D6E7),
-
-    /*surfaceContainerLowest = Color(0xFFA1A9AF),
-    surfaceContainerLow = Color(0xFFAFB7BE),
-    surfaceContainer = white_M150,
-    surfaceContainerHigh = white_M100,
-    surfaceContainerHighest = white,*/
 
     onSurface = Color(0xFF383839),
     onSurfaceVariant = black,
@@ -3749,64 +2514,21 @@ val Whiteboard = Skin.copy(
 
 
     codexFamily = Skin.codexFamily.copy(
-        codex1 = black_A75,
-        codex3 = white_M50,
-        codex2 = Color(0xFF383839),
-        codex4 = Color(0xFFf55656),
-        codex5 = black_A75,
-        codex6 = Color(0xFF383839),
-        codex7 = white
+        primary = Color(0xFFF55656),
+        surface = Color(0xFFF3F3F3),
+        secondaryContainer = Color(0x66F3F3F3),
+        surfaceContainer = Color(0xFFE8EAF6),
+        onSurface = Color(0xFF383839),
+        onSurfaceVariant = Color(0xFF757577),
+        onSecondaryContainer = Color(0xFF000000),
+        /*surface = black_A75,
+        onSurface = white_M50,
+        surfaceContainer = Color(0xFF383839),
+        primary = Color(0xFFf55656),
+        onSurfaceVariant = black_A75,
+        secondaryContainer = Color(0xFF383839),
+        onSecondaryContainer = white*/
     ),
-    /*switchTheme = Skin.switchTheme.copy(
-        trackActive = white_M950,
-        trackInactive = white_M950,
-        thumbActive = Color(0xFFf55656),
-        thumbInactive = Color(0xFFafb7be)
-    ),*/
-    textFamily = Skin.textFamily.copy(
-        primary = Color(0xFF383839),
-        secondary = Color(0xFF383839),
-        tertiary = Color(0xFF383839),
-        body = Color(0xFF383839),
-        emphasis = Color(0xFFf55656),
-    ),
-
-    // windowStrokeColor = Color(0xFF383839),
-
-    // backgroundColor_mapviewOverlay = Color(0xFFafb7be),
-
-    // splashTextColor = Color(0xFF383839),
-
-    // light_active = Color(0xFF383839),
-    // light_inactive = Color(0xFF383839),
-    // light_off = Color(0xFFafb7be),
-
-    sanityPieStartColor = white_M50,
-    sanityPieEndColor = Color(0xFFf55656),
-
-    // progressBarColorStart = Color(0xFF383839),
-    // progressBarColorEnd = Color(0xFF383839),
-    // sanityHeadBrainColor =  black,
-    sanityHeadSkullColor = Color(0xFF383839),
-    sanityBorderColor = black,
-
-    // inboxNotification = Color(0xFFf55656),
-
-    // selectedColor = Color(0xFFf55656),
-    // selectedColor2 = Color(0xFFf55656),
-    // un// selectedColor = Color(0xFFafb7be),
-
-    // strikethroughColor = Color(0xFFf55656),
-
-    // positiveSelColor = Color(0xFFf55656),
-    // neutralSelColor = Color(0xFF383839),
-    // negativeSelColor = Color(0xFFafb7be),
-
-    mapPoiFillColor = red_M300_A75,
-    mapRoomBorderColor = red_M300_A58,
-    mapRoomFillColor = red_A75,
-
-    // buttonColor = Color(0xFF383839),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
@@ -3846,18 +2568,6 @@ val StratagemHero = Special.copy(
     surfaceContainer = Color(0xFF191F26),
     surfaceContainerHigh = Color(0xFF232A32),
     surfaceContainerHighest = Color(0xFF2E353D),
-
-    /*surfaceContainerLowest = Color(0xFF00070E),
-    surfaceContainerLow = Color(0xFF000C19),
-    surfaceContainer = Color(0xFF000E1E),
-    surfaceContainerHigh = Color(0xFF0C1625),
-    surfaceContainerHighest = Color(0xFF18202C),*/
-
-    /*surfaceContainerLowest = black,
-    surfaceContainerLow = Color(0xFF00050A),
-    surfaceContainer = Color(0xFF000E1E),
-    surfaceContainerHigh = Color(0xFF001B34),
-    surfaceContainerHighest = Color(0xFF002547),*/
 
     onSurface = Color(0xFFA3A3A3),
     onSurfaceVariant = white,
@@ -3910,58 +2620,21 @@ val StratagemHero = Special.copy(
     ),
 
     codexFamily = Special.codexFamily.copy(
-        codex1 = Color(0xFF001021),
-        codex3 = Color(0xFFB7CBDC),
-        codex2 = Color(0xFF001021),
-        codex4 = Color(0xFFFFD608),
-        codex5 = Color(0xFFA3A3A3),
-        codex6 = Color(0x40001021),
-        codex7 = white
-    ),
-
-    textFamily = Special.textFamily.copy(
+        primary = Color(0xFFC4A500),
+        surface = Color(0xFF141D26),
+        secondaryContainer = Color(0x66141D26),
+        surfaceContainer = Color(0xFF131C25),
+        onSurface = Color(0xFF9EABB8),
+        onSurfaceVariant = Color(0xFF323A42),
+        onSecondaryContainer = Color(0xFFFFFFFF),
+        /*surface = Color(0xFF001021),
+        onSurface = Color(0xFFB7CBDC),
+        surfaceContainer = Color(0xFF001021),
         primary = Color(0xFFFFD608),
-        secondary = white,
-        tertiary = Color(0xFF2E5497),
-        body = Color(0xFFA3A3A3),
-        emphasis = white
+        onSurfaceVariant = Color(0xFFA3A3A3),
+        secondaryContainer = Color(0x40001021),
+        onSecondaryContainer = white*/
     ),
-
-    /*switchTheme = Special.switchTheme.copy(
-        thumbActive = Color(0xFF0D3A63),
-        trackActive = Color(0xFFB7CBDC),
-        thumbInactive = Color(0xFFB7CBDC),
-        trackInactive = Color(0xFF000B17)
-    ),*/
-
-    // windowStrokeColor = white,
-
-    // light_active = Color(0xFFFFD608),
-    // light_inactive = Color(0x40FFD608),
-    // light_off = Color(0xFFB7CBDC),
-
-    // strikethroughColor = Color(0xFFB7CBDC),
-    // selectedColor = Color(0xFFFFD608),
-    // selectedColor2 = Color(0xFFFFD608),
-    // un// selectedColor = Color(0xFFA3A3A3),
-    // positiveSelColor = Color(0xFFFFD608),
-    // neutralSelColor = Color(0xFFA3A3A3),
-    // negativeSelColor = Color(0xFFB7CBDC),
-
-    mapPoiFillColor = Color(0xBFE9AD4C),
-    mapRoomBorderColor = Color(0x94E9AD4C),
-    mapRoomFillColor = Color(0x1AE9AD4C),
-
-    // progressBarColorStart = Color(0xFFB7CBDC),
-    // progressBarColorEnd = Color(0xFFDE2C38),
-    sanityPieStartColor = Color(0xFFB7CBDC),
-    sanityPieEndColor = Color(0xFFDE2C38),
-
-    // splashTextColor = Color(0xFF447CDE),
-
-    // backgroundColor_mapviewOverlay = Color(0xBF001021),
-
-    // inboxNotification = Color(0xFF95D2C8),
 
     discordColor = BrandingColorFamily(
         color = discord_color_black,
