@@ -20,5 +20,7 @@ data class Ghost(
     val huntData: GhostHuntInfo,
     val normalEvidence: List<EvidenceIdentifier>,
     val strictEvidence: List<EvidenceIdentifier>,
-    val speed: GhostSpeed
+    val speed: GhostSpeed,
+    val huntsAtSanity: Int,
+    val huntIntermission: Long,
 )
