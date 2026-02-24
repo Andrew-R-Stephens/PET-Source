@@ -22,6 +22,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -55,7 +57,9 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
+import com.tritiumgaming.core.ui.theme.palette.Monochromacy
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toIntegerResource
@@ -106,8 +110,8 @@ private fun EvidencePopupContent(
             GridIcon(
                 modifier = modifier,
                 colors = IconVectorColors(
-                    fillColor = LocalPalette.current.codexFamily.codex6,
-                    strokeColor = LocalPalette.current.codexFamily.codex7
+                    fillColor = LocalPalette.current.codexFamily.secondaryContainer,
+                    strokeColor = LocalPalette.current.codexFamily.onSecondaryContainer
                 ),
                 contentScale = ContentScale.Fit
             )
@@ -118,7 +122,7 @@ private fun EvidencePopupContent(
                 contentDescription = "Primary Icon",
                 contentScale = ContentScale.Fit,
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
             )
         }
@@ -148,7 +152,7 @@ private fun EvidencePopupContent(
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
                 ),
-                color = LocalPalette.current.codexFamily.codex3,
+                color = LocalPalette.current.codexFamily.onSurface,
                 maxLines = 1,
                 fontSize = 20.sp,
                 text = evidenceTitle
@@ -172,7 +176,7 @@ private fun EvidencePopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Center
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 24.sp
                 )
 
@@ -184,7 +188,7 @@ private fun EvidencePopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 20.sp
                 )
 
@@ -298,7 +302,7 @@ private fun EvidencePopupContent(
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Center
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             fontSize = 24.sp
                         )
 
@@ -310,14 +314,14 @@ private fun EvidencePopupContent(
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             fontSize = 20.sp
                         )
 
                         HorizontalDivider(
                             modifier = Modifier
                                 .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3.copy(
+                            color = LocalPalette.current.codexFamily.onSurface.copy(
                                 alpha = .5f
                             )
                         )
@@ -330,7 +334,7 @@ private fun EvidencePopupContent(
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             fontSize = 20.sp
                         )
                     }
@@ -419,10 +423,10 @@ fun EvidenceTypePortraitPopup(
                     bottomEnd = 0.dp
                 )
             )
-            .background(LocalPalette.current.codexFamily.codex4)
+            .background(LocalPalette.current.codexFamily.primary)
             .padding(top = 4.dp)
             .clip(RectangleShape)
-            .background(LocalPalette.current.codexFamily.codex2),
+            .background(LocalPalette.current.codexFamily.surfaceContainer),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -433,9 +437,9 @@ fun EvidenceTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
-                .background(LocalPalette.current.codexFamily.codex3),
+                .background(LocalPalette.current.codexFamily.onSurface),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -444,7 +448,7 @@ fun EvidenceTypePortraitPopup(
                     Modifier
                         .weight(1f)
                         .wrapContentHeight()
-                        .background(LocalPalette.current.codexFamily.codex2)
+                        .background(LocalPalette.current.codexFamily.surfaceContainer)
                 )
             }
 
@@ -453,12 +457,12 @@ fun EvidenceTypePortraitPopup(
                     .width(48.dp)
                     .heightIn(min = 32.dp)
                     .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.codex3)
+                    .background(LocalPalette.current.codexFamily.onSurface)
                     .clickable { onDismiss() },
                 painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
                 contentDescription = "Close Button",
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex2,
+                    color = LocalPalette.current.codexFamily.surfaceContainer,
                     blendMode = BlendMode.SrcIn
                 ),
                 contentScale = ContentScale.Fit
@@ -473,7 +477,7 @@ fun EvidenceTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 ),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.Top
@@ -517,7 +521,7 @@ fun EvidenceTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 ),
             horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
@@ -552,7 +556,7 @@ fun EvidenceTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 ),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceBetween,
@@ -607,10 +611,10 @@ fun EvidenceTypeLandscapePopup(
                     bottomEnd = 4.dp
                 )
             )
-            .background(LocalPalette.current.codexFamily.codex4)
+            .background(LocalPalette.current.codexFamily.primary)
             .padding(end = 4.dp)
             .clip(RectangleShape)
-            .background(LocalPalette.current.codexFamily.codex2),
+            .background(LocalPalette.current.codexFamily.surfaceContainer),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -621,9 +625,9 @@ fun EvidenceTypeLandscapePopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
-                .background(LocalPalette.current.codexFamily.codex3),
+                .background(LocalPalette.current.codexFamily.onSurface),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -632,7 +636,7 @@ fun EvidenceTypeLandscapePopup(
                     Modifier
                         .weight(1f)
                         .wrapContentHeight()
-                        .background(LocalPalette.current.codexFamily.codex2)
+                        .background(LocalPalette.current.codexFamily.surfaceContainer)
                 )
             }
 
@@ -641,12 +645,12 @@ fun EvidenceTypeLandscapePopup(
                     .width(48.dp)
                     .heightIn(min = 32.dp)
                     .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.codex3)
+                    .background(LocalPalette.current.codexFamily.onSurface)
                     .clickable { onDismiss() },
                 painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
                 contentDescription = "Close Button",
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex2,
+                    color = LocalPalette.current.codexFamily.surfaceContainer,
                     blendMode = BlendMode.SrcIn
                 ),
                 contentScale = ContentScale.Fit
@@ -661,7 +665,7 @@ fun EvidenceTypeLandscapePopup(
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     ),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
@@ -703,7 +707,7 @@ fun EvidenceTypeLandscapePopup(
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     )
                     .padding(2.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -728,127 +732,139 @@ fun EvidenceTypeLandscapePopup(
 @Composable
 fun EvidenceTypePortraitPreview() {
 
-    val image = EvidenceResources.EvidenceIcon.DOTS.toDrawableResource()
-    val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
-        stringResource(EvidenceResources.EvidenceTitle.DOTS.toStringResource()))
-    val evidenceDescription = AnnotatedString.fromHtml(
-        stringResource(EvidenceResources.EvidenceDescription.DOTS.toStringResource()))
-    val equipmentTypeImage = EquipmentResources.EquipmentIcon.DOTS.toDrawableResource()
+    LazyColumn() {
+        items(items = LocalPalettesMap.entries.toList()) { paletteItem ->
 
-    val buyCost = integerResource(EquipmentResources.EquipmentBuyCost.DOTS.toIntegerResource())
-
-    val primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit) =
-        @Composable { modifier ->
-            GridIcon(
-                modifier = modifier,
-                colors = IconVectorColors(
-                    fillColor = LocalPalette.current.codexFamily.codex6,
-                    strokeColor = LocalPalette.current.codexFamily.codex7
-                ),
-                contentScale = ContentScale.Fit
+            val image = EvidenceResources.EvidenceIcon.DOTS.toDrawableResource()
+            val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
+                stringResource(EvidenceResources.EvidenceTitle.DOTS.toStringResource())
             )
-            /*Image(
-                modifier = modifier,
-                painter = painterResource(id = R.drawable.itemstore_grid),
-                contentDescription = "Primary Icon",
-                contentScale = ContentScale.Fit
-            )*/
-            Icon(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                painter = painterResource(id = image),
-                contentDescription = "Primary Icon",
-                tint = LocalPalette.current.codexFamily.codex3
+            val evidenceDescription = AnnotatedString.fromHtml(
+                stringResource(EvidenceResources.EvidenceDescription.DOTS.toStringResource())
             )
-        }
+            val equipmentTypeImage = EquipmentResources.EquipmentIcon.DOTS.toDrawableResource()
 
-    val primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
-        @Composable { modifier ->
-            PopupDataRow(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-                    .heightIn(max = 32.dp),
-                icon = R.drawable.ic_shop_cost,
-                data = "$buyCost"
-            )
-        }
+            val buyCost =
+                integerResource(EquipmentResources.EquipmentBuyCost.DOTS.toIntegerResource())
 
-    val primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit) =
-        @Composable { modifier ->
-            Text(
-                modifier = modifier
-                    .basicMarquee(
-                        iterations = Int.MAX_VALUE,
-                        initialDelayMillis = 1000,
-                        repeatDelayMillis = 1000,
+            val primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit) =
+                @Composable { modifier ->
+                    GridIcon(
+                        modifier = modifier,
+                        colors = IconVectorColors(
+                            fillColor = LocalPalette.current.codexFamily.secondaryContainer,
+                            strokeColor = LocalPalette.current.codexFamily.onSecondaryContainer
+                        ),
+                        contentScale = ContentScale.Fit
                     )
-                    .padding(horizontal = 8.dp, vertical = 4.dp),
-                style = LocalTypography.current.quaternary.bold.copy(
-                    textAlign = TextAlign.Start
-                ),
-                color = LocalPalette.current.codexFamily.codex3,
-                maxLines = 1,
-                fontSize = 20.sp,
-                text = evidenceTitle
-            )
-        }
 
-    val bodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
-        @Composable { modifier ->
-            Column(
-                modifier = modifier
-                    .verticalScroll(rememberScrollState()),
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.Top
+                    Icon(
+                        modifier = modifier
+                            .fillMaxSize()
+                            .padding(8.dp),
+                        painter = painterResource(id = image),
+                        contentDescription = "Primary Icon",
+                        tint = LocalPalette.current.codexFamily.onSurface
+                    )
+                }
+
+            val primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
+                @Composable { modifier ->
+                    PopupDataRow(
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxWidth()
+                            .heightIn(max = 32.dp),
+                        icon = R.drawable.ic_shop_cost,
+                        data = "$buyCost"
+                    )
+                }
+
+            val primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit) =
+                @Composable { modifier ->
+                    Text(
+                        modifier = modifier
+                            .basicMarquee(
+                                iterations = Int.MAX_VALUE,
+                                initialDelayMillis = 1000,
+                                repeatDelayMillis = 1000,
+                            )
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Start
+                        ),
+                        color = LocalPalette.current.codexFamily.onSurface,
+                        maxLines = 1,
+                        fontSize = 20.sp,
+                        text = evidenceTitle
+                    )
+                }
+
+            val bodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit) =
+                @Composable { modifier ->
+                    Column(
+                        modifier = modifier
+                            .verticalScroll(rememberScrollState()),
+                        horizontalAlignment = Alignment.Start,
+                        verticalArrangement = Arrangement.Top
+                    ) {
+                        Text(
+                            modifier = Modifier
+                                .wrapContentHeight()
+                                .padding(4.dp),
+                            text = evidenceDescription,
+                            style = LocalTypography.current.quaternary.bold.copy(
+                                textAlign = TextAlign.Start
+                            ),
+                            color = LocalPalette.current.codexFamily.onSurface,
+                            fontSize = 20.sp
+                        )
+                    }
+                }
+
+            val equipmentTypeIcon: @Composable (modifier: Modifier, colors: IconVectorColors) -> Unit =
+                @Composable { modifier, colors ->
+                    Icon(
+                        modifier = modifier
+                            .fillMaxSize()
+                            .padding(4.dp),
+                        painter = painterResource(equipmentTypeImage),
+                        contentDescription = "",
+                        tint = colors.strokeColor,
+                    )
+                }
+
+            SelectiveTheme(
+                palette = paletteItem.value
             ) {
-                Text(
-                    modifier = Modifier
-                        .wrapContentHeight()
-                        .padding(4.dp),
-                    text = evidenceDescription,
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Start
-                    ),
-                    color = LocalPalette.current.codexFamily.codex3,
-                    fontSize = 20.sp
-                )
-            }
-        }
-
-    val equipmentTypeIcon: @Composable (modifier: Modifier, colors: IconVectorColors) -> Unit =
-        @Composable { modifier, colors ->
-            Icon(
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(4.dp),
-                painter = painterResource(equipmentTypeImage),
-                contentDescription = "",
-                tint = colors.strokeColor,
-            )
-        }
-
-        SelectiveTheme {
-            InvestigationPopup(
-                modifier = Modifier
-                    .fillMaxSize(),
-                shown = true,
-                backgroundColor = LocalPalette.current.surfaceContainer
-            ) {
-                EvidenceTypePortraitPopup(
+                InvestigationPopup(
                     modifier = Modifier
                         .fillMaxSize(),
-                    primaryTitleContent = primaryTitleContent,
-                    primaryImageContent = primaryImageContent,
-                    primaryDataContent = primaryDataContent,
-                    evidenceBodyContent = bodyContent,
-                    equipmentTypeIcon = { modifier, colors -> equipmentTypeIcon(modifier, colors) },
-                    onDismiss = {}
-                )
+                    shown = true,
+                    backgroundColor = LocalPalette.current.surfaceContainer
+                ) {
+                    EvidenceTypePortraitPopup(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        primaryTitleContent = primaryTitleContent,
+                        primaryImageContent = primaryImageContent,
+                        primaryDataContent = primaryDataContent,
+                        evidenceBodyContent = bodyContent,
+                        equipmentTypeIcon = { modifier, colors ->
+                            equipmentTypeIcon(
+                                modifier,
+                                colors
+                            )
+                        },
+                        onDismiss = {}
+                    )
+                }
             }
         }
+
     }
+}
+/*
 
 @Preview(device = "spec:width=411dp,height=891dp,orientation=landscape")
 @Composable
@@ -868,24 +884,26 @@ fun EvidenceTypePopupLandscapePreview() {
             GridIcon(
                 modifier = modifier,
                 colors = IconVectorColors(
-                    fillColor = LocalPalette.current.codexFamily.codex6,
-                    strokeColor = LocalPalette.current.codexFamily.codex7
+                    fillColor = LocalPalette.current.codexFamily.surfaceVariant,
+                    strokeColor = LocalPalette.current.codexFamily.outline
                 ),
                 contentScale = ContentScale.Fit
             )
-            /*Image(
+            */
+/*Image(
                 modifier = modifier,
                 painter = painterResource(id = R.drawable.itemstore_grid),
                 contentDescription = "Primary Icon",
                 contentScale = ContentScale.Fit
-            )*/
+            )*//*
+
             Icon(
                 modifier = modifier
                     .fillMaxSize()
                     .padding(8.dp),
                 painter = painterResource(id = evidenceImage),
                 contentDescription = "Primary Icon",
-                tint = LocalPalette.current.codexFamily.codex3
+                tint = LocalPalette.current.codexFamily.onSurfaceVariant
             )
         }
 
@@ -915,7 +933,7 @@ fun EvidenceTypePopupLandscapePreview() {
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
                 ),
-                color = LocalPalette.current.codexFamily.codex3,
+                color = LocalPalette.current.codexFamily.onSurfaceVariant,
                 maxLines = 1,
                 fontSize = 20.sp,
                 text = evidenceTitle
@@ -939,7 +957,7 @@ fun EvidenceTypePopupLandscapePreview() {
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurfaceVariant,
                     fontSize = 20.sp
                 )
             }
@@ -980,3 +998,4 @@ fun EvidenceTypePopupLandscapePreview() {
     }
 
 }
+*/

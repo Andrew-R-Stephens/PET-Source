@@ -106,7 +106,7 @@ private fun GhostPopupContent(
                     .border(
                         width = 2.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     ),
                 painter = painterResource(id = image),
                 contentDescription = "Primary Icon",
@@ -139,7 +139,7 @@ private fun GhostPopupContent(
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
                 ),
-                color = LocalPalette.current.codexFamily.codex3,
+                color = LocalPalette.current.codexFamily.onSurface,
                 maxLines = 1,
                 fontSize = 20.sp,
                 text = title
@@ -163,7 +163,7 @@ private fun GhostPopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Center
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 24.sp
                 )
 
@@ -175,7 +175,7 @@ private fun GhostPopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 20.sp
                 )
             }
@@ -198,7 +198,7 @@ private fun GhostPopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Center
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 24.sp
                 )
 
@@ -210,7 +210,7 @@ private fun GhostPopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 20.sp
                 )
 
@@ -234,7 +234,7 @@ private fun GhostPopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Center
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 24.sp
                 )
 
@@ -246,7 +246,7 @@ private fun GhostPopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 20.sp
                 )
 
@@ -270,7 +270,7 @@ private fun GhostPopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Center
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 24.sp
                 )
 
@@ -282,7 +282,7 @@ private fun GhostPopupContent(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 20.sp
                 )
 
@@ -353,10 +353,10 @@ fun GhostTypePortraitPopup(
                     bottomEnd = 0.dp
                 )
             )
-            .background(LocalPalette.current.codexFamily.codex4)
+            .background(LocalPalette.current.codexFamily.primary)
             .padding(top = 4.dp)
             .clip(RectangleShape)
-            .background(LocalPalette.current.codexFamily.codex2),
+            .background(LocalPalette.current.codexFamily.surfaceContainer),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -367,9 +367,9 @@ fun GhostTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
-                .background(LocalPalette.current.codexFamily.codex3),
+                .background(LocalPalette.current.codexFamily.onSurface),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -378,7 +378,7 @@ fun GhostTypePortraitPopup(
                     Modifier
                         .weight(1f)
                         .wrapContentHeight()
-                        .background(LocalPalette.current.codexFamily.codex2)
+                        .background(LocalPalette.current.codexFamily.surfaceContainer)
                 )
             }
 
@@ -387,12 +387,12 @@ fun GhostTypePortraitPopup(
                     .width(48.dp)
                     .heightIn(min = 32.dp)
                     .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.codex3)
+                    .background(LocalPalette.current.codexFamily.onSurface)
                     .clickable { onDismiss() },
                 painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
                 contentDescription = "Close Button",
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex2,
+                    color = LocalPalette.current.codexFamily.surfaceContainer,
                     blendMode = BlendMode.SrcIn
                 ),
                 contentScale = ContentScale.Fit
@@ -407,7 +407,7 @@ fun GhostTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 ),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.Top
@@ -491,7 +491,7 @@ fun GhostTypePortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
                 .padding(2.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -643,10 +643,10 @@ fun GhostTypeLandscapePopup(
                     bottomEnd = 4.dp
                 )
             )
-            .background(LocalPalette.current.codexFamily.codex4)
+            .background(LocalPalette.current.codexFamily.primary)
             .padding(end = 4.dp)
             .clip(RectangleShape)
-            .background(LocalPalette.current.codexFamily.codex2),
+            .background(LocalPalette.current.codexFamily.surfaceContainer),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -657,9 +657,9 @@ fun GhostTypeLandscapePopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
-                .background(LocalPalette.current.codexFamily.codex3),
+                .background(LocalPalette.current.codexFamily.onSurface),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -668,7 +668,7 @@ fun GhostTypeLandscapePopup(
                     Modifier
                         .weight(1f)
                         .wrapContentHeight()
-                        .background(LocalPalette.current.codexFamily.codex2)
+                        .background(LocalPalette.current.codexFamily.surfaceContainer)
                 )
             }
 
@@ -677,12 +677,12 @@ fun GhostTypeLandscapePopup(
                     .width(48.dp)
                     .heightIn(min = 32.dp)
                     .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.codex3)
+                    .background(LocalPalette.current.codexFamily.onSurface)
                     .clickable { onDismiss() },
                 painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
                 contentDescription = "Close Button",
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex2,
+                    color = LocalPalette.current.codexFamily.surfaceContainer,
                     blendMode = BlendMode.SrcIn
                 ),
                 contentScale = ContentScale.Fit
@@ -694,7 +694,7 @@ fun GhostTypeLandscapePopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
         ){
             Column(
@@ -704,7 +704,7 @@ fun GhostTypeLandscapePopup(
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     ),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
@@ -747,7 +747,7 @@ fun GhostTypeLandscapePopup(
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     )
             ) {
 

@@ -71,7 +71,7 @@ fun PopupDataRow(
             contentDescription = "Cost Icon",
             contentScale = ContentScale.Fit,
             colorFilter = ColorFilter.tint(
-                color = LocalPalette.current.codexFamily.codex3,
+                color = LocalPalette.current.codexFamily.onSurface,
             )
         )
 
@@ -83,7 +83,7 @@ fun PopupDataRow(
             style = LocalTypography.current.quaternary.regular.copy(
                 textAlign = TextAlign.Start
             ),
-            color = LocalPalette.current.codexFamily.codex3,
+            color = LocalPalette.current.codexFamily.onSurface,
             maxLines = 1,
             autoSize = TextAutoSize.StepBased(minFontSize = 1.sp)
         )
@@ -118,7 +118,7 @@ private fun PageButtonUnselected(
         },
         border = BorderStroke(
             width = 2.dp,
-            color = LocalPalette.current.codexFamily.codex3
+            color = LocalPalette.current.codexFamily.onSurface
         )
     ) {
         icon(
@@ -127,8 +127,8 @@ private fun PageButtonUnselected(
                 .aspectRatio(1f)
                 .padding(2.dp),
             IconVectorColors(
-                fillColor = LocalPalette.current.codexFamily.codex3,
-                strokeColor = LocalPalette.current.codexFamily.codex3
+                fillColor = LocalPalette.current.codexFamily.onSurface,
+                strokeColor = LocalPalette.current.codexFamily.onSurface
             )
         )
     }
@@ -148,7 +148,7 @@ private fun PageButtonSelected(
             onClick()
         },
         colors = IconButtonDefaults.iconButtonColors(
-            containerColor = LocalPalette.current.codexFamily.codex4
+            containerColor = LocalPalette.current.codexFamily.primary
         )
     ) {
         icon(
@@ -157,8 +157,8 @@ private fun PageButtonSelected(
                 .aspectRatio(1f)
                 .padding(2.dp),
             IconVectorColors(
-                fillColor = LocalPalette.current.codexFamily.codex2,
-                strokeColor = LocalPalette.current.codexFamily.codex2
+                fillColor = LocalPalette.current.codexFamily.surfaceContainer,
+                strokeColor = LocalPalette.current.codexFamily.surfaceContainer
             )
         )
     }
