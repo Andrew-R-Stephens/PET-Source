@@ -111,7 +111,7 @@ fun PaletteCard(
                             .background(LocalPalette.current.surfaceContainerHigh)
                             .padding(4.dp),
                         text = stringResource(LocalPalette.current.extrasFamily.title),
-                        color = LocalPalette.current.textFamily.emphasis,
+                        color = LocalPalette.current.onSurfaceVariant,
                         style = LocalTypography.current.primary.bold.copy(
                             textAlign = TextAlign.Center
                         ),
@@ -229,7 +229,7 @@ fun PaletteCard(
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     textAlign = TextAlign.Center
                                 ),
-                                color = LocalPalette.current.textFamily.body,
+                                color = LocalPalette.current.onSurface,
                                 autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
                             )
                         }
