@@ -187,7 +187,7 @@ private fun MapCanvas(
     val context = LocalContext.current
     val resources = LocalResources.current
 
-    val poiFillColor = LocalPalette.current.mapPoiFillColor
+    val poiFillColor = LocalPalette.current.primary
 
     val mapDisplayUiState = mapsScreenViewModel.interactiveMapUiState.collectAsStateWithLifecycle()
     val selectedFloor = mapDisplayUiState.value.floorIndex.let { floorIndex ->
@@ -231,8 +231,8 @@ private fun MapCanvas(
     }
 
     val wallPath = Path()
-    val wallPathColor = LocalPalette.current.mapRoomBorderColor
-    val wallFillColor = LocalPalette.current.mapRoomFillColor
+    val wallPathColor = LocalPalette.current.primary
+    val wallFillColor = LocalPalette.current.primary.copy(alpha = .75f)
 
     Canvas(
         modifier = Modifier
@@ -859,8 +859,8 @@ private fun BackgroundGrid(
         modifier = modifier
             .alpha(.4f),
         colors = IconVectorColors(
-            fillColor = LocalPalette.current.codexFamily.codex6,
-            strokeColor = LocalPalette.current.codexFamily.codex7
+            fillColor = LocalPalette.current.codexFamily.secondaryContainer,
+            strokeColor = LocalPalette.current.codexFamily.onSecondaryContainer
         ),
         contentScale = ContentScale.FillBounds
     )
