@@ -4,14 +4,7 @@ import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.Diffi
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 
-data class DifficultyUiState(
-    internal val index: Int = 0,
+data class DifficultyConfigUiState(
     internal val name: DifficultyTitle = DifficultyTitle.AMATEUR,
-    internal val modifier: Float = 0f,
-    internal val time: Long = 0L,
-    internal val initialSanity: Float = 0f,
-    val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN,
     val allDifficulties: List<DifficultyTitle> = emptyList()
-) {
-    internal val type: DifficultyType = DifficultyType.entries[index]
-}
+)

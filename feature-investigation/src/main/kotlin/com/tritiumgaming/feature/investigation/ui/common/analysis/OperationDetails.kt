@@ -31,7 +31,7 @@ import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.MapMo
 import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.PhaseModifierDetails
 
 @Composable
-fun OperationDetails(
+internal fun OperationDetails(
     modifier: Modifier = Modifier,
     operationDetailsUiState: OperationDetailsUiState
 ) {
@@ -46,10 +46,10 @@ fun OperationDetails(
             phaseUiState = operationDetailsUiState.phaseUiState
         )
         MapModifierDetails(
-            mapUiState = operationDetailsUiState.mapUiState
+            state = operationDetailsUiState.operationDetailsUiState.mapDetails
         )
        DifficultyModifierDetails(
-            difficultyUiState = operationDetailsUiState.difficultyUiState
+            state = operationDetailsUiState.operationDetailsUiState.difficultyDetails
         )
         ActiveGhostModifierDetails(
             ghostOrder = operationDetailsUiState.ghostOrder,

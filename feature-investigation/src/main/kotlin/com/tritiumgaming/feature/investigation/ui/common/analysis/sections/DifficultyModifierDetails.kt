@@ -8,21 +8,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
-import com.tritiumgaming.feature.investigation.ui.DifficultyUiState
+import com.tritiumgaming.feature.investigation.ui.DifficultyConfigUiState
+import com.tritiumgaming.feature.investigation.ui.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
 
 @Composable
-fun DifficultyModifierDetails(
-    difficultyUiState: DifficultyUiState
+internal fun DifficultyModifierDetails(
+    state: OperationDetailsUiState.DifficultyDetails
 ) {
 
-    val difficultyName = difficultyUiState.name.toStringResource()
-    val difficultyTime = difficultyUiState.time
-    val difficultyModifier = difficultyUiState.modifier
-    val difficultyResponseType = difficultyUiState.responseType
+    val difficultyName = state.name.toStringResource()
+    val difficultyTime = state.setupTime
+    val difficultyModifier = state.modifier
+    val difficultyResponseType = state.responseType
 
     ExpandableCategoryColumn(
         expanded = false,
