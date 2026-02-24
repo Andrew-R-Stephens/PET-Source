@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.feature.investigation.ui.MapUiState
+import com.tritiumgaming.feature.investigation.ui.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryRow
 import com.tritiumgaming.feature.investigation.ui.common.analysis.SubRow
@@ -18,8 +18,8 @@ import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
 import java.util.Locale
 
 @Composable
-fun MapModifierDetails(
-    mapUiState: MapUiState
+internal fun MapModifierDetails(
+    state: OperationDetailsUiState.MapDetails
 ) {
 
     ExpandableCategoryColumn(
@@ -35,7 +35,7 @@ fun MapModifierDetails(
                     modifier = modifier,
                 ) {
                     TextCategoryTitle(text = "Map: ")
-                    TextSubTitle(text = stringResource(mapUiState.name.toStringResource()))
+                    TextSubTitle(text = stringResource(state.name.toStringResource()))
                 }
             }
         }
@@ -46,14 +46,14 @@ fun MapModifierDetails(
         ) {
             SubRow {
                 TextSubTitle(text = "Size: ")
-                TextSubTitle(text = stringResource(mapUiState.size.toStringResource()))
+                TextSubTitle(text = stringResource(state.size.toStringResource()))
             }
             SubRow {
                 TextSubTitle(text = "Setup Modifier:")
                 TextSubTitle(
                     text = String.format(
                         Locale.getDefault(), "%.2f",
-                        mapUiState.setupModifier
+                        state.modifiers.setup
                     )
                 )
             }
@@ -62,7 +62,7 @@ fun MapModifierDetails(
                 TextSubTitle(
                     text = String.format(
                         Locale.getDefault(), "%.2f",
-                        mapUiState.normalModifier
+                        state.modifiers.normal
                     )
                 )
             }

@@ -45,14 +45,14 @@ private fun OperationDropdownPreview() {
     SelectiveTheme(ClassicPalette, ClassicTypography) {
         OperationConfigDropdown(
             state = ConfigDropdownUiState(),
-            actions = DropdownUiActions()
+            actions = DropdownUiActions(),
         )
     }
 
     SelectiveTheme(ClassicPalette, ClassicTypography) {
         OperationConfigDropdown(
             state = ConfigDropdownUiState(),
-            actions = DropdownUiActions()
+            actions = DropdownUiActions(),
         )
     }
 }
@@ -64,13 +64,14 @@ fun OperationConfigDropdown(
     state: ConfigDropdownUiState,
     textStyle: TextStyle = TextStyle.Default,
     onColor: Color = Color.Unspecified,
-    color: Color = Color.Unspecified,
-    actions: DropdownUiActions
+    containerColor: Color = Color.Unspecified,
+    expandedColor: Color = Color.Unspecified,
+    actions: DropdownUiActions,
 ) {
 
     Surface(
         modifier = modifier,
-        color = color
+        color = containerColor
     ) {
         Row(
             modifier = modifier
@@ -95,7 +96,7 @@ fun OperationConfigDropdown(
                 state = state,
                 actions = actions,
                 textStyle = textStyle,
-                color = color,
+                color = expandedColor,
                 onColor = onColor
             )
 

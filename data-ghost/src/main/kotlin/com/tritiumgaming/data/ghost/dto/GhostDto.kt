@@ -23,7 +23,9 @@ data class GhostDto(
     val strengthData: GhostStrength,
     val weaknessData: GhostWeakness,
     val huntData: GhostHuntInfo,
-    val speed: GhostSpeed
+    val speed: GhostSpeed,
+    val huntsAtSanity: Int,
+    val huntIntermission: Long
 )
 
 fun List<GhostDto>.toGhostType() = map {
@@ -48,6 +50,8 @@ fun GhostDto.toDomain() = Ghost(
     huntData = huntData,
     normalEvidence = normalEvidence.map { it },
     strictEvidence = strictEvidence.map { it },
-    speed = speed
+    speed = speed,
+    huntsAtSanity = huntsAtSanity,
+    huntIntermission = huntIntermission
 )
 

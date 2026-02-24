@@ -30,7 +30,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.BANSHEE
+                speed = GhostSpeed.BANSHEE,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DAYAN,
@@ -46,7 +48,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.DAYAN
+                speed = GhostSpeed.DAYAN,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DEMON,
@@ -62,7 +66,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.DEMON
+                speed = GhostSpeed.DEMON,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DEOGEN,
@@ -80,7 +86,9 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = listOf(
                     EvidenceIdentifier.SPIRIT_BOX
                 ),
-                speed = GhostSpeed.DEOGEN
+                speed = GhostSpeed.DEOGEN,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.GALLU,
@@ -96,7 +104,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.GALLU
+                speed = GhostSpeed.GALLU,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.GORYO,
@@ -114,7 +124,9 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = listOf(
                     EvidenceIdentifier.DOTS
                 ),
-                speed = GhostSpeed.GORYO
+                speed = GhostSpeed.GORYO,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.HANTU,
@@ -132,7 +144,9 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = listOf(
                     EvidenceIdentifier.FREEZING_TEMPERATURE
                 ),
-                speed = GhostSpeed.HANTU
+                speed = GhostSpeed.HANTU,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.JINN,
@@ -148,7 +162,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.FREEZING_TEMPERATURE,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.JINN
+                speed = GhostSpeed.JINN,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.MARE,
@@ -164,7 +180,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.MARE
+                speed = GhostSpeed.MARE,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.MOROI,
@@ -182,7 +200,9 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = listOf(
                     EvidenceIdentifier.SPIRIT_BOX
                 ),
-                speed = GhostSpeed.MOROI
+                speed = GhostSpeed.MOROI,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),GhostResourceDto(
                 id = GhostIdentifier.MYLING,
                 name = GhostTitle.MYLING,
@@ -197,7 +217,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.MYLING
+                speed = GhostSpeed.MYLING,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.OBAKE,
@@ -215,7 +237,9 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = listOf(
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT
                 ),
-                speed = GhostSpeed.OBAKE
+                speed = GhostSpeed.OBAKE,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.OBAMBO,
@@ -231,7 +255,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.OBAMBO
+                speed = GhostSpeed.OBAMBO,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.ONI,
@@ -247,7 +273,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.FREEZING_TEMPERATURE,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.ONI
+                speed = GhostSpeed.ONI,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.ONRYO,
@@ -263,7 +291,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.ONRYO
+                speed = GhostSpeed.ONRYO,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.PHANTOM,
@@ -279,7 +309,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.PHANTOM
+                speed = GhostSpeed.PHANTOM,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.POLTERGEIST,
@@ -295,7 +327,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.POLTERGEIST
+                speed = GhostSpeed.POLTERGEIST,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),GhostResourceDto(
                 id = GhostIdentifier.RAIJU,
                 name = GhostTitle.RAIJU,
@@ -310,7 +344,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.RAIJU
+                speed = GhostSpeed.RAIJU,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.REVENANT,
@@ -326,7 +362,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.REVENANT
+                speed = GhostSpeed.REVENANT,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),GhostResourceDto(
                 id = GhostIdentifier.SHADE,
                 name = GhostTitle.SHADE,
@@ -341,7 +379,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.SHADE
+                speed = GhostSpeed.SHADE,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.SPIRIT,
@@ -357,7 +397,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_WRITING,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.SPIRIT
+                speed = GhostSpeed.SPIRIT,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),GhostResourceDto(
                 id = GhostIdentifier.THAYE,
                 name = GhostTitle.THAYE,
@@ -372,7 +414,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.THAYE
+                speed = GhostSpeed.THAYE,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.THE_TWINS,
@@ -388,7 +432,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.THE_TWINS
+                speed = GhostSpeed.THE_TWINS,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.THE_MIMIC,
@@ -407,7 +453,9 @@ class GhostLocalDataSource: GhostDataSource {
                 strictEvidence = listOf(
                     EvidenceIdentifier.GHOST_ORBS
                 ),
-                speed = GhostSpeed.THE_MIMIC
+                speed = GhostSpeed.THE_MIMIC,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.WRAITH,
@@ -423,7 +471,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.DOTS,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.WRAITH
+                speed = GhostSpeed.WRAITH,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),GhostResourceDto(
                 id = GhostIdentifier.YOKAI,
                 name = GhostTitle.YOKAI,
@@ -438,7 +488,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX,
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.YOKAI
+                speed = GhostSpeed.YOKAI,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             ),
             GhostResourceDto(
                 id = GhostIdentifier.YUREI,
@@ -454,7 +506,9 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS
                 ),
                 strictEvidence = emptyList(),
-                speed = GhostSpeed.YUREI
+                speed = GhostSpeed.YUREI,
+                huntsAtSanity = ,//TODO()
+                huntIntermission = //TODO()
             )
         )
 
@@ -481,7 +535,9 @@ class GhostLocalDataSource: GhostDataSource {
         huntData = huntData,
         normalEvidence = normalEvidence.map { it },
         strictEvidence = strictEvidence.map { it },
-        speed = speed
+        speed = speed,
+        huntsAtSanity = huntsAtSanity,
+        huntIntermission = huntIntermission
     )
 
     private data class GhostResourceDto(
@@ -494,7 +550,9 @@ class GhostLocalDataSource: GhostDataSource {
         val huntData: GhostHuntInfo,
         val normalEvidence: List<EvidenceIdentifier>,
         val strictEvidence: List<EvidenceIdentifier>,
-        val speed: GhostSpeed
+        val speed: GhostSpeed,
+        val huntsAtSanity: Int,
+        val huntIntermission: Long
     )
 
 }

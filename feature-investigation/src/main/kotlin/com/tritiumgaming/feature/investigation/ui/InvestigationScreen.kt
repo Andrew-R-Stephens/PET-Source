@@ -83,7 +83,6 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolbar
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import kotlin.concurrent.timer
 
 @Composable
 fun InvestigationSoloScreen(
@@ -107,8 +106,9 @@ private fun InvestigationContent(
 
     val timerUiState by investigationViewModel.timerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
-    val mapUiState by investigationViewModel.mapUiState.collectAsStateWithLifecycle()
-    val difficultyUiState by investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+    val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
+    val mapDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
+    val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
 
     val ghostStates by investigationViewModel.ghostStates.collectAsStateWithLifecycle()
@@ -149,9 +149,10 @@ private fun InvestigationContent(
     )
 
     val operationDetailsUiState = OperationDetailsUiState(
-        mapUiState = mapUiState,
+        mapConfigUiState = mapConfigUiState,
+        operationDetailsUiState = mapDetailsUiState,
         phaseUiState = phaseUiState,
-        difficultyUiState = difficultyUiState,
+        difficultyConfigUiState = difficultyUiState,
         timerUiState = timerUiState,
         sanityUiState = sanityUiState,
         ghostStates = ghostStates,
@@ -252,13 +253,13 @@ private fun InvestigationContent(
 
     val mapUiStateBundle = ConfigStateBundle(
         carouselUiState = ConfigCarouselUiState(
-            label = mapUiState.name.toStringResource(
+            label = mapConfigUiState.name.toStringResource(
                 SimpleMapResources.MapTitleLength.ABBREVIATED)
         ),
         dropdownUiState = ConfigDropdownUiState(
-            list = mapUiState.allMaps.map { it
+            list = mapConfigUiState.allMaps.map { it
                 .toStringResource(SimpleMapResources.MapTitleLength.FULL) },
-            label = mapUiState.name
+            label = mapConfigUiState.name
                 .toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED)
         )
     )
@@ -823,17 +824,18 @@ private fun MapConfigComponent(
     when(isCompact) {
         true -> {
             OperationConfigDropdown(
-                modifier = Modifier,
-                state = stateBundle.dropdownUiState,
+                modifier = modifier,
                 icon = { icon(it) },
+                state = stateBundle.dropdownUiState,
                 textStyle = LocalTypography.current.secondary.regular,
                 onColor = LocalPalette.current.onSurface,
+                expandedColor = LocalPalette.current.surfaceContainer,
                 actions = actionsBundle.dropdownUiActions,
             )
         }
         false -> {
             OperationConfigCarousel(
-                modifier = Modifier,
+                modifier = modifier,
                 state = stateBundle.carouselUiState,
                 icon = { icon(it) },
                 textStyle = LocalTypography.current.secondary.regular,
@@ -871,6 +873,7 @@ private fun DifficultyConfigComponent(
                 actions = actionsBundle.dropdownUiActions,
                 icon = { icon(it) },
                 textStyle = LocalTypography.current.secondary.regular,
+                expandedColor = LocalPalette.current.surfaceContainer,
                 onColor = LocalPalette.current.onSurface,
             )
         }
@@ -969,9 +972,10 @@ private fun PortraitPreview() {
             ghostListUiState = ghostListUiState,
             evidenceListUiState = evidenceListUiState,
             operationDetailsUiState = OperationDetailsUiState(
-                mapUiState = MapUiState(),
+                mapConfigUiState = MapConfigUiState(),
+                operationDetailsUiState = OperationDetailsUiState(),
                 phaseUiState = phaseUiState,
-                difficultyUiState = DifficultyUiState(),
+                difficultyConfigUiState = DifficultyConfigUiState(),
                 timerUiState = timerUiState,
                 sanityUiState = sanityUiState,
                 ghostStates = listOf(),
@@ -1125,9 +1129,10 @@ private fun LandscapePreview() {
             ghostListUiState = ghostListUiState,
             evidenceListUiState = evidenceListUiState,
             operationDetailsUiState = OperationDetailsUiState(
-                mapUiState = MapUiState(),
+                mapConfigUiState = MapConfigUiState(),
+                operationDetailsUiState = OperationDetailsUiState(),
                 phaseUiState = phaseUiState,
-                difficultyUiState = DifficultyUiState(),
+                difficultyConfigUiState = DifficultyConfigUiState(),
                 timerUiState = timerUiState,
                 sanityUiState = sanityUiState,
                 ghostStates = listOf(),
