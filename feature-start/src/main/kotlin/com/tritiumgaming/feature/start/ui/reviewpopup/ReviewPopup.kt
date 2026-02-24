@@ -142,7 +142,7 @@ fun ReviewPopupComposable() {
                         contentScale = ContentScale.FillHeight,
                         painter = painterResource(android.R.drawable.btn_star_big_off),
                         contentDescription = "",
-                        colorFilter = ColorFilter.tint(LocalPalette.current.textFamily.emphasis)
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurfaceVariant)
                     )
                 }
 
