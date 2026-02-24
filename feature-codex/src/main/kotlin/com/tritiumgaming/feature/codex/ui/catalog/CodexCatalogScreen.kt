@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -30,19 +32,26 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.feature.codex.ui.CodexScreen
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiActions
 import com.tritiumgaming.feature.codex.ui.CodexScreenUiState
@@ -327,7 +336,7 @@ private fun CodexItemScreenContentPortrait(
                     ) {
                         CircularProgressIndicator(
                             modifier = Modifier,
-                            color = LocalPalette.current.codexFamily.codex4
+                            color = LocalPalette.current.codexFamily.primary
                         )
                     }
 
@@ -433,7 +442,7 @@ private fun CodexItemScreenContentLandscape(
                     ) {
                         CircularProgressIndicator(
                             modifier = Modifier,
-                            color = LocalPalette.current.codexFamily.codex4
+                            color = LocalPalette.current.codexFamily.primary
                         )
                     }
                 }
@@ -484,6 +493,13 @@ private fun VerticalPaginator(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
+
+        val unselColor = Color(ColorUtils.interpolate(
+            LocalPalette.current.codexFamily.primary.toArgb(),
+            LocalPalette.current.codexFamily.surface.toArgb(),
+            .25f
+        ))
+
         images.forEachIndexed { index, image ->
             Image(
                 modifier = Modifier
@@ -494,10 +510,8 @@ private fun VerticalPaginator(
                 contentDescription = null,
                 colorFilter = ColorFilter.tint(
                     if (index == scrollUiState.itemIndex)
-                        LocalPalette.current.codexFamily.codex4
-                    else {
-                        LocalPalette.current.codexFamily.codex5
-                    }
+                        LocalPalette.current.codexFamily.primary
+                    else { unselColor }
                 )
             )
         }
@@ -552,13 +566,44 @@ private fun HorizontalPaginator(
                 contentDescription = null,
                 colorFilter = ColorFilter.tint(
                     if (index == scrollUiState.itemIndex)
-                        LocalPalette.current.codexFamily.codex4
+                        LocalPalette.current.codexFamily.primary
                     else {
-                        LocalPalette.current.codexFamily.codex5
+                        LocalPalette.current.codexFamily.onSurfaceVariant
                     }
                 ),
                 contentScale = ContentScale.Fit
             )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun PreviewPaginator() {
+    LazyRow {
+        items(items = LocalPalettesMap.entries.toList()) {
+            SelectiveTheme(it.value) {
+                VerticalPaginator(
+                    modifier = Modifier
+                        .height(500.dp)
+                        .width(48.dp),
+                paginatorUiState = PaginatorUiState(
+                    scrollUiState = ScrollUiState(
+                        itemIndex = 3,
+                        offset = .5f
+                    ),
+                    images = listOf(
+                        R.drawable.ic_tier_1,
+                        R.drawable.ic_tier_1,
+                        R.drawable.ic_tier_1,
+                        R.drawable.ic_tier_1,
+                        R.drawable.ic_tier_1
+                    )
+                ),
+                paginatorUiActions = PaginatorUiActions()
+                )
+            }
+
         }
     }
 }

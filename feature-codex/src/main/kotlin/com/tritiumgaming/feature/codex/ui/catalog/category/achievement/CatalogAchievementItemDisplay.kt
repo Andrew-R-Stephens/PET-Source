@@ -71,7 +71,7 @@ fun CatalogAchievementItemDisplay(
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
                 ),
-                color = LocalPalette.current.codexFamily.codex3,
+                color = LocalPalette.current.codexFamily.onSurface,
                 maxLines = 1,
                 fontSize = 20.sp
             )
@@ -94,7 +94,7 @@ fun CatalogAchievementItemDisplay(
                             id = AchievementExclusivity.STEAM.toDrawableResource()
                         ),
                         contentDescription = "Steam Logo",
-                        tint = LocalPalette.current.codexFamily.codex3,
+                        tint = LocalPalette.current.codexFamily.onSurface,
                     )
                 }
                 if (selectedGroup.exclusivity and AchievementExclusivity.XBOX.value != 0) {
@@ -108,7 +108,7 @@ fun CatalogAchievementItemDisplay(
                             id = AchievementExclusivity.XBOX.toDrawableResource()
                         ),
                         contentDescription = "Xbox Logo",
-                        tint = LocalPalette.current.codexFamily.codex3,
+                        tint = LocalPalette.current.codexFamily.onSurface,
                     )
                 }
                 if (selectedGroup.exclusivity and AchievementExclusivity.PLAYSTATION.value != 0) {
@@ -122,7 +122,7 @@ fun CatalogAchievementItemDisplay(
                             id = AchievementExclusivity.PLAYSTATION.toDrawableResource()
                         ),
                         contentDescription = "Playstation Logo",
-                        tint = LocalPalette.current.codexFamily.codex3,
+                        tint = LocalPalette.current.codexFamily.onSurface,
                     )
                 }
             }
@@ -142,7 +142,7 @@ fun CatalogAchievementItemDisplay(
                         style = LocalTypography.current.quaternary.regular.copy(
                             textAlign = TextAlign.Start
                         ),
-                        color = LocalPalette.current.codexFamily.codex3,
+                        color = LocalPalette.current.codexFamily.onSurface,
                         maxLines = 1,
                         autoSize = TextAutoSize.StepBased(minFontSize = 1.sp)
                     )
@@ -172,7 +172,7 @@ fun CatalogAchievementItemDisplay(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 18.sp
                 )
             }

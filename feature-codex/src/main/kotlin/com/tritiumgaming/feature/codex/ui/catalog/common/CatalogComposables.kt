@@ -192,10 +192,10 @@ fun CodexItemPortraitPopup(
                     bottomEnd = 0.dp
                 )
             )
-            .background(LocalPalette.current.codexFamily.codex4)
+            .background(LocalPalette.current.codexFamily.primary)
             .padding(top = 4.dp)
             .clip(RectangleShape)
-            .background(LocalPalette.current.codexFamily.codex2),
+            .background(LocalPalette.current.codexFamily.surfaceContainer),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -206,9 +206,9 @@ fun CodexItemPortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
-                .background(LocalPalette.current.codexFamily.codex3),
+                .background(LocalPalette.current.codexFamily.onSurface),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -217,7 +217,7 @@ fun CodexItemPortraitPopup(
                     Modifier
                         .weight(1f)
                         .wrapContentHeight()
-                        .background(LocalPalette.current.codexFamily.codex2)
+                        .background(LocalPalette.current.codexFamily.surfaceContainer)
                 )
             }
 
@@ -226,12 +226,12 @@ fun CodexItemPortraitPopup(
                     .width(48.dp)
                     .heightIn(min = 32.dp)
                     .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.codex3)
+                    .background(LocalPalette.current.codexFamily.onSurface)
                     .clickable { onDismiss() },
                 painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
                 contentDescription = "Close Button",
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex2,
+                    color = LocalPalette.current.codexFamily.surfaceContainer,
                     blendMode = BlendMode.SrcIn
                 ),
                 contentScale = ContentScale.Fit
@@ -243,11 +243,11 @@ fun CodexItemPortraitPopup(
                 Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .background(LocalPalette.current.codexFamily.codex2)
+                    .background(LocalPalette.current.codexFamily.surfaceContainer)
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     )
             )
         }
@@ -259,7 +259,7 @@ fun CodexItemPortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 ),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.Top
@@ -301,7 +301,7 @@ fun CodexItemPortraitPopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
                 .padding(2.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -350,10 +350,10 @@ fun CodexItemLandscapePopup(
                     bottomEnd = 4.dp
                 )
             )
-            .background(LocalPalette.current.codexFamily.codex4)
+            .background(LocalPalette.current.codexFamily.primary)
             .padding(end = 4.dp)
             .clip(RectangleShape)
-            .background(LocalPalette.current.codexFamily.codex2),
+            .background(LocalPalette.current.codexFamily.surfaceContainer),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
@@ -364,9 +364,9 @@ fun CodexItemLandscapePopup(
                 .border(
                     width = 1.dp,
                     shape = RectangleShape,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
-                .background(LocalPalette.current.codexFamily.codex3),
+                .background(LocalPalette.current.codexFamily.onSurface),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -375,7 +375,7 @@ fun CodexItemLandscapePopup(
                     Modifier
                         .weight(1f)
                         .wrapContentHeight()
-                        .background(LocalPalette.current.codexFamily.codex2)
+                        .background(LocalPalette.current.codexFamily.surfaceContainer)
                 )
             }
 
@@ -384,12 +384,12 @@ fun CodexItemLandscapePopup(
                     .width(48.dp)
                     .heightIn(min = 32.dp)
                     .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.codex3)
+                    .background(LocalPalette.current.codexFamily.onSurface)
                     .clickable { onDismiss() },
                 painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
                 contentDescription = "Close Button",
                 colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.codex2,
+                    color = LocalPalette.current.codexFamily.surfaceContainer,
                     blendMode = BlendMode.SrcIn
                 ),
                 contentScale = ContentScale.Fit
@@ -401,11 +401,11 @@ fun CodexItemLandscapePopup(
                 Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .background(LocalPalette.current.codexFamily.codex2)
+                    .background(LocalPalette.current.codexFamily.surfaceContainer)
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     )
             )
         }
@@ -418,7 +418,7 @@ fun CodexItemLandscapePopup(
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     ),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
@@ -460,7 +460,7 @@ fun CodexItemLandscapePopup(
                     .border(
                         width = 1.dp,
                         shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     )
                     .padding(2.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -510,7 +510,7 @@ fun CodexItemPopupDataRow(
             contentDescription = "Cost Icon",
             contentScale = ContentScale.Fit,
             colorFilter = ColorFilter.tint(
-                color = LocalPalette.current.codexFamily.codex3,
+                color = LocalPalette.current.codexFamily.onSurface,
             )
         )
 
@@ -522,7 +522,7 @@ fun CodexItemPopupDataRow(
             style = LocalTypography.current.quaternary.regular.copy(
                 textAlign = TextAlign.Start
             ),
-            color = LocalPalette.current.codexFamily.codex3,
+            color = LocalPalette.current.codexFamily.onSurface,
             maxLines = 1,
             autoSize = TextAutoSize.StepBased(minFontSize = 1.sp)
         )
@@ -548,11 +548,11 @@ fun CodexGroup(
                 .widthIn(min = 96.dp)
                 .wrapContentHeight()
                 .background(
-                    LocalPalette.current.codexFamily.codex2
+                    LocalPalette.current.codexFamily.surfaceContainer
                 )
                 .border(
                     width = 2.dp,
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
                 .padding(4.dp)
                 .basicMarquee(
@@ -566,7 +566,7 @@ fun CodexGroup(
                 textAlign = TextAlign.Center
             ),
             fontSize = 18.sp,
-            color = LocalPalette.current.codexFamily.codex3,
+            color = LocalPalette.current.codexFamily.onSurface,
             maxLines = 1
         )
 
@@ -639,13 +639,13 @@ fun CodexGroupItem(
                                 true -> Modifier
                                     .border(
                                         2.dp,
-                                        LocalPalette.current.codexFamily.codex4
+                                        LocalPalette.current.codexFamily.primary
                                     )
 
                                 false -> Modifier
                                     .border(
                                         2.dp,
-                                        LocalPalette.current.codexFamily.codex3
+                                        LocalPalette.current.codexFamily.onSurface
                                     )
                             }
                         )
@@ -706,8 +706,8 @@ fun GridPattern(
             modifier = Modifier
                 .fillMaxSize(),
             colors = IconVectorColors(
-                fillColor = LocalPalette.current.codexFamily.codex6,
-                strokeColor = LocalPalette.current.codexFamily.codex7
+                fillColor = LocalPalette.current.codexFamily.secondaryContainer,
+                strokeColor = LocalPalette.current.codexFamily.onSecondaryContainer
             )
         )
     }
@@ -726,7 +726,7 @@ fun TierEmblem(
                 modifier = modifier
                     .fillMaxSize(),
                 tierLevel = tierLevel,
-                tintColor = LocalPalette.current.codexFamily.codex4
+                tintColor = LocalPalette.current.codexFamily.primary
             )
         }
         false -> {
@@ -736,16 +736,16 @@ fun TierEmblem(
                         Modifier
                             .background(
                                 if (selected) {
-                                    LocalPalette.current.codexFamily.codex4
+                                    LocalPalette.current.codexFamily.primary
                                 } else {
-                                    LocalPalette.current.codexFamily.codex3
+                                    LocalPalette.current.codexFamily.onSurface
                                 }
                             )
                             .padding(8.dp)
                     )
                     .fillMaxSize(),
                 tierLevel = tierLevel,
-                tintColor = LocalPalette.current.codexFamily.codex2
+                tintColor = LocalPalette.current.codexFamily.surfaceContainer
             )
         }
     }
@@ -830,7 +830,7 @@ fun CodexItemPopupPortraitPreview() {
                         style = LocalTypography.current.quaternary.bold.copy(
                             textAlign = TextAlign.Start
                         ),
-                        color = LocalPalette.current.codexFamily.codex3,
+                        color = LocalPalette.current.codexFamily.onSurface,
                         maxLines = 1,
                         fontSize = 20.sp,
                         text = primaryTitle
@@ -849,7 +849,7 @@ fun CodexItemPopupPortraitPreview() {
                         style = LocalTypography.current.quaternary.bold.copy(
                             textAlign = TextAlign.Start
                         ),
-                        color = LocalPalette.current.codexFamily.codex3,
+                        color = LocalPalette.current.codexFamily.onSurface,
                         maxLines = 1,
                         fontSize = 20.sp
                     )
@@ -859,8 +859,8 @@ fun CodexItemPopupPortraitPreview() {
                     GridIcon(
                         modifier = modifier,
                         colors = IconVectorColors(
-                            fillColor = LocalPalette.current.codexFamily.codex6,
-                            strokeColor = LocalPalette.current.codexFamily.codex7
+                            fillColor = LocalPalette.current.codexFamily.secondaryContainer,
+                            strokeColor = LocalPalette.current.codexFamily.onSecondaryContainer
                         )
                     )
                     /*Image(
@@ -923,14 +923,14 @@ fun CodexItemPopupPortraitPreview() {
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             fontSize = 20.sp
                         )
 
                         HorizontalDivider(
                             modifier = Modifier
                                 .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3
+                            color = LocalPalette.current.codexFamily.onSurface
                         )
 
                         Text(
@@ -942,7 +942,7 @@ fun CodexItemPopupPortraitPreview() {
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             fontSize = 18.sp
                         )
 
@@ -958,7 +958,7 @@ fun CodexItemPopupPortraitPreview() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3
+                            color = LocalPalette.current.codexFamily.onSurface
                         )
 
                         val footerTextArr = footerText.map { it }
@@ -972,7 +972,7 @@ fun CodexItemPopupPortraitPreview() {
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             maxLines = 2,
                             fontSize = 18.sp
                         )
@@ -1027,7 +1027,7 @@ fun CodexItemPopupLandscapePreview() {
                         style = LocalTypography.current.quaternary.bold.copy(
                             textAlign = TextAlign.Start
                         ),
-                        color = LocalPalette.current.codexFamily.codex3,
+                        color = LocalPalette.current.codexFamily.onSurface,
                         maxLines = 1,
                         fontSize = 20.sp,
                         text = primaryTitle
@@ -1046,7 +1046,7 @@ fun CodexItemPopupLandscapePreview() {
                         style = LocalTypography.current.quaternary.bold.copy(
                             textAlign = TextAlign.Start
                         ),
-                        color = LocalPalette.current.codexFamily.codex3,
+                        color = LocalPalette.current.codexFamily.onSurface,
                         maxLines = 1,
                         fontSize = 20.sp
                     )
@@ -1056,8 +1056,8 @@ fun CodexItemPopupLandscapePreview() {
                     GridIcon(
                         modifier = modifier,
                         colors = IconVectorColors(
-                            fillColor = LocalPalette.current.codexFamily.codex6,
-                            strokeColor = LocalPalette.current.codexFamily.codex7
+                            fillColor = LocalPalette.current.codexFamily.secondaryContainer,
+                            strokeColor = LocalPalette.current.codexFamily.onSecondaryContainer
                         )
                     )
                     /*Image(
@@ -1120,14 +1120,14 @@ fun CodexItemPopupLandscapePreview() {
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             fontSize = 20.sp
                         )
 
                         HorizontalDivider(
                             modifier = Modifier
                                 .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3
+                            color = LocalPalette.current.codexFamily.onSurface
                         )
 
                         Text(
@@ -1139,7 +1139,7 @@ fun CodexItemPopupLandscapePreview() {
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             fontSize = 18.sp
                         )
 
@@ -1155,7 +1155,7 @@ fun CodexItemPopupLandscapePreview() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(2.dp),
-                            color = LocalPalette.current.codexFamily.codex3
+                            color = LocalPalette.current.codexFamily.onSurface
                         )
 
                         val footerTextArr = footerText.map { it }
@@ -1169,7 +1169,7 @@ fun CodexItemPopupLandscapePreview() {
                             style = LocalTypography.current.quaternary.bold.copy(
                                 textAlign = TextAlign.Start
                             ),
-                            color = LocalPalette.current.codexFamily.codex3,
+                            color = LocalPalette.current.codexFamily.onSurface,
                             maxLines = 2,
                             fontSize = 18.sp
                         )

@@ -88,7 +88,7 @@ fun CatalogEquipmentItemDisplay(
                 style = LocalTypography.current.quaternary.bold.copy(
                     textAlign = TextAlign.Start
                 ),
-                color = LocalPalette.current.codexFamily.codex3,
+                color = LocalPalette.current.codexFamily.onSurface,
                 maxLines = 1,
                 fontSize = 20.sp
             )
@@ -97,8 +97,8 @@ fun CatalogEquipmentItemDisplay(
             GridIcon(
                 modifier = modifier,
                 colors = IconVectorColors(
-                    fillColor = LocalPalette.current.codexFamily.codex6,
-                    strokeColor = LocalPalette.current.codexFamily.codex7
+                    fillColor = LocalPalette.current.codexFamily.secondaryContainer,
+                    strokeColor = LocalPalette.current.codexFamily.onSecondaryContainer
                 ),
                 contentScale = ContentScale.Fit
             )
@@ -155,14 +155,14 @@ fun CatalogEquipmentItemDisplay(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 20.sp
                 )
 
                 HorizontalDivider(
                     modifier = Modifier
                         .height(2.dp),
-                    color = LocalPalette.current.codexFamily.codex3
+                    color = LocalPalette.current.codexFamily.onSurface
                 )
 
                 Text(
@@ -173,7 +173,7 @@ fun CatalogEquipmentItemDisplay(
                     style = LocalTypography.current.quaternary.bold.copy(
                         textAlign = TextAlign.Start
                     ),
-                    color = LocalPalette.current.codexFamily.codex3,
+                    color = LocalPalette.current.codexFamily.onSurface,
                     fontSize = 18.sp
                 )
 
@@ -191,7 +191,7 @@ fun CatalogEquipmentItemDisplay(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(2.dp),
-                        color = LocalPalette.current.codexFamily.codex3
+                        color = LocalPalette.current.codexFamily.onSurface
                     )
 
                     Text(
@@ -202,7 +202,7 @@ fun CatalogEquipmentItemDisplay(
                         style = LocalTypography.current.quaternary.bold.copy(
                             textAlign = TextAlign.Start
                         ),
-                        color = LocalPalette.current.codexFamily.codex3,
+                        color = LocalPalette.current.codexFamily.onSurface,
                         maxLines = 2,
                         fontSize = 18.sp
                     )
