@@ -260,11 +260,11 @@ private fun NavGraphBuilder.operationNavigation(
                 navController = navController,
                 windowInsets = windowInsets
             ) {
-                val collect by investigationViewModel.difficultyUiState.collectAsStateWithLifecycle()
+                val collect = investigationViewModel.difficultyState.collectAsStateWithLifecycle()
 
                 ObjectivesScreen(
                     objectivesViewModel = objectivesViewModel,
-                    ghostResponseUiState = GhostResponseUiState(collect.responseType)
+                    ghostResponseUiState = GhostResponseUiState(collect.value.responseType)
                 )
             }
         }
