@@ -78,7 +78,7 @@ fun PreviewPatreonBranding() {
                                     modifier = Modifier
                                         .fillMaxSize()
                                         .background(
-                                            color = palette.coreFamily.primary
+                                            color = palette.primary
                                         )
                                 ){}
                             }
@@ -98,7 +98,7 @@ fun PreviewPatreonBranding() {
                             ) {
                                 OpenInNewIcon(
                                     colors = IconVectorColors.defaults(
-                                        fillColor = palette.textFamily.body,
+                                        fillColor = palette.onSurface,
                                         strokeColor = palette.surface,
                                     )
                                 )
