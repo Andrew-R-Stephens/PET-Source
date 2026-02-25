@@ -538,6 +538,8 @@ class InvestigationScreenViewModel private constructor(
                 strengthData = ghost.strengthData,
                 weaknessData = ghost.weaknessData,
                 huntData = ghost.huntData,
+                sanityBounds = ghost.sanityBounds,
+                huntCooldown = ghost.huntCooldown
             )
 
             _popupUiState.update {

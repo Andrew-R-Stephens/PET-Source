@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -49,10 +50,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.common.util.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toDrawableResource
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toLong
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toSanityBounds
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.popups.common.PageButton
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
@@ -89,15 +93,39 @@ private fun GhostPopupContent(
 
     val image = ghostPopupRecord.icon.toDrawableResource()
     val title: AnnotatedString = AnnotatedString.fromHtml(
-        stringResource(ghostPopupRecord.name.toStringResource()))
+        stringResource(ghostPopupRecord.name.toStringResource())
+            .replaceHTMLFontColor("ff6161",
+                LocalPalette.current.onSurfaceVariant))
     val description = AnnotatedString.fromHtml(
-        stringResource(ghostPopupRecord.info.toStringResource()))
+        stringResource(ghostPopupRecord.info.toStringResource())
+            .replaceHTMLFontColor("ff6161",
+                LocalPalette.current.onSurfaceVariant))
     val strengths = AnnotatedString.fromHtml(
-        stringResource(ghostPopupRecord.strengthData.toStringResource()))
+        stringResource(ghostPopupRecord.strengthData.toStringResource())
+            .replaceHTMLFontColor("ff6161",
+                LocalPalette.current.onSurfaceVariant))
     val weakness = AnnotatedString.fromHtml(
-        stringResource(ghostPopupRecord.weaknessData.toStringResource()))
+        stringResource(ghostPopupRecord.weaknessData.toStringResource())
+            .replaceHTMLFontColor("ff6161",
+                LocalPalette.current.onSurfaceVariant))
     val huntInfo = AnnotatedString.fromHtml(
-        stringResource(ghostPopupRecord.huntData.toStringResource()))
+        stringResource(ghostPopupRecord.huntData.toStringResource())
+            .replaceHTMLFontColor("ff6161",
+                LocalPalette.current.onSurfaceVariant))
+
+    val closeButton: @Composable (Modifier) -> Unit = { modifier ->
+        Image(
+            modifier = modifier
+                .clickable { onDismiss() },
+            painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
+            contentDescription = "Close Button",
+            colorFilter = ColorFilter.tint(
+                color = LocalPalette.current.codexFamily.surfaceContainer,
+                blendMode = BlendMode.SrcIn
+            ),
+            contentScale = ContentScale.Fit
+        )
+    }
 
     val primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit) =
         @Composable { modifier ->
@@ -154,18 +182,38 @@ private fun GhostPopupContent(
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Top
             ) {
-                Text(
+                Row(
                     modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth()
-                        .padding(horizontal = 4.dp, vertical = 8.dp),
-                    text = stringResource(R.string.popup_ghost_info).uppercase(),
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Center
-                    ),
-                    color = LocalPalette.current.codexFamily.onSurface,
-                    fontSize = 24.sp
-                )
+                        .padding(horizontal = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                ) {
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth()
+                            .padding(horizontal = 4.dp, vertical = 8.dp),
+                        text = stringResource(R.string.popup_ghost_info).uppercase(),
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Center
+                        ),
+                        color = LocalPalette.current.codexFamily.onSurface,
+                        fontSize = 24.sp
+                    )
+
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                }
 
                 Text(
                     modifier = Modifier
@@ -189,18 +237,37 @@ private fun GhostPopupContent(
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Top
             ) {
-                Text(
+                Row(
                     modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth()
-                        .padding(horizontal = 4.dp, vertical = 8.dp),
-                    text = stringResource(R.string.popup_ghost_strength).uppercase(),
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Center
-                    ),
-                    color = LocalPalette.current.codexFamily.onSurface,
-                    fontSize = 24.sp
-                )
+                        .padding(horizontal = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                ) {
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth()
+                            .padding(horizontal = 4.dp, vertical = 8.dp),
+                        text = stringResource(R.string.popup_ghost_strength).uppercase(),
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Center
+                        ),
+                        color = LocalPalette.current.codexFamily.onSurface,
+                        fontSize = 24.sp
+                    )
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                }
 
                 Text(
                     modifier = Modifier
@@ -225,18 +292,37 @@ private fun GhostPopupContent(
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Top
             ) {
-                Text(
+                Row(
                     modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth()
-                        .padding(horizontal = 4.dp, vertical = 8.dp),
-                    text = stringResource(R.string.popup_ghost_weakness).uppercase(),
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Center
-                    ),
-                    color = LocalPalette.current.codexFamily.onSurface,
-                    fontSize = 24.sp
-                )
+                        .padding(horizontal = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                ) {
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth()
+                            .padding(horizontal = 4.dp, vertical = 8.dp),
+                        text = stringResource(R.string.popup_ghost_weakness).uppercase(),
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Center
+                        ),
+                        color = LocalPalette.current.codexFamily.onSurface,
+                        fontSize = 24.sp
+                    )
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                }
 
                 Text(
                     modifier = Modifier
@@ -261,17 +347,54 @@ private fun GhostPopupContent(
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Top
             ) {
+
+                val huntCooldown = ghostPopupRecord.huntCooldown.toLong()
+                val huntCooldownSeconds = (huntCooldown / 1000f).toLong()
+                val huntCooldownData = "Hunt Cooldown: $huntCooldownSeconds sec"
+
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                ) {
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                    Text(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .wrapContentWidth()
+                            .padding(horizontal = 4.dp, vertical = 8.dp),
+                        text = stringResource(R.string.popup_ghost_huntdata).uppercase(),
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Center
+                        ),
+                        color = LocalPalette.current.codexFamily.onSurface,
+                        fontSize = 24.sp
+                    )
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                }
+
                 Text(
                     modifier = Modifier
                         .wrapContentHeight()
                         .fillMaxWidth()
                         .padding(horizontal = 4.dp, vertical = 8.dp),
-                    text = stringResource(R.string.popup_ghost_huntdata).uppercase(),
+                    text = huntCooldownData,
                     style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Start
                     ),
                     color = LocalPalette.current.codexFamily.onSurface,
-                    fontSize = 24.sp
+                    fontSize = 20.sp
                 )
 
                 Text(
@@ -289,21 +412,96 @@ private fun GhostPopupContent(
             }
         }
 
+    var evidencePage by remember{ mutableStateOf(GhostPage.DESCRIPTION ) }
+
+    val descriptionPageButton: @Composable (Modifier) -> Unit = {
+        PageButton(
+            isSelected = evidencePage == GhostPage.DESCRIPTION,
+            icon = { modifier, colors ->
+                Icon(
+                    modifier = modifier
+                        .padding(4.dp),
+                    painter = painterResource(
+                        R.drawable.ic_ghost
+                    ),
+                    contentDescription = "",
+                    tint = colors.strokeColor,
+                )
+            }
+        ) { evidencePage = GhostPage.DESCRIPTION }
+    }
+
+    val strengthPageButton: @Composable (Modifier) -> Unit = {
+        PageButton(
+            isSelected = evidencePage == GhostPage.STRENGTH,
+            icon = { modifier, colors ->
+                Icon(
+                    modifier = modifier
+                        .padding(4.dp),
+                    painter = painterResource(
+                        R.drawable.ic_thumb_up
+                    ),
+                    contentDescription = "",
+                    tint = colors.strokeColor,
+                )
+            }
+        ) { evidencePage = GhostPage.STRENGTH }
+    }
+
+    val weaknessPageButton: @Composable (Modifier) -> Unit = {
+        PageButton(
+            isSelected = evidencePage == GhostPage.WEAKNESS,
+            icon = { modifier, colors ->
+                Icon(
+                    modifier = modifier
+                        .padding(4.dp),
+                    painter = painterResource(
+                        R.drawable.ic_thumb_down
+                    ),
+                    contentDescription = "",
+                    tint = colors.strokeColor,
+                )
+            }
+        ) { evidencePage = GhostPage.WEAKNESS }
+    }
+
+    val huntPageButton: @Composable (Modifier) -> Unit = {
+        PageButton(
+            isSelected = evidencePage == GhostPage.HUNT,
+            icon = { modifier, colors ->
+                Icon(
+                    modifier = modifier
+                        .padding(2.dp),
+                    painter = painterResource(
+                        R.drawable.ic_intelligence
+                    ),
+                    contentDescription = "",
+                    tint = colors.strokeColor,
+                )
+            }
+        ) { evidencePage = GhostPage.HUNT }
+    }
+
     when (deviceConfiguration) {
         DeviceConfiguration.MOBILE_PORTRAIT -> {
             GhostTypePortraitPopup(
                 modifier = modifier
                     .fillMaxWidth(),
-                primaryTitleContent,
-                primaryImageContent,
-                primaryDataContent,
-                descriptionBodyContent,
-                strengthBodyContent,
-                weaknessBodyContent,
-                huntBodyContent,
+                page = evidencePage,
+                closeButton = closeButton,
+                primaryTitleContent = primaryTitleContent,
+                primaryImageContent = primaryImageContent,
+                primaryDataContent = primaryDataContent,
+                descriptionBodyContent = descriptionBodyContent,
+                strengthBodyContent = strengthBodyContent,
+                weaknessBodyContent = weaknessBodyContent,
+                huntInfoBodyContent = huntBodyContent,
+                descriptionPageButton = descriptionPageButton,
+                strengthPageButton = strengthPageButton,
+                weaknessPageButton = weaknessPageButton,
+                huntPageButton = huntPageButton,
                 onClickPrevious = { onClickPrevious() },
-                onClickNext = { onClickNext() },
-                onDismiss = onDismiss
+                onClickNext = { onClickNext() }
             )
         }
         DeviceConfiguration.MOBILE_LANDSCAPE,
@@ -313,16 +511,21 @@ private fun GhostPopupContent(
             GhostTypeLandscapePopup(
                 modifier = modifier
                     .fillMaxWidth(),
-                primaryTitleContent,
-                primaryImageContent,
-                primaryDataContent,
-                descriptionBodyContent,
-                strengthBodyContent,
-                weaknessBodyContent,
-                huntBodyContent,
+                page = evidencePage,
+                closeButton = closeButton,
+                primaryTitleContent = primaryTitleContent,
+                primaryImageContent = primaryImageContent,
+                primaryDataContent = primaryDataContent,
+                descriptionBodyContent = descriptionBodyContent,
+                strengthBodyContent = strengthBodyContent,
+                weaknessBodyContent = weaknessBodyContent,
+                huntInfoBodyContent = huntBodyContent,
+                descriptionPageButton = descriptionPageButton,
+                strengthPageButton = strengthPageButton,
+                weaknessPageButton = weaknessPageButton,
+                huntPageButton = huntPageButton,
                 onClickPrevious = { onClickPrevious() },
-                onClickNext = { onClickNext() },
-                onDismiss = onDismiss
+                onClickNext = { onClickNext() }
             )
         }
     }
@@ -331,6 +534,8 @@ private fun GhostPopupContent(
 @Composable
 fun GhostTypePortraitPopup(
     modifier: Modifier = Modifier,
+    page: GhostPage = GhostPage.DESCRIPTION,
+    closeButton: @Composable (Modifier) -> Unit = {},
     primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
     primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit)? = null,
     primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
@@ -338,9 +543,12 @@ fun GhostTypePortraitPopup(
     strengthBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
     weaknessBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
     huntInfoBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    descriptionPageButton: @Composable (modifier: Modifier) -> Unit = {},
+    strengthPageButton: @Composable (modifier: Modifier) -> Unit = {},
+    weaknessPageButton: @Composable (modifier: Modifier) -> Unit = {},
+    huntPageButton: @Composable (modifier: Modifier) -> Unit = {},
     onClickPrevious: () -> Unit,
-    onClickNext: () -> Unit,
-    onDismiss: () -> Unit = {}
+    onClickNext: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -382,20 +590,11 @@ fun GhostTypePortraitPopup(
                 )
             }
 
-            Image(
-                modifier = Modifier
-                    .width(48.dp)
-                    .heightIn(min = 32.dp)
-                    .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.onSurface)
-                    .clickable { onDismiss() },
-                painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
-                contentDescription = "Close Button",
-                colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.surfaceContainer,
-                    blendMode = BlendMode.SrcIn
-                ),
-                contentScale = ContentScale.Fit
+            closeButton(Modifier
+                .width(48.dp)
+                .heightIn(min = 32.dp)
+                .height(IntrinsicSize.Max)
+                .background(LocalPalette.current.codexFamily.onSurface)
             )
 
         }
@@ -412,26 +611,6 @@ fun GhostTypePortraitPopup(
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.Top
         ) {
-
-            /*Box(
-                modifier = Modifier
-                    .width(36.dp)
-                    .height(96.dp)
-                    .fillMaxHeight()
-                    .clickable(onClick = { onClickPrevious() })
-                    .background(LocalPalette.current.codexFamily.codex3)
-                    .padding(4.dp)
-            ) {
-                Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1f)
-                        .align(Alignment.Center),
-                    painter = painterResource(R.drawable.ic_arrow_fill_left),
-                    contentDescription = "Previous Button",
-                    colorFilter = ColorFilter.tint(LocalPalette.current.codexFamily.codex2)
-                )
-            }*/
 
             primaryImageContent?.let { content ->
                 Box(
@@ -462,26 +641,6 @@ fun GhostTypePortraitPopup(
                 }
             }
 
-            /*Box(
-                modifier = Modifier
-                    .width(36.dp)
-                    //.height(96.dp)
-                    .fillMaxHeight()
-                    .clickable(onClick = { onClickPrevious() })
-                    .background(LocalPalette.current.codexFamily.codex3)
-                    .padding(4.dp)
-            ) {
-                Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1f)
-                        .align(Alignment.Center),
-                    painter = painterResource(R.drawable.ic_arrow_fill_right),
-                    contentDescription = "Previous Button",
-                    colorFilter = ColorFilter.tint(LocalPalette.current.codexFamily.codex2)
-                )
-            }*/
-
         }
 
         Column(
@@ -498,83 +657,20 @@ fun GhostTypePortraitPopup(
             verticalArrangement = Arrangement.SpaceBetween,
         ) {
 
-            var evidencePage by remember{ mutableStateOf(GhostPage.DESCRIPTION ) }
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .wrapContentHeight()
-                    /*.border(
-                        width = 1.dp,
-                        shape = RectangleShape,
-                        color = LocalPalette.current.codexFamily.codex3
-                    )*/,
+                    .wrapContentHeight(),
                 horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                PageButton(
-                    isSelected = evidencePage == GhostPage.DESCRIPTION,
-                    icon = { modifier, colors ->
-                        Icon(
-                            modifier = modifier
-                                .padding(4.dp),
-                            painter = painterResource(
-                                R.drawable.ic_ghost
-                            ),
-                            contentDescription = "",
-                            tint = colors.strokeColor,
-                        )
-                    }
-                ) { evidencePage = GhostPage.DESCRIPTION }
-
-                PageButton(
-                    isSelected = evidencePage == GhostPage.STRENGTH,
-                    icon = { modifier, colors ->
-                        Icon(
-                            modifier = modifier
-                                .padding(4.dp),
-                            painter = painterResource(
-                                R.drawable.ic_thumb_up
-                            ),
-                            contentDescription = "",
-                            tint = colors.strokeColor,
-                        )
-                    }
-                ) { evidencePage = GhostPage.STRENGTH }
-
-                PageButton(
-                    isSelected = evidencePage == GhostPage.WEAKNESS,
-                    icon = { modifier, colors ->
-                        Icon(
-                            modifier = modifier
-                                .padding(4.dp),
-                            painter = painterResource(
-                                R.drawable.ic_thumb_down
-                            ),
-                            contentDescription = "",
-                            tint = colors.strokeColor,
-                        )
-                    }
-                ) { evidencePage = GhostPage.WEAKNESS }
-
-                PageButton(
-                    isSelected = evidencePage == GhostPage.HUNT,
-                    icon = { modifier, colors ->
-                        Icon(
-                            modifier = modifier
-                                .padding(2.dp),
-                            painter = painterResource(
-                                R.drawable.ic_intelligence
-                            ),
-                            contentDescription = "",
-                            tint = colors.strokeColor,
-                        )
-                    }
-                ) { evidencePage = GhostPage.HUNT }
-
+                descriptionPageButton(Modifier)
+                strengthPageButton(Modifier)
+                weaknessPageButton(Modifier)
+                huntPageButton(Modifier)
             }
 
-            when(evidencePage) {
+            when(page) {
                 GhostPage.DESCRIPTION -> {
                     descriptionBodyContent?.let { content ->
                         content(
@@ -620,6 +716,8 @@ fun GhostTypePortraitPopup(
 @Composable
 fun GhostTypeLandscapePopup(
     modifier: Modifier = Modifier,
+    page: GhostPage = GhostPage.DESCRIPTION,
+    closeButton: @Composable (Modifier) -> Unit = {},
     primaryTitleContent: @Composable (RowScope.(modifier: Modifier) -> Unit)? = null,
     primaryImageContent: @Composable (BoxScope.(modifier: Modifier) -> Unit)? = null,
     primaryDataContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
@@ -627,9 +725,12 @@ fun GhostTypeLandscapePopup(
     strengthBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
     weaknessBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
     huntInfoBodyContent: @Composable (ColumnScope.(modifier: Modifier) -> Unit)? = null,
+    descriptionPageButton: @Composable (modifier: Modifier) -> Unit = {},
+    strengthPageButton: @Composable (modifier: Modifier) -> Unit = {},
+    weaknessPageButton: @Composable (modifier: Modifier) -> Unit = {},
+    huntPageButton: @Composable (modifier: Modifier) -> Unit = {},
     onClickPrevious: () -> Unit,
-    onClickNext: () -> Unit,
-    onDismiss: () -> Unit = {}
+    onClickNext: () -> Unit
 ) {
 
     Column(
@@ -672,20 +773,11 @@ fun GhostTypeLandscapePopup(
                 )
             }
 
-            Image(
-                modifier = Modifier
-                    .width(48.dp)
-                    .heightIn(min = 32.dp)
-                    .height(IntrinsicSize.Max)
-                    .background(LocalPalette.current.codexFamily.onSurface)
-                    .clickable { onDismiss() },
-                painter = painterResource(android.R.drawable.ic_menu_close_clear_cancel),
-                contentDescription = "Close Button",
-                colorFilter = ColorFilter.tint(
-                    color = LocalPalette.current.codexFamily.surfaceContainer,
-                    blendMode = BlendMode.SrcIn
-                ),
-                contentScale = ContentScale.Fit
+            closeButton(Modifier
+                .width(48.dp)
+                .heightIn(min = 32.dp)
+                .height(IntrinsicSize.Max)
+                .background(LocalPalette.current.codexFamily.onSurface)
             )
         }
 
@@ -739,9 +831,6 @@ fun GhostTypeLandscapePopup(
                 }
             }
 
-
-            var evidencePage by remember{ mutableStateOf(GhostPage.DESCRIPTION ) }
-
             Row(
                 modifier = Modifier
                     .border(
@@ -758,82 +847,21 @@ fun GhostTypeLandscapePopup(
                     verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.Top),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    PageButton(
-                        isSelected = evidencePage == GhostPage.DESCRIPTION,
-                        icon = { modifier, colors ->
-                            Icon(
-                                modifier = modifier
-                                    .padding(4.dp),
-                                painter = painterResource(
-                                    R.drawable.ic_ghost
-                                ),
-                                contentDescription = "",
-                                tint = colors.strokeColor,
-                            )
-                        }
-                    ) { evidencePage = GhostPage.DESCRIPTION }
-
-                    PageButton(
-                        isSelected = evidencePage == GhostPage.STRENGTH,
-                        icon = { modifier, colors ->
-                            Icon(
-                                modifier = modifier
-                                    .padding(4.dp),
-                                painter = painterResource(
-                                    R.drawable.ic_thumb_up
-                                ),
-                                contentDescription = "",
-                                tint = colors.strokeColor,
-                            )
-                        }
-                    ) { evidencePage = GhostPage.STRENGTH }
-
-                    PageButton(
-                        isSelected = evidencePage == GhostPage.WEAKNESS,
-                        icon = { modifier, colors ->
-                            Icon(
-                                modifier = modifier
-                                    .padding(4.dp),
-                                painter = painterResource(
-                                    R.drawable.ic_thumb_down
-                                ),
-                                contentDescription = "",
-                                tint = colors.strokeColor,
-                            )
-                        }
-                    ) { evidencePage = GhostPage.WEAKNESS }
-
-                    PageButton(
-                        isSelected = evidencePage == GhostPage.HUNT,
-                        icon = { modifier, colors ->
-                            Icon(
-                                modifier = modifier
-                                    .padding(2.dp),
-                                painter = painterResource(
-                                    R.drawable.ic_intelligence
-                                ),
-                                contentDescription = "",
-                                tint = colors.strokeColor,
-                            )
-                        }
-                    ) { evidencePage = GhostPage.HUNT }
-
+                    descriptionPageButton(Modifier)
+                    strengthPageButton(Modifier)
+                    weaknessPageButton(Modifier)
+                    huntPageButton(Modifier)
                 }
 
                 Column(
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxWidth()/*
-                        .border(
-                            width = 1.dp,
-                            shape = RectangleShape,
-                            color = LocalPalette.current.codexFamily.codex3
-                        )*/
+                        .fillMaxWidth()
                         .padding(2.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.SpaceBetween,
                 ) {
-                    when(evidencePage) {
+                    when(page) {
                         GhostPage.DESCRIPTION -> {
                             descriptionBodyContent?.let { content ->
                                 content(

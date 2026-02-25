@@ -53,6 +53,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.common.util.FontUtils.replaceHTMLFontColor
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.GridIcon
@@ -99,9 +100,14 @@ private fun EvidencePopupContent(
 
     val image = evidencePopupRecord.icon.toDrawableResource()
     val evidenceTitle: AnnotatedString = AnnotatedString.fromHtml(
-        stringResource(evidencePopupRecord.name.toStringResource()))
+        stringResource(evidencePopupRecord.name.toStringResource())
+            .replaceHTMLFontColor("ff6161",
+                LocalPalette.current.onSurfaceVariant))
     val evidenceDescription = AnnotatedString.fromHtml(
-        stringResource(evidencePopupRecord.description.toStringResource()))
+        stringResource(evidencePopupRecord.description.toStringResource())
+            .replaceHTMLFontColor("ff6161",
+                LocalPalette.current.onSurfaceVariant))
+
 
     val buyCost = integerResource(evidencePopupRecord.equipmentType.buyCostData.toIntegerResource())
 

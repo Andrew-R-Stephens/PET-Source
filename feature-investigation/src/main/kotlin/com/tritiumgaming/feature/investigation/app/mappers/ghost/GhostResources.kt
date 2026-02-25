@@ -3,6 +3,8 @@ package com.tritiumgaming.feature.investigation.app.mappers.ghost
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntSanityBounds
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntCooldown
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
@@ -11,6 +13,7 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.data.ghost.model.SanityBounds
 
 @StringRes fun GhostIdentifier.toStringResource(): Int =
     when (this) {
@@ -320,4 +323,93 @@ fun GhostSpeed.toHasLosMultiplierBoolean(): Boolean =
         GhostSpeed.WRAITH -> true
         GhostSpeed.YOKAI -> true
         GhostSpeed.YUREI -> true
+    }
+
+fun HuntSanityBounds.toSanityBounds(): SanityBounds =
+    when (this) {
+        HuntSanityBounds.BANSHEE -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.DAYAN -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = 45, empowered = 65)
+        HuntSanityBounds.DEMON -> SanityBounds(
+            normal = 70, suppressed = SanityBounds.UNSET, empowered = 100)
+        HuntSanityBounds.DEOGEN -> SanityBounds(
+            normal = 40, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.GALLU -> SanityBounds(
+            normal = 50, suppressed = 40, empowered = 60)
+        HuntSanityBounds.GORYO -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.HANTU -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.JINN -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.MARE -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = 40, empowered = 60)
+        HuntSanityBounds.MOROI -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.MYLING -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.OBAKE -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.OBAMBO -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = 65, empowered = 10)
+        HuntSanityBounds.ONI -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.ONRYO -> SanityBounds(
+            normal = 60, suppressed = 40, empowered = 100)
+        HuntSanityBounds.PHANTOM -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.POLTERGEIST -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.RAIJU -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = 65)
+        HuntSanityBounds.REVENANT -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.SHADE -> SanityBounds(
+            normal = 35, suppressed = 0, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.SPIRIT -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.THAYE -> SanityBounds(
+            normal = 75, suppressed = 15, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.THE_TWINS -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.THE_MIMIC -> SanityBounds(
+            normal = 50, suppressed = 0, empowered = 100)
+        HuntSanityBounds.WRAITH -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+        HuntSanityBounds.YOKAI -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = 80)
+        HuntSanityBounds.YUREI -> SanityBounds(
+            normal = SanityBounds.STANDARD, suppressed = SanityBounds.UNSET, empowered = SanityBounds.UNSET)
+    }
+
+fun HuntCooldown.toLong(): Long =
+    when (this) {
+        HuntCooldown.BANSHEE -> 25000L
+        HuntCooldown.DAYAN -> 25000L
+        HuntCooldown.DEMON -> 20000L
+        HuntCooldown.DEOGEN -> 25000L
+        HuntCooldown.GALLU -> 25000L
+        HuntCooldown.GORYO -> 25000L
+        HuntCooldown.HANTU -> 25000L
+        HuntCooldown.JINN -> 25000L
+        HuntCooldown.MARE -> 25000L
+        HuntCooldown.MOROI -> 25000L
+        HuntCooldown.MYLING -> 25000L
+        HuntCooldown.OBAKE -> 25000L
+        HuntCooldown.OBAMBO -> 25000L
+        HuntCooldown.ONI -> 25000L
+        HuntCooldown.ONRYO -> 25000L
+        HuntCooldown.PHANTOM -> 25000L
+        HuntCooldown.POLTERGEIST -> 25000L
+        HuntCooldown.RAIJU -> 25000L
+        HuntCooldown.REVENANT -> 25000L
+        HuntCooldown.SHADE -> 25000L
+        HuntCooldown.SPIRIT -> 25000L
+        HuntCooldown.THAYE -> 25000L
+        HuntCooldown.THE_TWINS -> 25000L
+        HuntCooldown.THE_MIMIC -> 25000L
+        HuntCooldown.WRAITH -> 25000L
+        HuntCooldown.YOKAI -> 25000L
+        HuntCooldown.YUREI -> 25000L
     }
