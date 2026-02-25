@@ -1,7 +1,8 @@
 package com.tritiumgaming.data.ghost.dto
 
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntCooldown
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntSanityBounds
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
@@ -24,8 +25,8 @@ data class GhostDto(
     val weaknessData: GhostWeakness,
     val huntData: GhostHuntInfo,
     val speed: GhostSpeed,
-    val huntsAtSanity: Int,
-    val huntIntermission: Long
+    val sanityBounds: HuntSanityBounds,
+    val huntCooldown: HuntCooldown
 )
 
 fun List<GhostDto>.toGhostType() = map {
@@ -51,7 +52,7 @@ fun GhostDto.toDomain() = Ghost(
     normalEvidence = normalEvidence.map { it },
     strictEvidence = strictEvidence.map { it },
     speed = speed,
-    huntsAtSanity = huntsAtSanity,
-    huntIntermission = huntIntermission
+    sanityBounds = sanityBounds,
+    huntCooldown = huntCooldown
 )
 

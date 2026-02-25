@@ -3,6 +3,7 @@ package com.tritiumgaming.data.ghost.source.local
 import com.tritiumgaming.data.ghost.dto.GhostDto
 import com.tritiumgaming.data.ghost.source.GhostDataSource
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
@@ -11,6 +12,8 @@ import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntCooldown
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntSanityBounds
 
 class GhostLocalDataSource: GhostDataSource {
 
@@ -31,8 +34,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.BANSHEE,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.BANSHEE,
+                huntCooldown = HuntCooldown.BANSHEE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DAYAN,
@@ -49,8 +52,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.DAYAN,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.DAYAN,
+                huntCooldown = HuntCooldown.DAYAN
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DEMON,
@@ -67,8 +70,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.DEMON,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.DEMON,
+                huntCooldown = HuntCooldown.DEMON
             ),
             GhostResourceDto(
                 id = GhostIdentifier.DEOGEN,
@@ -87,8 +90,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX
                 ),
                 speed = GhostSpeed.DEOGEN,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.DEOGEN,
+                huntCooldown = HuntCooldown.DEOGEN
             ),
             GhostResourceDto(
                 id = GhostIdentifier.GALLU,
@@ -105,8 +108,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.GALLU,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.GALLU,
+                huntCooldown = HuntCooldown.GALLU
             ),
             GhostResourceDto(
                 id = GhostIdentifier.GORYO,
@@ -125,8 +128,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.DOTS
                 ),
                 speed = GhostSpeed.GORYO,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.GORYO,
+                huntCooldown = HuntCooldown.GORYO
             ),
             GhostResourceDto(
                 id = GhostIdentifier.HANTU,
@@ -145,8 +148,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.FREEZING_TEMPERATURE
                 ),
                 speed = GhostSpeed.HANTU,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.HANTU,
+                huntCooldown = HuntCooldown.HANTU
             ),
             GhostResourceDto(
                 id = GhostIdentifier.JINN,
@@ -163,8 +166,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.JINN,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.JINN,
+                huntCooldown = HuntCooldown.JINN
             ),
             GhostResourceDto(
                 id = GhostIdentifier.MARE,
@@ -181,8 +184,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.MARE,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.MARE,
+                huntCooldown = HuntCooldown.MARE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.MOROI,
@@ -201,8 +204,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.SPIRIT_BOX
                 ),
                 speed = GhostSpeed.MOROI,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.MOROI,
+                huntCooldown = HuntCooldown.MOROI
             ),GhostResourceDto(
                 id = GhostIdentifier.MYLING,
                 name = GhostTitle.MYLING,
@@ -218,8 +221,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.MYLING,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.MYLING,
+                huntCooldown = HuntCooldown.MYLING
             ),
             GhostResourceDto(
                 id = GhostIdentifier.OBAKE,
@@ -238,8 +241,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.ULTRAVIOLET_LIGHT
                 ),
                 speed = GhostSpeed.OBAKE,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.OBAKE,
+                huntCooldown = HuntCooldown.OBAKE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.OBAMBO,
@@ -256,8 +259,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.OBAMBO,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.OBAMBO,
+                huntCooldown = HuntCooldown.OBAMBO
             ),
             GhostResourceDto(
                 id = GhostIdentifier.ONI,
@@ -274,8 +277,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.ONI,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.ONI,
+                huntCooldown = HuntCooldown.ONI
             ),
             GhostResourceDto(
                 id = GhostIdentifier.ONRYO,
@@ -292,8 +295,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.ONRYO,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.ONRYO,
+                huntCooldown = HuntCooldown.ONRYO
             ),
             GhostResourceDto(
                 id = GhostIdentifier.PHANTOM,
@@ -310,8 +313,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.PHANTOM,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.PHANTOM,
+                huntCooldown = HuntCooldown.PHANTOM
             ),
             GhostResourceDto(
                 id = GhostIdentifier.POLTERGEIST,
@@ -328,8 +331,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.POLTERGEIST,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.POLTERGEIST,
+                huntCooldown = HuntCooldown.POLTERGEIST
             ),GhostResourceDto(
                 id = GhostIdentifier.RAIJU,
                 name = GhostTitle.RAIJU,
@@ -345,8 +348,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.RAIJU,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.RAIJU,
+                huntCooldown = HuntCooldown.RAIJU
             ),
             GhostResourceDto(
                 id = GhostIdentifier.REVENANT,
@@ -363,8 +366,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.REVENANT,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.REVENANT,
+                huntCooldown = HuntCooldown.REVENANT
             ),GhostResourceDto(
                 id = GhostIdentifier.SHADE,
                 name = GhostTitle.SHADE,
@@ -380,8 +383,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.SHADE,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.SHADE,
+                huntCooldown = HuntCooldown.SHADE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.SPIRIT,
@@ -398,8 +401,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.SPIRIT,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.SPIRIT,
+                huntCooldown = HuntCooldown.SPIRIT
             ),GhostResourceDto(
                 id = GhostIdentifier.THAYE,
                 name = GhostTitle.THAYE,
@@ -415,8 +418,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.THAYE,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.THAYE,
+                huntCooldown = HuntCooldown.THAYE
             ),
             GhostResourceDto(
                 id = GhostIdentifier.THE_TWINS,
@@ -433,8 +436,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.THE_TWINS,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.THE_TWINS,
+                huntCooldown = HuntCooldown.THE_TWINS
             ),
             GhostResourceDto(
                 id = GhostIdentifier.THE_MIMIC,
@@ -454,8 +457,8 @@ class GhostLocalDataSource: GhostDataSource {
                     EvidenceIdentifier.GHOST_ORBS
                 ),
                 speed = GhostSpeed.THE_MIMIC,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.THE_MIMIC,
+                huntCooldown = HuntCooldown.THE_MIMIC
             ),
             GhostResourceDto(
                 id = GhostIdentifier.WRAITH,
@@ -472,8 +475,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.WRAITH,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.WRAITH,
+                huntCooldown = HuntCooldown.WRAITH
             ),GhostResourceDto(
                 id = GhostIdentifier.YOKAI,
                 name = GhostTitle.YOKAI,
@@ -489,8 +492,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.YOKAI,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.YOKAI,
+                huntCooldown = HuntCooldown.YOKAI
             ),
             GhostResourceDto(
                 id = GhostIdentifier.YUREI,
@@ -507,8 +510,8 @@ class GhostLocalDataSource: GhostDataSource {
                 ),
                 strictEvidence = emptyList(),
                 speed = GhostSpeed.YUREI,
-                huntsAtSanity = 50,
-                huntIntermission = 25000
+                sanityBounds = HuntSanityBounds.YUREI,
+                huntCooldown = HuntCooldown.YUREI
             )
         )
 
@@ -536,8 +539,8 @@ class GhostLocalDataSource: GhostDataSource {
         normalEvidence = normalEvidence.map { it },
         strictEvidence = strictEvidence.map { it },
         speed = speed,
-        huntsAtSanity = huntsAtSanity,
-        huntIntermission = huntIntermission
+        sanityBounds = sanityBounds,
+        huntCooldown = huntCooldown
     )
 
     private data class GhostResourceDto(
@@ -551,8 +554,8 @@ class GhostLocalDataSource: GhostDataSource {
         val normalEvidence: List<EvidenceIdentifier>,
         val strictEvidence: List<EvidenceIdentifier>,
         val speed: GhostSpeed,
-        val huntsAtSanity: Int,
-        val huntIntermission: Long
+        val sanityBounds: HuntSanityBounds,
+        val huntCooldown: HuntCooldown
     )
 
 }
