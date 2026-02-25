@@ -55,6 +55,13 @@ object FontUtils {
         )
     }
 
+    @JvmName("selfReplaceHTMLFontColor")
+    fun String.replaceHTMLFontColor(oldColor: String, newColor: Color): String {
+        return replaceHTMLFontColor(
+            this, oldColor, "#${newColor.toArgb().toHexString().substring(2)}"
+        )
+    }
+
     @Composable
     fun htmlToSpannable(msg: String = "", oldColor: String, newColor: Color): AnnotatedString {
 
