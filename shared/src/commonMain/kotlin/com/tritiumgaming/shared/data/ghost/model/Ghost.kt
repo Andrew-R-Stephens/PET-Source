@@ -1,6 +1,8 @@
 package com.tritiumgaming.shared.data.ghost.model
 
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntCooldown
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.HuntSanityBounds
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
@@ -21,6 +23,6 @@ data class Ghost(
     val normalEvidence: List<EvidenceIdentifier>,
     val strictEvidence: List<EvidenceIdentifier>,
     val speed: GhostSpeed,
-    val huntsAtSanity: Int,
-    val huntIntermission: Long,
+    val sanityBounds: HuntSanityBounds,
+    val huntCooldown: HuntCooldown,
 )

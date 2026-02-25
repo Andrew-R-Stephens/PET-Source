@@ -1,11 +1,15 @@
 package com.tritiumgaming.shared.data.popup.model
 
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+
 data class GhostPopupRecord(
-    val id: com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier,
-    val name: com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle,
-    val icon: com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon,
-    val info: com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription,
-    val strengthData: com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostStrength,
-    val weaknessData: com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness,
-    val huntData: com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo,
+    val id: GhostResources.GhostIdentifier,
+    val name: GhostResources.GhostTitle,
+    val icon: GhostResources.GhostIcon,
+    val info: GhostResources.GhostDescription,
+    val strengthData: GhostResources.GhostStrength,
+    val weaknessData: GhostResources.GhostWeakness,
+    val huntData: GhostResources.GhostHuntInfo,
+    val sanityBounds: GhostResources.HuntSanityBounds,
+    val huntCooldown: GhostResources.HuntCooldown
 )
