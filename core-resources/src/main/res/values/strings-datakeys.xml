@@ -22,6 +22,7 @@
     <string name="preference_isLeftHandSupportEnabled" translatable="false">isLeftHandSupportEnabled</string>
     <string name="preference_huntWarningFlashTimeout" translatable="false">huntWarnFlashTimeMax</string>
     <string name="preference_enableReorderGhostViews" translatable="false">canReorderGhostViews</string>
+    <string name="preference_uiDensity" translatable="false">uiDensity</string>
     <!--<string name="preference_colorSpace" translatable="false">colorSpace</string>
     <string name="preference_fontType" translatable="false">fontType</string>-->
     <string name="preference_savedPalette" translatable="false">savedTheme</string>
