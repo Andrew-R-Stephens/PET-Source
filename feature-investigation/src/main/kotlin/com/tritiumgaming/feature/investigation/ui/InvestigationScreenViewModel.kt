@@ -20,6 +20,8 @@ import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DE
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
+import com.tritiumgaming.feature.investigation.ui.section.configs.DifficultyConfigUiState
+import com.tritiumgaming.feature.investigation.ui.section.configs.MapConfigUiState
 import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
@@ -213,7 +215,7 @@ class InvestigationScreenViewModel private constructor(
     private val _mapConfigUiState: StateFlow<MapConfigUiState> = _mapState.map { state ->
         val name = getSimpleMapNameUseCase(state.index).getOrThrow()
 
-        MapConfigUiState (
+        MapConfigUiState(
             name = name,
             allMaps = maps.map { map -> map.mapName }
         )
@@ -227,7 +229,7 @@ class InvestigationScreenViewModel private constructor(
     private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState.map { state ->
         val name = getDifficultyNameUseCase(state.index).getOrThrow()
 
-        DifficultyConfigUiState (
+        DifficultyConfigUiState(
             name = name,
             allDifficulties = difficulties.map { difficulty -> difficulty.name }
         )

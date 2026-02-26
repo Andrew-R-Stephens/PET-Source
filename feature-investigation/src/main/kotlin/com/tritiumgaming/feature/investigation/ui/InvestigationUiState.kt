@@ -15,17 +15,6 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 
 internal data class InvestigationUiState(
     val toolbarUiState: ToolbarUiState,
-    val journalStateBundle: JournalStateBundle,
-    val timerUiState: TimerUiState,
-    val timerUiActions: TimerUiActions,
-    val phaseUiState: PhaseUiState,
-    val mapUiStateBundle: ConfigStateBundle,
-    val mapUiActionBundle: ConfigActionsBundle,
-    val difficultyUiStateBundle: ConfigStateBundle,
-    val difficultyUiActionBundle: ConfigActionsBundle,
-    val sanityUiState: PlayerSanityUiState,
-    val ghostListUiState: GhostListUiState,
-    val evidenceListUiState: EvidenceListUiState,
     val operationDetailsUiState: OperationDetailsUiState,
     val bpmToolUiState: BpmToolUiState,
     val bpmToolUiActions: BpmToolUiActions,

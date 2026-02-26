@@ -1,8 +1,6 @@
-package com.tritiumgaming.feature.investigation.ui
+package com.tritiumgaming.feature.investigation.ui.section.configs
 
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 
 data class DifficultyConfigUiState(
     internal val name: DifficultyTitle = DifficultyTitle.AMATEUR,

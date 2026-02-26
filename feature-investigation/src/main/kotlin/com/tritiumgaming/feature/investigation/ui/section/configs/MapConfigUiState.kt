@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui
+package com.tritiumgaming.feature.investigation.ui.section.configs
 
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 

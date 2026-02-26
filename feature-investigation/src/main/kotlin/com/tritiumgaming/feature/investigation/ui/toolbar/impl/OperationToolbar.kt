@@ -54,7 +54,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun ColumnScope.OperationToolbar(
+fun OperationToolbar(
     modifier: Modifier = Modifier,
     toolbarUiState: ToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
@@ -188,7 +188,7 @@ fun ColumnScope.OperationToolbar(
 }
 
 @Composable
-fun RowScope.OperationToolbar(
+fun OperationToolRail(
     modifier: Modifier = Modifier,
     toolbarUiState: ToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
