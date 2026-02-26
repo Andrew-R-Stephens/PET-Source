@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.core.resources.R
@@ -52,6 +53,9 @@ class GlobalPreferencesDatastoreDataSource(
         KEY_HUNT_WARN_MAX_TIMEOUT =
             longPreferencesKey(context.resources.getString(R.string.preference_huntWarningFlashTimeout))
 
+        KEY_UI_DENSITY =
+            intPreferencesKey(context.resources.getString(R.string.preference_uiDensity))
+
         KEY_TYPOGRAPHY = stringPreferencesKey(
             context.resources.getString(R.string.preference_savedTypography)
         )
@@ -66,25 +70,11 @@ class GlobalPreferencesDatastoreDataSource(
             preferences[KEY_DISABLE_SCREENSAVER] = disable
         }
     }
-    override fun getDisableScreenSaver(): Boolean {
-        var disabled = false
-        dataStore.data.map { preferences ->
-            preferences[KEY_DISABLE_SCREENSAVER]?.let { disabled = it }
-        }
-        return disabled
-    }
 
     override suspend fun setAllowCellularData(allow: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_ALLOW_CELLULAR_DATA] = allow
         }
-    }
-    override fun getAllowCellularData(): Boolean {
-        var allowed = false
-        dataStore.data.map { preferences ->
-            preferences[KEY_ALLOW_CELLULAR_DATA]?.let { allowed = it }
-        }
-        return allowed
     }
 
     override suspend fun setEnableRTL(enable: Boolean) {
@@ -92,25 +82,11 @@ class GlobalPreferencesDatastoreDataSource(
             preferences[KEY_ENABLE_RTL] = enable
         }
     }
-    override fun getEnableRTL(): Boolean {
-        var enabled = false
-        dataStore.data.map { preferences ->
-            preferences[KEY_ENABLE_RTL]?.let { enabled = it }
-        }
-        return enabled
-    }
 
     override suspend fun setEnableGhostReorder(enable: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_ENABLE_GHOST_REORDER] = enable
         }
-    }
-    override fun getEnableGhostReorder(): Boolean {
-        var enabled = false
-        dataStore.data.map { preferences ->
-            preferences[KEY_ENABLE_GHOST_REORDER]?.let { enabled = it }
-        }
-        return enabled
     }
 
     override suspend fun setAllowIntroduction(allow: Boolean) {
@@ -118,38 +94,17 @@ class GlobalPreferencesDatastoreDataSource(
             preferences[KEY_ALLOW_INTRODUCTION] = allow
         }
     }
-    override fun getAllowIntroduction(): Boolean {
-        var allowed = false
-        dataStore.data.map { preferences ->
-            preferences[KEY_ALLOW_INTRODUCTION]?.let { allowed = it }
-        }
-        return allowed
-    }
 
     override suspend fun setMaxHuntWarnFlashTime(maxTime: Long) {
         dataStore.edit { preferences ->
             preferences[KEY_HUNT_WARN_MAX_TIMEOUT] = maxTime
         }
     }
-    override fun getMaxHuntWarnFlashTime(): Long {
-        var maxTime = 0L
-        dataStore.data.map { preferences ->
-            preferences[KEY_HUNT_WARN_MAX_TIMEOUT]?.let { maxTime = it }
-        }
-        return maxTime
-    }
 
     override suspend fun setAllowHuntWarnAudio(allowed: Boolean) {
         dataStore.edit { preferences ->
             preferences[KEY_ALLOW_HUNT_WARN_AUDIO] = allowed
         }
-    }
-    override fun getAllowHuntWarnAudio(): Boolean {
-        var allowed = false
-        dataStore.data.map { preferences ->
-            preferences[KEY_ALLOW_HUNT_WARN_AUDIO]?.let { allowed = it }
-        }
-        return allowed
     }
 
     override suspend fun savePalette(uuid: String) {
@@ -158,26 +113,10 @@ class GlobalPreferencesDatastoreDataSource(
         }
     }
 
-    override fun getPalette(): String {
-        var palette = ""
-        dataStore.data.map { preferences ->
-            preferences[KEY_PALETTE]?.let { palette = it }
-        }
-        return palette
-    }
-
     override suspend fun saveTypography(uuid: String) {
         dataStore.edit { preferences ->
             preferences[KEY_TYPOGRAPHY] = uuid
         }
-    }
-
-    override fun getTypography(): String {
-        var typography = ""
-        dataStore.data.map { preferences ->
-            preferences[KEY_TYPOGRAPHY]?.let { typography = it }
-        }
-        return typography
     }
 
     override fun initDatastoreFlow(): Flow<GlobalPreferences> = flow
@@ -194,6 +133,7 @@ class GlobalPreferencesDatastoreDataSource(
             allowIntroduction = preferences[KEY_ALLOW_INTRODUCTION] != false,
             enableRTL = preferences[KEY_ENABLE_RTL] == true,
             maxHuntWarnFlashTime = preferences[KEY_HUNT_WARN_MAX_TIMEOUT] ?: 300,
+            uiDensity = preferences[KEY_UI_DENSITY] ?: 0,
             typographyUuid = preferences[KEY_TYPOGRAPHY] ?: "",
             paletteUuid = preferences[KEY_PALETTE] ?: ""
         )
@@ -209,6 +149,8 @@ class GlobalPreferencesDatastoreDataSource(
         lateinit var KEY_ENABLE_RTL: Preferences.Key<Boolean>
 
         lateinit var KEY_HUNT_WARN_MAX_TIMEOUT: Preferences.Key<Long>
+
+        lateinit var KEY_UI_DENSITY: Preferences.Key<Int>
 
         lateinit var KEY_PALETTE: Preferences.Key<String>
         lateinit var KEY_TYPOGRAPHY: Preferences.Key<String>
