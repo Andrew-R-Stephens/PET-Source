@@ -48,10 +48,8 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccount
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
 import com.tritiumgaming.shared.data.language.repository.LanguageRepository
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
-import com.tritiumgaming.shared.data.language.usecase.GetCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
-import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.market.bundle.repository.MarketBundleRemoteRepository
@@ -73,10 +71,6 @@ import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatasto
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastReadDateUseCase
 import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
-import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTimeUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
@@ -176,18 +170,6 @@ class CoreContainer(
         repository = globalPreferencesRepository
     )
     val setMaxHuntWarnFlashTimeUseCase = SetMaxHuntWarnFlashTimeUseCase(
-        repository = globalPreferencesRepository
-    )
-    val getEnableGhostReorderUseCase = GetEnableGhostReorderUseCase(
-        repository = globalPreferencesRepository
-    )
-    val getEnableRTLUseCase = GetEnableRTLUseCase(
-        repository = globalPreferencesRepository
-    )
-    val getMaxHuntWarnFlashTimeUseCase = GetMaxHuntWarnFlashTimeUseCase(
-        repository = globalPreferencesRepository
-    )
-    val getAllowHuntWarnAudioUseCase = GetAllowHuntWarnAudioUseCase(
         repository = globalPreferencesRepository
     )
     val saveCurrentTypographyUseCase = SaveCurrentTypographyUseCase(
@@ -395,19 +377,10 @@ class CoreContainer(
     val setDefaultLanguageUseCase = SetDefaultLanguageUseCase(
         repository = languageRepository
     )
-    /*val setupLanguageUseCase = SetupLanguageUseCase(
-        repository = languageRepository
-    )*/
     val initFlowLanguageUseCase = InitFlowLanguageUseCase(
         repository = languageRepository
     )
     val saveCurrentLanguageUseCase = SaveCurrentLanguageUseCase(
-        repository = languageRepository
-    )
-    val getCurrentLanguageUseCase = GetCurrentLanguageUseCase(
-        repository = languageRepository
-    )
-    val loadCurrentLanguageUseCase = LoadCurrentLanguageUseCase(
         repository = languageRepository
     )
 
