@@ -34,15 +34,6 @@ class LanguageDatastoreDataSource(
         }
     }
 
-    override fun getCurrentLanguageCode(): String {
-        var currentLanguageCode = DEFAULT_LANGUAGE
-        dataStore.data.map { preferences ->
-            preferences[KEY_CURRENT_LANGUAGE_CODE]?.let { currentLanguageCode = it }
-        }
-
-        return currentLanguageCode
-    }
-
     override fun initDatastoreFlow(): Flow<LanguageDatastore.LanguagePreferences> = flow
 
     override suspend fun fetchDatastoreInitialPreferences() =

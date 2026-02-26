@@ -26,10 +26,5 @@ class LanguageRepositoryImpl(
 
     override suspend fun saveCurrentLanguageCode(languageCode: String) =
         dataStoreSource.saveCurrentLanguageCode(languageCode)
-    override fun getCurrentLanguageCode(): String = dataStoreSource.getCurrentLanguageCode()
-    override suspend fun loadCurrentLanguageCode() {
-        dataStoreSource.saveCurrentLanguageCode(
-            dataStoreSource.getCurrentLanguageCode())
-    }
 
 }
