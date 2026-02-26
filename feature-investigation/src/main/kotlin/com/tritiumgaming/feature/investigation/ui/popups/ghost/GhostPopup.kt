@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -196,8 +197,7 @@ private fun GhostPopupContent(
                     )
                     Text(
                         modifier = Modifier
-                            .wrapContentHeight()
-                            .fillMaxWidth()
+                            .wrapContentSize()
                             .padding(horizontal = 4.dp, vertical = 8.dp),
                         text = stringResource(R.string.popup_ghost_info).uppercase(),
                         style = LocalTypography.current.quaternary.bold.copy(
@@ -251,8 +251,7 @@ private fun GhostPopupContent(
                     )
                     Text(
                         modifier = Modifier
-                            .wrapContentHeight()
-                            .fillMaxWidth()
+                            .wrapContentSize()
                             .padding(horizontal = 4.dp, vertical = 8.dp),
                         text = stringResource(R.string.popup_ghost_strength).uppercase(),
                         style = LocalTypography.current.quaternary.bold.copy(
@@ -306,8 +305,7 @@ private fun GhostPopupContent(
                     )
                     Text(
                         modifier = Modifier
-                            .wrapContentHeight()
-                            .fillMaxWidth()
+                            .wrapContentSize()
                             .padding(horizontal = 4.dp, vertical = 8.dp),
                         text = stringResource(R.string.popup_ghost_weakness).uppercase(),
                         style = LocalTypography.current.quaternary.bold.copy(
@@ -366,8 +364,7 @@ private fun GhostPopupContent(
                     )
                     Text(
                         modifier = Modifier
-                            .wrapContentHeight()
-                            .wrapContentWidth()
+                            .wrapContentSize()
                             .padding(horizontal = 4.dp, vertical = 8.dp),
                         text = stringResource(R.string.popup_ghost_huntdata).uppercase(),
                         style = LocalTypography.current.quaternary.bold.copy(

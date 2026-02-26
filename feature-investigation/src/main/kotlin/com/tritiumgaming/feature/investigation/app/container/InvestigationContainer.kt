@@ -24,7 +24,6 @@ import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSo
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
-import com.tritiumgaming.shared.data.codex.model.achievements.CodexAchievementsGroupItem
 import com.tritiumgaming.shared.data.codex.repository.CodexRepository
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
@@ -68,24 +67,15 @@ import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 
 class InvestigationContainer(
     applicationContext: Context,
-    val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase,
-    val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase,
-    val getEnableRTLUseCase: GetEnableRTLUseCase,
-    val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase,
+    private val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase
 ) {
 
     internal val preferencesUseCaseBundle = PreferencesUseCaseBundle(
-        getAllowHuntWarnAudioUseCase = getAllowHuntWarnAudioUseCase,
-        getEnableGhostReorderUseCase = getEnableGhostReorderUseCase,
-        getEnableRTLUseCase = getEnableRTLUseCase,
-        getMaxHuntWarnFlashTimeUseCase = getMaxHuntWarnFlashTimeUseCase,
+        initFlowUserPreferencesUseCase = initFlowUserPreferencesUseCase
     )
 
     // Ghost
@@ -371,8 +361,5 @@ internal data class CodexUseCaseBundle(
 )
 
 internal data class PreferencesUseCaseBundle(
-    val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase,
-    val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase,
-    val getEnableRTLUseCase: GetEnableRTLUseCase,
-    val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase,
+    val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase
 )

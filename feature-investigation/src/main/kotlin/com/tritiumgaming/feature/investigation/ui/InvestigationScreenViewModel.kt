@@ -70,10 +70,7 @@ import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexU
 import com.tritiumgaming.shared.data.phase.model.Phase
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
-import com.tritiumgaming.shared.data.preferences.usecase.GetAllowHuntWarnAudioUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetEnableGhostReorderUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetEnableRTLUseCase
-import com.tritiumgaming.shared.data.preferences.usecase.GetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
@@ -130,11 +127,31 @@ class InvestigationScreenViewModel private constructor(
     private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase,
     private val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase = codexUseCaseBundle.getEquipmentTypeByEvidenceTypeUseCase,
     preferencesUseCaseBundle: PreferencesUseCaseBundle,
-    private val getAllowHuntWarnAudioUseCase: GetAllowHuntWarnAudioUseCase = preferencesUseCaseBundle.getAllowHuntWarnAudioUseCase,
-    private val getEnableGhostReorderUseCase: GetEnableGhostReorderUseCase = preferencesUseCaseBundle.getEnableGhostReorderUseCase,
-    private val getEnableRTLUseCase: GetEnableRTLUseCase = preferencesUseCaseBundle.getEnableRTLUseCase,
-    private val getMaxHuntWarnFlashTimeUseCase: GetMaxHuntWarnFlashTimeUseCase = preferencesUseCaseBundle.getMaxHuntWarnFlashTimeUseCase,
+    initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase = preferencesUseCaseBundle.initFlowUserPreferencesUseCase,
 ) : ViewModel() {
+
+    data class InvestigationScreenUserPreferences(
+        val enableRTL: Boolean = false,
+        val enableGhostReorder: Boolean = false,
+        val maxHuntWarnFlashTime: Long = 0L,
+        val allowHuntWarnAudio: Boolean = false
+    )
+
+    private val _preferences: StateFlow<InvestigationScreenUserPreferences> =
+        initFlowUserPreferencesUseCase()
+        .map {
+            InvestigationScreenUserPreferences(
+                enableRTL = it.enableRTL,
+                enableGhostReorder = it.enableGhostReorder,
+                maxHuntWarnFlashTime = it.maxHuntWarnFlashTime,
+                allowHuntWarnAudio = it.allowHuntWarnAudio
+            )
+        }.stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = InvestigationScreenUserPreferences()
+        )
+    val preferences = _preferences
 
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
@@ -166,14 +183,6 @@ class InvestigationScreenViewModel private constructor(
      */
     private var sanityJob: Job? = null
     private var timerJob: Job? = null
-
-    /*
-     * Settings
-     */
-    internal val rTLPreference = getEnableRTLUseCase()
-    private val ghostReorderPreference = getEnableGhostReorderUseCase()
-    internal val huntWarnDurationPreference = getMaxHuntWarnFlashTimeUseCase()
-    internal val allowHuntWarnAudioPreference = getAllowHuntWarnAudioUseCase()
 
     /*
      * UI STATES
@@ -339,11 +348,18 @@ class InvestigationScreenViewModel private constructor(
 
     /** Order of Ghost IDs **/
     private val _sortedGhosts: StateFlow<List<GhostResources.GhostIdentifier>> =
-        ghostStates.map { ghostScores ->
-            ghostScores
-                .sortedByDescending { it.bpmIsValid }
-                .sortedByDescending { it.score }
-                .map { it.ghostEvidence.ghost.id }
+        combine(
+            ghostStates, preferences
+        ) { ghostScores, preferences ->
+            val scores = if(!preferences.enableGhostReorder) {
+                ghostScores
+            } else {
+                ghostScores
+                    .sortedByDescending { it.bpmIsValid }
+                    .sortedByDescending { it.score }
+            }
+
+            scores.map { it.ghostEvidence.ghost.id }
         }.stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),

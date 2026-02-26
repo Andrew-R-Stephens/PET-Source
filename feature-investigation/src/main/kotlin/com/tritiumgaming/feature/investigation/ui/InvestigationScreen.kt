@@ -100,6 +100,8 @@ private fun InvestigationContent(
     investigationViewModel: InvestigationScreenViewModel
 ) {
 
+    val preferencesState by investigationViewModel.preferences.collectAsStateWithLifecycle()
+
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
 
     val toolbarUiState by investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
@@ -121,7 +123,7 @@ private fun InvestigationContent(
         .bpmToolUiState.collectAsStateWithLifecycle()
 
     val journalUiState = JournalUiState(
-        rtlPreference = investigationViewModel.rTLPreference
+        rtlPreference = preferencesState.enableRTL
     )
 
     val ghostListUiState = GhostListUiState(

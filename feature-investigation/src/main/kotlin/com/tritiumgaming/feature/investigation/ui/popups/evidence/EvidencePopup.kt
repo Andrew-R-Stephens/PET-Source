@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -173,18 +174,38 @@ private fun EvidencePopupContent(
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Top
             ) {
-                Text(
+                Row(
                     modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth()
-                        .padding(horizontal = 4.dp, vertical = 8.dp),
-                    text = stringResource(R.string.evidence_section_overview).uppercase(),
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        textAlign = TextAlign.Center
-                    ),
-                    color = LocalPalette.current.codexFamily.onSurface,
-                    fontSize = 24.sp
-                )
+                        .padding(horizontal = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                ) {
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+
+                    Text(
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .padding(horizontal = 4.dp, vertical = 8.dp),
+                        text = stringResource(R.string.evidence_section_overview).uppercase(),
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Center
+                        ),
+                        color = LocalPalette.current.codexFamily.onSurface,
+                        fontSize = 24.sp
+                    )
+
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .weight(1f),
+                        thickness = 1.dp,
+                        color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                    )
+                }
 
                 Text(
                     modifier = Modifier
@@ -299,18 +320,38 @@ private fun EvidencePopupContent(
                             .wrapContentHeight()
                     ) {
 
-                        Text(
+                        Row(
                             modifier = Modifier
-                                .wrapContentHeight()
-                                .fillMaxWidth()
-                                .padding(horizontal = 4.dp, vertical = 8.dp),
-                            text = stringResource(rememberEquipmentTier.label).uppercase(),
-                            style = LocalTypography.current.quaternary.bold.copy(
-                                textAlign = TextAlign.Center
-                            ),
-                            color = LocalPalette.current.codexFamily.onSurface,
-                            fontSize = 24.sp
-                        )
+                                .padding(horizontal = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                        ) {
+                            HorizontalDivider(
+                                modifier = Modifier
+                                    .weight(1f),
+                                thickness = 1.dp,
+                                color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                            )
+
+                            Text(
+                                modifier = Modifier
+                                    .wrapContentSize()
+                                    .padding(horizontal = 4.dp, vertical = 8.dp),
+                                text = stringResource(rememberEquipmentTier.label).uppercase(),
+                                style = LocalTypography.current.quaternary.bold.copy(
+                                    textAlign = TextAlign.Center
+                                ),
+                                color = LocalPalette.current.codexFamily.onSurface,
+                                fontSize = 24.sp
+                            )
+
+                            HorizontalDivider(
+                                modifier = Modifier
+                                    .weight(1f),
+                                thickness = 1.dp,
+                                color = LocalPalette.current.codexFamily.onSurface.copy(alpha = .5f)
+                            )
+                        }
 
                         Text(
                             modifier = Modifier
