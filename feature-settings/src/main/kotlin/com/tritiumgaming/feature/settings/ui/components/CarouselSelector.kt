@@ -31,24 +31,22 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.widgets.other.PETImageButton
 import com.tritiumgaming.core.ui.widgets.other.PETImageButtonType
-
+import com.tritiumgaming.feature.settings.ui.components.CarouselUiActions
 
 @Composable
 fun CarouselComposable(
+    modifier: Modifier = Modifier,
     @StringRes title: Int = 0,
     state: Any,
     label: String = "",
-    painterResource: Painter = painterResource(R.drawable.ic_font_family),
+    iconComponent: @Composable (Modifier) -> Unit = {},
     containerColor: Color = Color.White,
-    imageTint: Color? = null,
     primaryTextColor: Color = Color.White,
     secondaryTextColor: Color = Color.White,
-    leftOnClick: () -> Unit = {},
-    rightOnClick: () -> Unit = {}
+    actions: CarouselUiActions = CarouselUiActions()
 ) {
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
             .wrapContentHeight(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
@@ -63,16 +61,11 @@ fun CarouselComposable(
                 .padding(4.dp)
         ) {
 
-            Image(
-                modifier = Modifier
+            iconComponent(
+                Modifier
                     .size(48.dp)
                     .padding(4.dp)
-                    .align(Alignment.CenterVertically),
-                alignment = Alignment.Center,
-                painter = painterResource,
-                colorFilter = imageTint?.let {ColorFilter.tint(it)},
-                contentDescription = "",
-                contentScale = ContentScale.Inside
+                    .align(Alignment.CenterVertically)
             )
 
             Column(
@@ -104,7 +97,7 @@ fun CarouselComposable(
 
                     PETImageButton(
                         modifier = Modifier
-                            .clickable(onClick = { leftOnClick() }),
+                            .clickable(onClick = { actions.onPrevious() }),
                         type = PETImageButtonType.BACK,
                         tint = LocalPalette.current.onSurface
                     )
@@ -126,7 +119,7 @@ fun CarouselComposable(
 
                     PETImageButton(
                         modifier = Modifier
-                            .clickable(onClick = { rightOnClick() }),
+                            .clickable(onClick = { actions.onNext() }),
                         type = PETImageButtonType.FORWARD,
                         tint = LocalPalette.current.onSurface
                     )

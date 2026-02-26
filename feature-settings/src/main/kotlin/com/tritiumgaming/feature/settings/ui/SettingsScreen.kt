@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.settings.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -20,12 +21,17 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -48,7 +54,8 @@ import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderComposable
 import com.tritiumgaming.core.ui.widgets.menus.NavigationHeaderSideButton
 import com.tritiumgaming.feature.settings.ui.components.CarouselComposable
 import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSeekbar
-import com.tritiumgaming.feature.settings.ui.components.LabeledSwitch
+import com.tritiumgaming.core.ui.widgets.switch.LabeledSwitch
+import com.tritiumgaming.feature.settings.ui.components.CarouselUiActions
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
 import org.jetbrains.annotations.TestOnly
 
@@ -68,254 +75,209 @@ fun SettingsScreen(
     val settingsScreenUiState by
         settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
 
-    val settingsScreenUiActions = SettingsScreenUiActions(
-        onSetScreenSaverPreference = { state ->
-            settingsViewModel.setScreenSaverPreference(state)
-        },
-        onSetNetworkPreference = { state ->
-            settingsViewModel.setNetworkPreference(state)
-        },
-        onSetRTLPreference = { state ->
-            settingsViewModel.setRTLPreference(state)
-        },
-        onSetHuntWarningAudioPreference = { state ->
-            settingsViewModel.setHuntWarningAudioPreference(state)
-        },
-        onSetGhostReorderPreference = { state ->
-            settingsViewModel.setGhostReorderPreference(state)
-        },
-        onSetHuntTimeoutPreference = { millis ->
-            settingsViewModel.setHuntWarnDurationPreference(millis)
-        },
-        paletteCarouselUiActions = PaletteCarouselUiActions(
-            onPrevious = {
-                settingsViewModel.setNextAvailablePalette(IncrementDirection.BACKWARD) },
-            onNext = {
-                settingsViewModel.setNextAvailablePalette(IncrementDirection.FORWARD) },
-        ),
-        typographyCarouselUiActions = TypographyCarouselUiActions(
-            onPrevious = {
-                settingsViewModel.setNextAvailableTypography(IncrementDirection.BACKWARD) },
-            onNext = {
-                settingsViewModel.setNextAvailableTypography(IncrementDirection.FORWARD) },
-        )
-    )
+    // TODO val privacyPolicyUiState by settingsViewModel.privacyPolicyUiState.collectAsStateWithLifecycle()
 
-    Column(
-        modifier = Modifier
-            .fillMaxHeight(),
-        verticalArrangement = Arrangement.SpaceBetween
-    ) {
-
-        NavigationHeader(
-            onLeftClick = { navController.popBackStack() }
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
-
-        when(deviceConfiguration) {
-            DeviceConfiguration.MOBILE_PORTRAIT -> {
-                SettingsContentPortrait(
-                    settingsScreenUiState = settingsScreenUiState,
-                    settingsScreenUiActions = settingsScreenUiActions
+    val navigationHeader: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        NavigationHeaderComposable(
+            modifier = modifier,
+            leftContent = { outerModifier ->
+                NavigationHeaderSideButton(
+                    modifier = outerModifier,
+                    iconContent = { iconModifier ->
+                        Arrow60LeftIcon(
+                            modifier = iconModifier,
+                            colors = IconVectorColors.defaults(
+                                fillColor = LocalPalette.current.onSurface
+                            )
+                        )
+                    }
+                ) { navController.popBackStack() }
+            },
+            rightContent = { outerModifier ->
+                NavigationHeaderSideButton(
+                    modifier = outerModifier,
+                )
+            },
+            centerContent = { outerModifier ->
+                NavigationHeaderCenter(
+                    modifier = outerModifier,
+                    textContent = { modifier ->
+                        BasicText(
+                            modifier = modifier,
+                            text = stringResource(R.string.settings_title),
+                            style = LocalTypography.current.primary.regular.copy(
+                                color = LocalPalette.current.primary,
+                                textAlign = TextAlign.Center
+                            ),
+                            maxLines = 1,
+                            autoSize = TextAutoSize.StepBased(
+                                minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
+                        )
+                    }
                 )
             }
-            DeviceConfiguration.MOBILE_LANDSCAPE,
-            DeviceConfiguration.TABLET_PORTRAIT,
-            DeviceConfiguration.TABLET_LANDSCAPE,
-            DeviceConfiguration.DESKTOP -> {
-                SettingsContentLandscape(
-                    settingsScreenUiState = settingsScreenUiState,
-                    settingsScreenUiActions = settingsScreenUiActions
-                )
-            }
-        }
+        )
 
     }
-}
 
-@Composable
-private fun NavigationHeader(
-    onLeftClick: () -> Unit = {},
-    onRightClick: () -> Unit = {}
-) {
-    NavigationHeaderComposable(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(max = 64.dp),
-        leftContent = { outerModifier ->
-            NavigationHeaderSideButton(
-                modifier = outerModifier,
-                iconContent = { iconModifier ->
-                    Arrow60LeftIcon(
-                        modifier = iconModifier,
-                        colors = IconVectorColors.defaults(
-                            fillColor = LocalPalette.current.onSurface
-                        )
-                    )
-                }
-            ) { onLeftClick() }
-        },
-        rightContent = { outerModifier ->
-            NavigationHeaderSideButton(
-                modifier = outerModifier,
-            )
-        },
-        centerContent = { outerModifier ->
-            NavigationHeaderCenter(
-                modifier = outerModifier,
-                textContent = { modifier ->
-                    BasicText(
-                        modifier = modifier,
-                        text = stringResource(R.string.settings_title),
-                        style = LocalTypography.current.primary.regular.copy(
-                            color = LocalPalette.current.primary,
-                            textAlign = TextAlign.Center
-                        ),
-                        maxLines = 1,
-                        autoSize = TextAutoSize.StepBased(
-                            minFontSize = 2.sp, maxFontSize = 36.sp, stepSize = 2.sp)
-                    )
-                }
-            )
-        }
+    val labeledSwitchColors = SwitchDefaults.colors(
+        uncheckedTrackColor = LocalPalette.current.surfaceContainerHighest,
+        uncheckedBorderColor = LocalPalette.current.outline,
+        uncheckedThumbColor = LocalPalette.current.outline,
+        checkedTrackColor = LocalPalette.current.primary,
+        checkedBorderColor = Color.Transparent,
+        checkedThumbColor = LocalPalette.current.onPrimary,
     )
-}
 
-@Composable
-private fun ColumnScope.SettingsContentPortrait(
-    modifier: Modifier = Modifier,
-    settingsScreenUiState: SettingsScreenUiState,
-    settingsScreenUiActions: SettingsScreenUiActions
-) {
-    Column(
-        modifier = modifier
-            .weight(1f)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-    ) {
+    val screenPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        LabeledSwitch(
+            modifier = modifier
+                .fillMaxWidth(),
+            label = stringResource(R.string.settings_screenalwayson),
+            state = settingsScreenUiState.screensaverPreference,
+            switchColors = labeledSwitchColors,
+            textColor = LocalPalette.current.onSurface,
+            onChange = { state -> settingsViewModel.setScreenSaverPreference(state) }
+        )
+    }
 
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(4.dp),
-            text = stringResource(R.string.settings_generalsettings),
-            color = LocalPalette.current.secondary,
-            style = LocalTypography.current.primary.bold,
-            textAlign = TextAlign.Start,
-            fontSize = 18.sp,
-            maxLines = 1,
+    val dataUsagePreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        LabeledSwitch(
+            modifier = modifier
+                .fillMaxWidth(),
+            label = stringResource(R.string.settings_networktitle),
+            state = settingsScreenUiState.networkPreference,
+            switchColors = labeledSwitchColors,
+            textColor = LocalPalette.current.onSurface,
+            onChange = { state -> settingsViewModel.setNetworkPreference(state) }
+        )
+    }
+
+    val leftHandedPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        LabeledSwitch(
+            modifier = modifier
+                .fillMaxWidth(),
+            label = stringResource(R.string.settings_enableLeftHandSupport),
+            state = settingsScreenUiState.rTLPreference,
+            switchColors = labeledSwitchColors,
+            textColor = LocalPalette.current.onSurface,
+            onChange = { state -> settingsViewModel.setRTLPreference(state) }
+        )
+    }
+
+    val audioWarningPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        LabeledSwitch(
+            modifier = modifier
+                .fillMaxWidth(),
+            label = stringResource(R.string.settings_enablehuntaudioqueue),
+            state = settingsScreenUiState.huntWarningAudioPreference,
+            switchColors = labeledSwitchColors,
+            textColor = LocalPalette.current.onSurface,
+            onChange = { state -> settingsViewModel.setHuntWarningAudioPreference(state) }
+        )
+    }
+
+    val ghostReorderPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        LabeledSwitch(
+            modifier = modifier
+                .fillMaxWidth(),
+            label = stringResource(R.string.settings_enableGhostReorder),
+            switchColors = labeledSwitchColors,
+            textColor = LocalPalette.current.onSurface,
+            state = settingsScreenUiState.ghostReorderPreference,
+            onChange = { state -> settingsViewModel.setGhostReorderPreference(state) }
         )
 
-        Column(
-            modifier = Modifier,
-        ) {
+    }
 
-            ScreenPreferenceSwitch(
-                state = settingsScreenUiState.screensaverPreference
-            ) { state ->
-                settingsScreenUiActions.onSetScreenSaverPreference(state)
-            }
+    val huntWarningTimeoutPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        HuntTimeoutPreferenceSeekbar(
+            modifier = modifier
+                .fillMaxWidth(),
+            state = settingsScreenUiState.huntWarnDurationPreference,
+            containerColor = LocalPalette.current.surfaceContainer,
+            textColor = LocalPalette.current.onSurface,
+            inactiveTrackColor = LocalPalette.current.onSurface,
+            activeTrackColor = LocalPalette.current.primary,
+            thumbOutlineColor = LocalPalette.current.primary,
+            thumbInnerColor = LocalPalette.current.onSurface,
+            onValueChange = { millis ->
+                settingsViewModel.setHuntWarnDurationPreference(millis) }
+        )
+    }
 
-            DataUsageSwitch(
-                state = settingsScreenUiState.networkPreference
-            ) { state ->
-                settingsScreenUiActions.onSetNetworkPreference(state)
-            }
-        }
+    val palettePreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        val state = settingsScreenUiState.paletteUiState
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        ) {
-
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(4.dp),
-                text = stringResource(R.string.settings_extrasettings),
-                color = LocalPalette.current.secondary,
-                style = LocalTypography.current.primary.bold,
-                textAlign = TextAlign.Start,
-                fontSize = 18.sp,
-                maxLines = 1,
-            )
-
-            Column(
-                modifier = Modifier,
-            ) {
-                LeftHandSupportSwitch(
-                    state = settingsScreenUiState.rTLPreference
-                ) { state ->
-                    settingsScreenUiActions.onSetRTLPreference(state)
-                }
-
-                WarningAudioSwitch(
-                    state = settingsScreenUiState.huntWarningAudioPreference
-                ) { state ->
-                    settingsScreenUiActions.onSetHuntWarningAudioPreference(state)
-                }
-
-                JournalReorderSwitch(
-                    state = settingsScreenUiState.ghostReorderPreference
-                ) { state ->
-                    settingsScreenUiActions.onSetGhostReorderPreference(state)
-                }
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Column(
-                modifier = Modifier,
-            ) {
-                HuntTimeoutSlider(
-                    settingsScreenUiState = settingsScreenUiState,
-                    onSetHuntTimeoutPreference = {
-                        settingsScreenUiActions.onSetHuntTimeoutPreference(it) }
+        CarouselComposable(
+            modifier = modifier
+                .fillMaxWidth(),
+            title = R.string.settings_colortheme_title,
+            state = state.uuid,
+            label = stringResource(state.palette.extrasFamily.title),
+            iconComponent = { modifier ->
+                Image(
+                    modifier = modifier,
+                    alignment = Alignment.Center,
+                    painter = painterResource(LocalPalette.current.extrasFamily.badge),
+                    colorFilter = null,
+                    contentDescription = "",
+                    contentScale = ContentScale.Inside
                 )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Column(
-            modifier = Modifier,
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-        ) {
-
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(4.dp),
-                text = stringResource(R.string.settings_appearancesettings),
-                color = LocalPalette.current.secondary,
-                style = LocalTypography.current.primary.bold,
-                textAlign = TextAlign.Start,
-                fontSize = 18.sp,
-                maxLines = 1,
+            },
+            containerColor = LocalPalette.current.surfaceContainer,
+            primaryTextColor = LocalPalette.current.onSurface,
+            secondaryTextColor = LocalPalette.current.onSurfaceVariant,
+            actions = CarouselUiActions(
+                onPrevious = {
+                    settingsViewModel.setNextAvailablePalette(IncrementDirection.BACKWARD)
+                },
+                onNext = {
+                    settingsViewModel.setNextAvailablePalette(IncrementDirection.FORWARD)
+                }
             )
+        )
+    }
 
-            PalettePreferenceCarousel(
-                settingsScreenUiState = settingsScreenUiState,
-                paletteCarouselUiActions = settingsScreenUiActions.paletteCarouselUiActions
+    val typographyPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        val state = settingsScreenUiState.typographyUiState
+
+        CarouselComposable(
+            modifier = modifier
+                .fillMaxWidth(),
+            title = R.string.settings_fontstylesettings,
+            state = state.uuid,
+            label = stringResource(state.typography.extrasFamily.title),
+            iconComponent = { modifier ->
+                Image(
+                    modifier = modifier,
+                    alignment = Alignment.Center,
+                    painter = painterResource(R.drawable.ic_font_family),
+                    colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                    contentDescription = "",
+                    contentScale = ContentScale.Inside
+                )
+            },
+            containerColor = LocalPalette.current.surfaceContainer,
+            primaryTextColor = LocalPalette.current.onSurface,
+            secondaryTextColor = LocalPalette.current.onSurfaceVariant,
+            actions = CarouselUiActions(
+                onPrevious = {
+                    settingsViewModel.setNextAvailableTypography(IncrementDirection.BACKWARD)
+                },
+                onNext = {
+                    settingsViewModel.setNextAvailableTypography(IncrementDirection.FORWARD)
+                }
             )
+        )
+    }
 
-            TypographyPreferenceCarousel(
-                settingsScreenUiState = settingsScreenUiState,
-                typographyCarouselUiActions = settingsScreenUiActions.typographyCarouselUiActions
-            )
+    val privacyPolicyPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
 
-        }
-
+        //TODO
         /*if(permissionsUiState.value.isPrivacyOptionsRequired) {
+
+            val activity = LocalContext.current.applicationContext
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -338,7 +300,7 @@ private fun ColumnScope.SettingsContentPortrait(
                     maxLines = 1,
                 )
 
-                EditButton {
+                GDPRButton {
                     activity?.let {
                         permissionsViewModel.showPrivacyOptionsForm(activity = it) {  }
                     }
@@ -346,6 +308,144 @@ private fun ColumnScope.SettingsContentPortrait(
 
             }
         }*/
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+
+        navigationHeader(Modifier
+            .fillMaxWidth()
+            .heightIn(max = 64.dp)
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
+        when(deviceConfiguration) {
+            DeviceConfiguration.MOBILE_PORTRAIT -> {
+                SettingsContentPortrait(
+                    modifier = Modifier,
+                    screenPreferenceComponent = screenPreferenceComponent,
+                    dataUsagePreferenceComponent = dataUsagePreferenceComponent,
+                    leftHandedPreferenceComponent = leftHandedPreferenceComponent,
+                    audioWarningPreferenceComponent = audioWarningPreferenceComponent,
+                    ghostReorderPreferenceComponent = ghostReorderPreferenceComponent,
+                    huntWarningTimeoutPreferenceComponent = huntWarningTimeoutPreferenceComponent,
+                    palettePreferenceComponent = palettePreferenceComponent,
+                    typographyPreferenceComponent = typographyPreferenceComponent,
+                    privacyPolicyPreferenceComponent = privacyPolicyPreferenceComponent
+                )
+            }
+            DeviceConfiguration.MOBILE_LANDSCAPE,
+            DeviceConfiguration.TABLET_PORTRAIT,
+            DeviceConfiguration.TABLET_LANDSCAPE,
+            DeviceConfiguration.DESKTOP -> {
+                SettingsContentLandscape(
+                    modifier = Modifier,
+                    screenPreferenceComponent = screenPreferenceComponent,
+                    dataUsagePreferenceComponent = dataUsagePreferenceComponent,
+                    leftHandedPreferenceComponent = leftHandedPreferenceComponent,
+                    audioWarningPreferenceComponent = audioWarningPreferenceComponent,
+                    ghostReorderPreferenceComponent = ghostReorderPreferenceComponent,
+                    huntWarningTimeoutPreferenceComponent = huntWarningTimeoutPreferenceComponent,
+                    palettePreferenceComponent = palettePreferenceComponent,
+                    typographyPreferenceComponent = typographyPreferenceComponent,
+                    privacyPolicyPreferenceComponent = privacyPolicyPreferenceComponent
+                )
+            }
+        }
+
+    }
+}
+
+@Composable
+private fun ColumnScope.SettingsContentPortrait(
+    modifier: Modifier = Modifier,
+    screenPreferenceComponent: @Composable (Modifier) -> Unit,
+    dataUsagePreferenceComponent: @Composable (Modifier) -> Unit,
+    leftHandedPreferenceComponent: @Composable (Modifier) -> Unit,
+    audioWarningPreferenceComponent: @Composable (Modifier) -> Unit,
+    ghostReorderPreferenceComponent: @Composable (Modifier) -> Unit,
+    huntWarningTimeoutPreferenceComponent: @Composable (Modifier) -> Unit,
+    palettePreferenceComponent: @Composable (Modifier) -> Unit,
+    typographyPreferenceComponent: @Composable (Modifier) -> Unit,
+    privacyPolicyPreferenceComponent: @Composable (Modifier) -> Unit,
+) {
+    Column(
+        modifier = modifier
+            .weight(1f)
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+    ) {
+
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(4.dp),
+            text = stringResource(R.string.settings_generalsettings),
+            color = LocalPalette.current.secondary,
+            style = LocalTypography.current.primary.bold,
+            textAlign = TextAlign.Start,
+            fontSize = 18.sp,
+            maxLines = 1,
+        )
+
+        screenPreferenceComponent(Modifier)
+
+        dataUsagePreferenceComponent(Modifier)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(4.dp),
+            text = stringResource(R.string.settings_extrasettings),
+            color = LocalPalette.current.secondary,
+            style = LocalTypography.current.primary.bold,
+            textAlign = TextAlign.Start,
+            fontSize = 18.sp,
+            maxLines = 1,
+        )
+
+        leftHandedPreferenceComponent(Modifier)
+
+        audioWarningPreferenceComponent(Modifier)
+
+        ghostReorderPreferenceComponent(Modifier)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        huntWarningTimeoutPreferenceComponent(Modifier)
+
+        privacyPolicyPreferenceComponent(Modifier)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(4.dp),
+            text = stringResource(R.string.settings_appearancesettings),
+            color = LocalPalette.current.secondary,
+            style = LocalTypography.current.primary.bold,
+            textAlign = TextAlign.Start,
+            fontSize = 18.sp,
+            maxLines = 1,
+        )
+
+        palettePreferenceComponent(Modifier)
+
+        typographyPreferenceComponent(Modifier)
 
     }
 }
@@ -353,8 +453,15 @@ private fun ColumnScope.SettingsContentPortrait(
 @Composable
 private fun SettingsContentLandscape(
     modifier: Modifier = Modifier,
-    settingsScreenUiState: SettingsScreenUiState,
-    settingsScreenUiActions: SettingsScreenUiActions
+    screenPreferenceComponent: @Composable (Modifier) -> Unit,
+    dataUsagePreferenceComponent: @Composable (Modifier) -> Unit,
+    leftHandedPreferenceComponent: @Composable (Modifier) -> Unit,
+    audioWarningPreferenceComponent: @Composable (Modifier) -> Unit,
+    ghostReorderPreferenceComponent: @Composable (Modifier) -> Unit,
+    huntWarningTimeoutPreferenceComponent: @Composable (Modifier) -> Unit,
+    palettePreferenceComponent: @Composable (Modifier) -> Unit,
+    typographyPreferenceComponent: @Composable (Modifier) -> Unit,
+    privacyPolicyPreferenceComponent: @Composable (Modifier) -> Unit
 ) {
     Row(
         modifier = modifier
@@ -365,6 +472,7 @@ private fun SettingsContentLandscape(
         Column(
             modifier = Modifier
                 .weight(1f)
+                .padding(vertical = 8.dp)
                 .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
         ) {
@@ -382,77 +490,34 @@ private fun SettingsContentLandscape(
                 maxLines = 1,
             )
 
-            Column(
-                modifier = Modifier,
-            ) {
+            screenPreferenceComponent(Modifier)
 
-                ScreenPreferenceSwitch(
-                    state = settingsScreenUiState.screensaverPreference
-                ) { state ->
-                    settingsScreenUiActions.onSetScreenSaverPreference(state)
-                }
-
-                DataUsageSwitch(
-                    state = settingsScreenUiState.networkPreference
-                ) { state ->
-                    settingsScreenUiActions.onSetNetworkPreference(state)
-                }
-            }
+            dataUsagePreferenceComponent(Modifier)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Column(
-                modifier = Modifier,
-                verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
-            ) {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(4.dp),
+                text = stringResource(R.string.settings_extrasettings),
+                color = LocalPalette.current.secondary,
+                style = LocalTypography.current.primary.bold,
+                textAlign = TextAlign.Start,
+                fontSize = 18.sp,
+                maxLines = 1,
+            )
 
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(4.dp),
-                    text = stringResource(R.string.settings_extrasettings),
-                    color = LocalPalette.current.secondary,
-                    style = LocalTypography.current.primary.bold,
-                    textAlign = TextAlign.Start,
-                    fontSize = 18.sp,
-                    maxLines = 1,
-                )
-                Column(
-                    modifier = Modifier,
-                ) {
-                    LeftHandSupportSwitch(
-                        state = settingsScreenUiState.rTLPreference
-                    ) { state ->
-                        settingsScreenUiActions.onSetRTLPreference(state)
-                    }
+            leftHandedPreferenceComponent(Modifier)
 
-                    WarningAudioSwitch(
-                        state = settingsScreenUiState.huntWarningAudioPreference
-                    ) { state ->
-                        settingsScreenUiActions.onSetHuntWarningAudioPreference(state)
-                    }
+            audioWarningPreferenceComponent(Modifier)
 
-                    JournalReorderSwitch(
-                        state = settingsScreenUiState.ghostReorderPreference
-                    ) { state ->
-                        settingsScreenUiActions.onSetGhostReorderPreference(state)
-                    }
-                }
+            ghostReorderPreferenceComponent(Modifier)
 
-                Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-                Column(
-                    modifier = Modifier,
-                ) {
-                    HuntTimeoutSlider(
-                        settingsScreenUiState = settingsScreenUiState,
-                        onSetHuntTimeoutPreference = { millis ->
-                            settingsScreenUiActions.onSetHuntTimeoutPreference(millis)
-                        }
-                    )
-                }
-            }
+            huntWarningTimeoutPreferenceComponent(Modifier)
 
         }
 
@@ -482,197 +547,16 @@ private fun SettingsContentLandscape(
                 )
 
 
-                PalettePreferenceCarousel(
-                    settingsScreenUiState = settingsScreenUiState,
-                    paletteCarouselUiActions = settingsScreenUiActions.paletteCarouselUiActions
-                )
+                palettePreferenceComponent(Modifier)
 
-                TypographyPreferenceCarousel(
-                    settingsScreenUiState = settingsScreenUiState,
-                    typographyCarouselUiActions = settingsScreenUiActions.typographyCarouselUiActions
-                )
-
+                typographyPreferenceComponent(Modifier)
 
             }
 
-            /*if(permissionsUiState.value.isPrivacyOptionsRequired) {
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Column(
-                    modifier = Modifier
-                        .wrapContentHeight()
-                        .fillMaxWidth()
-                ) {
-
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(4.dp),
-                        text = stringResource(R.string.settings_adsconsentcontrolsettings),
-                        color = LocalPalette.current.primary,
-                        style = LocalTypography.current.primary.bold,
-                        textAlign = TextAlign.Start,
-                        fontSize = 18.sp,
-                        maxLines = 1,
-                    )
-
-                    EditButton {
-                        activity?.let {
-                            permissionsViewModel.showPrivacyOptionsForm(activity = it) {  }
-                        }
-                    }
-
-                }
-            }*/
+            privacyPolicyPreferenceComponent(Modifier)
 
         }
     }
-
-}
-
-@Composable
-private fun TypographyPreferenceCarousel(
-    settingsScreenUiState: SettingsScreenUiState,
-    typographyCarouselUiActions: TypographyCarouselUiActions
-) {
-    val state = settingsScreenUiState.typographyUiState
-
-    CarouselComposable(
-        title = R.string.settings_fontstylesettings,
-        state = state.uuid,
-        label = stringResource(state.typography.extrasFamily.title),
-        containerColor = LocalPalette.current.surfaceContainer,
-        imageTint = LocalPalette.current.onSurface,
-        primaryTextColor = LocalPalette.current.onSurface,
-        secondaryTextColor = LocalPalette.current.onSurfaceVariant,
-        painterResource = painterResource(R.drawable.ic_font_family),
-        leftOnClick = { typographyCarouselUiActions.onPrevious() },
-        rightOnClick = { typographyCarouselUiActions.onNext() }
-    )
-}
-
-@Composable
-private fun PalettePreferenceCarousel(
-    settingsScreenUiState: SettingsScreenUiState,
-    paletteCarouselUiActions: PaletteCarouselUiActions
-) {
-    val state = settingsScreenUiState.paletteUiState
-
-    CarouselComposable(
-        title = R.string.settings_colortheme_title,
-        state = state.uuid,
-        label = stringResource(state.palette.extrasFamily.title),
-        painterResource = painterResource(LocalPalette.current.extrasFamily.badge),
-        containerColor = LocalPalette.current.surfaceContainer,
-        primaryTextColor = LocalPalette.current.onSurface,
-        secondaryTextColor = LocalPalette.current.onSurfaceVariant,
-        leftOnClick = { paletteCarouselUiActions.onPrevious() },
-        rightOnClick = { paletteCarouselUiActions.onNext() }
-    )
-}
-
-/*@Composable
-private fun HuntTimeoutSlider(settingsViewModel: SettingsScreenViewModel) {
-    val state = settingsViewModel.settingsScreenUiState.collectAsStateWithLifecycle()
-
-    HuntTimeoutPreferenceSeekbar(
-        state = state.value.huntWarnDurationPreference,
-        containerColor = LocalPalette.current.surfaceContainer,
-        textColor = LocalPalette.current.onSurface,
-        inactiveTrackColor = LocalPalette.current.onSurface,
-        activeTrackColor = LocalPalette.current.primary,
-        thumbOutlineColor = LocalPalette.current.primary,
-        thumbInnerColor = LocalPalette.current.onSurface,
-        onValueChange = { millis ->
-            settingsViewModel.setHuntWarnDurationPreference(millis)
-        }
-    )
-}*/
-
-@Composable
-private fun HuntTimeoutSlider(
-    settingsScreenUiState: SettingsScreenUiState,
-    onSetHuntTimeoutPreference: (Long) -> Unit
-) {
-    HuntTimeoutPreferenceSeekbar(
-        state = settingsScreenUiState.huntWarnDurationPreference,
-        containerColor = LocalPalette.current.surfaceContainer,
-        textColor = LocalPalette.current.onSurface,
-        inactiveTrackColor = LocalPalette.current.onSurface,
-        activeTrackColor = LocalPalette.current.primary,
-        thumbOutlineColor = LocalPalette.current.primary,
-        thumbInnerColor = LocalPalette.current.onSurface,
-        onValueChange = { millis ->
-            onSetHuntTimeoutPreference(millis)
-        }
-    )
-}
-
-@Composable
-private fun JournalReorderSwitch(
-    state: Boolean,
-    onChange: (state: Boolean) -> Unit
-) {
-    LabeledSwitch(
-        label = stringResource(R.string.settings_enableGhostReorder),
-        textColor = LocalPalette.current.onSurface,
-        state = state,
-        onChange = { state -> onChange(state) }
-    )
-}
-
-@Composable
-private fun WarningAudioSwitch(
-    state: Boolean,
-    onChange: (state: Boolean) -> Unit
-) {
-    LabeledSwitch(
-        label = stringResource(R.string.settings_enablehuntaudioqueue),
-        state = state,
-        textColor = LocalPalette.current.onSurface,
-        onChange = { state -> onChange(state) }
-    )
-}
-
-@Composable
-private fun LeftHandSupportSwitch(
-    state: Boolean,
-    onChange: (state: Boolean) -> Unit
-) {
-    LabeledSwitch(
-        label = stringResource(R.string.settings_enableLeftHandSupport),
-        state = state,
-        textColor = LocalPalette.current.onSurface,
-        onChange = { state -> onChange(state) }
-    )
-}
-
-@Composable
-private fun DataUsageSwitch(
-    state: Boolean,
-    onChange: (state: Boolean) -> Unit
-) {
-    LabeledSwitch(
-        label = stringResource(R.string.settings_networktitle),
-        state = state,
-        textColor = LocalPalette.current.onSurface,
-        onChange = { state -> onChange(state) }
-    )
-}
-
-@Composable
-private fun ScreenPreferenceSwitch(
-    state: Boolean,
-    onChange: (state: Boolean) -> Unit
-) {
-    LabeledSwitch(
-        label = stringResource(R.string.settings_screenalwayson),
-        state = state,
-        textColor = LocalPalette.current.onSurface,
-        onChange = { state -> onChange(state) }
-    )
 }
 
 @Composable

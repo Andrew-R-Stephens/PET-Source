@@ -64,14 +64,15 @@ private fun HuntSeekbarPreview() {
 
             val stateFlow = MutableStateFlow(1000L)
             val state = stateFlow.collectAsStateWithLifecycle()
-            HuntTimeoutPreferenceSeekbar(state.value)
+            HuntTimeoutPreferenceSeekbar(state = state.value)
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HuntTimeoutPreferenceSeekbar(
+internal fun HuntTimeoutPreferenceSeekbar(
+    modifier: Modifier = Modifier,
     state: Long,
     containerColor: Color = Color.White,
     textColor: Color = Color.White,
@@ -107,8 +108,7 @@ fun HuntTimeoutPreferenceSeekbar(
     val interactionSource = remember { MutableInteractionSource() }
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = modifier
             .wrapContentHeight(),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
