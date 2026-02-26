@@ -36,7 +36,7 @@ import com.tritiumgaming.core.ui.theme.palette.ExtendedPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalettesMap
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.settings.ui.components.LabeledSwitch
+import com.tritiumgaming.core.ui.widgets.switch.LabeledSwitch
 import org.jetbrains.annotations.TestOnly
 
 

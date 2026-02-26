@@ -115,7 +115,6 @@ class PETApplication : Application(),
             setDefaultLanguageUseCase = coreContainer.setDefaultLanguageUseCase,
             initFlowLanguageUseCase = coreContainer.initFlowLanguageUseCase,
             saveCurrentLanguageUseCase = coreContainer.saveCurrentLanguageUseCase,
-            loadCurrentLanguageUseCase = coreContainer.loadCurrentLanguageUseCase,
         )
 
         settingsContainer = SettingsContainer(
@@ -185,10 +184,7 @@ class PETApplication : Application(),
         investigationContainer = InvestigationContainer(
             applicationContext = applicationContext,
             // User Preferences
-            getAllowHuntWarnAudioUseCase = coreContainer.getAllowHuntWarnAudioUseCase,
-            getEnableGhostReorderUseCase = coreContainer.getEnableGhostReorderUseCase,
-            getEnableRTLUseCase = coreContainer.getEnableRTLUseCase,
-            getMaxHuntWarnFlashTimeUseCase = coreContainer.getMaxHuntWarnFlashTimeUseCase,
+            initFlowUserPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase
         )
 
         codexContainer = CodexContainer()
