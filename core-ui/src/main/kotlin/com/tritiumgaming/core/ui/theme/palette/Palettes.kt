@@ -274,22 +274,22 @@ val ClassicPalette = PET_Base.copy(
 )
 
 val Monochromacy = PET_Base.copy(
-    primary = Color(0xFF5A5A5A), // Matches luminance of Red 0xFFBA1414
+    primary = Color(0xFF5A5A5A),
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFF8B8B8B), // Matches 0xFFEB4242
-    onPrimaryContainer = Color(0xFF2B2B2B), // Matches 0xFF740B0B
+    primaryContainer = Color(0xFF8B8B8B),
+    onPrimaryContainer = Color(0xFF2B2B2B),
 
     secondary = Color(0xFFFFFFFF),
     onSecondary = Color(0xFF000000),
     secondaryContainer = Color(0xFF8F8F8F),
     onSecondaryContainer = Color(0xFF424242),
 
-    tertiary = Color(0xFF919191), // Matches luminance of Green
+    tertiary = Color(0xFF919191),
     onTertiary = Color(0xFF000000),
-    tertiaryContainer = Color(0xFF1A1A1A), // Matches 0xFF003800
-    onTertiaryContainer = Color(0xFFD1D1D1), // Matches 0xFFA5E90D
+    tertiaryContainer = Color(0xFF1A1A1A),
+    onTertiaryContainer = Color(0xFFD1D1D1),
 
-    error = Color(0xFF505050), // Matches luminance of Error Red
+    error = Color(0xFF505050),
     onError = Color(0xFFF5F5F5),
     errorContainer = Color(0xFF707070),
     onErrorContainer = Color(0xFF121212),
@@ -302,54 +302,13 @@ val Monochromacy = PET_Base.copy(
     surfaceContainerHighest = Color(0xFF2F2A2A),
 
     onSurface = Color(0xFFFFFFFF),
-    onSurfaceVariant = Color(0xFF7A7A7A), // Matches luminance of Red Variant 0xFFCC3C3C
+    onSurfaceVariant = Color(0xFF7A7A7A),
 
     outline = Color(0xFFFFFFFF),
     outlineVariant = Color.Unspecified,
 
     scrim = Color(0xFF000000),
     shadow = Color(0xFF000000),
-    /*primary = white,
-    onPrimary = Color(0xFF1C1C1C),
-    primaryContainer = Color(0xFF696969),
-    onPrimaryContainer = Color(0xFFC2C2C2),
-
-    secondary = Color(0xFFC7C7C7),
-    onSecondary = black,
-    secondaryContainer = Color(0xFF4A4A4A),
-    onSecondaryContainer = Color(0xFF999999),
-
-    tertiary = Color(0xFF949494),
-    onTertiary = black,
-    tertiaryContainer = Color(0xFFC4C4C4),
-    onTertiaryContainer = black,
-
-    error = white,
-    onError = Color(0xFF1C1C1C),
-    errorContainer = Color(0xFF696969),
-    onErrorContainer = Color(0xFFC2C2C2),
-
-    surfaceDim = Color.Unspecified,
-    surface = black,
-    surfaceBright = Color.Unspecified,
-
-    surfaceContainerLowest = Color(0xFF050505),
-    surfaceContainerLow = Color(0xFF0F0F0F),
-    surfaceContainer = Color(0xFF171717),
-    surfaceContainerHigh = Color(0xFF212121),
-    surfaceContainerHighest = Color(0xFF2B2B2B),
-
-    onSurface = white,
-    onSurfaceVariant = Color(0xFFC8C8C8),
-    outline = Color(0xFFC8C8C8),
-    outlineVariant = Color.Unspecified,
-
-    inverseSurface = Color.Unspecified,
-    inverseOnSurface = Color.Unspecified,
-    inversePrimary = Color.Unspecified,
-
-    scrim = black,
-    shadow = black,*/
 
     extrasFamily = PET_Base.extrasFamily.copy(
         title = title_monochromacy
@@ -358,29 +317,13 @@ val Monochromacy = PET_Base.copy(
     themeFamily = PET_Base.themeFamily.copy(),
 
     codexFamily = CodexColorFamily(
-        primary = Color(0xFFBEBEBE), // Adjusted Primary to 74.3% brightness
-        surface = Color(0xFF1B1B1B), // Closest to 10.6% brightness (SurfaceContainer)
-        secondaryContainer = Color(0x661B1B1B), // Matching Surface brightness with 0x66 Alpha
-        surfaceContainer = Color(0xFF1A1A1A), // Adjusted to 10.2% brightness
-        onSurface = Color(0xFFA7A7A7), // Adjusted to 65.5% brightness
-        onSurfaceVariant = Color(0xFF343434), // Adjusted to 20.4% brightness
-        onSecondaryContainer = Color(0xFFFFFFFF), // Pure White (100%)
-
-        /*primary = Color(0xFFFFB43D),
-        surface = Color(0xFF161C1C),
-        secondaryContainer = Color(0x66161C1C),
-        surfaceContainer = Color(0xFF151B1B),
-        onSurface = Color(0xFF99AEB3),
-        onSurfaceVariant = Color(0xFF2D3635),
-        onSecondaryContainer = Color(0xFFFFFFFF),*/
-
-        /*primary = white,
-        surface = black,
-        surfaceVariant = Color(0x66000000),
-        surfaceContainer = Color(0xFF171717),
-        onSurface = Color(0xFF1C1C1C),
-        onSurfaceVariant = Color(0xFFC8C8C8),
-        outline = Color(0xFFC8C8C8),*/
+        primary = Color(0xFFBEBEBE),
+        surface = Color(0xFF1B1B1B),
+        secondaryContainer = Color(0x661B1B1B),
+        surfaceContainer = Color(0xFF1A1A1A),
+        onSurface = Color(0xFFA7A7A7),
+        onSurfaceVariant = Color(0xFF343434),
+        onSecondaryContainer = Color(0xFFFFFFFF),
     ),
 
     coreFamily = PET_Base.coreFamily.copy(
@@ -396,22 +339,22 @@ val Monochromacy = PET_Base.copy(
     )
 )
 val Deuteranomaly = PET_Base.copy(
-    primary = Color(0xFF2E5BFF), // Replaces Red 0xFFBA1414 (Matched Luminance)
+    primary = Color(0xFF2E5BFF),
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFF5C85FF), // Replaces 0xFFEB4242
-    onPrimaryContainer = Color(0xFF001A66), // Replaces 0xFF740B0B
+    primaryContainer = Color(0xFF5C85FF),
+    onPrimaryContainer = Color(0xFF001A66),
 
     secondary = Color(0xFFFFFFFF),
     onSecondary = Color(0xFF000000),
     secondaryContainer = Color(0xFF8F8F8F),
     onSecondaryContainer = Color(0xFF424242),
 
-    tertiary = Color(0xFFC4B600), // Replaces Green (Matched Luminance)
+    tertiary = Color(0xFFC4B600),
     onTertiary = Color(0xFF000000),
-    tertiaryContainer = Color(0xFF2E2B00), // Replaces 0xFF003800
-    onTertiaryContainer = Color(0xFFE6D600), // Replaces 0xFFA5E90D
+    tertiaryContainer = Color(0xFF2E2B00),
+    onTertiaryContainer = Color(0xFFE6D600),
 
-    error = Color(0xFF4D4DFF), // Replaces Error Red with high-contrast Blue
+    error = Color(0xFF4D4DFF),
     onError = Color(0xFFF0F0FF),
     errorContainer = Color(0xFF6666FF),
     onErrorContainer = Color(0xFF000033),
@@ -442,7 +385,7 @@ val Deuteranomaly = PET_Base.copy(
     surfaceContainerHighest = Color(0xFF2F2A2A),
 
     onSurface = Color(0xFFFFFFFF),
-    onSurfaceVariant = Color(0xFF5E80FF), // Replaces Red Variant 0xFFCC3C3C
+    onSurfaceVariant = Color(0xFF5E80FF),
 
     outline = Color(0xFFFFFFFF),
     outlineVariant = Color.Unspecified,
@@ -453,82 +396,6 @@ val Deuteranomaly = PET_Base.copy(
 
     scrim = Color(0xFF000000),
     shadow = Color(0xFF000000),
-    /*primary = Color(0xFF2E5BFF), // Replaces Red 0xFFBA1414 (Matched Luminance)
-    onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFF5C85FF), // Replaces 0xFFEB4242
-    onPrimaryContainer = Color(0xFF001A66), // Replaces 0xFF740B0B
-
-    secondary = Color(0xFFFFFFFF),
-    onSecondary = Color(0xFF000000),
-    secondaryContainer = Color(0xFF8F8F8F),
-    onSecondaryContainer = Color(0xFF424242),
-
-    tertiary = Color(0xFFC4B600), // Replaces Green (Matched Luminance)
-    onTertiary = Color(0xFF000000),
-    tertiaryContainer = Color(0xFF2E2B00), // Replaces 0xFF003800
-    onTertiaryContainer = Color(0xFFE6D600), // Replaces 0xFFA5E90D
-
-    error = Color(0xFF4D4DFF), // Replaces Error Red
-    onError = Color(0xFFF0F0FF),
-    errorContainer = Color(0xFF6666FF),
-    onErrorContainer = Color(0xFF000033),
-
-    surface = Color(0xFF000000),
-    surfaceContainerLowest = Color(0xFF0D0D12),
-    surfaceContainerLow = Color(0xFF16161C),
-    surfaceContainer = Color(0xFF1E1E24),
-    surfaceContainerHigh = Color(0xFF29292F),
-    surfaceContainerHighest = Color(0xFF34343B),
-
-    onSurface = Color(0xFFFFFFFF),
-    onSurfaceVariant = Color(0xFF5E80FF), // Replaces Red Variant 0xFFCC3C3C
-
-    outline = Color(0xFFFFFFFF),
-    outlineVariant = Color.Unspecified,
-
-    scrim = Color(0xFF000000),
-    shadow = Color(0xFF000000),*/
-    /*primary = Color(0xFF5959D4),
-    onPrimary = white,
-    primaryContainer = Color(0xFF2E2EB2),
-    onPrimaryContainer = Color(0xFFD9D9F7),
-
-    secondary = Color(0xFFC7C7C7),
-    onSecondary = Color(0xFF6E6E6E),
-    secondaryContainer = Color(0xFF2A2A2A),
-    onSecondaryContainer = Color(0xFF999999),
-
-    tertiary = yellow,
-    onTertiary = black,
-    tertiaryContainer = Color(0xFFC2C200),
-    onTertiaryContainer = Color(0xFF2E2E00),
-
-    error = Color(0xFF8A8AFF),
-    onError = black,
-    errorContainer = Color(0xFF0000CC),
-    onErrorContainer = Color(0xFFCCCCFF),
-
-    surfaceDim = Color.Unspecified,
-    surface = black,
-    surfaceBright = Color.Unspecified,
-
-    surfaceContainerLowest = Color(0xFF0D0D12),
-    surfaceContainerLow = Color(0xFF16161C),
-    surfaceContainer = Color(0xFF1E1E24),
-    surfaceContainerHigh = Color(0xFF29292F),
-    surfaceContainerHighest = Color(0xFF34343B),
-
-    onSurface = white,
-    onSurfaceVariant = blue_M175,
-    outline = white,
-    outlineVariant = Color.Unspecified,
-
-    inverseSurface = Color.Unspecified,
-    inverseOnSurface = Color.Unspecified,
-    inversePrimary = Color.Unspecified,
-
-    scrim = black,
-    shadow = black,*/
 
     extrasFamily = PET_Base.extrasFamily.copy(
         title = title_deuteranomaly
@@ -540,20 +407,13 @@ val Deuteranomaly = PET_Base.copy(
     ),
 
     codexFamily = CodexColorFamily(
-        primary = Color(0xFFACACFF), // Adjusted to 74.3% brightness
-        surface = Color(0xFF1B1B21), // SurfaceContainerLow adjusted to 10.6%
-        secondaryContainer = Color(0x661B1B21), // Surface base with 0x66 alpha
-        surfaceContainer = Color(0xFF1A1A20), // SurfaceContainer adjusted to 10.2%
-        onSurface = Color(0xFFA6A6F8), // Adjusted to 65.5% brightness
-        onSurfaceVariant = Color(0xFF333340), // Darkened blue variant to 20.4%
-        onSecondaryContainer = Color(0xFFFFFFFF), // Pure White (100%)
-        /*surface = black,
-        surfaceContainer = Color(0xFF1E1E24),
-        onSurface = blue_M175,
-        primary = Color(0xFF5959D4),
-        onSurfaceVariant = Color(0xFF0D0D12),
-        secondaryContainer = Color(0x66000000),
-        onSecondaryContainer = white,*/
+        primary = Color(0xFFACACFF),
+        surface = Color(0xFF1B1B21),
+        secondaryContainer = Color(0x661B1B21),
+        surfaceContainer = Color(0xFF1A1A20),
+        onSurface = Color(0xFFA6A6F8),
+        onSurfaceVariant = Color(0xFF333340),
+        onSecondaryContainer = Color(0xFFFFFFFF),
     ),
 
     discordColor = BrandingColorFamily(
@@ -562,23 +422,22 @@ val Deuteranomaly = PET_Base.copy(
     )
 )
 val Protanomaly = PET_Base.copy(
-    // Target Theme: Adjusted for Protanomaly + Reference Brightness
-    primary = Color(0xFF3F51B5), // Indigo-Blue: High visibility/luminance for Protan
+    primary = Color(0xFF3F51B5),
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFF7986CB), // Matches 0xFFEB4242 brightness
-    onPrimaryContainer = Color(0xFF1A237E), // Matches 0xFF740B0B brightness
+    primaryContainer = Color(0xFF7986CB),
+    onPrimaryContainer = Color(0xFF1A237E),
 
     secondary = Color(0xFFFFFFFF),
     onSecondary = Color(0xFF000000),
     secondaryContainer = Color(0xFF8F8F8F),
     onSecondaryContainer = Color(0xFF424242),
 
-    tertiary = Color(0xFFFFD600), // Bright Yellow: Replaces Green (High contrast)
+    tertiary = Color(0xFFFFD600),
     onTertiary = Color(0xFF000000),
-    tertiaryContainer = Color(0xFF332B00), // Matches 0xFF003800
-    onTertiaryContainer = Color(0xFFFFEA00), // Matches 0xFFA5E90D
+    tertiaryContainer = Color(0xFF332B00),
+    onTertiaryContainer = Color(0xFFFFEA00),
 
-    error = Color(0xFF2196F3), // Blue: Much clearer for Protan than Red
+    error = Color(0xFF2196F3),
     onError = Color(0xFFE3F2FD),
     errorContainer = Color(0xFF64B5F6),
     onErrorContainer = Color(0xFF0D47A1),
@@ -609,7 +468,7 @@ val Protanomaly = PET_Base.copy(
     surfaceContainerHighest = Color(0xFF2F2A2A),
 
     onSurface = Color(0xFFFFFFFF),
-    onSurfaceVariant = Color(0xFF448AFF), // Replaces Red Variant 0xFFCC3C3C
+    onSurfaceVariant = Color(0xFF448AFF),
 
     outline = Color(0xFFFFFFFF),
     outlineVariant = Color.Unspecified,
@@ -620,47 +479,6 @@ val Protanomaly = PET_Base.copy(
 
     scrim = Color(0xFF000000),
     shadow = Color(0xFF000000),
-    /*primary = Color(0xFF5959D4),
-    onPrimary = white,
-    primaryContainer = Color(0xFF2E2EB2),
-    onPrimaryContainer = Color(0xFFD9D9F7),
-
-    secondary = Color(0xFFC7C7C7),
-    onSecondary = Color(0xFF6E6E6E),
-    secondaryContainer = Color(0xFF2A2A2A),
-    onSecondaryContainer = Color(0xFF999999),
-
-    tertiary = yellow,
-    onTertiary = black,
-    tertiaryContainer = Color(0xFFC2C200),
-    onTertiaryContainer = Color(0xFF2E2E00),
-
-    error = Color(0xFF8A8AFF),
-    onError = black,
-    errorContainer = Color(0xFF0000CC),
-    onErrorContainer = Color(0xFFCCCCFF),
-
-    surfaceDim = Color.Unspecified,
-    surface = black,
-    surfaceBright = Color.Unspecified,
-
-    surfaceContainerLowest = Color(0xFF0D0D12),
-    surfaceContainerLow = Color(0xFF16161C),
-    surfaceContainer = Color(0xFF1E1E24),
-    surfaceContainerHigh = Color(0xFF29292F),
-    surfaceContainerHighest = Color(0xFF34343B),
-
-    onSurface = white,
-    onSurfaceVariant = blue_M175,
-    outline = white,
-    outlineVariant = Color.Unspecified,
-
-    inverseSurface = Color.Unspecified,
-    inverseOnSurface = Color.Unspecified,
-    inversePrimary = Color.Unspecified,
-
-    scrim = black,
-    shadow = black,*/
 
     extrasFamily = PET_Base.extrasFamily.copy(
         title = title_protanomaly
@@ -687,22 +505,22 @@ val Protanomaly = PET_Base.copy(
     )
 )
 val Tritanomaly = PET_Base.copy(
-    primary = Color(0xFFBA1414), // Red: Highly stable and visible for Tritan
+    primary = Color(0xFFBA1414),
     onPrimary = Color(0xFFFFFFFF),
-    primaryContainer = Color(0xFFEB4242), // Matches 0xFFEB4242
-    onPrimaryContainer = Color(0xFF740B0B), // Matches 0xFF740B0B
+    primaryContainer = Color(0xFFEB4242),
+    onPrimaryContainer = Color(0xFF740B0B),
 
     secondary = Color(0xFFFFFFFF),
     onSecondary = Color(0xFF000000),
     secondaryContainer = Color(0xFF8F8F8F),
     onSecondaryContainer = Color(0xFF424242),
 
-    tertiary = Color(0xFF00897B), // Deep Teal: Replaces Green (Stable contrast vs Red)
+    tertiary = Color(0xFF00897B),
     onTertiary = Color(0xFF000000),
-    tertiaryContainer = Color(0xFF00251A), // Matches 0xFF003800 brightness
-    onTertiaryContainer = Color(0xFF80CBC4), // Matches 0xFFA5E90D brightness
+    tertiaryContainer = Color(0xFF00251A),
+    onTertiaryContainer = Color(0xFF80CBC4),
 
-    error = Color(0xFFFF5252), // Bright Coral: Distinguishable from Primary Red
+    error = Color(0xFFFF5252),
     onError = Color(0xFFFFEAEA),
     errorContainer = Color(0xFFFF1744),
     onErrorContainer = Color(0xFF330000),
@@ -733,7 +551,7 @@ val Tritanomaly = PET_Base.copy(
     surfaceContainerHighest = Color(0xFF2F2A2A),
 
     onSurface = Color(0xFFFFFFFF),
-    onSurfaceVariant = Color(0xFFCC3C3C), // Matches 0xFFCC3C3C
+    onSurfaceVariant = Color(0xFFCC3C3C),
 
     outline = Color(0xFFFFFFFF),
     outlineVariant = Color.Unspecified,
@@ -755,13 +573,13 @@ val Tritanomaly = PET_Base.copy(
     ),
 
     codexFamily = PET_Base.codexFamily.copy(
-        primary = Color(0xFFFFB43D), // Reference Brightness: ~75% (High)
-        surface = Color(0xFF161C1C), // Reference Brightness: ~10% (Deep Dark)
-        secondaryContainer = Color(0xFF222B2B), // Adjusted to 66% opacity equivalent of Surface
-        surfaceContainer = Color(0xFF151B1B), // Slight depth variance
-        onSurfaceVariant = Color(0xFF2D3635), // Low contrast decorative role
-        onSurface = Color(0xFF99AEB3), // Mid-range luminance for accessibility
-        onSecondaryContainer = Color(0xFFFFFFFF), // Maximum brightness for readability
+        primary = Color(0xFFFFB43D),
+        surface = Color(0xFF161C1C),
+        secondaryContainer = Color(0xFF222B2B),
+        surfaceContainer = Color(0xFF151B1B),
+        onSurfaceVariant = Color(0xFF2D3635),
+        onSurface = Color(0xFF99AEB3),
+        onSecondaryContainer = Color(0xFFFFFFFF),
     ),
 
     discordColor = BrandingColorFamily(
@@ -837,13 +655,6 @@ val Recruit = Prestige.copy(
         onSurface = Color(0xFFBFA073),
         onSurfaceVariant = Color(0xFF33230A),
         onSecondaryContainer = Color(0xFFFFFFFF),
-        /*surface = Color(0xFF232C2C),
-        surfaceContainer = Color(0xFF252423),
-        onSurfaceVariant = orange_M150,
-        primary = orange_M150,
-        onSurface = Color(0xFF252423),
-        surfaceVariant = Color(0x40232C2C),
-        outline = white*/
     ),
 
     coreFamily = Prestige.coreFamily.copy(
@@ -1219,13 +1030,6 @@ val Technician = Prestige.copy(
         onSurface = Color(0xFFA7A7A7),
         onSurfaceVariant = Color(0xFF3B3232),
         onSecondaryContainer = Color(0xFFFFFFFF),
-        /*surface = Color(0xFF200605),
-        surfaceContainer = Color(0xFF120202),
-        onSurface = Color(0xFFE4DEDE),
-        primary = white,
-        onSurfaceVariant = Color(0xFF575050),
-        secondaryContainer = Color(0x403E1312),
-        onSecondaryContainer = white*/
     ),
 
     discordColor = BrandingColorFamily(
@@ -2048,20 +1852,13 @@ val Holiday23 = Event.copy(
     ),
 
     codexFamily = Event.codexFamily.copy(
-        primary = Color(0xFFAAC5F3), // Lightened target blue to reach 74.3%
-        surface = Color(0xFF1B1C33), // Your target surface (approx 10.6%)
-        secondaryContainer = Color(0x661B1C33), // Surface with 0x66 Alpha
-        surfaceContainer = Color(0xFF1A1B31), // Adjusted to 10.2% brightness
-        onSurface = Color(0xFFE4D0AE), // Your "parchment" gold at 74.3% (Adjusted to 65.5%)
-        onSurfaceVariant = Color(0xFF373858), // Your SurfaceContainerHighest at 20.4%
-        onSecondaryContainer = Color(0xFFFEFEFE), // Pure white (100%)
-        /*surface = Color(0xFF2A487E),
-        onSurface = Color(0xFFECDDC5),
-        surfaceContainer = Color(0xFF447CDE),
-        primary = Color(0xFFE9AD4C),
-        onSurfaceVariant = Color(0xFF344663),
-        secondaryContainer = Color(0x402A487E),
-        onSecondaryContainer = white*/
+        primary = Color(0xFFAAC5F3),
+        surface = Color(0xFF1B1C33),
+        secondaryContainer = Color(0x661B1C33),
+        surfaceContainer = Color(0xFF1A1B31),
+        onSurface = Color(0xFFE4D0AE),
+        onSurfaceVariant = Color(0xFF373858),
+        onSecondaryContainer = Color(0xFFFEFEFE),
     ),
 
     discordColor = BrandingColorFamily(
@@ -2700,13 +2497,6 @@ val Whiteboard = Skin.copy(
         onSurface = Color(0xFF383839),
         onSurfaceVariant = Color(0xFF757577),
         onSecondaryContainer = Color(0xFF000000),
-        /*surface = black_A75,
-        onSurface = white_M50,
-        surfaceContainer = Color(0xFF383839),
-        primary = Color(0xFFf55656),
-        onSurfaceVariant = black_A75,
-        secondaryContainer = Color(0xFF383839),
-        onSecondaryContainer = white*/
     ),
 
     discordColor = BrandingColorFamily(
@@ -2806,13 +2596,6 @@ val StratagemHero = Special.copy(
         onSurface = Color(0xFF9EABB8),
         onSurfaceVariant = Color(0xFF323A42),
         onSecondaryContainer = Color(0xFFFFFFFF),
-        /*surface = Color(0xFF001021),
-        onSurface = Color(0xFFB7CBDC),
-        surfaceContainer = Color(0xFF001021),
-        primary = Color(0xFFFFD608),
-        onSurfaceVariant = Color(0xFFA3A3A3),
-        secondaryContainer = Color(0x40001021),
-        onSecondaryContainer = white*/
     ),
 
     discordColor = BrandingColorFamily(

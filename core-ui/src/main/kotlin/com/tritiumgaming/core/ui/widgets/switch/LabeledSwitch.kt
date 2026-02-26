@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.settings.ui.components
+package com.tritiumgaming.core.ui.widgets.switch
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -50,91 +50,13 @@ fun Test() {
         }
     }
 }
-/*@Composable
-@Preview
-fun Test() {
-    Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-    ) {
-        LocalPalettesMap.toList().forEach {
-            SelectiveTheme(
-                palette = it.second
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(LocalPalette.current.surface)
-                        .padding(8.dp)
-                ) {
-                    LabeledSwitch(state = MutableStateFlow(false))
-                    LabeledSwitch(state = MutableStateFlow(true))
-                }
-            }
-        }
-    }
-}*/
-
-/*@Composable
-fun LabeledSwitch(
-    modifier: Modifier = Modifier,
-    label: String = "Default Label",
-    state: StateFlow<Boolean> = MutableStateFlow(false),
-    switchColors: SwitchColors = SwitchDefaults.colors(
-        uncheckedTrackColor = LocalPalette.current.surfaceContainerHighest,
-        uncheckedBorderColor = LocalPalette.current.outline,
-        uncheckedThumbColor = LocalPalette.current.outline,
-        checkedTrackColor = LocalPalette.current.primary,
-        checkedBorderColor = Color.Transparent,
-        checkedThumbColor = LocalPalette.current.onPrimary,
-    ),
-    textColor: Color = Color.White,
-    onChange: (it: Boolean) -> Unit = {}
-) {
-
-    val rememberLabel by remember { mutableStateOf(label) }
-    val checkedState = state.collectAsStateWithLifecycle()
-
-    Row(
-        modifier = modifier
-            .wrapContentHeight(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        Switch(
-            colors = switchColors,
-            checked = checkedState.value,
-            onCheckedChange = { it ->
-                onChange(it)
-            }
-        )
-
-        Text(
-            text = rememberLabel,
-            color = textColor,
-            fontSize = 16.sp,
-            maxLines = 1,
-            style = LocalTypography.current.primary.regular
-        )
-
-    }
-
-}*/
 
 @Composable
 fun LabeledSwitch(
     modifier: Modifier = Modifier,
     label: String = "Default Label",
     state: Boolean = false,
-    switchColors: SwitchColors = SwitchDefaults.colors(
-        uncheckedTrackColor = LocalPalette.current.surfaceContainerHighest,
-        uncheckedBorderColor = LocalPalette.current.outline,
-        uncheckedThumbColor = LocalPalette.current.outline,
-        checkedTrackColor = LocalPalette.current.primary,
-        checkedBorderColor = Color.Transparent,
-        checkedThumbColor = LocalPalette.current.onPrimary,
-    ),
+    switchColors: SwitchColors = SwitchDefaults.colors(),
     textColor: Color = Color.White,
     onChange: (state: Boolean) -> Unit = {}
 ) {
