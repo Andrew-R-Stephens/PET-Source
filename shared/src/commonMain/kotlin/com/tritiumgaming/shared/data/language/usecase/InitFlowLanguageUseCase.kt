@@ -1,8 +1,9 @@
 package com.tritiumgaming.shared.data.language.usecase
 
+import com.tritiumgaming.shared.data.language.repository.LanguageRepository
+
 class InitFlowLanguageUseCase(
-    private val repository: com.tritiumgaming.shared.data.language.repository.LanguageRepository
+    private val repository: LanguageRepository
 ) {
-    operator fun invoke(onUpdate: (com.tritiumgaming.shared.data.language.source.LanguageDatastore.LanguagePreferences) -> Unit = {}) =
-        repository.initDatastoreFlow()
+    operator fun invoke() = repository.initDatastoreFlow()
 }

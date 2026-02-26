@@ -12,7 +12,5 @@ interface LanguageRepository: DatastoreRepository<LanguagePreferences> {
     fun getDefaultLanguage(): LanguageEntity?
 
     suspend fun saveCurrentLanguageCode(languageCode: String)
-    fun getCurrentLanguageCode(): String
-    suspend fun loadCurrentLanguageCode()
 
 }

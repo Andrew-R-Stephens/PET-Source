@@ -1,19 +1,23 @@
 package com.tritiumgaming.shared.data.evidence.usecase
 
-class GetEquipmentTypeByEvidenceTypeUseCase() {
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
+
+class GetEquipmentTypeByEvidenceTypeUseCase {
         operator fun invoke(
-            evidenceType: com.tritiumgaming.shared.data.evidence.model.EvidenceType
-        ): com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier {
+            evidenceType: EvidenceType
+        ): EquipmentResources.EquipmentIdentifier {
             val evidenceId = evidenceType.id
 
             return when(evidenceId) {
-                com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier.DOTS -> com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier.DOTS
-                com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier.EMF_5 -> com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier.EMF
-                com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier.ULTRAVIOLET_LIGHT -> com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier.UV_LIGHT
-                com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE -> com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier.THERMOMETER
-                com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier.GHOST_ORBS -> com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier.VIDEO_CAMERA
-                com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier.GHOST_WRITING -> com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier.GHOST_WRITING_BOOK
-                com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier.SPIRIT_BOX -> com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier.SPIRIT_BOX
+                EvidenceResources.EvidenceIdentifier.DOTS -> EquipmentResources.EquipmentIdentifier.DOTS
+                EvidenceResources.EvidenceIdentifier.EMF_5 -> EquipmentResources.EquipmentIdentifier.EMF
+                EvidenceResources.EvidenceIdentifier.ULTRAVIOLET_LIGHT -> EquipmentResources.EquipmentIdentifier.UV_LIGHT
+                EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE -> EquipmentResources.EquipmentIdentifier.THERMOMETER
+                EvidenceResources.EvidenceIdentifier.GHOST_ORBS -> EquipmentResources.EquipmentIdentifier.VIDEO_CAMERA
+                EvidenceResources.EvidenceIdentifier.GHOST_WRITING -> EquipmentResources.EquipmentIdentifier.GHOST_WRITING_BOOK
+                EvidenceResources.EvidenceIdentifier.SPIRIT_BOX -> EquipmentResources.EquipmentIdentifier.SPIRIT_BOX
             }
         }
     }
