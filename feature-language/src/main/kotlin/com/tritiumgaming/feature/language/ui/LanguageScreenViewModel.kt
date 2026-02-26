@@ -13,7 +13,6 @@ import com.tritiumgaming.shared.data.language.source.LanguageDatastore
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.InitFlowLanguageUseCase
-import com.tritiumgaming.shared.data.language.usecase.LoadCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
 import kotlinx.coroutines.flow.SharingStarted
@@ -27,8 +26,7 @@ class LanguageScreenViewModel(
     private val getDefaultLanguageUseCase: GetDefaultLanguageUseCase,
     private val setDefaultLanguageUseCase: SetDefaultLanguageUseCase,
     private val initFlowLanguageUseCase: InitFlowLanguageUseCase,
-    private val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
-    private val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase
+    private val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase
 ) : ViewModel() {
 
     /**
@@ -74,11 +72,6 @@ class LanguageScreenViewModel(
             )
         }
     }
-    fun loadCurrentLanguageCode() {
-        viewModelScope.launch {
-            loadCurrentLanguageUseCase()
-        }
-    }
 
     companion object {
 
@@ -92,7 +85,6 @@ class LanguageScreenViewModel(
                 val setDefaultLanguageUseCase: SetDefaultLanguageUseCase = container.setDefaultLanguageUseCase
                 val initFlowLanguageUseCase: InitFlowLanguageUseCase = container.initFlowLanguageUseCase
                 val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase = container.saveCurrentLanguageUseCase
-                val loadCurrentLanguageUseCase: LoadCurrentLanguageUseCase = container.loadCurrentLanguageUseCase
 
                 LanguageScreenViewModel(
                     // Languages
@@ -101,7 +93,6 @@ class LanguageScreenViewModel(
                     setDefaultLanguageUseCase = setDefaultLanguageUseCase,
                     initFlowLanguageUseCase = initFlowLanguageUseCase,
                     saveCurrentLanguageUseCase = saveCurrentLanguageUseCase,
-                    loadCurrentLanguageUseCase = loadCurrentLanguageUseCase
                 )
             }
         }
