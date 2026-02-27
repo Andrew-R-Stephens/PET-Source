@@ -52,7 +52,7 @@ fun GhostDto.toDomain() = Ghost(
     normalEvidence = normalEvidence.map { it },
     strictEvidence = strictEvidence.map { it },
     speed = speed,
-    sanityBounds = sanityBounds,
+    huntSanityBounds = sanityBounds,
     huntCooldown = huntCooldown
 )
 
