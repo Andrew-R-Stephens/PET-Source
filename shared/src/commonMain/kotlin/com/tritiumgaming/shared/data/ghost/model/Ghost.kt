@@ -23,6 +23,6 @@ data class Ghost(
     val normalEvidence: List<EvidenceIdentifier>,
     val strictEvidence: List<EvidenceIdentifier>,
     val speed: GhostSpeed,
-    val sanityBounds: HuntSanityBounds,
+    val huntSanityBounds: HuntSanityBounds,
     val huntCooldown: HuntCooldown,
 )

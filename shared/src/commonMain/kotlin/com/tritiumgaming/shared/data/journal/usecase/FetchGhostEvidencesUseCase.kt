@@ -1,7 +1,6 @@
 package com.tritiumgaming.shared.data.journal.usecase
 
 import com.tritiumgaming.shared.data.evidence.repository.EvidenceRepository
-import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 
@@ -31,10 +30,9 @@ class FetchGhostEvidencesUseCase(
             }
 
             GhostEvidence(
-                ghost = GhostType(ghost.id, ghost.name),
+                ghost = ghost,
                 normalEvidenceList = normalEvidence,
-                strictEvidenceList = strictEvidence,
-                speed = ghost.speed
+                strictEvidenceList = strictEvidence
             )
         }
 

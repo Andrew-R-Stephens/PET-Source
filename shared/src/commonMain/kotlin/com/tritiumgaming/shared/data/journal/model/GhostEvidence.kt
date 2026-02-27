@@ -1,20 +1,17 @@
 package com.tritiumgaming.shared.data.journal.model
 
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
-import com.tritiumgaming.shared.data.ghost.model.GhostType
+import com.tritiumgaming.shared.data.ghost.model.Ghost
 
 expect class GhostEvidence(
-    ghost: GhostType,
+    ghost: Ghost,
     normalEvidenceList: List<EvidenceType>,
-    strictEvidenceList: List<EvidenceType>,
-    speed: GhostSpeed
+    strictEvidenceList: List<EvidenceType>
 ) {
 
-    val ghost: GhostType
+    val ghost: Ghost
     val normalEvidenceList: List<EvidenceType>
     val strictEvidenceList: List<EvidenceType>
-    val speed: GhostSpeed
 
     override fun toString(): String
 
