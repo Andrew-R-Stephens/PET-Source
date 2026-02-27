@@ -8,5 +8,6 @@ internal data class PETActivityUiState(
     /** Indicates whether a privacy options form is required. */
     val isPrivacyOptionsRequired: Boolean = false,
     val paletteUiState: PaletteUiState = PaletteUiState(),
-    val typographyUiState: TypographyUiState = TypographyUiState()
+    val typographyUiState: TypographyUiState = TypographyUiState(),
+    val uiConfiguration: UiConfigurationState = UiConfigurationState()
 )

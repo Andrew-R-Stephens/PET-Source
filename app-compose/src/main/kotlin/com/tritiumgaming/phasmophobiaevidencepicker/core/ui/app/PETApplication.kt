@@ -126,6 +126,7 @@ class PETApplication : Application(),
             setDisableScreenSaverUseCase = coreContainer.setDisableScreenSaverUseCase,
             setEnableGhostReorderUseCase = coreContainer.setEnableGhostReorderUseCase,
             setEnableRTLUseCase = coreContainer.setEnableRTLUseCase,
+            setUiDensityTypeUseCase = coreContainer.setUiDensityTypeUseCase,
             setMaxHuntWarnFlashTimeUseCase = coreContainer.setMaxHuntWarnFlashTimeUseCase,
             // Typographies
             fetchUnlockedTypographiesUseCase = coreContainer.fetchUnlockedTypographiesUseCase,

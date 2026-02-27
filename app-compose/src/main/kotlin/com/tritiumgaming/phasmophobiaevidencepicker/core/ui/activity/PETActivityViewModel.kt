@@ -74,6 +74,10 @@ class PETActivityViewModel(
                     typographyUiState = TypographyUiState(
                         uuid = preferences.typographyUuid,
                         typography = getTypographyByUUID(preferences.typographyUuid)
+                    ),
+                    uiConfiguration = UiConfigurationState(
+                        densityType = preferences.uiDensityType,
+                        isRtl = preferences.enableRTL
                     )
                 )
             }
