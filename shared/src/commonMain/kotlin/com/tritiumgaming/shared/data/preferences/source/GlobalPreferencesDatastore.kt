@@ -1,6 +1,7 @@
 package com.tritiumgaming.shared.data.preferences.source
 
 import com.tritiumgaming.shared.data.datastore.DatastoreDataSource
+import com.tritiumgaming.shared.data.preferences.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
 
 interface GlobalPreferencesDatastore:
@@ -13,6 +14,7 @@ interface GlobalPreferencesDatastore:
     suspend fun setAllowIntroduction(allow: Boolean)
     suspend fun setMaxHuntWarnFlashTime(maxTime: Long)
     suspend fun setAllowHuntWarnAudio(allowed: Boolean)
+    suspend fun setUiDensityType(densityType: DensityType)
     suspend fun savePalette(uuid: String)
     suspend fun saveTypography(uuid: String)
 
@@ -23,8 +25,9 @@ interface GlobalPreferencesDatastore:
         val enableGhostReorder: Boolean = true,
         val allowIntroduction: Boolean = true,
         val enableRTL: Boolean = false,
+        val uiDensity: DensityType = DensityType.COMFORTABLE,
         val maxHuntWarnFlashTime: Long = 300L,
-        val uiDensity: Int = 0,
+        val uiDensityType: DensityType = DensityType.COMFORTABLE,
         val typographyUuid: String,
         val paletteUuid: String
     )

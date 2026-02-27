@@ -1,6 +1,7 @@
 package com.tritiumgaming.shared.data.preferences.repository
 
 import com.tritiumgaming.shared.data.datastore.DatastoreRepository
+import com.tritiumgaming.shared.data.preferences.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
 
 interface GlobalPreferencesRepository:
@@ -11,6 +12,8 @@ interface GlobalPreferencesRepository:
     suspend fun setAllowCellularData(allow: Boolean)
 
     suspend fun setEnableRTL(enable: Boolean)
+
+    suspend fun setUiDensityType(densityType: DensityType)
 
     suspend fun setEnableGhostReorder(enable: Boolean)
 
