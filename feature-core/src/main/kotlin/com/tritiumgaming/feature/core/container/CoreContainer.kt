@@ -79,6 +79,7 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUs
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetUiDensityTypeUseCase
 import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
 import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
 import com.tritiumgaming.shared.data.review.usecase.setup.InitFlowReviewTrackerUseCase
@@ -164,6 +165,9 @@ class CoreContainer(
         repository = globalPreferencesRepository
     )
     val setEnableRTLUseCase = SetEnableRTLUseCase(
+        repository = globalPreferencesRepository
+    )
+    val setUiDensityTypeUseCase = SetUiDensityTypeUseCase(
         repository = globalPreferencesRepository
     )
     val setAllowHuntWarnAudioUseCase = SetAllowHuntWarnAudioUseCase(
