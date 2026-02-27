@@ -20,10 +20,11 @@ import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DE
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
-import com.tritiumgaming.feature.investigation.ui.section.configs.DifficultyConfigUiState
-import com.tritiumgaming.feature.investigation.ui.section.configs.MapConfigUiState
-import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmToolUiState
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
+import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
@@ -45,6 +46,7 @@ import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
+import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
@@ -208,6 +210,7 @@ class InvestigationScreenViewModel private constructor(
     )
 
     private val _mapState = MutableStateFlow(MapState())
+    private val mapState = _mapState
 
     private val _difficultyState = MutableStateFlow(DifficultyState())
     val difficultyState = _difficultyState
@@ -243,7 +246,7 @@ class InvestigationScreenViewModel private constructor(
     private val _timerUiState = MutableStateFlow(TimerUiState())
     internal val timerUiState = _timerUiState.asStateFlow()
 
-    private val _phaseUiState = MutableStateFlow(PhaseUiState())
+    private val _phaseUiState = MutableStateFlow(OperationDetailsUiState.PhaseDetails())
     internal val phaseUiState = _phaseUiState.asStateFlow()
 
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
@@ -272,7 +275,7 @@ class InvestigationScreenViewModel private constructor(
         val mapModifier = try {
             getSimpleMapModifierUseCase(
                 mapState.size.ordinal,
-                phaseUiState.currentPhase
+                phaseUiState.type
             ).getOrThrow()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -386,8 +389,9 @@ class InvestigationScreenViewModel private constructor(
     internal val sortedGhosts = _sortedGhosts
 
     private val _operationDetailsUiState: StateFlow<OperationDetailsUiState> =
-        combine(_mapState, _difficultyState) { mapState, difficultyState ->
-            OperationDetailsUiState (
+        combine(mapState, difficultyState, ghostStates) {
+            mapState, difficultyState, ghostStates ->
+            OperationDetailsUiState(
                 mapDetails = OperationDetailsUiState.MapDetails(
                     name = mapState.name,
                     size = mapState.size,
@@ -403,6 +407,16 @@ class InvestigationScreenViewModel private constructor(
                     setupTime = difficultyState.time,
                     initialSanity = difficultyState.initialSanity,
                     responseType = difficultyState.responseType,
+                ),
+                ghostDetails = OperationDetailsUiState.GhostDetails(
+                    activeGhosts = ghostStates.let { ghostStates ->
+                        val states = ghostStates.filter { it.score >= 0 && !it.manualRejection }
+                        states.map { state ->
+                            OperationDetailsUiState.GhostDetails.GhostDetail(
+                                state = state
+                            )
+                        }
+                    }
                 )
             )
         }.stateIn(
@@ -438,7 +452,7 @@ class InvestigationScreenViewModel private constructor(
                 elapsedFlashTime = 0L,
                 startFlashTime = DEFAULT,
                 maxFlashTime = DURATION_30_SECONDS,
-                currentPhase = Phase.SETUP,
+                type = Phase.SETUP,
                 canFlash = true,
                 canAlertAudio = false
             )
@@ -556,7 +570,7 @@ class InvestigationScreenViewModel private constructor(
                 strengthData = ghost.strengthData,
                 weaknessData = ghost.weaknessData,
                 huntData = ghost.huntData,
-                sanityBounds = ghost.sanityBounds,
+                sanityBounds = ghost.huntSanityBounds,
                 huntCooldown = ghost.huntCooldown
             )
 
@@ -618,7 +632,7 @@ class InvestigationScreenViewModel private constructor(
     */
 
     internal fun toggleGhostNegation(
-        ghostModel: GhostType
+        ghostModel: Ghost
     ) {
         val scores = ghostStates.value.map {
             if(it.ghostEvidence.ghost.id == ghostModel.id)
@@ -794,7 +808,7 @@ class InvestigationScreenViewModel private constructor(
     private fun updatePhase() {
         _phaseUiState.update {
             it.copy(
-                currentPhase =
+                type =
                     if (timerUiState.value.remainingTime > TIME_MIN) {
                         Phase.SETUP
                     } else {

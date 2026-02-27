@@ -63,9 +63,9 @@ data class GhostState(
     }
 
     private fun validateBpm(targetBpm: Float): Boolean {
-        val min = ghostEvidence.speed.toMinimumAsInt().toFloat()
-        var max = ghostEvidence.speed.toMaximumAsInt().toFloat()
-        val losMultiplier = ghostEvidence.speed.toHasLosMultiplierBoolean()
+        val min = ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
+        var max = ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
+        val losMultiplier = ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
 
         if(max == -1f) max = min
 

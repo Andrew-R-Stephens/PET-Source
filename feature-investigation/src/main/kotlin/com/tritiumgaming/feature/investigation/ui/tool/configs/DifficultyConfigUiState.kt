@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.section.configs
+package com.tritiumgaming.feature.investigation.ui.tool.configs
 
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 

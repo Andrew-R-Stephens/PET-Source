@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.common.analysis
+package com.tritiumgaming.feature.investigation.ui.tool.analysis
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.widgets.collapsebutton.CollapseButton
-import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.ActiveGhostModifierDetails
-import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.DifficultyModifierDetails
-import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.MapModifierDetails
-import com.tritiumgaming.feature.investigation.ui.common.analysis.sections.PhaseModifierDetails
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.ActiveGhostModifierDetails
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.DifficultyModifierDetails
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.MapModifierDetails
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.sections.PhaseModifierDetails
 
 @Composable
 internal fun OperationDetails(
@@ -43,24 +43,23 @@ internal fun OperationDetails(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         PhaseModifierDetails(
-            phaseUiState = operationDetailsUiState.phaseUiState
+            state = operationDetailsUiState.phaseDetails
         )
         MapModifierDetails(
-            state = operationDetailsUiState.operationDetailsUiState.mapDetails
+            state = operationDetailsUiState.mapDetails
         )
        DifficultyModifierDetails(
-            state = operationDetailsUiState.operationDetailsUiState.difficultyDetails
+            state = operationDetailsUiState.difficultyDetails
         )
         ActiveGhostModifierDetails(
-            ghostOrder = operationDetailsUiState.ghostOrder,
-            ghostStates = operationDetailsUiState.ghostStates
+            state = operationDetailsUiState.ghostDetails
         )
     }
 
 }
 
 @Composable
-fun CategoryColumn(
+internal fun CategoryColumn(
     content: @Composable () -> Unit = {}
 ) {
     Column(
@@ -78,7 +77,7 @@ fun CategoryColumn(
 }
 
 @Composable
-fun ExpandableCategoryColumn(
+internal fun ExpandableCategoryColumn(
     modifier: Modifier = Modifier,
     expanded: Boolean = false,
     defaultContent: @Composable (modifier: Modifier, expanded: Boolean) -> Unit = { _, _ -> },
@@ -111,7 +110,7 @@ fun ExpandableCategoryColumn(
 }
 
 @Composable
-fun CategoryRow(
+internal fun CategoryRow(
     content: @Composable RowScope.() -> Unit = {}
 ) {
     Row(
@@ -129,7 +128,7 @@ fun CategoryRow(
 }
 
 @Composable
-fun ExpandableCategoryRow(
+internal fun ExpandableCategoryRow(
     modifier: Modifier = Modifier,
     isExpanded: Boolean = false,
     content: @Composable RowScope.(modifier: Modifier) -> Unit = {}
@@ -162,7 +161,7 @@ fun ExpandableCategoryRow(
 }
 
 @Composable
-fun SubRow(
+internal fun SubRow(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit = {}
 ) {
@@ -176,7 +175,7 @@ fun SubRow(
 }
 
 @Composable
-fun TextCategoryTitle(
+internal fun TextCategoryTitle(
     modifier: Modifier = Modifier,
     text: String
 ) {
@@ -188,7 +187,7 @@ fun TextCategoryTitle(
 }
 
 @Composable
-fun TextSubTitle(
+internal fun TextSubTitle(
     modifier: Modifier = Modifier,
     text: String
 ) {

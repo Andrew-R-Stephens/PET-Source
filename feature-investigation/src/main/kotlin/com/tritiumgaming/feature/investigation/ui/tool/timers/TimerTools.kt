@@ -16,6 +16,10 @@ import com.tritiumgaming.core.ui.icon.impl.composite.SmudgeBlindnessIcon
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
+import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 
 @Composable
 internal fun TimerTools(

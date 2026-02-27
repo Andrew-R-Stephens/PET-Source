@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer
+package com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer
 
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiState
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiState

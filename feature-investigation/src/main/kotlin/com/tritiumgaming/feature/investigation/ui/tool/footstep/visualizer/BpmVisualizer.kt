@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer
+package com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloat

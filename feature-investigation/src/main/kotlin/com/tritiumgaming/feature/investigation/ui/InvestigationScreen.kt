@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -38,9 +37,11 @@ import com.tritiumgaming.core.ui.icon.impl.base.TruckTimeIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
+import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
-import com.tritiumgaming.feature.investigation.ui.common.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
@@ -52,7 +53,6 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.carouse
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.ConfigDropdownUiState
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.DropdownUiActions
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
-import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.journal.Journal
 import com.tritiumgaming.feature.investigation.ui.journal.JournalStateBundle
@@ -65,14 +65,10 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.Ghost
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
-import com.tritiumgaming.feature.investigation.ui.section.analysis.OperationAnalysis
-import com.tritiumgaming.feature.investigation.ui.section.configs.OperationConfigs
-import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmTool
-import com.tritiumgaming.feature.investigation.ui.section.footstep.BpmToolUiActions
-import com.tritiumgaming.feature.investigation.ui.section.timers.OperationTimers
-import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarBundle
-import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarUiColors
-import com.tritiumgaming.feature.investigation.ui.tool.timers.NotchedProgressBarUiState
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
+import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolRail
@@ -104,7 +100,7 @@ private fun InvestigationContent(
     val timerUiState by investigationViewModel.timerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
     val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
-    val mapDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
+    val operationDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
     val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
 
@@ -116,7 +112,7 @@ private fun InvestigationContent(
 
     // TODO val smudgeHuntPreventionState by investigationViewModel.smudgeHuntPreventionState.collectAsStateWithLifecycle()
 
-    val toolbarFootstepsVisualizerSectionUiState by investigationViewModel
+    val bpmToolUiState by investigationViewModel
         .bpmToolUiState.collectAsStateWithLifecycle()
 
     val journalUiState = JournalUiState(
@@ -142,21 +138,9 @@ private fun InvestigationContent(
         onGetEvidenceState = { evidenceType ->
             investigationViewModel.getRuledEvidence(evidenceType)
         },
-        onToggleNegateGhost = { ghostType ->
-            investigationViewModel.toggleGhostNegation(ghostType)
+        onToggleNegateGhost = { ghost ->
+            investigationViewModel.toggleGhostNegation(ghost)
         },
-    )
-
-    val operationDetailsUiState = OperationDetailsUiState(
-        mapConfigUiState = mapConfigUiState,
-        operationDetailsUiState = mapDetailsUiState,
-        phaseUiState = phaseUiState,
-        difficultyConfigUiState = difficultyUiState,
-        timerUiState = timerUiState,
-        sanityUiState = sanityUiState,
-        ghostStates = ghostStates,
-        ghostOrder = ghostOrder,
-        evidenceState = evidenceStates
     )
 
     val toolbarUiActions = ToolbarUiActions(
@@ -256,7 +240,7 @@ private fun InvestigationContent(
                 SimpleMapResources.MapTitleLength.ABBREVIATED)
         ),
         dropdownUiState = ConfigDropdownUiState(
-            list = mapConfigUiState.allMaps.map { it
+            options = mapConfigUiState.allMaps.map { it
                 .toStringResource(SimpleMapResources.MapTitleLength.FULL) },
             label = mapConfigUiState.name
                 .toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED)
@@ -268,7 +252,7 @@ private fun InvestigationContent(
             label = difficultyUiState.name.toStringResource()
         ),
         dropdownUiState = ConfigDropdownUiState(
-            list = difficultyUiState.allDifficulties.map { it.toStringResource() },
+            options = difficultyUiState.allDifficulties.map { it.toStringResource() },
             label = difficultyUiState.name.toStringResource()
         )
     )
@@ -306,14 +290,7 @@ private fun InvestigationContent(
     )
 
     val investigationUiState = InvestigationUiState(
-        toolbarUiState = toolbarUiState,
-        operationDetailsUiState = operationDetailsUiState,
-        bpmToolUiState = toolbarFootstepsVisualizerSectionUiState,
-        bpmToolUiActions = bpmToolUiActions,
-        smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
-        smudgeBlindingBundle = smudgeBlindingBundle,
-        huntDurationBundle = huntDurationBundle,
-        huntGapBundle = huntGapBundle
+        toolbarUiState = toolbarUiState
     )
 
     val investigationUiActions = InvestigationUiActions(
@@ -325,13 +302,18 @@ private fun InvestigationContent(
     )
 
     val mapConfigComponent: @Composable (Modifier) -> Unit = { modifier ->
+
+        val textStyle = LocalTypography.current.quaternary.regular
+        val color = LocalPalette.current.surfaceContainer
+        val onColor = LocalPalette.current.onSurface
+
         val icon: @Composable (Modifier) -> Unit = { modifier ->
             Image(
                 modifier = modifier,
                 contentScale = ContentScale.Inside,
                 alignment = Alignment.Center,
                 painter = painterResource(R.drawable.icon_nav_mapmenu2),
-                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                colorFilter = ColorFilter.tint(onColor),
                 contentDescription = ""
             )
         }
@@ -343,9 +325,9 @@ private fun InvestigationContent(
                     icon = { icon(it) },
                     state = mapUiStateBundle.dropdownUiState,
                     actions = mapUiActions.dropdownUiActions,
-                    textStyle = LocalTypography.current.secondary.regular,
-                    onColor = LocalPalette.current.onSurface,
-                    expandedColor = LocalPalette.current.surfaceContainer,
+                    textStyle = textStyle,
+                    onColor = onColor,
+                    expandedColor = color,
                 )
             }
             false -> {
@@ -354,13 +336,17 @@ private fun InvestigationContent(
                     state = mapUiStateBundle.carouselUiState,
                     actions = mapUiActions.carouselUiActions,
                     icon = { icon(it) },
-                    textStyle = LocalTypography.current.secondary.regular,
-                    color = LocalPalette.current.onSurface,
+                    textStyle = textStyle,
+                    onColor = onColor,
                 )
             }
         }
     }
     val difficultyConfigComponent: @Composable (Modifier) -> Unit = { modifier ->
+
+        val textStyle = LocalTypography.current.quaternary.regular
+        val color = LocalPalette.current.surfaceContainer
+        val onColor = LocalPalette.current.onSurface
 
         val icon: @Composable (Modifier) -> Unit = { modifier ->
             Image(
@@ -368,7 +354,7 @@ private fun InvestigationContent(
                 contentScale = ContentScale.Inside,
                 alignment = Alignment.Center,
                 painter = painterResource(R.drawable.ic_puzzle),
-                colorFilter = ColorFilter.tint(LocalPalette.current.onSurface),
+                colorFilter = ColorFilter.tint(onColor),
                 contentDescription = ""
             )
         }
@@ -380,9 +366,9 @@ private fun InvestigationContent(
                     state = difficultyUiStateBundle.dropdownUiState,
                     actions = difficultyUiActions.dropdownUiActions,
                     icon = { icon(it) },
-                    textStyle = LocalTypography.current.secondary.regular,
-                    expandedColor = LocalPalette.current.surfaceContainer,
-                    onColor = LocalPalette.current.onSurface,
+                    textStyle = textStyle,
+                    expandedColor = color,
+                    onColor = onColor,
                 )
             }
             false -> {
@@ -391,8 +377,8 @@ private fun InvestigationContent(
                     state = difficultyUiStateBundle.carouselUiState,
                     actions = difficultyUiActions.carouselUiActions,
                     icon = { icon(it) },
-                    textStyle = LocalTypography.current.secondary.regular,
-                    color = LocalPalette.current.onSurface,
+                    textStyle = textStyle,
+                    onColor = onColor,
                 )
             }
         }
@@ -467,6 +453,48 @@ private fun InvestigationContent(
         )
     }
 
+    val sheetComponent: @Composable (Modifier) -> Unit = { modifier ->
+        Column(
+            modifier = modifier,
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            horizontalAlignment = Alignment.Start
+        ) {
+            when (toolbarUiState.category) {
+                ToolbarUiState.Category.TOOL_NONE -> {}
+                ToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
+                    modifier = Modifier
+                        .height(IntrinsicSize.Max),
+                    mapConfigComponent = { modifier -> mapConfigComponent(modifier) },
+                    difficultyConfigComponent = { modifier ->
+                        difficultyConfigComponent(modifier) },
+                    sanityMeterComponent = { modifier -> sanityMeterComponent(modifier) },
+                    timerComponent = { modifier -> timerComponent(modifier) },
+                    phaseComponent = { modifier -> }
+                )
+
+                ToolbarUiState.Category.TOOL_ANALYZER -> OperationDetails(
+                    modifier = modifier,
+                    operationDetailsUiState = operationDetailsUiState
+                )
+
+                ToolbarUiState.Category.TOOL_TIMERS -> TimerTools(
+                    modifier = modifier,
+                    smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
+                    smudgeBlindingBundle = smudgeBlindingBundle,
+                    huntDurationBundle = huntDurationBundle,
+                    huntGapBundle = huntGapBundle
+                )
+
+                ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
+                    modifier = Modifier,
+                    state = bpmToolUiState,
+                    actions = bpmToolUiActions
+                )
+
+            }
+        }
+    }
+
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
@@ -480,10 +508,7 @@ private fun InvestigationContent(
                         state = investigationUiState,
                         actions = investigationUiActions,
                         journalComponent = { modifier -> journalComponent(modifier) },
-                        mapConfigComponent = { modifier -> mapConfigComponent(modifier) },
-                        difficultyConfigComponent = { modifier -> difficultyConfigComponent(modifier) },
-                        sanityMeterComponent = { modifier -> sanityMeterComponent(modifier) },
-                        timerComponent = { modifier -> timerComponent(modifier) }
+                        bottomSheetComponent = { modifier -> sheetComponent(modifier) }
                     )
                 }
             )
@@ -498,10 +523,7 @@ private fun InvestigationContent(
                         state = investigationUiState,
                         actions = investigationUiActions,
                         journalComponent = { modifier -> journalComponent(modifier) },
-                        mapConfigComponent = { modifier -> mapConfigComponent(modifier) },
-                        difficultyConfigComponent = { modifier -> difficultyConfigComponent(modifier) },
-                        sanityMeterComponent = { modifier -> sanityMeterComponent(modifier) },
-                        timerComponent = { modifier -> timerComponent(modifier) }
+                        sideSheetComponent = { modifier -> sheetComponent(modifier) }
                     )
                 }
             )
@@ -560,11 +582,8 @@ private fun InvestigationContentLandscape(
 private fun ColumnScope.Investigation(
     state: InvestigationUiState,
     actions: InvestigationUiActions,
-    journalComponent: @Composable (Modifier) -> Unit,
-    mapConfigComponent: @Composable (Modifier) -> Unit,
-    difficultyConfigComponent: @Composable (Modifier) -> Unit,
-    sanityMeterComponent: @Composable (Modifier) -> Unit,
-    timerComponent: @Composable (Modifier) -> Unit
+    bottomSheetComponent: @Composable (Modifier) -> Unit,
+    journalComponent: @Composable (Modifier) -> Unit
 ) {
 
     val toolbarComponent: @Composable (Modifier) -> Unit = { modifier ->
@@ -579,9 +598,12 @@ private fun ColumnScope.Investigation(
 
     journalComponent(Modifier.weight(1f, false))
 
-    val primaryContent: @Composable (Modifier) -> Unit = { modifier ->
-        Column(
-            modifier = modifier
+    ToolbarBottomSheet(
+        modifier = Modifier
+            .padding(8.dp),
+        selectBarComponent = { modifier -> toolbarComponent(modifier) },
+        content = { modifier ->
+            bottomSheetComponent(modifier
                 .fillMaxWidth()
                 .animateContentSize()
                 .then(
@@ -593,51 +615,9 @@ private fun ColumnScope.Investigation(
                         Modifier
                             .height(0.dp)
                             .alpha(0f)
-                ),
-            verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.Bottom),
-            horizontalAlignment = Alignment.Start
-        ) {
-            when (state.toolbarUiState.category) {
-                ToolbarUiState.Category.TOOL_NONE -> {}
-                ToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
-                    modifier = Modifier
-                        .height(IntrinsicSize.Max),
-                    mapConfigComponent = { modifier -> mapConfigComponent(modifier) },
-                    difficultyConfigComponent = { modifier ->
-                        difficultyConfigComponent(modifier) },
-                    sanityMeterComponent = { modifier -> sanityMeterComponent(modifier) },
-                    timerComponent = { modifier -> timerComponent(modifier) },
-                    phaseComponent = { modifier -> }
                 )
-
-                ToolbarUiState.Category.TOOL_ANALYZER -> OperationAnalysis(
-                    modifier = Modifier,
-                    operationDetailsUiState = state.operationDetailsUiState
-                )
-
-                ToolbarUiState.Category.TOOL_TIMERS -> OperationTimers(
-                    modifier = Modifier,
-                    smudgeHuntPreventionBundle = state.smudgeHuntPreventionBundle,
-                    smudgeBlindingBundle = state.smudgeBlindingBundle,
-                    huntDurationBundle = state.huntDurationBundle,
-                    huntGapBundle = state.huntGapBundle
-                )
-
-                ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
-                    modifier = Modifier,
-                    state = state.bpmToolUiState,
-                    actions = actions.bpmUi
-                )
-
-            }
+            )
         }
-    }
-
-    ToolbarBottomSheet(
-        modifier = Modifier
-            .padding(8.dp),
-        toolbarComponent = { modifier -> toolbarComponent(modifier) },
-        content = { modifier -> primaryContent(modifier) }
     )
 
 }
@@ -646,11 +626,8 @@ private fun ColumnScope.Investigation(
 private fun RowScope.Investigation(
     state: InvestigationUiState,
     actions: InvestigationUiActions,
-    mapConfigComponent: @Composable (Modifier) -> Unit,
-    difficultyConfigComponent: @Composable (Modifier) -> Unit,
-    sanityMeterComponent: @Composable (Modifier) -> Unit,
-    timerComponent: @Composable (Modifier) -> Unit,
-    journalComponent: @Composable (Modifier) -> Unit
+    journalComponent: @Composable (Modifier) -> Unit,
+    sideSheetComponent: @Composable (Modifier) -> Unit,
 ) {
 
     val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
@@ -663,9 +640,12 @@ private fun RowScope.Investigation(
         )
     }
 
-    val primaryContent: @Composable (Modifier) -> Unit = { modifier ->
-        Column(
-            modifier = modifier
+    ToolbarSideSheet(
+        modifier = Modifier
+            .padding(8.dp),
+        selectRailComponent = { modifier -> toolbarContent(modifier) },
+        content = { modifier ->
+            sideSheetComponent(modifier
                 .fillMaxHeight()
                 .animateContentSize()
                 .then(
@@ -677,51 +657,9 @@ private fun RowScope.Investigation(
                         Modifier
                             .height(0.dp)
                             .alpha(0f)
-                ),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            horizontalAlignment = Alignment.Start
-        ) {
-            when (state.toolbarUiState.category) {
-                ToolbarUiState.Category.TOOL_NONE -> {}
-                ToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
-                    modifier = Modifier
-                        .width(IntrinsicSize.Max),
-                    mapConfigComponent = { modifier -> mapConfigComponent(modifier) },
-                    difficultyConfigComponent = { modifier ->
-                        difficultyConfigComponent(modifier) },
-                    sanityMeterComponent = { modifier -> sanityMeterComponent(modifier) },
-                    timerComponent = { modifier -> timerComponent(modifier) },
-                    phaseComponent = { modifier -> }
                 )
-
-                ToolbarUiState.Category.TOOL_ANALYZER -> OperationAnalysis(
-                    modifier = Modifier,
-                    operationDetailsUiState = state.operationDetailsUiState
-                )
-
-                ToolbarUiState.Category.TOOL_TIMERS -> OperationTimers(
-                    modifier = Modifier,
-                    smudgeHuntPreventionBundle = state.smudgeHuntPreventionBundle,
-                    smudgeBlindingBundle = state.smudgeBlindingBundle,
-                    huntDurationBundle = state.huntDurationBundle,
-                    huntGapBundle = state.huntGapBundle
-                )
-
-                ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
-                    modifier = Modifier,
-                    state = state.bpmToolUiState,
-                    actions = actions.bpmUi
-                )
-
-            }
+            )
         }
-    }
-
-    ToolbarSideSheet(
-        modifier = Modifier
-            .padding(8.dp),
-        toolRailComponent = { modifier -> toolbarContent(modifier) },
-        content = { modifier -> primaryContent(modifier) }
     )
 
     journalComponent(Modifier)
@@ -730,7 +668,7 @@ private fun RowScope.Investigation(
 @Composable
 private fun ToolbarBottomSheet(
     modifier: Modifier = Modifier,
-    toolbarComponent: @Composable (Modifier) -> Unit = {},
+    selectBarComponent: @Composable (Modifier) -> Unit = {},
     content: @Composable (Modifier) -> Unit = {}
 ) {
     Surface(
@@ -742,7 +680,7 @@ private fun ToolbarBottomSheet(
         Column(
             modifier = modifier
         ) {
-            toolbarComponent(
+            selectBarComponent(
                 Modifier
                     .heightIn(min = 48.dp)
             )
@@ -756,7 +694,7 @@ private fun ToolbarBottomSheet(
 @Composable
 private fun RowScope.ToolbarSideSheet(
     modifier: Modifier = Modifier,
-    toolRailComponent: @Composable (Modifier) -> Unit = {},
+    selectRailComponent: @Composable (Modifier) -> Unit = {},
     content: @Composable (Modifier) -> Unit = {}
 ) {
     Surface(
@@ -771,11 +709,56 @@ private fun RowScope.ToolbarSideSheet(
         ) {
             content(Modifier)
 
-            toolRailComponent(
+            selectRailComponent(
                 Modifier
                     .widthIn(min = 48.dp)
             )
 
         }
+    }
+}
+
+@Composable
+fun OperationConfigs(
+    modifier: Modifier = Modifier,
+    timerComponent: @Composable (Modifier) -> Unit = {},
+    mapConfigComponent: @Composable (Modifier) -> Unit = {},
+    difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
+    sanityMeterComponent: @Composable (Modifier) -> Unit = {},
+    phaseComponent: @Composable (Modifier) -> Unit = {}
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalAlignment = Alignment.Start
+    ) {
+
+        mapConfigComponent(Modifier
+            .fillMaxWidth()
+        )
+
+        difficultyConfigComponent(Modifier
+            .fillMaxWidth()
+        )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            sanityMeterComponent(
+                Modifier
+                    .size(64.dp)
+            )
+
+            timerComponent(
+                Modifier
+                    .weight(1f, false)
+            )
+        }
+
+        phaseComponent(Modifier)
     }
 }

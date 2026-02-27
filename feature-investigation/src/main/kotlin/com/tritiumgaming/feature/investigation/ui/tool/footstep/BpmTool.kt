@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.section.footstep
+package com.tritiumgaming.feature.investigation.ui.tool.footstep
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -29,11 +29,11 @@ import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabe
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphsurface.GraphSurfaceUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeplot.RealtimePlotUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.realtimeverticalmeter.RealtimeVerticalMeterColors
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizer
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerColorBundle
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerStateBundle
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.BpmVisualizerUiActions
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizer
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerColorBundle
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerStateBundle
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.BpmVisualizerUiActions
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 import kotlin.time.Duration.Companion.seconds
 
 @Composable

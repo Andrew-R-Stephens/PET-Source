@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.common.analysis.sections
+package com.tritiumgaming.feature.investigation.ui.tool.analysis.sections
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,11 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
-import com.tritiumgaming.feature.investigation.ui.OperationDetailsUiState
-import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryColumn
-import com.tritiumgaming.feature.investigation.ui.common.analysis.ExpandableCategoryRow
-import com.tritiumgaming.feature.investigation.ui.common.analysis.SubRow
-import com.tritiumgaming.feature.investigation.ui.common.analysis.TextSubTitle
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
 
 @Composable
 internal fun DifficultyModifierDetails(

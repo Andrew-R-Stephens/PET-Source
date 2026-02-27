@@ -1,8 +1,8 @@
-package com.tritiumgaming.feature.investigation.ui.section.footstep
+package com.tritiumgaming.feature.investigation.ui.tool.footstep
 
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.GraphPoint
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.visualizer.RealtimeUiState
-import com.tritiumgaming.feature.investigation.ui.section.footstep.visualizer.VisualizerMeasurementType
+import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 
 data class BpmToolUiState(
     val realtimeState: RealtimeUiState<GraphPoint> = RealtimeUiState(),

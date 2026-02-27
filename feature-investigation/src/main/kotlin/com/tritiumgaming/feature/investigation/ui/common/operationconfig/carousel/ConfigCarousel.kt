@@ -1,7 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel
 
-import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Arrangement.SpaceBetween
@@ -17,9 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -61,7 +56,7 @@ fun OperationConfigCarousel(
     state: ConfigCarouselUiState,
     icon: @Composable (Modifier) -> Unit = {},
     textStyle: TextStyle = TextStyle.Default,
-    color: Color = Color.Unspecified,
+    onColor: Color = Color.Unspecified,
     containerColor: Color = Color.Unspecified,
     actions: CarouselUiActions
 ) {
@@ -95,7 +90,7 @@ fun OperationConfigCarousel(
                         .size(48.dp)
                         .clickable(onClick = { actions.onLeftClick() }),
                     type = PETImageButtonType.BACK,
-                    tint = color
+                    tint = onColor
                 )
 
                 Box(
@@ -115,7 +110,7 @@ fun OperationConfigCarousel(
                         text = stringResource(state.label),
                         style = textStyle,
                         textAlign = TextAlign.Center,
-                        color = color,
+                        color = onColor,
                         fontSize = 18.sp
                     )
 
@@ -126,7 +121,7 @@ fun OperationConfigCarousel(
                         .size(48.dp)
                         .clickable(onClick = { actions.onRightClick() }),
                     type = PETImageButtonType.FORWARD,
-                    tint = color
+                    tint = onColor
                 )
 
             }
