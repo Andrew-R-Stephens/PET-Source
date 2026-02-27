@@ -31,7 +31,8 @@ fun NotchedProgressBar(
         val labelsHeight = size.height * 0.5f
 
         val maxDurationNormal = state.max.coerceAtLeast(1).toFloat()
-        val progress = state.remaining.toFloat() / maxDurationNormal
+        val progressOffset = bundle.state.origin / maxDurationNormal
+        val progressWidth = state.remaining.toFloat() / maxDurationNormal
         val scale = barHeight / 48f
 
         // --- Draw Progress Bar ---
@@ -47,9 +48,9 @@ fun NotchedProgressBar(
 
         drawRoundRect(
             color = colors.remaining,
-            topLeft = Offset((12f * scale), (12f * scale)),
+            topLeft = Offset( (size.width * progressOffset) + (12f * scale), (12f * scale)),
             size = Size(
-                width = (size.width - (24f * scale)) * progress,
+                width = (size.width - (24f * scale)) * progressWidth,
                 height = barHeight - (24f * scale)
             ),
             cornerRadius = CornerRadius(barHeight * .5f)
