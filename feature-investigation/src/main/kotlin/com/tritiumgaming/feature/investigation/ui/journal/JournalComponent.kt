@@ -1,18 +1,13 @@
 package com.tritiumgaming.feature.investigation.ui.journal
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceList
+import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.PrimaryEvidenceList
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostList
@@ -46,55 +41,17 @@ fun Journal(
     journalStateBundle: JournalStateBundle,
     evidenceListUiActions: EvidenceListUiActions,
     ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions
+    ghostListUiItemActions: GhostListUiItemActions,
+    journalComponent: @Composable (Modifier) -> Unit
 ) {
     val journalUiState = journalStateBundle.journalUiState
     val evidenceListUiState = journalStateBundle.evidenceListUiState
     val ghostListUiState = journalStateBundle.ghostListUiState
 
-    Row(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
-        verticalAlignment = Alignment.Top
-    ) {
-        val evidenceListComponent: @Composable (Modifier) -> Unit = { modifier ->
-            EvidenceListColumn(
-                modifier = modifier
-                    .weight(1f)
-                    .fillMaxSize(),
-                evidenceListUiState = evidenceListUiState,
-                evidenceListUiActions = evidenceListUiActions
-            )
-        }
-
-        val ghostListComponent: @Composable (Modifier) -> Unit = { modifier ->
-            GhostListColumn(
-                modifier = modifier
-                    .weight(1f, false)
-                    .wrapContentWidth(Alignment.CenterHorizontally)
-                    .fillMaxHeight(),
-                ghostListUiState = ghostListUiState,
-                ghostListUiActions = ghostListUiActions,
-                ghostListUiItemActions = ghostListUiItemActions
-            )
-        }
-
-        if(journalUiState.rtlPreference) {
-            evidenceListComponent(Modifier)
-            ghostListComponent(Modifier)
-        } else {
-            ghostListComponent(Modifier)
-            evidenceListComponent(Modifier)
-        }
-
-    }
-
 }
 
 @Composable
-private fun GhostListColumn(
+internal fun GhostListColumn(
     modifier: Modifier = Modifier,
     ghostListUiState: GhostListUiState,
     ghostListUiActions: GhostListUiActions,
@@ -114,7 +71,7 @@ private fun GhostListColumn(
 }
 
 @Composable
-private fun EvidenceListColumn(
+internal fun EvidenceListColumn(
     modifier: Modifier,
     evidenceListUiState: EvidenceListUiState,
     evidenceListUiActions: EvidenceListUiActions,
@@ -123,7 +80,7 @@ private fun EvidenceListColumn(
         modifier = modifier,
         title = stringResource(R.string.investigation_section_title_evidence)
     ) {
-        EvidenceList(
+        PrimaryEvidenceList(
             evidenceListUiState = evidenceListUiState,
             evidenceListUiActions = evidenceListUiActions
         )

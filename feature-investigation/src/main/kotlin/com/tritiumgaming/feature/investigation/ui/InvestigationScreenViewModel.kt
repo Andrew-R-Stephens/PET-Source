@@ -74,6 +74,7 @@ import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexU
 import com.tritiumgaming.shared.data.phase.model.Phase
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
+import com.tritiumgaming.shared.data.preferences.DensityType
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel
 import kotlinx.coroutines.Job
@@ -134,18 +135,10 @@ class InvestigationScreenViewModel private constructor(
     initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase = preferencesUseCaseBundle.initFlowUserPreferencesUseCase,
 ) : ViewModel() {
 
-    data class InvestigationScreenUserPreferences(
-        val enableRTL: Boolean = false,
-        val enableGhostReorder: Boolean = false,
-        val maxHuntWarnFlashTime: Long = 0L,
-        val allowHuntWarnAudio: Boolean = false
-    )
-
     private val _preferences: StateFlow<InvestigationScreenUserPreferences> =
         initFlowUserPreferencesUseCase()
         .map {
             InvestigationScreenUserPreferences(
-                enableRTL = it.enableRTL,
                 enableGhostReorder = it.enableGhostReorder,
                 maxHuntWarnFlashTime = it.maxHuntWarnFlashTime,
                 allowHuntWarnAudio = it.allowHuntWarnAudio
@@ -155,7 +148,7 @@ class InvestigationScreenViewModel private constructor(
             started = SharingStarted.Eagerly,
             initialValue = InvestigationScreenUserPreferences()
         )
-    val preferences = _preferences
+    internal val preferences = _preferences
 
     private val ghostEvidences = fetchGhostEvidencesUseCase().let {
         it.exceptionOrNull()?.printStackTrace()
@@ -293,6 +286,7 @@ class InvestigationScreenViewModel private constructor(
     )
     internal val operationSanityUiState = _operationSanityUiState
 
+    /* EvidenceStates */
     private val _evidenceStates: MutableStateFlow<List<EvidenceState>> =
         MutableStateFlow(emptyList())
     internal val evidenceStates = _evidenceStates.asStateFlow()
@@ -314,6 +308,8 @@ class InvestigationScreenViewModel private constructor(
         }
         updateGhostScores()
     }
+
+    /* Ghost States */
     private val _ghostStates = MutableStateFlow(
         ghostEvidences.map { GhostState(it) }
     )
@@ -351,7 +347,7 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
-    /** Order of Ghost IDs **/
+    /* Ghost Order **/
     private val _sortedGhosts: StateFlow<List<GhostResources.GhostIdentifier>> =
         combine(
             ghostStates, preferences
@@ -370,24 +366,9 @@ class InvestigationScreenViewModel private constructor(
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = ghostEvidences.map { it.ghost.id }
         )
-    /*private val _ghostOrder: StateFlow<List<GhostResources.GhostIdentifier>> =
-        combine(ghostScores, ghostReorderPreference) { scores, isReorderEnabled ->
-            if (isReorderEnabled) {
-                scores.sortedWith(
-                    compareByDescending<GhostScore> { it.bpmIsValid }
-                        .thenByDescending { it.score }
-                ).map { it.ghostEvidence.ghost.id }
-            } else {
-                // Keep original order (as defined in ghostEvidences) if reordering is disabled
-                scores.map { it.ghostEvidence.ghost.id }
-            }
-        }.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
-            initialValue = ghostEvidences.map { it.ghost.id }
-        )*/
     internal val sortedGhosts = _sortedGhosts
 
+    /* Operation Details */
     private val _operationDetailsUiState: StateFlow<OperationDetailsUiState> =
         combine(mapState, difficultyState, ghostStates) {
             mapState, difficultyState, ghostStates ->

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
@@ -34,6 +35,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.TruckTimeIcon
+import com.tritiumgaming.core.ui.theme.LocalUiConfiguration
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
@@ -54,8 +56,8 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdow
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.DropdownUiActions
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdown.OperationConfigDropdown
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
-import com.tritiumgaming.feature.investigation.ui.journal.Journal
-import com.tritiumgaming.feature.investigation.ui.journal.JournalStateBundle
+import com.tritiumgaming.feature.investigation.ui.journal.EvidenceListColumn
+import com.tritiumgaming.feature.investigation.ui.journal.GhostListColumn
 import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
@@ -74,6 +76,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolbar
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.shared.data.preferences.DensityType
 
 @Composable
 fun InvestigationSoloScreen(
@@ -90,8 +93,8 @@ fun InvestigationSoloScreen(
 private fun InvestigationContent(
     investigationViewModel: InvestigationScreenViewModel
 ) {
-
-    val preferencesState by investigationViewModel.preferences.collectAsStateWithLifecycle()
+    val uiDensityType = LocalUiConfiguration.current.densityType
+    val uiIsRtl = LocalUiConfiguration.current.isRtl
 
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
 
@@ -107,17 +110,11 @@ private fun InvestigationContent(
     val ghostStates by investigationViewModel.ghostStates.collectAsStateWithLifecycle()
     val ghostOrder by investigationViewModel.sortedGhosts.collectAsStateWithLifecycle()
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
-    
-    val isCompact = true
 
     // TODO val smudgeHuntPreventionState by investigationViewModel.smudgeHuntPreventionState.collectAsStateWithLifecycle()
 
     val bpmToolUiState by investigationViewModel
         .bpmToolUiState.collectAsStateWithLifecycle()
-
-    val journalUiState = JournalUiState(
-        rtlPreference = preferencesState.enableRTL
-    )
 
     val ghostListUiState = GhostListUiState(
         ghostStates = ghostStates,
@@ -318,8 +315,8 @@ private fun InvestigationContent(
             )
         }
 
-        when(isCompact) {
-            true -> {
+        when(uiDensityType) {
+            DensityType.COMPACT -> {
                 OperationConfigDropdown(
                     modifier = modifier,
                     icon = { icon(it) },
@@ -330,7 +327,7 @@ private fun InvestigationContent(
                     expandedColor = color,
                 )
             }
-            false -> {
+            else -> {
                 OperationConfigCarousel(
                     modifier = modifier,
                     state = mapUiStateBundle.carouselUiState,
@@ -359,8 +356,8 @@ private fun InvestigationContent(
             )
         }
 
-        when(isCompact) {
-            true -> {
+        when(uiDensityType) {
+            DensityType.COMPACT -> {
                 OperationConfigDropdown(
                     modifier = modifier,
                     state = difficultyUiStateBundle.dropdownUiState,
@@ -371,7 +368,7 @@ private fun InvestigationContent(
                     onColor = onColor,
                 )
             }
-            false -> {
+            else -> {
                 OperationConfigCarousel(
                     modifier = modifier,
                     state = difficultyUiStateBundle.carouselUiState,
@@ -440,17 +437,49 @@ private fun InvestigationContent(
     }
 
     val journalComponent: @Composable (Modifier) -> Unit = { modifier ->
-        Journal(
-            modifier = modifier,
-            journalStateBundle = JournalStateBundle(
-                journalUiState = journalUiState,
+        val evidenceListComponent: @Composable (Modifier) -> Unit = { modifier ->
+            EvidenceListColumn(
+                modifier = modifier,
                 evidenceListUiState = evidenceListUiState,
-                ghostListUiState = ghostListUiState
-            ),
-            evidenceListUiActions = evidenceListUiActions,
-            ghostListUiActions = ghostListUiActions,
-            ghostListUiItemActions = ghostListUiItemActions,
-        )
+                evidenceListUiActions = evidenceListUiActions
+            )
+        }
+
+        val ghostListComponent: @Composable (Modifier) -> Unit = { modifier ->
+            GhostListColumn(
+                modifier = modifier,
+                ghostListUiState = ghostListUiState,
+                ghostListUiActions = ghostListUiActions,
+                ghostListUiItemActions = ghostListUiItemActions
+            )
+        }
+
+        Row(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+            verticalAlignment = Alignment.Top
+        ) {
+            if(uiIsRtl) {
+                evidenceListComponent(Modifier
+                    .weight(1f)
+                    .fillMaxSize())
+                ghostListComponent(Modifier
+                    .weight(1f, false)
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .fillMaxHeight())
+            } else {
+                ghostListComponent(Modifier
+                    .weight(1f, false)
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .fillMaxHeight())
+                evidenceListComponent(Modifier
+                    .weight(1f)
+                    .fillMaxSize())
+            }
+        }
+
     }
 
     val sheetComponent: @Composable (Modifier) -> Unit = { modifier ->
@@ -762,3 +791,9 @@ fun OperationConfigs(
         phaseComponent(Modifier)
     }
 }
+
+internal data class InvestigationScreenUserPreferences(
+    val enableGhostReorder: Boolean = false,
+    val maxHuntWarnFlashTime: Long = 0L,
+    val allowHuntWarnAudio: Boolean = false
+)

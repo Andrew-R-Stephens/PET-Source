@@ -13,7 +13,45 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.Ev
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.EvidenceListItemUiState
 
 @Composable
-fun EvidenceList(
+fun PrimaryEvidenceList(
+    evidenceListUiState: EvidenceListUiState,
+    evidenceListUiActions: EvidenceListUiActions
+) {
+
+    LazyColumn(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceEvenly
+    ) {
+
+        items(
+            items = evidenceListUiState.evidenceStateList,
+            key = { it.evidence.id }
+        ) { ruledEvidence ->
+
+            EvidenceListItem(
+                evidenceListItemUiState = EvidenceListItemUiState(
+                    state = ruledEvidence.state,
+                    label = stringResource(ruledEvidence.evidence.name.toStringResource())
+                ),
+                evidenceListItemUiAction = EvidenceListItemUiAction(
+                    onToggle = { ruling ->
+                        evidenceListUiActions.onChangeEvidenceRuling(
+                            ruledEvidence.evidence, ruling)
+                    },
+                    onNameClick = {
+                        evidenceListUiActions.onClickItem(ruledEvidence.evidence)
+                    }
+                )
+            )
+
+        }
+
+    }
+
+}
+
+@Composable
+fun SecondaryEvidenceList(
     evidenceListUiState: EvidenceListUiState,
     evidenceListUiActions: EvidenceListUiActions
 ) {
