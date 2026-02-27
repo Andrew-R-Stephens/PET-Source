@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
@@ -26,6 +27,7 @@ internal fun DifficultyModifierDetails(
 
     ExpandableCategoryColumn(
         expanded = false,
+        containerColor = LocalPalette.current.surfaceContainer,
         defaultContent = { modifier, expanded ->
             ExpandableCategoryRow(
                 modifier = modifier,
@@ -35,8 +37,12 @@ internal fun DifficultyModifierDetails(
                     modifier = modifier,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    TextSubTitle(text = "Difficulty:")
-                    TextSubTitle(text = stringResource(difficultyName))
+                    TextSubTitle(
+                        color = LocalPalette.current.onSurface,
+                        text = "Difficulty:")
+                    TextSubTitle(
+                        color = LocalPalette.current.onSurface,
+                        text = stringResource(difficultyName))
                 }
             }
         }
@@ -46,16 +52,28 @@ internal fun DifficultyModifierDetails(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             SubRow {
-                TextSubTitle(text = "Sanity Drain Modifier:")
-                TextSubTitle(text = "$difficultyModifier")
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "Sanity Drain Modifier:")
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "$difficultyModifier")
             }
             SubRow {
-                TextSubTitle(text = "Setup Time:")
-                TextSubTitle(text = "${difficultyTime / 60000} minutes")
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "Setup Time:")
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "${difficultyTime / 60000} minutes")
             }
             SubRow {
-                TextSubTitle(text = "Ghost Response Type:")
-                TextSubTitle(text = stringResource(difficultyResponseType.toStringResource()))
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "Ghost Response Type:")
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = stringResource(difficultyResponseType.toStringResource()))
             }
         }
     }

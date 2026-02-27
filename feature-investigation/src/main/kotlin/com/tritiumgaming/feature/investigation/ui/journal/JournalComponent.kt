@@ -3,6 +3,7 @@ package com.tritiumgaming.feature.investigation.ui.journal
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -58,27 +59,34 @@ fun Journal(
         horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.Top
     ) {
+        val evidenceListComponent: @Composable (Modifier) -> Unit = { modifier ->
+            EvidenceListColumn(
+                modifier = modifier
+                    .weight(1f)
+                    .fillMaxSize(),
+                evidenceListUiState = evidenceListUiState,
+                evidenceListUiActions = evidenceListUiActions
+            )
+        }
+
+        val ghostListComponent: @Composable (Modifier) -> Unit = { modifier ->
+            GhostListColumn(
+                modifier = modifier
+                    .weight(1f, false)
+                    .wrapContentWidth(Alignment.CenterHorizontally)
+                    .fillMaxHeight(),
+                ghostListUiState = ghostListUiState,
+                ghostListUiActions = ghostListUiActions,
+                ghostListUiItemActions = ghostListUiItemActions
+            )
+        }
 
         if(journalUiState.rtlPreference) {
-            EvidenceListColumn(
-                evidenceListUiState = evidenceListUiState,
-                evidenceListUiActions = evidenceListUiActions
-            )
-            GhostListColumn(
-                ghostListUiState = ghostListUiState,
-                ghostListUiActions = ghostListUiActions,
-                ghostListUiItemActions = ghostListUiItemActions
-            )
+            evidenceListComponent(Modifier)
+            ghostListComponent(Modifier)
         } else {
-            GhostListColumn(
-                ghostListUiState = ghostListUiState,
-                ghostListUiActions = ghostListUiActions,
-                ghostListUiItemActions = ghostListUiItemActions
-            )
-            EvidenceListColumn(
-                evidenceListUiState = evidenceListUiState,
-                evidenceListUiActions = evidenceListUiActions
-            )
+            ghostListComponent(Modifier)
+            evidenceListComponent(Modifier)
         }
 
     }
@@ -86,20 +94,54 @@ fun Journal(
 }
 
 @Composable
-private fun RowScope.GhostListColumn(
+private fun GhostListColumn(
+    modifier: Modifier = Modifier,
     ghostListUiState: GhostListUiState,
     ghostListUiActions: GhostListUiActions,
     ghostListUiItemActions: GhostListUiItemActions
+) {
+    ListColumn(
+        modifier = modifier,
+        title = stringResource(R.string.investigation_section_title_ghosts)
+    ) {
+        GhostList(
+            modifier = Modifier,
+            ghostListUiState = ghostListUiState,
+            ghostListUiActions = ghostListUiActions,
+            ghostListUiItemActions = ghostListUiItemActions
+        )
+    }
+}
+
+@Composable
+private fun EvidenceListColumn(
+    modifier: Modifier,
+    evidenceListUiState: EvidenceListUiState,
+    evidenceListUiActions: EvidenceListUiActions,
+) {
+    ListColumn(
+        modifier = modifier,
+        title = stringResource(R.string.investigation_section_title_evidence)
+    ) {
+        EvidenceList(
+            evidenceListUiState = evidenceListUiState,
+            evidenceListUiActions = evidenceListUiActions
+        )
+    }
+}
+
+@Composable
+private fun ListColumn(
+    modifier: Modifier = Modifier,
+    title: String,
+    listComponent: @Composable (Modifier) -> Unit
 ) {
     var size by remember{
         mutableStateOf(IntSize.Zero)
     }
 
     Column(
-        modifier = Modifier
-            .weight(1f, false)
-            .wrapContentWidth(Alignment.CenterHorizontally)
-            .fillMaxHeight(),
+        modifier = modifier,
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -116,7 +158,7 @@ private fun RowScope.GhostListColumn(
                 Text(
                     modifier = Modifier
                         .wrapContentWidth(),
-                    text = stringResource(R.string.investigation_section_title_ghosts),
+                    text = title,
                     style = LocalTypography.current.primary.regular.copy(
                         color = LocalPalette.current.primary,
                         textAlign = TextAlign.Center
@@ -127,68 +169,6 @@ private fun RowScope.GhostListColumn(
             }
         }
 
-        GhostList(
-            modifier = Modifier,
-            ghostListUiState = ghostListUiState,
-            ghostListUiActions = ghostListUiActions,
-            ghostListUiItemActions = ghostListUiItemActions
-        )
-    }
-}
-
-@Composable
-private fun RowScope.EvidenceListColumn(
-    evidenceListUiState: EvidenceListUiState,
-    evidenceListUiActions: EvidenceListUiActions,
-) {
-
-    var size by remember{
-        mutableStateOf(IntSize.Zero)
-    }
-
-    Box(
-        modifier = Modifier
-            .weight(1f)
-            .fillMaxSize()
-    ) {
-
-        Column(
-            verticalArrangement = Arrangement.Top
-        ) {
-
-            Box(
-                modifier = Modifier
-                    .height(36.dp)
-                    .fillMaxWidth()
-                    .padding(2.dp)
-                    .onSizeChanged { size = it },
-                contentAlignment = Alignment.Center
-            ) {
-                key(size) {
-                    BasicText(
-                        text = stringResource(R.string.investigation_section_title_evidence),
-                        style = LocalTypography.current.primary.regular.copy(
-                            color = LocalPalette.current.primary,
-                            textAlign = TextAlign.Center
-                        ),
-                        maxLines = 1,
-                        autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-                    )
-                }
-            }
-
-            EvidenceList(
-                evidenceListUiState = evidenceListUiState,
-                evidenceListUiActions = evidenceListUiActions
-            )
-
-                /*onChangeEvidenceRuling = { e, r -> onChangeEvidenceRuling(e, r) },
-                onClickItem = {
-                    Log.d("EvidenceList", "Setting popup to ${it.name}")
-                    onChangePopup(it)
-                }
-            )*/
-
-        }
+        listComponent(Modifier)
     }
 }

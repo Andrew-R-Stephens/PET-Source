@@ -49,39 +49,3 @@ fun EvidenceList(
     }
 
 }
-
-/*
-@Composable
-fun EvidenceList(
-    investigationViewModel: InvestigationScreenViewModel,
-    onClickItem: (evidence: EvidenceType) -> Unit = {},
-) {
-
-    val evidenceState = investigationViewModel.ruledEvidence.collectAsStateWithLifecycle()
-
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceEvenly
-    ) {
-
-        items(
-            items = evidenceState.value,
-            key = { it.evidence.id }
-        ) { ruledEvidence ->
-
-            EvidenceListItem(
-                state = ruledEvidence.ruling,
-                label = stringResource(ruledEvidence.evidence.name.toStringResource()),
-                onToggle = { ruling ->
-                    investigationViewModel.setEvidenceRuling(ruledEvidence.evidence, ruling)
-                },
-                onNameClick = {
-                    onClickItem(ruledEvidence.evidence)
-                }
-            )
-
-        }
-
-    }
-
-}*/

@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
@@ -25,6 +26,7 @@ internal fun MapModifierDetails(
     ExpandableCategoryColumn(
         modifier = Modifier
             .fillMaxWidth(),
+        containerColor = LocalPalette.current.surfaceContainer,
         expanded = false,
         defaultContent = { modifier, expanded ->
             ExpandableCategoryRow(
@@ -34,8 +36,12 @@ internal fun MapModifierDetails(
                 Row(
                     modifier = modifier,
                 ) {
-                    TextCategoryTitle(text = "Map: ")
-                    TextSubTitle(text = stringResource(state.name.toStringResource()))
+                    TextCategoryTitle(
+                        color = LocalPalette.current.onSurface,
+                        text = "Map: ")
+                    TextSubTitle(
+                        color = LocalPalette.current.onSurface,
+                        text = stringResource(state.name.toStringResource()))
                 }
             }
         }
@@ -45,12 +51,19 @@ internal fun MapModifierDetails(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             SubRow {
-                TextSubTitle(text = "Size: ")
-                TextSubTitle(text = stringResource(state.size.toStringResource()))
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "Size: ")
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = stringResource(state.size.toStringResource()))
             }
             SubRow {
-                TextSubTitle(text = "Setup Modifier:")
                 TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "Setup Modifier:")
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
                     text = String.format(
                         Locale.getDefault(), "%.2f",
                         state.modifiers.setup
@@ -58,8 +71,11 @@ internal fun MapModifierDetails(
                 )
             }
             SubRow {
-                TextSubTitle(text = "Action Modifier:")
                 TextSubTitle(
+                    color = LocalPalette.current.onSurface,
+                    text = "Action Modifier:")
+                TextSubTitle(
+                    color = LocalPalette.current.onSurface,
                     text = String.format(
                         Locale.getDefault(), "%.2f",
                         state.modifiers.normal

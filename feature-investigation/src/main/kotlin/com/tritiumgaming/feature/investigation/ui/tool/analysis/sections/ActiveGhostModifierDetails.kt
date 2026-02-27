@@ -1,23 +1,14 @@
 package com.tritiumgaming.feature.investigation.ui.tool.analysis.sections
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
@@ -27,7 +18,9 @@ import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toLong
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toHasLosMultiplierBoolean
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toSanityBounds
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
@@ -36,6 +29,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import kotlin.math.max
 
 @Composable
 internal fun ActiveGhostModifierDetails(
@@ -46,6 +40,7 @@ internal fun ActiveGhostModifierDetails(
 
     ExpandableCategoryColumn(
         expanded = false,
+        containerColor = LocalPalette.current.surfaceContainer,
         defaultContent = { modifier, expanded ->
             ExpandableCategoryRow(
                 modifier = modifier,
@@ -55,9 +50,12 @@ internal fun ActiveGhostModifierDetails(
                     modifier = Modifier,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    TextCategoryTitle(text = "Ghosts Active: ")
+                    TextCategoryTitle(
+                        color = LocalPalette.current.onSurface,
+                        text = "Ghosts Active: ")
                     TextSubTitle(
                         modifier = Modifier.padding(start= 8.dp),
+                        color = LocalPalette.current.onSurface,
                         text = "${rememberGhostDetails.size}"
                     )
                 }
@@ -65,9 +63,9 @@ internal fun ActiveGhostModifierDetails(
         }
     ) {
         Column(
-            modifier = Modifier
+            modifier = Modifier,
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-
             rememberGhostDetails.forEach { ghostDetail ->
 
                 val state = ghostDetail.state
@@ -76,6 +74,7 @@ internal fun ActiveGhostModifierDetails(
 
                 ExpandableCategoryColumn(
                     expanded = false,
+                    containerColor = LocalPalette.current.surfaceContainerHigh,
                     defaultContent = { modifier, expanded ->
                         ExpandableCategoryRow(
                             modifier = modifier,
@@ -87,6 +86,7 @@ internal fun ActiveGhostModifierDetails(
                             ) {
                                 TextCategoryTitle(
                                     modifier = Modifier,
+                                    color = LocalPalette.current.onSurface,
                                     text = stringResource(state.ghostEvidence.ghost.name.toStringResource())
                                 )
                             }
@@ -99,6 +99,7 @@ internal fun ActiveGhostModifierDetails(
                     ) {
                         TextSubTitle(
                             modifier = Modifier,
+                            color = LocalPalette.current.onSurface,
                             text = "Evidence"
                         )
                     }
@@ -114,6 +115,7 @@ internal fun ActiveGhostModifierDetails(
                                     it.id == evidence.id }
                                 TextSubTitle(
                                     modifier = Modifier,
+                                    color = LocalPalette.current.onSurface,
                                     text = stringResource(evidence.name.toStringResource()) +
                                             if(isStrict != null) " *" else ""
                                 )
@@ -127,7 +129,8 @@ internal fun ActiveGhostModifierDetails(
                     ) {
                         TextSubTitle(
                             modifier = Modifier,
-                            text = "Hunt Sanity:"
+                            color = LocalPalette.current.onSurface,
+                            text = "Hunt Sanity"
                         )
                     }
 
@@ -138,24 +141,29 @@ internal fun ActiveGhostModifierDetails(
                             .padding(start = 16.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
+                        var highest = 0L
+
                         val notches = mutableListOf<ProgressBarNotch>()
+                        sanityBounds.suppressed?.let {
+                            notches.add(ProgressBarNotch(
+                                label = "${it.toLong()}",
+                                xPos = 100-it.toLong()
+                            ))
+                            highest = max(highest, it.toLong())
+                        }
                         sanityBounds.normal?.let {
                             notches.add(ProgressBarNotch(
                                 label = "${it.toLong()}",
                                 xPos = 100-it.toLong()
                             ))
+                            highest = max(highest, it.toLong())
                         }
                         sanityBounds.empowered?.let {
                             notches.add(ProgressBarNotch(
                                 label = "${it.toLong()}",
                                 xPos = 100-it.toLong()
                             ))
-                        }
-                        sanityBounds.suppressed?.let {
-                            notches.add(ProgressBarNotch(
-                                label = "${it.toLong()}",
-                                xPos = 100-it.toLong()
-                            ))
+                            highest = max(highest, it.toLong())
                         }
 
                         NotchedProgressBar(
@@ -166,12 +174,12 @@ internal fun ActiveGhostModifierDetails(
                                 state = NotchedProgressBarUiState(
                                     max = 100L,
                                     origin = 0L,
-                                    remaining = 0L,
+                                    remaining = highest,
                                     notches = notches,
                                     running = false
                                 ),
                                 colors = NotchedProgressBarUiColors(
-                                    remaining = LocalPalette.current.surface,
+                                    remaining = LocalPalette.current.primary,
                                     background = LocalPalette.current.surface,
                                     border = LocalPalette.current.onSurface,
                                     notch = LocalPalette.current.onSurface,
@@ -187,7 +195,58 @@ internal fun ActiveGhostModifierDetails(
                     ) {
                         TextSubTitle(
                             modifier = Modifier,
-                            text = "Hunt Cooldown: ${state.ghostEvidence.ghost.huntCooldown.toLong() / 1000} sec"
+                            color = LocalPalette.current.onSurface,
+                            text = "Movement Speed"
+                        )
+                    }
+
+                    Column(
+                        modifier = Modifier
+                            .wrapContentHeight()
+                            .fillMaxWidth()
+                            .padding(start = 16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        val minSpeed = state.ghostEvidence.ghost.speed.toMinimumAsInt().toFloat()
+                        var maxSpeed = state.ghostEvidence.ghost.speed.toMaximumAsInt().toFloat()
+                        val losMultiplier = state.ghostEvidence.ghost.speed.toHasLosMultiplierBoolean()
+                        if(maxSpeed == -1f) maxSpeed = minSpeed
+                        if(losMultiplier) { maxSpeed *= 1.65f }
+
+                        val notches = mutableListOf<ProgressBarNotch>()
+                        minSpeed.let {
+                            notches.add(ProgressBarNotch(
+                                label = "%.1f".format(it / 60f),
+                                xPos = 360L-it.toLong()
+                            ))
+                        }
+                        maxSpeed.let {
+                            notches.add(ProgressBarNotch(
+                                label = "%.1f".format(it / 60f),
+                                xPos = 360L-it.toLong()
+                            ))
+                        }
+
+                        NotchedProgressBar(
+                            modifier = Modifier
+                                .height(24.dp)
+                                .fillMaxWidth(),
+                            bundle = NotchedProgressBarBundle(
+                                state = NotchedProgressBarUiState(
+                                    max = 360L,
+                                    origin = (minSpeed).toLong(),
+                                    remaining = (maxSpeed - minSpeed).toLong(),
+                                    notches = notches,
+                                    running = false
+                                ),
+                                colors = NotchedProgressBarUiColors(
+                                    remaining = LocalPalette.current.primary,
+                                    background = LocalPalette.current.surface,
+                                    border = LocalPalette.current.onSurface,
+                                    notch = LocalPalette.current.onSurface,
+                                    label = LocalPalette.current.onSurface,
+                                )
+                            )
                         )
                     }
                 }
@@ -195,6 +254,7 @@ internal fun ActiveGhostModifierDetails(
 
             if(rememberGhostDetails.isEmpty()) {
                 TextCategoryTitle(
+                    color = LocalPalette.current.onSurface,
                     text = "Empty"
                 )
             }

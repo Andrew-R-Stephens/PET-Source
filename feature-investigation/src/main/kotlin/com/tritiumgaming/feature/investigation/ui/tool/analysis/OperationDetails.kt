@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
@@ -48,18 +50,18 @@ internal fun OperationDetails(
         MapModifierDetails(
             state = operationDetailsUiState.mapDetails
         )
-       DifficultyModifierDetails(
+        DifficultyModifierDetails(
             state = operationDetailsUiState.difficultyDetails
         )
         ActiveGhostModifierDetails(
             state = operationDetailsUiState.ghostDetails
         )
     }
-
 }
 
 @Composable
 internal fun CategoryColumn(
+    containerColor: Color = Color.Unspecified,
     content: @Composable () -> Unit = {}
 ) {
     Column(
@@ -67,7 +69,7 @@ internal fun CategoryColumn(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                LocalPalette.current.surfaceContainer,
+                containerColor,
                 RoundedCornerShape(8.dp)
             )
             .padding(4.dp)
@@ -79,9 +81,10 @@ internal fun CategoryColumn(
 @Composable
 internal fun ExpandableCategoryColumn(
     modifier: Modifier = Modifier,
+    containerColor: Color = Color.Unspecified,
     expanded: Boolean = false,
     defaultContent: @Composable (modifier: Modifier, expanded: Boolean) -> Unit = { _, _ -> },
-    expandedContent: @Composable (modifier: Modifier) -> Unit = {}
+    expandedContent: @Composable (modifier: Modifier) -> Unit = {},
 ) {
     var rememberExpanded by remember { mutableStateOf(expanded) }
 
@@ -89,7 +92,7 @@ internal fun ExpandableCategoryColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .background(
-                LocalPalette.current.surfaceContainer,
+                containerColor,
                 RoundedCornerShape(8.dp)
             )
             .padding(8.dp)
@@ -111,14 +114,15 @@ internal fun ExpandableCategoryColumn(
 
 @Composable
 internal fun CategoryRow(
-    content: @Composable RowScope.() -> Unit = {}
+    containerColor: Color = Color.Unspecified,
+    content: @Composable RowScope.() -> Unit = {},
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                LocalPalette.current.surfaceContainer,
+                containerColor,
                 RoundedCornerShape(8.dp)
             )
             .padding(8.dp)
@@ -130,6 +134,7 @@ internal fun CategoryRow(
 @Composable
 internal fun ExpandableCategoryRow(
     modifier: Modifier = Modifier,
+    containerColor: Color = Color.Unspecified,
     isExpanded: Boolean = false,
     content: @Composable RowScope.(modifier: Modifier) -> Unit = {}
 ) {
@@ -139,7 +144,7 @@ internal fun ExpandableCategoryRow(
         modifier = modifier
             .fillMaxWidth()
             .background(
-                LocalPalette.current.surfaceContainer,
+                containerColor,
                 RoundedCornerShape(8.dp)
             )
     ) {
@@ -177,23 +182,25 @@ internal fun SubRow(
 @Composable
 internal fun TextCategoryTitle(
     modifier: Modifier = Modifier,
-    text: String
+    text: String,
+    color: Color = Color.Unspecified
 ) {
     Text(
         modifier = modifier,
         text = text,
-        color = LocalPalette.current.onSurface
+        color = color
     )
 }
 
 @Composable
 internal fun TextSubTitle(
     modifier: Modifier = Modifier,
-    text: String
+    text: String,
+    color: Color = Color.Unspecified
 ) {
     Text(
         modifier = modifier,
         text = text,
-        color = LocalPalette.current.onSurface
+        color = color
     )
 }
