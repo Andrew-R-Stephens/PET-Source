@@ -24,6 +24,7 @@ import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypo
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
+import com.tritiumgaming.shared.data.preferences.DensityType
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase
@@ -32,6 +33,7 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUs
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetUiDensityTypeUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -49,6 +51,7 @@ class SettingsScreenViewModel(
     private val setAllowHuntWarnAudioUseCase: SetAllowHuntWarnAudioUseCase,
     private val setEnableGhostReorderUseCase: SetEnableGhostReorderUseCase,
     private val setEnableRTLUseCase: SetEnableRTLUseCase,
+    private val setUiDensityTypeUseCase: SetUiDensityTypeUseCase,
     private val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     // Typographies
     private val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase,
@@ -86,7 +89,8 @@ class SettingsScreenViewModel(
                     typographyUiState = TypographyUiState(
                         uuid = preferences.typographyUuid,
                         typography = getTypographyByUUID(preferences.typographyUuid)
-                    )
+                    ),
+                    uiDensityType = preferences.uiDensityType
                 )
             }
             .stateIn(
@@ -111,6 +115,13 @@ class SettingsScreenViewModel(
     fun setRTLPreference(enable: Boolean) {
         viewModelScope.launch {
             setEnableRTLUseCase(enable)
+        }
+    }
+
+    fun setUiDensityPreference(enable: Boolean) {
+        viewModelScope.launch {
+            val type = if(enable) DensityType.COMPACT else DensityType.COMFORTABLE
+            setUiDensityTypeUseCase(type)
         }
     }
 
@@ -267,6 +278,7 @@ class SettingsScreenViewModel(
                 val setDisableScreenSaverUseCase: SetDisableScreenSaverUseCase = container.setDisableScreenSaverUseCase
                 val setEnableGhostReorderUseCase: SetEnableGhostReorderUseCase = container.setEnableGhostReorderUseCase
                 val setEnableRTLUseCase: SetEnableRTLUseCase = container.setEnableRTLUseCase
+                val setUiDensityTypeUseCase: SetUiDensityTypeUseCase = container.setUiDensityTypeUseCase
                 val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase = container.setMaxHuntWarnFlashTimeUseCase
                 // Typographies
                 val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase = container.fetchUnlockedTypographiesUseCase
@@ -288,6 +300,7 @@ class SettingsScreenViewModel(
                     setDisableScreenSaverUseCase = setDisableScreenSaverUseCase,
                     setEnableGhostReorderUseCase = setEnableGhostReorderUseCase,
                     setEnableRTLUseCase = setEnableRTLUseCase,
+                    setUiDensityTypeUseCase = setUiDensityTypeUseCase,
                     setMaxHuntWarnFlashTimeUseCase = setMaxHuntWarnFlashTimeUseCase,
                     // Typographies
                     fetchUnlockedTypographiesUseCase = fetchUnlockedTypographiesUseCase,

@@ -16,6 +16,7 @@ import com.tritiumgaming.shared.data.preferences.usecase.SetDisableScreenSaverUs
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableGhostReorderUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetEnableRTLUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetMaxHuntWarnFlashTimeUseCase
+import com.tritiumgaming.shared.data.preferences.usecase.SetUiDensityTypeUseCase
 
 class SettingsContainer(
     //val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
@@ -26,6 +27,7 @@ class SettingsContainer(
     val setDisableScreenSaverUseCase: SetDisableScreenSaverUseCase,
     val setEnableGhostReorderUseCase: SetEnableGhostReorderUseCase,
     val setEnableRTLUseCase: SetEnableRTLUseCase,
+    val setUiDensityTypeUseCase: SetUiDensityTypeUseCase,
     val setMaxHuntWarnFlashTimeUseCase: SetMaxHuntWarnFlashTimeUseCase,
     val fetchUnlockedTypographiesUseCase: FetchUnlockedTypographiesUseCase,
     val saveCurrentTypographyUseCase: SaveCurrentTypographyUseCase,

@@ -57,6 +57,7 @@ import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSee
 import com.tritiumgaming.core.ui.widgets.switch.LabeledSwitch
 import com.tritiumgaming.feature.settings.ui.components.CarouselUiActions
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
+import com.tritiumgaming.shared.data.preferences.DensityType
 import org.jetbrains.annotations.TestOnly
 
 @Preview
@@ -162,6 +163,18 @@ fun SettingsScreen(
             switchColors = labeledSwitchColors,
             textColor = LocalPalette.current.onSurface,
             onChange = { state -> settingsViewModel.setRTLPreference(state) }
+        )
+    }
+
+    val uiDensityPreferenceComponent: @Composable (Modifier) -> Unit = @Composable { modifier ->
+        LabeledSwitch(
+            modifier = modifier
+                .fillMaxWidth(),
+            label = stringResource(R.string.settings_uiDensity),
+            state = settingsScreenUiState.uiDensityType == DensityType.COMPACT,
+            switchColors = labeledSwitchColors,
+            textColor = LocalPalette.current.onSurface,
+            onChange = { state -> settingsViewModel.setUiDensityPreference(state) }
         )
     }
 
@@ -333,6 +346,7 @@ fun SettingsScreen(
                     screenPreferenceComponent = screenPreferenceComponent,
                     dataUsagePreferenceComponent = dataUsagePreferenceComponent,
                     leftHandedPreferenceComponent = leftHandedPreferenceComponent,
+                    uiDensityPreferenceComponent = uiDensityPreferenceComponent,
                     audioWarningPreferenceComponent = audioWarningPreferenceComponent,
                     ghostReorderPreferenceComponent = ghostReorderPreferenceComponent,
                     huntWarningTimeoutPreferenceComponent = huntWarningTimeoutPreferenceComponent,
@@ -350,6 +364,7 @@ fun SettingsScreen(
                     screenPreferenceComponent = screenPreferenceComponent,
                     dataUsagePreferenceComponent = dataUsagePreferenceComponent,
                     leftHandedPreferenceComponent = leftHandedPreferenceComponent,
+                    uiDensityPreferenceComponent = uiDensityPreferenceComponent,
                     audioWarningPreferenceComponent = audioWarningPreferenceComponent,
                     ghostReorderPreferenceComponent = ghostReorderPreferenceComponent,
                     huntWarningTimeoutPreferenceComponent = huntWarningTimeoutPreferenceComponent,
@@ -369,6 +384,7 @@ private fun ColumnScope.SettingsContentPortrait(
     screenPreferenceComponent: @Composable (Modifier) -> Unit,
     dataUsagePreferenceComponent: @Composable (Modifier) -> Unit,
     leftHandedPreferenceComponent: @Composable (Modifier) -> Unit,
+    uiDensityPreferenceComponent: @Composable (Modifier) -> Unit,
     audioWarningPreferenceComponent: @Composable (Modifier) -> Unit,
     ghostReorderPreferenceComponent: @Composable (Modifier) -> Unit,
     huntWarningTimeoutPreferenceComponent: @Composable (Modifier) -> Unit,
@@ -418,6 +434,8 @@ private fun ColumnScope.SettingsContentPortrait(
 
         leftHandedPreferenceComponent(Modifier)
 
+        uiDensityPreferenceComponent(Modifier)
+
         audioWarningPreferenceComponent(Modifier)
 
         ghostReorderPreferenceComponent(Modifier)
@@ -456,6 +474,7 @@ private fun SettingsContentLandscape(
     screenPreferenceComponent: @Composable (Modifier) -> Unit,
     dataUsagePreferenceComponent: @Composable (Modifier) -> Unit,
     leftHandedPreferenceComponent: @Composable (Modifier) -> Unit,
+    uiDensityPreferenceComponent: @Composable (Modifier) -> Unit,
     audioWarningPreferenceComponent: @Composable (Modifier) -> Unit,
     ghostReorderPreferenceComponent: @Composable (Modifier) -> Unit,
     huntWarningTimeoutPreferenceComponent: @Composable (Modifier) -> Unit,
@@ -510,6 +529,8 @@ private fun SettingsContentLandscape(
             )
 
             leftHandedPreferenceComponent(Modifier)
+
+            uiDensityPreferenceComponent(Modifier)
 
             audioWarningPreferenceComponent(Modifier)
 
