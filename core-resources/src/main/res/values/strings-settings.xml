@@ -20,6 +20,7 @@
     <string name="settings_huntwarningflashtimeout">Hunt Warning Duration</string>
     <string name="settings_huntwarningflashtimeout_never">Never Timeout</string>
     <string name="settings_enableLeftHandSupport">Enable Left-Handed Mode</string>
+    <string name="settings_uiDensity" translatable="false">Enable Compact UI</string>
     <string name="settings_enablehuntaudioqueue">Enable Hunt Warning Audio</string>
     <string name="settings_enableGhostReorder">Enable Ghost List Reordering</string>
     <string name="settings_colorblindnessmode_title">Colorblind Mode</string>
