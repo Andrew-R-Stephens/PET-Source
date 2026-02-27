@@ -18,17 +18,20 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.ExtendedTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.shared.data.preferences.DensityType
 
 @Composable
 fun SelectiveTheme(
     palette: ExtendedPalette = ClassicPalette,
     typography: ExtendedTypography = ClassicTypography,
+    uiConfiguration: ExtendedUiConfiguration = ExtendedUiConfiguration(),
     content: @Composable () -> Unit = {}
 ) {
 
     CompositionLocalProvider(
         LocalPalette provides palette,
-        LocalTypography provides typography
+        LocalTypography provides typography,
+        LocalUiConfiguration provides uiConfiguration
     ) {
 
         MaterialTheme(
@@ -64,15 +67,20 @@ fun ThemeConfigurationControl(
     modifier: Modifier = Modifier,
     palette: ExtendedPalette = LocalPalette.current,
     typography: ExtendedTypography = LocalTypography.current,
+    uiConfiguration: ExtendedUiConfiguration = ExtendedUiConfiguration(),
     content: @Composable () -> Unit = {}
 ) {
 
     Log.d("ThemeConfigCtrl", "Palette: ${stringResource(palette.extrasFamily.title)}")
-    Log.d("ThemeConfigCtrl", "Palette: ${stringResource(typography.extrasFamily.title)}")
+    Log.d("ThemeConfigCtrl", "Typography: ${stringResource(typography.extrasFamily.title)}")
+    Log.d("ThemeConfigCtrl", "UiConfig: [" +
+            "\n\tdensityType: ${uiConfiguration.densityType}" +
+            "\n\tisRtl: ${uiConfiguration.isRtl}\n]")
 
     SelectiveTheme(
         palette = palette,
-        typography = typography
+        typography = typography,
+        uiConfiguration = uiConfiguration
     ) {
         Box(
             modifier = modifier

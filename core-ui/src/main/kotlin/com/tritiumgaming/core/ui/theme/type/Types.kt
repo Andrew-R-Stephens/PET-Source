@@ -503,7 +503,6 @@ val JetBrainsMonoTypography = BaseFont.copy(
     )
 )
 
-
 val LocalTypography = staticCompositionLocalOf { ExtendedTypography() }
 
 val LocalTypographiesMap = mapOf(
