@@ -12,6 +12,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.data.preferences.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import kotlinx.coroutines.flow.Flow
@@ -53,7 +54,7 @@ class GlobalPreferencesDatastoreDataSource(
         KEY_HUNT_WARN_MAX_TIMEOUT =
             longPreferencesKey(context.resources.getString(R.string.preference_huntWarningFlashTimeout))
 
-        KEY_UI_DENSITY =
+        KEY_UI_DENSITY_TYPE =
             intPreferencesKey(context.resources.getString(R.string.preference_uiDensity))
 
         KEY_TYPOGRAPHY = stringPreferencesKey(
@@ -107,6 +108,12 @@ class GlobalPreferencesDatastoreDataSource(
         }
     }
 
+    override suspend fun setUiDensityType(densityType: DensityType) {
+        dataStore.edit { preferences ->
+            preferences[KEY_UI_DENSITY_TYPE] = densityType.value
+        }
+    }
+
     override suspend fun savePalette(uuid: String) {
         dataStore.edit { preferences ->
             preferences[KEY_PALETTE] = uuid
@@ -133,7 +140,7 @@ class GlobalPreferencesDatastoreDataSource(
             allowIntroduction = preferences[KEY_ALLOW_INTRODUCTION] != false,
             enableRTL = preferences[KEY_ENABLE_RTL] == true,
             maxHuntWarnFlashTime = preferences[KEY_HUNT_WARN_MAX_TIMEOUT] ?: 300,
-            uiDensity = preferences[KEY_UI_DENSITY] ?: 0,
+            uiDensityType = preferences[KEY_UI_DENSITY_TYPE]?.let { DensityType.entries[it] } ?: DensityType.COMFORTABLE,
             typographyUuid = preferences[KEY_TYPOGRAPHY] ?: "",
             paletteUuid = preferences[KEY_PALETTE] ?: ""
         )
@@ -150,7 +157,7 @@ class GlobalPreferencesDatastoreDataSource(
 
         lateinit var KEY_HUNT_WARN_MAX_TIMEOUT: Preferences.Key<Long>
 
-        lateinit var KEY_UI_DENSITY: Preferences.Key<Int>
+        lateinit var KEY_UI_DENSITY_TYPE: Preferences.Key<Int>
 
         lateinit var KEY_PALETTE: Preferences.Key<String>
         lateinit var KEY_TYPOGRAPHY: Preferences.Key<String>
