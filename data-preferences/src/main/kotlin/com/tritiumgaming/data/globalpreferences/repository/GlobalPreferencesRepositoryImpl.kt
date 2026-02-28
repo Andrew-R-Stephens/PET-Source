@@ -21,9 +21,9 @@ class GlobalPreferencesRepositoryImpl(
     override suspend fun setEnableRTL(enable: Boolean) =
         dataStoreSource.setEnableRTL(enable)
 
-    override suspend fun setUiDensityType(densityType: DensityType) {
+    override suspend fun setUiDensityType(densityType: DensityType) =
         dataStoreSource.setUiDensityType(densityType)
-    }
+
 
     override suspend fun setEnableGhostReorder(enable: Boolean) =
         dataStoreSource.setEnableGhostReorder(enable)

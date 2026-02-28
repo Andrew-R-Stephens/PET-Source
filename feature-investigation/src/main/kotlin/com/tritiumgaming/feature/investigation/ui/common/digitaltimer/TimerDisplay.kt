@@ -53,7 +53,7 @@ fun DigitalTimer(
                 text = FormatterUtils.formatMillisToTime(state.remainingTime),
                 style = DigitalDreamTextStyle,
                 color = color,
-                autoSize = TextAutoSize.StepBased(12.sp, maxFontSize = 48.sp, stepSize = 1.sp)
+                autoSize = TextAutoSize.StepBased(1.sp, maxFontSize = 48.sp, stepSize = 1.sp)
             )
         }
     }

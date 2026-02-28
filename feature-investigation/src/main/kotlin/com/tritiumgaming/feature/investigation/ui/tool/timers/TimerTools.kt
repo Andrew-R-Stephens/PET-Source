@@ -27,90 +27,36 @@ internal fun TimerTools(
     smudgeHuntPreventionBundle: NotchedProgressBarBundle,
     smudgeBlindingBundle: NotchedProgressBarBundle,
     huntDurationBundle: NotchedProgressBarBundle,
-    huntGapBundle: NotchedProgressBarBundle
+    huntGapBundle: NotchedProgressBarBundle,
+    fingerprintTimerBundle: NotchedProgressBarBundle
 ) {
 
     Column (
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        SmudgeHuntProtectionTimer(smudgeHuntPreventionBundle)
+        ProgressBarTimer(smudgeHuntPreventionBundle)
 
-        SmudgeBlindProtectionTimer(smudgeBlindingBundle)
+        ProgressBarTimer(smudgeBlindingBundle)
 
-        HuntDurationTimer(huntDurationBundle)
+        ProgressBarTimer(huntDurationBundle)
 
-        HuntGapTimer(huntGapBundle)
+        ProgressBarTimer(huntGapBundle)
+
+        ProgressBarTimer(fingerprintTimerBundle)
     }
 }
 
 @Composable
-private fun HuntGapTimer(huntGapBundle: NotchedProgressBarBundle) {
+private fun ProgressBarTimer(bundle: NotchedProgressBarBundle) {
     NotchedProgressBarTimer(
         modifier = Modifier
             .fillMaxWidth()
             .height(24.dp),
-        bundle = huntGapBundle,
+        bundle = bundle,
         icon = {
             HuntGapDurationIcon(
                 modifier = Modifier
-                    .size(36.dp),
-                colors = IconVectorColors.defaults().copy(
-                    fillColor = LocalPalette.current.onSurface
-                )
-            )
-        }
-    )
-}
-
-@Composable
-private fun HuntDurationTimer(huntDurationBundle: NotchedProgressBarBundle) {
-    NotchedProgressBarTimer(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(24.dp),
-        bundle = huntDurationBundle,
-        icon = {
-            HuntDurationIcon(
-                modifier = Modifier
-                    .size(36.dp),
-                colors = IconVectorColors.defaults().copy(
-                    fillColor = LocalPalette.current.onSurface
-                )
-            )
-        }
-    )
-}
-
-@Composable
-private fun SmudgeBlindProtectionTimer(smudgeBlindingBundle: NotchedProgressBarBundle) {
-    NotchedProgressBarTimer(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(24.dp),
-        bundle = smudgeBlindingBundle,
-        icon = {
-            SmudgeBlindnessIcon(
-                modifier = Modifier
-                    .size(36.dp),
-                colors = IconVectorColors.defaults().copy(
-                    fillColor = LocalPalette.current.onSurface
-                )
-            )
-        }
-    )
-}
-
-@Composable
-private fun SmudgeHuntProtectionTimer(smudgeHuntPreventionBundle: NotchedProgressBarBundle) {
-    NotchedProgressBarTimer(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(24.dp),
-        bundle = smudgeHuntPreventionBundle,
-        icon = { modifier ->
-            PreventHuntIcon(
-                modifier = modifier
                     .size(36.dp),
                 colors = IconVectorColors.defaults().copy(
                     fillColor = LocalPalette.current.onSurface
@@ -125,7 +71,7 @@ private fun SmudgeHuntProtectionTimer(smudgeHuntPreventionBundle: NotchedProgres
 private fun Preview() {
 
     SelectiveTheme {
-        SmudgeHuntProtectionTimer(
+        ProgressBarTimer(
             NotchedProgressBarBundle(
                 title = "Smudge Hunt Protection",
                 state = NotchedProgressBarUiState(

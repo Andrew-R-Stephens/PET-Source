@@ -42,6 +42,7 @@ import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarBundle
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
+import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
@@ -231,6 +232,19 @@ private fun InvestigationContent(
         running = false
     )
 
+    //TODO replace with viewmodel state
+    val maxTimeFromSetting = 120000L
+    val fingerprintTimerState = NotchedProgressBarUiState(
+        max = maxTimeFromSetting,
+        origin = 0,
+        remaining = 50000L,
+        notches = listOf(
+            ProgressBarNotch("Obake", (maxTimeFromSetting * .5f).toLong()),
+            ProgressBarNotch("Normal", maxTimeFromSetting)
+        ),
+        running = false
+    )
+
     val mapUiStateBundle = ConfigStateBundle(
         carouselUiState = ConfigCarouselUiState(
             label = mapConfigUiState.name.toStringResource(
@@ -269,20 +283,26 @@ private fun InvestigationContent(
     )
 
     val smudgeBlindingBundle = NotchedProgressBarBundle(
-        title = "Smudge Hunt Protection",
-        state = smudgeHuntProtectionTimerState,
+        title = "Smudge Blinding",
+        state = smudgeBlindingProtectionTimerState,
         colors = notchedProgressBarUiColors
     )
 
     val huntDurationBundle = NotchedProgressBarBundle(
-        title = "Smudge Hunt Protection",
-        state = smudgeHuntProtectionTimerState,
+        title = "Hunt Duration",
+        state = huntDurationTimerState,
         colors = notchedProgressBarUiColors
     )
 
     val huntGapBundle = NotchedProgressBarBundle(
-        title = "Smudge Hunt Protection",
-        state = smudgeHuntProtectionTimerState,
+        title = "Hunt Cooldown",
+        state = huntGapTimerState,
+        colors = notchedProgressBarUiColors
+    )
+
+    val fingerprintTimerBundle = NotchedProgressBarBundle(
+        title = "Fingerprint Lifetime",
+        state = fingerprintTimerState,
         colors = notchedProgressBarUiColors
     )
 
@@ -511,7 +531,8 @@ private fun InvestigationContent(
                     smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
                     smudgeBlindingBundle = smudgeBlindingBundle,
                     huntDurationBundle = huntDurationBundle,
-                    huntGapBundle = huntGapBundle
+                    huntGapBundle = huntGapBundle,
+                    fingerprintTimerBundle = fingerprintTimerBundle
                 )
 
                 ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(

@@ -434,7 +434,7 @@ private fun ColumnScope.SettingsContentPortrait(
 
         leftHandedPreferenceComponent(Modifier)
 
-        uiDensityPreferenceComponent(Modifier)
+        // uiDensityPreferenceComponent(Modifier)
 
         audioWarningPreferenceComponent(Modifier)
 
@@ -530,7 +530,7 @@ private fun SettingsContentLandscape(
 
             leftHandedPreferenceComponent(Modifier)
 
-            uiDensityPreferenceComponent(Modifier)
+            // uiDensityPreferenceComponent(Modifier)
 
             audioWarningPreferenceComponent(Modifier)
 
