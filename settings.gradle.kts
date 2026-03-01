@@ -41,6 +41,7 @@ include(
 
 include(
     ":data-account",
+    ":data-challenge",
     ":data-codex",
     ":data-contributor",
     ":data-difficulty",
