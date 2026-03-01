@@ -7,7 +7,12 @@ class DifficultyResources {
         INTERMEDIATE,
         PROFESSIONAL,
         NIGHTMARE,
-        INSANITY
+        INSANITY,
+        CUSTOM,
+        CHALLENGE,
+        APOCALYPSE_1,
+        APOCALYPSE_2,
+        APOCALYPSE_3,
     }
 
     enum class DifficultyTitle {
@@ -15,44 +20,17 @@ class DifficultyResources {
         INTERMEDIATE,
         PROFESSIONAL,
         NIGHTMARE,
-        INSANITY
-    }
-
-    enum class DifficultyTime {
-        AMATEUR,
-        INTERMEDIATE,
-        PROFESSIONAL,
-        NIGHTMARE,
-        INSANITY
-    }
-
-    enum class DifficultyModifier {
-        AMATEUR,
-        INTERMEDIATE,
-        PROFESSIONAL,
-        NIGHTMARE,
-        INSANITY
-    }
-
-    enum class DifficultyInitialSanity {
-        AMATEUR,
-        INTERMEDIATE,
-        PROFESSIONAL,
-        NIGHTMARE,
-        INSANITY
+        INSANITY,
+        CUSTOM,
+        CHALLENGE,
+        APOCALYPSE_1,
+        APOCALYPSE_2,
+        APOCALYPSE_3,
     }
 
     enum class DifficultyResponseType {
         KNOWN,
         UNKNOWN
-    }
-
-    enum class Frequency {
-        NONE,
-        LOW,
-        MEDIUM,
-        HIGH,
-        VERY_HIGH
     }
 
 }

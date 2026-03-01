@@ -1,0 +1,86 @@
+package com.tritiumgaming.shared.data.difficultysetting.model
+
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityLevel
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityMonitor
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ChangingFavoriteRoom
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossessionsQuantity
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DoorsStartingOpen
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EventFrequency
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EvidenceGiven
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintChance
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintDuration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Flashlights
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FriendlyGhost
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxAtStartOfContract
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxVisibleOnMap
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GhostSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GracePeriod
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.HuntDuration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.KillsExtendHunts
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.LoseItemsAndConsumables
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.NumberOfHidingPlaces
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.PlayerSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.RoamingFrequency
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityDrainSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityMonitor
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityPillRestoration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SetupTime
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Sprinting
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+
+data class DifficultySettingsModel(
+    val startingSanity: StartingSanity,
+    val sanityPillRestoration: SanityPillRestoration,
+    val sanityDrainSpeed: SanityDrainSpeed,
+    val sprinting: Sprinting,
+    val playerSpeed: PlayerSpeed,
+    val flashlights: Flashlights,
+    val loseItemsAndConsumables: LoseItemsAndConsumables,
+    val ghostSpeed: GhostSpeed,
+    val roamingFrequency: RoamingFrequency,
+    val changingFavouriteRoom: ChangingFavoriteRoom,
+    val activityLevel: ActivityLevel,
+    val eventFrequency: EventFrequency,
+    val friendlyGhost: FriendlyGhost,
+    val gracePeriod: GracePeriod,
+    val huntDuration: HuntDuration,
+    val killsExtendHunts: KillsExtendHunts,
+    val evidenceGiven: EvidenceGiven,
+    val fingerprintChance: FingerprintChance,
+    val fingerprintDuration: FingerprintDuration,
+    val setupTime: SetupTime,
+    val weather: Weather,
+    val doorsStartingOpen: DoorsStartingOpen,
+    val numberOfHidingPlaces: NumberOfHidingPlaces,
+    val sanityMonitor: SanityMonitor,
+    val activityMonitor: ActivityMonitor,
+    val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract,
+    val fuseBoxVisibleOnMap: FuzeBoxVisibleOnMap,
+    val cursedPossessionsQuantity: CursedPossessionsQuantity,
+    val cursedPossession1: CursedPossession,
+    val cursedPossession2: CursedPossession,
+    val cursedPossession3: CursedPossession,
+    val cursedPossession4: CursedPossession,
+    val cursedPossession5: CursedPossession,
+    val cursedPossession6: CursedPossession,
+    val cursedPossession7: CursedPossession,
+    val equipmentPermission: List<EquipmentPermission> = emptyList()
+) {
+    data class EquipmentPermission(
+        val identifier: EquipmentIdentifier,
+        val quantity: Int = ALL,
+        val permission: Permission = Permission.REVOKED
+    ) {
+        enum class Permission {
+            PERMITTED,
+            REVOKED
+        }
+
+        companion object {
+            const val ALL = Int.MAX_VALUE
+        }
+    }
+}

@@ -1,9 +1,11 @@
 package com.tritiumgaming.shared.data.difficulty.usecase
 
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+
 class GetDifficultyInitialSanityUseCase(
     private val difficultyRepository: com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
 ) {
-    operator fun invoke(index: Int): Result<Float> {
+    operator fun invoke(index: Int): Result<DifficultySettingResources.StartingSanity> {
         val result = difficultyRepository.getDifficulties()
 
         result.exceptionOrNull()?.let {
@@ -12,7 +14,7 @@ class GetDifficultyInitialSanityUseCase(
 
         try {
             val sanity = result.getOrNull()?.let {
-                it[index].initialSanity
+                it[index].difficultySettingsModel.startingSanity
             } ?: return Result.failure(Exception("Could not get difficulty initial sanity"))
 
             return Result.success(sanity)

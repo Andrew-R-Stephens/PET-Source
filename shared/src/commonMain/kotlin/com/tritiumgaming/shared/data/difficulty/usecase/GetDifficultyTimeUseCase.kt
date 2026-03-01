@@ -1,9 +1,11 @@
 package com.tritiumgaming.shared.data.difficulty.usecase
 
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+
 class GetDifficultyTimeUseCase(
     private val difficultyRepository: com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
 ) {
-    operator fun invoke(index: Int): Result<Long> {
+    operator fun invoke(index: Int): Result<DifficultySettingResources.SetupTime> {
         val result = difficultyRepository.getDifficulties()
 
         result.exceptionOrNull()?.let {
@@ -12,7 +14,7 @@ class GetDifficultyTimeUseCase(
 
         try {
             val time = result.getOrNull()?.let {
-                it[index].time
+                it[index].difficultySettingsModel.setupTime
             } ?: return Result.failure(Exception("Could not get difficulty time"))
 
             return Result.success(time)
