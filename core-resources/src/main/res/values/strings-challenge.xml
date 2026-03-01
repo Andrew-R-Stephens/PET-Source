@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <string name= "challenge_lights_out_title" translatable="false">Lights out!</string>
+    <string name= "challenge_speed_demons_title" translatable="false">Speed Demons</string>
+    <string name= "challenge_detectives_only_title" translatable="false">Detectives only</string>
+    <string name= "challenge_hide_and_seek_seeker_title" translatable="false">Hide and Seek: Seeker</string>
+    <string name= "challenge_hide_and_seek_hide_title" translatable="false">Hide and Seek: Hide!</string>
+    <string name= "challenge_frostbitten_title" translatable="false">Frostbitten</string>
+    <string name= "challenge_do_as_i_command_title" translatable="false">Do as I Command</string>
+    <string name= "challenge_tortoise_and_the_hare_hare_title" translatable="false">Tortoise and the Hare: Hare</string>
+    <string name= "challenge_tortoise_and_the_hare_tortoise_title" translatable="false">Tortoise and the Hare: Tortoise</string>
+    <string name= "challenge_gotta_go_fast_title" translatable="false">Gotta Go Fast!</string>
+    <string name= "challenge_sanity_survival_title" translatable="false">Sanity Survival</string>
+    <string name= "challenge_speedrun_title" translatable="false">Speedrun!</string>
+    <string name= "challenge_survival_of_the_fittest_title" translatable="false">Survival of the Fittest</string>
+    <string name= "challenge_primitive_title" translatable="false">Primitive</string>
+    <string name= "challenge_vulnerable_title" translatable="false">Vulnerable</string>
+    <string name= "challenge_missed_delivery_title" translatable="false">Missed delivery</string>
+    <string name= "challenge_audio_only_title" translatable="false">Audio only</string>
+    <string name= "challenge_technophilia_title" translatable="false">Technophilia</string>
+    <string name= "challenge_no_evidence_title" translatable="false">No Evidence</string>
+    <string name= "challenge_the_apocalypse_draws_near_title" translatable="false">The Apocalypse Draws Near</string>
+    <string name= "challenge_slow_and_steady_title" translatable="false">Slow and Steady</string>
+    <string name= "challenge_paranormal_paparazzi_title" translatable="false">Paranormal Paparazzi</string>
+    <string name= "challenge_hide_and_seek_extreme_title" translatable="false">Hide and seek: Extreme</string>
+    <string name= "challenge_glow_in_the_dark_title" translatable="false">Glow in the Dark</string>
+    <string name= "challenge_deja_vu_title" translatable="false">Deja Vu</string>
+    <string name= "challenge_tag_youre_it_title" translatable="false">Tag! You\'re it!</string>
+
+    <string name= "challenge_lights_out_description">Get your candles at the ready, all the lights are out!</string>
+    <string name= "challenge_speed_demons_description">There must be something in the air, everyone\'s going crazy!</string>
+    <string name= "challenge_detectives_only_description">Put your detective skills to the test, this ghost is giving nothing away!</string>
+    <string name= "challenge_hide_and_seek_seeker_description">There\'s a very quiet ghost hiding somewhere, can you find it?</string>
+    <string name= "challenge_hide_and_seek_hide_description">This ghost wants to play a game, you better hide quick!</string>
+    <string name= "challenge_frostbitten_description">It\'s so cold that it\'s slowing everyone down, including the ghost!</string>
+    <string name= "challenge_do_as_i_command_description">You\'ll have to force this ghost to give you evidence, luckily, we\'ve found some extra items to help you out.</string>
+    <string name= "challenge_tortoise_and_the_hare_hare_description">Give it your all, this ghost is feeling especially frail.</string>
+    <string name= "challenge_tortoise_and_the_hare_tortoise_description">After last week you\'re feeling a bit worn out, and to make matters worse, the ghost has recovered!</string>
+    <string name= "challenge_gotta_go_fast_description">No hiding, no sanity, get going!</string>
+    <string name= "challenge_sanity_survival_description">Sanity is a scarce resource with no pills or lights. Be careful finding this Nightmare ghost.</string>
+    <string name= "challenge_speedrun_description">Maybe you could start a timer, how quickly can you find this ghost\'s identity?</string>
+    <string name= "challenge_survival_of_the_fittest_description">You\'ve got no pills, no sanity and no evidence to work with. It\'s gonna be a tough one!</string>
+    <string name= "challenge_primitive_description">I\'m afraid all of the electronic equipment has short-circuited, you\'ll have to make do without.</string>
+    <string name= "challenge_vulnerable_description">You\'ll be going into this one with no defenses, be careful out there.</string>
+    <string name= "challenge_missed_delivery_description">We didn\'t receive our full equipment delivery this week, so you won\'t have everything you might need!</string>
+    <string name= "challenge_audio_only_description">We\'ve managed to get hold of some extra audio equipment. You\'ll have to use your ears on this one.</string>
+    <string name= "challenge_technophilia_description">We\'ve thrown out all of those prehistoric items, this contract is all about technology!</string>
+    <string name= "challenge_no_evidence_description">These ghosts really don\'t wanna help you out, but we\'re sure you\'re up to the task.</string>
+    <string name= "challenge_the_apocalypse_draws_near_description">The hardest possible challenge, but with normal investigator speed. Good luck.</string>
+    <string name= "challenge_slow_and_steady_description">This ghost may be slow, but it\'s angry. Keep on your toes!</string>
+    <string name= "challenge_paranormal_paparazzi_description">You\'ve got cameras, lights and sound. Find that ghost type!</string>
+    <string name= "challenge_hide_and_seek_extreme_description">This ghost wants to play a game, you better hide.</string>
+    <string name= "challenge_glow_in_the_dark_description">Some of our equipment has stopped working, hopefully this\'ll be enough for you to see.</string>
+    <string name= "challenge_deja_vu_description">This one feels pretty nostalgic, don\'t you think?</string>
+    <string name= "challenge_tag_youre_it_description">This ghost will chase you immediately, better get running!</string>
+</resources>

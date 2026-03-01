@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Page Details -->
 
@@ -1063,13 +1064,14 @@
     <string name="language_name_localized_pt">Portoghese</string>
     <string name="language_name_localized_ru">Russo</string>
     <string name="language_name_localized_uk">Ucraino</string>
-    <string name="difficulty_response_unknown">Sconosciuto</string>
-    <string name="difficulty_frequency_none">Nessuno</string>
-    <string name="difficulty_frequency_low">Basso</string>
-    <string name="difficulty_frequency_medium">Medio</string>
-    <string name="difficulty_frequency_high">Alto</string>
-    <string name="difficulty_frequency_veryHigh">Molto alto</string>
-    <string name="difficulty_response_known">Conosciuto</string>
+    <string name="difficulty_setting_response_unknown">Sconosciuto</string>
+    <string name="difficulty_setting_state_none">Nessuno</string>
+    <string name="difficulty_setting_state_low">Basso</string>
+    <string name="difficulty_setting_state_medium">Medio</string>
+    <string name="difficulty_setting_state_high">Alto</string>
+    <string name="difficulty_setting_state_veryHigh">Molto alto</string>
+    <string name="difficulty_title_apocalypse_3">Apocalisse 3</string>
+    <string name="difficulty_setting_response_known">Conosciuto</string>
     <string name="alert_gui_palette_error">Palette non impostata!</string>
     <string name="alert_gui_typography_error">Tipografia non impostata!</string>
     <string name="account_button_visit_marketplace">Visita il Marketplace</string>
@@ -1125,40 +1127,70 @@
 
 
     <string name="ghost_huntingdata_dayan" translatable="false">
-<![CDATA[
-<a>Caccia al 50\%</a>
-La sanità mentale è impostata per impostazione predefinita e viene modificata in base alla vicinanza e al movimento dei giocatori.</a><br>
-Il livello di sanità mentale per l\'inizio della caccia aumenta al 6\5% se un giocatore nelle vicinanze (entro 10 metri) sta camminando.</a><br>
-Il livello di sanità mentale per l\'inizio della caccia diminuisce al 45\% se tutti i giocatori nelle vicinanze (entro 10 metri) sono fermi.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Caccia al 50\%</a>
+    La sanità mentale è impostata per impostazione predefinita e viene modificata in base alla vicinanza e al movimento dei giocatori.</a><br>
+    Il livello di sanità mentale per l\'inizio della caccia aumenta al 6\5% se un giocatore nelle vicinanze (entro 10 metri) sta camminando.</a><br>
+    Il livello di sanità mentale per l\'inizio della caccia diminuisce al 45\% se tutti i giocatori nelle vicinanze (entro 10 metri) sono fermi.</a>
+    ]]>
+    </string>
     <string name="ghost_huntingdata_gallu" translatable="false">
-<![CDATA[
-<a>Ci sono 3 stati per questo fantasma: Normale, Infuriato e Indebolito.</a><br>
-<br>
-<a>Normale:</a><br>
-<a>Inizia la caccia al 50\% di sanità mentale. La velocità di movimento durante la caccia è di 1,7 m/s. L\'effetto dell\'incenso dura 5 secondi.</a><br>
-<br>
-<a>Infuriato:</a><br>
-<a>Inizia la caccia al 60\% di sanità mentale. Il raggio d\'azione del crocifisso è ridotto di 2 metri. La velocità di movimento durante la caccia è aumentata a 1,96 m/s. L\'effetto dell\'incenso è ridotto a 4 secondi. Non può calpestare il sale.</a><br>
-<br>
-<a>Indebolito:</a><br>
-<a>Inizia la caccia al 40\% di sanità mentale. Il raggio d\'azione effettivo del crocifisso è aumentato di 1 metro. La velocità di movimento durante la caccia è ridotta a 1,36 m/s. Gli effetti dell\'incenso durano 6 secondi.</a><br>
-<br>
-<a>Il Gallu passerà dallo stato Indebolito a quello Normale e infine a quello Infuriato quando viene provocato dall\'attivazione dell\'incenso da parte del giocatore o dall\'interazione del fantasma con il sale o un crocifisso.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Ci sono 3 stati per questo fantasma: Normale, Infuriato e Indebolito.</a><br>
+    <br>
+    <a>Normale:</a><br>
+    <a>Inizia la caccia al 50\% di sanità mentale. La velocità di movimento durante la caccia è di 1,7 m/s. L\'effetto dell\'incenso dura 5 secondi.</a><br>
+    <br>
+    <a>Infuriato:</a><br>
+    <a>Inizia la caccia al 60\% di sanità mentale. Il raggio d\'azione del crocifisso è ridotto di 2 metri. La velocità di movimento durante la caccia è aumentata a 1,96 m/s. L\'effetto dell\'incenso è ridotto a 4 secondi. Non può calpestare il sale.</a><br>
+    <br>
+    <a>Indebolito:</a><br>
+    <a>Inizia la caccia al 40\% di sanità mentale. Il raggio d\'azione effettivo del crocifisso è aumentato di 1 metro. La velocità di movimento durante la caccia è ridotta a 1,36 m/s. Gli effetti dell\'incenso durano 6 secondi.</a><br>
+    <br>
+    <a>Il Gallu passerà dallo stato Indebolito a quello Normale e infine a quello Infuriato quando viene provocato dall\'attivazione dell\'incenso da parte del giocatore o dall\'interazione del fantasma con il sale o un crocifisso.</a>
+    ]]>
+    </string>
     <string name="ghost_huntingdata_obambo" translatable="false">
-<![CDATA[
-<a>Questo fantasma ha 2 stati: Calmo e Aggressivo.</a><br>
-<br>
-<a>Calmo: Caccia con il 10\% di Sanità.</a><br>
-<a>La velocità di movimento durante la caccia è di 1,45 m/s. Gli effetti dell\'incenso durano 5 secondi.</a><br>
-<br>
-<a>Aggressivo:</a><br>
-<a>Caccia con il 65\% di Sanità. Il raggio d\'azione del crocifisso è ridotto di 2 metri. La velocità di movimento durante la caccia è aumentata a 1,96 m/s. La durata della caccia è più breve del 20\% se inizia in questo stato.</a><br>
-<a>L\'Obambo inizia nello stato Calmo, che dura 1 minuto dopo l\'ingresso iniziale del giocatore. Successivamente, passerà dallo stato Calmo a quello Aggressivo ogni 2 minuti. Questo può accadere anche durante una caccia.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Questo fantasma ha 2 stati: Calmo e Aggressivo.</a><br>
+    <br>
+    <a>Calmo: Caccia con il 10\% di Sanità.</a><br>
+    <a>La velocità di movimento durante la caccia è di 1,45 m/s. Gli effetti dell\'incenso durano 5 secondi.</a><br>
+    <br>
+    <a>Aggressivo:</a><br>
+    <a>Caccia con il 65\% di Sanità. Il raggio d\'azione del crocifisso è ridotto di 2 metri. La velocità di movimento durante la caccia è aumentata a 1,96 m/s. La durata della caccia è più breve del 20\% se inizia in questo stato.</a><br>
+    <a>L\'Obambo inizia nello stato Calmo, che dura 1 minuto dopo l\'ingresso iniziale del giocatore. Successivamente, passerà dallo stato Calmo a quello Aggressivo ogni 2 minuti. Questo può accadere anche durante una caccia.</a>
+    ]]>
+    </string>
+    <string name="difficulty_title_custom">Personalizzato</string>
+    <string name="difficulty_title_challenge">Modalità Sfida</string>
+    <string name="difficulty_title_apocalypse_1">Apocalisse 1</string>
+    <string name="difficulty_title_apocalypse_2">Apocalisse 2</string>
+    <string name="challenge_lights_out_description">Preparate le candele, tutte le luci sono spente!</string>
+    <string name="challenge_speed_demons_description">Deve esserci qualcosa nell\'aria, tutti stanno impazzendo!</string>
+    <string name="challenge_detectives_only_description">Mettete alla prova le vostre abilità da detective, questo fantasma non si lascia sfuggire nulla!</string>
+    <string name="challenge_hide_and_seek_seeker_description">C\'è un fantasma molto silenzioso nascosto da qualche parte, riuscite a trovarlo?</string>
+    <string name="challenge_hide_and_seek_hide_description">Questo fantasma vuole giocare, è meglio che vi nascondiate in fretta!</string>
+    <string name="challenge_frostbitten_description">Fa così freddo che rallenta tutti, incluso il fantasma!</string>
+    <string name="challenge_do_as_i_command_description">Dovrete costringere questo fantasma a fornirvi delle prove, per fortuna abbiamo trovato degli oggetti extra per aiutarvi.</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">Datevi da fare, questo fantasma si sente particolarmente debole.</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">Dopo la settimana scorsa vi sentite un po\' sfiniti e, a peggiorare le cose, il fantasma si è ripreso!</string>
+    <string name="challenge_gotta_go_fast_description">Niente nascondigli, niente sanità mentale, andate!</string>
+    <string name="challenge_sanity_survival_description">La sanità mentale è una risorsa scarsa senza pillole o luci. Fai attenzione a trovare questo fantasma dell\'Incubo.</string>
+    <string name="challenge_speedrun_description">Magari potresti avviare un timer: quanto ci metti a scoprire l\'identità di questo fantasma?</string>
+    <string name="challenge_survival_of_the_fittest_description">Non hai pillole, né sanità mentale, né prove su cui lavorare. Sarà dura!</string>
+    <string name="challenge_primitive_description">Temo che tutte le apparecchiature elettroniche siano andate in cortocircuito, dovrai arrangiarti senza.</string>
+    <string name="challenge_vulnerable_description">Intraprenderai questa missione senza difese, fai attenzione là fuori.</string>
+    <string name="challenge_missed_delivery_description">Non abbiamo ricevuto la consegna completa dell\'attrezzatura questa settimana, quindi non avrai tutto ciò di cui potresti aver bisogno!</string>
+    <string name="challenge_audio_only_description">Siamo riusciti a procurarci dell\'attrezzatura audio extra. Dovrai usare le orecchie per questa missione.</string>
+    <string name="challenge_technophilia_description">Abbiamo buttato via tutti quegli oggetti preistorici, questo contratto riguarda solo la tecnologia!</string>
+    <string name="challenge_no_evidence_description">Questi fantasmi non vogliono davvero aiutarti, ma siamo sicuri che sarai all\'altezza del compito.</string>
+    <string name="challenge_the_apocalypse_draws_near_description">La sfida più difficile possibile, ma con la normale velocità di un investigatore. Buona fortuna.</string>
+    <string name="challenge_slow_and_steady_description">Questo fantasma sarà anche lento, ma è arrabbiato. State all\'erta!</string>
+    <string name="challenge_paranormal_paparazzi_description">Avete telecamere, luci e audio. Trovate quel tipo di fantasma!</string>
+    <string name="challenge_hide_and_seek_extreme_description">Questo fantasma vuole giocare, è meglio che vi nascondiate.</string>
+    <string name="challenge_glow_in_the_dark_description">Alcune delle nostre attrezzature hanno smesso di funzionare, speriamo che questo vi basti per vederlo.</string>
+    <string name="challenge_deja_vu_description">Questo mi fa venire un po\' di nostalgia, non trovate?</string>
+    <string name="challenge_tag_youre_it_description">Questo fantasma vi inseguirà subito, meglio che scappiate!\"</string>
 
 </resources>

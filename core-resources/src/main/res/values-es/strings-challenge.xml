@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="challenge_lights_out_description">¡Prepara tus velas, todas las luces están apagadas!</string>
+    <string name="challenge_speed_demons_description">Debe haber algo en el aire, ¡todos se están volviendo locos!</string>
+    <string name="challenge_detectives_only_description">Pon a prueba tus habilidades de detective, ¡este fantasma no revela nada!</string>
+    <string name="challenge_hide_and_seek_seeker_description">Hay un fantasma muy silencioso escondido en algún lugar, ¿lo encontrarás?</string>
+    <string name="challenge_hide_and_seek_hide_description">Este fantasma quiere jugar, ¡mejor escóndete rápido!</string>
+    <string name="challenge_frostbitten_description">Hace tanto frío que está frenando a todos, ¡incluido al fantasma!</string>
+    <string name="challenge_do_as_i_command_description">Tendrás que obligar a este fantasma a que te dé pruebas; por suerte, hemos encontrado algunos objetos adicionales para ayudarte.</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">Dalo todo, este fantasma se siente especialmente frágil.</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">Después de la semana pasada, te sientes un poco agotado, y para colmo, ¡el fantasma se ha recuperado!</string>
+    <string name="challenge_gotta_go_fast_description">¡Sin esconderse, sin cordura, adelante!</string>
+    <string name="challenge_sanity_survival_description">La cordura es un recurso escaso sin pastillas ni luces. Ten cuidado al encontrar a este fantasma de Pesadilla.</string>
+    <string name="challenge_speedrun_description">Quizás podrías poner en marcha un cronómetro. ¿Cuánto tardarás en descubrir la identidad de este fantasma?</string>
+    <string name="challenge_survival_of_the_fittest_description">No tienes pastillas, ni cordura, ni pruebas con las que trabajar. ¡Va a ser difícil!</string>
+    <string name="challenge_primitive_description">Me temo que todo el equipo electrónico se ha cortocircuitado; tendrás que arreglártelas sin él.</string>
+    <string name="challenge_vulnerable_description">Entrarás en esta misión sin defensas, ten cuidado.</string>
+    <string name="challenge_missed_delivery_description">No recibimos el equipo completo esta semana, ¡así que no tendrás todo lo que puedas necesitar!</string>
+    <string name="challenge_audio_only_description">Hemos conseguido equipo de audio adicional. Tendrás que usar el oído en esta ocasión.</string>
+    <string name="challenge_technophilia_description">Hemos tirado todos esos objetos prehistóricos; ¡este contrato se trata de tecnología!</string>
+    <string name="challenge_no_evidence_description">Estos fantasmas no quieren ayudarte, pero estamos seguros de que estás a la altura.</string>
+    <string name="challenge_the_apocalypse_draws_near_description">El desafío más difícil posible, pero con la velocidad normal de un investigador. Buena suerte.</string>
+    <string name="challenge_slow_and_steady_description">Este fantasma puede ser lento, pero está furioso. ¡Manténganse alerta!</string>
+    <string name="challenge_paranormal_paparazzi_description">Tienen cámaras, luces y sonido. ¡Encuentren a ese fantasma!</string>
+    <string name="challenge_hide_and_seek_extreme_description">Este fantasma quiere jugar, mejor escóndanse.</string>
+    <string name="challenge_glow_in_the_dark_description">Algunos de nuestros equipos han dejado de funcionar; espero que esto les baste para verlo.</string>
+    <string name="challenge_deja_vu_description">Esto da mucha nostalgia, ¿no creen?</string>
+    <string name="challenge_tag_youre_it_description">¡Este fantasma los perseguirá inmediatamente, mejor corran!</string>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="challenge_lights_out_description">Приготуйте свічки, все світло вимкнено!</string>
+    <string name="challenge_speed_demons_description">Щось має бути в повітрі, всі божеволіють!</string>
+    <string name="challenge_detectives_only_description">Випробуйте свої детективні здібності, цей привид нічого не видає!</string>
+    <string name="challenge_hide_and_seek_seeker_description">Десь ховається дуже тихий привид, чи зможете ви його знайти?</string>
+    <string name="challenge_hide_and_seek_hide_description">Цей привид хоче пограти в гру, краще швидко сховайтеся!</string>
+    <string name="challenge_frostbitten_description">Так холодно, що це сповільнює всіх, включаючи привида!</string>
+    <string name="challenge_do_as_i_command_description">Вам доведеться змусити цього привида дати вам докази, на щастя, ми знайшли кілька додаткових предметів, які допоможуть вам.</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">Викладіться на повну, цей привид почувається особливо кволим.</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">Після минулого тижня ви почуваєтеся трохи виснаженим, і що ще гірше, привид одужав!</string>
+    <string name="challenge_gotta_go_fast_description">Немає хованок, немає здорового глузду, беріться!</string>
+    <string name="challenge_sanity_survival_description">Здоровий глузд — це рідкісний ресурс без таблеток та світла. Будьте обережні, знаходячи цього привида з Кошмару.</string>
+    <string name="challenge_speedrun_description">Можливо, ви могли б запустити таймер, як швидко ви зможете знайти особу цього привида?</string>
+    <string name="challenge_survival_of_the_fittest_description">У вас немає ні таблеток, ні глузду, ні доказів для роботи. Це буде важко!</string>
+    <string name="challenge_primitive_description">Боюся, що все електронне обладнання коротке замикання, вам доведеться обходитися без нього.</string>
+    <string name="challenge_vulnerable_description">Ви підете до цієї справи без захисту, будьте обережні.</string>
+    <string name="challenge_missed_delivery_description">Ми не отримали повну поставку обладнання цього тижня, тому у вас не буде всього, що вам може знадобитися!</string>
+    <string name="challenge_audio_only_description">Нам вдалося роздобути додаткове аудіообладнання. Вам доведеться напружити слух.</string>
+    <string name="challenge_technophilia_description">Ми викинули всі ці доісторичні предмети, цей контракт повністю присвячений технологіям!</string>
+    <string name="challenge_no_evidence_description">Ці привиди справді не хочуть вам допомагати, але ми впевнені, що ви впораєтеся із завданням.</string>
+    <string name="challenge_the_apocalypse_draws_near_description">Найскладніше можливе випробування, але зі звичайною швидкістю слідчого. Удачі.</string>
+    <string name="challenge_slow_and_steady_description">Цей привид може бути повільним, але він злий. Тримайся на ногах!</string>
+    <string name="challenge_paranormal_paparazzi_description">У тебе є камери, світло та звук. Знайди такого привида!</string>
+    <string name="challenge_hide_and_seek_extreme_description">Цей привид хоче пограти в гру, тобі краще сховатися.</string>
+    <string name="challenge_glow_in_the_dark_description">Деяке наше обладнання перестало працювати, сподіваюся, цього тобі буде достатньо, щоб побачити.</string>
+    <string name="challenge_deja_vu_description">Це викликає ностальгію, чи не так?</string>
+    <string name="challenge_tag_youre_it_description">Цей привид одразу ж поженеться за тобою, тобі краще тікати!</string>
+</resources>

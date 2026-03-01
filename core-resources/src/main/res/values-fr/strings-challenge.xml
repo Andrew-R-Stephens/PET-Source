@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="challenge_lights_out_description">Préparez vos bougies, toutes les lumières sont éteintes !</string>
+    <string name="challenge_speed_demons_description">Il y a quelque chose de bizarre dans l\'air, tout le monde perd la tête !</string>
+    <string name="challenge_detectives_only_description">Mettez vos talents de détective à l\'épreuve, ce fantôme ne vous trahit pas !</string>
+    <string name="challenge_hide_and_seek_seeker_description">Un fantôme très silencieux se cache quelque part, saurez-vous le trouver ?</string>
+    <string name="challenge_hide_and_seek_hide_description">Ce fantôme veut jouer à un jeu, cachez-vous vite !</string>
+    <string name="challenge_frostbitten_description">Il fait si froid que tout le monde est ralenti, même le fantôme !</string>
+    <string name="challenge_do_as_i_command_description">Vous allez devoir forcer ce fantôme à vous donner des preuves, heureusement, nous avons trouvé des objets supplémentaires pour vous aider.</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">Donnez le meilleur de vous-même, ce fantôme est particulièrement faible.</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">Après la semaine dernière, vous êtes un peu épuisé, et pour couronner le tout, le fantôme a repris du poil de la bête !</string>
+    <string name="challenge_gotta_go_fast_description">Pas question de se cacher, pas de santé mentale, au travail !</string>
+    <string name="challenge_sanity_survival_description">"La santé mentale est une ressource précieuse, sans pilules ni lumière. Faites attention en cherchant ce fantôme cauchemardesque. "</string>
+    <string name="challenge_speedrun_description">Peut-être pourriez-vous lancer un chronomètre : combien de temps vous faudra-t-il pour découvrir l\'identité de ce fantôme ?</string>
+    <string name="challenge_survival_of_the_fittest_description">Vous n\'avez ni pilules, ni santé mentale, ni aucune preuve. Ça va être difficile !</string>
+    <string name="challenge_primitive_description">J\'ai bien peur que tout le matériel électronique soit hors service. Il va falloir vous débrouiller sans.</string>
+    <string name="challenge_vulnerable_description">Vous allez devoir affronter cette affaire sans défense. Soyez prudent.</string>
+    <string name="challenge_missed_delivery_description">Nous n\'avons pas reçu notre livraison complète cette semaine. Vous n\'aurez donc pas tout ce dont vous pourriez avoir besoin !</string>
+    <string name="challenge_audio_only_description">Nous avons réussi à nous procurer du matériel audio supplémentaire. Il va falloir faire appel à vos oreilles.</string>
+    <string name="challenge_technophilia_description">Nous avons jeté tous ces objets préhistoriques. Ce contrat est entièrement axé sur la technologie !</string>
+    <string name="challenge_no_evidence_description">Ces fantômes ne veulent vraiment pas vous aider, mais nous sommes sûrs que vous êtes à la hauteur.</string>
+    <string name="challenge_the_apocalypse_draws_near_description">Le défi le plus difficile qui soit, mais à la vitesse normale d\'un enquêteur. Bonne chance.</string>
+    <string name="challenge_slow_and_steady_description">Ce fantôme est peut-être lent, mais il est furieux. Restez sur vos gardes !</string>
+    <string name="challenge_paranormal_paparazzi_description">Vous disposez de caméras, de lumières et de son. Trouvez ce type de fantôme !</string>
+    <string name="challenge_hide_and_seek_extreme_description">Ce fantôme veut jouer, cachez-vous !</string>
+    <string name="challenge_glow_in_the_dark_description">Une partie de notre équipement est hors service, en espérant que cela suffise pour que vous puissiez voir.</string>
+    <string name="challenge_deja_vu_description">Celui-ci a un petit air de nostalgie, vous ne trouvez pas ?</string>
+    <string name="challenge_tag_youre_it_description">Ce fantôme vous poursuivra immédiatement, dépêchez-vous !</string>
+</resources>

@@ -1063,13 +1063,14 @@
     <string name="language_name_localized_fr">"フランス語 "</string>
     <string name="language_name_localized_ru">"ロシア語 "</string>
     <string name="language_name_localized_uk">ウクライナ語</string>
-    <string name="difficulty_response_unknown">未知</string>
-    <string name="difficulty_frequency_none">なし</string>
-    <string name="difficulty_frequency_low">低</string>
-    <string name="difficulty_frequency_medium">中</string>
-    <string name="difficulty_frequency_high">高</string>
-    <string name="difficulty_frequency_veryHigh">非常に高</string>
-    <string name="difficulty_response_known">既知</string>
+    <string name="difficulty_setting_response_unknown">未知</string>
+    <string name="difficulty_setting_state_none">なし</string>
+    <string name="difficulty_setting_state_low">低</string>
+    <string name="difficulty_setting_state_medium">中</string>
+    <string name="difficulty_setting_state_high">高</string>
+    <string name="difficulty_setting_state_veryHigh">非常に高</string>
+    <string name="difficulty_title_apocalypse_3">アポカリプス 3</string>
+    <string name="difficulty_setting_response_known">既知</string>
     <string name="alert_gui_palette_error">パレットが設定されていません！</string>
     <string name="alert_gui_typography_error">タイポグラフィが設定されていません！</string>
     <string name="account_button_visit_marketplace">マーケットプレイスにアクセスしてください</string>
@@ -1082,80 +1083,110 @@
             <![CDATA[
                 <a>この幽霊は、プレイヤーが十字架やお香などの防御具を使用すると、狩りの際に動きが速くなることが知られている。</a>
             ]]>
-        </string>
-<string name="ghost_info_obambo" translatable="false">
-<![CDATA[
-<a>オバンボのユニークな能力は、「穏やかな」状態（ハント中の攻撃性が低く、速度が遅い）と「攻撃的な」状態（ハント中の攻撃性が高く、速度が速い）の間で切り替わることにあります。</a>
-]]>
-</string>
+    </string>
+    <string name="ghost_info_obambo" translatable="false">
+    <![CDATA[
+    <a>オバンボのユニークな能力は、「穏やかな」状態（ハント中の攻撃性が低く、速度が遅い）と「攻撃的な」状態（ハント中の攻撃性が高く、速度が速い）の間で切り替わることにあります。</a>
+    ]]>
+    </string>
 
 
-<string name="ghost_strengths_dayan" translatable="false">
-<![CDATA[
-<a>プレイヤーがダヤンの近くを移動すると、移動速度が速くなります。</a>
-]]>
-</string>
-<string name="ghost_strengths_gallu" translatable="false">
-<![CDATA[
-<a>防御アイテムが使用されると攻撃的になります。</a>
-]]>
-</string>
-<string name="ghost_strengths_obambo" translatable="false">
-<![CDATA[
-<a>「攻撃的な」状態では、ハント開始が早く、移動速度も速くなります。</a>
-]]>
-</string>
+    <string name="ghost_strengths_dayan" translatable="false">
+    <![CDATA[
+    <a>プレイヤーがダヤンの近くを移動すると、移動速度が速くなります。</a>
+    ]]>
+    </string>
+    <string name="ghost_strengths_gallu" translatable="false">
+    <![CDATA[
+    <a>防御アイテムが使用されると攻撃的になります。</a>
+    ]]>
+    </string>
+    <string name="ghost_strengths_obambo" translatable="false">
+    <![CDATA[
+    <a>「攻撃的な」状態では、ハント開始が早く、移動速度も速くなります。</a>
+    ]]>
+    </string>
 
 
-<string name="ghost_weaknesses_dayan" translatable="false">
-<![CDATA[
-<a>プレイヤーがダヤンの近くで静止していると、移動速度が遅くなります。</a>
-]]>
-</string>
-<string name="ghost_weaknesses_gallu" translatable="false">
-<![CDATA[
-<a>ハント後は攻撃性が低下します。</a>
-]]>
-</string>
-<string name="ghost_weaknesses_obambo" translatable="false">
-<![CDATA[
-<a>「穏やかな」状態では、ハント開始が遅く、移動速度も遅くなります。</a>
-]]>
-</string>
+    <string name="ghost_weaknesses_dayan" translatable="false">
+    <![CDATA[
+    <a>プレイヤーがダヤンの近くで静止していると、移動速度が遅くなります。</a>
+    ]]>
+    </string>
+    <string name="ghost_weaknesses_gallu" translatable="false">
+    <![CDATA[
+    <a>ハント後は攻撃性が低下します。</a>
+    ]]>
+    </string>
+    <string name="ghost_weaknesses_obambo" translatable="false">
+    <![CDATA[
+    <a>「穏やかな」状態では、ハント開始が遅く、移動速度も遅くなります。</a>
+    ]]>
+    </string>
 
 
-<string name="ghost_huntingdata_dayan" translatable="false">
-<![CDATA[
-<a>デフォルトでは正気度50%でハントを開始し、プレイヤーとの距離とプレイヤーの動きによって変化します。</a><br> <a>近くにいるプレイヤー（10メートル以内）が歩いている場合、ハント開始の正気度閾値が65%に上昇します。</a><br>
-<a>近くにいるプレイヤー（10メートル以内）全員が静止している場合、ハント開始の正気度閾値が45%に低下します。</a>
-]]>
-</string>
-<string name="ghost_huntingdata_gallu" translatable="false">
-<![CDATA[
-<a>このゴーストには3つの状態があります：通常、激怒、弱体化。</a><br>
-<br>
-<a>通常：</a><br>
-<a>正気度50%でハントを開始します。ハント時の移動速度は1.7 m/sです。お香の効果は5秒間持続します。</a><br>
-<br>
-<a>激怒：</a><br>
-<a>正気度60%でハントを開始します。十字架の有効範囲が2メートル減少します。ハント時の移動速度は1.96 m/sに増加します。お香の効果は4秒に短縮されます。塩を踏むことができません。</a><br>
-<br>
-<a>弱体化：</a><br>
-<a>正気度40%でハントを開始します。十字架の有効範囲が1メートル増加します。ハント時の移動速度は1.36 m/sに減少します。お香の効果は6秒に延長されます。</a><br>
-<br>
-<a>ガルーは、プレイヤーがお香を使用したり、ゴーストが塩や十字架に触れたりすることで刺激を受けると、弱体化、通常、激怒の状態へと変化します。</a>
-]]>
-</string>
-<string name="ghost_huntingdata_obambo" translatable="false">
-<![CDATA[
-<a>このゴーストには2つの状態があります：穏やか、攻撃的。</a><br>
-<br>
-<a>穏やか：正気度10%でハントを開始します。</a><br>
-<a>ハント時の移動速度は1.45 m/sです。お香の効果は5秒間持続します。</a><br>
-<br>
-<a>攻撃的：</a><br>
-<a>正気度65%でハントを開始します。十字架の効果範囲が2メートル縮小されます。狩りの移動速度が1.96m/sに増加します。この状態中に狩りが開始された場合、狩りの持続時間が20%短縮されます。
-オバンボはプレイヤーが最初にエリアに入ってから1分間、静穏状態になります。その後、2分ごとに静穏状態と攻撃状態を切り替えます。これは狩りの最中でも起こり得ます。
-]]></string>
+    <string name="ghost_huntingdata_dayan" translatable="false">
+    <![CDATA[
+    <a>デフォルトでは正気度50%でハントを開始し、プレイヤーとの距離とプレイヤーの動きによって変化します。</a><br> <a>近くにいるプレイヤー（10メートル以内）が歩いている場合、ハント開始の正気度閾値が65%に上昇します。</a><br>
+    <a>近くにいるプレイヤー（10メートル以内）全員が静止している場合、ハント開始の正気度閾値が45%に低下します。</a>
+    ]]>
+    </string>
+    <string name="ghost_huntingdata_gallu" translatable="false">
+    <![CDATA[
+    <a>このゴーストには3つの状態があります：通常、激怒、弱体化。</a><br>
+    <br>
+    <a>通常：</a><br>
+    <a>正気度50%でハントを開始します。ハント時の移動速度は1.7 m/sです。お香の効果は5秒間持続します。</a><br>
+    <br>
+    <a>激怒：</a><br>
+    <a>正気度60%でハントを開始します。十字架の有効範囲が2メートル減少します。ハント時の移動速度は1.96 m/sに増加します。お香の効果は4秒に短縮されます。塩を踏むことができません。</a><br>
+    <br>
+    <a>弱体化：</a><br>
+    <a>正気度40%でハントを開始します。十字架の有効範囲が1メートル増加します。ハント時の移動速度は1.36 m/sに減少します。お香の効果は6秒に延長されます。</a><br>
+    <br>
+    <a>ガルーは、プレイヤーがお香を使用したり、ゴーストが塩や十字架に触れたりすることで刺激を受けると、弱体化、通常、激怒の状態へと変化します。</a>
+    ]]>
+    </string>
+    <string name="ghost_huntingdata_obambo" translatable="false">
+    <![CDATA[
+    <a>このゴーストには2つの状態があります：穏やか、攻撃的。</a><br>
+    <br>
+    <a>穏やか：正気度10%でハントを開始します。</a><br>
+    <a>ハント時の移動速度は1.45 m/sです。お香の効果は5秒間持続します。</a><br>
+    <br>
+    <a>攻撃的：</a><br>
+    <a>正気度65%でハントを開始します。十字架の効果範囲が2メートル縮小されます。狩りの移動速度が1.96m/sに増加します。この状態中に狩りが開始された場合、狩りの持続時間が20%短縮されます。
+    オバンボはプレイヤーが最初にエリアに入ってから1分間、静穏状態になります。その後、2分ごとに静穏状態と攻撃状態を切り替えます。これは狩りの最中でも起こり得ます。
+    ]]></string>
+    <string name="difficulty_title_custom">カスタム</string>
+    <string name="difficulty_title_challenge">チャレンジモード</string>
+    <string name="difficulty_title_apocalypse_1">アポカリプス 1</string>
+    <string name="difficulty_title_apocalypse_2">アポカリプス 2</string>
+    <string name="challenge_lights_out_description">ろうそくを用意して、電気は全部消えた！</string>
+    <string name="challenge_speed_demons_description">何かが起こっているに違いない、みんなが狂ってる！</string>
+    <string name="challenge_detectives_only_description">探偵としての腕を試そう、このゴーストは何も明かさない！</string>
+    <string name="challenge_hide_and_seek_seeker_description">どこかにとても静かなゴーストが隠れている。見つけられるかな？</string>
+    <string name="challenge_hide_and_seek_hide_description">このゴーストはゲームをしたがっている。早く隠れた方がいい！</string>
+    <string name="challenge_frostbitten_description">寒すぎて、ゴーストも含めてみんなの動きが鈍くなっている！</string>
+    <string name="challenge_do_as_i_command_description">このゴーストに証拠を無理やり出させなければならない。幸いにも、役立つ追加アイテムを用意した。</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">全力を尽くせ、このゴーストは特に弱っている。</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">先週のせいで少し疲れているだろう。さらに悪いことに、ゴーストは回復した！</string>
+    <string name="challenge_gotta_go_fast_description">隠れるも正気も失っている。さあ、出動だ！</string>
+    <string name="challenge_sanity_survival_description">正気は貴重な資源であり、薬も光もありません。このナイトメアゴーストを見つける際は注意してください。</string>
+    <string name="challenge_speedrun_description">タイマーをスタートさせて、どれだけ早くこのゴーストの正体を見つけられるか試してみてはいかがでしょうか？</string>
+    <string name="challenge_survival_of_the_fittest_description">薬も正気もなく、頼りになる証拠もありません。大変なことになるでしょう！</string>
+    <string name="challenge_primitive_description">残念ながら、電子機器はすべてショートしてしまいました。仕方がないですね。</string>
+    <string name="challenge_vulnerable_description">何の防御策も講じずにこの任務に臨むことになりますので、お気をつけください。</string>
+    <string name="challenge_missed_delivery_description">今週は必要な機材がすべて届かなかったので、必要なものが全て揃っているわけではありません！</string>
+    <string name="challenge_audio_only_description">追加のオーディオ機器を入手しました。今回は耳を頼りにしてください。</string>
+    <string name="challenge_technophilia_description">先史時代のアイテムはすべて捨てました。この依頼はテクノロジーがすべてです！</string>
+    <string name="challenge_no_evidence_description">ゴーストたちはあなたを助けようとはしませんが、きっとあなたは任務を遂行できるでしょう。</string>
+    <string name="challenge_the_apocalypse_draws_near_description">探索速度は通常の速度で、可能な限り最も難しいチャレンジです。頑張ってください。</string>
+    <string name="challenge_slow_and_steady_description">このゴーストは動きが遅いかもしれませんが、怒っています。油断しないでください！</string>
+    <string name="challenge_paranormal_paparazzi_description">カメラ、ライト、音響も完備しています。このタイプのゴーストを見つけてください！</string>
+    <string name="challenge_hide_and_seek_extreme_description">このゴーストはゲームをしたがっています。隠れた方がいいでしょう。</string>
+    <string name="challenge_glow_in_the_dark_description">一部の機器が故障しています。これで十分でしょう。</string>
+    <string name="challenge_deja_vu_description">懐かしい感じがしませんか？</string>
+    <string name="challenge_tag_youre_it_description">このゴーストはすぐに追いかけてくるでしょう。逃げた方がいいですよ！</string>
 
 </resources>

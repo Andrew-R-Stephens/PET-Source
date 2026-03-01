@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="challenge_lights_out_description">Připravte si svíčky, všechna světla jsou zhasnutá!</string>
+    <string name="challenge_speed_demons_description">Ve vzduchu musí být něco, všichni se zbláznili!</string>
+    <string name="challenge_detectives_only_description">Otestujte své detektivní schopnosti, tento duch nic neprozrazuje!</string>
+    <string name="challenge_hide_and_seek_seeker_description">Někde se skrývá velmi tichý duch, dokážete ho najít?</string>
+    <string name="challenge_hide_and_seek_hide_description">Tento duch si chce hrát hru, raději se rychle schovejte!</string>
+    <string name="challenge_frostbitten_description">Je taková zima, že to všechny, včetně ducha, zpomaluje!</string>
+    <string name="challenge_do_as_i_command_description">Budete muset tohoto ducha donutit, aby vám poskytl důkazy, naštěstí jsme našli pár dalších předmětů, které vám pomohou.</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">Dejte do toho všechno, tento duch se cítí obzvlášť křehký.</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">Po minulém týdnu se cítíte trochu vyčerpaní a aby toho nebylo málo, duch se zotavil!</string>
+    <string name="challenge_gotta_go_fast_description">Žádné schovávání, žádný zdravý rozum, do toho!</string>
+    <string name="challenge_sanity_survival_description">Zdravý rozum je vzácný zdroj bez pilulek a světel. Buďte opatrní při hledání tohoto ducha z noční můry.</string>
+    <string name="challenge_speedrun_description">Možná byste mohli spustit časovač, jak rychle dokážete najít identitu toho ducha?</string>
+    <string name="challenge_survival_of_the_fittest_description">Nemáte žádné pilulky, žádný duševní zdraví a žádné důkazy, se kterými byste mohli pracovat. Bude to těžké!</string>
+    <string name="challenge_primitive_description">Obávám se, že veškeré elektronické vybavení má zkrat, budete se muset obejít bez něj.</string>
+    <string name="challenge_vulnerable_description">Do tohohle se pustíte bez obrany, buďte opatrní.</string>
+    <string name="challenge_missed_delivery_description">Tento týden jsme neobdrželi kompletní dodávku vybavení, takže nebudete mít vše, co byste mohli potřebovat!</string>
+    <string name="challenge_audio_only_description">Podařilo se nám sehnat nějaké další audio vybavení. Budete muset použít uši.</string>
+    <string name="challenge_technophilia_description">Vyhodili jsme všechny ty prehistorické předměty, tahle smlouva je o technologiích!</string>
+    <string name="challenge_no_evidence_description">Tito duchové vám opravdu nechtějí pomoct, ale jsme si jistí, že na ten úkol máte.</string>
+    <string name="challenge_the_apocalypse_draws_near_description">Nejtěžší možná výzva, ale s normální rychlostí vyšetřovatele. Hodně štěstí.</string>
+    <string name="challenge_slow_and_steady_description">Tenhle duch je možná pomalý, ale je naštvaný. Buďte ve střehu!</string>
+    <string name="challenge_paranormal_paparazzi_description">Máte kamery, světla a zvuk. Najděte toho ducha!</string>
+    <string name="challenge_hide_and_seek_extreme_description">"Tenhle duch si chce hrát, radši se schovejte. "</string>
+    <string name="challenge_glow_in_the_dark_description">"Některé naše vybavení přestalo fungovat, doufejme, že vám to bude stačit, abyste to viděli. "</string>
+    <string name="challenge_deja_vu_description">"Tohle je docela nostalgické, nemyslíte? "</string>
+    <string name="challenge_tag_youre_it_description">Tenhle duch vás hned pronásleduje, radši utíkejte!</string>
+</resources>

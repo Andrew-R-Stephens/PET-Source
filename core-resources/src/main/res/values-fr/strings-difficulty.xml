@@ -10,14 +10,19 @@
     <string name="difficulty_title_insanity">Folie</string>
 
     <!-- Difficulty Response Type -->
-    <string name="difficulty_response_known">Connu</string>
-    <string name="difficulty_response_unknown">Inconnu</string>
+    <string name="difficulty_title_apocalypse_3">Apocalypse 3</string>
+    <string name="difficulty_setting_response_known">Connu</string>
+    <string name="difficulty_setting_response_unknown">Inconnu</string>
 
     <!-- Difficulty Frequency -->
-    <string name="difficulty_frequency_none">Aucun</string>
-    <string name="difficulty_frequency_low">Faible</string>
-    <string name="difficulty_frequency_medium">Moyen</string>
-    <string name="difficulty_frequency_high">Élevé</string>
-    <string name="difficulty_frequency_veryHigh">Très élevé</string>
+    <string name="difficulty_setting_state_none">Aucun</string>
+    <string name="difficulty_setting_state_low">Faible</string>
+    <string name="difficulty_setting_state_medium">Moyen</string>
+    <string name="difficulty_setting_state_high">Élevé</string>
+    <string name="difficulty_setting_state_veryHigh">Très élevé</string>
+    <string name="difficulty_title_custom">Personnalisé</string>
+    <string name="difficulty_title_challenge">Mode Défi</string>
+    <string name="difficulty_title_apocalypse_1">Apocalypse 1</string>
+    <string name="difficulty_title_apocalypse_2">Apocalypse 2</string>
 
 </resources>

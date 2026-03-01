@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="difficulty_response_unknown">Невідомий</string>
-    <string name="difficulty_frequency_none">Немає</string>
-    <string name="difficulty_frequency_low">Низький</string>
-    <string name="difficulty_frequency_medium">Середній</string>
-    <string name="difficulty_frequency_high">Високий</string>
-    <string name="difficulty_frequency_veryHigh">Дуже високий</string>
-    <string name="difficulty_response_known">Відомий</string>
+    <string name="difficulty_setting_response_unknown">Невідомий</string>
+    <string name="difficulty_setting_state_none">Немає</string>
+    <string name="difficulty_setting_state_low">Низький</string>
+    <string name="difficulty_setting_state_medium">Середній</string>
+    <string name="difficulty_setting_state_high">Високий</string>
+    <string name="difficulty_setting_state_veryHigh">Дуже високий</string>
+    <string name="difficulty_title_apocalypse_3">Апокаліпсис 3</string>
+    <string name="difficulty_setting_response_known">Відомий</string>
+    <string name="difficulty_title_custom">Налаштування</string>
+    <string name="difficulty_title_challenge">Режим випробування</string>
+    <string name="difficulty_title_apocalypse_1">Апокаліпсис 1</string>
+    <string name="difficulty_title_apocalypse_2">Апокаліпсис 2</string>
 </resources>

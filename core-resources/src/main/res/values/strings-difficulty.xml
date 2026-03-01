@@ -8,16 +8,34 @@
     <string name="difficulty_title_professional">Professional</string>
     <string name="difficulty_title_nightmare">Nightmare</string>
     <string name="difficulty_title_insanity">Insanity</string>
+    <string name="difficulty_title_custom">Custom</string>
+    <string name="difficulty_title_challenge">Challenge Mode</string>
+    <string name="difficulty_title_apocalypse_1">Apocalypse 1</string>
+    <string name="difficulty_title_apocalypse_2">Apocalypse 2</string>
+    <string name="difficulty_title_apocalypse_3">Apocalypse 3</string>
 
-    <!-- Difficulty Response Type -->
-    <string name="difficulty_response_known">Known</string>
-    <string name="difficulty_response_unknown">Unknown</string>
+    <!-- Response Type -->
+    <string name="difficulty_setting_response_known">Known</string>
+    <string name="difficulty_setting_response_unknown">Unknown</string>
 
-    <!-- Difficulty Frequency -->
-    <string name="difficulty_frequency_none">None</string>
-    <string name="difficulty_frequency_low">Low</string>
-    <string name="difficulty_frequency_medium">Medium</string>
-    <string name="difficulty_frequency_high">High</string>
-    <string name="difficulty_frequency_veryHigh">Very High</string>
+    <!-- Frequency -->
+    <string name="difficulty_setting_state_random" translatable="false">Random</string>
+    <string name="difficulty_setting_state_broken" translatable="false">Broken</string>
+    <string name="difficulty_setting_state_off" translatable="false">Off</string>
+    <string name="difficulty_setting_state_on" translatable="false">On</string>
+    <string name="difficulty_setting_state_none">None</string>
+    <string name="difficulty_setting_state_low">Low</string>
+    <string name="difficulty_setting_state_medium">Medium</string>
+    <string name="difficulty_setting_state_high">High</string>
+    <string name="difficulty_setting_state_veryHigh">Very High</string>
+    <string name="difficulty_setting_state_infinite" translatable="false">Infinite</string>
+
+    <string name="difficulty_setting_state_weather_lightrain" translatable="false">Light Rain</string>
+    <string name="difficulty_setting_state_weather_heavyrain" translatable="false">Heavy Rain</string>
+    <string name="difficulty_setting_state_weather_snow" translatable="false">Snow</string>
+    <string name="difficulty_setting_state_weather_windy" translatable="false">Windy</string>
+    <string name="difficulty_setting_state_weather_clear" translatable="false">Clear</string>
+    <string name="difficulty_setting_state_weather_fog" translatable="false">Fog</string>
+    <string name="difficulty_setting_state_weather_sunrise" translatable="false">Sunrise</string>
 
 </resources>

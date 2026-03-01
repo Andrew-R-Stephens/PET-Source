@@ -1071,100 +1071,131 @@
     <string name="language_name_localized_it">Italiano</string>
     <string name="language_name_localized_ru">Russo</string>
     <string name="language_name_localized_uk">Ucraniano</string>
-    <string name="difficulty_response_unknown">Desconhecido</string>
-    <string name="difficulty_frequency_none">Nenhum</string>
-    <string name="difficulty_frequency_low">Baixo</string>
-    <string name="difficulty_frequency_medium">Médio</string>
-    <string name="difficulty_frequency_high">Alto</string>
-    <string name="difficulty_frequency_veryHigh">Muito Alto</string>
-    <string name="difficulty_response_known">Conhecido</string>
+    <string name="difficulty_setting_response_unknown">Desconhecido</string>
+    <string name="difficulty_setting_state_none">Nenhum</string>
+    <string name="difficulty_setting_state_low">Baixo</string>
+    <string name="difficulty_setting_state_medium">Médio</string>
+    <string name="difficulty_setting_state_high">Alto</string>
+    <string name="difficulty_setting_state_veryHigh">Muito Alto</string>
+    <string name="difficulty_title_apocalypse_3">Apocalipse 3</string>
+    <string name="difficulty_setting_response_known">Conhecido</string>
     <string name="alert_gui_palette_error">Paleta não definida!</string>
     <string name="alert_gui_typography_error">Tipografia não definida!</string>
     <string name="account_button_visit_marketplace">Visite o Marketplace</string>
 
     <string name="ghost_info_dayan">
-<![CDATA[
-A característica única do Dayan permite que ele acelere quando os jogadores se movem perto dele, mas também faz com que ele diminua a velocidade quando os jogadores param de se mover.</a>
-]]> </string>
+    <![CDATA[
+    A característica única do Dayan permite que ele acelere quando os jogadores se movem perto dele, mas também faz com que ele diminua a velocidade quando os jogadores param de se mover.</a>
+    ]]> </string>
     <string name="ghost_info_gallu" translatable="false">
-<![CDATA[
-<a>Este fantasma é conhecido por ficar mais rápido durante as caçadas quando os jogadores usam equipamentos de proteção contra ele, como crucifixos ou incenso.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Este fantasma é conhecido por ficar mais rápido durante as caçadas quando os jogadores usam equipamentos de proteção contra ele, como crucifixos ou incenso.</a>
+    ]]>
+    </string>
     <string name="ghost_info_obambo" translatable="false">
-<![CDATA[
-<a>A habilidade única do Obambo gira em torno da alternância entre um estado "calmo", no qual ele é menos agressivo e mais lento durante as caçadas, e um estado "agressivo", no qual ele é mais agressivo e mais rápido durante as caçadas.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>A habilidade única do Obambo gira em torno da alternância entre um estado "calmo", no qual ele é menos agressivo e mais lento durante as caçadas, e um estado "agressivo", no qual ele é mais agressivo e mais rápido durante as caçadas.</a>
+    ]]>
+    </string>
 
 
     <string name="ghost_strengths_dayan" translatable="false">
-<![CDATA[
-<a>Move-se mais rápido quando um jogador se move perto do Dayan.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Move-se mais rápido quando um jogador se move perto do Dayan.</a>
+    ]]>
+    </string>
     <string name="ghost_strengths_gallu" translatable="false">
-<![CDATA[
-<a>Torna-se agressivo quando equipamentos de proteção são usados.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Torna-se agressivo quando equipamentos de proteção são usados.</a>
+    ]]>
+    </string>
     <string name="ghost_strengths_obambo" translatable="false">
-<![CDATA[
-<a>Caça mais cedo e move-se mais rápido em seu estado "agressivo".</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Caça mais cedo e move-se mais rápido em seu estado "agressivo".</a>
+    ]]>
+    </string>
 
 
     <string name="ghost_weaknesses_dayan" translatable="false">
-<![CDATA[
-<a>Move-se mais devagar quando um jogador fica parado perto do Dayan.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Move-se mais devagar quando um jogador fica parado perto do Dayan.</a>
+    ]]>
+    </string>
     <string name="ghost_weaknesses_gallu" translatable="false">
-<![CDATA[
-<a>Torna-se menos agressivo após uma caçada.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Torna-se menos agressivo após uma caçada.</a>
+    ]]>
+    </string>
     <string name="ghost_weaknesses_obambo" translatable="false">
-<![CDATA[
-<a>Caça mais tarde e move-se mais devagar em seu estado "calmo".</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Caça mais tarde e move-se mais devagar em seu estado "calmo".</a>
+    ]]>
+    </string>
 
 
     <string name="ghost_huntingdata_dayan" translatable="false">
-<![CDATA[
-<a>Caça com 50% de sanidade por padrão, e é modificado por uma combinação de proximidade e movimento do jogador.</a><br>
-<a>O limite de caça aumenta para 65% de Sanidade se algum jogador próximo (a menos de 10 metros) estiver andando.</a><br>
-<a>O limite de caça diminui para 45% de Sanidade se todos os jogadores próximos (a menos de 10 metros) estiverem parados.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Caça com 50% de sanidade por padrão, e é modificado por uma combinação de proximidade e movimento do jogador.</a><br>
+    <a>O limite de caça aumenta para 65% de Sanidade se algum jogador próximo (a menos de 10 metros) estiver andando.</a><br>
+    <a>O limite de caça diminui para 45% de Sanidade se todos os jogadores próximos (a menos de 10 metros) estiverem parados.</a>
+    ]]>
+    </string>
     <string name="ghost_huntingdata_gallu" translatable="false">
-<![CDATA[
-<a>Existem 3 estados para este fantasma: Normal, Enfurecido e Enfraquecido.</a><br>
-<br>
-<a>Normal:</a><br>
-<a>Caça com 50% de Sanidade. A velocidade de movimento durante a caça é de 1,7 m/s. O efeito do incenso dura 5 segundos.</a><br>
-<br>
-<a>Enfurecido:</a><br>
-<a>Caça com 60% de Sanidade. O alcance do crucifixo é reduzido em 2 metros. A velocidade de movimento durante a caça aumenta para 1,96 m/s. O efeito do incenso é reduzido para 4 segundos. Não pode pisar em sal.</a><br>
-<br>
-<a>Enfraquecido:</a><br>
-<a>Caça com 40% de Sanidade. O alcance efetivo do crucifixo aumenta em 1 metro. A velocidade de movimento durante a caça é reduzida para 1,36 m/s. O efeito do incenso aumenta para 6 segundos.</a><br>
-<br>
-<a>O Gallu alternará entre os estados Enfraquecido, Normal e Enfurecido quando for provocado pela ativação do incenso pelo jogador ou pela interação do fantasma com sal ou um crucifixo.</a>
-]]>
-</string>
+    <![CDATA[
+    <a>Existem 3 estados para este fantasma: Normal, Enfurecido e Enfraquecido.</a><br>
+    <br>
+    <a>Normal:</a><br>
+    <a>Caça com 50% de Sanidade. A velocidade de movimento durante a caça é de 1,7 m/s. O efeito do incenso dura 5 segundos.</a><br>
+    <br>
+    <a>Enfurecido:</a><br>
+    <a>Caça com 60% de Sanidade. O alcance do crucifixo é reduzido em 2 metros. A velocidade de movimento durante a caça aumenta para 1,96 m/s. O efeito do incenso é reduzido para 4 segundos. Não pode pisar em sal.</a><br>
+    <br>
+    <a>Enfraquecido:</a><br>
+    <a>Caça com 40% de Sanidade. O alcance efetivo do crucifixo aumenta em 1 metro. A velocidade de movimento durante a caça é reduzida para 1,36 m/s. O efeito do incenso aumenta para 6 segundos.</a><br>
+    <br>
+    <a>O Gallu alternará entre os estados Enfraquecido, Normal e Enfurecido quando for provocado pela ativação do incenso pelo jogador ou pela interação do fantasma com sal ou um crucifixo.</a>
+    ]]>
+    </string>
     <string name="ghost_huntingdata_obambo" translatable="false">
-<![CDATA[
-<a>Existem 2 estados para este fantasma: Calmo e Agressivo.</a><br>
-<br>
-<a>Calmo: Caça com 10% de Sanidade.</a><br>
-<a>A velocidade de movimento durante a caça é de 1,45 m/s. O efeito do incenso dura 5 segundos.</a><br>
-<br>
-<a>Agressivo:</a><br>
-<a>Caça com 65% de Sanidade. O alcance do crucifixo é reduzido em 2 metros. A velocidade de movimento durante a caçada é aumentada para 1,96 m/s. A duração da caçada é 20% menor se a caçada começar enquanto estiver neste estado.
-O Obambo começa no estado Calmo, que dura 1 minuto após a entrada inicial do jogador. Em seguida, ele alternará entre os estados Calmo e Agressivo a cada 2 minutos. Isso pode acontecer mesmo durante uma caçada.
-]]></string>
+    <![CDATA[
+    <a>Existem 2 estados para este fantasma: Calmo e Agressivo.</a><br>
+    <br>
+    <a>Calmo: Caça com 10% de Sanidade.</a><br>
+    <a>A velocidade de movimento durante a caça é de 1,45 m/s. O efeito do incenso dura 5 segundos.</a><br>
+    <br>
+    <a>Agressivo:</a><br>
+    <a>Caça com 65% de Sanidade. O alcance do crucifixo é reduzido em 2 metros. A velocidade de movimento durante a caçada é aumentada para 1,96 m/s. A duração da caçada é 20% menor se a caçada começar enquanto estiver neste estado.
+    O Obambo começa no estado Calmo, que dura 1 minuto após a entrada inicial do jogador. Em seguida, ele alternará entre os estados Calmo e Agressivo a cada 2 minutos. Isso pode acontecer mesmo durante uma caçada.
+    ]]></string>
+    <string name="difficulty_title_custom">Personalizado</string>
+    <string name="difficulty_title_challenge">Modo Desafio</string>
+    <string name="difficulty_title_apocalypse_1">Apocalipse 1</string>
+    <string name="difficulty_title_apocalypse_2">Apocalipse 2</string>
+    <string name="challenge_lights_out_description">Preparem suas velas, todas as luzes se apagaram!</string>
+    <string name="challenge_speed_demons_description">Deve haver algo no ar, todos estão enlouquecendo!</string>
+    <string name="challenge_detectives_only_description">Teste suas habilidades de detetive, este fantasma não está revelando nada!</string>
+    <string name="challenge_hide_and_seek_seeker_description">Há um fantasma muito silencioso escondido em algum lugar, você consegue encontrá-lo?</string>
+    <string name="challenge_hide_and_seek_hide_description">Este fantasma quer brincar, é melhor se esconder rápido!</string>
+    <string name="challenge_frostbitten_description">Está tão frio que está deixando todos mais lentos, inclusive o fantasma!</string>
+    <string name="challenge_do_as_i_command_description">Você terá que forçar este fantasma a lhe dar provas. Felizmente, encontramos alguns itens extras para ajudar.</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">Dê tudo de si, este fantasma está se sentindo especialmente frágil.</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">Depois da semana passada, você está se sentindo um pouco esgotado e, para piorar a situação, o fantasma se recuperou!</string>
+    <string name="challenge_gotta_go_fast_description">Sem se esconder, sem sanidade, vamos lá!</string>
+    <string name="challenge_sanity_survival_description">Sanidade é um recurso escasso sem pílulas ou luzes. Cuidado ao encontrar este fantasma do Pesadelo.</string>
+    <string name="challenge_speedrun_description">Talvez você possa iniciar um cronômetro. Quanto tempo leva para descobrir a identidade deste fantasma?</string>
+    <string name="challenge_survival_of_the_fittest_description">Você não tem pílulas, não tem sanidade e não tem evidências para trabalhar. Vai ser difícil!</string>
+    <string name="challenge_primitive_description">Receio que todos os equipamentos eletrônicos tenham entrado em curto-circuito. Você terá que se virar sem eles.</string>
+    <string name="challenge_vulnerable_description">Você entrará nesta sem defesas. Tenha cuidado.</string>
+    <string name="challenge_missed_delivery_description">Não recebemos nossa entrega completa de equipamentos esta semana, então você não terá tudo o que precisa!</string>
+    <string name="challenge_audio_only_description">Conseguimos obter alguns equipamentos de áudio extras. Você terá que usar seus ouvidos desta vez.</string>
+    <string name="challenge_technophilia_description">Descartamos todos aqueles itens pré-históricos. Este contrato é sobre tecnologia!</string>
+    <string name="challenge_no_evidence_description">Esses fantasmas realmente não querem te ajudar, mas temos certeza de que você está à altura da tarefa.</string>
+    <string name="challenge_the_apocalypse_draws_near_description">O desafio mais difícil possível, mas com a velocidade normal de um investigador. Boa sorte.</string>
+    <string name="challenge_slow_and_steady_description">Este fantasma pode ser lento, mas está furioso. Fique atento!</string>
+    <string name="challenge_paranormal_paparazzi_description">Você tem câmeras, luzes e som. Encontre esse tipo de fantasma!</string>
+    <string name="challenge_hide_and_seek_extreme_description">Este fantasma quer brincar, é melhor você se esconder.</string>
+    <string name="challenge_glow_in_the_dark_description">Alguns dos nossos equipamentos pararam de funcionar, mas esperamos que isso seja suficiente para você ver.</string>
+    <string name="challenge_deja_vu_description">Este aqui dá uma sensação nostálgica, não acha?</string>
+    <string name="challenge_tag_youre_it_description">Este fantasma vai te perseguir imediatamente, é melhor correr!</string>
 
 </resources>

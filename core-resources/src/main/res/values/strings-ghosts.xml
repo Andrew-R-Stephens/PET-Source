@@ -72,7 +72,7 @@
                 <a>Banshees are described as natural hunters. They will attempt to slowly stalk and pick off ghost hunters one by one by <font color=#ff6161>selectively targeting one investigator at a time</font>.</a>
             ]]>
         </string>
-    <string name="ghost_info_dayan" translatable="false">
+    <string name="ghost_info_dayan">
             <![CDATA[
                 <a>The Dayan\'s unique trait allows it to speed up when players move near it but also makes it slow down when players stop moving.</a>
             ]]>
@@ -87,7 +87,7 @@
                 <a>The Deogen is a natural hunter. Conventional hiding methods will not work as it has a keen sense for sniffing out prey. You can run… but you can\'t hide. Repeat: DO NOT TRY TO HIDE. If you hear extremely rapid footsteps, like a drumroll, step out of hiding IMMEDIATELY.</a>
             ]]>
         </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu">
             <![CDATA[
                 <a>This ghost is known to become faster during hunts when players use protective equipment against it such as crucifixes or incense.</a>
             ]]>
@@ -127,7 +127,7 @@
                 <a>An Obake is a shape shifter which promotes some unusual evidence at times. An Obake has a chance to not produce fingerprints at all, which may cause problems with evidence collection if negating Fingerprints too early.
             ]]>
         </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo">
             <![CDATA[
                 <a>The Obambo\'s unique ability revolves around switching between a \"calm\" state in which it is less aggressive and slower during hunts and an \"aggressive\" state in which it is more aggressive and faster during hunts.</a>
             ]]>
@@ -211,7 +211,7 @@
                 <a>The Banshee will focus on one player, and will swap to a new target if their selected target is not in the play-area.</a>
             ]]>
         </string>
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan">
             <![CDATA[
                 <a>Moves faster when a player moves near the Dayan.</a>
             ]]>
@@ -226,7 +226,7 @@
                 <a>The Deogen will sense any living being, no matter how well hidden. Choosing to stay stationary against a Deogen will get you killed. Do not rely on breaking line-of-sight, as this will not stop a chase and will only allow the Deogen to move much quicker.</a>
             ]]>
         </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu">
             <![CDATA[
                 <a>Becomes aggressive when protective equipment is used.</a>
             ]]>
@@ -267,7 +267,7 @@
                 <a>An Obake may not leave a trace when manipulating the environment. This means that it has a chance to not leave fingerprint evidence. The Obake may also decrease fingerprint lifetime by half.</a>
             ]]>
         </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo">
             <![CDATA[
                 <a>Hunts earlier and moves faster in its \"aggressive\" state.</a>
             ]]>
@@ -349,7 +349,7 @@
                 <a>A Banshee will wander far from its room just to stalk its target. Banshees will never kill its non-target player, and during a hunt it will walk straight through any investigator who it isn\'t interested in. It also bases its hunt on the Sanity of its target instead of the average Sanity of the team. A Banshee has a special interaction with the Parabolic Microphone as it has a chance to emmit a faint, high pitched wail.</a>
             ]]>
         </string>
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan">
             <![CDATA[
                 <a>Moves slower when a player stands still near the Dayan.</a>
             ]]>
@@ -364,7 +364,7 @@
                 <a>The Deogen will stalk its prey to exhaustion, but it will never outpace it\'s prey. Stay on the move against this ghost and make sure to plan your routes ahead of time. Stay in line\-of\-sight with this ghost and you\'ll be fine as it will only be able to move at 0.4 m/s while in close proximity to the nearest player in line\-of\-sight. As long as you\'re within line\-of\-sight it will never be able to catch you, even if you\'re walking. The Deogen will only hunt at 40\% sanity.</a>
             ]]>
         </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu">
             <![CDATA[
                 <a>Becomes less aggressive after a hunt.</a>
             ]]>
@@ -406,7 +406,7 @@
                 <a>By chance, an Obake may sometimes leave <font color=#ff6161>6-fingered handprints</font> instead of the normal 5. 5-fingered handprints should not be used to rule out the Obake. The Obake may also change its ghost model for a brief second at any point both during a hunt. If the Obake touches a surface, there is a chance for fingerprints to not appear; This can be used as proof for the ghost if any following interactions produce fingerprints.</a>
             ]]>
         </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo">
             <![CDATA[
                 <a>Hunts later and moves slower in its \"calm\" state.</a>
             ]]>
@@ -489,7 +489,7 @@
                 <a>Completely ignores Average Sanity.</a>
             ]]>
         </string>
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan">
             <![CDATA[
                 <a>Hunts at 50\% Sanity by default, and is modified with a combination of player proximity and player movement.</a><br>
                 <a>Hunt threshold increases to 65\% Sanity if any nearby player (within 10 meters) is walking.</a><br>
@@ -512,7 +512,7 @@
                 </ul>
             ]]>
         </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu">
             <![CDATA[
                 <a>There are 3 states of this ghost: Normal, Enraged, and Weakened.</a><br>
                 <br>
@@ -588,7 +588,7 @@
                 <a>Hunts at 50\% Sanity.</a>
             ]]>
         </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo">
             <![CDATA[
                 <a>There are 2 states of this ghost: Calm and Aggressive.</a><br>
                 <br>

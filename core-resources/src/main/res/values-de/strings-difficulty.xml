@@ -8,16 +8,21 @@
     <string name="difficulty_title_professional">Profi</string>
     <string name="difficulty_title_nightmare">Albtraum</string>
     <string name="difficulty_title_insanity">Wahnsinn</string>
+    <string name="difficulty_title_challenge">Herausforderungsmodus</string>
+    <string name="difficulty_title_apocalypse_1">Apokalypse 1</string>
+    <string name="difficulty_title_apocalypse_2">Apokalypse 2</string>
 
     <!-- Difficulty Response Type -->
-    <string name="difficulty_response_known">Bekannt</string>
-    <string name="difficulty_response_unknown">Unbekannt</string>
+    <string name="difficulty_title_apocalypse_3">Apokalypse 3</string>
+    <string name="difficulty_setting_response_known">Bekannt</string>
+    <string name="difficulty_setting_response_unknown">Unbekannt</string>
 
     <!-- Difficulty Frequency -->
-    <string name="difficulty_frequency_none">Keine</string>
-    <string name="difficulty_frequency_low">Niedrig</string>
-    <string name="difficulty_frequency_medium">Mittel</string>
-    <string name="difficulty_frequency_high">Hoch</string>
-    <string name="difficulty_frequency_veryHigh">Sehr hoch</string>
+    <string name="difficulty_setting_state_none">Keine</string>
+    <string name="difficulty_setting_state_low">Niedrig</string>
+    <string name="difficulty_setting_state_medium">Mittel</string>
+    <string name="difficulty_setting_state_high">Hoch</string>
+    <string name="difficulty_setting_state_veryHigh">Sehr hoch</string>
+    <string name="difficulty_title_custom">Benutzerdefiniert</string>
 
 </resources>

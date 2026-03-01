@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="challenge_lights_out_description">Haltet eure Kerzen bereit, alle Lichter sind aus!</string>
+    <string name="challenge_speed_demons_description">Irgendwas liegt in der Luft, alle drehen durch!</string>
+    <string name="challenge_detectives_only_description">Stellt eure detektivischen Fähigkeiten unter Beweis, dieser Geist gibt nichts preis!</string>
+    <string name="challenge_hide_and_seek_seeker_description">Irgendwo versteckt sich ein sehr stiller Geist. Könnt ihr ihn finden?</string>
+    <string name="challenge_hide_and_seek_hide_description">Dieser Geist will ein Spiel spielen, versteckt euch schnell!</string>
+    <string name="challenge_frostbitten_description">Es ist so kalt, dass es alle ausbremst, sogar den Geist!</string>
+    <string name="challenge_do_as_i_command_description">Ihr müsst diesen Geist zwingen, euch Beweise zu liefern. Zum Glück haben wir ein paar zusätzliche Gegenstände gefunden, die euch helfen.</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">Gebt alles, dieser Geist ist besonders schwach.</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">Nach letzter Woche seid ihr ziemlich erschöpft, und zu allem Übel hat sich der Geist auch noch erholt!</string>
+    <string name="challenge_gotta_go_fast_description">Kein Verstecken, keine Vernunft, los geht\'s!</string>
+    <string name="challenge_sanity_survival_description">Ohne Pillen und Licht ist geistige Gesundheit Mangelware. Sei vorsichtig bei der Suche nach diesem Albtraumgeist.</string>
+    <string name="challenge_speedrun_description">Vielleicht könntest du einen Timer stellen: Wie schnell kannst du die Identität dieses Geistes herausfinden?</string>
+    <string name="challenge_survival_of_the_fittest_description">Du hast keine Pillen, keine geistige Gesundheit und keine Beweise. Das wird eine harte Nuss!</string>
+    <string name="challenge_primitive_description">Leider ist die gesamte Elektronik ausgefallen. Du musst improvisieren.</string>
+    <string name="challenge_vulnerable_description">Du bist völlig schutzlos. Sei vorsichtig!</string>
+    <string name="challenge_missed_delivery_description">Wir haben diese Woche nicht unsere komplette Ausrüstung erhalten, daher fehlt dir möglicherweise die gesamte Ausrüstung.</string>
+    <string name="challenge_audio_only_description">Wir haben zusätzliche Audioausrüstung auftreiben können. Verlass dich auf deine Ohren!</string>
+    <string name="challenge_technophilia_description">Wir haben all die prähistorischen Dinge entsorgt. Bei diesem Auftrag dreht sich alles um Technologie!</string>
+    <string name="challenge_no_evidence_description">Diese Geister wollen dir nicht wirklich helfen, aber wir sind sicher, dass du der Aufgabe gewachsen bist.</string>
+    <string name="challenge_the_apocalypse_draws_near_description">Die größtmögliche Herausforderung, aber mit normaler Ermittlergeschwindigkeit. Viel Glück!</string>
+    <string name="challenge_slow_and_steady_description">Dieser Geist ist zwar langsam, aber wütend. Sei auf der Hut!</string>
+    <string name="challenge_paranormal_paparazzi_description">Du hast Kameras, Licht und Ton. Finde diesen Geistertyp!</string>
+    <string name="challenge_hide_and_seek_extreme_description">Dieser Geist will spielen, versteck dich besser!</string>
+    <string name="challenge_glow_in_the_dark_description">Einige unserer Geräte funktionieren nicht mehr. Hoffentlich reicht das, um dich zu sehen.</string>
+    <string name="challenge_deja_vu_description">Das weckt Erinnerungen, findest du nicht?</string>
+    <string name="challenge_tag_youre_it_description">Dieser Geist wird dich sofort verfolgen, lauf lieber!</string>
+</resources>

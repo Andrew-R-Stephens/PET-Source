@@ -938,13 +938,14 @@
     <string name="language_name_localized_pt">葡萄牙语</string>
     <string name="language_name_localized_ru">俄语</string>
     <string name="language_name_localized_uk">乌克兰语</string>
-    <string name="difficulty_response_unknown">未知</string>
-    <string name="difficulty_frequency_none">无</string>
-    <string name="difficulty_frequency_low">低</string>
-    <string name="difficulty_frequency_medium">中</string>
-    <string name="difficulty_frequency_high">高</string>
-    <string name="difficulty_frequency_veryHigh">非常高</string>
-    <string name="difficulty_response_known">已知</string>
+    <string name="difficulty_setting_response_unknown">未知</string>
+    <string name="difficulty_setting_state_none">无</string>
+    <string name="difficulty_setting_state_low">低</string>
+    <string name="difficulty_setting_state_medium">中</string>
+    <string name="difficulty_setting_state_high">高</string>
+    <string name="difficulty_setting_state_veryHigh">非常高</string>
+    <string name="difficulty_title_apocalypse_3">末日3</string>
+    <string name="difficulty_setting_response_known">已知</string>
     <string name="alert_gui_palette_error">调色板未设置！</string>
     <string name="alert_gui_typography_error">字体未设置！</string>
     <string name="account_button_visit_marketplace">访问市场</string>
@@ -953,86 +954,116 @@
             <![CDATA[
                 <a>达扬的独特之处在于，当玩家靠近它时，它的速度会加快，但当玩家停止移动时，它的速度也会减慢。</a>
             ]]> </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
             <![CDATA[
                 <a>众所周知，当玩家使用十字架或香炉等防护装备来对抗这只鬼魂时，它在追捕玩家的过程中速度会变得更快。</a>
             ]]>
         </string>
-<string name="ghost_info_obambo" translatable="false">
-<![CDATA[
-Obambo 的独特能力在于它会在“平静”状态和“攻击”状态之间切换。“平静”状态下，它在狩猎期间攻击性较低且速度较慢；“攻击”状态下，它在狩猎期间攻击性更强且速度更快。
-]]>
-</string>
+    <string name="ghost_info_obambo" >
+    <![CDATA[
+    Obambo 的独特能力在于它会在“平静”状态和“攻击”状态之间切换。“平静”状态下，它在狩猎期间攻击性较低且速度较慢；“攻击”状态下，它在狩猎期间攻击性更强且速度更快。
+    ]]>
+    </string>
 
 
-<string name="ghost_strengths_dayan" translatable="false">
-<![CDATA[
-当玩家靠近 Dayan 时，它的移动速度会更快。
-]]>
-</string>
-<string name="ghost_strengths_gallu" translatable="false">
-<![CDATA[
-使用防护装备时会变得更具攻击性。
-]]>
-</string>
-<string name="ghost_strengths_obambo" translatable="false">
-<![CDATA[
-在“攻击”状态下，它会更早开始狩猎，并且移动速度更快。
-]]>
-</string>
+    <string name="ghost_strengths_dayan" >
+    <![CDATA[
+    当玩家靠近 Dayan 时，它的移动速度会更快。
+    ]]>
+    </string>
+    <string name="ghost_strengths_gallu" >
+    <![CDATA[
+    使用防护装备时会变得更具攻击性。
+    ]]>
+    </string>
+    <string name="ghost_strengths_obambo" >
+    <![CDATA[
+    在“攻击”状态下，它会更早开始狩猎，并且移动速度更快。
+    ]]>
+    </string>
 
 
-<string name="ghost_weaknesses_dayan" translatable="false">
-<![CDATA[
-当玩家站在 Dayan 附近不动时，它的移动速度会变慢。
-]]>
-</string>
-<string name="ghost_weaknesses_gallu" translatable="false">
-<![CDATA[
-狩猎结束后攻击性会降低。
-]]>
-</string>
-<string name="ghost_weaknesses_obambo" translatable="false">
-<![CDATA[
-在“平静”状态下，它会更晚开始狩猎，并且移动速度更慢。
-]]>
-</string>
+    <string name="ghost_weaknesses_dayan" >
+    <![CDATA[
+    当玩家站在 Dayan 附近不动时，它的移动速度会变慢。
+    ]]>
+    </string>
+    <string name="ghost_weaknesses_gallu" >
+    <![CDATA[
+    狩猎结束后攻击性会降低。
+    ]]>
+    </string>
+    <string name="ghost_weaknesses_obambo" >
+    <![CDATA[
+    在“平静”状态下，它会更晚开始狩猎，并且移动速度更慢。
+    ]]>
+    </string>
 
 
-<string name="ghost_huntingdata_dayan" translatable="false">
-<![CDATA[
-默认情况下，它在理智值达到 50% 时开始狩猎，并会根据玩家的距离和移动状态进行调整。移动。</a><br>
-<a>如果附近有任何玩家（10 米范围内）正在行走，狩猎阈值会提高到 65% 理智值。</a><br>
-<a>如果附近所有玩家（10 米范围内）都静止不动，狩猎阈值会降低到 45% 理智值。</a>
-]]>
-</string>
-<string name="ghost_huntingdata_gallu" translatable="false">
-<![CDATA[
-<a>这种鬼魂有 3 种状态：正常、狂暴和虚弱。</a><br>
-<br>
-<a>正常：</a><br>
-<a>在 50% 理智值时开始狩猎。狩猎移动速度为 1.7 米/秒。熏香效果持续 5 秒。</a><br>
-<br>
-<a>狂暴：</a><br>
-<a>在 60% 理智值时开始狩猎。十字架范围减少 2 米。狩猎移动速度提高到 1.96 米/秒。熏香效果减少到 4 秒。无法踩到盐。</a><br>
-<br>
-<a>虚弱：</a><br>
-<a>在 40% 理智值时开始狩猎。十字架有效范围增加 1 米。狩猎移动速度降低到 1.36 米/秒。熏香效果增加到 6 秒。</a><br>
-<br>
-<a>当玩家使用熏香或鬼魂与盐或十字架互动时，​​加鲁会从虚弱状态、正常状态和狂暴状态之间切换。</a>
-]]>
-</string>
-<string name="ghost_huntingdata_obambo" translatable="false">
-<![CDATA[
-<a>这种鬼魂有 2 种状态：平静和攻击性。</a><br>
-<br>
-<a>平静：在 10% 理智值时开始狩猎。</a><br>
-<a>狩猎移动速度为 1.45 米/秒。熏香效果持续 5 秒。</a><br>
-<br>
-<a>攻击性：</a><br>
-<a>在 65% 理智值时开始狩猎。十字架的有效范围减少2米。狩猎时的移动速度提高到1.96米/秒。如果在这种状态下开始狩猎，狩猎持续时间会缩短20%。
-奥班博一开始处于平静状态，持续1分钟（从玩家首次进入游戏开始计算）。之后，它会每2分钟在平静状态和攻击状态之间切换。即使在狩猎期间也会发生这种情况。
-]]>
-</string>
+    <string name="ghost_huntingdata_dayan" >
+    <![CDATA[
+    默认情况下，它在理智值达到 50% 时开始狩猎，并会根据玩家的距离和移动状态进行调整。移动。</a><br>
+    <a>如果附近有任何玩家（10 米范围内）正在行走，狩猎阈值会提高到 65% 理智值。</a><br>
+    <a>如果附近所有玩家（10 米范围内）都静止不动，狩猎阈值会降低到 45% 理智值。</a>
+    ]]>
+    </string>
+    <string name="ghost_huntingdata_gallu" >
+    <![CDATA[
+    <a>这种鬼魂有 3 种状态：正常、狂暴和虚弱。</a><br>
+    <br>
+    <a>正常：</a><br>
+    <a>在 50% 理智值时开始狩猎。狩猎移动速度为 1.7 米/秒。熏香效果持续 5 秒。</a><br>
+    <br>
+    <a>狂暴：</a><br>
+    <a>在 60% 理智值时开始狩猎。十字架范围减少 2 米。狩猎移动速度提高到 1.96 米/秒。熏香效果减少到 4 秒。无法踩到盐。</a><br>
+    <br>
+    <a>虚弱：</a><br>
+    <a>在 40% 理智值时开始狩猎。十字架有效范围增加 1 米。狩猎移动速度降低到 1.36 米/秒。熏香效果增加到 6 秒。</a><br>
+    <br>
+    <a>当玩家使用熏香或鬼魂与盐或十字架互动时，​​加鲁会从虚弱状态、正常状态和狂暴状态之间切换。</a>
+    ]]>
+    </string>
+    <string name="ghost_huntingdata_obambo" >
+    <![CDATA[
+    <a>这种鬼魂有 2 种状态：平静和攻击性。</a><br>
+    <br>
+    <a>平静：在 10% 理智值时开始狩猎。</a><br>
+    <a>狩猎移动速度为 1.45 米/秒。熏香效果持续 5 秒。</a><br>
+    <br>
+    <a>攻击性：</a><br>
+    <a>在 65% 理智值时开始狩猎。十字架的有效范围减少2米。狩猎时的移动速度提高到1.96米/秒。如果在这种状态下开始狩猎，狩猎持续时间会缩短20%。
+    奥班博一开始处于平静状态，持续1分钟（从玩家首次进入游戏开始计算）。之后，它会每2分钟在平静状态和攻击状态之间切换。即使在狩猎期间也会发生这种情况。
+    ]]>
+    </string>
+    <string name="difficulty_title_custom">自定义</string>
+    <string name="difficulty_title_challenge">挑战模式</string>
+    <string name="difficulty_title_apocalypse_1">末日1</string>
+    <string name="difficulty_title_apocalypse_2">末日2</string>
+    <string name="challenge_lights_out_description">准备好你的蜡烛，所有的灯都熄灭了！</string>
+    <string name="challenge_speed_demons_description">空气中一定弥漫着某种异样的气息，每个人都快疯了！</string>
+    <string name="challenge_detectives_only_description">考验你的侦探技能吧，这个鬼魂什么也不透露！</string>
+    <string name="challenge_hide_and_seek_seeker_description">有个非常安静的鬼魂藏在某个地方，你能找到它吗？</string>
+    <string name="challenge_hide_and_seek_hide_description">这个鬼魂想和你玩游戏，你最好赶紧躲起来！</string>
+    <string name="challenge_frostbitten_description">天气冷得让所有人都行动迟缓，包括鬼魂！</string>
+    <string name="challenge_do_as_i_command_description">你必须逼这个鬼魂给你证据，幸运的是，我们找到了一些额外的物品来帮助你。</string>
+    <string name="challenge_tortoise_and_the_hare_hare_description">全力以赴吧，这个鬼魂感觉特别虚弱。</string>
+    <string name="challenge_tortoise_and_the_hare_tortoise_description">经历了上周的折腾，你感觉有点疲惫，更糟糕的是，鬼魂已经恢复了！</string>
+    <string name="challenge_gotta_go_fast_description">没有地方可以躲藏，没有理智可言，快走！</string>
+    <string name="challenge_sanity_survival_description">理智是一种稀缺资源，没有药丸也没有灯光。小心找到这个噩梦般的鬼魂。</string>
+    <string name="challenge_speedrun_description">或许你可以设个计时器，看看你多久能找出这个鬼魂的身份？</string>
+    <string name="challenge_survival_of_the_fittest_description">你没有药，精神恍惚，也没有任何证据。这可真是个棘手的难题！</string>
+    <string name="challenge_primitive_description">恐怕所有的电子设备都短路了，你只能凑合着用了。</string>
+    <string name="challenge_vulnerable_description">这次你将毫无防备地进入调查，务必小心。</string>
+    <string name="challenge_missed_delivery_description">我们这周没有收到全部的设备，所以你可能无法获得所有需要的物品！</string>
+    <string name="challenge_audio_only_description">我们设法弄到了一些额外的音频设备。这次你得好好听听。</string>
+    <string name="challenge_technophilia_description">我们已经把那些史前时代的玩意儿都扔掉了，这次的任务完全是关于科技的！</string>
+    <string name="challenge_no_evidence_description">这些鬼魂根本不想帮你，但我们相信你能胜任。</string>
+    <string name="challenge_the_apocalypse_draws_near_description">这是你能遇到的最难的挑战，但速度要和普通调查员一样快。祝你好运。</string>
+    <string name="challenge_slow_and_steady_description">这个鬼魂虽然行动缓慢，但它很愤怒。保持警惕！</string>
+    <string name="challenge_paranormal_paparazzi_description">你有摄像机、灯光和音响设备。找到那个幽灵！</string>
+    <string name="challenge_hide_and_seek_extreme_description">这只幽灵想跟你玩游戏，你最好躲起来。</string>
+    <string name="challenge_glow_in_the_dark_description">我们的一些设备出了故障，希望这些足够你看清。</string>
+    <string name="challenge_deja_vu_description">这感觉挺怀旧的，你不觉得吗？</string>
+    <string name="challenge_tag_youre_it_description">这只幽灵会立刻追你，快跑！</string>
 
 </resources>
