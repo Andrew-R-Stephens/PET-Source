@@ -103,6 +103,7 @@ dependencies {
 
     implementation(project(":data-map"))
     implementation(project(":data-difficulty"))
+    implementation(project(":data-challenge"))
     implementation(project(":data-evidence"))
     implementation(project(":data-ghost"))
     implementation(project(":data-codex"))

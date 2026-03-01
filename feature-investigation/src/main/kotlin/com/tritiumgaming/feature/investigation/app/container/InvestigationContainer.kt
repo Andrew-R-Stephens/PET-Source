@@ -134,9 +134,7 @@ class InvestigationContainer(
 
     // Difficulty
     private val difficultyRepository: DifficultyRepository by lazy {
-        val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource(
-            applicationContext = applicationContext
-        )
+        val difficultyLocalDataSource: DifficultyDataSource = DifficultyLocalDataSource()
         DifficultyRepositoryImpl(
             localSource = difficultyLocalDataSource
         )

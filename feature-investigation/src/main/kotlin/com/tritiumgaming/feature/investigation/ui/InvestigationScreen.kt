@@ -59,7 +59,6 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdow
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.journal.EvidenceListColumn
 import com.tritiumgaming.feature.investigation.ui.journal.GhostListColumn
-import com.tritiumgaming.feature.investigation.ui.journal.JournalUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiActions

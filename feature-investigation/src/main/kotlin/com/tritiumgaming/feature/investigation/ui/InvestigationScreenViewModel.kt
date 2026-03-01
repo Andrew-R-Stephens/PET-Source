@@ -14,6 +14,8 @@ import com.tritiumgaming.feature.investigation.app.container.InvestigationContai
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
+import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toFloat
+import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toLong
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
@@ -74,7 +76,6 @@ import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexU
 import com.tritiumgaming.shared.data.phase.model.Phase
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
-import com.tritiumgaming.shared.data.preferences.DensityType
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.sanity.model.SanityLevel
 import kotlinx.coroutines.Job
@@ -384,10 +385,10 @@ class InvestigationScreenViewModel private constructor(
                 difficultyDetails = OperationDetailsUiState.DifficultyDetails(
                     type = difficultyState.type,
                     name = difficultyState.name,
+                    responseType = difficultyState.responseType,
                     modifier = difficultyState.modifier,
                     setupTime = difficultyState.time,
                     initialSanity = difficultyState.initialSanity,
-                    responseType = difficultyState.responseType,
                 ),
                 ghostDetails = OperationDetailsUiState.GhostDetails(
                     activeGhosts = ghostStates.let { ghostStates ->
@@ -949,9 +950,9 @@ class InvestigationScreenViewModel private constructor(
         try {
             val name = getDifficultyNameUseCase(index).getOrThrow()
             val type = DifficultyType.entries[index]
-            val modifier = getDifficultyModifierUseCase(index).getOrThrow()
-            val time = getDifficultyTimeUseCase(index).getOrThrow()
-            val initialSanity = getDifficultyInitialSanityUseCase(index).getOrThrow()
+            val modifier = getDifficultyModifierUseCase(index).getOrThrow().toFloat()
+            val time = getDifficultyTimeUseCase(index).getOrThrow().toLong()
+            val initialSanity = getDifficultyInitialSanityUseCase(index).getOrThrow().toFloat()
             val responseType = getDifficultyResponseTypeUseCase(index).getOrThrow()
 
             _difficultyState.update {

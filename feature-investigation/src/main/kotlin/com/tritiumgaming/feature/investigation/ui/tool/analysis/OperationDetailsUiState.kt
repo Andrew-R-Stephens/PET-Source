@@ -16,10 +16,10 @@ internal data class OperationDetailsUiState(
     internal data class DifficultyDetails(
         internal val type: DifficultyResources.DifficultyType = DifficultyResources.DifficultyType.AMATEUR,
         internal val name: DifficultyResources.DifficultyTitle = DifficultyResources.DifficultyTitle.AMATEUR,
+        internal val responseType: DifficultyResources.DifficultyResponseType = DifficultyResources.DifficultyResponseType.KNOWN,
         internal val modifier: Float = 0f,
         internal val setupTime: Long = 0L,
-        internal val initialSanity: Float = 0f,
-        internal val responseType: DifficultyResources.DifficultyResponseType = DifficultyResources.DifficultyResponseType.KNOWN
+        internal val initialSanity: Float = 0f
     )
 
     internal data class MapDetails(
