@@ -7,6 +7,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ChangingFavoriteRoom
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossessionsQuantity
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DifficultySetting
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DoorsStartingOpen
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EventFrequency
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EvidenceGiven
@@ -14,8 +15,8 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintDuration
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Flashlights
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FriendlyGhost
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxAtStartOfContract
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxVisibleOnMap
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxVisibleOnMap
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GhostSpeed
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GracePeriod
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.HuntDuration
@@ -31,6 +32,39 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Sprinting
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+
+@StringRes fun DifficultySetting.toStringResource(): Int =
+    when(this) {
+        DifficultySetting.STARTING_SANITY -> R.string.difficulty_setting_title_starting_sanity
+        DifficultySetting.SANITY_PILL_RESTORATION -> R.string.difficulty_setting_title_sanity_pill_restoration
+        DifficultySetting.SANITY_DRAIN_SPEED -> R.string.difficulty_setting_title_sanity_drain_speed
+        DifficultySetting.SPRINTING -> R.string.difficulty_setting_title_sprinting
+        DifficultySetting.PLAYER_SPEED -> R.string.difficulty_setting_title_player_speed
+        DifficultySetting.FLASHLIGHTS -> R.string.difficulty_setting_title_flashlights
+        DifficultySetting.LOSE_ITEMS_AND_CONSUMABLES -> R.string.difficulty_setting_title_lose_items_and_consumables
+        DifficultySetting.GHOST_SPEED -> R.string.difficulty_setting_title_ghost_speed
+        DifficultySetting.ROAMING_FREQUENCY -> R.string.difficulty_setting_title_roaming_frequency
+        DifficultySetting.CHANGING_FAVOURITE_ROOM -> R.string.difficulty_setting_title_changing_favourite_room
+        DifficultySetting.ACTIVITY_LEVEL -> R.string.difficulty_setting_title_activity_level
+        DifficultySetting.EVENT_FREQUENCY -> R.string.difficulty_setting_title_event_frequency
+        DifficultySetting.FRIENDLY_GHOST -> R.string.difficulty_setting_title_friendly_ghost
+        DifficultySetting.GRACE_PERIOD -> R.string.difficulty_setting_title_grace_period
+        DifficultySetting.HUNT_DURATION -> R.string.difficulty_setting_title_hunt_duration
+        DifficultySetting.KILLS_EXTEND_HUNTS -> R.string.difficulty_setting_title_kills_extend_hunts
+        DifficultySetting.EVIDENCE_GIVEN -> R.string.difficulty_setting_title_evidence_given
+        DifficultySetting.FINGERPRINT_CHANCE -> R.string.difficulty_setting_title_fingerprint_chance
+        DifficultySetting.FINGERPRINT_DURATION -> R.string.difficulty_setting_title_fingerprint_duration
+        DifficultySetting.SETUP_TIME -> R.string.difficulty_setting_title_setup_time
+        DifficultySetting.WEATHER -> R.string.difficulty_setting_title_weather
+        DifficultySetting.DOORS_STARTING_OPEN -> R.string.difficulty_setting_title_doors_starting_open
+        DifficultySetting.NUMBER_OF_HIDING_PLACES -> R.string.difficulty_setting_title_number_of_hiding_places
+        DifficultySetting.SANITY_MONITOR -> R.string.difficulty_setting_title_sanity_monitor
+        DifficultySetting.ACTIVITY_MONITOR -> R.string.difficulty_setting_title_activity_monitor
+        DifficultySetting.FUSE_BOX_AT_START_OF_CONTRACT -> R.string.difficulty_setting_title_fuse_box_at_start_of_contract
+        DifficultySetting.FUSE_BOX_VISIBLE_ON_MAP -> R.string.difficulty_setting_title_fuse_box_visible_on_map
+        DifficultySetting.CURSED_POSSESSIONS_QUANTITY -> R.string.difficulty_setting_title_cursed_possessions_quantity
+        DifficultySetting.CURSED_POSSESSIONS -> R.string.difficulty_setting_title_cursed_possession
+    }
 
 fun StartingSanity.toFloat(): Float =
     when(this) {
@@ -246,17 +280,17 @@ fun SetupTime.toLong(): Long =
         ActivityMonitor.ON -> R.string.difficulty_setting_state_on
     }
 
-@StringRes fun FuzeBoxAtStartOfContract.toStringResource(): Int =
+@StringRes fun FuseBoxAtStartOfContract.toStringResource(): Int =
     when(this) {
-        FuzeBoxAtStartOfContract.BROKEN -> R.string.difficulty_setting_state_broken
-        FuzeBoxAtStartOfContract.OFF -> R.string.difficulty_setting_state_off
-        FuzeBoxAtStartOfContract.ON -> R.string.difficulty_setting_state_on
+        FuseBoxAtStartOfContract.BROKEN -> R.string.difficulty_setting_state_broken
+        FuseBoxAtStartOfContract.OFF -> R.string.difficulty_setting_state_off
+        FuseBoxAtStartOfContract.ON -> R.string.difficulty_setting_state_on
     }
 
-@StringRes fun FuzeBoxVisibleOnMap.toStringResource(): Int =
+@StringRes fun FuseBoxVisibleOnMap.toStringResource(): Int =
     when(this) {
-        FuzeBoxVisibleOnMap.OFF -> R.string.difficulty_setting_state_off
-        FuzeBoxVisibleOnMap.ON -> R.string.difficulty_setting_state_on
+        FuseBoxVisibleOnMap.OFF -> R.string.difficulty_setting_state_off
+        FuseBoxVisibleOnMap.ON -> R.string.difficulty_setting_state_on
     }
 
 fun CursedPossessionsQuantity.toInt(): Int =

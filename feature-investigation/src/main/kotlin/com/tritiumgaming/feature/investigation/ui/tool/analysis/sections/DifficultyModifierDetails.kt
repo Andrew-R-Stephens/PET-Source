@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toStringResource
@@ -43,7 +44,7 @@ internal fun DifficultyModifierDetails(
                 ) {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Difficulty:"
+                        text = stringResource(R.string.investigation_timer_difficulty_label)
                     )
 
                     var title = stringResource(state.difficultyTitle.toStringResource())
@@ -77,7 +78,7 @@ internal fun DifficultyModifierDetails(
                         ) {
                             TextSubTitle(
                                 color = LocalPalette.current.primary,
-                                text = "Player"
+                                text = stringResource(R.string.difficulty_category_player)
                             )
                         }
                     }
@@ -87,7 +88,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Starting Sanity: "
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .STARTING_SANITY.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -97,7 +99,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Sanity Pill Restoration:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .SANITY_PILL_RESTORATION.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -107,7 +110,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Sanity Drain Speed:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .SANITY_DRAIN_SPEED.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -117,7 +121,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Sprinting:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .SPRINTING.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -127,7 +132,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Player Speed:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .PLAYER_SPEED.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -137,7 +143,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Flashlights:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .FLASHLIGHTS.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -147,7 +154,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Lose Items and Consumables:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .LOSE_ITEMS_AND_CONSUMABLES.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -170,7 +178,7 @@ internal fun DifficultyModifierDetails(
                         ) {
                             TextSubTitle(
                                 color = LocalPalette.current.primary,
-                                text = "Ghost"
+                                text = stringResource(R.string.difficulty_category_ghost)
                             )
                         }
                     }
@@ -180,7 +188,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Ghost Speed:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .GHOST_SPEED.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -190,7 +199,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Roaming Frequency:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .ROAMING_FREQUENCY.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -200,7 +210,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Changing Favorite Room Frequency:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .CHANGING_FAVOURITE_ROOM.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -210,7 +221,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Activity Level:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .ACTIVITY_LEVEL.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -220,7 +232,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Event Frequency:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .EVENT_FREQUENCY.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -230,7 +243,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Friendly Ghost:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .FRIENDLY_GHOST.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -240,7 +254,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Grace Period:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .GRACE_PERIOD.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -250,7 +265,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Hunt Duration:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .HUNT_DURATION.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -260,7 +276,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Kills Extend Hunts:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .KILLS_EXTEND_HUNTS.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -270,7 +287,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Evidence Given:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .EVIDENCE_GIVEN.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -280,7 +298,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Fingerprint Chance:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .FINGERPRINT_CHANCE.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -290,7 +309,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Fingerprint Duration:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .FINGERPRINT_DURATION.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -313,7 +333,7 @@ internal fun DifficultyModifierDetails(
                         ) {
                             TextSubTitle(
                                 color = LocalPalette.current.primary,
-                                text = "Contract"
+                                text = stringResource(R.string.difficulty_category_contract)
                             )
                         }
                     }
@@ -323,7 +343,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Setup Time:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .SETUP_TIME.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -333,7 +354,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Weather:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .WEATHER.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -343,7 +365,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Doors Start Open:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .DOORS_STARTING_OPEN.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -353,7 +376,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Number of Hiding Places:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .NUMBER_OF_HIDING_PLACES.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -363,7 +387,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Sanity Monitor:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .SANITY_MONITOR.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -373,7 +398,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Activity Monitor:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .ACTIVITY_MONITOR.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -383,7 +409,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Fuse Box at Start of Contract:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .FUSE_BOX_AT_START_OF_CONTRACT.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -393,7 +420,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Fuse Box Visible on Map:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .FUSE_BOX_VISIBLE_ON_MAP.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -403,7 +431,8 @@ internal fun DifficultyModifierDetails(
                 SubRow {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = "Cursed Possessions Quantity:"
+                        text = "${stringResource(DifficultySettingResources.DifficultySetting
+                            .CURSED_POSSESSIONS_QUANTITY.toStringResource())}:"
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
@@ -416,7 +445,8 @@ internal fun DifficultyModifierDetails(
                     ) {
                         TextSubTitle(
                             color = LocalPalette.current.onSurface,
-                            text = "Cursed Possessions:"
+                            text = "${stringResource(DifficultySettingResources.DifficultySetting
+                                .CURSED_POSSESSIONS.toStringResource())}:"
                         )
 
                         state.settings.cursedPossessions.forEachIndexed { index, possession ->
@@ -442,19 +472,24 @@ internal fun DifficultyModifierDetails(
 
                         TextSubTitle(
                             color = LocalPalette.current.onSurface,
-                            text = "Equipment Revoked:"
+                            text = "Equipment Restrictions:"
                         )
 
                         state.settings.equipmentPermission.forEachIndexed { index, permission ->
-                            val perm = if(permission.permission == EquipmentPermission.Permission.REVOKED)
-                                "Revoked" else "Permitted"
-                            val quantity = if(permission.quantity == EquipmentPermission.ALL)
-                                "All" else permission.quantity
+                            val perm =
+                                if(permission.permission == EquipmentPermission.Permission.REVOKED)
+                                    stringResource(R.string.difficulty_permission_revoked)
+                                else stringResource(R.string.difficulty_permission_permitted)
+                            val quantity =
+                                if(permission.quantity == EquipmentPermission.ALL)
+                                    stringResource(R.string.difficulty_permission_quantity_all)
+                                else permission.quantity
                             val item = stringResource(permission.equipmentTitle.toStringResource())
 
                             TextSubTitle(
+                                modifier = Modifier.padding(horizontal = 8.dp),
                                 color = LocalPalette.current.onSurfaceVariant,
-                                text = "$item [$quantity $perm]"
+                                text = "$item [ $quantity $perm ]"
                             )
                         }
 
