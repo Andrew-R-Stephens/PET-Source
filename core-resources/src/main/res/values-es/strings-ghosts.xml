@@ -588,60 +588,60 @@
 <![CDATA[
 <a>La característica única del Dayan le permite acelerar cuando los jugadores se mueven cerca de él, pero también lo ralentiza cuando los jugadores dejan de moverse.</a>
 ]]> </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
 <![CDATA[
 <a>Se sabe que este fantasma se vuelve más rápido durante las cacerías cuando los jugadores usan equipo de protección contra él, como crucifijos o incienso.</a>
 ]]>
 </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo" >
 <![CDATA[
 <a>La habilidad única del Obambo consiste en alternar entre un estado "tranquilo", en el que es menos agresivo y más lento durante las cacerías, y un estado "agresivo", en el que es más agresivo y más rápido durante las cacerías.</a>
 ]]>
 </string>
 
 
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan" >
 <![CDATA[
 <a>Se mueve más rápido cuando un jugador se mueve cerca del Dayan.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu" >
 <![CDATA[
 <a>Se vuelve agresivo cuando se usa equipo de protección.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo" >
 <![CDATA[
 <a>Caza antes y se mueve más rápido en su estado "agresivo".</a>
 ]]>
 </string>
 
 
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan" >
 <![CDATA[
 <a>Se mueve más lento cuando un jugador se queda quieto cerca del Dayan.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu" >
 <![CDATA[
 <a>Se vuelve menos agresivo después de una cacería.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo" >
 <![CDATA[
 <a>Caza más tarde y se mueve más lento en su estado "tranquilo".</a>
 ]]>
 </string>
 
 
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan" >
 <![CDATA[
 <a>Caza al 50%</a> La cordura es el estado predeterminado y se modifica con una combinación de la proximidad y el movimiento del jugador.</a><br>
 <a>El umbral de caza aumenta al 65% de cordura si algún jugador cercano (a menos de 10 metros) está caminando.</a><br>
 <a>El umbral de caza disminuye al 45% de cordura si todos los jugadores cercanos (a menos de 10 metros) están quietos.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu" >
 <![CDATA[
 <a>Este fantasma tiene 3 estados: Normal, Enfurecido y Debilitado.</a><br>
 <br>
@@ -657,7 +657,7 @@
 <a>El Gallu pasará de los estados Debilitado, Normal y Enfurecido cuando se le provoque mediante la activación del incienso por parte del jugador o la interacción del fantasma con sal o un crucifijo.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo" >
 <![CDATA[
 <a>Este fantasma tiene 2 estados: Tranquilo y Agresivo.</a><br>
 <br>

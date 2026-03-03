@@ -313,62 +313,62 @@
             <a>Полює на 50\% розуму.</a>
         ]]></string>
 
-    <string name="ghost_info_dayan" translatable="false">
+    <string name="ghost_info_dayan" >
 <![CDATA[
 <a>Унікальна особливість Даяна дозволяє йому прискорюватися, коли гравці рухаються поруч, але також уповільнює його, коли гравці зупиняються.</a>
 ]]>
 </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
 <![CDATA[
 <a>Відомо, що цей привид стає швидшим під час полювання, коли гравці використовують проти нього захисне спорядження, таке як розп\'яття або пахощі.</a>
 ]]>
 </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo" >
 <![CDATA[
 <a>Унікальна здатність Обамбо полягає в перемиканні між «спокійним» станом, у якому він менш агресивний і повільніший під час полювання, і «агресивним» станом, у якому він більш агресивний і швидший під час полювання.</a>
 ]]>
 </string>
 
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan" >
 <![CDATA[
 <a>Рухається швидше, коли гравець рухається поруч Даян.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu" >
 <![CDATA[
 <a>Стає агресивним, коли використовується захисне спорядження.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo" >
 <![CDATA[
 <a>Полює раніше та рухається швидше в своєму \"агресивному\" стані.</a>
 ]]>
 </string>
 
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan" >
 <![CDATA[
 <a>Рухається повільніше, коли гравець стоїть нерухомо біля Даяна.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu" >
 <![CDATA[
 <a>Стає менш агресивним після полювання.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo" >
 <![CDATA[
 <a>Полює пізніше та рухається повільніше у своєму стані «спокою».</a>
 ]]>
 </string>
 
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan" >
 <![CDATA[
 <a>За замовчуванням полює з 50% розсудливості та змінюється залежно від комбінації близькості гравця та його руху.</a><br>
 <a>Поріг полювання збільшується до 65% розсудливості, якщо будь-який гравець поблизу (у межах 10 метрів) ходить.</a><br>
 <a>Поріг полювання зменшується до 45% розсудливості, якщо всі гравці поблизу (у межах 10 метрів) стоять на місці.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu" >
 <![CDATA[
 <a>Є 3 стани цього привида: Звичайний, Розлючений та Ослаблений.</a><br>
 <br>
@@ -384,7 +384,7 @@
 <a>Галлу переміщуватиметься вгору між Ослабленим, Нормальним та Розлюченим станами, коли його стан посилюється активацією ладану гравцем або взаємодією привида з сіллю чи розп\'яттям.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo" >
 <![CDATA[
 <a>Цей привид має 2 стани: Спокійний та Агресивний.</a><br>
 <br>

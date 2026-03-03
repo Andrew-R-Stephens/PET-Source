@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="difficulty_setting_response_unknown">Невідомий</string>
+    <string name="difficulty_setting_state_on">Увімкнено</string>
     <string name="difficulty_setting_state_none">Немає</string>
     <string name="difficulty_setting_state_low">Низький</string>
     <string name="difficulty_setting_state_medium">Середній</string>
@@ -12,4 +13,16 @@
     <string name="difficulty_title_challenge">Режим випробування</string>
     <string name="difficulty_title_apocalypse_1">Апокаліпсис 1</string>
     <string name="difficulty_title_apocalypse_2">Апокаліпсис 2</string>
+    <string name="difficulty_setting_state_random">Випадковий</string>
+    <string name="difficulty_setting_state_broken">Перерваний</string>
+    <string name="difficulty_setting_state_off">Вимкнено</string>
+    <string name="difficulty_setting_state_infinite">Нескінченний</string>
+    <string name="difficulty_setting_state_weather_lightrain">Невеликий дощ</string>
+    <string name="difficulty_setting_state_weather_heavyrain">Сильний дощ</string>
+    <string name="difficulty_setting_state_weather_snow">Сніг</string>
+    <string name="difficulty_setting_state_weather_windy">Вітрений</string>
+    <string name="difficulty_setting_state_weather_clear">Ясно</string>
+    <string name="difficulty_setting_state_weather_fog">Туман</string>
+    <string name="difficulty_setting_state_weather_sunrise">Схід сонця</string>
+    <string name="difficulty_setting_state_weather_bloodmoon">Кривавий місяць</string>
 </resources>

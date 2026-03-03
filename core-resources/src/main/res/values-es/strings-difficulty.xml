@@ -19,10 +19,23 @@
 
     <!-- Difficulty Frequency -->
 
+    <string name="difficulty_setting_state_on">Encendido</string>
     <string name="difficulty_setting_state_none">Ninguno</string>
     <string name="difficulty_setting_state_low">Bajo</string>
     <string name="difficulty_setting_state_medium">Medio</string>
     <string name="difficulty_setting_state_high">Alto</string>
     <string name="difficulty_setting_state_veryHigh">Muy alto</string>
     <string name="difficulty_title_custom">Personalizado</string>
+    <string name="difficulty_setting_state_random">Aleatorio</string>
+    <string name="difficulty_setting_state_broken">Interrumpido</string>
+    <string name="difficulty_setting_state_off">Apagado</string>
+    <string name="difficulty_setting_state_infinite">Infinito</string>
+    <string name="difficulty_setting_state_weather_lightrain">Lluvia ligera</string>
+    <string name="difficulty_setting_state_weather_heavyrain">Lluvia intensa</string>
+    <string name="difficulty_setting_state_weather_snow">Nieve</string>
+    <string name="difficulty_setting_state_weather_windy">Ventoso</string>
+    <string name="difficulty_setting_state_weather_clear">Despejado</string>
+    <string name="difficulty_setting_state_weather_fog">Niebla</string>
+    <string name="difficulty_setting_state_weather_sunrise">Amanecer</string>
+    <string name="difficulty_setting_state_weather_bloodmoon">Luna de sangre</string>
 </resources>

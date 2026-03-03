@@ -563,57 +563,57 @@
 <![CDATA[
 <a>Unikátní vlastnost Dayana mu umožňuje zrychlit, když se hráči pohybují v jeho blízkosti, ale také ho zpomalit, když se hráči zastaví.</a>
 ]]> </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
 <![CDATA[
 <a>O tomto duchu je známo, že se během lovu zrychluje, když proti němu hráči používají ochranné vybavení, jako jsou krucifixy nebo kadidlo.</a>
 ]]>
 </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo" >
 <![CDATA[
 <a>Unikátní schopnost Obamba spočívá v přepínání mezi „klidným“ stavem, ve kterém je během lovu méně agresivní a pomalejší, a „agresivním“ stavem, ve kterém je během lovu agresivnější a rychlejší.</a>
 ]]>
 </string>
 
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan" >
 <![CDATA[
 <a>Pohybuje se rychleji, když se hráč pohybuje poblíž Dayanu.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu" >
 <![CDATA[
 <a>Stává se agresivním, když je použito ochranné vybavení.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo" >
 <![CDATA[
 <a>Ve svém „agresivním“ stavu loví dříve a pohybuje se rychleji.</a>
 ]]>
 </string>
 
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan" >
 <![CDATA[
 <a>Pohybuje se pomaleji, když hráč stojí poblíž Dayanu.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu" >
 <![CDATA[
 <a>Po lovu se stává méně agresivním.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo" >
 <![CDATA[
 <a>V klidném stavu loví později a pohybuje se pomaleji.</a>
 ]]>
 </string>
 
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan" >
 <![CDATA[
 <a>Ve výchozím nastavení loví s 50% příčetností a je upravena kombinací blízkosti hráče a jeho pohybu.</a><br>
 <a>Práh lovu se zvyšuje na 65% příčetnosti, pokud jakýkoli hráč v blízkosti (do 10 metrů) jde.</a><br>
 <a>Práh lovu se snižuje na 45% příčetnosti, pokud všichni hráči v blízkosti (do 10 metrů) stojí v klidu.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu" >
 <![CDATA[
 <a>Tento duch má 3 stavy: Normální, Rozzuřený a Oslabený.</a><br>
 <br>
@@ -629,7 +629,7 @@
 <a>Gallu se bude pohybovat mezi oslabeným, normálním a rozzuřeným stavem, když je podrážděn aktivací kadidla hráčem nebo interakcí ducha se solí či krucifixem.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo" >
 <![CDATA[
 <a>Tento duch má 2 stavy: klidný a agresivní.</a><br>
 <br>

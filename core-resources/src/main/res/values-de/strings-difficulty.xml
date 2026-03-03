@@ -18,11 +18,24 @@
     <string name="difficulty_setting_response_unknown">Unbekannt</string>
 
     <!-- Difficulty Frequency -->
+    <string name="difficulty_setting_state_on">An</string>
     <string name="difficulty_setting_state_none">Keine</string>
     <string name="difficulty_setting_state_low">Niedrig</string>
     <string name="difficulty_setting_state_medium">Mittel</string>
     <string name="difficulty_setting_state_high">Hoch</string>
     <string name="difficulty_setting_state_veryHigh">Sehr hoch</string>
     <string name="difficulty_title_custom">Benutzerdefiniert</string>
+    <string name="difficulty_setting_state_random">Zufällig</string>
+    <string name="difficulty_setting_state_broken">Unterbrochen</string>
+    <string name="difficulty_setting_state_off">Aus</string>
+    <string name="difficulty_setting_state_infinite">Unendlich</string>
+    <string name="difficulty_setting_state_weather_lightrain">Leichter Regen</string>
+    <string name="difficulty_setting_state_weather_heavyrain">Starker Regen</string>
+    <string name="difficulty_setting_state_weather_snow">Schnee</string>
+    <string name="difficulty_setting_state_weather_windy">Windig</string>
+    <string name="difficulty_setting_state_weather_clear">Klar</string>
+    <string name="difficulty_setting_state_weather_fog">Nebel</string>
+    <string name="difficulty_setting_state_weather_sunrise">Sonnenaufgang</string>
+    <string name="difficulty_setting_state_weather_bloodmoon">Blutmond</string>
 
 </resources>

@@ -939,6 +939,7 @@
     <string name="language_name_localized_ru">俄语</string>
     <string name="language_name_localized_uk">乌克兰语</string>
     <string name="difficulty_setting_response_unknown">未知</string>
+    <string name="difficulty_setting_state_on">开启</string>
     <string name="difficulty_setting_state_none">无</string>
     <string name="difficulty_setting_state_low">低</string>
     <string name="difficulty_setting_state_medium">中</string>
@@ -1065,5 +1066,17 @@
     <string name="challenge_glow_in_the_dark_description">我们的一些设备出了故障，希望这些足够你看清。</string>
     <string name="challenge_deja_vu_description">这感觉挺怀旧的，你不觉得吗？</string>
     <string name="challenge_tag_youre_it_description">这只幽灵会立刻追你，快跑！</string>
+    <string name="difficulty_setting_state_random">随机</string>
+    <string name="difficulty_setting_state_broken">损坏</string>
+    <string name="difficulty_setting_state_off">关闭</string>
+    <string name="difficulty_setting_state_infinite">无限</string>
+    <string name="difficulty_setting_state_weather_lightrain">小雨</string>
+    <string name="difficulty_setting_state_weather_heavyrain">大雨</string>
+    <string name="difficulty_setting_state_weather_snow">雪</string>
+    <string name="difficulty_setting_state_weather_windy">刮风</string>
+    <string name="difficulty_setting_state_weather_clear">晴朗</string>
+    <string name="difficulty_setting_state_weather_fog">雾</string>
+    <string name="difficulty_setting_state_weather_sunrise">日出</string>
+    <string name="difficulty_setting_state_weather_bloodmoon">血月</string>
 
 </resources>

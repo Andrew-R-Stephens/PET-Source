@@ -598,60 +598,60 @@
 <![CDATA[
 <a>La particularité du Dayan lui permet d\'accélérer lorsque les joueurs se déplacent près de lui, mais le ralentit également lorsque les joueurs s\'arrêtent de bouger.</a>
 ]]> </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
 <![CDATA[
 <a>Ce fantôme est connu pour devenir plus rapide pendant les chasses lorsque les joueurs utilisent des équipements de protection contre lui, comme des crucifix ou de l\'encens.</a>
 ]]>
 </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo" >
 <![CDATA[
 <a>La capacité unique de l\'Obambo consiste à alterner entre un état « calme », où il est moins agressif et plus lent pendant les chasses, et un état « agressif », où il est plus agressif et plus rapide pendant les chasses.</a>
 ]]>
 </string>
 
 
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan" >
 <![CDATA[
 <a>Se déplace plus vite lorsqu\'un joueur se déplace près du Dayan.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu" >
 <![CDATA[
 <a>Devient agressif lorsque des équipements de protection sont utilisés.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo" >
 <![CDATA[
 <a>Chasse plus tôt et se déplace plus vite dans son état « agressif ».</a>
 ]]>
 </string>
 
 
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan" >
 <![CDATA[
 <a>Se déplace plus lentement lorsqu\'un joueur reste immobile près du Dayan.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu" >
 <![CDATA[
 <a>Devient moins agressif après une chasse.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo" >
 <![CDATA[
 <a>Chasse plus tard et se déplace plus lentement dans son état « calme ».</a>
 ]]>
 </string>
 
 
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan" >
 <![CDATA[
 <a>Chasse à 50 %</a> La santé mentale est définie par défaut et est modifiée en fonction de la proximité et des mouvements du joueur.</a><br>
 <a>Le seuil de chasse augmente à 65 % de santé mentale si un joueur à proximité (à moins de 10 mètres) marche.</a><br>
 <a>Le seuil de chasse diminue à 45 % de santé mentale si tous les joueurs à proximité (à moins de 10 mètres) sont immobiles.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu" >
 <![CDATA[
 Il existe 3 états pour ce fantôme : Normal, Enragé et Affaibli.</a><br>
 <br>
@@ -667,7 +667,7 @@ Il existe 3 états pour ce fantôme : Normal, Enragé et Affaibli.</a><br>
 <a>Le Gallu passera des états Affaibli, Normal et Enragé lorsqu\'il est provoqué par l\'activation de l\'encens par le joueur ou par l\'interaction du fantôme avec du sel ou un crucifix.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo" >
 <![CDATA[
 <a>Ce fantôme possède 2 états : Calme et Agressif.</a><br>
 <br>

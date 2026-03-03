@@ -588,60 +588,60 @@
 <![CDATA[
 <a>Die einzigartige Eigenschaft des Dayan besteht darin, dass er schneller wird, wenn sich Spieler in seiner Nähe bewegen, aber auch langsamer, wenn Spieler stehen bleiben.</a>
 ]]> </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
 <![CDATA[
 <a>Dieser Geist wird bekanntermaßen während der Jagd schneller, wenn Spieler Schutzausrüstung wie Kruzifixe oder Weihrauch gegen ihn verwenden.</a>
 ]]>
 </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo" >
 <![CDATA[
 <a>Die einzigartige Fähigkeit des Obambo besteht darin, zwischen einem „ruhigen“ Zustand, in dem er weniger aggressiv und langsamer ist, und einem „aggressiven“ Zustand zu wechseln, in dem er aggressiver und schneller ist.</a>
 ]]>
 </string>
 
 
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan" >
 <![CDATA[
 <a>Bewegt sich schneller, wenn sich ein Spieler in der Nähe des Dayan bewegt.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu" >
 <![CDATA[
 <a>Wird aggressiv, wenn Schutzausrüstung verwendet wird.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo" >
 <![CDATA[
 <a>Jagt früher und bewegt sich in seinem „aggressiven“ Zustand schneller.</a>
 ]]>
 </string>
 
 
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan" >
 <![CDATA[
 <a>Bewegt sich langsamer, wenn ein Spieler in der Nähe des Dayan stillsteht.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu" >
 <![CDATA[
 <a>Wird nach einer Jagd weniger aggressiv.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo" >
 <![CDATA[
 <a>Jagt später und bewegt sich in seinem „ruhigen“ Zustand langsamer.</a>
 ]]>
 </string>
 
 
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan" >
 <![CDATA[
 <a>Jagt ab 50 %</a> Die Standard-Geistesaktivität basiert auf dem geistigen Zustand und wird durch eine Kombination aus Spielernähe und Spielerbewegung beeinflusst.</a><br>
 <a>Die Jagdschwelle erhöht sich auf 65 % des geistigen Zustands, wenn ein Spieler in der Nähe (innerhalb von 10 Metern) geht.</a><br>
 <a>Die Jagdschwelle sinkt auf 45 % des geistigen Zustands, wenn alle Spieler in der Nähe (innerhalb von 10 Metern) stillstehen.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu" >
 <![CDATA[
 <a>Es gibt 3 Zustände dieses Geistes: Normal, Wütend und Geschwächt.</a><br>
 <br>
@@ -657,7 +657,7 @@
 <a>Der Gallu wechselt zwischen den Zuständen „Geschwächt“, „Normal“ und „Wütend“, wenn er durch die Aktivierung von Räucherwerk durch den Spieler oder die Interaktion des Geistes mit Salz oder einem Kruzifix provoziert wird.</a>
 ]]>
 </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo" >
 <![CDATA[
 <a>Es gibt 2 Zustände dieses Geistes: Ruhig und Aggressiv.</a><br>
 <br>

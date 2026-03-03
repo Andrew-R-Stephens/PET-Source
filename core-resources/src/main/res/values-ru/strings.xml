@@ -2435,6 +2435,7 @@
     <string name="language_name_localized_ru">Русский язык</string>
     <string name="language_name_localized_uk">Украинский</string>
     <string name="difficulty_setting_response_unknown">Неизвестно</string>
+    <string name="difficulty_setting_state_on">Вкл.</string>
     <string name="difficulty_setting_state_none">Нет</string>
     <string name="difficulty_setting_state_low">Низкий</string>
     <string name="difficulty_setting_state_medium">Средний</string>
@@ -2450,59 +2451,59 @@
     <![CDATA[
     Уникальная особенность Даяна заключается в том, что он ускоряется, когда игроки приближаются к нему, но замедляется, когда игроки перестают двигаться.</a>
     ]]> </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
     <![CDATA[
     <a>Этот призрак, как известно, становится быстрее во время охоты, когда игроки используют против него защитное снаряжение, такое как распятия или ладан.</a>
     ]]>
     </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo" >
     <![CDATA[
     <a>Уникальная способность Обамбо заключается в переключении между «спокойным» состоянием, в котором он менее агрессивен и медленнее во время охоты, и «агрессивным» состоянием, в котором он более агрессивен и быстрее во время охоты.</a>
     ]]>
     </string>
 
 
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan" >
     <![CDATA[
     <a>Движется быстрее, когда игрок движется рядом с Даяном.</a>
     ]]>
     </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu" >
     <![CDATA[
     <a>Становится агрессивным при использовании защитного снаряжения.</a>
     ]]>
     </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo" >
     <![CDATA[
     <a>Начинает охоту раньше и движется быстрее в своем «агрессивном» состоянии.</a>
     ]]>
     </string>
 
 
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan" >
     <![CDATA[
     <a>Движется медленнее, когда игрок стоит неподвижно рядом с Даяном.</a>
     ]]>
     </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu" >
     <![CDATA[
     <a>Становится менее агрессивным после охоты.</a>
     ]]>
     </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo" >
     <![CDATA[
     <a>Начинает охоту позже и движется медленнее в своем «спокойном» состоянии.</a>
     ]]>
     </string>
 
 
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan" >
     <![CDATA[
     <a>Начинает охоту при уровне рассудка 50% по умолчанию, и это значение изменяется в зависимости от близости игрока и его движения.</a><br> <a>Порог начала охоты увеличивается до 65% рассудка, если какой-либо игрок поблизости (в радиусе 10 метров) идёт пешком.</a><br>
     <a>Порог начала охоты снижается до 45% рассудка, если все игроки поблизости (в радиусе 10 метров) стоят на месте.</a>
     ]]>
     </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu" >
     <![CDATA[
     <a>У этого призрака есть 3 состояния: Нормальное, Разъяренное и Ослабленное.</a><br>
     <br>
@@ -2518,7 +2519,7 @@
     <a>Галлу будет переходить между состояниями Ослабленное, Нормальное и Разъяренное при раздражении игроком с помощью благовоний или при взаимодействии призрака с солью или распятием.</a>
     ]]>
     </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo" >
     <![CDATA[
     <a>У этого призрака есть 2 состояния: Спокойное и Агрессивное.</a><br>
     <br>
@@ -2560,5 +2561,17 @@
     <string name="challenge_glow_in_the_dark_description">Часть нашего оборудования перестала работать, надеюсь, этого будет достаточно, чтобы вы могли увидеть.</string>
     <string name="challenge_deja_vu_description">Этот призрак вызывает ностальгию, не правда ли?</string>
     <string name="challenge_tag_youre_it_description">Этот призрак немедленно погонится за вами, лучше бегите!</string>
+    <string name="difficulty_setting_state_random">Случайный</string>
+    <string name="difficulty_setting_state_broken">Прерывистый</string>
+    <string name="difficulty_setting_state_off">Выкл.</string>
+    <string name="difficulty_setting_state_infinite">Бесконечный</string>
+    <string name="difficulty_setting_state_weather_lightrain">Легкий дождь</string>
+    <string name="difficulty_setting_state_weather_heavyrain">Сильный дождь</string>
+    <string name="difficulty_setting_state_weather_snow">Снег</string>
+    <string name="difficulty_setting_state_weather_windy">Ветрено</string>
+    <string name="difficulty_setting_state_weather_clear">Ясно</string>
+    <string name="difficulty_setting_state_weather_fog">Туман</string>
+    <string name="difficulty_setting_state_weather_sunrise">Восход солнца</string>
+    <string name="difficulty_setting_state_weather_bloodmoon">Кровавая луна</string>
 
 </resources>

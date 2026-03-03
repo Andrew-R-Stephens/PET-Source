@@ -18,11 +18,24 @@
     <string name="difficulty_setting_response_unknown">Neznámý</string>
 
     <!-- Difficulty Frequency -->
+    <string name="difficulty_setting_state_on">Zapnuto</string>
     <string name="difficulty_setting_state_none">Žádné</string>
     <string name="difficulty_setting_state_low">Nízké</string>
     <string name="difficulty_setting_state_medium">Střední</string>
     <string name="difficulty_setting_state_high">Vysoké</string>
     <string name="difficulty_setting_state_veryHigh">Velmi vysoké</string>
     <string name="difficulty_title_custom">Vlastní</string>
+    <string name="difficulty_setting_state_random">Náhodné</string>
+    <string name="difficulty_setting_state_broken">Přerušované</string>
+    <string name="difficulty_setting_state_off">Vypnuto</string>
+    <string name="difficulty_setting_state_infinite">Nekonečné</string>
+    <string name="difficulty_setting_state_weather_lightrain">Slabý déšť</string>
+    <string name="difficulty_setting_state_weather_heavyrain">Silný déšť</string>
+    <string name="difficulty_setting_state_weather_snow">Sníh</string>
+    <string name="difficulty_setting_state_weather_windy">Vítrno</string>
+    <string name="difficulty_setting_state_weather_clear">Jasno</string>
+    <string name="difficulty_setting_state_weather_fog">Mlha</string>
+    <string name="difficulty_setting_state_weather_sunrise">Východ slunce</string>
+    <string name="difficulty_setting_state_weather_bloodmoon">Krvavý měsíc</string>
 
 </resources>

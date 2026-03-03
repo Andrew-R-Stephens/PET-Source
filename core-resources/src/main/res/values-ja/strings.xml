@@ -1064,6 +1064,7 @@
     <string name="language_name_localized_ru">"ロシア語 "</string>
     <string name="language_name_localized_uk">ウクライナ語</string>
     <string name="difficulty_setting_response_unknown">未知</string>
+    <string name="difficulty_setting_state_on">オン</string>
     <string name="difficulty_setting_state_none">なし</string>
     <string name="difficulty_setting_state_low">低</string>
     <string name="difficulty_setting_state_medium">中</string>
@@ -1079,59 +1080,59 @@
             <![CDATA[
                 <a>ダヤンは、ホラーゲーム『ファズモフォビア』に登場する幽霊の一種です。その特徴は、プレイヤーが近づくと速度が上がり、プレイヤーが動きを止めると速度が遅くなることです。</a>
             ]]> </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
             <![CDATA[
                 <a>この幽霊は、プレイヤーが十字架やお香などの防御具を使用すると、狩りの際に動きが速くなることが知られている。</a>
             ]]>
     </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo" >
     <![CDATA[
     <a>オバンボのユニークな能力は、「穏やかな」状態（ハント中の攻撃性が低く、速度が遅い）と「攻撃的な」状態（ハント中の攻撃性が高く、速度が速い）の間で切り替わることにあります。</a>
     ]]>
     </string>
 
 
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan" >
     <![CDATA[
     <a>プレイヤーがダヤンの近くを移動すると、移動速度が速くなります。</a>
     ]]>
     </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu" >
     <![CDATA[
     <a>防御アイテムが使用されると攻撃的になります。</a>
     ]]>
     </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo" >
     <![CDATA[
     <a>「攻撃的な」状態では、ハント開始が早く、移動速度も速くなります。</a>
     ]]>
     </string>
 
 
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan" >
     <![CDATA[
     <a>プレイヤーがダヤンの近くで静止していると、移動速度が遅くなります。</a>
     ]]>
     </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu" >
     <![CDATA[
     <a>ハント後は攻撃性が低下します。</a>
     ]]>
     </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo" >
     <![CDATA[
     <a>「穏やかな」状態では、ハント開始が遅く、移動速度も遅くなります。</a>
     ]]>
     </string>
 
 
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan" >
     <![CDATA[
     <a>デフォルトでは正気度50%でハントを開始し、プレイヤーとの距離とプレイヤーの動きによって変化します。</a><br> <a>近くにいるプレイヤー（10メートル以内）が歩いている場合、ハント開始の正気度閾値が65%に上昇します。</a><br>
     <a>近くにいるプレイヤー（10メートル以内）全員が静止している場合、ハント開始の正気度閾値が45%に低下します。</a>
     ]]>
     </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu" >
     <![CDATA[
     <a>このゴーストには3つの状態があります：通常、激怒、弱体化。</a><br>
     <br>
@@ -1147,7 +1148,7 @@
     <a>ガルーは、プレイヤーがお香を使用したり、ゴーストが塩や十字架に触れたりすることで刺激を受けると、弱体化、通常、激怒の状態へと変化します。</a>
     ]]>
     </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo" >
     <![CDATA[
     <a>このゴーストには2つの状態があります：穏やか、攻撃的。</a><br>
     <br>
@@ -1188,5 +1189,17 @@
     <string name="challenge_glow_in_the_dark_description">一部の機器が故障しています。これで十分でしょう。</string>
     <string name="challenge_deja_vu_description">懐かしい感じがしませんか？</string>
     <string name="challenge_tag_youre_it_description">このゴーストはすぐに追いかけてくるでしょう。逃げた方がいいですよ！</string>
+    <string name="difficulty_setting_state_random">ランダム</string>
+    <string name="difficulty_setting_state_broken">壊れた</string>
+    <string name="difficulty_setting_state_off">オフ</string>
+    <string name="difficulty_setting_state_infinite">無限</string>
+    <string name="difficulty_setting_state_weather_lightrain">小雨</string>
+    <string name="difficulty_setting_state_weather_heavyrain">大雨</string>
+    <string name="difficulty_setting_state_weather_snow">雪</string>
+    <string name="difficulty_setting_state_weather_windy">風が強い</string>
+    <string name="difficulty_setting_state_weather_clear">晴れ</string>
+    <string name="difficulty_setting_state_weather_fog">霧</string>
+    <string name="difficulty_setting_state_weather_sunrise">日の出</string>
+    <string name="difficulty_setting_state_weather_bloodmoon">ブラッドムーン</string>
 
 </resources>

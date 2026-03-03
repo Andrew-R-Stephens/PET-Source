@@ -1065,6 +1065,7 @@
     <string name="language_name_localized_ru">Russo</string>
     <string name="language_name_localized_uk">Ucraino</string>
     <string name="difficulty_setting_response_unknown">Sconosciuto</string>
+    <string name="difficulty_setting_state_on">Attivo</string>
     <string name="difficulty_setting_state_none">Nessuno</string>
     <string name="difficulty_setting_state_low">Basso</string>
     <string name="difficulty_setting_state_medium">Medio</string>
@@ -1080,53 +1081,53 @@
 <![CDATA[
 <a>La caratteristica unica del Dayan gli permette di accelerare quando i giocatori si muovono nelle sue vicinanze, ma lo fa anche rallentare quando i giocatori smettono di muoversi.</a>
 ]]> </string>
-    <string name="ghost_info_gallu" translatable="false">
+    <string name="ghost_info_gallu" >
 <![CDATA[
 <a>Questo fantasma è noto per diventare più veloce durante le cacce quando i giocatori utilizzano equipaggiamento protettivo contro di esso, come crocifissi o incenso.</a>
 ]]>
 </string>
-    <string name="ghost_info_obambo" translatable="false">
+    <string name="ghost_info_obambo" >
 <![CDATA[
 <a>L\'abilità unica dell\'Obambo consiste nel passare da uno stato \"calmo\", in cui è meno aggressivo e più lento durante le cacce, a uno stato \"aggressivo\", in cui è più aggressivo e più veloce durante le cacce.</a>
 ]]>
 </string>
 
 
-    <string name="ghost_strengths_dayan" translatable="false">
+    <string name="ghost_strengths_dayan" >
 <![CDATA[
 <a>Si muove più velocemente quando un giocatore si muove vicino al Dayan.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_gallu" translatable="false">
+    <string name="ghost_strengths_gallu" >
 <![CDATA[
 <a>Diventa aggressivo quando viene utilizzato equipaggiamento protettivo.</a>
 ]]>
 </string>
-    <string name="ghost_strengths_obambo" translatable="false">
+    <string name="ghost_strengths_obambo" >
 <![CDATA[
 <a>Inizia la caccia prima e si muove più velocemente nel suo stato "aggressivo".</a>
 ]]>
 </string>
 
 
-    <string name="ghost_weaknesses_dayan" translatable="false">
+    <string name="ghost_weaknesses_dayan" >
 <![CDATA[
 <a>Si muove più lentamente quando un giocatore rimane fermo vicino al Dayan.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_gallu" translatable="false">
+    <string name="ghost_weaknesses_gallu" >
 <![CDATA[
 <a>Diventa meno aggressivo dopo una caccia.</a>
 ]]>
 </string>
-    <string name="ghost_weaknesses_obambo" translatable="false">
+    <string name="ghost_weaknesses_obambo" >
 <![CDATA[
 <a>Inizia la caccia più tardi e si muove più lentamente nel suo stato "calmo".</a>
 ]]>
 </string>
 
 
-    <string name="ghost_huntingdata_dayan" translatable="false">
+    <string name="ghost_huntingdata_dayan" >
     <![CDATA[
     <a>Caccia al 50\%</a>
     La sanità mentale è impostata per impostazione predefinita e viene modificata in base alla vicinanza e al movimento dei giocatori.</a><br>
@@ -1134,7 +1135,7 @@
     Il livello di sanità mentale per l\'inizio della caccia diminuisce al 45\% se tutti i giocatori nelle vicinanze (entro 10 metri) sono fermi.</a>
     ]]>
     </string>
-    <string name="ghost_huntingdata_gallu" translatable="false">
+    <string name="ghost_huntingdata_gallu" >
     <![CDATA[
     <a>Ci sono 3 stati per questo fantasma: Normale, Infuriato e Indebolito.</a><br>
     <br>
@@ -1150,7 +1151,7 @@
     <a>Il Gallu passerà dallo stato Indebolito a quello Normale e infine a quello Infuriato quando viene provocato dall\'attivazione dell\'incenso da parte del giocatore o dall\'interazione del fantasma con il sale o un crocifisso.</a>
     ]]>
     </string>
-    <string name="ghost_huntingdata_obambo" translatable="false">
+    <string name="ghost_huntingdata_obambo" >
     <![CDATA[
     <a>Questo fantasma ha 2 stati: Calmo e Aggressivo.</a><br>
     <br>
@@ -1192,5 +1193,17 @@
     <string name="challenge_glow_in_the_dark_description">Alcune delle nostre attrezzature hanno smesso di funzionare, speriamo che questo vi basti per vederlo.</string>
     <string name="challenge_deja_vu_description">Questo mi fa venire un po\' di nostalgia, non trovate?</string>
     <string name="challenge_tag_youre_it_description">Questo fantasma vi inseguirà subito, meglio che scappiate!\"</string>
+    <string name="difficulty_setting_state_random">Casuale</string>
+    <string name="difficulty_setting_state_broken">Interrotto</string>
+    <string name="difficulty_setting_state_off">Spento</string>
+    <string name="difficulty_setting_state_infinite">Infinito</string>
+    <string name="difficulty_setting_state_weather_lightrain">Pioggia leggera</string>
+    <string name="difficulty_setting_state_weather_heavyrain">Pioggia intensa</string>
+    <string name="difficulty_setting_state_weather_snow">Neve</string>
+    <string name="difficulty_setting_state_weather_windy">Ventoso</string>
+    <string name="difficulty_setting_state_weather_clear">Sereno</string>
+    <string name="difficulty_setting_state_weather_fog">Nebbia</string>
+    <string name="difficulty_setting_state_weather_sunrise">Alba</string>
+    <string name="difficulty_setting_state_weather_bloodmoon">Luna rossa</string>
 
 </resources>
