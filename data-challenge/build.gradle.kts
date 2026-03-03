@@ -52,6 +52,4 @@ dependencies {
     implementation(project(":core-resources"))
 
     implementation(project(":data-codex"))
-    implementation(project(":data-difficulty"))
-    implementation(project(":data-map"))
 }

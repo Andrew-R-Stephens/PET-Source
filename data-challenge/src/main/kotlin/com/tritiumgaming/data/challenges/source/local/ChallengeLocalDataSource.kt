@@ -3,17 +3,20 @@ package com.tritiumgaming.data.challenges.source.local
 import com.tritiumgaming.data.challenges.dto.ChallengeModelDto
 import com.tritiumgaming.data.challenges.source.ChallengeDataSource
 import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource.DifficultySettingsModelDto.EquipmentPermissionDto
-import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource.DifficultySettingsModelDto.EquipmentPermissionDto.Companion.ALL
-import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource.DifficultySettingsModelDto.EquipmentPermissionDto.Permission
+import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource.DifficultySettingsModelDto.EquipmentPermissionDto.Permission.*
 import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
+import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources.ChallengeDescription.*
 import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources.ChallengeTitle
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier.*
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityLevel
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityMonitor
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ChangingFavoriteRoom
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession.*
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossessionsQuantity
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossessionsQuantity.*
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DoorsStartingOpen
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EventFrequency
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EvidenceGiven
@@ -38,13 +41,14 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Sprinting
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel.EquipmentPermission.Companion.ALL
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 
 class ChallengeLocalDataSource: ChallengeDataSource {
 
     private val baseChallengeResourceDto = ChallengeResourceDto(
         name = ChallengeTitle.LIGHTS_OUT,
-        description = ChallengeResources.ChallengeDescription.LIGHTS_OUT,
+        description = LIGHTS_OUT,
         map = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
         responseType = DifficultyResponseType.UNKNOWN,
         settingsModelDto = DifficultySettingsModelDto(
@@ -75,46 +79,39 @@ class ChallengeLocalDataSource: ChallengeDataSource {
             activityMonitor = ActivityMonitor.ON,
             fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
             fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
-            cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-            cursedPossession1 = CursedPossession.RANDOM,
-            cursedPossession2 = CursedPossession.RANDOM,
-            cursedPossession3 = CursedPossession.RANDOM,
-            cursedPossession4 = CursedPossession.RANDOM,
-            cursedPossession5 = CursedPossession.RANDOM,
-            cursedPossession6 = CursedPossession.RANDOM,
-            cursedPossession7 = CursedPossession.RANDOM,
+            cursedPossessionsQuantity = QUANTITY_1,
+            cursedPossessions = listOf(RANDOM),
             equipmentPermissionDto = emptyList()
         )
     )
 
-    private val challengeResourceDto
-        get() = listOf(
+    private val challengeResourceDto = listOf(
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.LIGHTS_OUT,
                 map = SimpleMapResources.MapTitle.TANGLEWOOD,
-                description = ChallengeResources.ChallengeDescription.LIGHTS_OUT,
+                description = LIGHTS_OUT,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     flashlights = Flashlights.OFF,
                     doorsStartingOpen = DoorsStartingOpen.MEDIUM,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
                     fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.MUSIC_BOX,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(MUSIC_BOX),
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.MOTION_SENSOR),
-                        EquipmentPermissionDto(EquipmentIdentifier.PARABOLIC_MICROPHONE),
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_RECORDER),
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_SENSOR),
-                        EquipmentPermissionDto(EquipmentIdentifier.PHOTO_CAMERA, 1),
-                        EquipmentPermissionDto(EquipmentIdentifier.FLASHLIGHT),
-                        EquipmentPermissionDto(EquipmentIdentifier.TRIPOD)
+                        EquipmentPermissionDto(MOTION_SENSOR),
+                        EquipmentPermissionDto(PARABOLIC_MICROPHONE),
+                        EquipmentPermissionDto(SOUND_RECORDER),
+                        EquipmentPermissionDto(SOUND_SENSOR),
+                        EquipmentPermissionDto(PHOTO_CAMERA, 1),
+                        EquipmentPermissionDto(FLASHLIGHT),
+                        EquipmentPermissionDto(TRIPOD)
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.SPEED_DEMONS,
                 map = SimpleMapResources.MapTitle.CAMP_MAPLE,
-                description = ChallengeResources.ChallengeDescription.SPEED_DEMONS,
+                description = SPEED_DEMONS,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     playerSpeed = PlayerSpeed.SPEED_150,
                     ghostSpeed = GhostSpeed.SPEED_150,
@@ -122,32 +119,33 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     activityLevel = ActivityLevel.HIGH,
                     eventFrequency = EventFrequency.HIGH,
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.MONKEY_PAW,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(
+                        MONKEY_PAW),
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.IGNITER),
-                        EquipmentPermissionDto(EquipmentIdentifier.MOTION_SENSOR)
+                        EquipmentPermissionDto(IGNITER),
+                        EquipmentPermissionDto(MOTION_SENSOR)
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.DETECTIVES_ONLY,
                 map = SimpleMapResources.MapTitle.EDGEFIELD,
-                description = ChallengeResources.ChallengeDescription.DETECTIVES_ONLY,
+                description = DETECTIVES_ONLY,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     roamingFrequency = RoamingFrequency.MEDIUM,
                     changingFavouriteRoom = ChangingFavoriteRoom.MEDIUM,
                     activityLevel = ActivityLevel.MEDIUM,
                     huntDuration = HuntDuration.MEDIUM,
                     evidenceGiven = EvidenceGiven.COUNT_0,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.OUIJA_BOARD,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(OUIJA_BOARD)
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.HIDE_AND_SEEK_SEEKER,
                 map = SimpleMapResources.MapTitle.BROWNSTONE_HIGHSCHOOL,
-                description = ChallengeResources.ChallengeDescription.HIDE_AND_SEEK_SEEKER,
+                description = HIDE_AND_SEEK_SEEKER,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     sanityPillRestoration = SanityPillRestoration.RESTORE_35,
                     sanityDrainSpeed = SanityDrainSpeed.SPEED_0,
@@ -157,17 +155,17 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     friendlyGhost = FriendlyGhost.ON,
                     doorsStartingOpen = DoorsStartingOpen.NONE,
                     numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.NONE,
+                    cursedPossessionsQuantity = NONE,
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.INCENSE),
-                        EquipmentPermissionDto(EquipmentIdentifier.CRUCIFIX)
+                        EquipmentPermissionDto(INCENSE),
+                        EquipmentPermissionDto(CRUCIFIX)
                     )                    
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.HIDE_AND_SEEK_HIDE,
                 map = SimpleMapResources.MapTitle.POINT_HOPE,
-                description = ChallengeResources.ChallengeDescription.HIDE_AND_SEEK_HIDE,
+                description = HIDE_AND_SEEK_HIDE,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     startingSanity = StartingSanity.SANITY_0,
                     sanityPillRestoration = SanityPillRestoration.RESTORE_0,
@@ -181,17 +179,17 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     setupTime = SetupTime.TIME_60,
                     doorsStartingOpen = DoorsStartingOpen.LOW,
                     numberOfHidingPlaces = NumberOfHidingPlaces.VERY_HIGH,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.NONE,
+                    cursedPossessionsQuantity = NONE,
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.HEAD_GEAR),
-                        EquipmentPermissionDto(EquipmentIdentifier.PARABOLIC_MICROPHONE),
+                        EquipmentPermissionDto(HEAD_GEAR),
+                        EquipmentPermissionDto(PARABOLIC_MICROPHONE),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.FROSTBITTEN,
                 map = SimpleMapResources.MapTitle.CAMP_WOODWIND,
-                description = ChallengeResources.ChallengeDescription.FROSTBITTEN,
+                description = FROSTBITTEN,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     sanityPillRestoration = SanityPillRestoration.RESTORE_100,
                     playerSpeed = PlayerSpeed.SPEED_75,
@@ -201,18 +199,18 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     weather = Weather.SNOW,
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.NONE,
+                    cursedPossessionsQuantity = NONE,
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.IGNITER, ALL),
-                        EquipmentPermissionDto(EquipmentIdentifier.FIRELIGHT, ALL),
-                        EquipmentPermissionDto(EquipmentIdentifier.INCENSE, ALL)
+                        EquipmentPermissionDto(IGNITER, ALL),
+                        EquipmentPermissionDto(FIRELIGHT, ALL),
+                        EquipmentPermissionDto(INCENSE, ALL)
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.DO_AS_I_COMMAND,
                 map = SimpleMapResources.MapTitle.SUNNY_MEADOWS,
-                description = ChallengeResources.ChallengeDescription.DO_AS_I_COMMAND,
+                description = DO_AS_I_COMMAND,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     sanityPillRestoration = SanityPillRestoration.RESTORE_50,
                     sanityDrainSpeed = SanityDrainSpeed.SPEED_100,
@@ -220,20 +218,22 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     gracePeriod = GracePeriod.PERIOD_2,
                     huntDuration = HuntDuration.LOW,
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_7,
-                    cursedPossession1 = CursedPossession.TAROT_CARDS,
-                    cursedPossession2 = CursedPossession.OUIJA_BOARD,
-                    cursedPossession3 = CursedPossession.HAUNTED_MIRROR,
-                    cursedPossession4 = CursedPossession.MUSIC_BOX,
-                    cursedPossession5 = CursedPossession.SUMMONING_CIRCLE,
-                    cursedPossession6 = CursedPossession.VOODOO_DOLL,
-                    cursedPossession7 = CursedPossession.MONKEY_PAW
+                    cursedPossessionsQuantity = QUANTITY_7,
+                    cursedPossessions = listOf(
+                        TAROT_CARDS,
+                        OUIJA_BOARD,
+                        HAUNTED_MIRROR,
+                        MUSIC_BOX,
+                        SUMMONING_CIRCLE,
+                        VOODOO_DOLL,
+                        MONKEY_PAW
+                    )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.TORTOISE_AND_THE_HARE_HARE,
                 map = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
-                description = ChallengeResources.ChallengeDescription.TORTOISE_AND_THE_HARE_HARE,
+                description = TORTOISE_AND_THE_HARE_HARE,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     playerSpeed = PlayerSpeed.SPEED_125,
                     ghostSpeed = GhostSpeed.SPEED_50,
@@ -243,7 +243,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.TORTOISE_AND_THE_HARE_TORTOISE,
                 map = SimpleMapResources.MapTitle.GRAFTON_FARMHOUSE,
-                description = ChallengeResources.ChallengeDescription.TORTOISE_AND_THE_HARE_TORTOISE,
+                description = TORTOISE_AND_THE_HARE_TORTOISE,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     playerSpeed = PlayerSpeed.SPEED_75,
                     ghostSpeed = GhostSpeed.SPEED_150,
@@ -253,14 +253,14 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     killsExtendHunts = KillsExtendHunts.HIGH,
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.FIRELIGHT, 2),
+                        EquipmentPermissionDto(FIRELIGHT, 2),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.GOTTA_GO_FAST,
                 map = SimpleMapResources.MapTitle.PRISON,
-                description = ChallengeResources.ChallengeDescription.GOTTA_GO_FAST,
+                description = GOTTA_GO_FAST,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     startingSanity = StartingSanity.SANITY_0,
                     sanityPillRestoration = SanityPillRestoration.RESTORE_0,
@@ -271,16 +271,16 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     sanityMonitor = SanityMonitor.OFF,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_RECORDER, 1),
-                        EquipmentPermissionDto(EquipmentIdentifier.INCENSE),
-                        EquipmentPermissionDto(EquipmentIdentifier.CRUCIFIX),
+                        EquipmentPermissionDto(SOUND_RECORDER, 1),
+                        EquipmentPermissionDto(INCENSE),
+                        EquipmentPermissionDto(CRUCIFIX),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.SANITY_SURVIVAL,
                 map = SimpleMapResources.MapTitle.RIDGEVIEW,
-                description = ChallengeResources.ChallengeDescription.SANITY_SURVIVAL,
+                description = SANITY_SURVIVAL,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     startingSanity = StartingSanity.SANITY_75,
                     sanityPillRestoration = SanityPillRestoration.RESTORE_0,
@@ -291,15 +291,17 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     sanityMonitor = SanityMonitor.OFF,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_2,
-                    cursedPossession1 = CursedPossession.TAROT_CARDS,
-                    cursedPossession2 = CursedPossession.VOODOO_DOLL,
+                    cursedPossessionsQuantity = QUANTITY_2,
+                    cursedPossessions = listOf(
+                        TAROT_CARDS,
+                        VOODOO_DOLL
+                    )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.SPEEDRUN,
                 map = SimpleMapResources.MapTitle.TANGLEWOOD,
-                description = ChallengeResources.ChallengeDescription.SPEEDRUN,
+                description = SPEEDRUN,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     playerSpeed = PlayerSpeed.SPEED_100,
                     roamingFrequency = RoamingFrequency.HIGH,
@@ -309,20 +311,22 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     doorsStartingOpen = DoorsStartingOpen.MEDIUM,
                     numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_7,
-                    cursedPossession1 = CursedPossession.TAROT_CARDS,
-                    cursedPossession2 = CursedPossession.OUIJA_BOARD,
-                    cursedPossession3 = CursedPossession.HAUNTED_MIRROR,
-                    cursedPossession4 = CursedPossession.MUSIC_BOX,
-                    cursedPossession5 = CursedPossession.SUMMONING_CIRCLE,
-                    cursedPossession6 = CursedPossession.VOODOO_DOLL,
-                    cursedPossession7 = CursedPossession.MONKEY_PAW
+                    cursedPossessionsQuantity = QUANTITY_7,
+                    cursedPossessions = listOf(
+                        TAROT_CARDS,
+                        OUIJA_BOARD,
+                        HAUNTED_MIRROR,
+                        MUSIC_BOX,
+                        SUMMONING_CIRCLE,
+                        VOODOO_DOLL,
+                        MONKEY_PAW
+                    )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.SURVIVAL_OF_THE_FITTEST,
                 map = SimpleMapResources.MapTitle.EDGEFIELD,
-                description = ChallengeResources.ChallengeDescription.SURVIVAL_OF_THE_FITTEST,
+                description = SURVIVAL_OF_THE_FITTEST,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     startingSanity = StartingSanity.SANITY_100,
                     sanityPillRestoration = SanityPillRestoration.RESTORE_30,
@@ -336,23 +340,23 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     doorsStartingOpen = DoorsStartingOpen.MEDIUM,
                     numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.MONKEY_PAW,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(MONKEY_PAW),
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.SANITY_MEDICATION, 2),
-                        EquipmentPermissionDto(EquipmentIdentifier.THERMOMETER),
-                        EquipmentPermissionDto(EquipmentIdentifier.UV_LIGHT),
-                        EquipmentPermissionDto(EquipmentIdentifier.GHOST_WRITING_BOOK),
-                        EquipmentPermissionDto(EquipmentIdentifier.DOTS),
-                        EquipmentPermissionDto(EquipmentIdentifier.VIDEO_CAMERA),
-                        EquipmentPermissionDto(EquipmentIdentifier.TRIPOD)
+                        EquipmentPermissionDto(SANITY_MEDICATION, 2),
+                        EquipmentPermissionDto(THERMOMETER),
+                        EquipmentPermissionDto(UV_LIGHT),
+                        EquipmentPermissionDto(GHOST_WRITING_BOOK),
+                        EquipmentPermissionDto(DOTS),
+                        EquipmentPermissionDto(VIDEO_CAMERA),
+                        EquipmentPermissionDto(TRIPOD)
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.PRIMITIVE,
                 map = SimpleMapResources.MapTitle.RIDGEVIEW,
-                description = ChallengeResources.ChallengeDescription.PRIMITIVE,
+                description = PRIMITIVE,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     sanityPillRestoration = SanityPillRestoration.RESTORE_40,
                     sanityDrainSpeed = SanityDrainSpeed.SPEED_100,
@@ -366,78 +370,78 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     doorsStartingOpen = DoorsStartingOpen.NONE,
                     numberOfHidingPlaces = NumberOfHidingPlaces.VERY_HIGH,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.OUIJA_BOARD,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(OUIJA_BOARD),
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.HEAD_GEAR),
-                        EquipmentPermissionDto(EquipmentIdentifier.SANITY_MEDICATION),
-                        EquipmentPermissionDto(EquipmentIdentifier.MOTION_SENSOR),
-                        EquipmentPermissionDto(EquipmentIdentifier.PARABOLIC_MICROPHONE),
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_RECORDER),
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_SENSOR),
-                        EquipmentPermissionDto(EquipmentIdentifier.EMF),
-                        EquipmentPermissionDto(EquipmentIdentifier.PHOTO_CAMERA),
-                        EquipmentPermissionDto(EquipmentIdentifier.SPIRIT_BOX),
-                        EquipmentPermissionDto(EquipmentIdentifier.DOTS),
-                        EquipmentPermissionDto(EquipmentIdentifier.FLASHLIGHT),
-                        EquipmentPermissionDto(EquipmentIdentifier.VIDEO_CAMERA),
-                        EquipmentPermissionDto(EquipmentIdentifier.TRIPOD),
+                        EquipmentPermissionDto(HEAD_GEAR),
+                        EquipmentPermissionDto(SANITY_MEDICATION),
+                        EquipmentPermissionDto(MOTION_SENSOR),
+                        EquipmentPermissionDto(PARABOLIC_MICROPHONE),
+                        EquipmentPermissionDto(SOUND_RECORDER),
+                        EquipmentPermissionDto(SOUND_SENSOR),
+                        EquipmentPermissionDto(EMF),
+                        EquipmentPermissionDto(PHOTO_CAMERA),
+                        EquipmentPermissionDto(SPIRIT_BOX),
+                        EquipmentPermissionDto(DOTS),
+                        EquipmentPermissionDto(FLASHLIGHT),
+                        EquipmentPermissionDto(VIDEO_CAMERA),
+                        EquipmentPermissionDto(TRIPOD),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.VULNERABLE,
                 map = SimpleMapResources.MapTitle.WILLOW,
-                description = ChallengeResources.ChallengeDescription.VULNERABLE,
+                description = VULNERABLE,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.VOODOO_DOLL,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(VOODOO_DOLL),
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.SANITY_MEDICATION),
-                        EquipmentPermissionDto(EquipmentIdentifier.FIRELIGHT, 2),
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_RECORDER),
-                        EquipmentPermissionDto(EquipmentIdentifier.INCENSE),
-                        EquipmentPermissionDto(EquipmentIdentifier.CRUCIFIX),
+                        EquipmentPermissionDto(SANITY_MEDICATION),
+                        EquipmentPermissionDto(FIRELIGHT, 2),
+                        EquipmentPermissionDto(SOUND_RECORDER),
+                        EquipmentPermissionDto(INCENSE),
+                        EquipmentPermissionDto(CRUCIFIX),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.MISSED_DELIVERY,
                 map = SimpleMapResources.MapTitle.BROWNSTONE_HIGHSCHOOL,
-                description = ChallengeResources.ChallengeDescription.MISSED_DELIVERY,
+                description = MISSED_DELIVERY,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.DOTS, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.EMF, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.FLASHLIGHT, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.PHOTO_CAMERA, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.IGNITER, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.FIRELIGHT, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.UV_LIGHT, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.CRUCIFIX, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.VIDEO_CAMERA, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.SPIRIT_BOX, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.THERMOMETER, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.SALT, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.INCENSE, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.TRIPOD, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.MOTION_SENSOR, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_RECORDER, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_SENSOR, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.SANITY_MEDICATION, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.GHOST_WRITING_BOOK, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.PARABOLIC_MICROPHONE, quantity = 1, permission = Permission.PERMITTED),
-                        EquipmentPermissionDto(EquipmentIdentifier.HEAD_GEAR, quantity = 1, permission = Permission.PERMITTED),
+                        EquipmentPermissionDto(DOTS, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(EMF, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(FLASHLIGHT, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(PHOTO_CAMERA, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(IGNITER, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(FIRELIGHT, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(UV_LIGHT, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(CRUCIFIX, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(VIDEO_CAMERA, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(SPIRIT_BOX, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(THERMOMETER, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(SALT, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(INCENSE, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(TRIPOD, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(MOTION_SENSOR, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(SOUND_RECORDER, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(SOUND_SENSOR, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(SANITY_MEDICATION, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(GHOST_WRITING_BOOK, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(PARABOLIC_MICROPHONE, quantity = 1, permission = PERMITTED),
+                        EquipmentPermissionDto(HEAD_GEAR, quantity = 1, permission = PERMITTED),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.AUDIO_ONLY,
                 map = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
-                description = ChallengeResources.ChallengeDescription.AUDIO_ONLY,
+                description = AUDIO_ONLY,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     sanityPillRestoration = SanityPillRestoration.RESTORE_30,
                     sanityDrainSpeed = SanityDrainSpeed.SPEED_200,
@@ -449,32 +453,32 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     doorsStartingOpen = DoorsStartingOpen.MEDIUM,
                     numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.MUSIC_BOX,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(MUSIC_BOX),
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.TECHNOPHILIA,
                 map = SimpleMapResources.MapTitle.BLEASDALE_FARMHOUSE,
-                description = ChallengeResources.ChallengeDescription.TECHNOPHILIA,
+                description = TECHNOPHILIA,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     doorsStartingOpen = DoorsStartingOpen.MEDIUM,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.TAROT_CARDS,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(TAROT_CARDS),
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.IGNITER),
-                        EquipmentPermissionDto(EquipmentIdentifier.FIRELIGHT),
-                        EquipmentPermissionDto(EquipmentIdentifier.INCENSE),
-                        EquipmentPermissionDto(EquipmentIdentifier.SALT),
-                        EquipmentPermissionDto(EquipmentIdentifier.CRUCIFIX),
-                        EquipmentPermissionDto(EquipmentIdentifier.GHOST_WRITING_BOOK),
+                        EquipmentPermissionDto(IGNITER),
+                        EquipmentPermissionDto(FIRELIGHT),
+                        EquipmentPermissionDto(INCENSE),
+                        EquipmentPermissionDto(SALT),
+                        EquipmentPermissionDto(CRUCIFIX),
+                        EquipmentPermissionDto(GHOST_WRITING_BOOK),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.NO_EVIDENCE,
                 map = SimpleMapResources.MapTitle.GRAFTON_FARMHOUSE,
-                description = ChallengeResources.ChallengeDescription.NO_EVIDENCE,
+                description = NO_EVIDENCE,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     sanityPillRestoration = SanityPillRestoration.RESTORE_25,
                     changingFavouriteRoom = ChangingFavoriteRoom.MEDIUM,
@@ -485,14 +489,14 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     numberOfHidingPlaces = NumberOfHidingPlaces.LOW,
                     fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.HAUNTED_MIRROR,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(HAUNTED_MIRROR),
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.THE_APOCALYPSE_DRAWS_NEAR,
                 map = SimpleMapResources.MapTitle.SUNNY_MEADOWS_RESTRICTED,
-                description = ChallengeResources.ChallengeDescription.THE_APOCALYPSE_DRAWS_NEAR,
+                description = THE_APOCALYPSE_DRAWS_NEAR,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     startingSanity = StartingSanity.SANITY_100,
                     sanityPillRestoration = SanityPillRestoration.RESTORE_30,
@@ -509,13 +513,13 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     sanityMonitor = SanityMonitor.ON,
                     activityMonitor = ActivityMonitor.ON,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.NONE
+                    cursedPossessionsQuantity = NONE
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.SLOW_AND_STEADY,
                 map = SimpleMapResources.MapTitle.CAMP_WOODWIND,
-                description = ChallengeResources.ChallengeDescription.SLOW_AND_STEADY,
+                description = SLOW_AND_STEADY,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     startingSanity = StartingSanity.SANITY_0,
                     sanityPillRestoration = SanityPillRestoration.RESTORE_0,
@@ -524,13 +528,13 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     weather = Weather.HEAVY_RAIN,
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.NONE
+                    cursedPossessionsQuantity = NONE
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.PARANORMAL_PAPARAZZI,
                 map = SimpleMapResources.MapTitle.POINT_HOPE,
-                description = ChallengeResources.ChallengeDescription.PARANORMAL_PAPARAZZI,
+                description = PARANORMAL_PAPARAZZI,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     sanityPillRestoration = SanityPillRestoration.RESTORE_35,
                     sanityDrainSpeed = SanityDrainSpeed.SPEED_150,
@@ -542,22 +546,22 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     setupTime = SetupTime.TIME_120,
                     doorsStartingOpen = DoorsStartingOpen.LOW,
                     numberOfHidingPlaces = NumberOfHidingPlaces.HIGH,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.MONKEY_PAW,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(MONKEY_PAW),
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.SANITY_MEDICATION),
-                        EquipmentPermissionDto(EquipmentIdentifier.INCENSE),
-                        EquipmentPermissionDto(EquipmentIdentifier.SALT),
-                        EquipmentPermissionDto(EquipmentIdentifier.CRUCIFIX),
-                        EquipmentPermissionDto(EquipmentIdentifier.EMF),
-                        EquipmentPermissionDto(EquipmentIdentifier.THERMOMETER)
+                        EquipmentPermissionDto(SANITY_MEDICATION),
+                        EquipmentPermissionDto(INCENSE),
+                        EquipmentPermissionDto(SALT),
+                        EquipmentPermissionDto(CRUCIFIX),
+                        EquipmentPermissionDto(EMF),
+                        EquipmentPermissionDto(THERMOMETER)
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.HIDE_AND_SEEK_EXTREME,
                 map = SimpleMapResources.MapTitle.CAMP_WOODWIND,
-                description = ChallengeResources.ChallengeDescription.HIDE_AND_SEEK_EXTREME,
+                description = HIDE_AND_SEEK_EXTREME,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     startingSanity = StartingSanity.SANITY_0,
                     sanityPillRestoration = SanityPillRestoration.RESTORE_0,
@@ -574,37 +578,37 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     numberOfHidingPlaces = NumberOfHidingPlaces.LOW,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.ON,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.MONKEY_PAW,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(MONKEY_PAW),
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.SANITY_MEDICATION),
-                        EquipmentPermissionDto(EquipmentIdentifier.INCENSE),
-                        EquipmentPermissionDto(EquipmentIdentifier.UV_LIGHT),
-                        EquipmentPermissionDto(EquipmentIdentifier.FLASHLIGHT),
+                        EquipmentPermissionDto(SANITY_MEDICATION),
+                        EquipmentPermissionDto(INCENSE),
+                        EquipmentPermissionDto(UV_LIGHT),
+                        EquipmentPermissionDto(FLASHLIGHT),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.GLOW_IN_THE_DARK,
                 map = SimpleMapResources.MapTitle.EDGEFIELD,
-                description = ChallengeResources.ChallengeDescription.GLOW_IN_THE_DARK,
+                description = GLOW_IN_THE_DARK,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
                     fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
                     equipmentPermissionDto = listOf(
-                        EquipmentPermissionDto(EquipmentIdentifier.MOTION_SENSOR),
-                        EquipmentPermissionDto(EquipmentIdentifier.FIRELIGHT),
-                        EquipmentPermissionDto(EquipmentIdentifier.SOUND_RECORDER),
-                        EquipmentPermissionDto(EquipmentIdentifier.FLASHLIGHT),
-                        EquipmentPermissionDto(EquipmentIdentifier.VIDEO_CAMERA),
-                        EquipmentPermissionDto(EquipmentIdentifier.TRIPOD),
+                        EquipmentPermissionDto(MOTION_SENSOR),
+                        EquipmentPermissionDto(FIRELIGHT),
+                        EquipmentPermissionDto(SOUND_RECORDER),
+                        EquipmentPermissionDto(FLASHLIGHT),
+                        EquipmentPermissionDto(VIDEO_CAMERA),
+                        EquipmentPermissionDto(TRIPOD),
                     )
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.DEJA_VU,
                 map = SimpleMapResources.MapTitle.TANGLEWOOD,
-                description = ChallengeResources.ChallengeDescription.DEJA_VU,
+                description = DEJA_VU,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     sprinting = Sprinting.OFF,
                     ghostSpeed = GhostSpeed.SPEED_75,
@@ -615,21 +619,21 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                     doorsStartingOpen = DoorsStartingOpen.NONE,
                     numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
                     fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-                    cursedPossession1 = CursedPossession.OUIJA_BOARD,
+                    cursedPossessionsQuantity = QUANTITY_1,
+                    cursedPossessions = listOf(OUIJA_BOARD)
                 )
             ),
             baseChallengeResourceDto.copy(
                 name = ChallengeTitle.TAG_YOURE_IT,
                 map = SimpleMapResources.MapTitle.BROWNSTONE_HIGHSCHOOL,
-                description = ChallengeResources.ChallengeDescription.TAG_YOURE_IT,
+                description = TAG_YOURE_IT,
                 settingsModelDto = baseChallengeResourceDto.settingsModelDto.copy(
                     startingSanity = StartingSanity.SANITY_0,
                     sanityPillRestoration = SanityPillRestoration.RESTORE_0,
                     playerSpeed = PlayerSpeed.SPEED_150,
                     gracePeriod = GracePeriod.PERIOD_1,
                     doorsStartingOpen = DoorsStartingOpen.HIGH,
-                    cursedPossessionsQuantity = CursedPossessionsQuantity.NONE
+                    cursedPossessionsQuantity = NONE
                 )
             ),
         )
@@ -653,7 +657,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         val responseType: DifficultyResponseType,
         val settingsModelDto: DifficultySettingsModelDto
     ) {
-        fun DifficultySettingsModelDto.toSettingsModelDto() = ChallengeModelDto.DifficultySettingsModelDto(
+        fun DifficultySettingsModelDto.toSettingsModelDto() = DifficultySettingsModelDto(
             startingSanity = startingSanity,
             sanityPillRestoration = sanityPillRestoration,
             sanityDrainSpeed = sanityDrainSpeed,
@@ -682,13 +686,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
             fuseBoxAtStartOfContract = fuseBoxAtStartOfContract,
             fuseBoxVisibleOnMap = fuseBoxVisibleOnMap,
             cursedPossessionsQuantity = cursedPossessionsQuantity,
-            cursedPossession1 = cursedPossession1,
-            cursedPossession2 = cursedPossession2,
-            cursedPossession3 = cursedPossession3,
-            cursedPossession4 = cursedPossession4,
-            cursedPossession5 = cursedPossession5,
-            cursedPossession6 = cursedPossession6,
-            cursedPossession7 = cursedPossession7,
+            cursedPossessions = cursedPossessions,
             equipmentPermissionDto = equipmentPermissionDto
         )
     }
@@ -722,19 +720,13 @@ class ChallengeLocalDataSource: ChallengeDataSource {
         val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract,
         val fuseBoxVisibleOnMap: FuzeBoxVisibleOnMap,
         val cursedPossessionsQuantity: CursedPossessionsQuantity,
-        val cursedPossession1: CursedPossession,
-        val cursedPossession2: CursedPossession,
-        val cursedPossession3: CursedPossession,
-        val cursedPossession4: CursedPossession,
-        val cursedPossession5: CursedPossession,
-        val cursedPossession6: CursedPossession,
-        val cursedPossession7: CursedPossession,
+        val cursedPossessions: List<CursedPossession>,
         val equipmentPermissionDto: List<EquipmentPermissionDto>
     ) {
         data class EquipmentPermissionDto(
             val identifier: EquipmentIdentifier,
             val quantity: Int = ALL,
-            val permission: Permission = Permission.REVOKED
+            val permission: Permission = REVOKED
         ) {
             enum class Permission {
                 PERMITTED,
