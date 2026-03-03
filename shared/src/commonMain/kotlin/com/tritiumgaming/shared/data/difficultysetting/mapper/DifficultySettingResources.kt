@@ -2,6 +2,38 @@ package com.tritiumgaming.shared.data.difficultysetting.mapper
 
 class DifficultySettingResources {
 
+    enum class DifficultySetting {
+        STARTING_SANITY,
+        SANITY_PILL_RESTORATION,
+        SANITY_DRAIN_SPEED,
+        SPRINTING,
+        PLAYER_SPEED,
+        FLASHLIGHTS,
+        LOSE_ITEMS_AND_CONSUMABLES,
+        GHOST_SPEED,
+        ROAMING_FREQUENCY,
+        CHANGING_FAVOURITE_ROOM,
+        ACTIVITY_LEVEL,
+        EVENT_FREQUENCY,
+        FRIENDLY_GHOST,
+        GRACE_PERIOD,
+        HUNT_DURATION,
+        KILLS_EXTEND_HUNTS,
+        EVIDENCE_GIVEN,
+        FINGERPRINT_CHANCE,
+        FINGERPRINT_DURATION,
+        SETUP_TIME,
+        WEATHER,
+        DOORS_STARTING_OPEN,
+        NUMBER_OF_HIDING_PLACES,
+        SANITY_MONITOR,
+        ACTIVITY_MONITOR,
+        FUSE_BOX_AT_START_OF_CONTRACT,
+        FUSE_BOX_VISIBLE_ON_MAP,
+        CURSED_POSSESSIONS_QUANTITY,
+        CURSED_POSSESSIONS
+    }
+
     enum class StartingSanity {
         SANITY_0,
         SANITY_25,
@@ -166,12 +198,12 @@ class DifficultySettingResources {
         OFF,
         ON
     }
-    enum class FuzeBoxAtStartOfContract {
+    enum class FuseBoxAtStartOfContract {
         BROKEN,
         OFF,
         ON
     }
-    enum class FuzeBoxVisibleOnMap {
+    enum class FuseBoxVisibleOnMap {
         OFF,
         ON
     }

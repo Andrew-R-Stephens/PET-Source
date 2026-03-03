@@ -13,8 +13,8 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintDuration
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Flashlights
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FriendlyGhost
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxAtStartOfContract
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxVisibleOnMap
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxVisibleOnMap
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GhostSpeed
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GracePeriod
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.HuntDuration
@@ -57,8 +57,8 @@ data class DifficultySettingsModel(
     val numberOfHidingPlaces: NumberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
     val sanityMonitor: SanityMonitor = SanityMonitor.ON,
     val activityMonitor: ActivityMonitor = ActivityMonitor.ON,
-    val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-    val fuseBoxVisibleOnMap: FuzeBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
+    val fuseBoxAtStartOfContract: FuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
+    val fuseBoxVisibleOnMap: FuseBoxVisibleOnMap = FuseBoxVisibleOnMap.ON,
     val cursedPossessionsQuantity: CursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
     val cursedPossessions: List<CursedPossession> = listOf(CursedPossession.RANDOM),
     val equipmentPermission: List<EquipmentPermission> = emptyList()
