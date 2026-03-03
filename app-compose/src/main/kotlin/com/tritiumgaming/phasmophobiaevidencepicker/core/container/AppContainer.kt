@@ -5,7 +5,7 @@ import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogT
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 
 class AppContainer(
-    val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
-    val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
-    val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
+    internal val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
+    internal val getTypographyByUUIDUseCase: GetMarketCatalogTypographyByUUIDUseCase,
+    internal val getPaletteByUUIDUseCase: GetMarketCatalogPaletteByUUIDUseCase,
 )

@@ -153,6 +153,7 @@ class PETApplication : Application(),
             setAppTimeAliveUseCase= coreContainer.setAppTimeAliveUseCase,
             incrementAppTimesOpenedUseCase = coreContainer.incrementAppTimesOpenedUseCase,
             setAppTimesOpenedUseCase= coreContainer.setAppTimesOpenedUseCase,
+            getCurrentChallengeUseCase = coreContainer.getCurrentChallengeUseCase
         )
 
         newsletterContainer = NewsletterContainer(
@@ -185,7 +186,8 @@ class PETApplication : Application(),
         investigationContainer = InvestigationContainer(
             applicationContext = applicationContext,
             // User Preferences
-            initFlowUserPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase
+            initFlowUserPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
+            getCurrentChallengeUseCase = coreContainer.getCurrentChallengeUseCase
         )
 
         codexContainer = CodexContainer()
