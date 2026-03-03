@@ -51,9 +51,7 @@ import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentT
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle.TRIPOD
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle.UV_LIGHT
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle.VIDEO_CAMERA
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficultysetting.dto.DifficultySettingsModelDto
-import com.tritiumgaming.shared.data.difficultysetting.dto.DifficultySettingsResourceModelDto
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Companion.ALL
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission.PERMITTED
@@ -64,7 +62,6 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession.MONKEY_PAW
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession.MUSIC_BOX
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession.OUIJA_BOARD
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession.RANDOM
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession.SUMMONING_CIRCLE
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession.TAROT_CARDS
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession.VOODOO_DOLL
@@ -75,17 +72,14 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DoorsStartingOpen
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EventFrequency
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EvidenceGiven
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintChance
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintDuration
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Flashlights
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FriendlyGhost
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxAtStartOfContract
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxVisibleOnMap
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxVisibleOnMap
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GhostSpeed
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GracePeriod
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.HuntDuration
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.KillsExtendHunts
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.LoseItemsAndConsumables
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.NumberOfHidingPlaces
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.PlayerSpeed
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.RoamingFrequency
@@ -108,8 +102,8 @@ class ChallengeLocalDataSource: ChallengeDataSource {
             settingsModelDto = DifficultySettingsModelDto(
                 flashlights = Flashlights.OFF,
                 doorsStartingOpen = DoorsStartingOpen.MEDIUM,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.ON,
                 cursedPossessionsQuantity = QUANTITY_1,
                 cursedPossessions = listOf(MUSIC_BOX),
                 equipmentPermission = listOf(
@@ -213,7 +207,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 huntDuration = HuntDuration.MEDIUM,
                 weather = Weather.SNOW,
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.BROKEN,
                 cursedPossessionsQuantity = NONE,
                 equipmentPermission = listOf(
                     EquipmentPermission(IGNITER, ALL),
@@ -284,7 +278,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
                 numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
                 sanityMonitor = SanityMonitor.OFF,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.BROKEN,
                 equipmentPermission = listOf(
                     EquipmentPermission(SOUND_RECORDER, 1),
                     EquipmentPermission(INCENSE),
@@ -305,7 +299,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 evidenceGiven = EvidenceGiven.COUNT_2,
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
                 sanityMonitor = SanityMonitor.OFF,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.BROKEN,
                 cursedPossessionsQuantity = QUANTITY_2,
                 cursedPossessions = listOf(
                     TAROT_CARDS,
@@ -325,7 +319,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 eventFrequency = EventFrequency.MEDIUM,
                 doorsStartingOpen = DoorsStartingOpen.MEDIUM,
                 numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
                 cursedPossessionsQuantity = QUANTITY_7,
                 cursedPossessions = listOf(
                     TAROT_CARDS,
@@ -354,7 +348,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 evidenceGiven = EvidenceGiven.COUNT_3,
                 doorsStartingOpen = DoorsStartingOpen.MEDIUM,
                 numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
                 cursedPossessionsQuantity = QUANTITY_1,
                 cursedPossessions = listOf(MONKEY_PAW),
                 equipmentPermission = listOf(
@@ -384,7 +378,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 setupTime = SetupTime.TIME_300,
                 doorsStartingOpen = DoorsStartingOpen.NONE,
                 numberOfHidingPlaces = NumberOfHidingPlaces.VERY_HIGH,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.BROKEN,
                 cursedPossessionsQuantity = QUANTITY_1,
                 cursedPossessions = listOf(OUIJA_BOARD),
                 equipmentPermission = listOf(
@@ -467,7 +461,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 setupTime = SetupTime.TIME_0,
                 doorsStartingOpen = DoorsStartingOpen.MEDIUM,
                 numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
                 cursedPossessionsQuantity = QUANTITY_1,
                 cursedPossessions = listOf(MUSIC_BOX),
             )
@@ -503,7 +497,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 evidenceGiven = EvidenceGiven.COUNT_0,
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
                 numberOfHidingPlaces = NumberOfHidingPlaces.LOW,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.OFF,
                 cursedPossessionsQuantity = QUANTITY_1,
                 cursedPossessions = listOf(HAUNTED_MIRROR),
             )
@@ -527,7 +521,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
                 sanityMonitor = SanityMonitor.ON,
                 activityMonitor = ActivityMonitor.ON,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
                 cursedPossessionsQuantity = NONE
             )
         ),
@@ -592,7 +586,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 setupTime = SetupTime.TIME_60,
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
                 numberOfHidingPlaces = NumberOfHidingPlaces.LOW,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.ON,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.ON,
                 cursedPossessionsQuantity = QUANTITY_1,
                 cursedPossessions = listOf(MONKEY_PAW),
                 equipmentPermission = listOf(
@@ -609,7 +603,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
             description = GLOW_IN_THE_DARK,
             settingsModelDto = DifficultySettingsModelDto(
                 doorsStartingOpen = DoorsStartingOpen.HIGH,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.BROKEN,
                 equipmentPermission = listOf(
                     EquipmentPermission(MOTION_SENSOR),
                     EquipmentPermission(FIRELIGHT),
@@ -633,7 +627,7 @@ class ChallengeLocalDataSource: ChallengeDataSource {
                 weather = Weather.LIGHT_RAIN,
                 doorsStartingOpen = DoorsStartingOpen.NONE,
                 numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.OFF,
                 cursedPossessionsQuantity = QUANTITY_1,
                 cursedPossessions = listOf(OUIJA_BOARD)
             )
