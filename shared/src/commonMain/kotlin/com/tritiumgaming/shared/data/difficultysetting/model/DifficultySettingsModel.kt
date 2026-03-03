@@ -60,13 +60,7 @@ data class DifficultySettingsModel(
     val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract,
     val fuseBoxVisibleOnMap: FuzeBoxVisibleOnMap,
     val cursedPossessionsQuantity: CursedPossessionsQuantity,
-    val cursedPossession1: CursedPossession,
-    val cursedPossession2: CursedPossession,
-    val cursedPossession3: CursedPossession,
-    val cursedPossession4: CursedPossession,
-    val cursedPossession5: CursedPossession,
-    val cursedPossession6: CursedPossession,
-    val cursedPossession7: CursedPossession,
+    val cursedPossessions: List<CursedPossession>,
     val equipmentPermission: List<EquipmentPermission> = emptyList()
 ) {
     data class EquipmentPermission(
