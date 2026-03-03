@@ -18,8 +18,8 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintDuration
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Flashlights
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FriendlyGhost
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxAtStartOfContract
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuzeBoxVisibleOnMap
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxAtStartOfContract
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FuseBoxVisibleOnMap
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GhostSpeed
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GracePeriod
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.HuntDuration
@@ -69,8 +69,8 @@ class DifficultyLocalDataSource: DifficultyDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.VERY_HIGH,
                 sanityMonitor = SanityMonitor.ON,
                 activityMonitor = ActivityMonitor.ON,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.ON,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.ON,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.ON,
                 cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1
             )
         ),
@@ -104,8 +104,8 @@ class DifficultyLocalDataSource: DifficultyDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.HIGH,
                 sanityMonitor = SanityMonitor.ON,
                 activityMonitor = ActivityMonitor.ON,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.ON,
                 cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1
             )
         ),
@@ -139,8 +139,8 @@ class DifficultyLocalDataSource: DifficultyDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
                 sanityMonitor = SanityMonitor.ON,
                 activityMonitor = ActivityMonitor.ON,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.ON,
                 cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1
             )
         ),
@@ -174,8 +174,8 @@ class DifficultyLocalDataSource: DifficultyDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.LOW,
                 sanityMonitor = SanityMonitor.OFF,
                 activityMonitor = ActivityMonitor.OFF,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.OFF,
                 cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1
             )
         ),
@@ -209,8 +209,8 @@ class DifficultyLocalDataSource: DifficultyDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.LOW,
                 sanityMonitor = SanityMonitor.OFF,
                 activityMonitor = ActivityMonitor.OFF,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.OFF,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.OFF,
                 cursedPossessionsQuantity = CursedPossessionsQuantity.NONE
             )
         ),
@@ -244,8 +244,8 @@ class DifficultyLocalDataSource: DifficultyDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
                 sanityMonitor = SanityMonitor.ON,
                 activityMonitor = ActivityMonitor.ON,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.ON,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.ON,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.OFF,
                 cursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1
             )
         ),
@@ -279,8 +279,8 @@ class DifficultyLocalDataSource: DifficultyDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
                 sanityMonitor = SanityMonitor.OFF,
                 activityMonitor = ActivityMonitor.OFF,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.BROKEN,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.OFF,
                 cursedPossessionsQuantity = CursedPossessionsQuantity.NONE
             )
         ),
@@ -314,8 +314,8 @@ class DifficultyLocalDataSource: DifficultyDataSource {
                 numberOfHidingPlaces = NumberOfHidingPlaces.NONE,
                 sanityMonitor = SanityMonitor.OFF,
                 activityMonitor = ActivityMonitor.OFF,
-                fuseBoxAtStartOfContract = FuzeBoxAtStartOfContract.BROKEN,
-                fuseBoxVisibleOnMap = FuzeBoxVisibleOnMap.OFF,
+                fuseBoxAtStartOfContract = FuseBoxAtStartOfContract.BROKEN,
+                fuseBoxVisibleOnMap = FuseBoxVisibleOnMap.OFF,
                 cursedPossessionsQuantity = CursedPossessionsQuantity.NONE
             )
         ),
