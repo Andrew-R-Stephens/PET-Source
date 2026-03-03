@@ -9,11 +9,11 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 
 class AccountContainer(
-    val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
-    val signInAccountUseCase: SignInAccountUseCase,
-    val signOutAccountUseCase: SignOutAccountUseCase,
-    val deactivateAccountUseCase: DeactivateAccountUseCase,
-    val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
-    val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
-    val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase
+    internal val getSignInCredentialsUseCase: GetSignInCredentialsUseCase,
+    internal val signInAccountUseCase: SignInAccountUseCase,
+    internal val signOutAccountUseCase: SignOutAccountUseCase,
+    internal val deactivateAccountUseCase: DeactivateAccountUseCase,
+    internal val observeAccountCreditsUseCase: ObserveAccountCreditsUseCase,
+    internal val observeAccountUnlockedPalettesUseCase: ObserveAccountUnlockedPalettesUseCase,
+    internal val observeAccountUnlockedTypographiesUseCase: ObserveAccountUnlockedTypographiesUseCase
 )

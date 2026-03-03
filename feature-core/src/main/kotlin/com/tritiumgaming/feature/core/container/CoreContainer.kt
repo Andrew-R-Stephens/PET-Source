@@ -12,6 +12,9 @@ import com.tritiumgaming.data.account.source.remote.CredentialsDataSourceImpl
 import com.tritiumgaming.data.account.source.remote.FirestoreAccountRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreAuthRemoteDataSource
 import com.tritiumgaming.data.account.source.remote.FirestoreUserRemoteDataSource
+import com.tritiumgaming.data.challenges.repository.ChallengeRepositoryImpl
+import com.tritiumgaming.data.challenges.source.ChallengeDataSource
+import com.tritiumgaming.data.challenges.source.local.ChallengeLocalDataSource
 import com.tritiumgaming.data.globalpreferences.repository.GlobalPreferencesRepositoryImpl
 import com.tritiumgaming.data.globalpreferences.source.datastore.GlobalPreferencesDatastoreDataSource
 import com.tritiumgaming.data.language.repository.LanguageRepositoryImpl
@@ -46,6 +49,9 @@ import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccoun
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.ObserveAccountUnlockedTypographiesUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountcredit.RemoveAccountCreditsUseCase
 import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketplaceAgreementStateUseCase
+import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepository
+import com.tritiumgaming.shared.data.challenge.usecase.GetChallengesUseCase
+import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.language.repository.LanguageRepository
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
@@ -95,6 +101,20 @@ class CoreContainer(
     firestore: FirebaseFirestore,
     firebaseAuth: FirebaseAuth
 ) {
+    // Challenges
+    private val challengeRepository: ChallengeRepository by lazy {
+        val challengeLocalDataSource: ChallengeDataSource = ChallengeLocalDataSource()
+
+        ChallengeRepositoryImpl(
+            localSource = challengeLocalDataSource
+        )
+    }
+    val getChallengesUseCase = GetChallengesUseCase(
+        repository = challengeRepository
+    )
+    val getCurrentChallengeUseCase = GetCurrentChallengeUseCase(
+        useCase = getChallengesUseCase
+    )
 
     // Newsletter
     private val newsletterRepository: NewsletterRepository by lazy {

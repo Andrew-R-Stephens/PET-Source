@@ -7,10 +7,10 @@ import com.tritiumgaming.shared.data.language.usecase.SaveCurrentLanguageUseCase
 import com.tritiumgaming.shared.data.language.usecase.SetDefaultLanguageUseCase
 
 class LanguageContainer(
-    val getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase,
-    val getDefaultLanguageUseCase: GetDefaultLanguageUseCase,
-    val setDefaultLanguageUseCase: SetDefaultLanguageUseCase,
+    internal val getAvailableLanguagesUseCase: GetAvailableLanguagesUseCase,
+    internal val getDefaultLanguageUseCase: GetDefaultLanguageUseCase,
+    internal val setDefaultLanguageUseCase: SetDefaultLanguageUseCase,
     //val initLanguageDataStoreUseCase: SetupLanguageUseCase,
-    val initFlowLanguageUseCase: InitFlowLanguageUseCase,
-    val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
+    internal val initFlowLanguageUseCase: InitFlowLanguageUseCase,
+    internal val saveCurrentLanguageUseCase: SaveCurrentLanguageUseCase,
 )

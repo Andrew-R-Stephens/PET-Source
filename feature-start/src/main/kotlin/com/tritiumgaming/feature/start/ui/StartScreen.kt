@@ -57,6 +57,7 @@ import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.icon.impl.base.ButtonScratchedIcon
+import com.tritiumgaming.core.ui.icon.impl.base.CalendarIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GearIcon
 import com.tritiumgaming.core.ui.icon.impl.base.HamburgerMenuIcon
 import com.tritiumgaming.core.ui.icon.impl.base.InfoIcon
@@ -538,6 +539,15 @@ private fun HeaderNavBar(
             navController.navigate(NavRoute.SCREEN_LANGUAGE.route)
         }
     }
+    val calendarIcon: @Composable () -> Unit = {
+        CalendarIcon(
+            modifier = Modifier
+                .size(48.dp),
+            colors = IconVectorColors.defaults(
+                fillColor = LocalPalette.current.onSurface
+            )
+        )
+    }
     val discordIcon: @Composable () -> Unit = {
         BadgeIcon(
             modifier = Modifier
@@ -692,6 +702,10 @@ private fun HeaderNavBar(
                 }) {
                 discordIcon()
             }
+            /*SecondarySelector(
+                onClick = { navController.navigate(NavRoute.SCREEN_LANGUAGE.route) }) {
+                calendarIcon()
+            }*/
         },
         colors = IconDropdownMenuColors(
             primaryContentBackground = LocalPalette.current.surfaceContainer,

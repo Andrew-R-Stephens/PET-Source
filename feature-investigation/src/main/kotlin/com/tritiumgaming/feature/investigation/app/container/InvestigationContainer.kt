@@ -24,6 +24,7 @@ import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSo
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
+import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.repository.CodexRepository
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
@@ -71,7 +72,8 @@ import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferences
 
 class InvestigationContainer(
     applicationContext: Context,
-    private val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase
+    private val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase,
+    internal val getCurrentChallengeUseCase: GetCurrentChallengeUseCase
 ) {
 
     internal val preferencesUseCaseBundle = PreferencesUseCaseBundle(

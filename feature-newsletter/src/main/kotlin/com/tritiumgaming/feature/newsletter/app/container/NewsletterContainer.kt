@@ -7,8 +7,8 @@ import com.tritiumgaming.shared.data.newsletter.usecase.SaveNewsletterInboxLastR
 
 class NewsletterContainer(
     //val setupNewsletterUseCase: SetupNewsletterUseCase,
-    val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
-    val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
-    val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
-    val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
+    internal val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
+    internal val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
+    internal val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
+    internal val saveNewsletterInboxLastReadDateUseCase: SaveNewsletterInboxLastReadDateUseCase,
 )

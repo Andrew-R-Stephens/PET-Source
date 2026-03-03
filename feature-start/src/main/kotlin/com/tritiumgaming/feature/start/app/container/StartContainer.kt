@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.start.app.container
 
+import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.FetchNewsletterInboxesUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterDatastoreUseCase
 import com.tritiumgaming.shared.data.newsletter.usecase.GetFlowNewsletterInboxesUseCase
@@ -13,16 +14,17 @@ import com.tritiumgaming.shared.data.review.usecase.timesopened.SetAppTimesOpene
 
 class StartContainer(
     //val setupNewsletterUseCase: SetupNewsletterUseCase,
-    val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
-    val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
-    val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
+    internal val getFlowNewsletterDatastoreUseCase: GetFlowNewsletterDatastoreUseCase,
+    internal val getFlowNewsletterInboxesUseCase: GetFlowNewsletterInboxesUseCase,
+    internal val getNewsletterInboxesUseCase: FetchNewsletterInboxesUseCase,
     //val setupGlobalPreferencesUseCase: SetupUserPreferencesUseCase,
-    val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
-    val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
+    internal val initFlowGlobalPreferencesUseCase: InitFlowUserPreferencesUseCase,
+    internal val setAllowIntroductionUseCase: SetAllowIntroductionUseCase,
     //val initReviewTrackerDataStoreUseCase: SetupReviewTrackerUseCase,
-    val initFlowReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
-    val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
-    val setAppTimeAliveUseCase: SetAppTimeAliveUseCase,
-    val incrementAppTimesOpenedUseCase: IncrementAppTimesOpenedByUseCase,
-    val setAppTimesOpenedUseCase: SetAppTimesOpenedUseCase,
+    internal val initFlowReviewTrackerUseCase: InitFlowReviewTrackerUseCase,
+    internal val setReviewRequestStatusUseCase: SetReviewRequestStatusUseCase,
+    internal val setAppTimeAliveUseCase: SetAppTimeAliveUseCase,
+    internal val incrementAppTimesOpenedUseCase: IncrementAppTimesOpenedByUseCase,
+    internal val setAppTimesOpenedUseCase: SetAppTimesOpenedUseCase,
+    internal val getCurrentChallengeUseCase: GetCurrentChallengeUseCase
 )
