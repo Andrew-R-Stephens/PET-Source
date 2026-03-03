@@ -4,19 +4,21 @@ import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.Diffi
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficulty.model.DifficultyModel
+import com.tritiumgaming.shared.data.difficultysetting.dto.DifficultySettingsModelDto
+import com.tritiumgaming.shared.data.difficultysetting.dto.toDomain
 
 data class DifficultyModelDto(
     val type: DifficultyType,
-    val name: DifficultyTitle,
+    val difficultyTitle: DifficultyTitle,
     val responseType: DifficultyResponseType,
-    val difficultySettingsModelDto: DifficultySettingsModelDto
+    val settingsModelDto: DifficultySettingsModelDto
 )
 
 internal fun DifficultyModelDto.toDomain() = DifficultyModel(
     type = type,
-    name = name,
+    difficultyTitle = difficultyTitle,
     responseType = responseType,
-    difficultySettingsModel = difficultySettingsModelDto.toDomain()
+    settingsModel = settingsModelDto.toDomain()
 )
 
 internal fun List<DifficultyModelDto>.toDomain() = map{ dto ->

@@ -1,15 +1,15 @@
 package com.tritiumgaming.data.difficulty.source.local
 
 import com.tritiumgaming.data.difficulty.dto.DifficultyModelDto
-import com.tritiumgaming.data.difficulty.dto.DifficultySettingsModelDto
 import com.tritiumgaming.data.difficulty.source.DifficultyDataSource
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
+import com.tritiumgaming.shared.data.difficultysetting.dto.DifficultySettingsModelDto
+import com.tritiumgaming.shared.data.difficultysetting.dto.DifficultySettingsResourceModelDto
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityLevel
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityMonitor
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ChangingFavoriteRoom
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossession
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossessionsQuantity
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.DoorsStartingOpen
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EventFrequency
@@ -41,9 +41,9 @@ class DifficultyLocalDataSource: DifficultyDataSource {
     private val difficultyResourceDto = listOf(
         DifficultyResourceDto(
             type = DifficultyType.AMATEUR,
-            name = DifficultyTitle.AMATEUR,
+            difficultyTitle = DifficultyTitle.AMATEUR,
             responseType = DifficultyResponseType.KNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto(
+            settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_100,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_40,
                 sanityDrainSpeed = SanityDrainSpeed.SPEED_100,
@@ -76,9 +76,9 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         ),
         DifficultyResourceDto(
             type = DifficultyType.INTERMEDIATE,
-            name = DifficultyTitle.INTERMEDIATE,
+            difficultyTitle = DifficultyTitle.INTERMEDIATE,
             responseType = DifficultyResponseType.KNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto(
+            settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_100,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_35,
                 sanityDrainSpeed = SanityDrainSpeed.SPEED_150,
@@ -111,9 +111,9 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         ),
         DifficultyResourceDto(
             type = DifficultyType.PROFESSIONAL,
-            name = DifficultyTitle.PROFESSIONAL,
+            difficultyTitle = DifficultyTitle.PROFESSIONAL,
             responseType = DifficultyResponseType.UNKNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto(
+            settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_100,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_30,
                 sanityDrainSpeed = SanityDrainSpeed.SPEED_200,
@@ -146,9 +146,9 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         ),
         DifficultyResourceDto(
             type = DifficultyType.NIGHTMARE,
-            name = DifficultyTitle.NIGHTMARE,
+            difficultyTitle = DifficultyTitle.NIGHTMARE,
             responseType = DifficultyResponseType.UNKNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto(
+            settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_100,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_25,
                 sanityDrainSpeed = SanityDrainSpeed.SPEED_200,
@@ -181,9 +181,9 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         ),
         DifficultyResourceDto(
             type = DifficultyType.INSANITY,
-            name = DifficultyTitle.INSANITY,
+            difficultyTitle = DifficultyTitle.INSANITY,
             responseType = DifficultyResponseType.UNKNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto(
+            settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_75,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_20,
                 sanityDrainSpeed = SanityDrainSpeed.SPEED_200,
@@ -216,9 +216,9 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         ),
         DifficultyResourceDto(
             type = DifficultyType.APOCALYPSE_1,
-            name = DifficultyTitle.APOCALYPSE_1,
+            difficultyTitle = DifficultyTitle.APOCALYPSE_1,
             responseType = DifficultyResponseType.UNKNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto(
+            settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_75,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_20,
                 sanityDrainSpeed = SanityDrainSpeed.SPEED_200,
@@ -251,9 +251,9 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         ),
         DifficultyResourceDto(
             type = DifficultyType.APOCALYPSE_2,
-            name = DifficultyTitle.APOCALYPSE_2,
+            difficultyTitle = DifficultyTitle.APOCALYPSE_2,
             responseType = DifficultyResponseType.UNKNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto(
+            settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_50,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_5,
                 sanityDrainSpeed = SanityDrainSpeed.SPEED_200,
@@ -286,9 +286,9 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         ),
         DifficultyResourceDto(
             type = DifficultyType.APOCALYPSE_3,
-            name = DifficultyTitle.APOCALYPSE_3,
+            difficultyTitle = DifficultyTitle.APOCALYPSE_3,
             responseType = DifficultyResponseType.UNKNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto(
+            settingsModelDto = DifficultySettingsResourceModelDto(
                 startingSanity = StartingSanity.SANITY_0,
                 sanityPillRestoration = SanityPillRestoration.RESTORE_0,
                 sanityDrainSpeed = SanityDrainSpeed.SPEED_200,
@@ -321,15 +321,15 @@ class DifficultyLocalDataSource: DifficultyDataSource {
         ),
         DifficultyResourceDto(
             type = DifficultyType.CUSTOM,
-            name = DifficultyTitle.CUSTOM,
+            difficultyTitle = DifficultyTitle.CUSTOM,
             responseType = DifficultyResponseType.UNKNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto()
+            settingsModelDto = DifficultySettingsResourceModelDto()
         ),
         DifficultyResourceDto(
             type = DifficultyType.CHALLENGE,
-            name = DifficultyTitle.CHALLENGE,
+            difficultyTitle = DifficultyTitle.CHALLENGE,
             responseType = DifficultyResponseType.UNKNOWN,
-            difficultyResourceSettingsModelDto = DifficultyResourceSettingsModelDto()
+            settingsModelDto = DifficultySettingsResourceModelDto()
         ),
     )
 
@@ -340,18 +340,18 @@ class DifficultyLocalDataSource: DifficultyDataSource {
 
     private fun DifficultyResourceDto.toDifficultyModelDto() = DifficultyModelDto(
         type = type,
-        name = name,
+        difficultyTitle = difficultyTitle,
         responseType = responseType,
-        difficultySettingsModelDto = difficultyResourceSettingsModelDto.toDifficultySettingsModelDto()
+        settingsModelDto = settingsModelDto.toDifficultySettingsModelDto()
     )
 
     private data class DifficultyResourceDto(
         val type: DifficultyType,
-        val name: DifficultyTitle,
+        val difficultyTitle: DifficultyTitle,
         val responseType: DifficultyResponseType,
-        val difficultyResourceSettingsModelDto: DifficultyResourceSettingsModelDto
+        val settingsModelDto: DifficultySettingsResourceModelDto
     ) {
-        fun DifficultyResourceSettingsModelDto.toDifficultySettingsModelDto() =
+        fun DifficultySettingsResourceModelDto.toDifficultySettingsModelDto() =
             DifficultySettingsModelDto(
                 startingSanity = startingSanity,
                 sanityPillRestoration = sanityPillRestoration,
@@ -385,44 +385,5 @@ class DifficultyLocalDataSource: DifficultyDataSource {
             )
     }
 
-    data class DifficultyResourceSettingsModelDto(
-        val startingSanity: StartingSanity = StartingSanity.SANITY_100,
-        val sanityPillRestoration: SanityPillRestoration = SanityPillRestoration.RESTORE_40,
-        val sanityDrainSpeed: SanityDrainSpeed = SanityDrainSpeed.SPEED_100,
-        val sprinting: Sprinting = Sprinting.ON,
-        val playerSpeed: PlayerSpeed = PlayerSpeed.SPEED_100,
-        val flashlights: Flashlights = Flashlights.ON,
-        val loseItemsAndConsumables: LoseItemsAndConsumables = LoseItemsAndConsumables.ON,
-        val ghostSpeed: GhostSpeed = GhostSpeed.SPEED_100,
-        val roamingFrequency: RoamingFrequency = RoamingFrequency.MEDIUM,
-        val changingFavouriteRoom: ChangingFavoriteRoom = ChangingFavoriteRoom.NONE,
-        val activityLevel: ActivityLevel = ActivityLevel.HIGH,
-        val eventFrequency: EventFrequency = EventFrequency.LOW,
-        val friendlyGhost: FriendlyGhost = FriendlyGhost.OFF,
-        val gracePeriod: GracePeriod = GracePeriod.PERIOD_5,
-        val huntDuration: HuntDuration = HuntDuration.LOW,
-        val killsExtendHunts: KillsExtendHunts = KillsExtendHunts.OFF,
-        val evidenceGiven: EvidenceGiven = EvidenceGiven.COUNT_3,
-        val fingerprintChance: FingerprintChance = FingerprintChance.CHANCE_100,
-        val fingerprintDuration: FingerprintDuration = FingerprintDuration.DURATION_120,
-        val setupTime: SetupTime = SetupTime.TIME_300,
-        val weather: Weather = Weather.RANDOM,
-        val doorsStartingOpen: DoorsStartingOpen = DoorsStartingOpen.NONE,
-        val numberOfHidingPlaces: NumberOfHidingPlaces = NumberOfHidingPlaces.VERY_HIGH,
-        val sanityMonitor: SanityMonitor = SanityMonitor.ON,
-        val activityMonitor: ActivityMonitor = ActivityMonitor.ON,
-        val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract = FuzeBoxAtStartOfContract.ON,
-        val fuseBoxVisibleOnMap: FuzeBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
-        val cursedPossessionsQuantity: CursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-        val cursedPossessions: List<CursedPossession> = listOf(
-            CursedPossession.RANDOM,
-            CursedPossession.RANDOM,
-            CursedPossession.RANDOM,
-            CursedPossession.RANDOM,
-            CursedPossession.RANDOM,
-            CursedPossession.RANDOM,
-            CursedPossession.RANDOM,
-        )
 
-    )
 }
