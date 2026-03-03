@@ -2,9 +2,7 @@ package com.tritiumgaming.shared.data.journal.model
 
 import androidx.compose.runtime.Stable
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.model.Ghost
-import com.tritiumgaming.shared.data.ghost.model.GhostType
 
 actual class GhostEvidence {
 

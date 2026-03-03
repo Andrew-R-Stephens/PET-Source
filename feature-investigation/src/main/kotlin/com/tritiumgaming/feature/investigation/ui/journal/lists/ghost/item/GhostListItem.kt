@@ -40,10 +40,10 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
+import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.NEGATIVE
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.NEUTRAL
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.POSITIVE
-import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 
 @Composable
 fun LazyItemScope.GhostListItem(

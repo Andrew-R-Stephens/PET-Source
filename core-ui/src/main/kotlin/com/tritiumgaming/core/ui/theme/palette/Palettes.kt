@@ -24,7 +24,6 @@ import com.tritiumgaming.core.ui.theme.badge_strategemhero
 import com.tritiumgaming.core.ui.theme.badge_translator
 import com.tritiumgaming.core.ui.theme.badge_winner
 import com.tritiumgaming.core.ui.theme.black
-import com.tritiumgaming.core.ui.theme.black_A75
 import com.tritiumgaming.core.ui.theme.blue_M125
 import com.tritiumgaming.core.ui.theme.blue_M150
 import com.tritiumgaming.core.ui.theme.blue_M175

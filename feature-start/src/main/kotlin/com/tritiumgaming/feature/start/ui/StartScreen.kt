@@ -1,7 +1,6 @@
 package com.tritiumgaming.feature.start.ui
 
 import android.content.Intent
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -55,7 +54,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.icon.impl.base.ButtonScratchedIcon
 import com.tritiumgaming.core.ui.icon.impl.base.CalendarIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GearIcon
@@ -65,7 +63,6 @@ import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
 import com.tritiumgaming.core.ui.icon.impl.base.PersonIcon
 import com.tritiumgaming.core.ui.icon.impl.base.ReviewIcon
 import com.tritiumgaming.core.ui.icon.impl.base.StoreIcon
-import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
 import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
@@ -78,6 +75,8 @@ import com.tritiumgaming.core.ui.theme.palette.ClassicPalette
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.ClassicTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.admob.BannerAd
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
 import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors
 import com.tritiumgaming.core.ui.widgets.menus.SecondarySelector

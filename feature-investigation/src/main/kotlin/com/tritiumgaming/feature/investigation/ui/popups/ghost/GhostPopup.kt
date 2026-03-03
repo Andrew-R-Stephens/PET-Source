@@ -57,7 +57,6 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toLong
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toSanityBounds
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.popups.common.PageButton
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord

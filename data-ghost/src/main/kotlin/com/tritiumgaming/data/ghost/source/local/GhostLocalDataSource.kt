@@ -3,12 +3,11 @@ package com.tritiumgaming.data.ghost.source.local
 import com.tritiumgaming.data.ghost.dto.GhostDto
 import com.tritiumgaming.data.ghost.source.GhostDataSource
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostDescription
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostHuntInfo
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIcon
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostSpeed
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostStrength
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostWeakness

@@ -10,9 +10,9 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.icon.impl.base.CrosshairsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.ShieldIcon
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 
 @Composable
 fun PreventHuntIcon(

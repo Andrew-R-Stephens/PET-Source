@@ -25,10 +25,10 @@ import com.tritiumgaming.feature.investigation.app.mappers.ghost.toSanityBounds
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import kotlin.math.max
 
 @Composable

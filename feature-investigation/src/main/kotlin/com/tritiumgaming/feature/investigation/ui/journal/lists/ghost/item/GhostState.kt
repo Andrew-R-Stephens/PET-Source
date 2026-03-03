@@ -4,8 +4,8 @@ import com.tritiumgaming.feature.investigation.app.mappers.ghost.toHasLosMultipl
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
-import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 
 data class GhostState(

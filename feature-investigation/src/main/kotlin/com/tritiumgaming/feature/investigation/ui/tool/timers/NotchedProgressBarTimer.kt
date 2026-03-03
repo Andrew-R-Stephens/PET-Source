@@ -23,8 +23,6 @@ import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextCategoryTitle
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
 
 @Composable
 internal fun NotchedProgressBarTimer(
