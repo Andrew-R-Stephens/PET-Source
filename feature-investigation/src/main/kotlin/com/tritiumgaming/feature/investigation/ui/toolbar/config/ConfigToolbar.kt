@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.toolbar.impl
+package com.tritiumgaming.feature.investigation.ui.toolbar.config
 
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.content.res.Configuration.ORIENTATION_PORTRAIT
@@ -45,14 +45,14 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.InvestigationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.ScrollableToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarItem
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
-import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-@Composable
-fun OperationToolbar(
+/*@Composable
+fun ConfigToolbar(
     modifier: Modifier = Modifier,
-    toolbarUiState: ToolbarUiState,
+    operationToolbarUiState: ConfigToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
     containerColor: Color// = Color.Unspecified
 ) {
@@ -67,13 +67,13 @@ fun OperationToolbar(
                     .size(48.dp)
                     .padding(2.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
+                    toolbarUiActions.onChangeToolbarCategory(ConfigToolbarUiState.Category.TOOL_CONFIG)
                 }
             ){
                 ConfigIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
+                    if(operationToolbarUiState.category == ConfigToolbarUiState.Category.TOOL_CONFIG) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
@@ -110,13 +110,13 @@ fun OperationToolbar(
                 modifier = Modifier
                     .size(48.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
+                    toolbarUiActions.onChangeToolbarCategory(ConfigToolbarUiState.Category.TOOL_ANALYZER)
                 }
             ) {
                 AnalyticsIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
+                    if(operationToolbarUiState.category == ConfigToolbarUiState.Category.TOOL_ANALYZER) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
@@ -135,13 +135,13 @@ fun OperationToolbar(
                 modifier = Modifier
                     .size(48.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_TIMERS)
+                    toolbarUiActions.onChangeToolbarCategory(ConfigToolbarUiState.Category.TOOL_TIMERS)
                 }
             ){
                 StopwatchIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_TIMERS) {
+                    if(operationToolbarUiState.category == ConfigToolbarUiState.Category.TOOL_TIMERS) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
@@ -159,13 +159,13 @@ fun OperationToolbar(
                 modifier = Modifier
                     .size(48.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+                    toolbarUiActions.onChangeToolbarCategory(ConfigToolbarUiState.Category.TOOL_FOOTSTEP)
                 }
             ){
                 FootprintsIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                    if(operationToolbarUiState.category == ConfigToolbarUiState.Category.TOOL_FOOTSTEP) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
@@ -186,7 +186,7 @@ fun OperationToolbar(
 @Composable
 fun OperationToolRail(
     modifier: Modifier = Modifier,
-    toolbarUiState: ToolbarUiState,
+    operationToolbarUiState: ConfigToolbarUiState,
     toolbarUiActions: ToolbarUiActions,
     containerColor: Color
 ) {
@@ -201,13 +201,13 @@ fun OperationToolRail(
                     .size(48.dp)
                     .padding(2.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_CONFIG)
+                    toolbarUiActions.onChangeToolbarCategory(ConfigToolbarUiState.Category.TOOL_CONFIG)
                 }
             ){
                 ConfigIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_CONFIG) {
+                    if(operationToolbarUiState.category == ConfigToolbarUiState.Category.TOOL_CONFIG) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
@@ -244,13 +244,13 @@ fun OperationToolRail(
                 modifier = Modifier
                     .size(48.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_ANALYZER)
+                    toolbarUiActions.onChangeToolbarCategory(ConfigToolbarUiState.Category.TOOL_ANALYZER)
                 }
             ){
                 AnalyticsIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_ANALYZER) {
+                    if(operationToolbarUiState.category == ConfigToolbarUiState.Category.TOOL_ANALYZER) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
@@ -268,13 +268,13 @@ fun OperationToolRail(
                 modifier = Modifier
                     .size(48.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_TIMERS)
+                    toolbarUiActions.onChangeToolbarCategory(ConfigToolbarUiState.Category.TOOL_TIMERS)
                 }
             ){
                 StopwatchIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_TIMERS) {
+                    if(operationToolbarUiState.category == ConfigToolbarUiState.Category.TOOL_TIMERS) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
@@ -292,13 +292,13 @@ fun OperationToolRail(
                 modifier = Modifier
                     .size(48.dp),
                 onClick = {
-                    toolbarUiActions.onChangeToolbarCategory(ToolbarUiState.Category.TOOL_FOOTSTEP)
+                    toolbarUiActions.onChangeToolbarCategory(ConfigToolbarUiState.Category.TOOL_FOOTSTEP)
                 }
             ){
                 FootprintsIcon(
                     modifier = Modifier
                         .fillMaxSize(),
-                    if(toolbarUiState.category == ToolbarUiState.Category.TOOL_FOOTSTEP) {
+                    if(operationToolbarUiState.category == ConfigToolbarUiState.Category.TOOL_FOOTSTEP) {
                         IconVectorColors.defaults(
                             fillColor = LocalPalette.current.primary,
                             strokeColor = LocalPalette.current.primary,
@@ -313,7 +313,7 @@ fun OperationToolRail(
             }
         }
     )
-}
+}*/
 
 @Composable
 private fun ResetButton(

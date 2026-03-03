@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement.SpaceBetween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -54,7 +55,7 @@ private fun OperationCarouselPreview() {
 fun OperationConfigCarousel(
     modifier: Modifier = Modifier,
     state: ConfigCarouselUiState,
-    icon: @Composable (Modifier) -> Unit = {},
+    leadingIcon: @Composable (Modifier) -> Unit = {},
     textStyle: TextStyle = TextStyle.Default,
     onColor: Color = Color.Unspecified,
     containerColor: Color = Color.Unspecified,
@@ -66,13 +67,13 @@ fun OperationConfigCarousel(
         color = containerColor
     ) {
         Row(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight(),
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
 
-            icon(
+            leadingIcon(
                 Modifier
                     .size(48.dp)
                     .padding(12.dp)
@@ -85,18 +86,20 @@ fun OperationConfigCarousel(
                 horizontalArrangement = SpaceBetween
             ) {
 
-                PETImageButton(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clickable(onClick = { actions.onLeftClick() }),
-                    type = PETImageButtonType.BACK,
-                    tint = onColor
-                )
+                if(state.enabled) {
+                    PETImageButton(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clickable(onClick = { actions.onLeftClick() }),
+                        type = PETImageButtonType.BACK,
+                        tint = onColor
+                    )
+                }
 
                 Box(
                     modifier = Modifier
                         .weight(1f)
-                        .wrapContentHeight()
+                        .height(48.dp)
                         .fillMaxWidth()
                         .align(Alignment.CenterVertically),
                     contentAlignment = Alignment.Center
@@ -116,15 +119,18 @@ fun OperationConfigCarousel(
 
                 }
 
-                PETImageButton(
-                    modifier = Modifier
-                        .size(48.dp)
-                        .clickable(onClick = { actions.onRightClick() }),
-                    type = PETImageButtonType.FORWARD,
-                    tint = onColor
-                )
+                if(state.enabled) {
+                    PETImageButton(
+                        modifier = Modifier
+                            .size(48.dp)
+                            .clickable(onClick = { actions.onRightClick() }),
+                        type = PETImageButtonType.FORWARD,
+                        tint = onColor
+                    )
+                }
 
             }
+
         }
     }
 }

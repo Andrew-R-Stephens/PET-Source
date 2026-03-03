@@ -19,11 +19,20 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -72,11 +81,12 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
-import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
-import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolRail
-import com.tritiumgaming.feature.investigation.ui.toolbar.impl.OperationToolbar
+import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
+import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.DensityType
+import kotlinx.coroutines.launch
 
 @Composable
 fun InvestigationSoloScreen(
@@ -89,6 +99,7 @@ fun InvestigationSoloScreen(
 
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun InvestigationContent(
     investigationViewModel: InvestigationScreenViewModel
@@ -96,9 +107,11 @@ private fun InvestigationContent(
     val uiDensityType = LocalUiConfiguration.current.densityType
     val uiIsRtl = LocalUiConfiguration.current.isRtl
 
+    var showCustomDifficultyBottomSheet by remember { mutableStateOf(false) }
+
     val popupUiState by investigationViewModel.popupUiState.collectAsStateWithLifecycle()
 
-    val toolbarUiState by investigationViewModel.toolbarUiState.collectAsStateWithLifecycle()
+    val toolbarUiState by investigationViewModel.primaryToolbarUiState.collectAsStateWithLifecycle()
 
     val timerUiState by investigationViewModel.timerUiState.collectAsStateWithLifecycle()
     val phaseUiState by investigationViewModel.phaseUiState.collectAsStateWithLifecycle()
@@ -140,7 +153,14 @@ private fun InvestigationContent(
         },
     )
 
-    val toolbarUiActions = ToolbarUiActions(
+    val operationToolbarUiActions = ToolbarUiActions(
+        onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
+        onChangeToolbarCategory = { category -> investigationViewModel.setToolbarCategory(category)
+        },
+        onReset = { investigationViewModel.reset() }
+    )
+
+    val configSelectUiActions = ToolbarUiActions(
         onToggleCollapseToolbar = { investigationViewModel.toggleToolbarState() },
         onChangeToolbarCategory = { category -> investigationViewModel.setToolbarCategory(category)
         },
@@ -247,11 +267,13 @@ private fun InvestigationContent(
     val mapUiStateBundle = ConfigStateBundle(
         carouselUiState = ConfigCarouselUiState(
             label = mapConfigUiState.name.toStringResource(
-                SimpleMapResources.MapTitleLength.ABBREVIATED)
+                SimpleMapResources.MapTitleLength.ABBREVIATED),
+            enabled = mapConfigUiState.enabled
         ),
         dropdownUiState = ConfigDropdownUiState(
             options = mapConfigUiState.allMaps.map { it
                 .toStringResource(SimpleMapResources.MapTitleLength.FULL) },
+            enabled = mapConfigUiState.enabled,
             label = mapConfigUiState.name
                 .toStringResource(SimpleMapResources.MapTitleLength.ABBREVIATED)
         )
@@ -306,14 +328,14 @@ private fun InvestigationContent(
     )
 
     val investigationUiState = InvestigationUiState(
-        toolbarUiState = toolbarUiState
+        operationToolbarUiState = toolbarUiState
     )
 
     val investigationUiActions = InvestigationUiActions(
         evidenceListUi = evidenceListUiActions,
         ghostListUi = ghostListUiActions,
         ghostListItemUi = ghostListUiItemActions,
-        toolbarUi = toolbarUiActions,
+        toolbarUi = operationToolbarUiActions,
         bpmUi = bpmToolUiActions
     )
 
@@ -351,7 +373,7 @@ private fun InvestigationContent(
                     modifier = modifier,
                     state = mapUiStateBundle.carouselUiState,
                     actions = mapUiActions.carouselUiActions,
-                    icon = { icon(it) },
+                    leadingIcon = { icon(it) },
                     textStyle = textStyle,
                     onColor = onColor,
                 )
@@ -392,7 +414,7 @@ private fun InvestigationContent(
                     modifier = modifier,
                     state = difficultyUiStateBundle.carouselUiState,
                     actions = difficultyUiActions.carouselUiActions,
-                    icon = { icon(it) },
+                    leadingIcon = { icon(it) },
                     textStyle = textStyle,
                     onColor = onColor,
                 )
@@ -508,8 +530,8 @@ private fun InvestigationContent(
             horizontalAlignment = Alignment.Start
         ) {
             when (toolbarUiState.category) {
-                ToolbarUiState.Category.TOOL_NONE -> {}
-                ToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
+                OperationToolbarUiState.Category.TOOL_NONE -> {}
+                OperationToolbarUiState.Category.TOOL_CONFIG -> OperationConfigs(
                     modifier = Modifier
                         .height(IntrinsicSize.Max),
                     mapConfigComponent = { modifier -> mapConfigComponent(modifier) },
@@ -520,12 +542,12 @@ private fun InvestigationContent(
                     phaseComponent = { modifier -> }
                 )
 
-                ToolbarUiState.Category.TOOL_ANALYZER -> OperationDetails(
+                OperationToolbarUiState.Category.TOOL_ANALYZER -> OperationDetails(
                     modifier = modifier,
                     operationDetailsUiState = operationDetailsUiState
                 )
 
-                ToolbarUiState.Category.TOOL_TIMERS -> TimerTools(
+                OperationToolbarUiState.Category.TOOL_TIMERS -> TimerTools(
                     modifier = modifier,
                     smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
                     smudgeBlindingBundle = smudgeBlindingBundle,
@@ -534,7 +556,7 @@ private fun InvestigationContent(
                     fingerprintTimerBundle = fingerprintTimerBundle
                 )
 
-                ToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
+                OperationToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
                     modifier = Modifier,
                     state = bpmToolUiState,
                     actions = bpmToolUiActions
@@ -543,6 +565,33 @@ private fun InvestigationContent(
             }
         }
     }
+
+    val customDifficultySheetComponent: @Composable (Modifier) -> Unit = { modifier ->
+        val sheetState = rememberModalBottomSheetState()
+        val scope = rememberCoroutineScope()
+
+        if (showCustomDifficultyBottomSheet) {
+            ModalBottomSheet(
+                modifier = modifier,
+                onDismissRequest = {
+                    showCustomDifficultyBottomSheet = false
+                },
+                sheetState = sheetState
+            ) {
+                // Sheet content
+                Button(onClick = {
+                    scope.launch { sheetState.hide() }.invokeOnCompletion {
+                        if (!sheetState.isVisible) {
+                            showCustomDifficultyBottomSheet = false
+                        }
+                    }
+                }) {
+                    Text("Hide bottom sheet")
+                }
+            }
+        }
+    }
+
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
     val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
@@ -557,7 +606,8 @@ private fun InvestigationContent(
                         state = investigationUiState,
                         actions = investigationUiActions,
                         journalComponent = { modifier -> journalComponent(modifier) },
-                        bottomSheetComponent = { modifier -> sheetComponent(modifier) }
+                        bottomSheetComponent = { modifier -> sheetComponent(modifier) },
+                        customDifficultySheetComponent = { modifier -> customDifficultySheetComponent(modifier) }
                     )
                 }
             )
@@ -572,7 +622,8 @@ private fun InvestigationContent(
                         state = investigationUiState,
                         actions = investigationUiActions,
                         journalComponent = { modifier -> journalComponent(modifier) },
-                        sideSheetComponent = { modifier -> sheetComponent(modifier) }
+                        sideSheetComponent = { modifier -> sheetComponent(modifier) },
+                        customDifficultySheetComponent = { modifier -> customDifficultySheetComponent(modifier) }
                     )
                 }
             )
@@ -632,14 +683,15 @@ private fun ColumnScope.Investigation(
     state: InvestigationUiState,
     actions: InvestigationUiActions,
     bottomSheetComponent: @Composable (Modifier) -> Unit,
-    journalComponent: @Composable (Modifier) -> Unit
+    journalComponent: @Composable (Modifier) -> Unit,
+    customDifficultySheetComponent: @Composable (Modifier) -> Unit
 ) {
 
     val toolbarComponent: @Composable (Modifier) -> Unit = { modifier ->
         OperationToolbar(
             modifier = modifier
                 .heightIn(min = 48.dp),
-            toolbarUiState = state.toolbarUiState,
+            operationToolbarUiState = state.operationToolbarUiState,
             toolbarUiActions = actions.toolbarUi,
             containerColor = LocalPalette.current.surfaceContainerHigh
         )
@@ -656,7 +708,7 @@ private fun ColumnScope.Investigation(
                 .fillMaxWidth()
                 .animateContentSize()
                 .then(
-                    if (!state.toolbarUiState.isCollapsed)
+                    if (!state.operationToolbarUiState.isCollapsed)
                         Modifier
                             .alpha(1f)
                             .wrapContentHeight()
@@ -669,6 +721,8 @@ private fun ColumnScope.Investigation(
         }
     )
 
+    customDifficultySheetComponent(Modifier)
+
 }
 
 @Composable
@@ -677,13 +731,14 @@ private fun RowScope.Investigation(
     actions: InvestigationUiActions,
     journalComponent: @Composable (Modifier) -> Unit,
     sideSheetComponent: @Composable (Modifier) -> Unit,
+    customDifficultySheetComponent: @Composable (Modifier) -> Unit
 ) {
 
     val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
         OperationToolRail(
             modifier = modifier
                 .widthIn(min = 48.dp),
-            toolbarUiState = state.toolbarUiState,
+            operationToolbarUiState = state.operationToolbarUiState,
             toolbarUiActions = actions.toolbarUi,
             containerColor = LocalPalette.current.surfaceContainerHigh
         )
@@ -698,7 +753,7 @@ private fun RowScope.Investigation(
                 .fillMaxHeight()
                 .animateContentSize()
                 .then(
-                    if (!state.toolbarUiState.isCollapsed)
+                    if (!state.operationToolbarUiState.isCollapsed)
                         Modifier
                             .fillMaxWidth(.35f)
                             .alpha(1f)
@@ -712,6 +767,9 @@ private fun RowScope.Investigation(
     )
 
     journalComponent(Modifier)
+
+    customDifficultySheetComponent(Modifier)
+
 }
 
 @Composable
@@ -741,7 +799,7 @@ private fun ToolbarBottomSheet(
 }
 
 @Composable
-private fun RowScope.ToolbarSideSheet(
+private fun ToolbarSideSheet(
     modifier: Modifier = Modifier,
     selectRailComponent: @Composable (Modifier) -> Unit = {},
     content: @Composable (Modifier) -> Unit = {}

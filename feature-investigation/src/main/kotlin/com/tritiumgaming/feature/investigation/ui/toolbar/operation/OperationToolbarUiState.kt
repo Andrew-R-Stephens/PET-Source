@@ -1,8 +1,8 @@
-package com.tritiumgaming.feature.investigation.ui.toolbar
+package com.tritiumgaming.feature.investigation.ui.toolbar.operation
 
 import androidx.annotation.FloatRange
 
-data class ToolbarUiState(
+data class OperationToolbarUiState(
     internal val isCollapsed: Boolean = false,
     internal val category: Category = Category.TOOL_CONFIG,
     @param:FloatRange(from = 0.0, to = 1.0)

@@ -4,5 +4,6 @@ import androidx.annotation.StringRes
 
 data class ConfigDropdownUiState(
     @field:StringRes val options: List<Int> = emptyList(),
-    @field:StringRes val label: Int = 0
+    @field:StringRes val label: Int = 0,
+    val enabled: Boolean = true
 )

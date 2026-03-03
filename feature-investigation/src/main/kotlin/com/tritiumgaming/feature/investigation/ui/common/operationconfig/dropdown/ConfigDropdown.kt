@@ -121,7 +121,6 @@ private fun DropdownList(
 
     var expanded by remember { mutableStateOf(false) }
 
-
     CompositionLocalProvider(
         LocalMinimumInteractiveComponentSize provides 0.dp
     ) {
@@ -130,7 +129,9 @@ private fun DropdownList(
                 .fillMaxWidth()
                 .wrapContentHeight(),
             expanded = expanded,
-            onExpandedChange = { expanded = !expanded },
+            onExpandedChange = {
+                expanded = if(state.enabled) !expanded else false
+            },
         ) {
 
             Box(
@@ -154,6 +155,7 @@ private fun DropdownList(
                         fontSize = 18.sp,
                         color = onColor,
                     ),
+                    enabled = state.enabled,
                     interactionSource = interactionSource,
                     decorationBox = { innerTextField ->
                         TextFieldDefaults.DecorationBox(
@@ -164,7 +166,9 @@ private fun DropdownList(
                             visualTransformation = VisualTransformation.None,
                             interactionSource = interactionSource,
                             trailingIcon = {
-                                ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                                if(state.enabled) {
+                                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                                }
                             },
                             placeholder = {
                                 Text(

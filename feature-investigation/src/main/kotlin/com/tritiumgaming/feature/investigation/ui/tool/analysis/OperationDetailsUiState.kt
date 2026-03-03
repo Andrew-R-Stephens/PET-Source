@@ -2,7 +2,9 @@ package com.tritiumgaming.feature.investigation.ui.tool.analysis
 
 import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
+import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.phase.model.Phase
@@ -15,11 +17,10 @@ internal data class OperationDetailsUiState(
 ) {
     internal data class DifficultyDetails(
         internal val type: DifficultyResources.DifficultyType = DifficultyResources.DifficultyType.AMATEUR,
-        internal val name: DifficultyResources.DifficultyTitle = DifficultyResources.DifficultyTitle.AMATEUR,
+        internal val difficultyTitle: DifficultyResources.DifficultyTitle = DifficultyResources.DifficultyTitle.AMATEUR,
         internal val responseType: DifficultyResources.DifficultyResponseType = DifficultyResources.DifficultyResponseType.KNOWN,
-        internal val modifier: Float = 0f,
-        internal val setupTime: Long = 0L,
-        internal val initialSanity: Float = 0f
+        internal val challengeTitle: ChallengeResources.ChallengeTitle? = null,
+        internal val settings: DifficultySettingsModel = DifficultySettingsModel()
     )
 
     internal data class MapDetails(

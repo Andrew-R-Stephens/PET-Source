@@ -66,7 +66,7 @@ fun SanityDrainSpeed.toFloat(): Float =
         SanityDrainSpeed.SPEED_200 -> 2.0f
     }
 
-fun Sprinting.toStringResource(): Int =
+@StringRes fun Sprinting.toStringResource(): Int =
     when(this) {
         Sprinting.OFF -> R.string.difficulty_setting_state_off
         Sprinting.ON -> R.string.difficulty_setting_state_on
@@ -82,13 +82,13 @@ fun PlayerSpeed.toFloat(): Float =
         PlayerSpeed.SPEED_150 -> 1.5f
     }
 
-fun Flashlights.toStringResource(): Int =
+@StringRes fun Flashlights.toStringResource(): Int =
     when(this) {
         Flashlights.OFF -> R.string.difficulty_setting_state_off
         Flashlights.ON -> R.string.difficulty_setting_state_on
     }
 
-fun LoseItemsAndConsumables.toStringResource(): Int =
+@StringRes fun LoseItemsAndConsumables.toStringResource(): Int =
     when(this) {
         LoseItemsAndConsumables.OFF -> R.string.difficulty_setting_state_off
         LoseItemsAndConsumables.ON -> R.string.difficulty_setting_state_on
@@ -139,7 +139,7 @@ fun GhostSpeed.toFloat(): Float =
         FriendlyGhost.ON -> R.string.difficulty_setting_state_on
     }
 
-@StringRes fun GracePeriod.toLong(): Long =
+fun GracePeriod.toLong(): Long =
     when(this) {
         GracePeriod.PERIOD_0 -> 0L
         GracePeriod.PERIOD_1 -> 1000L
@@ -214,6 +214,7 @@ fun SetupTime.toLong(): Long =
         Weather.CLEAR -> R.string.difficulty_setting_state_weather_clear
         Weather.FOG -> R.string.difficulty_setting_state_weather_fog
         Weather.SUNRISE -> R.string.difficulty_setting_state_weather_sunrise
+        Weather.BLOOD_MOON -> R.string.difficulty_setting_state_weather_bloodmoon
     }
 
 @StringRes fun DoorsStartingOpen.toStringResource(): Int =

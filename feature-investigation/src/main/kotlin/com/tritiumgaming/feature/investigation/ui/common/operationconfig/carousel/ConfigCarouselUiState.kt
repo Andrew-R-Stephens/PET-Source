@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui.common.operationconfig.carousel
 
 data class ConfigCarouselUiState(
-    val label: Int
+    val label: Int,
+    val enabled: Boolean = true
 )

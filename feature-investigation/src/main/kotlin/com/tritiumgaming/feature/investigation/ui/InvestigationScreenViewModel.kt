@@ -27,7 +27,10 @@ import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigU
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
-import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.config.ConfigToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
+import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
@@ -43,6 +46,7 @@ import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyResponseTyp
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
+import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
@@ -134,6 +138,7 @@ class InvestigationScreenViewModel private constructor(
     private val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase = codexUseCaseBundle.getEquipmentTypeByEvidenceTypeUseCase,
     preferencesUseCaseBundle: PreferencesUseCaseBundle,
     initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase = preferencesUseCaseBundle.initFlowUserPreferencesUseCase,
+    private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase
 ) : ViewModel() {
 
     private val _preferences: StateFlow<InvestigationScreenUserPreferences> =
@@ -195,12 +200,12 @@ class InvestigationScreenViewModel private constructor(
 
     data class DifficultyState(
         val index: Int = 0,
-        val type: DifficultyType = DifficultyType.entries[index],
-        val name: DifficultyTitle = DifficultyTitle.AMATEUR,
-        val modifier: Float = 0f,
-        val time: Long = 0L,
-        val initialSanity: Float = 0f,
-        val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN
+        val type: DifficultyType = DifficultyType.AMATEUR,
+        val difficultyTitle: DifficultyTitle = DifficultyTitle.AMATEUR,
+        val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN,
+        val challengeTitle: ChallengeResources.ChallengeTitle? = null,
+        val map: MapTitle? = null,
+        val settings: DifficultySettingsModel = DifficultySettingsModel()
     )
 
     private val _mapState = MutableStateFlow(MapState())
@@ -209,11 +214,14 @@ class InvestigationScreenViewModel private constructor(
     private val _difficultyState = MutableStateFlow(DifficultyState())
     val difficultyState = _difficultyState
 
-    private val _mapConfigUiState: StateFlow<MapConfigUiState> = _mapState.map { state ->
-        val name = getSimpleMapNameUseCase(state.index).getOrThrow()
+    private val _mapConfigUiState: StateFlow<MapConfigUiState> = combine(
+        mapState, difficultyState
+    ) { mapState, difficultyState ->
+        val name = maps[mapState.index].mapName
 
         MapConfigUiState(
             name = name,
+            enabled = difficultyState.type != DifficultyType.CHALLENGE,
             allMaps = maps.map { map -> map.mapName }
         )
     }.stateIn(
@@ -224,16 +232,16 @@ class InvestigationScreenViewModel private constructor(
     internal val mapConfigUiState = _mapConfigUiState
 
     private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState.map { state ->
-        val name = getDifficultyNameUseCase(state.index).getOrThrow()
+        val name = difficulties[state.index].difficultyTitle
 
         DifficultyConfigUiState(
             name = name,
-            allDifficulties = difficulties.map { difficulty -> difficulty.name }
+            allDifficulties = difficulties.map { difficulty -> difficulty.difficultyTitle }
         )
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
-        initialValue = DifficultyConfigUiState(allDifficulties = difficulties.map { it.name })
+        initialValue = DifficultyConfigUiState(allDifficulties = difficulties.map { it.difficultyTitle })
     )
     internal val difficultyConfigUiState = _difficultyConfigUiState
 
@@ -246,14 +254,23 @@ class InvestigationScreenViewModel private constructor(
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
-    private val _toolbarUiState = MutableStateFlow(
-        ToolbarUiState(
+    private val _operationToolbarUiState = MutableStateFlow(
+        OperationToolbarUiState(
             isCollapsed = false,
-            category = ToolbarUiState.Category.TOOL_CONFIG,
+            category = OperationToolbarUiState.Category.TOOL_CONFIG,
             openWidth = 0.5f
         )
     )
-    internal val toolbarUiState = _toolbarUiState.asStateFlow()
+    internal val primaryToolbarUiState = _operationToolbarUiState.asStateFlow()
+
+    private val _configToolbarUiState = MutableStateFlow(
+        ConfigToolbarUiState(
+            isCollapsed = false,
+            category = ConfigToolbarUiState.Category.TOOL_CONFIG,
+            openWidth = 0.5f
+        )
+    )
+    internal val configToolbarUiState = _configToolbarUiState.asStateFlow()
 
     private val _popupUiState = MutableStateFlow(JournalPopupUiState())
     internal val popupUiState = _popupUiState.asStateFlow()
@@ -277,8 +294,8 @@ class InvestigationScreenViewModel private constructor(
         }
 
         OperationSanityUiState(
-            sanityMax = _difficultyState.value.initialSanity,
-            drainModifier = mapModifier * _difficultyState.value.modifier
+            sanityMax = _difficultyState.value.settings.startingSanity.toFloat(),
+            drainModifier = mapModifier * _difficultyState.value.settings.sanityDrainSpeed.toFloat()
         )
     }.stateIn(
         scope = viewModelScope,
@@ -384,11 +401,10 @@ class InvestigationScreenViewModel private constructor(
                 ),
                 difficultyDetails = OperationDetailsUiState.DifficultyDetails(
                     type = difficultyState.type,
-                    name = difficultyState.name,
+                    difficultyTitle = difficultyState.difficultyTitle,
                     responseType = difficultyState.responseType,
-                    modifier = difficultyState.modifier,
-                    setupTime = difficultyState.time,
-                    initialSanity = difficultyState.initialSanity,
+                    challengeTitle = difficultyState.challengeTitle,
+                    settings = difficultyState.settings
                 ),
                 ghostDetails = OperationDetailsUiState.GhostDetails(
                     activeGhosts = ghostStates.let { ghostStates ->
@@ -419,7 +435,7 @@ class InvestigationScreenViewModel private constructor(
         _timerUiState.update {
             TimerUiState(
                 startTime = TIME_DEFAULT,
-                remainingTime = _difficultyState.value.time,
+                remainingTime = _difficultyState.value.settings.setupTime.toLong(),
                 paused = true
             )
         }
@@ -457,16 +473,16 @@ class InvestigationScreenViewModel private constructor(
      * Toolbar Ui Functions
      */
     internal fun toggleToolbarState() {
-        _toolbarUiState.update {
+        _operationToolbarUiState.update {
             it.copy(
                 isCollapsed = !it.isCollapsed
             )
         }
     }
 
-    internal fun setToolbarCategory(category: ToolbarUiState.Category) {
-        if(toolbarUiState.value.category == category) {
-            _toolbarUiState.update {
+    internal fun setToolbarCategory(category: OperationToolbarUiState.Category) {
+        if(primaryToolbarUiState.value.category == category) {
+            _operationToolbarUiState.update {
                 val isCollapsed = !it.isCollapsed
 
                 it.copy(
@@ -474,11 +490,11 @@ class InvestigationScreenViewModel private constructor(
                     category = if(!isCollapsed)
                         category
                     else
-                        ToolbarUiState.Category.TOOL_NONE
+                        OperationToolbarUiState.Category.TOOL_NONE
                 )
             }
         } else {
-            _toolbarUiState.update {
+            _operationToolbarUiState.update {
                 it.copy(
                     isCollapsed = false,
                     category = category
@@ -741,7 +757,7 @@ class InvestigationScreenViewModel private constructor(
     /** Defaults all persistent data. */
     private fun resetSanity() {
         //TODO warnTriggered = false
-        setStartTimeByProgress(SanityLevel.MAX_SANITY - _difficultyState.value.initialSanity)
+        setStartTimeByProgress(SanityLevel.MAX_SANITY - _difficultyState.value.settings.startingSanity.toFloat())
         tickSanity()
     }
 
@@ -829,7 +845,8 @@ class InvestigationScreenViewModel private constructor(
                             getDurationByProgress(playerSanityUiState.value.insanityLevel)
 
                 val remainingTime =
-                    if(it.remainingTime == TIME_DEFAULT) _difficultyState.value.time
+                    if(it.remainingTime == TIME_DEFAULT)
+                        _difficultyState.value.settings.setupTime.toLong()
                     else it.remainingTime
 
                 it.copy(
@@ -948,29 +965,44 @@ class InvestigationScreenViewModel private constructor(
         index: Int = 0
     ) {
         try {
-            val name = getDifficultyNameUseCase(index).getOrThrow()
-            val type = DifficultyType.entries[index]
-            val modifier = getDifficultyModifierUseCase(index).getOrThrow().toFloat()
-            val time = getDifficultyTimeUseCase(index).getOrThrow().toLong()
-            val initialSanity = getDifficultyInitialSanityUseCase(index).getOrThrow().toFloat()
-            val responseType = getDifficultyResponseTypeUseCase(index).getOrThrow()
+            val difficulty = difficulties[index]
+            val type = difficulty.type
+            val difficultyTitle = difficulty.difficultyTitle
+            val responseType = difficulty.responseType
+
+            val settings = difficulty.settingsModel
+
+            var difficultyState = DifficultyState(
+                index = index,
+                type = type,
+                difficultyTitle = difficultyTitle,
+                responseType = responseType,
+                settings = settings
+            )
+
+            if(type == DifficultyType.CHALLENGE) {
+                getCurrentChallengeUseCase().onSuccess {
+                    val challengeTitle = it.challengeTitle
+                    difficultyState = difficultyState.copy(
+                        challengeTitle = challengeTitle,
+                        settings = it.settingsModel
+                    )
+
+                    maps.indexOfFirst { map -> map.mapName == it.map }.let { index ->
+                        if(index != -1) setMapIndex(index)
+                    }
+
+                }
+            }
 
             _difficultyState.update {
-                it.copy(
-                    index = index,
-                    type = type,
-                    name = name,
-                    modifier = modifier,
-                    time = time,
-                    initialSanity = initialSanity,
-                    responseType = responseType
-                )
+                difficultyState
             }
 
             _playerSanityUiState.update {
                 it.copy(
-                    sanityLevel = _difficultyState.value.initialSanity,
-                    insanityLevel = 1f - _difficultyState.value.initialSanity
+                    sanityLevel = _difficultyState.value.settings.startingSanity.toFloat(),
+                    insanityLevel = 1f - _difficultyState.value.settings.startingSanity.toFloat()
                 )
             }
 
@@ -982,7 +1014,7 @@ class InvestigationScreenViewModel private constructor(
 
             updateGhostScores()
 
-            setTimeRemaining(_difficultyState.value.time)
+            setTimeRemaining(_difficultyState.value.settings.setupTime.toLong())
             resetTimer()
 
         } catch (e: Exception) {
@@ -993,10 +1025,10 @@ class InvestigationScreenViewModel private constructor(
 
         Log.d("InvestigationViewModel", "DifficultyUiState:" +
                 "\n\tindex: ${_difficultyState.value.index}" +
-                "\n\tname: ${_difficultyState.value.name}" +
-                "\n\tmodifier: ${_difficultyState.value.modifier}" +
-                "\n\ttime: ${_difficultyState.value.time}" +
-                "\n\tinitialSanity: ${_difficultyState.value.initialSanity}" +
+                "\n\tname: ${_difficultyState.value.difficultyTitle}" +
+                "\n\tmodifier: ${_difficultyState.value.settings.sanityDrainSpeed.toFloat()}" +
+                "\n\ttime: ${_difficultyState.value.settings.setupTime.toLong()}" +
+                "\n\tinitialSanity: ${_difficultyState.value.settings.startingSanity.toFloat()}" +
                 "\n\tresponseType: ${_difficultyState.value.responseType}")
 
     }
@@ -1115,13 +1147,15 @@ class InvestigationScreenViewModel private constructor(
                     val simpleMapUseCaseBundle = container.simpleMapUseCaseBundle
                     val codexUseCaseBundle = container.codexUseCaseBundle
                     val preferencesUseCaseBundle = container.preferencesUseCaseBundle
+                    val getCurrentChallengeUseCase = container.getCurrentChallengeUseCase
 
                     InvestigationScreenViewModel(
                         journalUseCaseBundle = journalUseCaseBundle,
                         difficultyUseCaseBundle = difficultyUseCaseBundle,
                         simpleMapUseCaseBundle = simpleMapUseCaseBundle,
                         codexUseCaseBundle = codexUseCaseBundle,
-                        preferencesUseCaseBundle = preferencesUseCaseBundle
+                        preferencesUseCaseBundle = preferencesUseCaseBundle,
+                        getCurrentChallengeUseCase = getCurrentChallengeUseCase
                     )
                 }
             }
