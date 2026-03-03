@@ -14,7 +14,7 @@ class GetDifficultyInitialSanityUseCase(
 
         try {
             val sanity = result.getOrNull()?.let {
-                it[index].difficultySettingsModel.startingSanity
+                it[index].settingsModel.startingSanity
             } ?: return Result.failure(Exception("Could not get difficulty initial sanity"))
 
             return Result.success(sanity)

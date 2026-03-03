@@ -7,7 +7,7 @@ import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsM
 
 data class DifficultyModel(
     val type: DifficultyType,
-    val name: DifficultyTitle,
+    val difficultyTitle: DifficultyTitle,
     val responseType: DifficultyResponseType,
-    val difficultySettingsModel: DifficultySettingsModel
+    val settingsModel: DifficultySettingsModel
 )

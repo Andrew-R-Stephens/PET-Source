@@ -1,5 +1,6 @@
-package com.tritiumgaming.data.difficulty.dto
+package com.tritiumgaming.shared.data.difficultysetting.dto
 
+import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityLevel
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityMonitor
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ChangingFavoriteRoom
@@ -29,41 +30,41 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Sprinting
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
-import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 
 data class DifficultySettingsModelDto(
-    val startingSanity: StartingSanity,
-    val sanityPillRestoration: SanityPillRestoration,
-    val sanityDrainSpeed: SanityDrainSpeed,
-    val sprinting: Sprinting,
-    val playerSpeed: PlayerSpeed,
-    val flashlights: Flashlights,
-    val loseItemsAndConsumables: LoseItemsAndConsumables,
-    val ghostSpeed: GhostSpeed,
-    val roamingFrequency: RoamingFrequency,
-    val changingFavouriteRoom: ChangingFavoriteRoom,
-    val activityLevel: ActivityLevel,
-    val eventFrequency: EventFrequency,
-    val friendlyGhost: FriendlyGhost,
-    val gracePeriod: GracePeriod,
-    val huntDuration: HuntDuration,
-    val killsExtendHunts: KillsExtendHunts,
-    val evidenceGiven: EvidenceGiven,
-    val fingerprintChance: FingerprintChance,
-    val fingerprintDuration: FingerprintDuration,
-    val setupTime: SetupTime,
-    val weather: Weather,
-    val doorsStartingOpen: DoorsStartingOpen,
-    val numberOfHidingPlaces: NumberOfHidingPlaces,
-    val sanityMonitor: SanityMonitor,
-    val activityMonitor: ActivityMonitor,
-    val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract,
-    val fuseBoxVisibleOnMap: FuzeBoxVisibleOnMap,
-    val cursedPossessionsQuantity: CursedPossessionsQuantity,
-    val cursedPossessions: List<CursedPossession>
+    val startingSanity: StartingSanity = StartingSanity.SANITY_100,
+    val sanityPillRestoration: SanityPillRestoration = SanityPillRestoration.RESTORE_30,
+    val sanityDrainSpeed: SanityDrainSpeed = SanityDrainSpeed.SPEED_200,
+    val sprinting: Sprinting = Sprinting.ON,
+    val playerSpeed: PlayerSpeed = PlayerSpeed.SPEED_100,
+    val flashlights: Flashlights = Flashlights.ON,
+    val loseItemsAndConsumables: LoseItemsAndConsumables = LoseItemsAndConsumables.ON,
+    val ghostSpeed: GhostSpeed = GhostSpeed.SPEED_100,
+    val roamingFrequency: RoamingFrequency = RoamingFrequency.HIGH,
+    val changingFavouriteRoom: ChangingFavoriteRoom = ChangingFavoriteRoom.LOW,
+    val activityLevel: ActivityLevel = ActivityLevel.LOW,
+    val eventFrequency: EventFrequency = EventFrequency.MEDIUM,
+    val friendlyGhost: FriendlyGhost = FriendlyGhost.OFF,
+    val gracePeriod: GracePeriod = GracePeriod.PERIOD_3,
+    val huntDuration: HuntDuration = HuntDuration.HIGH,
+    val killsExtendHunts: KillsExtendHunts = KillsExtendHunts.OFF,
+    val evidenceGiven: EvidenceGiven = EvidenceGiven.COUNT_3,
+    val fingerprintChance: FingerprintChance = FingerprintChance.CHANCE_100,
+    val fingerprintDuration: FingerprintDuration = FingerprintDuration.DURATION_120,
+    val setupTime: SetupTime = SetupTime.TIME_0,
+    val weather: Weather = Weather.RANDOM,
+    val doorsStartingOpen: DoorsStartingOpen = DoorsStartingOpen.MEDIUM,
+    val numberOfHidingPlaces: NumberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
+    val sanityMonitor: SanityMonitor = SanityMonitor.ON,
+    val activityMonitor: ActivityMonitor = ActivityMonitor.ON,
+    val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
+    val fuseBoxVisibleOnMap: FuzeBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
+    val cursedPossessionsQuantity: CursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
+    val cursedPossessions: List<CursedPossession> = listOf(CursedPossession.RANDOM),
+    val equipmentPermission: List<EquipmentPermission> = emptyList()
 )
 
-internal fun DifficultySettingsModelDto.toDomain() = DifficultySettingsModel(
+fun DifficultySettingsModelDto.toDomain() = DifficultySettingsModel(
     startingSanity = startingSanity,
     sanityPillRestoration = sanityPillRestoration,
     sanityDrainSpeed = sanityDrainSpeed,
@@ -92,5 +93,6 @@ internal fun DifficultySettingsModelDto.toDomain() = DifficultySettingsModel(
     fuseBoxAtStartOfContract = fuseBoxAtStartOfContract,
     fuseBoxVisibleOnMap = fuseBoxVisibleOnMap,
     cursedPossessionsQuantity = cursedPossessionsQuantity,
-    cursedPossessions = cursedPossessions
+    cursedPossessions = cursedPossessions,
+    equipmentPermission = equipmentPermission
 )

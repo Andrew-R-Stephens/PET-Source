@@ -14,7 +14,7 @@ class GetDifficultyTimeUseCase(
 
         try {
             val time = result.getOrNull()?.let {
-                it[index].difficultySettingsModel.setupTime
+                it[index].settingsModel.setupTime
             } ?: return Result.failure(Exception("Could not get difficulty time"))
 
             return Result.success(time)

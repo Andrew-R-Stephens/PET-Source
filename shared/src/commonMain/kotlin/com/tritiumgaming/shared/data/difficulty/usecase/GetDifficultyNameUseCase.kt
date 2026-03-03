@@ -12,7 +12,7 @@ class GetDifficultyNameUseCase(
 
             try {
                 val title = result.getOrNull()?.let {
-                    it[index].name
+                    it[index].difficultyTitle
                 } ?: return Result.failure(Exception("Could not get difficulty name"))
 
                 return Result.success(title)

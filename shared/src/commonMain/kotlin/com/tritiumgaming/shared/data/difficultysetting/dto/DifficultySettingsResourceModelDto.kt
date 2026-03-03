@@ -1,6 +1,5 @@
-package com.tritiumgaming.shared.data.difficultysetting.model
+package com.tritiumgaming.shared.data.difficultysetting.dto
 
-import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityLevel
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ActivityMonitor
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.ChangingFavoriteRoom
@@ -31,35 +30,43 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 
-data class DifficultySettingsModel(
+data class DifficultySettingsResourceModelDto(
     val startingSanity: StartingSanity = StartingSanity.SANITY_100,
-    val sanityPillRestoration: SanityPillRestoration = SanityPillRestoration.RESTORE_30,
-    val sanityDrainSpeed: SanityDrainSpeed = SanityDrainSpeed.SPEED_200,
+    val sanityPillRestoration: SanityPillRestoration = SanityPillRestoration.RESTORE_40,
+    val sanityDrainSpeed: SanityDrainSpeed = SanityDrainSpeed.SPEED_100,
     val sprinting: Sprinting = Sprinting.ON,
     val playerSpeed: PlayerSpeed = PlayerSpeed.SPEED_100,
     val flashlights: Flashlights = Flashlights.ON,
     val loseItemsAndConsumables: LoseItemsAndConsumables = LoseItemsAndConsumables.ON,
     val ghostSpeed: GhostSpeed = GhostSpeed.SPEED_100,
-    val roamingFrequency: RoamingFrequency = RoamingFrequency.HIGH,
-    val changingFavouriteRoom: ChangingFavoriteRoom = ChangingFavoriteRoom.LOW,
-    val activityLevel: ActivityLevel = ActivityLevel.LOW,
-    val eventFrequency: EventFrequency = EventFrequency.MEDIUM,
+    val roamingFrequency: RoamingFrequency = RoamingFrequency.MEDIUM,
+    val changingFavouriteRoom: ChangingFavoriteRoom = ChangingFavoriteRoom.NONE,
+    val activityLevel: ActivityLevel = ActivityLevel.HIGH,
+    val eventFrequency: EventFrequency = EventFrequency.LOW,
     val friendlyGhost: FriendlyGhost = FriendlyGhost.OFF,
-    val gracePeriod: GracePeriod = GracePeriod.PERIOD_3,
-    val huntDuration: HuntDuration = HuntDuration.HIGH,
+    val gracePeriod: GracePeriod = GracePeriod.PERIOD_5,
+    val huntDuration: HuntDuration = HuntDuration.LOW,
     val killsExtendHunts: KillsExtendHunts = KillsExtendHunts.OFF,
     val evidenceGiven: EvidenceGiven = EvidenceGiven.COUNT_3,
     val fingerprintChance: FingerprintChance = FingerprintChance.CHANCE_100,
     val fingerprintDuration: FingerprintDuration = FingerprintDuration.DURATION_120,
-    val setupTime: SetupTime = SetupTime.TIME_0,
+    val setupTime: SetupTime = SetupTime.TIME_300,
     val weather: Weather = Weather.RANDOM,
-    val doorsStartingOpen: DoorsStartingOpen = DoorsStartingOpen.MEDIUM,
-    val numberOfHidingPlaces: NumberOfHidingPlaces = NumberOfHidingPlaces.MEDIUM,
+    val doorsStartingOpen: DoorsStartingOpen = DoorsStartingOpen.NONE,
+    val numberOfHidingPlaces: NumberOfHidingPlaces = NumberOfHidingPlaces.VERY_HIGH,
     val sanityMonitor: SanityMonitor = SanityMonitor.ON,
     val activityMonitor: ActivityMonitor = ActivityMonitor.ON,
-    val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract = FuzeBoxAtStartOfContract.OFF,
+    val fuseBoxAtStartOfContract: FuzeBoxAtStartOfContract = FuzeBoxAtStartOfContract.ON,
     val fuseBoxVisibleOnMap: FuzeBoxVisibleOnMap = FuzeBoxVisibleOnMap.ON,
     val cursedPossessionsQuantity: CursedPossessionsQuantity = CursedPossessionsQuantity.QUANTITY_1,
-    val cursedPossessions: List<CursedPossession> = listOf(CursedPossession.RANDOM),
-    val equipmentPermission: List<EquipmentPermission> = emptyList()
+    val cursedPossessions: List<CursedPossession> = listOf(
+        CursedPossession.RANDOM,
+        CursedPossession.RANDOM,
+        CursedPossession.RANDOM,
+        CursedPossession.RANDOM,
+        CursedPossession.RANDOM,
+        CursedPossession.RANDOM,
+        CursedPossession.RANDOM,
+    )
+
 )

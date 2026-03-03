@@ -142,7 +142,8 @@ class DifficultySettingResources {
         WINDY,
         CLEAR,
         FOG,
-        SUNRISE
+        SUNRISE,
+        BLOOD_MOON
     }
     enum class DoorsStartingOpen {
         NONE,

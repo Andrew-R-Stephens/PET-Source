@@ -14,7 +14,7 @@ class GetDifficultyModifierUseCase(
 
             try {
                 val modifier = result.getOrNull()?.let {
-                    it[index].difficultySettingsModel.sanityDrainSpeed
+                    it[index].settingsModel.sanityDrainSpeed
                 } ?: return Result.failure(Exception("Could not get difficulty modifier"))
 
                 return Result.success(modifier)
