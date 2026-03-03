@@ -18,8 +18,8 @@ import androidx.core.content.withStyledAttributes
 import com.google.android.material.card.MaterialCardView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import com.tritiumgaming.core.ui.common.prefabicon.AccountIcon
-import com.tritiumgaming.core.ui.common.prefabicon.AccountIconPrimaryContent
+import com.tritiumgaming.core.ui.icon.impl.composite.AccountIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.phasmophobiaevidencepicker.R

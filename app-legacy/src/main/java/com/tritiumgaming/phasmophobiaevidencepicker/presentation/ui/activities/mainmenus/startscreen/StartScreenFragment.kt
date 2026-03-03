@@ -38,23 +38,23 @@ import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import com.tritiumgaming.core.ui.common.menus.IconDropdownMenu
-import com.tritiumgaming.core.ui.common.menus.IconDropdownMenuColors
-import com.tritiumgaming.core.ui.common.menus.SecondarySelector
-import com.tritiumgaming.core.ui.common.prefabicon.AccountIcon
-import com.tritiumgaming.core.ui.common.prefabicon.AccountIconPrimaryContent
-import com.tritiumgaming.core.ui.common.prefabicon.BadgeIcon
-import com.tritiumgaming.core.ui.common.prefabicon.LanguageIcon
-import com.tritiumgaming.core.ui.common.prefabicon.NotificationIndicator
-import com.tritiumgaming.core.ui.icon.base.GearIcon
-import com.tritiumgaming.core.ui.icon.base.HamburgerMenuIcon
-import com.tritiumgaming.core.ui.icon.base.InfoIcon
-import com.tritiumgaming.core.ui.icon.base.OpenInNewIcon
-import com.tritiumgaming.core.ui.icon.base.PersonIcon
-import com.tritiumgaming.core.ui.icon.base.ReviewIcon
-import com.tritiumgaming.core.ui.icon.base.StoreIcon
+import com.tritiumgaming.core.ui.icon.impl.base.GearIcon
+import com.tritiumgaming.core.ui.icon.impl.base.HamburgerMenuIcon
+import com.tritiumgaming.core.ui.icon.impl.base.InfoIcon
+import com.tritiumgaming.core.ui.icon.impl.base.OpenInNewIcon
+import com.tritiumgaming.core.ui.icon.impl.base.PersonIcon
+import com.tritiumgaming.core.ui.icon.impl.base.ReviewIcon
+import com.tritiumgaming.core.ui.icon.impl.base.StoreIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.AccountIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.AccountIconPrimaryContent
+import com.tritiumgaming.core.ui.icon.impl.composite.BadgeIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.LanguageIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.NotificationIndicator
 import com.tritiumgaming.core.ui.mapper.ToComposable
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
+import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenu
+import com.tritiumgaming.core.ui.widgets.menus.IconDropdownMenuColors
+import com.tritiumgaming.core.ui.widgets.menus.SecondarySelector
 import com.tritiumgaming.phasmophobiaevidencepicker.R
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.investigation.InvestigationActivity
 import com.tritiumgaming.phasmophobiaevidencepicker.presentation.ui.activities.mainmenus.MainMenuFragment
@@ -307,8 +307,18 @@ class StartScreenFragment : MainMenuFragment() {
                 IconDropdownMenu(
                     modifier = Modifier,
                     colors = IconDropdownMenuColors(
-                        primaryContentBackground = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground)),
-                        dropdownContentBackground = Color(getColorFromAttribute(context, R.attr.backgroundColorOnBackground))
+                        primaryContentBackground = Color(
+                            getColorFromAttribute(
+                                context,
+                                R.attr.backgroundColorOnBackground
+                            )
+                        ),
+                        dropdownContentBackground = Color(
+                            getColorFromAttribute(
+                                context,
+                                R.attr.backgroundColorOnBackground
+                            )
+                        )
                     ),
                     primaryContent = menuIcon,
                     dropdownContent = @Composable {
