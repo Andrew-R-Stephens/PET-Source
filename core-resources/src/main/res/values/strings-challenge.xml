@@ -55,4 +55,5 @@
     <string name= "challenge_glow_in_the_dark_description">Some of our equipment has stopped working, hopefully this\'ll be enough for you to see.</string>
     <string name= "challenge_deja_vu_description">This one feels pretty nostalgic, don\'t you think?</string>
     <string name= "challenge_tag_youre_it_description">This ghost will chase you immediately, better get running!</string>
+
 </resources>

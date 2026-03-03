@@ -14,6 +14,40 @@
     <string name="difficulty_title_apocalypse_2">Apocalypse 2</string>
     <string name="difficulty_title_apocalypse_3">Apocalypse 3</string>
 
+    <string name="difficulty_category_player">Player</string>
+    <string name="difficulty_category_ghost">Ghost</string>
+    <string name="difficulty_category_contract">Contract</string>
+
+    <string name="difficulty_setting_title_starting_sanity">Starting sanity</string>
+    <string name="difficulty_setting_title_sanity_pill_restoration">Sanity Pill restoration</string>
+    <string name="difficulty_setting_title_sanity_drain_speed">Sanity drain speed</string>
+    <string name="difficulty_setting_title_sprinting">Sprinting</string>
+    <string name="difficulty_setting_title_player_speed">Player speed</string>
+    <string name="difficulty_setting_title_flashlights">Flashlights</string>
+    <string name="difficulty_setting_title_lose_items_and_consumables">Lose items and consumables</string>
+    <string name="difficulty_setting_title_ghost_speed">Ghost speed</string>
+    <string name="difficulty_setting_title_roaming_frequency">Roaming frequency</string>
+    <string name="difficulty_setting_title_changing_favourite_room">Changing favourite room</string>
+    <string name="difficulty_setting_title_activity_level">Activity level</string>
+    <string name="difficulty_setting_title_event_frequency">Event frequency</string>
+    <string name="difficulty_setting_title_friendly_ghost">Friendly ghost</string>
+    <string name="difficulty_setting_title_grace_period">Grace period</string>
+    <string name="difficulty_setting_title_hunt_duration">Hunt duration</string>
+    <string name="difficulty_setting_title_kills_extend_hunts">Kills extend hunts</string>
+    <string name="difficulty_setting_title_evidence_given">Evidence given</string>
+    <string name="difficulty_setting_title_fingerprint_chance">Fingerprint chance</string>
+    <string name="difficulty_setting_title_fingerprint_duration">Fingerprint duration</string>
+    <string name="difficulty_setting_title_setup_time">Setup time</string>
+    <string name="difficulty_setting_title_weather">Weather</string>
+    <string name="difficulty_setting_title_doors_starting_open">Doors starting open</string>
+    <string name="difficulty_setting_title_number_of_hiding_places">Number of hiding places</string>
+    <string name="difficulty_setting_title_sanity_monitor">Sanity monitor</string>
+    <string name="difficulty_setting_title_activity_monitor">Activity monitor</string>
+    <string name="difficulty_setting_title_fuse_box_at_start_of_contract">Fuse box at start of contract</string>
+    <string name="difficulty_setting_title_fuse_box_visible_on_map">Fuse box visible on map</string>
+    <string name="difficulty_setting_title_cursed_possessions_quantity">Cursed Possessions quantity</string>
+    <string name="difficulty_setting_title_cursed_possession">Cursed Possession</string>
+
     <!-- Response Type -->
     <string name="difficulty_setting_response_known">Known</string>
     <string name="difficulty_setting_response_unknown">Unknown</string>
@@ -39,4 +73,7 @@
     <string name="difficulty_setting_state_weather_sunrise">Sunrise</string>
     <string name="difficulty_setting_state_weather_bloodmoon">Blood Moon</string>
 
+    <string name= "difficulty_permission_revoked">Revoked</string>
+    <string name= "difficulty_permission_permitted">Permitted</string>
+    <string name= "difficulty_permission_quantity_all">All</string>
 </resources>

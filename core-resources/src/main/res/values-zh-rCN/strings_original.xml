@@ -946,6 +946,7 @@
     <string name="difficulty_setting_state_high">高</string>
     <string name="difficulty_setting_state_veryHigh">非常高</string>
     <string name="difficulty_title_apocalypse_3">末日3</string>
+    <string name="difficulty_setting_title_cursed_possession">诅咒物品</string>
     <string name="difficulty_setting_response_known">已知</string>
     <string name="alert_gui_palette_error">调色板未设置！</string>
     <string name="alert_gui_typography_error">字体未设置！</string>
@@ -1078,5 +1079,39 @@
     <string name="difficulty_setting_state_weather_fog">雾</string>
     <string name="difficulty_setting_state_weather_sunrise">日出</string>
     <string name="difficulty_setting_state_weather_bloodmoon">血月</string>
+    <string name="difficulty_permission_revoked">已撤销</string>
+    <string name="difficulty_permission_permitted">已允许</string>
+    <string name="difficulty_permission_quantity_all">全部</string>
+    <string name="difficulty_category_contract">合约</string>
+    <string name="difficulty_setting_title_starting_sanity">初始理智值</string>
+    <string name="difficulty_setting_title_sanity_pill_restoration">理智药丸恢复</string>
+    <string name="difficulty_setting_title_sanity_drain_speed">理智值下降速度</string>
+    <string name="difficulty_setting_title_sprinting">冲刺速度</string>
+    <string name="difficulty_setting_title_player_speed">玩家速度</string>
+    <string name="difficulty_setting_title_flashlights">手电筒</string>
+    <string name="difficulty_setting_title_lose_items_and_consumables">丢失物品和消耗品</string>
+    <string name="difficulty_setting_title_ghost_speed">幽灵速度</string>
+    <string name="difficulty_setting_title_roaming_frequency">游荡频率</string>
+    <string name="difficulty_setting_title_changing_favourite_room">更换最爱房间</string>
+    <string name="difficulty_setting_title_activity_level">活动等级</string>
+    <string name="difficulty_setting_title_event_frequency">事件频率</string>
+    <string name="difficulty_setting_title_friendly_ghost">友方幽灵</string>
+    <string name="difficulty_setting_title_grace_period">宽限期</string>
+    <string name="difficulty_setting_title_hunt_duration">狩猎持续时间</string>
+    <string name="difficulty_setting_title_kills_extend_hunts">击杀延长狩猎时间</string>
+    <string name="difficulty_setting_title_evidence_given">提供的证据</string>
+    <string name="difficulty_setting_title_fingerprint_chance">指纹获取几率</string>
+    <string name="difficulty_setting_title_fingerprint_duration">指纹持续时间</string>
+    <string name="difficulty_setting_title_setup_time">准备时间</string>
+    <string name="difficulty_setting_title_weather">天气</string>
+    <string name="difficulty_setting_title_doors_starting_open">初始门是否打开</string>
+    <string name="difficulty_setting_title_number_of_hiding_places">藏身之处数量</string>
+    <string name="difficulty_setting_title_sanity_monitor">理智值监控器</string>
+    <string name="difficulty_setting_title_activity_monitor">活动监控器</string>
+    <string name="difficulty_setting_title_fuse_box_at_start_of_contract">合约开始时的保险丝盒</string>
+    <string name="difficulty_setting_title_fuse_box_visible_on_map">地图上可见的保险丝盒</string>
+    <string name="difficulty_setting_title_cursed_possessions_quantity">诅咒物品数量</string>
+    <string name="difficulty_category_player">玩家</string>
+    <string name="difficulty_category_ghost">幽灵</string>
 
 </resources>

@@ -14,6 +14,7 @@
 
     <!-- Difficulty Response Type -->
     <string name="difficulty_title_apocalypse_3">Apokalypse 3</string>
+    <string name="difficulty_setting_title_cursed_possession">Verfluchter Gegenstand</string>
     <string name="difficulty_setting_response_known">Bekannt</string>
     <string name="difficulty_setting_response_unknown">Unbekannt</string>
 
@@ -37,5 +38,39 @@
     <string name="difficulty_setting_state_weather_fog">Nebel</string>
     <string name="difficulty_setting_state_weather_sunrise">Sonnenaufgang</string>
     <string name="difficulty_setting_state_weather_bloodmoon">Blutmond</string>
+    <string name="difficulty_permission_revoked">Entzogen</string>
+    <string name="difficulty_permission_permitted">Erlaubt</string>
+    <string name="difficulty_permission_quantity_all">Alle</string>
+    <string name="difficulty_category_contract">Vertrag</string>
+    <string name="difficulty_setting_title_starting_sanity">Ausgangszustand der geistigen Gesundheit</string>
+    <string name="difficulty_setting_title_sanity_pill_restoration">Wiederherstellung durch geistige Gesundheitspille</string>
+    <string name="difficulty_setting_title_sanity_drain_speed">Geschwindigkeit des geistigen Gesundheitsverlusts</string>
+    <string name="difficulty_setting_title_sprinting">Sprinten</string>
+    <string name="difficulty_setting_title_player_speed">Spielergeschwindigkeit</string>
+    <string name="difficulty_setting_title_flashlights">Taschenlampen</string>
+    <string name="difficulty_setting_title_lose_items_and_consumables">Verlust von Gegenständen und Verbrauchsgütern</string>
+    <string name="difficulty_setting_title_ghost_speed">Geistergeschwindigkeit</string>
+    <string name="difficulty_setting_title_roaming_frequency">Umherstreifen</string>
+    <string name="difficulty_setting_title_changing_favourite_room">Ändern des Lieblingsraums</string>
+    <string name="difficulty_setting_title_activity_level">Aktivitätslevel</string>
+    <string name="difficulty_setting_title_event_frequency">Ereignishäufigkeit</string>
+    <string name="difficulty_setting_title_friendly_ghost">Freundlicher Geist</string>
+    <string name="difficulty_setting_title_grace_period">Schonfrist</string>
+    <string name="difficulty_setting_title_hunt_duration">Jagddauer</string>
+    <string name="difficulty_setting_title_kills_extend_hunts">Tötungen verlängern die Jagd</string>
+    <string name="difficulty_setting_title_evidence_given">Gegebene Beweise</string>
+    <string name="difficulty_setting_title_fingerprint_chance">Wahrscheinlichkeit für Fingerabdrücke</string>
+    <string name="difficulty_setting_title_fingerprint_duration">Dauer für Fingerabdrücke</string>
+    <string name="difficulty_setting_title_setup_time">Vorbereitungszeit</string>
+    <string name="difficulty_setting_title_weather">Wetter</string>
+    <string name="difficulty_setting_title_doors_starting_open">Zu Beginn geöffnete Türen</string>
+    <string name="difficulty_setting_title_number_of_hiding_places">Anzahl der Verstecke</string>
+    <string name="difficulty_setting_title_sanity_monitor">Überwachung der geistigen Gesundheit</string>
+    <string name="difficulty_setting_title_activity_monitor">Aktivitätsüberwachung</string>
+    <string name="difficulty_setting_title_fuse_box_at_start_of_contract">Sicherungskasten zu Beginn des Auftrags</string>
+    <string name="difficulty_setting_title_fuse_box_visible_on_map">Sicherungskasten auf der Karte sichtbar</string>
+    <string name="difficulty_setting_title_cursed_possessions_quantity">Anzahl der verfluchten Gegenstände</string>
+    <string name="difficulty_category_player">Spieler</string>
+    <string name="difficulty_category_ghost">Geist</string>
 
 </resources>

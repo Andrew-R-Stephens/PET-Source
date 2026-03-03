@@ -15,6 +15,7 @@
     <!-- Difficulty Response Type -->
     <string name="difficulty_setting_response_unknown">Desconocido</string>
     <string name="difficulty_title_apocalypse_3">Apocalipsis 3</string>
+    <string name="difficulty_setting_title_cursed_possession">Posesión maldita</string>
     <string name="difficulty_setting_response_known">Conocido</string>
 
     <!-- Difficulty Frequency -->
@@ -38,4 +39,38 @@
     <string name="difficulty_setting_state_weather_fog">Niebla</string>
     <string name="difficulty_setting_state_weather_sunrise">Amanecer</string>
     <string name="difficulty_setting_state_weather_bloodmoon">Luna de sangre</string>
+    <string name="difficulty_permission_revoked">Revocado</string>
+    <string name="difficulty_permission_permitted">Permitido</string>
+    <string name="difficulty_permission_quantity_all">Todo</string>
+    <string name="difficulty_category_contract">Contrato</string>
+    <string name="difficulty_setting_title_starting_sanity">Cordura inicial</string>
+    <string name="difficulty_setting_title_sanity_pill_restoration">Restauración de la píldora de cordura</string>
+    <string name="difficulty_setting_title_sanity_drain_speed">Velocidad de pérdida de cordura</string>
+    <string name="difficulty_setting_title_sprinting">Esprintar</string>
+    <string name="difficulty_setting_title_player_speed">Velocidad del jugador</string>
+    <string name="difficulty_setting_title_flashlights">Linternas</string>
+    <string name="difficulty_setting_title_lose_items_and_consumables">Pérdida de objetos y consumibles</string>
+    <string name="difficulty_setting_title_ghost_speed">Velocidad del fantasma</string>
+    <string name="difficulty_setting_title_roaming_frequency">Frecuencia de roaming</string>
+    <string name="difficulty_setting_title_changing_favourite_room">Cambio de habitación favorita</string>
+    <string name="difficulty_setting_title_activity_level">Nivel de actividad</string>
+    <string name="difficulty_setting_title_event_frequency">Frecuencia de eventos</string>
+    <string name="difficulty_setting_title_friendly_ghost">Fantasma amistoso</string>
+    <string name="difficulty_setting_title_grace_period">Periodo de gracia</string>
+    <string name="difficulty_setting_title_hunt_duration">Duración de la cacería</string>
+    <string name="difficulty_setting_title_kills_extend_hunts">Las bajas prolongan las cacerías</string>
+    <string name="difficulty_setting_title_evidence_given">Pruebas proporcionadas</string>
+    <string name="difficulty_setting_title_fingerprint_chance">Probabilidad de huella dactilar</string>
+    <string name="difficulty_setting_title_fingerprint_duration">Duración de huella dactilar</string>
+    <string name="difficulty_setting_title_setup_time">Tiempo de preparación</string>
+    <string name="difficulty_setting_title_weather">Clima</string>
+    <string name="difficulty_setting_title_doors_starting_open">Puertas abiertas al inicio</string>
+    <string name="difficulty_setting_title_number_of_hiding_places">Número de escondites</string>
+    <string name="difficulty_setting_title_sanity_monitor">Monitor de cordura</string>
+    <string name="difficulty_setting_title_activity_monitor">Monitor de actividad</string>
+    <string name="difficulty_setting_title_fuse_box_at_start_of_contract">Caja de fusibles al inicio del contrato</string>
+    <string name="difficulty_setting_title_fuse_box_visible_on_map">Caja de fusibles visible en el mapa</string>
+    <string name="difficulty_setting_title_cursed_possessions_quantity">Cantidad de posesiones malditas</string>
+    <string name="difficulty_category_player">Jugador</string>
+    <string name="difficulty_category_ghost">Fantasma</string>
 </resources>
