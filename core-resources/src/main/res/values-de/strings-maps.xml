@@ -31,5 +31,9 @@
     <string name="map_info_help_rooms">Wählen Sie im Dropdown-Menü „Räume“ einen Raum aus, um die Position und Grenze dieses Raums anzuzeigen.</string>
     <string name="map_info_help_floors">Wechseln Sie zwischen den Etagen, um sie anzuzeigen und damit zu interagieren.</string>
     <string name="map_info_help_pois">Die Positionen von Sicherungskästen und verfluchten Gegenständen werden durch entsprechende Symbole angezeigt.</string>
+    <string name="map_setting_label_size">Größe</string>
+    <string name="map_setting_label_modifier">Modifikator</string>
+    <string name="map_setting_state_setup">Setup</string>
+    <string name="map_setting_state_action">Aktion</string>
 
 </resources>

@@ -200,8 +200,8 @@
     <string name="alert_marketplace_purchase_success_skin">Скін придбаний!</string>
     <string name="alert_marketplace_purchase_success_generic">Покупка успішна!</string>
     <string name="alert_marketplace_purchase_failure_skin_credits">Недостатньо кредитів для покупки!</string>
-    <string name="maps_size_title_small">Маленький</string>
-    <string name="maps_size_title_medium">Середній</string>
+    <string name="map_setting_state_small">Маленький</string>
+    <string name="map_setting_state_medium">Середній</string>
     <string name="language_name_localized_de">Німецька мова</string>
     <string name="language_name_localized_en">англійська мова</string>
     <string name="language_name_localized_es">Іспанська мова</string>

@@ -1,9 +1,9 @@
 package com.tritiumgaming.shared.data.difficultysetting.dto
 
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
 
 data class EquipmentPermission(
-    val equipmentTitle: EquipmentTitle,
+    val identifier: EquipmentResources.EquipmentIdentifier,
     val quantity: Int = ALL,
     val permission: Permission = Permission.REVOKED
 ) {

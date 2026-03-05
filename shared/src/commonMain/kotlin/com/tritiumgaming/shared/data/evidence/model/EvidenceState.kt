@@ -7,7 +7,8 @@ import androidx.compose.runtime.Stable
 @Immutable
 data class EvidenceState(
     val evidence: EvidenceType,
-    val state: EvidenceValidationType = EvidenceValidationType.NEUTRAL
+    val state: EvidenceValidationType = EvidenceValidationType.NEUTRAL,
+    val enabled: Boolean = true
 ) {
 
     fun isRuling(other: EvidenceValidationType?): Boolean {

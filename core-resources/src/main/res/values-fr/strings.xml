@@ -22,7 +22,7 @@
     </string>
 
 
-    <string name="maps_size_title_large">Grand</string>
+    <string name="map_setting_state_large">Grand</string>
     <string name="general_codex_button">Manuscrit</string>
     <string name="general_evidence_reset_button">Réinitialiser</string>
     <string name="titlescreen_languages_label">Choisir la langue</string>
@@ -83,8 +83,8 @@
 
     <!-- Acknowledgement -->
 
-    <string name="maps_size_title_small">Petit</string>
-    <string name="maps_size_title_medium">Moyen</string>
+    <string name="map_setting_state_small">Petit</string>
+    <string name="map_setting_state_medium">Moyen</string>
     <string name="alert_gui_palette_error">Palette non définie !</string>
     <string name="alert_gui_typography_error">Typographie non définie !</string>
 

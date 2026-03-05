@@ -129,7 +129,7 @@
     <string name="map_info_help_rooms">Selecione uma sala no menu suspenso Salas para mostrar a localização e os limites dessa sala.</string>
     <string name="map_info_help_floors">Itere entre andares para visualizar e interagir com ele.</string>
     <string name="map_info_help_pois">As posições das caixas de fusíveis e dos itens amaldiçoados são indicadas por ícones relevantes.</string>
-    <string name="maps_size_title_large">Grande</string>
+    <string name="map_setting_state_large">Grande</string>
     <string name="objectives_title_optional_objectives">Objetivos Opcionais</string>
     <string name="objectives_title_investigation_debrief">Resumo da investigação</string>
     <string name="objectives_title_ghost_name">Nome do Fantasma</string>
@@ -1058,8 +1058,10 @@
     <string name="marketplace_list_community">Temas da comunidade</string>
     <string name="marketplace_button_item_get">Pegar</string>
     <string name="marketplace_purchase_equip">Equipar o tema %1$s?</string>
-    <string name="maps_size_title_small">Pequeno</string>
-    <string name="maps_size_title_medium">Médio</string>
+    <string name="map_setting_label_size">Tamanho</string>
+    <string name="map_setting_label_modifier">Modificador</string>
+    <string name="map_setting_state_small">Pequeno</string>
+    <string name="map_setting_state_medium">Médio</string>
     <string name="language_name_localized_ja">Japonês</string>
     <string name="language_name_localized_pt">Português</string>
     <string name="language_name_localized_de">Alemão</string>
@@ -1245,5 +1247,7 @@
     <string name="difficulty_setting_title_cursed_possessions_quantity">Quantidade de Possessões Amaldiçoadas</string>
     <string name="difficulty_category_player">Jogador</string>
     <string name="difficulty_category_ghost">Fantasma</string>
+    <string name="map_setting_state_setup">Configuração</string>
+    <string name="map_setting_state_action">Ação</string>
 
 </resources>

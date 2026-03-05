@@ -8,7 +8,7 @@ import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
 data class EvidenceType(
     val id: EvidenceResources.EvidenceIdentifier,
     val name: EvidenceResources.EvidenceTitle,
-    val icon: EvidenceResources.EvidenceIcon,
+    val icon: EvidenceResources.EvidenceIcon
 ) {
 
     override fun equals(other: Any?): Boolean {

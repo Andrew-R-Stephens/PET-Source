@@ -129,7 +129,7 @@
     <string name="map_info_help_rooms">Seleziona una stanza nel menu a discesa Stanze per mostrare la posizione e i confini di quella stanza.</string>
     <string name="map_info_help_floors">Scorri tra i piani per visualizzarli e interagire con essi.</string>
     <string name="map_info_help_pois">Le posizioni delle scatole dei fusibili e degli oggetti maledetti sono indicate dalle relative icone.</string>
-    <string name="maps_size_title_large">Grande</string>
+    <string name="map_setting_state_large">Grande</string>
     <string name="objectives_title_optional_objectives">Obiettivi facoltativi</string>
     <string name="objectives_title_investigation_debrief">Rapporto investigativo</string>
     <string name="objectives_title_ghost_name">Nome del fantasma</string>
@@ -1051,8 +1051,10 @@
     <string name="marketplace_list_community">Temi comunitari</string>
     <string name="marketplace_button_item_get">Ottenere</string>
     <string name="marketplace_purchase_equip">Equipaggiare il tema %1$s?</string>
-    <string name="maps_size_title_small">Piccolo</string>
-    <string name="maps_size_title_medium">Medio</string>
+    <string name="map_setting_label_size">Misurare</string>
+    <string name="map_setting_label_modifier">Modificatore</string>
+    <string name="map_setting_state_small">Piccolo</string>
+    <string name="map_setting_state_medium">Medio</string>
     <string name="language_name_localized_zh_Hans">Cinese (Semplificato)</string>
     <string name="language_name_localized_cs">Ceco</string>
     <string name="language_name_localized_de">Tedesco</string>
@@ -1240,5 +1242,7 @@
     <string name="difficulty_setting_title_cursed_possessions_quantity">Quantità di beni maledetti</string>
     <string name="difficulty_category_player">Giocatore</string>
     <string name="difficulty_category_ghost">Fantasma</string>
+    <string name="map_setting_state_setup">Impostazione</string>
+    <string name="map_setting_state_action">Azione</string>
 
 </resources>

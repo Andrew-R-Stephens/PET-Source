@@ -31,5 +31,9 @@
     <string name="map_info_help_rooms">Vyberte Místnost v rozevírací nabídce Místnosti a zobrazte umístění a hranice této místnosti.</string>
     <string name="map_info_help_floors">Iterujte mezi podlažími, abyste je mohli zobrazit a pracovat s nimi.</string>
     <string name="map_info_help_pois">Pozice pojistkových skříní a prokletých položek jsou označeny příslušnými ikonami.</string>
+    <string name="map_setting_label_size">Velikost</string>
+    <string name="map_setting_label_modifier">Modifikátor</string>
+    <string name="map_setting_state_setup">Nastavení</string>
+    <string name="map_setting_state_action">Akce</string>
 
 </resources>

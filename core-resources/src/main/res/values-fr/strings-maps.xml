@@ -31,5 +31,9 @@
     <string name="map_info_help_rooms">Sélectionnez une pièce dans le menu déroulant Pièces pour afficher l\'emplacement et les limites de cette pièce.</string>
     <string name="map_info_help_floors">Parcourez les étages pour les visualiser et interagir avec eux.</string>
     <string name="map_info_help_pois">Les positions des boîtes à fusibles et des objets maudits sont indiquées par des icônes pertinentes.</string>
+    <string name="map_setting_label_size">Taille</string>
+    <string name="map_setting_label_modifier">Modificateur</string>
+    <string name="map_setting_state_setup">Configuration</string>
+    <string name="map_setting_state_action">Action</string>
 
 </resources>

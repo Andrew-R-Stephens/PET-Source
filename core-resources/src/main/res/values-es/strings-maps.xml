@@ -31,5 +31,9 @@
     <string name="map_info_help_rooms">Seleccione una habitación en el menú desplegable Habitaciones para mostrar la ubicación y los límites de esa habitación.</string>
     <string name="map_info_help_floors">Cicle entre pisos para verlo e interactuar con él.</string>
     <string name="map_info_help_pois">Las posiciones de las cajas de fusibles y los elementos malditos se indican mediante iconos relevantes.</string>
+    <string name="map_setting_label_size">Tamaño</string>
+    <string name="map_setting_label_modifier">Modificador</string>
+    <string name="map_setting_state_setup">Configuración</string>
+    <string name="map_setting_state_action">Acción</string>
 
 </resources>

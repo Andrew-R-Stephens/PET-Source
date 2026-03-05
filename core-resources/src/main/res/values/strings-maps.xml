@@ -82,9 +82,15 @@
     <string name="map_info_help_floors">Iterate between Floors to view and interact with it.</string>
     <string name="map_info_help_pois">The positions of Fuse Boxes and Cursed Items are indicated by relevant icons.</string>
 
+    <!-- Map Size Label -->
+    <string name="map_setting_label_size">Size</string>
+    <string name="map_setting_label_modifier">Modifier</string>
+    <string name="map_setting_label_multiplier">Multiplier</string>
     <!-- Map Size Titles -->
-    <string name="maps_size_title_small">Small</string>
-    <string name="maps_size_title_medium">Medium</string>
-    <string name="maps_size_title_large">Large</string>
+    <string name="map_setting_state_small">Small</string>
+    <string name="map_setting_state_medium">Medium</string>
+    <string name="map_setting_state_large">Large</string>
+    <string name="map_setting_state_setup">Setup</string>
+    <string name="map_setting_state_action">Action</string>
 
 </resources>

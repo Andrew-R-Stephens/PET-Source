@@ -130,7 +130,7 @@
     <string name="map_info_help_rooms">[部屋] ドロップダウン メニューで部屋を選択すると、その部屋の位置と境界が表示されます。</string>
     <string name="map_info_help_floors">フロア間を反復して表示し、操作します。</string>
     <string name="map_info_help_pois">ヒューズボックスと呪いのアイテムの位置は、関連するアイコンで示されます。</string>
-    <string name="maps_size_title_large">大きい</string>
+    <string name="map_setting_state_large">大きい</string>
     <string name="objectives_title_optional_objectives">オプションの目標</string>
     <string name="objectives_title_investigation_debrief">捜査報告書</string>
     <string name="objectives_title_ghost_name">幽霊の名前</string>
@@ -1050,8 +1050,10 @@
     <string name="marketplace_list_community">コミュニティテーマ</string>
     <string name="marketplace_button_item_get">入手</string>
     <string name="marketplace_purchase_equip">%1$s テーマを装備しますか?</string>
-    <string name="maps_size_title_small">小さい</string>
-    <string name="maps_size_title_medium">中くらい</string>
+    <string name="map_setting_label_size">サイズ</string>
+    <string name="map_setting_label_modifier">修飾子</string>
+    <string name="map_setting_state_small">小さい</string>
+    <string name="map_setting_state_medium">中くらい</string>
     <string name="language_name_localized_it">イタリア語</string>
     <string name="language_name_localized_ja">日本語</string>
     <string name="language_name_localized_de">"ドイツ語 "</string>
@@ -1236,5 +1238,7 @@
     <string name="difficulty_setting_title_cursed_possessions_quantity">呪われた持ち物の数</string>
     <string name="difficulty_category_player">プレイヤー</string>
     <string name="difficulty_category_ghost">ゴースト</string>
+    <string name="map_setting_state_setup">設定</string>
+    <string name="map_setting_state_action">アクション</string>
 
 </resources>

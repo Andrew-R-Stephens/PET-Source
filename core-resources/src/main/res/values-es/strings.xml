@@ -37,9 +37,9 @@
     -->
 
 
-    <string name="maps_size_title_small">Pequeño</string>
-    <string name="maps_size_title_medium">Medio</string>
-    <string name="maps_size_title_large">Grande</string>
+    <string name="map_setting_state_small">Pequeño</string>
+    <string name="map_setting_state_medium">Medio</string>
+    <string name="map_setting_state_large">Grande</string>
 
 
     <string name="general_codex_button">Códice</string>

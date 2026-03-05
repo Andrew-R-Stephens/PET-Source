@@ -1,5 +1,8 @@
 package com.tritiumgaming.shared.data.codex.mappers
 
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle
+
 class EquipmentResources {
 
     enum class EquipmentIdentifier {
@@ -485,3 +488,28 @@ class EquipmentResources {
     }
 
 }
+
+fun EquipmentIdentifier.toEquipmentTitle(): EquipmentTitle =
+    when (this) {
+        EquipmentIdentifier.DOTS -> EquipmentTitle.DOTS
+        EquipmentIdentifier.EMF -> EquipmentTitle.EMF
+        EquipmentIdentifier.FLASHLIGHT -> EquipmentTitle.FLASHLIGHT
+        EquipmentIdentifier.PHOTO_CAMERA -> EquipmentTitle.PHOTO_CAMERA
+        EquipmentIdentifier.IGNITER -> EquipmentTitle.IGNITER
+        EquipmentIdentifier.FIRELIGHT -> EquipmentTitle.FIRELIGHT
+        EquipmentIdentifier.UV_LIGHT -> EquipmentTitle.UV_LIGHT
+        EquipmentIdentifier.CRUCIFIX -> EquipmentTitle.CRUCIFIX
+        EquipmentIdentifier.VIDEO_CAMERA -> EquipmentTitle.VIDEO_CAMERA
+        EquipmentIdentifier.SPIRIT_BOX -> EquipmentTitle.SPIRIT_BOX
+        EquipmentIdentifier.THERMOMETER -> EquipmentTitle.THERMOMETER
+        EquipmentIdentifier.SALT -> EquipmentTitle.SALT
+        EquipmentIdentifier.INCENSE -> EquipmentTitle.INCENSE
+        EquipmentIdentifier.TRIPOD -> EquipmentTitle.TRIPOD
+        EquipmentIdentifier.MOTION_SENSOR -> EquipmentTitle.MOTION_SENSOR
+        EquipmentIdentifier.SOUND_RECORDER -> EquipmentTitle.SOUND_RECORDER
+        EquipmentIdentifier.SOUND_SENSOR -> EquipmentTitle.SOUND_SENSOR
+        EquipmentIdentifier.SANITY_MEDICATION -> EquipmentTitle.SANITY_MEDICATION
+        EquipmentIdentifier.GHOST_WRITING_BOOK -> EquipmentTitle.GHOST_WRITING_BOOK
+        EquipmentIdentifier.PARABOLIC_MICROPHONE -> EquipmentTitle.PARABOLIC_MICROPHONE
+        EquipmentIdentifier.HEAD_GEAR -> EquipmentTitle.HEAD_GEAR
+    }

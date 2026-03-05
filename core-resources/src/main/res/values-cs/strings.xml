@@ -100,8 +100,8 @@
 
     <!-- Poděkování -->
 
-    <string name="maps_size_title_small">Malý</string>
-    <string name="maps_size_title_medium">Střední</string>
+    <string name="map_setting_state_small">Malý</string>
+    <string name="map_setting_state_medium">Střední</string>
     <string name="alert_gui_palette_error">Paleta není nastavena!</string>
     <string name="alert_gui_typography_error">Typografie není nastavena!</string>
 </resources>

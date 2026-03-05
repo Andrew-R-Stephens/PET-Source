@@ -20,7 +20,7 @@
         ]]>
     </string>
 
-    <string name="maps_size_title_large">Groß</string>
+    <string name="map_setting_state_large">Groß</string>
     <string name="general_codex_button">Kodex</string>
     <string name="general_evidence_reset_button">Zurücksetzen</string>
     <string name="titlescreen_languages_label">Sprache Auswählen</string>
@@ -97,8 +97,8 @@
 
     <!-- Acknowledgement -->
 
-    <string name="maps_size_title_small">Klein</string>
-    <string name="maps_size_title_medium">Medium</string>
+    <string name="map_setting_state_small">Klein</string>
+    <string name="map_setting_state_medium">Medium</string>
     <string name="alert_gui_palette_error">Palette nicht festgelegt!</string>
     <string name="alert_gui_typography_error">Typografie nicht festgelegt!</string>
 

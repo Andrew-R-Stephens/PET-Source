@@ -29,4 +29,8 @@
     <string name="map_info_help_rooms">Виберіть Кімнату в спадному меню Кімнати, щоб показати розташування та межі цієї Кімнати.</string>
     <string name="map_info_help_floors">Переходьте між поверхами, щоб переглядати та взаємодіяти з ним.</string>
     <string name="map_info_help_pois">Розташування блоків із запобіжниками та проклятих предметів позначено відповідними значками.</string>
+    <string name="map_setting_label_size">Розмір</string>
+    <string name="map_setting_label_modifier">Модифікатор</string>
+    <string name="map_setting_state_setup">Налаштування</string>
+    <string name="map_setting_state_action">Дія</string>
 </resources>
