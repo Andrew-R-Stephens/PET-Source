@@ -544,12 +544,14 @@ private fun InvestigationContent(
                 )
 
                 OperationToolbarUiState.Category.TOOL_ANALYZER -> OperationDetails(
-                    modifier = modifier,
+                    modifier = Modifier
+                        .height(IntrinsicSize.Max),
                     operationDetailsUiState = operationDetailsUiState
                 )
 
                 OperationToolbarUiState.Category.TOOL_TIMERS -> TimerTools(
-                    modifier = modifier,
+                    modifier = Modifier
+                        .height(IntrinsicSize.Max),
                     smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
                     smudgeBlindingBundle = smudgeBlindingBundle,
                     huntDurationBundle = huntDurationBundle,
@@ -558,7 +560,8 @@ private fun InvestigationContent(
                 )
 
                 OperationToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .height(IntrinsicSize.Max),
                     state = bpmToolUiState,
                     actions = bpmToolUiActions
                 )
@@ -841,11 +844,11 @@ fun OperationConfigs(
         horizontalAlignment = Alignment.Start
     ) {
 
-        difficultyConfigComponent(Modifier
+        mapConfigComponent(Modifier
             .fillMaxWidth()
         )
 
-        mapConfigComponent(Modifier
+        difficultyConfigComponent(Modifier
             .fillMaxWidth()
         )
 
