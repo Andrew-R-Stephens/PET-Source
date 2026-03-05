@@ -4,10 +4,12 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.BuyCost
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentAttribute
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentBuyCost
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIcon
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierFlavorText
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierImage
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierInformation

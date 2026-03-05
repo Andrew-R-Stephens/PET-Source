@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.settings.ui.components
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,14 +18,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.core.ui.widgets.other.PETImageButton
-import com.tritiumgaming.core.ui.widgets.other.PETImageButtonType
 
 @Composable
 fun CarouselComposable(
@@ -88,11 +90,14 @@ fun CarouselComposable(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
 
-                    PETImageButton(
+                    Image(
                         modifier = Modifier
-                            .clickable(onClick = { actions.onPrevious() }),
-                        type = PETImageButtonType.BACK,
-                        tint = LocalPalette.current.onSurface
+                            .size(48.dp)
+                            .clickable(onClick = { actions.onPrevious() })
+                            .padding(8.dp),
+                        painter = painterResource(R.drawable.ic_arrow_60_left),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface ),
+                        contentDescription = ""
                     )
 
                     Text(
@@ -110,13 +115,15 @@ fun CarouselComposable(
                         fontSize = 16.sp
                     )
 
-                    PETImageButton(
+                    Image(
                         modifier = Modifier
-                            .clickable(onClick = { actions.onNext() }),
-                        type = PETImageButtonType.FORWARD,
-                        tint = LocalPalette.current.onSurface
+                            .size(48.dp)
+                            .clickable(onClick = { actions.onNext() })
+                            .padding(8.dp),
+                        painter = painterResource(R.drawable.ic_arrow_60_right),
+                        colorFilter = ColorFilter.tint(LocalPalette.current.onSurface ),
+                        contentDescription = ""
                     )
-
                 }
 
             }
