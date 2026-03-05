@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.stringResource
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
 import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item.EvidenceListItem
@@ -29,14 +30,19 @@ fun PrimaryEvidenceList(
         ) { ruledEvidence ->
 
             EvidenceListItem(
+                modifier = Modifier
+                    .alpha(if(ruledEvidence.enabled) { 1f } else {.25f}),
                 evidenceListItemUiState = EvidenceListItemUiState(
                     state = ruledEvidence.state,
                     label = stringResource(ruledEvidence.evidence.name.toStringResource())
                 ),
                 evidenceListItemUiAction = EvidenceListItemUiAction(
                     onToggle = { ruling ->
-                        evidenceListUiActions.onChangeEvidenceRuling(
-                            ruledEvidence.evidence, ruling)
+                        if(ruledEvidence.enabled) {
+                            evidenceListUiActions.onChangeEvidenceRuling(
+                                ruledEvidence.evidence, ruling
+                            )
+                        }
                     },
                     onNameClick = {
                         evidenceListUiActions.onClickItem(ruledEvidence.evidence)

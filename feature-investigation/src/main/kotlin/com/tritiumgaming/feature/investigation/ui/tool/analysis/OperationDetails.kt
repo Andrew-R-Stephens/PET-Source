@@ -49,7 +49,8 @@ internal fun OperationDetails(
             state = operationDetailsUiState.mapDetails
         )
         DifficultyModifierDetails(
-            state = operationDetailsUiState.difficultyDetails
+            difficultyState = operationDetailsUiState.difficultyDetails,
+            mapState = operationDetailsUiState.mapDetails
         )
         ActiveGhostModifierDetails(
             state = operationDetailsUiState.ghostDetails

@@ -119,6 +119,7 @@ private fun InvestigationContent(
     val operationDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
     val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
+    val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
 
     val ghostStates by investigationViewModel.ghostStates.collectAsStateWithLifecycle()
     val ghostOrder by investigationViewModel.sortedGhosts.collectAsStateWithLifecycle()
@@ -136,7 +137,7 @@ private fun InvestigationContent(
     )
 
     val evidenceListUiState = EvidenceListUiState(
-        evidenceStateList = evidenceStates
+        evidenceStateList = evidenceListUiStates
     )
 
     val ghostListUiActions = GhostListUiActions(

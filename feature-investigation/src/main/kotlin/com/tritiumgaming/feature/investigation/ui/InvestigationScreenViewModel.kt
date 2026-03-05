@@ -46,6 +46,8 @@ import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyResponseTyp
 import com.tritiumgaming.shared.data.difficulty.usecase.GetDifficultyTimeUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
+import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
+import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
@@ -63,6 +65,8 @@ import com.tritiumgaming.shared.data.journal.usecase.GetGhostTypeByIdUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
 import com.tritiumgaming.shared.data.journal.usecase.InitRuledEvidenceUseCase
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
+import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
 import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
@@ -194,8 +198,8 @@ class InvestigationScreenViewModel private constructor(
         val index: Int = 0,
         val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
         val size: MapSize = MapSize.SMALL,
-        val setupModifier: Float = 1f,
-        val normalModifier: Float = 1f,
+        val setupModifier: MapSizePhaseModifier = MapSizePhaseModifier.SETUP_SMALL,
+        val actionModifier: MapSizePhaseModifier = MapSizePhaseModifier.ACTION_SMALL,
     )
 
     data class DifficultyState(
@@ -287,7 +291,7 @@ class InvestigationScreenViewModel private constructor(
             getSimpleMapModifierUseCase(
                 mapState.size.ordinal,
                 phaseUiState.type
-            ).getOrThrow()
+            ).getOrThrow().toFloat()
         } catch (e: Exception) {
             e.printStackTrace()
             1f
@@ -327,6 +331,30 @@ class InvestigationScreenViewModel private constructor(
         updateGhostScores()
     }
 
+    private val _evidenceListUiState: StateFlow<List<EvidenceState>> = combine(
+        evidenceStates, difficultyState
+    ) { evidenceStates, difficultyState ->
+        val settings = difficultyState.settings.equipmentPermission
+
+        val revokedIdentifiers = settings
+            .filter { it.permission == Permission.REVOKED && it.quantity == EquipmentPermission.ALL }
+            .map { it.identifier }
+
+        evidenceStates.map {
+            val identifier = getEquipmentTypeByEvidenceTypeUseCase(it.evidence)
+            val enabled = identifier !in revokedIdentifiers
+            it.copy(
+                state = if(!enabled) { EvidenceValidationType.NEUTRAL } else { it.state },
+                enabled = enabled
+            )
+        }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = emptyList()
+    )
+    val evidenceListUiState = _evidenceListUiState
+
     /* Ghost States */
     private val _ghostStates = MutableStateFlow(
         ghostEvidences.map { GhostState(it) }
@@ -340,7 +368,6 @@ class InvestigationScreenViewModel private constructor(
     private fun updateGhostScores() {
 
         val ruledEvidence = evidenceStates.value
-        val difficulty = _difficultyState.value.type
         val bpmToolUiState = bpmToolUiState.value
 
         _ghostStates.update { currentScores ->
@@ -348,7 +375,7 @@ class InvestigationScreenViewModel private constructor(
 
                 val updatedScore = ghostScore.updateScore(
                     evidenceState = ruledEvidence,
-                    currentDifficulty = difficulty
+                    evidenceGiven = difficultyState.value.settings.evidenceGiven
                 )
 
                 if (bpmToolUiState.applyMeasurement) {
@@ -395,7 +422,7 @@ class InvestigationScreenViewModel private constructor(
                     name = mapState.name,
                     size = mapState.size,
                     modifiers = OperationDetailsUiState.MapDetails.MapModifiers(
-                        normal = mapState.normalModifier,
+                        action = mapState.actionModifier,
                         setup = mapState.setupModifier
                     )
                 ),
@@ -1073,7 +1100,7 @@ class InvestigationScreenViewModel private constructor(
                     name = name,
                     size = size,
                     setupModifier = modifier.setupModifier,
-                    normalModifier = modifier.normalModifier
+                    actionModifier = modifier.actionModifier
                 )
             }
 
@@ -1089,7 +1116,7 @@ class InvestigationScreenViewModel private constructor(
                 "\n\tname: ${_mapConfigUiState.value.name}" +
                 "\n\tsize: ${_mapState.value.size}" +
                 "\n\tsetupModifier: ${_mapState.value.setupModifier}" +
-                "\n\tnormalModifier: ${_mapState.value.normalModifier}")
+                "\n\tnormalModifier: ${_mapState.value.actionModifier}")
     }
 
     /*
@@ -1125,6 +1152,7 @@ class InvestigationScreenViewModel private constructor(
     init {
         updateMap(0)
         updateDifficulty(0)
+
         initPhaseUiState()
         initTimerUiState()
 

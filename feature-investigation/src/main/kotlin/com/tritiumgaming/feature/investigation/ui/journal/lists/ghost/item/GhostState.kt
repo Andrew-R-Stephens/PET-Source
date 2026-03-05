@@ -1,9 +1,11 @@
 package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
 
+import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toHasLosMultiplierBoolean
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
@@ -15,11 +17,20 @@ data class GhostState(
     val bpmIsValid: Boolean = false
 ) {
 
-    fun updateScore(
+    /*fun updateScore(
         evidenceState: List<EvidenceState>,
         currentDifficulty: DifficultyResources.DifficultyType
     ): GhostState {
-        return setScore(score = calculateEvidenceScore(evidenceState, currentDifficulty))
+        return setScore(
+            score = calculateEvidenceScore(evidenceState, currentDifficulty))
+    }*/
+
+    fun updateScore(
+        evidenceState: List<EvidenceState>,
+        evidenceGiven: DifficultySettingResources.EvidenceGiven
+    ): GhostState {
+        return setScore(score = calculateEvidenceScore(
+            evidenceState, evidenceGiven.toInt()))
     }
 
     fun updateBpmValidation(
@@ -90,10 +101,10 @@ data class GhostState(
      */
     private fun calculateEvidenceScore(
         evidenceState: List<EvidenceState>,
-        currentDifficulty: DifficultyResources.DifficultyType
+        evidenceLimit: Int
     ): Int {
 
-        val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
+        /*val isNightmare = currentDifficulty == DifficultyResources.DifficultyType.NIGHTMARE
         val isInsanity = currentDifficulty == DifficultyResources.DifficultyType.INSANITY
         val isHardcore = isNightmare || isInsanity
 
@@ -101,7 +112,11 @@ data class GhostState(
             isInsanity -> 1
             isNightmare -> 2
             else -> 3
-        }
+        }*/
+
+        if(evidenceLimit == 0) return ZERO_EVIDENCE
+
+        val isHardcore = evidenceLimit < 3
 
         val rulings = evidenceState.associate { it.evidence to it.state }
 
@@ -131,12 +146,12 @@ data class GhostState(
             return STRICT_EVIDENCE_FOUND
         }
 
-        if (posScore > maxPosScore) return POSITIVE_COUNT_OVER_MAXIMUM
-        if (negScore > (3 - maxPosScore)) return NEGATIVE_COUNT_UNDER_MINIMUM
+        if (posScore > evidenceLimit) return POSITIVE_COUNT_OVER_MAXIMUM
+        if (negScore > (3 - evidenceLimit)) return NEGATIVE_COUNT_UNDER_MINIMUM
 
         if (!isHardcore) return posScore - negScore
 
-        val expectedPosScore = maxPosScore - (3 - normalEvidence.size)
+        val expectedPosScore = evidenceLimit - (3 - normalEvidence.size)
         if (posScore == expectedPosScore) {
             val hasInvalidStrict = strictEvidence.any {
                 val ruling = rulings[it]
@@ -151,6 +166,7 @@ data class GhostState(
     }
 
     companion object {
+        const val ZERO_EVIDENCE = 0
         const val NORMAL_EVIDENCE_NOT_FOUND = -5
         const val NORMAL_NEGATION_MINIMUM_REACHED = -6
         const val NORMAL_NEGATION_MAXIMUM_REACHED = -7

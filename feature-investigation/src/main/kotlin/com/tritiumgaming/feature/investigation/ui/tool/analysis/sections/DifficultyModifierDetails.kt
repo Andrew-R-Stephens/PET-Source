@@ -22,12 +22,14 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCatego
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
+import com.tritiumgaming.shared.data.codex.mappers.toEquipmentTitle
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 
 @Composable
 internal fun DifficultyModifierDetails(
-    state: OperationDetailsUiState.DifficultyDetails
+    difficultyState: OperationDetailsUiState.DifficultyDetails,
+    mapState: OperationDetailsUiState.MapDetails
 ) {
 
     ExpandableCategoryColumn(
@@ -44,11 +46,11 @@ internal fun DifficultyModifierDetails(
                 ) {
                     TextSubTitle(
                         color = LocalPalette.current.onSurface,
-                        text = stringResource(R.string.investigation_timer_difficulty_label)
+                        text = "${stringResource(R.string.investigation_timer_difficulty_label)}:"
                     )
 
-                    var title = stringResource(state.difficultyTitle.toStringResource())
-                    state.challengeTitle?.let { challengeTitle ->
+                    var title = stringResource(difficultyState.difficultyTitle.toStringResource())
+                    difficultyState.challengeTitle?.let { challengeTitle ->
                         title += " [ ${stringResource(challengeTitle.toStringResource())} ]"
                     }
 
@@ -93,7 +95,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ state.settings.startingSanity.toFloat() * 100f }%"
+                        text = "${ difficultyState.settings.startingSanity.toFloat() * 100f }%"
                     )
                 }
                 SubRow {
@@ -104,7 +106,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ state.settings.sanityDrainSpeed.toFloat() * 100f }%"
+                        text = "${ difficultyState.settings.sanityDrainSpeed.toFloat() * 100f }%"
                     )
                 }
                 SubRow {
@@ -115,7 +117,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ state.settings.sanityDrainSpeed.toFloat() * 100f }%"
+                        text = "${ difficultyState.settings.sanityDrainSpeed.toFloat() * 100f }%"
                     )
                 }
                 SubRow {
@@ -126,7 +128,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.sprinting.toStringResource())
+                        text = stringResource(difficultyState.settings.sprinting.toStringResource())
                     )
                 }
                 SubRow {
@@ -137,7 +139,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ state.settings.playerSpeed.toFloat() * 100f }%"
+                        text = "${ difficultyState.settings.playerSpeed.toFloat() * 100f }%"
                     )
                 }
                 SubRow {
@@ -148,7 +150,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.flashlights.toStringResource())
+                        text = stringResource(difficultyState.settings.flashlights.toStringResource())
                     )
                 }
                 SubRow {
@@ -159,7 +161,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.loseItemsAndConsumables.toStringResource())
+                        text = stringResource(difficultyState.settings.loseItemsAndConsumables.toStringResource())
                     )
                 }
             }
@@ -193,7 +195,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ state.settings.ghostSpeed.toFloat() * 100f }%"
+                        text = "${ difficultyState.settings.ghostSpeed.toFloat() * 100f }%"
                     )
                 }
                 SubRow {
@@ -204,7 +206,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.roamingFrequency.toStringResource())
+                        text = stringResource(difficultyState.settings.roamingFrequency.toStringResource())
                     )
                 }
                 SubRow {
@@ -215,7 +217,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.changingFavouriteRoom.toStringResource())
+                        text = stringResource(difficultyState.settings.changingFavouriteRoom.toStringResource())
                     )
                 }
                 SubRow {
@@ -226,7 +228,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.activityLevel.toStringResource())
+                        text = stringResource(difficultyState.settings.activityLevel.toStringResource())
                     )
                 }
                 SubRow {
@@ -237,7 +239,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.eventFrequency.toStringResource())
+                        text = stringResource(difficultyState.settings.eventFrequency.toStringResource())
                     )
                 }
                 SubRow {
@@ -248,7 +250,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.friendlyGhost.toStringResource())
+                        text = stringResource(difficultyState.settings.friendlyGhost.toStringResource())
                     )
                 }
                 SubRow {
@@ -259,7 +261,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ (state.settings.gracePeriod.toLong() / 1000f).toLong() } s"
+                        text = "${ (difficultyState.settings.gracePeriod.toLong() / 1000f).toLong() }s"
                     )
                 }
                 SubRow {
@@ -270,7 +272,8 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.huntDuration.toStringResource())
+                        text = "${stringResource(difficultyState.settings.huntDuration.toStringResource())} " +
+                                "( ${(difficultyState.settings.huntDuration.toLong(mapState.size)/1000f).toLong()}s )"
                     )
                 }
                 SubRow {
@@ -281,7 +284,8 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.killsExtendHunts.toStringResource())
+                        text = "${stringResource(difficultyState.settings.killsExtendHunts.toStringResource())} " +
+                                "( +${(difficultyState.settings.killsExtendHunts.toLong(mapState.size)/1000f).toLong()}s )"
                     )
                 }
                 SubRow {
@@ -292,7 +296,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ state.settings.evidenceGiven.toInt() }"
+                        text = "${ difficultyState.settings.evidenceGiven.toInt() }"
                     )
                 }
                 SubRow {
@@ -303,7 +307,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ state.settings.fingerprintChance.toFloat() * 100f }%"
+                        text = "${ difficultyState.settings.fingerprintChance.toFloat() * 100f }%"
                     )
                 }
                 SubRow {
@@ -314,7 +318,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ (state.settings.fingerprintDuration.toLong() / 1000f).toLong() } s"
+                        text = "${ (difficultyState.settings.fingerprintDuration.toLong() / 1000f).toLong() }s"
                     )
                 }
             }
@@ -348,7 +352,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ (state.settings.setupTime.toLong() / 1000f).toLong() } s"
+                        text = "${ (difficultyState.settings.setupTime.toLong() / 1000f).toLong() }s"
                     )
                 }
                 SubRow {
@@ -359,7 +363,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.weather.toStringResource())
+                        text = stringResource(difficultyState.settings.weather.toStringResource())
                     )
                 }
                 SubRow {
@@ -370,7 +374,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.doorsStartingOpen.toStringResource())
+                        text = stringResource(difficultyState.settings.doorsStartingOpen.toStringResource())
                     )
                 }
                 SubRow {
@@ -381,7 +385,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.numberOfHidingPlaces.toStringResource())
+                        text = stringResource(difficultyState.settings.numberOfHidingPlaces.toStringResource())
                     )
                 }
                 SubRow {
@@ -392,7 +396,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.sanityMonitor.toStringResource())
+                        text = stringResource(difficultyState.settings.sanityMonitor.toStringResource())
                     )
                 }
                 SubRow {
@@ -403,7 +407,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.activityMonitor.toStringResource())
+                        text = stringResource(difficultyState.settings.activityMonitor.toStringResource())
                     )
                 }
                 SubRow {
@@ -414,7 +418,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.fuseBoxAtStartOfContract.toStringResource())
+                        text = stringResource(difficultyState.settings.fuseBoxAtStartOfContract.toStringResource())
                     )
                 }
                 SubRow {
@@ -425,7 +429,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = stringResource(state.settings.fuseBoxVisibleOnMap.toStringResource())
+                        text = stringResource(difficultyState.settings.fuseBoxVisibleOnMap.toStringResource())
                     )
                 }
                 SubRow {
@@ -436,7 +440,7 @@ internal fun DifficultyModifierDetails(
                     )
                     TextSubTitle(
                         color = LocalPalette.current.onSurfaceVariant,
-                        text = "${ state.settings.cursedPossessionsQuantity.toInt() }"
+                        text = "${ difficultyState.settings.cursedPossessionsQuantity.toInt() }"
                     )
                 }
                 SubRow {
@@ -449,7 +453,7 @@ internal fun DifficultyModifierDetails(
                                 .CURSED_POSSESSIONS.toStringResource())}:"
                         )
 
-                        state.settings.cursedPossessions.forEachIndexed { index, possession ->
+                        difficultyState.settings.cursedPossessions.forEachIndexed { index, possession ->
                             if(index == 0 ||
                                 possession != DifficultySettingResources.CursedPossession.RANDOM) {
 
@@ -468,14 +472,14 @@ internal fun DifficultyModifierDetails(
                         modifier = Modifier.padding(horizontal = 4.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        if(state.settings.equipmentPermission.isEmpty()) return@SubRow
+                        if(difficultyState.settings.equipmentPermission.isEmpty()) return@SubRow
 
                         TextSubTitle(
                             color = LocalPalette.current.onSurface,
                             text = "Equipment Restrictions:"
                         )
 
-                        state.settings.equipmentPermission.forEachIndexed { index, permission ->
+                        difficultyState.settings.equipmentPermission.forEachIndexed { index, permission ->
                             val perm =
                                 if(permission.permission == EquipmentPermission.Permission.REVOKED)
                                     stringResource(R.string.difficulty_permission_revoked)
@@ -484,7 +488,7 @@ internal fun DifficultyModifierDetails(
                                 if(permission.quantity == EquipmentPermission.ALL)
                                     stringResource(R.string.difficulty_permission_quantity_all)
                                 else permission.quantity
-                            val item = stringResource(permission.equipmentTitle.toStringResource())
+                            val item = stringResource(permission.identifier.toEquipmentTitle().toStringResource())
 
                             TextSubTitle(
                                 modifier = Modifier.padding(horizontal = 8.dp),

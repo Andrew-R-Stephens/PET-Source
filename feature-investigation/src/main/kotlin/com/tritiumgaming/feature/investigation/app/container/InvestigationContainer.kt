@@ -186,9 +186,7 @@ class InvestigationContainer(
     
     // Map Modifiers
     private val mapModifiersRepository: MapModifiersRepository by lazy {
-        val mapModifiersLocalDataSource: MapModifiersDataSource = MapModifiersLocalDataSource(
-            applicationContext = applicationContext
-        )
+        val mapModifiersLocalDataSource: MapModifiersDataSource = MapModifiersLocalDataSource()
         MapModifiersRepositoryImpl(
             localSource = mapModifiersLocalDataSource
         )

@@ -32,6 +32,7 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Sprinting
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
 
 @StringRes fun DifficultySetting.toStringResource(): Int =
     when(this) {
@@ -190,6 +191,25 @@ fun GracePeriod.toLong(): Long =
         HuntDuration.HIGH -> R.string.difficulty_setting_state_high
     }
 
+fun HuntDuration.toLong(size: MapModifierResources.MapSize): Long =
+    when(this) {
+        HuntDuration.LOW -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 15000L
+            MapModifierResources.MapSize.MEDIUM -> 30000L
+            MapModifierResources.MapSize.LARGE -> 40000L
+        }
+        HuntDuration.MEDIUM -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 20000L
+            MapModifierResources.MapSize.MEDIUM -> 40000L
+            MapModifierResources.MapSize.LARGE -> 50000L
+        }
+        HuntDuration.HIGH -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 30000L
+            MapModifierResources.MapSize.MEDIUM -> 50000L
+            MapModifierResources.MapSize.LARGE -> 60000L
+        }
+    }
+
 @StringRes fun KillsExtendHunts.toStringResource(): Int =
     when(this) {
         KillsExtendHunts.OFF -> R.string.difficulty_setting_state_off
@@ -198,12 +218,32 @@ fun GracePeriod.toLong(): Long =
         KillsExtendHunts.HIGH -> R.string.difficulty_setting_state_high
     }
 
+fun KillsExtendHunts.toLong(size: MapModifierResources.MapSize): Long =
+    when(this) {
+        KillsExtendHunts.OFF -> 0L
+        KillsExtendHunts.LOW -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 15000L
+            MapModifierResources.MapSize.MEDIUM -> 20000L
+            MapModifierResources.MapSize.LARGE -> 25000L
+        }
+        KillsExtendHunts.MEDIUM -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 25000L
+            MapModifierResources.MapSize.MEDIUM -> 30000L
+            MapModifierResources.MapSize.LARGE -> 35000L
+        }
+        KillsExtendHunts.HIGH -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 35000L
+            MapModifierResources.MapSize.MEDIUM -> 40000L
+            MapModifierResources.MapSize.LARGE -> 45000L
+        }
+    }
+
 fun EvidenceGiven.toInt(): Int =
     when(this) {
-        EvidenceGiven.COUNT_0 -> 1
-        EvidenceGiven.COUNT_1 -> 2
-        EvidenceGiven.COUNT_2 -> 3
-        EvidenceGiven.COUNT_3 -> 4
+        EvidenceGiven.COUNT_0 -> 0
+        EvidenceGiven.COUNT_1 -> 1
+        EvidenceGiven.COUNT_2 -> 2
+        EvidenceGiven.COUNT_3 -> 3
     }
 
 fun FingerprintChance.toFloat(): Float =

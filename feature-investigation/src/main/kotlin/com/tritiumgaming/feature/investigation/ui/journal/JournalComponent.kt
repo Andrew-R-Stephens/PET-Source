@@ -34,21 +34,6 @@ import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListU
 import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostListUiItemActions
 
 @Composable
-fun Journal(
-    modifier: Modifier = Modifier,
-    journalStateBundle: JournalStateBundle,
-    evidenceListUiActions: EvidenceListUiActions,
-    ghostListUiActions: GhostListUiActions,
-    ghostListUiItemActions: GhostListUiItemActions,
-    journalComponent: @Composable (Modifier) -> Unit
-) {
-    val journalUiState = journalStateBundle.journalUiState
-    val evidenceListUiState = journalStateBundle.evidenceListUiState
-    val ghostListUiState = journalStateBundle.ghostListUiState
-
-}
-
-@Composable
 internal fun GhostListColumn(
     modifier: Modifier = Modifier,
     ghostListUiState: GhostListUiState,
