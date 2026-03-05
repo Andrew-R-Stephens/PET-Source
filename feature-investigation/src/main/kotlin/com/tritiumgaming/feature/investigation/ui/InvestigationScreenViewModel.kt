@@ -16,6 +16,7 @@ import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseB
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toFloat
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toLong
+import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
@@ -340,14 +341,16 @@ class InvestigationScreenViewModel private constructor(
             .filter { it.permission == Permission.REVOKED && it.quantity == EquipmentPermission.ALL }
             .map { it.identifier }
 
-        evidenceStates.map {
-            val identifier = getEquipmentTypeByEvidenceTypeUseCase(it.evidence)
-            val enabled = identifier !in revokedIdentifiers
-            it.copy(
-                state = if(!enabled) { EvidenceValidationType.NEUTRAL } else { it.state },
-                enabled = enabled
-            )
-        }
+        evidenceStates
+            .map {
+                val identifier = getEquipmentTypeByEvidenceTypeUseCase(it.evidence)
+                val enabled = identifier !in revokedIdentifiers
+                it.copy(
+                    state = if(!enabled) { EvidenceValidationType.NEUTRAL } else { it.state },
+                    enabled = enabled
+                )
+            }.sortedBy { it.evidence.id.ordinal }
+            .sortedBy { it.enabled }
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,

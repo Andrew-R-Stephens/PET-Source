@@ -17,14 +17,6 @@ data class GhostState(
     val bpmIsValid: Boolean = false
 ) {
 
-    /*fun updateScore(
-        evidenceState: List<EvidenceState>,
-        currentDifficulty: DifficultyResources.DifficultyType
-    ): GhostState {
-        return setScore(
-            score = calculateEvidenceScore(evidenceState, currentDifficulty))
-    }*/
-
     fun updateScore(
         evidenceState: List<EvidenceState>,
         evidenceGiven: DifficultySettingResources.EvidenceGiven

@@ -447,7 +447,7 @@ private fun InvestigationContent(
                 modifier = Modifier
                     .height(48.dp)
                     .padding(8.dp)
-                    .fillMaxWidth(),
+                    .weight(1f),
                 state = timerUiState
             )
 
@@ -841,11 +841,11 @@ fun OperationConfigs(
         horizontalAlignment = Alignment.Start
     ) {
 
-        mapConfigComponent(Modifier
+        difficultyConfigComponent(Modifier
             .fillMaxWidth()
         )
 
-        difficultyConfigComponent(Modifier
+        mapConfigComponent(Modifier
             .fillMaxWidth()
         )
 
