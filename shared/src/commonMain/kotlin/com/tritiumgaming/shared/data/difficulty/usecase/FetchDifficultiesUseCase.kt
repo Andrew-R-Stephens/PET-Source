@@ -1,9 +1,12 @@
 package com.tritiumgaming.shared.data.difficulty.usecase
 
+import com.tritiumgaming.shared.data.difficulty.model.DifficultyModel
+import com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
+
 class FetchDifficultiesUseCase(
-    private val difficultyRepository: com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
+    private val difficultyRepository: DifficultyRepository
 ) {
-    operator fun invoke(): Result<List<com.tritiumgaming.shared.data.difficulty.model.DifficultyModel>> {
+    operator fun invoke(): Result<List<DifficultyModel>> {
         val result = difficultyRepository.getDifficulties()
 
         result.exceptionOrNull()?.let {

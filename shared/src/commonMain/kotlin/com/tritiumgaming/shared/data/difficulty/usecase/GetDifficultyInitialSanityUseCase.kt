@@ -1,11 +1,12 @@
 package com.tritiumgaming.shared.data.difficulty.usecase
 
-import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
 
 class GetDifficultyInitialSanityUseCase(
-    private val difficultyRepository: com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
+    private val difficultyRepository: DifficultyRepository
 ) {
-    operator fun invoke(index: Int): Result<DifficultySettingResources.StartingSanity> {
+    operator fun invoke(index: Int): Result<StartingSanity> {
         val result = difficultyRepository.getDifficulties()
 
         result.exceptionOrNull()?.let {

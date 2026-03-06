@@ -1,7 +1,9 @@
 package com.tritiumgaming.shared.data.difficulty.usecase
 
+import com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
+
 class IncrementDifficultyIndexUseCase(
-    private val difficultyRepository: com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
+    private val difficultyRepository: DifficultyRepository
 ) {
     operator fun invoke(
         currentIndex: Int

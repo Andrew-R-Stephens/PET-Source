@@ -1,10 +1,12 @@
 package com.tritiumgaming.shared.data.evidence.model
 
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.*
+
 data class Evidence(
-    val id: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier,
-    val name: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle,
-    val description: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceDescription,
-    val icon: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon,
-    val animation: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceAnimation,
+    val id: EvidenceIdentifier,
+    val name: EvidenceTitle,
+    val description: EvidenceDescription,
+    val icon: EvidenceIcon,
+    val animation: EvidenceAnimation,
     val tiers: List<EvidenceTier> = emptyList()
 )

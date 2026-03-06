@@ -1,23 +1,25 @@
 package com.tritiumgaming.shared.data.evidence.usecase
 
 import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.*
 import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.*
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 
 class GetEquipmentTypeByEvidenceTypeUseCase {
-        operator fun invoke(
-            evidenceType: EvidenceType
-        ): EquipmentResources.EquipmentIdentifier {
-            val evidenceId = evidenceType.id
+    operator fun invoke(
+        evidenceType: EvidenceType
+    ): EquipmentIdentifier {
+        val evidenceId = evidenceType.id
 
-            return when(evidenceId) {
-                EvidenceResources.EvidenceIdentifier.DOTS -> EquipmentResources.EquipmentIdentifier.DOTS
-                EvidenceResources.EvidenceIdentifier.EMF_5 -> EquipmentResources.EquipmentIdentifier.EMF
-                EvidenceResources.EvidenceIdentifier.ULTRAVIOLET_LIGHT -> EquipmentResources.EquipmentIdentifier.UV_LIGHT
-                EvidenceResources.EvidenceIdentifier.FREEZING_TEMPERATURE -> EquipmentResources.EquipmentIdentifier.THERMOMETER
-                EvidenceResources.EvidenceIdentifier.GHOST_ORBS -> EquipmentResources.EquipmentIdentifier.VIDEO_CAMERA
-                EvidenceResources.EvidenceIdentifier.GHOST_WRITING -> EquipmentResources.EquipmentIdentifier.GHOST_WRITING_BOOK
-                EvidenceResources.EvidenceIdentifier.SPIRIT_BOX -> EquipmentResources.EquipmentIdentifier.SPIRIT_BOX
-            }
+        return when(evidenceId) {
+            EvidenceIdentifier.DOTS -> EquipmentIdentifier.DOTS
+            EvidenceIdentifier.EMF_5 -> EquipmentIdentifier.EMF
+            EvidenceIdentifier.ULTRAVIOLET_LIGHT -> EquipmentIdentifier.UV_LIGHT
+            EvidenceIdentifier.FREEZING_TEMPERATURE -> EquipmentIdentifier.THERMOMETER
+            EvidenceIdentifier.GHOST_ORBS -> EquipmentIdentifier.VIDEO_CAMERA
+            EvidenceIdentifier.GHOST_WRITING -> EquipmentIdentifier.GHOST_WRITING_BOOK
+            EvidenceIdentifier.SPIRIT_BOX -> EquipmentIdentifier.SPIRIT_BOX
         }
     }
+}
