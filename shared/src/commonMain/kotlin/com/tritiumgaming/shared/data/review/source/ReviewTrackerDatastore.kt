@@ -1,8 +1,9 @@
 package com.tritiumgaming.shared.data.review.source
 
 import com.tritiumgaming.shared.data.datastore.DatastoreDataSource
+import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore.*
 
-interface ReviewTrackerDatastore: DatastoreDataSource<ReviewTrackerDatastore.ReviewTrackerPreferences> {
+interface ReviewTrackerDatastore: DatastoreDataSource<ReviewTrackerPreferences> {
 
     suspend fun saveWasRequestedState(wasRequested: Boolean)
     fun getWasRequestedState(): Boolean

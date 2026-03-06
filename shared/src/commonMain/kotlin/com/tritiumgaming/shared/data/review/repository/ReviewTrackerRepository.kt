@@ -2,9 +2,10 @@ package com.tritiumgaming.shared.data.review.repository
 
 import com.tritiumgaming.shared.data.datastore.DatastoreRepository
 import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore
+import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore.*
 
 interface ReviewTrackerRepository:
-    DatastoreRepository<ReviewTrackerDatastore.ReviewTrackerPreferences> {
+    DatastoreRepository<ReviewTrackerPreferences> {
 
     var appInitializationState: Int
 

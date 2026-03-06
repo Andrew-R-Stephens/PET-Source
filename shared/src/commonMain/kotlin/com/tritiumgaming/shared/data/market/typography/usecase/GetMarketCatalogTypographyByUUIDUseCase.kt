@@ -2,6 +2,7 @@ package com.tritiumgaming.shared.data.market.typography.usecase
 
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
 import com.tritiumgaming.shared.data.market.typography.model.TypographyResources
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.*
 import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
 
 class GetMarketCatalogTypographyByUUIDUseCase(
@@ -10,7 +11,7 @@ class GetMarketCatalogTypographyByUUIDUseCase(
 
     operator fun invoke(
         uuid: String
-    ): Result<TypographyResources.TypographyType> {
+    ): Result<TypographyType> {
 
         val typographyCache = repository.get().getOrDefault(emptyList())
         val cachedTypography: MarketTypography = typographyCache.find { it.uuid == uuid } ?:

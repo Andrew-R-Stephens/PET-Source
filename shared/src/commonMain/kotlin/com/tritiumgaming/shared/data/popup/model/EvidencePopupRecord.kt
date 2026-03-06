@@ -1,24 +1,29 @@
 package com.tritiumgaming.shared.data.popup.model
 
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.*
+import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentType
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.*
+import com.tritiumgaming.shared.data.evidence.model.EvidenceTier
+
 data class EvidencePopupRecord(
-    val id: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier,
-    val name: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle,
-    val description: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceDescription,
-    val icon: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon,
-    val animation: com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceAnimation,
-    val equipmentType: com.tritiumgaming.shared.data.codex.model.equipment.EquipmentType,
-    val equipmentTierAnimations: List<com.tritiumgaming.shared.data.evidence.model.EvidenceTier> = emptyList(),
+    val id: EvidenceIdentifier,
+    val name: EvidenceTitle,
+    val description: EvidenceDescription,
+    val icon: EvidenceIcon,
+    val animation: EvidenceAnimation,
+    val equipmentType: EquipmentType,
+    val equipmentTierAnimations: List<EvidenceTier> = emptyList(),
 ) {
 
-    fun getAnimationAt(i: Int): com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation {
+    fun getAnimationAt(i: Int): EvidenceTierAnimation {
         return equipmentTierAnimations[i].animation
     }
 
-    fun getDescriptionAt(i: Int): com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierInformation {
+    fun getDescriptionAt(i: Int): EquipmentTierInformation {
         return equipmentType.items[i].info
     }
 
-    fun getUnlockLevelAt(i: Int): com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUnlockLevel {
+    fun getUnlockLevelAt(i: Int): EquipmentUnlockLevel {
         return equipmentType.items[i].upgradeLevelData
     }
 

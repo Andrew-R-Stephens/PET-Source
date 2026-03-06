@@ -1,7 +1,9 @@
 package com.tritiumgaming.shared.data.map.simple.usecase
 
+import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
+
 class DecrementSimpleMapFloorIndexUseCase(
-    private val simpleMapRepository: com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
+    private val simpleMapRepository: SimpleMapRepository
 ) {
     operator fun invoke(currentMapId: String, currentFloorIndex: Int): Result<Int> {
         val result = simpleMapRepository.getMaps()

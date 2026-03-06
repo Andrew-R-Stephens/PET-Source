@@ -1,13 +1,15 @@
 package com.tritiumgaming.shared.data.map.simple.model
 
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.*
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.*
 
 class SimpleWorldMap(
     val mapId: String,
-    val mapName: SimpleMapResources.MapTitle,
-    val mapSize: MapModifierResources.MapSize,
-    val thumbnailImage: SimpleMapResources.MapThumbnail,
+    val mapName: MapTitle,
+    val mapSize: MapSize,
+    val thumbnailImage: MapThumbnail,
     val mapFloors: List<SimpleWorldMapFloor>,
     val defaultFloor: Int
 ) {
@@ -17,11 +19,11 @@ class SimpleWorldMap(
     val floorCount: Int
         get() = mapFloors.size
 
-    fun getFloorName(floorIndex: Int): SimpleMapResources.MapFloorTitle {
+    fun getFloorName(floorIndex: Int): MapFloorTitle {
         return mapFloors[floorIndex].layerName
     }
 
-    fun getFloorImage(floorIndex: Int): SimpleMapResources.MapFloorImage =
+    fun getFloorImage(floorIndex: Int): MapFloorImage =
         mapFloors[floorIndex].image
 
     fun addFloorLayer(floorIndex: Int, layer: Int) {

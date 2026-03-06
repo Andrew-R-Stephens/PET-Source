@@ -3,9 +3,10 @@ package com.tritiumgaming.shared.data.newsletter.repository
 import com.tritiumgaming.shared.data.datastore.DatastoreRepository
 import com.tritiumgaming.shared.data.newsletter.model.NewsletterInbox
 import com.tritiumgaming.shared.data.newsletter.source.NewsletterDatastore
+import com.tritiumgaming.shared.data.newsletter.source.NewsletterDatastore.*
 import kotlinx.coroutines.flow.Flow
 
-interface NewsletterRepository: DatastoreRepository<NewsletterDatastore.NewsletterPreferences> {
+interface NewsletterRepository: DatastoreRepository<NewsletterPreferences> {
 
     suspend fun saveInboxLastReadDate(id: String, date: Long)
 

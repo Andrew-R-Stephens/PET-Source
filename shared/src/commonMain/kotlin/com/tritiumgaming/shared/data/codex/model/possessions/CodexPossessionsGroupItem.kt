@@ -1,13 +1,14 @@
 package com.tritiumgaming.shared.data.codex.model.possessions
 
 import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources
+import com.tritiumgaming.shared.data.codex.mappers.PossessionsResources.*
 
 data class CodexPossessionsGroupItem(
-    val altName: PossessionsResources.PossessionItemAltName? = null,
-    val image: PossessionsResources.PossessionImage,
-    val flavorText: PossessionsResources.PossessionFlavor,
-    val infoText: PossessionsResources.PossessionDescription,
-    val attributesText: PossessionsResources.PossessionAttribute,
-    val sanityDrain: PossessionsResources.PossessionSanityDrain,
-    val drawChance: PossessionsResources.PossessionDrawChance,
+    val altName: PossessionItemAltName? = null,
+    val image: PossessionImage,
+    val flavorText: PossessionFlavor,
+    val infoText: PossessionDescription,
+    val attributesText: PossessionAttribute,
+    val sanityDrain: PossessionSanityDrain,
+    val drawChance: PossessionDrawChance,
 )

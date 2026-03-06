@@ -1,9 +1,12 @@
 package com.tritiumgaming.shared.data.map.complex.usecase
 
+import com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMaps
+import com.tritiumgaming.shared.data.map.complex.repository.ComplexMapRepository
+
 class FetchComplexMapsUseCase(
-    private val complexMapRepository: com.tritiumgaming.shared.data.map.complex.repository.ComplexMapRepository
+    private val complexMapRepository: ComplexMapRepository
 ) {
-    suspend operator fun invoke(): Result<com.tritiumgaming.shared.data.map.complex.model.ComplexWorldMaps> {
+    suspend operator fun invoke(): Result<ComplexWorldMaps> {
         val result = complexMapRepository.fetchMaps()
 
         result.exceptionOrNull()?.let {

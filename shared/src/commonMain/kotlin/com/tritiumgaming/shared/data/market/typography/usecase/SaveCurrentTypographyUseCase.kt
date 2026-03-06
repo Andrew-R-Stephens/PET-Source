@@ -1,7 +1,9 @@
 package com.tritiumgaming.shared.data.market.typography.usecase
 
+import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
+
 class SaveCurrentTypographyUseCase(
-    private val repository: com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
+    private val repository: GlobalPreferencesRepository
 ) {
 
     @Suppress("unused")

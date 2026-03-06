@@ -1,13 +1,16 @@
 package com.tritiumgaming.shared.data.language.usecase
 
+import com.tritiumgaming.shared.data.language.model.LanguageEntity
+import com.tritiumgaming.shared.data.language.repository.LanguageRepository
+
 class SetDefaultLanguageUseCase(
-    val repository: com.tritiumgaming.shared.data.language.repository.LanguageRepository
+    val repository: LanguageRepository
 ) {
 
     operator fun invoke(
         localeLanguage: String,
-        languages: List<com.tritiumgaming.shared.data.language.model.LanguageEntity>
-    ): Result<com.tritiumgaming.shared.data.language.model.LanguageEntity> {
+        languages: List<LanguageEntity>
+    ): Result<LanguageEntity> {
         // OVERRIDE DEFAULT LANGUAGE
         languages.find { language ->
             language.code

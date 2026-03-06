@@ -1,6 +1,8 @@
 package com.tritiumgaming.shared.data.mission.model
 
+import com.tritiumgaming.shared.data.mission.mappers.MissionResources.MissionContent
+
 class Mission(
-    val content: com.tritiumgaming.shared.data.mission.mappers.MissionResources.MissionContent,
+    val content: MissionContent,
     var id: String
 )

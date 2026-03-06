@@ -1,6 +1,7 @@
 package com.tritiumgaming.shared.data.map.modifier.mappers
 
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier.*
 
 class MapModifierResources {
 
@@ -28,11 +29,11 @@ class MapModifierResources {
 
 fun MapSizePhaseModifier.toFloat(): Float {
     return when (this) {
-        MapSizePhaseModifier.SETUP_SMALL -> .09f
-        MapSizePhaseModifier.SETUP_MEDIUM -> .05f
-        MapSizePhaseModifier.SETUP_LARGE -> .03f
-        MapSizePhaseModifier.ACTION_SMALL ->.12f
-        MapSizePhaseModifier.ACTION_MEDIUM -> .08f
-        MapSizePhaseModifier.ACTION_LARGE -> .05f
+        SETUP_SMALL -> .09f
+        SETUP_MEDIUM -> .05f
+        SETUP_LARGE -> .03f
+        ACTION_SMALL ->.12f
+        ACTION_MEDIUM -> .08f
+        ACTION_LARGE -> .05f
     }
 }

@@ -1,9 +1,12 @@
 package com.tritiumgaming.shared.data.mission.usecase
 
+import com.tritiumgaming.shared.data.mission.model.Mission
+import com.tritiumgaming.shared.data.mission.repository.MissionRepository
+
 class FetchAllMissionsUseCase(
-        private val missionRepository: com.tritiumgaming.shared.data.mission.repository.MissionRepository
+        private val missionRepository: MissionRepository
     ) {
-        operator fun invoke(): Result<List<com.tritiumgaming.shared.data.mission.model.Mission>> {
+        operator fun invoke(): Result<List<Mission>> {
             
             val result = missionRepository.getMissions()
             

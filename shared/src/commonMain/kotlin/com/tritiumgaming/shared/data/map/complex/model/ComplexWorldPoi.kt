@@ -1,9 +1,11 @@
 package com.tritiumgaming.shared.data.map.complex.model
 
+import com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources.Poi
+
 data class ComplexWorldPoi(
     val id: Int,
     val name: String,
-    val type: com.tritiumgaming.shared.data.map.poi.mappers.MapPoiResources.Poi,
+    val type: Poi,
     val point: ComplexWorldPoint?
 ) {
 

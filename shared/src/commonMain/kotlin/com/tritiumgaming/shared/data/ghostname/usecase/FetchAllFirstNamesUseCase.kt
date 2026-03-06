@@ -1,11 +1,15 @@
 package com.tritiumgaming.shared.data.ghostname.usecase
 
-class FetchAllFirstNamesUseCase(
-    private val repository: com.tritiumgaming.shared.data.ghostname.repository.GhostNameRepository
-) {
-    operator fun invoke(): Result<List<com.tritiumgaming.shared.data.ghostname.model.GhostName>> {
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
+import com.tritiumgaming.shared.data.ghostname.model.GhostName.NamePriority.*
+import com.tritiumgaming.shared.data.ghostname.repository.GhostNameRepository
 
-        val result = repository.getNamesBy(com.tritiumgaming.shared.data.ghostname.model.GhostName.NamePriority.FIRST)
+class FetchAllFirstNamesUseCase(
+    private val repository: GhostNameRepository
+) {
+    operator fun invoke(): Result<List<GhostName>> {
+
+        val result = repository.getNamesBy(FIRST)
 
         result.exceptionOrNull()?.let {
             return Result.failure(Exception("Could not get first names", it)) }

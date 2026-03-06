@@ -1,11 +1,14 @@
 package com.tritiumgaming.shared.data.ghostname.repository
 
+import com.tritiumgaming.shared.data.ghostname.model.GhostName
+import com.tritiumgaming.shared.data.ghostname.model.GhostName.*
+
 interface GhostNameRepository {
 
-    fun getNames(): Result<List<com.tritiumgaming.shared.data.ghostname.model.GhostName>>
+    fun getNames(): Result<List<GhostName>>
     fun getNamesBy(
-        namePriority: com.tritiumgaming.shared.data.ghostname.model.GhostName.NamePriority? = null,
-        gender: com.tritiumgaming.shared.data.ghostname.model.GhostName.Gender? = null
-    ): Result<List<com.tritiumgaming.shared.data.ghostname.model.GhostName>>
+        namePriority: NamePriority? = null,
+        gender: Gender? = null
+    ): Result<List<GhostName>>
 
 }

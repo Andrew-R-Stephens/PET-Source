@@ -1,9 +1,12 @@
 package com.tritiumgaming.shared.data.map.simple.usecase
 
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.*
+import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
+
 class FetchMapThumbnailsUseCase(
-    private val simpleMapRepository: com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
+    private val simpleMapRepository: SimpleMapRepository
 ) {
-    operator fun invoke(): Result<List<com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapThumbnail>> {
+    operator fun invoke(): Result<List<MapThumbnail>> {
 
         val result = simpleMapRepository.getMaps()
 

@@ -2,12 +2,13 @@ package com.tritiumgaming.shared.data.evidence.model
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.*
 
 @Stable
 @Immutable
 data class EvidenceState(
     val evidence: EvidenceType,
-    val state: EvidenceValidationType = EvidenceValidationType.NEUTRAL,
+    val state: EvidenceValidationType = NEUTRAL,
     val enabled: Boolean = true
 ) {
 

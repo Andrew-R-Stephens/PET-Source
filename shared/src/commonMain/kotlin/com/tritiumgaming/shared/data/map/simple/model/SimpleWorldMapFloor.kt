@@ -1,6 +1,8 @@
 package com.tritiumgaming.shared.data.map.simple.model
 
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.*
+
 data class SimpleWorldMapFloor(
-    val layerName: com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorTitle,
-    val image: com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorImage
+    val layerName: MapFloorTitle,
+    val image: MapFloorImage
 )

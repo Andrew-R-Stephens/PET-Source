@@ -3,9 +3,10 @@ package com.tritiumgaming.shared.data.preferences.repository
 import com.tritiumgaming.shared.data.datastore.DatastoreRepository
 import com.tritiumgaming.shared.data.preferences.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
+import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.*
 
 interface GlobalPreferencesRepository:
-    DatastoreRepository<GlobalPreferencesDatastore.GlobalPreferences> {
+    DatastoreRepository<GlobalPreferences> {
 
     suspend fun setDisableScreenSaver(disable: Boolean)
 

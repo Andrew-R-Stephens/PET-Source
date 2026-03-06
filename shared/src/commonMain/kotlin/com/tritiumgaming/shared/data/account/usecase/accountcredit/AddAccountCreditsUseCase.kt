@@ -1,11 +1,15 @@
 package com.tritiumgaming.shared.data.account.usecase.accountcredit
 
+import com.tritiumgaming.shared.data.account.model.AccountCreditTransaction
+import com.tritiumgaming.shared.data.account.model.AccountCredits
+import com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
+
 class AddAccountCreditsUseCase(
-    private val repository: com.tritiumgaming.shared.data.account.repository.FirestoreAccountRepository
+    private val repository: FirestoreAccountRepository
 ) {
-    suspend operator fun invoke(credits: Long): Result<com.tritiumgaming.shared.data.account.model.AccountCredits> {
+    suspend operator fun invoke(credits: Long): Result<AccountCredits> {
         val result = repository.addCredits(
-            com.tritiumgaming.shared.data.account.model.AccountCreditTransaction(
+            AccountCreditTransaction(
                 credits
             )
         )

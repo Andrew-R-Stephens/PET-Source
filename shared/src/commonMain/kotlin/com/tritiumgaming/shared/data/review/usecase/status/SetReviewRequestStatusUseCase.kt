@@ -1,7 +1,9 @@
 package com.tritiumgaming.shared.data.review.usecase.status
 
+import com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
+
 class SetReviewRequestStatusUseCase(
-    private val repository: com.tritiumgaming.shared.data.review.repository.ReviewTrackerRepository
+    private val repository: ReviewTrackerRepository
 ) {
 
     @Suppress("unused")

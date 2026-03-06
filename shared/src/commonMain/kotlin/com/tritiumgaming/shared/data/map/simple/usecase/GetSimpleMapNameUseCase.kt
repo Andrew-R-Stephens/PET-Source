@@ -1,9 +1,12 @@
 package com.tritiumgaming.shared.data.map.simple.usecase
 
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.*
+import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
+
 class GetSimpleMapNameUseCase(
-    private val simpleMapRepository: com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
+    private val simpleMapRepository: SimpleMapRepository
 ) {
-    operator fun invoke(index: Int): Result<com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle> {
+    operator fun invoke(index: Int): Result<MapTitle> {
 
         val result = simpleMapRepository.getMaps()
 
@@ -19,7 +22,7 @@ class GetSimpleMapNameUseCase(
         return Result.success(name)
     }
 
-    operator fun invoke(id: String): Result<com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle> {
+    operator fun invoke(id: String): Result<MapTitle> {
 
         val result = simpleMapRepository.getMaps()
 

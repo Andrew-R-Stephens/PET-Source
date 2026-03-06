@@ -1,6 +1,7 @@
 package com.tritiumgaming.shared.data.map.modifier.usecase
 
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.*
 import com.tritiumgaming.shared.data.map.modifier.model.WorldMapModifier
 import com.tritiumgaming.shared.data.map.modifier.repsitory.MapModifiersRepository
 
@@ -20,7 +21,7 @@ class FetchSimpleMapModifiersUseCase(
         return Result.success(modifiers)
     }
 
-    operator fun invoke(mapSize: MapModifierResources.MapSize): Result<WorldMapModifier> {
+    operator fun invoke(mapSize: MapSize): Result<WorldMapModifier> {
         val result = this()
 
         result.exceptionOrNull()?.let {

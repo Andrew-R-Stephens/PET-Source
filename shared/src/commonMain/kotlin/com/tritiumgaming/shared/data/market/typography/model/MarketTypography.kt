@@ -1,6 +1,7 @@
 package com.tritiumgaming.shared.data.market.typography.model
 
 import com.tritiumgaming.shared.data.account.model.AccountMarketTypography
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.*
 
 data class MarketTypography (
     val uuid: String,
@@ -9,7 +10,7 @@ data class MarketTypography (
     val buyCredits: Long = 0L,
     val priority: Long? = 0L,
     val unlocked: Boolean = false,
-    val typography: TypographyResources.TypographyType? = null
+    val typography: TypographyType? = null
 )
 
 fun MarketTypography.toPair(): Pair<String, MarketTypography> {

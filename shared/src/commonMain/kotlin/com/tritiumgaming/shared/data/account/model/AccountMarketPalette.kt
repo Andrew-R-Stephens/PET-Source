@@ -2,6 +2,7 @@ package com.tritiumgaming.shared.data.account.model
 
 import com.tritiumgaming.shared.data.market.model.FeatureAvailability
 import com.tritiumgaming.shared.data.market.palette.model.PaletteResources
+import com.tritiumgaming.shared.data.market.palette.model.PaletteResources.*
 
 data class AccountMarketPalette (
     val uuid: String,
@@ -10,7 +11,7 @@ data class AccountMarketPalette (
     internal val buyCredits: Long = 0L,
     internal val priority: Long? = 0L,
     internal val unlocked: Boolean = false,
-    internal val palette: PaletteResources.PaletteType? = null
+    internal val palette: PaletteType? = null
 ) {
 
     private var unlockedState: FeatureAvailability =

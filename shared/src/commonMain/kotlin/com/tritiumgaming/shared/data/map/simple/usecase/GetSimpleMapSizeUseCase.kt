@@ -1,9 +1,12 @@
 package com.tritiumgaming.shared.data.map.simple.usecase
 
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.*
+import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
+
 class GetSimpleMapSizeUseCase(
-    private val simpleMapRepository: com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
+    private val simpleMapRepository: SimpleMapRepository
 ) {
-    operator fun invoke(index: Int): Result<com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize> {
+    operator fun invoke(index: Int): Result<MapSize> {
         val result = simpleMapRepository.getMaps()
 
         result.exceptionOrNull()?.let {
@@ -16,7 +19,7 @@ class GetSimpleMapSizeUseCase(
         return Result.success(mapSize)
     }
 
-    operator fun invoke(id: String): Result<com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize> {
+    operator fun invoke(id: String): Result<MapSize> {
         val result = simpleMapRepository.getMaps()
 
         result.exceptionOrNull()?.let {

@@ -1,10 +1,12 @@
 package com.tritiumgaming.shared.data.newsletter.model
 
+import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.*
+
 data class NewsletterInbox(
     val id: String? = "",
-    val title: com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle = com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle.GENERAL_NEWS,
+    val title: NewsletterTitle = NewsletterTitle.GENERAL_NEWS,
     val url: String? = "",
-    val icon: com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon = com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon.GENERAL_NEWS,
+    val icon: NewsletterIcon = NewsletterIcon.GENERAL_NEWS,
     val channel: NewsletterChannel? = null
 ) {
 
