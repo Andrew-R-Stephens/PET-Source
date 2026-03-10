@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.tool.analysis
 
 import com.tritiumgaming.feature.investigation.ui.TimerUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle

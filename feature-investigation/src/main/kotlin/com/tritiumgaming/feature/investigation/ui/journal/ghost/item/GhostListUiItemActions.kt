@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
+package com.tritiumgaming.feature.investigation.ui.journal.ghost.item
 
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType

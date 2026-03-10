@@ -25,13 +25,13 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
-import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.PrimaryEvidenceList
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostList
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostListUiItemActions
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.EvidenceListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.PrimaryEvidenceList
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostList
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 
 @Composable
 internal fun GhostListColumn(

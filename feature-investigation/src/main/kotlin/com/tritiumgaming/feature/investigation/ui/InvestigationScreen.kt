@@ -68,11 +68,11 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdow
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.journal.EvidenceListColumn
 import com.tritiumgaming.feature.investigation.ui.journal.GhostListColumn
-import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostListUiItemActions
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.EvidenceListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 import com.tritiumgaming.feature.investigation.ui.popups.common.InvestigationPopup
 import com.tritiumgaming.feature.investigation.ui.popups.evidence.EvidencePopup
 import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
@@ -196,7 +196,8 @@ private fun InvestigationContent(
 
     val evidenceListUiActions = EvidenceListUiActions(
         onChangeEvidenceRuling = { e, r ->
-            investigationViewModel.setEvidenceRuling(e, r) },
+            investigationViewModel.setEvidenceRuling(e, r)
+        },
         onClickItem = { investigationViewModel.setPopup(it) },
     )
 

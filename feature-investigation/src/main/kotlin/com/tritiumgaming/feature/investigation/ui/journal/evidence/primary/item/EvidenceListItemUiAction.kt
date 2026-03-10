@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.item
+package com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.item
 
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
 

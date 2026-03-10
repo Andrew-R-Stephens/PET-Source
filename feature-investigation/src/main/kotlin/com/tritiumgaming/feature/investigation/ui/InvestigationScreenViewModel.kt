@@ -16,12 +16,11 @@ import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseB
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toFloat
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toLong
-import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
@@ -284,8 +283,8 @@ class InvestigationScreenViewModel private constructor(
     internal val bpmToolUiState = _bpmToolUiState.asStateFlow()
 
     private val _operationSanityUiState = combine(
-        _mapState,
-        _difficultyState,
+        mapState,
+        difficultyState,
         phaseUiState
     ) { mapState, difficultyState, phaseUiState ->
         val mapModifier = try {
@@ -299,8 +298,8 @@ class InvestigationScreenViewModel private constructor(
         }
 
         OperationSanityUiState(
-            sanityMax = _difficultyState.value.settings.startingSanity.toFloat(),
-            drainModifier = mapModifier * _difficultyState.value.settings.sanityDrainSpeed.toFloat()
+            sanityMax = difficultyState.settings.startingSanity.toFloat(),
+            drainModifier = mapModifier * difficultyState.settings.sanityDrainSpeed.toFloat()
         )
     }.stateIn(
         scope = viewModelScope,
@@ -350,7 +349,7 @@ class InvestigationScreenViewModel private constructor(
                     enabled = enabled
                 )
             }.sortedBy { it.evidence.id.ordinal }
-            .sortedBy { it.enabled }
+            .sortedByDescending { it.enabled }
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
@@ -465,7 +464,7 @@ class InvestigationScreenViewModel private constructor(
         _timerUiState.update {
             TimerUiState(
                 startTime = TIME_DEFAULT,
-                remainingTime = _difficultyState.value.settings.setupTime.toLong(),
+                remainingTime = difficultyState.value.settings.setupTime.toLong(),
                 paused = true
             )
         }

@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.journal.lists.evidence
+package com.tritiumgaming.feature.investigation.ui.journal.evidence
 
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 

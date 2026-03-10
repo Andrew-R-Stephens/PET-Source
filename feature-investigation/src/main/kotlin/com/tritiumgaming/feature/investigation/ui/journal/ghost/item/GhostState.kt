@@ -1,10 +1,9 @@
-package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
+package com.tritiumgaming.feature.investigation.ui.journal.ghost.item
 
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toHasLosMultiplierBoolean
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType

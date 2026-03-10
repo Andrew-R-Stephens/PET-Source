@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item
+package com.tritiumgaming.feature.investigation.ui.journal.ghost.item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

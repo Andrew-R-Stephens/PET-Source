@@ -1,6 +1,6 @@
-package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost
+package com.tritiumgaming.feature.investigation.ui.journal.ghost
 
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostState
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 

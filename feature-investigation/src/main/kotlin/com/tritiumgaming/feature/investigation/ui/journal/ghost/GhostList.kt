@@ -1,4 +1,4 @@
-package com.tritiumgaming.feature.investigation.ui.journal.lists.ghost
+package com.tritiumgaming.feature.investigation.ui.journal.ghost
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostListItem
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.item.GhostListUiItemActions
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListItem
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

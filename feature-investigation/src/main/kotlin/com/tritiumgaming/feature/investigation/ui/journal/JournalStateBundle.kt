@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.journal
 
-import com.tritiumgaming.feature.investigation.ui.journal.lists.evidence.EvidenceListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.lists.ghost.GhostListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.EvidenceListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
 
 data class JournalStateBundle(
     val journalUiState: JournalUiState,
