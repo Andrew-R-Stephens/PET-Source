@@ -24,6 +24,8 @@ import com.tritiumgaming.data.map.modifiers.source.local.MapModifiersLocalDataSo
 import com.tritiumgaming.data.map.simple.repository.SimpleMapRepositoryImpl
 import com.tritiumgaming.data.map.simple.source.SimpleMapDataSource
 import com.tritiumgaming.data.map.simple.source.local.SimpleMapLocalDataSource
+import com.tritiumgaming.data.trait.repository.GhostTraitRepositoryImpl
+import com.tritiumgaming.data.trait.source.local.GhostTraitLocalDataSource
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.repository.CodexRepository
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
@@ -43,6 +45,9 @@ import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCas
 import com.tritiumgaming.shared.data.evidence.repository.EvidenceRepository
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.repository.GhostRepository
+import com.tritiumgaming.shared.data.ghosttrait.repository.GhostTraitRepository
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategoryUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostTypesUseCase
@@ -97,6 +102,19 @@ class InvestigationContainer(
         repository = ghostRepository
     )
 
+    private val ghostTraitsRepository: GhostTraitRepository by lazy {
+        val dataSource = GhostTraitLocalDataSource()
+        GhostTraitRepositoryImpl(
+            localSource = dataSource
+        )
+    }
+    private val getAllGhostTraitsUseCase = GetAllGhostTraitsUseCase(
+        repository = ghostTraitsRepository
+    )
+    private val getGhostTraitsByCategoryUseCase = GetGhostTraitsByCategoryUseCase(
+        repository = ghostTraitsRepository
+    )
+
     // Evidence
     private val evidenceRepository: EvidenceRepository by lazy {
         val evidenceLocalDataSource: EvidenceDataSource = EvidenceLocalDataSource()
@@ -131,7 +149,9 @@ class InvestigationContainer(
         initRuledEvidenceUseCase = initRuledEvidenceUseCase,
         getGhostUseCase = getGhostUseCase,
         fetchGhostTypesUseCase = fetchGhostTypesUseCase,
-        getGhostTypeByIdUseCase = getGhostTypeByIdUseCase
+        getGhostTypeByIdUseCase = getGhostTypeByIdUseCase,
+        getAllGhostTraitsUseCase = getAllGhostTraitsUseCase,
+        getGhostTraitsByCategoryUseCase = getGhostTraitsByCategoryUseCase
     )
 
     // Difficulty
@@ -317,6 +337,8 @@ internal data class JournalUseCaseBundle(
     val getEvidenceTypeByIdUseCase: GetEvidenceTypeByIdUseCase,
     val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
     val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
+    val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase,
+    val getGhostTraitsByCategoryUseCase: GetGhostTraitsByCategoryUseCase
 )
 
 internal data class DifficultyUseCaseBundle(

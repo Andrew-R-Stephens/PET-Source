@@ -78,4 +78,60 @@
         ]]>
     </string>
 
+    <string name ="evidence_trait_description_always_finds_players_if_hunt" translatable="false">Always finds players during hunt</string>
+    <string name ="evidence_trait_description_audible_long_range_if_hunt" translatable="false">Audible from afar during Hunts</string>
+    <string name ="evidence_trait_description_hunt_start_distant_from_favorite_room" translatable="false">Begins Hunt far outside of Favorite Room</string>
+    <string name ="evidence_trait_description_candle_works_like_crucifix_if_hunt" translatable="false">Candles work like Crucifixes</string>
+    <string name ="evidence_trait_description_age_change" translatable="false">Changes age</string>
+    <string name ="evidence_trait_description_changes_favorite_room" translatable="false">Changes Favorite Room</string>
+    <string name ="evidence_trait_description_interaction_moroi_curse" translatable="false">Cursed: After using Spirit Box, Sanity drains even while in light</string>
+    <string name ="evidence_trait_description_interaction_poltergeist_explosion" translatable="false">Disrupts item piles in a violent \"explosion\"</string>
+    <string name ="evidence_trait_description_interaction_disturb_salt" translatable="false">Disturbs Salt</string>
+    <string name ="evidence_trait_description_event_ghost_ball" translatable="false">Does Ghost Mist Event</string>
+    <string name ="evidence_trait_description_interaction_does_not_disturb_salt" translatable="false">Does not disturb Salt</string>
+    <string name ="evidence_trait_description_event_singing" translatable="false">Does singing event</string>
+    <string name ="evidence_trait_description_interaction_sanity_drain_if_event_door_slam" translatable="false">Door close events zap 15\% sanity</string>
+    <string name ="evidence_trait_description_interaction_dots_visible_if_without_camera" translatable="false">DOTS can be seen with the naked eye</string>
+    <string name ="evidence_trait_description_interaction_drain_sanity_if_emf_at_circuit_breaker" translatable="false">EMF events at Circuit Breaker zap 25\% sanity</string>
+    <string name ="evidence_trait_description_interaction_heavy_breathing_in_spirit_box" translatable="false">Emits heavy breathing into Spirit Box</string>
+    <string name ="evidence_trait_description_interaction_emits_wail_into_parabolic" translatable="false">Emits loud shriek into the Parabolic Microphone</string>
+    <string name ="evidence_trait_description_interaction_uv_fingerprint_light_switch" translatable="false">Emits UV Fingerprint on Light Switch</string>
+    <string name ="evidence_trait_description_interaction_uv_footprint" translatable="false">Emits UV Footprint</string>
+    <string name ="evidence_trait_description_speed_wander_extremely_slow_if_hunt" translatable="false">Extremely slow wandering speed</string>
+    <string name ="evidence_trait_description_event_light_bulb_explosion" translatable="false">Favors light bulb explosion event</string>
+    <string name ="evidence_trait_description_event_shadow" translatable="false">Favors shadow events</string>
+    <string name ="evidence_trait_description_interaction_not_visible_in_ghost_photo" translatable="false">Ghost not visible in Ghost Photo</string>
+    <string name ="evidence_trait_description_freezing_ghost_breath_if_hunt" translatable="false">Ghost shows freezing breath while hunting</string>
+    <string name ="evidence_trait_description_speed_high_if_chase_and_breaker_active" translatable="false">High chase speed when Breaker is active</string>
+    <string name ="evidence_trait_description_visibility_high_if_hunt" translatable="false">Highly visible during hunt</string>
+    <string name ="evidence_trait_description_seek_specific_player_if_hunt" translatable="false">Hunts after one specific player</string>
+    <string name ="evidence_trait_description_hunt_after_smudge_180" translatable="false">Hunts before 180s of Smudging Room</string>
+    <string name ="evidence_trait_description_hunt_early" translatable="false">Hunts early</string>
+    <string name ="evidence_trait_description_hunt_before_smudge_60" translatable="false">Hunts within 60s of Smudging Room</string>
+    <string name ="evidence_trait_description_interaction_ignite_flame" translatable="false">Ignites flames</string>
+    <string name ="evidence_trait_description_interaction_uv_inconsistent" translatable="false">Inconsistently emits UV evidence with interactions</string>
+    <string name ="evidence_trait_description_interaction_parabolic_emission_increase" translatable="false">Increased Parabolic Microphone interactions</string>
+    <string name ="evidence_trait_description_activity_increase_if_close_to_player_voice" translatable="false">Increases Activity with close proximity player voice activity</string>
+    <string name ="evidence_trait_description_speed_increase_if_hunt_in_low_temperature" translatable="false">Increases hunt speed with lower room temperatures</string>
+    <string name ="evidence_trait_description_interaction_door_open_slightly" translatable="false">Interacted doors open slightly</string>
+    <string name ="evidence_trait_description_is_male" translatable="false">Is Male</string>
+    <string name ="evidence_trait_description_sanity_drain_if_player_look_at" translatable="false">Looking at apparition drains Sanity</string>
+    <string name ="evidence_trait_description_activity_low_if_player_nearby" translatable="false">Low activity while players are nearby</string>
+    <string name ="evidence_trait_description_visibility_low_if_hunt" translatable="false">Mostly invisible during hunt</string>
+    <string name ="evidence_trait_description_interaction_close_exit_door" translatable="false">Non-Hunt Exit Door closure</string>
+    <string name ="evidence_trait_description_simultaneous_favorite_rooms" translatable="false">Seemingly has simultaneous Favorite Rooms</string>
+    <string name ="evidence_trait_description_shapeshift_if_hunt" translatable="false">Shifts between ghost models during hunt</string>
+    <string name ="evidence_trait_description_seek_electronics_and_voice_range_limited_if_hunt" translatable="false">Smaller attraction range to electronics and voice during hunt</string>
+    <string name ="evidence_trait_description_speed_increase_if_active_electronics_nearby" translatable="false">Speeds up near active electronics</string>
+    <string name ="evidence_trait_description_favors_dark_of_favorite_room" translatable="false">Stays near dark areas of Favorite Room</string>
+    <string name ="evidence_trait_description_interaction_emf_if_teleports_to_player" translatable="false">Teleports to player and emits EMF</string>
+    <string name ="evidence_trait_description_interaction_item_thrown_harder" translatable="false">Throws items harder </string>
+    <string name ="evidence_trait_description_interaction_turn_breaker_off" translatable="false">Turns Breaker Off</string>
+    <string name ="evidence_trait_description_interaction_turn_breaker_on" translatable="false">Turns Breaker On</string>
+    <string name ="evidence_trait_description_interaction_turn_light_switch_off_if_player_turns_on" translatable="false">Turns Light Switch Off immediately after player turns it on</string>
+    <string name ="evidence_trait_description_interaction_turn_light_switch_on" translatable="false">Turns Light Switch On</string>
+    <string name ="evidence_trait_description_interaction_uv_short_lifetime" translatable="false">UV emission lifetime shortened by nearly 50\%</string>
+    <string name ="evidence_trait_description_interaction_uv_fingerprint_2_fingers" translatable="false">UV Fingerprints leave 2 fingers</string>
+    <string name ="evidence_trait_description_interaction_uv_handprint_6_fingers" translatable="false">UV Handprints leave 6 fingers</string>
+    <string name ="evidence_trait_description_interaction_vanish_if_photo_taken" translatable="false">Vanishes after taking Photo</string>
 </resources>

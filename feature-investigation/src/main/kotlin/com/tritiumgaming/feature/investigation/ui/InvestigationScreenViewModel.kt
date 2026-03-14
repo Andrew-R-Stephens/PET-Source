@@ -328,7 +328,8 @@ class InvestigationScreenViewModel private constructor(
                 emptyList()
             }
         }
-        updateGhostScores()
+
+        //updateGhostStates()
     }
 
     private val _evidenceListUiState: StateFlow<List<EvidenceState>> = combine(
@@ -358,41 +359,55 @@ class InvestigationScreenViewModel private constructor(
     val evidenceListUiState = _evidenceListUiState
 
     /* Ghost States */
-    private val _ghostStates = MutableStateFlow(
-        ghostEvidences.map { GhostState(it) }
-    )
-    internal val ghostStates = _ghostStates.asStateFlow()
-    private fun resetGhostStates() {
-        _ghostStates.update {
-            ghostEvidences.map { GhostState(it) }
+    private val _explicitRejections =
+        MutableStateFlow<Set<GhostResources.GhostIdentifier>>(emptySet())
+    internal fun toggleExplicitNegation(ghostModel: Ghost) {
+        _explicitRejections.update { rejections ->
+            if (ghostModel.id in rejections) rejections - ghostModel.id
+            else rejections + ghostModel.id
         }
     }
-    private fun updateGhostScores() {
+    fun resetExplicitNegations() {
+        _explicitRejections.update { emptySet() }
+    }
 
-        val ruledEvidence = evidenceStates.value
-        val bpmToolUiState = bpmToolUiState.value
+    val ghostStates: StateFlow<List<GhostState>> = combine(
+        evidenceStates,
+        difficultyState,
+        bpmToolUiState,
+        _explicitRejections
+    ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections ->
+        ghostEvidences.map { ghostEvidence ->
+            val isManuallyRejected = ghostEvidence.ghost.id in manualRejections
 
-        _ghostStates.update { currentScores ->
-            currentScores.map { ghostScore ->
+            // Calculate the base state with score
+            var state = GhostState(
+                ghostEvidence = ghostEvidence,
+                manualRejection = isManuallyRejected
+            ).updateScore(
+                evidenceState = evidenceStates,
+                evidenceGiven = difficultyState.settings.evidenceGiven
+            )
 
-                val updatedScore = ghostScore.updateScore(
-                    evidenceState = ruledEvidence,
-                    evidenceGiven = difficultyState.value.settings.evidenceGiven
-                )
-
-                if (bpmToolUiState.applyMeasurement) {
-                    val bpmValue = when (bpmToolUiState.measurementType) {
-                        VisualizerMeasurementType.INSTANT -> bpmToolUiState.realtimeState.smoothed
-                        VisualizerMeasurementType.AVERAGED -> bpmToolUiState.realtimeState.average
-                        VisualizerMeasurementType.WEIGHTED -> bpmToolUiState.realtimeState.weightedAverage
-                    }
-                    updatedScore.updateBpmValidation(bpmValue)
-                } else {
-                    updatedScore.resetBpmValidation()
+            // Apply BPM validation if enabled
+            state = if (bpmToolUiState.applyMeasurement) {
+                val bpmValue = when (bpmToolUiState.measurementType) {
+                    VisualizerMeasurementType.INSTANT -> bpmToolUiState.realtimeState.smoothed
+                    VisualizerMeasurementType.AVERAGED -> bpmToolUiState.realtimeState.average
+                    VisualizerMeasurementType.WEIGHTED -> bpmToolUiState.realtimeState.weightedAverage
                 }
+                state.updateBpmValidation(bpmValue)
+            } else {
+                state.resetBpmValidation()
             }
+
+            state
         }
-    }
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = ghostEvidences.map { GhostState(it) }
+    )
 
     /* Ghost Order **/
     private val _sortedGhosts: StateFlow<List<GhostResources.GhostIdentifier>> =
@@ -651,25 +666,8 @@ class InvestigationScreenViewModel private constructor(
      * */
     internal fun resetJournal() {
         resetEvidenceStates()
-        resetGhostStates()
-    }
-
-    /*
-    * Ghost Score ---------------------------
-    */
-
-    internal fun toggleGhostNegation(
-        ghostModel: Ghost
-    ) {
-        val scores = ghostStates.value.map {
-            if(it.ghostEvidence.ghost.id == ghostModel.id)
-                it.toggleManualRejection()
-            else it
-        }
-
-        _ghostStates.update {
-            scores
-        }
+        //resetGhostStates()
+        resetExplicitNegations()
     }
 
     /*
@@ -686,7 +684,7 @@ class InvestigationScreenViewModel private constructor(
                 else e
             }
         }
-        updateGhostScores()
+        //updateGhostStates()
     }
 
     internal fun getRuledEvidence(
@@ -826,7 +824,7 @@ class InvestigationScreenViewModel private constructor(
 
         _phaseUiState.update {
             it.copy(
-                canFlash = phaseUiState.value.elapsedFlashTime <= phaseUiState.value.maxFlashTime
+                canFlash = it.elapsedFlashTime <= it.maxFlashTime
             )
         }
 
@@ -875,7 +873,7 @@ class InvestigationScreenViewModel private constructor(
 
                 val remainingTime =
                     if(it.remainingTime == TIME_DEFAULT)
-                        _difficultyState.value.settings.setupTime.toLong()
+                        difficultyState.value.settings.setupTime.toLong()
                     else it.remainingTime
 
                 it.copy(
@@ -1041,8 +1039,6 @@ class InvestigationScreenViewModel private constructor(
                 )
             }
 
-            updateGhostScores()
-
             setTimeRemaining(_difficultyState.value.settings.setupTime.toLong())
             resetTimer()
 
@@ -1065,7 +1061,6 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Map ---------------------------
      */
-
     internal fun incrementMapIndex() {
         try {
             val newIndex = incrementSimpleMapIndexUseCase(
@@ -1122,33 +1117,24 @@ class InvestigationScreenViewModel private constructor(
     }
 
     /*
-     * Settings
-     */
-
-
-    /*
     * Footstep Visualizer
     */
-
     internal fun setBpmData(data: RealtimeUiState<GraphPoint>) {
         _bpmToolUiState.update {
             it.copy(realtimeState = data)
         }
-        updateGhostScores()
     }
 
     internal fun setBpmMeasurementType(type: VisualizerMeasurementType) {
         _bpmToolUiState.update {
             it.copy(measurementType = type)
         }
-        updateGhostScores()
     }
 
     internal fun toggleApplyBpmMeasurement() {
         _bpmToolUiState.update {
             it.copy(applyMeasurement = !it.applyMeasurement)
         }
-        updateGhostScores()
     }
 
     init {
@@ -1161,7 +1147,6 @@ class InvestigationScreenViewModel private constructor(
         initPlayerSanityUiState()
 
         resetEvidenceStates()
-        updateGhostScores()
     }
 
     companion object {

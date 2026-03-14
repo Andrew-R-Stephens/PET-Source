@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -30,9 +33,9 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 fun ScrollableToolbar(
     modifier: Modifier = Modifier,
     surfaceColor: Color = LocalPalette.current.surface,
-    stickyContentStart: @Composable () -> Unit = {},
-    stickyContentEnd: @Composable () -> Unit = {},
-    scrollContent: @Composable () -> Unit,
+    stickyContentStart: @Composable (Modifier) -> Unit = {},
+    stickyContentEnd: @Composable (Modifier) -> Unit = {},
+    scrollContent: @Composable (Modifier) -> Unit,
 ) {
     val scrollState = rememberScrollState()
 
@@ -44,14 +47,18 @@ fun ScrollableToolbar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         StickyItemContainer(
-            surfaceColor = surfaceColor,
-            stickyContent = stickyContentStart
-        )
+            surfaceColor = surfaceColor
+        ) { modifier ->
+            stickyContentStart(
+                modifier
+                    .sizeIn(maxWidth = 48.dp)
+                    .aspectRatio(1f)
+            )
+        }
 
         Row(
             modifier = Modifier
-                .weight(1f, fill = true)
-                .fillMaxWidth()
+                .weight(1f, true)
                 .wrapContentHeight()
                 .padding(4.dp)
                 .background(surfaceColor, RoundedCornerShape(8.dp))
@@ -66,13 +73,20 @@ fun ScrollableToolbar(
                 ),
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
-            scrollContent()
+            scrollContent(Modifier
+                .sizeIn(maxHeight = 48.dp)
+            )
         }
 
         StickyItemContainer(
-            surfaceColor = surfaceColor,
-            stickyContent = stickyContentEnd
-        )
+            surfaceColor = surfaceColor
+        ) { modifier ->
+            stickyContentEnd(
+                modifier
+                    .sizeIn(maxWidth = 48.dp)
+                    .aspectRatio(1f)
+            )
+        }
     }
 
 }
@@ -81,9 +95,9 @@ fun ScrollableToolbar(
 fun InvestigationToolRail(
     modifier: Modifier = Modifier,
     surfaceColor: Color = LocalPalette.current.surface,
-    stickyContentStart: @Composable () -> Unit = {},
-    stickyContentEnd: @Composable () -> Unit = {},
-    scrollContent: @Composable () -> Unit,
+    stickyContentStart: @Composable (Modifier) -> Unit = {},
+    stickyContentEnd: @Composable (Modifier) -> Unit = {},
+    scrollContent: @Composable (Modifier) -> Unit,
 ) {
     val scrollState = rememberScrollState()
 
@@ -95,9 +109,14 @@ fun InvestigationToolRail(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         StickyItemContainer(
-            surfaceColor = surfaceColor,
-            stickyContent = stickyContentStart
-        )
+            surfaceColor = surfaceColor
+        ) { modifier ->
+            stickyContentStart(
+                modifier
+                    .sizeIn(maxWidth = 48.dp)
+                    .aspectRatio(1f)
+            )
+        }
 
         Column(
             modifier = Modifier
@@ -118,29 +137,36 @@ fun InvestigationToolRail(
                 ),
             verticalArrangement = Arrangement.SpaceEvenly,
         ) {
-            scrollContent()
+            scrollContent(Modifier
+                .sizeIn(maxWidth = 48.dp))
         }
 
         StickyItemContainer(
-            surfaceColor = surfaceColor,
-            stickyContent = stickyContentEnd
-        )
+            surfaceColor = surfaceColor
+        ) {
+            stickyContentEnd(
+                modifier
+                    .sizeIn(maxWidth = 48.dp)
+                    .aspectRatio(1f)
+            )
+        }
     }
 
 }
 
 @Composable
 private fun StickyItemContainer(
+    modifier: Modifier = Modifier,
     surfaceColor: Color = LocalPalette.current.surface,
-    stickyContent: @Composable (() -> Unit)
+    stickyContent: @Composable (Modifier) -> Unit
 ) {
     Box(
-        modifier = Modifier
-            .padding(4.dp)
+        modifier = modifier
             .wrapContentSize()
             .background(surfaceColor, CircleShape)
+            .padding(4.dp)
     ) {
-        stickyContent()
+        stickyContent(Modifier)
     }
 }
 

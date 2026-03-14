@@ -17,8 +17,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyItemScope
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -69,97 +71,61 @@ fun LazyItemScope.GhostListItem(
         else ->  R.drawable.icon_strikethrough_1
     }
 
-    Row(
-        modifier = modifier
-            .wrapContentWidth(Alignment.CenterHorizontally)
-            .height(36.dp)
-            .padding(vertical = 4.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        Box(
-            modifier = Modifier
-                .width(2.dp)
-                .fillMaxHeight()
-                .background(
-                    if (bpmState) {
-                        LocalPalette.current.errorContainer
-                    } else { Color.Transparent }
-                )
-        )
+    @Composable
+    fun strikethrough() {
+        scoreState.let {
+            when {
+                (rejectionState) ->
+                    Image(
+                        modifier = Modifier.fillMaxSize(),
+                        painter = painterResource(id = R.drawable.ic_ev_omit),
+                        contentScale = ContentScale.FillBounds,
+                        contentDescription = "Omit Icon",
+                        colorFilter = ColorFilter.tint(LocalPalette.current.primary)
+                    )
 
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight()
-                .padding(horizontal = 8.dp)
-                .pointerInput(Unit) {
-                    detectHorizontalDragGestures(
-                        onDragEnd = {
-                            ghostState.let {
-                                ghostListUiItemActions.onToggleNegateGhost(
-                                    ghostState.ghostEvidence.ghost
-                                )
-                            }
-                        }
-                    ) { change, dragAmount ->
-                        change.consume()
-                    }
-                }
-                .pointerInput(Unit) {
-                    detectTapGestures {
-                        ghostListUiItemActions.onNameClick()
-                    }
-                },
-            contentAlignment = Alignment.Center
-        ) {
+                it < 0 ->
+                    Image(
+                        modifier = Modifier.fillMaxSize(),
+                        painter = painterResource(id = strikethroughIcon),
+                        contentScale = ContentScale.FillBounds,
+                        contentDescription = "Strikeout Icon",
+                        colorFilter = ColorFilter.tint(LocalPalette.current.primary)
+                    )
 
-            BasicText(
-                text = label,
-                style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.onSurface,
-                    textAlign = TextAlign.Center
-                ),
-                maxLines = 1,
-                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, maxFontSize = 36.sp, stepSize = 5.sp)
-            )
-
-            scoreState.let {
-                when {
-                    (rejectionState) ->
-                        Image(
-                            modifier = Modifier.fillMaxSize(),
-                            painter = painterResource(id = R.drawable.ic_ev_omit),
-                            contentScale = ContentScale.FillBounds,
-                            contentDescription = "Omit Icon",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.primary)
-                        )
-                    it < 0 ->
-                        Image(
-                            modifier = Modifier.fillMaxSize(),
-                            painter = painterResource(id = strikethroughIcon),
-                            contentScale = ContentScale.FillBounds,
-                            contentDescription = "Strikeout Icon",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.primary)
-                        )
-                    it >= 3 ->
-                        Image(
-                            modifier = Modifier.fillMaxSize(),
-                            painter = painterResource(id = R.drawable.ic_selector_selected),
-                            contentScale = ContentScale.FillBounds,
-                            contentDescription = "Circle Icon",
-                            colorFilter = ColorFilter.tint(LocalPalette.current.tertiary)
-                        )
-                }
+                it >= 3 ->
+                    Image(
+                        modifier = Modifier.fillMaxSize(),
+                        painter = painterResource(id = R.drawable.ic_selector_selected),
+                        contentScale = ContentScale.FillBounds,
+                        contentDescription = "Circle Icon",
+                        colorFilter = ColorFilter.tint(LocalPalette.current.tertiary)
+                    )
             }
         }
+    }
 
+    @Composable
+    fun nameplate() {
+        BasicText(
+            text = label,
+            style = LocalTypography.current.primary.regular.copy(
+                color = LocalPalette.current.onSurface,
+                textAlign = TextAlign.Center
+            ),
+            maxLines = 1,
+            autoSize = TextAutoSize.StepBased(
+                minFontSize = 1.sp,
+                maxFontSize = 36.sp,
+                stepSize = 5.sp
+            )
+        )
+    }
+
+    @Composable
+    fun evidenceIconRow(modifier: Modifier) {
         Row(
-            modifier = Modifier
-                .weight(1f, true)
-                .fillMaxHeight()
-                /*.wrapContentWidth()*/
-                /*.width(IntrinsicSize.Max)*/,
+            modifier = modifier,
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.CenterHorizontally),
         ) {
@@ -169,7 +135,7 @@ fun LazyItemScope.GhostListItem(
             val strictEvidenceList = allEvidence.strictEvidenceList
 
             evidenceList
-                .sortedWith (
+                .sortedWith(
                     compareBy(
                         { evidence ->
                             ghostListUiItemActions.onGetEvidenceState(evidence)?.state?.ordinal
@@ -188,8 +154,91 @@ fun LazyItemScope.GhostListItem(
                         }?.let { true } ?: false,
                         ghostScore = scoreState
                     )
+                }
+
+        }
+    }
+
+    @Composable
+    fun specialBadge() {
+        Box(
+            modifier = Modifier
+                .width(2.dp)
+                .fillMaxHeight()
+                .background(
+                    if (bpmState) {
+                        LocalPalette.current.errorContainer
+                    } else {
+                        Color.Transparent
+                    }
+                )
+        )
+
+        /*Box(
+            modifier = Modifier
+                .width(2.dp)
+                .fillMaxHeight()
+                .background(
+                    if (bpmState) {
+                        LocalPalette.current.errorContainer
+                    } else {
+                        Color.Transparent
+                    }
+                )
+        )*/
+    }
+
+    Surface(
+        modifier = modifier
+            .wrapContentWidth(Alignment.CenterHorizontally),
+        shape = RoundedCornerShape(8.dp),
+        color = LocalPalette.current.surfaceContainerLow,
+    ) {
+        Row(
+            modifier = modifier
+                .wrapContentWidth(Alignment.CenterHorizontally)
+                .height(36.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            specialBadge()
+
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .padding(horizontal = 8.dp)
+                    .pointerInput(Unit) {
+                        detectHorizontalDragGestures(
+                            onDragEnd = {
+                                ghostState.let {
+                                    ghostListUiItemActions.onToggleNegateGhost(
+                                        ghostState.ghostEvidence.ghost
+                                    )
+                                }
+                            }
+                        ) { change, dragAmount ->
+                            change.consume()
+                        }
+                    }
+                    .pointerInput(Unit) {
+                        detectTapGestures {
+                            ghostListUiItemActions.onNameClick()
+                        }
+                    },
+                contentAlignment = Alignment.Center
+            ) {
+
+                nameplate()
+
+                strikethrough()
             }
 
+            evidenceIconRow(
+                Modifier
+                    .weight(1f, true)
+                    .fillMaxHeight()
+            )
         }
     }
 }

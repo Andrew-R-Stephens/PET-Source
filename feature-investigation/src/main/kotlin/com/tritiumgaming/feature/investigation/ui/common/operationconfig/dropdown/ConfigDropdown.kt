@@ -87,14 +87,14 @@ fun OperationConfigDropdown(
 
             icon(
                 Modifier
-                    .size(48.dp)
-                    .padding(12.dp)
+                    .size(36.dp)
+                    .padding(8.dp)
             )
 
             DropdownList(
                 modifier = Modifier
-                    //.weight(1f)
-                    .fillMaxWidth()
+                    .weight(1f)
+                    //.fillMaxWidth()
                     .wrapContentHeight()
                     .align(Alignment.CenterVertically),
                 state = state,

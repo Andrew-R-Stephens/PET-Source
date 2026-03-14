@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.journal.ghost
 
 import android.util.Log
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -48,7 +49,8 @@ fun GhostList(
         modifier = modifier
             .fillMaxHeight()
             .wrapContentWidth(Alignment.CenterHorizontally),
-        state = listState
+        state = listState,
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
 
         items(

@@ -7,13 +7,15 @@ import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
 
 data class GhostState(
     val ghostEvidence: GhostEvidence,
     val score: Int = 0,
     val manualRejection: Boolean = false,
-    val bpmIsValid: Boolean = false
+    val bpmIsValid: Boolean = false,
+    val traits: List<GhostTrait> = emptyList()
 ) {
 
     fun updateScore(

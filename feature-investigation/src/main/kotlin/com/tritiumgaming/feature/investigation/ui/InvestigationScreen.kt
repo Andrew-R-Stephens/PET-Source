@@ -150,7 +150,7 @@ private fun InvestigationContent(
             investigationViewModel.getRuledEvidence(evidenceType)
         },
         onToggleNegateGhost = { ghost ->
-            investigationViewModel.toggleGhostNegation(ghost)
+            investigationViewModel.toggleExplicitNegation(ghost)
         },
     )
 
