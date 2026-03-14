@@ -57,6 +57,7 @@ include(
     ":data-palette",
     ":data-preferences",
     ":data-review",
+    ":data-trait",
     ":data-typography",
     ":database-unknown",
 )
