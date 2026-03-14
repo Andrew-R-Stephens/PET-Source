@@ -56,6 +56,9 @@ import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidence
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghost.model.GhostType
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategoryUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostTypesUseCase
@@ -94,6 +97,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -111,6 +115,11 @@ class InvestigationScreenViewModel private constructor(
     private val getGhostTypeByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
     private val initEvidenceStateUseCase: InitRuledEvidenceUseCase = journalUseCaseBundle.initRuledEvidenceUseCase,
     private val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase = journalUseCaseBundle.fetchGhostEvidencesUseCase,
+    private val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase = journalUseCaseBundle.getAllGhostTraitsUseCase,
+    private val getGhostByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
+    private val getGhostTraitsByCategoryUseCase: GetGhostTraitsByCategoryUseCase = journalUseCaseBundle.getGhostTraitsByCategoryUseCase,
+    private val getGhostTraitsByTagUseCase: GetGhostTraitsByTagUseCase = journalUseCaseBundle.getGhostTraitsByTagUseCase,
+    private val getUniquedGhostTraitsUseCase: GetGhostTraitsByTagUseCase = journalUseCaseBundle.getGhostTraitsByTagUseCase,
     difficultyUseCaseBundle: DifficultyUseCaseBundle,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase,
     private val getDifficultyNameUseCase: GetDifficultyNameUseCase = difficultyUseCaseBundle.getDifficultyNameUseCase,
@@ -218,21 +227,25 @@ class InvestigationScreenViewModel private constructor(
     private val _difficultyState = MutableStateFlow(DifficultyState())
     val difficultyState = _difficultyState
 
-    private val _mapConfigUiState: StateFlow<MapConfigUiState> = combine(
-        mapState, difficultyState
-    ) { mapState, difficultyState ->
-        val name = maps[mapState.index].mapName
+    private val _mapConfigUiState: StateFlow<MapConfigUiState> =
+        combine(
+            mapState,
+            difficultyState
+        ) { mapState, difficultyState ->
+            val name = maps[mapState.index].mapName
 
-        MapConfigUiState(
-            name = name,
-            enabled = difficultyState.type != DifficultyType.CHALLENGE,
-            allMaps = maps.map { map -> map.mapName }
+            MapConfigUiState(
+                name = name,
+                enabled = difficultyState.type != DifficultyType.CHALLENGE,
+                allMaps = maps.map { map -> map.mapName }
+            )
+        }
+        .distinctUntilChanged()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = MapConfigUiState(allMaps = maps.map { it.mapName })
         )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Eagerly,
-        initialValue = MapConfigUiState(allMaps = maps.map { it.mapName })
-    )
     internal val mapConfigUiState = _mapConfigUiState
 
     private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState.map { state ->
@@ -242,7 +255,9 @@ class InvestigationScreenViewModel private constructor(
             name = name,
             allDifficulties = difficulties.map { difficulty -> difficulty.difficultyTitle }
         )
-    }.stateIn(
+    }
+        .distinctUntilChanged()
+        .stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
         initialValue = DifficultyConfigUiState(allDifficulties = difficulties.map { it.difficultyTitle })
@@ -301,7 +316,9 @@ class InvestigationScreenViewModel private constructor(
             sanityMax = difficultyState.settings.startingSanity.toFloat(),
             drainModifier = mapModifier * difficultyState.settings.sanityDrainSpeed.toFloat()
         )
-    }.stateIn(
+    }
+        .distinctUntilChanged()
+        .stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
         initialValue = OperationSanityUiState()
@@ -351,7 +368,9 @@ class InvestigationScreenViewModel private constructor(
                 )
             }.sortedBy { it.evidence.id.ordinal }
             .sortedByDescending { it.enabled }
-    }.stateIn(
+    }
+        .distinctUntilChanged()
+        .stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
         initialValue = emptyList()
@@ -423,7 +442,9 @@ class InvestigationScreenViewModel private constructor(
             }
 
             scores.map { it.ghostEvidence.ghost.id }
-        }.stateIn(
+        }
+            .distinctUntilChanged()
+            .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = ghostEvidences.map { it.ghost.id }
@@ -461,7 +482,9 @@ class InvestigationScreenViewModel private constructor(
                     }
                 )
             )
-        }.stateIn(
+        }
+            .distinctUntilChanged()
+            .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = OperationDetailsUiState()

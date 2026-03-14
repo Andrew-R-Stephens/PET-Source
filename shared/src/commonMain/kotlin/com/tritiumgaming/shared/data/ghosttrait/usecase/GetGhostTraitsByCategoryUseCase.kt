@@ -6,7 +6,7 @@ import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.repository.GhostTraitRepository
 
 class GetGhostTraitsByCategoryUseCase(
-    val repository: GhostTraitRepository
+    private val repository: GhostTraitRepository
 ) {
     operator fun invoke(category: TraitCategory): Result<List<GhostTrait>> {
         return repository.getByCategory(category)

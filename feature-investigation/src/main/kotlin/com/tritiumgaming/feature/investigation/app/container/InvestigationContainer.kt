@@ -48,6 +48,9 @@ import com.tritiumgaming.shared.data.ghost.repository.GhostRepository
 import com.tritiumgaming.shared.data.ghosttrait.repository.GhostTraitRepository
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategoryUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByGhostUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetUniqueGhostTraitsUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostTypesUseCase
@@ -114,6 +117,15 @@ class InvestigationContainer(
     private val getGhostTraitsByCategoryUseCase = GetGhostTraitsByCategoryUseCase(
         repository = ghostTraitsRepository
     )
+    private val getGhostTraitsByGhostUseCase = GetGhostTraitsByGhostUseCase(
+        repository = ghostTraitsRepository
+    )
+    private val getGhostTraitsByTagUseCase = GetGhostTraitsByTagUseCase(
+        repository = ghostTraitsRepository
+    )
+    private val getUniqueGhostTraitsUseCase = GetUniqueGhostTraitsUseCase(
+        repository = ghostTraitsRepository
+    )
 
     // Evidence
     private val evidenceRepository: EvidenceRepository by lazy {
@@ -151,7 +163,10 @@ class InvestigationContainer(
         fetchGhostTypesUseCase = fetchGhostTypesUseCase,
         getGhostTypeByIdUseCase = getGhostTypeByIdUseCase,
         getAllGhostTraitsUseCase = getAllGhostTraitsUseCase,
-        getGhostTraitsByCategoryUseCase = getGhostTraitsByCategoryUseCase
+        getGhostTraitsByCategoryUseCase = getGhostTraitsByCategoryUseCase,
+        getGhostTraitsByGhostUseCase = getGhostTraitsByGhostUseCase,
+        getGhostTraitsByTagUseCase = getGhostTraitsByTagUseCase,
+        getUniqueGhostTraitsUseCase = getUniqueGhostTraitsUseCase
     )
 
     // Difficulty
@@ -338,7 +353,10 @@ internal data class JournalUseCaseBundle(
     val fetchGhostEvidencesUseCase: FetchGhostEvidencesUseCase,
     val initRuledEvidenceUseCase: InitRuledEvidenceUseCase,
     val getAllGhostTraitsUseCase: GetAllGhostTraitsUseCase,
-    val getGhostTraitsByCategoryUseCase: GetGhostTraitsByCategoryUseCase
+    val getGhostTraitsByCategoryUseCase: GetGhostTraitsByCategoryUseCase,
+    val getGhostTraitsByGhostUseCase: GetGhostTraitsByGhostUseCase,
+    val getGhostTraitsByTagUseCase: GetGhostTraitsByTagUseCase,
+    val getUniqueGhostTraitsUseCase: GetUniqueGhostTraitsUseCase,
 )
 
 internal data class DifficultyUseCaseBundle(
