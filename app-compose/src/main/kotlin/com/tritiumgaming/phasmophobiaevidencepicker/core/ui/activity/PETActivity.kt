@@ -1,6 +1,7 @@
 package com.tritiumgaming.phasmophobiaevidencepicker.core.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
@@ -45,9 +46,17 @@ class PETActivity : AppCompatActivity(),
         registerForActivityResult(
             ActivityResultContracts.StartIntentSenderForResult()) {
                 result: ActivityResult ->
-            // handle callback
-            if (result.resultCode != RESULT_OK) {
-                print("Update flow failed! Result code: " + result.resultCode)
+            when (result.resultCode) {
+                RESULT_OK -> {
+                    Log.d("AppUpdate", "Update started/completed successfully")
+                }
+                RESULT_CANCELED -> {
+                    Log.w("AppUpdate", "Update canceled by user")
+                }
+                else -> {
+                    Log.e("AppUpdate",
+                        "Update failed with code: ${result.resultCode}")
+                }
             }
         }
 

@@ -2,6 +2,7 @@ package com.tritiumgaming.core.common.settings.updatemanager
 
 import android.app.Activity
 import android.content.IntentSender
+import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import com.google.android.play.core.appupdate.AppUpdateInfo
@@ -10,6 +11,8 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.google.android.play.core.install.model.UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
 import java.util.concurrent.atomic.AtomicBoolean
 
 interface AppUpdateManagerService {
@@ -19,51 +22,42 @@ interface AppUpdateManagerService {
 
     var activityUpdateResultLauncher: ActivityResultLauncher<IntentSenderRequest>
 
-    fun checkForAppUpdate(activity: Activity): Boolean {
+    fun checkForAppUpdate(activity: Activity) {
+        Log.d("AppUpdate", "Running check")
+
         appUpdateManager = AppUpdateManagerFactory.create(activity)
 
-        val hasUpdate = AtomicBoolean(false)
+        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
+            val isUpdateAvailable = appUpdateInfo.updateAvailability() == UPDATE_AVAILABLE
+            val isUpdateAllowed = appUpdateInfo.isUpdateTypeAllowed(updateType)
 
-        appUpdateManager?.appUpdateInfo
-            ?.addOnSuccessListener { appUpdateInfo: AppUpdateInfo ->
-                val isUpdateAvailable =
-                    appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                val isUpdateAllowed = updateType == AppUpdateType.IMMEDIATE
-
-                if (isUpdateAvailable && isUpdateAllowed) {
-                    try {
-                        requestAppUpdate(appUpdateInfo)
-                        hasUpdate.set(true)
-                    } catch (e: IntentSender.SendIntentException) { throw RuntimeException(e) }
-                }
+            if (isUpdateAvailable && isUpdateAllowed) {
+                requestAppUpdate(appUpdateInfo)
             }
-
-        return hasUpdate.get()
+        }?.addOnFailureListener {
+            Log.e("AppUpdate", "Failed to check for updates", it) }
     }
 
     fun requestAppUpdate(appUpdateInfo: AppUpdateInfo) {
-        appUpdateManager?.startUpdateFlowForResult(
-            appUpdateInfo, activityUpdateResultLauncher,
-            AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build())
+        try {
+            appUpdateManager?.startUpdateFlowForResult(
+                appUpdateInfo, activityUpdateResultLauncher,
+                AppUpdateOptions.newBuilder(updateType).build()
+            )
+        } catch (e: Exception) {
+            Log.e("AppUpdate", "Failed to start update flow", e)
+        }
     }
 
     fun completePendingAppUpdate() {
-        appUpdateManager?.appUpdateInfo
-            ?.addOnSuccessListener { appUpdateInfo ->
-                try {
-                    val isUpdateInProgress =
-                        appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
-                    if (isUpdateInProgress) {
-                        appUpdateManager?.startUpdateFlowForResult(
-                            appUpdateInfo, activityUpdateResultLauncher,
-                            AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build()
-                        )
-                    }
-                } catch (e: IllegalStateException) {
-                    e.printStackTrace()
-                }
+        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
+            val availability = appUpdateInfo.updateAvailability()
+
+            if (availability == DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                requestAppUpdate(appUpdateInfo)
             }
+            // If using FLEXIBLE, you'd also check for InstallStatus.DOWNLOADED here
+        }
     }
-
-
 }
+
