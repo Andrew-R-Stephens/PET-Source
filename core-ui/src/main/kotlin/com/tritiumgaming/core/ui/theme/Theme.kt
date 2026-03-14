@@ -2,6 +2,9 @@ package com.tritiumgaming.core.ui.theme
 
 import android.app.Activity
 import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -45,14 +48,26 @@ fun SelectiveTheme(
 
         SideEffect {
 
-            val window = (view.context as Activity).window
+            /*val window = (view.context as Activity).window
 
             window.statusBarColor = palette.surface.toArgb()
             window.navigationBarColor = palette.surface.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
                 palette.extrasFamily.isLightMode
             WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars =
-                palette.extrasFamily.isLightMode
+                palette.extrasFamily.isLightMode*/
+
+            val context = view.context as ComponentActivity
+
+            val surfaceColor = palette.surface.toArgb()
+            val colors = if (palette.extrasFamily.isLightMode) {
+                SystemBarStyle.light(surfaceColor, surfaceColor)
+            } else { SystemBarStyle.dark(surfaceColor) }
+
+            context.enableEdgeToEdge(
+                statusBarStyle = colors,
+                navigationBarStyle = colors
+            )
 
         }
 
