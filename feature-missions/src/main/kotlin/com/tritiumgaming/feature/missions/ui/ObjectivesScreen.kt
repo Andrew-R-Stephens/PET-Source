@@ -15,8 +15,7 @@ import com.tritiumgaming.feature.missions.ui.screens.ObjectivesContentUiState
 
 @Composable
 fun ObjectivesScreen(
-    objectivesViewModel: ObjectivesViewModel,
-    ghostResponseUiState: GhostResponseUiState
+    objectivesViewModel: ObjectivesViewModel
 ) {
 
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
@@ -25,9 +24,10 @@ fun ObjectivesScreen(
     val namesSpinnerUiState by objectivesViewModel.namesSpinnerUiState.collectAsStateWithLifecycle()
     val ghostDetailsUiState by objectivesViewModel.ghostDetailsUiState.collectAsStateWithLifecycle()
     val missionSpinnerUiState by objectivesViewModel.missionSpinnerUiState.collectAsStateWithLifecycle()
+    val difficultyState by objectivesViewModel.difficultyState.collectAsStateWithLifecycle()
 
     val objectivesContentUiState = ObjectivesContentUiState(
-        ghostResponseUiState = ghostResponseUiState,
+        ghostResponseUiState = difficultyState.responseType,
         missionSpinnerUiState = missionSpinnerUiState,
         ghostDetailsUiState = ghostDetailsUiState,
         namesSpinnerUiState = namesSpinnerUiState

@@ -34,17 +34,16 @@ import com.tritiumgaming.feature.missions.ui.GhostDetailsUiState
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.ALONE
 import com.tritiumgaming.feature.missions.ui.ObjectivesViewModel.Companion.GROUP
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 
 @Composable
 fun GhostResponseContent(
     modifier: Modifier = Modifier,
-    ghostResponseUiState: GhostResponseUiState,
+    ghostResponseUiState: DifficultyResponseType,
     ghostDetailsUiState: GhostDetailsUiState,
     ghostResponseUiActions: GhostResponseUiActions,
 ) {
-    val collectDifficultyUiState by remember { mutableStateOf(ghostResponseUiState) }
-    val isResponseKnown = collectDifficultyUiState.responseType ==
-            DifficultyResources.DifficultyResponseType.KNOWN
+    val isResponseKnown = ghostResponseUiState == DifficultyResponseType.KNOWN
 
     Column(
         modifier = modifier

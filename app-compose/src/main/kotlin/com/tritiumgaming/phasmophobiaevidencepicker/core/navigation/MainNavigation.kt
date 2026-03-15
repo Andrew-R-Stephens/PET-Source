@@ -262,8 +262,7 @@ private fun NavGraphBuilder.operationNavigation(
                 val collect = investigationViewModel.difficultyState.collectAsStateWithLifecycle()
 
                 ObjectivesScreen(
-                    objectivesViewModel = objectivesViewModel,
-                    ghostResponseUiState = GhostResponseUiState(collect.value.responseType)
+                    objectivesViewModel = objectivesViewModel
                 )
             }
         }

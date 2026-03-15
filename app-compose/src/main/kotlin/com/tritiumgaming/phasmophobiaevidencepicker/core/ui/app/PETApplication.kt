@@ -187,13 +187,15 @@ class PETApplication : Application(),
             applicationContext = applicationContext,
             // User Preferences
             initFlowUserPreferencesUseCase = coreContainer.initFlowGlobalPreferencesUseCase,
-            getCurrentChallengeUseCase = coreContainer.getCurrentChallengeUseCase
+            getCurrentChallengeUseCase = coreContainer.getCurrentChallengeUseCase,
+            investigationUseCaseBundle = coreContainer.investigationUseCaseBundle
         )
 
         codexContainer = CodexContainer()
 
         missionsContainer = MissionsContainer(
-            applicationContext = applicationContext
+            applicationContext = applicationContext,
+            investigationUseCaseBundle = coreContainer.investigationUseCaseBundle
         )
 
         mapViewerContainer = MapViewerContainer(

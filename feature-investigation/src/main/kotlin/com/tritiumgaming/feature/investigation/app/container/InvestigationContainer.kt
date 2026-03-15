@@ -51,6 +51,15 @@ import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategory
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByGhostUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetUniqueGhostTraitsUseCase
+import com.tritiumgaming.shared.data.investigation.InvestigationRepository
+import com.tritiumgaming.shared.data.investigation.repository.impl.InvestigationRepositoryImpl
+import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.investigation.usecase.ResetInvestigationUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationEvidenceUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationSanityUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostTypesUseCase
@@ -81,7 +90,8 @@ import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferences
 class InvestigationContainer(
     applicationContext: Context,
     private val initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase,
-    internal val getCurrentChallengeUseCase: GetCurrentChallengeUseCase
+    internal val getCurrentChallengeUseCase: GetCurrentChallengeUseCase,
+    internal val investigationUseCaseBundle: InvestigationUseCaseBundle
 ) {
 
     internal val preferencesUseCaseBundle = PreferencesUseCaseBundle(
@@ -341,6 +351,7 @@ class InvestigationContainer(
         fetchCodexPossessionsUseCase = fetchCodexPossessionsUseCase,
         getEquipmentTypeByEvidenceTypeUseCase = getEquipmentTypeByEvidenceTypeUseCase
     )
+
 }
 
 internal data class JournalUseCaseBundle(
@@ -356,7 +367,7 @@ internal data class JournalUseCaseBundle(
     val getGhostTraitsByCategoryUseCase: GetGhostTraitsByCategoryUseCase,
     val getGhostTraitsByGhostUseCase: GetGhostTraitsByGhostUseCase,
     val getGhostTraitsByTagUseCase: GetGhostTraitsByTagUseCase,
-    val getUniqueGhostTraitsUseCase: GetUniqueGhostTraitsUseCase,
+    val getUniqueGhostTraitsUseCase: GetUniqueGhostTraitsUseCase
 )
 
 internal data class DifficultyUseCaseBundle(

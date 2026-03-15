@@ -52,6 +52,15 @@ import com.tritiumgaming.shared.data.account.usecase.accountproperty.SetMarketpl
 import com.tritiumgaming.shared.data.challenge.repository.ChallengeRepository
 import com.tritiumgaming.shared.data.challenge.usecase.GetChallengesUseCase
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
+import com.tritiumgaming.shared.data.investigation.InvestigationRepository
+import com.tritiumgaming.shared.data.investigation.repository.impl.InvestigationRepositoryImpl
+import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.investigation.usecase.ResetInvestigationUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationEvidenceUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationSanityUseCase
 import com.tritiumgaming.shared.data.language.repository.LanguageRepository
 import com.tritiumgaming.shared.data.language.usecase.GetAvailableLanguagesUseCase
 import com.tritiumgaming.shared.data.language.usecase.GetDefaultLanguageUseCase
@@ -406,6 +415,31 @@ class CoreContainer(
     )
     val saveCurrentLanguageUseCase = SaveCurrentLanguageUseCase(
         repository = languageRepository
+    )
+
+    private val investigationRepository: InvestigationRepository by lazy {
+        InvestigationRepositoryImpl()
+    }
+
+    val investigationUseCaseBundle = InvestigationUseCaseBundle(
+        getInvestigationStateUseCase = GetInvestigationStateUseCase(
+            repository = investigationRepository
+        ),
+        updateInvestigationMapUseCase = UpdateInvestigationMapUseCase(
+            repository = investigationRepository
+        ),
+        updateInvestigationDifficultyUseCase = UpdateInvestigationDifficultyUseCase(
+            repository = investigationRepository
+        ),
+        updateInvestigationSanityUseCase = UpdateInvestigationSanityUseCase(
+            repository = investigationRepository
+        ),
+        updateInvestigationEvidenceUseCase = UpdateInvestigationEvidenceUseCase(
+            repository = investigationRepository
+        ),
+        resetInvestigationUseCase = ResetInvestigationUseCase(
+            repository = investigationRepository
+        )
     )
 
 }

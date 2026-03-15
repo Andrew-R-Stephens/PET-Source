@@ -29,13 +29,10 @@ import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.visualizer.VisualizerMeasurementType
 import com.tritiumgaming.feature.investigation.ui.toolbar.config.ConfigToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
-import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.challenge.usecase.GetCurrentChallengeUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchAchievementTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchEquipmentTypesUseCase
 import com.tritiumgaming.shared.data.codex.usecase.FetchPossessionTypesUseCase
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficulty.usecase.DecrementDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficulty.usecase.FetchDifficultiesUseCase
@@ -48,7 +45,6 @@ import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndex
 import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission
-import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
@@ -59,6 +55,12 @@ import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategoryUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
+import com.tritiumgaming.shared.data.investigation.model.DifficultyData
+import com.tritiumgaming.shared.data.investigation.model.MapData
+import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostTypesUseCase
@@ -67,14 +69,11 @@ import com.tritiumgaming.shared.data.journal.usecase.GetEvidenceUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostTypeByIdUseCase
 import com.tritiumgaming.shared.data.journal.usecase.GetGhostUseCase
 import com.tritiumgaming.shared.data.journal.usecase.InitRuledEvidenceUseCase
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
 import com.tritiumgaming.shared.data.map.modifier.mappers.toFloat
 import com.tritiumgaming.shared.data.map.modifier.usecase.FetchSimpleMapModifiersUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapNormalModifierUseCase
 import com.tritiumgaming.shared.data.map.modifier.usecase.GetSimpleMapSetupModifierUseCase
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.DecrementSimpleMapIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.FetchMapThumbnailsUseCase
@@ -149,6 +148,10 @@ class InvestigationScreenViewModel private constructor(
     private val fetchCodexPossessionsUseCase: FetchPossessionTypesUseCase = codexUseCaseBundle.fetchCodexPossessionsUseCase,
     private val fetchCodexEquipmentUseCase: FetchEquipmentTypesUseCase = codexUseCaseBundle.fetchCodexEquipmentUseCase,
     private val getEquipmentTypeByEvidenceTypeUseCase: GetEquipmentTypeByEvidenceTypeUseCase = codexUseCaseBundle.getEquipmentTypeByEvidenceTypeUseCase,
+    investigationUseCaseBundle: InvestigationUseCaseBundle,
+    private val getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationUseCaseBundle.getInvestigationStateUseCase,
+    private val updateInvestigationMapUseCase: UpdateInvestigationMapUseCase = investigationUseCaseBundle.updateInvestigationMapUseCase,
+    private val updateInvestigationDifficultyUseCase: UpdateInvestigationDifficultyUseCase = investigationUseCaseBundle.updateInvestigationDifficultyUseCase,
     preferencesUseCaseBundle: PreferencesUseCaseBundle,
     initFlowUserPreferencesUseCase: InitFlowUserPreferencesUseCase = preferencesUseCaseBundle.initFlowUserPreferencesUseCase,
     private val getCurrentChallengeUseCase: GetCurrentChallengeUseCase
@@ -200,32 +203,29 @@ class InvestigationScreenViewModel private constructor(
     private var sanityJob: Job? = null
     private var timerJob: Job? = null
 
-    /*
-     * UI STATES
-     */
-    private data class MapState(
-        val index: Int = 0,
-        val name: MapTitle = MapTitle.BLEASDALE_FARMHOUSE,
-        val size: MapSize = MapSize.SMALL,
-        val setupModifier: MapSizePhaseModifier = MapSizePhaseModifier.SETUP_SMALL,
-        val actionModifier: MapSizePhaseModifier = MapSizePhaseModifier.ACTION_SMALL,
-    )
+    private val _investigationState = getInvestigationStateUseCase()
 
-    data class DifficultyState(
-        val index: Int = 0,
-        val type: DifficultyType = DifficultyType.AMATEUR,
-        val difficultyTitle: DifficultyTitle = DifficultyTitle.AMATEUR,
-        val responseType: DifficultyResponseType = DifficultyResponseType.KNOWN,
-        val challengeTitle: ChallengeResources.ChallengeTitle? = null,
-        val map: MapTitle? = null,
-        val settings: DifficultySettingsModel = DifficultySettingsModel()
-    )
-
-    private val _mapState = MutableStateFlow(MapState())
+    private val _mapState = _investigationState.map { it.map }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = MapData()
+        )
     private val mapState = _mapState
 
-    private val _difficultyState = MutableStateFlow(DifficultyState())
+    private val _difficultyState = _investigationState.map { it.difficulty }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = DifficultyData()
+        )
     val difficultyState = _difficultyState
+
+    /*private val _mapState = MutableStateFlow(MapData())
+    private val mapState = _mapState
+
+    private val _difficultyState = MutableStateFlow(DifficultyData())
+    val difficultyState = _difficultyState*/
 
     private val _mapConfigUiState: StateFlow<MapConfigUiState> =
         combine(
@@ -466,7 +466,7 @@ class InvestigationScreenViewModel private constructor(
                 ),
                 difficultyDetails = OperationDetailsUiState.DifficultyDetails(
                     type = difficultyState.type,
-                    difficultyTitle = difficultyState.difficultyTitle,
+                    difficultyTitle = difficultyState.title,
                     responseType = difficultyState.responseType,
                     challengeTitle = difficultyState.challengeTitle,
                     settings = difficultyState.settings
@@ -1022,10 +1022,10 @@ class InvestigationScreenViewModel private constructor(
 
             val settings = difficulty.settingsModel
 
-            var difficultyState = DifficultyState(
+            var difficultyState = DifficultyData(
                 index = index,
                 type = type,
-                difficultyTitle = difficultyTitle,
+                title = difficultyTitle,
                 responseType = responseType,
                 settings = settings
             )
@@ -1045,9 +1045,10 @@ class InvestigationScreenViewModel private constructor(
                 }
             }
 
-            _difficultyState.update {
+            updateInvestigationDifficultyUseCase(difficultyState)
+            /*_difficultyState.update {
                 difficultyState
-            }
+            }*/
 
             _playerSanityUiState.update {
                 it.copy(
@@ -1073,7 +1074,7 @@ class InvestigationScreenViewModel private constructor(
 
         Log.d("InvestigationViewModel", "DifficultyUiState:" +
                 "\n\tindex: ${_difficultyState.value.index}" +
-                "\n\tname: ${_difficultyState.value.difficultyTitle}" +
+                "\n\tname: ${_difficultyState.value.title}" +
                 "\n\tmodifier: ${_difficultyState.value.settings.sanityDrainSpeed.toFloat()}" +
                 "\n\ttime: ${_difficultyState.value.settings.setupTime.toLong()}" +
                 "\n\tinitialSanity: ${_difficultyState.value.settings.startingSanity.toFloat()}" +
@@ -1114,7 +1115,16 @@ class InvestigationScreenViewModel private constructor(
             val size = getSimpleMapSizeUseCase(index).getOrThrow()
             val modifier = fetchSimpleMapModifiersUseCase(size).getOrThrow()
 
-            _mapState.update {
+            val mapState = MapData(
+                index = index,
+                name = name,
+                size = size,
+                setupModifier = modifier.setupModifier,
+                actionModifier = modifier.actionModifier
+            )
+
+            updateInvestigationMapUseCase(mapState)
+            /*_mapState.update {
                 it.copy(
                     index = index,
                     name = name,
@@ -1122,7 +1132,7 @@ class InvestigationScreenViewModel private constructor(
                     setupModifier = modifier.setupModifier,
                     actionModifier = modifier.actionModifier
                 )
-            }
+            }*/
 
             Log.e("InvestigationViewModel", "Set map index success")
 
@@ -1184,6 +1194,7 @@ class InvestigationScreenViewModel private constructor(
                     val difficultyUseCaseBundle = container.difficultyUseCaseBundle
                     val simpleMapUseCaseBundle = container.simpleMapUseCaseBundle
                     val codexUseCaseBundle = container.codexUseCaseBundle
+                    val investigationuseCaseBundle = container.investigationUseCaseBundle
                     val preferencesUseCaseBundle = container.preferencesUseCaseBundle
                     val getCurrentChallengeUseCase = container.getCurrentChallengeUseCase
 
@@ -1192,6 +1203,7 @@ class InvestigationScreenViewModel private constructor(
                         difficultyUseCaseBundle = difficultyUseCaseBundle,
                         simpleMapUseCaseBundle = simpleMapUseCaseBundle,
                         codexUseCaseBundle = codexUseCaseBundle,
+                        investigationUseCaseBundle = investigationuseCaseBundle,
                         preferencesUseCaseBundle = preferencesUseCaseBundle,
                         getCurrentChallengeUseCase = getCurrentChallengeUseCase
                     )

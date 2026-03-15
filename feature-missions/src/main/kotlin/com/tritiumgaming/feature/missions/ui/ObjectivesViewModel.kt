@@ -1,7 +1,9 @@
 package com.tritiumgaming.feature.missions.ui
 
+import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tritiumgaming.feature.missions.app.container.MissionsContainerProvider
@@ -14,10 +16,16 @@ import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFemaleNamesUseCas
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllFirstNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllMaleNamesUseCase
 import com.tritiumgaming.shared.data.ghostname.usecase.FetchAllSurnamesUseCase
+import com.tritiumgaming.shared.data.investigation.model.DifficultyData
+import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
+import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.mission.model.Mission
 import com.tritiumgaming.shared.data.mission.usecase.FetchAllMissionsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
 class ObjectivesViewModel(
@@ -25,8 +33,21 @@ class ObjectivesViewModel(
     private val fetchAllFirstNamesUseCase: FetchAllFirstNamesUseCase,
     private val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase,
     private val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase,
-    private val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase
+    private val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase,
+    investigationStateUseCaseBundle: InvestigationUseCaseBundle,
+    private val getInvestigationStateUseCase: GetInvestigationStateUseCase = investigationStateUseCaseBundle.getInvestigationStateUseCase
+
 ): ViewModel() {
+
+    private val _investigationState = getInvestigationStateUseCase()
+
+    private val _difficultyState = _investigationState.map { it.difficulty }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = DifficultyData()
+        )
+    val difficultyState = _difficultyState
 
     private val _missionSpinnerUiState: MutableStateFlow<MissionSpinnerUiState> =
         MutableStateFlow(
@@ -241,29 +262,6 @@ class ObjectivesViewModel(
         updateMissionSpinnerUiState()
     }
 
-    class ObjectivesFactory(
-        private val fetchAllMissionsUseCase: FetchAllMissionsUseCase,
-        private val fetchAllFirstNamesUseCase: FetchAllFirstNamesUseCase,
-        private val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase,
-        private val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase,
-        private val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase,
-    ) : ViewModelProvider.Factory {
-
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(ObjectivesViewModel::class.java)) {
-                @Suppress("UNCHECKED_CAST")
-                return ObjectivesViewModel(
-                    fetchAllMissionsUseCase = fetchAllMissionsUseCase,
-                    fetchAllFirstNamesUseCase = fetchAllFirstNamesUseCase,
-                    fetchAllMaleNamesUseCase = fetchAllMaleNamesUseCase,
-                    fetchAllFemaleNamesUseCase = fetchAllFemaleNamesUseCase,
-                    fetchAllSurnamesUseCase = fetchAllSurnamesUseCase
-                ) as T
-            }
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
-
     companion object {
 
         const val UNKNOWN: Response = 0
@@ -283,13 +281,15 @@ class ObjectivesViewModel(
                 val fetchAllMaleNamesUseCase: FetchAllMaleNamesUseCase = container.fetchAllMaleNamesUseCase
                 val fetchAllFemaleNamesUseCase: FetchAllFemaleNamesUseCase = container.fetchAllFemaleNamesUseCase
                 val fetchAllSurnamesUseCase: FetchAllSurnamesUseCase = container.fetchAllSurnamesUseCase
+                val investigationStateUseCaseBundle: InvestigationUseCaseBundle = container.investigationUseCaseBundle
 
                 ObjectivesViewModel(
                     fetchAllMissionsUseCase = fetchAllMissionsUseCase,
                     fetchAllFirstNamesUseCase = fetchAllFirstNamesUseCase,
                     fetchAllMaleNamesUseCase = fetchAllMaleNamesUseCase,
                     fetchAllFemaleNamesUseCase = fetchAllFemaleNamesUseCase,
-                    fetchAllSurnamesUseCase = fetchAllSurnamesUseCase
+                    fetchAllSurnamesUseCase = fetchAllSurnamesUseCase,
+                    investigationStateUseCaseBundle = investigationStateUseCaseBundle
                 )
             }
         }
