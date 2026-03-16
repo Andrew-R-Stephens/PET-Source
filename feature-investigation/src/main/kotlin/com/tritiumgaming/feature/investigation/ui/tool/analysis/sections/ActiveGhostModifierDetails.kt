@@ -18,10 +18,6 @@ import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toHasLosMultiplierBoolean
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMaximumAsInt
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toMinimumAsInt
-import com.tritiumgaming.feature.investigation.app.mappers.ghost.toSanityBounds
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
@@ -29,6 +25,10 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.SubRow
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextCategoryTitle
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
+import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
+import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
+import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
+import com.tritiumgaming.shared.data.ghost.mapper.toSanityBounds
 import kotlin.math.max
 
 @Composable

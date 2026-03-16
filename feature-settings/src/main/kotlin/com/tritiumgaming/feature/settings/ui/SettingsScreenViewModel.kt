@@ -24,7 +24,7 @@ import com.tritiumgaming.shared.data.market.typography.usecase.FetchUnlockedTypo
 import com.tritiumgaming.shared.data.market.typography.usecase.GetMarketCatalogTypographyByUUIDUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.GetNextUnlockedTypographyUseCase
 import com.tritiumgaming.shared.data.market.typography.usecase.SaveCurrentTypographyUseCase
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowCellularDataUseCase
 import com.tritiumgaming.shared.data.preferences.usecase.SetAllowHuntWarnAudioUseCase

@@ -1,7 +1,7 @@
 package com.tritiumgaming.feature.settings.ui
 
 import com.tritiumgaming.feature.settings.ui.components.TypographyUiState
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 
 data class SettingsScreenUiState(
     val screensaverPreference: Boolean = false,

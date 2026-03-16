@@ -1,7 +1,7 @@
 package com.tritiumgaming.core.ui.theme
 
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 
 val LocalUiConfiguration = staticCompositionLocalOf { ExtendedUiConfiguration() }
 

@@ -85,7 +85,7 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToo
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import kotlinx.coroutines.launch
 
 @Composable

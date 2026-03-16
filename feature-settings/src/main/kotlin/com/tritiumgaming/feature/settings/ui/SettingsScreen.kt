@@ -56,7 +56,7 @@ import com.tritiumgaming.feature.settings.ui.components.CarouselComposable
 import com.tritiumgaming.feature.settings.ui.components.CarouselUiActions
 import com.tritiumgaming.feature.settings.ui.components.HuntTimeoutPreferenceSeekbar
 import com.tritiumgaming.shared.data.market.model.IncrementDirection
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import org.jetbrains.annotations.TestOnly
 
 @Preview

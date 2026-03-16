@@ -13,9 +13,6 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.app.mappers.challenge.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.codex.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
-import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toFloat
-import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toInt
-import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toLong
 import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toStringResource
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryColumn
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.ExpandableCategoryRow
@@ -25,6 +22,9 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.TextSubTitle
 import com.tritiumgaming.shared.data.codex.mappers.toEquipmentTitle
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 
 @Composable
 internal fun DifficultyModifierDetails(

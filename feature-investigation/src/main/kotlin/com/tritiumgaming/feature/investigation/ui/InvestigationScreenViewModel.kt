@@ -14,8 +14,6 @@ import com.tritiumgaming.feature.investigation.app.container.InvestigationContai
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
-import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toFloat
-import com.tritiumgaming.feature.investigation.app.mappers.difficultysettings.toLong
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
@@ -45,6 +43,8 @@ import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndex
 import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
+import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
