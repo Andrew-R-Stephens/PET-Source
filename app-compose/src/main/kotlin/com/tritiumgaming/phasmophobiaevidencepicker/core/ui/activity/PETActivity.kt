@@ -68,8 +68,6 @@ class PETActivity : AppCompatActivity(),
 
         super.onCreate(savedInstanceState)
 
-        // Initialize the view model ad manager.
-        // This will gather consent and initialize Google Mobile Ads.
         petActivityViewModel.initMobileAdsConsentManager(this@PETActivity)
 
         initFirebaseAnalytics(this)
@@ -92,26 +90,21 @@ class PETActivity : AppCompatActivity(),
                     isRtl = uiConfigurations.isRtl
                 )
             ) {
-
                 Scaffold {
-
                     Box(
                         modifier = Modifier
                             .background(LocalPalette.current.surface)
                             .padding(it)
                     ) {
-                         RootNavigation(
+                        RootNavigation(
                             windowInsets = WindowInsets(
                                 bottom = it.calculateBottomPadding(),
                             )
                         )
                     }
-
                 }
             }
-
         }
-
     }
 
     override fun onRequestPermissionsResult(
