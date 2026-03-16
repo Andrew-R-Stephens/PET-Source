@@ -1,5 +1,20 @@
 package com.tritiumgaming.shared.data.difficultysetting.mapper
 
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.CursedPossessionsQuantity
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.EvidenceGiven
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintChance
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.FingerprintDuration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GhostSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.GracePeriod
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.HuntDuration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.KillsExtendHunts
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.PlayerSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityDrainSpeed
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SanityPillRestoration
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SetupTime
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
+
 class DifficultySettingResources {
 
     enum class DifficultySetting {
@@ -228,3 +243,156 @@ class DifficultySettingResources {
         MONKEY_PAW
     }
 }
+
+fun StartingSanity.toFloat(): Float =
+    when(this) {
+        StartingSanity.SANITY_0 -> 0f
+        StartingSanity.SANITY_25 -> .25f
+        StartingSanity.SANITY_50 -> .5f
+        StartingSanity.SANITY_75 -> .75f
+        StartingSanity.SANITY_100 -> 1f
+    }
+
+fun SanityPillRestoration.toFloat(): Float =
+    when(this) {
+        SanityPillRestoration.RESTORE_0 -> 0f
+        SanityPillRestoration.RESTORE_5 -> .05f
+        SanityPillRestoration.RESTORE_10 -> .1f
+        SanityPillRestoration.RESTORE_20 -> .2f
+        SanityPillRestoration.RESTORE_25 -> .25f
+        SanityPillRestoration.RESTORE_30 -> .3f
+        SanityPillRestoration.RESTORE_35 -> .35f
+        SanityPillRestoration.RESTORE_40 -> .4f
+        SanityPillRestoration.RESTORE_45 -> .45f
+        SanityPillRestoration.RESTORE_50 -> .5f
+        SanityPillRestoration.RESTORE_75 -> .75f
+        SanityPillRestoration.RESTORE_100 -> 1f
+    }
+
+fun SanityDrainSpeed.toFloat(): Float =
+    when(this) {
+        SanityDrainSpeed.SPEED_0 -> 0f
+        SanityDrainSpeed.SPEED_50 -> .5f
+        SanityDrainSpeed.SPEED_100 -> 1f
+        SanityDrainSpeed.SPEED_150 -> 1.5f
+        SanityDrainSpeed.SPEED_200 -> 2.0f
+    }
+
+fun PlayerSpeed.toFloat(): Float =
+    when(this) {
+        PlayerSpeed.SPEED_50 -> .5f
+        PlayerSpeed.SPEED_75 -> .75f
+        PlayerSpeed.SPEED_100 -> 1f
+        PlayerSpeed.SPEED_125 -> 1.25f
+        PlayerSpeed.SPEED_150 -> 1.5f
+    }
+
+fun GhostSpeed.toFloat(): Float =
+    when(this) {
+        GhostSpeed.SPEED_50 -> .5f
+        GhostSpeed.SPEED_75 -> .75f
+        GhostSpeed.SPEED_100 -> 1f
+        GhostSpeed.SPEED_125 -> 1.25f
+        GhostSpeed.SPEED_150 -> 1.5f
+    }
+
+fun GracePeriod.toLong(): Long =
+    when(this) {
+        GracePeriod.PERIOD_0 -> 0L
+        GracePeriod.PERIOD_1 -> 1000L
+        GracePeriod.PERIOD_2 -> 2000L
+        GracePeriod.PERIOD_3 -> 3000L
+        GracePeriod.PERIOD_4 -> 4000L
+        GracePeriod.PERIOD_5 -> 5000L
+    }
+
+fun HuntDuration.toLong(size: MapModifierResources.MapSize): Long =
+    when(this) {
+        HuntDuration.LOW -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 15000L
+            MapModifierResources.MapSize.MEDIUM -> 30000L
+            MapModifierResources.MapSize.LARGE -> 40000L
+        }
+        HuntDuration.MEDIUM -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 20000L
+            MapModifierResources.MapSize.MEDIUM -> 40000L
+            MapModifierResources.MapSize.LARGE -> 50000L
+        }
+        HuntDuration.HIGH -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 30000L
+            MapModifierResources.MapSize.MEDIUM -> 50000L
+            MapModifierResources.MapSize.LARGE -> 60000L
+        }
+    }
+
+fun KillsExtendHunts.toLong(size: MapModifierResources.MapSize): Long =
+    when(this) {
+        KillsExtendHunts.OFF -> 0L
+        KillsExtendHunts.LOW -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 15000L
+            MapModifierResources.MapSize.MEDIUM -> 20000L
+            MapModifierResources.MapSize.LARGE -> 25000L
+        }
+        KillsExtendHunts.MEDIUM -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 25000L
+            MapModifierResources.MapSize.MEDIUM -> 30000L
+            MapModifierResources.MapSize.LARGE -> 35000L
+        }
+        KillsExtendHunts.HIGH -> when(size) {
+            MapModifierResources.MapSize.SMALL -> 35000L
+            MapModifierResources.MapSize.MEDIUM -> 40000L
+            MapModifierResources.MapSize.LARGE -> 45000L
+        }
+    }
+
+fun EvidenceGiven.toInt(): Int =
+    when(this) {
+        EvidenceGiven.COUNT_0 -> 0
+        EvidenceGiven.COUNT_1 -> 1
+        EvidenceGiven.COUNT_2 -> 2
+        EvidenceGiven.COUNT_3 -> 3
+    }
+
+fun FingerprintChance.toFloat(): Float =
+    when(this) {
+        FingerprintChance.CHANCE_0 -> 0f
+        FingerprintChance.CHANCE_25 -> .25f
+        FingerprintChance.CHANCE_50 -> .50f
+        FingerprintChance.CHANCE_75 -> .75f
+        FingerprintChance.CHANCE_100 -> 1f
+    }
+
+fun FingerprintDuration.toLong(): Long =
+    when(this) {
+        FingerprintDuration.DURATION_NEVER -> 0L
+        FingerprintDuration.DURATION_15 -> 15000L
+        FingerprintDuration.DURATION_30 -> 30000L
+        FingerprintDuration.DURATION_60 -> 60000L
+        FingerprintDuration.DURATION_90 -> 90000L
+        FingerprintDuration.DURATION_120 -> 120000L
+        FingerprintDuration.DURATION_180 -> 180000L
+        FingerprintDuration.DURATION_INFINITE -> -1L
+    }
+
+fun SetupTime.toLong(): Long =
+    when(this) {
+        SetupTime.TIME_0 -> 0L
+        SetupTime.TIME_30 -> 30000L
+        SetupTime.TIME_60 -> 60000L
+        SetupTime.TIME_120 -> 120000L
+        SetupTime.TIME_180 -> 180000L
+        SetupTime.TIME_240 -> 240000L
+        SetupTime.TIME_300 -> 300000L
+    }
+
+fun CursedPossessionsQuantity.toInt(): Int =
+    when(this) {
+        CursedPossessionsQuantity.NONE -> 0
+        CursedPossessionsQuantity.QUANTITY_1 -> 1
+        CursedPossessionsQuantity.QUANTITY_2 -> 2
+        CursedPossessionsQuantity.QUANTITY_3 -> 3
+        CursedPossessionsQuantity.QUANTITY_4 -> 4
+        CursedPossessionsQuantity.QUANTITY_5 -> 5
+        CursedPossessionsQuantity.QUANTITY_6 -> 6
+        CursedPossessionsQuantity.QUANTITY_7 -> 7
+    }

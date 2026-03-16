@@ -1,6 +1,6 @@
 package com.tritiumgaming.shared.data.preferences.usecase
 
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
 
 class SetUiDensityTypeUseCase(

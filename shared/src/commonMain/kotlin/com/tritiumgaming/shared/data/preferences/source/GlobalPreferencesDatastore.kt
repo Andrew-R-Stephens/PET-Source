@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.preferences.source
 
 import com.tritiumgaming.shared.data.datastore.DatastoreDataSource
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
 
 interface GlobalPreferencesDatastore:
