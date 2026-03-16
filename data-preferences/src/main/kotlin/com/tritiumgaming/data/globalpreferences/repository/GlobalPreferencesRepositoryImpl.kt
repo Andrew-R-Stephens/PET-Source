@@ -1,6 +1,6 @@
 package com.tritiumgaming.data.globalpreferences.repository
 
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.repository.GlobalPreferencesRepository
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
 import kotlinx.coroutines.flow.Flow

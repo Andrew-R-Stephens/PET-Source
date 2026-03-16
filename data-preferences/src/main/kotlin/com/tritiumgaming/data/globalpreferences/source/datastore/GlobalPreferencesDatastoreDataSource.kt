@@ -12,7 +12,7 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.tritiumgaming.core.resources.R
-import com.tritiumgaming.shared.data.preferences.DensityType
+import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore
 import com.tritiumgaming.shared.data.preferences.source.GlobalPreferencesDatastore.GlobalPreferences
 import kotlinx.coroutines.flow.Flow
@@ -37,32 +37,20 @@ class GlobalPreferencesDatastoreDataSource(
     init {
         Log.d("GlobalPreferences Repository", "Initializing")
 
-        KEY_DISABLE_SCREENSAVER =
-            booleanPreferencesKey(context.resources.getString(R.string.preference_isAlwaysOn))
-        KEY_ALLOW_CELLULAR_DATA =
-            booleanPreferencesKey(context.resources.getString(R.string.preference_network))
-        KEY_ALLOW_HUNT_WARN_AUDIO =
-            booleanPreferencesKey(context.resources.getString(R.string.preference_isHuntAudioWarningAllowed))
-        KEY_ENABLE_GHOST_REORDER =
-            booleanPreferencesKey(context.resources.getString(R.string.preference_enableReorderGhostViews))
-        KEY_ALLOW_INTRODUCTION =
-            booleanPreferencesKey(context.resources.getString(R.string.tutorialTracking_canShowIntroduction))
+        KEY_DISABLE_SCREENSAVER = booleanPreferencesKey(context.resources.getString(R.string.preference_isAlwaysOn))
+        KEY_ALLOW_CELLULAR_DATA = booleanPreferencesKey(context.resources.getString(R.string.preference_network))
+        KEY_ALLOW_HUNT_WARN_AUDIO = booleanPreferencesKey(context.resources.getString(R.string.preference_isHuntAudioWarningAllowed))
+        KEY_ENABLE_GHOST_REORDER = booleanPreferencesKey(context.resources.getString(R.string.preference_enableReorderGhostViews))
+        KEY_ALLOW_INTRODUCTION = booleanPreferencesKey(context.resources.getString(R.string.tutorialTracking_canShowIntroduction))
 
-        KEY_ENABLE_RTL =
-            booleanPreferencesKey(context.resources.getString(R.string.preference_isLeftHandSupportEnabled))
+        KEY_ENABLE_RTL = booleanPreferencesKey(context.resources.getString(R.string.preference_isLeftHandSupportEnabled))
 
-        KEY_HUNT_WARN_MAX_TIMEOUT =
-            longPreferencesKey(context.resources.getString(R.string.preference_huntWarningFlashTimeout))
+        KEY_HUNT_WARN_MAX_TIMEOUT = longPreferencesKey(context.resources.getString(R.string.preference_huntWarningFlashTimeout))
 
-        KEY_UI_DENSITY_TYPE =
-            intPreferencesKey(context.resources.getString(R.string.preference_uiDensity))
+        KEY_UI_DENSITY_TYPE = intPreferencesKey(context.resources.getString(R.string.preference_uiDensity))
 
-        KEY_TYPOGRAPHY = stringPreferencesKey(
-            context.resources.getString(R.string.preference_savedTypography)
-        )
-        KEY_PALETTE = stringPreferencesKey(
-            context.resources.getString(R.string.preference_savedPalette)
-        )
+        KEY_TYPOGRAPHY = stringPreferencesKey(context.resources.getString(R.string.preference_savedTypography))
+        KEY_PALETTE = stringPreferencesKey(context.resources.getString(R.string.preference_savedPalette))
     }
 
     // Generic settings
