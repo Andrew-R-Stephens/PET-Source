@@ -1,7 +1,6 @@
 package com.tritiumgaming.shared.data.map.modifier.usecase
 
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.*
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.shared.data.map.modifier.model.WorldMapModifier
 import com.tritiumgaming.shared.data.map.modifier.repsitory.MapModifiersRepository
 

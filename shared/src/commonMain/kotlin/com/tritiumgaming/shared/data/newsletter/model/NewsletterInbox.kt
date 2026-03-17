@@ -1,6 +1,7 @@
 package com.tritiumgaming.shared.data.newsletter.model
 
-import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.*
+import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterIcon
+import com.tritiumgaming.shared.data.newsletter.mapper.NewsletterResources.NewsletterTitle
 
 data class NewsletterInbox(
     val id: String? = "",

@@ -1,6 +1,6 @@
 package com.tritiumgaming.shared.data.map.simple.usecase
 
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.*
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapThumbnail
 import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
 
 class FetchMapThumbnailsUseCase(

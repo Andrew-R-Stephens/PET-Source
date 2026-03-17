@@ -1,6 +1,5 @@
 package com.tritiumgaming.shared.data.journal.usecase
 
-import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
 import com.tritiumgaming.shared.data.ghost.model.GhostType
 import com.tritiumgaming.shared.data.ghost.repository.GhostRepository

@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.ghostname.usecase
 
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
-import com.tritiumgaming.shared.data.ghostname.model.GhostName.NamePriority.*
+import com.tritiumgaming.shared.data.ghostname.model.GhostName.NamePriority.FIRST
 import com.tritiumgaming.shared.data.ghostname.repository.GhostNameRepository
 
 class FetchAllFirstNamesUseCase(

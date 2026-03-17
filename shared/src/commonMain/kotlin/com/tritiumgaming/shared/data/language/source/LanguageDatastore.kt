@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.language.source
 
 import com.tritiumgaming.shared.data.datastore.DatastoreDataSource
-import com.tritiumgaming.shared.data.language.source.LanguageDatastore.*
+import com.tritiumgaming.shared.data.language.source.LanguageDatastore.LanguagePreferences
 
 interface LanguageDatastore: DatastoreDataSource<LanguagePreferences> {
 

@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.review.source
 
 import com.tritiumgaming.shared.data.datastore.DatastoreDataSource
-import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore.*
+import com.tritiumgaming.shared.data.review.source.ReviewTrackerDatastore.ReviewTrackerPreferences
 
 interface ReviewTrackerDatastore: DatastoreDataSource<ReviewTrackerPreferences> {
 

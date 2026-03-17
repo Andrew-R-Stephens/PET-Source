@@ -41,6 +41,7 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.AnalyticsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.ConfigIcon
 import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
+import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.StopwatchIcon
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
@@ -96,6 +97,12 @@ fun OperationToolbar(
 
         },
         scrollContent = { modifier ->
+
+            TraitsButton(
+                modifier,
+                toolbarUiActions,
+                operationToolbarUiState
+            )
 
             StopwatchButton(
                 modifier,
@@ -154,6 +161,11 @@ fun OperationToolRail(
 
         },
         scrollContent = { modifier ->
+
+            TraitsButton(
+                modifier,
+                toolbarUiActions,
+                operationToolbarUiState)
 
             StopwatchButton(
                 modifier,
@@ -297,6 +309,39 @@ private fun ConfigButton(
             modifier = Modifier
                 .fillMaxSize(),
             if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_CONFIG) {
+                IconVectorColors.defaults(
+                    fillColor = LocalPalette.current.primary,
+                    strokeColor = LocalPalette.current.primary,
+                )
+            } else {
+                IconVectorColors.defaults(
+                    fillColor = LocalPalette.current.onSurface,
+                    strokeColor = LocalPalette.current.onSurface,
+                )
+            }
+        )
+    }
+}
+
+@Composable
+private fun TraitsButton(
+    modifier: Modifier = Modifier,
+    toolbarUiActions: ToolbarUiActions,
+    operationToolbarUiState: OperationToolbarUiState
+) {
+    ToolbarItem(
+        modifier = modifier
+            .aspectRatio(1f)
+            .fillMaxSize()
+            .padding(2.dp),
+        onClick = {
+            toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_TRAITS)
+        }
+    ) {
+        GeneticsIcon(
+            modifier = Modifier
+                .fillMaxSize(),
+            if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_TRAITS) {
                 IconVectorColors.defaults(
                     fillColor = LocalPalette.current.primary,
                     strokeColor = LocalPalette.current.primary,

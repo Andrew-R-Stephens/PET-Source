@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.newsletter.source
 
 import com.tritiumgaming.shared.data.datastore.DatastoreDataSource
-import com.tritiumgaming.shared.data.newsletter.source.NewsletterDatastore.*
+import com.tritiumgaming.shared.data.newsletter.source.NewsletterDatastore.NewsletterPreferences
 
 interface NewsletterDatastore: DatastoreDataSource<NewsletterPreferences> {
 

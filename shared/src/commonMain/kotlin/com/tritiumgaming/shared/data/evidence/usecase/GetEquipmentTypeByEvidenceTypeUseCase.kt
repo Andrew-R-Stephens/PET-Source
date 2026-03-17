@@ -1,9 +1,7 @@
 package com.tritiumgaming.shared.data.evidence.usecase
 
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.*
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.*
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 
 class GetEquipmentTypeByEvidenceTypeUseCase {

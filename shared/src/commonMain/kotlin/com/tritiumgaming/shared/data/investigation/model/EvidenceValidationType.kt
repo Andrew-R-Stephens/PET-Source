@@ -1,4 +1,4 @@
-package com.tritiumgaming.shared.data.evidence.model
+package com.tritiumgaming.shared.data.investigation.model
 
 enum class EvidenceValidationType {
     NEGATIVE,

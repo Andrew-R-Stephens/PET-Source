@@ -1,9 +1,10 @@
 package com.tritiumgaming.shared.data.map.simple.model
 
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
-import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.*
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.*
+import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorImage
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapFloorTitle
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapThumbnail
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 
 class SimpleWorldMap(
     val mapId: String,

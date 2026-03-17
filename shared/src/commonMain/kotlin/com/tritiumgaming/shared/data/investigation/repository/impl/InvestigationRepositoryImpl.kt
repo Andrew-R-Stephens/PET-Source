@@ -1,9 +1,9 @@
 package com.tritiumgaming.shared.data.investigation.repository.impl
 
-import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.investigation.InvestigationRepository
 import com.tritiumgaming.shared.data.investigation.model.DifficultyData
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.InvestigationData
 import com.tritiumgaming.shared.data.investigation.model.MapData
 import com.tritiumgaming.shared.data.investigation.model.SanityData

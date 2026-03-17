@@ -134,4 +134,9 @@
     <string name ="evidence_trait_description_interaction_uv_fingerprint_2_fingers" translatable="false">UV Fingerprints leave 2 fingers</string>
     <string name ="evidence_trait_description_interaction_uv_handprint_6_fingers" translatable="false">UV Handprints leave 6 fingers</string>
     <string name ="evidence_trait_description_interaction_vanish_if_photo_taken" translatable="false">Vanishes after taking Photo</string>
+
+    <string name="evidence_trait_category_behavior" translatable="false">Behavior</string>
+    <string name="evidence_trait_category_characteristic" translatable="false">Attribute</string>
+    <string name="evidence_trait_category_hunt" translatable="false">Hunt</string>
+    <string name="evidence_trait_category_interaction" translatable="false">Interaction</string>
 </resources>

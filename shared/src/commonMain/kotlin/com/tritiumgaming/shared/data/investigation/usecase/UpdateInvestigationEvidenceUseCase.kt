@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.investigation.usecase
 
-import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.InvestigationRepository
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 
 
 class UpdateInvestigationEvidenceUseCase(private val repository: InvestigationRepository) {

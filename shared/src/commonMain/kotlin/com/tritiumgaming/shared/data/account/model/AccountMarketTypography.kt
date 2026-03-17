@@ -1,7 +1,9 @@
 package com.tritiumgaming.shared.data.account.model
 
 import com.tritiumgaming.shared.data.market.model.FeatureAvailability
-import com.tritiumgaming.shared.data.market.model.FeatureAvailability.*
+import com.tritiumgaming.shared.data.market.model.FeatureAvailability.LOCKED
+import com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_DEFAULT
+import com.tritiumgaming.shared.data.market.model.FeatureAvailability.UNLOCKED_PURCHASE
 import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
 
 data class AccountMarketTypography (

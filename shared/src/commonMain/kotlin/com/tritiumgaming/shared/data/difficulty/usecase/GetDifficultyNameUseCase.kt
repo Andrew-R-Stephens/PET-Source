@@ -1,6 +1,6 @@
 package com.tritiumgaming.shared.data.difficulty.usecase
 
-import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.*
+import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.repository.DifficultyRepository
 
 class GetDifficultyNameUseCase(

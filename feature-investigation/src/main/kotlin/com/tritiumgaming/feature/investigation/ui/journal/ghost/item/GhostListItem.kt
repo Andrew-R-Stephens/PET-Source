@@ -41,11 +41,11 @@ import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
-import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.NEGATIVE
-import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.NEUTRAL
-import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType.POSITIVE
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
+import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEGATIVE
+import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEUTRAL
+import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.POSITIVE
 
 @Composable
 fun LazyItemScope.GhostListItem(
@@ -72,7 +72,7 @@ fun LazyItemScope.GhostListItem(
     }
 
     @Composable
-    fun strikethrough() {
+    fun Strikethrough() {
         scoreState.let {
             when {
                 (rejectionState) ->
@@ -106,7 +106,7 @@ fun LazyItemScope.GhostListItem(
     }
 
     @Composable
-    fun nameplate() {
+    fun Nameplate() {
         BasicText(
             text = label,
             style = LocalTypography.current.primary.regular.copy(
@@ -123,7 +123,7 @@ fun LazyItemScope.GhostListItem(
     }
 
     @Composable
-    fun evidenceIconRow(modifier: Modifier) {
+    fun EvidenceIconRow(modifier: Modifier) {
         Row(
             modifier = modifier,
             verticalAlignment = Alignment.CenterVertically,
@@ -229,12 +229,12 @@ fun LazyItemScope.GhostListItem(
                 contentAlignment = Alignment.Center
             ) {
 
-                nameplate()
+                Nameplate()
 
-                strikethrough()
+                Strikethrough()
             }
 
-            evidenceIconRow(
+            EvidenceIconRow(
                 Modifier
                     .weight(1f, true)
                     .fillMaxHeight()

@@ -1,6 +1,5 @@
 package com.tritiumgaming.shared.data.investigation.model
 
-import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 
 data class InvestigationData(

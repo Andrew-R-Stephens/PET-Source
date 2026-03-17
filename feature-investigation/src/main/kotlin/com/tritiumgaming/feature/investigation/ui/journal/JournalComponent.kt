@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.journal
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
@@ -26,8 +27,8 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
-import com.tritiumgaming.feature.investigation.ui.journal.evidence.EvidenceListUiState
-import com.tritiumgaming.feature.investigation.ui.journal.evidence.PrimaryEvidenceList
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiState
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.PrimaryEvidenceList
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostList
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
@@ -59,14 +60,19 @@ internal fun EvidenceListColumn(
     evidenceListUiState: EvidenceListUiState,
     evidenceListUiActions: EvidenceListUiActions,
 ) {
-    ListColumn(
+    Box(
         modifier = modifier,
-        title = stringResource(R.string.investigation_section_title_evidence)
+        contentAlignment = Alignment.TopCenter
     ) {
-        PrimaryEvidenceList(
-            evidenceListUiState = evidenceListUiState,
-            evidenceListUiActions = evidenceListUiActions
-        )
+        ListColumn(
+            modifier = modifier,
+            title = stringResource(R.string.investigation_section_title_evidence)
+        ) {
+            PrimaryEvidenceList(
+                evidenceListUiState = evidenceListUiState,
+                evidenceListUiActions = evidenceListUiActions
+            )
+        }
     }
 }
 

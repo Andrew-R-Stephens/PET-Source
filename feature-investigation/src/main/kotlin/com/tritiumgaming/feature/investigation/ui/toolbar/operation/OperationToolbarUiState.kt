@@ -12,6 +12,7 @@ data class OperationToolbarUiState(
     enum class Category {
         TOOL_NONE,
         TOOL_CONFIG,
+        TOOL_TRAITS,
         TOOL_ANALYZER,
         TOOL_FOOTSTEP,
         TOOL_TIMERS

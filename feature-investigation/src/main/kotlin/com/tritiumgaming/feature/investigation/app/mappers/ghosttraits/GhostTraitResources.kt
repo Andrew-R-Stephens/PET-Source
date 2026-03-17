@@ -2,6 +2,8 @@ package com.tritiumgaming.feature.investigation.app.mappers.ghosttraits
 
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitDescription
 
 @StringRes fun TraitDescription.toStringResource(): Int =
@@ -63,3 +65,56 @@ import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.Trait
         TraitDescription.INTERACTION_UV_HANDPRINT_6_FINGERS -> R.string.evidence_trait_description_interaction_uv_handprint_6_fingers
         TraitDescription.INTERACTION_VANISH_IF_PHOTO_TAKEN -> R.string.evidence_trait_description_interaction_vanish_if_photo_taken
     }
+
+
+@StringRes fun TraitCategory.toStringResource() = when(this) {
+    TraitCategory.BEHAVIOR -> R.string.evidence_trait_category_behavior
+    TraitCategory.CHARACTERISTIC -> R.string.evidence_trait_category_characteristic
+    TraitCategory.HUNT -> R.string.evidence_trait_category_hunt
+    TraitCategory.INTERACTION -> R.string.evidence_trait_category_interaction
+}
+
+enum class TraitState {
+    CONFIRM,
+    REJECT
+}
+
+enum class TraitWeight {
+    DEFINITIVE,
+    PROBABLE
+}
+
+enum class TraitTag {
+    ROOM,
+    ACTIVITY,
+    PLAYER,
+    LIGHT,
+    SANITY,
+    AGE,
+    GENDER,
+    SPEED,
+    APPEARANCE,
+    SMUDGE,
+    BREATH,
+    CANDLE,
+    ELECTRONICS,
+    PREVENTION,
+    BREAKER,
+    TEMPERATURE,
+    VISIBILITY,
+    AUDIO,
+    DOOR,
+    PARABOLIC_MICROPHONE,
+    SPIRIT_BOX,
+    ULTRAVIOLET,
+    DOTS,
+    EVENT,
+    PHOTO_CAMERA,
+    SALT,
+    ITEMS,
+    TELEPORT,
+    VOICE,
+    EMF,
+    CURSE,
+    FIRELIGHT
+}

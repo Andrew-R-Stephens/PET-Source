@@ -45,18 +45,28 @@ import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
-import com.tritiumgaming.shared.data.evidence.model.EvidenceState
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
-import com.tritiumgaming.shared.data.evidence.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.evidence.usecase.GetEquipmentTypeByEvidenceTypeUseCase
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources
 import com.tritiumgaming.shared.data.ghost.model.Ghost
 import com.tritiumgaming.shared.data.ghost.model.GhostType
+import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategoryUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
+import com.tritiumgaming.shared.data.investigation.model.CategoryOption
 import com.tritiumgaming.shared.data.investigation.model.DifficultyData
+import com.tritiumgaming.shared.data.investigation.model.EvidenceState
+import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
+import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterOptions
+import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
 import com.tritiumgaming.shared.data.investigation.model.MapData
+import com.tritiumgaming.shared.data.investigation.model.StateOption
+import com.tritiumgaming.shared.data.investigation.model.TagOption
+import com.tritiumgaming.shared.data.investigation.model.TraitFilter
+import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
+import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
+import com.tritiumgaming.shared.data.investigation.model.WeightOption
 import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
 import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
@@ -326,6 +336,124 @@ class InvestigationScreenViewModel private constructor(
     internal val operationSanityUiState = _operationSanityUiState
 
     /* EvidenceStates */
+    private val _traitData: MutableStateFlow<List<GhostTrait>> =
+        MutableStateFlow(
+            try {
+                getAllGhostTraitsUseCase().getOrThrow().map { it }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emptyList()
+            }
+        )
+    private val traitData = _traitData.asStateFlow()
+
+    private val _selectedTraits = MutableStateFlow<List<ValidatedGhostTrait>>(emptyList())
+    val selectedTraits = _selectedTraits.asStateFlow()
+    fun toggleTraitSelection(
+        trait: ValidatedGhostTrait
+    ) {
+        val newTraits = selectedTraits.value.map {
+            if(it.ghostTrait.id == trait.ghostTrait.id) {
+                it.copy(
+                    validationType = when(it.validationType) {
+                        TraitValidationType.CONFIRMED -> TraitValidationType.NEUTRAL
+                        TraitValidationType.NEUTRAL -> TraitValidationType.CONFIRMED
+                    }
+                )
+            } else { it }
+        }
+        _selectedTraits.update {
+            newTraits
+        }
+    }
+    private fun resetTraitSelections() {
+        _selectedTraits.update {
+            try {
+                getAllGhostTraitsUseCase().getOrThrow().map {
+                    ValidatedGhostTrait(
+                        ghostTrait = it
+                    )
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emptyList()
+            }
+        }
+    }
+
+    private val _traitFilterOptions = traitData.map { traits ->
+        val categories = traits.map {it.category }.distinct().sortedBy { it }
+        val weights = traits.map { it.weight }.distinct().sortedBy { it }
+        val states = traits.map { it.state }.distinct().sortedBy { it }
+        val tags = traits.flatMap { it.tags }.distinct().sortedBy { it }
+
+        GhostTraitFilterOptions(
+            categories = categories,
+            weights = weights,
+            states = states,
+            tags = tags
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = GhostTraitFilterOptions()
+    )
+    private val _traitFilterUiState: MutableStateFlow<TraitFilter> = MutableStateFlow(
+        TraitFilter()
+    )
+    val traitFilterUiState = _traitFilterUiState.asStateFlow()
+    fun updateTraitFilter(filter: TraitFilter) {
+        _traitFilterUiState.update {
+            it.copy(
+                category = if(it.category == filter.category) null else filter.category,
+                weight = if(it.weight == filter.weight) null else filter.weight,
+                state = if(it.state == filter.state) null else filter.state,
+            )
+        }
+    }
+
+    private val _filterOptionsUiState: StateFlow<GhostTraitFilterUiOptions> = combine(
+        traitFilterUiState,
+        _traitFilterOptions
+    ) { filter, options ->
+        GhostTraitFilterUiOptions(
+            category = options.categories.map {
+                CategoryOption(it, filter.category == it) },
+            weight = options.weights.map {
+                WeightOption(it, filter.weight == it) },
+            state = options.states.map {
+                StateOption(it, filter.state == it) },
+            tags = options.tags.let { it.ifEmpty { filter.tags } }
+                .map { TagOption(it) }
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = GhostTraitFilterUiOptions()
+    )
+    val filterOptionsUiState = _filterOptionsUiState
+
+    private val _traitListUiState: StateFlow<List<ValidatedGhostTrait>> =
+        combine(selectedTraits, traitFilterUiState) { traits, filter ->
+            traits.filter { (trait, _) ->
+                val matchesCategory = filter.category == null || trait.category == filter.category
+                val matchesWeight = filter.weight == null || trait.weight == filter.weight
+                val matchesState = filter.state == null || trait.state == filter.state
+                val matchesUnique = filter.isUnique == null || trait.isUnique == filter.isUnique
+
+                val matchesTags = filter.tags.isEmpty() || trait.tags.any { it in filter.tags }
+
+                matchesCategory && matchesWeight && matchesState && matchesUnique && matchesTags
+            }
+    }
+    .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = emptyList()
+    )
+    val traitListUiState = _traitListUiState
+
+    /* EvidenceStates */
     private val _evidenceStates: MutableStateFlow<List<EvidenceState>> =
         MutableStateFlow(emptyList())
     internal val evidenceStates = _evidenceStates.asStateFlow()
@@ -345,8 +473,6 @@ class InvestigationScreenViewModel private constructor(
                 emptyList()
             }
         }
-
-        //updateGhostStates()
     }
 
     private val _evidenceListUiState: StateFlow<List<EvidenceState>> = combine(
@@ -1180,6 +1306,7 @@ class InvestigationScreenViewModel private constructor(
         initPlayerSanityUiState()
 
         resetEvidenceStates()
+        resetTraitSelections()
     }
 
     companion object {

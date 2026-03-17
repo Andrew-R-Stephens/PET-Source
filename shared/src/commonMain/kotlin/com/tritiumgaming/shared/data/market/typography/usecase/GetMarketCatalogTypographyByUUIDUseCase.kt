@@ -1,8 +1,7 @@
 package com.tritiumgaming.shared.data.market.typography.usecase
 
 import com.tritiumgaming.shared.data.market.typography.model.MarketTypography
-import com.tritiumgaming.shared.data.market.typography.model.TypographyResources
-import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.*
+import com.tritiumgaming.shared.data.market.typography.model.TypographyResources.TypographyType
 import com.tritiumgaming.shared.data.market.typography.repository.MarketCatalogTypographyRepository
 
 class GetMarketCatalogTypographyByUUIDUseCase(

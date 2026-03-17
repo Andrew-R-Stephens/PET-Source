@@ -1,8 +1,8 @@
 package com.tritiumgaming.shared.data.ghostname.usecase
 
 import com.tritiumgaming.shared.data.ghostname.model.GhostName
-import com.tritiumgaming.shared.data.ghostname.model.GhostName.Gender.*
-import com.tritiumgaming.shared.data.ghostname.model.GhostName.NamePriority.*
+import com.tritiumgaming.shared.data.ghostname.model.GhostName.Gender.MALE
+import com.tritiumgaming.shared.data.ghostname.model.GhostName.NamePriority.FIRST
 import com.tritiumgaming.shared.data.ghostname.repository.GhostNameRepository
 
 class FetchAllMaleNamesUseCase(

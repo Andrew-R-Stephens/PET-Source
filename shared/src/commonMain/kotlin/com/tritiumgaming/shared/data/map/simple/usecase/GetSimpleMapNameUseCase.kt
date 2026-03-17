@@ -1,6 +1,6 @@
 package com.tritiumgaming.shared.data.map.simple.usecase
 
-import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.*
+import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
 import com.tritiumgaming.shared.data.map.simple.repository.SimpleMapRepository
 
 class GetSimpleMapNameUseCase(

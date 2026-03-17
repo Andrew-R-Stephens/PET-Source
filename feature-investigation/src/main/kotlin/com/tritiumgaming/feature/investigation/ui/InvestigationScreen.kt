@@ -68,8 +68,8 @@ import com.tritiumgaming.feature.investigation.ui.common.operationconfig.dropdow
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.SanityMeter
 import com.tritiumgaming.feature.investigation.ui.journal.EvidenceListColumn
 import com.tritiumgaming.feature.investigation.ui.journal.GhostListColumn
-import com.tritiumgaming.feature.investigation.ui.journal.evidence.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiActions
+import com.tritiumgaming.feature.investigation.ui.journal.evidence.primary.EvidenceListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiActions
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.GhostListUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostListUiItemActions
@@ -80,10 +80,15 @@ import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
+import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
+import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
+import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiActions
+import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
-import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
+import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import kotlinx.coroutines.launch
@@ -121,6 +126,9 @@ private fun InvestigationContent(
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
 
+    val traitFilterOptions by investigationViewModel.filterOptionsUiState.collectAsStateWithLifecycle()
+    val traitListUiStates by investigationViewModel.traitListUiState.collectAsStateWithLifecycle()
+
     val ghostStates by investigationViewModel.ghostStates.collectAsStateWithLifecycle()
     val ghostOrder by investigationViewModel.sortedGhosts.collectAsStateWithLifecycle()
     val evidenceStates by investigationViewModel.evidenceStates.collectAsStateWithLifecycle()
@@ -138,6 +146,23 @@ private fun InvestigationContent(
 
     val evidenceListUiState = EvidenceListUiState(
         evidenceStateList = evidenceListUiStates
+    )
+
+    val traitListUiState = TraitListUiState(
+        options = traitFilterOptions,
+        list = traitListUiStates
+    )
+
+    val traitListUiActions = TraitListUiActions(
+        onSelectTrait = { trait ->
+            investigationViewModel.toggleTraitSelection(trait)
+        },
+        onSelectCategory = { category ->
+            val filter = TraitFilter(
+                category = category
+            )
+            investigationViewModel.updateTraitFilter(filter)
+        }
     )
 
     val ghostListUiActions = GhostListUiActions(
@@ -526,6 +551,10 @@ private fun InvestigationContent(
     }
 
     val sheetComponent: @Composable (Modifier) -> Unit = { modifier ->
+
+        val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+        val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
+
         Column(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -543,6 +572,26 @@ private fun InvestigationContent(
                     timerComponent = { modifier -> timerComponent(modifier) },
                     phaseComponent = { modifier -> }
                 )
+
+                OperationToolbarUiState.Category.TOOL_TRAITS -> {
+                    val modifier = when(deviceConfiguration) {
+                        DeviceConfiguration.MOBILE_PORTRAIT,
+                        DeviceConfiguration.TABLET_PORTRAIT -> Modifier.fillMaxHeight(.5f)
+                        else -> Modifier.fillMaxHeight()
+                    }
+
+                    TraitConfig(
+                        modifier = modifier,
+                        state = traitListUiState,
+                        actions = traitListUiActions,
+                        colors = TraitListItemUiColors(
+                            unselectedColor = LocalPalette.current.surfaceContainerLowest,
+                            unselectedOnColor = LocalPalette.current.onSurface,
+                            selectedColor = LocalPalette.current.surfaceContainer,
+                            selectedOnColor = LocalPalette.current.onSurfaceVariant,
+                        )
+                    )
+                }
 
                 OperationToolbarUiState.Category.TOOL_ANALYZER -> OperationDetails(
                     modifier = Modifier

@@ -1,7 +1,9 @@
 package com.tritiumgaming.shared.data.codex.model.equipment
 
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.*
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentBuyCost
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIcon
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentIdentifier
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTitle
 
 data class EquipmentType(
     val id: EquipmentIdentifier,

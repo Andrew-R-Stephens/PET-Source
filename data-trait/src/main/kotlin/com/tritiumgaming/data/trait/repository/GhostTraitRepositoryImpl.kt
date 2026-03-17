@@ -13,6 +13,9 @@ class GhostTraitRepositoryImpl(
     var ghostTraits: List<GhostTrait> = emptyList()
 
     private fun populateCache(): List<GhostTrait> {
+        /*ghostTraits = ghostTraits.ifEmpty {
+            localSource.get().map { it.toDomain() }
+        }*/
         ghostTraits = ghostTraits.ifEmpty {
             localSource.get().map { it.toDomain() }
         }

@@ -1,7 +1,6 @@
 package com.tritiumgaming.shared.data.ghosttrait.model
 
 import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostIdentifier
-import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitCategory
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitDescription
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitIdentifier

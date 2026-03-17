@@ -1,8 +1,14 @@
 package com.tritiumgaming.shared.data.popup.model
 
-import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.*
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentTierInformation
+import com.tritiumgaming.shared.data.codex.mappers.EquipmentResources.EquipmentUnlockLevel
 import com.tritiumgaming.shared.data.codex.model.equipment.EquipmentType
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.*
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceAnimation
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceDescription
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTierAnimation
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle
 import com.tritiumgaming.shared.data.evidence.model.EvidenceTier
 
 data class EvidencePopupRecord(

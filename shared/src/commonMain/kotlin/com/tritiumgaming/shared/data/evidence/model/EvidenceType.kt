@@ -1,7 +1,8 @@
 package com.tritiumgaming.shared.data.evidence.model
 
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources
-import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.*
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIcon
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceIdentifier
+import com.tritiumgaming.shared.data.evidence.mapper.EvidenceResources.EvidenceTitle
 
 /**
  * Evidence enums
