@@ -5,6 +5,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowColumn
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -82,17 +84,12 @@ fun EvidenceListItem(
         val deviceConfiguration = DeviceConfiguration.fromWindowSizeClass(windowSizeClass)
 
         when(deviceConfiguration) {
-            DeviceConfiguration.MOBILE_PORTRAIT -> {
-                EvidenceItemColumn(
-                    state = state,
-                    actions = actions
-                )
-            }
+            DeviceConfiguration.MOBILE_PORTRAIT,
             DeviceConfiguration.MOBILE_LANDSCAPE,
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
-                EvidenceItemRow(
+                EvidenceItemColumn(
                     state = state,
                     actions = actions
                 )
@@ -109,12 +106,13 @@ private fun EvidenceItemRow(
     state: EvidenceListItemUiState,
     actions: EvidenceListItemUiAction
 ) {
-    Row(
+    FlowRow(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(Alignment.Top),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        itemVerticalAlignment = Alignment.CenterVertically
     ) {
 
         Box(
@@ -142,8 +140,7 @@ private fun EvidenceItemRow(
 
         Row(
             modifier = Modifier
-                .weight(1f)
-                .wrapContentHeight(),
+                .weight(1f),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -152,10 +149,7 @@ private fun EvidenceItemRow(
 
                 Button(
                     modifier = Modifier
-                        .weight(1f, false)
-                        .sizeIn(maxWidth = 48.dp, maxHeight = 48.dp)
-                        .aspectRatio(1f)
-                        .wrapContentSize(),
+                        .size(48.dp),
                     onClick = {
                         actions.onToggle(ruling)
                     },
@@ -187,18 +181,19 @@ private fun EvidenceItemColumn(
     state: EvidenceListItemUiState,
     actions: EvidenceListItemUiAction
 ) {
-    Column(
+    FlowColumn(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(Alignment.Top),
-        horizontalAlignment = Alignment.CenterHorizontally,
+        itemHorizontalAlignment = Alignment.CenterHorizontally,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.Center,
     ) {
 
         Box(
             modifier = Modifier
                 .height(36.dp)
-                .fillMaxWidth()
+                .weight(1f, true)
                 .clickable(onClick = {
                     actions.onNameClick()
                 }),
@@ -222,12 +217,13 @@ private fun EvidenceItemColumn(
             )
         }
 
-        if(!state.enabled) return@Column
+        if(!state.enabled) return@FlowColumn
 
         Row(
             modifier = Modifier
                 .wrapContentHeight()
-                .fillMaxWidth(),
+                //.fillMaxWidth()
+                .weight(1f, true),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
@@ -354,7 +350,7 @@ private fun RulingIconPreview() {
 }
 
 @Composable
-@Preview
+@Preview(device = "spec:width=411dp,height=891dp")
 @TestOnly
 private fun EvidenceItemPreview() {
     Column(
