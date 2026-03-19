@@ -1,7 +1,7 @@
 package com.tritiumgaming.shared.data.map.modifier.usecase
 
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
-import com.tritiumgaming.shared.data.phase.model.Phase
+import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
 
 class GetSimpleMapModifierUseCase(
     private val getSimpleMapNormalModifierUseCase: GetSimpleMapNormalModifierUseCase,
@@ -9,11 +9,11 @@ class GetSimpleMapModifierUseCase(
 ) {
     operator fun invoke(
         mapSize: Int,
-        phase: Phase
+        phaseIdentifier: PhaseIdentifier
     ): Result<MapSizePhaseModifier> {
-        val result = when(phase) {
-            Phase.ACTION, Phase.HUNT -> getSimpleMapNormalModifierUseCase(mapSize)
-            Phase.SETUP -> getSimpleMapSetupModifierUseCase(mapSize)
+        val result = when(phaseIdentifier) {
+            PhaseIdentifier.ACTION, PhaseIdentifier.HUNT -> getSimpleMapNormalModifierUseCase(mapSize)
+            PhaseIdentifier.SETUP -> getSimpleMapSetupModifierUseCase(mapSize)
         }
 
         result.exceptionOrNull()?.let {

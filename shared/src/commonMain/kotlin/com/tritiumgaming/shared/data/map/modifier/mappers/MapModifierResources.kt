@@ -16,11 +16,6 @@ class MapModifierResources {
         LARGE,
     }
 
-    enum class PhaseTitle {
-        SETUP,
-        ACTION
-    }
-
     enum class MapSizePhaseModifier {
         SETUP_SMALL,
         SETUP_MEDIUM,

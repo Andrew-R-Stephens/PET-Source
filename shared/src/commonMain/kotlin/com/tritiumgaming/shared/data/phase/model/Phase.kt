@@ -1,5 +1,13 @@
 package com.tritiumgaming.shared.data.phase.model
 
-enum class Phase {
-    SETUP, ACTION, HUNT
+class PhaseResources {
+
+    enum class PhaseIdentifier {
+        SETUP, ACTION, HUNT
+    }
+
+    enum class PhaseTitle {
+        SETUP, ACTION, HUNT
+    }
+
 }
