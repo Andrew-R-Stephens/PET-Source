@@ -10,5 +10,5 @@ data class TraitFilter(
     val weight: TraitWeight? = null,
     val state: TraitState? = null,
     val tags: List<TraitTag> = emptyList(),
-    val isUnique: Boolean? = null
+    val uniqueOnly: Boolean = false
 )

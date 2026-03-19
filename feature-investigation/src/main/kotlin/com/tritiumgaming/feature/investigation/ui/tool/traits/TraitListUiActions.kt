@@ -5,5 +5,6 @@ import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
 
 data class TraitListUiActions(
     val onSelectCategory: (TraitCategory) -> Unit,
-    val onSelectTrait: (ValidatedGhostTrait) -> Unit
+    val onSelectTrait: (ValidatedGhostTrait) -> Unit,
+    val onToggleUniqueOnly: () -> Unit
 )

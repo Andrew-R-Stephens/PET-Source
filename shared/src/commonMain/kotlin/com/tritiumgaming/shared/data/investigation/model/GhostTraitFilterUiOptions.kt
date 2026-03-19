@@ -10,24 +10,25 @@ data class GhostTraitFilterUiOptions(
     val weight: List<WeightOption> = emptyList(),
     val state: List<StateOption> = emptyList(),
     val tags: List<TagOption> = emptyList(),
+    val uniqueOnly: Boolean? = null
 )
 
 data class CategoryOption(
     val data: TraitCategory? = null,
-    val isSelected: Boolean = false
+    val state: Boolean = false
 )
 
 data class WeightOption(
     val data: TraitWeight? = null,
-    val isSelected: Boolean = false
+    val state: Boolean = false
 )
 
 data class StateOption(
     val data: TraitState? = null,
-    val isSelected: Boolean = false
+    val state: Boolean = false
 )
 
 data class TagOption(
     val data: TraitTag? = null,
-    val isSelected: Boolean = false
+    val state: Boolean = false
 )

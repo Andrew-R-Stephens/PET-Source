@@ -47,7 +47,7 @@ class GhostTraitLocalDataSource: GhostTraitDataSource {
             affectedGhosts = listOf(GhostIdentifier.ONRYO),
             state = TraitState.CONFIRM,
             weight = TraitWeight.PROBABLE,
-            category = TraitCategory.INTERACTION,
+            category = TraitCategory.HUNT,
             tags = listOf(TraitTag.CANDLE)
         ),
         GhostTraitDto(
@@ -56,7 +56,7 @@ class GhostTraitLocalDataSource: GhostTraitDataSource {
             affectedGhosts = listOf(GhostIdentifier.THAYE),
             state = TraitState.CONFIRM,
             weight = TraitWeight.DEFINITIVE,
-            category = TraitCategory.BEHAVIOR,
+            category = TraitCategory.CHARACTERISTIC,
             tags = listOf()
         ),
         GhostTraitDto(
@@ -502,6 +502,15 @@ class GhostTraitLocalDataSource: GhostTraitDataSource {
         GhostTraitDto(
             id = TraitIdentifier.INTERACTION_UV_HANDPRINT_6_FINGERS,
             description = TraitDescription.INTERACTION_UV_HANDPRINT_6_FINGERS,
+            affectedGhosts = listOf(GhostIdentifier.OBAKE),
+            state = TraitState.CONFIRM,
+            weight = TraitWeight.DEFINITIVE,
+            category = TraitCategory.INTERACTION,
+            tags = listOf(TraitTag.ULTRAVIOLET)
+        ),
+        GhostTraitDto(
+            id = TraitIdentifier.INTERACTION_UV_FOOTPRINT_2_FEET_PER_AUDIO,
+            description = TraitDescription.INTERACTION_UV_FOOTPRINT_2_FEET_PER_AUDIO,
             affectedGhosts = listOf(GhostIdentifier.OBAKE),
             state = TraitState.CONFIRM,
             weight = TraitWeight.DEFINITIVE,

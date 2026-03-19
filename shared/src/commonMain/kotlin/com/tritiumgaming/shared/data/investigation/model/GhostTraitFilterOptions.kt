@@ -7,4 +7,5 @@ data class GhostTraitFilterOptions(
     val weights: List<GhostTraitResources.TraitWeight> = emptyList(),
     val states: List<GhostTraitResources.TraitState> = emptyList(),
     val tags: List<GhostTraitResources.TraitTag> = emptyList(),
+    val uniqueOnly: Boolean = false
 )

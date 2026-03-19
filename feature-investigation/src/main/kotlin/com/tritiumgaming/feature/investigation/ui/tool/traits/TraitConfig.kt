@@ -4,20 +4,21 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,7 +26,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
 import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
@@ -38,55 +41,102 @@ internal fun TraitConfig(
     colors: TraitListItemUiColors = TraitListItemUiColors()
 ) {
 
-
+    val traits = state.list
+    val uniqueOnly = state.options.uniqueOnly
     val categories = state.options.category
 
     Column(
-        modifier = modifier,
+        modifier = modifier
+            .padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Card(
+
+        Text(
             modifier = Modifier
-                .padding(8.dp)
-                .fillMaxWidth(),
-            colors = CardDefaults.cardColors().copy(
-                containerColor = LocalPalette.current.surfaceContainer
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+            text = stringResource(R.string.evidence_trait_label_evidence).uppercase(),
+            color = LocalPalette.current.primary,
+            style = LocalTypography.current.quaternary.bold.copy(
+                textAlign = TextAlign.Start
             ),
+            fontSize = 18.sp,
+            maxLines = 1
+        )
+
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            color = LocalPalette.current.surfaceContainer,
             shape = RoundedCornerShape(8.dp)
         ) {
 
             FlowRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 4.dp, horizontal = 8.dp),
+                    .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                Surface(
+                    modifier = Modifier
+                        .wrapContentHeight()
+                        .heightIn(min = 36.dp)
+                        .clickable(onClick = {
+                            actions.onToggleUniqueOnly()
+                        }),
+                    color = if (uniqueOnly == true) LocalPalette.current.surfaceContainerLow else
+                        LocalPalette.current.surfaceContainerHigh,
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    Text(
+                        modifier = Modifier
+                            .wrapContentSize()
+                            .padding(8.dp)
+                            .align(Alignment.CenterVertically),
+                        text = stringResource(R.string.evidence_trait_category_unique).uppercase(),
+                        color = if (uniqueOnly == true) colors.selectedOnColor else
+                            colors.unselectedOnColor,
+                        style = LocalTypography.current.quaternary.bold.copy(
+                            textAlign = TextAlign.Center
+                        ),
+                        fontSize = 14.sp,
+                        maxLines = 1
+                    )
+                }
+
+                VerticalDivider(
+                    modifier = Modifier
+                        .height(36.dp),
+                    thickness = 2.dp,
+                    color = LocalPalette.current.surfaceContainerHighest
+                )
+
                 categories.forEach { option ->
-                    Card(
+                    Surface(
                         modifier = Modifier
                             .wrapContentHeight()
+                            .heightIn(min = 36.dp)
                             .clickable(onClick = {
                                 option.data?.let { category ->
                                     actions.onSelectCategory(category)
                                 }
                             }),
-                        colors = CardDefaults.cardColors().copy(
-                            containerColor =
-                                if (option.isSelected) LocalPalette.current.surfaceContainerHigh
-                                else LocalPalette.current.surfaceContainerLow
-                        ),
-                        shape = RoundedCornerShape(8.dp)
+                        color = if (option.state) LocalPalette.current.surfaceContainerLow
+                        else LocalPalette.current.surfaceContainerHigh,
+                        shape = RoundedCornerShape(8.dp),
                     ) {
                         option.data?.let {
                             Text(
                                 modifier = Modifier
+                                    .wrapContentSize()
                                     .padding(8.dp)
-                                    .wrapContentSize(),
+                                    .align(Alignment.CenterVertically),
                                 text = stringResource(it.toStringResource()).uppercase(),
-                                color = if (option.isSelected) colors.selectedOnColor
-                                else colors.unselectedOnColor,
+                                color = if (option.state) colors.selectedOnColor
+                                    else colors.unselectedOnColor,
                                 style = LocalTypography.current.quaternary.bold.copy(
                                     textAlign = TextAlign.Center
                                 ),
@@ -94,32 +144,41 @@ internal fun TraitConfig(
                                 maxLines = 1
                             )
                         }
-
                     }
                 }
             }
         }
 
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth(),
+            color = LocalPalette.current.surfaceContainer,
+            shape = RoundedCornerShape(8.dp)
         ) {
-            items(
-                items = state.list,
-                key = { it.ghostTrait.id }
-            ) { trait ->
-                TraitListItem(
-                    state = TraitListItemUiState(
-                        item = trait
-                    ),
-                    actions = TraitListItemUiAction(
-                        onToggle = { trait ->
-                            actions.onSelectTrait(trait)
-                        },
-                        onInspect = { }
-                    ),
-                    colors = colors
-                )
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                items(
+                    items = traits,
+                    key = { it.ghostTrait.id }
+                ) { trait ->
+                    TraitListItem(
+                        modifier = Modifier.animateItem(),
+                        state = TraitListItemUiState(
+                            item = trait
+                        ),
+                        actions = TraitListItemUiAction(
+                            onToggle = { trait ->
+                                actions.onSelectTrait(trait)
+                            },
+                            onInspect = { }
+                        ),
+                        colors = colors
+                    )
+                }
             }
         }
     }
@@ -139,7 +198,6 @@ private fun TraitListItem(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(Alignment.Top)
-            .padding(4.dp)
             .clickable(onClick = {
                 actions.onToggle(state.item)
             }),
@@ -150,12 +208,12 @@ private fun TraitListItem(
     ) {
 
         Text(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .padding(8.dp),
             text = stringResource(state.item.ghostTrait.description.toStringResource()),
-            style = LocalTypography.current.quaternary.bold.copy(
+            style = JetBrainsMonoTypography.primary.regular.copy(
                 color = if(selected) colors.selectedOnColor else colors.unselectedOnColor,
                 textAlign = TextAlign.Start
             ),
