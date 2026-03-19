@@ -39,8 +39,8 @@
     <string name="aboutinfo_discord_join">Rejoignez-nous sur Discord</string>
     <string name="investigation_timer_maplabel">Carte</string>
     <string name="investigation_sanity_huntwarn">Avertissement de chasse</string>
-    <string name="investigation_timer_actionlabel">Action</string>
-    <string name="investigation_timer_setuplabel">Préparation</string>
+    <string name="investigation_phase_label_action">Action</string>
+    <string name="investigation_phase_label_setup">Préparation</string>
     <string name="investigation_sanitymeter_title">Santé mentale maximale</string>
 
     <string name="review_requesttitle">Veuillez considérer la note P.E.T.!</string>

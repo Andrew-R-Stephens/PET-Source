@@ -93,8 +93,8 @@
     <string name="difficulty_title_insanity">Follia</string>
     <string name="investigation_timer_difficulty_label">Difficoltà</string>
     <string name="investigation_timer_maplabel">Carta geografica</string>
-    <string name="investigation_timer_actionlabel">Azione</string>
-    <string name="investigation_timer_setuplabel">Impostare</string>
+    <string name="investigation_phase_label_action">Azione</string>
+    <string name="investigation_phase_label_setup">Impostare</string>
     <string name="investigation_sanity_huntwarn">Caccia avviso</string>
     <string name="investigation_sanitymeter_title">Livello massimo di sanità mentale</string>
     <string name="investigation_section_title_ghosts">Fantasmi</string>

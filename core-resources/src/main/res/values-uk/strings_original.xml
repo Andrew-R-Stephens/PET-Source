@@ -116,8 +116,8 @@
     <string name="difficulty_title_insanity">Божевілля</string>
     <string name="investigation_timer_difficulty_label">Складність</string>
     <string name="investigation_timer_maplabel">Карта</string>
-    <string name="investigation_timer_actionlabel">Дія</string>
-    <string name="investigation_timer_setuplabel">Налаштування</string>
+    <string name="investigation_phase_label_action">Дія</string>
+    <string name="investigation_phase_label_setup">Налаштування</string>
     <string name="investigation_sanity_huntwarn">Полювання Попереджує</string>
     <string name="investigation_sanitymeter_title">Макс Саніті</string>
     <string name="investigation_section_title_ghosts">Привиди</string>

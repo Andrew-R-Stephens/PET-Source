@@ -93,8 +93,8 @@
     <string name="difficulty_title_insanity">狂気</string>
     <string name="investigation_timer_difficulty_label">困難</string>
     <string name="investigation_timer_maplabel">地図</string>
-    <string name="investigation_timer_actionlabel">アクション</string>
-    <string name="investigation_timer_setuplabel">設定</string>
+    <string name="investigation_phase_label_action">アクション</string>
+    <string name="investigation_phase_label_setup">設定</string>
     <string name="investigation_sanity_huntwarn">狩猟警告</string>
     <string name="investigation_sanitymeter_title">最大正気度レベル</string>
     <string name="investigation_section_title_ghosts">幽霊</string>

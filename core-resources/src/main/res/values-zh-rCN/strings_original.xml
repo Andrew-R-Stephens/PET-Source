@@ -94,8 +94,8 @@
     <string name="difficulty_title_insanity">疯狂</string>
     <string name="investigation_timer_difficulty_label">困难</string>
     <string name="investigation_timer_maplabel">地图</string>
-    <string name="investigation_timer_actionlabel">行动</string>
-    <string name="investigation_timer_setuplabel">设置</string>
+    <string name="investigation_phase_label_action">行动</string>
+    <string name="investigation_phase_label_setup">设置</string>
     <string name="investigation_sanity_huntwarn">狩猎警告</string>
     <string name="investigation_sanitymeter_title">最大理智水平</string>
     <string name="investigation_section_title_ghosts">鬼魂</string>

@@ -65,8 +65,8 @@
 
     <string name="investigation_timer_maplabel">Mapa</string>
     <string name="investigation_sanity_huntwarn">Advertencia de caza</string>
-    <string name="investigation_timer_actionlabel">Acción</string>
-    <string name="investigation_timer_setuplabel">preparacion</string>
+    <string name="investigation_phase_label_action">Acción</string>
+    <string name="investigation_phase_label_setup">preparacion</string>
     <string name="investigation_sanitymeter_title">Máxima cordura</string>
 
     <!--

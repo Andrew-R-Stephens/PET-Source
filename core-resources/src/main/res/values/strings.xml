@@ -79,12 +79,14 @@
     <string name="investigation_timer_label">Preparation Time:</string>
     <string name="investigation_timer_difficulty_label">Difficulty</string>
     <string name="investigation_timer_maplabel">Map</string>
-    <string name="investigation_timer_actionlabel">Action</string>
-    <string name="investigation_timer_setuplabel">Setup</string>
+    <string name="investigation_phase_label_action">Action</string>
+    <string name="investigation_phase_label_setup">Setup</string>
+    <string name="investigation_phase_label_hunt" translatable="false">Hunt</string>
     <string name="investigation_sanity_huntwarn">Hunt Warn</string>
     <string name="investigation_sanitymeter_title">Max Sanity</string>
     <string name="investigation_section_title_ghosts">Ghosts</string>
     <string name="investigation_section_title_evidence">Evidence</string>
+    <string name="investigation_label_phase" translatable="false">Phase</string>
 
     <!--
         TOOLS PAGE

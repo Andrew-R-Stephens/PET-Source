@@ -107,8 +107,8 @@
     <string name="difficulty_title_insanity">Безумие</string>
     <string name="investigation_timer_difficulty_label">Сложность</string>
     <string name="investigation_timer_maplabel">Карта</string>
-    <string name="investigation_timer_actionlabel">Действие</string>
-    <string name="investigation_timer_setuplabel">Настройка</string>
+    <string name="investigation_phase_label_action">Действие</string>
+    <string name="investigation_phase_label_setup">Настройка</string>
     <string name="investigation_sanity_huntwarn">Предупреждение Охоты</string>
     <string name="investigation_sanitymeter_title">Максимальный Уровень Вменяемости</string>
     <string name="investigation_section_title_ghosts">Призраки</string>

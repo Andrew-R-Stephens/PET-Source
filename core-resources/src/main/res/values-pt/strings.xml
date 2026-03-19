@@ -93,8 +93,8 @@
     <string name="difficulty_title_insanity">Insanidade</string>
     <string name="investigation_timer_difficulty_label">Dificuldade</string>
     <string name="investigation_timer_maplabel">Mapa</string>
-    <string name="investigation_timer_actionlabel">Ação</string>
-    <string name="investigation_timer_setuplabel">Configurar</string>
+    <string name="investigation_phase_label_action">Ação</string>
+    <string name="investigation_phase_label_setup">Configurar</string>
     <string name="investigation_sanity_huntwarn">Aviso De Caça</string>
     <string name="investigation_sanitymeter_title">Nível máximo de sanidade</string>
     <string name="investigation_section_title_ghosts">Fantasmas</string>

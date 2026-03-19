@@ -38,8 +38,8 @@
 
     <string name="investigation_timer_maplabel">Karte</string>
     <string name="investigation_sanity_huntwarn">Jagdwarnung</string>
-    <string name="investigation_timer_actionlabel">Aktion</string>
-    <string name="investigation_timer_setuplabel">Vorbereitung</string>
+    <string name="investigation_phase_label_action">Aktion</string>
+    <string name="investigation_phase_label_setup">Vorbereitung</string>
     <string name="investigation_sanitymeter_title">maximale geistige Gesundheit</string>
 
     <!--

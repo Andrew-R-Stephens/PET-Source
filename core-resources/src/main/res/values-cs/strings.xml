@@ -55,8 +55,8 @@
     <string name="investigation_timer_label">Čas přípravy:</string>
     <string name="investigation_timer_maplabel">Mapa</string>
     <string name="investigation_timer_difficulty_label">Obtížnost</string>
-    <string name="investigation_timer_actionlabel">Akce</string>
-    <string name="investigation_timer_setuplabel">Nastavení</string>
+    <string name="investigation_phase_label_action">Akce</string>
+    <string name="investigation_phase_label_setup">Nastavení</string>
     <string name="investigation_sanity_huntwarn">Pozor Na Lov</string>
     <string name="investigation_sanitymeter_title">Max. úroveň příčetnosti</string>
     <string name="investigation_section_title_ghosts">Duchové</string>
