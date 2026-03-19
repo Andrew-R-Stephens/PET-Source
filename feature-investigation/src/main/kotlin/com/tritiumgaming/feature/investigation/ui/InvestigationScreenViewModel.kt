@@ -419,7 +419,6 @@ class InvestigationScreenViewModel private constructor(
                 uniqueOnly = !it.uniqueOnly
             )
         }
-        Log.d("IsUnique", "${traitFilterUiState.value.uniqueOnly}")
     }
 
     private val _filterOptionsUiState: StateFlow<GhostTraitFilterUiOptions> = combine(
@@ -535,8 +534,9 @@ class InvestigationScreenViewModel private constructor(
         evidenceStates,
         difficultyState,
         bpmToolUiState,
-        _explicitRejections
-    ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections ->
+        _explicitRejections,
+        traitListUiState
+    ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections, traitsList ->
         ghostEvidences.map { ghostEvidence ->
             val isManuallyRejected = ghostEvidence.ghost.id in manualRejections
 
@@ -561,6 +561,11 @@ class InvestigationScreenViewModel private constructor(
                 state.resetBpmValidation()
             }
 
+            val traits = traitsList
+                .filter { it.validationType == TraitValidationType.CONFIRMED }
+                .filter { state.ghostEvidence.ghost.id in it.ghostTrait.affectedGhosts }
+            state = state.updateTraits(traits.map { it.ghostTrait }.toSet())
+
             state
         }
     }.stateIn(
@@ -578,7 +583,9 @@ class InvestigationScreenViewModel private constructor(
                 ghostScores
             } else {
                 ghostScores
+                    .sortedBy { it.traitScore.reject }
                     .sortedByDescending { it.bpmIsValid }
+                    .sortedBy { it.traitScore.confirm }
                     .sortedByDescending { it.score }
             }
 

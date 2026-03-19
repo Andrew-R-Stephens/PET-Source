@@ -1,22 +1,52 @@
 package com.tritiumgaming.feature.investigation.ui.journal.ghost.item
 
+import android.util.Log
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toInt
-import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.ghost.mapper.toHasLosMultiplierBoolean
 import com.tritiumgaming.shared.data.ghost.mapper.toMaximumAsInt
 import com.tritiumgaming.shared.data.ghost.mapper.toMinimumAsInt
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState
 import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
+import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.journal.model.GhostEvidence
+
+data class TraitScore(
+    val confirm: Int = 0,
+    val reject: Int = 0,
+)
 
 data class GhostState(
     val ghostEvidence: GhostEvidence,
     val score: Int = 0,
     val manualRejection: Boolean = false,
     val bpmIsValid: Boolean = false,
-    val traits: List<GhostTrait> = emptyList()
+    val traitScore: TraitScore = TraitScore(),
+    val traits: Set<GhostTrait> = emptySet()
 ) {
+
+    fun updateTraits(
+        traits: Set<GhostTrait>
+    ): GhostState {
+
+        Log.d("Trait", "${ghostEvidence.ghost.id}")
+
+        val confirmedCount = traits.count { it.state == TraitState.CONFIRM }
+        val rejectedCount = traits.count { it.state == TraitState.REJECT }
+
+        Log.d("Trait", "C $confirmedCount - R $rejectedCount")
+
+        val copy = this.copy(
+            traits = traits,
+            traitScore = TraitScore(
+                confirm = confirmedCount,
+                reject = rejectedCount
+            )
+        )
+
+        return copy
+    }
 
     fun updateScore(
         evidenceState: List<EvidenceState>,

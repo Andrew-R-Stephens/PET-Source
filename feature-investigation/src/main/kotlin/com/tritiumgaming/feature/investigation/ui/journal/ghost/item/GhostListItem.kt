@@ -6,21 +6,27 @@ import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,11 +40,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
+import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkPriorityCircleIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkXCircleIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
@@ -56,19 +65,23 @@ fun LazyItemScope.GhostListItem(
         stringResource(ghostState.ghostEvidence.ghost.name.toStringResource()) } ?: "Test",
     ghostListUiItemActions: GhostListUiItemActions
 ) {
-    if(ghostState == null) return
+    if (ghostState == null) return
     val scoreState = ghostState.score
 
     val rejectionState = ghostState.manualRejection
+
     val bpmState = ghostState.bpmIsValid
+    val traitScore = ghostState.traitScore
+    val emitSpecialBadge = bpmState || traitScore.confirm > 0 || traitScore.reject > 0
+
 
     val ghostIdStr = ghostState.ghostEvidence.ghost.id.toStringResource().let {
         stringResource(it)
     }
-    val strikethroughIcon = when(ghostIdStr.toFloat().rem(3f)) {
+    val strikethroughIcon = when (ghostIdStr.toFloat().rem(3f)) {
         0f -> R.drawable.icon_strikethrough_2
         1f -> R.drawable.icon_strikethrough_3
-        else ->  R.drawable.icon_strikethrough_1
+        else -> R.drawable.icon_strikethrough_1
     }
 
     @Composable
@@ -159,34 +172,21 @@ fun LazyItemScope.GhostListItem(
         }
     }
 
-    @Composable
-    fun specialBadge() {
+    /*@Composable
+    fun SpecialBadge() {
         Box(
             modifier = Modifier
                 .width(2.dp)
                 .fillMaxHeight()
                 .background(
-                    if (bpmState) {
+                    if (emitSpecialBadge) {
                         LocalPalette.current.errorContainer
                     } else {
                         Color.Transparent
                     }
                 )
         )
-
-        /*Box(
-            modifier = Modifier
-                .width(2.dp)
-                .fillMaxHeight()
-                .background(
-                    if (bpmState) {
-                        LocalPalette.current.errorContainer
-                    } else {
-                        Color.Transparent
-                    }
-                )
-        )*/
-    }
+    }*/
 
     Surface(
         modifier = modifier
@@ -194,51 +194,135 @@ fun LazyItemScope.GhostListItem(
         shape = RoundedCornerShape(8.dp),
         color = LocalPalette.current.surfaceContainerLow,
     ) {
-        Row(
-            modifier = modifier
+        Column(
+            modifier = Modifier
                 .wrapContentWidth(Alignment.CenterHorizontally)
-                .height(36.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
+                .padding(4.dp),
         ) {
-            specialBadge()
-
-            Box(
+            Surface(
                 modifier = Modifier
-                    .weight(1f)
-                    .fillMaxHeight()
-                    .padding(horizontal = 8.dp)
-                    .pointerInput(Unit) {
-                        detectHorizontalDragGestures(
-                            onDragEnd = {
-                                ghostState.let {
-                                    ghostListUiItemActions.onToggleNegateGhost(
-                                        ghostState.ghostEvidence.ghost
-                                    )
+                    .wrapContentWidth(Alignment.CenterHorizontally),
+                shape = RoundedCornerShape(8.dp),
+                color = LocalPalette.current.surfaceContainerLow,
+            ) {
+                Row(
+                    modifier = modifier
+                        .wrapContentWidth(Alignment.CenterHorizontally)
+                        .height(36.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    //SpecialBadge()
+
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxHeight()
+                            //.padding(horizontal = 8.dp)
+                            .pointerInput(Unit) {
+                                detectHorizontalDragGestures(
+                                    onDragEnd = {
+                                        ghostState.let {
+                                            ghostListUiItemActions.onToggleNegateGhost(
+                                                ghostState.ghostEvidence.ghost
+                                            )
+                                        }
+                                    }
+                                ) { change, dragAmount ->
+                                    change.consume()
                                 }
                             }
-                        ) { change, dragAmount ->
-                            change.consume()
-                        }
+                            .pointerInput(Unit) {
+                                detectTapGestures {
+                                    ghostListUiItemActions.onNameClick()
+                                }
+                            },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Nameplate()
+
+                        Strikethrough()
                     }
-                    .pointerInput(Unit) {
-                        detectTapGestures {
-                            ghostListUiItemActions.onNameClick()
-                        }
-                    },
-                contentAlignment = Alignment.Center
-            ) {
 
-                Nameplate()
-
-                Strikethrough()
+                    EvidenceIconRow(
+                        Modifier
+                            .weight(1f, true)
+                            .fillMaxHeight()
+                    )
+                }
             }
 
-            EvidenceIconRow(
-                Modifier
-                    .weight(1f, true)
-                    .fillMaxHeight()
-            )
+            if (emitSpecialBadge) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .padding(4.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    if (bpmState) {
+                        Surface(
+                            modifier = Modifier
+                                .wrapContentSize(),
+                            shape = RoundedCornerShape(8.dp),
+                            color = LocalPalette.current.surfaceContainerHigh,
+                        ) {
+                            FootprintsIcon(
+                                modifier = Modifier
+                                    .padding(4.dp)
+                                    .size(16.dp),
+                                colors = IconVectorColors.defaults(
+                                    fillColor = LocalPalette.current.tertiary,
+                                    strokeColor = LocalPalette.current.tertiary
+                                )
+                            )
+                        }
+                    }
+
+                    Surface(
+                        modifier = Modifier
+                            .wrapContentSize(),
+                        shape = RoundedCornerShape(8.dp),
+                        color = LocalPalette.current.surfaceContainerHigh,
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .wrapContentSize(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            if (traitScore.confirm > 0) {
+                                val color = LocalPalette.current.tertiary
+
+                                GeneticsIcon(
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .size(16.dp),
+                                    colors = IconVectorColors.defaults(
+                                        fillColor = color,
+                                        strokeColor = color
+                                    )
+                                )
+                            }
+
+                            if (traitScore.reject > 0) {
+                                val color = LocalPalette.current.primary
+
+                                GeneticsIcon(
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .size(16.dp),
+                                    colors = IconVectorColors.defaults(
+                                        fillColor = color,
+                                        strokeColor = color
+                                    )
+                                )
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
