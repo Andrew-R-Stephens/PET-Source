@@ -14,7 +14,7 @@ class SanityWarnSetupView : SanityWarningView {
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
     init {
-        labelView?.text = resources.getString(com.tritiumgaming.core.resources.R.string.investigation_timer_setuplabel)
+        labelView?.text = resources.getString(com.tritiumgaming.core.resources.R.string.investigation_phase_label_setup)
         thisPhase = PhaseTimerModel.Phase.SETUP
     }
 
