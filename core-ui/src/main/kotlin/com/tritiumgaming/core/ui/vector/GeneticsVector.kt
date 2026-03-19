@@ -17,8 +17,8 @@ fun getGeneticsVector(
         name = "Globe",
         defaultWidth = 200.0.dp,
         defaultHeight = 200.0.dp,
-        viewportWidth = 750.0f,
-        viewportHeight = 750.0f
+        viewportWidth = 960.0f,
+        viewportHeight = 960.0f
     ).apply {
         path(
             fill = SolidColor(colors.fillColor),
