@@ -55,7 +55,7 @@ internal fun ActiveGhostModifierDetails(
                         text = "Ghosts Active: ")
                     TextSubTitle(
                         modifier = Modifier.padding(start= 8.dp),
-                        color = LocalPalette.current.onSurface,
+                        color = LocalPalette.current.onSurfaceVariant,
                         text = "${rememberGhostDetails.size}"
                     )
                 }

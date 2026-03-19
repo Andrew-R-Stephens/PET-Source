@@ -154,14 +154,17 @@ private fun InvestigationContent(
     )
 
     val traitListUiActions = TraitListUiActions(
-        onSelectTrait = { trait ->
-            investigationViewModel.toggleTraitSelection(trait)
-        },
         onSelectCategory = { category ->
             val filter = TraitFilter(
                 category = category
             )
             investigationViewModel.updateTraitFilter(filter)
+        },
+        onSelectTrait = { trait ->
+            investigationViewModel.toggleTraitSelection(trait)
+        },
+        onToggleUniqueOnly = {
+            investigationViewModel.toggleUniqueOnly()
         }
     )
 
@@ -585,9 +588,9 @@ private fun InvestigationContent(
                         state = traitListUiState,
                         actions = traitListUiActions,
                         colors = TraitListItemUiColors(
-                            unselectedColor = LocalPalette.current.surfaceContainerLowest,
+                            unselectedColor = LocalPalette.current.surfaceContainerHigh,
                             unselectedOnColor = LocalPalette.current.onSurface,
-                            selectedColor = LocalPalette.current.surfaceContainer,
+                            selectedColor = LocalPalette.current.surfaceContainerLow,
                             selectedOnColor = LocalPalette.current.onSurfaceVariant,
                         )
                     )

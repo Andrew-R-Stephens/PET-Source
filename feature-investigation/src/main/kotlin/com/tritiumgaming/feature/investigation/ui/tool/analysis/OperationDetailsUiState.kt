@@ -10,7 +10,7 @@ import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsM
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
-import com.tritiumgaming.shared.data.phase.model.Phase
+import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
 
 internal data class OperationDetailsUiState(
     internal val mapDetails: MapDetails = MapDetails(),
@@ -38,7 +38,7 @@ internal data class OperationDetailsUiState(
     }
 
     internal data class PhaseDetails(
-        internal val type: Phase = Phase.SETUP,
+        internal val type: PhaseIdentifier = PhaseIdentifier.SETUP,
         internal val canAlertAudio: Boolean = false,
         internal val canFlash: Boolean = true,
         internal val startFlashTime: Long = TimerUiState.DEFAULT,

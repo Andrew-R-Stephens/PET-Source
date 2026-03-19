@@ -42,7 +42,7 @@ internal fun MapModifierDetails(
                         color = LocalPalette.current.onSurface,
                         text = "${stringResource(R.string.investigation_timer_maplabel)}: ")
                     TextSubTitle(
-                        color = LocalPalette.current.onSurface,
+                        color = LocalPalette.current.onSurfaceVariant,
                         text = stringResource(state.name.toStringResource()))
                 }
             }
@@ -63,8 +63,8 @@ internal fun MapModifierDetails(
             SubRow {
                 TextSubTitle(
                     color = LocalPalette.current.onSurface,
-                    text = "${stringResource(R.string.investigation_timer_setuplabel)} " +
-                            "${stringResource(R.string.map_setting_label_modifier)}: ")
+                    text = "${stringResource(R.string.investigation_phase_label_setup)} " +
+                            "${stringResource(R.string.map_setting_label_drainrate)}: ")
                 TextSubTitle(
                     color = LocalPalette.current.onSurfaceVariant,
                     text = "${String.format(Locale.getDefault(), 
@@ -74,8 +74,8 @@ internal fun MapModifierDetails(
             SubRow {
                 TextSubTitle(
                     color = LocalPalette.current.onSurface,
-                    text = "${stringResource(R.string.investigation_timer_actionlabel)} " +
-                            "${stringResource(R.string.map_setting_label_modifier)}: ")
+                    text = "${stringResource(R.string.investigation_phase_label_action)} " +
+                            "${stringResource(R.string.map_setting_label_drainrate)}: ")
                 TextSubTitle(
                     color = LocalPalette.current.onSurfaceVariant,
                     text = "${String.format(Locale.getDefault(), 

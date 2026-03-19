@@ -55,7 +55,7 @@ internal fun DifficultyModifierDetails(
                     }
 
                     TextSubTitle(
-                        color = LocalPalette.current.onSurface,
+                        color = LocalPalette.current.onSurfaceVariant,
                         text = title
                     )
                 }

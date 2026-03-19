@@ -62,6 +62,7 @@ import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.Trait
         TraitDescription.INTERACTION_TURN_LIGHT_SWITCH_ON -> R.string.evidence_trait_description_interaction_turn_light_switch_on
         TraitDescription.INTERACTION_UV_SHORT_LIFETIME -> R.string.evidence_trait_description_interaction_uv_short_lifetime
         TraitDescription.INTERACTION_UV_FINGERPRINT_2_FINGERS -> R.string.evidence_trait_description_interaction_uv_fingerprint_2_fingers
+        TraitDescription.INTERACTION_UV_FOOTPRINT_2_FEET_PER_AUDIO -> R.string.evidence_trait_description_interaction_uv_footprint_2_feet_per_audio
         TraitDescription.INTERACTION_UV_HANDPRINT_6_FINGERS -> R.string.evidence_trait_description_interaction_uv_handprint_6_fingers
         TraitDescription.INTERACTION_VANISH_IF_PHOTO_TAKEN -> R.string.evidence_trait_description_interaction_vanish_if_photo_taken
     }

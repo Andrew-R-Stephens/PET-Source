@@ -93,7 +93,7 @@ import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapNameUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.GetSimpleMapSizeUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapFloorIndexUseCase
 import com.tritiumgaming.shared.data.map.simple.usecase.IncrementSimpleMapIndexUseCase
-import com.tritiumgaming.shared.data.phase.model.Phase
+import com.tritiumgaming.shared.data.phase.model.PhaseResources.PhaseIdentifier
 import com.tritiumgaming.shared.data.popup.model.EvidencePopupRecord
 import com.tritiumgaming.shared.data.popup.model.GhostPopupRecord
 import com.tritiumgaming.shared.data.preferences.usecase.InitFlowUserPreferencesUseCase
@@ -398,6 +398,7 @@ class InvestigationScreenViewModel private constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = GhostTraitFilterOptions()
     )
+
     private val _traitFilterUiState: MutableStateFlow<TraitFilter> = MutableStateFlow(
         TraitFilter()
     )
@@ -408,8 +409,17 @@ class InvestigationScreenViewModel private constructor(
                 category = if(it.category == filter.category) null else filter.category,
                 weight = if(it.weight == filter.weight) null else filter.weight,
                 state = if(it.state == filter.state) null else filter.state,
+                tags = if(it.tags == filter.tags) emptyList() else filter.tags
             )
         }
+    }
+    fun toggleUniqueOnly() {
+        _traitFilterUiState.update {
+            it.copy(
+                uniqueOnly = !it.uniqueOnly
+            )
+        }
+        Log.d("IsUnique", "${traitFilterUiState.value.uniqueOnly}")
     }
 
     private val _filterOptionsUiState: StateFlow<GhostTraitFilterUiOptions> = combine(
@@ -424,7 +434,8 @@ class InvestigationScreenViewModel private constructor(
             state = options.states.map {
                 StateOption(it, filter.state == it) },
             tags = options.tags.let { it.ifEmpty { filter.tags } }
-                .map { TagOption(it) }
+                .map { TagOption(it) },
+            uniqueOnly = filter.uniqueOnly,
         )
     }.stateIn(
         scope = viewModelScope,
@@ -435,16 +446,20 @@ class InvestigationScreenViewModel private constructor(
 
     private val _traitListUiState: StateFlow<List<ValidatedGhostTrait>> =
         combine(selectedTraits, traitFilterUiState) { traits, filter ->
-            traits.filter { (trait, _) ->
+            traits.asSequence().filter { (trait, _) ->
                 val matchesCategory = filter.category == null || trait.category == filter.category
                 val matchesWeight = filter.weight == null || trait.weight == filter.weight
                 val matchesState = filter.state == null || trait.state == filter.state
-                val matchesUnique = filter.isUnique == null || trait.isUnique == filter.isUnique
+                val matchesUnique = !filter.uniqueOnly || trait.isUnique
 
                 val matchesTags = filter.tags.isEmpty() || trait.tags.any { it in filter.tags }
 
                 matchesCategory && matchesWeight && matchesState && matchesUnique && matchesTags
-            }
+            }.sortedByDescending { it.ghostTrait.isUnique }
+                .sortedBy { it.ghostTrait.state }
+                .sortedBy { it.ghostTrait.weight }
+                .sortedBy { it.ghostTrait.category }
+                .sortedByDescending { it.validationType }.toList()
     }
     .stateIn(
         scope = viewModelScope,
@@ -643,7 +658,7 @@ class InvestigationScreenViewModel private constructor(
                 elapsedFlashTime = 0L,
                 startFlashTime = DEFAULT,
                 maxFlashTime = DURATION_30_SECONDS,
-                type = Phase.SETUP,
+                type = PhaseIdentifier.SETUP,
                 canFlash = true,
                 canAlertAudio = false
             )
@@ -984,12 +999,12 @@ class InvestigationScreenViewModel private constructor(
             it.copy(
                 type =
                     if (timerUiState.value.remainingTime > TIME_MIN) {
-                        Phase.SETUP
+                        PhaseIdentifier.SETUP
                     } else {
                         if (playerSanityUiState.value.sanityLevel < SanityLevel.SAFE_MIN_BOUNDS) {
-                            Phase.HUNT
+                            PhaseIdentifier.HUNT
                         } else {
-                            Phase.ACTION
+                            PhaseIdentifier.ACTION
                         }
                     }
             )

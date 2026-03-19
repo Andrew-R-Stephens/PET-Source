@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,9 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -89,7 +88,7 @@ fun EvidenceListItem(
             DeviceConfiguration.TABLET_PORTRAIT,
             DeviceConfiguration.TABLET_LANDSCAPE,
             DeviceConfiguration.DESKTOP -> {
-                EvidenceItemColumn(
+                EvidenceItem(
                     state = state,
                     actions = actions
                 )
@@ -101,82 +100,7 @@ fun EvidenceListItem(
 }
 
 @Composable
-private fun EvidenceItemRow(
-    modifier: Modifier = Modifier,
-    state: EvidenceListItemUiState,
-    actions: EvidenceListItemUiAction
-) {
-    FlowRow(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight(Alignment.Top),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        itemVerticalAlignment = Alignment.CenterVertically
-    ) {
-
-        Box(
-            modifier = Modifier
-                .height(48.dp)
-                .weight(1f)
-                .clickable(onClick = {
-                    actions.onNameClick()
-                })
-                .padding(vertical = 4.dp),
-            contentAlignment = Alignment.Center
-        ) {
-
-            Text(
-                text = state.label,
-                style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.onSurface,
-                    textAlign = TextAlign.Center
-                ),
-                maxLines = 1,
-                autoSize = TextAutoSize.StepBased(minFontSize = 1.sp, stepSize = 5.sp)
-            )
-
-        }
-
-        Row(
-            modifier = Modifier
-                .weight(1f),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-
-            for (ruling in EvidenceValidationType.entries) {
-
-                Button(
-                    modifier = Modifier
-                        .size(48.dp),
-                    onClick = {
-                        actions.onToggle(ruling)
-                    },
-                    colors = ButtonDefaults.buttonColors().copy(
-                        containerColor = Color.Transparent,
-                        contentColor = Color.Transparent,
-                        disabledContainerColor = Color.Transparent,
-                        disabledContentColor = Color.Transparent,
-                    ),
-                    contentPadding = PaddingValues(horizontal = 2.dp, vertical = 0.dp),
-                    shape = CircleShape,
-                    content = {
-                        RulingIcon(
-                            evidenceValidationType = ruling,
-                            isSelected = state.state.ordinal == ruling.ordinal
-                        )
-                    }
-                )
-            }
-
-
-        }
-    }
-}
-
-@Composable
-private fun EvidenceItemColumn(
+private fun EvidenceItem(
     modifier: Modifier = Modifier,
     state: EvidenceListItemUiState,
     actions: EvidenceListItemUiAction
@@ -193,10 +117,11 @@ private fun EvidenceItemColumn(
         Box(
             modifier = Modifier
                 .height(36.dp)
-                .weight(1f, true)
+                .weight(1f)
                 .clickable(onClick = {
                     actions.onNameClick()
-                }),
+                })
+                .padding(4.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
             Text(
