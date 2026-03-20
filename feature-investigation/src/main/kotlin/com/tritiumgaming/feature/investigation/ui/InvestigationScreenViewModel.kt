@@ -530,7 +530,7 @@ class InvestigationScreenViewModel private constructor(
         _explicitRejections.update { emptySet() }
     }
 
-    val ghostStates: StateFlow<List<GhostState>> = combine(
+    private val _ghostStates: StateFlow<List<GhostState>> = combine(
         evidenceStates,
         difficultyState,
         bpmToolUiState,
@@ -573,26 +573,36 @@ class InvestigationScreenViewModel private constructor(
         started = SharingStarted.Eagerly,
         initialValue = ghostEvidences.map { GhostState(it) }
     )
+    internal val ghostStates = _ghostStates
 
     /* Ghost Order **/
     private val _sortedGhosts: StateFlow<List<GhostResources.GhostIdentifier>> =
         combine(
-            ghostStates, preferences
+            _ghostStates, preferences
         ) { ghostScores, preferences ->
             val scores = if(!preferences.enableGhostReorder) {
                 ghostScores
             } else {
                 ghostScores
-                    .sortedBy { it.traitScore.reject }
+                    .sortedByDescending {
+                        if(it.traitScore.reject > 0) {
+                            -it.traitScore.reject
+                        } else {
+                            if(it.traitScore.confirm > 0)
+                                it.traitScore.confirm
+                            else {
+                                it.traitScore.probableConfirm - it.traitScore.probableReject
+                            }
+                        }
+                    }
                     .sortedByDescending { it.bpmIsValid }
-                    .sortedBy { it.traitScore.confirm }
                     .sortedByDescending { it.score }
             }
 
             scores.map { it.ghostEvidence.ghost.id }
         }
-            .distinctUntilChanged()
-            .stateIn(
+        .distinctUntilChanged()
+        .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
             initialValue = ghostEvidences.map { it.ghost.id }
@@ -601,7 +611,7 @@ class InvestigationScreenViewModel private constructor(
 
     /* Operation Details */
     private val _operationDetailsUiState: StateFlow<OperationDetailsUiState> =
-        combine(mapState, difficultyState, ghostStates) {
+        combine(mapState, difficultyState, _ghostStates) {
             mapState, difficultyState, ghostStates ->
             OperationDetailsUiState(
                 mapDetails = OperationDetailsUiState.MapDetails(
