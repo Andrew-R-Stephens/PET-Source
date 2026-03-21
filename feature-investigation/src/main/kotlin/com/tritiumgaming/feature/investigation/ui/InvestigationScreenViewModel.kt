@@ -535,7 +535,7 @@ class InvestigationScreenViewModel private constructor(
         difficultyState,
         bpmToolUiState,
         _explicitRejections,
-        traitListUiState
+        selectedTraits
     ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections, traitsList ->
         ghostEvidences.map { ghostEvidence ->
             val isManuallyRejected = ghostEvidence.ghost.id in manualRejections

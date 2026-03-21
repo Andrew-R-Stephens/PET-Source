@@ -286,7 +286,8 @@ fun LazyItemScope.GhostListItem(
                     ) {
                         Row(
                             modifier = Modifier
-                                .wrapContentSize(),
+                                .wrapContentSize()
+                                .padding(4.dp),
                             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -303,11 +304,10 @@ fun LazyItemScope.GhostListItem(
                                         text = "${traitScore.confirm}",
                                         style = LocalTypography.current.primary.regular,
                                         color = color,
-                                        autoSize = TextAutoSize.StepBased(1.sp, 32.sp, 1.sp)
+                                        autoSize = TextAutoSize.StepBased(1.sp, 18 .sp, 1.sp)
                                     )
                                     GeneticsIcon(
                                         modifier = Modifier
-                                            .padding(4.dp)
                                             .size(16.dp),
                                         colors = IconVectorColors.defaults(
                                             fillColor = color,
@@ -317,7 +317,7 @@ fun LazyItemScope.GhostListItem(
                                 }
                             }
 
-                            if (traitScore.probableConfirm > 0) {
+                            if (traitScore.probableConfirm > 0 || traitScore.probableReject > 0) {
                                 val color = LocalPalette.current.onSurface
 
                                 Row(
@@ -327,41 +327,19 @@ fun LazyItemScope.GhostListItem(
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        text = "${traitScore.confirm}",
+                                        text = "${traitScore.probableConfirm}",
                                         style = LocalTypography.current.primary.regular,
                                         color = color,
                                         autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
                                     )
-                                    GeneticsIcon(
-                                        modifier = Modifier
-                                            .padding(4.dp)
-                                            .size(16.dp),
-                                        colors = IconVectorColors.defaults(
-                                            fillColor = color,
-                                            strokeColor = color
-                                        )
-                                    )
-                                }
-                            }
-
-                            if (traitScore.probableReject > 0) {
-                                val color = LocalPalette.current.onSurface
-
-                                Row(
-                                    modifier = Modifier
-                                        .wrapContentSize(),
-                                    horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.Start),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
                                     Text(
-                                        text = "${traitScore.confirm}",
+                                        text = "-${traitScore.probableReject}",
                                         style = LocalTypography.current.primary.regular,
                                         color = color,
                                         autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
                                     )
                                     GeneticsIcon(
                                         modifier = Modifier
-                                            .padding(4.dp)
                                             .size(16.dp),
                                         colors = IconVectorColors.defaults(
                                             fillColor = color,
@@ -388,7 +366,6 @@ fun LazyItemScope.GhostListItem(
                                     )
                                     GeneticsIcon(
                                         modifier = Modifier
-                                            .padding(4.dp)
                                             .size(16.dp),
                                         colors = IconVectorColors.defaults(
                                             fillColor = color,

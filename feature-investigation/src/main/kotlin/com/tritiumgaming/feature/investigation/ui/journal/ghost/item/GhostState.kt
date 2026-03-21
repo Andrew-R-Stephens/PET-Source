@@ -65,7 +65,8 @@ data class GhostState(
             traitScore = TraitScore(
                 confirm = confirmedCount,
                 probableConfirm = probableConfirmCount,
-                reject = rejectedCount
+                reject = rejectedCount,
+                probableReject = probableRejectedCount
             )
         )
 
