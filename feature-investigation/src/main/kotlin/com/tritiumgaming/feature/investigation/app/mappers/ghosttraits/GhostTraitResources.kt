@@ -75,47 +75,12 @@ import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.Trait
     TraitCategory.INTERACTION -> R.string.evidence_trait_category_interaction
 }
 
-enum class TraitState {
-    CONFIRM,
-    REJECT
+@StringRes fun GhostTraitResources.TraitState.toStringResource() = when(this) {
+    GhostTraitResources.TraitState.CONFIRM -> R.string.evidence_trait_state_confirm
+    GhostTraitResources.TraitState.REJECT -> R.string.evidence_trait_state_reject
 }
 
-enum class TraitWeight {
-    DEFINITIVE,
-    PROBABLE
-}
-
-enum class TraitTag {
-    ROOM,
-    ACTIVITY,
-    PLAYER,
-    LIGHT,
-    SANITY,
-    AGE,
-    GENDER,
-    SPEED,
-    APPEARANCE,
-    SMUDGE,
-    BREATH,
-    CANDLE,
-    ELECTRONICS,
-    PREVENTION,
-    BREAKER,
-    TEMPERATURE,
-    VISIBILITY,
-    AUDIO,
-    DOOR,
-    PARABOLIC_MICROPHONE,
-    SPIRIT_BOX,
-    ULTRAVIOLET,
-    DOTS,
-    EVENT,
-    PHOTO_CAMERA,
-    SALT,
-    ITEMS,
-    TELEPORT,
-    VOICE,
-    EMF,
-    CURSE,
-    FIRELIGHT
+@StringRes fun GhostTraitResources.TraitWeight.toStringResource() = when(this) {
+    GhostTraitResources.TraitWeight.DEFINITIVE -> R.string.evidence_trait_weight_definitive
+    GhostTraitResources.TraitWeight.PROBABLE -> R.string.evidence_trait_weight_probable
 }

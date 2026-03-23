@@ -370,10 +370,7 @@ class InvestigationScreenViewModel private constructor(
         _selectedTraits.update {
             try {
                 getAllGhostTraitsUseCase().getOrThrow().map {
-                    ValidatedGhostTrait(
-                        ghostTrait = it
-                    )
-                }
+                    ValidatedGhostTrait(ghostTrait = it) }
             } catch (e: Exception) {
                 e.printStackTrace()
                 emptyList()
@@ -454,11 +451,13 @@ class InvestigationScreenViewModel private constructor(
                 val matchesTags = filter.tags.isEmpty() || trait.tags.any { it in filter.tags }
 
                 matchesCategory && matchesWeight && matchesState && matchesUnique && matchesTags
-            }.sortedByDescending { it.ghostTrait.isUnique }
-                .sortedBy { it.ghostTrait.state }
-                .sortedBy { it.ghostTrait.weight }
-                .sortedBy { it.ghostTrait.category }
-                .sortedByDescending { it.validationType }.toList()
+            }.sortedWith (
+                compareByDescending<ValidatedGhostTrait> { it.validationType }
+                    .thenBy { it.ghostTrait.weight }
+                    .thenBy { it.ghostTrait.state }
+                    .thenBy { it.ghostTrait.category }
+                    .thenByDescending { it.ghostTrait.isUnique }
+            ).toList()
     }
     .stateIn(
         scope = viewModelScope,
@@ -536,7 +535,7 @@ class InvestigationScreenViewModel private constructor(
         bpmToolUiState,
         _explicitRejections,
         selectedTraits
-    ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections, traitsList ->
+    ) { evidenceStates, difficultyState, bpmToolUiState, manualRejections, selectedTraits ->
         ghostEvidences.map { ghostEvidence ->
             val isManuallyRejected = ghostEvidence.ghost.id in manualRejections
 
@@ -561,7 +560,7 @@ class InvestigationScreenViewModel private constructor(
                 state.resetBpmValidation()
             }
 
-            val traits = traitsList
+            val traits = selectedTraits
                 .filter { it.validationType == TraitValidationType.CONFIRMED }
                 .filter { state.ghostEvidence.ghost.id in it.ghostTrait.affectedGhosts }
             state = state.updateTraits(traits.map { it.ghostTrait }.toSet())
@@ -584,19 +583,28 @@ class InvestigationScreenViewModel private constructor(
                 ghostScores
             } else {
                 ghostScores
-                    .sortedByDescending {
-                        if(it.traitScore.reject > 0) {
-                            -it.traitScore.reject
-                        } else {
-                            if(it.traitScore.confirm > 0)
-                                it.traitScore.confirm
-                            else {
-                                it.traitScore.probableConfirm - it.traitScore.probableReject
+                    .sortedWith(
+                        compareByDescending<GhostState> { it.score }
+                            .thenByDescending { it.bpmIsValid }
+                            .thenByDescending {
+                                val scores = it.traitScore
+
+                                if(scores.reject > 0) {
+                                    -scores.reject
+                                } else {
+                                    scores.confirm
+                                }
                             }
-                        }
-                    }
-                    .sortedByDescending { it.bpmIsValid }
-                    .sortedByDescending { it.score }
+                            .thenByDescending { it.traitScore.confirm }
+                            .thenByDescending {
+                                val scores = it.traitScore
+
+                                if(scores.probableReject > 0) {
+                                    -scores.probableReject
+                                } else scores.probableConfirm
+                            }
+                    )
+
             }
 
             scores.map { it.ghostEvidence.ghost.id }
@@ -849,6 +857,7 @@ class InvestigationScreenViewModel private constructor(
         resetEvidenceStates()
         //resetGhostStates()
         resetExplicitNegations()
+        resetTraitSelections()
     }
 
     /*

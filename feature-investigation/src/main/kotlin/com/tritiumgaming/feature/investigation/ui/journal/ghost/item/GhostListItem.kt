@@ -70,8 +70,8 @@ fun LazyItemScope.GhostListItem(
     val bpmState = ghostState.bpmIsValid
     val traitScore = ghostState.traitScore
     val emitSpecialBadge = bpmState ||
-            traitScore.confirm > 0 || traitScore.reject > 0 || traitScore.probableConfirm > 0
-
+            traitScore.confirm > 0 || traitScore.reject > 0 ||
+            traitScore.probableConfirm > 0 || traitScore.probableReject > 0
 
     val ghostIdStr = ghostState.ghostEvidence.ghost.id.toStringResource().let {
         stringResource(it)
@@ -278,91 +278,36 @@ fun LazyItemScope.GhostListItem(
                         }
                     }
 
-                    Surface(
+                    Row(
                         modifier = Modifier
                             .wrapContentSize(),
-                        shape = RoundedCornerShape(8.dp),
-                        color = LocalPalette.current.surfaceContainerHigh,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(
-                            modifier = Modifier
-                                .wrapContentSize()
-                                .padding(4.dp),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            if (traitScore.confirm > 0) {
-                                val color = LocalPalette.current.tertiary
+                        if (traitScore.confirm > 0) {
+                            val color = LocalPalette.current.tertiary
 
+                            Surface(
+                                modifier = Modifier
+                                    .wrapContentSize(),
+                                shape = RoundedCornerShape(8.dp),
+                                color = LocalPalette.current.surfaceContainerHigh,
+                            ) {
                                 Row(
                                     modifier = Modifier
-                                        .wrapContentSize(),
-                                    horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.Start),
+                                        .wrapContentSize()
+                                        .padding(4.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(
+                                        2.dp,
+                                        Alignment.Start
+                                    ),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
                                         text = "${traitScore.confirm}",
                                         style = LocalTypography.current.primary.regular,
                                         color = color,
-                                        autoSize = TextAutoSize.StepBased(1.sp, 18 .sp, 1.sp)
-                                    )
-                                    GeneticsIcon(
-                                        modifier = Modifier
-                                            .size(16.dp),
-                                        colors = IconVectorColors.defaults(
-                                            fillColor = color,
-                                            strokeColor = color
-                                        )
-                                    )
-                                }
-                            }
-
-                            if (traitScore.probableConfirm > 0 || traitScore.probableReject > 0) {
-                                val color = LocalPalette.current.onSurface
-
-                                Row(
-                                    modifier = Modifier
-                                        .wrapContentSize(),
-                                    horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.Start),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Text(
-                                        text = "${traitScore.probableConfirm}",
-                                        style = LocalTypography.current.primary.regular,
-                                        color = color,
                                         autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
-                                    )
-                                    Text(
-                                        text = "-${traitScore.probableReject}",
-                                        style = LocalTypography.current.primary.regular,
-                                        color = color,
-                                        autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
-                                    )
-                                    GeneticsIcon(
-                                        modifier = Modifier
-                                            .size(16.dp),
-                                        colors = IconVectorColors.defaults(
-                                            fillColor = color,
-                                            strokeColor = color
-                                        )
-                                    )
-                                }
-                            }
-
-                            if (traitScore.reject > 0) {
-                                val color = LocalPalette.current.primary
-
-                                Row(
-                                    modifier = Modifier
-                                        .wrapContentSize(),
-                                    horizontalArrangement = Arrangement.spacedBy(2.dp, Alignment.Start),
-                                    verticalAlignment = Alignment.CenterVertically
-                                ) {
-                                    Text(
-                                        text = "${traitScore.reject}",
-                                        style = LocalTypography.current.primary.regular,
-                                        color = color,
-                                        autoSize = TextAutoSize.StepBased(1.sp, 18 .sp, 1.sp)
                                     )
                                     GeneticsIcon(
                                         modifier = Modifier
@@ -375,6 +320,89 @@ fun LazyItemScope.GhostListItem(
                                 }
                             }
                         }
+
+                        if (traitScore.reject > 0) {
+                            val color = LocalPalette.current.primary
+
+
+                            Surface(
+                                modifier = Modifier
+                                    .wrapContentSize(),
+                                shape = RoundedCornerShape(8.dp),
+                                color = LocalPalette.current.surfaceContainerHigh,
+                            ) {
+                                Row(
+                                    modifier = Modifier
+                                        .wrapContentSize()
+                                        .padding(4.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(
+                                        2.dp,
+                                        Alignment.Start
+                                    ),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = "${traitScore.reject}",
+                                        style = LocalTypography.current.primary.regular,
+                                        color = color,
+                                        autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                                    )
+                                    GeneticsIcon(
+                                        modifier = Modifier
+                                            .size(16.dp),
+                                        colors = IconVectorColors.defaults(
+                                            fillColor = color,
+                                            strokeColor = color
+                                        )
+                                    )
+                                }
+                            }
+                        }
+
+                        if (traitScore.probableConfirm > 0 || traitScore.probableReject > 0) {
+
+                            Surface(
+                                modifier = Modifier
+                                    .wrapContentSize(),
+                                shape = RoundedCornerShape(8.dp),
+                                color = LocalPalette.current.surfaceContainerHigh,
+                            ) {
+                                val color = LocalPalette.current.onSurface
+
+                                Row(
+                                    modifier = Modifier
+                                        .wrapContentSize()
+                                        .padding(4.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(
+                                        2.dp,
+                                        Alignment.Start
+                                    ),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text(
+                                        text = "${traitScore.probableConfirm}",
+                                        style = LocalTypography.current.primary.regular,
+                                        color = LocalPalette.current.onSurface,
+                                        autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                                    )
+                                    GeneticsIcon(
+                                        modifier = Modifier
+                                            .size(16.dp),
+                                        colors = IconVectorColors.defaults(
+                                            fillColor = color,
+                                            strokeColor = LocalPalette.current.onSurface
+                                        )
+                                    )
+                                    Text(
+                                        text = "-${traitScore.probableReject}",
+                                        style = LocalTypography.current.primary.regular,
+                                        color = LocalPalette.current.onSurface,
+                                        autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                                    )
+                                }
+                            }
+                        }
+
                     }
                 }
             }

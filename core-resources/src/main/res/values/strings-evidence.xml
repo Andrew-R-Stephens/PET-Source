@@ -111,12 +111,12 @@
     <string name ="evidence_trait_description_interaction_ignite_flame" translatable="false">Ignites Flames</string>
     <string name ="evidence_trait_description_interaction_uv_inconsistent" translatable="false">Inconsistently emits UV Evidence with Interactions</string>
     <string name ="evidence_trait_description_interaction_parabolic_emission_increase" translatable="false">Increased Parabolic Microphone Interactions</string>
-    <string name ="evidence_trait_description_activity_increase_if_close_to_player_voice" translatable="false">Increases Activity if nearby Player Voice activity</string>
+    <string name ="evidence_trait_description_activity_increase_if_close_to_player_voice" translatable="false">Increased Activity if nearby to proximity Voice chat</string>
     <string name ="evidence_trait_description_speed_increase_if_hunt_in_low_temperature" translatable="false">Increases Hunt speed with lower Room Temperatures</string>
     <string name ="evidence_trait_description_interaction_door_open_slightly" translatable="false">Interacted Doors open slightly</string>
     <string name ="evidence_trait_description_is_male" translatable="false">Is Male</string>
-    <string name ="evidence_trait_description_sanity_drain_if_player_look_at" translatable="false">Looking at apparition drains Sanity</string>
-    <string name ="evidence_trait_description_activity_low_if_player_nearby" translatable="false">Low activity while Players are nearby</string>
+    <string name ="evidence_trait_description_sanity_drain_if_player_look_at" translatable="false">Looking directly at apparition drains Sanity</string>
+    <string name ="evidence_trait_description_activity_low_if_player_nearby" translatable="false">Less Active while nearby Players</string>
     <string name ="evidence_trait_description_visibility_low_if_hunt" translatable="false">Mostly invisible during Hunt</string>
     <string name ="evidence_trait_description_interaction_close_exit_door" translatable="false">Non-Hunt Exit Door closure</string>
     <string name ="evidence_trait_description_simultaneous_favorite_rooms" translatable="false">Seemingly has simultaneous Favorite Rooms</string>
@@ -143,4 +143,10 @@
     <string name="evidence_trait_category_characteristic" translatable="false">Attribute</string>
     <string name="evidence_trait_category_hunt" translatable="false">Hunt</string>
     <string name="evidence_trait_category_interaction" translatable="false">Interaction</string>
+
+    <string name="evidence_trait_state_confirm" translatable="false">Confirm</string>
+    <string name="evidence_trait_state_reject" translatable="false">Reject</string>
+
+    <string name="evidence_trait_weight_probable" translatable="false">Probable</string>
+    <string name="evidence_trait_weight_definitive" translatable="false">Definitive</string>
 </resources>

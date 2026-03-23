@@ -1,9 +1,12 @@
 package com.tritiumgaming.feature.investigation.ui.tool.traits
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -12,7 +15,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -30,6 +35,8 @@ import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.JetBrainsMonoTypography
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toGhostTitle
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
 import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
 
@@ -207,19 +214,60 @@ private fun TraitListItem(
         shape = RoundedCornerShape(8.dp)
     ) {
 
-        Text(
+        Column (
             modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
                 .padding(8.dp),
-            text = stringResource(state.item.ghostTrait.description.toStringResource()),
-            style = JetBrainsMonoTypography.primary.regular.copy(
-                color = if(selected) colors.selectedOnColor else colors.unselectedOnColor,
-                textAlign = TextAlign.Start
-            ),
-            softWrap = true,
-            fontSize = 14.sp
-        )
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(bottom = 2.dp),
+                text = stringResource(state.item.ghostTrait.description.toStringResource()),
+                style = JetBrainsMonoTypography.primary.regular.copy(
+                    color = if (selected) colors.selectedOnColor else colors.unselectedOnColor,
+                    textAlign = TextAlign.Start
+                ),
+                softWrap = true,
+                fontSize = 14.sp
+            )
 
+            FlowRow (
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    modifier = Modifier,
+                    text = state.item.ghostTrait.affectedGhosts.map {
+                        stringResource(it.toGhostTitle().toStringResource())
+                    }.joinToString(", ").uppercase(),
+                    style = JetBrainsMonoTypography.primary.bold.copy(
+                        color = colors.unselectedOnColor,
+                        textAlign = TextAlign.Start
+                    ),
+                    softWrap = true,
+                    fontSize = 11.sp
+                )
+                Text(
+                    modifier = Modifier,
+                    text = state.item.ghostTrait.let { (_, _, state, weight) ->
+                        "${stringResource(weight.toStringResource())} " +
+                                stringResource (state.toStringResource())
+                    },
+                    style = JetBrainsMonoTypography.primary.regular.copy(
+                        color = colors.unselectedOnColor,
+                        textAlign = TextAlign.Start
+                    ),
+                    softWrap = true,
+                    fontSize = 10.sp
+                )
+
+            }
+
+        }
     }
 }

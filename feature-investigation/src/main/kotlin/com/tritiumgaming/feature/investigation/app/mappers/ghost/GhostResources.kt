@@ -46,6 +46,37 @@ import com.tritiumgaming.shared.data.ghost.model.SanityBounds
         GhostIdentifier.YUREI -> R.string.ghost_id_yurei
     }
 
+fun GhostIdentifier.toGhostTitle(): GhostTitle =
+    when (this) {
+        GhostIdentifier.BANSHEE -> GhostTitle.BANSHEE
+        GhostIdentifier.DAYAN -> GhostTitle.DAYAN
+        GhostIdentifier.DEMON -> GhostTitle.DEMON
+        GhostIdentifier.DEOGEN -> GhostTitle.DEOGEN
+        GhostIdentifier.GALLU -> GhostTitle.GALLU
+        GhostIdentifier.GORYO -> GhostTitle.GORYO
+        GhostIdentifier.HANTU -> GhostTitle.HANTU
+        GhostIdentifier.JINN -> GhostTitle.JINN
+        GhostIdentifier.MARE -> GhostTitle.MARE
+        GhostIdentifier.MOROI -> GhostTitle.MOROI
+        GhostIdentifier.MYLING -> GhostTitle.MYLING
+        GhostIdentifier.OBAKE -> GhostTitle.OBAKE
+        GhostIdentifier.OBAMBO -> GhostTitle.OBAMBO
+        GhostIdentifier.ONI -> GhostTitle.ONI
+        GhostIdentifier.ONRYO -> GhostTitle.ONRYO
+        GhostIdentifier.PHANTOM -> GhostTitle.PHANTOM
+        GhostIdentifier.POLTERGEIST -> GhostTitle.POLTERGEIST
+        GhostIdentifier.RAIJU -> GhostTitle.RAIJU
+        GhostIdentifier.REVENANT -> GhostTitle.REVENANT
+        GhostIdentifier.SHADE -> GhostTitle.SHADE
+        GhostIdentifier.SPIRIT -> GhostTitle.SPIRIT
+        GhostIdentifier.THAYE -> GhostTitle.THAYE
+        GhostIdentifier.THE_TWINS -> GhostTitle.THE_TWINS
+        GhostIdentifier.THE_MIMIC -> GhostTitle.THE_MIMIC
+        GhostIdentifier.WRAITH -> GhostTitle.WRAITH
+        GhostIdentifier.YOKAI -> GhostTitle.YOKAI
+        GhostIdentifier.YUREI -> GhostTitle.YUREI
+    }
+
 @StringRes fun GhostTitle.toStringResource(): Int =
     when (this) {
         GhostTitle.BANSHEE -> R.string.ghost_type_banshee
