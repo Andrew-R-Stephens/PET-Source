@@ -180,6 +180,7 @@ private fun InvestigationContent(
         onToggleNegateGhost = { ghost ->
             investigationViewModel.toggleExplicitNegation(ghost)
         },
+        onRequestToolTip = {  } //TODO
     )
 
     val operationToolbarUiActions = ToolbarUiActions(

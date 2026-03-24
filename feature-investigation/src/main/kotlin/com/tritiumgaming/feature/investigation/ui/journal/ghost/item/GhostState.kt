@@ -214,6 +214,7 @@ data class GhostState(
     }
 
     companion object {
+        const val NORMAL_AFFIRM_MINIMUM_REACHED = 3
         const val ZERO_EVIDENCE = 0
         const val NORMAL_EVIDENCE_NOT_FOUND = -5
         const val NORMAL_NEGATION_MINIMUM_REACHED = -6

@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui.journal.ghost.item
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -39,14 +40,20 @@ import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
 import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
-import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIconComposite
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkPriorityCircleIcon
-import com.tritiumgaming.core.ui.icon.impl.composite.MarkXCircleIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.MarkXCircleIconComposite
+import com.tritiumgaming.core.ui.icon.impl.composite.TraitConfirmIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.TraitLikelyIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.TraitRejectIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.TraitUnlikelyIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.feature.investigation.app.mappers.evidence.toDrawableResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState.Companion.NORMAL_AFFIRM_MINIMUM_REACHED
+import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState.Companion.ZERO_EVIDENCE
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEGATIVE
@@ -63,15 +70,20 @@ fun LazyItemScope.GhostListItem(
     ghostListUiItemActions: GhostListUiItemActions
 ) {
     if (ghostState == null) return
-    val scoreState = ghostState.score
 
+    val scoreState = ghostState.score
+    val traitScore = ghostState.traitScore
     val rejectionState = ghostState.manualRejection
 
     val bpmState = ghostState.bpmIsValid
-    val traitScore = ghostState.traitScore
+    val showTraitConfirm = traitScore.confirm > ZERO_EVIDENCE
+    val showTraitReject = traitScore.reject > ZERO_EVIDENCE
+    val showTraitProbableConfirm = traitScore.probableConfirm > ZERO_EVIDENCE
+    val showTraitProbableReject = traitScore.probableReject > ZERO_EVIDENCE
+
     val emitSpecialBadge = bpmState ||
-            traitScore.confirm > 0 || traitScore.reject > 0 ||
-            traitScore.probableConfirm > 0 || traitScore.probableReject > 0
+            showTraitConfirm || showTraitReject ||
+            showTraitProbableConfirm || showTraitProbableReject
 
     val ghostIdStr = ghostState.ghostEvidence.ghost.id.toStringResource().let {
         stringResource(it)
@@ -95,7 +107,7 @@ fun LazyItemScope.GhostListItem(
                         colorFilter = ColorFilter.tint(LocalPalette.current.primary)
                     )
 
-                it < 0 ->
+                it < ZERO_EVIDENCE ->
                     Image(
                         modifier = Modifier.fillMaxSize(),
                         painter = painterResource(id = strikethroughIcon),
@@ -104,7 +116,7 @@ fun LazyItemScope.GhostListItem(
                         colorFilter = ColorFilter.tint(LocalPalette.current.primary)
                     )
 
-                it >= 3 ->
+                it >= NORMAL_AFFIRM_MINIMUM_REACHED ->
                     Image(
                         modifier = Modifier.fillMaxSize(),
                         painter = painterResource(id = R.drawable.ic_selector_selected),
@@ -170,22 +182,6 @@ fun LazyItemScope.GhostListItem(
         }
     }
 
-    /*@Composable
-    fun SpecialBadge() {
-        Box(
-            modifier = Modifier
-                .width(2.dp)
-                .fillMaxHeight()
-                .background(
-                    if (emitSpecialBadge) {
-                        LocalPalette.current.errorContainer
-                    } else {
-                        Color.Transparent
-                    }
-                )
-        )
-    }*/
-
     Surface(
         modifier = modifier
             .wrapContentWidth(Alignment.CenterHorizontally),
@@ -210,13 +206,10 @@ fun LazyItemScope.GhostListItem(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    //SpecialBadge()
-
                     Box(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxHeight()
-                            //.padding(horizontal = 8.dp)
                             .pointerInput(Unit) {
                                 detectHorizontalDragGestures(
                                     onDragEnd = {
@@ -255,6 +248,9 @@ fun LazyItemScope.GhostListItem(
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
+                        .clickable(onClick = {
+                            ghostListUiItemActions.onRequestToolTip()
+                        })
                         .padding(4.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.End),
                     verticalAlignment = Alignment.CenterVertically
@@ -284,7 +280,7 @@ fun LazyItemScope.GhostListItem(
                         horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        if (traitScore.confirm > 0) {
+                        if (showTraitConfirm) {
                             val color = LocalPalette.current.tertiary
 
                             Surface(
@@ -305,23 +301,21 @@ fun LazyItemScope.GhostListItem(
                                 ) {
                                     Text(
                                         text = "${traitScore.confirm}",
-                                        style = LocalTypography.current.primary.regular,
+                                        style = LocalTypography.current.quaternary.bold,
                                         color = color,
-                                        autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                                        autoSize = TextAutoSize.StepBased(
+                                            1.sp, 18.sp, 1.sp)
                                     )
-                                    GeneticsIcon(
+                                    TraitConfirmIcon(
                                         modifier = Modifier
                                             .size(16.dp),
-                                        colors = IconVectorColors.defaults(
-                                            fillColor = color,
-                                            strokeColor = color
-                                        )
+                                        color = color
                                     )
                                 }
                             }
                         }
 
-                        if (traitScore.reject > 0) {
+                        if (showTraitReject) {
                             val color = LocalPalette.current.primary
 
 
@@ -343,23 +337,22 @@ fun LazyItemScope.GhostListItem(
                                 ) {
                                     Text(
                                         text = "${traitScore.reject}",
-                                        style = LocalTypography.current.primary.regular,
+                                        style = LocalTypography.current.quaternary.bold,
                                         color = color,
-                                        autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
+                                        autoSize = TextAutoSize.StepBased(
+                                            1.sp, 18.sp, 1.sp)
                                     )
-                                    GeneticsIcon(
+                                    TraitRejectIcon(
                                         modifier = Modifier
                                             .size(16.dp),
-                                        colors = IconVectorColors.defaults(
-                                            fillColor = color,
-                                            strokeColor = color
-                                        )
+                                        color = color
                                     )
                                 }
                             }
                         }
 
-                        if (traitScore.probableConfirm > 0 || traitScore.probableReject > 0) {
+                        if (showTraitProbableConfirm ||
+                            showTraitProbableReject) {
 
                             Surface(
                                 modifier = Modifier
@@ -379,26 +372,37 @@ fun LazyItemScope.GhostListItem(
                                     ),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
-                                    Text(
-                                        text = "${traitScore.probableConfirm}",
-                                        style = LocalTypography.current.primary.regular,
-                                        color = LocalPalette.current.onSurface,
-                                        autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
-                                    )
-                                    GeneticsIcon(
-                                        modifier = Modifier
-                                            .size(16.dp),
-                                        colors = IconVectorColors.defaults(
-                                            fillColor = color,
-                                            strokeColor = LocalPalette.current.onSurface
+                                    if(showTraitProbableConfirm) {
+                                        TraitLikelyIcon(
+                                            modifier = Modifier
+                                                .size(16.dp),
+                                            color = color
                                         )
-                                    )
-                                    Text(
-                                        text = "-${traitScore.probableReject}",
-                                        style = LocalTypography.current.primary.regular,
-                                        color = LocalPalette.current.onSurface,
-                                        autoSize = TextAutoSize.StepBased(1.sp, 18.sp, 1.sp)
-                                    )
+                                        Text(
+                                            text = "${traitScore.probableConfirm}",
+                                            style = LocalTypography.current.quaternary.bold,
+                                            color = color,
+                                            autoSize = TextAutoSize.StepBased(
+                                                1.sp, 18.sp, 1.sp
+                                            )
+                                        )
+                                    }
+
+                                    if(showTraitProbableReject) {
+                                        TraitUnlikelyIcon(
+                                            modifier = Modifier
+                                                .size(16.dp),
+                                            color = color
+                                        )
+                                        Text(
+                                            text = "${traitScore.probableReject}",
+                                            style = LocalTypography.current.quaternary.bold,
+                                            color = color,
+                                            autoSize = TextAutoSize.StepBased(
+                                                1.sp, 18.sp, 1.sp
+                                            )
+                                        )
+                                    }
                                 }
                             }
                         }
@@ -467,7 +471,7 @@ private fun RowScope.EvidenceIcon(
                     }
                 }
                 NEGATIVE -> {
-                    MarkXCircleIcon(
+                    MarkXCircleIconComposite(
                         modifier = Modifier
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)
@@ -477,7 +481,7 @@ private fun RowScope.EvidenceIcon(
                     )
                 }
                 else -> {
-                    MarkCheckCircleIcon(
+                    MarkCheckCircleIconComposite(
                         modifier = Modifier
                             .fillMaxSize(.5f)
                             .widthIn(min = 16.dp)

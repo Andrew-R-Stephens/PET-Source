@@ -14,6 +14,7 @@ import com.tritiumgaming.feature.investigation.app.container.InvestigationContai
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toGhostTitle
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
@@ -452,7 +453,14 @@ class InvestigationScreenViewModel private constructor(
 
                 matchesCategory && matchesWeight && matchesState && matchesUnique && matchesTags
             }.sortedWith (
-                compareByDescending<ValidatedGhostTrait> { it.validationType }
+                compareByDescending <ValidatedGhostTrait> { it.validationType }
+                    .thenBy {
+                        val ghosts = it.ghostTrait.affectedGhosts
+                        when(ghosts.size) {
+                            in 2 .. Integer.MAX_VALUE -> Integer.MAX_VALUE
+                            else -> ghosts.first().ordinal
+                        }
+                    }
                     .thenBy { it.ghostTrait.weight }
                     .thenBy { it.ghostTrait.state }
                     .thenBy { it.ghostTrait.category }
