@@ -14,12 +14,12 @@ fun getConfigVector(
     colors: IconVectorColors = IconVectorColors.defaults()
 ): ImageVector =
     Builder(
-            name = "ConfigsVector",
-            defaultWidth = 200.0.dp,
-            defaultHeight = 200.0.dp,
-            viewportWidth = 960.0f,
-            viewportHeight = 960.0f,
-        )
+        name = "ConfigsVector",
+        defaultWidth = 200.0.dp,
+        defaultHeight = 200.0.dp,
+        viewportWidth = 960.0f,
+        viewportHeight = 960.0f,
+    )
         .apply {
             path(
                 fill = SolidColor(colors.fillColor),

@@ -40,4 +40,4 @@ fun getLogoPatreonVector(
             close()
         }
     }
-    .build()
+        .build()

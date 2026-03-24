@@ -18,32 +18,32 @@ fun getMarkPriorityVector(colors: IconVectorColors = IconVectorColors.defaults()
         viewportWidth = 960.0f,
         viewportHeight = 960.0f,
     )
-    .apply {
-        path(
-            fill = SolidColor(colors.fillColor),
-            stroke = null,
-            strokeLineWidth = 0.0f,
-            strokeLineCap = Butt,
-            strokeLineJoin = Miter,
-            strokeLineMiter = 4.0f,
-            pathFillType = NonZero,
-        ) {
-            moveTo(479.91f, 840.0f)
-            quadToRelative(-28.91f, 0.0f, -49.41f, -20.59f)
-            quadToRelative(-20.5f, -20.59f, -20.5f, -49.5f)
-            reflectiveQuadToRelative(20.59f, -49.41f)
-            quadToRelative(20.59f, -20.5f, 49.5f, -20.5f)
-            reflectiveQuadToRelative(49.41f, 20.59f)
-            quadToRelative(20.5f, 20.59f, 20.5f, 49.5f)
-            reflectiveQuadToRelative(-20.59f, 49.41f)
-            quadToRelative(-20.59f, 20.5f, -49.5f, 20.5f)
-            close()
-            moveTo(410.0f, 600.0f)
-            verticalLineToRelative(-480.0f)
-            horizontalLineToRelative(140.0f)
-            verticalLineToRelative(480.0f)
-            lineTo(410.0f, 600.0f)
-            close()
+        .apply {
+            path(
+                fill = SolidColor(colors.fillColor),
+                stroke = null,
+                strokeLineWidth = 0.0f,
+                strokeLineCap = Butt,
+                strokeLineJoin = Miter,
+                strokeLineMiter = 4.0f,
+                pathFillType = NonZero,
+            ) {
+                moveTo(479.91f, 840.0f)
+                quadToRelative(-28.91f, 0.0f, -49.41f, -20.59f)
+                quadToRelative(-20.5f, -20.59f, -20.5f, -49.5f)
+                reflectiveQuadToRelative(20.59f, -49.41f)
+                quadToRelative(20.59f, -20.5f, 49.5f, -20.5f)
+                reflectiveQuadToRelative(49.41f, 20.59f)
+                quadToRelative(20.5f, 20.59f, 20.5f, 49.5f)
+                reflectiveQuadToRelative(-20.59f, 49.41f)
+                quadToRelative(-20.59f, 20.5f, -49.5f, 20.5f)
+                close()
+                moveTo(410.0f, 600.0f)
+                verticalLineToRelative(-480.0f)
+                horizontalLineToRelative(140.0f)
+                verticalLineToRelative(480.0f)
+                lineTo(410.0f, 600.0f)
+                close()
+            }
         }
-    }
-    .build()
+        .build()
