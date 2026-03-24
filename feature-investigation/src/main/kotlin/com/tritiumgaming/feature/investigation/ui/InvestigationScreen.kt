@@ -39,11 +39,16 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.TruckTimeIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.PreventHuntIcon
+import com.tritiumgaming.core.ui.icon.impl.composite.SmudgeBlindnessIcon
 import com.tritiumgaming.core.ui.theme.LocalUiConfiguration
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
@@ -53,6 +58,7 @@ import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiColors
 import com.tritiumgaming.core.ui.widgets.progressbar.NotchedProgressBarUiState
 import com.tritiumgaming.core.ui.widgets.progressbar.ProgressBarNotch
 import com.tritiumgaming.feature.investigation.app.mappers.difficulty.toStringResource
+import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
@@ -79,6 +85,7 @@ import com.tritiumgaming.feature.investigation.ui.popups.ghost.GhostPopup
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetails
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmTool
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiActions
+import com.tritiumgaming.feature.investigation.ui.tool.timers.ProgressBarTimer
 import com.tritiumgaming.feature.investigation.ui.tool.timers.TimerTools
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitConfig
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiColors
@@ -88,10 +95,12 @@ import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
+import com.tritiumgaming.shared.data.ghost.mapper.GhostResources.GhostTitle
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.minutes
 
 @Composable
 fun InvestigationSoloScreen(
@@ -244,30 +253,51 @@ private fun InvestigationContent(
 
     //TODO replace with viewmodel state
     val smudgeHuntProtectionTimerState = NotchedProgressBarUiState(
-        max = 72000,
+        max = 3.minutes.inWholeMilliseconds,
         origin = 0,
         remaining = 50000,
         notches = listOf(
+            ProgressBarNotch(
+                stringResource(GhostTitle.SPIRIT.toStringResource()),
+                (3).minutes.inWholeMilliseconds
+            ),
+            ProgressBarNotch(
+                "Standard",
+                (1.5).minutes.inWholeMilliseconds
+            ),
+            ProgressBarNotch(
+                stringResource(GhostTitle.DEMON.toStringResource()),
+                (1).minutes.inWholeMilliseconds
+            ),
         ),
         running = false
     )
 
     //TODO replace with viewmodel state
-    val smudgeBlindingProtectionTimerState = NotchedProgressBarUiState(
+    /*val smudgeBlindingProtectionTimerState = NotchedProgressBarUiState(
         max = 72000,
         origin = 0,
         remaining = 50000,
         notches = listOf(
+
         ),
         running = false
-    )
+    )*/
 
     //TODO replace with viewmodel state
     val huntDurationTimerState = NotchedProgressBarUiState(
-        max = 72000,
+        max = 1.minutes.inWholeMilliseconds,
         origin = 0,
-        remaining = 50000,
+        remaining = (.87).minutes.inWholeMilliseconds,
         notches = listOf(
+            ProgressBarNotch(
+                "Standard",
+                (1.5).minutes.inWholeMilliseconds
+            ),
+            ProgressBarNotch(
+                "Cursed",
+                (1.5).minutes.inWholeMilliseconds
+            ),
         ),
         running = false
     )
@@ -334,11 +364,11 @@ private fun InvestigationContent(
         colors = notchedProgressBarUiColors
     )
 
-    val smudgeBlindingBundle = NotchedProgressBarBundle(
-        title = "Smudge Blinding",
+    /*val smudgeBlindingBundle = NotchedProgressBarBundle(
+        title = "Smudge Blinding Protection",
         state = smudgeBlindingProtectionTimerState,
         colors = notchedProgressBarUiColors
-    )
+    )*/
 
     val huntDurationBundle = NotchedProgressBarBundle(
         title = "Hunt Duration",
@@ -346,7 +376,7 @@ private fun InvestigationContent(
         colors = notchedProgressBarUiColors
     )
 
-    val huntGapBundle = NotchedProgressBarBundle(
+    val huntCooldownBundle = NotchedProgressBarBundle(
         title = "Hunt Cooldown",
         state = huntGapTimerState,
         colors = notchedProgressBarUiColors
@@ -605,13 +635,93 @@ private fun InvestigationContent(
 
                 OperationToolbarUiState.Category.TOOL_TIMERS -> TimerTools(
                     modifier = Modifier
-                        .height(IntrinsicSize.Max),
-                    smudgeHuntPreventionBundle = smudgeHuntPreventionBundle,
-                    smudgeBlindingBundle = smudgeBlindingBundle,
-                    huntDurationBundle = huntDurationBundle,
-                    huntGapBundle = huntGapBundle,
-                    fingerprintTimerBundle = fingerprintTimerBundle
-                )
+                        .height(IntrinsicSize.Max)
+                        .padding(8.dp),
+                ) {
+
+                    Surface(
+                        modifier = Modifier,
+                        color = LocalPalette.current.surfaceContainer
+                    ) {
+                        ProgressBarTimer(
+                            modifier = Modifier
+                                .padding(8.dp),
+                            bundle = smudgeHuntPreventionBundle
+                        ) { modifier ->
+                            PreventHuntIcon(
+                                modifier = modifier,
+                                colors = IconVectorColors.defaults().copy(
+                                    fillColor = LocalPalette.current.onSurface
+                                )
+                            )
+                        }
+                    }
+
+                    /*ProgressBarTimer(
+                        modifier = Modifier,
+                        bundle = smudgeBlindingBundle
+                    ) { modifier ->
+                        SmudgeBlindnessIcon(
+                            modifier = modifier,
+                            colors = IconVectorColors.defaults().copy(
+                                fillColor = LocalPalette.current.onSurface
+                            )
+                        )
+                    }*/
+
+                    Surface(
+                        modifier = Modifier,
+                        color = LocalPalette.current.surfaceContainer
+                    ) {
+                        ProgressBarTimer(
+                            modifier = Modifier
+                                .padding(8.dp),
+                            bundle = huntDurationBundle
+                        ) { modifier ->
+                            HuntDurationIcon(
+                                modifier = modifier,
+                                colors = IconVectorColors.defaults().copy(
+                                    fillColor = LocalPalette.current.onSurface
+                                )
+                            )
+                        }
+                    }
+
+                    Surface(
+                        modifier = Modifier,
+                        color = LocalPalette.current.surfaceContainer
+                    ) {
+                        ProgressBarTimer(
+                            modifier = Modifier
+                                .padding(8.dp),
+                            bundle = huntCooldownBundle
+                        ) { modifier ->
+                            HuntCooldownDurationIcon(
+                                modifier = modifier,
+                                colors = IconVectorColors.defaults().copy(
+                                    fillColor = LocalPalette.current.onSurface
+                                )
+                            )
+                        }
+                    }
+                    Surface(
+                        modifier = Modifier,
+                        color = LocalPalette.current.surfaceContainer
+                    ) {
+                        ProgressBarTimer(
+                            modifier = Modifier
+                                .padding(8.dp),
+                            bundle = fingerprintTimerBundle
+                        ) { modifier ->
+                            HuntCooldownDurationIcon(
+                                modifier = modifier,
+                                colors = IconVectorColors.defaults().copy(
+                                    fillColor = LocalPalette.current.onSurface
+                                )
+                            )
+                        }
+                    }
+                }
 
                 OperationToolbarUiState.Category.TOOL_FOOTSTEP -> BpmTool(
                     modifier = Modifier
