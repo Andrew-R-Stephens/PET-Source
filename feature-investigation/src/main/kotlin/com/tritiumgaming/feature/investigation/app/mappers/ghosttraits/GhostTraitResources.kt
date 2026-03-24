@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.investigation.app.mappers.ghosttraits
 
+import androidx.annotation.IntegerRes
 import androidx.annotation.StringRes
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources

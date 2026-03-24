@@ -59,6 +59,7 @@ import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEGATIVE
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEUTRAL
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.POSITIVE
+import kotlin.math.sign
 
 @Composable
 fun LazyItemScope.GhostListItem(
@@ -95,12 +96,14 @@ fun LazyItemScope.GhostListItem(
     }
 
     @Composable
-    fun Strikethrough() {
+    fun Strikethrough(
+        modifier: Modifier = Modifier,
+    ) {
         scoreState.let {
             when {
                 (rejectionState) ->
                     Image(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = modifier,
                         painter = painterResource(id = R.drawable.ic_ev_omit),
                         contentScale = ContentScale.FillBounds,
                         contentDescription = "Omit Icon",
@@ -109,7 +112,7 @@ fun LazyItemScope.GhostListItem(
 
                 it < ZERO_EVIDENCE ->
                     Image(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = modifier,
                         painter = painterResource(id = strikethroughIcon),
                         contentScale = ContentScale.FillBounds,
                         contentDescription = "Strikeout Icon",
@@ -118,7 +121,7 @@ fun LazyItemScope.GhostListItem(
 
                 it >= NORMAL_AFFIRM_MINIMUM_REACHED ->
                     Image(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = modifier,
                         painter = painterResource(id = R.drawable.ic_selector_selected),
                         contentScale = ContentScale.FillBounds,
                         contentDescription = "Circle Icon",
@@ -129,8 +132,11 @@ fun LazyItemScope.GhostListItem(
     }
 
     @Composable
-    fun Nameplate() {
+    fun Nameplate(
+        modifier: Modifier = Modifier,
+    ) {
         BasicText(
+            modifier = modifier,
             text = label,
             style = LocalTypography.current.primary.regular.copy(
                 color = LocalPalette.current.onSurface,
@@ -230,9 +236,14 @@ fun LazyItemScope.GhostListItem(
                             },
                         contentAlignment = Alignment.Center
                     ) {
-                        Nameplate()
+                        Nameplate(
+                            Modifier.fillMaxWidth()
+                                .wrapContentHeight()
+                        )
 
-                        Strikethrough()
+                        Strikethrough(
+                            Modifier.fillMaxSize()
+                        )
                     }
 
                     EvidenceIconRow(

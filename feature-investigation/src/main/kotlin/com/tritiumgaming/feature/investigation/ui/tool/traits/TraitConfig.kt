@@ -1,12 +1,14 @@
 package com.tritiumgaming.feature.investigation.ui.tool.traits
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,8 +17,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -29,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
@@ -38,6 +41,10 @@ import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toGhostTitle
 import com.tritiumgaming.feature.investigation.app.mappers.ghost.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.ghosttraits.toStringResource
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState.CONFIRM
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState.REJECT
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight.DEFINITIVE
+import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight.PROBABLE
 import com.tritiumgaming.shared.data.investigation.model.TraitValidationType
 
 @Composable
@@ -94,8 +101,10 @@ internal fun TraitConfig(
                         .clickable(onClick = {
                             actions.onToggleUniqueOnly()
                         }),
-                    color = if (uniqueOnly == true) LocalPalette.current.surfaceContainerLow else
-                        LocalPalette.current.surfaceContainerHigh,
+                    color = when(uniqueOnly) {
+                        true -> LocalPalette.current.surfaceContainerLow
+                        else -> LocalPalette.current.surfaceContainerHigh
+                    },
                     shape = RoundedCornerShape(8.dp),
                 ) {
                     Text(
@@ -162,18 +171,26 @@ internal fun TraitConfig(
             color = LocalPalette.current.surfaceContainer,
             shape = RoundedCornerShape(8.dp)
         ) {
+
             LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+                    .fillMaxSize(),
+                //verticalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(8.dp)
             ) {
-                items(
+                item(key = "anchor_spacer") { }
+
+                itemsIndexed(
                     items = traits,
-                    key = { it.ghostTrait.id }
-                ) { trait ->
+                    key = { index, item -> item.ghostTrait.id }
+                ) { index, trait ->
+
                     TraitListItem(
-                        modifier = Modifier.animateItem(),
+                        modifier = Modifier
+                            .padding(
+                                bottom = if(index < traits.lastIndex) 8.dp else 0.dp
+                            )
+                            .animateItem(),
                         state = TraitListItemUiState(
                             item = trait
                         ),
@@ -252,12 +269,28 @@ private fun TraitListItem(
                     softWrap = true,
                     fontSize = 11.sp
                 )
+
+                val uniqueText = if (state.item.ghostTrait.isUnique) {
+                    "${stringResource(R.string.evidence_trait_category_unique)} " } else ""
+
+                val dataText = when(state.item.ghostTrait.weight) {
+                     DEFINITIVE -> {
+                        when(state.item.ghostTrait.state) {
+                            CONFIRM -> "Confirm"
+                            REJECT -> "Reject"
+                        }
+                    }
+                    PROBABLE -> {
+                        when (state.item.ghostTrait.state) {
+                            CONFIRM -> "More Likely"
+                            REJECT -> "Less Likely"
+                        }
+                    }
+                }
+
                 Text(
                     modifier = Modifier,
-                    text = state.item.ghostTrait.let { (_, _, state, weight) ->
-                        "${stringResource(weight.toStringResource())} " +
-                                stringResource (state.toStringResource())
-                    },
+                    text = "$uniqueText$dataText",
                     style = JetBrainsMonoTypography.primary.regular.copy(
                         color = colors.unselectedOnColor,
                         textAlign = TextAlign.Start
@@ -265,6 +298,20 @@ private fun TraitListItem(
                     softWrap = true,
                     fontSize = 10.sp
                 )
+
+                /*val weightText = stringResource(state.item.ghostTrait.weight.toStringResource())
+                val stateText = stringResource(state.item.ghostTrait.state.toStringResource())
+
+                Text(
+                    modifier = Modifier,
+                    text = "$uniqueText$weightText $stateText",
+                    style = JetBrainsMonoTypography.primary.regular.copy(
+                        color = colors.unselectedOnColor,
+                        textAlign = TextAlign.Start
+                    ),
+                    softWrap = true,
+                    fontSize = 10.sp
+                )*/
 
             }
 
