@@ -16,7 +16,7 @@ import com.tritiumgaming.core.ui.modifier.offsetPercent
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 
 @Composable
-fun HuntGapDurationIcon(
+fun HuntCooldownDurationIcon(
     modifier: Modifier = Modifier,
     colors: IconVectorColors = IconVectorColors.defaults()
 ) {
@@ -52,8 +52,8 @@ fun HuntGapDurationIcon(
 
 @Preview
 @Composable
-private fun PreviewHuntGapDurationIcon() {
-    HuntGapDurationIcon(
+private fun PreviewHuntCooldownDurationIcon() {
+    HuntCooldownDurationIcon(
         modifier = Modifier
             .size(48.dp),
         colors = IconVectorColors.defaults().copy(

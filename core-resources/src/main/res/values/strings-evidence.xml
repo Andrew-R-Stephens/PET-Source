@@ -149,4 +149,6 @@
 
     <string name="evidence_trait_weight_probable" translatable="false">Probable</string>
     <string name="evidence_trait_weight_definitive" translatable="false">Definitive</string>
+    <string name="evidence_trait_weight_likely" translatable="false">More likely</string>
+    <string name="evidence_trait_weight_unlikely" translatable="false">Less Likely</string>
 </resources>
