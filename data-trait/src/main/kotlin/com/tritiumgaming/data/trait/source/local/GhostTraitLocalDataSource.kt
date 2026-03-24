@@ -9,7 +9,6 @@ import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.Trait
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitState
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitTag
 import com.tritiumgaming.shared.data.ghosttrait.mapper.GhostTraitResources.TraitWeight
-import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 
 class GhostTraitLocalDataSource: GhostTraitDataSource {
 
