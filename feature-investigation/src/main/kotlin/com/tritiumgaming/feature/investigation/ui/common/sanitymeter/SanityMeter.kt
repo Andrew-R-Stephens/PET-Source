@@ -10,28 +10,39 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.drawText
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import java.util.Locale
 
 @Composable
 fun SanityMeter(
     modifier: Modifier = Modifier,
-    sanityUiState: PlayerSanityUiState
+    sanityUiState: PlayerSanityUiState,
+    showText: Boolean = false
 ) {
     val sanityPercent = sanityUiState.sanityLevel
 
@@ -79,46 +90,48 @@ fun SanityMeter(
                 interpolation = sanityPercent
             )
 
-            /*val textMeasurer = rememberTextMeasurer()
-            val fontSize = 14.sp
-            val textStyle = LocalTypography.current.tertiary.bold.copy(
-                color = LocalPalette.current.scrim,
-                textAlign = TextAlign.Center,
-                fontSize = fontSize,
-            )
+            if(showText) {
+                val textMeasurer = rememberTextMeasurer()
+                val fontSize = 14.sp
+                val textStyle = LocalTypography.current.tertiary.bold.copy(
+                    color = LocalPalette.current.scrim,
+                    textAlign = TextAlign.Center,
+                    fontSize = fontSize,
+                )
 
-            Text(
-                modifier = Modifier
-                    .fillMaxSize(.75f)
-                    .wrapContentHeight()
-                    .align(Alignment.Center)
-                    .drawBehind {
-                        val textLayoutResult = textMeasurer.measure(
-                            text = sanityPercentString,
-                            style = textStyle
-                        )
-                        val xOffset = (size.width - textLayoutResult.size.width) * .5f
-                        val centerOffset = Offset(xOffset, 0f)
-
-                        drawText(
-                            textMeasurer = textMeasurer,
-                            text = sanityPercentString,
-                            topLeft = centerOffset,
-                            maxLines = 1,
-                            style = textStyle.copy(
-                                drawStyle = Stroke(
-                                    width = 3f,
-                                    join = StrokeJoin.Round
-                                ),
+                Text(
+                    modifier = Modifier
+                        .fillMaxSize(.75f)
+                        .wrapContentHeight()
+                        .align(Alignment.Center)
+                        .drawBehind {
+                            val textLayoutResult = textMeasurer.measure(
+                                text = sanityPercentString,
+                                style = textStyle
                             )
-                        )
-                    },
-                text = sanityPercentString,
-                maxLines = 1,
-                style = textStyle,
-                color = LocalPalette.current.primary,
-                fontSize = fontSize,
-            )*/
+                            val xOffset = (size.width - textLayoutResult.size.width) * .5f
+                            val centerOffset = Offset(xOffset, 0f)
+
+                            drawText(
+                                textMeasurer = textMeasurer,
+                                text = sanityPercentString,
+                                topLeft = centerOffset,
+                                maxLines = 1,
+                                style = textStyle.copy(
+                                    drawStyle = Stroke(
+                                        width = 3f,
+                                        join = StrokeJoin.Round
+                                    ),
+                                )
+                            )
+                        },
+                    text = sanityPercentString,
+                    maxLines = 1,
+                    style = textStyle,
+                    color = LocalPalette.current.primary,
+                    fontSize = fontSize,
+                )
+            }
 
         }
 
