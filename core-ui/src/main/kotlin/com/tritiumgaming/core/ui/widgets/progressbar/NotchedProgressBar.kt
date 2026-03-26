@@ -104,7 +104,9 @@ fun NotchedProgressBar(
             )
 
             val textWidth = textLayoutResult.size.width.toFloat()
-            val xPos = (notchX - textWidth / 2f).coerceIn(0f, size.width - textWidth)
+            val xPos = (notchX - textWidth / 2f).coerceIn(0f,
+                0f.coerceAtLeast(size.width - textWidth)
+            )
 
             drawText(
                 textLayoutResult = textLayoutResult,

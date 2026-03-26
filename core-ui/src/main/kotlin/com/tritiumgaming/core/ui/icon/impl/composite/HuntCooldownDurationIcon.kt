@@ -37,7 +37,7 @@ fun HuntCooldownDurationIcon(
 
         ResetCrosshairsIcon(
             modifier = Modifier
-                .fillMaxSize(.5f)
+                .fillMaxSize(.45f)
                 .drawBehind{
                     drawCircle(
                         color = colors.fillColor,
