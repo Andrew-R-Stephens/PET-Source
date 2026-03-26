@@ -1,5 +1,6 @@
 package com.tritiumgaming.feature.investigation.ui.common.sanitymeter
 
+import android.R.attr.textStyle
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,12 +19,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.drawText
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,6 +42,7 @@ import com.tritiumgaming.core.ui.theme.SelectiveTheme
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.feature.investigation.ui.InvestigationScreenViewModel
+import java.util.Locale
 import kotlin.math.min
 
 @Composable
@@ -42,8 +52,8 @@ fun SanityMeter(
 ) {
     val sanityPercent = sanityUiState.sanityLevel
 
-    val sanityPercentString = "$sanityPercent"
-        .substring(0, min(4, sanityPercent.toString().length))
+    val sanityPercentString = String.format(Locale.ROOT, "%d%%",
+        (sanityUiState.sanityLevel * 100).toInt())
 
     Box(
         modifier = modifier
@@ -86,93 +96,46 @@ fun SanityMeter(
                 interpolation = sanityPercent
             )
 
-            Text(
-                modifier = Modifier
-                    .fillMaxSize(.75f)
-                    .align(Alignment.Center),
-                text = sanityPercentString,
-                style = LocalTypography.current.quaternary.regular.copy(
-                    shadow = Shadow(
-                        color = LocalPalette.current.scrim,
-                        blurRadius = 2f
-                    )
-                ),
-                color = LocalPalette.current.primary,
-                fontSize = 18.sp,
-            )
-
-        }
-
-    }
-}
-
-@Composable
-fun SanityMeter(
-    modifier: Modifier = Modifier,
-    investigationViewModel: InvestigationScreenViewModel
-) {
-    val sanityLevel by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
-
-    val sanityPercent = sanityLevel.sanityLevel
-    /*val sanityPercentString = "$sanityPercent"
-        .substring(0, min(4, sanityPercent.toString().length))*/
-    val sanityPercentString = "$sanityPercent"
-
-    Box(
-        modifier = modifier
-            .aspectRatio(1f)
-            .size(12.dp)
-            .border(
-                1.dp,
-                LocalPalette.current.onSurface,
-                CircleShape
-            )
-    ) {
-        SanityPie(
-            startColor = LocalPalette.current.error.copy(alpha= 0f).toArgb(),
-            endColor = LocalPalette.current.error.toArgb(),
-            interpolation = sanityPercent
-        )
-
-        Box(
-            modifier = Modifier
-                .fillMaxSize(.7f)
-                .align(Alignment.Center)
-        ) {
-
-            SanityImageLayer(
-                image = R.drawable.icon_sanityhead_skull,
-                startColor = LocalPalette.current.onSurface.toArgb(),
-                endColor = LocalPalette.current.onSurface.toArgb(),
-                interpolation = sanityPercent
-            )
-            SanityImageLayer(
-                image = R.drawable.icon_sanityhead_brain,
-                startColor = (Color.Gray).toArgb(),
-                endColor = LocalPalette.current.error.toArgb(),
-                interpolation = sanityPercent
-            )
-            SanityImageLayer(
-                image = R.drawable.icon_sanityhead_border,
-                startColor = LocalPalette.current.onSurface.toArgb(),
-                endColor = LocalPalette.current.onSurface.toArgb(),
-                interpolation = sanityPercent
+            /*val textMeasurer = rememberTextMeasurer()
+            val fontSize = 14.sp
+            val textStyle = LocalTypography.current.tertiary.bold.copy(
+                color = LocalPalette.current.scrim,
+                textAlign = TextAlign.Center,
+                fontSize = fontSize,
             )
 
             Text(
                 modifier = Modifier
                     .fillMaxSize(.75f)
-                    .align(Alignment.Center),
+                    .wrapContentHeight()
+                    .align(Alignment.Center)
+                    .drawBehind {
+                        val textLayoutResult = textMeasurer.measure(
+                            text = sanityPercentString,
+                            style = textStyle
+                        )
+                        val xOffset = (size.width - textLayoutResult.size.width) * .5f
+                        val centerOffset = Offset(xOffset, 0f)
+
+                        drawText(
+                            textMeasurer = textMeasurer,
+                            text = sanityPercentString,
+                            topLeft = centerOffset,
+                            maxLines = 1,
+                            style = textStyle.copy(
+                                drawStyle = Stroke(
+                                    width = 3f,
+                                    join = StrokeJoin.Round
+                                ),
+                            )
+                        )
+                    },
                 text = sanityPercentString,
-                style = LocalTypography.current.quaternary.regular.copy(
-                    shadow = Shadow(
-                        color = LocalPalette.current.scrim,
-                        blurRadius = 2f
-                    )
-                ),
+                maxLines = 1,
+                style = textStyle,
                 color = LocalPalette.current.primary,
-                fontSize = 18.sp,
-            )
+                fontSize = fontSize,
+            )*/
 
         }
 
@@ -240,83 +203,24 @@ fun SanityPie(
     )
 }
 
-@Composable
-private fun PreviewSanityPie(
-    modifier: Modifier,
-    sanityPercent: Float = 0f
-) {
-
-    SelectiveTheme {
-        Box(
-            modifier = modifier
-                .aspectRatio(1f)
-                .size(12.dp)
-                .border(
-                    1.dp,
-                    LocalPalette.current.onSurface,
-                    CircleShape
-                )
-        ) {
-            SanityPie(
-                startColor = LocalPalette.current.error.copy(alpha= 0f).toArgb(),
-                endColor = LocalPalette.current.error.toArgb(),
-                interpolation = sanityPercent
-            )
-
-            Box(
-                modifier = Modifier
-                    .fillMaxSize(.7f)
-                    .align(Alignment.Center)
-            ) {
-
-                SanityImageLayer(
-                    image = R.drawable.icon_sanityhead_skull,
-                    startColor = LocalPalette.current.onSurface.toArgb(),
-                    endColor = LocalPalette.current.onSurface.toArgb(),
-                    interpolation = sanityPercent
-                )
-                SanityImageLayer(
-                    image = R.drawable.icon_sanityhead_brain,
-                    startColor = (Color.Gray).toArgb(),
-                    endColor = LocalPalette.current.error.toArgb(),
-                    interpolation = sanityPercent
-                )
-                SanityImageLayer(
-                    image = R.drawable.icon_sanityhead_border,
-                    startColor = LocalPalette.current.onSurface.toArgb(),
-                    endColor = LocalPalette.current.onSurface.toArgb(),
-                    interpolation = sanityPercent
-                )
-
-                Text(
-                    modifier = Modifier
-                        .align(Alignment.Center),
-                    text = "$sanityPercent".substring(0, min(4, sanityPercent.toString().length)),
-                    style = LocalTypography.current.quaternary.bold.copy(
-                        shadow = Shadow(
-                            color = LocalPalette.current.scrim,
-                            blurRadius = 8f
-                        )
-                    ),
-                    color = LocalPalette.current.primary,
-                    fontSize = 18.sp,
-                )
-            }
-
-        }
-    }
-}
 
 @Composable
 @Preview
 private fun PreviewSanityPieEmpty() {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        PreviewSanityPie(modifier = Modifier.size(96.dp), sanityPercent = 1f)
-        PreviewSanityPie(modifier = Modifier.size(96.dp), sanityPercent = .75f)
-        PreviewSanityPie(modifier = Modifier.size(96.dp), sanityPercent = .5f)
-        PreviewSanityPie(modifier = Modifier.size(96.dp), sanityPercent = .25f)
-        PreviewSanityPie(modifier = Modifier.size(96.dp), sanityPercent = 0f)
+    SelectiveTheme {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            SanityMeter(modifier = Modifier.size(96.dp),
+                sanityUiState = PlayerSanityUiState(sanityLevel = 1f))
+            SanityMeter(modifier = Modifier.size(96.dp),
+                sanityUiState = PlayerSanityUiState(sanityLevel = .75f))
+            SanityMeter(modifier = Modifier.size(96.dp),
+                sanityUiState = PlayerSanityUiState(sanityLevel = .5f))
+            SanityMeter(modifier = Modifier.size(96.dp),
+                sanityUiState = PlayerSanityUiState(sanityLevel = .25f))
+            SanityMeter(modifier = Modifier.size(96.dp),
+                sanityUiState = PlayerSanityUiState(sanityLevel = 0f))
+        }
     }
 }

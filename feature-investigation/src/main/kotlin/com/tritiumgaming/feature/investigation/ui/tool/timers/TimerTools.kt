@@ -25,7 +25,7 @@ internal fun TimerTools(
 ) {
     Column (
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         component(Modifier)
     }
@@ -38,9 +38,7 @@ fun ProgressBarTimer(
     iconComponent: @Composable (Modifier) -> Unit = {}
 ) {
     NotchedProgressBarTimer(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(24.dp),
+        modifier = modifier,
         bundle = bundle,
         icon = { modifier -> iconComponent(modifier) }
     )
@@ -51,6 +49,7 @@ fun ProgressBarTimer(
 private fun Preview() {
 
     SelectiveTheme {
+
         ProgressBarTimer(
             modifier = Modifier,
             NotchedProgressBarBundle(
@@ -80,6 +79,7 @@ private fun Preview() {
                 )
             )
         }
+
     }
 
 }

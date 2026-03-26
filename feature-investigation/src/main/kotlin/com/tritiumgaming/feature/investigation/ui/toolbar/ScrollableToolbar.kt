@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
@@ -51,7 +50,8 @@ fun ScrollableToolbar(
         ) { modifier ->
             stickyContentStart(
                 modifier
-                    .sizeIn(maxWidth = 48.dp)
+                    .padding(4.dp)
+                    .sizeIn(maxHeight = 48.dp)
                     .aspectRatio(1f)
             )
         }
@@ -60,10 +60,8 @@ fun ScrollableToolbar(
             modifier = Modifier
                 .weight(1f, true)
                 .wrapContentHeight()
-                .padding(4.dp)
                 .background(surfaceColor, RoundedCornerShape(8.dp))
                 .horizontalScroll(scrollState)
-                .padding(4.dp)
                 .fadingEdges(
                     scrollState = scrollState,
                     orientation =
@@ -74,6 +72,7 @@ fun ScrollableToolbar(
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
             scrollContent(Modifier
+                .padding(4.dp)
                 .sizeIn(maxHeight = 48.dp)
             )
         }
@@ -83,7 +82,8 @@ fun ScrollableToolbar(
         ) { modifier ->
             stickyContentEnd(
                 modifier
-                    .sizeIn(maxWidth = 48.dp)
+                    .padding(4.dp)
+                    .sizeIn(maxHeight = 48.dp)
                     .aspectRatio(1f)
             )
         }
@@ -138,6 +138,7 @@ fun InvestigationToolRail(
             verticalArrangement = Arrangement.SpaceEvenly,
         ) {
             scrollContent(Modifier
+                .padding(4.dp)
                 .sizeIn(maxWidth = 48.dp))
         }
 
@@ -163,8 +164,8 @@ private fun StickyItemContainer(
     Box(
         modifier = modifier
             .wrapContentSize()
-            .background(surfaceColor, CircleShape)
             .padding(4.dp)
+            .background(surfaceColor, CircleShape)
     ) {
         stickyContent(Modifier)
     }
@@ -174,13 +175,11 @@ private fun StickyItemContainer(
 fun ToolbarItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { },
-    content: @Composable () -> Unit,
+    content: @Composable (Modifier) -> Unit,
 ) {
-    Box(
-        modifier = modifier
+    content(
+        modifier
             .clickable { onClick() }
             .padding(8.dp),
-    ) {
-        content()
-    }
+    )
 }

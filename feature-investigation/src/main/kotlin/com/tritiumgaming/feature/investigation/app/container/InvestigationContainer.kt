@@ -51,15 +51,7 @@ import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategory
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByGhostUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetUniqueGhostTraitsUseCase
-import com.tritiumgaming.shared.data.investigation.InvestigationRepository
-import com.tritiumgaming.shared.data.investigation.repository.impl.InvestigationRepositoryImpl
-import com.tritiumgaming.shared.data.investigation.usecase.GetInvestigationStateUseCase
 import com.tritiumgaming.shared.data.investigation.usecase.InvestigationUseCaseBundle
-import com.tritiumgaming.shared.data.investigation.usecase.ResetInvestigationUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationDifficultyUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationEvidenceUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationMapUseCase
-import com.tritiumgaming.shared.data.investigation.usecase.UpdateInvestigationSanityUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchEvidenceTypesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostEvidencesUseCase
 import com.tritiumgaming.shared.data.journal.usecase.FetchGhostTypesUseCase

@@ -16,10 +16,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -188,9 +185,9 @@ private fun ResetButton(
 ) {
     ToolbarItem(
         modifier = modifier
-    ) {
+    ) { modifier ->
         ResetIcon(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize(),
             onClick = { toolbarUiActions.onReset() }
         )
@@ -208,9 +205,9 @@ private fun BpmButton(
         onClick = {
             toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_FOOTSTEP)
         }
-    ) {
+    ) { modifier ->
         FootprintsIcon(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize(),
             if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_FOOTSTEP) {
                 IconVectorColors.defaults(
@@ -238,9 +235,9 @@ private fun StopwatchButton(
         onClick = {
             toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_TIMERS)
         }
-    ) {
+    ) { modifier ->
         StopwatchIcon(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize(),
             if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_TIMERS) {
                 IconVectorColors.defaults(
@@ -270,9 +267,9 @@ private fun AnalyticsButton(
         onClick = {
             toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_ANALYZER)
         }
-    ) {
+    ) { modifier ->
         AnalyticsIcon(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize(),
             if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_ANALYZER) {
                 IconVectorColors.defaults(
@@ -299,14 +296,13 @@ private fun ConfigButton(
     ToolbarItem(
         modifier = modifier
             .aspectRatio(1f)
-            .fillMaxSize()
-            .padding(2.dp),
+            .fillMaxSize(),
         onClick = {
             toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_CONFIG)
         }
-    ) {
+    ) { modifier ->
         ConfigIcon(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize(),
             if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_CONFIG) {
                 IconVectorColors.defaults(
@@ -332,14 +328,13 @@ private fun TraitsButton(
     ToolbarItem(
         modifier = modifier
             .aspectRatio(1f)
-            .fillMaxSize()
-            .padding(2.dp),
+            .fillMaxSize(),
         onClick = {
             toolbarUiActions.onChangeToolbarCategory(OperationToolbarUiState.Category.TOOL_TRAITS)
         }
-    ) {
+    ) { modifier ->
         GeneticsIcon(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize(),
             if (operationToolbarUiState.category == OperationToolbarUiState.Category.TOOL_TRAITS) {
                 IconVectorColors.defaults(
@@ -379,11 +374,12 @@ private fun ResetIcon(
         tint = tintColor,
         modifier = modifier
             .fillMaxSize()
+            .aspectRatio(1f)
             .clickable(onClick = {
                 rotationTarget -= 360f
                 onClick()
             })
-            .padding(4.dp)
+            .padding(2.dp)
             .rotate(rotation)
     )
 }

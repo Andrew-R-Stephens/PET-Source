@@ -60,19 +60,14 @@ internal fun EvidenceListColumn(
     evidenceListUiState: EvidenceListUiState,
     evidenceListUiActions: EvidenceListUiActions,
 ) {
-    Box(
+    ListColumn(
         modifier = modifier,
-        contentAlignment = Alignment.TopCenter
+        title = stringResource(R.string.investigation_section_title_evidence),
     ) {
-        ListColumn(
-            modifier = modifier,
-            title = stringResource(R.string.investigation_section_title_evidence)
-        ) {
-            PrimaryEvidenceList(
-                evidenceListUiState = evidenceListUiState,
-                evidenceListUiActions = evidenceListUiActions
-            )
-        }
+        PrimaryEvidenceList(
+            evidenceListUiState = evidenceListUiState,
+            evidenceListUiActions = evidenceListUiActions
+        )
     }
 }
 
@@ -91,14 +86,13 @@ private fun ListColumn(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Row(
+        Box(
             modifier = Modifier
                 .height(36.dp)
                 .wrapContentWidth(Alignment.CenterHorizontally)
                 .padding(2.dp)
                 .onSizeChanged { size = it },
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+            contentAlignment = Alignment.Center
         ) {
             key(size) {
                 Text(

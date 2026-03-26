@@ -1,6 +1,5 @@
 package com.tritiumgaming.feature.investigation.ui.tool.traits
 
-import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.investigation.model.ValidatedGhostTrait
 
 data class TraitListItemUiState(

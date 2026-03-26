@@ -39,7 +39,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.resources.R
 import com.tritiumgaming.core.ui.icon.impl.base.FootprintsIcon
-import com.tritiumgaming.core.ui.icon.impl.base.GeneticsIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkCheckCircleIconComposite
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkPriorityCircleIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.MarkXCircleIconComposite
@@ -59,7 +58,6 @@ import com.tritiumgaming.shared.data.investigation.model.EvidenceState
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEGATIVE
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.NEUTRAL
 import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType.POSITIVE
-import kotlin.math.sign
 
 @Composable
 fun LazyItemScope.GhostListItem(

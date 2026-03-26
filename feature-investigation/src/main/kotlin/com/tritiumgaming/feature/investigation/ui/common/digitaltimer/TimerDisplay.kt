@@ -19,12 +19,36 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.common.util.FormatterUtils
 import com.tritiumgaming.core.ui.theme.DigitalDreamTextStyle
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
 import com.tritiumgaming.feature.investigation.ui.TimerUiState
+
+@Composable
+fun DigitalTimer(
+    modifier: Modifier = Modifier,
+    state: TimerUiState,
+    color: Color = LocalPalette.current.onSurface,
+    fontSize: TextUnit = 48.sp
+) {
+
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            modifier = Modifier
+                .wrapContentHeight(),
+            text = FormatterUtils.formatMillisToTime(state.remainingTime),
+            style = DigitalDreamTextStyle,
+            color = color,
+            fontSize = fontSize
+        )
+    }
+}
 
 @Composable
 fun DigitalTimer(
