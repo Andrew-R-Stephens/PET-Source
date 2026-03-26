@@ -104,7 +104,6 @@ import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources
 import com.tritiumgaming.shared.data.preferences.properties.DensityType
 import kotlinx.coroutines.launch
 import java.util.Locale
-import kotlin.math.min
 import kotlin.time.Duration.Companion.minutes
 
 @Composable
