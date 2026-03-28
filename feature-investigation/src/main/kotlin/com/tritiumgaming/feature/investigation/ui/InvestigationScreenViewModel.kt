@@ -113,6 +113,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.time.Duration.Companion.minutes
 
 class InvestigationScreenViewModel private constructor(
     journalUseCaseBundle: JournalUseCaseBundle,
@@ -703,8 +704,8 @@ class InvestigationScreenViewModel private constructor(
     private fun initPlayerSanityUiState() {
         _playerSanityUiState.update {
             PlayerSanityUiState(
-                sanityLevel = SanityLevel.MAX_SANITY,
-                insanityLevel = 0f
+                sanityLevel = difficultyState.value.settings.startingSanity.toFloat(),
+                insanityLevel = 1f - difficultyState.value.settings.startingSanity.toFloat()
             )
         }
     }
@@ -827,7 +828,7 @@ class InvestigationScreenViewModel private constructor(
         sanityJob = viewModelScope.launch {
             while(!timerUiState.value.paused) {
                 tickSanity()
-                delay(1000)
+                delay(5000)
             }
         }
     }
@@ -894,11 +895,16 @@ class InvestigationScreenViewModel private constructor(
      * Player Sanity ---------------------------
      */
 
-    private fun calculateSanityDrain(): Float {
+    private fun calculateElapsedTime(): Long {
         val currentTime = System.currentTimeMillis()
         val startTime = timerUiState.value.startTime
 
         val timeElapsed = currentTime - startTime
+
+        return timeElapsed
+    }
+
+    private fun calculateSanityDrain(timeElapsed: Long): Float {
         val drainModifier = operationSanityUiState.value.drainModifier
         val multiplier = 0.00001f
 
@@ -923,7 +929,8 @@ class InvestigationScreenViewModel private constructor(
     }
 
     private fun skipInsanity(
-        newLevel: Float = SanityLevel.HALF_SANITY
+        newLevel: Float = SanityLevel.HALF_SANITY,
+        updateStartTime: Boolean = true,
     ) {
         val currentLevel = playerSanityUiState.value.insanityLevel
 
@@ -931,7 +938,8 @@ class InvestigationScreenViewModel private constructor(
 
         setPlayerSanity(normalizedLevel)
 
-        setStartTimeByProgress(normalizedLevel)
+        if(updateStartTime)
+            setStartTimeByProgress(normalizedLevel)
     }
 
     /**
@@ -939,7 +947,8 @@ class InvestigationScreenViewModel private constructor(
      * time remaining.
      */
     private fun tickSanity() {
-        val drain = calculateSanityDrain()
+        val timeElapsed = calculateElapsedTime()
+        val drain = calculateSanityDrain(timeElapsed)
         setPlayerSanity(drain)
 
         updatePhase()
@@ -981,7 +990,8 @@ class InvestigationScreenViewModel private constructor(
     /** Defaults all persistent data. */
     private fun resetSanity() {
         //TODO warnTriggered = false
-        setStartTimeByProgress(SanityLevel.MAX_SANITY - _difficultyState.value.settings.startingSanity.toFloat())
+        setStartTimeByProgress(
+            SanityLevel.MAX_SANITY - difficultyState.value.settings.startingSanity.toFloat())
         tickSanity()
     }
 
@@ -1062,14 +1072,13 @@ class InvestigationScreenViewModel private constructor(
         timerJob = viewModelScope.launch {
 
             _timerUiState.update {
-
                 val startTime =
-                    if(it.startTime == TIME_DEFAULT) System.currentTimeMillis()
+                    if (it.startTime == TIME_DEFAULT) System.currentTimeMillis()
                     else System.currentTimeMillis() -
                             getDurationByProgress(playerSanityUiState.value.insanityLevel)
 
                 val remainingTime =
-                    if(it.remainingTime == TIME_DEFAULT)
+                    if (it.remainingTime == TIME_DEFAULT)
                         difficultyState.value.settings.setupTime.toLong()
                     else it.remainingTime
 
@@ -1152,11 +1161,34 @@ class InvestigationScreenViewModel private constructor(
         playTimer()
     }
 
+    internal fun skipTimer() {
+
+        val currentLevel = playerSanityUiState.value.sanityLevel
+
+        val startingSanity = difficultyState.value.settings.startingSanity.toFloat()
+        val huntThreshold = SanityLevel.HALF_SANITY
+
+        val target = min(startingSanity, huntThreshold)
+
+        val newLevel = currentLevel.coerceAtMost(target)
+
+        Log.d("InvestigationViewModel", "$startingSanity:$huntThreshold -> $target = $currentLevel -> $newLevel")
+
+        playTimer()
+        skipInsanity(newLevel, false)
+        _timerUiState.update {
+            it.copy(
+                startTime = TIME_DEFAULT,
+                remainingTime = TIME_DEFAULT,
+                paused = false
+            )
+        }
+    }
+
     private fun resetTimer() {
         stopTimerJob()
         initTimerUiState()
 
-        calculateSanityDrain()
         updatePhase()
     }
 

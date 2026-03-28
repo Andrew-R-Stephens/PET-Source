@@ -64,6 +64,7 @@ import com.tritiumgaming.feature.investigation.app.mappers.map.toStringResource
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toPhaseTitle
 import com.tritiumgaming.feature.investigation.app.mappers.phase.toStringResource
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.DigitalTimer
+import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerSkipButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerToggleButton
 import com.tritiumgaming.feature.investigation.ui.common.digitaltimer.TimerUiActions
 import com.tritiumgaming.feature.investigation.ui.common.operationconfig.ConfigActionsBundle
@@ -211,8 +212,11 @@ private fun InvestigationContent(
     )
 
     val timerUiActions = TimerUiActions(
-        onToggleTimer = {
+        onToggle = {
             investigationViewModel.toggleTimer()
+        },
+        onSkip = {
+            investigationViewModel.skipTimer()
         }
     )
 
@@ -494,7 +498,8 @@ private fun InvestigationContent(
     }
     val timerComponent: @Composable (Modifier) -> Unit = { modifier ->
         Row(
-            modifier = modifier
+            modifier = modifier,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
 
             TruckTimeIcon(
@@ -509,16 +514,16 @@ private fun InvestigationContent(
 
             DigitalTimer(
                 modifier = Modifier
-                    .height(48.dp)
                     .padding(8.dp)
+                    .wrapContentHeight()
                     .weight(1f),
-                state = timerUiState
+                state = timerUiState,
+                fontSize = 18.sp
             )
 
             TimerToggleButton(
                 modifier = Modifier
-                    .size(48.dp)
-                    .padding(start = 4.dp),
+                    .size(48.dp),
                 state = timerUiState,
                 actions = timerUiActions,
                 playContent = { modifier ->
@@ -537,6 +542,21 @@ private fun InvestigationContent(
                         tint = LocalPalette.current.onSurface
                     )
                 }
+            )
+
+            TimerSkipButton(
+                modifier = Modifier
+                    .size(48.dp),
+                state = timerUiState,
+                actions = timerUiActions,
+                content = { modifier ->
+                    Icon(
+                        modifier = modifier,
+                        painter = painterResource(R.drawable.ic_control_skip),
+                        contentDescription = null,
+                        tint = LocalPalette.current.onSurface
+                    )
+                },
             )
 
         }

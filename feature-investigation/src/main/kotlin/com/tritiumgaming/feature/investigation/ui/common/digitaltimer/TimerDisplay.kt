@@ -2,6 +2,8 @@ package com.tritiumgaming.feature.investigation.ui.common.digitaltimer
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.TextAutoSize
@@ -92,7 +94,7 @@ fun TimerToggleButton(
 
     Button(
         modifier = modifier,
-        onClick = { actions.onToggleTimer() },
+        onClick = { actions.onToggle() },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
             contentColor = LocalPalette.current.onSurface
@@ -100,9 +102,42 @@ fun TimerToggleButton(
         contentPadding = PaddingValues(8.dp)
     ) {
         if (state) {
-            playContent(Modifier.size(48.dp))
+            playContent(
+                Modifier
+                    .fillMaxSize()
+                    .padding(4.dp)
+            )
         } else {
-            pauseContent(Modifier.size(48.dp))
+            pauseContent(
+                Modifier
+                    .fillMaxSize()
+                    .padding(4.dp)
+            )
         }
+    }
+}
+
+@Composable
+fun TimerSkipButton(
+    modifier: Modifier = Modifier,
+    state: TimerUiState,
+    actions: TimerUiActions,
+    content: @Composable (Modifier) -> Unit = {}
+) {
+    Button(
+        modifier = modifier,
+        onClick = { actions.onSkip() },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Transparent,
+            contentColor = LocalPalette.current.onSurface
+        ),
+        contentPadding = PaddingValues(8.dp),
+        //enabled = state.remainingTime > 0L
+    ) {
+        content(
+            Modifier
+                .fillMaxSize()
+                .padding(4.dp)
+        )
     }
 }

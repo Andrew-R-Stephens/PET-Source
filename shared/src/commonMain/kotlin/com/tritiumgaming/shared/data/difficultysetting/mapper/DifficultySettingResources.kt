@@ -14,6 +14,8 @@ import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingR
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.SetupTime
 import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.StartingSanity
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 class DifficultySettingResources {
 
@@ -299,29 +301,29 @@ fun GhostSpeed.toFloat(): Float =
 fun GracePeriod.toLong(): Long =
     when(this) {
         GracePeriod.PERIOD_0 -> 0L
-        GracePeriod.PERIOD_1 -> 1000L
-        GracePeriod.PERIOD_2 -> 2000L
-        GracePeriod.PERIOD_3 -> 3000L
-        GracePeriod.PERIOD_4 -> 4000L
-        GracePeriod.PERIOD_5 -> 5000L
+        GracePeriod.PERIOD_1 -> 1.seconds.inWholeMilliseconds
+        GracePeriod.PERIOD_2 -> 2.seconds.inWholeMilliseconds
+        GracePeriod.PERIOD_3 -> 3.seconds.inWholeMilliseconds
+        GracePeriod.PERIOD_4 -> 4.seconds.inWholeMilliseconds
+        GracePeriod.PERIOD_5 -> 5.seconds.inWholeMilliseconds
     }
 
 fun HuntDuration.toLong(size: MapModifierResources.MapSize): Long =
     when(this) {
         HuntDuration.LOW -> when(size) {
-            MapModifierResources.MapSize.SMALL -> 15000L
-            MapModifierResources.MapSize.MEDIUM -> 30000L
-            MapModifierResources.MapSize.LARGE -> 40000L
+            MapModifierResources.MapSize.SMALL -> 15.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.MEDIUM -> 30.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.LARGE -> 40.seconds.inWholeMilliseconds
         }
         HuntDuration.MEDIUM -> when(size) {
-            MapModifierResources.MapSize.SMALL -> 20000L
-            MapModifierResources.MapSize.MEDIUM -> 40000L
-            MapModifierResources.MapSize.LARGE -> 50000L
+            MapModifierResources.MapSize.SMALL -> 20.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.MEDIUM -> 40.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.LARGE -> 50.seconds.inWholeMilliseconds
         }
         HuntDuration.HIGH -> when(size) {
-            MapModifierResources.MapSize.SMALL -> 30000L
-            MapModifierResources.MapSize.MEDIUM -> 50000L
-            MapModifierResources.MapSize.LARGE -> 60000L
+            MapModifierResources.MapSize.SMALL -> 30.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.MEDIUM -> 50.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.LARGE -> 1.minutes.inWholeMilliseconds
         }
     }
 
@@ -329,19 +331,19 @@ fun KillsExtendHunts.toLong(size: MapModifierResources.MapSize): Long =
     when(this) {
         KillsExtendHunts.OFF -> 0L
         KillsExtendHunts.LOW -> when(size) {
-            MapModifierResources.MapSize.SMALL -> 15000L
-            MapModifierResources.MapSize.MEDIUM -> 20000L
-            MapModifierResources.MapSize.LARGE -> 25000L
+            MapModifierResources.MapSize.SMALL -> 15.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.MEDIUM -> 20.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.LARGE -> 25.seconds.inWholeMilliseconds
         }
         KillsExtendHunts.MEDIUM -> when(size) {
-            MapModifierResources.MapSize.SMALL -> 25000L
-            MapModifierResources.MapSize.MEDIUM -> 30000L
-            MapModifierResources.MapSize.LARGE -> 35000L
+            MapModifierResources.MapSize.SMALL -> 25.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.MEDIUM -> 30.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.LARGE -> 35.seconds.inWholeMilliseconds
         }
         KillsExtendHunts.HIGH -> when(size) {
-            MapModifierResources.MapSize.SMALL -> 35000L
-            MapModifierResources.MapSize.MEDIUM -> 40000L
-            MapModifierResources.MapSize.LARGE -> 45000L
+            MapModifierResources.MapSize.SMALL -> 35.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.MEDIUM -> 40.seconds.inWholeMilliseconds
+            MapModifierResources.MapSize.LARGE -> 45.seconds.inWholeMilliseconds
         }
     }
 
@@ -365,24 +367,24 @@ fun FingerprintChance.toFloat(): Float =
 fun FingerprintDuration.toLong(): Long =
     when(this) {
         FingerprintDuration.DURATION_NEVER -> 0L
-        FingerprintDuration.DURATION_15 -> 15000L
-        FingerprintDuration.DURATION_30 -> 30000L
-        FingerprintDuration.DURATION_60 -> 60000L
-        FingerprintDuration.DURATION_90 -> 90000L
-        FingerprintDuration.DURATION_120 -> 120000L
-        FingerprintDuration.DURATION_180 -> 180000L
+        FingerprintDuration.DURATION_15 -> 15.seconds.inWholeMilliseconds
+        FingerprintDuration.DURATION_30 -> 30.seconds.inWholeMilliseconds
+        FingerprintDuration.DURATION_60 -> 1.minutes.inWholeMilliseconds
+        FingerprintDuration.DURATION_90 -> 90.seconds.inWholeMilliseconds
+        FingerprintDuration.DURATION_120 -> 2.minutes.inWholeMilliseconds
+        FingerprintDuration.DURATION_180 -> 3.minutes.inWholeMilliseconds
         FingerprintDuration.DURATION_INFINITE -> -1L
     }
 
 fun SetupTime.toLong(): Long =
     when(this) {
         SetupTime.TIME_0 -> 0L
-        SetupTime.TIME_30 -> 30000L
-        SetupTime.TIME_60 -> 60000L
-        SetupTime.TIME_120 -> 120000L
-        SetupTime.TIME_180 -> 180000L
-        SetupTime.TIME_240 -> 240000L
-        SetupTime.TIME_300 -> 300000L
+        SetupTime.TIME_30 -> 30.seconds.inWholeMilliseconds
+        SetupTime.TIME_60 -> 1.minutes.inWholeMilliseconds
+        SetupTime.TIME_120 -> 2.minutes.inWholeMilliseconds
+        SetupTime.TIME_180 -> 3.minutes.inWholeMilliseconds
+        SetupTime.TIME_240 -> 4.minutes.inWholeMilliseconds
+        SetupTime.TIME_300 -> 5.minutes.inWholeMilliseconds
     }
 
 fun CursedPossessionsQuantity.toInt(): Int =
