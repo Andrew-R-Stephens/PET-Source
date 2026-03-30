@@ -455,18 +455,27 @@ private fun StartButton(
                 )
             )
 
-            BasicText(
+            Box(
                 modifier = Modifier
-                    .padding(vertical = 8.dp)
-                    .fillMaxWidth(),
-                text = stringResource(R.string.titlescreen_button).uppercase(),
-                style = LocalTypography.current.primary.regular.copy(
-                    color = LocalPalette.current.onSurface,
-                    textAlign = TextAlign.Center,
-                ),
-                maxLines = 1,
-                autoSize = TextAutoSize.StepBased(minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 5.sp)
-            )
+                    .fillMaxWidth(.9f)
+                    .fillMaxHeight(.65f),
+                contentAlignment = Alignment.Center,
+                propagateMinConstraints = true
+            ) {
+                BasicText(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight(),
+                    text = stringResource(R.string.titlescreen_button).uppercase(),
+                    style = LocalTypography.current.primary.regular.copy(
+                        color = LocalPalette.current.onSurface,
+                        textAlign = TextAlign.Center,
+                    ),
+                    maxLines = 1,
+                    autoSize = TextAutoSize.StepBased(
+                        minFontSize = 12.sp, maxFontSize = 48.sp, stepSize = 5.sp)
+                )
+            }
 
 
         }
