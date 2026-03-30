@@ -41,10 +41,16 @@ internal data class OperationDetailsUiState(
         internal val type: PhaseIdentifier = PhaseIdentifier.SETUP,
         internal val canAlertAudio: Boolean = false,
         internal val canFlash: Boolean = true,
-        internal val startFlashTime: Long = TimerUiState.DEFAULT,
-        internal val elapsedFlashTime: Long = TimerUiState.DEFAULT,
-        internal val maxFlashTime: Long = TimerUiState.DURATION_30_SECONDS,
-    )
+        internal val startFlashTime: Long = DEFAULT,
+        internal val elapsedFlashTime: Long = DEFAULT,
+        internal val maxFlashTime: Long = DURATION_30_SECONDS,
+    ) {
+
+        companion object {
+            const val DURATION_30_SECONDS = 300000L
+            const val DEFAULT = 300000L
+        }
+    }
 
     internal data class GhostDetails(
         internal val activeGhosts: List<GhostDetail> = emptyList(),

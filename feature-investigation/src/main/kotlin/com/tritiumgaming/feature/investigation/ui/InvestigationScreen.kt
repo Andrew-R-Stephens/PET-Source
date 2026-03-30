@@ -3,8 +3,10 @@ package com.tritiumgaming.feature.investigation.ui
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
@@ -17,14 +19,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
@@ -41,6 +46,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -96,6 +102,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListItemUiCol
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
+import com.tritiumgaming.feature.investigation.ui.toolbar.config.ConfigToolbarUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
@@ -497,68 +504,66 @@ private fun InvestigationContent(
         )
     }
     val timerComponent: @Composable (Modifier) -> Unit = { modifier ->
-        Row(
+        Column(
             modifier = modifier,
-            verticalAlignment = Alignment.CenterVertically,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
 
-            TruckTimeIcon(
-                modifier = Modifier
-                    .size(48.dp)
-                    .padding(4.dp),
-                colors = IconVectorColors(
-                    fillColor = LocalPalette.current.onSurface,
-                    strokeColor = LocalPalette.current.surface
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                DigitalTimer(
+                    modifier = Modifier
+                        .height(36.dp)
+                        .padding(8.dp),
+                    state = timerUiState,
                 )
-            )
+            }
+            Row (
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                TimerToggleButton(
+                    modifier = Modifier
+                        .size(48.dp),
+                    state = timerUiState,
+                    actions = timerUiActions,
+                    playContent = { modifier ->
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_play),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    },
+                    pauseContent = { modifier ->
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_pause),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    }
+                )
 
-            DigitalTimer(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .wrapContentHeight()
-                    .weight(1f),
-                state = timerUiState,
-                fontSize = 18.sp
-            )
-
-            TimerToggleButton(
-                modifier = Modifier
-                    .size(48.dp),
-                state = timerUiState,
-                actions = timerUiActions,
-                playContent = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_play),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
-                },
-                pauseContent = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_pause),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
-                }
-            )
-
-            TimerSkipButton(
-                modifier = Modifier
-                    .size(48.dp),
-                state = timerUiState,
-                actions = timerUiActions,
-                content = { modifier ->
-                    Icon(
-                        modifier = modifier,
-                        painter = painterResource(R.drawable.ic_control_skip),
-                        contentDescription = null,
-                        tint = LocalPalette.current.onSurface
-                    )
-                },
-            )
-
+                TimerSkipButton(
+                    modifier = Modifier
+                        .size(48.dp),
+                    state = timerUiState,
+                    actions = timerUiActions,
+                    content = { modifier ->
+                        Icon(
+                            modifier = modifier,
+                            painter = painterResource(R.drawable.ic_control_skip),
+                            contentDescription = null,
+                            tint = LocalPalette.current.onSurface
+                        )
+                    },
+                )
+            }
         }
     }
 
@@ -623,49 +628,98 @@ private fun InvestigationContent(
         )
     }
 
+    val bloodMoonComponent: @Composable (Modifier) -> Unit = { modifier ->
+
+    }
+
     val statusBarComponent: @Composable (Modifier) -> Unit = { modifier ->
         val sanityPercent = (sanityUiState.sanityLevel * 100).toInt()
 
         val sanityPercentString = "${String.format(Locale.ROOT, "%d", sanityPercent)}%"
 
-        Surface(
-            modifier = modifier,
-            color = LocalPalette.current.surfaceContainerLow,
-            shape = RoundedCornerShape(8.dp),
+        FlowRow(
+            modifier = modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
+            verticalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterVertically),
+            itemVerticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(IntrinsicSize.Max)
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.CenterVertically
+
+            Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.surfaceContainerLow,
+                shape = RoundedCornerShape(8.dp),
             ) {
-                Text(
-                    modifier = Modifier,
-                    text = "Phase: ${
-                        stringResource(
-                            phaseUiState.type.toPhaseTitle().toStringResource()
+                Row(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        modifier = Modifier,
+                        text = "${stringResource(R.string.investigation_label_phase)}:",
+                        color = LocalPalette.current.onSurface,
+                        style = LocalTypography.current.tertiary.regular.copy(
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
                         )
-                    }",
-                    color = LocalPalette.current.onSurfaceVariant,
-                    style = LocalTypography.current.tertiary.regular.copy(
-                        fontSize = 10.sp,
-                        textAlign = TextAlign.Center
                     )
-                )
-
-                Text(
-                    modifier = Modifier,
-                    text = "Sanity: $sanityPercentString",
-                    color = LocalPalette.current.onSurfaceVariant,
-                    style = LocalTypography.current.tertiary.regular.copy(
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
+                    Text(
+                        modifier = Modifier,
+                        text = stringResource(
+                            phaseUiState.type.toPhaseTitle().toStringResource()),
+                        color = LocalPalette.current.onSurfaceVariant,
+                        style = LocalTypography.current.tertiary.regular.copy(
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        )
                     )
-                )
 
+                    if(timerUiState.remainingTime > 0L) {
+                        DigitalTimer(
+                            modifier = Modifier,
+                            state = timerUiState,
+                            fontSize = 12.sp,
+                            color = LocalPalette.current.onSurfaceVariant
+                        )
+                    }
+                }
             }
+
+            Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.surfaceContainerLow,
+                shape = RoundedCornerShape(8.dp),
+            ) {
+
+                Row(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        modifier = Modifier,
+                        text = "${stringResource(R.string.investigation_sanitymeter_title)}:",
+                        color = LocalPalette.current.onSurface,
+                        style = LocalTypography.current.tertiary.regular.copy(
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    )
+                    Text(
+                        modifier = Modifier,
+                        text = sanityPercentString,
+                        color = LocalPalette.current.onSurfaceVariant,
+                        style = LocalTypography.current.tertiary.regular.copy(
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    )
+                }
+            }
+
         }
     }
 
@@ -685,6 +739,9 @@ private fun InvestigationContent(
                     OperationConfigs(
                         modifier = Modifier
                             .height(IntrinsicSize.Max),
+                        bloodMoonComponent = { modifier ->
+
+                        },
                         mapConfigComponent = { modifier -> mapConfigComponent(modifier) },
                         difficultyConfigComponent = { modifier ->
                             difficultyConfigComponent(modifier)
@@ -988,11 +1045,14 @@ private fun ColumnScope.Investigation(
                 .padding(horizontal = 8.dp)
         )
 
-        statusBarComponent(
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
-        )
+        if(state.operationToolbarUiState.isCollapsed || state.operationToolbarUiState.category !=
+            OperationToolbarUiState.Category.TOOL_CONFIG) {
+            statusBarComponent(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp)
+            )
+        }
 
         ToolbarBottomSheet(
             modifier = Modifier
@@ -1072,11 +1132,14 @@ private fun RowScope.Investigation(
                 .weight(1f, false),
             verticalArrangement = Arrangement.Top
         ) {
-            statusBarComponent(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp)
-            )
+            if(state.operationToolbarUiState.isCollapsed || state.operationToolbarUiState.category !=
+                OperationToolbarUiState.Category.TOOL_CONFIG) {
+                statusBarComponent(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp)
+                )
+            }
             journalComponent(Modifier
                 .weight(1f)
             )
@@ -1142,6 +1205,7 @@ private fun ToolbarSideSheet(
 @Composable
 fun OperationConfigs(
     modifier: Modifier = Modifier,
+    bloodMoonComponent: @Composable (Modifier) -> Unit = {},
     timerComponent: @Composable (Modifier) -> Unit = {},
     mapConfigComponent: @Composable (Modifier) -> Unit = {},
     difficultyConfigComponent: @Composable (Modifier) -> Unit = {},
@@ -1150,17 +1214,55 @@ fun OperationConfigs(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        horizontalAlignment = Alignment.Start
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Row(
+            modifier = Modifier
+                .wrapContentHeight()
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
+        ) {
+            Column(
+                modifier = Modifier
+                    .weight(1f),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.Start
+            ) {
 
-        mapConfigComponent(Modifier
-            .fillMaxWidth()
-        )
+                mapConfigComponent(Modifier
+                    .fillMaxWidth()
+                )
 
-        difficultyConfigComponent(Modifier
-            .fillMaxWidth()
-        )
+                difficultyConfigComponent(Modifier
+                    .fillMaxWidth()
+                )
+
+            }
+
+            Column(
+                modifier = Modifier
+                    .wrapContentSize(),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Row {
+                    bloodMoonComponent(
+                        Modifier.size(48.dp)
+                    )
+                    bloodMoonComponent(
+                        Modifier.size(48.dp)
+                    )
+                    bloodMoonComponent(
+                        Modifier.size(48.dp)
+                    )
+                    bloodMoonComponent(
+                        Modifier.size(48.dp)
+                    )
+                }
+            }
+        }
 
         Row(
             modifier = Modifier
@@ -1169,19 +1271,26 @@ fun OperationConfigs(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
+            Box(
+                Modifier
+                    .padding(8.dp),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                timerComponent(
+                    Modifier
+                )
+            }
+
             sanityMeterComponent(
                 Modifier
                     .size(64.dp)
             )
 
-            timerComponent(
-                Modifier
-                    .weight(1f, false)
-            )
         }
 
         phaseComponent(Modifier)
     }
+
 }
 
 internal data class InvestigationScreenUserPreferences(

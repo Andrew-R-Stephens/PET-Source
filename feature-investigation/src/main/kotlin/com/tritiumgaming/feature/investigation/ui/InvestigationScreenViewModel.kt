@@ -1,6 +1,7 @@
 package com.tritiumgaming.feature.investigation.ui
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -14,13 +15,13 @@ import com.tritiumgaming.feature.investigation.app.container.InvestigationContai
 import com.tritiumgaming.feature.investigation.app.container.JournalUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.PreferencesUseCaseBundle
 import com.tritiumgaming.feature.investigation.app.container.SimpleMapUseCaseBundle
-import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DEFAULT
-import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.TimerUiState.Companion.TIME_DEFAULT
 import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanityUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState.PhaseDetails.Companion.DEFAULT
+import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState.PhaseDetails.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
@@ -104,6 +105,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.WhileSubscribed
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -232,12 +234,6 @@ class InvestigationScreenViewModel private constructor(
         )
     val difficultyState = _difficultyState
 
-    /*private val _mapState = MutableStateFlow(MapData())
-    private val mapState = _mapState
-
-    private val _difficultyState = MutableStateFlow(DifficultyData())
-    val difficultyState = _difficultyState*/
-
     private val _mapConfigUiState: StateFlow<MapConfigUiState> =
         combine(
             mapState,
@@ -255,34 +251,78 @@ class InvestigationScreenViewModel private constructor(
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
-            initialValue = MapConfigUiState(allMaps = maps.map { it.mapName })
+            initialValue = MapConfigUiState(
+                allMaps = maps.map { it.mapName }
+            )
         )
     internal val mapConfigUiState = _mapConfigUiState
 
-    private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState.map { state ->
-        val name = difficulties[state.index].difficultyTitle
+    private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState
+        .map { state ->
+            val name = difficulties[state.index].difficultyTitle
 
-        DifficultyConfigUiState(
-            name = name,
-            allDifficulties = difficulties.map { difficulty -> difficulty.difficultyTitle }
-        )
-    }
+            DifficultyConfigUiState(
+                name = name,
+                allDifficulties = difficulties.map { difficulty -> difficulty.difficultyTitle }
+            )
+        }
         .distinctUntilChanged()
         .stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
-        initialValue = DifficultyConfigUiState(allDifficulties = difficulties.map { it.difficultyTitle })
+        initialValue = DifficultyConfigUiState(
+            allDifficulties = difficulties.map { it.difficultyTitle }
+        )
     )
     internal val difficultyConfigUiState = _difficultyConfigUiState
 
     private val _timerUiState = MutableStateFlow(TimerUiState())
     internal val timerUiState = _timerUiState.asStateFlow()
 
-    private val _phaseUiState = MutableStateFlow(OperationDetailsUiState.PhaseDetails())
-    internal val phaseUiState = _phaseUiState.asStateFlow()
-
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
+
+    data class PhaseData(
+        val canAlertAudio: Boolean = false,
+        val startFlashTime: Long = DEFAULT,
+        val elapsedFlashTime: Long = DEFAULT
+    )
+
+    private val _phaseState = MutableStateFlow<PhaseData>(PhaseData())
+
+    private val _phaseUiState = combine(
+        _phaseState, timerUiState, playerSanityUiState, preferences
+    ) { phaseState, timerUiState, playerSanityUiState, preferences ->
+        val type =
+            when {
+                timerUiState.remainingTime > TIME_MIN -> PhaseIdentifier.SETUP
+                playerSanityUiState.sanityLevel < SanityLevel.SAFE_MIN_BOUNDS -> PhaseIdentifier.HUNT
+                else -> PhaseIdentifier.ACTION
+            }
+
+        val canFlash = playerSanityUiState.isInsane &&
+                phaseState.elapsedFlashTime <= preferences.maxHuntWarnFlashTime
+
+        OperationDetailsUiState.PhaseDetails(
+            type = type,
+            canFlash = canFlash,
+            canAlertAudio = phaseState.canAlertAudio,
+            startFlashTime = phaseState.startFlashTime,
+            elapsedFlashTime = phaseState.elapsedFlashTime
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = OperationDetailsUiState.PhaseDetails(
+            elapsedFlashTime = 0L,
+            startFlashTime = DEFAULT,
+            maxFlashTime = DURATION_30_SECONDS,
+            type = PhaseIdentifier.SETUP,
+            canFlash = true,
+            canAlertAudio = false
+        )
+    )
+    internal val phaseUiState = _phaseUiState
 
     private val _operationToolbarUiState = MutableStateFlow(
         OperationToolbarUiState(
@@ -328,8 +368,8 @@ class InvestigationScreenViewModel private constructor(
             drainModifier = mapModifier * difficultyState.settings.sanityDrainSpeed.toFloat()
         )
     }
-        .distinctUntilChanged()
-        .stateIn(
+    .distinctUntilChanged()
+    .stateIn(
         scope = viewModelScope,
         started = SharingStarted.Eagerly,
         initialValue = OperationSanityUiState()
@@ -685,7 +725,7 @@ class InvestigationScreenViewModel private constructor(
     /*
      * Phase Ui Functions
      */
-    private fun initPhaseUiState() {
+    /*private fun initPhaseUiState() {
         _phaseUiState.update {
             it.copy(
                 elapsedFlashTime = 0L,
@@ -696,7 +736,7 @@ class InvestigationScreenViewModel private constructor(
                 canAlertAudio = false
             )
         }
-    }
+    }*/
 
     /*
      * Player Sanity Ui Functions
@@ -950,8 +990,6 @@ class InvestigationScreenViewModel private constructor(
         val timeElapsed = calculateElapsedTime()
         val drain = calculateSanityDrain(timeElapsed)
         setPlayerSanity(drain)
-
-        updatePhase()
     }
 
     /** @param progress specify the progress 0 - 100
@@ -1004,7 +1042,7 @@ class InvestigationScreenViewModel private constructor(
      * either if the Flash Timeout is infinite
      * or if there is no time remaining on the countdown timer.
      * @return if the Warning indicator can flash */
-    private fun updateCanFlash() {
+    /*private fun updateCanFlash() {
 
         if (phaseUiState.value.maxFlashTime == DURATION_30_SECONDS) {
             _phaseUiState.update {
@@ -1035,9 +1073,9 @@ class InvestigationScreenViewModel private constructor(
             )
         }
 
-    }
+    }*/
 
-    private fun updatePhase() {
+    /*private fun updatePhase() {
         _phaseUiState.update {
             it.copy(
                 type =
@@ -1052,16 +1090,15 @@ class InvestigationScreenViewModel private constructor(
                     }
             )
         }
-    }
+    }*/
 
     private fun resetPhase() {
-        _phaseUiState.update {
+        _phaseState.update {
             it.copy(
                 startFlashTime = DEFAULT,
                 elapsedFlashTime = System.currentTimeMillis() - it.startFlashTime
             )
         }
-        updateCanFlash()
     }
 
     /*
@@ -1070,24 +1107,6 @@ class InvestigationScreenViewModel private constructor(
 
     private fun launchTimerJob() {
         timerJob = viewModelScope.launch {
-
-            _timerUiState.update {
-                val startTime =
-                    if (it.startTime == TIME_DEFAULT) System.currentTimeMillis()
-                    else System.currentTimeMillis() -
-                            getDurationByProgress(playerSanityUiState.value.insanityLevel)
-
-                val remainingTime =
-                    if (it.remainingTime == TIME_DEFAULT)
-                        difficultyState.value.settings.setupTime.toLong()
-                    else it.remainingTime
-
-                it.copy(
-                    startTime = startTime,
-                    remainingTime = remainingTime,
-                    paused = false
-                )
-            }
 
             while (!timerUiState.value.paused) {
 
@@ -1099,9 +1118,6 @@ class InvestigationScreenViewModel private constructor(
 
                 val remaining = timerUiState.value.remainingTime
                 setTimeRemaining((remaining - actualDelay).coerceAtLeast(0L))
-
-                updatePhase()
-
             }
         }
     }
@@ -1133,9 +1149,31 @@ class InvestigationScreenViewModel private constructor(
         }
     }
 
+    private fun initializeNewTimer() {
+        _timerUiState.update {
+            val startTime =
+                if (it.startTime == TIME_DEFAULT) System.currentTimeMillis()
+                else System.currentTimeMillis() -
+                        getDurationByProgress(playerSanityUiState.value.insanityLevel)
+
+            val remainingTime =
+                if (it.remainingTime == TIME_DEFAULT)
+                    difficultyState.value.settings.setupTime.toLong()
+                else it.remainingTime
+
+            it.copy(
+                startTime = startTime,
+                remainingTime = remainingTime,
+                paused = false
+            )
+        }
+    }
+
     private fun playTimer() {
         stopPlayerSanityJob()
         stopTimerJob()
+
+        initializeNewTimer()
 
         launchTimerJob()
         launchPlayerSanityJob()
@@ -1188,8 +1226,6 @@ class InvestigationScreenViewModel private constructor(
     private fun resetTimer() {
         stopTimerJob()
         initTimerUiState()
-
-        updatePhase()
     }
 
     /*
@@ -1252,9 +1288,6 @@ class InvestigationScreenViewModel private constructor(
             }
 
             updateInvestigationDifficultyUseCase(difficultyState)
-            /*_difficultyState.update {
-                difficultyState
-            }*/
 
             _playerSanityUiState.update {
                 it.copy(
@@ -1263,7 +1296,7 @@ class InvestigationScreenViewModel private constructor(
                 )
             }
 
-            _phaseUiState.update {
+            _phaseState.update {
                 it.copy(
                     canAlertAudio = false
                 )
@@ -1330,15 +1363,6 @@ class InvestigationScreenViewModel private constructor(
             )
 
             updateInvestigationMapUseCase(mapState)
-            /*_mapState.update {
-                it.copy(
-                    index = index,
-                    name = name,
-                    size = size,
-                    setupModifier = modifier.setupModifier,
-                    actionModifier = modifier.actionModifier
-                )
-            }*/
 
             Log.e("InvestigationViewModel", "Set map index success")
 
@@ -1380,7 +1404,6 @@ class InvestigationScreenViewModel private constructor(
         updateMap(0)
         updateDifficulty(0)
 
-        initPhaseUiState()
         initTimerUiState()
 
         initPlayerSanityUiState()
