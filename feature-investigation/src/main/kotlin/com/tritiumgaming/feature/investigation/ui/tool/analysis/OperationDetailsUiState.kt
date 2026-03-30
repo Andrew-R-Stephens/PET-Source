@@ -1,12 +1,13 @@
 package com.tritiumgaming.feature.investigation.ui.tool.analysis
 
-import com.tritiumgaming.feature.investigation.ui.TimerUiState
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.shared.data.challenge.mapper.ChallengeResources
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyResponseType
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyTitle
 import com.tritiumgaming.shared.data.difficulty.mapper.DifficultyResources.DifficultyType
 import com.tritiumgaming.shared.data.difficultysetting.model.DifficultySettingsModel
+import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
+import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSize
 import com.tritiumgaming.shared.data.map.modifier.mappers.MapModifierResources.MapSizePhaseModifier
 import com.tritiumgaming.shared.data.map.simple.mappers.SimpleMapResources.MapTitle
@@ -44,13 +45,7 @@ internal data class OperationDetailsUiState(
         internal val startFlashTime: Long = DEFAULT,
         internal val elapsedFlashTime: Long = DEFAULT,
         internal val maxFlashTime: Long = DURATION_30_SECONDS,
-    ) {
-
-        companion object {
-            const val DURATION_30_SECONDS = 300000L
-            const val DEFAULT = 300000L
-        }
-    }
+    )
 
     internal data class GhostDetails(
         internal val activeGhosts: List<GhostDetail> = emptyList(),

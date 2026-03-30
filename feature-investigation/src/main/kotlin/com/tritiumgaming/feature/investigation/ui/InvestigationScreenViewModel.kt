@@ -298,12 +298,6 @@ class InvestigationScreenViewModel private constructor(
     private val _playerSanityUiState = MutableStateFlow(PlayerSanityUiState())
     internal val playerSanityUiState = _playerSanityUiState.asStateFlow()
 
-    data class PhaseData(
-        val canAlertAudio: Boolean = false,
-        val startFlashTime: Long = DEFAULT,
-        val elapsedFlashTime: Long = DEFAULT
-    )
-
     private val _phaseState = MutableStateFlow<PhaseData>(PhaseData())
 
     private val _phaseUiState = combine(
