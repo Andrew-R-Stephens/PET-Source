@@ -56,6 +56,7 @@ import com.tritiumgaming.shared.data.ghosttrait.model.GhostTrait
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetAllGhostTraitsUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByCategoryUseCase
 import com.tritiumgaming.shared.data.ghosttrait.usecase.GetGhostTraitsByTagUseCase
+import com.tritiumgaming.shared.data.ghosttrait.usecase.GetUniqueGhostTraitsUseCase
 import com.tritiumgaming.shared.data.investigation.model.CategoryOption
 import com.tritiumgaming.shared.data.investigation.model.DifficultyData
 import com.tritiumgaming.shared.data.investigation.model.EvidenceState
@@ -132,7 +133,7 @@ class InvestigationScreenViewModel private constructor(
     private val getGhostByIdUseCase: GetGhostTypeByIdUseCase = journalUseCaseBundle.getGhostTypeByIdUseCase,
     private val getGhostTraitsByCategoryUseCase: GetGhostTraitsByCategoryUseCase = journalUseCaseBundle.getGhostTraitsByCategoryUseCase,
     private val getGhostTraitsByTagUseCase: GetGhostTraitsByTagUseCase = journalUseCaseBundle.getGhostTraitsByTagUseCase,
-    private val getUniquedGhostTraitsUseCase: GetGhostTraitsByTagUseCase = journalUseCaseBundle.getGhostTraitsByTagUseCase,
+    private val getUniqueGhostTraitsUseCase: GetUniqueGhostTraitsUseCase = journalUseCaseBundle.getUniqueGhostTraitsUseCase,
     difficultyUseCaseBundle: DifficultyUseCaseBundle,
     private val fetchDifficultiesUseCase: FetchDifficultiesUseCase = difficultyUseCaseBundle.fetchDifficultiesUseCase,
     private val getDifficultyNameUseCase: GetDifficultyNameUseCase = difficultyUseCaseBundle.getDifficultyNameUseCase,
