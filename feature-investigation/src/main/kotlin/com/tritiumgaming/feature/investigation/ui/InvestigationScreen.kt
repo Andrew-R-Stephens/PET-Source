@@ -1,7 +1,13 @@
 package com.tritiumgaming.feature.investigation.ui
 
+import android.util.Log
 import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,6 +16,7 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,23 +24,35 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material3.rememberSliderState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -41,17 +60,28 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tritiumgaming.core.common.config.DeviceConfiguration
+import com.tritiumgaming.core.common.util.ColorUtils
 import com.tritiumgaming.core.resources.R
+import com.tritiumgaming.core.ui.icon.impl.base.BloodIcon
+import com.tritiumgaming.core.ui.icon.impl.base.BloodMoonIcon
 import com.tritiumgaming.core.ui.icon.impl.base.TruckTimeIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntCooldownDurationIcon
 import com.tritiumgaming.core.ui.icon.impl.composite.HuntDurationIcon
@@ -103,6 +133,7 @@ import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiActions
 import com.tritiumgaming.feature.investigation.ui.tool.traits.TraitListUiState
 import com.tritiumgaming.feature.investigation.ui.toolbar.ToolbarUiActions
 import com.tritiumgaming.feature.investigation.ui.toolbar.config.ConfigToolbarUiState
+import com.tritiumgaming.feature.investigation.ui.toolbar.config.ModifiersButton
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolRail
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbar
 import com.tritiumgaming.feature.investigation.ui.toolbar.operation.OperationToolbarUiState
@@ -144,6 +175,7 @@ private fun InvestigationContent(
     val mapConfigUiState by investigationViewModel.mapConfigUiState.collectAsStateWithLifecycle()
     val operationDetailsUiState by investigationViewModel.operationDetailsUiState.collectAsStateWithLifecycle()
     val difficultyUiState by investigationViewModel.difficultyConfigUiState.collectAsStateWithLifecycle()
+    val operationConditionsState by investigationViewModel.operationConditionsState.collectAsStateWithLifecycle()
     val sanityUiState by investigationViewModel.playerSanityUiState.collectAsStateWithLifecycle()
     val evidenceListUiStates by investigationViewModel.evidenceListUiState.collectAsStateWithLifecycle()
 
@@ -498,11 +530,77 @@ private fun InvestigationContent(
         }
     }
     val sanityMeterComponent: @Composable (Modifier) -> Unit = { modifier ->
-        SanityMeter(
+        Row(
             modifier = modifier,
-            sanityUiState = sanityUiState
-        )
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            SanityMeter(
+                modifier = Modifier
+                    .aspectRatio(1f),
+                sanityUiState = sanityUiState
+            )
+
+            val sanityPercentString = String.format(Locale.ROOT, "%d%%",
+                (sanityUiState.sanityLevel * 100).toInt())
+            Text(
+                modifier = Modifier
+                    .wrapContentSize(),
+                text = sanityPercentString,
+                maxLines = 1,
+                style = LocalTypography.current.tertiary.bold.copy(
+                    textAlign = TextAlign.Center
+                ),
+                color = Color(ColorUtils.interpolate(
+                    LocalPalette.current.onSurface.toArgb(),
+                    endColor = LocalPalette.current.primary.toArgb(),
+                    sanityUiState.sanityLevel)
+                ),
+                fontSize = 14.sp,
+            )
+
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentHeight()
+            ) {
+                SanitySeekbar(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    state = sanityUiState.insanityLevel,
+                    onValueChange = {
+                        investigationViewModel.setPlayerSanity(it)
+                    },
+                    containerColor = Color.Transparent,
+                    inactiveTrackColor = LocalPalette.current.onSurface,
+                    activeTrackColor = LocalPalette.current.primary,
+                    thumbOutlineColor = LocalPalette.current.primaryContainer,
+                    thumbInnerColor = LocalPalette.current.primaryContainer,
+                )
+            }
+
+        }
     }
+
+
+    val phaseComponent: @Composable (Modifier) -> Unit = { modifier ->
+        Box(
+            modifier = modifier,
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                modifier = Modifier
+                    .wrapContentHeight(),
+                text = stringResource(phaseUiState.type.toPhaseTitle().toStringResource()),
+                color = LocalPalette.current.onSurface,
+                style = LocalTypography.current.tertiary.regular.copy(
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
+            )
+        }
+    }
+
     val timerComponent: @Composable (Modifier) -> Unit = { modifier ->
         Column(
             modifier = modifier,
@@ -522,7 +620,9 @@ private fun InvestigationContent(
                     state = timerUiState,
                 )
             }
+
             Row (
+                modifier = Modifier,
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ){
@@ -562,6 +662,19 @@ private fun InvestigationContent(
                             tint = LocalPalette.current.onSurface
                         )
                     },
+                )
+            }
+
+            Surface(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                color = LocalPalette.current.surfaceContainerLowest,
+                shape = RoundedCornerShape(8.dp),
+            ) {
+                phaseComponent(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
                 )
             }
         }
@@ -616,20 +729,18 @@ private fun InvestigationContent(
 
     }
 
-    val phaseComponent: @Composable (Modifier) -> Unit = { modifier ->
-        Text(
-            modifier = modifier,
-            text = stringResource(phaseUiState.type.toPhaseTitle().toStringResource()),
-            color = LocalPalette.current.onSurface,
-            style = LocalTypography.current.tertiary.regular.copy(
-                fontSize = 12.sp,
-                textAlign = TextAlign.Center
-            )
-        )
-    }
-
     val bloodMoonComponent: @Composable (Modifier) -> Unit = { modifier ->
-
+        BloodMoonIcon(
+            modifier = modifier
+                .clickable(onClick = {
+                    investigationViewModel.toggleBloodMoon()
+                }),
+            colors = IconVectorColors.defaults().copy(
+                fillColor = LocalPalette.current.onSurfaceVariant,
+                strokeColor = LocalPalette.current.onSurface
+            ),
+            filled = operationConditionsState.isBloodMoon
+        )
     }
 
     val statusBarComponent: @Composable (Modifier) -> Unit = { modifier ->
@@ -738,9 +849,10 @@ private fun InvestigationContent(
                 OperationToolbarUiState.Category.TOOL_CONFIG -> {
                     OperationConfigs(
                         modifier = Modifier
+                            .padding(top = 8.dp)
                             .height(IntrinsicSize.Max),
                         bloodMoonComponent = { modifier ->
-
+                            bloodMoonComponent(modifier)
                         },
                         mapConfigComponent = { modifier -> mapConfigComponent(modifier) },
                         difficultyConfigComponent = { modifier ->
@@ -988,6 +1100,119 @@ private fun InvestigationContent(
     }
 }
 
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun SanitySeekbar(
+    modifier: Modifier = Modifier,
+    state: Float,
+    containerColor: Color = Color.White,
+    inactiveTrackColor: Color = Color.White,
+    activeTrackColor: Color = Color.White,
+    thumbOutlineColor: Color = Color.White,
+    thumbInnerColor: Color = Color.White,
+    onValueChange: (Float) -> Unit = {}
+) {
+
+    var rememberSliderPosition by remember { mutableFloatStateOf(state) }
+
+    LaunchedEffect(state) {
+        rememberSliderPosition = state
+    }
+
+    val rememberSliderState =
+        rememberSliderState(
+            value = state,
+            valueRange = 0f..1f,
+            steps = 100,
+            onValueChangeFinished = {
+                onValueChange(rememberSliderPosition)
+                Log.d("Slider", "Slider finished $rememberSliderPosition $state")
+            }
+        )
+
+    val interactionSource = remember { MutableInteractionSource() }
+
+    Card(
+        modifier = modifier
+            .wrapContentHeight(),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = containerColor
+        )
+    ) {
+
+        Slider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            value = rememberSliderPosition,
+            onValueChange = {
+                rememberSliderPosition = it
+                rememberSliderState.value = it
+                onValueChange(rememberSliderPosition)
+            },
+            onValueChangeFinished = {
+                onValueChange(rememberSliderPosition)
+                Log.d("Slider",
+                    "Slider finished $rememberSliderPosition $state")
+            },
+            valueRange = 0f..1f,
+            interactionSource = interactionSource,
+            thumb = {
+                SeekbarThumb(
+                    outlineColor = thumbOutlineColor,
+                    innerColor = thumbInnerColor
+                )
+            },
+            track = {
+                SliderDefaults.Track(
+                    modifier = Modifier
+                        .height(3.dp),
+                    colors = SliderDefaults.colors(
+                        activeTrackColor = activeTrackColor,
+                        inactiveTrackColor = inactiveTrackColor,
+                        activeTickColor = Color.Transparent,
+                        inactiveTickColor = Color.Transparent,
+                        disabledInactiveTickColor = Color.Transparent,
+                        disabledThumbColor = Color.Transparent,
+                        disabledActiveTrackColor = Color.Transparent,
+                        disabledInactiveTrackColor = Color.Transparent,
+                        disabledActiveTickColor = Color.Transparent,
+                        thumbColor = Color.Transparent
+                    ),
+                    sliderState = rememberSliderState,
+                    thumbTrackGapSize = 0.dp
+                )
+            },
+            colors = SliderDefaults.colors(
+                activeTrackColor = activeTrackColor,
+                inactiveTrackColor = inactiveTrackColor,
+                activeTickColor = Color.Transparent,
+                inactiveTickColor = Color.Transparent
+            )
+        )
+
+
+    }
+}
+
+@Composable
+private fun SeekbarThumb(
+    modifier: Modifier = Modifier
+        .size(ButtonDefaults.IconSize),
+    outlineColor: Color = Color.White,
+    innerColor: Color = Color.White
+) {
+    Box(
+        modifier = modifier
+            .border(2.dp, outlineColor, CircleShape)
+            .padding(2.dp)
+            .clip(CircleShape)
+            .background(innerColor)
+    )
+}
+
 @Composable
 private fun InvestigationContentPortrait(
     modifier: Modifier = Modifier,
@@ -1045,14 +1270,20 @@ private fun ColumnScope.Investigation(
                 .padding(horizontal = 8.dp)
         )
 
-        if(state.operationToolbarUiState.isCollapsed || state.operationToolbarUiState.category !=
+        /*if(state.operationToolbarUiState.isCollapsed || state.operationToolbarUiState.category !=
             OperationToolbarUiState.Category.TOOL_CONFIG) {
             statusBarComponent(
                 Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 8.dp)
             )
-        }
+        }*/
+
+        statusBarComponent(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp)
+        )
 
         ToolbarBottomSheet(
             modifier = Modifier
@@ -1132,14 +1363,21 @@ private fun RowScope.Investigation(
                 .weight(1f, false),
             verticalArrangement = Arrangement.Top
         ) {
-            if(state.operationToolbarUiState.isCollapsed || state.operationToolbarUiState.category !=
+            /*if(state.operationToolbarUiState.isCollapsed || state.operationToolbarUiState.category !=
                 OperationToolbarUiState.Category.TOOL_CONFIG) {
                 statusBarComponent(
                     Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 8.dp)
                 )
-            }
+            }*/
+
+            statusBarComponent(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp)
+            )
+
             journalComponent(Modifier
                 .weight(1f)
             )
@@ -1214,54 +1452,93 @@ fun OperationConfigs(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.Top,
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            color = LocalPalette.current.surfaceContainer,
+            shape = RoundedCornerShape(8.dp),
+            border = BorderStroke(
+                width = 2.dp,
+                color = LocalPalette.current.surfaceContainerLow
+            )
+        ) {
+            Row(
+                modifier = Modifier,
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                bloodMoonComponent(
+                    Modifier
+                        .size(48.dp)
+                        .padding(8.dp)
+                )
+            }
+        }
+
         Row(
             modifier = Modifier
                 .wrapContentHeight()
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
         ) {
-            Column(
+            Surface(
                 modifier = Modifier
                     .weight(1f),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalAlignment = Alignment.Start
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
             ) {
+                Column(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+                    horizontalAlignment = Alignment.Start
+                ) {
 
-                mapConfigComponent(Modifier
-                    .fillMaxWidth()
-                )
+                    mapConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                    )
 
-                difficultyConfigComponent(Modifier
-                    .fillMaxWidth()
-                )
+                    difficultyConfigComponent(
+                        Modifier
+                            .fillMaxWidth()
+                    )
 
+                }
             }
 
-            Column(
-                modifier = Modifier
-                    .wrapContentSize(),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+
+            Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
             ) {
-                Row {
-                    bloodMoonComponent(
-                        Modifier.size(48.dp)
-                    )
-                    bloodMoonComponent(
-                        Modifier.size(48.dp)
-                    )
-                    bloodMoonComponent(
-                        Modifier.size(48.dp)
-                    )
-                    bloodMoonComponent(
-                        Modifier.size(48.dp)
+                Box(
+                    Modifier
+                        .padding(8.dp),
+                    contentAlignment = Alignment.BottomCenter
+                ) {
+                    timerComponent(
+                        Modifier
+                            .width(IntrinsicSize.Min)
                     )
                 }
             }
+
         }
 
         Row(
@@ -1271,24 +1548,40 @@ fun OperationConfigs(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            Box(
-                Modifier
-                    .padding(8.dp),
-                contentAlignment = Alignment.BottomCenter
+            Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
             ) {
-                timerComponent(
+                sanityMeterComponent(
                     Modifier
+                        .height(48.dp)
+                        .weight(1f)
+                        .padding(8.dp)
                 )
             }
 
-            sanityMeterComponent(
-                Modifier
-                    .size(64.dp)
-            )
-
+            /*Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ) {
+                phaseComponent(
+                    Modifier
+                        .height(48.dp)
+                        .padding(8.dp)
+                )
+            }*/
         }
 
-        phaseComponent(Modifier)
     }
 
 }

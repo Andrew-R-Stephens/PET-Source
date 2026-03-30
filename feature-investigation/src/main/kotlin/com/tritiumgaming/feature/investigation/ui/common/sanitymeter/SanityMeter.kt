@@ -53,7 +53,7 @@ fun SanityMeter(
     ) {
         if(showProgress) {
             SanityPie(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxSize()
                     .border(
                         1.dp,
@@ -66,7 +66,7 @@ fun SanityMeter(
             )
         }
 
-        val layerModifier = modifier
+        val layerModifier = Modifier
             .then(
                 if(showProgress) Modifier.fillMaxSize(.7f)
                 else Modifier.fillMaxSize()

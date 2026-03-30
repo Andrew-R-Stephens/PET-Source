@@ -44,6 +44,7 @@ import com.tritiumgaming.shared.data.difficulty.usecase.IncrementDifficultyIndex
 import com.tritiumgaming.shared.data.difficulty.usecase.SetDifficultyIndexUseCase
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission
 import com.tritiumgaming.shared.data.difficultysetting.dto.EquipmentPermission.Permission
+import com.tritiumgaming.shared.data.difficultysetting.mapper.DifficultySettingResources.Weather
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toFloat
 import com.tritiumgaming.shared.data.difficultysetting.mapper.toLong
 import com.tritiumgaming.shared.data.evidence.model.EvidenceType
@@ -256,6 +257,20 @@ class InvestigationScreenViewModel private constructor(
             )
         )
     internal val mapConfigUiState = _mapConfigUiState
+
+    data class OperationConditionsData(
+        val isBloodMoon: Boolean = false
+    )
+
+    private val _operationConditionsState = MutableStateFlow(OperationConditionsData())
+    internal val operationConditionsState = _operationConditionsState.asStateFlow()
+    internal fun toggleBloodMoon() {
+        _operationConditionsState.update {
+            it.copy (
+                isBloodMoon = !it.isBloodMoon
+            )
+        }
+    }
 
     private val _difficultyConfigUiState : StateFlow<DifficultyConfigUiState> = _difficultyState
         .map { state ->
@@ -666,9 +681,17 @@ class InvestigationScreenViewModel private constructor(
     internal val sortedGhosts = _sortedGhosts
 
     /* Operation Details */
-    private val _operationDetailsUiState: StateFlow<OperationDetailsUiState> =
-        combine(mapState, difficultyState, _ghostStates) {
-            mapState, difficultyState, ghostStates ->
+    private val _operationDetailsUiState: StateFlow<OperationDetailsUiState> = combine(
+        mapState,
+        difficultyState,
+        ghostStates,
+        operationConditionsState
+    ) {
+            mapState, difficultyState, ghostStates, operationConditionsState ->
+
+            val weather = if(operationConditionsState.isBloodMoon) Weather.BLOOD_MOON
+                else difficultyState.settings.weather
+
             OperationDetailsUiState(
                 mapDetails = OperationDetailsUiState.MapDetails(
                     name = mapState.name,
@@ -683,7 +706,9 @@ class InvestigationScreenViewModel private constructor(
                     difficultyTitle = difficultyState.title,
                     responseType = difficultyState.responseType,
                     challengeTitle = difficultyState.challengeTitle,
-                    settings = difficultyState.settings
+                    settings = difficultyState.settings.copy(
+                        weather = weather
+                    )
                 ),
                 ghostDetails = OperationDetailsUiState.GhostDetails(
                     activeGhosts = ghostStates.let { ghostStates ->
@@ -697,12 +722,12 @@ class InvestigationScreenViewModel private constructor(
                 )
             )
         }
-            .distinctUntilChanged()
-            .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.Eagerly,
-            initialValue = OperationDetailsUiState()
-        )
+        .distinctUntilChanged()
+        .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.Eagerly,
+        initialValue = OperationDetailsUiState()
+    )
     internal val operationDetailsUiState = _operationDetailsUiState
 
     /*
