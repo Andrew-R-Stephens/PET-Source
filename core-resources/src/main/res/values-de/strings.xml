@@ -40,7 +40,7 @@
     <string name="investigation_sanity_huntwarn">Jagdwarnung</string>
     <string name="investigation_phase_label_action">Aktion</string>
     <string name="investigation_phase_label_setup">Vorbereitung</string>
-    <string name="investigation_sanitymeter_title">maximale geistige Gesundheit</string>
+    <string name="investigation_sanitymeter_title">Geisteszustand</string>
 
     <!--
         TOOLS PAGE
