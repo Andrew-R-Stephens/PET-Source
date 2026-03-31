@@ -82,7 +82,7 @@ fun OperationConfigDropdown(
                 .fillMaxWidth()
                 .wrapContentHeight(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.Start
         ) {
 
             icon(

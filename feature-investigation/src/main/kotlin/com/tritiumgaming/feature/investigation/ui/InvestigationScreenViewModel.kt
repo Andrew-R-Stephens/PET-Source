@@ -20,8 +20,6 @@ import com.tritiumgaming.feature.investigation.ui.common.sanitymeter.PlayerSanit
 import com.tritiumgaming.feature.investigation.ui.journal.ghost.item.GhostState
 import com.tritiumgaming.feature.investigation.ui.popups.JournalPopupUiState
 import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState.PhaseDetails.Companion.DEFAULT
-import com.tritiumgaming.feature.investigation.ui.tool.analysis.OperationDetailsUiState.PhaseDetails.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.feature.investigation.ui.tool.configs.DifficultyConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.configs.MapConfigUiState
 import com.tritiumgaming.feature.investigation.ui.tool.footstep.BpmToolUiState
@@ -64,6 +62,9 @@ import com.tritiumgaming.shared.data.investigation.model.EvidenceValidationType
 import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterOptions
 import com.tritiumgaming.shared.data.investigation.model.GhostTraitFilterUiOptions
 import com.tritiumgaming.shared.data.investigation.model.MapData
+import com.tritiumgaming.shared.data.investigation.model.PhaseData
+import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DEFAULT
+import com.tritiumgaming.shared.data.investigation.model.PhaseData.Companion.DURATION_30_SECONDS
 import com.tritiumgaming.shared.data.investigation.model.StateOption
 import com.tritiumgaming.shared.data.investigation.model.TagOption
 import com.tritiumgaming.shared.data.investigation.model.TraitFilter

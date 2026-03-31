@@ -57,8 +57,7 @@ internal fun TraitConfig(
     val categories = state.options.category
 
     Column(
-        modifier = modifier
-            .padding(8.dp),
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -66,7 +65,7 @@ internal fun TraitConfig(
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 8.dp),
+                .padding(8.dp),
             text = stringResource(R.string.evidence_trait_label_evidence).uppercase(),
             color = LocalPalette.current.primary,
             style = LocalTypography.current.quaternary.bold.copy(

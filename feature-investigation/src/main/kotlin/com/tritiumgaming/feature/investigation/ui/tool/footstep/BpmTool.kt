@@ -18,11 +18,14 @@ import androidx.compose.ui.FrameRateCategory
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.preferredFrameRate
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedBIcon
 import com.tritiumgaming.core.ui.icon.impl.base.SpeedIcon
 import com.tritiumgaming.core.ui.theme.palette.provider.LocalPalette
+import com.tritiumgaming.core.ui.theme.type.LocalTypography
 import com.tritiumgaming.core.ui.vector.color.IconVectorColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.beatline.BeatLineUiColors
 import com.tritiumgaming.core.ui.widgets.graph.realtime.ui.graphlabels.GraphLabelsUiColors
@@ -98,156 +101,164 @@ fun BpmTool(
         )
     )
 
-    Box (
+    Column (
         modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .preferredFrameRate(FrameRateCategory.Normal),
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Column (
+        Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
-                .preferredFrameRate(FrameRateCategory.Normal),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+                .padding(8.dp),
+            text = "Footstep Tool".uppercase(),
+            color = LocalPalette.current.primary,
+            style = LocalTypography.current.quaternary.bold.copy(
+                textAlign = TextAlign.Start
+            ),
+            fontSize = 18.sp,
+            maxLines = 1
+        )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    actions.onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
+                },
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start)
         ) {
-
-            Row(
+            Checkbox(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable {
-                        actions.onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
-                    },
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start)
-            ) {
-                Checkbox(
-                    modifier = Modifier
-                        .padding(8.dp),
-                    checked = state.applyMeasurement,
-                    onCheckedChange = { actions.toggleApplyMeasurement() }
-                )
+                    .padding(8.dp),
+                checked = state.applyMeasurement,
+                onCheckedChange = { actions.toggleApplyMeasurement() }
+            )
 
-                Text(
-                    modifier = Modifier
-                        .weight(1f)
-                        .wrapContentHeight(),
-                    text = "Apply",
-                    color = LocalPalette.current.onSurface
-                )
-            }
-
-            BpmVisualizer(
+            Text(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp),
-                stateBundle = bpmVisualizerStateBundle,
-                colorBundle = bpmVisualizerColorBundle,
-                actions = BpmVisualizerUiActions(
-                    onUpdate = { newTapUiState ->
-                        actions.onUpdate(newTapUiState) }
+                    .weight(1f)
+                    .wrapContentHeight(),
+                text = "Apply",
+                color = LocalPalette.current.onSurface
+            )
+        }
+
+        BpmVisualizer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp),
+            stateBundle = bpmVisualizerStateBundle,
+            colorBundle = bpmVisualizerColorBundle,
+            actions = BpmVisualizerUiActions(
+                onUpdate = { newTapUiState ->
+                    actions.onUpdate(newTapUiState) }
+            )
+        )
+
+        Row(
+           modifier = Modifier
+               .fillMaxWidth()
+               .clickable {
+                   actions.onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
+               }
+        ) {
+            SpeedIcon(
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(8.dp),
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.onSurface.copy(
+                        alpha = alpha(
+                            state.measurementType,
+                            VisualizerMeasurementType.INSTANT
+                        )
+                    ),
+                    strokeColor = LocalPalette.current.onSurface.copy(
+                        alpha = alpha(
+                            state.measurementType,
+                            VisualizerMeasurementType.INSTANT
+                        )
+                    )
                 )
             )
 
-            Row(
-               modifier = Modifier
-                   .fillMaxWidth()
-                   .clickable {
-                       actions.onChangeMeasurementType(VisualizerMeasurementType.INSTANT)
-                   }
-            ) {
-                SpeedIcon(
-                    modifier = Modifier
-                        .size(32.dp)
-                        .padding(8.dp),
-                    colors = IconVectorColors(
-                        fillColor = LocalPalette.current.onSurface.copy(
-                            alpha = alpha(
-                                state.measurementType,
-                                VisualizerMeasurementType.INSTANT
-                            )
-                        ),
-                        strokeColor = LocalPalette.current.onSurface.copy(
-                            alpha = alpha(
-                                state.measurementType,
-                                VisualizerMeasurementType.INSTANT
-                            )
-                        )
-                    )
-                )
-
-                Text(
-                    modifier = Modifier
-                        .weight(1f)
-                        .wrapContentHeight(),
-                    text = "%.1f".format(state.realtimeState.smoothed / 60f),
-                    color = LocalPalette.current.onSurface
-                )
-            }
-
-            Row(
-               modifier = Modifier
-                   .fillMaxWidth()
-                   .clickable {
-                       actions.onChangeMeasurementType(VisualizerMeasurementType.AVERAGED)
-                   }
-            ) {
-                SpeedBIcon(
-                    modifier = Modifier
-                        .size(32.dp)
-                        .padding(8.dp),
-                    colors = IconVectorColors(
-                        fillColor = LocalPalette.current.onSurface.copy(
-                            alpha = alpha(state.measurementType,
-                                VisualizerMeasurementType.AVERAGED)
-                        ),
-                        strokeColor = LocalPalette.current.onSurface.copy(
-                            alpha = alpha(state.measurementType,
-                                VisualizerMeasurementType.AVERAGED)
-                        )
-                    )
-                )
-
-                Text(
-                    modifier = Modifier
-                        .weight(1f)
-                        .wrapContentHeight(),
-                    text = "%.1f".format((state.realtimeState.points.tail?.data?.avg ?: 0f) / 60f),
-                    color = LocalPalette.current.onSurface
-                )
-            }
-
-            Row(
-               modifier = Modifier
-                   .fillMaxWidth()
-                   .clickable {
-                       actions.onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED)
-                   }
-            ) {
-                SpeedBBIcon(
-                    modifier = Modifier
-                        .size(32.dp)
-                        .padding(8.dp),
-                    colors = IconVectorColors(
-                        fillColor = LocalPalette.current.onSurface.copy(
-                            alpha = alpha(state.measurementType,
-                                VisualizerMeasurementType.WEIGHTED)
-                        ),
-                        strokeColor = LocalPalette.current.onSurface.copy(
-                            alpha = alpha(state.measurementType,
-                                VisualizerMeasurementType.WEIGHTED)
-                        )
-                    )
-                )
-
-                Text(
-                    modifier = Modifier
-                        .weight(1f)
-                        .wrapContentHeight(),
-                    text = "%.1f".format((state.realtimeState.points.tail?.data?.weightedAvg?: 0f) / 60f),
-                    color = LocalPalette.current.onSurface
-                )
-            }
-
+            Text(
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentHeight(),
+                text = "%.1f".format(state.realtimeState.smoothed / 60f),
+                color = LocalPalette.current.onSurface
+            )
         }
-    }
 
+        Row(
+           modifier = Modifier
+               .fillMaxWidth()
+               .clickable {
+                   actions.onChangeMeasurementType(VisualizerMeasurementType.AVERAGED)
+               }
+        ) {
+            SpeedBIcon(
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(8.dp),
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.onSurface.copy(
+                        alpha = alpha(state.measurementType,
+                            VisualizerMeasurementType.AVERAGED)
+                    ),
+                    strokeColor = LocalPalette.current.onSurface.copy(
+                        alpha = alpha(state.measurementType,
+                            VisualizerMeasurementType.AVERAGED)
+                    )
+                )
+            )
+
+            Text(
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentHeight(),
+                text = "%.1f".format((state.realtimeState.points.tail?.data?.avg ?: 0f) / 60f),
+                color = LocalPalette.current.onSurface
+            )
+        }
+
+        Row(
+           modifier = Modifier
+               .fillMaxWidth()
+               .clickable {
+                   actions.onChangeMeasurementType(VisualizerMeasurementType.WEIGHTED)
+               }
+        ) {
+            SpeedBBIcon(
+                modifier = Modifier
+                    .size(32.dp)
+                    .padding(8.dp),
+                colors = IconVectorColors(
+                    fillColor = LocalPalette.current.onSurface.copy(
+                        alpha = alpha(state.measurementType,
+                            VisualizerMeasurementType.WEIGHTED)
+                    ),
+                    strokeColor = LocalPalette.current.onSurface.copy(
+                        alpha = alpha(state.measurementType,
+                            VisualizerMeasurementType.WEIGHTED)
+                    )
+                )
+            )
+
+            Text(
+                modifier = Modifier
+                    .weight(1f)
+                    .wrapContentHeight(),
+                text = "%.1f".format((state.realtimeState.points.tail?.data?.weightedAvg?: 0f) / 60f),
+                color = LocalPalette.current.onSurface
+            )
+        }
+
+    }
 }

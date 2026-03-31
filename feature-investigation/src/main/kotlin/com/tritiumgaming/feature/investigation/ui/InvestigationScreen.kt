@@ -38,14 +38,12 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.material3.rememberSliderState
@@ -734,7 +732,9 @@ private fun InvestigationContent(
             modifier = modifier
                 .clickable(onClick = {
                     investigationViewModel.toggleBloodMoon()
-                }),
+                })
+                .padding(8.dp)
+                .clip(CircleShape),
             colors = IconVectorColors.defaults().copy(
                 fillColor = LocalPalette.current.onSurfaceVariant,
                 strokeColor = LocalPalette.current.onSurface
@@ -1263,6 +1263,7 @@ private fun ColumnScope.Investigation(
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         journalComponent(
             Modifier
@@ -1323,7 +1324,9 @@ private fun RowScope.Investigation(
     customDifficultySheetComponent: @Composable (Modifier) -> Unit
 ) {
     Row(
-        modifier = modifier
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         val toolbarContent: @Composable (Modifier) -> Unit = { modifier ->
             OperationToolRail(
@@ -1456,40 +1459,30 @@ fun OperationConfigs(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Surface(
+        Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .wrapContentHeight(),
-            color = LocalPalette.current.surfaceContainer,
-            shape = RoundedCornerShape(8.dp),
-            border = BorderStroke(
-                width = 2.dp,
-                color = LocalPalette.current.surfaceContainerLow
-            )
-        ) {
-            Row(
-                modifier = Modifier,
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                bloodMoonComponent(
-                    Modifier
-                        .size(48.dp)
-                        .padding(8.dp)
-                )
-            }
-        }
+                .padding(horizontal = 8.dp),
+            text = "Operation Config".uppercase(),
+            color = LocalPalette.current.primary,
+            style = LocalTypography.current.quaternary.bold.copy(
+                textAlign = TextAlign.Start
+            ),
+            fontSize = 18.sp,
+            maxLines = 1
+        )
 
         Row(
             modifier = Modifier
-                .wrapContentHeight()
+                .height(IntrinsicSize.Min)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
         ) {
             Surface(
                 modifier = Modifier
-                    .weight(1f),
+                    .weight(1f)
+                    .fillMaxHeight(),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(
@@ -1500,7 +1493,7 @@ fun OperationConfigs(
                 Column(
                     modifier = Modifier
                         .padding(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+                    verticalArrangement = Arrangement.SpaceBetween,
                     horizontalAlignment = Alignment.Start
                 ) {
 
@@ -1517,9 +1510,9 @@ fun OperationConfigs(
                 }
             }
 
-
             Surface(
-                modifier = Modifier,
+                modifier = Modifier
+                    .fillMaxHeight(),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(
@@ -1544,12 +1537,13 @@ fun OperationConfigs(
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
             Surface(
-                modifier = Modifier,
+                modifier = Modifier
+                    .weight(1f),
                 color = LocalPalette.current.surfaceContainer,
                 shape = RoundedCornerShape(8.dp),
                 border = BorderStroke(
@@ -1563,6 +1557,27 @@ fun OperationConfigs(
                         .weight(1f)
                         .padding(8.dp)
                 )
+            }
+
+            Surface(
+                modifier = Modifier,
+                color = LocalPalette.current.surfaceContainer,
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = LocalPalette.current.surfaceContainerLow
+                )
+            ) {
+                Row(
+                    modifier = Modifier,
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    bloodMoonComponent(
+                        Modifier
+                            .size(48.dp)
+                    )
+                }
             }
 
             /*Surface(
